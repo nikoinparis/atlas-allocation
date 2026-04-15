@@ -1,0 +1,299 @@
+[
+  {
+    "method_name": "equal_weight",
+    "category": "baseline",
+    "required_inputs": [
+      "strategy_summary_table.csv",
+      "strategy_positions_*.csv",
+      "strategy_returns_*.csv",
+      "regime_states.csv",
+      "weekly_returns.csv"
+    ],
+    "constraints": {
+      "long_only": true,
+      "max_sleeve_weight": 0.45,
+      "max_etf_weight": 0.35,
+      "cash_proxy": "BIL",
+      "rebalance_frequency": "monthly"
+    },
+    "rebalance_frequency": "monthly",
+    "risk_model_used": "sample",
+    "expected_return_input_used": "none",
+    "output_files": [
+      "portfolio_weights_equal_weight.csv",
+      "portfolio_sleeve_weights_equal_weight.csv",
+      "portfolio_returns_equal_weight.csv"
+    ],
+    "caveats": "Hard to beat out of sample; important baseline against optimizer overfitting."
+  },
+  {
+    "method_name": "inverse_vol",
+    "category": "baseline",
+    "required_inputs": [
+      "strategy_summary_table.csv",
+      "strategy_positions_*.csv",
+      "strategy_returns_*.csv",
+      "regime_states.csv",
+      "weekly_returns.csv"
+    ],
+    "constraints": {
+      "long_only": true,
+      "max_sleeve_weight": 0.45,
+      "max_etf_weight": 0.35,
+      "cash_proxy": "BIL",
+      "rebalance_frequency": "monthly"
+    },
+    "rebalance_frequency": "monthly",
+    "risk_model_used": "sample",
+    "expected_return_input_used": "none",
+    "output_files": [
+      "portfolio_weights_inverse_vol.csv",
+      "portfolio_sleeve_weights_inverse_vol.csv",
+      "portfolio_returns_inverse_vol.csv"
+    ],
+    "caveats": "Still simple, but implicitly leans into low-vol sleeves."
+  },
+  {
+    "method_name": "min_variance",
+    "category": "classical_optimization",
+    "required_inputs": [
+      "strategy_summary_table.csv",
+      "strategy_positions_*.csv",
+      "strategy_returns_*.csv",
+      "regime_states.csv",
+      "weekly_returns.csv"
+    ],
+    "constraints": {
+      "long_only": true,
+      "max_sleeve_weight": 0.45,
+      "max_etf_weight": 0.35,
+      "cash_proxy": "BIL",
+      "rebalance_frequency": "monthly"
+    },
+    "rebalance_frequency": "monthly",
+    "risk_model_used": "ledoit_wolf",
+    "expected_return_input_used": "none",
+    "output_files": [
+      "portfolio_weights_min_variance.csv",
+      "portfolio_sleeve_weights_min_variance.csv",
+      "portfolio_returns_min_variance.csv"
+    ],
+    "caveats": "Can become overly defensive when covariance estimates are noisy or highly clustered."
+  },
+  {
+    "method_name": "mvo_ic",
+    "category": "classical_optimization",
+    "required_inputs": [
+      "strategy_summary_table.csv",
+      "strategy_positions_*.csv",
+      "strategy_returns_*.csv",
+      "regime_states.csv",
+      "weekly_returns.csv"
+    ],
+    "constraints": {
+      "long_only": true,
+      "max_sleeve_weight": 0.45,
+      "max_etf_weight": 0.35,
+      "cash_proxy": "BIL",
+      "rebalance_frequency": "monthly"
+    },
+    "rebalance_frequency": "monthly",
+    "risk_model_used": "ledoit_wolf",
+    "expected_return_input_used": "ic_signal",
+    "output_files": [
+      "portfolio_weights_mvo_ic.csv",
+      "portfolio_sleeve_weights_mvo_ic.csv",
+      "portfolio_returns_mvo_ic.csv"
+    ],
+    "caveats": "Expected-return sensitive by design; should be interpreted cautiously."
+  },
+  {
+    "method_name": "max_sharpe_ic",
+    "category": "classical_optimization",
+    "required_inputs": [
+      "strategy_summary_table.csv",
+      "strategy_positions_*.csv",
+      "strategy_returns_*.csv",
+      "regime_states.csv",
+      "weekly_returns.csv"
+    ],
+    "constraints": {
+      "long_only": true,
+      "max_sleeve_weight": 0.45,
+      "max_etf_weight": 0.35,
+      "cash_proxy": "BIL",
+      "rebalance_frequency": "monthly"
+    },
+    "rebalance_frequency": "monthly",
+    "risk_model_used": "ledoit_wolf",
+    "expected_return_input_used": "ic_signal",
+    "output_files": [
+      "portfolio_weights_max_sharpe_ic.csv",
+      "portfolio_sleeve_weights_max_sharpe_ic.csv",
+      "portfolio_returns_max_sharpe_ic.csv"
+    ],
+    "caveats": "Often looks strongest in sample and most fragile out of sample."
+  },
+  {
+    "method_name": "black_litterman_regime",
+    "category": "classical_optimization",
+    "required_inputs": [
+      "strategy_summary_table.csv",
+      "strategy_positions_*.csv",
+      "strategy_returns_*.csv",
+      "regime_states.csv",
+      "weekly_returns.csv"
+    ],
+    "constraints": {
+      "long_only": true,
+      "max_sleeve_weight": 0.45,
+      "max_etf_weight": 0.35,
+      "cash_proxy": "BIL",
+      "rebalance_frequency": "monthly"
+    },
+    "rebalance_frequency": "monthly",
+    "risk_model_used": "ledoit_wolf",
+    "expected_return_input_used": "regime_signal",
+    "output_files": [
+      "portfolio_weights_black_litterman_regime.csv",
+      "portfolio_sleeve_weights_black_litterman_regime.csv",
+      "portfolio_returns_black_litterman_regime.csv"
+    ],
+    "caveats": "Adapted to strategy sleeves rather than market-cap assets; useful as a disciplined shrinkage framework, not magic."
+  },
+  {
+    "method_name": "erc_risk_parity",
+    "category": "risk_based",
+    "required_inputs": [
+      "strategy_summary_table.csv",
+      "strategy_positions_*.csv",
+      "strategy_returns_*.csv",
+      "regime_states.csv",
+      "weekly_returns.csv"
+    ],
+    "constraints": {
+      "long_only": true,
+      "max_sleeve_weight": 0.45,
+      "max_etf_weight": 0.35,
+      "cash_proxy": "BIL",
+      "rebalance_frequency": "monthly"
+    },
+    "rebalance_frequency": "monthly",
+    "risk_model_used": "ledoit_wolf",
+    "expected_return_input_used": "none",
+    "output_files": [
+      "portfolio_weights_erc_risk_parity.csv",
+      "portfolio_sleeve_weights_erc_risk_parity.csv",
+      "portfolio_returns_erc_risk_parity.csv"
+    ],
+    "caveats": "Robust when return estimates are noisy, but can overweight structurally low-vol sleeves."
+  },
+  {
+    "method_name": "hrp",
+    "category": "hierarchical",
+    "required_inputs": [
+      "strategy_summary_table.csv",
+      "strategy_positions_*.csv",
+      "strategy_returns_*.csv",
+      "regime_states.csv",
+      "weekly_returns.csv"
+    ],
+    "constraints": {
+      "long_only": true,
+      "max_sleeve_weight": 0.45,
+      "max_etf_weight": 0.35,
+      "cash_proxy": "BIL",
+      "rebalance_frequency": "monthly"
+    },
+    "rebalance_frequency": "monthly",
+    "risk_model_used": "sample",
+    "expected_return_input_used": "none",
+    "output_files": [
+      "portfolio_weights_hrp.csv",
+      "portfolio_sleeve_weights_hrp.csv",
+      "portfolio_returns_hrp.csv"
+    ],
+    "caveats": "More robust to inversion error, but still dependent on the correlation tree."
+  },
+  {
+    "method_name": "herc",
+    "category": "hierarchical",
+    "required_inputs": [
+      "strategy_summary_table.csv",
+      "strategy_positions_*.csv",
+      "strategy_returns_*.csv",
+      "regime_states.csv",
+      "weekly_returns.csv"
+    ],
+    "constraints": {
+      "long_only": true,
+      "max_sleeve_weight": 0.45,
+      "max_etf_weight": 0.35,
+      "cash_proxy": "BIL",
+      "rebalance_frequency": "monthly"
+    },
+    "rebalance_frequency": "monthly",
+    "risk_model_used": "sample",
+    "expected_return_input_used": "none",
+    "output_files": [
+      "portfolio_weights_herc.csv",
+      "portfolio_sleeve_weights_herc.csv",
+      "portfolio_returns_herc.csv"
+    ],
+    "caveats": "With a small sleeve universe, differences versus HRP can be modest."
+  },
+  {
+    "method_name": "max_diversification",
+    "category": "risk_based",
+    "required_inputs": [
+      "strategy_summary_table.csv",
+      "strategy_positions_*.csv",
+      "strategy_returns_*.csv",
+      "regime_states.csv",
+      "weekly_returns.csv"
+    ],
+    "constraints": {
+      "long_only": true,
+      "max_sleeve_weight": 0.45,
+      "max_etf_weight": 0.35,
+      "cash_proxy": "BIL",
+      "rebalance_frequency": "monthly"
+    },
+    "rebalance_frequency": "monthly",
+    "risk_model_used": "ledoit_wolf",
+    "expected_return_input_used": "none",
+    "output_files": [
+      "portfolio_weights_max_diversification.csv",
+      "portfolio_sleeve_weights_max_diversification.csv",
+      "portfolio_returns_max_diversification.csv"
+    ],
+    "caveats": "Often close to inverse-vol or risk-parity behavior when correlations are stable."
+  },
+  {
+    "method_name": "cvar_min",
+    "category": "tail_risk_extension",
+    "required_inputs": [
+      "strategy_summary_table.csv",
+      "strategy_positions_*.csv",
+      "strategy_returns_*.csv",
+      "regime_states.csv",
+      "weekly_returns.csv"
+    ],
+    "constraints": {
+      "long_only": true,
+      "max_sleeve_weight": 0.45,
+      "max_etf_weight": 0.35,
+      "cash_proxy": "BIL",
+      "rebalance_frequency": "monthly"
+    },
+    "rebalance_frequency": "monthly",
+    "risk_model_used": "sample",
+    "expected_return_input_used": "none",
+    "output_files": [
+      "portfolio_weights_cvar_min.csv",
+      "portfolio_sleeve_weights_cvar_min.csv",
+      "portfolio_returns_cvar_min.csv"
+    ],
+    "caveats": "Useful tail-risk benchmark, but more computationally expensive and still data-hungry."
+  }
+]

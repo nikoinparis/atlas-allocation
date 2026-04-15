@@ -1,0 +1,327 @@
+[
+  {
+    "strategy_name": "baseline_equal_weight_risk_assets",
+    "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+    "type": "baseline",
+    "required_inputs": [
+      "weekly_prices.csv",
+      "weekly_returns.csv"
+    ],
+    "rebalance_frequency": "monthly",
+    "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+    "output_files": [
+      "strategy_positions_baseline_equal_weight_risk_assets.csv",
+      "strategy_returns_baseline_equal_weight_risk_assets.csv"
+    ],
+    "caveats": "Simple baseline, not signal-driven.",
+    "description": "Equal-weight risky ETF basket baseline."
+  },
+  {
+    "strategy_name": "baseline_market_proxy_buy_hold",
+    "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+    "type": "baseline",
+    "required_inputs": [
+      "weekly_returns.csv",
+      "market_proxy_weekly.csv"
+    ],
+    "rebalance_frequency": "weekly",
+    "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+    "output_files": [
+      "strategy_positions_baseline_market_proxy_buy_hold.csv",
+      "strategy_returns_baseline_market_proxy_buy_hold.csv"
+    ],
+    "caveats": "Uses SPY as the market benchmark.",
+    "description": "Buy-and-hold market proxy baseline."
+  },
+  {
+    "strategy_name": "baseline_60_40_proxy",
+    "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+    "type": "baseline",
+    "required_inputs": [
+      "weekly_returns.csv",
+      "proxy_mapping.json"
+    ],
+    "rebalance_frequency": "monthly",
+    "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+    "output_files": [
+      "strategy_positions_baseline_60_40_proxy.csv",
+      "strategy_returns_baseline_60_40_proxy.csv"
+    ],
+    "caveats": "Convenient benchmark rather than a claim that 60/40 is universally appropriate.",
+    "description": "Simple 60/40 proxy using the explicit market and duration proxies."
+  },
+  {
+    "strategy_name": "dual_momentum_single_best",
+    "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+    "type": "strategy_logic",
+    "required_inputs": [
+      "signal_xsmom.csv",
+      "weekly_prices.csv",
+      "proxy_mapping.json"
+    ],
+    "rebalance_frequency": "monthly",
+    "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+    "output_files": [
+      "strategy_positions_dual_momentum_single_best.csv",
+      "strategy_returns_dual_momentum_single_best.csv"
+    ],
+    "caveats": "Uses an ETF proxy universe rather than the original exact paper universe.",
+    "description": "Antonacci-style dual momentum using the strongest risky ETF with an absolute-momentum defensive filter."
+  },
+  {
+    "strategy_name": "dual_momentum_topn",
+    "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+    "type": "strategy_logic",
+    "required_inputs": [
+      "signal_xsmom.csv",
+      "weekly_prices.csv",
+      "proxy_mapping.json"
+    ],
+    "rebalance_frequency": "monthly",
+    "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+    "output_files": [
+      "strategy_positions_dual_momentum_topn.csv",
+      "strategy_returns_dual_momentum_topn.csv"
+    ],
+    "caveats": "Top-N variant is more diversified but also less faithful to the concentrated original formulation.",
+    "description": "Top-N dual momentum basket with residual weight moved to the defensive asset when absolute momentum fails."
+  },
+  {
+    "strategy_name": "cta_trend_long_only",
+    "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+    "type": "strategy_logic",
+    "required_inputs": [
+      "signal_multi_horizon_mom.csv",
+      "weekly_returns.csv"
+    ],
+    "rebalance_frequency": "weekly",
+    "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+    "output_files": [
+      "strategy_positions_cta_trend_long_only.csv",
+      "strategy_returns_cta_trend_long_only.csv"
+    ],
+    "caveats": "ETF proxy only; not a full institutional futures trend program.",
+    "description": "Long/flat ETF CTA proxy using positive multi-horizon trend scores and inverse-vol sizing."
+  },
+  {
+    "strategy_name": "cta_trend_long_short_research",
+    "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+    "type": "experimental",
+    "required_inputs": [
+      "signal_multi_horizon_mom.csv",
+      "weekly_returns.csv"
+    ],
+    "rebalance_frequency": "weekly",
+    "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+    "output_files": [
+      "strategy_positions_cta_trend_long_short_research.csv",
+      "strategy_returns_cta_trend_long_short_research.csv"
+    ],
+    "caveats": "Research-only version; financing, shorting, borrow, and ETF implementation frictions are not modeled fully.",
+    "description": "Long/short ETF trend research sleeve using sign-based multi-horizon trend and inverse-vol sizing."
+  },
+  {
+    "strategy_name": "cta_trend_vol_managed",
+    "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+    "type": "overlay",
+    "required_inputs": [
+      "signal_multi_horizon_mom.csv",
+      "weekly_returns.csv"
+    ],
+    "rebalance_frequency": "weekly",
+    "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+    "output_files": [
+      "strategy_positions_cta_trend_vol_managed.csv",
+      "strategy_returns_cta_trend_vol_managed.csv"
+    ],
+    "caveats": "Vol management is intentionally simple and capped; it is an exposure rule, not a claim of optimal target-vol control.",
+    "description": "Volatility-managed version of the long-only CTA-style ETF trend sleeve.",
+    "overlay_on": "cta_trend_long_only"
+  },
+  {
+    "strategy_name": "sector_factor_rotation",
+    "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+    "type": "strategy_logic",
+    "required_inputs": [
+      "signal_xsmom.csv",
+      "signal_multi_horizon_mom.csv",
+      "signal_quality.csv",
+      "signal_value.csv",
+      "signal_bab.csv"
+    ],
+    "rebalance_frequency": "monthly",
+    "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+    "output_files": [
+      "strategy_positions_sector_factor_rotation.csv",
+      "strategy_returns_sector_factor_rotation.csv"
+    ],
+    "caveats": "Useful for ETF rotation research, but results depend on the breadth and composition of the equity-like universe.",
+    "description": "Top-N sector/factor ETF rotation using an equal-weight composite of Layer 1 signals."
+  },
+  {
+    "strategy_name": "taa_10m_sma",
+    "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+    "type": "strategy_logic",
+    "required_inputs": [
+      "weekly_prices.csv",
+      "proxy_mapping.json"
+    ],
+    "rebalance_frequency": "monthly",
+    "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+    "output_files": [
+      "strategy_positions_taa_10m_sma.csv",
+      "strategy_returns_taa_10m_sma.csv"
+    ],
+    "caveats": "This is a classic tactical overlay, not a forecast of short-horizon alpha.",
+    "description": "Classic 10-month SMA tactical asset allocation filter implemented with a 43-week moving average."
+  },
+  {
+    "strategy_name": "sector_rotation_with_sma_filter",
+    "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+    "type": "overlay",
+    "required_inputs": [
+      "weekly_prices.csv",
+      "signal_xsmom.csv",
+      "signal_multi_horizon_mom.csv"
+    ],
+    "rebalance_frequency": "monthly",
+    "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+    "output_files": [
+      "strategy_positions_sector_rotation_with_sma_filter.csv",
+      "strategy_returns_sector_rotation_with_sma_filter.csv"
+    ],
+    "caveats": "Adds a broad-market filter to the underlying rotation sleeve; can improve drawdown control but may skip recoveries.",
+    "description": "Sector/factor rotation with a market-level 10-month SMA tactical filter.",
+    "overlay_on": "sector_factor_rotation"
+  },
+  {
+    "strategy_name": "cross_sectional_reversal_combo_ls",
+    "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+    "type": "strategy_logic",
+    "required_inputs": [
+      "signal_reversal.csv",
+      "weekly_returns.csv"
+    ],
+    "rebalance_frequency": "weekly",
+    "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+    "output_files": [
+      "strategy_positions_cross_sectional_reversal_combo_ls.csv",
+      "strategy_returns_cross_sectional_reversal_combo_ls.csv"
+    ],
+    "caveats": "High-turnover and regime-dependent; better treated as a tactical sleeve than a core allocation.",
+    "description": "Market-neutral ETF reversal sleeve using the average of 1-week and 4-week reversal signals."
+  },
+  {
+    "strategy_name": "pairs_stat_arb_research",
+    "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+    "type": "experimental",
+    "required_inputs": [
+      "weekly_prices.csv",
+      "weekly_returns.csv"
+    ],
+    "rebalance_frequency": "weekly",
+    "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+    "output_files": [
+      "strategy_positions_pairs_stat_arb_research.csv",
+      "strategy_returns_pairs_stat_arb_research.csv"
+    ],
+    "caveats": "Research-only sleeve; cointegration is not guaranteed and pair stability can drift through time.",
+    "description": "Reduced ETF pairs strategy using rolling relative-value z-scores on economically sensible pair candidates.",
+    "pair_candidates": [
+      [
+        "EFA",
+        "VEA"
+      ],
+      [
+        "GLD",
+        "IAU"
+      ],
+      [
+        "TLT",
+        "IEF"
+      ],
+      [
+        "VTV",
+        "VUG"
+      ]
+    ]
+  },
+  {
+    "strategy_name": "composite_equal_weight",
+    "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+    "type": "strategy_logic",
+    "required_inputs": [
+      "signal_xsmom.csv",
+      "signal_multi_horizon_mom.csv",
+      "signal_residual_momentum.csv",
+      "signal_quality.csv",
+      "signal_value.csv",
+      "signal_bab.csv",
+      "signal_carry.csv"
+    ],
+    "rebalance_frequency": "monthly",
+    "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+    "output_files": [
+      "strategy_positions_composite_equal_weight.csv",
+      "strategy_returns_composite_equal_weight.csv"
+    ],
+    "caveats": "Strong baseline because it avoids unstable dynamic weights, but it may still contain redundant signals.",
+    "description": "Top-N long-only strategy driven by an equal-weight composite of Layer 1 signals."
+  },
+  {
+    "strategy_name": "composite_ic_weighted",
+    "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+    "type": "strategy_logic",
+    "required_inputs": [
+      "signal_xsmom.csv",
+      "signal_multi_horizon_mom.csv",
+      "signal_summary_table.csv"
+    ],
+    "rebalance_frequency": "monthly",
+    "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+    "output_files": [
+      "strategy_positions_composite_ic_weighted.csv",
+      "strategy_returns_composite_ic_weighted.csv"
+    ],
+    "caveats": "Rolling IC estimates are noisy; shrinkage is included because unconstrained IC weighting is too unstable for a baseline. Current IC weights target a tactical 4-week forward-return horizon.",
+    "description": "Top-N long-only strategy using rolling historical IC estimates with shrinkage toward equal signal weights.",
+    "ic_weight_horizon_weeks": 4
+  },
+  {
+    "strategy_name": "composite_regime_conditioned",
+    "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+    "type": "strategy_logic",
+    "required_inputs": [
+      "signal_xsmom.csv",
+      "signal_multi_horizon_mom.csv",
+      "regime_features.csv"
+    ],
+    "rebalance_frequency": "monthly",
+    "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+    "output_files": [
+      "strategy_positions_composite_regime_conditioned.csv",
+      "strategy_returns_composite_regime_conditioned.csv"
+    ],
+    "caveats": "Transparent regime maps are useful; aggressively optimized state-dependent weights are not.",
+    "description": "Top-N long-only composite whose signal mix and total risk budget shift with the macro / stress regime."
+  },
+  {
+    "strategy_name": "composite_breadth_filtered",
+    "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+    "type": "overlay",
+    "required_inputs": [
+      "signal_xsmom.csv",
+      "weekly_prices.csv",
+      "proxy_mapping.json"
+    ],
+    "rebalance_frequency": "monthly",
+    "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+    "output_files": [
+      "strategy_positions_composite_breadth_filtered.csv",
+      "strategy_returns_composite_breadth_filtered.csv"
+    ],
+    "caveats": "Breadth filters are useful because they are simple and interpretable, but they can become overly defensive in whipsaw recoveries.",
+    "description": "Breadth / canary filtered version of the equal-weight composite, inspired by defensive asset-allocation ideas.",
+    "overlay_on": "composite_equal_weight"
+  }
+]

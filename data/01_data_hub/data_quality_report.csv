@@ -1,0 +1,36 @@
+Ticker,Description,Asset Class,Start Date,End Date,Weeks Available,Weeks Missing,Completeness %,Has Full History,Ann Vol %
+TIP,TIPS (Inflation-Linked Bonds),Bonds,2005-01-07,2026-04-10,1110,0,100.0,True,6.0
+SPY,US Large Cap (S&P 500),Equities,2005-01-07,2026-04-10,1110,0,100.0,True,17.7
+XLV,Healthcare,Equities,2005-01-07,2026-04-10,1110,0,100.0,True,16.3
+XLU,Utilities,Equities,2005-01-07,2026-04-10,1110,0,100.0,True,18.1
+XLP,Consumer Staples,Equities,2005-01-07,2026-04-10,1110,0,100.0,True,13.3
+XLK,Technology,Equities,2005-01-07,2026-04-10,1110,0,100.0,True,20.3
+XLI,Industrials,Equities,2005-01-07,2026-04-10,1110,0,100.0,True,20.7
+XLF,Financials,Equities,2005-01-07,2026-04-10,1110,0,100.0,True,26.8
+XLE,Energy,Equities,2005-01-07,2026-04-10,1110,0,100.0,True,28.4
+XLB,Materials,Equities,2005-01-07,2026-04-10,1110,0,100.0,True,22.4
+VUG,US Large Cap Growth,Equities,2005-01-07,2026-04-10,1110,0,100.0,True,18.9
+VTV,US Large Cap Value,Equities,2005-01-07,2026-04-10,1110,0,100.0,True,17.7
+VNQ,US Real Estate (REITs),REITs,2005-01-07,2026-04-10,1110,0,100.0,True,25.4
+TLT,US 20+ Year Treasuries,Bonds,2005-01-07,2026-04-10,1110,0,100.0,True,13.8
+XLY,Consumer Discretionary,Equities,2005-01-07,2026-04-10,1110,0,100.0,True,21.4
+IEF,US 7-10 Year Treasuries,Bonds,2005-01-07,2026-04-10,1110,0,100.0,True,6.4
+EEM,Emerging Market Equity,Equities,2005-01-07,2026-04-10,1110,0,100.0,True,23.5
+QQQ,US Nasdaq 100 (Growth/Tech),Equities,2005-01-07,2026-04-10,1110,0,100.0,True,19.9
+EFA,Developed Intl Equity (ex-US),Equities,2005-01-07,2026-04-10,1110,0,100.0,True,19.3
+EWJ,Japan Equity,Equities,2005-01-07,2026-04-10,1110,0,100.0,True,18.5
+GLD,Gold,Commodities,2005-01-07,2026-04-10,1110,0,100.0,True,17.2
+LQD,Investment Grade Corp Bonds,Bonds,2005-01-07,2026-04-10,1110,0,100.0,True,8.7
+SHY,US 1-3 Year Treasuries (cash proxy),Bonds,2005-01-07,2026-04-10,1110,0,100.0,True,1.4
+IWM,US Small Cap (Russell 2000),Equities,2005-01-07,2026-04-10,1110,0,100.0,True,23.0
+IAU,"Gold (alt, lower cost)",Commodities,2005-01-28,2026-04-10,1107,3,99.7,True,17.3
+VWO,Emerging Market Equity (alt),Equities,2005-03-11,2026-04-10,1101,9,99.2,True,22.6
+USO,Crude Oil,Commodities,2006-04-14,2026-04-10,1044,66,94.1,False,37.3
+SLV,Silver,Commodities,2006-04-28,2026-04-10,1042,68,93.9,False,32.8
+DBA,Agriculture Commodities,Commodities,2007-01-05,2026-04-10,1006,104,90.6,False,16.5
+UUP,US Dollar Index (bullish),FX,2007-03-02,2026-04-10,998,112,89.9,False,7.7
+MBB,Mortgage-Backed Securities,Bonds,2007-03-16,2026-04-10,996,114,89.7,False,4.2
+HYG,High Yield Corp Bonds,Bonds,2007-04-13,2026-04-10,992,118,89.4,False,11.4
+BIL,T-Bills (cash proxy),Bonds,2007-06-01,2026-04-10,985,125,88.7,False,0.4
+VEA,Developed ex-US (alt),Equities,2007-07-27,2026-04-10,977,133,88.0,False,19.9
+PDBC,Broad Commodities,Commodities,2014-11-07,2026-04-10,597,513,53.8,False,17.9

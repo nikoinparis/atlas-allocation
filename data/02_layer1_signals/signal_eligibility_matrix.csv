@@ -1,0 +1,22 @@
+signal_name,equities,bonds,reits,commodities,fx,base_proxy_quality,notes,coverage_ratio_h1,reliability
+tsmom_vol_scaled,High,High,Medium,High,Medium,High,Clean price-based trend signal.,0.9630681818181819,High
+xsmom_global,High,High,Low,High,Low,High,Global relative-strength signal across the universe.,0.9630681818181819,High
+xsmom_asset_class_neutral,High,High,Low,Medium,Low,Medium,Useful when broad asset-class rotation dominates.,0.908874458874459,Medium-High
+reversal_1w_global,Medium,Medium,Low,Medium,Low,High,Fast and regime-sensitive.,0.964769647696477,High
+reversal_1w_asset_class_neutral,Medium,Medium,Low,Low,Low,Medium,Cleaner within-group reversal where enough names exist.,0.9104400567815202,Medium-High
+reversal_4w_global,Medium,Medium,Low,Medium,Low,High,Slower reversal proxy.,0.9646739130434784,High
+reversal_4w_asset_class_neutral,Medium,Medium,Low,Low,Low,Medium,Neutral version for slower reversal.,0.910351966873706,Medium-High
+multi_mom_equal,High,High,Medium,High,Medium,High,Blended trend signal.,0.9630681818181819,High
+multi_mom_invvol,High,High,Medium,High,Medium,High,More stable blended trend signal.,0.962172647914646,High
+residual_momentum,High,Medium,Medium,Medium,Low,Medium,Depends on explicit market proxy SPY.,0.9629981024667931,Medium-High
+carry_proxy,Low,High,Medium,Low,Low,Low,Proxy only; strongest where distributions are economically meaningful.,0.8545548654244307,Medium
+carry_proxy_asset_class_neutral,Low,High,Medium,Low,Low,Low,Within-asset-class version of the carry proxy.,0.789648033126294,Low
+value_proxy,Medium,Medium,Medium,Low,Low,Medium,"Own-history value, not balance-sheet value.",0.9611940298507463,Medium-High
+value_proxy_asset_class_neutral,Medium,Medium,Medium,Low,Low,Medium,Within-asset-class version of own-history value.,0.9071499644633972,Medium-High
+bab_proxy,High,Medium,Low,Low,Low,Medium,"Low-beta proxy, not full BAB construction.",0.9643313763861708,Medium-High
+bab_proxy_asset_class_neutral,High,Medium,Low,Low,Low,Medium,Within-asset-class low-beta ranking.,0.9100326157860404,Medium-High
+quality_proxy,Medium,Medium,Medium,Medium,Low,High,Return-path stability proxy.,0.9631379962192815,High
+quality_proxy_asset_class_neutral,Medium,Medium,Medium,Medium,Low,High,Within-asset-class quality ranking.,0.9089386983526869,High
+vix_term_structure_regime,Conditioning,Conditioning,Conditioning,Conditioning,Conditioning,High,"Market-level conditioning feature, not a per-ETF alpha.",,Medium-High
+macro_risk_score,Conditioning,Conditioning,Conditioning,Conditioning,Conditioning,Medium,Macro conditioning signal with conservative lagging.,,Medium
+google_fear_regime,Conditioning,Conditioning,Conditioning,Conditioning,Conditioning,Low,Noisy fear / sentiment conditioning feature.,,Low

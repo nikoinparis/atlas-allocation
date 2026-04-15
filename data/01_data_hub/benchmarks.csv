@@ -1,0 +1,13 @@
+proxy_role,ticker,description,available_in_universe
+market_proxy,SPY,US equity market proxy for beta and broad risk-on/off work,True
+cash_proxy,BIL,Cash / front-end rates proxy,True
+short_duration_proxy,SHY,Short-duration Treasury proxy,True
+intermediate_duration_proxy,IEF,Intermediate-duration Treasury proxy,True
+duration_proxy,TLT,Long-duration Treasury proxy,True
+credit_proxy,LQD,Investment-grade credit proxy,True
+high_yield_proxy,HYG,High-yield credit proxy,True
+inflation_proxy,TIP,Inflation-linked bond proxy,True
+commodity_proxy,PDBC,Broad commodity proxy,True
+gold_proxy,GLD,Gold proxy,True
+dollar_proxy,UUP,Dollar strength proxy,True
+reit_proxy,VNQ,Listed real-estate proxy,True

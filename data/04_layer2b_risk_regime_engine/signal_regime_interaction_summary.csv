@@ -1,0 +1,16 @@
+risk_state,mean,median,count,signal_name,validation_type,std
+calm,0.057174084754198114,0.07227903138566548,313,xsmom_global,ic_by_risk_state,
+neutral,0.07000659349975467,0.11415036808095323,527,xsmom_global,ic_by_risk_state,
+stressed,0.008921615511243411,0.04412382729938881,213,xsmom_global,ic_by_risk_state,
+calm,0.0012240828667293795,-0.00794621036172633,319,reversal_1w_global,ic_by_risk_state,
+neutral,0.00997979901662449,0.015088121265902144,572,reversal_1w_global,ic_by_risk_state,
+stressed,0.02207384723695926,0.03331295882416038,213,reversal_1w_global,ic_by_risk_state,
+calm,0.053440756799885886,0.08479723242955253,308,multi_mom_invvol,ic_by_risk_state,
+neutral,0.07893098245114351,0.12973716532895488,509,multi_mom_invvol,ic_by_risk_state,
+stressed,-0.009686294611115927,-0.02674205410196361,211,multi_mom_invvol,ic_by_risk_state,
+calm,-0.030282878107270657,-0.058411542805857565,313,quality_proxy,ic_by_risk_state,
+neutral,-0.06772991572593934,-0.08363101676541641,529,quality_proxy,ic_by_risk_state,
+stressed,-0.04300317718067816,-0.01711491462525671,213,quality_proxy,ic_by_risk_state,
+calm,0.0008589421898432835,,319,,trend_return_by_risk_state,0.0159800947573392
+neutral,0.002319034256378368,,577,,trend_return_by_risk_state,0.014961192941769825
+stressed,0.0001923092696761126,,214,,trend_return_by_risk_state,0.025164848992532504

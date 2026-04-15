@@ -1,0 +1,50 @@
+{
+  "market_proxy": {
+    "ticker": "SPY",
+    "description": "US equity market proxy for beta and broad risk-on/off work"
+  },
+  "cash_proxy": {
+    "ticker": "BIL",
+    "description": "Cash / front-end rates proxy"
+  },
+  "short_duration_proxy": {
+    "ticker": "SHY",
+    "description": "Short-duration Treasury proxy"
+  },
+  "intermediate_duration_proxy": {
+    "ticker": "IEF",
+    "description": "Intermediate-duration Treasury proxy"
+  },
+  "duration_proxy": {
+    "ticker": "TLT",
+    "description": "Long-duration Treasury proxy"
+  },
+  "credit_proxy": {
+    "ticker": "LQD",
+    "description": "Investment-grade credit proxy"
+  },
+  "high_yield_proxy": {
+    "ticker": "HYG",
+    "description": "High-yield credit proxy"
+  },
+  "inflation_proxy": {
+    "ticker": "TIP",
+    "description": "Inflation-linked bond proxy"
+  },
+  "commodity_proxy": {
+    "ticker": "PDBC",
+    "description": "Broad commodity proxy"
+  },
+  "gold_proxy": {
+    "ticker": "GLD",
+    "description": "Gold proxy"
+  },
+  "dollar_proxy": {
+    "ticker": "UUP",
+    "description": "Dollar strength proxy"
+  },
+  "reit_proxy": {
+    "ticker": "VNQ",
+    "description": "Listed real-estate proxy"
+  }
+}

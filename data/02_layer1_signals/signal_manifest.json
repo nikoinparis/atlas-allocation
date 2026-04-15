@@ -1,0 +1,339 @@
+[
+  {
+    "signal_name": "tsmom_vol_scaled",
+    "file_name": "signal_tsmom.csv",
+    "description": "52-4 week own-price momentum scaled by 26-week realized volatility.",
+    "category": "price_momentum",
+    "cross_sectional_or_time_series": "both",
+    "required_inputs": [
+      "weekly_prices.csv",
+      "weekly_returns.csv"
+    ],
+    "lookback": "52 weeks",
+    "skip_period": "4 weeks",
+    "lag_applied": 1,
+    "normalization_method": "winsorized cross-sectional rank to [-1, +1] for the cross-sectional score",
+    "caveats": "Price-based ETF momentum still loads on broad market and asset-class trends."
+  },
+  {
+    "signal_name": "xsmom_global",
+    "file_name": "signal_xsmom.csv",
+    "description": "Global 52-4 week cross-sectional ETF momentum score.",
+    "category": "price_momentum",
+    "cross_sectional_or_time_series": "cross_sectional",
+    "required_inputs": [
+      "weekly_prices.csv"
+    ],
+    "lookback": "52 weeks",
+    "skip_period": "4 weeks",
+    "lag_applied": 1,
+    "normalization_method": "winsorized cross-sectional rank to [-1, +1]",
+    "caveats": "Global ranking can be dominated by broad asset-class trends."
+  },
+  {
+    "signal_name": "xsmom_asset_class_neutral",
+    "file_name": "signal_xsmom.csv",
+    "description": "52-4 week ETF momentum ranked within asset class when group size permits.",
+    "category": "price_momentum",
+    "cross_sectional_or_time_series": "cross_sectional",
+    "required_inputs": [
+      "weekly_prices.csv",
+      "universe_metadata.csv"
+    ],
+    "lookback": "52 weeks",
+    "skip_period": "4 weeks",
+    "lag_applied": 1,
+    "normalization_method": "within-asset-class rank to [-1, +1]",
+    "caveats": "Groups with only one ETF are left missing by design."
+  },
+  {
+    "signal_name": "reversal_1w_global",
+    "file_name": "signal_reversal.csv",
+    "description": "1-week ETF reversal ranked across the whole universe.",
+    "category": "price_reversal",
+    "cross_sectional_or_time_series": "cross_sectional",
+    "required_inputs": [
+      "weekly_prices.csv"
+    ],
+    "lookback": "1 week",
+    "skip_period": "0 weeks",
+    "lag_applied": 1,
+    "normalization_method": "winsorized cross-sectional rank to [-1, +1]",
+    "caveats": "Fast, noisy, and highly regime-dependent."
+  },
+  {
+    "signal_name": "reversal_4w_global",
+    "file_name": "signal_reversal.csv",
+    "description": "4-week ETF reversal ranked across the whole universe.",
+    "category": "price_reversal",
+    "cross_sectional_or_time_series": "cross_sectional",
+    "required_inputs": [
+      "weekly_prices.csv"
+    ],
+    "lookback": "4 weeks",
+    "skip_period": "0 weeks",
+    "lag_applied": 1,
+    "normalization_method": "winsorized cross-sectional rank to [-1, +1]",
+    "caveats": "Slower than 1-week reversal and often weaker in clean trend regimes."
+  },
+  {
+    "signal_name": "reversal_1w_asset_class_neutral",
+    "file_name": "signal_reversal.csv",
+    "description": "1-week ETF reversal ranked within asset class.",
+    "category": "price_reversal",
+    "cross_sectional_or_time_series": "cross_sectional",
+    "required_inputs": [
+      "weekly_prices.csv",
+      "universe_metadata.csv"
+    ],
+    "lookback": "1 week",
+    "skip_period": "0 weeks",
+    "lag_applied": 1,
+    "normalization_method": "within-asset-class rank to [-1, +1]",
+    "caveats": "Groups with too few members are intentionally left missing."
+  },
+  {
+    "signal_name": "reversal_4w_asset_class_neutral",
+    "file_name": "signal_reversal.csv",
+    "description": "4-week ETF reversal ranked within asset class.",
+    "category": "price_reversal",
+    "cross_sectional_or_time_series": "cross_sectional",
+    "required_inputs": [
+      "weekly_prices.csv",
+      "universe_metadata.csv"
+    ],
+    "lookback": "4 weeks",
+    "skip_period": "0 weeks",
+    "lag_applied": 1,
+    "normalization_method": "within-asset-class rank to [-1, +1]",
+    "caveats": "Groups with too few members are intentionally left missing."
+  },
+  {
+    "signal_name": "multi_mom_equal",
+    "file_name": "signal_multi_horizon_mom.csv",
+    "description": "Equal-weight blend of 13, 26, 39, and 52 week 4-skip momentum windows.",
+    "category": "price_momentum",
+    "cross_sectional_or_time_series": "both",
+    "required_inputs": [
+      "weekly_prices.csv"
+    ],
+    "lookback": "13/26/39/52 weeks",
+    "skip_period": "4 weeks",
+    "lag_applied": 1,
+    "normalization_method": "winsorized cross-sectional rank to [-1, +1]",
+    "caveats": "Blended trend signal; still exposed to broad asset-class momentum."
+  },
+  {
+    "signal_name": "multi_mom_invvol",
+    "file_name": "signal_multi_horizon_mom.csv",
+    "description": "Inverse-volatility weighted blend of 13, 26, 39, and 52 week 4-skip momentum windows.",
+    "category": "price_momentum",
+    "cross_sectional_or_time_series": "both",
+    "required_inputs": [
+      "weekly_prices.csv"
+    ],
+    "lookback": "13/26/39/52 weeks",
+    "skip_period": "4 weeks",
+    "lag_applied": 1,
+    "normalization_method": "winsorized cross-sectional rank to [-1, +1]",
+    "caveats": "More stable than a single window, but still trend-following and not inherently orthogonal to XSMOM. Inverse-vol component weights use a practical 1% volatility floor to avoid unstable weight spikes."
+  },
+  {
+    "signal_name": "residual_momentum",
+    "file_name": "signal_residual_momentum.csv",
+    "description": "52-4 week momentum on residual log returns after removing rolling market beta.",
+    "category": "price_momentum",
+    "cross_sectional_or_time_series": "both",
+    "required_inputs": [
+      "weekly_returns.csv",
+      "market_proxy_weekly.csv",
+      "proxy_mapping.json"
+    ],
+    "lookback": "52 weeks",
+    "skip_period": "4 weeks",
+    "lag_applied": 1,
+    "normalization_method": "winsorized cross-sectional rank to [-1, +1]",
+    "caveats": "Residualized against SPY; still not free of sector, duration, or commodity betas."
+  },
+  {
+    "signal_name": "carry_proxy",
+    "file_name": "signal_carry.csv",
+    "description": "Trailing 52-week ETF distribution-yield proxy ranked cross-sectionally.",
+    "category": "carry_proxy",
+    "cross_sectional_or_time_series": "cross_sectional",
+    "required_inputs": [
+      "weekly_prices.csv",
+      "etf_distribution_history.csv",
+      "yahoo_metadata_snapshot.csv"
+    ],
+    "lookback": "52 weeks",
+    "skip_period": "0 weeks",
+    "lag_applied": 2,
+    "normalization_method": "winsorized cross-sectional rank to [-1, +1]",
+    "caveats": "A proxy only; strongest for bonds and REITs, weakest for commodities and FX. Trailing distributions are divided by current price, so the level is approximate and best used cross-sectionally."
+  },
+  {
+    "signal_name": "carry_proxy_asset_class_neutral",
+    "file_name": "signal_carry.csv",
+    "description": "Trailing 52-week ETF carry proxy ranked within asset class when enough peers exist.",
+    "category": "carry_proxy",
+    "cross_sectional_or_time_series": "cross_sectional",
+    "required_inputs": [
+      "weekly_prices.csv",
+      "etf_distribution_history.csv",
+      "yahoo_metadata_snapshot.csv",
+      "universe_metadata.csv"
+    ],
+    "lookback": "52 weeks",
+    "skip_period": "0 weeks",
+    "lag_applied": 2,
+    "normalization_method": "within-asset-class rank to [-1, +1]",
+    "caveats": "Most useful in bonds and REITs; skipped for thin asset classes. Trailing distributions divided by current price are still an approximation, so interpretation should stay comparative."
+  },
+  {
+    "signal_name": "value_proxy",
+    "file_name": "signal_value.csv",
+    "description": "ETF value proxy based on 5-year moving-average gap and long-horizon price z-score.",
+    "category": "value_proxy",
+    "cross_sectional_or_time_series": "cross_sectional",
+    "required_inputs": [
+      "weekly_prices.csv"
+    ],
+    "lookback": "260 weeks",
+    "skip_period": "0 weeks",
+    "lag_applied": 1,
+    "normalization_method": "cross-sectional rank blend of value-gap and price-vs-MA z-score",
+    "caveats": "Not true fundamental value; best interpreted as slow mean reversion to own history."
+  },
+  {
+    "signal_name": "value_proxy_asset_class_neutral",
+    "file_name": "signal_value.csv",
+    "description": "ETF value proxy ranked within asset class using the composite own-history value score.",
+    "category": "value_proxy",
+    "cross_sectional_or_time_series": "cross_sectional",
+    "required_inputs": [
+      "weekly_prices.csv",
+      "universe_metadata.csv"
+    ],
+    "lookback": "260 weeks",
+    "skip_period": "0 weeks",
+    "lag_applied": 1,
+    "normalization_method": "within-asset-class rank to [-1, +1]",
+    "caveats": "Useful when global value is dominated by cross-asset level effects rather than within-bucket mispricing."
+  },
+  {
+    "signal_name": "bab_proxy",
+    "file_name": "signal_bab.csv",
+    "description": "ETF-level low-beta proxy using an explicit market benchmark.",
+    "category": "low_beta_proxy",
+    "cross_sectional_or_time_series": "cross_sectional",
+    "required_inputs": [
+      "weekly_returns.csv",
+      "market_proxy_weekly.csv",
+      "proxy_mapping.json"
+    ],
+    "lookback": "52 weeks (or ~126 trading days when daily returns are available)",
+    "skip_period": "0 weeks",
+    "lag_applied": 1,
+    "normalization_method": "winsorized negative-beta rank to [-1, +1]",
+    "caveats": "Market proxy = SPY; this is a low-beta proxy, not the full institutional BAB construction."
+  },
+  {
+    "signal_name": "bab_proxy_asset_class_neutral",
+    "file_name": "signal_bab.csv",
+    "description": "ETF-level low-beta proxy ranked within asset class rather than globally.",
+    "category": "low_beta_proxy",
+    "cross_sectional_or_time_series": "cross_sectional",
+    "required_inputs": [
+      "weekly_returns.csv",
+      "market_proxy_weekly.csv",
+      "proxy_mapping.json",
+      "universe_metadata.csv"
+    ],
+    "lookback": "52 weeks (or ~126 trading days when daily returns are available)",
+    "skip_period": "0 weeks",
+    "lag_applied": 1,
+    "normalization_method": "within-asset-class rank to [-1, +1]",
+    "caveats": "Market proxy = SPY; mainly useful where enough same-asset-class peers exist."
+  },
+  {
+    "signal_name": "quality_proxy",
+    "file_name": "signal_quality.csv",
+    "description": "ETF quality proxy built from inverse vol, downside semivol, drawdown frequency, and drawdown severity.",
+    "category": "quality_proxy",
+    "cross_sectional_or_time_series": "cross_sectional",
+    "required_inputs": [
+      "weekly_prices.csv",
+      "weekly_returns.csv"
+    ],
+    "lookback": "26 to 52 weeks depending on component",
+    "skip_period": "0 weeks",
+    "lag_applied": 1,
+    "normalization_method": "average of four winsorized cross-sectional stability scores",
+    "caveats": "Captures return-path stability, not classic accounting quality."
+  },
+  {
+    "signal_name": "quality_proxy_asset_class_neutral",
+    "file_name": "signal_quality.csv",
+    "description": "ETF quality proxy ranked within asset class using the composite return-path stability score.",
+    "category": "quality_proxy",
+    "cross_sectional_or_time_series": "cross_sectional",
+    "required_inputs": [
+      "weekly_prices.csv",
+      "weekly_returns.csv",
+      "universe_metadata.csv"
+    ],
+    "lookback": "26 to 52 weeks depending on component",
+    "skip_period": "0 weeks",
+    "lag_applied": 1,
+    "normalization_method": "within-asset-class rank to [-1, +1]",
+    "caveats": "Useful when global quality is dominated by structural differences across asset classes rather than within-group stability."
+  },
+  {
+    "signal_name": "vix_term_structure_regime",
+    "file_name": "regime_features.csv",
+    "description": "VIX level and term-structure slope regime features.",
+    "category": "conditioning_feature",
+    "cross_sectional_or_time_series": "conditioning_feature",
+    "required_inputs": [
+      "vix_term_structure.csv"
+    ],
+    "lookback": "104-week rolling z-score context",
+    "skip_period": "n/a",
+    "lag_applied": 1,
+    "normalization_method": "rolling z-scores and flags",
+    "caveats": "Market-level conditioning only; not a per-ETF alpha."
+  },
+  {
+    "signal_name": "macro_risk_score",
+    "file_name": "regime_features.csv",
+    "description": "Composite macro risk-off score mixing price and lagged external regime features.",
+    "category": "conditioning_feature",
+    "cross_sectional_or_time_series": "conditioning_feature",
+    "required_inputs": [
+      "macro_weekly.csv",
+      "vix_term_structure.csv",
+      "google_trends.csv"
+    ],
+    "lookback": "104-week rolling z-score context",
+    "skip_period": "n/a",
+    "lag_applied": 2,
+    "normalization_method": "average of lagged risk-off z-scores",
+    "caveats": "Conservative timing because macro and Google Trends publication timing is imperfect."
+  },
+  {
+    "signal_name": "google_fear_regime",
+    "file_name": "regime_features.csv",
+    "description": "Lagged Google Trends fear / sentiment feature when upstream support exists.",
+    "category": "conditioning_feature",
+    "cross_sectional_or_time_series": "conditioning_feature",
+    "required_inputs": [
+      "google_trends.csv"
+    ],
+    "lookback": "104-week rolling z-score context",
+    "skip_period": "n/a",
+    "lag_applied": 2,
+    "normalization_method": "rolling z-score of fear composite",
+    "caveats": "Noisy and potentially unstable; best used as a conditioning feature, not a headline alpha."
+  }
+]

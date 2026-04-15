@@ -1,0 +1,70 @@
+[
+  {
+    "strategy_name": "risk_metrics_panel",
+    "notebook_origin": "04_layer2b_risk_regime_engine.ipynb",
+    "type": "risk_estimate",
+    "required_inputs": [
+      "weekly_prices.csv",
+      "weekly_returns.csv",
+      "daily_returns.csv"
+    ],
+    "rebalance_frequency": "weekly",
+    "lag_convention": "Price-based risk metrics are lagged one week for decision use.",
+    "output_files": [
+      "risk_metrics_panel.csv"
+    ],
+    "caveats": "These are state variables, not perfect forecasts of future risk."
+  },
+  {
+    "strategy_name": "regime_engine",
+    "notebook_origin": "04_layer2b_risk_regime_engine.ipynb",
+    "type": "regime",
+    "required_inputs": [
+      "regime_features.csv",
+      "weekly_returns.csv",
+      "vix_term_structure.csv",
+      "macro_weekly.csv"
+    ],
+    "rebalance_frequency": "weekly",
+    "lag_convention": "Uses tradable Layer 1 regime features plus lagged price-based breadth / vol diagnostics.",
+    "output_files": [
+      "regime_score.csv",
+      "regime_states.csv",
+      "defensive_overlay_states.csv"
+    ],
+    "caveats": "Transparent equal-weight style composite rather than an optimized hidden-state model."
+  },
+  {
+    "strategy_name": "covariance_inputs",
+    "notebook_origin": "04_layer2b_risk_regime_engine.ipynb",
+    "type": "risk_estimate",
+    "required_inputs": [
+      "weekly_returns.csv"
+    ],
+    "rebalance_frequency": "monthly snapshots",
+    "lag_convention": "Built from trailing weekly returns only.",
+    "output_files": [
+      "covariance_snapshots_long.csv",
+      "covariance_ledoit_wolf_snapshots_long.csv",
+      "latest_covariance_matrix.csv",
+      "latest_ledoit_wolf_covariance_matrix.csv"
+    ],
+    "caveats": "Shrinkage estimator uses only the subset of assets with enough complete trailing data."
+  },
+  {
+    "strategy_name": "defensive_overlay_validation",
+    "notebook_origin": "04_layer2b_risk_regime_engine.ipynb",
+    "type": "overlay",
+    "required_inputs": [
+      "weekly_returns.csv",
+      "regime_score.csv"
+    ],
+    "rebalance_frequency": "weekly",
+    "lag_convention": "Overlay multiplier is saved in tradable form.",
+    "output_files": [
+      "overlay_validation_table.csv",
+      "signal_regime_interaction_summary.csv"
+    ],
+    "caveats": "Validation is intentionally simple and should be treated as directional evidence, not final proof."
+  }
+]

@@ -323,5 +323,26 @@
     "caveats": "Breadth filters are useful because they are simple and interpretable, but they can become overly defensive in whipsaw recoveries.",
     "description": "Breadth / canary filtered version of the equal-weight composite, inspired by defensive asset-allocation ideas.",
     "overlay_on": "composite_equal_weight"
+  },
+  {
+    "strategy_name": "composite_selective_signals",
+    "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+    "type": "strategy_logic",
+    "required_inputs": [
+      "signal_xsmom.csv",
+      "signal_multi_horizon_mom.csv",
+      "signal_quality.csv",
+      "signal_value.csv",
+      "signal_bab.csv",
+      "signal_carry.csv"
+    ],
+    "rebalance_frequency": "monthly",
+    "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+    "output_files": [
+      "strategy_positions_composite_selective_signals.csv",
+      "strategy_returns_composite_selective_signals.csv"
+    ],
+    "caveats": "Selective composite keeps the signals that improved the long-only ETF sleeve most cleanly in the incremental study; it is still a practical top-N proxy rather than a fully optimized ensemble.",
+    "description": "Top-N long-only strategy using the selective signal blend that retained trend, quality/value, BAB, and carry while excluding weaker add-ons."
   }
 ]

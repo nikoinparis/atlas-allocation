@@ -268,32 +268,5 @@
       "portfolio_returns_max_diversification.csv"
     ],
     "caveats": "Often close to inverse-vol or risk-parity behavior when correlations are stable."
-  },
-  {
-    "method_name": "cvar_min",
-    "category": "tail_risk_extension",
-    "required_inputs": [
-      "strategy_summary_table.csv",
-      "strategy_positions_*.csv",
-      "strategy_returns_*.csv",
-      "regime_states.csv",
-      "weekly_returns.csv"
-    ],
-    "constraints": {
-      "long_only": true,
-      "max_sleeve_weight": 0.45,
-      "max_etf_weight": 0.35,
-      "cash_proxy": "BIL",
-      "rebalance_frequency": "monthly"
-    },
-    "rebalance_frequency": "monthly",
-    "risk_model_used": "sample",
-    "expected_return_input_used": "none",
-    "output_files": [
-      "portfolio_weights_cvar_min.csv",
-      "portfolio_sleeve_weights_cvar_min.csv",
-      "portfolio_returns_cvar_min.csv"
-    ],
-    "caveats": "Useful tail-risk benchmark, but more computationally expensive and still data-hungry."
   }
 ]

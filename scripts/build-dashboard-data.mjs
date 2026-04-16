@@ -274,6 +274,16 @@ const costSensitivity = readCsv("data/05_layer3_portfolio_construction/portfolio
 const dampenerSensitivity = readCsv("data/05_layer3_portfolio_construction/portfolio_dampener_sensitivity.csv");
 const blConfidenceSensitivity = readCsv("data/05_layer3_portfolio_construction/portfolio_bl_confidence_sensitivity.csv");
 const candidateSleeves = readCsv("data/05_layer3_portfolio_construction/portfolio_candidate_sleeves.csv");
+const signalIncremental = readCsv("data/02_layer1_signals/signal_incremental_contribution.csv");
+const signalSubsets = readCsv("data/02_layer1_signals/signal_subset_comparison.csv");
+const sleeveIncremental = readCsv("data/05_layer3_portfolio_construction/sleeve_incremental_contribution.csv");
+const sleeveSubsets = readCsv("data/05_layer3_portfolio_construction/sleeve_subset_comparison.csv");
+const versionComparison = readCsv("data/05_layer3_portfolio_construction/portfolio_version_comparison.csv");
+const versionRegimeSplit = readCsv("data/05_layer3_portfolio_construction/portfolio_version_regime_split_summary.csv");
+const versionSubperiods = readCsv("data/05_layer3_portfolio_construction/portfolio_version_subperiod_summary.csv");
+const allocationDrivers = readCsv("data/05_layer3_portfolio_construction/allocation_driver_summary.csv");
+const allocationDriverBreakdown = readCsv("data/05_layer3_portfolio_construction/allocation_driver_breakdown.csv");
+const allocationDriverTimeseries = readCsv("data/05_layer3_portfolio_construction/allocation_driver_timeseries.csv");
 
 const portfolioReturnFiles = listFiles(DIRS.layer3, /^portfolio_returns_.*\.csv$/);
 const portfolioReturns = Object.fromEntries(
@@ -297,6 +307,18 @@ const portfolioWeights = Object.fromEntries(
 const sleeveWeights = Object.fromEntries(
   listFiles(DIRS.layer3, /^portfolio_sleeve_weights_.*\.csv$/).map((file) => weightPayload(DIRS.layer3, file, "portfolio_sleeve_weights_")),
 );
+const versionReturns = Object.fromEntries(
+  listFiles(DIRS.layer3, /^portfolio_version_returns_.*\.csv$/).map((file) => {
+    const version = methodNameFromFile(file, "portfolio_version_returns_");
+    return [version, readReturnSeries(DIRS.layer3, file, version)];
+  }),
+);
+const versionWeights = Object.fromEntries(
+  listFiles(DIRS.layer3, /^portfolio_version_weights_.*\.csv$/).map((file) => weightPayload(DIRS.layer3, file, "portfolio_version_weights_")),
+);
+const versionSleeveWeights = Object.fromEntries(
+  listFiles(DIRS.layer3, /^portfolio_version_sleeve_weights_.*\.csv$/).map((file) => weightPayload(DIRS.layer3, file, "portfolio_version_sleeve_weights_")),
+);
 
 const bestByRobustness = maxBy(methods, "robustness_score");
 const bestBySharpe = maxBy(methods, "sharpe");
@@ -306,9 +328,17 @@ const defaultCandidate = maxBy(methods, "robustness_score", (row) => row.instabi
 const latestRegime = regimeStates.length ? regimeStates[regimeStates.length - 1] : null;
 const latestRegimeScore = regimeScore.length ? regimeScore[regimeScore.length - 1] : null;
 const benchmarkSummary = strategySummary.filter((row) => String(row.strategy_name || "").startsWith("baseline_"));
+const baselineVersion = versionComparison.find((row) => String(row.version_name || "").startsWith("baseline_hrp")) || versionComparison.find((row) => String(row.version_name || "").startsWith("baseline_")) || null;
+const improvedVersion = [...versionComparison]
+  .filter((row) => String(row.version_name || "").startsWith("improved_"))
+  .sort((a, b) => Number(b.sharpe ?? 0) - Number(a.sharpe ?? 0))[0] || null;
+const currentAllocationSummary = improvedVersion
+  ? allocationDrivers.find((row) => row.version_name === improvedVersion.version_name) ?? null
+  : allocationDrivers[0] ?? null;
 const latestDate = [
   latestRegime?.Date,
   ...Object.values(portfolioReturns).map((series) => series.at(-1)?.date),
+  ...Object.values(versionReturns).map((series) => series.at(-1)?.date),
 ].filter(Boolean).sort().at(-1) || null;
 
 const artifactPaths = [
@@ -317,11 +347,21 @@ const artifactPaths = [
   "data/05_layer3_portfolio_construction/portfolio_regime_split_summary.csv",
   "data/05_layer3_portfolio_construction/portfolio_subperiod_summary.csv",
   "data/05_layer3_portfolio_construction/portfolio_diagnostics.csv",
+  "data/05_layer3_portfolio_construction/portfolio_version_comparison.csv",
+  "data/05_layer3_portfolio_construction/portfolio_version_regime_split_summary.csv",
+  "data/05_layer3_portfolio_construction/portfolio_version_subperiod_summary.csv",
+  "data/05_layer3_portfolio_construction/allocation_driver_summary.csv",
+  "data/05_layer3_portfolio_construction/allocation_driver_breakdown.csv",
+  "data/05_layer3_portfolio_construction/allocation_driver_timeseries.csv",
+  "data/05_layer3_portfolio_construction/sleeve_incremental_contribution.csv",
+  "data/05_layer3_portfolio_construction/sleeve_subset_comparison.csv",
   "data/03_layer2a_strategy_logic/strategy_summary_table.csv",
   "data/04_layer2b_risk_regime_engine/regime_states.csv",
   "data/02_layer1_signals/signal_summary_table.csv",
   "data/02_layer1_signals/signal_ic_by_horizon.csv",
   "data/02_layer1_signals/signal_redundancy_matrix.csv",
+  "data/02_layer1_signals/signal_incremental_contribution.csv",
+  "data/02_layer1_signals/signal_subset_comparison.csv",
   "data/02_layer1_signals/signal_manifest.json",
   "data/03_layer2a_strategy_logic/layer2_manifest.json",
   "data/05_layer3_portfolio_construction/layer3_manifest.json",
@@ -350,6 +390,9 @@ const payload = {
     latestRegimeScore,
     benchmarkSummary,
     regimeCounts: groupCount(regimeStates, "risk_state"),
+    baselineVersion,
+    improvedVersion,
+    currentAllocationSummary,
   },
   methods,
   metricsSummary,
@@ -376,6 +419,21 @@ const payload = {
   signalSummary,
   signalIc,
   signalRedundancy,
+  improvementLab: {
+    signalIncremental,
+    signalSubsets,
+    sleeveIncremental,
+    sleeveSubsets,
+    versions: versionComparison,
+    versionReturns,
+    versionWeights,
+    versionSleeveWeights,
+    versionRegimeSplit,
+    versionSubperiods,
+    allocationDrivers,
+    allocationDriverBreakdown,
+    allocationDriverTimeseries,
+  },
   manifests,
   artifacts,
 };

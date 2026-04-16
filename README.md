@@ -26,6 +26,14 @@ The app does not recompute research. It reads the generated CSV / JSON artifacts
 
 The dashboard intentionally makes clear that complex optimizers are not automatically better and that the default allocator should be chosen by robustness, not headline Sharpe alone.
 
+The latest improvement pass also adds a dedicated comparison workflow that answers:
+
+- why the current portfolio can end up defensive
+- whether the stack is over-damped by overlays and smoothing
+- which Layer 1 signals add real incremental value
+- which Layer 2 sleeves improve the final allocator versus just adding another brake
+- whether the improved finalists actually beat the original baseline out of sample
+
 ## Data Layout Expected
 
 The ingestion script expects the existing numbered data folders:
@@ -82,15 +90,27 @@ The app reads that bundle in the browser, which keeps the deployment simple and 
 When research outputs change:
 
 1. Rerun the notebooks in order: `01`, `02`, `03`, `04`, `05`.
-2. Run:
+2. Rebuild the improvement-lab artifacts:
+
+```bash
+npm run refresh:improvement-lab
+```
+
+3. Rebuild the dashboard bundle:
 
 ```bash
 npm run refresh:data
 ```
 
-3. Restart the local dev server if needed, or redeploy to Vercel.
+4. Restart the local dev server if needed, or redeploy to Vercel.
 
 The Vercel build command also runs `npm run refresh:data`, so committed CSV / JSON research outputs are ingested automatically during deployment.
+
+For local research iteration, the convenience command below runs both refresh steps in order:
+
+```bash
+npm run refresh:full
+```
 
 ## Vercel Deployment
 
@@ -112,6 +132,8 @@ The included `vercel.json` explicitly marks the project as a Next.js app and use
 ## Scripts
 
 ```bash
+npm run refresh:improvement-lab   # rebuild baseline-vs-improved, signal, sleeve, and allocation-driver comparison artifacts
+npm run refresh:full              # rebuild improvement artifacts, then rebuild public/dashboard-data.json
 npm run refresh:data   # rebuild public/dashboard-data.json from research artifacts
 npm run dev            # refresh data, then start Next.js locally
 npm run build          # refresh data, then build for production / Vercel

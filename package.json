@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "refresh:improvement-lab": "python3 scripts/build_improvement_artifacts.py",
+    "refresh:full": "npm run refresh:improvement-lab && npm run refresh:data",
     "refresh:data": "node scripts/build-dashboard-data.mjs",
     "dev": "npm run refresh:data && next dev",
     "build": "npm run refresh:data && next build",

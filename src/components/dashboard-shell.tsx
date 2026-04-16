@@ -35,12 +35,13 @@ import type { DashboardData, MetricRow, ReturnPoint, WeightPoint } from "@/types
 
 const sections = [
   { id: "overview", label: "Overview", icon: Layers3 },
-  { id: "performance", label: "Performance", icon: LineChartIcon },
+  { id: "signals", label: "Layer 1", icon: BrainCircuit },
+  { id: "sleeves", label: "Layer 2", icon: Scale },
+  { id: "performance", label: "Layer 3", icon: LineChartIcon },
   { id: "methods", label: "Methods", icon: Table2 },
-  { id: "robustness", label: "Robustness", icon: ShieldCheck },
-  { id: "sleeves", label: "Sleeves", icon: Scale },
-  { id: "holdings", label: "Holdings", icon: WalletCards },
-  { id: "signals", label: "Signals", icon: BrainCircuit },
+  { id: "improvement-lab", label: "Improvement Lab", icon: Layers3 },
+  { id: "current-state", label: "Current State", icon: WalletCards },
+  { id: "robustness", label: "Diagnostics", icon: ShieldCheck },
 ];
 
 const defaultMetricKeys = [
@@ -341,12 +342,57 @@ function RedundancyHeatmap({ data }: { data: DashboardData["signalRedundancy"] }
   );
 }
 
+function findRowByKey(rows: Array<Record<string, unknown>>, key: string, value: string | null | undefined) {
+  if (!value) return null;
+  return rows.find((row) => String(row[key] ?? "") === value) ?? null;
+}
+
+function deltaValue(current: unknown, baseline: unknown) {
+  if (!isFiniteNumber(current) || !isFiniteNumber(baseline)) return null;
+  return current - baseline;
+}
+
+function latestDifferenceRows(currentWeights: WeightPoint[], baselineWeights: WeightPoint[]) {
+  const keys = new Set([...currentWeights.map((item) => item.name), ...baselineWeights.map((item) => item.name)]);
+  return [...keys]
+    .map((name) => {
+      const current = currentWeights.find((item) => item.name === name)?.weight ?? 0;
+      const baseline = baselineWeights.find((item) => item.name === name)?.weight ?? 0;
+      return { asset: name, current_weight: current, baseline_weight: baseline, delta_weight: current - baseline };
+    })
+    .filter((row) => Math.abs(row.delta_weight) > 0.005 || row.current_weight > 0.02 || row.baseline_weight > 0.02)
+    .sort((a, b) => Math.abs(b.delta_weight) - Math.abs(a.delta_weight))
+    .slice(0, 12);
+}
+
+function buildAllocationMixChart(rows: Array<Record<string, string | number | boolean | null>>, versionName: string | null) {
+  return rows
+    .filter((row) => row.version_name === versionName)
+    .map((row) => ({
+      date: String(row.Date ?? row.date ?? ""),
+      offensive_weight: Number(row.offensive_weight ?? 0),
+      defensive_weight: Number(row.defensive_weight ?? 0),
+      cash_proxy_weight: Number(row.cash_proxy_weight ?? 0),
+      bil_weight: Number(row.bil_weight ?? 0),
+      spy_weight: Number(row.spy_weight ?? 0),
+    }));
+}
+
+function buildBreakdownRows(rows: Array<Record<string, string | number | boolean | null>>, versionName: string | null, asset: string) {
+  return rows
+    .filter((row) => row.version_name === versionName && row.horizon === "current" && row.asset === asset)
+    .sort((a, b) => Math.abs(Number(b.contribution ?? 0)) - Math.abs(Number(a.contribution ?? 0)))
+    .slice(0, 8);
+}
+
 export function DashboardShell() {
   const [data, setData] = useState<DashboardData | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [selectedMethods, setSelectedMethods] = useState<string[]>([]);
   const [selectedBenchmarks, setSelectedBenchmarks] = useState<string[]>([]);
   const [weightMethod, setWeightMethod] = useState<string>("");
+  const [baselineVersion, setBaselineVersion] = useState<string>("");
+  const [comparisonVersion, setComparisonVersion] = useState<string>("");
 
   useEffect(() => {
     fetch("/dashboard-data.json", { cache: "no-store" })
@@ -365,16 +411,21 @@ export function DashboardShell() {
         setSelectedMethods([...new Set(defaults)].filter((name) => payload.portfolioReturns[name]));
         setSelectedBenchmarks(Object.keys(payload.benchmarkReturns).slice(0, 2));
         setWeightMethod(payload.overview.defaultCandidate?.method_name ?? Object.keys(payload.portfolioWeights)[0] ?? "");
+        setBaselineVersion(String(payload.overview.baselineVersion?.version_name ?? Object.keys(payload.improvementLab.versionReturns)[0] ?? ""));
+        setComparisonVersion(String(payload.overview.improvedVersion?.version_name ?? Object.keys(payload.improvementLab.versionReturns).slice(-1)[0] ?? ""));
       })
       .catch((err: Error) => setError(err.message));
   }, []);
 
   const methodNames = useMemo(() => Object.keys(data?.portfolioReturns ?? {}), [data]);
   const benchmarkNames = useMemo(() => Object.keys(data?.benchmarkReturns ?? {}), [data]);
+  const versionNames = useMemo(() => Object.keys(data?.improvementLab.versionReturns ?? {}), [data]);
 
   const wealthData = useMemo(() => data ? combineSeries(data.portfolioReturns, data.benchmarkReturns, selectedMethods, selectedBenchmarks, "wealth") : [], [data, selectedMethods, selectedBenchmarks]);
   const drawdownData = useMemo(() => data ? combineSeries(data.portfolioReturns, data.benchmarkReturns, selectedMethods, selectedBenchmarks, "drawdown") : [], [data, selectedMethods, selectedBenchmarks]);
   const rollingSharpeData = useMemo(() => data ? rollingSharpeSeries(data.portfolioReturns, selectedMethods) : [], [data, selectedMethods]);
+  const versionWealthData = useMemo(() => data ? combineSeries(data.improvementLab.versionReturns, {}, [baselineVersion, comparisonVersion].filter(Boolean), [], "wealth") : [], [data, baselineVersion, comparisonVersion]);
+  const versionDrawdownData = useMemo(() => data ? combineSeries(data.improvementLab.versionReturns, {}, [baselineVersion, comparisonVersion].filter(Boolean), [], "drawdown") : [], [data, baselineVersion, comparisonVersion]);
 
   if (error) {
     return <main className="dashboard-shell flex min-h-screen items-center justify-center p-6"><Panel title="Dashboard data error"><p>{error}</p></Panel></main>;
@@ -395,6 +446,26 @@ export function DashboardShell() {
   const latestRegime = data.overview.latestRegime;
   const latestWeights = data.portfolioWeights[weightMethod]?.latest ?? [];
   const latestSleeves = data.sleeveWeights[weightMethod]?.latest ?? [];
+  const baselineVersionRow = findRowByKey(data.improvementLab.versions, "version_name", baselineVersion);
+  const comparisonVersionRow = findRowByKey(data.improvementLab.versions, "version_name", comparisonVersion);
+  const currentAllocationSummary = findRowByKey(data.improvementLab.allocationDrivers, "version_name", comparisonVersion) ?? data.overview.currentAllocationSummary ?? null;
+  const versionLatestWeights = data.improvementLab.versionWeights[comparisonVersion]?.latest ?? [];
+  const versionLatestSleeves = data.improvementLab.versionSleeveWeights[comparisonVersion]?.latest ?? [];
+  const baselineLatestWeights = data.improvementLab.versionWeights[baselineVersion]?.latest ?? [];
+  const allocationMixChart = buildAllocationMixChart(data.improvementLab.allocationDriverTimeseries, comparisonVersion);
+  const bilBreakdownRows = buildBreakdownRows(data.improvementLab.allocationDriverBreakdown, comparisonVersion, "BIL");
+  const spyBreakdownRows = buildBreakdownRows(data.improvementLab.allocationDriverBreakdown, comparisonVersion, "SPY");
+  const weightDifferenceRows = latestDifferenceRows(versionLatestWeights, baselineLatestWeights);
+  const defensivePostureRows = [
+    { metric: "Avg Offensive", value: currentAllocationSummary?.avg_offensive_weight },
+    { metric: "Avg Defensive", value: currentAllocationSummary?.avg_defensive_weight },
+    { metric: "Avg Cash Proxy", value: currentAllocationSummary?.avg_cash_proxy_weight },
+    { metric: "Avg Overlay Cash", value: currentAllocationSummary?.avg_overlay_cash_weight },
+    { metric: "Avg Sleeve BIL", value: currentAllocationSummary?.avg_sleeve_bil_weight },
+    { metric: "Avg Regime Multiplier", value: currentAllocationSummary?.avg_regime_multiplier },
+    { metric: "Avg Target Vol Multiplier", value: currentAllocationSummary?.avg_target_vol_multiplier },
+    { metric: "Stressed Regime Frequency", value: currentAllocationSummary?.stressed_regime_frequency },
+  ];
   const selectedLineKeys = [...selectedMethods, ...selectedBenchmarks.map((name) => `benchmark::${name}`)];
   const robustRows = [...data.methods].sort((a, b) => Number(b.robustness_score ?? 0) - Number(a.robustness_score ?? 0));
   const signalRows = [...data.signalSummary].sort((a, b) => Number(b.validation_quality_score ?? 0) - Number(a.validation_quality_score ?? 0));
@@ -435,8 +506,8 @@ export function DashboardShell() {
                   <div className="mt-6 grid gap-3 md:grid-cols-3">
                     {[
                       ["Layer 1", "Signals: momentum, value, carry proxies, BAB, quality, residual momentum."],
-                      ["Layer 2", "Strategy logic: dual momentum, CTA trend, composites, regime engine."],
-                      ["Layer 3", "Portfolio construction: HRP, HERC, ERC, BL, MVO, CVaR, baselines."],
+                      ["Layer 2", "Strategy logic: dual momentum, CTA trend, selective composites, regime engine."],
+                      ["Layer 3", "Portfolio construction: robust allocators, improvement lab, and baseline-vs-improved comparison."],
                     ].map(([title, copy]) => (
                       <div key={title} className="rounded-3xl border border-white/10 bg-white/[0.045] p-4">
                         <p className="font-semibold text-[#f5f1e8]">{title}</p>
@@ -446,14 +517,29 @@ export function DashboardShell() {
                   </div>
                 </div>
                 <div className="rounded-[2rem] border border-white/10 bg-[#0c1324]/60 p-5">
-                  <p className="mono text-xs uppercase tracking-[0.22em] text-[#b8b19f]">Default Candidate</p>
-                  <h2 className="mt-3 text-3xl font-semibold text-[#f5f1e8]">{titleCase(defaultCandidate?.method_name)}</h2>
-                  <p className="mt-3 text-sm leading-6 text-[#c8c1ad]">{defaultCandidate?.description ?? "Chosen from the robustness framework when available."}</p>
+                  <p className="mono text-xs uppercase tracking-[0.22em] text-[#b8b19f]">Current Production Candidate</p>
+                  <h2 className="mt-3 text-3xl font-semibold text-[#f5f1e8]">{titleCase(String(comparisonVersionRow?.version_name ?? defaultCandidate?.method_name ?? ""))}</h2>
+                  <p className="mt-3 text-sm leading-6 text-[#c8c1ad]">
+                    {String(comparisonVersionRow?.note ?? defaultCandidate?.description ?? "Chosen from the robustness framework when available.")}
+                  </p>
                   <div className="mt-5 grid grid-cols-2 gap-3">
                     <MetricCard label="Best by Sharpe" value={titleCase(data.overview.bestBySharpe?.method_name)} />
                     <MetricCard label="Most Robust" value={titleCase(data.overview.bestByRobustness?.method_name)} tone="good" />
                     <MetricCard label="Drawdown Control" value={titleCase(data.overview.bestDrawdown?.method_name)} />
                     <MetricCard label="Current Regime" value={titleCase(latestRegime?.risk_state)} detail={titleCase(latestRegime?.signal_environment)} tone={latestRegime?.risk_state === "stressed" ? "warn" : "good"} />
+                  </div>
+                  <div className="mt-4 rounded-3xl border border-white/10 bg-white/[0.035] p-4">
+                    <p className="mono text-[0.68rem] uppercase tracking-[0.18em] text-[#b8b19f]">Baseline vs Improved</p>
+                    <div className="mt-3 grid gap-2 text-sm text-[#c8c1ad]">
+                      <div className="flex items-center justify-between gap-3">
+                        <span>{titleCase(String(baselineVersionRow?.version_name ?? ""))}</span>
+                        <span className="mono text-[#f5f1e8]">{metricValue("sharpe", baselineVersionRow?.sharpe)}</span>
+                      </div>
+                      <div className="flex items-center justify-between gap-3">
+                        <span>{titleCase(String(comparisonVersionRow?.version_name ?? ""))}</span>
+                        <span className="mono text-[#9dcfae]">{metricValue("sharpe", comparisonVersionRow?.sharpe)}</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -461,7 +547,12 @@ export function DashboardShell() {
 
             <div className="metric-grid mt-5">
               {defaultMetricKeys.map((key) => (
-                <MetricCard key={key} label={metricLabel(key)} value={metricValue(key, defaultCandidate?.[key])} />
+                <MetricCard
+                  key={key}
+                  label={metricLabel(key)}
+                  value={metricValue(key, comparisonVersionRow?.[key] ?? defaultCandidate?.[key])}
+                  detail={isFiniteNumber(deltaValue(comparisonVersionRow?.[key], baselineVersionRow?.[key])) ? `vs baseline ${metricValue(key, deltaValue(comparisonVersionRow?.[key], baselineVersionRow?.[key]))}` : undefined}
+                />
               ))}
             </div>
             <div className="mt-5">
@@ -470,6 +561,77 @@ export function DashboardShell() {
               </Panel>
             </div>
           </section>
+
+          <Section id="signals" eyebrow="Layer 1" title="Signal research findings">
+            <div className="grid gap-5 xl:grid-cols-2">
+              <Panel title="Signal validation summary" subtitle="IC, Newey-West t-stats, redundancy, and validation-quality score from Layer 1.">
+                <SimpleTable rows={signalRows} columns={["signal_name", "recommendation", "avg_mean_ic", "avg_ic_tstat_nw", "avg_cross_coverage", "avg_abs_redundancy", "validation_quality_score"]} maxRows={18} />
+              </Panel>
+              <Panel title="Signal quality ranking" subtitle="Higher quality does not guarantee production usefulness; redundancy and implementation cost still matter.">
+                <RankingBar rows={signalRows as Array<Record<string, unknown>>} metric="validation_quality_score" labelKey="signal_name" />
+              </Panel>
+              <Panel title="Incremental signal contribution" subtitle="Starts from a sensible trend-plus-quality/value core and checks whether each add-on improves the downstream long-only ETF sleeve.">
+                <SimpleTable
+                  rows={[...data.improvementLab.signalIncremental]
+                    .filter((row) => row.test_type === "add_one")
+                    .sort((a, b) => Number(b.delta_sharpe_vs_base ?? 0) - Number(a.delta_sharpe_vs_base ?? 0))}
+                  columns={["candidate_signal", "delta_sharpe_vs_base", "delta_ann_return_vs_base", "delta_max_drawdown_vs_base", "delta_turnover_vs_base", "avg_bil_weight", "avg_spy_weight"]}
+                  maxRows={8}
+                />
+              </Panel>
+              <Panel title="Signal subset comparison" subtitle="Compact comparison of the current full blend versus cleaner finalist subsets.">
+                <SimpleTable
+                  rows={[...data.improvementLab.signalSubsets].sort((a, b) => Number(b.sharpe ?? 0) - Number(a.sharpe ?? 0))}
+                  columns={["combo_name", "ann_return", "ann_vol", "sharpe", "max_drawdown", "cvar_5", "avg_weekly_turnover"]}
+                  maxRows={8}
+                />
+              </Panel>
+              <Panel title="IC decay by horizon" subtitle="Forward-horizon IC curves show whether predictive relationships persist or decay quickly.">
+                <ResponsiveContainer width="100%" height={360}>
+                  <LineChart data={buildSignalIcChart(data.signalIc, signalRows.slice(0, 6).map((row) => row.signal_name))}>
+                    <CartesianGrid stroke="rgba(245,241,232,0.08)" />
+                    <XAxis dataKey="horizon" stroke="#b8b19f" />
+                    <YAxis stroke="#b8b19f" tickFormatter={(value) => formatNumber(value, 2)} />
+                    <Tooltip contentStyle={{ background: "#111827", border: "1px solid rgba(245,241,232,0.16)", borderRadius: 16 }} formatter={(value, name) => [formatNumber(value, 3), titleCase(String(name))]} />
+                    {signalRows.slice(0, 6).map((row, index) => (
+                      <Line key={row.signal_name} type="monotone" dataKey={row.signal_name} dot strokeWidth={2} stroke={chartColors[index % chartColors.length]} />
+                    ))}
+                  </LineChart>
+                </ResponsiveContainer>
+              </Panel>
+              <Panel title="Signal redundancy heatmap" subtitle="Correlation among standardized signal panels. Similar signals may add less incremental value downstream.">
+                <RedundancyHeatmap data={data.signalRedundancy} />
+              </Panel>
+            </div>
+          </Section>
+
+          <Section id="sleeves" eyebrow="Layer 2" title="Strategy and sleeve breakdown">
+            <div className="grid gap-5 xl:grid-cols-[1fr_0.9fr]">
+              <Panel title="Standalone Layer 2 strategy metrics" subtitle="These sleeves feed Layer 3; baselines are kept visible for honest comparison.">
+                <SimpleTable rows={[...data.strategySummary].sort((a, b) => Number(b.validation_score ?? b.sharpe ?? 0) - Number(a.validation_score ?? a.sharpe ?? 0))} columns={["strategy_name", "strategy_type", "ann_return", "ann_vol", "sharpe", "max_drawdown", "avg_weekly_turnover", "validation_score"]} maxRows={18} />
+              </Panel>
+              <Panel title="Improved candidate sleeves" subtitle="The improved finalist set keeps the strong sleeves, adds the selective composite, and drops the experimental breadth sleeve.">
+                <SimpleTable
+                  rows={[...data.improvementLab.sleeveSubsets]
+                    .filter((row) => row.subset_name === "replace_equal_with_selective" || row.subset_name === "drop_breadth")
+                    .sort((a, b) => Number(b.sharpe ?? 0) - Number(a.sharpe ?? 0))}
+                  columns={["method_name", "subset_name", "ann_return", "ann_vol", "sharpe", "max_drawdown", "avg_cash_weight", "avg_bil_weight"]}
+                  maxRows={6}
+                />
+              </Panel>
+              <Panel title="Incremental sleeve contribution" subtitle="Tests whether the extra sleeve actually improves the final stack or just adds another brake.">
+                <SimpleTable
+                  rows={[...data.improvementLab.sleeveIncremental]
+                    .sort((a, b) => Number(b.delta_sharpe_vs_baseline ?? 0) - Number(a.delta_sharpe_vs_baseline ?? 0))}
+                  columns={["method_name", "candidate_sleeve", "subset_name", "delta_sharpe_vs_baseline", "delta_ann_return_vs_baseline", "delta_max_drawdown_vs_baseline", "delta_avg_bil_vs_baseline"]}
+                  maxRows={12}
+                />
+              </Panel>
+              <Panel title="Current sleeve allocation" subtitle={`Latest sleeve mix for ${titleCase(comparisonVersion || weightMethod)}.`}>
+                <WeightBars rows={versionLatestSleeves.length ? versionLatestSleeves : latestSleeves} limit={10} />
+              </Panel>
+            </div>
+          </Section>
 
           <Section id="performance" eyebrow="Layer 3" title="Performance comparison">
             <div className="grid gap-5">
@@ -536,6 +698,119 @@ export function DashboardShell() {
             </Panel>
           </Section>
 
+          <Section id="improvement-lab" eyebrow="Improvement Lab" title="Baseline vs improved portfolio versions">
+            <div className="grid gap-5">
+              <Panel title="Version controls" subtitle="Compare the original defensive baseline with the improved finalist configurations.">
+                <div className="grid gap-4 md:grid-cols-2">
+                  <div>
+                    <p className="mb-2 text-sm font-semibold text-[#f5f1e8]">Baseline version</p>
+                    <select value={baselineVersion} onChange={(event) => setBaselineVersion(event.target.value)} className="w-full rounded-2xl border border-white/15 bg-[#0c1324] px-4 py-3 text-[#f5f1e8]">
+                      {versionNames.map((name) => <option key={name} value={name}>{titleCase(name)}</option>)}
+                    </select>
+                  </div>
+                  <div>
+                    <p className="mb-2 text-sm font-semibold text-[#f5f1e8]">Improved version</p>
+                    <select value={comparisonVersion} onChange={(event) => setComparisonVersion(event.target.value)} className="w-full rounded-2xl border border-white/15 bg-[#0c1324] px-4 py-3 text-[#f5f1e8]">
+                      {versionNames.map((name) => <option key={name} value={name}>{titleCase(name)}</option>)}
+                    </select>
+                  </div>
+                </div>
+              </Panel>
+              <div className="metric-grid">
+                <MetricCard label="Sharpe Delta" value={metricValue("sharpe", deltaValue(comparisonVersionRow?.sharpe, baselineVersionRow?.sharpe))} tone="good" />
+                <MetricCard label="CAGR Delta" value={metricValue("ann_return", deltaValue(comparisonVersionRow?.ann_return, baselineVersionRow?.ann_return))} tone="good" />
+                <MetricCard label="Max Drawdown Delta" value={metricValue("max_drawdown", deltaValue(comparisonVersionRow?.max_drawdown, baselineVersionRow?.max_drawdown))} />
+                <MetricCard label="Cash Delta" value={metricValue("avg_cash_weight", deltaValue(comparisonVersionRow?.avg_cash_weight, baselineVersionRow?.avg_cash_weight))} />
+                <MetricCard label="BIL Delta" value={metricValue("avg_bil_weight", deltaValue(comparisonVersionRow?.avg_bil_weight, baselineVersionRow?.avg_bil_weight))} />
+                <MetricCard label="Effective N Delta" value={metricValue("avg_effective_n", deltaValue(comparisonVersionRow?.avg_effective_n, baselineVersionRow?.avg_effective_n))} tone="good" />
+              </div>
+              <div className="grid gap-5 xl:grid-cols-2">
+                <Panel title="Wealth comparison" subtitle="Improved versions should earn their keep against the baseline, not just in isolated metrics.">
+                  <ResponsiveContainer width="100%" height={340}>
+                    <LineChart data={versionWealthData}>
+                      <CartesianGrid stroke="rgba(245,241,232,0.08)" />
+                      <XAxis dataKey="date" stroke="#b8b19f" minTickGap={40} />
+                      <YAxis stroke="#b8b19f" tickFormatter={(value) => formatNumber(value, 1)} />
+                      <Tooltip contentStyle={{ background: "#111827", border: "1px solid rgba(245,241,232,0.16)", borderRadius: 16 }} formatter={(value, name) => [formatNumber(value, 2), seriesLabel(String(name))]} />
+                      {[baselineVersion, comparisonVersion].filter(Boolean).map((name, index) => (
+                        <Line key={name} type="monotone" dataKey={name} dot={false} strokeWidth={2} stroke={chartColors[index % chartColors.length]} />
+                      ))}
+                    </LineChart>
+                  </ResponsiveContainer>
+                </Panel>
+                <Panel title="Drawdown comparison" subtitle="Checks whether the improved version buys return with a reasonable drawdown trade-off rather than hidden fragility.">
+                  <ResponsiveContainer width="100%" height={340}>
+                    <LineChart data={versionDrawdownData}>
+                      <CartesianGrid stroke="rgba(245,241,232,0.08)" />
+                      <XAxis dataKey="date" stroke="#b8b19f" minTickGap={40} />
+                      <YAxis stroke="#b8b19f" tickFormatter={(value) => formatPercent(value, 0)} />
+                      <Tooltip contentStyle={{ background: "#111827", border: "1px solid rgba(245,241,232,0.16)", borderRadius: 16 }} formatter={(value, name) => [formatPercent(value, 1), seriesLabel(String(name))]} />
+                      {[baselineVersion, comparisonVersion].filter(Boolean).map((name, index) => (
+                        <Line key={name} type="monotone" dataKey={name} dot={false} strokeWidth={2} stroke={chartColors[index % chartColors.length]} />
+                      ))}
+                    </LineChart>
+                  </ResponsiveContainer>
+                </Panel>
+              </div>
+              <Panel title="Version comparison table" subtitle="Shows what actually changed: sleeve set, overlay rules, and the resulting out-of-sample metrics.">
+                <SimpleTable rows={data.improvementLab.versions} columns={["version_name", "method_name", "ann_return", "ann_vol", "sharpe", "max_drawdown", "cvar_5", "avg_weekly_turnover", "avg_effective_n", "avg_bil_weight", "avg_cash_weight"]} maxRows={10} />
+              </Panel>
+            </div>
+          </Section>
+
+          <Section id="current-state" eyebrow="Current State" title="Current allocation drivers">
+            <div className="grid gap-5">
+              <div className="metric-grid">
+                <MetricCard label="Risk State" value={titleCase(String(currentAllocationSummary?.current_risk_state ?? latestRegime?.risk_state ?? ""))} detail={titleCase(String(currentAllocationSummary?.current_state_label ?? ""))} tone={String(currentAllocationSummary?.current_state_label ?? "") === "defensive" ? "warn" : "good"} />
+                <MetricCard label="Offensive" value={metricValue("ann_return", currentAllocationSummary?.current_offensive_weight)} />
+                <MetricCard label="Defensive" value={metricValue("ann_return", currentAllocationSummary?.current_defensive_weight)} />
+                <MetricCard label="Cash Proxy" value={metricValue("ann_return", currentAllocationSummary?.current_cash_proxy_weight)} />
+                <MetricCard label="Avg Offensive" value={metricValue("ann_return", currentAllocationSummary?.avg_offensive_weight)} />
+                <MetricCard label="Avg Cash Proxy" value={metricValue("ann_return", currentAllocationSummary?.avg_cash_proxy_weight)} />
+                <MetricCard label="Current BIL" value={metricValue("ann_return", currentAllocationSummary?.current_bil_weight)} />
+                <MetricCard label="Current SPY" value={metricValue("ann_return", currentAllocationSummary?.current_spy_weight)} />
+              </div>
+              <div className="grid gap-5 xl:grid-cols-[1.1fr_0.9fr]">
+                <Panel title="Allocation mix through time" subtitle="Offensive, defensive, and cash-proxy weights for the selected production candidate.">
+                  <ResponsiveContainer width="100%" height={340}>
+                    <AreaChart data={allocationMixChart}>
+                      <CartesianGrid stroke="rgba(245,241,232,0.08)" />
+                      <XAxis dataKey="date" stroke="#b8b19f" minTickGap={40} />
+                      <YAxis stroke="#b8b19f" tickFormatter={(value) => formatPercent(value, 0)} />
+                      <Tooltip contentStyle={{ background: "#111827", border: "1px solid rgba(245,241,232,0.16)", borderRadius: 16 }} formatter={(value, name) => [formatPercent(value, 1), titleCase(String(name).replace(/_/g, " "))]} />
+                      <Area type="monotone" dataKey="offensive_weight" stackId="1" stroke="#b9853b" fill="#b9853b" fillOpacity={0.75} />
+                      <Area type="monotone" dataKey="defensive_weight" stackId="1" stroke="#3d7057" fill="#3d7057" fillOpacity={0.7} />
+                      <Area type="monotone" dataKey="cash_proxy_weight" stackId="1" stroke="#8796b0" fill="#8796b0" fillOpacity={0.65} />
+                    </AreaChart>
+                  </ResponsiveContainer>
+                </Panel>
+                <Panel title="Why BIL is high / why SPY is low" subtitle="Current-date attribution from overlay cash plus sleeve look-through.">
+                  <div className="space-y-5">
+                    <div>
+                      <p className="mb-2 text-sm font-semibold text-[#f5f1e8]">BIL drivers</p>
+                      <SimpleTable rows={bilBreakdownRows} columns={["driver", "contribution"]} maxRows={8} />
+                    </div>
+                    <div>
+                      <p className="mb-2 text-sm font-semibold text-[#f5f1e8]">SPY drivers</p>
+                      <SimpleTable rows={spyBreakdownRows} columns={["driver", "contribution"]} maxRows={8} />
+                    </div>
+                  </div>
+                </Panel>
+              </div>
+              <div className="grid gap-5 xl:grid-cols-3">
+                <Panel title="Defensive posture summary" subtitle="Helps separate overlay-driven caution from sleeve-level BIL and shows whether target-vol scaling is really the binding brake.">
+                  <SimpleTable rows={defensivePostureRows as Array<Record<string, unknown>>} columns={["metric", "value"]} maxRows={12} />
+                </Panel>
+                <Panel title="Latest ETF weights" subtitle={`Look-through weights for ${titleCase(comparisonVersion || weightMethod)}.`}>
+                  <WeightBars rows={versionLatestWeights.length ? versionLatestWeights : latestWeights} limit={16} />
+                </Panel>
+                <Panel title="Allocation changes vs baseline" subtitle="Shows which assets gained or lost weight after the improvement pass.">
+                  <SimpleTable rows={weightDifferenceRows as Array<Record<string, unknown>>} columns={["asset", "baseline_weight", "current_weight", "delta_weight"]} maxRows={12} />
+                </Panel>
+              </div>
+            </div>
+          </Section>
+
           <Section id="robustness" eyebrow="Diagnostics" title="Robustness, regimes, and fragility checks">
             <div className="grid gap-5 xl:grid-cols-2">
               <Panel title="Robustness ranking" subtitle="Composite ranking from Layer 3, not a pure Sharpe ranking.">
@@ -581,91 +856,11 @@ export function DashboardShell() {
             </div>
           </Section>
 
-          <Section id="sleeves" eyebrow="Layer 2" title="Strategy and sleeve breakdown">
-            <div className="grid gap-5 xl:grid-cols-[1fr_0.85fr]">
-              <Panel title="Standalone Layer 2 strategy metrics" subtitle="These sleeves feed Layer 3; baselines are kept visible for honest comparison.">
-                <SimpleTable rows={[...data.strategySummary].sort((a, b) => Number(b.validation_score ?? b.sharpe ?? 0) - Number(a.validation_score ?? a.sharpe ?? 0))} columns={["strategy_name", "strategy_type", "ann_return", "ann_vol", "sharpe", "max_drawdown", "avg_weekly_turnover", "validation_score"]} maxRows={18} />
-              </Panel>
-              <Panel title="Current sleeve allocation" subtitle={`Latest sleeve mix for ${titleCase(weightMethod)}.`}>
-                <WeightBars rows={latestSleeves} limit={10} />
-              </Panel>
-              <Panel title="Sleeve allocation history" subtitle="Sampled history of the selected portfolio allocator.">
-                <ResponsiveContainer width="100%" height={360}>
-                  <AreaChart data={data.sleeveWeights[weightMethod]?.history ?? []}>
-                    <CartesianGrid stroke="rgba(245,241,232,0.08)" />
-                    <XAxis dataKey="date" stroke="#b8b19f" minTickGap={40} />
-                    <YAxis stroke="#b8b19f" tickFormatter={(value) => formatPercent(value, 0)} />
-                    <Tooltip contentStyle={{ background: "#111827", border: "1px solid rgba(245,241,232,0.16)", borderRadius: 16 }} formatter={(value, name) => [formatPercent(value, 1), titleCase(String(name))]} />
-                    {(data.sleeveWeights[weightMethod]?.selectedColumns ?? []).map((key, index) => (
-                      <Area key={key} type="monotone" dataKey={key} stackId="1" stroke={chartColors[index % chartColors.length]} fill={chartColors[index % chartColors.length]} fillOpacity={0.65} />
-                    ))}
-                  </AreaChart>
-                </ResponsiveContainer>
-              </Panel>
-              <Panel title="Candidate sleeves" subtitle="Shortlist of Layer 2 sleeves selected for portfolio construction.">
-                <SimpleTable rows={data.candidateSleeves} columns={["sleeve_name", "role"]} />
-              </Panel>
-            </div>
-          </Section>
-
-          <Section id="holdings" eyebrow="Portfolio Look-Through" title="Current holdings and weights">
-            <Panel title="Select allocator" subtitle="Inspect latest ETF look-through weights and historical allocation behavior.">
-              <select value={weightMethod} onChange={(event) => setWeightMethod(event.target.value)} className="w-full rounded-2xl border border-white/15 bg-[#0c1324] px-4 py-3 text-[#f5f1e8] md:w-96">
-                {methodNames.map((method) => <option key={method} value={method}>{titleCase(method)}</option>)}
-              </select>
-            </Panel>
-            <div className="mt-5 grid gap-5 xl:grid-cols-[0.75fr_1.25fr]">
-              <Panel title="Latest ETF weights" subtitle="Look-through allocation including explicit cash / defensive exposure.">
-                <WeightBars rows={latestWeights} limit={16} />
-              </Panel>
-              <Panel title="ETF weight history" subtitle="Sampled historical look-through weights for the selected allocator.">
-                <ResponsiveContainer width="100%" height={420}>
-                  <AreaChart data={data.portfolioWeights[weightMethod]?.history ?? []}>
-                    <CartesianGrid stroke="rgba(245,241,232,0.08)" />
-                    <XAxis dataKey="date" stroke="#b8b19f" minTickGap={40} />
-                    <YAxis stroke="#b8b19f" tickFormatter={(value) => formatPercent(value, 0)} />
-                    <Tooltip contentStyle={{ background: "#111827", border: "1px solid rgba(245,241,232,0.16)", borderRadius: 16 }} formatter={(value, name) => [formatPercent(value, 1), String(name)]} />
-                    {(data.portfolioWeights[weightMethod]?.selectedColumns ?? []).map((key, index) => (
-                      <Area key={key} type="monotone" dataKey={key} stackId="1" stroke={chartColors[index % chartColors.length]} fill={chartColors[index % chartColors.length]} fillOpacity={0.64} />
-                    ))}
-                  </AreaChart>
-                </ResponsiveContainer>
-              </Panel>
-            </div>
-          </Section>
-
-          <Section id="signals" eyebrow="Layer 1" title="Signal research findings">
-            <div className="grid gap-5 xl:grid-cols-2">
-              <Panel title="Signal validation summary" subtitle="IC, Newey-West t-stats, redundancy, and validation-quality score from Layer 1.">
-                <SimpleTable rows={signalRows} columns={["signal_name", "recommendation", "avg_mean_ic", "avg_ic_tstat_nw", "avg_cross_coverage", "avg_abs_redundancy", "validation_quality_score"]} maxRows={18} />
-              </Panel>
-              <Panel title="Signal quality ranking" subtitle="Higher quality does not guarantee production usefulness; redundancy and implementation cost still matter.">
-                <RankingBar rows={signalRows as Array<Record<string, unknown>>} metric="validation_quality_score" labelKey="signal_name" />
-              </Panel>
-              <Panel title="IC decay by horizon" subtitle="Forward-horizon IC curves show whether predictive relationships persist or decay quickly.">
-                <ResponsiveContainer width="100%" height={360}>
-                  <LineChart data={buildSignalIcChart(data.signalIc, signalRows.slice(0, 6).map((row) => row.signal_name))}>
-                    <CartesianGrid stroke="rgba(245,241,232,0.08)" />
-                    <XAxis dataKey="horizon" stroke="#b8b19f" />
-                    <YAxis stroke="#b8b19f" tickFormatter={(value) => formatNumber(value, 2)} />
-                    <Tooltip contentStyle={{ background: "#111827", border: "1px solid rgba(245,241,232,0.16)", borderRadius: 16 }} formatter={(value, name) => [formatNumber(value, 3), titleCase(String(name))]} />
-                    {signalRows.slice(0, 6).map((row, index) => (
-                      <Line key={row.signal_name} type="monotone" dataKey={row.signal_name} dot strokeWidth={2} stroke={chartColors[index % chartColors.length]} />
-                    ))}
-                  </LineChart>
-                </ResponsiveContainer>
-              </Panel>
-              <Panel title="Signal redundancy heatmap" subtitle="Correlation among standardized signal panels. Similar signals may add less incremental value downstream.">
-                <RedundancyHeatmap data={data.signalRedundancy} />
-              </Panel>
-            </div>
-          </Section>
-
           <footer className="pb-10 pt-6 text-sm text-[#b8b19f]">
             <div className="glass-card rounded-[2rem] p-5">
               <p className="font-semibold text-[#f5f1e8]">Refresh workflow</p>
               <p className="mt-2 leading-6">
-                Run the research notebooks to update `data/01_data_hub` through `data/05_layer3_portfolio_construction`, then run <span className="mono text-[#d7b072]">npm run refresh:data</span>. Vercel builds run that same ingestion step before compiling the dashboard.
+                Run the research notebooks to update `data/01_data_hub` through `data/05_layer3_portfolio_construction`, run <span className="mono text-[#d7b072]">python3 scripts/build_improvement_artifacts.py</span> to refresh the improvement lab outputs, then run <span className="mono text-[#d7b072]">npm run refresh:data</span>. Vercel builds run the ingestion step before compiling the dashboard.
               </p>
               <p className="mt-3 mono text-xs">Artifacts tracked: {data.artifacts.filter((item) => item.exists).length}/{data.artifacts.length} found · bundle generated {data.generatedAt}</p>
             </div>

@@ -103,6 +103,9 @@ export type DashboardData = {
     latestRegimeScore: RegimeRow | null;
     benchmarkSummary: StrategyRow[];
     regimeCounts: Array<{ name: string; count: number }>;
+    baselineVersion?: Record<string, string | number | boolean | null> | null;
+    improvedVersion?: Record<string, string | number | boolean | null> | null;
+    currentAllocationSummary?: Record<string, string | number | boolean | null> | null;
   };
   methods: MetricRow[];
   metricsSummary: MetricRow[];
@@ -127,6 +130,21 @@ export type DashboardData = {
     signals: string[];
     rowLabels?: string[];
     values: number[][];
+  };
+  improvementLab: {
+    signalIncremental: Array<Record<string, string | number | boolean | null>>;
+    signalSubsets: Array<Record<string, string | number | boolean | null>>;
+    sleeveIncremental: Array<Record<string, string | number | boolean | null>>;
+    sleeveSubsets: Array<Record<string, string | number | boolean | null>>;
+    versions: Array<Record<string, string | number | boolean | null>>;
+    versionReturns: Record<string, ReturnPoint[]>;
+    versionWeights: Record<string, WeightPayload>;
+    versionSleeveWeights: Record<string, WeightPayload>;
+    versionRegimeSplit: Array<Record<string, string | number | boolean | null>>;
+    versionSubperiods: Array<Record<string, string | number | boolean | null>>;
+    allocationDrivers: Array<Record<string, string | number | boolean | null>>;
+    allocationDriverBreakdown: Array<Record<string, string | number | boolean | null>>;
+    allocationDriverTimeseries: Array<Record<string, string | number | boolean | null>>;
   };
   manifests: Record<string, unknown>;
   artifacts: Array<{ path: string; exists: boolean; updatedAt: string | null; bytes: number }>;

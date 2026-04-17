@@ -184,7 +184,8 @@ def build_market_state_history() -> pd.DataFrame:
 
     state = pd.Series("neutral_mixed", index=regime_states.index, dtype=object)
     stressed_mask = regime_states["risk_state"].eq("stressed") | ((market_drawdown <= -0.18) & (breadth_sma_43 < 0.35))
-    recovery_mask = (
+    # Recovery universe: any rebound off stress with trend and breadth improving.
+    recovery_universe = (
         ~stressed_mask
         & recent_stress
         & market_trend_positive.fillna(False)
@@ -192,6 +193,23 @@ def build_market_state_history() -> pd.DataFrame:
         & (breadth_26w_mom >= 0.45)
         & (breadth_change_4w >= 0.05)
     )
+    # Confirmed recovery: stricter breadth / momentum / trend / risk score confirmation.
+    confirm_breadth = breadth_sma_43 >= 0.58
+    confirm_breadth_mom_26 = breadth_26w_mom >= 0.55
+    confirm_breadth_mom_13 = breadth_13w_mom >= 0.55
+    confirm_trend = market_trend_positive.fillna(False)
+    confirm_drawdown = market_drawdown >= -0.06
+    confirm_risk = risk_score.reindex(regime_states.index).fillna(0.0) <= 0.35
+    recovery_confirmed_mask = (
+        recovery_universe
+        & confirm_breadth
+        & confirm_breadth_mom_26
+        & confirm_breadth_mom_13
+        & confirm_trend
+        & confirm_drawdown
+        & confirm_risk
+    )
+    recovery_fragile_mask = recovery_universe & ~recovery_confirmed_mask
     calm_mask = (
         ~stressed_mask
         & regime_states["risk_state"].eq("calm")
@@ -200,12 +218,14 @@ def build_market_state_history() -> pd.DataFrame:
         & (breadth_26w_mom >= 0.55)
     )
     state.loc[stressed_mask] = "stressed_panic"
-    state.loc[recovery_mask] = "recovery_rebound"
+    state.loc[recovery_fragile_mask] = "recovery_fragile"
+    state.loc[recovery_confirmed_mask] = "recovery_confirmed"
     state.loc[calm_mask] = "calm_trend"
 
     state_reason = pd.Series("mixed inputs", index=state.index, dtype=object)
     state_reason.loc[stressed_mask] = "stress state, weak breadth, or deep drawdown"
-    state_reason.loc[recovery_mask] = "recent stress plus improving breadth and positive market trend"
+    state_reason.loc[recovery_fragile_mask] = "recent stress with improving breadth but confirmation still partial"
+    state_reason.loc[recovery_confirmed_mask] = "recent stress plus confirmed breadth, 13w and 26w momentum, trend, low drawdown, and low risk score"
     state_reason.loc[calm_mask] = "calm regime with strong trend breadth"
 
     out = pd.DataFrame(
@@ -252,7 +272,10 @@ def build_variant_regime_states(
     if overlay_variant == "looser_neutral_stress":
         return adjusted
 
-    recovery_mask = adjusted["market_state"].eq("recovery_rebound")
+    # Legacy aggregated-recovery flag (either sub-state counts as recovery for backward compat)
+    recovery_any_mask = adjusted["market_state"].isin(["recovery_rebound", "recovery_fragile", "recovery_confirmed"])
+    recovery_confirmed_mask = adjusted["market_state"].eq("recovery_confirmed")
+    recovery_fragile_mask = adjusted["market_state"].eq("recovery_fragile")
     calm_mask = adjusted["market_state"].eq("calm_trend")
     strong_neutral_mask = (
         adjusted["market_state"].eq("neutral_mixed")
@@ -260,9 +283,43 @@ def build_variant_regime_states(
         & adjusted["breadth_sma_43"].fillna(0.0).ge(0.55)
         & adjusted["breadth_26w_mom"].fillna(0.0).ge(0.50)
     )
-    adjusted.loc[recovery_mask, "overlay_multiplier"] = adjusted.loc[recovery_mask, "overlay_multiplier"].clip(lower=0.92)
-    adjusted.loc[calm_mask, "overlay_multiplier"] = adjusted.loc[calm_mask, "overlay_multiplier"].clip(lower=0.98)
-    adjusted.loc[strong_neutral_mask, "overlay_multiplier"] = adjusted.loc[strong_neutral_mask, "overlay_multiplier"].clip(lower=0.85)
+
+    if overlay_variant == "recovery_breadth_rerisk":
+        # Original aggregated-recovery overlay: single 0.92 floor.
+        adjusted.loc[recovery_any_mask, "overlay_multiplier"] = adjusted.loc[recovery_any_mask, "overlay_multiplier"].clip(lower=0.92)
+        adjusted.loc[calm_mask, "overlay_multiplier"] = adjusted.loc[calm_mask, "overlay_multiplier"].clip(lower=0.98)
+        adjusted.loc[strong_neutral_mask, "overlay_multiplier"] = adjusted.loc[strong_neutral_mask, "overlay_multiplier"].clip(lower=0.85)
+        return adjusted
+
+    if overlay_variant == "recovery_split_baseline":
+        # Variant A: split recovery into two buckets but keep offense intensity roughly symmetric
+        # with the aggregated recovery overlay. Confirmed gets a slightly stronger floor than fragile.
+        adjusted.loc[recovery_fragile_mask, "overlay_multiplier"] = adjusted.loc[recovery_fragile_mask, "overlay_multiplier"].clip(lower=0.90)
+        adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"] = adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"].clip(lower=0.94)
+        adjusted.loc[calm_mask, "overlay_multiplier"] = adjusted.loc[calm_mask, "overlay_multiplier"].clip(lower=0.98)
+        adjusted.loc[strong_neutral_mask, "overlay_multiplier"] = adjusted.loc[strong_neutral_mask, "overlay_multiplier"].clip(lower=0.85)
+        return adjusted
+
+    if overlay_variant == "recovery_split_confirmed_offense":
+        # Variant B: split recovery + meaningfully stronger re-risking in confirmed recovery.
+        adjusted.loc[recovery_fragile_mask, "overlay_multiplier"] = adjusted.loc[recovery_fragile_mask, "overlay_multiplier"].clip(lower=0.88)
+        adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"] = adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"].clip(lower=1.00)
+        adjusted.loc[calm_mask, "overlay_multiplier"] = adjusted.loc[calm_mask, "overlay_multiplier"].clip(lower=1.00)
+        adjusted.loc[strong_neutral_mask, "overlay_multiplier"] = adjusted.loc[strong_neutral_mask, "overlay_multiplier"].clip(lower=0.85)
+        return adjusted
+
+    if overlay_variant == "recovery_split_confirmed_offense_neutral_ease":
+        # Variant C: same as B + slightly less punitive neutral-state cash behavior when
+        # neutral still has a positive trend (not a global relaxation of neutral stance).
+        adjusted.loc[recovery_fragile_mask, "overlay_multiplier"] = adjusted.loc[recovery_fragile_mask, "overlay_multiplier"].clip(lower=0.88)
+        adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"] = adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"].clip(lower=1.00)
+        adjusted.loc[calm_mask, "overlay_multiplier"] = adjusted.loc[calm_mask, "overlay_multiplier"].clip(lower=1.00)
+        # Raise the strong-neutral floor modestly (0.85 -> 0.90) so "quiet but trending up" weeks
+        # carry a bit less sleeve-level cash.
+        adjusted.loc[strong_neutral_mask, "overlay_multiplier"] = adjusted.loc[strong_neutral_mask, "overlay_multiplier"].clip(lower=0.90)
+        return adjusted
+
+    # Fallback: behave like looser_neutral_stress if an unknown variant string is passed.
     return adjusted
 
 
@@ -283,11 +340,32 @@ def apply_state_conditioned_tilt(raw_weights: pd.Series, market_state: str | Non
     ]
     defensive_sleeves = [name for name in ["composite_regime_conditioned", "taa_10m_sma"] if name in tilted.index]
 
+    # Backward compatibility: legacy "modest" tilt on the aggregated recovery state.
     if market_state == "recovery_rebound":
         for name in offensive_sleeves:
             tilted.loc[name] *= 1.12
         for name in defensive_sleeves:
             tilted.loc[name] *= 0.90
+    elif market_state == "recovery_fragile":
+        # Fragile: modest re-risk only. Never lean hard into an unconfirmed bounce.
+        if tilt_mode in {"modest", "split_modest", "split_aggressive"}:
+            for name in offensive_sleeves:
+                tilted.loc[name] *= 1.06
+            for name in defensive_sleeves:
+                tilted.loc[name] *= 0.96
+    elif market_state == "recovery_confirmed":
+        if tilt_mode in {"modest", "split_modest"}:
+            # Treat confirmed like the legacy "modest" tilt.
+            for name in offensive_sleeves:
+                tilted.loc[name] *= 1.12
+            for name in defensive_sleeves:
+                tilted.loc[name] *= 0.90
+        elif tilt_mode == "split_aggressive":
+            # Aggressive offense only when breadth/trend/momentum/drawdown all confirm.
+            for name in offensive_sleeves:
+                tilted.loc[name] *= 1.22
+            for name in defensive_sleeves:
+                tilted.loc[name] *= 0.82
     elif market_state == "calm_trend":
         for name in offensive_sleeves:
             tilted.loc[name] *= 1.08
@@ -318,8 +396,12 @@ def apply_overlays_custom(
 ) -> tuple[pd.Series, float, dict]:
     raw_weights = ns5["normalize_long_only"](raw_weights, max_weight=ns5["MAX_SLEEVE_WEIGHT"])
     dynamic_speed = sleeve_reallocation_speed
-    if rerisk_speed is not None and market_state in {"recovery_rebound", "calm_trend"}:
-        dynamic_speed = rerisk_speed
+    if rerisk_speed is not None:
+        if market_state in {"recovery_rebound", "recovery_confirmed", "calm_trend"}:
+            dynamic_speed = rerisk_speed
+        elif market_state == "recovery_fragile":
+            # Partial re-risk during fragile recovery: halfway between baseline speed and rerisk_speed.
+            dynamic_speed = sleeve_reallocation_speed + 0.5 * (rerisk_speed - sleeve_reallocation_speed)
     if prev_weights is not None and not prev_weights.empty:
         prev_weights = ns5["normalize_long_only"](prev_weights.reindex(raw_weights.index).fillna(0.0), max_weight=ns5["MAX_SLEEVE_WEIGHT"])
         blended = (1.0 - dynamic_speed) * prev_weights + dynamic_speed * raw_weights
@@ -536,17 +618,27 @@ def version_capture_summary(
         for col in ["regime_multiplier", "target_vol_multiplier", "gross_multiplier", "dynamic_speed"]:
             joined[col] = diag_idx.reindex(aligned.index)[col]
 
-    recovery_mask = joined["market_state"].eq("recovery_rebound")
+    recovery_any_mask = joined["market_state"].isin(["recovery_rebound", "recovery_fragile", "recovery_confirmed"])
+    recovery_fragile_mask = joined["market_state"].eq("recovery_fragile")
+    recovery_confirmed_mask = joined["market_state"].eq("recovery_confirmed")
     calm_mask = joined["market_state"].eq("calm_trend")
     stressed_mask = joined["market_state"].eq("stressed_panic")
+
+    def bucket_capture(mask: pd.Series) -> float:
+        if not mask.any():
+            return np.nan
+        bench_sum = joined.loc[mask, "benchmark"].sum()
+        return joined.loc[mask, "portfolio"].sum() / bench_sum if bench_sum != 0 else np.nan
 
     return {
         "version_name": version_name,
         "upside_capture_positive_weeks": upside_capture,
         "downside_capture_negative_weeks": downside_capture,
-        "recovery_week_capture": joined.loc[recovery_mask, "portfolio"].sum() / joined.loc[recovery_mask, "benchmark"].sum() if recovery_mask.any() and joined.loc[recovery_mask, "benchmark"].sum() != 0 else np.nan,
-        "calm_week_capture": joined.loc[calm_mask, "portfolio"].sum() / joined.loc[calm_mask, "benchmark"].sum() if calm_mask.any() and joined.loc[calm_mask, "benchmark"].sum() != 0 else np.nan,
-        "stress_downside_capture": joined.loc[stressed_mask, "portfolio"].sum() / joined.loc[stressed_mask, "benchmark"].sum() if stressed_mask.any() and joined.loc[stressed_mask, "benchmark"].sum() != 0 else np.nan,
+        "recovery_week_capture": bucket_capture(recovery_any_mask),
+        "recovery_fragile_capture": bucket_capture(recovery_fragile_mask),
+        "recovery_confirmed_capture": bucket_capture(recovery_confirmed_mask),
+        "calm_week_capture": bucket_capture(calm_mask),
+        "stress_downside_capture": bucket_capture(stressed_mask),
         "avg_offensive_when_benchmark_positive": safe_mean(joined.loc[positive, "offensive_weight"]),
         "avg_cash_when_benchmark_positive": safe_mean(joined.loc[positive, "cash_weight"]),
         "avg_regime_multiplier_when_benchmark_positive": safe_mean(joined.loc[positive, "regime_multiplier"]) if "regime_multiplier" in joined else np.nan,
@@ -662,7 +754,9 @@ def summarize_window(
         "avg_regime_multiplier": safe_mean(diag_idx.loc[(diag_idx.index >= start) & (diag_idx.index <= end), "regime_multiplier"]) if not diag_idx.empty else np.nan,
         "avg_target_vol_multiplier": safe_mean(diag_idx.loc[(diag_idx.index >= start) & (diag_idx.index <= end), "target_vol_multiplier"]) if not diag_idx.empty else np.nan,
         "avg_dynamic_speed": safe_mean(diag_idx.loc[(diag_idx.index >= start) & (diag_idx.index <= end), "dynamic_speed"]) if not diag_idx.empty else np.nan,
-        "avg_market_state_recovery": safe_mean(market_state_slice["market_state"].eq("recovery_rebound").astype(float)),
+        "avg_market_state_recovery": safe_mean(market_state_slice["market_state"].isin(["recovery_rebound", "recovery_fragile", "recovery_confirmed"]).astype(float)),
+        "avg_market_state_recovery_fragile": safe_mean(market_state_slice["market_state"].eq("recovery_fragile").astype(float)),
+        "avg_market_state_recovery_confirmed": safe_mean(market_state_slice["market_state"].eq("recovery_confirmed").astype(float)),
         "avg_market_state_stressed": safe_mean(market_state_slice["market_state"].eq("stressed_panic").astype(float)),
     }
 
@@ -1114,6 +1208,60 @@ version_specs = [
         "state_tilt": "modest",
         "target_vol_ceil": 1.00,
         "note": "HERC reference run on the best causal recovery configuration.",
+    },
+    # ======================================================================
+    # State-split controlled experiment (Part A of the current research task)
+    #
+    # Control        = improved_hrp_recovery_tilt (already above).
+    # Variant A      = improved_hrp_recovery_split
+    #                  Splits the recovery state into fragile vs confirmed but keeps
+    #                  the same symmetric "modest" offense and the same rerisk_speed
+    #                  trigger as the control, so the only change under test is the
+    #                  state classifier precision itself.
+    # Variant B      = improved_hrp_recovery_split_confirmed_offense
+    #                  Adds meaningfully stronger offense only when breadth, 13w and
+    #                  26w momentum, trend, drawdown and risk score all confirm the
+    #                  recovery. Fragile recovery stays modest.
+    # Variant C      = improved_hrp_recovery_split_confirmed_offense_neutral_ease
+    #                  Variant B + a slightly less punitive neutral-state floor in
+    #                  weeks that still have a positive market trend. Targets the
+    #                  residual sleeve-level BIL/cash drag outside confirmed recovery.
+    # ======================================================================
+    {
+        "version_name": "improved_hrp_recovery_split",
+        "method_name": "hrp",
+        "subset_name": "upside_capture_recovery_split",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "recovery_split_baseline",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "split_modest",
+        "target_vol_ceil": 1.00,
+        "note": "Variant A: splits recovery into fragile vs confirmed using causal breadth / 13w and 26w momentum / trend / drawdown / risk-score confirmation, but keeps the same symmetric modest offense and rerisk pacing as improved_hrp_recovery_tilt so the classifier split itself can be tested in isolation.",
+    },
+    {
+        "version_name": "improved_hrp_recovery_split_confirmed_offense",
+        "method_name": "hrp",
+        "subset_name": "upside_capture_recovery_split_confirmed_offense",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "recovery_split_confirmed_offense",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "split_aggressive",
+        "target_vol_ceil": 1.00,
+        "note": "Variant B: adds the recovery state split plus a meaningfully stronger offense ladder only in confirmed recovery. Fragile recovery stays modest and uses a partial rerisk speed to avoid leaning hard into unconfirmed bounces.",
+    },
+    {
+        "version_name": "improved_hrp_recovery_split_confirmed_offense_neutral_ease",
+        "method_name": "hrp",
+        "subset_name": "upside_capture_recovery_split_confirmed_offense_neutral_ease",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "recovery_split_confirmed_offense_neutral_ease",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "split_aggressive",
+        "target_vol_ceil": 1.00,
+        "note": "Variant C: Variant B plus a slightly less punitive neutral-state sleeve floor during neutral weeks whose market trend is still positive. Targets the residual BIL/cash drag that shows up outside confirmed recovery without globally relaxing the neutral stance.",
     },
 ]
 

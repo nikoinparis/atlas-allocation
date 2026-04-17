@@ -340,9 +340,30 @@ const latestRegimeScore = regimeScore.length ? regimeScore[regimeScore.length - 
 const latestMarketState = marketStateHistory.length ? marketStateHistory[marketStateHistory.length - 1] : null;
 const benchmarkSummary = strategySummary.filter((row) => String(row.strategy_name || "").startsWith("baseline_"));
 const baselineVersion = versionComparison.find((row) => String(row.version_name || "").startsWith("baseline_hrp")) || versionComparison.find((row) => String(row.version_name || "").startsWith("baseline_")) || null;
-const improvedVersion = [...versionComparison]
-  .filter((row) => String(row.version_name || "").startsWith("improved_"))
+// Pin the production candidate to the incumbent (`improved_hrp_recovery_tilt`) unless a
+// challenger variant beats it by a material production-score margin AND does not degrade max
+// drawdown or CVaR. This encodes research discipline: tiny, in-noise production-score gains from
+// the recovery-split experiments are classified as Conditional / Research-only and do not promote.
+const INCUMBENT_NAME = "improved_hrp_recovery_tilt";
+const PROMOTION_MARGIN = 0.05; // production_score
+const improvedCandidates = [...versionComparison].filter((row) => String(row.version_name || "").startsWith("improved_"));
+const incumbent = improvedCandidates.find((row) => row.version_name === INCUMBENT_NAME) || null;
+const bestChallenger = [...improvedCandidates]
+  .filter((row) => row.version_name !== INCUMBENT_NAME)
   .sort((a, b) => Number(b.production_score ?? b.sharpe ?? 0) - Number(a.production_score ?? a.sharpe ?? 0))[0] || null;
+let improvedVersion = incumbent;
+if (incumbent && bestChallenger) {
+  const incScore = Number(incumbent.production_score ?? incumbent.sharpe ?? 0);
+  const chScore = Number(bestChallenger.production_score ?? bestChallenger.sharpe ?? 0);
+  const incDD = Number(incumbent.max_drawdown ?? -1);
+  const chDD = Number(bestChallenger.max_drawdown ?? -1);
+  const incCVaR = Number(incumbent.cvar_5 ?? -1);
+  const chCVaR = Number(bestChallenger.cvar_5 ?? -1);
+  if (chScore - incScore >= PROMOTION_MARGIN && chDD >= incDD - 0.005 && chCVaR >= incCVaR - 0.002) {
+    improvedVersion = bestChallenger;
+  }
+}
+if (!improvedVersion) improvedVersion = bestChallenger;
 const currentAllocationSummary = improvedVersion
   ? allocationDrivers.find((row) => row.version_name === improvedVersion.version_name) ?? null
   : allocationDrivers[0] ?? null;

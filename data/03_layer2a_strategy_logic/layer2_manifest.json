@@ -344,5 +344,26 @@
     ],
     "caveats": "Selective composite keeps the signals that improved the long-only ETF sleeve most cleanly in the incremental study; it is still a practical top-N proxy rather than a fully optimized ensemble.",
     "description": "Top-N long-only strategy using the selective signal blend that retained trend, quality/value, BAB, and carry while excluding weaker add-ons."
+  },
+  {
+    "strategy_name": "composite_selective_concentrated",
+    "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+    "type": "strategy_logic",
+    "required_inputs": [
+      "signal_xsmom.csv",
+      "signal_multi_horizon_mom.csv",
+      "signal_quality.csv",
+      "signal_value.csv",
+      "signal_bab.csv",
+      "signal_carry.csv"
+    ],
+    "rebalance_frequency": "monthly",
+    "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+    "output_files": [
+      "strategy_positions_composite_selective_concentrated.csv",
+      "strategy_returns_composite_selective_concentrated.csv"
+    ],
+    "caveats": "This is a more selective offensive sleeve for upside-capture testing. It is only promoted if better upside participation survives the drawdown and turnover checks.",
+    "description": "A more concentrated top-3 version of the selective signal sleeve, used as a disciplined upside-capture test rather than a new default."
   }
 ]

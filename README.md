@@ -33,6 +33,8 @@ The latest improvement pass also adds a dedicated comparison workflow that answe
 - which Layer 1 signals add real incremental value
 - which Layer 2 sleeves improve the final allocator versus just adding another brake
 - whether the improved finalists actually beat the original baseline out of sample
+- whether recovery-state re-risking improves upside capture without giving back too much drawdown control
+- how much rally participation is lost to overlay cash, slow re-risking, or weak sleeve selection
 
 ## Data Layout Expected
 
@@ -84,6 +86,7 @@ public/dashboard-data.json
 ```
 
 The app reads that bundle in the browser, which keeps the deployment simple and avoids a database or custom backend.
+The homepage now preloads that bundle on the server, so the dashboard renders directly instead of waiting on a large client-side loading shell in the normal path.
 
 ## Refresh Workflow
 

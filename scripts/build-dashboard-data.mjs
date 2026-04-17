@@ -267,6 +267,8 @@ const signalIc = readCsv("data/02_layer1_signals/signal_ic_by_horizon.csv");
 const signalRedundancy = redundancyPayload(readCsv("data/02_layer1_signals/signal_redundancy_matrix.csv"));
 const regimeStates = readCsv("data/04_layer2b_risk_regime_engine/regime_states.csv");
 const regimeScore = readCsv("data/04_layer2b_risk_regime_engine/regime_score.csv");
+const marketStateHistory = readCsv("data/04_layer2b_risk_regime_engine/market_state_history.csv");
+const sleevePerformanceByState = readCsv("data/04_layer2b_risk_regime_engine/sleeve_performance_by_state.csv");
 const regimeSplit = readCsv("data/05_layer3_portfolio_construction/portfolio_regime_split_summary.csv");
 const subperiods = readCsv("data/05_layer3_portfolio_construction/portfolio_subperiod_summary.csv");
 const diagnostics = readCsv("data/05_layer3_portfolio_construction/portfolio_diagnostics.csv");
@@ -284,6 +286,14 @@ const versionSubperiods = readCsv("data/05_layer3_portfolio_construction/portfol
 const allocationDrivers = readCsv("data/05_layer3_portfolio_construction/allocation_driver_summary.csv");
 const allocationDriverBreakdown = readCsv("data/05_layer3_portfolio_construction/allocation_driver_breakdown.csv");
 const allocationDriverTimeseries = readCsv("data/05_layer3_portfolio_construction/allocation_driver_timeseries.csv");
+const upsideCaptureAnalysis = readCsv("data/05_layer3_portfolio_construction/upside_capture_analysis.csv");
+const rallyWindowAttribution = readCsv("data/05_layer3_portfolio_construction/rally_window_attribution.csv");
+const offensiveDefensiveCashDuringRallies = readCsv("data/05_layer3_portfolio_construction/offensive_defensive_cash_during_rallies.csv");
+const targetedWindowSummary = readCsv("data/05_layer3_portfolio_construction/targeted_window_summary.csv");
+const upsideDownsideCaptureByWindow = readCsv("data/05_layer3_portfolio_construction/upside_downside_capture_by_window.csv");
+const reriskingLagByWindow = readCsv("data/05_layer3_portfolio_construction/rerisking_lag_by_window.csv");
+const stateConditionedAllocationSummary = readCsv("data/05_layer3_portfolio_construction/state_conditioned_allocation_summary.csv");
+const upsideCaptureVersionComparison = readCsv("data/05_layer3_portfolio_construction/upside_capture_version_comparison.csv");
 
 const portfolioReturnFiles = listFiles(DIRS.layer3, /^portfolio_returns_.*\.csv$/);
 const portfolioReturns = Object.fromEntries(
@@ -327,11 +337,12 @@ const bestLowTurnover = minBy(methods, "avg_weekly_turnover");
 const defaultCandidate = maxBy(methods, "robustness_score", (row) => row.instability_flag !== true) || bestByRobustness;
 const latestRegime = regimeStates.length ? regimeStates[regimeStates.length - 1] : null;
 const latestRegimeScore = regimeScore.length ? regimeScore[regimeScore.length - 1] : null;
+const latestMarketState = marketStateHistory.length ? marketStateHistory[marketStateHistory.length - 1] : null;
 const benchmarkSummary = strategySummary.filter((row) => String(row.strategy_name || "").startsWith("baseline_"));
 const baselineVersion = versionComparison.find((row) => String(row.version_name || "").startsWith("baseline_hrp")) || versionComparison.find((row) => String(row.version_name || "").startsWith("baseline_")) || null;
 const improvedVersion = [...versionComparison]
   .filter((row) => String(row.version_name || "").startsWith("improved_"))
-  .sort((a, b) => Number(b.sharpe ?? 0) - Number(a.sharpe ?? 0))[0] || null;
+  .sort((a, b) => Number(b.production_score ?? b.sharpe ?? 0) - Number(a.production_score ?? a.sharpe ?? 0))[0] || null;
 const currentAllocationSummary = improvedVersion
   ? allocationDrivers.find((row) => row.version_name === improvedVersion.version_name) ?? null
   : allocationDrivers[0] ?? null;
@@ -353,10 +364,20 @@ const artifactPaths = [
   "data/05_layer3_portfolio_construction/allocation_driver_summary.csv",
   "data/05_layer3_portfolio_construction/allocation_driver_breakdown.csv",
   "data/05_layer3_portfolio_construction/allocation_driver_timeseries.csv",
+  "data/05_layer3_portfolio_construction/upside_capture_analysis.csv",
+  "data/05_layer3_portfolio_construction/rally_window_attribution.csv",
+  "data/05_layer3_portfolio_construction/offensive_defensive_cash_during_rallies.csv",
+  "data/05_layer3_portfolio_construction/targeted_window_summary.csv",
+  "data/05_layer3_portfolio_construction/upside_downside_capture_by_window.csv",
+  "data/05_layer3_portfolio_construction/rerisking_lag_by_window.csv",
+  "data/05_layer3_portfolio_construction/state_conditioned_allocation_summary.csv",
+  "data/05_layer3_portfolio_construction/upside_capture_version_comparison.csv",
   "data/05_layer3_portfolio_construction/sleeve_incremental_contribution.csv",
   "data/05_layer3_portfolio_construction/sleeve_subset_comparison.csv",
   "data/03_layer2a_strategy_logic/strategy_summary_table.csv",
   "data/04_layer2b_risk_regime_engine/regime_states.csv",
+  "data/04_layer2b_risk_regime_engine/market_state_history.csv",
+  "data/04_layer2b_risk_regime_engine/sleeve_performance_by_state.csv",
   "data/02_layer1_signals/signal_summary_table.csv",
   "data/02_layer1_signals/signal_ic_by_horizon.csv",
   "data/02_layer1_signals/signal_redundancy_matrix.csv",
@@ -388,6 +409,7 @@ const payload = {
     defaultCandidate,
     latestRegime,
     latestRegimeScore,
+    latestMarketState,
     benchmarkSummary,
     regimeCounts: groupCount(regimeStates, "risk_state"),
     baselineVersion,
@@ -408,6 +430,17 @@ const payload = {
     risk_regime_score: row.risk_regime_score,
     risk_state: row.risk_state,
     signal_environment: row.signal_environment,
+  })),
+  marketStateHistory: sampleRows(marketStateHistory, 2).map((row) => ({
+    date: row.Date,
+    market_state: row.market_state,
+    market_state_reason: row.market_state_reason,
+    risk_state: row.risk_state,
+    signal_environment: row.signal_environment,
+    breadth_sma_43: row.breadth_sma_43,
+    breadth_26w_mom: row.breadth_26w_mom,
+    market_drawdown: row.market_drawdown,
+    google_fear_z_tradable: row.google_fear_z_tradable,
   })),
   regimeSplit,
   subperiods,
@@ -433,6 +466,15 @@ const payload = {
     allocationDrivers,
     allocationDriverBreakdown,
     allocationDriverTimeseries,
+    upsideCaptureAnalysis,
+    rallyWindowAttribution,
+    offensiveDefensiveCashDuringRallies,
+    targetedWindowSummary,
+    upsideDownsideCaptureByWindow,
+    reriskingLagByWindow,
+    stateConditionedAllocationSummary,
+    sleevePerformanceByState,
+    upsideCaptureVersionComparison,
   },
   manifests,
   artifacts,

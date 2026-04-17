@@ -5,7 +5,6 @@ import {
   ChevronDown,
   Layers3,
   LineChart as LineChartIcon,
-  RefreshCcw,
   Scale,
   ShieldCheck,
   Table2,
@@ -78,7 +77,7 @@ function metricValue(key: string, value: unknown) {
   if (["ann_return", "ann_vol", "max_drawdown", "cvar_5", "avg_weekly_turnover", "annual_turnover", "avg_max_weight", "hit_rate", "psr_zero", "psr_selection"].includes(key)) {
     return formatPercent(value, key === "psr_selection" || key === "psr_zero" ? 1 : 1);
   }
-  if (["sharpe", "calmar", "avg_effective_n", "avg_hhi", "weight_instability", "allocation_instability", "robustness_score"].includes(key)) {
+  if (["sharpe", "calmar", "avg_effective_n", "avg_hhi", "weight_instability", "allocation_instability", "robustness_score", "production_score"].includes(key)) {
     return formatNumber(value, 2);
   }
   if (typeof value === "string") return titleCase(value);
@@ -386,7 +385,8 @@ function buildBreakdownRows(rows: Array<Record<string, string | number | boolean
 }
 
 export function DashboardShell() {
-  const [data, setData] = useState<DashboardData | null>(null);
+export function DashboardShell({ initialData }: { initialData: DashboardData | null }) {
+  const [data, setData] = useState<DashboardData | null>(initialData);
   const [error, setError] = useState<string | null>(null);
   const [selectedMethods, setSelectedMethods] = useState<string[]>([]);
   const [selectedBenchmarks, setSelectedBenchmarks] = useState<string[]>([]);
@@ -395,27 +395,30 @@ export function DashboardShell() {
   const [comparisonVersion, setComparisonVersion] = useState<string>("");
 
   useEffect(() => {
+    if (initialData) return;
     fetch("/dashboard-data.json", { cache: "no-store" })
       .then((response) => {
         if (!response.ok) throw new Error(`Unable to load dashboard data: ${response.status}`);
         return response.json() as Promise<DashboardData>;
       })
-      .then((payload) => {
-        setData(payload);
-        const defaults = [
-          payload.overview.defaultCandidate?.method_name,
-          payload.overview.bestBySharpe?.method_name,
-          payload.overview.bestDrawdown?.method_name,
-          "equal_weight",
-        ].filter(Boolean) as string[];
-        setSelectedMethods([...new Set(defaults)].filter((name) => payload.portfolioReturns[name]));
-        setSelectedBenchmarks(Object.keys(payload.benchmarkReturns).slice(0, 2));
-        setWeightMethod(payload.overview.defaultCandidate?.method_name ?? Object.keys(payload.portfolioWeights)[0] ?? "");
-        setBaselineVersion(String(payload.overview.baselineVersion?.version_name ?? Object.keys(payload.improvementLab.versionReturns)[0] ?? ""));
-        setComparisonVersion(String(payload.overview.improvedVersion?.version_name ?? Object.keys(payload.improvementLab.versionReturns).slice(-1)[0] ?? ""));
-      })
+      .then((payload) => setData(payload))
       .catch((err: Error) => setError(err.message));
-  }, []);
+  }, [initialData]);
+
+  useEffect(() => {
+    if (!data) return;
+    const defaults = [
+      data.overview.defaultCandidate?.method_name,
+      data.overview.bestBySharpe?.method_name,
+      data.overview.bestDrawdown?.method_name,
+      "equal_weight",
+    ].filter(Boolean) as string[];
+    setSelectedMethods([...new Set(defaults)].filter((name) => data.portfolioReturns[name]));
+    setSelectedBenchmarks(Object.keys(data.benchmarkReturns).slice(0, 2));
+    setWeightMethod(data.overview.defaultCandidate?.method_name ?? Object.keys(data.portfolioWeights)[0] ?? "");
+    setBaselineVersion(String(data.overview.baselineVersion?.version_name ?? Object.keys(data.improvementLab.versionReturns)[0] ?? ""));
+    setComparisonVersion(String(data.overview.improvedVersion?.version_name ?? Object.keys(data.improvementLab.versionReturns).slice(-1)[0] ?? ""));
+  }, [data]);
 
   const methodNames = useMemo(() => Object.keys(data?.portfolioReturns ?? {}), [data]);
   const benchmarkNames = useMemo(() => Object.keys(data?.benchmarkReturns ?? {}), [data]);
@@ -433,10 +436,15 @@ export function DashboardShell() {
 
   if (!data) {
     return (
-      <main className="dashboard-shell flex min-h-screen items-center justify-center p-6">
-        <div className="glass-card rounded-[2rem] p-8 text-center">
-          <RefreshCcw className="mx-auto h-8 w-8 animate-spin text-[#b9853b]" />
-          <p className="mt-4 text-lg font-medium">Loading research dashboard...</p>
+      <main className="dashboard-shell px-4 py-6 md:px-7">
+        <div className="mx-auto max-w-[1500px]">
+          <div className="glass-card rounded-[2.5rem] p-8">
+            <p className="mono text-xs uppercase tracking-[0.28em] text-[#b9853b]">Dashboard Bundle</p>
+            <h1 className="mt-3 text-4xl font-semibold text-[#f5f1e8]">Research dashboard data is not available yet.</h1>
+            <p className="mt-4 max-w-2xl text-base leading-7 text-[#c8c1ad]">
+              Run the research pipeline, refresh the saved artifacts, and regenerate <span className="mono text-[#d7b072]">public/dashboard-data.json</span>. The page now renders server-first when that bundle exists, so there is no heavy client-side loading shell in the normal path.
+            </p>
+          </div>
         </div>
       </main>
     );
@@ -444,6 +452,7 @@ export function DashboardShell() {
 
   const defaultCandidate = data.overview.defaultCandidate;
   const latestRegime = data.overview.latestRegime;
+  const latestMarketState = data.overview.latestMarketState ?? data.marketStateHistory.at(-1) ?? null;
   const latestWeights = data.portfolioWeights[weightMethod]?.latest ?? [];
   const latestSleeves = data.sleeveWeights[weightMethod]?.latest ?? [];
   const baselineVersionRow = findRowByKey(data.improvementLab.versions, "version_name", baselineVersion);
@@ -466,6 +475,26 @@ export function DashboardShell() {
     { metric: "Avg Target Vol Multiplier", value: currentAllocationSummary?.avg_target_vol_multiplier },
     { metric: "Stressed Regime Frequency", value: currentAllocationSummary?.stressed_regime_frequency },
   ];
+  const marketStateFeatureRows = [
+    { metric: "Market State", value: latestMarketState?.market_state },
+    { metric: "Risk State", value: latestMarketState?.risk_state },
+    { metric: "State Reason", value: latestMarketState?.market_state_reason },
+    { metric: "Breadth Above 10m", value: latestMarketState?.breadth_sma_43 },
+    { metric: "Breadth 26w Momentum", value: latestMarketState?.breadth_26w_mom },
+    { metric: "Market Drawdown", value: latestMarketState?.market_drawdown },
+    { metric: "Google Fear Z", value: latestMarketState?.google_fear_z_tradable },
+  ];
+  const versionUpsideRows = [...data.improvementLab.upsideCaptureVersionComparison].sort((a, b) => Number(b.production_score ?? 0) - Number(a.production_score ?? 0));
+  const targetedWindowComparisonRows = data.improvementLab.targetedWindowSummary.filter((row) => [baselineVersion, comparisonVersion].includes(String(row.version_name ?? "")));
+  const rallyComparisonRows = data.improvementLab.rallyWindowAttribution.filter((row) => [baselineVersion, comparisonVersion].includes(String(row.version_name ?? "")));
+  const reriskComparisonRows = data.improvementLab.reriskingLagByWindow.filter((row) => [baselineVersion, comparisonVersion].includes(String(row.version_name ?? "")));
+  const sleeveStateRows = [...data.improvementLab.sleevePerformanceByState]
+    .filter((row) => ["recovery_rebound", "calm_trend", "stressed_panic", "neutral_mixed"].includes(String(row.market_state ?? "")))
+    .sort((a, b) => Number(b.sharpe ?? 0) - Number(a.sharpe ?? 0));
+  const currentStateTiltRows = data.improvementLab.stateConditionedAllocationSummary
+    .filter((row) => row.version_name === comparisonVersion && row.market_state === latestMarketState?.market_state)
+    .sort((a, b) => Math.abs(Number(b.avg_weight ?? 0)) - Math.abs(Number(a.avg_weight ?? 0)))
+    .slice(0, 10);
   const selectedLineKeys = [...selectedMethods, ...selectedBenchmarks.map((name) => `benchmark::${name}`)];
   const robustRows = [...data.methods].sort((a, b) => Number(b.robustness_score ?? 0) - Number(a.robustness_score ?? 0));
   const signalRows = [...data.signalSummary].sort((a, b) => Number(b.validation_quality_score ?? 0) - Number(a.validation_quality_score ?? 0));
@@ -522,11 +551,19 @@ export function DashboardShell() {
                   <p className="mt-3 text-sm leading-6 text-[#c8c1ad]">
                     {String(comparisonVersionRow?.note ?? defaultCandidate?.description ?? "Chosen from the robustness framework when available.")}
                   </p>
+                  <p className="mt-3 rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm leading-6 text-[#d7d0bd]">
+                    The current improvement pass focuses on one question: can the allocator re-risk faster after stress without giving back too much of the drawdown control that made the earlier versions credible?
+                  </p>
                   <div className="mt-5 grid grid-cols-2 gap-3">
                     <MetricCard label="Best by Sharpe" value={titleCase(data.overview.bestBySharpe?.method_name)} />
                     <MetricCard label="Most Robust" value={titleCase(data.overview.bestByRobustness?.method_name)} tone="good" />
                     <MetricCard label="Drawdown Control" value={titleCase(data.overview.bestDrawdown?.method_name)} />
-                    <MetricCard label="Current Regime" value={titleCase(latestRegime?.risk_state)} detail={titleCase(latestRegime?.signal_environment)} tone={latestRegime?.risk_state === "stressed" ? "warn" : "good"} />
+                    <MetricCard
+                      label="Current Market State"
+                      value={titleCase(String(latestMarketState?.market_state ?? latestRegime?.risk_state ?? ""))}
+                      detail={titleCase(String(latestMarketState?.market_state_reason ?? latestRegime?.signal_environment ?? ""))}
+                      tone={String(latestMarketState?.market_state ?? latestRegime?.risk_state ?? "") === "stressed_panic" ? "warn" : "good"}
+                    />
                   </div>
                   <div className="mt-4 rounded-3xl border border-white/10 bg-white/[0.035] p-4">
                     <p className="mono text-[0.68rem] uppercase tracking-[0.18em] text-[#b8b19f]">Baseline vs Improved</p>
@@ -538,6 +575,10 @@ export function DashboardShell() {
                       <div className="flex items-center justify-between gap-3">
                         <span>{titleCase(String(comparisonVersionRow?.version_name ?? ""))}</span>
                         <span className="mono text-[#9dcfae]">{metricValue("sharpe", comparisonVersionRow?.sharpe)}</span>
+                      </div>
+                      <div className="flex items-center justify-between gap-3 border-t border-white/10 pt-2">
+                        <span>Production score</span>
+                        <span className="mono text-[#d7b072]">{metricValue("robustness_score", comparisonVersionRow?.production_score)}</span>
                       </div>
                     </div>
                   </div>
@@ -610,13 +651,13 @@ export function DashboardShell() {
               <Panel title="Standalone Layer 2 strategy metrics" subtitle="These sleeves feed Layer 3; baselines are kept visible for honest comparison.">
                 <SimpleTable rows={[...data.strategySummary].sort((a, b) => Number(b.validation_score ?? b.sharpe ?? 0) - Number(a.validation_score ?? a.sharpe ?? 0))} columns={["strategy_name", "strategy_type", "ann_return", "ann_vol", "sharpe", "max_drawdown", "avg_weekly_turnover", "validation_score"]} maxRows={18} />
               </Panel>
-              <Panel title="Improved candidate sleeves" subtitle="The improved finalist set keeps the strong sleeves, adds the selective composite, and drops the experimental breadth sleeve.">
+              <Panel title="Improved candidate sleeves" subtitle="The stronger finalist keeps the robust sleeves, drops the breadth brake, and tests whether a recovery-aware concentrated sleeve truly adds enough upside to justify promotion.">
                 <SimpleTable
                   rows={[...data.improvementLab.sleeveSubsets]
-                    .filter((row) => row.subset_name === "replace_equal_with_selective" || row.subset_name === "drop_breadth")
+                    .filter((row) => ["replace_equal_with_selective", "replace_equal_with_concentrated", "drop_breadth"].includes(String(row.subset_name ?? "")))
                     .sort((a, b) => Number(b.sharpe ?? 0) - Number(a.sharpe ?? 0))}
                   columns={["method_name", "subset_name", "ann_return", "ann_vol", "sharpe", "max_drawdown", "avg_cash_weight", "avg_bil_weight"]}
-                  maxRows={6}
+                  maxRows={8}
                 />
               </Panel>
               <Panel title="Incremental sleeve contribution" subtitle="Tests whether the extra sleeve actually improves the final stack or just adds another brake.">
@@ -627,8 +668,14 @@ export function DashboardShell() {
                   maxRows={12}
                 />
               </Panel>
-              <Panel title="Current sleeve allocation" subtitle={`Latest sleeve mix for ${titleCase(comparisonVersion || weightMethod)}.`}>
-                <WeightBars rows={versionLatestSleeves.length ? versionLatestSleeves : latestSleeves} limit={10} />
+              <Panel title="Sleeve behavior by market state" subtitle="Shows which sleeves actually earned the right to get more weight in recovery, calm, or stressed conditions.">
+                <SimpleTable rows={sleeveStateRows} columns={["strategy_name", "market_state", "ann_return", "ann_vol", "sharpe", "max_drawdown"]} maxRows={12} />
+              </Panel>
+              <Panel title="Current sleeve allocation" subtitle={`Latest sleeve mix for ${titleCase(comparisonVersion || weightMethod)} and the current market-state tilt.`}>
+                <div className="grid gap-5 lg:grid-cols-2">
+                  <WeightBars rows={versionLatestSleeves.length ? versionLatestSleeves : latestSleeves} limit={10} />
+                  <SimpleTable rows={currentStateTiltRows} columns={["sleeve_name", "avg_weight"]} maxRows={10} />
+                </div>
               </Panel>
             </div>
           </Section>
@@ -753,15 +800,29 @@ export function DashboardShell() {
                 </Panel>
               </div>
               <Panel title="Version comparison table" subtitle="Shows what actually changed: sleeve set, overlay rules, and the resulting out-of-sample metrics.">
-                <SimpleTable rows={data.improvementLab.versions} columns={["version_name", "method_name", "ann_return", "ann_vol", "sharpe", "max_drawdown", "cvar_5", "avg_weekly_turnover", "avg_effective_n", "avg_bil_weight", "avg_cash_weight"]} maxRows={10} />
+                <SimpleTable rows={data.improvementLab.versions} columns={["version_name", "method_name", "production_score", "ann_return", "ann_vol", "sharpe", "max_drawdown", "cvar_5", "avg_weekly_turnover", "avg_effective_n", "avg_bil_weight", "avg_cash_weight"]} maxRows={12} />
               </Panel>
+              <div className="grid gap-5 xl:grid-cols-2">
+                <Panel title="Upside and downside capture" subtitle="This is the key check for the new pass: do we participate better in rallies without giving back too much of the downside discipline?">
+                  <SimpleTable rows={versionUpsideRows} columns={["version_name", "production_score", "upside_capture_positive_weeks", "recovery_week_capture", "calm_week_capture", "downside_capture_negative_weeks", "avg_cash_when_benchmark_positive"]} maxRows={10} />
+                </Panel>
+                <Panel title="Re-risking lag after stress" subtitle="The best improved versions should move back into offense faster once the causal recovery state is confirmed.">
+                  <SimpleTable rows={reriskComparisonRows} columns={["version_name", "window_name", "weeks_to_offensive_50", "weeks_to_offensive_60", "weeks_to_cash_below_35", "weeks_to_cash_below_25", "avg_dynamic_speed"]} maxRows={12} />
+                </Panel>
+                <Panel title="Recovery and rally-window attribution" subtitle="Helps explain missed upside: was the drag coming from overlay cash, weak offense, or slow re-risking?">
+                  <SimpleTable rows={rallyComparisonRows} columns={["version_name", "window_name", "capture_ratio", "portfolio_return", "benchmark_return", "avg_offensive_weight", "avg_cash_weight", "avg_regime_multiplier", "avg_dynamic_speed"]} maxRows={14} />
+                </Panel>
+                <Panel title="Targeted stress and recovery windows" subtitle="Full-sample metrics matter, but these windows show whether the new logic helps in the environments that most shape benchmark participation.">
+                  <SimpleTable rows={targetedWindowComparisonRows} columns={["version_name", "window_name", "window_type", "capture_ratio", "portfolio_return", "benchmark_return", "portfolio_max_drawdown", "avg_cash_weight"]} maxRows={16} />
+                </Panel>
+              </div>
             </div>
           </Section>
 
           <Section id="current-state" eyebrow="Current State" title="Current allocation drivers">
             <div className="grid gap-5">
               <div className="metric-grid">
-                <MetricCard label="Risk State" value={titleCase(String(currentAllocationSummary?.current_risk_state ?? latestRegime?.risk_state ?? ""))} detail={titleCase(String(currentAllocationSummary?.current_state_label ?? ""))} tone={String(currentAllocationSummary?.current_state_label ?? "") === "defensive" ? "warn" : "good"} />
+                <MetricCard label="Market State" value={titleCase(String(currentAllocationSummary?.current_market_state ?? latestMarketState?.market_state ?? ""))} detail={titleCase(String(currentAllocationSummary?.current_market_state_reason ?? latestMarketState?.market_state_reason ?? ""))} tone={String(currentAllocationSummary?.current_state_label ?? "") === "defensive" ? "warn" : "good"} />
                 <MetricCard label="Offensive" value={metricValue("ann_return", currentAllocationSummary?.current_offensive_weight)} />
                 <MetricCard label="Defensive" value={metricValue("ann_return", currentAllocationSummary?.current_defensive_weight)} />
                 <MetricCard label="Cash Proxy" value={metricValue("ann_return", currentAllocationSummary?.current_cash_proxy_weight)} />
@@ -770,7 +831,10 @@ export function DashboardShell() {
                 <MetricCard label="Current BIL" value={metricValue("ann_return", currentAllocationSummary?.current_bil_weight)} />
                 <MetricCard label="Current SPY" value={metricValue("ann_return", currentAllocationSummary?.current_spy_weight)} />
               </div>
-              <div className="grid gap-5 xl:grid-cols-[1.1fr_0.9fr]">
+              <div className="grid gap-5 xl:grid-cols-3">
+                <Panel title="Causal market-state explainer" subtitle="Uses only contemporaneously observable inputs: existing risk state, drawdown, breadth, and lagged fear/stress features.">
+                  <SimpleTable rows={marketStateFeatureRows as Array<Record<string, unknown>>} columns={["metric", "value"]} maxRows={12} />
+                </Panel>
                 <Panel title="Allocation mix through time" subtitle="Offensive, defensive, and cash-proxy weights for the selected production candidate.">
                   <ResponsiveContainer width="100%" height={340}>
                     <AreaChart data={allocationMixChart}>
@@ -784,7 +848,7 @@ export function DashboardShell() {
                     </AreaChart>
                   </ResponsiveContainer>
                 </Panel>
-                <Panel title="Why BIL is high / why SPY is low" subtitle="Current-date attribution from overlay cash plus sleeve look-through.">
+                <Panel title="Why BIL is high / why SPY is low" subtitle="Current-date attribution from overlay cash plus sleeve look-through. This is where missed upside or justified caution becomes visible." >
                   <div className="space-y-5">
                     <div>
                       <p className="mb-2 text-sm font-semibold text-[#f5f1e8]">BIL drivers</p>

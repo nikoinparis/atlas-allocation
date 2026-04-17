@@ -71,7 +71,18 @@ export function metricLabel(key: string): string {
     avg_hhi: "HHI",
     weight_instability: "Weight Instability",
     robustness_score: "Robustness",
+    production_score: "Production Score",
     psr_selection: "Selection-Aware PSR",
+    upside_capture_positive_weeks: "Upside Capture",
+    downside_capture_negative_weeks: "Downside Capture",
+    recovery_week_capture: "Recovery Capture",
+    calm_week_capture: "Calm Capture",
+    avg_cash_when_benchmark_positive: "Cash In Up Weeks",
+    avg_dynamic_speed: "Avg Re-risk Speed",
+    weeks_to_offensive_50: "Weeks To 50% Offense",
+    weeks_to_offensive_60: "Weeks To 60% Offense",
+    weeks_to_cash_below_35: "Weeks To Cash < 35%",
+    weeks_to_cash_below_25: "Weeks To Cash < 25%",
   };
   return labels[key] ?? titleCase(key);
 }

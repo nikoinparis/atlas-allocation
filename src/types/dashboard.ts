@@ -101,6 +101,7 @@ export type DashboardData = {
     defaultCandidate: MetricRow | null;
     latestRegime: RegimeRow | null;
     latestRegimeScore: RegimeRow | null;
+    latestMarketState?: Record<string, string | number | boolean | null> | null;
     benchmarkSummary: StrategyRow[];
     regimeCounts: Array<{ name: string; count: number }>;
     baselineVersion?: Record<string, string | number | boolean | null> | null;
@@ -117,6 +118,7 @@ export type DashboardData = {
   candidateSleeves: Array<{ sleeve_name: string; role?: string }>;
   regimeStates: RegimeRow[];
   regimeScore: RegimeRow[];
+  marketStateHistory: Array<Record<string, string | number | boolean | null>>;
   regimeSplit: Array<Record<string, string | number | boolean | null>>;
   subperiods: Array<Record<string, string | number | boolean | null>>;
   diagnosticsSummary: Array<Record<string, string | number | boolean | null>>;
@@ -145,6 +147,15 @@ export type DashboardData = {
     allocationDrivers: Array<Record<string, string | number | boolean | null>>;
     allocationDriverBreakdown: Array<Record<string, string | number | boolean | null>>;
     allocationDriverTimeseries: Array<Record<string, string | number | boolean | null>>;
+    upsideCaptureAnalysis: Array<Record<string, string | number | boolean | null>>;
+    rallyWindowAttribution: Array<Record<string, string | number | boolean | null>>;
+    offensiveDefensiveCashDuringRallies: Array<Record<string, string | number | boolean | null>>;
+    targetedWindowSummary: Array<Record<string, string | number | boolean | null>>;
+    upsideDownsideCaptureByWindow: Array<Record<string, string | number | boolean | null>>;
+    reriskingLagByWindow: Array<Record<string, string | number | boolean | null>>;
+    stateConditionedAllocationSummary: Array<Record<string, string | number | boolean | null>>;
+    sleevePerformanceByState: Array<Record<string, string | number | boolean | null>>;
+    upsideCaptureVersionComparison: Array<Record<string, string | number | boolean | null>>;
   };
   manifests: Record<string, unknown>;
   artifacts: Array<{ path: string; exists: boolean; updatedAt: string | null; bytes: number }>;

@@ -291,6 +291,32 @@ def build_variant_regime_states(
         adjusted.loc[strong_neutral_mask, "overlay_multiplier"] = adjusted.loc[strong_neutral_mask, "overlay_multiplier"].clip(lower=0.85)
         return adjusted
 
+    if overlay_variant == "neutral_positive_ease":
+        # Keep the incumbent recovery logic, but make positive-trend neutral weeks slightly less
+        # punitive so we can test whether long-run underdeployment is mostly a neutral-state issue.
+        adjusted.loc[recovery_any_mask, "overlay_multiplier"] = adjusted.loc[recovery_any_mask, "overlay_multiplier"].clip(lower=0.92)
+        adjusted.loc[calm_mask, "overlay_multiplier"] = adjusted.loc[calm_mask, "overlay_multiplier"].clip(lower=0.98)
+        adjusted.loc[strong_neutral_mask, "overlay_multiplier"] = adjusted.loc[strong_neutral_mask, "overlay_multiplier"].clip(lower=0.90)
+        return adjusted
+
+    if overlay_variant == "recovery_fragile_participation":
+        # Early recovery gets a slightly higher floor than confirmed recovery so we can test whether
+        # the main missed-upside problem is hesitation during the fragile handoff out of stress.
+        adjusted.loc[recovery_fragile_mask, "overlay_multiplier"] = adjusted.loc[recovery_fragile_mask, "overlay_multiplier"].clip(lower=0.95)
+        adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"] = adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"].clip(lower=0.92)
+        adjusted.loc[calm_mask, "overlay_multiplier"] = adjusted.loc[calm_mask, "overlay_multiplier"].clip(lower=0.98)
+        adjusted.loc[strong_neutral_mask, "overlay_multiplier"] = adjusted.loc[strong_neutral_mask, "overlay_multiplier"].clip(lower=0.85)
+        return adjusted
+
+    if overlay_variant == "neutral_positive_ease_fragile_participation":
+        # Combination test: keep the benign neutral easing from Variant A while also letting fragile
+        # recovery rerisk slightly faster than confirmed recovery.
+        adjusted.loc[recovery_fragile_mask, "overlay_multiplier"] = adjusted.loc[recovery_fragile_mask, "overlay_multiplier"].clip(lower=0.95)
+        adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"] = adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"].clip(lower=0.92)
+        adjusted.loc[calm_mask, "overlay_multiplier"] = adjusted.loc[calm_mask, "overlay_multiplier"].clip(lower=0.98)
+        adjusted.loc[strong_neutral_mask, "overlay_multiplier"] = adjusted.loc[strong_neutral_mask, "overlay_multiplier"].clip(lower=0.90)
+        return adjusted
+
     if overlay_variant == "recovery_split_baseline":
         # Variant A: split recovery into two buckets but keep offense intensity roughly symmetric
         # with the aggregated recovery overlay. Confirmed gets a slightly stronger floor than fragile.
@@ -347,6 +373,12 @@ def apply_state_conditioned_tilt(raw_weights: pd.Series, market_state: str | Non
         for name in defensive_sleeves:
             tilted.loc[name] *= 0.90
     elif market_state == "recovery_fragile":
+        if tilt_mode == "fragile_first":
+            for name in offensive_sleeves:
+                tilted.loc[name] *= 1.12
+            for name in defensive_sleeves:
+                tilted.loc[name] *= 0.92
+            return ns5["normalize_long_only"](tilted, max_weight=ns5["MAX_SLEEVE_WEIGHT"])
         # Fragile: modest re-risk only. Never lean hard into an unconfirmed bounce.
         if tilt_mode in {"modest", "split_modest", "split_aggressive"}:
             for name in offensive_sleeves:
@@ -354,6 +386,12 @@ def apply_state_conditioned_tilt(raw_weights: pd.Series, market_state: str | Non
             for name in defensive_sleeves:
                 tilted.loc[name] *= 0.96
     elif market_state == "recovery_confirmed":
+        if tilt_mode == "fragile_first":
+            for name in offensive_sleeves:
+                tilted.loc[name] *= 1.08
+            for name in defensive_sleeves:
+                tilted.loc[name] *= 0.94
+            return ns5["normalize_long_only"](tilted, max_weight=ns5["MAX_SLEEVE_WEIGHT"])
         if tilt_mode in {"modest", "split_modest"}:
             # Treat confirmed like the legacy "modest" tilt.
             for name in offensive_sleeves:
@@ -381,6 +419,54 @@ def apply_state_conditioned_tilt(raw_weights: pd.Series, market_state: str | Non
         if "taa_10m_sma" in tilted.index:
             tilted.loc["taa_10m_sma"] *= 1.05
     return ns5["normalize_long_only"](tilted, max_weight=ns5["MAX_SLEEVE_WEIGHT"])
+
+
+def apply_beta_participation_overlay(
+    etf_weights: pd.Series,
+    market_state_row: pd.Series | None,
+    *,
+    beta_overlay_mode: str = "none",
+) -> tuple[pd.Series, dict]:
+    adjusted = pd.Series(etf_weights, dtype=float).copy()
+    overlay_contribution = {"SPY": 0.0, ns5["cash_proxy"]: 0.0}
+    if beta_overlay_mode == "none" or market_state_row is None or market_state_row.empty:
+        return adjusted, overlay_contribution
+
+    market_state = str(market_state_row.get("market_state") or "")
+    market_trend_positive = float(market_state_row.get("market_trend_positive") or 0.0)
+    breadth_sma_43 = float(market_state_row.get("breadth_sma_43") or 0.0)
+    breadth_26w_mom = float(market_state_row.get("breadth_26w_mom") or 0.0)
+    strong_neutral = (
+        market_state == "neutral_mixed"
+        and market_trend_positive > 0.0
+        and breadth_sma_43 >= 0.55
+        and breadth_26w_mom >= 0.50
+    )
+
+    desired_shift = 0.0
+    if beta_overlay_mode == "good_state_spy":
+        if market_state == "calm_trend":
+            desired_shift = 0.06
+        elif market_state == "recovery_fragile":
+            desired_shift = 0.05
+        elif strong_neutral:
+            desired_shift = 0.04
+
+    if desired_shift <= 0.0:
+        return adjusted, overlay_contribution
+
+    bil_ticker = ns5["cash_proxy"]
+    current_bil = float(adjusted.get(bil_ticker, 0.0) or 0.0)
+    current_spy = float(adjusted.get("SPY", 0.0) or 0.0)
+    shift = min(current_bil, desired_shift, max(0.0, 0.18 - current_spy))
+    if shift <= 0.0:
+        return adjusted, overlay_contribution
+
+    adjusted.loc[bil_ticker] = current_bil - shift
+    adjusted.loc["SPY"] = current_spy + shift
+    overlay_contribution[bil_ticker] = -shift
+    overlay_contribution["SPY"] = shift
+    return adjusted, overlay_contribution
 
 
 def apply_overlays_custom(
@@ -439,10 +525,11 @@ def run_subset_custom(
     target_vol_ceil: float = ns5["TARGET_VOL_CEIL"],
     rerisk_speed: float | None = None,
     state_tilt: str = "none",
+    beta_overlay_mode: str = "none",
     market_state_history: pd.DataFrame | None = None,
     sleeve_return_panel: pd.DataFrame,
     sleeve_positions: dict[str, pd.DataFrame],
-) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame, dict]:
+) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame, dict]:
     subset = [name for name in subset_sleeves if name in sleeve_return_panel.columns]
     if not subset:
         raise ValueError(f"No valid sleeves for subset {subset_name}")
@@ -460,8 +547,15 @@ def run_subset_custom(
     sleeve_alloc_rows: list[pd.Series] = []
     etf_weight_rows: list[pd.Series] = []
     diag_rows: list[dict] = []
+    beta_overlay_rows: list[pd.Series] = []
 
     for date in all_dates:
+        market_state_row = (
+            market_state_history.loc[date]
+            if market_state_history is not None and date in market_state_history.index
+            else pd.Series(dtype=float)
+        )
+        market_state = market_state_row.get("market_state") if isinstance(market_state_row, pd.Series) else None
         if rebalance_dates.loc[date]:
             train_slice = sleeve_return_panel.loc[:date, subset].tail(ns5["TRAIN_WINDOW_WEEKS"])
             active = ns5["select_active_sleeves"](train_slice)
@@ -512,7 +606,6 @@ def run_subset_custom(
                         else:
                             raise ValueError(f"Unknown engine: {engine}")
 
-                        market_state = market_state_history.loc[date, "market_state"] if market_state_history is not None and date in market_state_history.index else None
                         raw = apply_state_conditioned_tilt(raw, market_state, tilt_mode=state_tilt)
                         overlay_row = variant_regime_states.loc[date] if date in variant_regime_states.index else pd.Series(dtype=float)
                         risky_weights, cash_weight, overlay_diag = apply_overlays_custom(
@@ -539,6 +632,7 @@ def run_subset_custom(
                                 "covariance_method": method_spec["covariance_method"],
                                 "overlay_variant": overlay_variant,
                                 "state_tilt": state_tilt,
+                                "beta_overlay_mode": beta_overlay_mode,
                                 "market_state": market_state,
                                 **overlay_diag,
                                 **bl_diag,
@@ -559,11 +653,26 @@ def run_subset_custom(
             cash_proxy=ns5["cash_proxy"],
             cash_weight=current_cash_weight,
         )
+        etf_row, beta_overlay_diag = apply_beta_participation_overlay(
+            etf_row,
+            market_state_row if isinstance(market_state_row, pd.Series) else None,
+            beta_overlay_mode=beta_overlay_mode,
+        )
         etf_row.name = date
         etf_weight_rows.append(etf_row)
+        beta_overlay_rows.append(
+            pd.Series(
+                {
+                    "beta_overlay_spy": beta_overlay_diag.get("SPY", 0.0),
+                    "beta_overlay_bil": beta_overlay_diag.get(ns5["cash_proxy"], 0.0),
+                },
+                name=date,
+            )
+        )
 
     sleeve_alloc = pd.DataFrame(sleeve_alloc_rows).sort_index().fillna(0.0)
     etf_weights = pd.DataFrame(etf_weight_rows).sort_index().fillna(0.0)
+    beta_overlay_panel = pd.DataFrame(beta_overlay_rows).sort_index().fillna(0.0)
     path = ns5["compute_portfolio_path"](
         etf_weights,
         forward_weekly_returns.reindex(index=etf_weights.index, columns=etf_weights.columns),
@@ -577,7 +686,7 @@ def run_subset_custom(
         allocation_panel=sleeve_alloc,
         trials=max(len(subset), 2),
     )
-    return sleeve_alloc, etf_weights, path, diagnostics, metrics
+    return sleeve_alloc, etf_weights, path, diagnostics, beta_overlay_panel, metrics
 
 
 def version_capture_summary(
@@ -1035,7 +1144,7 @@ sleeve_performance_by_state_rows: list[dict] = []
 
 baseline_rows_by_method: dict[str, dict] = {}
 for method_name in ["hrp", "max_diversification"]:
-    _, baseline_weights, _, baseline_diag, baseline_metrics = run_subset_custom(
+    _, baseline_weights, _, baseline_diag, _, baseline_metrics = run_subset_custom(
         method_name,
         "baseline_current",
         baseline_subset,
@@ -1051,7 +1160,7 @@ for method_name in ["hrp", "max_diversification"]:
         "avg_cash_weight": baseline_diag["cash_weight"].mean() if not baseline_diag.empty else np.nan,
     }
     for subset_name, subset_sleeves in subset_specs.items():
-        _, weight_panel, path, diagnostics, metrics = run_subset_custom(
+        _, weight_panel, path, diagnostics, _, metrics = run_subset_custom(
             method_name,
             subset_name,
             subset_sleeves,
@@ -1263,6 +1372,73 @@ version_specs = [
         "target_vol_ceil": 1.00,
         "note": "Variant C: Variant B plus a slightly less punitive neutral-state sleeve floor during neutral weeks whose market trend is still positive. Targets the residual BIL/cash drag that shows up outside confirmed recovery without globally relaxing the neutral stance.",
     },
+    # ======================================================================
+    # Participation-efficiency controlled experiment (current research task)
+    #
+    # Control        = improved_hrp_recovery_tilt (already above).
+    # Variant A      = improved_hrp_neutral_ease
+    #                  Mildly reduces positive-trend neutral cash drag without
+    #                  changing the recovery split or adding confirmed offense.
+    # Variant B      = improved_hrp_fragile_participation
+    #                  Tests whether early / fragile recovery deserves slightly
+    #                  more participation than confirmed recovery.
+    # Variant C      = improved_hrp_beta_participation
+    #                  Adds a small state-conditioned SPY budget by recycling a
+    #                  slice of BIL in good states to test the "missing beta"
+    #                  hypothesis directly.
+    # Variant D      = improved_hrp_neutral_fragile_combo
+    #                  Best justified combination after standalone tests:
+    #                  neutral easing + fragile-first participation.
+    # ======================================================================
+    {
+        "version_name": "improved_hrp_neutral_ease",
+        "method_name": "hrp",
+        "subset_name": "upside_capture_neutral_ease",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "neutral_positive_ease",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "modest",
+        "target_vol_ceil": 1.00,
+        "note": "Variant A: keeps the incumbent recovery logic but raises the floor modestly in positive-trend neutral weeks so benign environments carry less residual BIL drag.",
+    },
+    {
+        "version_name": "improved_hrp_fragile_participation",
+        "method_name": "hrp",
+        "subset_name": "upside_capture_fragile_participation",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "recovery_fragile_participation",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "fragile_first",
+        "target_vol_ceil": 1.00,
+        "note": "Variant B: prioritizes fragile recovery over confirmed recovery with a slightly higher floor and sleeve tilt, testing whether the system is still rerisking too late after stress breaks.",
+    },
+    {
+        "version_name": "improved_hrp_beta_participation",
+        "method_name": "hrp",
+        "subset_name": "upside_capture_beta_participation",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "recovery_breadth_rerisk",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "modest",
+        "beta_overlay_mode": "good_state_spy",
+        "target_vol_ceil": 1.00,
+        "note": "Variant C: keeps the incumbent sleeve logic but recycles a small amount of BIL into SPY only in calm, fragile-recovery, and strong positive-trend neutral states to test whether missing benchmark beta is the main return lag.",
+    },
+    {
+        "version_name": "improved_hrp_neutral_fragile_combo",
+        "method_name": "hrp",
+        "subset_name": "upside_capture_neutral_fragile_combo",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "neutral_positive_ease_fragile_participation",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "fragile_first",
+        "target_vol_ceil": 1.00,
+        "note": "Variant D: combines the winning mild neutral-state easing with the modest fragile-recovery-first participation tweak, without adding explicit benchmark-beta recycling.",
+    },
 ]
 
 
@@ -1273,7 +1449,7 @@ version_results: dict[str, dict] = {}
 version_baselines: dict[str, dict] = {}
 
 for version in version_specs:
-    sleeve_alloc, weight_panel, path, diagnostics, metrics = run_subset_custom(
+    sleeve_alloc, weight_panel, path, diagnostics, beta_overlay_panel, metrics = run_subset_custom(
         version["method_name"],
         version["subset_name"],
         version["subset_sleeves"],
@@ -1281,6 +1457,7 @@ for version in version_specs:
         speed=version["sleeve_reallocation_speed"],
         rerisk_speed=version["rerisk_speed"],
         state_tilt=version["state_tilt"],
+        beta_overlay_mode=version.get("beta_overlay_mode", "none"),
         target_vol_ceil=version["target_vol_ceil"],
         market_state_history=market_state_history,
         sleeve_return_panel=base_sleeve_return_panel,
@@ -1304,10 +1481,12 @@ for version in version_specs:
 
     row = {
         **version,
+        "beta_overlay_mode": version.get("beta_overlay_mode", "none"),
         **metrics,
         "avg_bil_weight": avg_bil,
         "avg_spy_weight": avg_spy,
         "avg_cash_weight": avg_cash,
+        "avg_beta_overlay_spy": beta_overlay_panel["beta_overlay_spy"].mean() if not beta_overlay_panel.empty else 0.0,
         "avg_regime_multiplier": diagnostics["regime_multiplier"].mean() if not diagnostics.empty else np.nan,
         "avg_target_vol_multiplier": diagnostics["target_vol_multiplier"].mean() if not diagnostics.empty else np.nan,
         "avg_gross_multiplier": diagnostics["gross_multiplier"].mean() if not diagnostics.empty else np.nan,
@@ -1340,6 +1519,8 @@ for version in version_specs:
     cash_weight = weight_panel.get(ns5["cash_proxy"], pd.Series(0.0, index=weight_panel.index))
     overlay_cash = sleeve_alloc.get(f"cash::{ns5['cash_proxy']}", pd.Series(0.0, index=weight_panel.index))
     sleeve_bil = (cash_weight - overlay_cash).clip(lower=0.0)
+    beta_overlay_spy = beta_overlay_panel.get("beta_overlay_spy", pd.Series(0.0, index=weight_panel.index))
+    beta_overlay_bil = beta_overlay_panel.get("beta_overlay_bil", pd.Series(0.0, index=weight_panel.index))
     latest_date = weight_panel.index[-1]
     current_offensive = offensive_weight.loc[latest_date]
     current_defensive = defensive_weight.loc[latest_date]
@@ -1367,8 +1548,10 @@ for version in version_specs:
             "avg_spy_weight": weight_panel.get("SPY", pd.Series(dtype=float)).mean() if "SPY" in weight_panel.columns else np.nan,
             "avg_overlay_cash_weight": overlay_cash.mean(),
             "avg_sleeve_bil_weight": sleeve_bil.mean(),
+            "avg_beta_overlay_spy_weight": beta_overlay_spy.mean(),
             "current_overlay_cash_weight": overlay_cash.loc[latest_date],
             "current_sleeve_bil_weight": sleeve_bil.loc[latest_date],
+            "current_beta_overlay_spy_weight": beta_overlay_spy.loc[latest_date],
             "avg_target_vol_multiplier": diagnostics["target_vol_multiplier"].mean() if not diagnostics.empty else np.nan,
             "avg_regime_multiplier": diagnostics["regime_multiplier"].mean() if not diagnostics.empty else np.nan,
             "avg_gross_multiplier": diagnostics["gross_multiplier"].mean() if not diagnostics.empty else np.nan,
@@ -1393,6 +1576,8 @@ for version in version_specs:
                 "spy_weight": weight_panel.loc[date].get("SPY", np.nan),
                 "overlay_cash_weight": overlay_cash.loc[date],
                 "sleeve_bil_weight": sleeve_bil.loc[date],
+                "beta_overlay_spy_weight": beta_overlay_spy.loc[date],
+                "beta_overlay_bil_weight": beta_overlay_bil.loc[date],
                 "risk_state": ns5["regime_states"].loc[date, "risk_state"] if date in ns5["regime_states"].index and "risk_state" in ns5["regime_states"].columns else None,
                 "market_state": market_state_history.loc[date, "market_state"] if date in market_state_history.index else None,
             }
@@ -1401,6 +1586,7 @@ for version in version_specs:
     current_sleeve_alloc = sleeve_alloc.loc[latest_date] if latest_date in sleeve_alloc.index else pd.Series(dtype=float)
     for asset in [ns5["cash_proxy"], "SPY"]:
         overlay_value = current_sleeve_alloc.get(f"cash::{ns5['cash_proxy']}", 0.0) if asset == ns5["cash_proxy"] else 0.0
+        beta_overlay_value = beta_overlay_bil.loc[latest_date] if asset == ns5["cash_proxy"] else beta_overlay_spy.loc[latest_date]
         allocation_driver_breakdown_rows.append(
             {
                 "version_name": version["version_name"],
@@ -1410,6 +1596,16 @@ for version in version_specs:
                 "contribution": overlay_value,
             }
         )
+        if abs(beta_overlay_value) > 1e-9:
+            allocation_driver_breakdown_rows.append(
+                {
+                    "version_name": version["version_name"],
+                    "horizon": "current",
+                    "asset": asset,
+                    "driver": "beta_overlay",
+                    "contribution": beta_overlay_value,
+                }
+            )
         for sleeve_name in [name for name in current_sleeve_alloc.index if not str(name).startswith("cash::")]:
             sleeve_weight = current_sleeve_alloc.get(sleeve_name, 0.0)
             sleeve_position = base_sleeve_positions[sleeve_name].loc[latest_date].get(asset, 0.0) if latest_date in base_sleeve_positions[sleeve_name].index else 0.0
@@ -1444,6 +1640,7 @@ for version in version_specs:
         "sleeve_alloc": sleeve_alloc,
         "path": path,
         "diagnostics": diagnostics,
+        "beta_overlay": beta_overlay_panel,
     }
 
 

@@ -18,6 +18,19 @@ function str(row: Row | null | undefined, key: string): string {
   return v == null ? "" : String(v);
 }
 
+function delta(current: number | null, baseline: number | null) {
+  if (current == null || baseline == null) return null;
+  return current - baseline;
+}
+
+function signedValue(value: number | null, kind: "percent" | "number" = "number", digits = 2) {
+  if (value == null || !Number.isFinite(value)) return "n/a";
+  const formatted = kind === "percent" ? formatPercent(Math.abs(value), digits) : formatNumber(Math.abs(value), digits);
+  if (value > 0) return `+${formatted}`;
+  if (value < 0) return `-${formatted}`;
+  return formatted;
+}
+
 function Stat({ label, value, detail }: { label: string; value: string; detail?: string }) {
   return (
     <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
@@ -95,6 +108,35 @@ export function ExecutiveSummary({ data }: { data: DashboardData | null }) {
 
   const latestDate = data.latestDate || str(marketState, "Date") || "n/a";
   const generatedAt = data.generatedAt || "n/a";
+  const versionRows = Array.isArray(data.improvementLab?.versions) ? data.improvementLab.versions : [];
+  const findVersion = (name: string) =>
+    (versionRows.find((row) => String(row.version_name ?? "") === name) as Row | null | undefined) ?? null;
+  const control = findVersion("improved_hrp_recovery_tilt");
+  const neutralEase = findVersion("improved_hrp_neutral_ease");
+  const fragileParticipation = findVersion("improved_hrp_fragile_participation");
+  const betaParticipation = findVersion("improved_hrp_beta_participation");
+  const neutralFragileCombo = findVersion("improved_hrp_neutral_fragile_combo");
+
+  const controlScore = num(control, "production_score");
+  const neutralScore = num(neutralEase, "production_score");
+  const fragileScore = num(fragileParticipation, "production_score");
+  const betaScore = num(betaParticipation, "production_score");
+  const comboScore = num(neutralFragileCombo, "production_score");
+
+  const researchRead = [
+    neutralEase
+      ? `Neutral-state easing is the current winner: production score ${formatNumber(neutralScore, 3)} vs ${formatNumber(controlScore, 3)} for the incumbent, with annual return ${signedValue(delta(num(neutralEase, "ann_return"), num(control, "ann_return")), "percent", 2)} higher and max drawdown unchanged.`
+      : null,
+    fragileParticipation
+      ? `Fragile-recovery participation was only a small lift: production score ${formatNumber(fragileScore, 3)} and average BIL ${signedValue(delta(num(fragileParticipation, "avg_bil_weight"), num(control, "avg_bil_weight")), "percent", 2)} vs the incumbent, but it did not beat neutral easing.`
+      : null,
+    betaParticipation
+      ? `The explicit SPY recycle improved upside capture, but it also looked more benchmark-like: avg SPY ${formatPercent(num(betaParticipation, "avg_spy_weight"), 1)} vs ${formatPercent(num(control, "avg_spy_weight"), 1)} and max drawdown worsened to ${formatPercent(num(betaParticipation, "max_drawdown"), 2)}.`
+      : null,
+    neutralFragileCombo
+      ? `The best combination test (neutral easing + fragile-first) did not beat neutral easing alone: ${formatNumber(comboScore, 3)} vs ${formatNumber(neutralScore, 3)} on production score.`
+      : null,
+  ].filter((item): item is string => Boolean(item));
 
   return (
     <section
@@ -187,6 +229,17 @@ export function ExecutiveSummary({ data }: { data: DashboardData | null }) {
           value={isFiniteNumber(bilSharpe) ? `Sharpe ${formatNumber(bilSharpe, 2)}` : "n/a"}
           detail={isFiniteNumber(bilReturn) ? `${formatPercent(bilReturn, 2)} ret` : undefined}
         />
+      </div>
+
+      <div className="mt-6 rounded-3xl border border-white/10 bg-white/[0.03] p-5">
+        <p className="mono text-[0.65rem] uppercase tracking-[0.2em] text-[#b8b19f]">Latest Research Takeaway</p>
+        <div className="mt-3 grid gap-3 md:grid-cols-2">
+          {researchRead.map((item) => (
+            <div key={item} className="rounded-2xl border border-white/10 bg-black/20 p-4">
+              <p className="text-sm leading-relaxed text-[#d7d0bd]">{item}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="mt-6 rounded-3xl border border-white/10 bg-white/[0.03] p-5">

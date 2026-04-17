@@ -16,8 +16,8 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ETF Quant Portfolio Dashboard",
-  description: "Research dashboard for a layered ETF quant portfolio stack.",
+  title: "ETF Quant Portfolio Dashboard | Executive Research Summary",
+  description: "Server-rendered executive summary for a layered ETF quant research dashboard, covering diagnostics, market state, allocations, and baseline-vs-improved portfolio results.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

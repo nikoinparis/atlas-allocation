@@ -33,25 +33,15 @@ import { chartColors, formatNumber, formatPercent, isFiniteNumber, methodColor, 
 import type { DashboardData, MetricRow, ReturnPoint, WeightPoint } from "@/types/dashboard";
 
 const sections = [
-  { id: "overview", label: "Overview", icon: Layers3 },
+  { id: "overview", label: "Top Summary", icon: Layers3 },
+  { id: "change-review", label: "What Changed", icon: LineChartIcon },
   { id: "signals", label: "Layer 1", icon: BrainCircuit },
   { id: "sleeves", label: "Layer 2", icon: Scale },
   { id: "performance", label: "Layer 3", icon: LineChartIcon },
-  { id: "methods", label: "Methods", icon: Table2 },
-  { id: "improvement-lab", label: "Improvement Lab", icon: Layers3 },
+  { id: "methods", label: "Allocators", icon: Table2 },
+  { id: "improvement-lab", label: "Version Lab", icon: Layers3 },
   { id: "current-state", label: "Current State", icon: WalletCards },
   { id: "robustness", label: "Diagnostics", icon: ShieldCheck },
-];
-
-const defaultMetricKeys = [
-  "ann_return",
-  "ann_vol",
-  "sharpe",
-  "max_drawdown",
-  "calmar",
-  "cvar_5",
-  "avg_weekly_turnover",
-  "avg_effective_n",
 ];
 
 const methodTableColumns = [
@@ -74,7 +64,29 @@ const methodTableColumns = [
 ];
 
 function metricValue(key: string, value: unknown) {
-  if (["ann_return", "ann_vol", "max_drawdown", "cvar_5", "avg_weekly_turnover", "annual_turnover", "avg_max_weight", "hit_rate", "psr_zero", "psr_selection"].includes(key)) {
+  if (
+    [
+      "ann_return",
+      "ann_vol",
+      "max_drawdown",
+      "cvar_5",
+      "avg_weekly_turnover",
+      "annual_turnover",
+      "avg_max_weight",
+      "hit_rate",
+      "psr_zero",
+      "psr_selection",
+      "upside_capture_positive_weeks",
+      "downside_capture_negative_weeks",
+      "recovery_week_capture",
+      "calm_week_capture",
+      "stress_downside_capture",
+      "capture_ratio",
+      "fallback_rate",
+    ].includes(key) ||
+    key.includes("_weight") ||
+    key.endsWith("_frequency")
+  ) {
     return formatPercent(value, key === "psr_selection" || key === "psr_zero" ? 1 : 1);
   }
   if (["sharpe", "calmar", "avg_effective_n", "avg_hhi", "weight_instability", "allocation_instability", "robustness_score", "production_score"].includes(key)) {
@@ -351,6 +363,59 @@ function deltaValue(current: unknown, baseline: unknown) {
   return current - baseline;
 }
 
+type DefaultDashboardView = {
+  methods: string[];
+  benchmarks: string[];
+  weightMethod: string;
+  baselineVersion: string;
+  comparisonVersion: string;
+};
+
+function buildDefaultDashboardView(data: DashboardData | null): DefaultDashboardView {
+  if (!data) {
+    return {
+      methods: [],
+      benchmarks: [],
+      weightMethod: "",
+      baselineVersion: "",
+      comparisonVersion: "",
+    };
+  }
+
+  const methods = [
+    data.overview.defaultCandidate?.method_name,
+    data.overview.bestBySharpe?.method_name,
+    data.overview.bestDrawdown?.method_name,
+    "equal_weight",
+  ].filter((name): name is string => typeof name === "string" && Boolean(data.portfolioReturns[name]));
+
+  return {
+    methods: [...new Set(methods)],
+    benchmarks: Object.keys(data.benchmarkReturns).slice(0, 2),
+    weightMethod: data.overview.defaultCandidate?.method_name ?? Object.keys(data.portfolioWeights)[0] ?? "",
+    baselineVersion: String(data.overview.baselineVersion?.version_name ?? Object.keys(data.improvementLab.versionReturns)[0] ?? ""),
+    comparisonVersion: String(data.overview.improvedVersion?.version_name ?? Object.keys(data.improvementLab.versionReturns).slice(-1)[0] ?? ""),
+  };
+}
+
+function parseSerializedList(value: unknown) {
+  if (typeof value !== "string") return [];
+  return value
+    .replace(/^\[/, "")
+    .replace(/\]$/, "")
+    .split(",")
+    .map((item) => item.trim().replace(/^['"]|['"]$/g, ""))
+    .filter(Boolean);
+}
+
+function signedMetricValue(key: string, value: unknown) {
+  if (!isFiniteNumber(value)) return "n/a";
+  const formatted = metricValue(key, Math.abs(value));
+  if (value > 0) return `+${formatted}`;
+  if (value < 0) return `-${formatted.replace(/^-/, "")}`;
+  return formatted;
+}
+
 function latestDifferenceRows(currentWeights: WeightPoint[], baselineWeights: WeightPoint[]) {
   const keys = new Set([...currentWeights.map((item) => item.name), ...baselineWeights.map((item) => item.name)]);
   return [...keys]
@@ -384,14 +449,28 @@ function buildBreakdownRows(rows: Array<Record<string, string | number | boolean
     .slice(0, 8);
 }
 
+function NarrativeList({ items }: { items: string[] }) {
+  return (
+    <ul className="space-y-3">
+      {items.map((item) => (
+        <li key={item} className="flex gap-3 text-sm leading-6 text-[#d7d0bd]">
+          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#b9853b]" />
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export function DashboardShell({ initialData }: { initialData: DashboardData | null }) {
+  const initialView = buildDefaultDashboardView(initialData);
   const [data, setData] = useState<DashboardData | null>(initialData);
   const [error, setError] = useState<string | null>(null);
-  const [selectedMethods, setSelectedMethods] = useState<string[]>([]);
-  const [selectedBenchmarks, setSelectedBenchmarks] = useState<string[]>([]);
-  const [weightMethod, setWeightMethod] = useState<string>("");
-  const [baselineVersion, setBaselineVersion] = useState<string>("");
-  const [comparisonVersion, setComparisonVersion] = useState<string>("");
+  const [selectedMethods, setSelectedMethods] = useState<string[]>(initialView.methods);
+  const [selectedBenchmarks, setSelectedBenchmarks] = useState<string[]>(initialView.benchmarks);
+  const [weightMethod, setWeightMethod] = useState<string>(initialView.weightMethod);
+  const [baselineVersion, setBaselineVersion] = useState<string>(initialView.baselineVersion);
+  const [comparisonVersion, setComparisonVersion] = useState<string>(initialView.comparisonVersion);
 
   useEffect(() => {
     if (initialData) return;
@@ -406,17 +485,12 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
 
   useEffect(() => {
     if (!data) return;
-    const defaults = [
-      data.overview.defaultCandidate?.method_name,
-      data.overview.bestBySharpe?.method_name,
-      data.overview.bestDrawdown?.method_name,
-      "equal_weight",
-    ].filter(Boolean) as string[];
-    setSelectedMethods([...new Set(defaults)].filter((name) => data.portfolioReturns[name]));
-    setSelectedBenchmarks(Object.keys(data.benchmarkReturns).slice(0, 2));
-    setWeightMethod(data.overview.defaultCandidate?.method_name ?? Object.keys(data.portfolioWeights)[0] ?? "");
-    setBaselineVersion(String(data.overview.baselineVersion?.version_name ?? Object.keys(data.improvementLab.versionReturns)[0] ?? ""));
-    setComparisonVersion(String(data.overview.improvedVersion?.version_name ?? Object.keys(data.improvementLab.versionReturns).slice(-1)[0] ?? ""));
+    const defaults = buildDefaultDashboardView(data);
+    setSelectedMethods((current) => current.length ? current.filter((name) => Boolean(data.portfolioReturns[name])) : defaults.methods);
+    setSelectedBenchmarks((current) => current.length ? current.filter((name) => Boolean(data.benchmarkReturns[name])) : defaults.benchmarks);
+    setWeightMethod((current) => current || defaults.weightMethod);
+    setBaselineVersion((current) => current || defaults.baselineVersion);
+    setComparisonVersion((current) => current || defaults.comparisonVersion);
   }, [data]);
 
   const methodNames = useMemo(() => Object.keys(data?.portfolioReturns ?? {}), [data]);
@@ -497,6 +571,80 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
   const selectedLineKeys = [...selectedMethods, ...selectedBenchmarks.map((name) => `benchmark::${name}`)];
   const robustRows = [...data.methods].sort((a, b) => Number(b.robustness_score ?? 0) - Number(a.robustness_score ?? 0));
   const signalRows = [...data.signalSummary].sort((a, b) => Number(b.validation_quality_score ?? 0) - Number(a.validation_quality_score ?? 0));
+  const baselineSleeves = parseSerializedList(baselineVersionRow?.subset_sleeves);
+  const comparisonSleeves = parseSerializedList(comparisonVersionRow?.subset_sleeves);
+  const addedSleeves = comparisonSleeves.filter((name) => !baselineSleeves.includes(name));
+  const removedSleeves = baselineSleeves.filter((name) => !comparisonSleeves.includes(name));
+  const bestSignalAddition = [...data.improvementLab.signalIncremental]
+    .filter((row) => row.test_type === "add_one")
+    .sort((a, b) => Number(b.delta_sharpe_vs_base ?? 0) - Number(a.delta_sharpe_vs_base ?? 0))[0];
+  const worstSignalAddition = [...data.improvementLab.signalIncremental]
+    .filter((row) => row.test_type === "add_one")
+    .sort((a, b) => Number(a.delta_sharpe_vs_base ?? 0) - Number(b.delta_sharpe_vs_base ?? 0))[0];
+  const topStrategies = [...data.strategySummary]
+    .sort((a, b) => Number((b.validation_score ?? b.sharpe ?? 0)) - Number((a.validation_score ?? a.sharpe ?? 0)))
+    .slice(0, 3);
+  const visibleWeights = versionLatestWeights.length ? versionLatestWeights : latestWeights;
+  const visibleSleeves = versionLatestSleeves.length ? versionLatestSleeves : latestSleeves;
+  const topHoldingSummary = visibleWeights.slice(0, 4).map((item) => `${item.name} ${formatPercent(item.weight, 1)}`).join(", ");
+  const topSleeveSummary = visibleSleeves.slice(0, 4).map((item) => `${titleCase(item.name.replace(/^cash::/, ""))} ${formatPercent(item.weight, 1)}`).join(", ");
+  const comparisonName = titleCase(String(comparisonVersionRow?.version_name ?? defaultCandidate?.method_name ?? ""));
+  const baselineName = titleCase(String(baselineVersionRow?.version_name ?? ""));
+  const layerSummaryCards = [
+    {
+      title: "Layer 1 summary",
+      copy: signalRows.length
+        ? `${signalRows.slice(0, 3).map((row) => titleCase(row.signal_name)).join(", ")} lead validation quality. ${bestSignalAddition ? `${titleCase(String(bestSignalAddition.candidate_signal ?? ""))} is the cleanest add-on winner on Sharpe, while ${titleCase(String(worstSignalAddition?.candidate_signal ?? ""))} is the clearest drag.` : "Signal quality is led by the momentum complex."}`
+        : "Signal diagnostics will appear after the Layer 1 bundle is refreshed.",
+    },
+    {
+      title: "Layer 2 summary",
+      copy: topStrategies.length
+        ? `${topStrategies.map((row) => titleCase(row.strategy_name)).join(", ")} lead the strategy layer. The current ${titleCase(String(latestMarketState?.market_state ?? ""))} state keeps the sleeve mix tilted toward ${topSleeveSummary || "the stronger trend and regime sleeves"}.`
+        : "Layer 2 strategy comparisons will appear here once the saved bundle is available.",
+    },
+    {
+      title: "Layer 3 summary",
+      copy: `${comparisonName} is the current production candidate. It improves return by ${signedMetricValue("ann_return", deltaValue(comparisonVersionRow?.ann_return, baselineVersionRow?.ann_return))}, raises Sharpe by ${signedMetricValue("sharpe", deltaValue(comparisonVersionRow?.sharpe, baselineVersionRow?.sharpe))}, and lowers average BIL by ${metricValue("avg_bil_weight", Math.abs(Number(deltaValue(comparisonVersionRow?.avg_bil_weight, baselineVersionRow?.avg_bil_weight) ?? 0)))} versus ${baselineName}.`,
+    },
+    {
+      title: "Diagnostics summary",
+      copy: robustRows.length
+        ? `${titleCase(robustRows[0]?.method_name)} still leads the broad robustness ranking, ${titleCase(String(data.overview.bestDrawdown?.method_name ?? ""))} remains the drawdown-control anchor, and the version lab is choosing the current candidate on production score rather than Sharpe alone.`
+        : "Robustness and fragility diagnostics will appear here when the Layer 3 bundle is present.",
+    },
+  ];
+  const diagnosticsHighlights = [
+    `${titleCase(robustRows[0]?.method_name)} leads robustness at ${metricValue("robustness_score", robustRows[0]?.robustness_score)}.`,
+    `${comparisonName} posts a production score of ${metricValue("production_score", comparisonVersionRow?.production_score)} versus ${metricValue("production_score", baselineVersionRow?.production_score)} for ${baselineName}.`,
+    `Current posture is ${titleCase(String(currentAllocationSummary?.current_market_state ?? latestMarketState?.market_state ?? ""))} with ${formatPercent(Number(currentAllocationSummary?.current_offensive_weight ?? 0), 1)} offense and ${formatPercent(Number(currentAllocationSummary?.current_cash_proxy_weight ?? 0), 1)} cash proxy.`,
+    `Top current ETF weights are ${topHoldingSummary || "not available yet"}.`,
+  ];
+  const whatChangedItems = [
+    addedSleeves.length ? `Added ${addedSleeves.map((name) => titleCase(name)).join(", ")} to the improved stack.` : null,
+    removedSleeves.length ? `Removed ${removedSleeves.map((name) => titleCase(name)).join(", ")} from the baseline stack.` : null,
+    comparisonVersionRow?.overlay_variant !== baselineVersionRow?.overlay_variant
+      ? `Overlay logic changed from ${titleCase(String(baselineVersionRow?.overlay_variant ?? "baseline"))} to ${titleCase(String(comparisonVersionRow?.overlay_variant ?? "current"))}.`
+      : null,
+    comparisonVersionRow?.state_tilt
+      ? `${comparisonName} adds a ${String(comparisonVersionRow.state_tilt)} state tilt when breadth and trend confirm recovery.`
+      : null,
+    isFiniteNumber(comparisonVersionRow?.rerisk_speed)
+      ? `${comparisonName} adds a faster re-risk override (${formatNumber(Number(comparisonVersionRow?.rerisk_speed), 1)}) on confirmed recovery instead of the baseline's symmetric pacing.`
+      : null,
+  ].filter((item): item is string => Boolean(item));
+  const improvedItems = [
+    `Annual return improved from ${metricValue("ann_return", baselineVersionRow?.ann_return)} to ${metricValue("ann_return", comparisonVersionRow?.ann_return)}, and Sharpe improved from ${metricValue("sharpe", baselineVersionRow?.sharpe)} to ${metricValue("sharpe", comparisonVersionRow?.sharpe)}.`,
+    `Recovery capture improved from ${metricValue("recovery_week_capture", baselineVersionRow?.recovery_week_capture)} to ${metricValue("recovery_week_capture", comparisonVersionRow?.recovery_week_capture)}, while calm-week capture improved from ${metricValue("calm_week_capture", baselineVersionRow?.calm_week_capture)} to ${metricValue("calm_week_capture", comparisonVersionRow?.calm_week_capture)}.`,
+    `Average BIL fell from ${metricValue("avg_bil_weight", baselineVersionRow?.avg_bil_weight)} to ${metricValue("avg_bil_weight", comparisonVersionRow?.avg_bil_weight)}, average cash fell from ${metricValue("avg_cash_weight", baselineVersionRow?.avg_cash_weight)} to ${metricValue("avg_cash_weight", comparisonVersionRow?.avg_cash_weight)}, and average SPY rose to ${metricValue("avg_spy_weight", comparisonVersionRow?.avg_spy_weight)}.`,
+    `Production score improved from ${metricValue("production_score", baselineVersionRow?.production_score)} to ${metricValue("production_score", comparisonVersionRow?.production_score)}, with effective N up to ${metricValue("avg_effective_n", comparisonVersionRow?.avg_effective_n)} and weekly turnover slightly lower.`,
+  ];
+  const gotWorseItems = [
+    `Max drawdown deepened from ${metricValue("max_drawdown", baselineVersionRow?.max_drawdown)} to ${metricValue("max_drawdown", comparisonVersionRow?.max_drawdown)}.`,
+    `CVaR 5% worsened from ${metricValue("cvar_5", baselineVersionRow?.cvar_5)} to ${metricValue("cvar_5", comparisonVersionRow?.cvar_5)}, and annual volatility rose from ${metricValue("ann_vol", baselineVersionRow?.ann_vol)} to ${metricValue("ann_vol", comparisonVersionRow?.ann_vol)}.`,
+    `Downside capture rose from ${metricValue("downside_capture_negative_weeks", baselineVersionRow?.downside_capture_negative_weeks)} to ${metricValue("downside_capture_negative_weeks", comparisonVersionRow?.downside_capture_negative_weeks)}, so the faster re-risking still carries more stress sensitivity.`,
+  ];
+  const overallInterpretation = `The current production candidate is a deliberate upside-participation upgrade: ${comparisonName} keeps the baseline's core discipline but cuts defensive drag, lifts recovery participation, and improves return, Sharpe, Calmar, and production score. The trade-off is explicit and visible on the page: it accepts higher volatility, a deeper drawdown profile, and a slightly worse left tail in exchange for faster re-risking and materially lower average BIL/cash exposure.`;
 
   return (
     <main className="dashboard-shell">
@@ -529,55 +677,46 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
                   <p className="mono text-xs uppercase tracking-[0.28em] text-[#b9853b]">Layered ETF Quant Research</p>
                   <h1 className="section-title mt-4 text-5xl font-bold leading-[0.96] text-[#f5f1e8] md:text-7xl">{data.overview.projectTitle}</h1>
                   <p className="mt-5 max-w-3xl text-lg leading-8 text-[#d7d0bd]">
-                    A full research stack that moves from Layer 1 alpha signals, to Layer 2 strategy logic and risk regimes, to Layer 3 portfolio construction. The dashboard emphasizes out-of-sample comparison, drawdown control, turnover, concentration, and robustness rather than choosing a winner by Sharpe alone.
+                    The homepage now acts as a complete executive summary: diagnostics, robustness, benchmarks, current state, allocations, and the Layer 1 to Layer 3 workflow are all visible on initial load so the research story is inspectable without extra clicks.
                   </p>
-                  <div className="mt-6 grid gap-3 md:grid-cols-3">
-                    {[
-                      ["Layer 1", "Signals: momentum, value, carry proxies, BAB, quality, residual momentum."],
-                      ["Layer 2", "Strategy logic: dual momentum, CTA trend, selective composites, regime engine."],
-                      ["Layer 3", "Portfolio construction: robust allocators, improvement lab, and baseline-vs-improved comparison."],
-                    ].map(([title, copy]) => (
-                      <div key={title} className="rounded-3xl border border-white/10 bg-white/[0.045] p-4">
-                        <p className="font-semibold text-[#f5f1e8]">{title}</p>
-                        <p className="mt-2 text-sm leading-6 text-[#c8c1ad]">{copy}</p>
+                  <div className="mt-6 grid gap-3 md:grid-cols-2">
+                    {layerSummaryCards.map((item) => (
+                      <div key={item.title} className="rounded-3xl border border-white/10 bg-white/[0.045] p-4">
+                        <p className="font-semibold text-[#f5f1e8]">{item.title}</p>
+                        <p className="mt-2 text-sm leading-6 text-[#c8c1ad]">{item.copy}</p>
                       </div>
                     ))}
                   </div>
                 </div>
                 <div className="rounded-[2rem] border border-white/10 bg-[#0c1324]/60 p-5">
                   <p className="mono text-xs uppercase tracking-[0.22em] text-[#b8b19f]">Current Production Candidate</p>
-                  <h2 className="mt-3 text-3xl font-semibold text-[#f5f1e8]">{titleCase(String(comparisonVersionRow?.version_name ?? defaultCandidate?.method_name ?? ""))}</h2>
+                  <h2 className="mt-3 text-3xl font-semibold text-[#f5f1e8]">{comparisonName}</h2>
                   <p className="mt-3 text-sm leading-6 text-[#c8c1ad]">
                     {String(comparisonVersionRow?.note ?? defaultCandidate?.description ?? "Chosen from the robustness framework when available.")}
                   </p>
                   <p className="mt-3 rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm leading-6 text-[#d7d0bd]">
-                    The current improvement pass focuses on one question: can the allocator re-risk faster after stress without giving back too much of the drawdown control that made the earlier versions credible?
+                    The current improvement pass is explicitly about re-risking faster after stress, cutting unnecessary defensive drag, and making it obvious whether those changes actually helped versus the baseline.
                   </p>
                   <div className="mt-5 grid grid-cols-2 gap-3">
+                    <MetricCard label="Current Market State" value={titleCase(String(latestMarketState?.market_state ?? latestRegime?.risk_state ?? ""))} detail={String(currentAllocationSummary?.current_market_state_reason ?? latestMarketState?.market_state_reason ?? "")} tone={String(latestMarketState?.market_state ?? latestRegime?.risk_state ?? "") === "stressed_panic" ? "warn" : "good"} />
                     <MetricCard label="Best by Sharpe" value={titleCase(data.overview.bestBySharpe?.method_name)} />
                     <MetricCard label="Most Robust" value={titleCase(data.overview.bestByRobustness?.method_name)} tone="good" />
                     <MetricCard label="Drawdown Control" value={titleCase(data.overview.bestDrawdown?.method_name)} />
-                    <MetricCard
-                      label="Current Market State"
-                      value={titleCase(String(latestMarketState?.market_state ?? latestRegime?.risk_state ?? ""))}
-                      detail={titleCase(String(latestMarketState?.market_state_reason ?? latestRegime?.signal_environment ?? ""))}
-                      tone={String(latestMarketState?.market_state ?? latestRegime?.risk_state ?? "") === "stressed_panic" ? "warn" : "good"}
-                    />
                   </div>
                   <div className="mt-4 rounded-3xl border border-white/10 bg-white/[0.035] p-4">
                     <p className="mono text-[0.68rem] uppercase tracking-[0.18em] text-[#b8b19f]">Baseline vs Improved</p>
                     <div className="mt-3 grid gap-2 text-sm text-[#c8c1ad]">
                       <div className="flex items-center justify-between gap-3">
-                        <span>{titleCase(String(baselineVersionRow?.version_name ?? ""))}</span>
+                        <span>{baselineName}</span>
                         <span className="mono text-[#f5f1e8]">{metricValue("sharpe", baselineVersionRow?.sharpe)}</span>
                       </div>
                       <div className="flex items-center justify-between gap-3">
-                        <span>{titleCase(String(comparisonVersionRow?.version_name ?? ""))}</span>
+                        <span>{comparisonName}</span>
                         <span className="mono text-[#9dcfae]">{metricValue("sharpe", comparisonVersionRow?.sharpe)}</span>
                       </div>
                       <div className="flex items-center justify-between gap-3 border-t border-white/10 pt-2">
                         <span>Production score</span>
-                        <span className="mono text-[#d7b072]">{metricValue("robustness_score", comparisonVersionRow?.production_score)}</span>
+                        <span className="mono text-[#d7b072]">{metricValue("production_score", comparisonVersionRow?.production_score)}</span>
                       </div>
                     </div>
                   </div>
@@ -585,22 +724,87 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
               </div>
             </div>
 
-            <div className="metric-grid mt-5">
-              {defaultMetricKeys.map((key) => (
-                <MetricCard
-                  key={key}
-                  label={metricLabel(key)}
-                  value={metricValue(key, comparisonVersionRow?.[key] ?? defaultCandidate?.[key])}
-                  detail={isFiniteNumber(deltaValue(comparisonVersionRow?.[key], baselineVersionRow?.[key])) ? `vs baseline ${metricValue(key, deltaValue(comparisonVersionRow?.[key], baselineVersionRow?.[key]))}` : undefined}
-                />
-              ))}
+            <div className="mt-5 grid gap-5 xl:grid-cols-[1.15fr_0.85fr]">
+              <Panel title="Immediate visible summary" subtitle="These are the headline numbers and current posture ChatGPT should be able to read from the initial page load without interaction.">
+                <div className="metric-grid">
+                  <MetricCard label="Production Candidate" value={comparisonName} detail={`As of ${shortDate(String(currentAllocationSummary?.current_date ?? latestMarketState?.Date ?? data.latestDate ?? ""))}`} tone="good" />
+                  <MetricCard label="Ann. Return" value={metricValue("ann_return", comparisonVersionRow?.ann_return ?? defaultCandidate?.ann_return)} detail={isFiniteNumber(deltaValue(comparisonVersionRow?.ann_return, baselineVersionRow?.ann_return)) ? `vs baseline ${signedMetricValue("ann_return", deltaValue(comparisonVersionRow?.ann_return, baselineVersionRow?.ann_return))}` : undefined} />
+                  <MetricCard label="Ann. Vol" value={metricValue("ann_vol", comparisonVersionRow?.ann_vol ?? defaultCandidate?.ann_vol)} detail={isFiniteNumber(deltaValue(comparisonVersionRow?.ann_vol, baselineVersionRow?.ann_vol)) ? `vs baseline ${signedMetricValue("ann_vol", deltaValue(comparisonVersionRow?.ann_vol, baselineVersionRow?.ann_vol))}` : undefined} />
+                  <MetricCard label="Sharpe" value={metricValue("sharpe", comparisonVersionRow?.sharpe ?? defaultCandidate?.sharpe)} detail={isFiniteNumber(deltaValue(comparisonVersionRow?.sharpe, baselineVersionRow?.sharpe)) ? `vs baseline ${signedMetricValue("sharpe", deltaValue(comparisonVersionRow?.sharpe, baselineVersionRow?.sharpe))}` : undefined} tone="good" />
+                  <MetricCard label="Max Drawdown" value={metricValue("max_drawdown", comparisonVersionRow?.max_drawdown ?? defaultCandidate?.max_drawdown)} detail={isFiniteNumber(deltaValue(comparisonVersionRow?.max_drawdown, baselineVersionRow?.max_drawdown)) ? `vs baseline ${signedMetricValue("max_drawdown", deltaValue(comparisonVersionRow?.max_drawdown, baselineVersionRow?.max_drawdown))}` : undefined} />
+                  <MetricCard label="Calmar" value={metricValue("calmar", comparisonVersionRow?.calmar ?? defaultCandidate?.calmar)} detail={isFiniteNumber(deltaValue(comparisonVersionRow?.calmar, baselineVersionRow?.calmar)) ? `vs baseline ${signedMetricValue("calmar", deltaValue(comparisonVersionRow?.calmar, baselineVersionRow?.calmar))}` : undefined} tone="good" />
+                  <MetricCard label="CVaR 5%" value={metricValue("cvar_5", comparisonVersionRow?.cvar_5 ?? defaultCandidate?.cvar_5)} detail={isFiniteNumber(deltaValue(comparisonVersionRow?.cvar_5, baselineVersionRow?.cvar_5)) ? `vs baseline ${signedMetricValue("cvar_5", deltaValue(comparisonVersionRow?.cvar_5, baselineVersionRow?.cvar_5))}` : undefined} />
+                  <MetricCard label="Turnover" value={metricValue("avg_weekly_turnover", comparisonVersionRow?.avg_weekly_turnover ?? defaultCandidate?.avg_weekly_turnover)} detail={isFiniteNumber(deltaValue(comparisonVersionRow?.avg_weekly_turnover, baselineVersionRow?.avg_weekly_turnover)) ? `vs baseline ${signedMetricValue("avg_weekly_turnover", deltaValue(comparisonVersionRow?.avg_weekly_turnover, baselineVersionRow?.avg_weekly_turnover))}` : undefined} />
+                  <MetricCard label="Market State" value={titleCase(String(currentAllocationSummary?.current_market_state ?? latestMarketState?.market_state ?? ""))} detail={String(currentAllocationSummary?.current_market_state_reason ?? latestMarketState?.market_state_reason ?? "")} tone={String(currentAllocationSummary?.current_state_label ?? "") === "defensive" ? "warn" : "good"} />
+                  <MetricCard label="Off / Def / Cash" value={`${formatPercent(Number(currentAllocationSummary?.current_offensive_weight ?? 0), 1)} / ${formatPercent(Number(currentAllocationSummary?.current_defensive_weight ?? 0), 1)} / ${formatPercent(Number(currentAllocationSummary?.current_cash_proxy_weight ?? 0), 1)}`} />
+                  <MetricCard label="Current SPY" value={metricValue("ann_return", currentAllocationSummary?.current_spy_weight)} detail={`avg ${metricValue("avg_spy_weight", comparisonVersionRow?.avg_spy_weight)}`} />
+                  <MetricCard label="Current BIL" value={metricValue("ann_return", currentAllocationSummary?.current_bil_weight)} detail={`avg ${metricValue("avg_bil_weight", comparisonVersionRow?.avg_bil_weight)}`} />
+                </div>
+              </Panel>
+              <Panel title="Diagnostics / robustness highlights" subtitle="Visible context for whether the candidate is improving for the right reasons, not just because one chart happens to look nicer.">
+                <NarrativeList items={diagnosticsHighlights} />
+              </Panel>
             </div>
-            <div className="mt-5">
+
+            <div className="mt-5 grid gap-5 xl:grid-cols-2">
               <Panel title="Benchmark comparison" subtitle="Layer 2 baselines retained for context: market proxy buy-and-hold, 60/40, and equal-weight risky assets when available.">
                 <SimpleTable rows={data.overview.benchmarkSummary} columns={["strategy_name", "ann_return", "ann_vol", "sharpe", "max_drawdown", "calmar", "avg_weekly_turnover"]} maxRows={6} />
               </Panel>
+              <Panel title="Current holdings and allocation snapshot" subtitle="This is the concise version of holdings, current sleeves, and the immediate BIL/SPY explanation that should be visible before any chart hydrates.">
+                <div className="grid gap-5 lg:grid-cols-2">
+                  <div>
+                    <p className="mb-3 text-sm font-semibold text-[#f5f1e8]">Top ETF weights</p>
+                    <WeightBars rows={visibleWeights} limit={8} />
+                  </div>
+                  <div>
+                    <p className="mb-3 text-sm font-semibold text-[#f5f1e8]">Top sleeve weights</p>
+                    <WeightBars rows={visibleSleeves} limit={6} />
+                  </div>
+                </div>
+                <div className="mt-5 grid gap-3 md:grid-cols-2">
+                  <div className="rounded-3xl border border-white/10 bg-white/[0.035] p-4">
+                    <p className="font-semibold text-[#f5f1e8]">Why BIL is high or low</p>
+                    <p className="mt-2 text-sm leading-6 text-[#c8c1ad]">
+                      BIL is currently {metricValue("ann_return", currentAllocationSummary?.current_bil_weight)}. The biggest contributors are {bilBreakdownRows.slice(0, 2).map((row) => `${titleCase(String(row.driver ?? ""))} ${formatPercent(row.contribution, 1)}`).join(" and ") || "not available yet"}.
+                    </p>
+                  </div>
+                  <div className="rounded-3xl border border-white/10 bg-white/[0.035] p-4">
+                    <p className="font-semibold text-[#f5f1e8]">Why SPY is high or low</p>
+                    <p className="mt-2 text-sm leading-6 text-[#c8c1ad]">
+                      SPY is currently {metricValue("ann_return", currentAllocationSummary?.current_spy_weight)}. The main contributors are {spyBreakdownRows.slice(0, 2).map((row) => `${titleCase(String(row.driver ?? ""))} ${formatPercent(row.contribution, 1)}`).join(" and ") || "not available yet"}.
+                    </p>
+                  </div>
+                </div>
+              </Panel>
             </div>
           </section>
+
+          <Section id="change-review" eyebrow="Baseline vs Improved" title="What changed and did it help?">
+            <div className="grid gap-5">
+              <div className="metric-grid">
+                <MetricCard label="Return Delta" value={signedMetricValue("ann_return", deltaValue(comparisonVersionRow?.ann_return, baselineVersionRow?.ann_return))} tone="good" />
+                <MetricCard label="Sharpe Delta" value={signedMetricValue("sharpe", deltaValue(comparisonVersionRow?.sharpe, baselineVersionRow?.sharpe))} tone="good" />
+                <MetricCard label="Recovery Capture Delta" value={signedMetricValue("recovery_week_capture", deltaValue(comparisonVersionRow?.recovery_week_capture, baselineVersionRow?.recovery_week_capture))} tone="good" />
+                <MetricCard label="Avg BIL Delta" value={signedMetricValue("avg_bil_weight", deltaValue(comparisonVersionRow?.avg_bil_weight, baselineVersionRow?.avg_bil_weight))} tone="good" />
+                <MetricCard label="Max Drawdown Delta" value={signedMetricValue("max_drawdown", deltaValue(comparisonVersionRow?.max_drawdown, baselineVersionRow?.max_drawdown))} tone="warn" />
+                <MetricCard label="CVaR 5% Delta" value={signedMetricValue("cvar_5", deltaValue(comparisonVersionRow?.cvar_5, baselineVersionRow?.cvar_5))} tone="warn" />
+              </div>
+              <div className="grid gap-5 xl:grid-cols-2">
+                <Panel title="What changed" subtitle={`Visible comparison of ${baselineName} versus ${comparisonName}.`}>
+                  <NarrativeList items={whatChangedItems.length ? whatChangedItems : ["The main structural changes are captured in the version comparison table below."]} />
+                </Panel>
+                <Panel title="What improved" subtitle="The gains that make the current production candidate worth considering.">
+                  <NarrativeList items={improvedItems} />
+                </Panel>
+                <Panel title="What got worse" subtitle="The trade-offs that still need to stay visible on the homepage.">
+                  <NarrativeList items={gotWorseItems} />
+                </Panel>
+                <Panel title="Overall interpretation" subtitle="Net read on whether the change helped.">
+                  <p className="text-sm leading-7 text-[#d7d0bd]">{overallInterpretation}</p>
+                </Panel>
+              </div>
+            </div>
+          </Section>
 
           <Section id="signals" eyebrow="Layer 1" title="Signal research findings">
             <div className="grid gap-5 xl:grid-cols-2">

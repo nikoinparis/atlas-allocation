@@ -58,7 +58,7 @@ export function ExecutiveSummary({ data }: { data: DashboardData | null }) {
   const alloc = (overview.currentAllocationSummary ?? null) as Row | null;
   const marketState = (overview.latestMarketState ?? null) as Row | null;
 
-  const productionName = str(improved, "version_name") || "improved_hrp_neutral_ease";
+  const productionName = str(improved, "version_name") || "improved_hrp_good_state_fragile_combo";
   const annRet = num(improved, "ann_return");
   const annVol = num(improved, "ann_vol");
   const sharpe = num(improved, "sharpe");
@@ -111,47 +111,41 @@ export function ExecutiveSummary({ data }: { data: DashboardData | null }) {
   const versionRows = Array.isArray(data.improvementLab?.versions) ? data.improvementLab.versions : [];
   const findVersion = (name: string) =>
     (versionRows.find((row) => String(row.version_name ?? "") === name) as Row | null | undefined) ?? null;
-  const control = findVersion("improved_hrp_neutral_ease");
-  const neutralEase = findVersion("improved_hrp_neutral_ease");
-  const strengthWeighted = findVersion("improved_hrp_strength_weighted_selective");
-  const goodStateOffense = findVersion("improved_hrp_good_state_offense");
-  const layer3Relax = findVersion("improved_hrp_layer3_expression_relax");
-  const fragileExpression = findVersion("improved_hrp_fragile_expression");
   const goodStateFragileCombo = findVersion("improved_hrp_good_state_fragile_combo");
-  const betaParticipation = findVersion("improved_hrp_neutral_ease_beta_diag") ?? findVersion("improved_hrp_beta_participation");
+  const control = goodStateFragileCombo ?? findVersion("improved_hrp_neutral_ease");
+  const continuousOverlay = findVersion("improved_hrp_stacked_defense_continuous_overlay");
+  const selfGatedOverlay = findVersion("improved_hrp_stacked_defense_self_gated_overlay");
+  const asymmetricSpeed = findVersion("improved_hrp_stacked_defense_asymmetric_speed");
+  const stackedDefenseCombo = findVersion("improved_hrp_stacked_defense_continuous_self_gated_combo");
 
   const controlScore = num(control, "production_score");
-  const neutralScore = num(neutralEase, "production_score");
-  const goodStateScore = num(goodStateOffense, "production_score");
-  const fragileScore = num(fragileExpression, "production_score");
-  const comboScore = num(goodStateFragileCombo, "production_score");
+  const selfGatedScore = num(selfGatedOverlay, "production_score");
+  const comboScore = num(stackedDefenseCombo, "production_score");
+  const selfGatedBilDelta = delta(num(selfGatedOverlay, "avg_bil_weight"), num(control, "avg_bil_weight"));
   const comboPromotable =
     comboScore != null &&
-    neutralScore != null &&
-    comboScore - neutralScore >= 0.05 &&
-    (num(goodStateFragileCombo, "max_drawdown") ?? -1) >= (num(control, "max_drawdown") ?? -1) - 0.005 &&
-    (num(goodStateFragileCombo, "cvar_5") ?? -1) >= (num(control, "cvar_5") ?? -1) - 0.002;
+    controlScore != null &&
+    comboScore - controlScore >= 0.05 &&
+    (num(stackedDefenseCombo, "max_drawdown") ?? -1) >= (num(control, "max_drawdown") ?? -1) - 0.005 &&
+    (num(stackedDefenseCombo, "cvar_5") ?? -1) >= (num(control, "cvar_5") ?? -1) - 0.002;
 
   const researchRead = [
-    neutralEase
-      ? `Neutral-ease remains the production base: it improved return, Sharpe, calm-state capture, and average BIL versus the older recovery-tilt path without deepening max drawdown.`
-      : null,
-    goodStateOffense
-      ? `The best new good-state test was ${titleCase(String(goodStateOffense.version_name ?? ""))}: production score ${formatNumber(goodStateScore, 3)} vs ${formatNumber(neutralScore, 3)} for neutral ease, with average BIL ${signedValue(delta(num(goodStateOffense, "avg_bil_weight"), num(control, "avg_bil_weight")), "percent", 2)} lower and max drawdown unchanged.`
-      : null,
-    strengthWeighted || layer3Relax
-      ? `Momentum is already present, but not every downstream fix helped: the strength-weighted selective sleeve and the Layer 3 expression relaxer were both informative tests, and they need a cleaner deployment path before they merit promotion.`
-      : null,
-    fragileExpression
-      ? `Fragile-recovery expression stayed directionally useful, but only as a modest tweak: ${formatNumber(fragileScore, 3)} on production score, still framed as an earlier handoff out of stress rather than a return to confirmed-recovery aggression.`
-      : null,
     goodStateFragileCombo
-      ? comboPromotable
-        ? `The best combination test (${titleCase(String(goodStateFragileCombo.version_name ?? ""))}) cleared the promotion bar: production score ${formatNumber(comboScore, 3)} vs ${formatNumber(neutralScore, 3)} for neutral ease, with max drawdown unchanged and only a small CVaR giveback.`
-        : `The best combination test (${titleCase(String(goodStateFragileCombo.version_name ?? ""))}) scored ${formatNumber(comboScore, 3)}. It only promotes if it beats neutral ease by a material margin without worsening drawdown or CVaR.`
+      ? `The current production base is ${titleCase(String(goodStateFragileCombo.version_name ?? ""))}. It remains the incumbent because it improved good-state participation without needing the crude SPY recycle, and it still clears the current promotion guardrail.`
       : null,
-    betaParticipation
-      ? `The explicit SPY recycle remained a diagnostic, not a default answer: avg SPY ${formatPercent(num(betaParticipation, "avg_spy_weight"), 1)} vs ${formatPercent(num(control, "avg_spy_weight"), 1)} for neutral ease, which helps separate missing-beta effects from true deployment-quality gains.`
+    continuousOverlay || selfGatedOverlay || stackedDefenseCombo
+      ? `The latest sprint tested the stacked-defense tax directly. The core read is that good-state underparticipation is real, and it comes much more from overlay cash and repeated de-risking than from target-vol binding outside stress.`
+      : null,
+    selfGatedOverlay
+      ? `${titleCase(String(selfGatedOverlay.version_name ?? ""))} was the cleanest fix: production score ${formatNumber(selfGatedScore, 3)} vs ${formatNumber(controlScore, 3)} for the incumbent, with average BIL ${selfGatedBilDelta == null ? "n/a" : formatPercent(Math.abs(selfGatedBilDelta), 2)} lower and only a very small SPY drift. That supports the double-defense diagnosis on self-gated sleeves.`
+      : null,
+    continuousOverlay
+      ? `${titleCase(String(continuousOverlay.version_name ?? ""))} and the A+B combo both improved neutral and recovery participation, but they also deepened max drawdown and CVaR. The stacked-defense diagnosis is real, yet the more aggressive overlay easing still looks too tail-expensive for promotion.`
+      : null,
+    asymmetricSpeed
+      ? comboPromotable
+        ? `${titleCase(String(stackedDefenseCombo?.version_name ?? ""))} would only promote if the higher participation came without a material drawdown or CVaR giveback. It did not clear that bar, and ${titleCase(String(asymmetricSpeed.version_name ?? ""))} was mostly neutral because faster re-risking alone does not relax the actual overlay haircut.`
+        : `${titleCase(String(asymmetricSpeed.version_name ?? ""))} was mostly neutral: changing speed without changing the binding overlay haircut did not materially reduce cash drag in the good states that still matter most.`
       : null,
   ].filter((item): item is string => Boolean(item));
 

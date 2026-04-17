@@ -88,6 +88,21 @@ ns5 = load_notebook_namespace(
     [2, 4, 5, 7, 9, 11],
 )
 
+SELF_GATED_SLEEVES = [
+    "dual_momentum_topn",
+    "cta_trend_long_only",
+    "taa_10m_sma",
+]
+
+
+def bounded_interp(series: pd.Series, *, xp: list[float], fp: list[float]) -> pd.Series:
+    values = pd.Series(series, dtype=float)
+    return pd.Series(
+        np.interp(values.fillna(values.median(skipna=True) if values.notna().any() else 0.0), xp, fp),
+        index=values.index,
+        dtype=float,
+    )
+
 
 def evaluate_signal_combo(
     signal_names: list[str],
@@ -453,6 +468,24 @@ def build_variant_regime_states(
         adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"] = adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"].clip(lower=0.92)
         adjusted.loc[calm_mask, "overlay_multiplier"] = adjusted.loc[calm_mask, "overlay_multiplier"].clip(lower=1.00)
         adjusted.loc[strong_neutral_mask, "overlay_multiplier"] = adjusted.loc[strong_neutral_mask, "overlay_multiplier"].clip(lower=0.94)
+        return adjusted
+
+    if overlay_variant == "continuous_neutral_mapping":
+        # Map the continuous risk_regime_score directly into the neutral-state deployment
+        # multiplier so moderately good / moderately bad neutral weeks are not forced
+        # through the same blunt neutral response. Recovery / calm / stress keep the
+        # current control floors.
+        mapped = bounded_interp(
+            adjusted.get("risk_regime_score", pd.Series(np.nan, index=adjusted.index)),
+            xp=[-1.25, -0.60, -0.10, 0.25, 0.75, 1.50, 3.00],
+            fp=[1.00, 0.99, 0.95, 0.90, 0.76, 0.48, 0.28],
+        )
+        neutral_state_mask = adjusted["market_state"].eq("neutral_mixed")
+        adjusted.loc[neutral_state_mask, "overlay_multiplier"] = mapped.loc[neutral_state_mask]
+        adjusted.loc[recovery_fragile_mask, "overlay_multiplier"] = adjusted.loc[recovery_fragile_mask, "overlay_multiplier"].clip(lower=0.96)
+        adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"] = adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"].clip(lower=0.92)
+        adjusted.loc[calm_mask, "overlay_multiplier"] = adjusted.loc[calm_mask, "overlay_multiplier"].clip(lower=1.00)
+        adjusted.loc[stressed_mask, "overlay_multiplier"] = adjusted.loc[stressed_mask, "overlay_multiplier"].clip(upper=0.40)
         return adjusted
 
     if overlay_variant == "recovery_split_baseline":
@@ -826,8 +859,16 @@ def apply_overlays_custom(
     sleeve_reallocation_speed: float = ns5["SLEEVE_REALLOCATION_SPEED"],
     rerisk_speed: float | None = None,
     market_state: str | None = None,
+    market_state_row: pd.Series | None = None,
+    prev_regime_multiplier: float | None = None,
+    overlay_penalty_mode: str = "none",
+    speed_mode: str = "default",
+    improving_speed: float | None = None,
+    deteriorating_speed: float | None = None,
 ) -> tuple[pd.Series, float, dict]:
     raw_weights = ns5["normalize_long_only"](raw_weights, max_weight=ns5["MAX_SLEEVE_WEIGHT"])
+    regime_multiplier = float(regime_row.get("overlay_multiplier", 1.0)) if isinstance(regime_row, pd.Series) else 1.0
+    strong_neutral = is_strong_neutral_state_row(market_state_row)
     dynamic_speed = sleeve_reallocation_speed
     if rerisk_speed is not None:
         if market_state in {"recovery_rebound", "recovery_confirmed", "calm_trend"}:
@@ -835,6 +876,20 @@ def apply_overlays_custom(
         elif market_state == "recovery_fragile":
             # Partial re-risk during fragile recovery: halfway between baseline speed and rerisk_speed.
             dynamic_speed = sleeve_reallocation_speed + 0.5 * (rerisk_speed - sleeve_reallocation_speed)
+    if speed_mode == "asymmetric_reallocation":
+        improving = (
+            strong_neutral
+            or market_state in {"calm_trend", "recovery_fragile", "recovery_confirmed"}
+            or (prev_regime_multiplier is not None and regime_multiplier >= prev_regime_multiplier + 0.02)
+        )
+        deteriorating = (
+            market_state == "stressed_panic"
+            or (prev_regime_multiplier is not None and regime_multiplier <= prev_regime_multiplier - 0.02)
+        )
+        if improving:
+            dynamic_speed = max(dynamic_speed, improving_speed if improving_speed is not None else 0.75)
+        if deteriorating:
+            dynamic_speed = min(dynamic_speed, deteriorating_speed if deteriorating_speed is not None else sleeve_reallocation_speed)
     if prev_weights is not None and not prev_weights.empty:
         prev_weights = ns5["normalize_long_only"](prev_weights.reindex(raw_weights.index).fillna(0.0), max_weight=ns5["MAX_SLEEVE_WEIGHT"])
         blended = (1.0 - dynamic_speed) * prev_weights + dynamic_speed * raw_weights
@@ -847,9 +902,41 @@ def apply_overlays_custom(
         if predicted_ann_vol <= 0 or pd.isna(predicted_ann_vol)
         else float(np.clip(ns5["TARGET_VOL_ANN"] / predicted_ann_vol, ns5["TARGET_VOL_FLOOR"], target_vol_ceil))
     )
-    regime_multiplier = float(regime_row.get("overlay_multiplier", 1.0)) if isinstance(regime_row, pd.Series) else 1.0
-    gross_multiplier = float(min(1.0, regime_multiplier, target_vol_multiplier))
-    risky_weights = blended * gross_multiplier
+    regime_binding = float(regime_multiplier < target_vol_multiplier and regime_multiplier < 0.999)
+    target_vol_binding = float(target_vol_multiplier < regime_multiplier and target_vol_multiplier < 0.999)
+    both_binding = float(abs(regime_multiplier - target_vol_multiplier) <= 1e-6 and regime_multiplier < 0.999)
+
+    per_sleeve_multiplier = pd.Series(float(min(1.0, regime_multiplier, target_vol_multiplier)), index=blended.index, dtype=float)
+    self_gated_relief = 0.0
+    self_gated_regime_multiplier = regime_multiplier
+    final_self_gated_multiplier = float(per_sleeve_multiplier.iloc[0]) if not per_sleeve_multiplier.empty else np.nan
+    final_non_self_gated_multiplier = float(per_sleeve_multiplier.iloc[0]) if not per_sleeve_multiplier.empty else np.nan
+    if (
+        overlay_penalty_mode == "lighter_self_gated"
+        and regime_binding > 0.0
+        and market_state != "stressed_panic"
+    ):
+        self_gated_names = [name for name in blended.index if name in SELF_GATED_SLEEVES]
+        if self_gated_names:
+            headroom = max(0.0, target_vol_multiplier - regime_multiplier)
+            relief = min(0.06, 0.50 * max(0.0, 1.0 - regime_multiplier), 0.75 * headroom if headroom > 0 else 0.06)
+            self_gated_relief = max(0.0, relief)
+            self_gated_regime_multiplier = min(1.0, regime_multiplier + self_gated_relief)
+            per_sleeve_multiplier.loc[:] = regime_multiplier
+            per_sleeve_multiplier.loc[self_gated_names] = self_gated_regime_multiplier
+            if target_vol_multiplier < 1.0:
+                total_risky = float((blended * per_sleeve_multiplier).sum())
+                if total_risky > target_vol_multiplier and total_risky > 1e-12:
+                    per_sleeve_multiplier *= target_vol_multiplier / total_risky
+            final_self_gated_multiplier = float(per_sleeve_multiplier.loc[self_gated_names].mean())
+            non_self_gated_names = [name for name in blended.index if name not in self_gated_names]
+            final_non_self_gated_multiplier = float(per_sleeve_multiplier.loc[non_self_gated_names].mean()) if non_self_gated_names else final_self_gated_multiplier
+
+    risky_weights = blended * per_sleeve_multiplier
+    gross_multiplier = float(risky_weights.sum())
+    if overlay_penalty_mode == "none":
+        final_self_gated_multiplier = gross_multiplier
+        final_non_self_gated_multiplier = gross_multiplier
     cash_weight = max(0.0, 1.0 - risky_weights.sum())
     diagnostics = {
         "predicted_ann_vol": predicted_ann_vol,
@@ -858,6 +945,15 @@ def apply_overlays_custom(
         "gross_multiplier": gross_multiplier,
         "cash_weight": cash_weight,
         "dynamic_speed": dynamic_speed,
+        "regime_binding": regime_binding,
+        "target_vol_binding": target_vol_binding,
+        "both_binding": both_binding,
+        "self_gated_relief": self_gated_relief,
+        "self_gated_regime_multiplier": self_gated_regime_multiplier,
+        "final_self_gated_multiplier": final_self_gated_multiplier,
+        "final_non_self_gated_multiplier": final_non_self_gated_multiplier,
+        "overlay_penalty_mode": overlay_penalty_mode,
+        "speed_mode": speed_mode,
     }
     return risky_weights, cash_weight, diagnostics
 
@@ -873,6 +969,10 @@ def run_subset_custom(
     rerisk_speed: float | None = None,
     state_tilt: str = "none",
     layer3_expression_mode: str = "none",
+    overlay_penalty_mode: str = "none",
+    speed_mode: str = "default",
+    improving_speed: float | None = None,
+    deteriorating_speed: float | None = None,
     beta_overlay_mode: str = "none",
     market_state_history: pd.DataFrame | None = None,
     stabilize_market_state: bool = False,
@@ -905,6 +1005,7 @@ def run_subset_custom(
     rebalance_dates = ns5["rebalance_mask"](all_dates, ns5["REBALANCE_FREQUENCY"])
     current_risky_alloc = pd.Series(0.0, index=subset, dtype=float)
     current_cash_weight = 1.0
+    prev_regime_multiplier_value: float | None = None
     sleeve_alloc_rows: list[pd.Series] = []
     etf_weight_rows: list[pd.Series] = []
     diag_rows: list[dict] = []
@@ -989,7 +1090,14 @@ def run_subset_custom(
                             sleeve_reallocation_speed=speed,
                             rerisk_speed=rerisk_speed,
                             market_state=market_state,
+                            market_state_row=market_state_row if isinstance(market_state_row, pd.Series) else None,
+                            prev_regime_multiplier=prev_regime_multiplier_value,
+                            overlay_penalty_mode=overlay_penalty_mode,
+                            speed_mode=speed_mode,
+                            improving_speed=improving_speed,
+                            deteriorating_speed=deteriorating_speed,
                         )
+                        prev_regime_multiplier_value = float(overlay_diag.get("regime_multiplier", np.nan)) if overlay_diag else prev_regime_multiplier_value
                         current_risky_alloc = pd.Series(0.0, index=subset, dtype=float)
                         current_risky_alloc.loc[risky_weights.index] = risky_weights
                         current_cash_weight = cash_weight
@@ -1005,6 +1113,8 @@ def run_subset_custom(
                                 "overlay_variant": overlay_variant,
                                 "state_tilt": state_tilt,
                                 "layer3_expression_mode": layer3_expression_mode,
+                                "overlay_penalty_mode": overlay_penalty_mode,
+                                "speed_mode": speed_mode,
                                 "beta_overlay_mode": beta_overlay_mode,
                                 "market_state": market_state,
                                 **overlay_diag,
@@ -1565,6 +1675,8 @@ portfolio_version_subperiod_rows: list[pd.DataFrame] = []
 allocation_driver_rows: list[dict] = []
 allocation_driver_breakdown_rows: list[dict] = []
 allocation_driver_timeseries_rows: list[dict] = []
+version_diagnostics_timeseries_rows: list[dict] = []
+stacked_defense_timeseries_rows: list[dict] = []
 sleeve_incremental_rows: list[dict] = []
 sleeve_subset_rows: list[dict] = []
 upside_capture_rows: list[dict] = []
@@ -2044,6 +2156,87 @@ version_specs = [
         "stabilize_market_state": True,
         "note": "Variant E: combination build. Uses the stabilizer (B), raises the strong-neutral floor to 0.97 with a further transition-aware lift to 0.98 when the trailing transition matrix says the regime is persistent and benign-continuing, and pairs the mix-rotation tilt (D). Keeps the neutral base floor at 0.83 (C).",
     },
+    # ======================================================================
+    # Stacked-defense tax study (current research task)
+    #
+    # Control        = improved_hrp_good_state_fragile_combo (above).
+    # Variant A      = improved_hrp_stacked_defense_continuous_overlay
+    #                  Replace the blunt neutral-state overlay response with a
+    #                  bounded continuous map from risk_regime_score into neutral
+    #                  deployment, while keeping the control's calm/recovery/stress
+    #                  floors.
+    # Variant B      = improved_hrp_stacked_defense_self_gated_overlay
+    #                  Apply a lighter regime haircut to sleeves that already
+    #                  self-gate internally (dual_momentum, cta_trend, taa_10m_sma)
+    #                  so they are not de-risked twice in good states.
+    # Variant C      = improved_hrp_stacked_defense_asymmetric_speed
+    #                  Keep the control overlay, but let re-risking happen faster
+    #                  in improving / strong-neutral states while leaving
+    #                  deteriorating states at the baseline speed.
+    # Variant D      = improved_hrp_stacked_defense_continuous_self_gated_combo
+    #                  Best justified combination after the standalone readout:
+    #                  pair the smoother continuous neutral mapping (A) with the
+    #                  lighter haircut on self-gated sleeves (B). This tests
+    #                  whether the deployment gain from A can survive once the
+    #                  double-defense tax on internally gated sleeves is reduced.
+    # ======================================================================
+    {
+        "version_name": "improved_hrp_stacked_defense_continuous_overlay",
+        "method_name": "hrp",
+        "subset_name": "stacked_defense_continuous_overlay",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "continuous_neutral_mapping",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "fragile_plus",
+        "layer3_expression_mode": "none",
+        "target_vol_ceil": 1.00,
+        "note": "Variant A: continuous overlay mapping only. Neutral-state deployment is mapped continuously from risk_regime_score instead of relying on the current blunt neutral response, while calm/recovery/stress keep the control floors.",
+    },
+    {
+        "version_name": "improved_hrp_stacked_defense_self_gated_overlay",
+        "method_name": "hrp",
+        "subset_name": "stacked_defense_self_gated_overlay",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "fragile_plus",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_self_gated",
+        "target_vol_ceil": 1.00,
+        "note": "Variant B: reduced overlay penalty on self-gated sleeves only. Dual momentum, CTA trend, and TAA already gate risk internally, so the portfolio overlay applies a lighter regime haircut to them outside stressed states.",
+    },
+    {
+        "version_name": "improved_hrp_stacked_defense_asymmetric_speed",
+        "method_name": "hrp",
+        "subset_name": "stacked_defense_asymmetric_speed",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "fragile_plus",
+        "layer3_expression_mode": "none",
+        "speed_mode": "asymmetric_reallocation",
+        "improving_speed": 0.80,
+        "deteriorating_speed": 0.40,
+        "target_vol_ceil": 1.00,
+        "note": "Variant C: asymmetric reallocation speed only. Strong-neutral and improving good states re-risk faster, while deteriorating states stay on the baseline de-risk speed rather than slowing the defense response.",
+    },
+    {
+        "version_name": "improved_hrp_stacked_defense_continuous_self_gated_combo",
+        "method_name": "hrp",
+        "subset_name": "stacked_defense_continuous_self_gated_combo",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "continuous_neutral_mapping",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "fragile_plus",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_self_gated",
+        "target_vol_ceil": 1.00,
+        "note": "Variant D: justified A+B combination only. Keep the continuous neutral-state overlay map, but reduce the portfolio-level haircut on sleeves that already self-gate internally so the smoother overlay does not still double-tax the same sleeves.",
+    },
 ]
 
 
@@ -2063,6 +2256,10 @@ for version in version_specs:
         rerisk_speed=version["rerisk_speed"],
         state_tilt=version["state_tilt"],
         layer3_expression_mode=version.get("layer3_expression_mode", "none"),
+        overlay_penalty_mode=version.get("overlay_penalty_mode", "none"),
+        speed_mode=version.get("speed_mode", "default"),
+        improving_speed=version.get("improving_speed"),
+        deteriorating_speed=version.get("deteriorating_speed"),
         beta_overlay_mode=version.get("beta_overlay_mode", "none"),
         target_vol_ceil=version["target_vol_ceil"],
         market_state_history=market_state_history,
@@ -2130,6 +2327,12 @@ for version in version_specs:
     sleeve_bil = (cash_weight - overlay_cash).clip(lower=0.0)
     beta_overlay_spy = beta_overlay_panel.get("beta_overlay_spy", pd.Series(0.0, index=weight_panel.index))
     beta_overlay_bil = beta_overlay_panel.get("beta_overlay_bil", pd.Series(0.0, index=weight_panel.index))
+    diag_idx = diagnostics.copy()
+    if not diag_idx.empty:
+        diag_idx = diag_idx.set_index("Date").sort_index()
+        diag_idx.index = pd.to_datetime(diag_idx.index).tz_localize(None)
+    else:
+        diag_idx = pd.DataFrame(index=weight_panel.index)
     latest_date = weight_panel.index[-1]
     current_offensive = offensive_weight.loc[latest_date]
     current_defensive = defensive_weight.loc[latest_date]
@@ -2176,6 +2379,100 @@ for version in version_specs:
     )
 
     for date in weight_panel.index:
+        diag_row = diag_idx.loc[date] if date in diag_idx.index else pd.Series(dtype=float)
+        regime_multiplier = float(diag_row.get("regime_multiplier", np.nan)) if len(diag_row) else np.nan
+        target_vol_multiplier = float(diag_row.get("target_vol_multiplier", np.nan)) if len(diag_row) else np.nan
+        gross_multiplier = float(diag_row.get("gross_multiplier", np.nan)) if len(diag_row) else np.nan
+        self_gated_multiplier = float(diag_row.get("final_self_gated_multiplier", gross_multiplier)) if len(diag_row) else np.nan
+        non_self_gated_multiplier = float(diag_row.get("final_non_self_gated_multiplier", gross_multiplier)) if len(diag_row) else np.nan
+        if pd.isna(regime_multiplier):
+            binding_source = "none"
+        elif abs(regime_multiplier - target_vol_multiplier) <= 1e-6 and regime_multiplier < 0.999:
+            binding_source = "both"
+        elif regime_multiplier < target_vol_multiplier and regime_multiplier < 0.999:
+            binding_source = "regime"
+        elif target_vol_multiplier < regime_multiplier and target_vol_multiplier < 0.999:
+            binding_source = "target_vol"
+        else:
+            binding_source = "none"
+        version_diagnostics_timeseries_rows.append(
+            {
+                "Date": str(date.date()),
+                "version_name": version["version_name"],
+                "market_state": market_state_history.loc[date, "market_state"] if date in market_state_history.index else None,
+                "regime_multiplier": regime_multiplier,
+                "target_vol_multiplier": target_vol_multiplier,
+                "gross_multiplier": gross_multiplier,
+                "predicted_ann_vol": float(diag_row.get("predicted_ann_vol", np.nan)) if len(diag_row) else np.nan,
+                "dynamic_speed": float(diag_row.get("dynamic_speed", np.nan)) if len(diag_row) else np.nan,
+                "regime_binding": float(diag_row.get("regime_binding", 0.0)) if len(diag_row) else 0.0,
+                "target_vol_binding": float(diag_row.get("target_vol_binding", 0.0)) if len(diag_row) else 0.0,
+                "both_binding": float(diag_row.get("both_binding", 0.0)) if len(diag_row) else 0.0,
+                "binding_source": binding_source,
+                "self_gated_relief": float(diag_row.get("self_gated_relief", 0.0)) if len(diag_row) else 0.0,
+                "final_self_gated_multiplier": self_gated_multiplier,
+                "final_non_self_gated_multiplier": non_self_gated_multiplier,
+                "overlay_penalty_mode": diag_row.get("overlay_penalty_mode", "none") if len(diag_row) else "none",
+                "speed_mode": diag_row.get("speed_mode", "default") if len(diag_row) else "default",
+            }
+        )
+
+        sleeve_row = sleeve_alloc.loc[date] if date in sleeve_alloc.index else pd.Series(dtype=float)
+        sleeve_internal_bil_weight = 0.0
+        self_gated_internal_bil_weight = 0.0
+        self_gated_overlay_cut_total = 0.0
+        self_gated_overlay_cut_risky = 0.0
+        non_self_gated_overlay_cut_total = 0.0
+        non_self_gated_overlay_cut_risky = 0.0
+        for sleeve_name in [name for name in sleeve_row.index if not str(name).startswith("cash::")]:
+            post_weight = float(sleeve_row.get(sleeve_name, 0.0) or 0.0)
+            sleeve_positions_row = (
+                base_sleeve_positions[sleeve_name].loc[date]
+                if sleeve_name in base_sleeve_positions and date in base_sleeve_positions[sleeve_name].index
+                else pd.Series(dtype=float)
+            )
+            internal_bil = float(sleeve_positions_row.get(ns5["cash_proxy"], 0.0) or 0.0)
+            multiplier_used = self_gated_multiplier if sleeve_name in SELF_GATED_SLEEVES else non_self_gated_multiplier
+            pre_overlay_weight = post_weight / multiplier_used if pd.notna(multiplier_used) and multiplier_used > 1e-9 else post_weight
+            overlay_cut_total = max(0.0, pre_overlay_weight - post_weight)
+            overlay_cut_risky = overlay_cut_total * max(0.0, 1.0 - internal_bil)
+            sleeve_internal_bil_contrib = post_weight * internal_bil
+            sleeve_internal_bil_weight += sleeve_internal_bil_contrib
+            if sleeve_name in SELF_GATED_SLEEVES:
+                self_gated_internal_bil_weight += sleeve_internal_bil_contrib
+                self_gated_overlay_cut_total += overlay_cut_total
+                self_gated_overlay_cut_risky += overlay_cut_risky
+            else:
+                non_self_gated_overlay_cut_total += overlay_cut_total
+                non_self_gated_overlay_cut_risky += overlay_cut_risky
+        stacked_defense_timeseries_rows.append(
+            {
+                "Date": str(date.date()),
+                "version_name": version["version_name"],
+                "market_state": market_state_history.loc[date, "market_state"] if date in market_state_history.index else None,
+                "strong_neutral": float(
+                    date in market_state_history.index
+                    and market_state_history.loc[date, "market_state"] == "neutral_mixed"
+                    and float(market_state_history.loc[date, "market_trend_positive"]) > 0.0
+                    and float(market_state_history.loc[date, "breadth_sma_43"]) >= 0.55
+                    and float(market_state_history.loc[date, "breadth_26w_mom"]) >= 0.50
+                ),
+                "bil_weight": cash_weight.loc[date],
+                "overlay_cash_weight": overlay_cash.loc[date],
+                "sleeve_bil_weight": sleeve_bil.loc[date],
+                "sleeve_internal_bil_weight": sleeve_internal_bil_weight,
+                "self_gated_internal_bil_weight": self_gated_internal_bil_weight,
+                "self_gated_overlay_cut_total": self_gated_overlay_cut_total,
+                "self_gated_overlay_cut_risky": self_gated_overlay_cut_risky,
+                "non_self_gated_overlay_cut_total": non_self_gated_overlay_cut_total,
+                "non_self_gated_overlay_cut_risky": non_self_gated_overlay_cut_risky,
+                "regime_multiplier": regime_multiplier,
+                "target_vol_multiplier": target_vol_multiplier,
+                "gross_multiplier": gross_multiplier,
+                "binding_source": binding_source,
+            }
+        )
+
         allocation_driver_timeseries_rows.append(
             {
                 "Date": str(date.date()),
@@ -2313,6 +2610,8 @@ rally_window_df = pd.DataFrame(rally_window_rows)
 targeted_window_df = pd.DataFrame(targeted_window_rows)
 window_capture_df = pd.DataFrame(window_capture_rows)
 rerisk_lag_df = pd.DataFrame(rerisk_lag_rows)
+version_diagnostics_timeseries_df = pd.DataFrame(version_diagnostics_timeseries_rows)
+stacked_defense_df = pd.DataFrame(stacked_defense_timeseries_rows)
 off_def_cash_rallies_df = rally_window_df[
     [
         "version_name",
@@ -2354,6 +2653,52 @@ version_df["production_score"] = (
 portfolio_version_rows = version_df.to_dict(orient="records")
 upside_capture_df = upside_capture_df.merge(version_df[["version_name", "production_score"]], on="version_name", how="left")
 
+if not version_diagnostics_timeseries_df.empty:
+    version_diagnostics_state_summary_df = (
+        version_diagnostics_timeseries_df.groupby(["version_name", "market_state"], dropna=False)[
+            [
+                "regime_multiplier",
+                "target_vol_multiplier",
+                "gross_multiplier",
+                "dynamic_speed",
+                "regime_binding",
+                "target_vol_binding",
+                "both_binding",
+                "self_gated_relief",
+                "final_self_gated_multiplier",
+                "final_non_self_gated_multiplier",
+            ]
+        ]
+        .mean()
+        .reset_index()
+    )
+else:
+    version_diagnostics_state_summary_df = pd.DataFrame()
+
+if not stacked_defense_df.empty:
+    stacked_defense_state_summary_df = (
+        stacked_defense_df.groupby(["version_name", "market_state", "strong_neutral"], dropna=False)[
+            [
+                "bil_weight",
+                "overlay_cash_weight",
+                "sleeve_bil_weight",
+                "sleeve_internal_bil_weight",
+                "self_gated_internal_bil_weight",
+                "self_gated_overlay_cut_total",
+                "self_gated_overlay_cut_risky",
+                "non_self_gated_overlay_cut_total",
+                "non_self_gated_overlay_cut_risky",
+                "regime_multiplier",
+                "target_vol_multiplier",
+                "gross_multiplier",
+            ]
+        ]
+        .mean()
+        .reset_index()
+    )
+else:
+    stacked_defense_state_summary_df = pd.DataFrame()
+
 
 upside_capture_df.to_csv(LAYER3_DIR / "upside_capture_analysis.csv", index=False)
 rally_window_df.to_csv(LAYER3_DIR / "rally_window_attribution.csv", index=False)
@@ -2373,6 +2718,10 @@ pd.concat(portfolio_version_subperiod_rows, ignore_index=True).to_csv(LAYER3_DIR
 pd.DataFrame(allocation_driver_rows).to_csv(LAYER3_DIR / "allocation_driver_summary.csv", index=False)
 pd.DataFrame(allocation_driver_breakdown_rows).to_csv(LAYER3_DIR / "allocation_driver_breakdown.csv", index=False)
 pd.DataFrame(allocation_driver_timeseries_rows).to_csv(LAYER3_DIR / "allocation_driver_timeseries.csv", index=False)
+version_diagnostics_timeseries_df.to_csv(LAYER3_DIR / "portfolio_version_diagnostics_timeseries.csv", index=False)
+version_diagnostics_state_summary_df.to_csv(LAYER3_DIR / "portfolio_version_diagnostics_by_state.csv", index=False)
+stacked_defense_df.to_csv(LAYER3_DIR / "stacked_defense_timeseries.csv", index=False)
+stacked_defense_state_summary_df.to_csv(LAYER3_DIR / "stacked_defense_by_state.csv", index=False)
 
 print("Saved improvement artifacts:")
 for name in [
@@ -2390,6 +2739,10 @@ for name in [
     "data/05_layer3_portfolio_construction/sleeve_subset_comparison.csv",
     "data/05_layer3_portfolio_construction/portfolio_version_comparison.csv",
     "data/05_layer3_portfolio_construction/allocation_driver_summary.csv",
+    "data/05_layer3_portfolio_construction/portfolio_version_diagnostics_timeseries.csv",
+    "data/05_layer3_portfolio_construction/portfolio_version_diagnostics_by_state.csv",
+    "data/05_layer3_portfolio_construction/stacked_defense_timeseries.csv",
+    "data/05_layer3_portfolio_construction/stacked_defense_by_state.csv",
     "data/05_layer3_portfolio_construction/upside_capture_analysis.csv",
     "data/05_layer3_portfolio_construction/rally_window_attribution.csv",
     "data/05_layer3_portfolio_construction/targeted_window_summary.csv",

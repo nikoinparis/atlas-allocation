@@ -384,7 +384,6 @@ function buildBreakdownRows(rows: Array<Record<string, string | number | boolean
     .slice(0, 8);
 }
 
-export function DashboardShell() {
 export function DashboardShell({ initialData }: { initialData: DashboardData | null }) {
   const [data, setData] = useState<DashboardData | null>(initialData);
   const [error, setError] = useState<string | null>(null);

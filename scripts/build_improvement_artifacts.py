@@ -253,10 +253,71 @@ def build_market_state_history() -> pd.DataFrame:
     state_reason.loc[recovery_confirmed_mask] = "recent stress plus confirmed breadth, 13w and 26w momentum, trend, low drawdown, and low risk score"
     state_reason.loc[calm_mask] = "calm regime with strong trend breadth"
 
+    # --- Causal transition-probability features ----------------------------------
+    # For each week t (in state S), compute trailing-window estimates of
+    #   P(next state == S | current state == S)            -> transition_persistence_prob
+    #   P(next state in good regimes | current state == S) -> transition_good_state_prob
+    # using only transitions that completed strictly before t (shift(1) after rolling).
+    state_series = pd.Series(state.values, index=regime_states.index, dtype=object)
+    state_next = state_series.shift(-1)
+    pair_df = pd.DataFrame({"curr": state_series, "next": state_next}).dropna(subset=["next"])
+    good_states_set = {"calm_trend", "recovery_fragile", "recovery_confirmed"}
+    pair_df["stays"] = (pair_df["curr"] == pair_df["next"]).astype(float)
+    pair_df["good_next"] = pair_df["next"].isin(good_states_set).astype(float)
+    pair_df["non_stress_next"] = (~pair_df["next"].eq("stressed_panic")).astype(float)
+
+    TRANSITION_WINDOW_WEEKS = 156  # ~3 years
+    MIN_TRANSITION_PAIRS = 10
+
+    persistence_prob = pd.Series(np.nan, index=regime_states.index, dtype=float)
+    good_state_prob = pd.Series(np.nan, index=regime_states.index, dtype=float)
+    non_stress_prob = pd.Series(np.nan, index=regime_states.index, dtype=float)
+    for state_name in pair_df["curr"].dropna().unique():
+        subset_mask = pair_df["curr"] == state_name
+        if not subset_mask.any():
+            continue
+        subset = pair_df.loc[subset_mask]
+        rolling_stays = (
+            subset["stays"].rolling(TRANSITION_WINDOW_WEEKS, min_periods=MIN_TRANSITION_PAIRS).mean().shift(1)
+        )
+        rolling_good = (
+            subset["good_next"].rolling(TRANSITION_WINDOW_WEEKS, min_periods=MIN_TRANSITION_PAIRS).mean().shift(1)
+        )
+        rolling_non_stress = (
+            subset["non_stress_next"].rolling(TRANSITION_WINDOW_WEEKS, min_periods=MIN_TRANSITION_PAIRS).mean().shift(1)
+        )
+        mask_full = state_series == state_name
+        if not mask_full.any():
+            continue
+        stays_ff = rolling_stays.reindex(state_series.index, method="ffill")
+        good_ff = rolling_good.reindex(state_series.index, method="ffill")
+        non_stress_ff = rolling_non_stress.reindex(state_series.index, method="ffill")
+        persistence_prob.loc[mask_full] = stays_ff.loc[mask_full]
+        good_state_prob.loc[mask_full] = good_ff.loc[mask_full]
+        non_stress_prob.loc[mask_full] = non_stress_ff.loc[mask_full]
+
+    # --- Stabilized state (one-sided hysteresis on entry into stressed_panic) -----
+    # Delay the first week of stressed_panic entry by one week unless the drawdown is
+    # already severe (<= -10%) or the risk_regime_score is very high (> 0.85). Exits
+    # are NOT delayed; this only dampens one-week false entries into stress.
+    risk_score_full = risk_score.reindex(regime_states.index).fillna(0.0)
+    dd_full = market_drawdown.reindex(regime_states.index).fillna(0.0)
+    severe_mask = (dd_full <= -0.10) | (risk_score_full > 0.85)
+    state_shift_prev = state_series.shift(1)
+    just_entered_stress = (
+        state_series.eq("stressed_panic")
+        & state_shift_prev.ne("stressed_panic")
+        & ~severe_mask.reindex(state_series.index).fillna(False)
+    )
+    market_state_stable = state_series.copy()
+    market_state_stable.loc[just_entered_stress] = state_shift_prev.loc[just_entered_stress]
+    market_state_stable = market_state_stable.fillna(state_series)
+
     out = pd.DataFrame(
         {
             "Date": regime_states.index,
             "market_state": state.values,
+            "market_state_stable": market_state_stable.reindex(regime_states.index).values,
             "market_state_reason": state_reason.values,
             "risk_state": regime_states["risk_state"].values,
             "signal_environment": regime_states.get("signal_environment", pd.Series(index=regime_states.index, dtype=object)).values,
@@ -270,6 +331,9 @@ def build_market_state_history() -> pd.DataFrame:
             "recent_stress_26w": recent_stress.reindex(regime_states.index).astype(float).values,
             "avg_corr_risk_off_z": avg_corr_risk_off_z.reindex(regime_states.index).values,
             "google_fear_z_tradable": google_fear.reindex(regime_states.index).values,
+            "transition_persistence_prob": persistence_prob.reindex(regime_states.index).values,
+            "transition_good_state_prob": good_state_prob.reindex(regime_states.index).values,
+            "transition_non_stress_prob": non_stress_prob.reindex(regime_states.index).values,
         }
     ).set_index("Date")
     out.index = pd.to_datetime(out.index).tz_localize(None)
@@ -283,15 +347,37 @@ def build_variant_regime_states(
     overlay_variant: str,
 ) -> pd.DataFrame:
     adjusted = base_regime_states.copy()
-    adjusted = adjusted.join(market_state_history[["market_state", "market_state_reason", "breadth_sma_43", "breadth_26w_mom", "market_trend_positive"]], how="left")
+    extra_columns = [
+        "market_state",
+        "market_state_reason",
+        "breadth_sma_43",
+        "breadth_26w_mom",
+        "market_trend_positive",
+    ]
+    for optional_column in (
+        "transition_persistence_prob",
+        "transition_good_state_prob",
+        "transition_non_stress_prob",
+        "market_state_stable",
+    ):
+        if market_state_history is not None and optional_column in market_state_history.columns:
+            extra_columns.append(optional_column)
+    adjusted = adjusted.join(market_state_history[extra_columns], how="left")
     if adjusted.empty or "overlay_multiplier" not in adjusted.columns:
         return adjusted
     if overlay_variant == "baseline":
         return adjusted
 
+    # Variants with a raised neutral base (they lift the overall neutral floor modestly).
+    neutral_floor_overrides = {
+        "good_state_strong_offense": 0.83,
+        "good_state_combo_plus": 0.83,
+    }
+    neutral_floor = neutral_floor_overrides.get(overlay_variant, 0.80)
+
     neutral_mask = adjusted["risk_state"].eq("neutral")
     stressed_mask = adjusted["risk_state"].eq("stressed")
-    adjusted.loc[neutral_mask, "overlay_multiplier"] = adjusted.loc[neutral_mask, "overlay_multiplier"].clip(lower=0.80)
+    adjusted.loc[neutral_mask, "overlay_multiplier"] = adjusted.loc[neutral_mask, "overlay_multiplier"].clip(lower=neutral_floor)
     adjusted.loc[stressed_mask, "overlay_multiplier"] = adjusted.loc[stressed_mask, "overlay_multiplier"].clip(lower=0.40)
 
     if overlay_variant == "looser_neutral_stress":
@@ -397,6 +483,86 @@ def build_variant_regime_states(
         adjusted.loc[strong_neutral_mask, "overlay_multiplier"] = adjusted.loc[strong_neutral_mask, "overlay_multiplier"].clip(lower=0.90)
         return adjusted
 
+    # ------------------------------------------------------------------
+    # Good-state transition-aware / stabilizer / mix-rotation family
+    # (current research task, control = improved_hrp_good_state_fragile_combo)
+    # ------------------------------------------------------------------
+    transition_good_prob = adjusted.get("transition_good_state_prob", pd.Series(np.nan, index=adjusted.index)).fillna(0.0)
+    transition_persistence = adjusted.get("transition_persistence_prob", pd.Series(np.nan, index=adjusted.index)).fillna(0.0)
+    transition_non_stress = adjusted.get("transition_non_stress_prob", pd.Series(np.nan, index=adjusted.index)).fillna(0.0)
+
+    if overlay_variant == "good_state_fragile_transition_aware":
+        # Variant A. Keep the control's floors but, when the trailing-window transition
+        # matrix says the current regime is both persistent (>= 0.70) AND rarely
+        # transitions to stressed_panic (>= 0.92 P(non-stress next)), lift the
+        # strong-neutral floor from 0.94 -> 0.97. This targets observed cash drag
+        # in strong-neutral weeks where the regime engine itself predicts benign
+        # continuation. Using P(non-stress next) rather than P(next in good states)
+        # is the decision-useful framing: persistence itself is a benign outcome
+        # from neutral_mixed, since neutral_mixed rarely steps directly to stress.
+        adjusted.loc[recovery_fragile_mask, "overlay_multiplier"] = adjusted.loc[recovery_fragile_mask, "overlay_multiplier"].clip(lower=0.96)
+        adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"] = adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"].clip(lower=0.92)
+        adjusted.loc[calm_mask, "overlay_multiplier"] = adjusted.loc[calm_mask, "overlay_multiplier"].clip(lower=1.00)
+        adjusted.loc[strong_neutral_mask, "overlay_multiplier"] = adjusted.loc[strong_neutral_mask, "overlay_multiplier"].clip(lower=0.94)
+        transition_boost_mask = (
+            strong_neutral_mask
+            & (transition_non_stress >= 0.92)
+            & (transition_persistence >= 0.70)
+        )
+        adjusted.loc[transition_boost_mask, "overlay_multiplier"] = adjusted.loc[transition_boost_mask, "overlay_multiplier"].clip(lower=0.97)
+        return adjusted
+
+    if overlay_variant == "good_state_fragile_stabilizer":
+        # Variant B. Identical floors to control, but run with market_state_stable
+        # (one-sided hysteresis on entry into stressed_panic). The caller substitutes
+        # market_state_stable into market_state upstream, so the masks here already
+        # reflect the stabilized state; no extra overlay work needed.
+        adjusted.loc[recovery_fragile_mask, "overlay_multiplier"] = adjusted.loc[recovery_fragile_mask, "overlay_multiplier"].clip(lower=0.96)
+        adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"] = adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"].clip(lower=0.92)
+        adjusted.loc[calm_mask, "overlay_multiplier"] = adjusted.loc[calm_mask, "overlay_multiplier"].clip(lower=1.00)
+        adjusted.loc[strong_neutral_mask, "overlay_multiplier"] = adjusted.loc[strong_neutral_mask, "overlay_multiplier"].clip(lower=0.94)
+        return adjusted
+
+    if overlay_variant == "good_state_strong_offense":
+        # Variant C. Raise the strong-neutral floor 0.94 -> 0.98 and the neutral base
+        # 0.80 -> 0.83 (applied earlier) so clearly-benign states carry even less
+        # residual overlay cash. Keeps fragile at 0.96 and confirmed at 0.92.
+        adjusted.loc[recovery_fragile_mask, "overlay_multiplier"] = adjusted.loc[recovery_fragile_mask, "overlay_multiplier"].clip(lower=0.96)
+        adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"] = adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"].clip(lower=0.92)
+        adjusted.loc[calm_mask, "overlay_multiplier"] = adjusted.loc[calm_mask, "overlay_multiplier"].clip(lower=1.00)
+        adjusted.loc[strong_neutral_mask, "overlay_multiplier"] = adjusted.loc[strong_neutral_mask, "overlay_multiplier"].clip(lower=0.98)
+        return adjusted
+
+    if overlay_variant == "good_state_mix_rotation":
+        # Variant D. Same overlay floors as control; the change is entirely in the
+        # state-conditioned sleeve tilt (fragile_plus_mix_rotation), which rotates
+        # weight away from composite_regime_conditioned in calm_trend and toward the
+        # trend-following trio (dual_momentum / cta_trend / composite_selective) in
+        # calm + fragile.
+        adjusted.loc[recovery_fragile_mask, "overlay_multiplier"] = adjusted.loc[recovery_fragile_mask, "overlay_multiplier"].clip(lower=0.96)
+        adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"] = adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"].clip(lower=0.92)
+        adjusted.loc[calm_mask, "overlay_multiplier"] = adjusted.loc[calm_mask, "overlay_multiplier"].clip(lower=1.00)
+        adjusted.loc[strong_neutral_mask, "overlay_multiplier"] = adjusted.loc[strong_neutral_mask, "overlay_multiplier"].clip(lower=0.94)
+        return adjusted
+
+    if overlay_variant == "good_state_combo_plus":
+        # Variant E. Best justified combination after standalone pass: keeps the
+        # control fragile/confirmed/calm floors, layers in the transition-aware
+        # strong-neutral boost (A) and the stronger strong-neutral floor (C), and
+        # pairs with the mix-rotation tilt (D) at the tilt layer. Also uses the
+        # stabilizer (B) via market_state_stable at the caller.
+        adjusted.loc[recovery_fragile_mask, "overlay_multiplier"] = adjusted.loc[recovery_fragile_mask, "overlay_multiplier"].clip(lower=0.96)
+        adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"] = adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"].clip(lower=0.92)
+        adjusted.loc[calm_mask, "overlay_multiplier"] = adjusted.loc[calm_mask, "overlay_multiplier"].clip(lower=1.00)
+        adjusted.loc[strong_neutral_mask, "overlay_multiplier"] = adjusted.loc[strong_neutral_mask, "overlay_multiplier"].clip(lower=0.97)
+        transition_boost_mask = (
+            strong_neutral_mask
+            & (transition_non_stress >= 0.92)
+            & (transition_persistence >= 0.70)
+        )
+        adjusted.loc[transition_boost_mask, "overlay_multiplier"] = adjusted.loc[transition_boost_mask, "overlay_multiplier"].clip(lower=0.98)
+        return adjusted
+
     # Fallback: behave like looser_neutral_stress if an unknown variant string is passed.
     return adjusted
 
@@ -437,6 +603,21 @@ def apply_state_conditioned_tilt(raw_weights: pd.Series, market_state: str | Non
             for name in defensive_sleeves:
                 tilted.loc[name] *= 0.94
             return ns5["normalize_long_only"](tilted, max_weight=ns5["MAX_SLEEVE_WEIGHT"])
+        if tilt_mode == "fragile_plus_mix_rotation":
+            # Variant D (fragile leg). Like fragile_plus but leans harder toward the
+            # trend-following trio observed to score best in recovery_fragile weeks
+            # (cta_trend and dual_momentum by sleeve-by-state Sharpe).
+            if "cta_trend_long_only" in tilted.index:
+                tilted.loc["cta_trend_long_only"] *= 1.15
+            if "dual_momentum_topn" in tilted.index:
+                tilted.loc["dual_momentum_topn"] *= 1.12
+            if "composite_selective_signals" in tilted.index:
+                tilted.loc["composite_selective_signals"] *= 1.06
+            if "composite_regime_conditioned" in tilted.index:
+                tilted.loc["composite_regime_conditioned"] *= 0.88
+            if "taa_10m_sma" in tilted.index:
+                tilted.loc["taa_10m_sma"] *= 0.94
+            return ns5["normalize_long_only"](tilted, max_weight=ns5["MAX_SLEEVE_WEIGHT"])
         # Fragile: modest re-risk only. Never lean hard into an unconfirmed bounce.
         if tilt_mode in {"modest", "split_modest", "split_aggressive"}:
             for name in offensive_sleeves:
@@ -450,8 +631,10 @@ def apply_state_conditioned_tilt(raw_weights: pd.Series, market_state: str | Non
             for name in defensive_sleeves:
                 tilted.loc[name] *= 0.94
             return ns5["normalize_long_only"](tilted, max_weight=ns5["MAX_SLEEVE_WEIGHT"])
-        if tilt_mode in {"modest", "split_modest", "fragile_plus"}:
-            # Treat confirmed like the legacy "modest" tilt.
+        if tilt_mode in {"modest", "split_modest", "fragile_plus", "fragile_plus_mix_rotation"}:
+            # Treat confirmed like the legacy "modest" tilt. Do not revive a stronger
+            # confirmed-offense ladder in the mix-rotation variant; the rotation is
+            # concentrated in fragile + calm only.
             for name in offensive_sleeves:
                 tilted.loc[name] *= 1.12
             for name in defensive_sleeves:
@@ -463,12 +646,32 @@ def apply_state_conditioned_tilt(raw_weights: pd.Series, market_state: str | Non
             for name in defensive_sleeves:
                 tilted.loc[name] *= 0.82
     elif market_state == "calm_trend":
-        for name in offensive_sleeves:
-            tilted.loc[name] *= 1.08
-        if "composite_regime_conditioned" in tilted.index:
-            tilted.loc["composite_regime_conditioned"] *= 0.94
-        if "taa_10m_sma" in tilted.index:
-            tilted.loc["taa_10m_sma"] *= 0.96
+        if tilt_mode == "fragile_plus_mix_rotation":
+            # Variant D (calm leg). Rotate away from composite_regime_conditioned
+            # (lowest sleeve Sharpe in calm weeks) and toward the trend-following
+            # trio. Keep taa_10m_sma roughly neutral so the rotation is about mix
+            # quality, not simply adding more defense.
+            if "dual_momentum_topn" in tilted.index:
+                tilted.loc["dual_momentum_topn"] *= 1.14
+            if "cta_trend_long_only" in tilted.index:
+                tilted.loc["cta_trend_long_only"] *= 1.14
+            if "composite_selective_signals" in tilted.index:
+                tilted.loc["composite_selective_signals"] *= 1.12
+            if "composite_selective_concentrated" in tilted.index:
+                tilted.loc["composite_selective_concentrated"] *= 1.10
+            if "composite_equal_weight" in tilted.index:
+                tilted.loc["composite_equal_weight"] *= 1.05
+            if "composite_regime_conditioned" in tilted.index:
+                tilted.loc["composite_regime_conditioned"] *= 0.80
+            if "taa_10m_sma" in tilted.index:
+                tilted.loc["taa_10m_sma"] *= 0.98
+        else:
+            for name in offensive_sleeves:
+                tilted.loc[name] *= 1.08
+            if "composite_regime_conditioned" in tilted.index:
+                tilted.loc["composite_regime_conditioned"] *= 0.94
+            if "taa_10m_sma" in tilted.index:
+                tilted.loc["taa_10m_sma"] *= 0.96
     elif market_state == "stressed_panic":
         for name in offensive_sleeves:
             tilted.loc[name] *= 0.92
@@ -672,6 +875,7 @@ def run_subset_custom(
     layer3_expression_mode: str = "none",
     beta_overlay_mode: str = "none",
     market_state_history: pd.DataFrame | None = None,
+    stabilize_market_state: bool = False,
     sleeve_return_panel: pd.DataFrame,
     sleeve_positions: dict[str, pd.DataFrame],
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame, dict]:
@@ -679,7 +883,19 @@ def run_subset_custom(
     if not subset:
         raise ValueError(f"No valid sleeves for subset {subset_name}")
     method_spec = next(spec for spec in ns5["method_specs"] if spec["method_name"] == method_name)
-    variant_regime_states = build_variant_regime_states(ns5["regime_states"], market_state_history, overlay_variant)
+    # Optional one-sided hysteresis: swap in stabilized market_state (delays entry
+    # into stressed_panic by 1 week unless the entry is severe). Only used by the
+    # stabilizer variants; other variants continue to use the raw market_state.
+    if (
+        stabilize_market_state
+        and market_state_history is not None
+        and "market_state_stable" in market_state_history.columns
+    ):
+        effective_market_state_history = market_state_history.copy()
+        effective_market_state_history["market_state"] = effective_market_state_history["market_state_stable"]
+    else:
+        effective_market_state_history = market_state_history
+    variant_regime_states = build_variant_regime_states(ns5["regime_states"], effective_market_state_history, overlay_variant)
     conviction_inputs = {
         key: value.reindex(columns=[name for name in subset if name in value.columns])
         for key, value in ns5["conviction_inputs"].items()
@@ -696,8 +912,8 @@ def run_subset_custom(
 
     for date in all_dates:
         market_state_row = (
-            market_state_history.loc[date]
-            if market_state_history is not None and date in market_state_history.index
+            effective_market_state_history.loc[date]
+            if effective_market_state_history is not None and date in effective_market_state_history.index
             else pd.Series(dtype=float)
         )
         market_state = market_state_row.get("market_state") if isinstance(market_state_row, pd.Series) else None
@@ -1737,7 +1953,96 @@ version_specs = [
         "state_tilt": "fragile_plus",
         "layer3_expression_mode": "none",
         "target_vol_ceil": 1.00,
-        "note": "Variant E: best justified combination after the standalone pass. It keeps the stronger good-state overlay floors from Variant B and combines them with the modest fragile-recovery expression from Variant D.",
+        "note": "Variant E (prior round): best justified combination after the standalone pass. Keeps the stronger good-state overlay floors and combines them with modest fragile-recovery expression.",
+    },
+    # ======================================================================
+    # Transition-aware / stabilizer / mix-rotation study (current research task)
+    #
+    # Control        = improved_hrp_good_state_fragile_combo (above).
+    # Variant A      = improved_hrp_good_state_transition_aware
+    #                  Uses trailing-window P(stay) and P(next in good state) to
+    #                  lift the strong-neutral floor only when the current regime
+    #                  is observationally both persistent and benign-continuing.
+    # Variant B      = improved_hrp_good_state_stabilizer
+    #                  One-sided hysteresis on entry into stressed_panic to damp
+    #                  1-week false entries; does not delay exits.
+    # Variant C      = improved_hrp_good_state_strong_offense
+    #                  Raises the strong-neutral floor 0.94 -> 0.98 and the base
+    #                  neutral floor 0.80 -> 0.83 so clearly benign states carry
+    #                  less residual overlay cash.
+    # Variant D      = improved_hrp_good_state_mix_rotation
+    #                  Rotates away from composite_regime_conditioned in calm and
+    #                  recovery_fragile (low sleeve-by-state Sharpe) and toward
+    #                  the trend-following trio; no overlay floor change.
+    # Variant E      = improved_hrp_good_state_combo_plus
+    #                  Combines A + B + C + D where each helped or was neutral.
+    # ======================================================================
+    {
+        "version_name": "improved_hrp_good_state_transition_aware",
+        "method_name": "hrp",
+        "subset_name": "uptrend_participation_good_state_transition_aware",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_transition_aware",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "fragile_plus",
+        "layer3_expression_mode": "none",
+        "target_vol_ceil": 1.00,
+        "note": "Variant A: adds an observable, causal transition-matrix feature (trailing 156w P(stay) and P(next in good state)) and lifts the strong-neutral floor 0.94 -> 0.97 only when both are high, so benign-continuing regimes deploy more fully without globally relaxing the neutral stance.",
+    },
+    {
+        "version_name": "improved_hrp_good_state_stabilizer",
+        "method_name": "hrp",
+        "subset_name": "uptrend_participation_good_state_stabilizer",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_stabilizer",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "fragile_plus",
+        "layer3_expression_mode": "none",
+        "target_vol_ceil": 1.00,
+        "stabilize_market_state": True,
+        "note": "Variant B: one-sided hysteresis on entry into stressed_panic. A new stressed week is delayed by one week unless drawdown is already <= -10% or the risk_regime_score > 0.85. Exits are never delayed, so the de-risking response to real stress is preserved.",
+    },
+    {
+        "version_name": "improved_hrp_good_state_strong_offense",
+        "method_name": "hrp",
+        "subset_name": "uptrend_participation_good_state_strong_offense",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_strong_offense",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "fragile_plus",
+        "layer3_expression_mode": "none",
+        "target_vol_ceil": 1.00,
+        "note": "Variant C: stronger strong-neutral and calm offense. Raises the strong-neutral overlay floor 0.94 -> 0.98 and the base neutral floor 0.80 -> 0.83 so the 45 percent of history that sits in neutral_mixed carries less residual overlay cash.",
+    },
+    {
+        "version_name": "improved_hrp_good_state_mix_rotation",
+        "method_name": "hrp",
+        "subset_name": "uptrend_participation_good_state_mix_rotation",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_mix_rotation",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "fragile_plus_mix_rotation",
+        "layer3_expression_mode": "none",
+        "target_vol_ceil": 1.00,
+        "note": "Variant D: better good-state sleeve mix. Rotates weight away from composite_regime_conditioned (weakest sleeve-by-state Sharpe in calm and fragile) and toward the trend-following trio (dual_momentum, cta_trend, composite_selective_signals) in those states; overlay floors unchanged.",
+    },
+    {
+        "version_name": "improved_hrp_good_state_combo_plus",
+        "method_name": "hrp",
+        "subset_name": "uptrend_participation_good_state_combo_plus",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_combo_plus",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "fragile_plus_mix_rotation",
+        "layer3_expression_mode": "none",
+        "target_vol_ceil": 1.00,
+        "stabilize_market_state": True,
+        "note": "Variant E: combination build. Uses the stabilizer (B), raises the strong-neutral floor to 0.97 with a further transition-aware lift to 0.98 when the trailing transition matrix says the regime is persistent and benign-continuing, and pairs the mix-rotation tilt (D). Keeps the neutral base floor at 0.83 (C).",
     },
 ]
 
@@ -1761,6 +2066,7 @@ for version in version_specs:
         beta_overlay_mode=version.get("beta_overlay_mode", "none"),
         target_vol_ceil=version["target_vol_ceil"],
         market_state_history=market_state_history,
+        stabilize_market_state=bool(version.get("stabilize_market_state", False)),
         sleeve_return_panel=base_sleeve_return_panel,
         sleeve_positions=base_sleeve_positions,
     )

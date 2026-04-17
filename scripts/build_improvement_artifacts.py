@@ -94,6 +94,8 @@ def evaluate_signal_combo(
     *,
     top_n: int | None = None,
     min_signal: float = 0.0,
+    weight_mode: str = "equal_top_n",
+    strength_power: float = 1.0,
 ) -> tuple[pd.DataFrame, pd.DataFrame, dict]:
     signal_panels = {name: ns3["baseline_signal_panels"][name] for name in signal_names if name in ns3["baseline_signal_panels"]}
     composite_signal = ns3["combine_signal_panels"](
@@ -102,13 +104,36 @@ def evaluate_signal_combo(
         smoothing_weeks=ns3["COMPOSITE_SMOOTHING_WEEKS"],
     )
     chosen_top_n = top_n if top_n is not None else min(5, max(3, len(ns3["broad_risk_assets"]) // 3)) if ns3["broad_risk_assets"] else 1
-    weights = ns3["build_top_n_long_only_weights"](
-        composite_signal.reindex(columns=ns3["broad_risk_assets"]),
-        top_n=chosen_top_n,
-        min_signal=min_signal,
-        defensive_asset=ns3["defensive_asset"],
-        fill_to_defensive=True,
-    )
+    signal_panel = composite_signal.reindex(columns=ns3["broad_risk_assets"])
+    if weight_mode == "equal_top_n":
+        weights = ns3["build_top_n_long_only_weights"](
+            signal_panel,
+            top_n=chosen_top_n,
+            min_signal=min_signal,
+            defensive_asset=ns3["defensive_asset"],
+            fill_to_defensive=True,
+        )
+    elif weight_mode == "strength_weighted":
+        weight_rows: list[pd.Series] = []
+        for date, row in signal_panel.iterrows():
+            score_row = pd.Series(row, dtype=float).replace([np.inf, -np.inf], np.nan).dropna()
+            weights_row = pd.Series(0.0, index=signal_panel.columns, dtype=float)
+            selected = score_row.loc[score_row >= min_signal].nlargest(chosen_top_n)
+            if not selected.empty:
+                strength = selected.sub(min_signal).clip(lower=0.0)
+                if strength_power != 1.0:
+                    strength = strength.pow(strength_power)
+                if float(strength.sum()) > 1e-12:
+                    weights_row.loc[strength.index] = strength / strength.sum()
+                else:
+                    weights_row.loc[selected.index] = 1.0 / len(selected)
+            if ns3["defensive_asset"] in weights_row.index:
+                remaining = max(0.0, 1.0 - float(weights_row.sum()))
+                weights_row.loc[ns3["defensive_asset"]] = remaining
+            weight_rows.append(weights_row.rename(date))
+        weights = pd.DataFrame(weight_rows).reindex(columns=signal_panel.columns).fillna(0.0)
+    else:
+        raise ValueError(f"Unknown signal weight mode: {weight_mode}")
     weights, _ = ns3["apply_rebalance_schedule"](weights, "monthly")
     path = ns3["compute_strategy_path"](
         weights,
@@ -299,6 +324,14 @@ def build_variant_regime_states(
         adjusted.loc[strong_neutral_mask, "overlay_multiplier"] = adjusted.loc[strong_neutral_mask, "overlay_multiplier"].clip(lower=0.90)
         return adjusted
 
+    if overlay_variant == "good_state_participation":
+        # Control already fixed part of the neutral-state bottleneck. This variant tests whether the
+        # remaining weakness is still too much overlay cash in clearly good states.
+        adjusted.loc[recovery_any_mask, "overlay_multiplier"] = adjusted.loc[recovery_any_mask, "overlay_multiplier"].clip(lower=0.92)
+        adjusted.loc[calm_mask, "overlay_multiplier"] = adjusted.loc[calm_mask, "overlay_multiplier"].clip(lower=1.00)
+        adjusted.loc[strong_neutral_mask, "overlay_multiplier"] = adjusted.loc[strong_neutral_mask, "overlay_multiplier"].clip(lower=0.94)
+        return adjusted
+
     if overlay_variant == "recovery_fragile_participation":
         # Early recovery gets a slightly higher floor than confirmed recovery so we can test whether
         # the main missed-upside problem is hesitation during the fragile handoff out of stress.
@@ -315,6 +348,25 @@ def build_variant_regime_states(
         adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"] = adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"].clip(lower=0.92)
         adjusted.loc[calm_mask, "overlay_multiplier"] = adjusted.loc[calm_mask, "overlay_multiplier"].clip(lower=0.98)
         adjusted.loc[strong_neutral_mask, "overlay_multiplier"] = adjusted.loc[strong_neutral_mask, "overlay_multiplier"].clip(lower=0.90)
+        return adjusted
+
+    if overlay_variant == "fragile_expression_only":
+        # Distinct from the already-refuted confirmed-offense ladder: keep the current neutral easing,
+        # leave confirmed recovery on the control floor, and only let fragile recovery rerisk a touch
+        # faster if the lag is really in the handoff out of stress.
+        adjusted.loc[recovery_fragile_mask, "overlay_multiplier"] = adjusted.loc[recovery_fragile_mask, "overlay_multiplier"].clip(lower=0.96)
+        adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"] = adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"].clip(lower=0.92)
+        adjusted.loc[calm_mask, "overlay_multiplier"] = adjusted.loc[calm_mask, "overlay_multiplier"].clip(lower=0.98)
+        adjusted.loc[strong_neutral_mask, "overlay_multiplier"] = adjusted.loc[strong_neutral_mask, "overlay_multiplier"].clip(lower=0.90)
+        return adjusted
+
+    if overlay_variant == "good_state_fragile_expression":
+        # Best justified combination after the standalone pass: keep the stronger calm / strong-neutral
+        # floors from the good-state offense variant, and add only the modest fragile-recovery lift.
+        adjusted.loc[recovery_fragile_mask, "overlay_multiplier"] = adjusted.loc[recovery_fragile_mask, "overlay_multiplier"].clip(lower=0.96)
+        adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"] = adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"].clip(lower=0.92)
+        adjusted.loc[calm_mask, "overlay_multiplier"] = adjusted.loc[calm_mask, "overlay_multiplier"].clip(lower=1.00)
+        adjusted.loc[strong_neutral_mask, "overlay_multiplier"] = adjusted.loc[strong_neutral_mask, "overlay_multiplier"].clip(lower=0.94)
         return adjusted
 
     if overlay_variant == "recovery_split_baseline":
@@ -379,6 +431,12 @@ def apply_state_conditioned_tilt(raw_weights: pd.Series, market_state: str | Non
             for name in defensive_sleeves:
                 tilted.loc[name] *= 0.92
             return ns5["normalize_long_only"](tilted, max_weight=ns5["MAX_SLEEVE_WEIGHT"])
+        if tilt_mode == "fragile_plus":
+            for name in offensive_sleeves:
+                tilted.loc[name] *= 1.10
+            for name in defensive_sleeves:
+                tilted.loc[name] *= 0.94
+            return ns5["normalize_long_only"](tilted, max_weight=ns5["MAX_SLEEVE_WEIGHT"])
         # Fragile: modest re-risk only. Never lean hard into an unconfirmed bounce.
         if tilt_mode in {"modest", "split_modest", "split_aggressive"}:
             for name in offensive_sleeves:
@@ -392,7 +450,7 @@ def apply_state_conditioned_tilt(raw_weights: pd.Series, market_state: str | Non
             for name in defensive_sleeves:
                 tilted.loc[name] *= 0.94
             return ns5["normalize_long_only"](tilted, max_weight=ns5["MAX_SLEEVE_WEIGHT"])
-        if tilt_mode in {"modest", "split_modest"}:
+        if tilt_mode in {"modest", "split_modest", "fragile_plus"}:
             # Treat confirmed like the legacy "modest" tilt.
             for name in offensive_sleeves:
                 tilted.loc[name] *= 1.12
@@ -421,6 +479,93 @@ def apply_state_conditioned_tilt(raw_weights: pd.Series, market_state: str | Non
     return ns5["normalize_long_only"](tilted, max_weight=ns5["MAX_SLEEVE_WEIGHT"])
 
 
+def is_strong_neutral_state_row(market_state_row: pd.Series | None) -> bool:
+    if market_state_row is None or not isinstance(market_state_row, pd.Series) or market_state_row.empty:
+        return False
+    market_state = str(market_state_row.get("market_state") or "")
+    market_trend_positive = float(market_state_row.get("market_trend_positive") or 0.0)
+    breadth_sma_43 = float(market_state_row.get("breadth_sma_43") or 0.0)
+    breadth_26w_mom = float(market_state_row.get("breadth_26w_mom") or 0.0)
+    return (
+        market_state == "neutral_mixed"
+        and market_trend_positive > 0.0
+        and breadth_sma_43 >= 0.55
+        and breadth_26w_mom >= 0.50
+    )
+
+
+def apply_layer3_expression(
+    raw_weights: pd.Series,
+    market_state_row: pd.Series | None,
+    conviction_row: pd.Series | None,
+    *,
+    expression_mode: str = "none",
+) -> tuple[pd.Series, dict]:
+    normalized = ns5["normalize_long_only"](pd.Series(raw_weights, dtype=float), max_weight=ns5["MAX_SLEEVE_WEIGHT"])
+    diagnostics = {
+        "layer3_expression_shift": 0.0,
+        "layer3_expression_triggered": 0.0,
+        "layer3_expression_mode": expression_mode,
+    }
+    if expression_mode == "none" or market_state_row is None or market_state_row.empty:
+        return normalized, diagnostics
+
+    market_state = str(market_state_row.get("market_state") or "")
+    strong_neutral = is_strong_neutral_state_row(market_state_row)
+    shift_budget = 0.0
+    if expression_mode == "good_state_conviction_relax":
+        if market_state == "calm_trend":
+            shift_budget = 0.06
+        elif strong_neutral:
+            shift_budget = 0.05
+        elif market_state == "recovery_fragile":
+            shift_budget = 0.04
+    if shift_budget <= 0.0:
+        return normalized, diagnostics
+
+    offensive_sleeves = [
+        name
+        for name in [
+            "dual_momentum_topn",
+            "cta_trend_long_only",
+            "composite_selective_signals",
+            "composite_selective_strength_weighted",
+            "composite_selective_concentrated",
+            "composite_equal_weight",
+        ]
+        if name in normalized.index
+    ]
+    defensive_sleeves = [name for name in ["composite_regime_conditioned", "taa_10m_sma"] if name in normalized.index]
+    if not offensive_sleeves or not defensive_sleeves:
+        return normalized, diagnostics
+
+    defensive_budget = float(normalized.reindex(defensive_sleeves).sum())
+    shift = min(shift_budget, defensive_budget * 0.35)
+    if shift <= 1e-12:
+        return normalized, diagnostics
+
+    conviction = pd.Series(dtype=float) if conviction_row is None else pd.Series(conviction_row, dtype=float)
+    conviction = conviction.reindex(offensive_sleeves).replace([np.inf, -np.inf], np.nan)
+    if conviction.notna().any():
+        conviction = conviction.fillna(float(conviction.median()))
+    else:
+        conviction = pd.Series(0.0, index=offensive_sleeves, dtype=float)
+    strength = conviction.sub(float(conviction.min())).clip(lower=0.0)
+    if float(strength.sum()) <= 1e-12:
+        current_offense = normalized.reindex(offensive_sleeves).clip(lower=0.0)
+        strength = current_offense if float(current_offense.sum()) > 1e-12 else pd.Series(1.0, index=offensive_sleeves, dtype=float)
+    strength = strength / strength.sum()
+
+    adjusted = normalized.copy()
+    defensive_weights = adjusted.reindex(defensive_sleeves).fillna(0.0)
+    adjusted.loc[defensive_sleeves] = (defensive_weights - shift * defensive_weights / defensive_weights.sum()).clip(lower=0.0)
+    adjusted.loc[offensive_sleeves] = adjusted.reindex(offensive_sleeves).fillna(0.0) + shift * strength
+    adjusted = ns5["normalize_long_only"](adjusted, max_weight=ns5["MAX_SLEEVE_WEIGHT"])
+    diagnostics["layer3_expression_shift"] = shift
+    diagnostics["layer3_expression_triggered"] = 1.0
+    return adjusted, diagnostics
+
+
 def apply_beta_participation_overlay(
     etf_weights: pd.Series,
     market_state_row: pd.Series | None,
@@ -433,15 +578,7 @@ def apply_beta_participation_overlay(
         return adjusted, overlay_contribution
 
     market_state = str(market_state_row.get("market_state") or "")
-    market_trend_positive = float(market_state_row.get("market_trend_positive") or 0.0)
-    breadth_sma_43 = float(market_state_row.get("breadth_sma_43") or 0.0)
-    breadth_26w_mom = float(market_state_row.get("breadth_26w_mom") or 0.0)
-    strong_neutral = (
-        market_state == "neutral_mixed"
-        and market_trend_positive > 0.0
-        and breadth_sma_43 >= 0.55
-        and breadth_26w_mom >= 0.50
-    )
+    strong_neutral = is_strong_neutral_state_row(market_state_row)
 
     desired_shift = 0.0
     if beta_overlay_mode == "good_state_spy":
@@ -451,6 +588,13 @@ def apply_beta_participation_overlay(
             desired_shift = 0.05
         elif strong_neutral:
             desired_shift = 0.04
+    elif beta_overlay_mode == "good_state_spy_light":
+        if market_state == "calm_trend":
+            desired_shift = 0.04
+        elif market_state == "recovery_fragile":
+            desired_shift = 0.03
+        elif strong_neutral:
+            desired_shift = 0.025
 
     if desired_shift <= 0.0:
         return adjusted, overlay_contribution
@@ -525,6 +669,7 @@ def run_subset_custom(
     target_vol_ceil: float = ns5["TARGET_VOL_CEIL"],
     rerisk_speed: float | None = None,
     state_tilt: str = "none",
+    layer3_expression_mode: str = "none",
     beta_overlay_mode: str = "none",
     market_state_history: pd.DataFrame | None = None,
     sleeve_return_panel: pd.DataFrame,
@@ -607,6 +752,17 @@ def run_subset_custom(
                             raise ValueError(f"Unknown engine: {engine}")
 
                         raw = apply_state_conditioned_tilt(raw, market_state, tilt_mode=state_tilt)
+                        default_conviction_row = (
+                            conviction_inputs["default_blend"].loc[date].reindex(active)
+                            if "default_blend" in conviction_inputs and date in conviction_inputs["default_blend"].index
+                            else pd.Series(dtype=float)
+                        )
+                        raw, layer3_diag = apply_layer3_expression(
+                            raw,
+                            market_state_row if isinstance(market_state_row, pd.Series) else None,
+                            default_conviction_row,
+                            expression_mode=layer3_expression_mode,
+                        )
                         overlay_row = variant_regime_states.loc[date] if date in variant_regime_states.index else pd.Series(dtype=float)
                         risky_weights, cash_weight, overlay_diag = apply_overlays_custom(
                             raw,
@@ -632,9 +788,11 @@ def run_subset_custom(
                                 "covariance_method": method_spec["covariance_method"],
                                 "overlay_variant": overlay_variant,
                                 "state_tilt": state_tilt,
+                                "layer3_expression_mode": layer3_expression_mode,
                                 "beta_overlay_mode": beta_overlay_mode,
                                 "market_state": market_state,
                                 **overlay_diag,
+                                **layer3_diag,
                                 **bl_diag,
                                 **hier_diag,
                             }
@@ -1005,8 +1163,14 @@ signal_subset_df.to_csv(LAYER1_DIR / "signal_subset_comparison.csv", index=False
 
 selective_signal_names = signal_subset_specs["core4_bab_carry"]
 selective_weights, selective_path, selective_metrics = evaluate_signal_combo(selective_signal_names)
+strength_weighted_weights, strength_weighted_path, strength_weighted_metrics = evaluate_signal_combo(
+    selective_signal_names,
+    weight_mode="strength_weighted",
+    strength_power=1.35,
+)
 concentrated_weights, concentrated_path, concentrated_metrics = evaluate_signal_combo(selective_signal_names, top_n=3, min_signal=0.05)
 selective_strategy_name = "composite_selective_signals"
+strength_weighted_strategy_name = "composite_selective_strength_weighted"
 concentrated_strategy_name = "composite_selective_concentrated"
 
 selective_summary = ns3["summary_metrics"](selective_path["net_return"], turnover_series=selective_path["turnover"])
@@ -1049,6 +1213,49 @@ register_strategy_output(
         ],
         "caveats": "Selective composite keeps the signals that improved the long-only ETF sleeve most cleanly in the incremental study; it is still a practical top-N proxy rather than a fully optimized ensemble.",
         "description": "Top-N long-only strategy using the selective signal blend that retained trend, quality/value, BAB, and carry while excluding weaker add-ons.",
+    },
+)
+
+strength_weighted_summary = ns3["summary_metrics"](strength_weighted_path["net_return"], turnover_series=strength_weighted_path["turnover"])
+strength_weighted_summary.update(
+    {
+        "strategy_name": strength_weighted_strategy_name,
+        "strategy_type": "strategy_logic",
+        "rebalance_frequency": "monthly",
+        "benchmark_group": "strategy",
+        "validation_score": (
+            strength_weighted_summary["sharpe"]
+            + 0.5 * strength_weighted_summary["calmar"]
+            + 0.2 * strength_weighted_summary["hit_rate"]
+            - 0.1 * strength_weighted_summary["avg_weekly_turnover"]
+        ),
+    }
+)
+register_strategy_output(
+    strength_weighted_strategy_name,
+    strength_weighted_weights,
+    strength_weighted_path,
+    strength_weighted_summary,
+    {
+        "strategy_name": strength_weighted_strategy_name,
+        "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+        "type": "strategy_logic",
+        "required_inputs": [
+            "signal_xsmom.csv",
+            "signal_multi_horizon_mom.csv",
+            "signal_quality.csv",
+            "signal_value.csv",
+            "signal_bab.csv",
+            "signal_carry.csv",
+        ],
+        "rebalance_frequency": "monthly",
+        "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+        "output_files": [
+            f"strategy_positions_{strength_weighted_strategy_name}.csv",
+            f"strategy_returns_{strength_weighted_strategy_name}.csv",
+        ],
+        "caveats": "This keeps the same selective signal blend and top-N universe as the incumbent sleeve, but weights selected ETFs by normalized signal strength so strong setups can express more than merely weak-positive ones.",
+        "description": "Top-N long-only sleeve that uses the selective signal blend while scaling chosen ETF weights by normalized composite signal strength rather than equal slots.",
     },
 )
 
@@ -1105,12 +1312,21 @@ base_sleeve_return_panel = ns5["sleeve_return_panel"].copy()
 base_sleeve_positions = dict(ns5["sleeve_positions"])
 base_sleeve_return_panel[selective_strategy_name] = selective_path["net_return"].reindex(base_sleeve_return_panel.index).fillna(0.0)
 base_sleeve_positions[selective_strategy_name] = selective_weights.reindex(index=ns5["weekly_prices"].index, columns=ns5["weekly_prices"].columns).fillna(0.0)
+base_sleeve_return_panel[strength_weighted_strategy_name] = strength_weighted_path["net_return"].reindex(base_sleeve_return_panel.index).fillna(0.0)
+base_sleeve_positions[strength_weighted_strategy_name] = strength_weighted_weights.reindex(index=ns5["weekly_prices"].index, columns=ns5["weekly_prices"].columns).fillna(0.0)
 base_sleeve_return_panel[concentrated_strategy_name] = concentrated_path["net_return"].reindex(base_sleeve_return_panel.index).fillna(0.0)
 base_sleeve_positions[concentrated_strategy_name] = concentrated_weights.reindex(index=ns5["weekly_prices"].index, columns=ns5["weekly_prices"].columns).fillna(0.0)
 
 baseline_subset = list(ns5["sleeve_return_panel"].columns)
 drop_breadth_subset = [name for name in baseline_subset if name != "composite_breadth_filtered"]
 replace_equal_subset = ["dual_momentum_topn", "cta_trend_long_only", selective_strategy_name, "composite_regime_conditioned", "taa_10m_sma"]
+replace_equal_strength_weighted_subset = [
+    "dual_momentum_topn",
+    "cta_trend_long_only",
+    strength_weighted_strategy_name,
+    "composite_regime_conditioned",
+    "taa_10m_sma",
+]
 replace_equal_concentrated_subset = ["dual_momentum_topn", "cta_trend_long_only", concentrated_strategy_name, "composite_regime_conditioned", "taa_10m_sma"]
 improved_subset = replace_equal_subset
 
@@ -1119,8 +1335,10 @@ subset_specs = {
     "drop_breadth": drop_breadth_subset,
     "drop_regime": [name for name in baseline_subset if name != "composite_regime_conditioned"],
     "replace_equal_with_selective": replace_equal_subset,
+    "replace_equal_with_strength_weighted": replace_equal_strength_weighted_subset,
     "replace_equal_with_concentrated": replace_equal_concentrated_subset,
     "add_selective_drop_breadth": drop_breadth_subset + [selective_strategy_name],
+    "add_strength_weighted_drop_breadth": drop_breadth_subset + [strength_weighted_strategy_name],
     "add_concentrated_drop_breadth": drop_breadth_subset + [concentrated_strategy_name],
 }
 
@@ -1439,6 +1657,88 @@ version_specs = [
         "target_vol_ceil": 1.00,
         "note": "Variant D: combines the winning mild neutral-state easing with the modest fragile-recovery-first participation tweak, without adding explicit benchmark-beta recycling.",
     },
+    # ======================================================================
+    # Good-state participation bottleneck study (current task)
+    # ======================================================================
+    {
+        "version_name": "improved_hrp_strength_weighted_selective",
+        "method_name": "hrp",
+        "subset_name": "uptrend_participation_strength_weighted_selective",
+        "subset_sleeves": replace_equal_strength_weighted_subset,
+        "overlay_variant": "neutral_positive_ease",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "modest",
+        "layer3_expression_mode": "none",
+        "target_vol_ceil": 1.00,
+        "note": "Variant A: momentum-strength-aware sleeve deployment. The selective sleeve keeps the same signal blend and top-N count as the control, but scales selected ETF weights by signal strength so strong positive setups can express more than weak ones.",
+    },
+    {
+        "version_name": "improved_hrp_good_state_offense",
+        "method_name": "hrp",
+        "subset_name": "uptrend_participation_good_state_offense",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_participation",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "modest",
+        "layer3_expression_mode": "none",
+        "target_vol_ceil": 1.00,
+        "note": "Variant B: better good-state offense rules. Calm-trend and strong positive-trend neutral weeks carry a little less overlay cash, while stressed states stay unchanged.",
+    },
+    {
+        "version_name": "improved_hrp_layer3_expression_relax",
+        "method_name": "hrp",
+        "subset_name": "uptrend_participation_layer3_expression_relax",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "neutral_positive_ease",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "modest",
+        "layer3_expression_mode": "good_state_conviction_relax",
+        "target_vol_ceil": 1.00,
+        "note": "Variant C: modest Layer 3 dampener relaxation. In calm, strong-neutral, and fragile-recovery states, HRP shifts a small budget from defensive sleeves toward the strongest offensive sleeves rather than holding the defensive mix flat.",
+    },
+    {
+        "version_name": "improved_hrp_fragile_expression",
+        "method_name": "hrp",
+        "subset_name": "uptrend_participation_fragile_expression",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "fragile_expression_only",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "fragile_plus",
+        "layer3_expression_mode": "none",
+        "target_vol_ceil": 1.00,
+        "note": "Variant D: modest fragile-recovery expression only. It raises fragile-recovery participation slightly without reviving any stronger confirmed-recovery offense ladder.",
+    },
+    {
+        "version_name": "improved_hrp_neutral_ease_beta_diag",
+        "method_name": "hrp",
+        "subset_name": "uptrend_participation_beta_diagnostic",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "neutral_positive_ease",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "modest",
+        "layer3_expression_mode": "none",
+        "beta_overlay_mode": "good_state_spy_light",
+        "target_vol_ceil": 1.00,
+        "note": "Variant F: controlled broad-beta diagnostic. Starting from the neutral-ease control, recycle only a small amount of BIL into SPY in clearly good states to test whether missing beta is still a major part of the lag.",
+    },
+    {
+        "version_name": "improved_hrp_good_state_fragile_combo",
+        "method_name": "hrp",
+        "subset_name": "uptrend_participation_good_state_fragile_combo",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "fragile_plus",
+        "layer3_expression_mode": "none",
+        "target_vol_ceil": 1.00,
+        "note": "Variant E: best justified combination after the standalone pass. It keeps the stronger good-state overlay floors from Variant B and combines them with the modest fragile-recovery expression from Variant D.",
+    },
 ]
 
 
@@ -1457,6 +1757,7 @@ for version in version_specs:
         speed=version["sleeve_reallocation_speed"],
         rerisk_speed=version["rerisk_speed"],
         state_tilt=version["state_tilt"],
+        layer3_expression_mode=version.get("layer3_expression_mode", "none"),
         beta_overlay_mode=version.get("beta_overlay_mode", "none"),
         target_vol_ceil=version["target_vol_ceil"],
         market_state_history=market_state_history,
@@ -1491,6 +1792,8 @@ for version in version_specs:
         "avg_target_vol_multiplier": diagnostics["target_vol_multiplier"].mean() if not diagnostics.empty else np.nan,
         "avg_gross_multiplier": diagnostics["gross_multiplier"].mean() if not diagnostics.empty else np.nan,
         "avg_dynamic_speed": diagnostics["dynamic_speed"].mean() if not diagnostics.empty else np.nan,
+        "avg_layer3_expression_shift": diagnostics["layer3_expression_shift"].mean() if not diagnostics.empty and "layer3_expression_shift" in diagnostics.columns else 0.0,
+        "layer3_expression_trigger_rate": diagnostics["layer3_expression_triggered"].mean() if not diagnostics.empty and "layer3_expression_triggered" in diagnostics.columns else 0.0,
     }
     family = version["method_name"]
     if version["version_name"].startswith("baseline_"):
@@ -1556,10 +1859,12 @@ for version in version_specs:
             "avg_regime_multiplier": diagnostics["regime_multiplier"].mean() if not diagnostics.empty else np.nan,
             "avg_gross_multiplier": diagnostics["gross_multiplier"].mean() if not diagnostics.empty else np.nan,
             "avg_dynamic_speed": diagnostics["dynamic_speed"].mean() if not diagnostics.empty else np.nan,
+            "avg_layer3_expression_shift": diagnostics["layer3_expression_shift"].mean() if not diagnostics.empty and "layer3_expression_shift" in diagnostics.columns else 0.0,
+            "layer3_expression_trigger_rate": diagnostics["layer3_expression_triggered"].mean() if not diagnostics.empty and "layer3_expression_triggered" in diagnostics.columns else 0.0,
             "calm_regime_frequency": ns5["regime_states"].get("risk_state", pd.Series(dtype=object)).eq("calm").mean(),
             "neutral_regime_frequency": ns5["regime_states"].get("risk_state", pd.Series(dtype=object)).eq("neutral").mean(),
             "stressed_regime_frequency": ns5["regime_states"].get("risk_state", pd.Series(dtype=object)).eq("stressed").mean(),
-            "recovery_market_state_frequency": market_state_history["market_state"].eq("recovery_rebound").mean(),
+            "recovery_market_state_frequency": market_state_history["market_state"].isin(["recovery_rebound", "recovery_fragile", "recovery_confirmed"]).mean(),
             "calm_market_state_frequency": market_state_history["market_state"].eq("calm_trend").mean(),
         }
     )
@@ -1650,6 +1955,7 @@ candidate_strategy_returns = {
     "composite_regime_conditioned": pd.read_csv(LAYER2A_DIR / "strategy_returns_composite_regime_conditioned.csv", parse_dates=["Date"]).set_index("Date")["net_return"],
     "taa_10m_sma": pd.read_csv(LAYER2A_DIR / "strategy_returns_taa_10m_sma.csv", parse_dates=["Date"]).set_index("Date")["net_return"],
     selective_strategy_name: selective_path["net_return"],
+    strength_weighted_strategy_name: strength_weighted_path["net_return"],
     concentrated_strategy_name: concentrated_path["net_return"],
 }
 for strategy_name, strategy_returns in candidate_strategy_returns.items():
@@ -1768,6 +2074,8 @@ for name in [
     "data/02_layer1_signals/signal_subset_comparison.csv",
     f"data/03_layer2a_strategy_logic/strategy_positions_{selective_strategy_name}.csv",
     f"data/03_layer2a_strategy_logic/strategy_returns_{selective_strategy_name}.csv",
+    f"data/03_layer2a_strategy_logic/strategy_positions_{strength_weighted_strategy_name}.csv",
+    f"data/03_layer2a_strategy_logic/strategy_returns_{strength_weighted_strategy_name}.csv",
     f"data/03_layer2a_strategy_logic/strategy_positions_{concentrated_strategy_name}.csv",
     f"data/03_layer2a_strategy_logic/strategy_returns_{concentrated_strategy_name}.csv",
     "data/04_layer2b_risk_regime_engine/market_state_history.csv",

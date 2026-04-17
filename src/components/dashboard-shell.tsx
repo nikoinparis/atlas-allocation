@@ -632,11 +632,26 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
     String(comparisonVersionRow?.overlay_variant ?? "") === "neutral_positive_ease_fragile_participation"
       ? `${comparisonName} combines the positive-trend neutral easing with a fragile-recovery-first overlay so the portfolio rerisks a bit earlier after stress.`
       : null,
+    String(comparisonVersionRow?.overlay_variant ?? "") === "good_state_participation"
+      ? `${comparisonName} trims overlay cash further in calm-trend and strong positive-trend neutral weeks, explicitly targeting long benign-market underparticipation.`
+      : null,
     String(comparisonVersionRow?.overlay_variant ?? "") === "recovery_fragile_participation"
       ? `${comparisonName} gives fragile recovery a slightly higher participation floor than confirmed recovery instead of leaning harder into late confirmation.`
       : null,
+    String(comparisonVersionRow?.overlay_variant ?? "") === "fragile_expression_only"
+      ? `${comparisonName} only raises fragile-recovery participation modestly, while keeping confirmed recovery on the control path instead of reviving the old confirmed-offense ladder.`
+      : null,
+    String(comparisonVersionRow?.overlay_variant ?? "") === "good_state_fragile_expression"
+      ? `${comparisonName} combines the stronger good-state overlay floors with the same modest fragile-recovery expression, targeting both benign-market cash drag and the handoff out of stress.`
+      : null,
     String(comparisonVersionRow?.beta_overlay_mode ?? "none") === "good_state_spy"
       ? `${comparisonName} also recycles a small amount of BIL into SPY in calm, fragile, and strong positive-trend neutral states as a direct missing-beta test.`
+      : null,
+    String(comparisonVersionRow?.beta_overlay_mode ?? "none") === "good_state_spy_light"
+      ? `${comparisonName} adds only a very small good-state SPY recycle as a diagnostic, meant to separate missing-beta effects from true deployment-quality improvements.`
+      : null,
+    String(comparisonVersionRow?.layer3_expression_mode ?? "none") === "good_state_conviction_relax"
+      ? `${comparisonName} also relaxes Layer 3 slightly by shifting a small budget from defensive sleeves toward the strongest offensive sleeves in clearly good states.`
       : null,
     comparisonVersionRow?.state_tilt
       ? `${comparisonName} adds a ${String(comparisonVersionRow.state_tilt)} state-conditioned sleeve tilt to favor participation when the environment is supportive.`
@@ -656,7 +671,7 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
     `CVaR 5% worsened from ${metricValue("cvar_5", baselineVersionRow?.cvar_5)} to ${metricValue("cvar_5", comparisonVersionRow?.cvar_5)}, and annual volatility rose from ${metricValue("ann_vol", baselineVersionRow?.ann_vol)} to ${metricValue("ann_vol", comparisonVersionRow?.ann_vol)}.`,
     `Downside capture rose from ${metricValue("downside_capture_negative_weeks", baselineVersionRow?.downside_capture_negative_weeks)} to ${metricValue("downside_capture_negative_weeks", comparisonVersionRow?.downside_capture_negative_weeks)}, so the faster re-risking still carries more stress sensitivity.`,
   ];
-  const overallInterpretation = `The current production candidate is a participation-efficiency upgrade: ${comparisonName} keeps the baseline's core discipline but reduces unnecessary defensive drag, improves upside and calm-state participation, and lifts production score. The trade-off is explicit and visible on the page: it still takes more risk than the original baseline, but the key question is whether that extra risk came from cleaner deployment rather than from a blunt benchmark chase.`;
+  const overallInterpretation = `The current production candidate is a participation-efficiency upgrade: momentum already exists in the stack, but the research question is whether Layer 2, the overlay, and Layer 3 are expressing it cleanly enough in good states. ${comparisonName} is being judged on whether it reduces unnecessary defensive drag, improves upside and calm-state participation, and lifts production score without turning into a blunt benchmark chase.`;
 
   return (
     <main className="dashboard-shell">
@@ -689,7 +704,7 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
                   <p className="mono text-xs uppercase tracking-[0.28em] text-[#b9853b]">Layered ETF Quant Research</p>
                   <h1 className="section-title mt-4 text-5xl font-bold leading-[0.96] text-[#f5f1e8] md:text-7xl">{data.overview.projectTitle}</h1>
                   <p className="mt-5 max-w-3xl text-lg leading-8 text-[#d7d0bd]">
-                    The homepage now acts as a complete executive summary: diagnostics, robustness, benchmarks, current state, allocations, and the Layer 1 to Layer 3 workflow are all visible on initial load so the research story is inspectable without extra clicks.
+                    The homepage now acts as a complete executive summary: diagnostics, robustness, benchmarks, current state, allocations, and the Layer 1 to Layer 3 workflow are all visible on initial load so the research story is inspectable without extra clicks. The current diagnosis is that momentum already exists, but some of it is still getting muted between sleeves, overlay cash rules, and Layer 3 construction during long benign markets.
                   </p>
                   <div className="mt-6 grid gap-3 md:grid-cols-2">
                     {layerSummaryCards.map((item) => (

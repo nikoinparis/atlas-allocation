@@ -610,7 +610,7 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
     {
       title: "Diagnostics summary",
       copy: robustRows.length
-        ? `${titleCase(robustRows[0]?.method_name)} still leads the broad robustness ranking, ${titleCase(String(data.overview.bestDrawdown?.method_name ?? ""))} remains the drawdown-control anchor, and the version lab is choosing the current candidate on production score rather than Sharpe alone.`
+        ? `${titleCase(robustRows[0]?.method_name)} still leads the broad robustness ranking, but the latest stacked-defense pass found the main good-state tax in overlay cash rather than target-vol caps. The version lab is still choosing the current candidate on production score plus tail discipline, not on raw return alone.`
         : "Robustness and fragility diagnostics will appear here when the Layer 3 bundle is present.",
     },
   ];
@@ -671,7 +671,7 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
     `CVaR 5% worsened from ${metricValue("cvar_5", baselineVersionRow?.cvar_5)} to ${metricValue("cvar_5", comparisonVersionRow?.cvar_5)}, and annual volatility rose from ${metricValue("ann_vol", baselineVersionRow?.ann_vol)} to ${metricValue("ann_vol", comparisonVersionRow?.ann_vol)}.`,
     `Downside capture rose from ${metricValue("downside_capture_negative_weeks", baselineVersionRow?.downside_capture_negative_weeks)} to ${metricValue("downside_capture_negative_weeks", comparisonVersionRow?.downside_capture_negative_weeks)}, so the faster re-risking still carries more stress sensitivity.`,
   ];
-  const overallInterpretation = `The current production candidate is a participation-efficiency upgrade: momentum already exists in the stack, but the research question is whether Layer 2, the overlay, and Layer 3 are expressing it cleanly enough in good states. ${comparisonName} is being judged on whether it reduces unnecessary defensive drag, improves upside and calm-state participation, and lifts production score without turning into a blunt benchmark chase.`;
+  const overallInterpretation = `The current production candidate is still a participation-efficiency upgrade: momentum already exists in the stack, and the latest research says the remaining bottleneck is stacked defense, especially overlay cash in good states. ${comparisonName} is still being judged on whether it reduces unnecessary defensive drag, improves upside and calm-state participation, and lifts production score without turning into a blunt benchmark chase or paying for the gain with worse tails.`;
 
   return (
     <main className="dashboard-shell">
@@ -704,7 +704,7 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
                   <p className="mono text-xs uppercase tracking-[0.28em] text-[#b9853b]">Layered ETF Quant Research</p>
                   <h1 className="section-title mt-4 text-5xl font-bold leading-[0.96] text-[#f5f1e8] md:text-7xl">{data.overview.projectTitle}</h1>
                   <p className="mt-5 max-w-3xl text-lg leading-8 text-[#d7d0bd]">
-                    The homepage now acts as a complete executive summary: diagnostics, robustness, benchmarks, current state, allocations, and the Layer 1 to Layer 3 workflow are all visible on initial load so the research story is inspectable without extra clicks. The current diagnosis is that momentum already exists, but some of it is still getting muted between sleeves, overlay cash rules, and Layer 3 construction during long benign markets.
+                    The homepage now acts as a complete executive summary: diagnostics, robustness, benchmarks, current state, allocations, and the Layer 1 to Layer 3 workflow are all visible on initial load so the research story is inspectable without extra clicks. The current diagnosis is that momentum already exists, but some of it is still getting muted by stacked defense: sleeves self-gate, the overlay de-risks again, and BIL absorbs too much of that caution in long benign markets while target-vol mostly stays out of the way.
                   </p>
                   <div className="mt-6 grid gap-3 md:grid-cols-2">
                     {layerSummaryCards.map((item) => (

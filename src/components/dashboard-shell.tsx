@@ -562,7 +562,7 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
   const rallyComparisonRows = data.improvementLab.rallyWindowAttribution.filter((row) => [baselineVersion, comparisonVersion].includes(String(row.version_name ?? "")));
   const reriskComparisonRows = data.improvementLab.reriskingLagByWindow.filter((row) => [baselineVersion, comparisonVersion].includes(String(row.version_name ?? "")));
   const sleeveStateRows = [...data.improvementLab.sleevePerformanceByState]
-    .filter((row) => ["recovery_rebound", "calm_trend", "stressed_panic", "neutral_mixed"].includes(String(row.market_state ?? "")))
+    .filter((row) => ["recovery_rebound", "recovery_fragile", "recovery_confirmed", "calm_trend", "stressed_panic", "neutral_mixed"].includes(String(row.market_state ?? "")))
     .sort((a, b) => Number(b.sharpe ?? 0) - Number(a.sharpe ?? 0));
   const currentStateTiltRows = data.improvementLab.stateConditionedAllocationSummary
     .filter((row) => row.version_name === comparisonVersion && row.market_state === latestMarketState?.market_state)

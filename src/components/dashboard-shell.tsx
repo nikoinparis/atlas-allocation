@@ -626,8 +626,20 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
     comparisonVersionRow?.overlay_variant !== baselineVersionRow?.overlay_variant
       ? `Overlay logic changed from ${titleCase(String(baselineVersionRow?.overlay_variant ?? "baseline"))} to ${titleCase(String(comparisonVersionRow?.overlay_variant ?? "current"))}.`
       : null,
+    String(comparisonVersionRow?.overlay_variant ?? "") === "neutral_positive_ease"
+      ? `${comparisonName} mildly raises the floor in positive-trend neutral weeks so benign markets carry less residual BIL drag.`
+      : null,
+    String(comparisonVersionRow?.overlay_variant ?? "") === "neutral_positive_ease_fragile_participation"
+      ? `${comparisonName} combines the positive-trend neutral easing with a fragile-recovery-first overlay so the portfolio rerisks a bit earlier after stress.`
+      : null,
+    String(comparisonVersionRow?.overlay_variant ?? "") === "recovery_fragile_participation"
+      ? `${comparisonName} gives fragile recovery a slightly higher participation floor than confirmed recovery instead of leaning harder into late confirmation.`
+      : null,
+    String(comparisonVersionRow?.beta_overlay_mode ?? "none") === "good_state_spy"
+      ? `${comparisonName} also recycles a small amount of BIL into SPY in calm, fragile, and strong positive-trend neutral states as a direct missing-beta test.`
+      : null,
     comparisonVersionRow?.state_tilt
-      ? `${comparisonName} adds a ${String(comparisonVersionRow.state_tilt)} state tilt when breadth and trend confirm recovery.`
+      ? `${comparisonName} adds a ${String(comparisonVersionRow.state_tilt)} state-conditioned sleeve tilt to favor participation when the environment is supportive.`
       : null,
     isFiniteNumber(comparisonVersionRow?.rerisk_speed)
       ? `${comparisonName} adds a faster re-risk override (${formatNumber(Number(comparisonVersionRow?.rerisk_speed), 1)}) on confirmed recovery instead of the baseline's symmetric pacing.`
@@ -644,7 +656,7 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
     `CVaR 5% worsened from ${metricValue("cvar_5", baselineVersionRow?.cvar_5)} to ${metricValue("cvar_5", comparisonVersionRow?.cvar_5)}, and annual volatility rose from ${metricValue("ann_vol", baselineVersionRow?.ann_vol)} to ${metricValue("ann_vol", comparisonVersionRow?.ann_vol)}.`,
     `Downside capture rose from ${metricValue("downside_capture_negative_weeks", baselineVersionRow?.downside_capture_negative_weeks)} to ${metricValue("downside_capture_negative_weeks", comparisonVersionRow?.downside_capture_negative_weeks)}, so the faster re-risking still carries more stress sensitivity.`,
   ];
-  const overallInterpretation = `The current production candidate is a deliberate upside-participation upgrade: ${comparisonName} keeps the baseline's core discipline but cuts defensive drag, lifts recovery participation, and improves return, Sharpe, Calmar, and production score. The trade-off is explicit and visible on the page: it accepts higher volatility, a deeper drawdown profile, and a slightly worse left tail in exchange for faster re-risking and materially lower average BIL/cash exposure.`;
+  const overallInterpretation = `The current production candidate is a participation-efficiency upgrade: ${comparisonName} keeps the baseline's core discipline but reduces unnecessary defensive drag, improves upside and calm-state participation, and lifts production score. The trade-off is explicit and visible on the page: it still takes more risk than the original baseline, but the key question is whether that extra risk came from cleaner deployment rather than from a blunt benchmark chase.`;
 
   return (
     <main className="dashboard-shell">
@@ -695,7 +707,7 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
                     {String(comparisonVersionRow?.note ?? defaultCandidate?.description ?? "Chosen from the robustness framework when available.")}
                   </p>
                   <p className="mt-3 rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm leading-6 text-[#d7d0bd]">
-                    The current improvement pass is explicitly about re-risking faster after stress, cutting unnecessary defensive drag, and making it obvious whether those changes actually helped versus the baseline.
+                    The current improvement pass is explicitly about reducing persistent underdeployment in rewarded risk, cutting unnecessary BIL drag outside stressed conditions, and making it obvious whether that helped versus the baseline.
                   </p>
                   <div className="mt-5 grid grid-cols-2 gap-3">
                     <MetricCard label="Current Market State" value={titleCase(String(latestMarketState?.market_state ?? latestRegime?.risk_state ?? ""))} detail={String(currentAllocationSummary?.current_market_state_reason ?? latestMarketState?.market_state_reason ?? "")} tone={String(latestMarketState?.market_state ?? latestRegime?.risk_state ?? "") === "stressed_panic" ? "warn" : "good"} />
@@ -725,7 +737,7 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
             </div>
 
             <div className="mt-5 grid gap-5 xl:grid-cols-[1.15fr_0.85fr]">
-              <Panel title="Immediate visible summary" subtitle="These are the headline numbers and current posture ChatGPT should be able to read from the initial page load without interaction.">
+              <Panel title="Immediate visible summary" subtitle="These are the headline numbers and current posture external viewers should be able to read from the initial page load without interaction.">
                 <div className="metric-grid">
                   <MetricCard label="Production Candidate" value={comparisonName} detail={`As of ${shortDate(String(currentAllocationSummary?.current_date ?? latestMarketState?.Date ?? data.latestDate ?? ""))}`} tone="good" />
                   <MetricCard label="Ann. Return" value={metricValue("ann_return", comparisonVersionRow?.ann_return ?? defaultCandidate?.ann_return)} detail={isFiniteNumber(deltaValue(comparisonVersionRow?.ann_return, baselineVersionRow?.ann_return)) ? `vs baseline ${signedMetricValue("ann_return", deltaValue(comparisonVersionRow?.ann_return, baselineVersionRow?.ann_return))}` : undefined} />
@@ -854,7 +866,7 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
               <Panel title="Standalone Layer 2 strategy metrics" subtitle="These sleeves feed Layer 3; baselines are kept visible for honest comparison.">
                 <SimpleTable rows={[...data.strategySummary].sort((a, b) => Number(b.validation_score ?? b.sharpe ?? 0) - Number(a.validation_score ?? a.sharpe ?? 0))} columns={["strategy_name", "strategy_type", "ann_return", "ann_vol", "sharpe", "max_drawdown", "avg_weekly_turnover", "validation_score"]} maxRows={18} />
               </Panel>
-              <Panel title="Improved candidate sleeves" subtitle="The stronger finalist keeps the robust sleeves, drops the breadth brake, and tests whether a recovery-aware concentrated sleeve truly adds enough upside to justify promotion.">
+              <Panel title="Improved candidate sleeves" subtitle="The stronger finalist keeps the robust sleeves and tests whether cleaner deployment logic actually improves the stack rather than just adding more moving parts.">
                 <SimpleTable
                   rows={[...data.improvementLab.sleeveSubsets]
                     .filter((row) => ["replace_equal_with_selective", "replace_equal_with_concentrated", "drop_breadth"].includes(String(row.subset_name ?? "")))
@@ -1009,7 +1021,7 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
                 <Panel title="Upside and downside capture" subtitle="This is the key check for the new pass: do we participate better in rallies without giving back too much of the downside discipline?">
                   <SimpleTable rows={versionUpsideRows} columns={["version_name", "production_score", "upside_capture_positive_weeks", "recovery_week_capture", "calm_week_capture", "downside_capture_negative_weeks", "avg_cash_when_benchmark_positive"]} maxRows={10} />
                 </Panel>
-                <Panel title="Re-risking lag after stress" subtitle="The best improved versions should move back into offense faster once the causal recovery state is confirmed.">
+                <Panel title="Re-risking lag after stress" subtitle="The best improved versions should move back into offense faster once stress subsides or positive trend conditions reassert themselves.">
                   <SimpleTable rows={reriskComparisonRows} columns={["version_name", "window_name", "weeks_to_offensive_50", "weeks_to_offensive_60", "weeks_to_cash_below_35", "weeks_to_cash_below_25", "avg_dynamic_speed"]} maxRows={12} />
                 </Panel>
                 <Panel title="Recovery and rally-window attribution" subtitle="Helps explain missed upside: was the drag coming from overlay cash, weak offense, or slow re-risking?">

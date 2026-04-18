@@ -682,7 +682,74 @@ def build_variant_regime_states(
     return adjusted
 
 
-def apply_state_conditioned_tilt(raw_weights: pd.Series, market_state: str | None, tilt_mode: str = "none") -> pd.Series:
+def compute_causal_confidence(market_state_row: pd.Series | None) -> float:
+    """Bounded Layer 2B causal-confidence score in [0, 1].
+
+    Composite of:
+      - transition_non_stress_prob (regime engine stay-out-of-stress), normalized 0.85 -> 0, 1.00 -> 1
+      - breadth_sma_43,                                                  normalized 0.50 -> 0, 0.80 -> 1
+      - market_trend_positive > 0                                        (binary)
+      - market_drawdown > -0.08                                          (binary: drawdown shallower than -8%)
+    Weights: 0.40 / 0.25 / 0.20 / 0.15. Fully deterministic, no hindsight.
+    """
+    if market_state_row is None or not isinstance(market_state_row, pd.Series) or market_state_row.empty:
+        return 0.0
+
+    def _safe_float(key: str, default: float = 0.0) -> float:
+        value = market_state_row.get(key, default)
+        try:
+            if value is None or pd.isna(value):
+                return default
+            return float(value)
+        except (TypeError, ValueError):
+            return default
+
+    persistence = _safe_float("transition_non_stress_prob", 0.0)
+    persistence_norm = float(np.clip((persistence - 0.85) / 0.15, 0.0, 1.0))
+    breadth = _safe_float("breadth_sma_43", 0.0)
+    breadth_norm = float(np.clip((breadth - 0.50) / 0.30, 0.0, 1.0))
+    trend_positive = 1.0 if _safe_float("market_trend_positive", 0.0) > 0.0 else 0.0
+    drawdown_shallow = 1.0 if _safe_float("market_drawdown", 0.0) > -0.08 else 0.0
+    score = 0.40 * persistence_norm + 0.25 * breadth_norm + 0.20 * trend_positive + 0.15 * drawdown_shallow
+    return float(np.clip(score, 0.0, 1.0))
+
+
+def compute_rolling_sleeve_conviction(
+    sleeve_return_panel: pd.DataFrame,
+    as_of_date: pd.Timestamp,
+    sleeves: list[str],
+    *,
+    lookback_weeks: int = 26,
+) -> pd.Series:
+    """Rank-based rolling Sharpe conviction in [-1, +1] for each sleeve.
+
+    Uses only returns strictly up to and including `as_of_date` (no hindsight).
+    Rank 1.0 (best in subset) -> +1; rank 0.0 (worst) -> -1. Returns 0 when
+    there isn't enough history.
+    """
+    if not sleeves:
+        return pd.Series(dtype=float)
+    window = sleeve_return_panel.loc[:as_of_date, [s for s in sleeves if s in sleeve_return_panel.columns]].tail(lookback_weeks)
+    if window.empty or len(window) < max(8, lookback_weeks // 4):
+        return pd.Series(0.0, index=sleeves, dtype=float)
+    mean = window.mean(axis=0)
+    std = window.std(axis=0, ddof=0)
+    sharpe = mean.div(std.replace(0.0, np.nan)).replace([np.inf, -np.inf], np.nan)
+    if sharpe.dropna().empty:
+        return pd.Series(0.0, index=sleeves, dtype=float)
+    ranks = sharpe.rank(pct=True, method="average")
+    conviction = (ranks - 0.5) * 2.0
+    return conviction.reindex(sleeves).fillna(0.0)
+
+
+def apply_state_conditioned_tilt(
+    raw_weights: pd.Series,
+    market_state: str | None,
+    tilt_mode: str = "none",
+    *,
+    conviction: pd.Series | None = None,
+    market_state_row: pd.Series | None = None,
+) -> pd.Series:
     if tilt_mode == "none":
         return ns5["normalize_long_only"](raw_weights, max_weight=ns5["MAX_SLEEVE_WEIGHT"])
     tilted = pd.Series(raw_weights, dtype=float).copy()
@@ -700,6 +767,189 @@ def apply_state_conditioned_tilt(raw_weights: pd.Series, market_state: str | Non
         if name in tilted.index
     ]
     defensive_sleeves = [name for name in ["composite_regime_conditioned", "taa_10m_sma"] if name in tilted.index]
+
+    strong_neutral_flag = False
+    if market_state_row is not None and isinstance(market_state_row, pd.Series) and not market_state_row.empty:
+        strong_neutral_flag = is_strong_neutral_state_row(market_state_row)
+
+    # Phase 1 Variant A: dynamic risk budgeting.
+    # Apply a bounded rank-based conviction tilt on favorable states only.
+    # Stressed_panic keeps the existing defensive shift; unknown / neutral
+    # states pass through unchanged.
+    if tilt_mode == "dynamic_risk_budget":
+        favorable = (
+            market_state in {"recovery_fragile", "recovery_confirmed", "calm_trend"}
+            or strong_neutral_flag
+        )
+        if favorable and conviction is not None and not conviction.empty:
+            for name in tilted.index:
+                c = float(conviction.get(name, 0.0) or 0.0)
+                multiplier = float(np.clip(1.0 + 0.15 * c, 0.85, 1.15))
+                tilted.loc[name] *= multiplier
+        if market_state == "recovery_fragile":
+            # Mild re-risk on top of the conviction tilt so the handoff
+            # doesn't stall in fragile weeks.
+            for name in offensive_sleeves:
+                tilted.loc[name] *= 1.04
+            for name in defensive_sleeves:
+                tilted.loc[name] *= 0.96
+        elif market_state == "stressed_panic":
+            for name in offensive_sleeves:
+                tilted.loc[name] *= 0.92
+            if "composite_regime_conditioned" in tilted.index:
+                tilted.loc["composite_regime_conditioned"] *= 1.08
+            if "taa_10m_sma" in tilted.index:
+                tilted.loc["taa_10m_sma"] *= 1.05
+        return ns5["normalize_long_only"](tilted, max_weight=ns5["MAX_SLEEVE_WEIGHT"])
+
+    # Phase 1 Combo F: dynamic risk budget combined with good-state leadership
+    # rotation. Applies the leadership rotation first (sleeve-mix level) and
+    # then layers the conviction tilt on top, still bounded per-sleeve. Shared
+    # stressed-panic protection.
+    if tilt_mode == "dynamic_risk_budget_and_leadership":
+        # --- Leadership stage (Variant E, bounded ±15%) ---
+        if market_state == "calm_trend":
+            if "taa_10m_sma" in tilted.index:
+                tilted.loc["taa_10m_sma"] *= 1.12
+            if "composite_selective_signals" in tilted.index:
+                tilted.loc["composite_selective_signals"] *= 1.10
+            if "composite_selective_trend_ensemble" in tilted.index:
+                tilted.loc["composite_selective_trend_ensemble"] *= 1.08
+            if "cta_trend_long_only" in tilted.index:
+                tilted.loc["cta_trend_long_only"] *= 1.02
+            if "dual_momentum_topn" in tilted.index:
+                tilted.loc["dual_momentum_topn"] *= 1.02
+            if "composite_regime_conditioned" in tilted.index:
+                tilted.loc["composite_regime_conditioned"] *= 0.85
+        elif market_state == "recovery_confirmed":
+            if "cta_trend_long_only" in tilted.index:
+                tilted.loc["cta_trend_long_only"] *= 1.15
+            if "cta_trend_vol_managed" in tilted.index:
+                tilted.loc["cta_trend_vol_managed"] *= 1.15
+            if "taa_10m_sma" in tilted.index:
+                tilted.loc["taa_10m_sma"] *= 1.10
+            if "dual_momentum_topn" in tilted.index:
+                tilted.loc["dual_momentum_topn"] *= 0.95
+            if "composite_selective_signals" in tilted.index:
+                tilted.loc["composite_selective_signals"] *= 0.88
+            if "composite_selective_trend_ensemble" in tilted.index:
+                tilted.loc["composite_selective_trend_ensemble"] *= 0.88
+            if "composite_regime_conditioned" in tilted.index:
+                tilted.loc["composite_regime_conditioned"] *= 0.88
+        elif market_state == "recovery_fragile":
+            if "cta_trend_long_only" in tilted.index:
+                tilted.loc["cta_trend_long_only"] *= 1.12
+            if "cta_trend_vol_managed" in tilted.index:
+                tilted.loc["cta_trend_vol_managed"] *= 1.12
+            if "dual_momentum_topn" in tilted.index:
+                tilted.loc["dual_momentum_topn"] *= 1.10
+            if "composite_selective_signals" in tilted.index:
+                tilted.loc["composite_selective_signals"] *= 0.96
+            if "composite_regime_conditioned" in tilted.index:
+                tilted.loc["composite_regime_conditioned"] *= 0.90
+            if "taa_10m_sma" in tilted.index:
+                tilted.loc["taa_10m_sma"] *= 0.96
+        elif market_state == "stressed_panic":
+            for name in offensive_sleeves:
+                tilted.loc[name] *= 0.92
+            if "composite_regime_conditioned" in tilted.index:
+                tilted.loc["composite_regime_conditioned"] *= 1.08
+            if "taa_10m_sma" in tilted.index:
+                tilted.loc["taa_10m_sma"] *= 1.05
+        elif strong_neutral_flag:
+            if "cta_trend_long_only" in tilted.index:
+                tilted.loc["cta_trend_long_only"] *= 1.10
+            if "cta_trend_vol_managed" in tilted.index:
+                tilted.loc["cta_trend_vol_managed"] *= 1.08
+            if "dual_momentum_topn" in tilted.index:
+                tilted.loc["dual_momentum_topn"] *= 1.08
+            if "taa_10m_sma" in tilted.index:
+                tilted.loc["taa_10m_sma"] *= 1.04
+            if "composite_regime_conditioned" in tilted.index:
+                tilted.loc["composite_regime_conditioned"] *= 0.88
+        # --- Conviction stage (Variant A, bounded ±10% inside combo) ---
+        # Dampen the conviction modifier to ±10% since leadership is already
+        # rotating the mix; avoid compounding into ±30% per sleeve.
+        favorable = (
+            market_state in {"recovery_fragile", "recovery_confirmed", "calm_trend"}
+            or strong_neutral_flag
+        )
+        if favorable and conviction is not None and not conviction.empty:
+            for name in tilted.index:
+                c = float(conviction.get(name, 0.0) or 0.0)
+                multiplier = float(np.clip(1.0 + 0.10 * c, 0.90, 1.10))
+                tilted.loc[name] *= multiplier
+        return ns5["normalize_long_only"](tilted, max_weight=ns5["MAX_SLEEVE_WEIGHT"])
+
+    # Phase 1 Variant E: good-state sleeve leadership (bounded ±15%).
+    # Lean toward sleeves that lead in each favorable state and lighten the
+    # chronic laggards, leaving gross-risk alone.
+    if tilt_mode == "phase1_leadership":
+        if market_state == "calm_trend":
+            if "taa_10m_sma" in tilted.index:
+                tilted.loc["taa_10m_sma"] *= 1.12
+            if "composite_selective_signals" in tilted.index:
+                tilted.loc["composite_selective_signals"] *= 1.10
+            if "composite_selective_trend_ensemble" in tilted.index:
+                tilted.loc["composite_selective_trend_ensemble"] *= 1.08
+            if "cta_trend_long_only" in tilted.index:
+                tilted.loc["cta_trend_long_only"] *= 1.02
+            if "dual_momentum_topn" in tilted.index:
+                tilted.loc["dual_momentum_topn"] *= 1.02
+            if "composite_regime_conditioned" in tilted.index:
+                tilted.loc["composite_regime_conditioned"] *= 0.85
+        elif market_state == "recovery_confirmed":
+            if "cta_trend_long_only" in tilted.index:
+                tilted.loc["cta_trend_long_only"] *= 1.15
+            if "cta_trend_vol_managed" in tilted.index:
+                tilted.loc["cta_trend_vol_managed"] *= 1.15
+            if "taa_10m_sma" in tilted.index:
+                tilted.loc["taa_10m_sma"] *= 1.10
+            if "dual_momentum_topn" in tilted.index:
+                tilted.loc["dual_momentum_topn"] *= 0.95
+            if "composite_selective_signals" in tilted.index:
+                tilted.loc["composite_selective_signals"] *= 0.88
+            if "composite_selective_trend_ensemble" in tilted.index:
+                tilted.loc["composite_selective_trend_ensemble"] *= 0.88
+            if "composite_regime_conditioned" in tilted.index:
+                tilted.loc["composite_regime_conditioned"] *= 0.88
+        elif market_state == "recovery_fragile":
+            if "cta_trend_long_only" in tilted.index:
+                tilted.loc["cta_trend_long_only"] *= 1.12
+            if "cta_trend_vol_managed" in tilted.index:
+                tilted.loc["cta_trend_vol_managed"] *= 1.12
+            if "dual_momentum_topn" in tilted.index:
+                tilted.loc["dual_momentum_topn"] *= 1.10
+            if "composite_selective_signals" in tilted.index:
+                tilted.loc["composite_selective_signals"] *= 0.96
+            if "composite_regime_conditioned" in tilted.index:
+                tilted.loc["composite_regime_conditioned"] *= 0.90
+            if "taa_10m_sma" in tilted.index:
+                tilted.loc["taa_10m_sma"] *= 0.96
+        elif market_state == "stressed_panic":
+            for name in offensive_sleeves:
+                tilted.loc[name] *= 0.92
+            if "composite_regime_conditioned" in tilted.index:
+                tilted.loc["composite_regime_conditioned"] *= 1.08
+            if "taa_10m_sma" in tilted.index:
+                tilted.loc["taa_10m_sma"] *= 1.05
+        elif strong_neutral_flag:
+            # Strong-neutral: boost the trend trio moderately, soft fade
+            # composite_regime_conditioned.
+            if "cta_trend_long_only" in tilted.index:
+                tilted.loc["cta_trend_long_only"] *= 1.10
+            if "cta_trend_vol_managed" in tilted.index:
+                tilted.loc["cta_trend_vol_managed"] *= 1.08
+            if "dual_momentum_topn" in tilted.index:
+                tilted.loc["dual_momentum_topn"] *= 1.08
+            if "taa_10m_sma" in tilted.index:
+                tilted.loc["taa_10m_sma"] *= 1.04
+            if "composite_regime_conditioned" in tilted.index:
+                tilted.loc["composite_regime_conditioned"] *= 0.88
+        else:
+            # Plain neutral_mixed, no signal: pass through unchanged.
+            pass
+        return ns5["normalize_long_only"](tilted, max_weight=ns5["MAX_SLEEVE_WEIGHT"])
 
     # Backward compatibility: legacy "modest" tilt on the aggregated recovery state.
     if market_state == "recovery_rebound":
@@ -752,6 +1002,27 @@ def apply_state_conditioned_tilt(raw_weights: pd.Series, market_state: str | Non
             for name in defensive_sleeves:
                 tilted.loc[name] *= 0.94
             return ns5["normalize_long_only"](tilted, max_weight=ns5["MAX_SLEEVE_WEIGHT"])
+        if tilt_mode in {"confirmed_leadership", "calm_confirmed_leadership", "calm_confirmed_fragile_leadership"}:
+            # Recovery-confirmed is not an argument for "more offense everywhere";
+            # it is an argument for better sleeve leadership. The sleeve-by-state
+            # table shows CTA trend and TAA leading here, while selective and the
+            # regime sleeve lag materially, so rotate the mix instead of loosening
+            # the gross risk budget.
+            if "cta_trend_long_only" in tilted.index:
+                tilted.loc["cta_trend_long_only"] *= 1.20
+            if "cta_trend_vol_managed" in tilted.index:
+                tilted.loc["cta_trend_vol_managed"] *= 1.20
+            if "taa_10m_sma" in tilted.index:
+                tilted.loc["taa_10m_sma"] *= 1.10
+            if "dual_momentum_topn" in tilted.index:
+                tilted.loc["dual_momentum_topn"] *= 0.94
+            if "composite_selective_signals" in tilted.index:
+                tilted.loc["composite_selective_signals"] *= 0.82
+            if "composite_selective_trend_ensemble" in tilted.index:
+                tilted.loc["composite_selective_trend_ensemble"] *= 0.82
+            if "composite_regime_conditioned" in tilted.index:
+                tilted.loc["composite_regime_conditioned"] *= 0.86
+            return ns5["normalize_long_only"](tilted, max_weight=ns5["MAX_SLEEVE_WEIGHT"])
         if tilt_mode in {"modest", "split_modest", "fragile_plus", "fragile_plus_mix_rotation"}:
             # Treat confirmed like the legacy "modest" tilt. Do not revive a stronger
             # confirmed-offense ladder in the mix-rotation variant; the rotation is
@@ -767,6 +1038,26 @@ def apply_state_conditioned_tilt(raw_weights: pd.Series, market_state: str | Non
             for name in defensive_sleeves:
                 tilted.loc[name] *= 0.82
     elif market_state == "calm_trend":
+        if tilt_mode in {"calm_confirmed_leadership", "calm_confirmed_fragile_leadership"}:
+            # Calm-trend still undercaptures badly despite very little overlay cash.
+            # That points to sleeve mix quality, not gross deployment. Favor the
+            # sleeves that hold up best in calm conditions (TAA and selective),
+            # keep dual roughly neutral, and reduce the regime-conditioned sleeve.
+            if "taa_10m_sma" in tilted.index:
+                tilted.loc["taa_10m_sma"] *= 1.14
+            if "composite_selective_signals" in tilted.index:
+                tilted.loc["composite_selective_signals"] *= 1.10
+            if "composite_selective_trend_ensemble" in tilted.index:
+                tilted.loc["composite_selective_trend_ensemble"] *= 1.10
+            if "dual_momentum_topn" in tilted.index:
+                tilted.loc["dual_momentum_topn"] *= 1.02
+            if "cta_trend_long_only" in tilted.index:
+                tilted.loc["cta_trend_long_only"] *= 0.98
+            if "cta_trend_vol_managed" in tilted.index:
+                tilted.loc["cta_trend_vol_managed"] *= 0.98
+            if "composite_regime_conditioned" in tilted.index:
+                tilted.loc["composite_regime_conditioned"] *= 0.84
+            return ns5["normalize_long_only"](tilted, max_weight=ns5["MAX_SLEEVE_WEIGHT"])
         if tilt_mode == "fragile_plus_mix_rotation":
             # Variant D (calm leg). Rotate away from composite_regime_conditioned
             # (lowest sleeve Sharpe in calm weeks) and toward the trend-following
@@ -804,6 +1095,24 @@ def apply_state_conditioned_tilt(raw_weights: pd.Series, market_state: str | Non
             tilted.loc["composite_regime_conditioned"] *= 1.08
         if "taa_10m_sma" in tilted.index:
             tilted.loc["taa_10m_sma"] *= 1.05
+    if market_state == "recovery_fragile" and tilt_mode == "calm_confirmed_fragile_leadership":
+        # Recovery-fragile is still a rerisk handoff, but CTA and dual momentum
+        # are the leaders here. Make the existing fragile tilt more selective by
+        # pulling weight away from the weaker regime/selection sleeves.
+        if "cta_trend_long_only" in tilted.index:
+            tilted.loc["cta_trend_long_only"] *= 1.16
+        if "cta_trend_vol_managed" in tilted.index:
+            tilted.loc["cta_trend_vol_managed"] *= 1.16
+        if "dual_momentum_topn" in tilted.index:
+            tilted.loc["dual_momentum_topn"] *= 1.10
+        if "composite_selective_signals" in tilted.index:
+            tilted.loc["composite_selective_signals"] *= 0.94
+        if "composite_selective_trend_ensemble" in tilted.index:
+            tilted.loc["composite_selective_trend_ensemble"] *= 0.94
+        if "composite_regime_conditioned" in tilted.index:
+            tilted.loc["composite_regime_conditioned"] *= 0.88
+        if "taa_10m_sma" in tilted.index:
+            tilted.loc["taa_10m_sma"] *= 0.98
     return ns5["normalize_long_only"](tilted, max_weight=ns5["MAX_SLEEVE_WEIGHT"])
 
 
@@ -1091,6 +1400,121 @@ def apply_overlays_custom(
             ns_relief_cap = 0.015
             ns_relief_scale = 0.15
             ns_relief_flat = None
+    elif (
+        # Sprint Variant A: `lighter_both_wider_cap`. Same structure as the
+        # narrow_plus_confirmed incumbent except the non-self-gated relief is
+        # widened ONLY in strong_neutral and recovery_fragile (cap 0.045,
+        # scale 0.28 vs incumbent 0.025 / 0.20). recovery_confirmed remains at
+        # the incumbent tight values (0.015 / 0.15). Self-gated relief line
+        # is unchanged. Stressed-panic protection is unchanged. This attacks
+        # the cap-driven deployment bottleneck in the two good-but-not-
+        # confirmed states without reviving confirmed-recovery aggression.
+        overlay_penalty_mode == "lighter_both_wider_cap"
+        and regime_binding > 0.0
+        and market_state != "stressed_panic"
+        and (strong_neutral or market_state in {"recovery_fragile", "recovery_confirmed"})
+    ):
+        apply_self_gated_relief = True
+        relief_cap = 0.04
+        relief_scale = 0.35
+        if strong_neutral or market_state == "recovery_fragile":
+            apply_non_self_gated_relief = True
+            ns_relief_cap = 0.045
+            ns_relief_scale = 0.28
+            ns_relief_flat = None
+        elif market_state == "recovery_confirmed":
+            apply_non_self_gated_relief = True
+            ns_relief_cap = 0.015
+            ns_relief_scale = 0.15
+            ns_relief_flat = None
+    elif (
+        # Sprint Variant B: `lighter_both_wider_cap_persistence_gated`. Same as
+        # Variant A but the widened cap in strong_neutral / recovery_fragile
+        # only engages when the Layer 2B causal regime engine's
+        # transition_non_stress_prob is high (>= 0.92). When the persistence
+        # signal is weaker, the relief falls back to the incumbent narrow
+        # values (0.025 / 0.20). This tests whether conditioning deployment
+        # on the regime engine's own stay-out-of-stress confidence sharpens
+        # the release to the "safest" fraction of those weeks and leaves the
+        # tail-prone fraction defended.
+        overlay_penalty_mode == "lighter_both_wider_cap_persistence_gated"
+        and regime_binding > 0.0
+        and market_state != "stressed_panic"
+        and (strong_neutral or market_state in {"recovery_fragile", "recovery_confirmed"})
+    ):
+        apply_self_gated_relief = True
+        relief_cap = 0.04
+        relief_scale = 0.35
+        if strong_neutral or market_state == "recovery_fragile":
+            persistence_score = 0.0
+            if isinstance(market_state_row, pd.Series):
+                raw_persistence = market_state_row.get("transition_non_stress_prob", 0.0)
+                try:
+                    persistence_score = float(raw_persistence) if raw_persistence is not None and not pd.isna(raw_persistence) else 0.0
+                except (TypeError, ValueError):
+                    persistence_score = 0.0
+            apply_non_self_gated_relief = True
+            if persistence_score >= 0.92:
+                ns_relief_cap = 0.045
+                ns_relief_scale = 0.28
+            else:
+                ns_relief_cap = 0.025
+                ns_relief_scale = 0.20
+            ns_relief_flat = None
+        elif market_state == "recovery_confirmed":
+            apply_non_self_gated_relief = True
+            ns_relief_cap = 0.015
+            ns_relief_scale = 0.15
+            ns_relief_flat = None
+    elif (
+        # Phase 1 Variant B: continuous causal-confidence map. Non-self-gated
+        # relief cap and scale are a linear function of the Layer 2B causal
+        # confidence score (persistence + breadth + trend + shallow DD). At
+        # confidence=0 the relief is tighter than incumbent (0.015 / 0.15);
+        # at confidence=1 it is modestly wider than incumbent in the two
+        # good-but-unconfirmed states (0.045 / 0.32). recovery_confirmed is
+        # kept tighter overall so the "no confirmed-recovery aggression"
+        # rule is preserved. Self-gated relief and stressed-panic
+        # protection are unchanged.
+        overlay_penalty_mode == "lighter_both_continuous_confidence_map"
+        and regime_binding > 0.0
+        and market_state != "stressed_panic"
+        and (strong_neutral or market_state in {"recovery_fragile", "recovery_confirmed"})
+    ):
+        apply_self_gated_relief = True
+        relief_cap = 0.04
+        relief_scale = 0.35
+        confidence_score = compute_causal_confidence(market_state_row if isinstance(market_state_row, pd.Series) else None)
+        apply_non_self_gated_relief = True
+        if strong_neutral or market_state == "recovery_fragile":
+            ns_relief_cap = 0.015 + confidence_score * (0.045 - 0.015)
+            ns_relief_scale = 0.15 + confidence_score * (0.32 - 0.15)
+        elif market_state == "recovery_confirmed":
+            ns_relief_cap = 0.010 + confidence_score * (0.025 - 0.010)
+            ns_relief_scale = 0.10 + confidence_score * (0.20 - 0.10)
+        ns_relief_flat = None
+    elif (
+        # Phase 1 Variant C: confidence-gated relief. Multiplicative gate
+        # on the incumbent narrow values. High confidence pushes the cap
+        # up to 0.045 / 0.30; low confidence stays near incumbent 0.025 /
+        # 0.20. Same state set and protections as Variant B.
+        overlay_penalty_mode == "lighter_both_confidence_gated"
+        and regime_binding > 0.0
+        and market_state != "stressed_panic"
+        and (strong_neutral or market_state in {"recovery_fragile", "recovery_confirmed"})
+    ):
+        apply_self_gated_relief = True
+        relief_cap = 0.04
+        relief_scale = 0.35
+        confidence_score = compute_causal_confidence(market_state_row if isinstance(market_state_row, pd.Series) else None)
+        apply_non_self_gated_relief = True
+        if strong_neutral or market_state == "recovery_fragile":
+            ns_relief_cap = 0.025 + confidence_score * 0.020
+            ns_relief_scale = 0.20 + confidence_score * 0.10
+        elif market_state == "recovery_confirmed":
+            ns_relief_cap = 0.015 + confidence_score * 0.010
+            ns_relief_scale = 0.15 + confidence_score * 0.05
+        ns_relief_flat = None
 
     if apply_self_gated_relief:
         self_gated_names = [name for name in blended.index if name in SELF_GATED_SLEEVES]
@@ -1265,7 +1689,20 @@ def run_subset_custom(
                         else:
                             raise ValueError(f"Unknown engine: {engine}")
 
-                        raw = apply_state_conditioned_tilt(raw, market_state, tilt_mode=state_tilt)
+                        conviction_row = (
+                            compute_rolling_sleeve_conviction(
+                                sleeve_return_panel, date, list(active), lookback_weeks=26
+                            )
+                            if state_tilt in {"dynamic_risk_budget", "dynamic_risk_budget_and_leadership"}
+                            else None
+                        )
+                        raw = apply_state_conditioned_tilt(
+                            raw,
+                            market_state,
+                            tilt_mode=state_tilt,
+                            conviction=conviction_row,
+                            market_state_row=market_state_row if isinstance(market_state_row, pd.Series) else None,
+                        )
                         default_conviction_row = (
                             conviction_inputs["default_blend"].loc[date].reindex(active)
                             if "default_blend" in conviction_inputs and date in conviction_inputs["default_blend"].index
@@ -1884,6 +2321,85 @@ register_strategy_output(
 market_state_history = build_market_state_history()
 
 
+def build_internal_redeployed_sleeve_panels(
+    base_return_panel: pd.DataFrame,
+    base_positions: dict[str, pd.DataFrame],
+    market_state_hist: pd.DataFrame,
+    *,
+    target_sleeves: list[str],
+    redeploy_config: dict[str, float] | None = None,
+    strong_neutral_fraction: float = 0.30,
+) -> tuple[pd.DataFrame, dict[str, pd.DataFrame]]:
+    """Phase 1 Variant D: reduce per-sleeve internal BIL in favorable states
+    and redistribute to the sleeve's existing risky picks proportionally.
+    Recompute sleeve returns via the canonical compute_strategy_path so
+    transaction costs and cash accrual stay consistent.
+
+    Rules:
+      - Only target sleeves in `target_sleeves`; others untouched.
+      - Redeploy fraction is state-dependent (see defaults).
+      - 100% BIL rows are preserved (no_signal defensive role untouched).
+      - Redistribution is proportional to each risky pick's existing weight.
+      - No hindsight: redeploy decisions use only the market_state at date t.
+    """
+    if redeploy_config is None:
+        redeploy_config = {
+            "recovery_fragile": 0.30,
+            "recovery_confirmed": 0.20,
+            "calm_trend": 0.40,
+        }
+    cash_proxy = ns5["cash_proxy"]
+    new_return_panel = base_return_panel.copy()
+    new_positions = {k: v.copy() for k, v in base_positions.items()}
+    state_hist = market_state_hist.reindex(base_return_panel.index)
+
+    for sleeve_name in target_sleeves:
+        if sleeve_name not in new_positions:
+            continue
+        positions = new_positions[sleeve_name].copy()
+        if cash_proxy not in positions.columns:
+            continue
+        modified = positions.copy()
+        for date, row in positions.iterrows():
+            if date not in state_hist.index:
+                continue
+            state_row = state_hist.loc[date]
+            market_state = str(state_row.get("market_state") or "")
+            strong_neutral = is_strong_neutral_state_row(state_row)
+            redeploy_fraction = 0.0
+            if strong_neutral:
+                redeploy_fraction = strong_neutral_fraction
+            elif market_state in redeploy_config:
+                redeploy_fraction = redeploy_config[market_state]
+            if redeploy_fraction <= 0.0:
+                continue
+            bil_weight = float(row.get(cash_proxy, 0.0) or 0.0)
+            if bil_weight <= 0.0:
+                continue
+            risky_row = row.drop(cash_proxy) if cash_proxy in row.index else row
+            risky_sum = float(risky_row.sum())
+            if risky_sum <= 1e-9:
+                # 100% BIL row: preserve defensive role (no-signal state).
+                continue
+            bil_shift = bil_weight * redeploy_fraction
+            new_bil = bil_weight - bil_shift
+            modified.at[date, cash_proxy] = new_bil
+            for col in risky_row.index:
+                w = float(risky_row.get(col, 0.0) or 0.0)
+                if w > 0.0:
+                    modified.at[date, col] = w + bil_shift * (w / risky_sum)
+        new_positions[sleeve_name] = modified
+        path = ns3["compute_strategy_path"](
+            modified,
+            ns3["next_week_returns"],
+            transaction_cost_bps=ns3["DEFAULT_COST_BPS"],
+            cash_proxy_returns=ns3["cash_proxy_return_series"],
+        )
+        new_return_panel[sleeve_name] = path["net_return"].reindex(new_return_panel.index).fillna(0.0)
+
+    return new_return_panel, new_positions
+
+
 strategy_lookup = pd.read_csv(LAYER2A_DIR / "strategy_summary_table.csv")
 strategy_lookup = strategy_lookup.set_index("strategy_name") if not strategy_lookup.empty else pd.DataFrame().set_index(pd.Index([], name="strategy_name"))
 
@@ -1897,6 +2413,34 @@ base_sleeve_return_panel[concentrated_strategy_name] = concentrated_path["net_re
 base_sleeve_positions[concentrated_strategy_name] = concentrated_weights.reindex(index=ns5["weekly_prices"].index, columns=ns5["weekly_prices"].columns).fillna(0.0)
 base_sleeve_return_panel[trend_ensemble_strategy_name] = trend_ensemble_path["net_return"].reindex(base_sleeve_return_panel.index).fillna(0.0)
 base_sleeve_positions[trend_ensemble_strategy_name] = trend_ensemble_weights.reindex(index=ns5["weekly_prices"].index, columns=ns5["weekly_prices"].columns).fillna(0.0)
+
+# Phase 1 Variant D: build redeployed sleeve panels once, used only by the
+# Variant D version_spec (and any combo that consumes it). Other variants
+# continue to use `base_sleeve_return_panel` / `base_sleeve_positions`.
+redeploy_target_sleeves = ["composite_regime_conditioned", "dual_momentum_topn", "cta_trend_long_only"]
+redeployed_sleeve_return_panel, redeployed_sleeve_positions = build_internal_redeployed_sleeve_panels(
+    base_sleeve_return_panel,
+    base_sleeve_positions,
+    market_state_history,
+    target_sleeves=redeploy_target_sleeves,
+)
+
+# Restricted redeploy for combos: drops recovery_confirmed (where standalone
+# Variant D hurt badly) and keeps strong_neutral / recovery_fragile / calm
+# redeploy. Used by Combo G.
+redeployed_restricted_return_panel, redeployed_restricted_positions = build_internal_redeployed_sleeve_panels(
+    base_sleeve_return_panel,
+    base_sleeve_positions,
+    market_state_history,
+    target_sleeves=redeploy_target_sleeves,
+    redeploy_config={
+        "recovery_fragile": 0.25,
+        "calm_trend": 0.35,
+        # recovery_confirmed intentionally omitted — standalone Variant D
+        # showed recovery_confirmed_capture collapse from 41% -> 29%.
+    },
+    strong_neutral_fraction=0.25,
+)
 
 baseline_subset = list(ns5["sleeve_return_panel"].columns)
 drop_breadth_subset = [name for name in baseline_subset if name != "composite_breadth_filtered"]
@@ -2702,6 +3246,256 @@ version_specs = [
         "target_vol_ceil": 1.00,
         "note": "Variant C: extends Variant A's non-self-gated relief to recovery_confirmed at a tighter cap (0.015) and scale (0.15). Tests whether the signal strengthens when the relief reaches additional binding weeks without crossing into confirmed-recovery aggression.",
     },
+    # ======================================================================
+    # Narrow sleeve-leadership follow-up (current research task)
+    #
+    # Control     = improved_hrp_non_self_gated_relief_narrow_plus_confirmed.
+    # Variant A   = improved_hrp_confirmed_leadership
+    #               Keep the incumbent overlay / relief logic, but rotate sleeve
+    #               leadership inside recovery_confirmed toward the sleeves that
+    #               actually lead there (CTA trend, then TAA) and away from the
+    #               laggards (selective, regime-conditioned).
+    # Variant B   = improved_hrp_calm_confirmed_leadership
+    #               Extend the same idea to calm_trend, where overlay cash is
+    #               already low and the remaining drag appears to come from a
+    #               still-too-heavy regime-conditioned sleeve.
+    # Variant C   = improved_hrp_calm_confirmed_fragile_leadership
+    #               Add a more selective fragile-recovery leadership rotation to
+    #               Variant B, favoring CTA and dual momentum over the weaker
+    #               sleeves in that handoff regime.
+    # ======================================================================
+    {
+        "version_name": "improved_hrp_confirmed_leadership",
+        "method_name": "hrp",
+        "subset_name": "uptrend_participation_confirmed_leadership",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "confirmed_leadership",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_both_targeted_narrow_plus_confirmed",
+        "target_vol_ceil": 1.00,
+        "note": "Variant A: keep the current gross-risk and overlay design, but improve recovery_confirmed sleeve leadership by rotating toward CTA trend and TAA, away from selective and regime-conditioned sleeves that have lagged in that state.",
+    },
+    {
+        "version_name": "improved_hrp_calm_confirmed_leadership",
+        "method_name": "hrp",
+        "subset_name": "uptrend_participation_calm_confirmed_leadership",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "calm_confirmed_leadership",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_both_targeted_narrow_plus_confirmed",
+        "target_vol_ceil": 1.00,
+        "note": "Variant B: extend the leadership rotation to calm_trend as well. Targets the remaining undercapture in prolonged benign markets where overlay cash is already low and sleeve mix looks like the bottleneck.",
+    },
+    {
+        "version_name": "improved_hrp_calm_confirmed_fragile_leadership",
+        "method_name": "hrp",
+        "subset_name": "uptrend_participation_calm_confirmed_fragile_leadership",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "calm_confirmed_fragile_leadership",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_both_targeted_narrow_plus_confirmed",
+        "target_vol_ceil": 1.00,
+        "note": "Variant C: add a selective fragile-recovery leadership rotation on top of Variant B, favoring CTA and dual momentum in recovery_fragile while still keeping the incumbent overlay state set and stressed-state protection intact.",
+    },
+    # ======================================================================
+    # Final classical sprint: wider overlay-cash relief in the two good-but-
+    # not-confirmed states (strong_neutral, recovery_fragile).
+    #
+    # Control     = improved_hrp_non_self_gated_relief_narrow_plus_confirmed
+    #               (incumbent, identical sleeve/state logic, incumbent caps).
+    # Variant A   = improved_hrp_overlay_cash_wider_cap
+    #               Same structure as the incumbent but widens the non-self-
+    #               gated relief cap from 0.025 -> 0.045 and the scale from
+    #               0.20 -> 0.28 in strong_neutral and recovery_fragile only.
+    #               recovery_confirmed keeps incumbent tight values (0.015 /
+    #               0.15). Self-gated relief and stressed-panic protection
+    #               are unchanged. Directly attacks the cap-bound overlay
+    #               cash (~15.3% / ~13.0%) in those two states.
+    # Variant B   = improved_hrp_overlay_cash_wider_cap_persistence_gated
+    #               Persistence-conditioned version of A. Engages the widened
+    #               cap only when the Layer 2B causal regime engine's
+    #               transition_non_stress_prob >= 0.92; otherwise falls back
+    #               to incumbent narrow (0.025 / 0.20). Tests whether
+    #               conditioning deployment on the regime engine's own
+    #               stay-out-of-stress confidence cleans the tail.
+    # ======================================================================
+    {
+        "version_name": "improved_hrp_overlay_cash_wider_cap",
+        "method_name": "hrp",
+        "subset_name": "uptrend_participation_overlay_cash_wider_cap",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "fragile_plus",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_both_wider_cap",
+        "target_vol_ceil": 1.00,
+        "note": "Sprint Variant A: widen the non-self-gated relief cap (0.025 -> 0.045) and scale (0.20 -> 0.28) in strong_neutral and recovery_fragile only. recovery_confirmed unchanged (0.015 / 0.15). Self-gated relief unchanged. Stressed-panic protection unchanged. Directly targets the ~15% strong_neutral and ~13% recovery_fragile overlay-cash that is cap-bound, not vol-bound.",
+    },
+    {
+        "version_name": "improved_hrp_overlay_cash_wider_cap_persistence_gated",
+        "method_name": "hrp",
+        "subset_name": "uptrend_participation_overlay_cash_wider_cap_persistence_gated",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "fragile_plus",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_both_wider_cap_persistence_gated",
+        "target_vol_ceil": 1.00,
+        "note": "Sprint Variant B: persistence-gated widening. Same structure as Variant A but the widened non-self-gated cap (0.045 / 0.28) only fires when the Layer 2B regime engine's transition_non_stress_prob >= 0.92; otherwise falls back to incumbent narrow (0.025 / 0.20). recovery_confirmed unchanged. Self-gated relief unchanged. Stressed-panic protection unchanged.",
+    },
+    # ======================================================================
+    # Phase 1 upgrade sprint (current sprint). Tests five standalone Phase 1
+    # improvements plus justified combinations. Control for all of these is
+    # `improved_hrp_non_self_gated_relief_narrow_plus_confirmed` (incumbent).
+    #
+    # Variant A  = improved_hrp_phase1_dynamic_risk_budget
+    #   Dynamic risk budgeting: rolling-Sharpe rank-based ±15% sleeve
+    #   conviction tilt in favorable states only. Stressed-panic keeps
+    #   the existing defensive shift.
+    # Variant B  = improved_hrp_phase1_continuous_confidence
+    #   Continuous causal-confidence map: non-self-gated relief cap and
+    #   scale linearly interpolated by the Layer 2B confidence score.
+    # Variant C  = improved_hrp_phase1_confidence_gated
+    #   Confidence-gated relief: multiplicative confidence gate on the
+    #   incumbent narrow values.
+    # Variant D  = improved_hrp_phase1_internal_redeploy
+    #   Sleeve-internal cash redesign: reduce per-sleeve BIL in favorable
+    #   states, redistribute to existing risky picks. Recomputed through
+    #   the canonical compute_strategy_path cost model. Defensive full-
+    #   BIL rows preserved.
+    # Variant E  = improved_hrp_phase1_leadership
+    #   Good-state sleeve leadership rotation bounded at ±15% per sleeve.
+    # ======================================================================
+    {
+        "version_name": "improved_hrp_phase1_dynamic_risk_budget",
+        "method_name": "hrp",
+        "subset_name": "phase1_dynamic_risk_budget",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "dynamic_risk_budget",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_both_targeted_narrow_plus_confirmed",
+        "target_vol_ceil": 1.00,
+        "note": "Phase 1 Variant A: rolling 26w rank-based sleeve-conviction tilt (±15%) in favorable states; incumbent overlay relief kept. Stressed-panic unchanged.",
+    },
+    {
+        "version_name": "improved_hrp_phase1_continuous_confidence",
+        "method_name": "hrp",
+        "subset_name": "phase1_continuous_confidence",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "fragile_plus",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_both_continuous_confidence_map",
+        "target_vol_ceil": 1.00,
+        "note": "Phase 1 Variant B: continuous causal-confidence map on the non-self-gated relief. cap/scale LERP from tight (0.015/0.15) at confidence=0 to wide (0.045/0.32) at confidence=1 in strong_neutral and recovery_fragile; recovery_confirmed kept tighter (0.010-0.025 / 0.10-0.20). Self-gated relief unchanged. Stressed-panic protection unchanged.",
+    },
+    {
+        "version_name": "improved_hrp_phase1_confidence_gated",
+        "method_name": "hrp",
+        "subset_name": "phase1_confidence_gated",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "fragile_plus",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_both_confidence_gated",
+        "target_vol_ceil": 1.00,
+        "note": "Phase 1 Variant C: multiplicative confidence gate on the incumbent narrow values. ns_relief_cap = 0.025 + confidence*0.020; ns_relief_scale = 0.20 + confidence*0.10 in strong_neutral and recovery_fragile; recovery_confirmed uses tighter additive gates (0.015+conf*0.010 / 0.15+conf*0.05). Self-gated relief unchanged. Stressed-panic protection unchanged.",
+    },
+    {
+        "version_name": "improved_hrp_phase1_internal_redeploy",
+        "method_name": "hrp",
+        "subset_name": "phase1_internal_redeploy",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "fragile_plus",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_both_targeted_narrow_plus_confirmed",
+        "target_vol_ceil": 1.00,
+        "internal_redeploy": True,
+        "note": "Phase 1 Variant D: sleeve-internal cash redesign. Reduce per-sleeve internal BIL by 30% in strong_neutral and recovery_fragile, 20% in recovery_confirmed, 40% in calm_trend; redistribute to existing risky picks proportionally. Targets composite_regime_conditioned, dual_momentum_topn, cta_trend_long_only. 100%-BIL defensive rows preserved. Recomputed through compute_strategy_path. Overlay/tilt unchanged.",
+    },
+    {
+        "version_name": "improved_hrp_phase1_leadership",
+        "method_name": "hrp",
+        "subset_name": "phase1_leadership",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "phase1_leadership",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_both_targeted_narrow_plus_confirmed",
+        "target_vol_ceil": 1.00,
+        "note": "Phase 1 Variant E: bounded ±15% good-state sleeve-leadership rotation. Calm_trend and strong_neutral favor trend trio + TAA / selective and fade regime_conditioned; recovery_confirmed favors CTA/TAA; recovery_fragile favors CTA + dual momentum. Overlay relief and gross-risk unchanged.",
+    },
+    # ======================================================================
+    # Phase 1 justified combinations (current sprint).
+    #
+    # Combo F  = improved_hrp_phase1_combo_f_a_plus_e
+    #   Two-way combo of the cleanest winner (A, dynamic risk budgeting)
+    #   and the closest-to-neutral variant (E, leadership rotation).
+    #   Applies the leadership rotation first, then layers a dampened
+    #   conviction tilt on top (±10% instead of ±15%) to avoid compound
+    #   blow-ups. Incumbent overlay/relief kept.
+    # Combo G  = improved_hrp_phase1_combo_g_a_e_d_restricted
+    #   Three-way combo of A + E + a restricted version of D that
+    #   excludes recovery_confirmed (where standalone D hurt capture
+    #   materially) and runs internal redeploy at lower fractions in
+    #   strong_neutral / recovery_fragile / calm_trend only. Tests
+    #   whether the disciplined D layer helps once A+E has set a
+    #   cleaner sleeve mix.
+    # ======================================================================
+    {
+        "version_name": "improved_hrp_phase1_combo_f_a_plus_e",
+        "method_name": "hrp",
+        "subset_name": "phase1_combo_f",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "dynamic_risk_budget_and_leadership",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_both_targeted_narrow_plus_confirmed",
+        "target_vol_ceil": 1.00,
+        "note": "Phase 1 Combo F: dynamic risk budgeting (A, dampened to ±10%) layered on top of good-state leadership rotation (E, ±15%). Same state set as A, B, C, E. Incumbent overlay relief kept. Stressed-panic protection unchanged.",
+    },
+    {
+        "version_name": "improved_hrp_phase1_combo_g_a_e_d_restricted",
+        "method_name": "hrp",
+        "subset_name": "phase1_combo_g",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "dynamic_risk_budget_and_leadership",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_both_targeted_narrow_plus_confirmed",
+        "target_vol_ceil": 1.00,
+        "internal_redeploy": "restricted",
+        "note": "Phase 1 Combo G: Combo F (A + E) plus restricted sleeve-internal cash redeploy (D-restricted) in strong_neutral (25%), recovery_fragile (25%), calm_trend (35%). recovery_confirmed intentionally EXCLUDED (standalone D hurt capture there). Targets composite_regime_conditioned, dual_momentum_topn, cta_trend_long_only. Incumbent overlay relief kept.",
+    },
 ]
 
 
@@ -2712,6 +3506,16 @@ version_results: dict[str, dict] = {}
 version_baselines: dict[str, dict] = {}
 
 for version in version_specs:
+    version_redeploy_mode = version.get("internal_redeploy", False)
+    if version_redeploy_mode == "restricted":
+        version_sleeve_return_panel = redeployed_restricted_return_panel
+        version_sleeve_positions = redeployed_restricted_positions
+    elif bool(version_redeploy_mode):
+        version_sleeve_return_panel = redeployed_sleeve_return_panel
+        version_sleeve_positions = redeployed_sleeve_positions
+    else:
+        version_sleeve_return_panel = base_sleeve_return_panel
+        version_sleeve_positions = base_sleeve_positions
     sleeve_alloc, weight_panel, path, diagnostics, beta_overlay_panel, metrics = run_subset_custom(
         version["method_name"],
         version["subset_name"],
@@ -2729,8 +3533,8 @@ for version in version_specs:
         target_vol_ceil=version["target_vol_ceil"],
         market_state_history=market_state_history,
         stabilize_market_state=bool(version.get("stabilize_market_state", False)),
-        sleeve_return_panel=base_sleeve_return_panel,
-        sleeve_positions=base_sleeve_positions,
+        sleeve_return_panel=version_sleeve_return_panel,
+        sleeve_positions=version_sleeve_positions,
     )
 
     weight_panel.to_csv(LAYER3_DIR / f"portfolio_version_weights_{version['version_name']}.csv")
@@ -2892,8 +3696,8 @@ for version in version_specs:
         for sleeve_name in [name for name in sleeve_row.index if not str(name).startswith("cash::")]:
             post_weight = float(sleeve_row.get(sleeve_name, 0.0) or 0.0)
             sleeve_positions_row = (
-                base_sleeve_positions[sleeve_name].loc[date]
-                if sleeve_name in base_sleeve_positions and date in base_sleeve_positions[sleeve_name].index
+                version_sleeve_positions[sleeve_name].loc[date]
+                if sleeve_name in version_sleeve_positions and date in version_sleeve_positions[sleeve_name].index
                 else pd.Series(dtype=float)
             )
             internal_bil = float(sleeve_positions_row.get(ns5["cash_proxy"], 0.0) or 0.0)
@@ -2981,7 +3785,7 @@ for version in version_specs:
             )
         for sleeve_name in [name for name in current_sleeve_alloc.index if not str(name).startswith("cash::")]:
             sleeve_weight = current_sleeve_alloc.get(sleeve_name, 0.0)
-            sleeve_position = base_sleeve_positions[sleeve_name].loc[latest_date].get(asset, 0.0) if latest_date in base_sleeve_positions[sleeve_name].index else 0.0
+            sleeve_position = version_sleeve_positions[sleeve_name].loc[latest_date].get(asset, 0.0) if sleeve_name in version_sleeve_positions and latest_date in version_sleeve_positions[sleeve_name].index else 0.0
             allocation_driver_breakdown_rows.append(
                 {
                     "version_name": version["version_name"],

@@ -340,11 +340,11 @@ const latestRegimeScore = regimeScore.length ? regimeScore[regimeScore.length - 
 const latestMarketState = marketStateHistory.length ? marketStateHistory[marketStateHistory.length - 1] : null;
 const benchmarkSummary = strategySummary.filter((row) => String(row.strategy_name || "").startsWith("baseline_"));
 const baselineVersion = versionComparison.find((row) => String(row.version_name || "").startsWith("baseline_hrp")) || versionComparison.find((row) => String(row.version_name || "").startsWith("baseline_")) || null;
-// Pin the production candidate to the incumbent (`improved_hrp_good_state_fragile_combo`) unless a
+// Pin the production candidate to the incumbent (`improved_hrp_non_self_gated_relief_narrow_plus_confirmed`) unless a
 // challenger variant beats it by a material production-score margin AND does not degrade max
 // drawdown or CVaR. This preserves the existing promotion discipline while updating the incumbent
-// to the current best production base from the neutral-ease pass.
-const INCUMBENT_NAME = "improved_hrp_good_state_fragile_combo";
+// to the current best production base from the latest non-self-gated relief pass.
+const INCUMBENT_NAME = "improved_hrp_non_self_gated_relief_narrow_plus_confirmed";
 const PROMOTION_MARGIN = 0.05; // production_score
 const improvedCandidates = [...versionComparison].filter((row) => String(row.version_name || "").startsWith("improved_"));
 const incumbent = improvedCandidates.find((row) => row.version_name === INCUMBENT_NAME) || null;

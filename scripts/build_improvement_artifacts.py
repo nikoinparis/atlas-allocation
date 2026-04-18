@@ -91,6 +91,7 @@ ns5 = load_notebook_namespace(
 SELF_GATED_SLEEVES = [
     "dual_momentum_topn",
     "cta_trend_long_only",
+    "cta_trend_vol_managed",
     "taa_10m_sma",
 ]
 
@@ -216,6 +217,24 @@ def build_market_state_history() -> pd.DataFrame:
     breadth_26w_mom = offensive_prices.pct_change(26).gt(0.0).mean(axis=1)
     breadth_13w_mom = offensive_prices.pct_change(13).gt(0.0).mean(axis=1)
     breadth_change_4w = breadth_sma_43.sub(breadth_sma_43.shift(4))
+
+    # Separate canary diagnostics for the conditional research pass. The broader
+    # set mirrors the existing notebook convention; the pair proxy is a smaller,
+    # public-research-style implementation that approximates BND/VWO using the
+    # available ETF universe.
+    canary_assets_default = [ticker for ticker in ["VWO", "HYG", "VNQ", "EFA", "PDBC"] if ticker in weekly_prices.columns]
+    canary_pair_assets = [ticker for ticker in ["VWO", "IEF"] if ticker in weekly_prices.columns]
+    if len(canary_pair_assets) < 2:
+        canary_pair_assets = [ticker for ticker in ["VWO", "LQD"] if ticker in weekly_prices.columns]
+
+    def lagged_abs_momentum_breadth(tickers: list[str]) -> pd.Series:
+        if not tickers:
+            return pd.Series(np.nan, index=weekly_prices.index, dtype=float)
+        trailing_52_4w = weekly_prices[tickers].shift(4).div(weekly_prices[tickers].shift(52)).sub(1.0)
+        return trailing_52_4w.gt(0.0).mean(axis=1)
+
+    canary_breadth_default = lagged_abs_momentum_breadth(canary_assets_default)
+    canary_breadth_pair = lagged_abs_momentum_breadth(canary_pair_assets)
 
     recent_stress = regime_states["risk_state"].eq("stressed").rolling(26, min_periods=1).max().fillna(0.0).astype(bool)
     avg_corr_risk_off_z = regime_score.get("avg_corr_risk_off_z", pd.Series(np.nan, index=regime_states.index))
@@ -343,6 +362,8 @@ def build_market_state_history() -> pd.DataFrame:
             "breadth_26w_mom": breadth_26w_mom.reindex(regime_states.index).values,
             "breadth_13w_mom": breadth_13w_mom.reindex(regime_states.index).values,
             "breadth_change_4w": breadth_change_4w.reindex(regime_states.index).values,
+            "canary_breadth_default": canary_breadth_default.reindex(regime_states.index).values,
+            "canary_breadth_pair": canary_breadth_pair.reindex(regime_states.index).values,
             "recent_stress_26w": recent_stress.reindex(regime_states.index).astype(float).values,
             "avg_corr_risk_off_z": avg_corr_risk_off_z.reindex(regime_states.index).values,
             "google_fear_z_tradable": google_fear.reindex(regime_states.index).values,
@@ -368,6 +389,8 @@ def build_variant_regime_states(
         "breadth_sma_43",
         "breadth_26w_mom",
         "market_trend_positive",
+        "canary_breadth_default",
+        "canary_breadth_pair",
     ]
     for optional_column in (
         "transition_persistence_prob",
@@ -408,6 +431,12 @@ def build_variant_regime_states(
         & adjusted["market_trend_positive"].fillna(0.0).gt(0.0)
         & adjusted["breadth_sma_43"].fillna(0.0).ge(0.55)
         & adjusted["breadth_26w_mom"].fillna(0.0).ge(0.50)
+    )
+    recentered_strong_neutral_mask = (
+        adjusted["market_state"].eq("neutral_mixed")
+        & adjusted["market_trend_positive"].fillna(0.0).gt(0.0)
+        & adjusted["breadth_sma_43"].fillna(0.0).ge(0.52)
+        & adjusted["breadth_26w_mom"].fillna(0.0).ge(0.48)
     )
 
     if overlay_variant == "recovery_breadth_rerisk":
@@ -486,6 +515,59 @@ def build_variant_regime_states(
         adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"] = adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"].clip(lower=0.92)
         adjusted.loc[calm_mask, "overlay_multiplier"] = adjusted.loc[calm_mask, "overlay_multiplier"].clip(lower=1.00)
         adjusted.loc[stressed_mask, "overlay_multiplier"] = adjusted.loc[stressed_mask, "overlay_multiplier"].clip(upper=0.40)
+        return adjusted
+
+    if overlay_variant == "continuous_neutral_mapping_careful":
+        # Conservative continuous map: weak-neutral stays near the control path,
+        # while clearly benign strong-neutral weeks get a smoother release valve.
+        risk_values = adjusted.get("risk_regime_score", pd.Series(np.nan, index=adjusted.index))
+        neutral_base_map = bounded_interp(
+            risk_values,
+            xp=[-1.25, -0.60, -0.10, 0.25, 0.75, 1.50, 3.00],
+            fp=[0.91, 0.90, 0.88, 0.85, 0.73, 0.46, 0.28],
+        )
+        strong_neutral_map = bounded_interp(
+            risk_values,
+            xp=[-1.25, -0.60, -0.10, 0.25, 0.75, 1.50, 3.00],
+            fp=[0.97, 0.96, 0.95, 0.92, 0.82, 0.48, 0.28],
+        )
+        neutral_state_mask = adjusted["market_state"].eq("neutral_mixed")
+        adjusted.loc[neutral_state_mask, "overlay_multiplier"] = neutral_base_map.loc[neutral_state_mask]
+        adjusted.loc[strong_neutral_mask, "overlay_multiplier"] = strong_neutral_map.loc[strong_neutral_mask]
+        adjusted.loc[recovery_fragile_mask, "overlay_multiplier"] = adjusted.loc[recovery_fragile_mask, "overlay_multiplier"].clip(lower=0.96)
+        adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"] = adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"].clip(lower=0.92)
+        adjusted.loc[calm_mask, "overlay_multiplier"] = adjusted.loc[calm_mask, "overlay_multiplier"].clip(lower=1.00)
+        adjusted.loc[stressed_mask, "overlay_multiplier"] = adjusted.loc[stressed_mask, "overlay_multiplier"].clip(upper=0.40)
+        return adjusted
+
+    if overlay_variant == "separate_canary_proxy":
+        # Minimal separate-canary test. If the canary pair is fully healthy, lift
+        # only the clearly benign states slightly; otherwise stay on the control path.
+        canary_pair_breadth = adjusted.get("canary_breadth_pair", pd.Series(np.nan, index=adjusted.index)).fillna(0.0)
+        canary_all_clear_mask = canary_pair_breadth >= 0.999
+        adjusted.loc[recovery_fragile_mask, "overlay_multiplier"] = adjusted.loc[recovery_fragile_mask, "overlay_multiplier"].clip(lower=0.96)
+        adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"] = adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"].clip(lower=0.92)
+        adjusted.loc[calm_mask, "overlay_multiplier"] = adjusted.loc[calm_mask, "overlay_multiplier"].clip(lower=1.00)
+        adjusted.loc[strong_neutral_mask, "overlay_multiplier"] = adjusted.loc[strong_neutral_mask, "overlay_multiplier"].clip(lower=0.94)
+        adjusted.loc[strong_neutral_mask & canary_all_clear_mask, "overlay_multiplier"] = adjusted.loc[
+            strong_neutral_mask & canary_all_clear_mask, "overlay_multiplier"
+        ].clip(lower=0.96)
+        adjusted.loc[recovery_fragile_mask & canary_all_clear_mask, "overlay_multiplier"] = adjusted.loc[
+            recovery_fragile_mask & canary_all_clear_mask, "overlay_multiplier"
+        ].clip(lower=0.97)
+        adjusted.loc[recovery_confirmed_mask & canary_all_clear_mask, "overlay_multiplier"] = adjusted.loc[
+            recovery_confirmed_mask & canary_all_clear_mask, "overlay_multiplier"
+        ].clip(lower=0.93)
+        return adjusted
+
+    if overlay_variant == "threshold_recentering":
+        # Minimal threshold recentering only.
+        adjusted.loc[recovery_fragile_mask, "overlay_multiplier"] = adjusted.loc[recovery_fragile_mask, "overlay_multiplier"].clip(lower=0.96)
+        adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"] = adjusted.loc[recovery_confirmed_mask, "overlay_multiplier"].clip(lower=0.92)
+        adjusted.loc[calm_mask, "overlay_multiplier"] = adjusted.loc[calm_mask, "overlay_multiplier"].clip(lower=1.00)
+        adjusted.loc[recentered_strong_neutral_mask, "overlay_multiplier"] = adjusted.loc[
+            recentered_strong_neutral_mask, "overlay_multiplier"
+        ].clip(lower=0.94)
         return adjusted
 
     if overlay_variant == "recovery_split_baseline":
@@ -609,7 +691,9 @@ def apply_state_conditioned_tilt(raw_weights: pd.Series, market_state: str | Non
         for name in [
             "dual_momentum_topn",
             "cta_trend_long_only",
+            "cta_trend_vol_managed",
             "composite_selective_signals",
+            "composite_selective_trend_ensemble",
             "composite_selective_concentrated",
             "composite_equal_weight",
         ]
@@ -642,10 +726,14 @@ def apply_state_conditioned_tilt(raw_weights: pd.Series, market_state: str | Non
             # (cta_trend and dual_momentum by sleeve-by-state Sharpe).
             if "cta_trend_long_only" in tilted.index:
                 tilted.loc["cta_trend_long_only"] *= 1.15
+            if "cta_trend_vol_managed" in tilted.index:
+                tilted.loc["cta_trend_vol_managed"] *= 1.15
             if "dual_momentum_topn" in tilted.index:
                 tilted.loc["dual_momentum_topn"] *= 1.12
             if "composite_selective_signals" in tilted.index:
                 tilted.loc["composite_selective_signals"] *= 1.06
+            if "composite_selective_trend_ensemble" in tilted.index:
+                tilted.loc["composite_selective_trend_ensemble"] *= 1.06
             if "composite_regime_conditioned" in tilted.index:
                 tilted.loc["composite_regime_conditioned"] *= 0.88
             if "taa_10m_sma" in tilted.index:
@@ -688,8 +776,12 @@ def apply_state_conditioned_tilt(raw_weights: pd.Series, market_state: str | Non
                 tilted.loc["dual_momentum_topn"] *= 1.14
             if "cta_trend_long_only" in tilted.index:
                 tilted.loc["cta_trend_long_only"] *= 1.14
+            if "cta_trend_vol_managed" in tilted.index:
+                tilted.loc["cta_trend_vol_managed"] *= 1.14
             if "composite_selective_signals" in tilted.index:
                 tilted.loc["composite_selective_signals"] *= 1.12
+            if "composite_selective_trend_ensemble" in tilted.index:
+                tilted.loc["composite_selective_trend_ensemble"] *= 1.12
             if "composite_selective_concentrated" in tilted.index:
                 tilted.loc["composite_selective_concentrated"] *= 1.10
             if "composite_equal_weight" in tilted.index:
@@ -764,7 +856,9 @@ def apply_layer3_expression(
         for name in [
             "dual_momentum_topn",
             "cta_trend_long_only",
+            "cta_trend_vol_managed",
             "composite_selective_signals",
+            "composite_selective_trend_ensemble",
             "composite_selective_strength_weighted",
             "composite_selective_concentrated",
             "composite_equal_weight",
@@ -908,29 +1002,130 @@ def apply_overlays_custom(
 
     per_sleeve_multiplier = pd.Series(float(min(1.0, regime_multiplier, target_vol_multiplier)), index=blended.index, dtype=float)
     self_gated_relief = 0.0
+    non_self_gated_relief = 0.0
     self_gated_regime_multiplier = regime_multiplier
+    non_self_gated_regime_multiplier = regime_multiplier
     final_self_gated_multiplier = float(per_sleeve_multiplier.iloc[0]) if not per_sleeve_multiplier.empty else np.nan
     final_non_self_gated_multiplier = float(per_sleeve_multiplier.iloc[0]) if not per_sleeve_multiplier.empty else np.nan
+    apply_self_gated_relief = False
+    apply_non_self_gated_relief = False
+    # self-gated relief shape
+    relief_cap = 0.06
+    relief_scale = 0.50
+    # non-self-gated relief shape (only used when apply_non_self_gated_relief is True)
+    ns_relief_cap = 0.025
+    ns_relief_scale = 0.20
+    ns_relief_flat: float | None = None
     if (
         overlay_penalty_mode == "lighter_self_gated"
         and regime_binding > 0.0
         and market_state != "stressed_panic"
     ):
+        apply_self_gated_relief = True
+    elif (
+        overlay_penalty_mode == "lighter_self_gated_targeted"
+        and regime_binding > 0.0
+        and market_state != "stressed_panic"
+        and (strong_neutral or market_state in {"recovery_fragile", "recovery_confirmed"})
+    ):
+        apply_self_gated_relief = True
+        relief_cap = 0.04
+        relief_scale = 0.35
+    elif (
+        # Variant A: narrower targeted follow-up. Keeps the self-gated relief
+        # line intact in {strong_neutral, recovery_fragile, recovery_confirmed}
+        # and ADDS a smaller, scale-bounded relief to non-self-gated sleeves in
+        # {strong_neutral, recovery_fragile} ONLY. recovery_confirmed is
+        # intentionally excluded for non-self-gated sleeves to respect the
+        # prior rule "do not revive confirmed-recovery aggression".
+        overlay_penalty_mode == "lighter_both_targeted_narrow"
+        and regime_binding > 0.0
+        and market_state != "stressed_panic"
+        and (strong_neutral or market_state in {"recovery_fragile", "recovery_confirmed"})
+    ):
+        apply_self_gated_relief = True
+        relief_cap = 0.04
+        relief_scale = 0.35
+        if strong_neutral or market_state == "recovery_fragile":
+            apply_non_self_gated_relief = True
+            ns_relief_cap = 0.025
+            ns_relief_scale = 0.20
+            ns_relief_flat = None
+    elif (
+        # Variant B: flat-form non-self-gated relief. Same self-gated behavior,
+        # but the non-self-gated relief is a fixed 0.02 nudge instead of being
+        # scaled by (1 - regime_multiplier). Tests whether the signal is the
+        # proportional-to-binding shape or a small fixed release.
+        overlay_penalty_mode == "lighter_both_targeted_flat"
+        and regime_binding > 0.0
+        and market_state != "stressed_panic"
+        and (strong_neutral or market_state in {"recovery_fragile", "recovery_confirmed"})
+    ):
+        apply_self_gated_relief = True
+        relief_cap = 0.04
+        relief_scale = 0.35
+        if strong_neutral or market_state == "recovery_fragile":
+            apply_non_self_gated_relief = True
+            ns_relief_flat = 0.02
+    elif (
+        # Variant C: extends the narrow scale-bounded non-self-gated relief
+        # from Variant A to also include recovery_confirmed, but at a tighter
+        # cap (0.015 vs 0.025) so it does not count as "confirmed-recovery
+        # aggression". All other states behave exactly like Variant A. Self-
+        # gated relief is unchanged. Stressed-panic protection unchanged.
+        overlay_penalty_mode == "lighter_both_targeted_narrow_plus_confirmed"
+        and regime_binding > 0.0
+        and market_state != "stressed_panic"
+        and (strong_neutral or market_state in {"recovery_fragile", "recovery_confirmed"})
+    ):
+        apply_self_gated_relief = True
+        relief_cap = 0.04
+        relief_scale = 0.35
+        if strong_neutral or market_state == "recovery_fragile":
+            apply_non_self_gated_relief = True
+            ns_relief_cap = 0.025
+            ns_relief_scale = 0.20
+            ns_relief_flat = None
+        elif market_state == "recovery_confirmed":
+            apply_non_self_gated_relief = True
+            ns_relief_cap = 0.015
+            ns_relief_scale = 0.15
+            ns_relief_flat = None
+
+    if apply_self_gated_relief:
         self_gated_names = [name for name in blended.index if name in SELF_GATED_SLEEVES]
+        non_self_gated_names = [name for name in blended.index if name not in SELF_GATED_SLEEVES]
+        per_sleeve_multiplier.loc[:] = regime_multiplier
+        headroom = max(0.0, target_vol_multiplier - regime_multiplier)
         if self_gated_names:
-            headroom = max(0.0, target_vol_multiplier - regime_multiplier)
-            relief = min(0.06, 0.50 * max(0.0, 1.0 - regime_multiplier), 0.75 * headroom if headroom > 0 else 0.06)
+            relief = min(relief_cap, relief_scale * max(0.0, 1.0 - regime_multiplier), 0.75 * headroom if headroom > 0 else relief_cap)
             self_gated_relief = max(0.0, relief)
             self_gated_regime_multiplier = min(1.0, regime_multiplier + self_gated_relief)
-            per_sleeve_multiplier.loc[:] = regime_multiplier
             per_sleeve_multiplier.loc[self_gated_names] = self_gated_regime_multiplier
-            if target_vol_multiplier < 1.0:
-                total_risky = float((blended * per_sleeve_multiplier).sum())
-                if total_risky > target_vol_multiplier and total_risky > 1e-12:
-                    per_sleeve_multiplier *= target_vol_multiplier / total_risky
-            final_self_gated_multiplier = float(per_sleeve_multiplier.loc[self_gated_names].mean())
-            non_self_gated_names = [name for name in blended.index if name not in self_gated_names]
-            final_non_self_gated_multiplier = float(per_sleeve_multiplier.loc[non_self_gated_names].mean()) if non_self_gated_names else final_self_gated_multiplier
+        if apply_non_self_gated_relief and non_self_gated_names:
+            if ns_relief_flat is not None:
+                ns_relief = min(ns_relief_flat, 0.75 * headroom if headroom > 0 else ns_relief_flat)
+            else:
+                ns_relief = min(
+                    ns_relief_cap,
+                    ns_relief_scale * max(0.0, 1.0 - regime_multiplier),
+                    0.75 * headroom if headroom > 0 else ns_relief_cap,
+                )
+            non_self_gated_relief = max(0.0, ns_relief)
+            non_self_gated_regime_multiplier = min(1.0, regime_multiplier + non_self_gated_relief)
+            per_sleeve_multiplier.loc[non_self_gated_names] = non_self_gated_regime_multiplier
+        if target_vol_multiplier < 1.0:
+            total_risky = float((blended * per_sleeve_multiplier).sum())
+            if total_risky > target_vol_multiplier and total_risky > 1e-12:
+                per_sleeve_multiplier *= target_vol_multiplier / total_risky
+        final_self_gated_multiplier = (
+            float(per_sleeve_multiplier.loc[self_gated_names].mean()) if self_gated_names else np.nan
+        )
+        final_non_self_gated_multiplier = (
+            float(per_sleeve_multiplier.loc[non_self_gated_names].mean())
+            if non_self_gated_names
+            else final_self_gated_multiplier
+        )
 
     risky_weights = blended * per_sleeve_multiplier
     gross_multiplier = float(risky_weights.sum())
@@ -950,6 +1145,8 @@ def apply_overlays_custom(
         "both_binding": both_binding,
         "self_gated_relief": self_gated_relief,
         "self_gated_regime_multiplier": self_gated_regime_multiplier,
+        "non_self_gated_relief": non_self_gated_relief,
+        "non_self_gated_regime_multiplier": non_self_gated_regime_multiplier,
         "final_self_gated_multiplier": final_self_gated_multiplier,
         "final_non_self_gated_multiplier": final_non_self_gated_multiplier,
         "overlay_penalty_mode": overlay_penalty_mode,
@@ -1488,6 +1685,16 @@ signal_subset_df.to_csv(LAYER1_DIR / "signal_subset_comparison.csv", index=False
 
 
 selective_signal_names = signal_subset_specs["core4_bab_carry"]
+trend_ensemble_signal_names = [
+    "xsmom_global",
+    "multi_mom_equal",
+    "multi_mom_invvol",
+    "tsmom_vol_scaled",
+    "quality_proxy",
+    "value_proxy",
+    "bab_proxy",
+    "carry_proxy",
+]
 selective_weights, selective_path, selective_metrics = evaluate_signal_combo(selective_signal_names)
 strength_weighted_weights, strength_weighted_path, strength_weighted_metrics = evaluate_signal_combo(
     selective_signal_names,
@@ -1495,9 +1702,11 @@ strength_weighted_weights, strength_weighted_path, strength_weighted_metrics = e
     strength_power=1.35,
 )
 concentrated_weights, concentrated_path, concentrated_metrics = evaluate_signal_combo(selective_signal_names, top_n=3, min_signal=0.05)
+trend_ensemble_weights, trend_ensemble_path, trend_ensemble_metrics = evaluate_signal_combo(trend_ensemble_signal_names)
 selective_strategy_name = "composite_selective_signals"
 strength_weighted_strategy_name = "composite_selective_strength_weighted"
 concentrated_strategy_name = "composite_selective_concentrated"
+trend_ensemble_strategy_name = "composite_selective_trend_ensemble"
 
 selective_summary = ns3["summary_metrics"](selective_path["net_return"], turnover_series=selective_path["turnover"])
 selective_summary.update(
@@ -1539,6 +1748,50 @@ register_strategy_output(
         ],
         "caveats": "Selective composite keeps the signals that improved the long-only ETF sleeve most cleanly in the incremental study; it is still a practical top-N proxy rather than a fully optimized ensemble.",
         "description": "Top-N long-only strategy using the selective signal blend that retained trend, quality/value, BAB, and carry while excluding weaker add-ons.",
+    },
+)
+
+trend_ensemble_summary = ns3["summary_metrics"](trend_ensemble_path["net_return"], turnover_series=trend_ensemble_path["turnover"])
+trend_ensemble_summary.update(
+    {
+        "strategy_name": trend_ensemble_strategy_name,
+        "strategy_type": "strategy_logic",
+        "rebalance_frequency": "monthly",
+        "benchmark_group": "strategy",
+        "validation_score": (
+            trend_ensemble_summary["sharpe"]
+            + 0.5 * trend_ensemble_summary["calmar"]
+            + 0.2 * trend_ensemble_summary["hit_rate"]
+            - 0.1 * trend_ensemble_summary["avg_weekly_turnover"]
+        ),
+    }
+)
+register_strategy_output(
+    trend_ensemble_strategy_name,
+    trend_ensemble_weights,
+    trend_ensemble_path,
+    trend_ensemble_summary,
+    {
+        "strategy_name": trend_ensemble_strategy_name,
+        "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+        "type": "strategy_logic",
+        "required_inputs": [
+            "signal_xsmom.csv",
+            "signal_tsmom.csv",
+            "signal_multi_horizon_mom.csv",
+            "signal_quality.csv",
+            "signal_value.csv",
+            "signal_bab.csv",
+            "signal_carry.csv",
+        ],
+        "rebalance_frequency": "monthly",
+        "lag_convention": "Consumes Layer 1 tradable signals; multi-horizon trend signals remain lagged and are combined with the same monthly rebalance schedule as the incumbent selective sleeve.",
+        "output_files": [
+            f"strategy_positions_{trend_ensemble_strategy_name}.csv",
+            f"strategy_returns_{trend_ensemble_strategy_name}.csv",
+        ],
+        "caveats": "Minimal conditional test only. This adds a simple fast/slow trend ensemble to the incumbent selective sleeve rather than redesigning Layer 1 from scratch, and it should only survive if it adds value beyond the existing momentum complex.",
+        "description": "Top-N long-only sleeve that augments the incumbent selective blend with a simple multi-horizon trend ensemble (cross-sectional momentum, multi-horizon momentum, and time-series momentum).",
     },
 )
 
@@ -1642,6 +1895,8 @@ base_sleeve_return_panel[strength_weighted_strategy_name] = strength_weighted_pa
 base_sleeve_positions[strength_weighted_strategy_name] = strength_weighted_weights.reindex(index=ns5["weekly_prices"].index, columns=ns5["weekly_prices"].columns).fillna(0.0)
 base_sleeve_return_panel[concentrated_strategy_name] = concentrated_path["net_return"].reindex(base_sleeve_return_panel.index).fillna(0.0)
 base_sleeve_positions[concentrated_strategy_name] = concentrated_weights.reindex(index=ns5["weekly_prices"].index, columns=ns5["weekly_prices"].columns).fillna(0.0)
+base_sleeve_return_panel[trend_ensemble_strategy_name] = trend_ensemble_path["net_return"].reindex(base_sleeve_return_panel.index).fillna(0.0)
+base_sleeve_positions[trend_ensemble_strategy_name] = trend_ensemble_weights.reindex(index=ns5["weekly_prices"].index, columns=ns5["weekly_prices"].columns).fillna(0.0)
 
 baseline_subset = list(ns5["sleeve_return_panel"].columns)
 drop_breadth_subset = [name for name in baseline_subset if name != "composite_breadth_filtered"]
@@ -1654,6 +1909,20 @@ replace_equal_strength_weighted_subset = [
     "taa_10m_sma",
 ]
 replace_equal_concentrated_subset = ["dual_momentum_topn", "cta_trend_long_only", concentrated_strategy_name, "composite_regime_conditioned", "taa_10m_sma"]
+replace_equal_trend_ensemble_subset = [
+    "dual_momentum_topn",
+    "cta_trend_long_only",
+    trend_ensemble_strategy_name,
+    "composite_regime_conditioned",
+    "taa_10m_sma",
+]
+replace_cta_with_vol_managed_subset = [
+    "dual_momentum_topn",
+    "cta_trend_vol_managed",
+    selective_strategy_name,
+    "composite_regime_conditioned",
+    "taa_10m_sma",
+]
 improved_subset = replace_equal_subset
 
 subset_specs = {
@@ -1663,6 +1932,8 @@ subset_specs = {
     "replace_equal_with_selective": replace_equal_subset,
     "replace_equal_with_strength_weighted": replace_equal_strength_weighted_subset,
     "replace_equal_with_concentrated": replace_equal_concentrated_subset,
+    "replace_equal_with_trend_ensemble": replace_equal_trend_ensemble_subset,
+    "replace_cta_with_vol_managed": replace_cta_with_vol_managed_subset,
     "add_selective_drop_breadth": drop_breadth_subset + [selective_strategy_name],
     "add_strength_weighted_drop_breadth": drop_breadth_subset + [strength_weighted_strategy_name],
     "add_concentrated_drop_breadth": drop_breadth_subset + [concentrated_strategy_name],
@@ -2236,6 +2507,200 @@ version_specs = [
         "overlay_penalty_mode": "lighter_self_gated",
         "target_vol_ceil": 1.00,
         "note": "Variant D: justified A+B combination only. Keep the continuous neutral-state overlay map, but reduce the portfolio-level haircut on sleeves that already self-gate internally so the smoother overlay does not still double-tax the same sleeves.",
+    },
+    # ======================================================================
+    # Disciplined good-state deployment sprint (current research task)
+    #
+    # Control        = improved_hrp_good_state_fragile_combo (above).
+    # Variant A      = improved_hrp_self_gated_relief_targeted
+    #                  Tight, state-targeted relief for internally self-gated
+    #                  sleeves only in strong-neutral and recovery states.
+    # Variant B      = improved_hrp_continuous_overlay_careful
+    #                  Conservative continuous mapping that mainly smooths
+    #                  strong-neutral deployment while preserving stressed-state
+    #                  protection and the control's recovery floors.
+    # Variant C      = improved_hrp_targeted_relief_continuous_combo
+    #                  Best justified A+B combination if the standalone readout
+    #                  says both attack the same stacked-defense bottleneck.
+    # Variant D      = improved_hrp_separate_canary_proxy
+    #                  Minimal separate-canary overlay check using a tiny
+    #                  principled canary proxy pair rather than broad mining.
+    # Variant E      = improved_hrp_threshold_recentering
+    #                  Tiny threshold recentering only; no broader tuning.
+    # Variant F      = improved_hrp_trend_horizon_ensemble
+    #                  Minimal horizon-ensemble trend sleeve replacing the
+    #                  current equal-weight selective sleeve.
+    # Variant G      = improved_hrp_cta_vol_managed_local
+    #                  Sleeve-local volatility management by swapping in the
+    #                  existing vol-managed CTA sleeve for the long-only CTA
+    #                  sleeve, leaving the broader portfolio stack intact.
+    # ======================================================================
+    {
+        "version_name": "improved_hrp_self_gated_relief_targeted",
+        "method_name": "hrp",
+        "subset_name": "disciplined_good_state_self_gated_relief_targeted",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "fragile_plus",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_self_gated_targeted",
+        "target_vol_ceil": 1.00,
+        "note": "Variant A: reduce the overlay penalty only for sleeves that already self-gate internally, and only in strong-neutral plus early-recovery states. Keeps stressed-state protection and broader overlay discipline intact.",
+    },
+    {
+        "version_name": "improved_hrp_continuous_overlay_careful",
+        "method_name": "hrp",
+        "subset_name": "disciplined_good_state_continuous_overlay_careful",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "continuous_neutral_mapping_careful",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "fragile_plus",
+        "layer3_expression_mode": "none",
+        "target_vol_ceil": 1.00,
+        "note": "Variant B: a more careful continuous overlay map. It smooths deployment mainly in strong-neutral weeks while keeping weak-neutral and stressed states close to the control path.",
+    },
+    {
+        "version_name": "improved_hrp_targeted_relief_continuous_combo",
+        "method_name": "hrp",
+        "subset_name": "disciplined_good_state_targeted_relief_continuous_combo",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "continuous_neutral_mapping_careful",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "fragile_plus",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_self_gated_targeted",
+        "target_vol_ceil": 1.00,
+        "note": "Variant C: pair the careful continuous map with the tighter self-gated relief so only the sleeves most exposed to double-defense get extra release in good states.",
+    },
+    {
+        "version_name": "improved_hrp_separate_canary_proxy",
+        "method_name": "hrp",
+        "subset_name": "disciplined_good_state_separate_canary_proxy",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "separate_canary_proxy",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "fragile_plus",
+        "layer3_expression_mode": "none",
+        "target_vol_ceil": 1.00,
+        "note": "Variant D: minimal separate-canary test. Uses a tiny canary proxy pair to modestly lift deployment only when the canary pair is fully healthy, without broad architecture sprawl.",
+    },
+    {
+        "version_name": "improved_hrp_threshold_recentering",
+        "method_name": "hrp",
+        "subset_name": "disciplined_good_state_threshold_recentering",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "threshold_recentering",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "fragile_plus",
+        "layer3_expression_mode": "none",
+        "target_vol_ceil": 1.00,
+        "note": "Variant E: tiny threshold recentering only. Broadens the strong-neutral bucket slightly while leaving the rest of the control architecture intact.",
+    },
+    {
+        "version_name": "improved_hrp_trend_horizon_ensemble",
+        "method_name": "hrp",
+        "subset_name": "disciplined_good_state_trend_horizon_ensemble",
+        "subset_sleeves": replace_equal_trend_ensemble_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "fragile_plus",
+        "layer3_expression_mode": "none",
+        "target_vol_ceil": 1.00,
+        "note": "Variant F: replace the current selective sleeve with a simple multi-horizon trend ensemble sleeve to test whether a more graded trend aggregate improves deployment translation beyond the existing Layer 1 momentum blend.",
+    },
+    {
+        "version_name": "improved_hrp_cta_vol_managed_local",
+        "method_name": "hrp",
+        "subset_name": "disciplined_good_state_cta_vol_managed_local",
+        "subset_sleeves": replace_cta_with_vol_managed_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "fragile_plus",
+        "layer3_expression_mode": "none",
+        "target_vol_ceil": 1.00,
+        "note": "Variant G: sleeve-local volatility-aware deployment. Swaps in the existing vol-managed CTA sleeve in place of the long-only CTA sleeve, leaving the broader overlay and allocator stack unchanged.",
+    },
+    # ======================================================================
+    # Non-self-gated overlay relief study (current sprint)
+    #
+    # Motivation: `improved_hrp_self_gated_relief_targeted` was the cleanest
+    # positive result on the prior sprint but the delta was too small to
+    # beat the promotion margin. The remaining overlay-cash bottleneck is on
+    # the non-self-gated sleeves (composite_selective_signals and
+    # composite_regime_conditioned) in strong-neutral and recovery-fragile
+    # states, where sleeves self-defend AND overlay cuts again AND target-vol
+    # is not binding. The follow-up is to extend relief narrowly to those
+    # non-self-gated sleeves, with tighter caps, in only those two states.
+    #
+    # Control     = improved_hrp_good_state_fragile_combo (above).
+    # Variant A   = improved_hrp_non_self_gated_relief_narrow
+    #               Scale-bounded non-self-gated relief (cap 0.025, scale
+    #               0.20) in strong_neutral + recovery_fragile ONLY. Keeps
+    #               the existing self-gated relief shape (cap 0.04, scale
+    #               0.35) in strong_neutral + recovery_fragile + recovery_
+    #               confirmed. Non-self-gated relief deliberately excludes
+    #               recovery_confirmed to avoid reviving confirmed-recovery
+    #               aggression.
+    # Variant B   = improved_hrp_non_self_gated_relief_flat
+    #               Same structure but non-self-gated relief is a flat 0.02
+    #               nudge (no scaling). Tests whether the signal is in the
+    #               proportional-to-binding shape or just a small fixed
+    #               release.
+    # Variant C   = improved_hrp_non_self_gated_relief_combo
+    #               Created only if A and B each independently clear the
+    #               Pareto bar. Pairs the narrower shape with the existing
+    #               careful continuous map. Held in reserve; only added in
+    #               a follow-up edit if warranted.
+    # ======================================================================
+    {
+        "version_name": "improved_hrp_non_self_gated_relief_narrow",
+        "method_name": "hrp",
+        "subset_name": "uptrend_participation_non_self_gated_relief_narrow",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "fragile_plus",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_both_targeted_narrow",
+        "target_vol_ceil": 1.00,
+        "note": "Variant A: extend overlay relief narrowly to non-self-gated sleeves (composite_selective_signals, composite_regime_conditioned) only in strong_neutral and recovery_fragile, cap 0.025 and scale 0.20. Self-gated relief line unchanged. Stressed-panic protection unchanged. Does not touch recovery_confirmed on the non-self-gated side.",
+    },
+    {
+        "version_name": "improved_hrp_non_self_gated_relief_flat",
+        "method_name": "hrp",
+        "subset_name": "uptrend_participation_non_self_gated_relief_flat",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "fragile_plus",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_both_targeted_flat",
+        "target_vol_ceil": 1.00,
+        "note": "Variant B: same targeted state set as Variant A but the non-self-gated relief is a flat 0.02 nudge instead of scaled by (1 - regime_multiplier). Tests shape sensitivity.",
+    },
+    {
+        "version_name": "improved_hrp_non_self_gated_relief_narrow_plus_confirmed",
+        "method_name": "hrp",
+        "subset_name": "uptrend_participation_non_self_gated_relief_narrow_plus_confirmed",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "fragile_plus",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_both_targeted_narrow_plus_confirmed",
+        "target_vol_ceil": 1.00,
+        "note": "Variant C: extends Variant A's non-self-gated relief to recovery_confirmed at a tighter cap (0.015) and scale (0.15). Tests whether the signal strengthens when the relief reaches additional binding weeks without crossing into confirmed-recovery aggression.",
     },
 ]
 

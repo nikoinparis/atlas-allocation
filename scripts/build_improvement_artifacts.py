@@ -96,6 +96,23 @@ SELF_GATED_SLEEVES = [
 ]
 
 
+# ----------------------------------------------------------------------
+# Phase 2B: walk-forward interpretable-ML meta predictions.
+#
+# Loaded once at module level. Used by apply_phase2b_adjustment() to
+# modify regime_multiplier ONLY (orthogonal to overlay_penalty_mode).
+# Empty DataFrame if the file hasn't been built yet — all phase2b_mode
+# logic then becomes a no-op and behaviour matches Phase 2A control.
+# ----------------------------------------------------------------------
+PHASE2B_META_PREDICTIONS_PATH = LAYER2B_DIR / "phase2b_meta_predictions.csv"
+if PHASE2B_META_PREDICTIONS_PATH.exists():
+    phase2b_meta_predictions = pd.read_csv(PHASE2B_META_PREDICTIONS_PATH, parse_dates=["Date"])
+    phase2b_meta_predictions["Date"] = pd.to_datetime(phase2b_meta_predictions["Date"]).dt.tz_localize(None)
+    phase2b_meta_predictions = phase2b_meta_predictions.set_index("Date").sort_index()
+else:
+    phase2b_meta_predictions = pd.DataFrame()
+
+
 def bounded_interp(series: pd.Series, *, xp: list[float], fp: list[float]) -> pd.Series:
     values = pd.Series(series, dtype=float)
     return pd.Series(
@@ -714,6 +731,103 @@ def compute_causal_confidence(market_state_row: pd.Series | None) -> float:
     return float(np.clip(score, 0.0, 1.0))
 
 
+def apply_phase2b_adjustment(
+    regime_multiplier: float,
+    market_state: str | None,
+    ml_pred_row: pd.Series | None,
+    *,
+    mode: str = "none",
+    market_state_row: pd.Series | None = None,
+) -> tuple[float, dict]:
+    """Apply interpretable-ML meta adjustment to regime_multiplier.
+
+    Orthogonal to overlay_penalty_mode — this modifies the raw
+    regime_multiplier BEFORE self/non-self-gated relief is computed.
+    The ML predictions are walk-forward (no look-ahead) and all
+    predictions are gated through hard caps + state filters so the
+    ML can only nudge, never dominate.
+
+    Modes:
+      - "none": no-op.
+      - "regime_confidence_boost" (A): in non-stressed states,
+            offset = min(0.045, 0.10 * (p_regime_confidence - 0.55) / 0.45)
+            when p_regime_confidence >= 0.55. Boost only.
+      - "transition_quality_gate" (B): in strong_neutral or
+            recovery_fragile, p_trans > 0.60 -> +0.04,
+            p_trans < 0.40 -> -0.03, else no change.
+      - "tail_risk_suppression" (C): in all states except stressed_panic,
+            p_tail > 0.55 -> offset = -min(0.10, 0.10 * (p_tail - 0.55) / 0.45).
+            Suppress only.
+      - "combo_ac" (E): A + C.
+      - "combo_abc" (F): A + B + C.
+
+    Returns (adjusted_regime_multiplier, diag_dict).
+    """
+    diag = {
+        "phase2b_mode": mode,
+        "phase2b_regime_confidence": np.nan,
+        "phase2b_transition_quality": np.nan,
+        "phase2b_tail_risk": np.nan,
+        "phase2b_offset": 0.0,
+    }
+    if mode == "none" or ml_pred_row is None:
+        return regime_multiplier, diag
+    if not isinstance(ml_pred_row, pd.Series) or ml_pred_row.empty:
+        return regime_multiplier, diag
+
+    def _safe_pred(col: str) -> float:
+        val = ml_pred_row.get(col)
+        try:
+            if val is None or pd.isna(val):
+                return np.nan
+            return float(val)
+        except (TypeError, ValueError):
+            return np.nan
+
+    p_regime = _safe_pred("p_regime_confidence")
+    p_trans = _safe_pred("p_transition_quality")
+    p_tail = _safe_pred("p_tail_risk")
+    diag["phase2b_regime_confidence"] = p_regime
+    diag["phase2b_transition_quality"] = p_trans
+    diag["phase2b_tail_risk"] = p_tail
+
+    strong_neutral = False
+    if isinstance(market_state_row, pd.Series) and not market_state_row.empty:
+        try:
+            strong_neutral = bool(is_strong_neutral_state_row(market_state_row))
+        except Exception:  # pragma: no cover
+            strong_neutral = False
+
+    offset = 0.0
+
+    apply_a = mode in {"regime_confidence_boost", "combo_ac", "combo_abc"}
+    apply_b = mode in {"transition_quality_gate", "combo_abc"}
+    apply_c = mode in {"tail_risk_suppression", "combo_ac", "combo_abc"}
+
+    # Variant A: regime confidence boost (non-stressed only, boost only).
+    if apply_a and market_state != "stressed_panic" and not np.isnan(p_regime):
+        if p_regime >= 0.55:
+            raw_boost = 0.10 * (p_regime - 0.55) / max(1e-9, 1.0 - 0.55)
+            offset += float(min(0.045, max(0.0, raw_boost)))
+
+    # Variant B: transition quality gate (strong_neutral or recovery_fragile only).
+    if apply_b and (strong_neutral or market_state == "recovery_fragile") and not np.isnan(p_trans):
+        if p_trans > 0.60:
+            offset += 0.04
+        elif p_trans < 0.40:
+            offset -= 0.03
+
+    # Variant C: tail-risk suppression (all except stressed_panic, suppress only).
+    if apply_c and market_state != "stressed_panic" and not np.isnan(p_tail):
+        if p_tail > 0.55:
+            raw_suppress = -0.10 * (p_tail - 0.55) / max(1e-9, 1.0 - 0.55)
+            offset += float(max(-0.10, min(0.0, raw_suppress)))
+
+    adjusted = float(np.clip(regime_multiplier + offset, 0.0, 1.0))
+    diag["phase2b_offset"] = float(adjusted - regime_multiplier)
+    return adjusted, diag
+
+
 def compute_rolling_sleeve_conviction(
     sleeve_return_panel: pd.DataFrame,
     as_of_date: pd.Timestamp,
@@ -1268,9 +1382,22 @@ def apply_overlays_custom(
     speed_mode: str = "default",
     improving_speed: float | None = None,
     deteriorating_speed: float | None = None,
+    phase2b_mode: str = "none",
+    ml_pred_row: pd.Series | None = None,
 ) -> tuple[pd.Series, float, dict]:
     raw_weights = ns5["normalize_long_only"](raw_weights, max_weight=ns5["MAX_SLEEVE_WEIGHT"])
-    regime_multiplier = float(regime_row.get("overlay_multiplier", 1.0)) if isinstance(regime_row, pd.Series) else 1.0
+    raw_regime_multiplier = float(regime_row.get("overlay_multiplier", 1.0)) if isinstance(regime_row, pd.Series) else 1.0
+    # Phase 2B: apply interpretable-ML meta adjustment BEFORE self/non-self-
+    # gated relief is computed. Orthogonal to overlay_penalty_mode — the
+    # overlay still sees a "regime_multiplier" to act on, just one that has
+    # been nudged by the ML. Default mode="none" is a no-op.
+    regime_multiplier, phase2b_diag = apply_phase2b_adjustment(
+        raw_regime_multiplier,
+        market_state,
+        ml_pred_row,
+        mode=phase2b_mode,
+        market_state_row=market_state_row if isinstance(market_state_row, pd.Series) else None,
+    )
     strong_neutral = is_strong_neutral_state_row(market_state_row)
     dynamic_speed = sleeve_reallocation_speed
     if rerisk_speed is not None:
@@ -1515,6 +1642,41 @@ def apply_overlays_custom(
             ns_relief_cap = 0.015 + confidence_score * 0.010
             ns_relief_scale = 0.15 + confidence_score * 0.05
         ns_relief_flat = None
+    elif (
+        # Phase 2A Variant B: principled bounded continuous state-conditioned
+        # mapping. Same base state set and incumbent tight values as
+        # lighter_both_targeted_narrow_plus_confirmed. A linear confidence
+        # lift activates ONLY when causal_confidence >= 0.55 (gate), and is
+        # bounded at 1.40x of incumbent at confidence=1.0. Below the gate,
+        # behaviour is IDENTICAL to the CONTROL overlay (no loosening in
+        # low-conviction regimes). recovery_confirmed stays tighter than
+        # fragile/strong_neutral so the "no confirmed-recovery aggression"
+        # rule is preserved. Stressed-panic and neutral (non-strong) are
+        # unchanged. Tighter than the too-loose Phase 1 continuous map and
+        # adds a confidence gate the Phase 1 version lacked.
+        overlay_penalty_mode == "phase2a_principled_continuous"
+        and regime_binding > 0.0
+        and market_state != "stressed_panic"
+        and (strong_neutral or market_state in {"recovery_fragile", "recovery_confirmed"})
+    ):
+        apply_self_gated_relief = True
+        relief_cap = 0.04
+        relief_scale = 0.35
+        confidence_score = compute_causal_confidence(market_state_row if isinstance(market_state_row, pd.Series) else None)
+        confidence_gate = 0.55
+        if confidence_score >= confidence_gate:
+            lift = 1.0 + 0.40 * (confidence_score - confidence_gate) / max(1e-9, 1.0 - confidence_gate)
+        else:
+            lift = 1.0
+        lift = float(min(max(lift, 1.0), 1.40))
+        apply_non_self_gated_relief = True
+        if strong_neutral or market_state == "recovery_fragile":
+            ns_relief_cap = 0.025 * lift
+            ns_relief_scale = 0.20 * lift
+        elif market_state == "recovery_confirmed":
+            ns_relief_cap = 0.015 * lift
+            ns_relief_scale = 0.15 * lift
+        ns_relief_flat = None
 
     if apply_self_gated_relief:
         self_gated_names = [name for name in blended.index if name in SELF_GATED_SLEEVES]
@@ -1561,6 +1723,8 @@ def apply_overlays_custom(
         "predicted_ann_vol": predicted_ann_vol,
         "target_vol_multiplier": target_vol_multiplier,
         "regime_multiplier": regime_multiplier,
+        "raw_regime_multiplier": raw_regime_multiplier,
+        **phase2b_diag,
         "gross_multiplier": gross_multiplier,
         "cash_weight": cash_weight,
         "dynamic_speed": dynamic_speed,
@@ -1597,6 +1761,7 @@ def run_subset_custom(
     beta_overlay_mode: str = "none",
     market_state_history: pd.DataFrame | None = None,
     stabilize_market_state: bool = False,
+    phase2b_mode: str = "none",
     sleeve_return_panel: pd.DataFrame,
     sleeve_positions: dict[str, pd.DataFrame],
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame, dict]:
@@ -1715,6 +1880,13 @@ def run_subset_custom(
                             expression_mode=layer3_expression_mode,
                         )
                         overlay_row = variant_regime_states.loc[date] if date in variant_regime_states.index else pd.Series(dtype=float)
+                        ml_pred_row = (
+                            phase2b_meta_predictions.loc[date]
+                            if phase2b_mode != "none"
+                            and not phase2b_meta_predictions.empty
+                            and date in phase2b_meta_predictions.index
+                            else None
+                        )
                         risky_weights, cash_weight, overlay_diag = apply_overlays_custom(
                             raw,
                             cov,
@@ -1730,6 +1902,8 @@ def run_subset_custom(
                             speed_mode=speed_mode,
                             improving_speed=improving_speed,
                             deteriorating_speed=deteriorating_speed,
+                            phase2b_mode=phase2b_mode,
+                            ml_pred_row=ml_pred_row,
                         )
                         prev_regime_multiplier_value = float(overlay_diag.get("regime_multiplier", np.nan)) if overlay_diag else prev_regime_multiplier_value
                         current_risky_alloc = pd.Series(0.0, index=subset, dtype=float)
@@ -1750,6 +1924,7 @@ def run_subset_custom(
                                 "overlay_penalty_mode": overlay_penalty_mode,
                                 "speed_mode": speed_mode,
                                 "beta_overlay_mode": beta_overlay_mode,
+                                "phase2b_mode_spec": phase2b_mode,
                                 "market_state": market_state,
                                 **overlay_diag,
                                 **layer3_diag,
@@ -3496,6 +3671,220 @@ version_specs = [
         "internal_redeploy": "restricted",
         "note": "Phase 1 Combo G: Combo F (A + E) plus restricted sleeve-internal cash redeploy (D-restricted) in strong_neutral (25%), recovery_fragile (25%), calm_trend (35%). recovery_confirmed intentionally EXCLUDED (standalone D hurt capture there). Targets composite_regime_conditioned, dual_momentum_topn, cta_trend_long_only. Incumbent overlay relief kept.",
     },
+    # ======================================================================
+    # Phase 2A bridge layer: harder classical / allocator / state-mapping
+    # upgrades that remain mostly non-ML. All variants preserve the Phase 1
+    # winner's dynamic_risk_budget state tilt and the stressed-panic
+    # protection. Control = improved_hrp_phase1_dynamic_risk_budget.
+    #
+    # Variant A = improved_phase2a_erc_dynamic_risk_budget
+    #   Swap HRP + sample covariance for flat ERC + Ledoit-Wolf shrinkage.
+    #   Tests the pillar 1 / pillar 3 upgrade: robust risk parity with a
+    #   disciplined covariance estimator. Same subset, same state tilt,
+    #   same incumbent overlay.
+    # Variant B = improved_phase2a_principled_continuous_map
+    #   Keep HRP allocator. Swap the incumbent tight narrow_plus_confirmed
+    #   overlay for the new phase2a_principled_continuous overlay:
+    #   confidence-gated continuous mapping with bounded lift (max 1.40x
+    #   incumbent at confidence=1, no loosening below confidence=0.55).
+    #   Tests the pillar 2 upgrade: principled bounded continuous state
+    #   mapping.
+    # Variant C = improved_phase2a_herc_dynamic_risk_budget
+    #   Swap HRP (bisection-based HRP) for HERC (cluster-level ERC, intra-
+    #   cluster inverse vol). Tests the pillar 3 upgrade: cluster-aware
+    #   covariance / risk-budget allocator. Same covariance regime as the
+    #   HRP incumbent (sample) so the effect is clearly attributable to
+    #   the hierarchical structure.
+    # Variant D = SKIPPED
+    #   Factor integration across value/quality/momentum families requires
+    #   wiring new factor-family sleeves into the sleeve panel, which
+    #   exceeds Phase 2A scope (sleeve generation is Layer 2 / Phase 2B
+    #   plumbing). Classified Research-only for this sprint.
+    # Variant E = improved_phase2a_combo_erc_plus_principled_continuous
+    #   Combo A + B: ERC + Ledoit-Wolf allocator with the new principled
+    #   continuous overlay.
+    # Variant F = improved_phase2a_combo_herc_plus_principled_continuous
+    #   Combo C + B: HERC allocator with the new principled continuous
+    #   overlay. Tests whether cluster-aware risk-budgeting benefits more
+    #   or less from the tighter continuous mapping than flat ERC.
+    # ======================================================================
+    {
+        "version_name": "improved_phase2a_erc_dynamic_risk_budget",
+        "method_name": "erc_risk_parity",
+        "subset_name": "phase2a_erc_dynamic_risk_budget",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "dynamic_risk_budget",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_both_targeted_narrow_plus_confirmed",
+        "target_vol_ceil": 1.00,
+        "note": "Phase 2A Variant A: swap HRP+sample cov for flat ERC (equal risk contribution) with Ledoit-Wolf shrinkage. Same subset, state_tilt (dynamic_risk_budget), and incumbent narrow_plus_confirmed overlay as the CONTROL. Tests the canonical robust-risk-parity + shrinkage combination.",
+    },
+    {
+        "version_name": "improved_phase2a_principled_continuous_map",
+        "method_name": "hrp",
+        "subset_name": "phase2a_principled_continuous_map",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "dynamic_risk_budget",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "phase2a_principled_continuous",
+        "target_vol_ceil": 1.00,
+        "note": "Phase 2A Variant B: HRP allocator + new phase2a_principled_continuous overlay. Confidence-gated (causal_confidence >= 0.55) bounded linear lift of non-self-gated relief cap/scale, max 1.40x incumbent at confidence=1. Below gate, behaviour identical to incumbent narrow_plus_confirmed. recovery_confirmed stays tighter than fragile/strong_neutral. Stressed-panic and neutral (non-strong) unchanged.",
+    },
+    {
+        "version_name": "improved_phase2a_herc_dynamic_risk_budget",
+        "method_name": "herc",
+        "subset_name": "phase2a_herc_dynamic_risk_budget",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "dynamic_risk_budget",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_both_targeted_narrow_plus_confirmed",
+        "target_vol_ceil": 1.00,
+        "note": "Phase 2A Variant C: swap HRP for HERC (hierarchical equal risk contribution, cluster-level ERC + intra-cluster inverse vol). Same subset, state_tilt (dynamic_risk_budget), and incumbent overlay as CONTROL. Tests cluster-aware risk-budget allocator on the same covariance regime (sample).",
+    },
+    {
+        "version_name": "improved_phase2a_combo_erc_plus_principled_continuous",
+        "method_name": "erc_risk_parity",
+        "subset_name": "phase2a_combo_e_erc_plus_principled",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "dynamic_risk_budget",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "phase2a_principled_continuous",
+        "target_vol_ceil": 1.00,
+        "note": "Phase 2A Combo E (A + B): ERC+Ledoit-Wolf allocator combined with the new phase2a_principled_continuous overlay. Tests the cleanest allocator upgrade against the tighter continuous mapping jointly.",
+    },
+    {
+        "version_name": "improved_phase2a_combo_herc_plus_principled_continuous",
+        "method_name": "herc",
+        "subset_name": "phase2a_combo_f_herc_plus_principled",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "dynamic_risk_budget",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "phase2a_principled_continuous",
+        "target_vol_ceil": 1.00,
+        "note": "Phase 2A Combo F (C + B): HERC allocator combined with the new phase2a_principled_continuous overlay. Tests whether cluster-aware allocation benefits more or less than flat ERC from the tighter continuous mapping.",
+    },
+    # ======================================================================
+    # Phase 2B meta layer: interpretable ML (walk-forward, no lookahead).
+    # Three decoupled meta signals modify regime_multiplier only
+    # (orthogonal to overlay_penalty_mode, which is kept at the CONTROL's
+    # incumbent relief shape). All 5 variants preserve the CONTROL's
+    # state_tilt="dynamic_risk_budget", overlay="lighter_both_targeted_
+    # narrow_plus_confirmed", HRP allocator, and stressed-panic protection.
+    # Predictions come from scripts/build_phase2b_meta_predictions.py
+    # (interpretable ML only: logistic, shallow tree, monotonic GBM).
+    #
+    # Variant A = improved_phase2b_regime_confidence_boost
+    #   p_regime_confidence (logistic) boosts regime_multiplier by up to
+    #   +0.045 in non-stressed states, gated at p >= 0.55. Tests whether
+    #   the ML's conviction that the next 4 weeks are sharpe-positive
+    #   and shallow-drawdown lets us re-risk faster.
+    # Variant B = improved_phase2b_transition_quality_gate
+    #   p_transition_quality (shallow tree) gates re-risking in
+    #   strong_neutral / recovery_fragile only. p > 0.60 -> +0.04;
+    #   p < 0.40 -> -0.03. Tests whether the tree can separate
+    #   high-quality transition windows from false-starts.
+    # Variant C = improved_phase2b_tail_risk_suppression
+    #   p_tail_risk (monotonic HGBM) suppresses regime_multiplier by up
+    #   to -0.10 in all states except stressed_panic when p > 0.55.
+    #   Tests whether the monotonic GBM can forecast unreached drawdown
+    #   early enough to tighten risk before the overlay flips.
+    # Variant E = improved_phase2b_combo_ac
+    #   A + C. Confidence boost + tail suppression both active.
+    #   Asymmetric: boosts only when confident AND tail-risk low.
+    # Variant F = improved_phase2b_combo_abc
+    #   A + B + C. Full meta stack — adds the transition-quality gate
+    #   on top of A + C.
+    # ======================================================================
+    {
+        "version_name": "improved_phase2b_regime_confidence_boost",
+        "method_name": "hrp",
+        "subset_name": "phase2b_regime_confidence_boost",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "dynamic_risk_budget",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_both_targeted_narrow_plus_confirmed",
+        "target_vol_ceil": 1.00,
+        "phase2b_mode": "regime_confidence_boost",
+        "note": "Phase 2B Variant A: interpretable-ML regime confidence boost. Walk-forward LogisticRegression(p_regime_confidence) adds +0.0 to +0.045 to regime_multiplier in non-stressed states when p >= 0.55 (linear in (p - 0.55) / 0.45). Boost-only. Orthogonal to the CONTROL's incumbent narrow_plus_confirmed overlay relief. HRP allocator, dynamic_risk_budget tilt, stressed-panic protection unchanged.",
+    },
+    {
+        "version_name": "improved_phase2b_transition_quality_gate",
+        "method_name": "hrp",
+        "subset_name": "phase2b_transition_quality_gate",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "dynamic_risk_budget",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_both_targeted_narrow_plus_confirmed",
+        "target_vol_ceil": 1.00,
+        "phase2b_mode": "transition_quality_gate",
+        "note": "Phase 2B Variant B: interpretable-ML transition-quality gate. Walk-forward DecisionTreeClassifier depth 4 (p_transition_quality), trained only on transition-state observations. In strong_neutral/recovery_fragile: p > 0.60 -> +0.04; p < 0.40 -> -0.03. Tests whether a shallow tree can separate high-quality transitions from false-starts. Orthogonal to CONTROL overlay relief. HRP, dynamic_risk_budget, stressed-panic protection unchanged.",
+    },
+    {
+        "version_name": "improved_phase2b_tail_risk_suppression",
+        "method_name": "hrp",
+        "subset_name": "phase2b_tail_risk_suppression",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "dynamic_risk_budget",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_both_targeted_narrow_plus_confirmed",
+        "target_vol_ceil": 1.00,
+        "phase2b_mode": "tail_risk_suppression",
+        "note": "Phase 2B Variant C: interpretable-ML tail-risk suppression. Walk-forward HistGradientBoostingClassifier with monotonic constraints (breadth/trend/persistence -> decreasing tail risk; canary_breadth_default/recent_stress_26w -> increasing). All states except stressed_panic: p > 0.55 -> regime_multiplier += -0.10 * (p - 0.55) / 0.45 (capped at -0.10). Suppress-only. Orthogonal to CONTROL overlay relief. HRP, dynamic_risk_budget, stressed-panic protection unchanged.",
+    },
+    {
+        "version_name": "improved_phase2b_combo_ac",
+        "method_name": "hrp",
+        "subset_name": "phase2b_combo_ac",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "dynamic_risk_budget",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_both_targeted_narrow_plus_confirmed",
+        "target_vol_ceil": 1.00,
+        "phase2b_mode": "combo_ac",
+        "note": "Phase 2B Combo E (A + C): regime-confidence boost AND tail-risk suppression both active. Asymmetric: regime_multiplier only lifts when p_regime_confidence >= 0.55 AND p_tail_risk <= 0.55 (no suppression). Otherwise tail suppression dominates. Same overlay and allocator as CONTROL.",
+    },
+    {
+        "version_name": "improved_phase2b_combo_abc",
+        "method_name": "hrp",
+        "subset_name": "phase2b_combo_abc",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "dynamic_risk_budget",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_both_targeted_narrow_plus_confirmed",
+        "target_vol_ceil": 1.00,
+        "phase2b_mode": "combo_abc",
+        "note": "Phase 2B Combo F (A + B + C): full interpretable-ML meta stack. Regime-confidence boost + transition-quality gate + tail-risk suppression. Most-aggressive combo. Tests whether the three interpretable signals combine or interfere.",
+    },
 ]
 
 
@@ -3533,6 +3922,7 @@ for version in version_specs:
         target_vol_ceil=version["target_vol_ceil"],
         market_state_history=market_state_history,
         stabilize_market_state=bool(version.get("stabilize_market_state", False)),
+        phase2b_mode=version.get("phase2b_mode", "none"),
         sleeve_return_panel=version_sleeve_return_panel,
         sleeve_positions=version_sleeve_positions,
     )

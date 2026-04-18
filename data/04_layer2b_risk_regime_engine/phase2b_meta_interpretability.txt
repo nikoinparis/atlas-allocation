@@ -1,0 +1,76 @@
+======================================================================
+Phase 2B interpretable-ML meta predictions: interpretability
+======================================================================
+
+[p_regime_confidence] Logistic regression (standardized coefs):
+    market_trend_positive            +0.2756
+    breadth_sma_43                   -0.1880
+    transition_non_stress_prob       +0.1709
+    market_drawdown                  -0.1059
+    breadth_13w_mom                  +0.0899
+    recent_stress_26w                -0.0525
+    breadth_change_4w                -0.0449
+    transition_good_state_prob       +0.0325
+    canary_breadth_default           +0.0274
+    breadth_26w_mom                  -0.0090
+    transition_persistence_prob      -0.0086
+    intercept = +0.0064
+    n_train = 1106  pos_rate = 0.588
+
+[p_transition_quality] Shallow decision tree (depth<=4):
+|--- market_drawdown <= -0.03
+|   |--- market_trend_positive <= 0.50
+|   |   |--- breadth_sma_43 <= 0.25
+|   |   |   |--- class: 1
+|   |   |--- breadth_sma_43 >  0.25
+|   |   |   |--- class: 0
+|   |--- market_trend_positive >  0.50
+|   |   |--- transition_non_stress_prob <= 0.95
+|   |   |   |--- transition_non_stress_prob <= 0.92
+|   |   |   |   |--- class: 1
+|   |   |   |--- transition_non_stress_prob >  0.92
+|   |   |   |   |--- class: 1
+|   |   |--- transition_non_stress_prob >  0.95
+|   |   |   |--- class: 0
+|--- market_drawdown >  -0.03
+|   |--- canary_breadth_default <= 0.90
+|   |   |--- breadth_sma_43 <= 0.89
+|   |   |   |--- breadth_sma_43 <= 0.46
+|   |   |   |   |--- class: 0
+|   |   |   |--- breadth_sma_43 >  0.46
+|   |   |   |   |--- class: 0
+|   |   |--- breadth_sma_43 >  0.89
+|   |   |   |--- class: 1
+|   |--- canary_breadth_default >  0.90
+|   |   |--- breadth_13w_mom <= 0.82
+|   |   |   |--- class: 0
+|   |   |--- breadth_13w_mom >  0.82
+|   |   |   |--- class: 0
+
+    n_train = 580  pos_rate = 0.676
+
+[p_tail_risk] Monotonic HistGradientBoosting:
+    Monotonic constraints (-1 decreasing, +1 increasing):
+        market_drawdown                  -1
+        market_trend_positive            -1
+        breadth_sma_43                   -1
+        breadth_26w_mom                  -1
+        breadth_13w_mom                  -1
+        breadth_change_4w                -1
+        canary_breadth_default           +1
+        recent_stress_26w                +1
+        transition_persistence_prob      -1
+        transition_good_state_prob       -1
+        transition_non_stress_prob       -1
+    n_train = 1106  pos_rate = 0.228
+
+Walk-forward training checkpoints:
+  p_regime_confidence: 35 retraining events
+    first train_end = 2008-10-31 (n=200, pos_rate=0.540)
+    last  train_end = 2025-10-10 (n=1084, pos_rate=0.591)
+  p_transition_quality: 35 retraining events
+    first train_end = 2008-10-31 (n=125, pos_rate=0.648)
+    last  train_end = 2025-10-10 (n=562, pos_rate=0.680)
+  p_tail_risk: 35 retraining events
+    first train_end = 2008-10-31 (n=200, pos_rate=0.275)
+    last  train_end = 2025-10-10 (n=1084, pos_rate=0.228)

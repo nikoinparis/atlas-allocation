@@ -113,39 +113,57 @@ export function ExecutiveSummary({ data }: { data: DashboardData | null }) {
     (versionRows.find((row) => String(row.version_name ?? "") === name) as Row | null | undefined) ?? null;
   const goodStateFragileCombo = findVersion("improved_hrp_good_state_fragile_combo");
   const control = goodStateFragileCombo ?? findVersion("improved_hrp_neutral_ease");
-  const continuousOverlay = findVersion("improved_hrp_stacked_defense_continuous_overlay");
-  const selfGatedOverlay = findVersion("improved_hrp_stacked_defense_self_gated_overlay");
-  const asymmetricSpeed = findVersion("improved_hrp_stacked_defense_asymmetric_speed");
-  const stackedDefenseCombo = findVersion("improved_hrp_stacked_defense_continuous_self_gated_combo");
+  const selfGatedRelief = findVersion("improved_hrp_self_gated_relief_targeted");
+  const continuousOverlay = findVersion("improved_hrp_continuous_overlay_careful");
+  const targetedCombo = findVersion("improved_hrp_targeted_relief_continuous_combo");
+  const canaryProxy = findVersion("improved_hrp_separate_canary_proxy");
+  const thresholdRecentering = findVersion("improved_hrp_threshold_recentering");
+  const trendEnsemble = findVersion("improved_hrp_trend_horizon_ensemble");
+  const ctaVolManaged = findVersion("improved_hrp_cta_vol_managed_local");
+  const nonSelfGatedNarrow = findVersion("improved_hrp_non_self_gated_relief_narrow");
+  const nonSelfGatedFlat = findVersion("improved_hrp_non_self_gated_relief_flat");
+  const nonSelfGatedPlusConfirmed = findVersion("improved_hrp_non_self_gated_relief_narrow_plus_confirmed");
 
   const controlScore = num(control, "production_score");
-  const selfGatedScore = num(selfGatedOverlay, "production_score");
-  const comboScore = num(stackedDefenseCombo, "production_score");
-  const selfGatedBilDelta = delta(num(selfGatedOverlay, "avg_bil_weight"), num(control, "avg_bil_weight"));
-  const comboPromotable =
-    comboScore != null &&
+  const selfGatedScore = num(selfGatedRelief, "production_score");
+  const selfGatedScoreDelta = delta(selfGatedScore, controlScore);
+  const selfGatedBilDelta = delta(num(selfGatedRelief, "avg_bil_weight"), num(control, "avg_bil_weight"));
+  const selfGatedPromotable =
+    selfGatedScore != null &&
     controlScore != null &&
-    comboScore - controlScore >= 0.05 &&
-    (num(stackedDefenseCombo, "max_drawdown") ?? -1) >= (num(control, "max_drawdown") ?? -1) - 0.005 &&
-    (num(stackedDefenseCombo, "cvar_5") ?? -1) >= (num(control, "cvar_5") ?? -1) - 0.002;
+    selfGatedScore - controlScore >= 0.05 &&
+    (num(selfGatedRelief, "max_drawdown") ?? -1) >= (num(control, "max_drawdown") ?? -1) - 0.005 &&
+    (num(selfGatedRelief, "cvar_5") ?? -1) >= (num(control, "cvar_5") ?? -1) - 0.002;
+
+  const plusConfirmedScore = num(nonSelfGatedPlusConfirmed, "production_score");
+  const plusConfirmedScoreDelta = delta(plusConfirmedScore, controlScore);
+  const plusConfirmedBilDelta = delta(num(nonSelfGatedPlusConfirmed, "avg_bil_weight"), num(control, "avg_bil_weight"));
+  const plusConfirmedPromoted =
+    productionName === "improved_hrp_non_self_gated_relief_narrow_plus_confirmed";
+  const narrowScore = num(nonSelfGatedNarrow, "production_score");
+  const narrowScoreDelta = delta(narrowScore, controlScore);
+  const flatScore = num(nonSelfGatedFlat, "production_score");
+  const flatScoreDelta = delta(flatScore, controlScore);
 
   const researchRead = [
-    goodStateFragileCombo
-      ? `The current production base is ${titleCase(String(goodStateFragileCombo.version_name ?? ""))}. It remains the incumbent because it improved good-state participation without needing the crude SPY recycle, and it still clears the current promotion guardrail.`
+    plusConfirmedPromoted && nonSelfGatedPlusConfirmed
+      ? `Production has moved to ${titleCase(String(nonSelfGatedPlusConfirmed.version_name ?? ""))}. It keeps the self-gated relief line intact and extends narrow, capped overlay relief to non-self-gated sleeves in strong-neutral, recovery-fragile, and recovery-confirmed states. Production score ${formatNumber(plusConfirmedScore, 3)} vs ${formatNumber(controlScore, 3)} for the prior incumbent clears the 0.05 margin, max drawdown is unchanged, and CVaR is within tolerance.`
+      : goodStateFragileCombo
+      ? `The current production base is ${titleCase(String(goodStateFragileCombo.version_name ?? ""))}. It remains the incumbent because the best new challenger did not clear the promotion guardrail: production score ${formatNumber(controlScore, 3)} still sets the bar, and the latest challenger gains were too small to justify a swap.`
       : null,
-    continuousOverlay || selfGatedOverlay || stackedDefenseCombo
-      ? `The latest sprint tested the stacked-defense tax directly. The core read is that good-state underparticipation is real, and it comes much more from overlay cash and repeated de-risking than from target-vol binding outside stress.`
+    nonSelfGatedPlusConfirmed || nonSelfGatedNarrow || nonSelfGatedFlat
+      ? `The non-self-gated overlay-relief sprint diagnosed the remaining bottleneck. Strong-neutral and recovery-fragile weeks were still carrying ~22-23% BIL because the composite non-self-gated sleeves (regime-conditioned and selective) got the full overlay haircut. Extending a tight, bounded relief to those sleeves, only in the good-state set, shaved BIL ~100 bps in each state with no change to max drawdown and only marginal CVaR/turnover drift.`
       : null,
-    selfGatedOverlay
-      ? `${titleCase(String(selfGatedOverlay.version_name ?? ""))} was the cleanest fix: production score ${formatNumber(selfGatedScore, 3)} vs ${formatNumber(controlScore, 3)} for the incumbent, with average BIL ${selfGatedBilDelta == null ? "n/a" : formatPercent(Math.abs(selfGatedBilDelta), 2)} lower and only a very small SPY drift. That supports the double-defense diagnosis on self-gated sleeves.`
+    selfGatedRelief && nonSelfGatedNarrow
+      ? `Standalone comparisons: self-gated-only relief ${titleCase(String(selfGatedRelief.version_name ?? ""))} delta ${signedValue(selfGatedScoreDelta, "number", 3)}, Variant A (narrow scale-bounded) ${signedValue(narrowScoreDelta, "number", 3)}, Variant B (flat) ${signedValue(flatScoreDelta, "number", 3)}, Variant C (narrow + recovery_confirmed) ${signedValue(plusConfirmedScoreDelta, "number", 3)}. Variant C was the only line to clear the promotion margin; A and B were Pareto-neutral-or-better but composite-score neutral.`
+      : selfGatedRelief
+      ? `${titleCase(String(selfGatedRelief.version_name ?? ""))} was the cleanest fix: production score ${formatNumber(selfGatedScore, 3)} vs ${formatNumber(controlScore, 3)} for the incumbent, average BIL ${selfGatedBilDelta == null ? "n/a" : formatPercent(Math.abs(selfGatedBilDelta), 2)} lower, and the same max drawdown. It helped, but ${selfGatedPromotable ? "it cleared" : `its score gain of ${signedValue(selfGatedScoreDelta, "number", 3)} did not clear`} the current promotion margin.`
       : null,
-    continuousOverlay
-      ? `${titleCase(String(continuousOverlay.version_name ?? ""))} and the A+B combo both improved neutral and recovery participation, but they also deepened max drawdown and CVaR. The stacked-defense diagnosis is real, yet the more aggressive overlay easing still looks too tail-expensive for promotion.`
+    continuousOverlay || targetedCombo
+      ? `${titleCase(String(continuousOverlay?.version_name ?? "continuous overlay"))} and ${titleCase(String(targetedCombo?.version_name ?? "the A+B combo"))} improved neutral and recovery participation, but they still leaked too much into weak-neutral weeks and deepened max drawdown and CVaR. The diagnosis was right; the broader easing path still looks too tail-expensive, which is why the newer variants keep the state set narrow.`
       : null,
-    asymmetricSpeed
-      ? comboPromotable
-        ? `${titleCase(String(stackedDefenseCombo?.version_name ?? ""))} would only promote if the higher participation came without a material drawdown or CVaR giveback. It did not clear that bar, and ${titleCase(String(asymmetricSpeed.version_name ?? ""))} was mostly neutral because faster re-risking alone does not relax the actual overlay haircut.`
-        : `${titleCase(String(asymmetricSpeed.version_name ?? ""))} was mostly neutral: changing speed without changing the binding overlay haircut did not materially reduce cash drag in the good states that still matter most.`
+    canaryProxy || thresholdRecentering || trendEnsemble || ctaVolManaged
+      ? `${titleCase(String(canaryProxy?.version_name ?? "The canary test"))} was only marginal, ${titleCase(String(thresholdRecentering?.version_name ?? "threshold recentering"))} and ${titleCase(String(trendEnsemble?.version_name ?? "trend horizon ensemble"))} were effectively inert, and ${titleCase(String(ctaVolManaged?.version_name ?? "cta vol managed local"))} improved tails mainly by adding back defense. With targeted non-self-gated relief now promoted, next attention shifts to whether the fragile-recovery tilt or layer-3 expression can contribute anything incremental at this level.`
       : null,
   ].filter((item): item is string => Boolean(item));
 

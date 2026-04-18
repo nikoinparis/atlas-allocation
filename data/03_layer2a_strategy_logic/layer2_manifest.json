@@ -346,6 +346,28 @@
     "description": "Top-N long-only strategy using the selective signal blend that retained trend, quality/value, BAB, and carry while excluding weaker add-ons."
   },
   {
+    "strategy_name": "composite_selective_trend_ensemble",
+    "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+    "type": "strategy_logic",
+    "required_inputs": [
+      "signal_xsmom.csv",
+      "signal_tsmom.csv",
+      "signal_multi_horizon_mom.csv",
+      "signal_quality.csv",
+      "signal_value.csv",
+      "signal_bab.csv",
+      "signal_carry.csv"
+    ],
+    "rebalance_frequency": "monthly",
+    "lag_convention": "Consumes Layer 1 tradable signals; multi-horizon trend signals remain lagged and are combined with the same monthly rebalance schedule as the incumbent selective sleeve.",
+    "output_files": [
+      "strategy_positions_composite_selective_trend_ensemble.csv",
+      "strategy_returns_composite_selective_trend_ensemble.csv"
+    ],
+    "caveats": "Minimal conditional test only. This adds a simple fast/slow trend ensemble to the incumbent selective sleeve rather than redesigning Layer 1 from scratch, and it should only survive if it adds value beyond the existing momentum complex.",
+    "description": "Top-N long-only sleeve that augments the incumbent selective blend with a simple multi-horizon trend ensemble (cross-sectional momentum, multi-horizon momentum, and time-series momentum)."
+  },
+  {
     "strategy_name": "composite_selective_strength_weighted",
     "notebook_origin": "03_layer2a_strategy_logic.ipynb",
     "type": "strategy_logic",

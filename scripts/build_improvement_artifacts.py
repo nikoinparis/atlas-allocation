@@ -856,6 +856,118 @@ def compute_rolling_sleeve_conviction(
     return conviction.reindex(sleeves).fillna(0.0)
 
 
+def compute_confirmed_sleeve_quality(
+    sleeve_return_panel: pd.DataFrame,
+    as_of_date: pd.Timestamp,
+    sleeves: list[str],
+    *,
+    short_lookback: int = 13,
+    long_lookback: int = 52,
+) -> pd.Series:
+    """Phase 3 B1: persistence-confirmed rolling-Sharpe sleeve-quality score.
+
+    Computes rank-based rolling-Sharpe conviction on two horizons (short: 13w
+    momentum of sleeve quality; long: 52w structural quality). Combines as a
+    50/50 blend, then:
+      - amplifies by 1.3x when both horizons agree on sign (persistent quality)
+      - dampens to 0.4x when they disagree (noisy / transitory)
+    Returns a value in roughly [-1.3, +1.3] which is clipped to [-1, +1] so
+    downstream tilt math stays bounded. Walk-forward, no lookahead.
+    """
+    if not sleeves:
+        return pd.Series(dtype=float)
+    short = compute_rolling_sleeve_conviction(
+        sleeve_return_panel, as_of_date, sleeves, lookback_weeks=short_lookback
+    )
+    long = compute_rolling_sleeve_conviction(
+        sleeve_return_panel, as_of_date, sleeves, lookback_weeks=long_lookback
+    )
+    if short.empty or long.empty:
+        return pd.Series(0.0, index=sleeves, dtype=float)
+    blended = 0.5 * short + 0.5 * long
+    same_sign = (np.sign(short) * np.sign(long)) > 0
+    out = blended.where(~same_sign, blended * 1.3)
+    out = out.where(same_sign | (short.abs() < 1e-9) | (long.abs() < 1e-9), blended * 0.4)
+    return out.clip(-1.0, 1.0).reindex(sleeves).fillna(0.0)
+
+
+def compute_state_sleeve_lead_tilt(
+    sleeve_return_panel: pd.DataFrame,
+    market_state_history: pd.DataFrame | None,
+    as_of_date: pd.Timestamp,
+    sleeves: list[str],
+    *,
+    lookback_weeks: int = 156,
+    min_state_obs: int = 16,
+) -> pd.Series:
+    """Phase 3 C1: walk-forward state-conditioned sleeve-leadership tilt.
+
+    Looks up the current market_state at `as_of_date` and computes the trailing
+    Sharpe of each sleeve during weeks where the state matched, using only
+    history strictly up to `as_of_date`. Returns a rank-based tilt in [-1, +1]
+    (top sleeve in current state -> +1, worst -> -1). Returns zero if the
+    current state is unknown or has too few past observations.
+    """
+    if not sleeves or market_state_history is None or market_state_history.empty:
+        return pd.Series(0.0, index=sleeves, dtype=float)
+    if "market_state" not in market_state_history.columns:
+        return pd.Series(0.0, index=sleeves, dtype=float)
+    try:
+        current_row = market_state_history.loc[as_of_date]
+    except KeyError:
+        return pd.Series(0.0, index=sleeves, dtype=float)
+    current_state = ""
+    if isinstance(current_row, pd.Series):
+        current_state = str(current_row.get("market_state", "") or "")
+    if not current_state:
+        return pd.Series(0.0, index=sleeves, dtype=float)
+    history = market_state_history.loc[:as_of_date]
+    if history.empty:
+        return pd.Series(0.0, index=sleeves, dtype=float)
+    history = history.iloc[:-1] if len(history) > 1 else history  # exclude current week
+    history = history.tail(lookback_weeks)
+    mask = history["market_state"] == current_state
+    if int(mask.sum()) < min_state_obs:
+        return pd.Series(0.0, index=sleeves, dtype=float)
+    state_dates = history.index[mask]
+    valid = [s for s in sleeves if s in sleeve_return_panel.columns]
+    if not valid:
+        return pd.Series(0.0, index=sleeves, dtype=float)
+    sub = sleeve_return_panel.loc[
+        sleeve_return_panel.index.intersection(state_dates), valid
+    ]
+    if sub.empty or len(sub) < min_state_obs:
+        return pd.Series(0.0, index=sleeves, dtype=float)
+    mean = sub.mean(axis=0)
+    std = sub.std(axis=0, ddof=0)
+    sharpe = mean.div(std.replace(0.0, np.nan)).replace([np.inf, -np.inf], np.nan)
+    if sharpe.dropna().empty:
+        return pd.Series(0.0, index=sleeves, dtype=float)
+    ranks = sharpe.rank(pct=True, method="average")
+    tilt = (ranks - 0.5) * 2.0
+    return tilt.reindex(sleeves).fillna(0.0)
+
+
+def _apply_sector_state_gate(
+    weights: pd.Series,
+    market_state: str | None,
+) -> pd.Series:
+    """Phase 3.1 A1g: gate the sector_rotation_with_sma_filter sleeve.
+
+    Deploy it **only** in the two market states where the prior-evidence scan
+    found it actually leads (recovery_fragile, recovery_confirmed). In every
+    other state its weight is forced to zero before long-only renormalisation.
+    This preserves A1's recovery-confirmed capture edge without paying the
+    calm / stress / downside drag that killed the unconditional A1 variant.
+    """
+    out = weights.copy()
+    sector_name = "sector_rotation_with_sma_filter"
+    if sector_name in out.index:
+        if market_state not in {"recovery_fragile", "recovery_confirmed"}:
+            out.loc[sector_name] = 0.0
+    return out
+
+
 def apply_state_conditioned_tilt(
     raw_weights: pd.Series,
     market_state: str | None,
@@ -863,6 +975,7 @@ def apply_state_conditioned_tilt(
     *,
     conviction: pd.Series | None = None,
     market_state_row: pd.Series | None = None,
+    state_lead_tilt: pd.Series | None = None,
 ) -> pd.Series:
     if tilt_mode == "none":
         return ns5["normalize_long_only"](raw_weights, max_weight=ns5["MAX_SLEEVE_WEIGHT"])
@@ -914,6 +1027,131 @@ def apply_state_conditioned_tilt(
                 tilted.loc["composite_regime_conditioned"] *= 1.08
             if "taa_10m_sma" in tilted.index:
                 tilted.loc["taa_10m_sma"] *= 1.05
+        return ns5["normalize_long_only"](tilted, max_weight=ns5["MAX_SLEEVE_WEIGHT"])
+
+    # ======================================================================
+    # Phase 3 tilt modes. All three reuse the dynamic_risk_budget base shape
+    # (favorable-state conviction tilt + recovery_fragile / stressed_panic
+    # protection) but swap the conviction signal and/or add a state-leader
+    # layer. Bounds kept conservative (±15% per sleeve) to avoid compounding.
+    # ======================================================================
+    if tilt_mode in {
+        "dynamic_risk_budget_confirmed_quality",
+        "dynamic_risk_budget_state_leader",
+        "dynamic_risk_budget_full_phase3",
+    }:
+        favorable = (
+            market_state in {"recovery_fragile", "recovery_confirmed", "calm_trend"}
+            or strong_neutral_flag
+        )
+        # Conviction stage (uses confirmed-quality conviction when caller
+        # supplies it; otherwise falls back to whatever conviction was passed).
+        if favorable and conviction is not None and not conviction.empty:
+            for name in tilted.index:
+                c = float(conviction.get(name, 0.0) or 0.0)
+                multiplier = float(np.clip(1.0 + 0.15 * c, 0.85, 1.15))
+                tilted.loc[name] *= multiplier
+        # State-leader stage: bounded ±10% tilt toward sleeves whose trailing
+        # same-state Sharpe rank is top. Only applied when the mode asks for
+        # it AND when a non-null lead series is supplied by the caller.
+        if tilt_mode in {"dynamic_risk_budget_state_leader", "dynamic_risk_budget_full_phase3"}:
+            if state_lead_tilt is not None and not state_lead_tilt.empty and favorable:
+                for name in tilted.index:
+                    s = float(state_lead_tilt.get(name, 0.0) or 0.0)
+                    multiplier = float(np.clip(1.0 + 0.10 * s, 0.90, 1.10))
+                    tilted.loc[name] *= multiplier
+        # Shared state-level protection (same as dynamic_risk_budget).
+        if market_state == "recovery_fragile":
+            for name in offensive_sleeves:
+                tilted.loc[name] *= 1.04
+            for name in defensive_sleeves:
+                tilted.loc[name] *= 0.96
+        elif market_state == "stressed_panic":
+            for name in offensive_sleeves:
+                tilted.loc[name] *= 0.92
+            if "composite_regime_conditioned" in tilted.index:
+                tilted.loc["composite_regime_conditioned"] *= 1.08
+            if "taa_10m_sma" in tilted.index:
+                tilted.loc["taa_10m_sma"] *= 1.05
+        return ns5["normalize_long_only"](tilted, max_weight=ns5["MAX_SLEEVE_WEIGHT"])
+
+    # ======================================================================
+    # Phase 3.1 refinement modes.
+    # These are narrow refinements of the Phase 3 C1 (state-leader) mechanism
+    # and of the Phase 3 A1 (sector-rotation sleeve) hypothesis. They share
+    # the same favorable-state gate and the same recovery_fragile /
+    # stressed_panic protection as dynamic_risk_budget, and only change:
+    #   - C1a:   state-leader bound widened from ±0.10 to ±0.15
+    #   - C1b:   state-leader tilt fires only when |rank-tilt| > 0.30
+    #            (conviction floor — middle-ranked sleeves don't move)
+    #   - A1g:   sector_rotation_with_sma_filter gated to recovery states only
+    #   - Combo: C1a bounds + A1g sector gate
+    # ======================================================================
+    if tilt_mode in {
+        "dynamic_risk_budget_state_leader_wider",         # C1a
+        "dynamic_risk_budget_state_leader_conviction_gated",  # C1b
+        "dynamic_risk_budget_sector_gated",               # A1g
+        "dynamic_risk_budget_state_leader_wider_sector_gated",  # Combo1
+    }:
+        favorable = (
+            market_state in {"recovery_fragile", "recovery_confirmed", "calm_trend"}
+            or strong_neutral_flag
+        )
+        # Conviction stage — same rolling-Sharpe conviction signal as the
+        # original dynamic_risk_budget, ±15% multiplier.
+        if favorable and conviction is not None and not conviction.empty:
+            for name in tilted.index:
+                c = float(conviction.get(name, 0.0) or 0.0)
+                multiplier = float(np.clip(1.0 + 0.15 * c, 0.85, 1.15))
+                tilted.loc[name] *= multiplier
+
+        # State-leader stage — only for the two C1 refinement modes and the
+        # combo (not for pure A1g).
+        if tilt_mode in {
+            "dynamic_risk_budget_state_leader_wider",
+            "dynamic_risk_budget_state_leader_conviction_gated",
+            "dynamic_risk_budget_state_leader_wider_sector_gated",
+        }:
+            if state_lead_tilt is not None and not state_lead_tilt.empty and favorable:
+                # C1a widens the bound to ±0.15.
+                # C1b keeps the ±0.10 bound but only fires on high-conviction
+                # ranks (|tilt| > 0.30).
+                if tilt_mode == "dynamic_risk_budget_state_leader_conviction_gated":
+                    bound = 0.10
+                    floor = 0.30
+                else:
+                    bound = 0.15
+                    floor = 0.0
+                for name in tilted.index:
+                    s = float(state_lead_tilt.get(name, 0.0) or 0.0)
+                    if abs(s) <= floor:
+                        continue
+                    multiplier = float(np.clip(1.0 + bound * s, 1.0 - bound, 1.0 + bound))
+                    tilted.loc[name] *= multiplier
+
+        # Shared state-level protection (same as dynamic_risk_budget).
+        if market_state == "recovery_fragile":
+            for name in offensive_sleeves:
+                tilted.loc[name] *= 1.04
+            for name in defensive_sleeves:
+                tilted.loc[name] *= 0.96
+        elif market_state == "stressed_panic":
+            for name in offensive_sleeves:
+                tilted.loc[name] *= 0.92
+            if "composite_regime_conditioned" in tilted.index:
+                tilted.loc["composite_regime_conditioned"] *= 1.08
+            if "taa_10m_sma" in tilted.index:
+                tilted.loc["taa_10m_sma"] *= 1.05
+
+        # A1g / combo sector gate — executed AFTER all tilts so that the gate
+        # is the final word on sector exposure. Redistribution happens in
+        # normalize_long_only below.
+        if tilt_mode in {
+            "dynamic_risk_budget_sector_gated",
+            "dynamic_risk_budget_state_leader_wider_sector_gated",
+        }:
+            tilted = _apply_sector_state_gate(tilted, market_state)
+
         return ns5["normalize_long_only"](tilted, max_weight=ns5["MAX_SLEEVE_WEIGHT"])
 
     # Phase 1 Combo F: dynamic risk budget combined with good-state leadership
@@ -1854,19 +2092,49 @@ def run_subset_custom(
                         else:
                             raise ValueError(f"Unknown engine: {engine}")
 
-                        conviction_row = (
-                            compute_rolling_sleeve_conviction(
+                        if state_tilt in {
+                            "dynamic_risk_budget_confirmed_quality",
+                            "dynamic_risk_budget_full_phase3",
+                        }:
+                            conviction_row = compute_confirmed_sleeve_quality(
+                                sleeve_return_panel, date, list(active)
+                            )
+                        elif state_tilt in {
+                            "dynamic_risk_budget",
+                            "dynamic_risk_budget_and_leadership",
+                            "dynamic_risk_budget_state_leader",
+                            "dynamic_risk_budget_state_leader_wider",
+                            "dynamic_risk_budget_state_leader_conviction_gated",
+                            "dynamic_risk_budget_sector_gated",
+                            "dynamic_risk_budget_state_leader_wider_sector_gated",
+                        }:
+                            conviction_row = compute_rolling_sleeve_conviction(
                                 sleeve_return_panel, date, list(active), lookback_weeks=26
                             )
-                            if state_tilt in {"dynamic_risk_budget", "dynamic_risk_budget_and_leadership"}
-                            else None
-                        )
+                        else:
+                            conviction_row = None
+                        if state_tilt in {
+                            "dynamic_risk_budget_state_leader",
+                            "dynamic_risk_budget_full_phase3",
+                            "dynamic_risk_budget_state_leader_wider",
+                            "dynamic_risk_budget_state_leader_conviction_gated",
+                            "dynamic_risk_budget_state_leader_wider_sector_gated",
+                        }:
+                            state_lead_tilt_row = compute_state_sleeve_lead_tilt(
+                                sleeve_return_panel,
+                                effective_market_state_history,
+                                date,
+                                list(active),
+                            )
+                        else:
+                            state_lead_tilt_row = None
                         raw = apply_state_conditioned_tilt(
                             raw,
                             market_state,
                             tilt_mode=state_tilt,
                             conviction=conviction_row,
                             market_state_row=market_state_row if isinstance(market_state_row, pd.Series) else None,
+                            state_lead_tilt=state_lead_tilt_row,
                         )
                         default_conviction_row = (
                             conviction_inputs["default_blend"].loc[date].reindex(active)
@@ -2588,6 +2856,25 @@ base_sleeve_return_panel[concentrated_strategy_name] = concentrated_path["net_re
 base_sleeve_positions[concentrated_strategy_name] = concentrated_weights.reindex(index=ns5["weekly_prices"].index, columns=ns5["weekly_prices"].columns).fillna(0.0)
 base_sleeve_return_panel[trend_ensemble_strategy_name] = trend_ensemble_path["net_return"].reindex(base_sleeve_return_panel.index).fillna(0.0)
 base_sleeve_positions[trend_ensemble_strategy_name] = trend_ensemble_weights.reindex(index=ns5["weekly_prices"].index, columns=ns5["weekly_prices"].columns).fillna(0.0)
+
+# Phase 3 Variant A1: register sector_rotation_with_sma_filter into the base
+# sleeve panel so it can be selected by the richer-sleeve Phase 3 subsets.
+# Loaded from the layer 2A strategy outputs (same path the other sleeves use).
+_phase3_sector_name = "sector_rotation_with_sma_filter"
+if _phase3_sector_name not in base_sleeve_return_panel.columns:
+    _phase3_sector_returns_path = LAYER2A_DIR / f"strategy_returns_{_phase3_sector_name}.csv"
+    _phase3_sector_positions_path = LAYER2A_DIR / f"strategy_positions_{_phase3_sector_name}.csv"
+    if _phase3_sector_returns_path.exists():
+        _phase3_sector_returns_df = pd.read_csv(_phase3_sector_returns_path, index_col=0, parse_dates=True)
+        _col = "net_return" if "net_return" in _phase3_sector_returns_df.columns else _phase3_sector_returns_df.columns[0]
+        base_sleeve_return_panel[_phase3_sector_name] = (
+            _phase3_sector_returns_df[_col].reindex(base_sleeve_return_panel.index).fillna(0.0)
+        )
+    if _phase3_sector_positions_path.exists():
+        _phase3_sector_positions_df = pd.read_csv(_phase3_sector_positions_path, index_col=0, parse_dates=True)
+        base_sleeve_positions[_phase3_sector_name] = _phase3_sector_positions_df.reindex(
+            index=ns5["weekly_prices"].index, columns=ns5["weekly_prices"].columns
+        ).fillna(0.0)
 
 # Phase 1 Variant D: build redeployed sleeve panels once, used only by the
 # Variant D version_spec (and any combo that consumes it). Other variants
@@ -3884,6 +4171,165 @@ version_specs = [
         "target_vol_ceil": 1.00,
         "phase2b_mode": "combo_abc",
         "note": "Phase 2B Combo F (A + B + C): full interpretable-ML meta stack. Regime-confidence boost + transition-quality gate + tail-risk suppression. Most-aggressive combo. Tests whether the three interpretable signals combine or interfere.",
+    },
+    # ======================================================================
+    # Phase 3 opening sprint. All five variants are layered on top of the
+    # Phase 2B production default (regime_confidence_boost) so that any gain
+    # is orthogonal to production track A. The sprint probes three Phase 3
+    # frontier areas:
+    #   - A1 = richer sleeve-layer upgrade (add orthogonal sector rotation)
+    #   - B1 = learned sleeve-quality (confirmed short+long rolling-Sharpe)
+    #   - C1 = richer state-conditioned sleeve allocation (state-leader tilt)
+    #   - E1 = best justified combo (A1 + B1)
+    #   - F1 = broader combo (A1 + B1 + C1)
+    # No heavier black-box method is tested in this opening sprint; that
+    # door is reserved for a follow-up only if A1-F1 under-deliver.
+    # ======================================================================
+    {
+        "version_name": "improved_phase3_richer_sleeve_sector_rotation",
+        "method_name": "hrp",
+        "subset_name": "phase3_richer_sleeve_sector_rotation",
+        "subset_sleeves": improved_subset + ["sector_rotation_with_sma_filter"],
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "dynamic_risk_budget",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_both_targeted_narrow_plus_confirmed",
+        "target_vol_ceil": 1.00,
+        "phase2b_mode": "regime_confidence_boost",
+        "note": "Phase 3 Variant A1: add sector_rotation_with_sma_filter as a 6th orthogonal offensive sleeve. Correlation to existing 5 sleeves averages 0.58 (max 0.66), standalone Sharpe 0.63, SMA-filtered sector tilt that historically leads in recovery_fragile/recovery_confirmed states. Phase 2B A (regime_confidence_boost) stays on top; everything else identical to production default.",
+    },
+    {
+        "version_name": "improved_phase3_sleeve_quality_confirmed",
+        "method_name": "hrp",
+        "subset_name": "phase3_sleeve_quality_confirmed",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "dynamic_risk_budget_confirmed_quality",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_both_targeted_narrow_plus_confirmed",
+        "target_vol_ceil": 1.00,
+        "phase2b_mode": "regime_confidence_boost",
+        "note": "Phase 3 Variant B1: learned sleeve-quality via persistence-confirmed rolling Sharpe. Short (13w) and long (52w) rank-based Sharpe conviction are blended 50/50; amplified 1.3x when signs agree, dampened to 0.4x when they disagree. Same ±15% bound as dynamic_risk_budget; replaces only the conviction signal. Phase 2B A on top; subset and overlay unchanged.",
+    },
+    {
+        "version_name": "improved_phase3_state_conditioned_sleeve_lead",
+        "method_name": "hrp",
+        "subset_name": "phase3_state_conditioned_sleeve_lead",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "dynamic_risk_budget_state_leader",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_both_targeted_narrow_plus_confirmed",
+        "target_vol_ceil": 1.00,
+        "phase2b_mode": "regime_confidence_boost",
+        "note": "Phase 3 Variant C1: richer state-conditioned sleeve allocation. Layers a walk-forward state-leader tilt on top of dynamic_risk_budget: trailing 156w same-state Sharpe is rank-transformed to [-1,+1] and multiplies each sleeve by clip(1 + 0.10 * tilt, 0.90, 1.10). Active only in favorable states. Requires ≥16 same-state observations or falls back to zero. Phase 2B A on top.",
+    },
+    {
+        "version_name": "improved_phase3_combo_a1b1",
+        "method_name": "hrp",
+        "subset_name": "phase3_combo_a1b1",
+        "subset_sleeves": improved_subset + ["sector_rotation_with_sma_filter"],
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "dynamic_risk_budget_confirmed_quality",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_both_targeted_narrow_plus_confirmed",
+        "target_vol_ceil": 1.00,
+        "phase2b_mode": "regime_confidence_boost",
+        "note": "Phase 3 Combo E1 = A1 + B1: richer sleeve set (add sector_rotation_with_sma_filter) combined with persistence-confirmed sleeve-quality conviction. Tests whether the two orthogonal upgrades compound cleanly.",
+    },
+    {
+        "version_name": "improved_phase3_combo_a1b1c1",
+        "method_name": "hrp",
+        "subset_name": "phase3_combo_a1b1c1",
+        "subset_sleeves": improved_subset + ["sector_rotation_with_sma_filter"],
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "dynamic_risk_budget_full_phase3",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_both_targeted_narrow_plus_confirmed",
+        "target_vol_ceil": 1.00,
+        "phase2b_mode": "regime_confidence_boost",
+        "note": "Phase 3 Combo F1 = A1 + B1 + C1: richer sleeve set + confirmed-quality conviction + state-leader tilt. Most-layered Phase 3 variant. Tests whether adding the state-leader tilt on top of A1 + B1 is additive or noisy.",
+    },
+    # ======================================================================
+    # Phase 3.1 refinement sprint.
+    # Narrow, targeted refinements of the two concrete levers identified by
+    # the opening Phase 3 sprint:
+    #   - C1a  = state-leader tilt bound widened ±0.10 → ±0.15
+    #   - C1b  = state-leader tilt kept at ±0.10 but gated by |rank-tilt| > 0.30
+    #   - A1g  = sector_rotation_with_sma_filter gated to recovery states only
+    #   - Combo1 = C1a + A1g
+    # No new sleeves, no new allocators, no black-box method. Every variant
+    # keeps Phase 2B A (regime_confidence_boost) on top and HRP as the engine.
+    # ======================================================================
+    {
+        "version_name": "improved_phase3_1_c1_widened",
+        "method_name": "hrp",
+        "subset_name": "phase3_1_c1_widened",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "dynamic_risk_budget_state_leader_wider",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_both_targeted_narrow_plus_confirmed",
+        "target_vol_ceil": 1.00,
+        "phase2b_mode": "regime_confidence_boost",
+        "note": "Phase 3.1 Variant C1a: widened state-conditioned sleeve-leadership tilt. Identical to Phase 3 C1 except the state-leader multiplier bound is widened from ±0.10 to ±0.15. All other logic (favorable-state gate, 156w prior-same-state lookback, ≥16 obs minimum, shared recovery_fragile / stressed_panic protection) is unchanged. Tests whether C1 was simply too conservatively sized (C1 missed the +0.05 production promotion margin by 0.005).",
+    },
+    {
+        "version_name": "improved_phase3_1_c1_conviction_gated",
+        "method_name": "hrp",
+        "subset_name": "phase3_1_c1_conviction_gated",
+        "subset_sleeves": improved_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "dynamic_risk_budget_state_leader_conviction_gated",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_both_targeted_narrow_plus_confirmed",
+        "target_vol_ceil": 1.00,
+        "phase2b_mode": "regime_confidence_boost",
+        "note": "Phase 3.1 Variant C1b: conviction-gated state-conditioned sleeve-leadership tilt. Keeps Phase 3 C1's ±0.10 bound but only fires when the rank-tilt magnitude exceeds 0.30 — i.e., the sleeve is clearly in the top/bottom third of same-state performance. Middle-ranked sleeves are left alone. Tests whether selective deployment of the same C1 mechanism crosses the promotion bar without widening the bound.",
+    },
+    {
+        "version_name": "improved_phase3_1_a1_state_gated",
+        "method_name": "hrp",
+        "subset_name": "phase3_1_a1_state_gated",
+        "subset_sleeves": improved_subset + ["sector_rotation_with_sma_filter"],
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "dynamic_risk_budget_sector_gated",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_both_targeted_narrow_plus_confirmed",
+        "target_vol_ceil": 1.00,
+        "phase2b_mode": "regime_confidence_boost",
+        "note": "Phase 3.1 Variant A1g: state-gated sector_rotation_with_sma_filter sleeve. Membership identical to Phase 3 A1 (improved_subset + sector_rotation_with_sma_filter) but the sector sleeve weight is forced to zero in calm_trend, neutral_mixed, and stressed_panic — deployed only in recovery_fragile and recovery_confirmed. Tests whether the recovery capture edge of A1 can be preserved without the calm / stress / downside drag that made A1 fail.",
+    },
+    {
+        "version_name": "improved_phase3_1_combo_c1a_a1g",
+        "method_name": "hrp",
+        "subset_name": "phase3_1_combo_c1a_a1g",
+        "subset_sleeves": improved_subset + ["sector_rotation_with_sma_filter"],
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40,
+        "rerisk_speed": 1.00,
+        "state_tilt": "dynamic_risk_budget_state_leader_wider_sector_gated",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "lighter_both_targeted_narrow_plus_confirmed",
+        "target_vol_ceil": 1.00,
+        "phase2b_mode": "regime_confidence_boost",
+        "note": "Phase 3.1 Combo1 = C1a + A1g: widened state-leader tilt (±0.15) stacked with the state-gated sector_rotation_with_sma_filter sleeve (deployed only in recovery_fragile / recovery_confirmed). Combo is evaluated only if both standalones show promise; promoted only if it beats both standalones on the composite without collateral damage.",
     },
 ]
 

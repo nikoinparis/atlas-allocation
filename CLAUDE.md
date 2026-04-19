@@ -19,8 +19,16 @@ Rules:
 - keep only changes that help out of sample alone or in combination
 - prioritize state-transition quality, re-risking speed, and reducing unnecessary BIL/cash drag
 
-Current production candidate:
-- improved_hrp_recovery_tilt
+Current production candidate (official):
+- improved_phase2b_regime_confidence_boost
+
+Current research runner-up (shadow / alternate baseline):
+- improved_phase2b_combo_abc
+
+Dual-track rule:
+- `improved_phase2b_regime_confidence_boost` is the single production default in the dashboard, narratives, and reports.
+- `improved_phase2b_combo_abc` is kept alive as a tracked research runner-up. It appears in the dashboard as an alternate comparison only, never as the headline production candidate.
+- Future Phase 3 sprints should report incremental contribution versus BOTH tracks separately (production + shadow) before promoting anything new.
 
 Dashboard:
 - homepage must be inspectable immediately on first load

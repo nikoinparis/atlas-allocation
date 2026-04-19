@@ -106,7 +106,15 @@ export type DashboardData = {
     regimeCounts: Array<{ name: string; count: number }>;
     baselineVersion?: Record<string, string | number | boolean | null> | null;
     improvedVersion?: Record<string, string | number | boolean | null> | null;
+    researchVersion?: Record<string, string | number | boolean | null> | null;
+    researchAllocationSummary?: Record<string, string | number | boolean | null> | null;
     currentAllocationSummary?: Record<string, string | number | boolean | null> | null;
+    trackPolicy?: {
+      productionVersion: string;
+      researchVersion: string;
+      promotionMargin: number;
+      note: string;
+    } | null;
   };
   methods: MetricRow[];
   metricsSummary: MetricRow[];

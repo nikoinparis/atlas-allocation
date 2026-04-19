@@ -340,33 +340,40 @@ const latestRegimeScore = regimeScore.length ? regimeScore[regimeScore.length - 
 const latestMarketState = marketStateHistory.length ? marketStateHistory[marketStateHistory.length - 1] : null;
 const benchmarkSummary = strategySummary.filter((row) => String(row.strategy_name || "").startsWith("baseline_"));
 const baselineVersion = versionComparison.find((row) => String(row.version_name || "").startsWith("baseline_hrp")) || versionComparison.find((row) => String(row.version_name || "").startsWith("baseline_")) || null;
-// Pin the production candidate to the incumbent (`improved_hrp_non_self_gated_relief_narrow_plus_confirmed`) unless a
-// challenger variant beats it by a material production-score margin AND does not degrade max
-// drawdown or CVaR. This preserves the existing promotion discipline while updating the incumbent
-// to the current best production base from the latest non-self-gated relief pass.
-const INCUMBENT_NAME = "improved_hrp_non_self_gated_relief_narrow_plus_confirmed";
-const PROMOTION_MARGIN = 0.05; // production_score
+// Dual-track production / research configuration (Phase 2B outcome).
+//
+// OFFICIAL PRODUCTION DEFAULT  = `improved_phase2b_regime_confidence_boost` (Phase 2B Variant A)
+//   - best production score, cleanest single-signal pass, best explainability.
+// OFFICIAL RESEARCH RUNNER-UP  = `improved_phase2b_combo_abc`           (Phase 2B Variant F)
+//   - best Calmar and best stressed-state Sharpe; tracked as an alternate comparison
+//     baseline only, never surfaced as a second "production" default.
+//
+// The production pin is intentional (not auto-picked from the comparison table) so the
+// dashboard's headline production candidate stays stable across reruns. The research
+// runner-up is also pinned and exposed as `overview.researchVersion` for the dashboard
+// to render as an alternate series in comparisons.
+const PRODUCTION_VERSION_NAME = "improved_phase2b_regime_confidence_boost";
+const RESEARCH_VERSION_NAME   = "improved_phase2b_combo_abc";
+const PROMOTION_MARGIN = 0.05; // retained for future re-evaluation logic
+
 const improvedCandidates = [...versionComparison].filter((row) => String(row.version_name || "").startsWith("improved_"));
-const incumbent = improvedCandidates.find((row) => row.version_name === INCUMBENT_NAME) || null;
-const bestChallenger = [...improvedCandidates]
-  .filter((row) => row.version_name !== INCUMBENT_NAME)
-  .sort((a, b) => Number(b.production_score ?? b.sharpe ?? 0) - Number(a.production_score ?? a.sharpe ?? 0))[0] || null;
-let improvedVersion = incumbent;
-if (incumbent && bestChallenger) {
-  const incScore = Number(incumbent.production_score ?? incumbent.sharpe ?? 0);
-  const chScore = Number(bestChallenger.production_score ?? bestChallenger.sharpe ?? 0);
-  const incDD = Number(incumbent.max_drawdown ?? -1);
-  const chDD = Number(bestChallenger.max_drawdown ?? -1);
-  const incCVaR = Number(incumbent.cvar_5 ?? -1);
-  const chCVaR = Number(bestChallenger.cvar_5 ?? -1);
-  if (chScore - incScore >= PROMOTION_MARGIN && chDD >= incDD - 0.005 && chCVaR >= incCVaR - 0.002) {
-    improvedVersion = bestChallenger;
-  }
+const productionVersion = improvedCandidates.find((row) => row.version_name === PRODUCTION_VERSION_NAME) || null;
+const researchVersion   = improvedCandidates.find((row) => row.version_name === RESEARCH_VERSION_NAME) || null;
+// `improvedVersion` remains the field consumed downstream by the dashboard for the headline
+// production candidate. Fall back to the best scoring improved variant if the pin is missing
+// (e.g. during in-flight renames), but never to the research runner-up.
+let improvedVersion = productionVersion;
+if (!improvedVersion) {
+  improvedVersion = [...improvedCandidates]
+    .filter((row) => row.version_name !== RESEARCH_VERSION_NAME)
+    .sort((a, b) => Number(b.production_score ?? b.sharpe ?? 0) - Number(a.production_score ?? a.sharpe ?? 0))[0] || null;
 }
-if (!improvedVersion) improvedVersion = bestChallenger;
 const currentAllocationSummary = improvedVersion
   ? allocationDrivers.find((row) => row.version_name === improvedVersion.version_name) ?? null
   : allocationDrivers[0] ?? null;
+const researchAllocationSummary = researchVersion
+  ? allocationDrivers.find((row) => row.version_name === researchVersion.version_name) ?? null
+  : null;
 const latestDate = [
   latestRegime?.Date,
   ...Object.values(portfolioReturns).map((series) => series.at(-1)?.date),
@@ -435,7 +442,15 @@ const payload = {
     regimeCounts: groupCount(regimeStates, "risk_state"),
     baselineVersion,
     improvedVersion,
+    researchVersion,
+    researchAllocationSummary,
     currentAllocationSummary,
+    trackPolicy: {
+      productionVersion: PRODUCTION_VERSION_NAME,
+      researchVersion: RESEARCH_VERSION_NAME,
+      promotionMargin: PROMOTION_MARGIN,
+      note: "Dual-track: production pinned to Phase 2B Variant A; research runner-up pinned to Phase 2B Variant F. Surfaced as alternate comparison, never as a second headline candidate.",
+    },
   },
   methods,
   metricsSummary,

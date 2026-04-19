@@ -58,7 +58,10 @@ export function ExecutiveSummary({ data }: { data: DashboardData | null }) {
   const alloc = (overview.currentAllocationSummary ?? null) as Row | null;
   const marketState = (overview.latestMarketState ?? null) as Row | null;
 
-  const productionName = str(improved, "version_name") || "improved_hrp_good_state_fragile_combo";
+  const productionName = str(improved, "version_name") || "improved_phase2b_regime_confidence_boost";
+  const researchRow = (overview.researchVersion ?? null) as Row | null;
+  const researchName = str(researchRow, "version_name");
+  const trackPolicy = overview.trackPolicy ?? null;
   const annRet = num(improved, "ann_return");
   const annVol = num(improved, "ann_vol");
   const sharpe = num(improved, "sharpe");
@@ -111,60 +114,50 @@ export function ExecutiveSummary({ data }: { data: DashboardData | null }) {
   const versionRows = Array.isArray(data.improvementLab?.versions) ? data.improvementLab.versions : [];
   const findVersion = (name: string) =>
     (versionRows.find((row) => String(row.version_name ?? "") === name) as Row | null | undefined) ?? null;
-  const goodStateFragileCombo = findVersion("improved_hrp_good_state_fragile_combo");
-  const control = goodStateFragileCombo ?? findVersion("improved_hrp_neutral_ease");
-  const selfGatedRelief = findVersion("improved_hrp_self_gated_relief_targeted");
-  const continuousOverlay = findVersion("improved_hrp_continuous_overlay_careful");
-  const targetedCombo = findVersion("improved_hrp_targeted_relief_continuous_combo");
-  const canaryProxy = findVersion("improved_hrp_separate_canary_proxy");
-  const thresholdRecentering = findVersion("improved_hrp_threshold_recentering");
-  const trendEnsemble = findVersion("improved_hrp_trend_horizon_ensemble");
-  const ctaVolManaged = findVersion("improved_hrp_cta_vol_managed_local");
-  const nonSelfGatedNarrow = findVersion("improved_hrp_non_self_gated_relief_narrow");
-  const nonSelfGatedFlat = findVersion("improved_hrp_non_self_gated_relief_flat");
-  const nonSelfGatedPlusConfirmed = findVersion("improved_hrp_non_self_gated_relief_narrow_plus_confirmed");
 
-  const controlScore = num(control, "production_score");
-  const selfGatedScore = num(selfGatedRelief, "production_score");
-  const selfGatedScoreDelta = delta(selfGatedScore, controlScore);
-  const selfGatedBilDelta = delta(num(selfGatedRelief, "avg_bil_weight"), num(control, "avg_bil_weight"));
-  const selfGatedPromotable =
-    selfGatedScore != null &&
-    controlScore != null &&
-    selfGatedScore - controlScore >= 0.05 &&
-    (num(selfGatedRelief, "max_drawdown") ?? -1) >= (num(control, "max_drawdown") ?? -1) - 0.005 &&
-    (num(selfGatedRelief, "cvar_5") ?? -1) >= (num(control, "cvar_5") ?? -1) - 0.002;
+  // Phase 2B dual-track context. Production = A; research runner-up = F. Control = Phase 1 winner.
+  const phase1Control = findVersion("improved_hrp_phase1_dynamic_risk_budget");
+  const phase2bConfBoost = findVersion("improved_phase2b_regime_confidence_boost");
+  const phase2bComboAbc = findVersion("improved_phase2b_combo_abc");
+  const phase2bTransGate = findVersion("improved_phase2b_transition_quality_gate");
+  const phase2bTailSuppress = findVersion("improved_phase2b_tail_risk_suppression");
+  const phase2bComboAc = findVersion("improved_phase2b_combo_ac");
 
-  const plusConfirmedScore = num(nonSelfGatedPlusConfirmed, "production_score");
-  const plusConfirmedScoreDelta = delta(plusConfirmedScore, controlScore);
-  const plusConfirmedBilDelta = delta(num(nonSelfGatedPlusConfirmed, "avg_bil_weight"), num(control, "avg_bil_weight"));
-  const plusConfirmedPromoted =
-    productionName === "improved_hrp_non_self_gated_relief_narrow_plus_confirmed";
-  const narrowScore = num(nonSelfGatedNarrow, "production_score");
-  const narrowScoreDelta = delta(narrowScore, controlScore);
-  const flatScore = num(nonSelfGatedFlat, "production_score");
-  const flatScoreDelta = delta(flatScore, controlScore);
+  const controlScore = num(phase1Control, "production_score");
+  const prodScore = num(phase2bConfBoost, "production_score") ?? num(improved, "production_score");
+  const prodSharpe = num(phase2bConfBoost, "sharpe") ?? sharpe;
+  const prodCalmar = num(phase2bConfBoost, "calmar") ?? calmar;
+  const prodDD = num(phase2bConfBoost, "max_drawdown") ?? mdd;
+  const prodCVaR = num(phase2bConfBoost, "cvar_5") ?? cvar5;
+  const prodScoreDelta = delta(prodScore, controlScore);
+  const prodSharpeDelta = delta(prodSharpe, num(phase1Control, "sharpe"));
+
+  const shadowScore = num(phase2bComboAbc, "production_score");
+  const shadowSharpe = num(phase2bComboAbc, "sharpe");
+  const shadowCalmar = num(phase2bComboAbc, "calmar");
+  const shadowDD = num(phase2bComboAbc, "max_drawdown");
+  const shadowScoreDelta = delta(shadowScore, controlScore);
+  const shadowCalmarDelta = delta(shadowCalmar, num(phase1Control, "calmar"));
+  const shadowDDDelta = delta(shadowDD, num(phase1Control, "max_drawdown"));
+
+  const productionPromoted = productionName === "improved_phase2b_regime_confidence_boost";
+  const productionLabel = titleCase(productionName);
+  const researchLabel = researchName ? titleCase(researchName) : titleCase("improved_phase2b_combo_abc");
 
   const researchRead = [
-    plusConfirmedPromoted && nonSelfGatedPlusConfirmed
-      ? `Production has moved to ${titleCase(String(nonSelfGatedPlusConfirmed.version_name ?? ""))}. It keeps the self-gated relief line intact and extends narrow, capped overlay relief to non-self-gated sleeves in strong-neutral, recovery-fragile, and recovery-confirmed states. Production score ${formatNumber(plusConfirmedScore, 3)} vs ${formatNumber(controlScore, 3)} for the prior incumbent clears the 0.05 margin, max drawdown is unchanged, and CVaR is within tolerance.`
-      : goodStateFragileCombo
-      ? `The current production base is ${titleCase(String(goodStateFragileCombo.version_name ?? ""))}. It remains the incumbent because the best new challenger did not clear the promotion guardrail: production score ${formatNumber(controlScore, 3)} still sets the bar, and the latest challenger gains were too small to justify a swap.`
+    phase2bConfBoost
+      ? `Production is pinned to ${productionLabel} (Phase 2B Variant A). It adds a walk-forward, interpretable logistic regime-confidence score on top of the Phase 1 dynamic-risk-budget stack. When p_regime_confidence ≥ 0.55 in non-stressed states, it boosts the raw regime multiplier by up to +0.045; otherwise it is a no-op. Production score ${formatNumber(prodScore, 3)} vs ${formatNumber(controlScore, 3)} for the Phase 1 control (delta ${signedValue(prodScoreDelta, "number", 3)}), Sharpe ${formatNumber(prodSharpe, 3)} (delta ${signedValue(prodSharpeDelta, "number", 3)}), max drawdown ${formatPercent(prodDD, 2)}, CVaR ${formatPercent(prodCVaR, 2)}. It clears the promotion rule (Δprod ≥ 0.05, DD within 0.005, CVaR within 0.002) with the simplest possible change set, which is why it is the official production default rather than the fuller three-signal stack.`
       : null,
-    nonSelfGatedPlusConfirmed || nonSelfGatedNarrow || nonSelfGatedFlat
-      ? `The non-self-gated overlay-relief sprint diagnosed the remaining bottleneck. Strong-neutral and recovery-fragile weeks were still carrying ~22-23% BIL because the composite non-self-gated sleeves (regime-conditioned and selective) got the full overlay haircut. Extending a tight, bounded relief to those sleeves, only in the good-state set, shaved BIL ~100 bps in each state with no change to max drawdown and only marginal CVaR/turnover drift.`
+    phase2bComboAbc
+      ? `${researchLabel} (Phase 2B Variant F — A + transition-quality gate + monotonic tail-risk suppression) is kept alive as the official research runner-up / shadow track, not a second production default. It posts the best Calmar (${formatNumber(shadowCalmar, 3)}, delta ${signedValue(shadowCalmarDelta, "number", 3)} vs Phase 1 control) and the best stressed-state Sharpe in the Phase 2B sprint, and improves max drawdown by ${signedValue(shadowDDDelta, "percent", 2)}. Production score delta ${signedValue(shadowScoreDelta, "number", 3)} also clears the promotion bar, but it adds two more models (shallow decision tree + monotonic HGBM) for a marginal uplift over A, so the trade simplicity-vs-Calmar is resolved in favour of A for the production track and in favour of F for the shadow track.`
       : null,
-    selfGatedRelief && nonSelfGatedNarrow
-      ? `Standalone comparisons: self-gated-only relief ${titleCase(String(selfGatedRelief.version_name ?? ""))} delta ${signedValue(selfGatedScoreDelta, "number", 3)}, Variant A (narrow scale-bounded) ${signedValue(narrowScoreDelta, "number", 3)}, Variant B (flat) ${signedValue(flatScoreDelta, "number", 3)}, Variant C (narrow + recovery_confirmed) ${signedValue(plusConfirmedScoreDelta, "number", 3)}. Variant C was the only line to clear the promotion margin; A and B were Pareto-neutral-or-better but composite-score neutral.`
-      : selfGatedRelief
-      ? `${titleCase(String(selfGatedRelief.version_name ?? ""))} was the cleanest fix: production score ${formatNumber(selfGatedScore, 3)} vs ${formatNumber(controlScore, 3)} for the incumbent, average BIL ${selfGatedBilDelta == null ? "n/a" : formatPercent(Math.abs(selfGatedBilDelta), 2)} lower, and the same max drawdown. It helped, but ${selfGatedPromotable ? "it cleared" : `its score gain of ${signedValue(selfGatedScoreDelta, "number", 3)} did not clear`} the current promotion margin.`
+    phase2bTransGate && phase2bTailSuppress && phase2bComboAc
+      ? `The remaining Phase 2B variants are Research-only or Drop. ${titleCase(String(phase2bTransGate.version_name))} (B, transition-quality gate alone) and ${titleCase(String(phase2bTailSuppress.version_name))} (C, tail-risk suppression alone) did not clear the 0.05 production-score margin on their own. ${titleCase(String(phase2bComboAc.version_name))} (E, A + C) passes the rule but is dominated by F on Calmar and stressed Sharpe, so F is preferred as the shadow track.`
       : null,
-    continuousOverlay || targetedCombo
-      ? `${titleCase(String(continuousOverlay?.version_name ?? "continuous overlay"))} and ${titleCase(String(targetedCombo?.version_name ?? "the A+B combo"))} improved neutral and recovery participation, but they still leaked too much into weak-neutral weeks and deepened max drawdown and CVaR. The diagnosis was right; the broader easing path still looks too tail-expensive, which is why the newer variants keep the state set narrow.`
-      : null,
-    canaryProxy || thresholdRecentering || trendEnsemble || ctaVolManaged
-      ? `${titleCase(String(canaryProxy?.version_name ?? "The canary test"))} was only marginal, ${titleCase(String(thresholdRecentering?.version_name ?? "threshold recentering"))} and ${titleCase(String(trendEnsemble?.version_name ?? "trend horizon ensemble"))} were effectively inert, and ${titleCase(String(ctaVolManaged?.version_name ?? "cta vol managed local"))} improved tails mainly by adding back defense. With targeted non-self-gated relief now promoted, next attention shifts to whether the fragile-recovery tilt or layer-3 expression can contribute anything incremental at this level.`
-      : null,
+    `Future Phase 3 work should report incremental contribution versus BOTH tracks: the official production candidate (${productionLabel}) and the shadow research runner-up (${researchLabel}). A new variant promotes to production only if it clears the 0.05 production-score margin against A AND does not deteriorate DD/CVaR vs A; it is adopted as a new research track only if it strictly dominates F on Calmar and stressed Sharpe together.`,
+    productionPromoted
+      ? null
+      : `Note: the dashboard payload's improvedVersion pin does not currently match the official production default ${productionLabel}. The dual-track pin will apply next time dashboard-data.json is rebuilt.`,
   ].filter((item): item is string => Boolean(item));
 
   return (

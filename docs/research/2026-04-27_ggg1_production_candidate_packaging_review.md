@@ -1,4 +1,4 @@
-# Phase III Packaging / Deployment Review
+# GGG1 Production Candidate Packaging Review
 
 Date: 2026-04-27
 

@@ -17,6 +17,13 @@ const PRODUCTION = "improved_phase2b_regime_confidence_boost";
 const SHADOW = "improved_phase2b_combo_abc";
 const CANDIDATE = "improved_phaseggg_confirmed_only_robust_offense";
 
+function roleLabel(name: string, role: unknown): string {
+  if (name === CANDIDATE || role === "production_candidate_pending_human_review") return "Production candidate: GGG1";
+  if (name === PRODUCTION) return "Current production / rollback";
+  if (name === SHADOW) return "Official shadow";
+  return typeof role === "string" ? role : "Tracked strategy";
+}
+
 function asArray<T>(value: T[] | undefined): T[] {
   return Array.isArray(value) ? value : [];
 }
@@ -78,7 +85,8 @@ function asVersionRow(row: AnyRow): MetricRow {
     ...row,
     version_name: name,
     method_name: name,
-    category: typeof row.role === "string" ? row.role : undefined,
+    display_label: roleLabel(name, row.role),
+    category: roleLabel(name, row.role),
     ann_return: asNumber(pickFirst(row.ann_return, row.full_ann_return)),
     ann_vol: asNumber(pickFirst(row.ann_vol, row.full_ann_vol)),
     sharpe: asNumber(pickFirst(row.sharpe, row.full_sharpe)),
@@ -92,6 +100,7 @@ function asVersionRow(row: AnyRow): MetricRow {
     avg_cash_weight: asNumber(avgBil),
     avg_cash_proxy_weight: asNumber(avgBil),
     production_score: row.role === "production_candidate_pending_human_review" ? 1 : 0,
+    robustness_score: row.role === "production_candidate_pending_human_review" ? 1 : 0,
   };
 }
 
@@ -235,10 +244,10 @@ export function compactBundleToDashboardData(bundle: CompactBundle): DashboardDa
       currentAllocationSummary: allocationDrivers.find((row) => row.version_name === CANDIDATE) ?? null,
       researchAllocationSummary: null,
       trackPolicy: {
-        productionVersion: CANDIDATE,
+        productionVersion: PRODUCTION,
         researchVersion: SHADOW,
         promotionMargin: 0,
-        note: "Compact Phase III package: current production remains rollback until human deployment review changes the live pin.",
+        note: "Compact package: GGG1 is the production candidate pending human review; current production remains rollback.",
       },
     },
     methods: summary,

@@ -140,24 +140,19 @@ export function ExecutiveSummary({ data }: { data: DashboardData | null }) {
   const shadowCalmarDelta = delta(shadowCalmar, num(phase1Control, "calmar"));
   const shadowDDDelta = delta(shadowDD, num(phase1Control, "max_drawdown"));
 
-  const productionPromoted = productionName === "improved_phase2b_regime_confidence_boost";
   const productionLabel = titleCase(productionName);
   const researchLabel = researchName ? titleCase(researchName) : titleCase("improved_phase2b_combo_abc");
 
   const researchRead = [
+    `GGG1 is packaged as the production candidate pending human review. The live production pin remains ${titleCase("improved_phase2b_regime_confidence_boost")} and is preserved as rollback until a separate human-approved change flips the production registry.`,
     phase2bConfBoost
-      ? `Production is pinned to ${productionLabel} (Phase 2B Variant A). It adds a walk-forward, interpretable logistic regime-confidence score on top of the Phase 1 dynamic-risk-budget stack. When p_regime_confidence ≥ 0.55 in non-stressed states, it boosts the raw regime multiplier by up to +0.045; otherwise it is a no-op. Production score ${formatNumber(prodScore, 3)} vs ${formatNumber(controlScore, 3)} for the Phase 1 control (delta ${signedValue(prodScoreDelta, "number", 3)}), Sharpe ${formatNumber(prodSharpe, 3)} (delta ${signedValue(prodSharpeDelta, "number", 3)}), max drawdown ${formatPercent(prodDD, 2)}, CVaR ${formatPercent(prodCVaR, 2)}. It clears the promotion rule (Δprod ≥ 0.05, DD within 0.005, CVaR within 0.002) with the simplest possible change set, which is why it is the official production default rather than the fuller three-signal stack.`
+      ? `Current production / rollback posts Sharpe ${formatNumber(prodSharpe, 3)}, max drawdown ${formatPercent(prodDD, 2)}, and CVaR ${formatPercent(prodCVaR, 2)}. GGG1 improves the headline risk-adjusted profile while keeping lower SPY exposure and staying just under the 1.10x turnover cap.`
       : null,
     phase2bComboAbc
-      ? `${researchLabel} (Phase 2B Variant F — A + transition-quality gate + monotonic tail-risk suppression) is kept alive as the official research runner-up / shadow track, not a second production default. It posts the best Calmar (${formatNumber(shadowCalmar, 3)}, delta ${signedValue(shadowCalmarDelta, "number", 3)} vs Phase 1 control) and the best stressed-state Sharpe in the Phase 2B sprint, and improves max drawdown by ${signedValue(shadowDDDelta, "percent", 2)}. Production score delta ${signedValue(shadowScoreDelta, "number", 3)} also clears the promotion bar, but it adds two more models (shallow decision tree + monotonic HGBM) for a marginal uplift over A, so the trade simplicity-vs-Calmar is resolved in favour of A for the production track and in favour of F for the shadow track.`
+      ? `${researchLabel} remains the official shadow. It is included in the compact bundle so the deployment reviewer can compare GGG1 against both the live rollback pin and the shadow track.`
       : null,
-    phase2bTransGate && phase2bTailSuppress && phase2bComboAc
-      ? `The remaining Phase 2B variants are Research-only or Drop. ${titleCase(String(phase2bTransGate.version_name))} (B, transition-quality gate alone) and ${titleCase(String(phase2bTailSuppress.version_name))} (C, tail-risk suppression alone) did not clear the 0.05 production-score margin on their own. ${titleCase(String(phase2bComboAc.version_name))} (E, A + C) passes the rule but is dominated by F on Calmar and stressed Sharpe, so F is preferred as the shadow track.`
-      : null,
-    `Future Phase 3 work should report incremental contribution versus BOTH tracks: the official production candidate (${productionLabel}) and the shadow research runner-up (${researchLabel}). A new variant promotes to production only if it clears the 0.05 production-score margin against A AND does not deteriorate DD/CVaR vs A; it is adopted as a new research track only if it strictly dominates F on Calmar and stressed Sharpe together.`,
-    productionPromoted
-      ? null
-      : `Note: the compact dashboard payload's improvedVersion pin does not currently match the official production default ${productionLabel}. The dual-track pin will apply next time the production-candidate bundle is rebuilt.`,
+    `Post-GGG1 allocator and Layer 2A rebuild branches did not beat GGG1. The next step is packaging and human deployment review, not another research search.`,
+    `Known caveats: the old +0.30pp annual-return committee gate was not fully met, bootstrap intervals overlap, worst single week is worse than production, and turnover is close to the 1.10x limit.`,
   ].filter((item): item is string => Boolean(item));
 
   return (

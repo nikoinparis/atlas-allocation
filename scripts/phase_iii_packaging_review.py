@@ -34,6 +34,7 @@ DASHBOARD_TIMESERIES_JSON = PUBLIC / "dashboard-timeseries.json"
 DASHBOARD_STATE_JSON = PUBLIC / "dashboard-state-summary.json"
 DASHBOARD_EXPOSURES_JSON = PUBLIC / "dashboard-exposures.json"
 PACKAGING_REPORT = DOCS / "2026-04-27_phase_iii_packaging_deployment_review.md"
+GGG1_PACKAGING_REPORT = DOCS / "2026-04-27_ggg1_production_candidate_packaging_review.md"
 
 
 def read_csv(path: Path) -> pd.DataFrame:
@@ -138,7 +139,26 @@ def latest_weight_payload(name: str, kind: str) -> dict:
     }
 
 
-def registry() -> dict:
+def registry(summary: pd.DataFrame | None = None) -> dict:
+    metric_comparison = {}
+    if summary is not None and not summary.empty:
+        idx = summary.set_index("name")
+        cand = idx.loc[CANDIDATE]
+        for label, comparator_name in [
+            ("vs_old_production", PRODUCTION),
+            ("vs_official_shadow", SHADOW),
+        ]:
+            comp = idx.loc[comparator_name]
+            metric_comparison[label] = {
+                "comparator": comparator_name,
+                "annual_return": {"candidate": cand["full_ann_return"], "comparator": comp["full_ann_return"], "delta": cand["full_ann_return"] - comp["full_ann_return"]},
+                "sharpe": {"candidate": cand["full_sharpe"], "comparator": comp["full_sharpe"], "delta": cand["full_sharpe"] - comp["full_sharpe"]},
+                "max_drawdown": {"candidate": cand["full_max_drawdown"], "comparator": comp["full_max_drawdown"], "delta": cand["full_max_drawdown"] - comp["full_max_drawdown"]},
+                "cvar_5": {"candidate": cand["full_cvar_5"], "comparator": comp["full_cvar_5"], "delta": cand["full_cvar_5"] - comp["full_cvar_5"]},
+                "holdout_sharpe": {"candidate": cand["holdout_sharpe"], "comparator": comp["holdout_sharpe"], "delta": cand["holdout_sharpe"] - comp["holdout_sharpe"]},
+                "avg_BIL": {"candidate": cand["avg_BIL"], "comparator": comp["avg_BIL"], "delta": cand["avg_BIL"] - comp["avg_BIL"]},
+                "avg_SPY": {"candidate": cand["avg_SPY"], "comparator": comp["avg_SPY"], "delta": cand["avg_SPY"] - comp["avg_SPY"]},
+            }
     return {
         "current_production_pin": PRODUCTION,
         "rollback_pin": PRODUCTION,
@@ -147,22 +167,39 @@ def registry() -> dict:
         "candidate_status": "PROMOTE_TO_PRODUCTION_CANDIDATE_PENDING_HUMAN_REVIEW",
         "promotion_phase": "Phase III",
         "promotion_report": REPORT,
+        "latest_research_status": "KEEP_GGG1_AS_PRODUCTION_CANDIDATE_AFTER_JJJ4_KKK_LLL_MMM",
+        "do_not_auto_promote": True,
+        "rollback_available": True,
+        "dashboard_status_label": "Production candidate: GGG1",
+        "production_label": "Current production / rollback",
+        "shadow_label": "Official shadow",
+        "candidate_label": "Production candidate: GGG1",
+        "generated_at": pd.Timestamp.utcnow().isoformat(),
+        "headline_metric_comparison": metric_comparison,
         "promotion_reason_summary": [
-            "improves annual return",
-            "improves Sharpe",
-            "improves max drawdown",
-            "improves CVaR",
-            "improves holdout Sharpe",
+            "higher annual return",
+            "higher Sharpe",
+            "better max drawdown",
+            "better CVaR",
+            "better holdout Sharpe",
             "survives doubled-cost and 1-week delay",
             "passes allocator benchmark",
-            "lowers SPY exposure",
+            "lower SPY exposure",
             "turnover remains under 1.10x cap",
         ],
         "known_caveats": [
-            "committee internal +0.30pp annual-return gate was not met exactly",
+            "old committee +0.30pp annual-return gate was not fully met",
             "bootstrap confidence intervals overlap",
             "worst single week is worse than production",
+            "turnover is close to the 1.10x limit",
             "human deployment review still required",
+        ],
+        "next_manual_steps": [
+            "Verify Vercel dashboard loads the compact bundle.",
+            "Verify old production rollback files exist.",
+            "Verify GGG1 return, ETF weight, and sleeve weight files exist.",
+            "Review caveats before officially flipping the live production pin.",
+            "After human approval, update current_production_pin to GGG1 in a separate commit.",
         ],
     }
 
@@ -174,18 +211,19 @@ def artifact_status() -> dict[str, bool]:
         for kind in ["returns", "weights", "sleeve_weights"]:
             path = L3 / f"portfolio_version_{kind}_{name}.csv"
             status[str(path.relative_to(ROOT))] = path.exists() and path.stat().st_size > 0
-    for path in [REGISTRY_JSON, SUMMARY_CSV, STATE_CSV, EXPOSURE_CSV, PACKAGING_REPORT]:
+    for path in [REGISTRY_JSON, SUMMARY_CSV, STATE_CSV, EXPOSURE_CSV, PACKAGING_REPORT, GGG1_PACKAGING_REPORT]:
         status[str(path.relative_to(ROOT))] = path.exists() and path.stat().st_size > 0
     return status
 
 
-def write_report(summary: pd.DataFrame, checklist: pd.DataFrame, status: dict[str, bool]) -> None:
+def report_markdown(summary: pd.DataFrame, checklist: pd.DataFrame, status: dict[str, bool], commands: list[str]) -> str:
     idx = summary.set_index("name")
     cand = idx.loc[CANDIDATE]
     prod = idx.loc[PRODUCTION]
     shadow = idx.loc[SHADOW]
     failed = checklist[~checklist["passed"].astype(bool)]
     recommendation = "READY FOR HUMAN DEPLOYMENT REVIEW" if all(status.values()) and failed.empty else "NEEDS PACKAGING FIX"
+    command_block = "\n".join(commands)
     md = f"""# Phase III Packaging / Deployment Review
 
 Date: 2026-04-27
@@ -193,7 +231,7 @@ Date: 2026-04-27
 ## Commands executed
 
 ```
-python3 scripts/phase_iii_packaging_review.py
+{command_block}
 ```
 
 ## Files created / modified
@@ -209,14 +247,17 @@ python3 scripts/phase_iii_packaging_review.py
 - `public/dashboard-state-summary.json`
 - `public/dashboard-exposures.json`
 - `docs/research/2026-04-27_phase_iii_packaging_deployment_review.md`
+- `docs/research/2026-04-27_ggg1_production_candidate_packaging_review.md`
 - `docs/research/project_journey.md`
-- `CLAUDE.md`
 
 ## Registry status
 
 GGG1 is registered as `PROMOTE_TO_PRODUCTION_CANDIDATE_PENDING_HUMAN_REVIEW`.
 Current production and rollback remain `{PRODUCTION}`. Official shadow remains
 `{SHADOW}`.
+
+Latest research status:
+`KEEP_GGG1_AS_PRODUCTION_CANDIDATE_AFTER_JJJ4_KKK_LLL_MMM`.
 
 ## Dashboard / export bundle status
 
@@ -260,25 +301,45 @@ annual-return gate. Realism audit passes doubled cost. Allocator benchmark
 passes. Robustness simulation point estimates beat production, but bootstrap
 intervals overlap.
 
+## Failed post-GGG1 research attempts
+
+- JJJ4 adaptive risk-contribution allocation: failed to clearly improve or
+  de-risk GGG1; final decision `KEEP_GGG1_AS_PRODUCTION_CANDIDATE`.
+- LLL defense component rebuild: all defense-component rebuild candidates were
+  rejected.
+- MMM composite selective signals rebuild: all CSS rebuild candidates were
+  rejected or failed turnover/quality gates.
+
 ## Caveats
 
 - committee internal +0.30pp annual-return gate was not met exactly
 - bootstrap confidence intervals overlap
 - worst single week is worse than production
+- turnover is close to the 1.10x limit
 - human deployment review still required
 
 ## Final packaging recommendation
 
 **{recommendation}.**
 
-## Exact next manual steps
+## Manual deployment checklist
 
-1. Human reviewer confirms GGG1 deployment acceptance despite the listed caveats.
-2. If accepted, update the live production pin in the dashboard/app config in a separate deployment PR.
-3. Preserve `{PRODUCTION}` as rollback in the registry and deployment notes.
-4. Rebuild the full dashboard payload only after the human deployment decision.
+1. Verify Vercel dashboard loads.
+2. Verify compact bundle loads.
+3. Verify old production rollback files exist.
+4. Verify GGG1 return/weight/sleeve files exist.
+5. Verify registry is correct.
+6. Verify no giant `dashboard-data.json` is tracked.
+7. Review caveats before officially flipping production pin.
+8. After human approval, optionally update `current_production_pin` to GGG1 in a separate commit.
 """
+    return md
+
+
+def write_report(summary: pd.DataFrame, checklist: pd.DataFrame, status: dict[str, bool], commands: list[str]) -> None:
+    md = report_markdown(summary, checklist, status, commands)
     PACKAGING_REPORT.write_text(md)
+    GGG1_PACKAGING_REPORT.write_text(md.replace("Phase III Packaging / Deployment Review", "GGG1 Production Candidate Packaging Review"))
 
 
 def main() -> None:
@@ -287,7 +348,8 @@ def main() -> None:
     exposure = exposure_rows(summary)
     checklist = read_csv(PHASE_DIR / "phase_iii_promotion_checklist.csv")
 
-    write_json(REGISTRY_JSON, registry())
+    reg = registry(summary)
+    write_json(REGISTRY_JSON, reg)
     summary.to_csv(SUMMARY_CSV, index=False)
     state.to_csv(STATE_CSV, index=False)
     exposure.to_csv(EXPOSURE_CSV, index=False)
@@ -302,7 +364,7 @@ def main() -> None:
         "versionSleeveWeights": {name: latest_weight_payload(name, "sleeve_weights") for name in names},
     }
     summary_payload = {
-        "registry": registry(),
+        "registry": reg,
         "summary": summary.to_dict(orient="records"),
         "promotion_checklist": checklist.to_dict(orient="records"),
         "files": {
@@ -315,7 +377,7 @@ def main() -> None:
         "state_summary": state.to_dict(orient="records"),
     }
     bundle = {
-        "registry": registry(),
+        "registry": reg,
         "summary": summary.to_dict(orient="records"),
         "state_summary": state.to_dict(orient="records"),
         "exposure_summary": exposure.to_dict(orient="records"),
@@ -330,7 +392,10 @@ def main() -> None:
     write_json(BUNDLE_JSON, bundle)
 
     status = artifact_status()
-    write_report(summary, checklist, status)
+    status_for_report = dict(status)
+    for path in [PACKAGING_REPORT, GGG1_PACKAGING_REPORT]:
+        status_for_report[str(path.relative_to(ROOT))] = True
+    write_report(summary, checklist, status_for_report, ["python3 scripts/phase_iii_packaging_review.py"])
     status = artifact_status()
     missing = [path for path, ok in status.items() if not ok]
     print("Phase III packaging review")
@@ -344,6 +409,7 @@ def main() -> None:
     print(f"dashboard_state: {DASHBOARD_STATE_JSON.relative_to(ROOT)}")
     print(f"dashboard_exposures: {DASHBOARD_EXPOSURES_JSON.relative_to(ROOT)}")
     print(f"report: {PACKAGING_REPORT.relative_to(ROOT)}")
+    print(f"ggg1_report: {GGG1_PACKAGING_REPORT.relative_to(ROOT)}")
     print(f"missing_required_artifacts: {missing if missing else 'none'}")
     print("recommendation: READY FOR HUMAN DEPLOYMENT REVIEW" if not missing else "recommendation: NEEDS PACKAGING FIX")
 

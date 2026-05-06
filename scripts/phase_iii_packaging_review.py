@@ -15,6 +15,7 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
 L3 = ROOT / "data" / "05_layer3_portfolio_construction"
+L1 = ROOT / "data" / "02_layer1_signals"
 PHASE_DIR = ROOT / "data" / "research" / "phase_iii_production_candidate_review"
 PUBLIC = ROOT / "public"
 DOCS = ROOT / "docs" / "research"
@@ -136,6 +137,146 @@ def latest_weight_payload(name: str, kind: str) -> dict:
         "latest": latest_items.to_dict(orient="records"),
         "history": [],
         "selectedColumns": latest_items["name"].head(12).tolist(),
+    }
+
+
+def compact_records(path: Path, columns: list[str], limit: int | None = None, sort_by: str | None = None, ascending: bool = False) -> tuple[list[dict], dict]:
+    status = {"source_path": str(path.relative_to(ROOT)), "exists": path.exists(), "rows": 0, "warning": None}
+    if not path.exists():
+        status["warning"] = f"{path.relative_to(ROOT)} not found"
+        return [], status
+    df = pd.read_csv(path)
+    status["rows"] = int(len(df))
+    available = [col for col in columns if col in df.columns]
+    missing = [col for col in columns if col not in df.columns]
+    if missing:
+        status["warning"] = f"missing columns: {', '.join(missing)}"
+    df = df[available].copy()
+    if sort_by and sort_by in df.columns:
+        df = df.sort_values(sort_by, ascending=ascending)
+    if limit:
+        df = df.head(limit)
+    return df.where(pd.notna(df), None).to_dict(orient="records"), status
+
+
+def redundancy_payload(path: Path, limit: int = 22) -> tuple[dict, dict]:
+    status = {"source_path": str(path.relative_to(ROOT)), "exists": path.exists(), "rows": 0, "warning": None}
+    if not path.exists():
+        status["warning"] = f"{path.relative_to(ROOT)} not found"
+        return {"signals": [], "rowLabels": [], "values": []}, status
+    raw = pd.read_csv(path)
+    status["rows"] = int(len(raw))
+    if raw.empty:
+        status["warning"] = "source file is empty"
+        return {"signals": [], "rowLabels": [], "values": []}, status
+    label_col = raw.columns[0]
+    labels = raw[label_col].astype(str).head(limit).tolist()
+    matrix = raw.set_index(label_col)
+    cols = [col for col in matrix.columns if col in labels][:limit]
+    values = matrix.loc[labels, cols].apply(pd.to_numeric, errors="coerce").fillna(0.0)
+    return {"signals": cols, "rowLabels": labels, "values": values.values.tolist()}, status
+
+
+def layer1_payload() -> dict:
+    validation_cols = [
+        "signal_name",
+        "recommendation",
+        "avg_mean_ic",
+        "avg_ic_tstat_nw",
+        "avg_cross_coverage",
+        "avg_abs_redundancy",
+        "distinctiveness_score",
+        "validation_quality_score",
+        "net_sharpe_10bps",
+    ]
+    incremental_cols = [
+        "study",
+        "test_type",
+        "candidate_signal",
+        "signal_count",
+        "signal_names",
+        "ann_return",
+        "ann_vol",
+        "sharpe",
+        "max_drawdown",
+        "calmar",
+        "cvar_5",
+        "avg_weekly_turnover",
+        "avg_bil_weight",
+        "avg_spy_weight",
+        "delta_ann_return_vs_base",
+        "delta_sharpe_vs_base",
+        "delta_max_drawdown_vs_base",
+        "delta_cvar_5_vs_base",
+        "delta_turnover_vs_base",
+    ]
+    subset_cols = [
+        "combo_name",
+        "signal_count",
+        "signal_names",
+        "ann_return",
+        "ann_vol",
+        "sharpe",
+        "max_drawdown",
+        "calmar",
+        "cvar_5",
+        "avg_weekly_turnover",
+        "avg_bil_weight",
+        "avg_spy_weight",
+    ]
+    ic_cols = [
+        "signal_name",
+        "evaluation_type",
+        "horizon_weeks",
+        "mean_ic",
+        "ic_tstat_nw",
+        "hit_rate",
+        "mean_coverage",
+        "n_dates",
+    ]
+
+    validation, validation_status = compact_records(
+        L1 / "signal_summary_table.csv",
+        validation_cols,
+        limit=50,
+        sort_by="validation_quality_score",
+        ascending=False,
+    )
+    quality = sorted(validation, key=lambda row: row.get("validation_quality_score") or -999, reverse=True)[:25]
+    incremental, incremental_status = compact_records(L1 / "signal_incremental_contribution.csv", incremental_cols, limit=50)
+    subsets, subset_status = compact_records(L1 / "signal_subset_comparison.csv", subset_cols, limit=25, sort_by="sharpe", ascending=False)
+    ic_decay, ic_status = compact_records(L1 / "signal_ic_by_horizon.csv", ic_cols, limit=250)
+    redundancy, redundancy_status = redundancy_payload(L1 / "signal_redundancy_matrix.csv")
+    status = {
+        "source_paths_used": [
+            validation_status["source_path"],
+            incremental_status["source_path"],
+            subset_status["source_path"],
+            ic_status["source_path"],
+            redundancy_status["source_path"],
+        ],
+        "row_counts": {
+            "layer1_signal_validation_summary": len(validation),
+            "layer1_signal_quality_ranking": len(quality),
+            "layer1_incremental_signal_contribution": len(incremental),
+            "layer1_signal_subset_comparison": len(subsets),
+            "layer1_ic_decay_by_horizon": len(ic_decay),
+            "layer1_signal_redundancy_matrix": len(redundancy.get("values", [])),
+        },
+        "missing_source_warnings": [
+            item["warning"]
+            for item in [validation_status, incremental_status, subset_status, ic_status, redundancy_status]
+            if item.get("warning")
+        ],
+    }
+    return {
+        "layer1_signal_validation_summary": validation,
+        "layer1_signal_quality_ranking": quality,
+        "layer1_incremental_signal_contribution": incremental,
+        "layer1_signal_subset_comparison": subsets,
+        "layer1_ic_decay_by_horizon": ic_decay,
+        "layer1_signal_redundancy_matrix": redundancy,
+        "layer1_data_status": status,
     }
 
 
@@ -363,10 +504,14 @@ def main() -> None:
         "versionWeights": {name: latest_weight_payload(name, "weights") for name in names},
         "versionSleeveWeights": {name: latest_weight_payload(name, "sleeve_weights") for name in names},
     }
+    layer1 = layer1_payload()
     summary_payload = {
         "registry": reg,
         "summary": summary.to_dict(orient="records"),
         "promotion_checklist": checklist.to_dict(orient="records"),
+        "layer1_signal_validation_summary": layer1["layer1_signal_validation_summary"],
+        "layer1_signal_quality_ranking": layer1["layer1_signal_quality_ranking"],
+        "layer1_data_status": layer1["layer1_data_status"],
         "files": {
             "timeseries": "/dashboard-timeseries.json",
             "state_summary": "/dashboard-state-summary.json",
@@ -382,6 +527,7 @@ def main() -> None:
         "state_summary": state.to_dict(orient="records"),
         "exposure_summary": exposure.to_dict(orient="records"),
         "promotion_checklist": checklist.to_dict(orient="records"),
+        **layer1,
         **timeseries_payload,
         **exposure_payload,
     }

@@ -7,7 +7,7 @@
     "refresh:full": "npm run refresh:improvement-lab && npm run refresh:data",
     "refresh:data": "python3 scripts/phase_iii_packaging_review.py",
     "dev": "npm run refresh:data && next dev",
-    "build": "npm run refresh:data && next build",
+    "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit"
   },

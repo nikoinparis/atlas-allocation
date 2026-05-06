@@ -391,11 +391,12 @@ function buildDefaultDashboardView(data: DashboardData | null): DefaultDashboard
     data.overview.bestDrawdown?.method_name,
     "equal_weight",
   ].filter((name): name is string => typeof name === "string" && Boolean(data.portfolioReturns[name]));
+  const fallbackMethods = Object.keys(data.portfolioReturns).slice(0, 3);
 
   return {
-    methods: [...new Set(methods)],
+    methods: [...new Set(methods.length ? methods : fallbackMethods)],
     benchmarks: Object.keys(data.benchmarkReturns).slice(0, 2),
-    weightMethod: data.overview.defaultCandidate?.method_name ?? Object.keys(data.portfolioWeights)[0] ?? "",
+    weightMethod: data.overview.defaultCandidate?.method_name ?? Object.keys(data.portfolioWeights)[0] ?? Object.keys(data.improvementLab.versionWeights)[0] ?? "",
     baselineVersion: String(data.overview.baselineVersion?.version_name ?? Object.keys(data.improvementLab.versionReturns)[0] ?? ""),
     comparisonVersion: String(data.overview.improvedVersion?.version_name ?? Object.keys(data.improvementLab.versionReturns).slice(-1)[0] ?? ""),
   };
@@ -447,7 +448,7 @@ function buildAllocationMixChart(rows: Array<Record<string, string | number | bo
 
 function buildBreakdownRows(rows: Array<Record<string, string | number | boolean | null>>, versionName: string | null, asset: string) {
   return rows
-    .filter((row) => row.version_name === versionName && row.horizon === "current" && row.asset === asset)
+    .filter((row) => row.version_name === versionName && (!row.horizon || row.horizon === "current") && row.asset === asset)
     .sort((a, b) => Math.abs(Number(b.contribution ?? 0)) - Math.abs(Number(a.contribution ?? 0)))
     .slice(0, 8);
 }
@@ -752,6 +753,9 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
                 <div>
                   <p className="mono text-xs uppercase tracking-[0.28em] text-[#b9853b]">Layered ETF Quant Research</p>
                   <h1 className="section-title mt-4 text-5xl font-bold leading-[0.96] text-[#f5f1e8] md:text-7xl">{data.overview.projectTitle}</h1>
+                  <p className="mt-4 inline-flex rounded-full border border-white/10 bg-white/[0.045] px-3 py-1 text-xs text-[#c8c1ad]">
+                    Data bundle: compact production candidate bundle loaded · {comparisonName || "candidate"} · Last date {shortDate(String(data.latestDate ?? ""))}
+                  </p>
                   <p className="mt-5 max-w-3xl text-lg leading-8 text-[#d7d0bd]">
                     The homepage now acts as a complete executive summary: diagnostics, robustness, benchmarks, current state, allocations, and the Layer 1 to Layer 3 workflow are all visible on initial load so the research story is inspectable without extra clicks. The current diagnosis is that momentum already exists, but some of it is still getting muted by stacked defense: sleeves self-gate, the overlay de-risks again, and BIL absorbs too much of that caution in long benign markets while target-vol mostly stays out of the way.
                   </p>
@@ -969,7 +973,11 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
                   </div>
                   <div>
                     <p className="mb-2 text-sm font-semibold text-[#f5f1e8]">Benchmarks</p>
-                    <MultiSelectPills options={benchmarkNames} selected={selectedBenchmarks} onToggle={(name) => setSelectedBenchmarks((current) => current.includes(name) ? current.filter((item) => item !== name) : [...current, name])} />
+                    {benchmarkNames.length ? (
+                      <MultiSelectPills options={benchmarkNames} selected={selectedBenchmarks} onToggle={(name) => setSelectedBenchmarks((current) => current.includes(name) ? current.filter((item) => item !== name) : [...current, name])} />
+                    ) : (
+                      <p className="rounded-2xl border border-white/10 bg-white/[0.035] px-3 py-2 text-sm text-[#c8c1ad]">No benchmark return series are included in the compact deployment bundle.</p>
+                    )}
                   </div>
                 </div>
               </Panel>
@@ -1203,7 +1211,7 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
             <div className="glass-card rounded-[2rem] p-5">
               <p className="font-semibold text-[#f5f1e8]">Refresh workflow</p>
               <p className="mt-2 leading-6">
-                Run the research notebooks to update `data/01_data_hub` through `data/05_layer3_portfolio_construction`, run <span className="mono text-[#d7b072]">python3 scripts/build_improvement_artifacts.py</span> to refresh the improvement lab outputs, then run <span className="mono text-[#d7b072]">npm run refresh:data</span>. Vercel builds run the ingestion step before compiling the dashboard.
+                Run the research notebooks locally when source data changes, then run <span className="mono text-[#d7b072]">npm run refresh:data</span> to refresh the compact production-candidate bundle. Vercel builds only compile the Next.js app and read the committed compact JSON.
               </p>
               <p className="mt-3 mono text-xs">Artifacts tracked: {data.artifacts.filter((item) => item.exists).length}/{data.artifacts.length} found · bundle generated {data.generatedAt}</p>
             </div>

@@ -1,10 +1,8 @@
-import fs from "node:fs/promises";
-import path from "node:path";
-
 import { DashboardShell } from "@/components/dashboard-shell";
 import { ExecutiveSummary } from "@/components/executive-summary";
 import { compactBundleToDashboardData } from "@/lib/compact-dashboard";
 import type { DashboardData } from "@/types/dashboard";
+import compactBundle from "../../public/production-candidate-dashboard-bundle.json";
 
 // Force dynamic rendering so the executive summary always reflects the latest JSON snapshot
 // instead of a cached build-time copy. This guarantees external viewers (ChatGPT, cURL, crawlers)
@@ -14,9 +12,7 @@ export const revalidate = 0;
 
 async function loadDashboardData(): Promise<DashboardData | null> {
   try {
-    const filePath = path.join(process.cwd(), "public", "production-candidate-dashboard-bundle.json");
-    const raw = await fs.readFile(filePath, "utf8");
-    return compactBundleToDashboardData(JSON.parse(raw));
+    return compactBundleToDashboardData(compactBundle);
   } catch {
     return null;
   }

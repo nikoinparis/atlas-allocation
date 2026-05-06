@@ -31,7 +31,8 @@ export function titleCase(value: string | null | undefined): string {
 
 export function shortDate(value: string | null | undefined): string {
   if (!value) return "n/a";
-  const date = new Date(`${value}T00:00:00`);
+  const clean = value.match(/^\d{4}-\d{2}-\d{2}/)?.[0] ?? value;
+  const date = new Date(`${clean}T00:00:00`);
   if (Number.isNaN(date.getTime())) return value;
   return date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 }

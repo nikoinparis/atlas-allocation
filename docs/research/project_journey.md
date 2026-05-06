@@ -3691,3 +3691,175 @@ week is worse than production, and human deployment review is still required.
 manual step: human reviewer decides whether to update the live production pin in
 a separate deployment change. Until then, old production remains live and
 available as rollback.
+
+
+## Section 72 — Phase JJJ0 Foundation Diagnostic Audit
+
+Date: 2026-04-27. Phase JJJ0 was a diagnostic-only foundation audit after the
+GGG1 production-candidate review. It did not create strategy variants, change
+the production pin, change the official shadow, optimize parameters, or add ML.
+
+**Scope.** The audit inventoried Layer 2A strategy returns/positions, Layer 2B
+market-state files, Layer 3 production/candidate/shadow return and weight
+artifacts, and allocator checkpoints. It wrote diagnostics under
+`data/research/phase_jjj0_foundation_diagnostic_audit/`.
+
+**Findings.** The known `composite_regime_conditioned` mixed sleeve remains
+present in production and official shadow, while GGG1 uses the decomposed
+offense/defense component architecture. The candidate still needs better
+instrumentation for component-level return/position panels and per-sleeve ETF
+lookthrough, so the audit documents those gaps instead of guessing. ETF-level
+risk contribution and state budget diagnostics are available from existing
+weights and market-state history.
+
+**Readiness.** GGG1 readiness category:
+`NEEDS_MORE_VALIDATION`. Validation gap:
+component-level GGG1 offense/defense return and position panels are not persisted.
+
+**Next frontier.** `FIX_CONSTRAINT_DRAG_FIRST`. Safe to proceed to
+adaptive risk-contribution allocation:
+`False`. Reason:
+Stage diagnostics show repeated overlay/lookthrough bucket drag across states.
+
+## Section 73 — Phase JJJ1 Constraint / Overlay / Lookthrough Drag Isolation
+
+Date: 2026-04-27. Phase JJJ1 was diagnostic-only. It reused existing allocator
+checkpoints and portfolio diagnostics, derived raw overlay/cap/turnover and
+per-sleeve lookthrough instrumentation, and did not create candidates or change
+production/shadow pins.
+
+**Finding.** Target-vol diagnostics already exist, but explicit cap pre/post
+traces, deadband/rerisk decisions, and GGG1 component-level return/position
+panels are still not persisted. Stage attribution confirms overlay cash drag
+and final sleeve-to-ETF lookthrough drag remain the main constraint issues.
+
+**Next action.** `FIX_LOOKTHROUGH_DRAG`. Safe to proceed to adaptive
+risk-contribution allocation: `False`.
+Reason: Final sleeve-to-ETF translation removes offense in favorable states, and component lookthrough panels are missing for GGG1.
+
+
+## Section 74 — Phase JJJ2 Lookthrough Component Instrumentation
+
+Date: 2026-04-27. Phase JJJ2 was diagnostic-only. It persisted GGG1
+component-level return and ETF-position panels, built a nonzero per-sleeve ETF
+contribution table for GGG1, production, and official shadow, and audited
+component purity plus favorable-state lookthrough drag. No candidates or pin
+changes were made.
+
+**Findings.** Component role flags were `{'MIXED_BUT_ACCEPTABLE': 1, 'CLEAN_DEFENSE': 1, 'CLEAN_CASH': 1}`.
+GGG1 component roles are now directly auditable. GGG1 was cleaner than
+production on lookthrough offense drag in
+4/5
+states, but favorable-state drag remains concentrated enough to require a
+targeted lookthrough repair before adaptive risk contribution.
+
+**Next action.** `FIX_LOOKTHROUGH_DRAG_WITH_TARGETED_REPAIR`. Safe to proceed to adaptive
+risk-contribution allocation: `False`.
+Reason: Component roles are mostly clean, but a small set of favorable-state sleeve/ETF lookthrough paths causes material offense drag.
+
+## Section 75 — Phase JJJ3 Targeted Lookthrough Repair
+
+Date: 2026-04-27. Phase JJJ3 tested one diagnostic-gated repair candidate:
+`improved_phasejjj3_targeted_lookthrough_repair`. It preserved GGG1's
+state-conditional component logic and touched only the confirmed top drag path:
+`calm_trend / composite_selective_signals`.
+
+**Repair.** In calm_trend only, cap `composite_selective_signals` at 30% of the
+offense bucket and reallocate excess inside the existing offense-family sleeves
+to `composite_regime_offense_component` and `cta_trend_long_only`. No production
+or official shadow pin changed.
+
+**Decision.** `REJECT`.
+
+**Next action.** `KEEP_GGG1_AND_PROCEED_TO_ADAPTIVE_RISK_CONTRIBUTION`. Safe to proceed to adaptive
+risk-contribution allocation: `True`.
+Reason: The one-path repair did not clear all selection gates; keep GGG1.
+
+## Section 76 — Phase JJJ4 Adaptive Risk-Contribution Allocator
+
+Date: 2026-04-27. Phase JJJ4 tested three controlled GGG1-based adaptive
+risk-contribution allocator variants through the production construction
+pipeline. The production pin and official shadow pin were unchanged.
+
+**Best candidate.** `improved_phasejjj4_state_risk_contribution_caps` with decision `REJECT`.
+
+**Next action.** `KEEP_GGG1_AS_PRODUCTION_CANDIDATE`.
+Reason: No adaptive risk-contribution candidate clearly improved or de-risked GGG1.
+
+## Section 77 — Phase KKK Signal and Sleeve Contribution Audit
+
+Date: 2026-04-27. Phase KKK was diagnostic-only. It audited Layer 1 signal
+quality, Layer 2A sleeve quality, GGG1 state-by-state sleeve contribution, and
+sleeve redundancy/diversification without creating candidates or changing pins.
+
+**Next frontier.** `REBUILD_WEAK_LAYER2A_SLEEVE`.
+Reason: At least one heavily used GGG1 sleeve remains state-harmful or weak enough to justify a rebuild before more allocator work.
+
+## Section 78 — Phase LLL Defense Component Rebuild
+
+Date: 2026-04-27. Phase LLL tested three GGG1-based Layer 2A rebuilds of only
+`composite_regime_defense_component`. GGG1's offense component logic, production
+pin, and official shadow pin were unchanged.
+
+**Best candidate.** `improved_phaselll_recovery_defense_filter` with decision `REJECT`.
+
+**Next action.** `REBUILD_COMPOSITE_SELECTIVE_SIGNALS_NEXT`.
+Reason: Defense rebuild candidates did not clearly improve GGG1; KKK's next strongest issue is composite_selective_signals.
+
+
+## Section 79 — Phase MMM Composite Selective Signals Rebuild
+
+Date: 2026-04-27. Phase MMM tested three GGG1-based Layer 2A rebuilds of only
+`composite_selective_signals` in recovery_confirmed. GGG1's offense component
+logic, production pin, and official shadow pin were unchanged.
+
+**Best candidate.** `improved_phasemmm_recovery_confirmed_css_filter` with decision `REJECT`.
+
+**Next action.** `KEEP_GGG1_AS_PRODUCTION_CANDIDATE`.
+Reason: CSS rebuild candidates failed or only marginally helped; keep GGG1.
+
+## Section 80 — GGG1 Production Candidate Packaging Review
+
+Date: 2026-04-27. This was packaging and deployment-prep only, not a new
+research phase. No strategy logic, production pin, official shadow pin, or
+candidate strategy was changed.
+
+**Registry.** `data/05_layer3_portfolio_construction/production_candidate_registry.json`
+now records `improved_phaseggg_confirmed_only_robust_offense` as
+`PROMOTE_TO_PRODUCTION_CANDIDATE_PENDING_HUMAN_REVIEW`. Current production and
+rollback remain `improved_phase2b_regime_confidence_boost`; official shadow
+remains `improved_phase2b_combo_abc`.
+
+**Dashboard bundle.** The compact public dashboard files were refreshed:
+`public/production-candidate-dashboard-bundle.json`, `public/dashboard-summary.json`,
+`public/dashboard-timeseries.json`, `public/dashboard-state-summary.json`, and
+`public/dashboard-exposures.json`. The old giant `public/dashboard-data.json`
+remains ignored and is not part of the compact deployment path.
+
+**Reason.** GGG1 remains the best production candidate after Phase III and after
+JJJ4, LLL, and MMM all failed to beat or de-risk it enough to replace it. It
+improves annual return, Sharpe, max drawdown, CVaR, holdout Sharpe, allocator
+benchmark behavior, and SPY exposure versus the old production pin while staying
+just under the 1.10x turnover cap.
+
+**Caveats.** The old +0.30pp committee annual-return gate was not fully met,
+bootstrap intervals overlap, worst single week is worse than production, and
+turnover is close to the 1.10x limit.
+
+**Final packaging recommendation.** `READY_FOR_HUMAN_DEPLOYMENT_REVIEW`.
+After human approval, the live production pin should be flipped to GGG1 in a
+separate explicit deployment commit while preserving the old production pin as
+rollback.
+
+
+## Section 81 — Phase NNN Hard-ML Meta-Layer Sprint
+
+Date: 2026-04-27. Phase NNN tested a controlled ML meta-layer on top of GGG1.
+It built a lagged weekly dataset, evaluated expanding-window OOS classifiers
+against simple state-rate baselines, and did not change production or shadow
+pins.
+
+**Decision.** `KEEP_GGG1_AS_PRODUCTION_CANDIDATE`.
+
+**Reason.** ML prediction improved OOS, but portfolio pass-through failed the GGG1 selection gates.
+

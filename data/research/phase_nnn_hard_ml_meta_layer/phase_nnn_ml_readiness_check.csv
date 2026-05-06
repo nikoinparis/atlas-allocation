@@ -1,0 +1,2 @@
+rows,features_used,median_feature_missingness,max_feature_missingness,minimum_train_size,targets_enough_samples,leakage_risk_flags,hard_ml_justified,lag_rule
+1110,173,0.006306306306306306,0.1810810810810811,260,5,0,True,All features shifted by one week; labels use forward 4w/8w outcomes only as targets.

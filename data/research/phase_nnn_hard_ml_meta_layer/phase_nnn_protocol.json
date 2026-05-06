@@ -1,0 +1,17 @@
+{
+  "phase": "NNN",
+  "production_pin": "improved_phase2b_regime_confidence_boost",
+  "official_shadow_pin": "improved_phase2b_combo_abc",
+  "production_candidate": "improved_phaseggg_confirmed_only_robust_offense",
+  "candidates_allowed": [
+    "improved_phasennn_ml_risk_dial_overlay",
+    "improved_phasennn_ml_opportunity_dial_overlay"
+  ],
+  "candidates_created": true,
+  "reason": "serious model cleared prediction gates; NNN candidates built through production pipeline",
+  "feature_lag_rule": "all live features shifted one week",
+  "walk_forward": {
+    "initial_train_weeks": 260,
+    "retrain_freq_weeks": 26
+  }
+}

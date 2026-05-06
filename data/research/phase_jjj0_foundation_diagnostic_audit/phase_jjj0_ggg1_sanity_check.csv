@@ -1,0 +1,9 @@
+check,passed,value,note
+sharpe_improves_vs_production,True,0.05175191838339055,Full-window net-return Sharpe delta.
+drawdown_improves_vs_production,True,0.022015495428848952,Less-negative max drawdown is better.
+hidden_beta_lower_not_higher,True,-0.010555106298073907,Average SPY exposure delta.
+not_hidden_cash_increase,True,-0.017337750680784192,Average BIL exposure delta.
+not_one_state_only,True,0.4837063571769098,Largest positive state contribution share of cumulative excess return.
+turnover_under_1p10_cap,True,1.0997629651053822,ETF-weight diff turnover ratio.
+no_new_component_role_confusion_proven,False,,"Component position/return panels are not saved, so role purity cannot be directly proven."
+dashboard_bundle_small_and_present,True,0.309902,Public compact bundle size in MB.

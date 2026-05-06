@@ -1,0 +1,17 @@
+{
+  "phase": "JJJ3",
+  "candidate": "improved_phasejjj3_targeted_lookthrough_repair",
+  "base": "improved_phaseggg_confirmed_only_robust_offense",
+  "repair": "calm_trend composite_selective_signals offense-bucket share cap 0.30; excess 70% composite_regime_offense_component / 30% cta_trend_long_only",
+  "conditions": {
+    "target_drag_reduced": false,
+    "sharpe_not_materially_worse": false,
+    "ann_return_not_materially_worse": false,
+    "drawdown_not_materially_worse": true,
+    "cvar_not_materially_worse": true,
+    "turnover_under_cap": true,
+    "state_guardrails_preserved": false,
+    "hidden_beta_not_higher": true
+  },
+  "final_decision": "REJECT"
+}

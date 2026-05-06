@@ -1,0 +1,5 @@
+check,result,readiness_category
+allocator_path,clean_enough_after_JJJ4,NON_ALLOCATOR_STACK_CLEAN_ENOUGH
+signal_lineage,partial_manifest_only,NEEDS_SIGNAL_REVALIDATION
+state_sample_size,recovery_confirmed/recovery_fragile remain small samples,NEEDS_STATE_GATING_REVIEW
+weak_used_sleeves,state-harmful used sleeves remain in GGG1,NEEDS_SLEEVE_REBUILD

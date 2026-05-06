@@ -46,6 +46,9 @@ const sections = [
 ];
 
 const COMPACT_DASHBOARD_BUNDLE_PATH = "/production-candidate-dashboard-bundle.json";
+const PRODUCTION = "improved_phase2b_regime_confidence_boost";
+const SHADOW = "improved_phase2b_combo_abc";
+const CANDIDATE = "improved_phaseggg_confirmed_only_robust_offense";
 
 const methodTableColumns = [
   "method_name",
@@ -100,6 +103,9 @@ function metricValue(key: string, value: unknown) {
 }
 
 function seriesLabel(name: string) {
+  if (name === CANDIDATE) return "Production candidate: GGG1";
+  if (name === PRODUCTION) return "Current production / rollback";
+  if (name === SHADOW) return "Official shadow";
   return titleCase(name.replace(/^benchmark::/, ""));
 }
 
@@ -177,6 +183,14 @@ function Panel({ title, subtitle, children }: { title: string; subtitle?: string
         {subtitle ? <p className="mt-1 text-sm text-[#c8c1ad]">{subtitle}</p> : null}
       </div>
       {children}
+    </div>
+  );
+}
+
+function ChartFallback({ message }: { message: string }) {
+  return (
+    <div className="flex h-[220px] items-center justify-center rounded-2xl border border-white/10 bg-white/[0.025] px-5 text-center text-sm text-[#c8c1ad]">
+      {message}
     </div>
   );
 }
@@ -385,20 +399,15 @@ function buildDefaultDashboardView(data: DashboardData | null): DefaultDashboard
     };
   }
 
-  const methods = [
-    data.overview.defaultCandidate?.method_name,
-    data.overview.bestBySharpe?.method_name,
-    data.overview.bestDrawdown?.method_name,
-    "equal_weight",
-  ].filter((name): name is string => typeof name === "string" && Boolean(data.portfolioReturns[name]));
+  const methods = [CANDIDATE, PRODUCTION, SHADOW].filter((name) => Boolean(data.portfolioReturns[name]));
   const fallbackMethods = Object.keys(data.portfolioReturns).slice(0, 3);
 
   return {
     methods: [...new Set(methods.length ? methods : fallbackMethods)],
     benchmarks: Object.keys(data.benchmarkReturns).slice(0, 2),
     weightMethod: data.overview.defaultCandidate?.method_name ?? Object.keys(data.portfolioWeights)[0] ?? Object.keys(data.improvementLab.versionWeights)[0] ?? "",
-    baselineVersion: String(data.overview.baselineVersion?.version_name ?? Object.keys(data.improvementLab.versionReturns)[0] ?? ""),
-    comparisonVersion: String(data.overview.improvedVersion?.version_name ?? Object.keys(data.improvementLab.versionReturns).slice(-1)[0] ?? ""),
+    baselineVersion: PRODUCTION in data.improvementLab.versionReturns ? PRODUCTION : String(data.overview.baselineVersion?.version_name ?? Object.keys(data.improvementLab.versionReturns)[0] ?? ""),
+    comparisonVersion: CANDIDATE in data.improvementLab.versionReturns ? CANDIDATE : String(data.overview.improvedVersion?.version_name ?? Object.keys(data.improvementLab.versionReturns).slice(-1)[0] ?? ""),
   };
 }
 
@@ -618,9 +627,11 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
     .filter((row) => row.version_name === comparisonVersion && row.market_state === latestMarketState?.market_state)
     .sort((a, b) => Math.abs(Number(b.avg_weight ?? 0)) - Math.abs(Number(a.avg_weight ?? 0)))
     .slice(0, 10);
+  const timeSeriesRowCount = Object.values(data.portfolioReturns).reduce((total, rows) => total + rows.length, 0);
   const selectedLineKeys = [...selectedMethods, ...selectedBenchmarks.map((name) => `benchmark::${name}`)];
   const robustRows = [...data.methods].sort((a, b) => Number(b.robustness_score ?? 0) - Number(a.robustness_score ?? 0));
   const signalRows = [...data.signalSummary].sort((a, b) => Number(b.validation_quality_score ?? 0) - Number(a.validation_quality_score ?? 0));
+  const signalIcChart = buildSignalIcChart(data.signalIc, signalRows.slice(0, 6).map((row) => row.signal_name));
   const baselineSleeves = parseSerializedList(baselineVersionRow?.subset_sleeves);
   const comparisonSleeves = parseSerializedList(comparisonVersionRow?.subset_sleeves);
   const addedSleeves = comparisonSleeves.filter((name) => !baselineSleeves.includes(name));
@@ -754,7 +765,7 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
                   <p className="mono text-xs uppercase tracking-[0.28em] text-[#b9853b]">Layered ETF Quant Research</p>
                   <h1 className="section-title mt-4 text-5xl font-bold leading-[0.96] text-[#f5f1e8] md:text-7xl">{data.overview.projectTitle}</h1>
                   <p className="mt-4 inline-flex rounded-full border border-white/10 bg-white/[0.045] px-3 py-1 text-xs text-[#c8c1ad]">
-                    Data bundle: compact production candidate bundle loaded · {comparisonName || "candidate"} · Last date {shortDate(String(data.latestDate ?? ""))}
+                    Compact dashboard bundle loaded · {seriesLabel(comparisonVersion) || "Production candidate: GGG1"} · Last date {shortDate(String(data.latestDate ?? ""))} · {timeSeriesRowCount} time-series rows
                   </p>
                   <p className="mt-5 max-w-3xl text-lg leading-8 text-[#d7d0bd]">
                     The homepage now acts as a complete executive summary: diagnostics, robustness, benchmarks, current state, allocations, and the Layer 1 to Layer 3 workflow are all visible on initial load so the research story is inspectable without extra clicks. The current diagnosis is that momentum already exists, but some of it is still getting muted by stacked defense: sleeves self-gate, the overlay de-risks again, and BIL absorbs too much of that caution in long benign markets while target-vol mostly stays out of the way.
@@ -769,13 +780,13 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
                   </div>
                 </div>
                 <div className="rounded-[2rem] border border-white/10 bg-[#0c1324]/60 p-5">
-                  <p className="mono text-xs uppercase tracking-[0.22em] text-[#b8b19f]">Current Production Candidate</p>
+                  <p className="mono text-xs uppercase tracking-[0.22em] text-[#b8b19f]">Production Candidate · Pending Human Review</p>
                   <h2 className="mt-3 text-3xl font-semibold text-[#f5f1e8]">{comparisonName}</h2>
                   <p className="mt-3 text-sm leading-6 text-[#c8c1ad]">
                     {String(comparisonVersionRow?.note ?? defaultCandidate?.description ?? "Chosen from the robustness framework when available.")}
                   </p>
                   <p className="mt-3 rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm leading-6 text-[#d7d0bd]">
-                    The current improvement pass is explicitly about reducing persistent underdeployment in rewarded risk, cutting unnecessary BIL drag outside stressed conditions, and making it obvious whether that helped versus the baseline.
+                    GGG1 is packaged for human deployment review. Current production remains {seriesLabel(PRODUCTION)} and rollback stays preserved until a separate approval flips the live pin.
                   </p>
                   <div className="mt-5 grid grid-cols-2 gap-3">
                     <MetricCard label="Current Market State" value={titleCase(String(latestMarketState?.market_state ?? latestRegime?.risk_state ?? ""))} detail={String(currentAllocationSummary?.current_market_state_reason ?? latestMarketState?.market_state_reason ?? "")} tone={String(latestMarketState?.market_state ?? latestRegime?.risk_state ?? "") === "stressed_panic" ? "warn" : "good"} />
@@ -892,7 +903,7 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
                 <SimpleTable rows={signalRows} columns={["signal_name", "recommendation", "avg_mean_ic", "avg_ic_tstat_nw", "avg_cross_coverage", "avg_abs_redundancy", "validation_quality_score"]} maxRows={18} />
               </Panel>
               <Panel title="Signal quality ranking" subtitle="Higher quality does not guarantee production usefulness; redundancy and implementation cost still matter.">
-                <RankingBar rows={signalRows as Array<Record<string, unknown>>} metric="validation_quality_score" labelKey="signal_name" />
+                {signalRows.length ? <RankingBar rows={signalRows as Array<Record<string, unknown>>} metric="validation_quality_score" labelKey="signal_name" /> : <ChartFallback message="Data unavailable for Layer 1 signal ranking in the compact bundle." />}
               </Panel>
               <Panel title="Incremental signal contribution" subtitle="Starts from a sensible trend-plus-quality/value core and checks whether each add-on improves the downstream long-only ETF sleeve.">
                 <SimpleTable
@@ -911,17 +922,19 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
                 />
               </Panel>
               <Panel title="IC decay by horizon" subtitle="Forward-horizon IC curves show whether predictive relationships persist or decay quickly.">
-                <ResponsiveContainer width="100%" height={360}>
-                  <LineChart data={buildSignalIcChart(data.signalIc, signalRows.slice(0, 6).map((row) => row.signal_name))}>
-                    <CartesianGrid stroke="rgba(245,241,232,0.08)" />
-                    <XAxis dataKey="horizon" stroke="#b8b19f" />
-                    <YAxis stroke="#b8b19f" tickFormatter={(value) => formatNumber(value, 2)} />
-                    <Tooltip contentStyle={{ background: "#111827", border: "1px solid rgba(245,241,232,0.16)", borderRadius: 16 }} formatter={(value, name) => [formatNumber(value, 3), titleCase(String(name))]} />
-                    {signalRows.slice(0, 6).map((row, index) => (
-                      <Line key={row.signal_name} type="monotone" dataKey={row.signal_name} dot strokeWidth={2} stroke={chartColors[index % chartColors.length]} />
-                    ))}
-                  </LineChart>
-                </ResponsiveContainer>
+                {signalIcChart.length ? (
+                  <ResponsiveContainer width="100%" height={360}>
+                    <LineChart data={signalIcChart}>
+                      <CartesianGrid stroke="rgba(245,241,232,0.08)" />
+                      <XAxis dataKey="horizon" stroke="#b8b19f" />
+                      <YAxis stroke="#b8b19f" tickFormatter={(value) => formatNumber(value, 2)} />
+                      <Tooltip contentStyle={{ background: "#111827", border: "1px solid rgba(245,241,232,0.16)", borderRadius: 16 }} formatter={(value, name) => [formatNumber(value, 3), titleCase(String(name))]} />
+                      {signalRows.slice(0, 6).map((row, index) => (
+                        <Line key={row.signal_name} type="monotone" dataKey={row.signal_name} dot strokeWidth={2} stroke={chartColors[index % chartColors.length]} />
+                      ))}
+                    </LineChart>
+                  </ResponsiveContainer>
+                ) : <ChartFallback message="Data unavailable for Layer 1 IC decay in the compact bundle." />}
               </Panel>
               <Panel title="Signal redundancy heatmap" subtitle="Correlation among standardized signal panels. Similar signals may add less incremental value downstream.">
                 <RedundancyHeatmap data={data.signalRedundancy} />
@@ -982,22 +995,24 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
                 </div>
               </Panel>
               <Panel title="Cumulative wealth" subtitle="Net-of-cost wealth paths from saved Layer 3 and Layer 2 benchmark outputs.">
-                <ResponsiveContainer width="100%" height={420}>
-                  <LineChart data={wealthData}>
-                    <CartesianGrid stroke="rgba(245,241,232,0.08)" />
-                    <XAxis dataKey="date" stroke="#b8b19f" minTickGap={40} />
-                    <YAxis stroke="#b8b19f" tickFormatter={(value) => formatNumber(value, 1)} />
-                    <Tooltip contentStyle={{ background: "#111827", border: "1px solid rgba(245,241,232,0.16)", borderRadius: 16 }} formatter={(value, name) => [formatNumber(value, 2), seriesLabel(String(name))]} />
-                    <Legend formatter={(value) => seriesLabel(String(value))} />
-                    {selectedLineKeys.map((name) => (
-                      <Line key={name} type="monotone" dataKey={name} dot={false} strokeWidth={2} stroke={methodColor(name, selectedLineKeys)} />
-                    ))}
-                  </LineChart>
-                </ResponsiveContainer>
+                {wealthData.length ? (
+                  <ResponsiveContainer width="100%" height={420}>
+                    <LineChart data={wealthData}>
+                      <CartesianGrid stroke="rgba(245,241,232,0.08)" />
+                      <XAxis dataKey="date" stroke="#b8b19f" minTickGap={40} />
+                      <YAxis stroke="#b8b19f" tickFormatter={(value) => formatNumber(value, 1)} />
+                      <Tooltip contentStyle={{ background: "#111827", border: "1px solid rgba(245,241,232,0.16)", borderRadius: 16 }} formatter={(value, name) => [formatNumber(value, 2), seriesLabel(String(name))]} />
+                      <Legend formatter={(value) => seriesLabel(String(value))} />
+                      {selectedLineKeys.map((name) => (
+                        <Line key={name} type="monotone" dataKey={name} dot={false} strokeWidth={2} stroke={methodColor(name, selectedLineKeys)} />
+                      ))}
+                    </LineChart>
+                  </ResponsiveContainer>
+                ) : <ChartFallback message="Data unavailable for cumulative wealth in the compact bundle." />}
               </Panel>
               <div className="grid gap-5 xl:grid-cols-2">
                 <Panel title="Drawdowns" subtitle="Lower and shallower drawdowns matter more than one lucky full-sample Sharpe.">
-                  <ResponsiveContainer width="100%" height={320}>
+                  {drawdownData.length ? <ResponsiveContainer width="100%" height={320}>
                     <LineChart data={drawdownData}>
                       <CartesianGrid stroke="rgba(245,241,232,0.08)" />
                       <XAxis dataKey="date" stroke="#b8b19f" minTickGap={40} />
@@ -1007,10 +1022,10 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
                         <Line key={name} type="monotone" dataKey={name} dot={false} strokeWidth={2} stroke={methodColor(name, selectedLineKeys)} />
                       ))}
                     </LineChart>
-                  </ResponsiveContainer>
+                  </ResponsiveContainer> : <ChartFallback message="Data unavailable for drawdowns in the compact bundle." />}
                 </Panel>
                 <Panel title="Rolling Sharpe" subtitle="Approximate 52-week rolling Sharpe on selected Layer 3 methods.">
-                  <ResponsiveContainer width="100%" height={320}>
+                  {rollingSharpeData.length ? <ResponsiveContainer width="100%" height={320}>
                     <LineChart data={rollingSharpeData}>
                       <CartesianGrid stroke="rgba(245,241,232,0.08)" />
                       <XAxis dataKey="date" stroke="#b8b19f" minTickGap={40} />
@@ -1020,7 +1035,7 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
                         <Line key={name} type="monotone" dataKey={name} dot={false} strokeWidth={2} stroke={methodColor(name, selectedMethods)} />
                       ))}
                     </LineChart>
-                  </ResponsiveContainer>
+                  </ResponsiveContainer> : <ChartFallback message="Data unavailable for rolling Sharpe in the compact bundle." />}
                 </Panel>
               </div>
             </div>
@@ -1060,7 +1075,7 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
               </div>
               <div className="grid gap-5 xl:grid-cols-2">
                 <Panel title="Wealth comparison" subtitle="Improved versions should earn their keep against the baseline, not just in isolated metrics.">
-                  <ResponsiveContainer width="100%" height={340}>
+                  {versionWealthData.length ? <ResponsiveContainer width="100%" height={340}>
                     <LineChart data={versionWealthData}>
                       <CartesianGrid stroke="rgba(245,241,232,0.08)" />
                       <XAxis dataKey="date" stroke="#b8b19f" minTickGap={40} />
@@ -1070,10 +1085,10 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
                         <Line key={name} type="monotone" dataKey={name} dot={false} strokeWidth={2} stroke={chartColors[index % chartColors.length]} />
                       ))}
                     </LineChart>
-                  </ResponsiveContainer>
+                  </ResponsiveContainer> : <ChartFallback message="Data unavailable for version wealth comparison." />}
                 </Panel>
                 <Panel title="Drawdown comparison" subtitle="Checks whether the improved version buys return with a reasonable drawdown trade-off rather than hidden fragility.">
-                  <ResponsiveContainer width="100%" height={340}>
+                  {versionDrawdownData.length ? <ResponsiveContainer width="100%" height={340}>
                     <LineChart data={versionDrawdownData}>
                       <CartesianGrid stroke="rgba(245,241,232,0.08)" />
                       <XAxis dataKey="date" stroke="#b8b19f" minTickGap={40} />
@@ -1083,7 +1098,7 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
                         <Line key={name} type="monotone" dataKey={name} dot={false} strokeWidth={2} stroke={chartColors[index % chartColors.length]} />
                       ))}
                     </LineChart>
-                  </ResponsiveContainer>
+                  </ResponsiveContainer> : <ChartFallback message="Data unavailable for version drawdown comparison." />}
                 </Panel>
               </div>
               <Panel title="Version comparison table" subtitle="Shows what actually changed: sleeve set, overlay rules, and the resulting out-of-sample metrics.">
@@ -1123,7 +1138,7 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
                   <SimpleTable rows={marketStateFeatureRows as Array<Record<string, unknown>>} columns={["metric", "value"]} maxRows={12} />
                 </Panel>
                 <Panel title="Allocation mix through time" subtitle="Offensive, defensive, and cash-proxy weights for the selected production candidate.">
-                  <ResponsiveContainer width="100%" height={340}>
+                  {allocationMixChart.length ? <ResponsiveContainer width="100%" height={340}>
                     <AreaChart data={allocationMixChart}>
                       <CartesianGrid stroke="rgba(245,241,232,0.08)" />
                       <XAxis dataKey="date" stroke="#b8b19f" minTickGap={40} />
@@ -1133,7 +1148,7 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
                       <Area type="monotone" dataKey="defensive_weight" stackId="1" stroke="#3d7057" fill="#3d7057" fillOpacity={0.7} />
                       <Area type="monotone" dataKey="cash_proxy_weight" stackId="1" stroke="#8796b0" fill="#8796b0" fillOpacity={0.65} />
                     </AreaChart>
-                  </ResponsiveContainer>
+                  </ResponsiveContainer> : <ChartFallback message="Data unavailable for allocation mix in the compact bundle." />}
                 </Panel>
                 <Panel title="Why BIL is high / why SPY is low" subtitle="Current-date attribution from overlay cash plus sleeve look-through. This is where missed upside or justified caution becomes visible." >
                   <div className="space-y-5">
@@ -1165,10 +1180,10 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
           <Section id="robustness" eyebrow="Diagnostics" title="Robustness, regimes, and fragility checks">
             <div className="grid gap-5 xl:grid-cols-2">
               <Panel title="Robustness ranking" subtitle="Composite ranking from Layer 3, not a pure Sharpe ranking.">
-                <RankingBar rows={robustRows} metric="robustness_score" />
+                {robustRows.some((row) => isFiniteNumber(row.robustness_score)) ? <RankingBar rows={robustRows} metric="robustness_score" /> : <ChartFallback message="Data unavailable for legacy robustness ranking in the compact bundle." />}
               </Panel>
               <Panel title="Regime score and states" subtitle="Layer 2B risk regime score, sampled for display.">
-                <ResponsiveContainer width="100%" height={320}>
+                {data.regimeScore.length ? <ResponsiveContainer width="100%" height={320}>
                   <ComposedChart data={data.regimeScore}>
                     <CartesianGrid stroke="rgba(245,241,232,0.08)" />
                     <XAxis dataKey="date" stroke="#b8b19f" minTickGap={40} />
@@ -1176,7 +1191,7 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
                     <Tooltip contentStyle={{ background: "#111827", border: "1px solid rgba(245,241,232,0.16)", borderRadius: 16 }} />
                     <Area type="monotone" dataKey="risk_regime_score" fill="rgba(185,133,59,0.22)" stroke="#b9853b" dot={false} />
                   </ComposedChart>
-                </ResponsiveContainer>
+                </ResponsiveContainer> : <ChartFallback message="Data unavailable for legacy regime score in the compact bundle." />}
               </Panel>
               <Panel title="Regime-split performance" subtitle="How method behavior changes in calm, neutral, and stressed environments.">
                 <SimpleTable rows={data.regimeSplit} columns={["method_name", "risk_state", "ann_return", "ann_vol", "sharpe", "hit_rate", "observations"]} maxRows={18} />

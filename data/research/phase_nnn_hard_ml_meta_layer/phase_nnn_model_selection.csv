@@ -1,0 +1,26 @@
+target,model,serious_model,reason,brier_delta_vs_baseline,auc_delta_vs_baseline,auc,calibration_mae,high_risk_decile_precision
+target_ggg1_underperformance_4w,random_forest_small,True,passed strict OOS predictive/economic gates,-0.016181587965238414,0.10522772909821099,0.6199399872216137,0.023600071979419983,0.5764705882352941
+target_ggg1_underperformance_4w,hist_gradient_shallow,True,passed strict OOS predictive/economic gates,-0.0058281062864245226,0.0889295819642204,0.6036418400876231,0.07363829409504552,0.6
+target_stress_transition_4w,hist_gradient_shallow,True,passed strict OOS predictive/economic gates,-0.0035983510812311326,0.034878749007391185,0.861382169690306,0.04050724505231047,0.9647058823529412
+target_triple_barrier_bad_8w,logistic_l2_balanced,False,failed one or more strict OOS predictive/economic gates,0.05300179591568985,0.3358546078037229,0.6899785540329323,0.14694005609003993,0.1527777777777778
+target_triple_barrier_bad_8w,logistic_simple,False,failed one or more strict OOS predictive/economic gates,0.019635940246426203,0.30913802171088733,0.6632619679400967,0.06354505419885707,0.125
+target_triple_barrier_bad_8w,hist_gradient_shallow,False,failed one or more strict OOS predictive/economic gates,0.0024376520107685373,0.2988875764344525,0.6530115226636619,0.02436298441088348,0.1388888888888889
+target_ggg1_adverse_tail_4w,random_forest_small,False,failed one or more strict OOS predictive/economic gates,-0.0027131585444623296,0.1012477681062382,0.5179039727708962,0.03158842235016611,0.2823529411764706
+target_ggg1_adverse_tail_4w,hist_gradient_shallow,False,failed one or more strict OOS predictive/economic gates,0.00871709904291773,0.0978127441133802,0.5144689487780382,0.0913750518213819,0.3411764705882353
+target_ggg1_underperformance_4w,decision_tree_depth2,False,failed one or more strict OOS predictive/economic gates,-0.0028722382919669776,0.09521323932092018,0.6099254974443229,0.08616068388909862,0.5568181818181818
+target_ggg1_adverse_tail_4w,decision_tree_depth2,False,failed one or more strict OOS predictive/economic gates,0.003892013857962201,0.09278052114719332,0.5094367258118513,0.10416746434136588,0.4418604651162791
+target_triple_barrier_bad_8w,random_forest_small,False,failed one or more strict OOS predictive/economic gates,0.004039897996013189,0.08897154284788705,0.44309548907709645,0.03720037583075259,0.0
+target_ggg1_adverse_tail_4w,logistic_l2_balanced,False,failed one or more strict OOS predictive/economic gates,0.11440086971522409,0.0811258509094967,0.49778205557415467,0.278378343337629,0.2235294117647059
+target_ggg1_adverse_tail_4w,logistic_simple,False,failed one or more strict OOS predictive/economic gates,0.09982394192100438,0.07751994755049657,0.49417615221515454,0.26341307158278304,0.17647058823529413
+target_ggg1_underperformance_4w,logistic_l2_balanced,False,failed one or more strict OOS predictive/economic gates,0.07551956732421694,0.0535151971522454,0.5682274552756481,0.2407891580403994,0.4588235294117647
+target_ggg1_underperformance_4w,logistic_simple,False,failed one or more strict OOS predictive/economic gates,0.09317403964836812,0.040577081051478614,0.5552893391748813,0.27426251661599144,0.4117647058823529
+target_stress_transition_4w,random_forest_small,False,failed one or more strict OOS predictive/economic gates,0.0008587104691575309,0.03758933479934057,0.8640927554822554,0.06792425604873147,0.9647058823529412
+target_state_quality_good_4w,logistic_l2_balanced,False,failed one or more strict OOS predictive/economic gates,0.07405372164001045,0.00395071982281292,0.5311904761904762,0.2519846616502368,0.5647058823529412
+target_state_quality_good_4w,logistic_simple,False,failed one or more strict OOS predictive/economic gates,0.09974467704037893,-0.002167774086378693,0.5250719822812846,0.28957778286328917,0.5411764705882353
+target_stress_transition_4w,logistic_l2_balanced,False,failed one or more strict OOS predictive/economic gates,0.04520417021102488,-0.002416620853949003,0.8240867998289658,0.10439833450086922,0.7647058823529411
+target_triple_barrier_bad_8w,decision_tree_depth2,False,failed one or more strict OOS predictive/economic gates,0.013328584609763314,-0.005227141314811501,0.3488968049143979,0.07114759553562718,0.02666666666666667
+target_stress_transition_4w,logistic_simple,False,failed one or more strict OOS predictive/economic gates,0.05244031251196604,-0.01718358683037069,0.8093198338525441,0.1293641924267426,0.7529411764705882
+target_state_quality_good_4w,hist_gradient_shallow,False,failed one or more strict OOS predictive/economic gates,0.012349390840067143,-0.020041528239202577,0.5071982281284607,0.11927711135147996,0.4470588235294118
+target_state_quality_good_4w,random_forest_small,False,failed one or more strict OOS predictive/economic gates,-0.004647399476245706,-0.020938538205980017,0.5063012181616833,0.051525104019241694,0.4823529411764706
+target_stress_transition_4w,decision_tree_depth2,False,failed one or more strict OOS predictive/economic gates,0.021371177624118443,-0.05088265835929384,0.775620762323621,0.08260538880749453,0.7209302325581395
+target_state_quality_good_4w,decision_tree_depth2,False,failed one or more strict OOS predictive/economic gates,0.033540733986860694,-0.07949058693244737,0.4477491694352159,0.14008622424403852,0.2558139534883721

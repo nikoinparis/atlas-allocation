@@ -1,0 +1,6 @@
+target,n,positive,negative,positive_rate,enough_samples
+target_ggg1_underperformance_4w,1110,424,686,0.38198198198198197,True
+target_ggg1_adverse_tail_4w,1110,280,830,0.25225225225225223,True
+target_state_quality_good_4w,1110,514,596,0.46306306306306305,True
+target_stress_transition_4w,1106,306,800,0.2766726943942134,True
+target_triple_barrier_bad_8w,1024,61,963,0.0595703125,True

@@ -6,21 +6,115 @@
   "candidate_status": "PROMOTE_TO_PRODUCTION_CANDIDATE_PENDING_HUMAN_REVIEW",
   "promotion_phase": "Phase III",
   "promotion_report": "docs/research/2026-04-27_phase_iii_production_candidate_review_report.md",
+  "latest_research_status": "KEEP_GGG1_AS_PRODUCTION_CANDIDATE_AFTER_JJJ4_KKK_LLL_MMM",
+  "do_not_auto_promote": true,
+  "rollback_available": true,
+  "dashboard_status_label": "Production candidate: GGG1",
+  "production_label": "Current production / rollback",
+  "shadow_label": "Official shadow",
+  "candidate_label": "Production candidate: GGG1",
+  "generated_at": "2026-05-06T17:37:08.279668+00:00",
+  "headline_metric_comparison": {
+    "vs_old_production": {
+      "comparator": "improved_phase2b_regime_confidence_boost",
+      "annual_return": {
+        "candidate": 0.0713809925349517,
+        "comparator": 0.0689233974459273,
+        "delta": 0.002457595089024392
+      },
+      "sharpe": {
+        "candidate": 0.9365901869313924,
+        "comparator": 0.8848149411100881,
+        "delta": 0.05177524582130433
+      },
+      "max_drawdown": {
+        "candidate": -0.1177385440350171,
+        "comparator": -0.1397540394638661,
+        "delta": 0.022015495428849008
+      },
+      "cvar_5": {
+        "candidate": -0.0253771457181608,
+        "comparator": -0.0261810418470039,
+        "delta": 0.0008038961288431012
+      },
+      "holdout_sharpe": {
+        "candidate": 1.8223675080020656,
+        "comparator": 1.624899271571444,
+        "delta": 0.1974682364306215
+      },
+      "avg_BIL": {
+        "candidate": 0.2665801265614856,
+        "comparator": 0.2839178772422698,
+        "delta": -0.017337750680784192
+      },
+      "avg_SPY": {
+        "candidate": 0.0602565651232749,
+        "comparator": 0.0708116714213488,
+        "delta": -0.010555106298073894
+      }
+    },
+    "vs_official_shadow": {
+      "comparator": "improved_phase2b_combo_abc",
+      "annual_return": {
+        "candidate": 0.0713809925349517,
+        "comparator": 0.0685838385312815,
+        "delta": 0.002797154003670199
+      },
+      "sharpe": {
+        "candidate": 0.9365901869313924,
+        "comparator": 0.8840229648352725,
+        "delta": 0.05256722209611986
+      },
+      "max_drawdown": {
+        "candidate": -0.1177385440350171,
+        "comparator": -0.1367412154152338,
+        "delta": 0.01900267138021669
+      },
+      "cvar_5": {
+        "candidate": -0.0253771457181608,
+        "comparator": -0.026085048036177,
+        "delta": 0.0007079023180162
+      },
+      "holdout_sharpe": {
+        "candidate": 1.8223675080020656,
+        "comparator": 1.6276887811347291,
+        "delta": 0.19467872686733645
+      },
+      "avg_BIL": {
+        "candidate": 0.2665801265614856,
+        "comparator": 0.2855524975472375,
+        "delta": -0.018972370985751885
+      },
+      "avg_SPY": {
+        "candidate": 0.0602565651232749,
+        "comparator": 0.0707565085039652,
+        "delta": -0.010499943380690296
+      }
+    }
+  },
   "promotion_reason_summary": [
-    "improves annual return",
-    "improves Sharpe",
-    "improves max drawdown",
-    "improves CVaR",
-    "improves holdout Sharpe",
+    "higher annual return",
+    "higher Sharpe",
+    "better max drawdown",
+    "better CVaR",
+    "better holdout Sharpe",
     "survives doubled-cost and 1-week delay",
     "passes allocator benchmark",
-    "lowers SPY exposure",
+    "lower SPY exposure",
     "turnover remains under 1.10x cap"
   ],
   "known_caveats": [
-    "committee internal +0.30pp annual-return gate was not met exactly",
+    "old committee +0.30pp annual-return gate was not fully met",
     "bootstrap confidence intervals overlap",
     "worst single week is worse than production",
+    "turnover is close to the 1.10x limit",
     "human deployment review still required"
+  ],
+  "next_manual_steps": [
+    "Verify Vercel dashboard loads the compact bundle.",
+    "Verify old production rollback files exist.",
+    "Verify GGG1 return, ETF weight, and sleeve weight files exist.",
+    "Review caveats before officially flipping the live production pin.",
+    "After human approval, update current_production_pin to GGG1 in a separate commit."
   ]
 }

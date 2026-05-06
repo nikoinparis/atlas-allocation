@@ -1,0 +1,17 @@
+{
+  "phase": "MMM",
+  "base": "improved_phaseggg_confirmed_only_robust_offense",
+  "candidates": [
+    "improved_phasemmm_recovery_confirmed_css_cap",
+    "improved_phasemmm_recovery_confirmed_css_filter",
+    "improved_phasemmm_conservative_css_polish"
+  ],
+  "production_pipeline_build": true,
+  "best_candidate": "improved_phasemmm_recovery_confirmed_css_filter",
+  "best_decision": "REJECT",
+  "audits": {
+    "research_committee": "skipped: no candidate qualified",
+    "realism": "skipped",
+    "allocator": "skipped"
+  }
+}

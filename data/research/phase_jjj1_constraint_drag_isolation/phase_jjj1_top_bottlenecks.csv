@@ -1,0 +1,8 @@
+severity,issue,evidence,recommendation
+HIGH,Favorable-state lookthrough offense drag,improved_phase2b_regime_confidence_boost recovery_fragile -15.64%,Fix or instrument sleeve-to-ETF lookthrough before advanced allocator.
+HIGH,GGG1 component purity still unproven,"composite_regime_offense_component, composite_regime_defense_component, composite_regime_cash_component",Persist component returns and ETF positions.
+MEDIUM,Overlay cash added in favorable states,9 version/state rows,Separate intentional recovery guardrail from accidental good-state cash.
+MEDIUM,Target-vol binds in favorable states,1 rows,Review target-vol before allocator changes.
+LOW,Cap proxy boundary observed,42 rows,Add explicit cap pre/post instrumentation if this becomes material.
+LOW,Turnover near boundary,3 state rows,Monitor GGG1 turnover in any follow-up.
+INFO,Next action,FIX_LOOKTHROUGH_DRAG,"Final sleeve-to-ETF translation removes offense in favorable states, and component lookthrough panels are missing for GGG1."

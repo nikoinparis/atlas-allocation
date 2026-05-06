@@ -1,0 +1,18 @@
+{
+  "phase": "JJJ4",
+  "base": "improved_phaseggg_confirmed_only_robust_offense",
+  "candidates": [
+    "improved_phasejjj4_state_risk_contribution_caps",
+    "improved_phasejjj4_adaptive_mom_vol_corr_budget",
+    "improved_phasejjj4_conservative_adaptive_risk_budget"
+  ],
+  "production_pipeline_build": true,
+  "selection_rule": "Reject unless GGG1-level Sharpe/return/tail/state/turnover/hidden-beta gates are preserved and concentration improves or full metrics clearly dominate.",
+  "best_candidate": "improved_phasejjj4_state_risk_contribution_caps",
+  "best_decision": "REJECT",
+  "audits": {
+    "research_committee": "skipped: no candidate qualified",
+    "realism": "skipped",
+    "allocator": "skipped"
+  }
+}

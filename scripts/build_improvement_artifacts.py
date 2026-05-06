@@ -1045,7 +1045,27 @@ def _apply_phase_yy_decomposition_architecture(
         "phase_ddd_confirmed_defensive_balanced_substitution",
         "phase_ddd_minimal_dual_polish",
         "phase_ddd_confirmed_comp_off_receiver",
+        "phase_jjj3_calm_css_cap",
+        "phase_jjj4_state_risk_contribution_caps",
+        "phase_jjj4_adaptive_mom_vol_corr_budget",
+        "phase_jjj4_conservative_adaptive_risk_budget",
+        "phase_mmm_recovery_confirmed_css_cap",
+        "phase_mmm_conservative_css_polish",
     }:
+        def _jjj4_adaptive_budget(base: pd.Series, strength: float = 0.05) -> pd.Series:
+            if conviction is None and state_lead_tilt is None:
+                return base
+            score = pd.Series(0.0, index=base.index, dtype=float)
+            if conviction is not None and not conviction.empty:
+                score = score.add(pd.Series(conviction, dtype=float).reindex(base.index).fillna(0.0) * 0.60, fill_value=0.0)
+            if state_lead_tilt is not None and not state_lead_tilt.empty:
+                score = score.add(pd.Series(state_lead_tilt, dtype=float).reindex(base.index).fillna(0.0) * 0.40, fill_value=0.0)
+            score = score.clip(-1.0, 1.0)
+            out = pd.Series(base, dtype=float).copy()
+            for name in out.index:
+                out.loc[name] *= float(np.clip(1.0 + strength * float(score.get(name, 0.0)), 0.94, 1.06))
+            return ns5["normalize_long_only"](out, max_weight=ns5["MAX_SLEEVE_WEIGHT"])
+
         if strong_neutral_flag:
             return _apply_explicit_bucket_budget(
                 adjusted,
@@ -1131,8 +1151,16 @@ def _apply_phase_yy_decomposition_architecture(
                         "cta_trend_long_only": 0.30,
                     },
                 )
-            if tilt_mode == "phase_ddd_confirmed_near_exclude_dual":
-                return _apply_bucket_share_caps(
+            if tilt_mode in {
+                "phase_ddd_confirmed_near_exclude_dual",
+                "phase_jjj3_calm_css_cap",
+                "phase_jjj4_state_risk_contribution_caps",
+                "phase_jjj4_adaptive_mom_vol_corr_budget",
+                "phase_jjj4_conservative_adaptive_risk_budget",
+                "phase_mmm_recovery_confirmed_css_cap",
+                "phase_mmm_conservative_css_polish",
+            }:
+                confirmed_base = _apply_bucket_share_caps(
                     confirmed,
                     bucket_names=offense_members,
                     share_caps={"dual_momentum_topn": 0.03},
@@ -1141,6 +1169,36 @@ def _apply_phase_yy_decomposition_architecture(
                         "cta_trend_long_only": 0.30,
                     },
                 )
+                if tilt_mode == "phase_jjj4_state_risk_contribution_caps":
+                    return _apply_bucket_share_caps(
+                        confirmed_base,
+                        bucket_names=offense_members,
+                        share_caps={"composite_regime_offense_component": 0.50},
+                        reallocate_mix={"cta_trend_long_only": 1.00},
+                    )
+                if tilt_mode == "phase_jjj4_adaptive_mom_vol_corr_budget":
+                    return _jjj4_adaptive_budget(confirmed_base, strength=0.04)
+                if tilt_mode == "phase_mmm_recovery_confirmed_css_cap":
+                    return _apply_bucket_share_caps(
+                        confirmed_base,
+                        bucket_names=offense_members,
+                        share_caps={"composite_selective_signals": 0.08},
+                        reallocate_mix={
+                            "composite_regime_offense_component": 0.70,
+                            "cta_trend_long_only": 0.30,
+                        },
+                    )
+                if tilt_mode == "phase_mmm_conservative_css_polish":
+                    return _apply_bucket_share_caps(
+                        confirmed_base,
+                        bucket_names=offense_members,
+                        share_caps={"composite_selective_signals": 0.12},
+                        reallocate_mix={
+                            "composite_regime_offense_component": 0.70,
+                            "cta_trend_long_only": 0.30,
+                        },
+                    )
+                return confirmed_base
             if tilt_mode == "phase_ddd_confirmed_dual_hard_css_soft":
                 return _apply_bucket_share_caps(
                     confirmed,
@@ -1207,7 +1265,7 @@ def _apply_phase_yy_decomposition_architecture(
                 },
             )
         if market_state == "recovery_fragile":
-            return _apply_explicit_bucket_budget(
+            fragile_base = _apply_explicit_bucket_budget(
                 adjusted,
                 target_bucket_weights={"offense": 0.60, "defense": 0.40},
                 offense_target_mix={
@@ -1216,6 +1274,40 @@ def _apply_phase_yy_decomposition_architecture(
                     "composite_regime_offense_component": 0.52,
                 },
                 offense_mix_strength=0.40,
+            )
+            if tilt_mode == "phase_jjj4_adaptive_mom_vol_corr_budget":
+                return _jjj4_adaptive_budget(fragile_base, strength=0.03)
+            if tilt_mode == "phase_jjj4_conservative_adaptive_risk_budget":
+                return _apply_bucket_share_caps(
+                    fragile_base,
+                    bucket_names=["taa_10m_sma", "composite_regime_defense_component"],
+                    share_caps={"composite_regime_defense_component": 0.58},
+                    reallocate_mix={"taa_10m_sma": 1.00},
+                )
+            return fragile_base
+        if tilt_mode == "phase_jjj4_adaptive_mom_vol_corr_budget" and (
+            market_state in {"calm_trend", "neutral_mixed"} or strong_neutral_flag
+        ):
+            return _jjj4_adaptive_budget(adjusted, strength=0.05)
+        if tilt_mode == "phase_jjj3_calm_css_cap" and market_state == "calm_trend":
+            offense_members = [
+                name
+                for name in [
+                    "dual_momentum_topn",
+                    "cta_trend_long_only",
+                    "composite_selective_signals",
+                    "composite_regime_offense_component",
+                ]
+                if name in adjusted.index
+            ]
+            return _apply_bucket_share_caps(
+                adjusted,
+                bucket_names=offense_members,
+                share_caps={"composite_selective_signals": 0.30},
+                reallocate_mix={
+                    "composite_regime_offense_component": 0.70,
+                    "cta_trend_long_only": 0.30,
+                },
             )
         return adjusted
 
@@ -1411,6 +1503,29 @@ try:
             PHASEKK_REPLACEMENT_LOOKUP = _phasekk_df["p_regime_confidence_refreshed"].astype(float).to_dict()
         if "p_regime_confidence_blend25" in _phasekk_df.columns:
             PHASEKK_BLEND25_LOOKUP = _phasekk_df["p_regime_confidence_blend25"].astype(float).to_dict()
+except Exception:
+    pass
+
+# ----------------------------------------------------------------------
+# Phase NNN — hard-ML meta-layer predictions on top of GGG1.
+# Loaded from phase_nnn_ml_meta_predictions.csv if present.
+#   * risk_dial: bounded risk reduction when underperformance/stress risk is high
+#   * opportunity_dial: bounded participation lift when underperformance/stress
+#     risk is low. These modes only nudge regime_multiplier; they do not
+#     replace GGG1 sleeve/component logic.
+# ----------------------------------------------------------------------
+PHASENNN_UNDERPERF_LOOKUP: dict = {}
+PHASENNN_STRESS_LOOKUP: dict = {}
+try:
+    _phasennn_path = LAYER2B_DIR / "phase_nnn_ml_meta_predictions.csv"
+    if _phasennn_path.exists():
+        _phasennn_df = pd.read_csv(_phasennn_path, parse_dates=["Date"])
+        _phasennn_df["Date"] = pd.to_datetime(_phasennn_df["Date"]).dt.tz_localize(None)
+        _phasennn_df = _phasennn_df.set_index("Date")
+        if "p_nnn_ggg1_underperformance_4w" in _phasennn_df.columns:
+            PHASENNN_UNDERPERF_LOOKUP = _phasennn_df["p_nnn_ggg1_underperformance_4w"].astype(float).to_dict()
+        if "p_nnn_stress_transition_4w" in _phasennn_df.columns:
+            PHASENNN_STRESS_LOOKUP = _phasennn_df["p_nnn_stress_transition_4w"].astype(float).to_dict()
 except Exception:
     pass
 
@@ -2097,6 +2212,8 @@ def apply_phase2b_adjustment(
         "phase2b_regime_confidence": np.nan,
         "phase2b_transition_quality": np.nan,
         "phase2b_tail_risk": np.nan,
+        "phase_nnn_underperformance_risk": np.nan,
+        "phase_nnn_stress_transition_risk": np.nan,
         "phase2b_offset": 0.0,
     }
     if mode == "none" or ml_pred_row is None:
@@ -2135,11 +2252,24 @@ def apply_phase2b_adjustment(
             refreshed = lookup.get(date_key)
             if refreshed is not None and not (isinstance(refreshed, float) and np.isnan(refreshed)):
                 p_regime = float(refreshed)
+    p_nnn_underperf = np.nan
+    p_nnn_stress = np.nan
+    if mode in {"regime_confidence_boost_nnn_risk_dial", "regime_confidence_boost_nnn_opportunity_dial"}:
+        date_key = ml_pred_row.name if hasattr(ml_pred_row, "name") else None
+        if date_key is not None:
+            underperf_val = PHASENNN_UNDERPERF_LOOKUP.get(date_key)
+            stress_val = PHASENNN_STRESS_LOOKUP.get(date_key)
+            if underperf_val is not None and not (isinstance(underperf_val, float) and np.isnan(underperf_val)):
+                p_nnn_underperf = float(underperf_val)
+            if stress_val is not None and not (isinstance(stress_val, float) and np.isnan(stress_val)):
+                p_nnn_stress = float(stress_val)
     p_trans = _safe_pred("p_transition_quality")
     p_tail = _safe_pred("p_tail_risk")
     diag["phase2b_regime_confidence"] = p_regime
     diag["phase2b_transition_quality"] = p_trans
     diag["phase2b_tail_risk"] = p_tail
+    diag["phase_nnn_underperformance_risk"] = p_nnn_underperf
+    diag["phase_nnn_stress_transition_risk"] = p_nnn_stress
 
     strong_neutral = False
     if isinstance(market_state_row, pd.Series) and not market_state_row.empty:
@@ -2158,7 +2288,9 @@ def apply_phase2b_adjustment(
                        "regime_confidence_boost_jj_riskdial_25",
                        "regime_confidence_boost_jj_riskdial_50",
                        "regime_confidence_boost_kk_replacement",
-                       "regime_confidence_boost_kk_blend25"}
+                       "regime_confidence_boost_kk_blend25",
+                       "regime_confidence_boost_nnn_risk_dial",
+                       "regime_confidence_boost_nnn_opportunity_dial"}
     apply_b = mode in {"transition_quality_gate", "combo_abc"}
     apply_c = mode in {"tail_risk_suppression", "combo_ac", "combo_abc"}
 
@@ -2180,6 +2312,20 @@ def apply_phase2b_adjustment(
         if p_tail > 0.55:
             raw_suppress = -0.10 * (p_tail - 0.55) / max(1e-9, 1.0 - 0.55)
             offset += float(max(-0.10, min(0.0, raw_suppress)))
+
+    # Phase NNN: hard-ML meta-layer on top of GGG1. Both modes are bounded
+    # regime-multiplier nudges only; stressed_panic is not weakened.
+    if mode == "regime_confidence_boost_nnn_risk_dial" and market_state != "stressed_panic":
+        if not np.isnan(p_nnn_underperf) and p_nnn_underperf >= 0.58:
+            offset -= float(min(0.035, 0.07 * (p_nnn_underperf - 0.58) / max(1e-9, 1.0 - 0.58)))
+        if not np.isnan(p_nnn_stress) and p_nnn_stress >= 0.65:
+            offset -= float(min(0.040, 0.06 * (p_nnn_stress - 0.65) / max(1e-9, 1.0 - 0.65)))
+
+    if mode == "regime_confidence_boost_nnn_opportunity_dial" and market_state != "stressed_panic":
+        favorable = market_state in {"calm_trend", "neutral_mixed", "recovery_confirmed", "recovery_fragile"} or strong_neutral
+        if favorable and not np.isnan(p_nnn_underperf) and not np.isnan(p_nnn_stress):
+            if p_nnn_underperf <= 0.30 and p_nnn_stress <= 0.20:
+                offset += float(min(0.025, 0.04 * (0.30 - p_nnn_underperf) / 0.30))
 
     adjusted = float(np.clip(regime_multiplier + offset, 0.0, 1.0))
     diag["phase2b_offset"] = float(adjusted - regime_multiplier)
@@ -4846,6 +4992,7 @@ def run_subset_custom(
                             "dynamic_risk_budget_state_leader_wider_sector_gated_fragile_guard",
                             "dynamic_risk_budget_state_leader_wider_sector_gated_tilt_dampened",
                             "dynamic_risk_budget_state_leader_wider_sector_gated_fragile_guard_tilt_dampened",
+                            "phase_jjj4_adaptive_mom_vol_corr_budget",
                             "phasec_state_map",
                         }:
                             conviction_row = compute_rolling_sleeve_conviction(
@@ -4865,6 +5012,7 @@ def run_subset_custom(
                             "dynamic_risk_budget_state_leader_wider_sector_gated_fragile_guard",
                             "dynamic_risk_budget_state_leader_wider_sector_gated_tilt_dampened",
                             "dynamic_risk_budget_state_leader_wider_sector_gated_fragile_guard_tilt_dampened",
+                            "phase_jjj4_adaptive_mom_vol_corr_budget",
                             "phasec_state_map",
                             "phasec_combo",
                         }:
@@ -5866,6 +6014,56 @@ def build_favorable_fallback_redesign_sleeve_panels(
     return new_return_panel, new_positions
 
 
+def build_state_filtered_sleeve_panels(
+    base_return_panel: pd.DataFrame,
+    base_positions: dict[str, pd.DataFrame],
+    market_state_hist: pd.DataFrame,
+    *,
+    sleeve_name: str,
+    state_filter_cols: dict[str, list[str]],
+) -> tuple[pd.DataFrame, dict[str, pd.DataFrame]]:
+    """State-condition one sleeve's internal ETF lookthrough by filtering columns.
+
+    Used only for narrow diagnostics: per eligible state, project the sleeve's
+    existing ETF weights onto a smaller existing ETF subset and recompute the
+    sleeve path. No allocator weights are reconstructed post hoc.
+    """
+    new_return_panel = base_return_panel.copy()
+    new_positions = {k: v.copy() for k, v in base_positions.items()}
+    if sleeve_name not in new_positions:
+        return new_return_panel, new_positions
+    cash_proxy = ns5["cash_proxy"]
+    positions = new_positions[sleeve_name].copy().reindex(
+        index=ns5["weekly_prices"].index,
+        columns=ns5["weekly_prices"].columns,
+    ).fillna(0.0)
+    state_hist = market_state_hist.reindex(positions.index)
+    modified = positions.copy()
+    for date, row in positions.iterrows():
+        if date not in state_hist.index:
+            continue
+        market_state = str(state_hist.loc[date].get("market_state") or "")
+        keep_cols = [c for c in state_filter_cols.get(market_state, []) if c in positions.columns]
+        if not keep_cols:
+            continue
+        kept_sum = float(row.reindex(keep_cols).fillna(0.0).sum())
+        if kept_sum <= 1e-12:
+            modified.loc[date, :] = 0.0
+            modified.at[date, cash_proxy] = 1.0
+            continue
+        modified.loc[date, :] = 0.0
+        modified.loc[date, keep_cols] = row.reindex(keep_cols).fillna(0.0) / kept_sum
+    new_positions[sleeve_name] = modified
+    path = ns3["compute_strategy_path"](
+        modified,
+        ns3["next_week_returns"],
+        transaction_cost_bps=ns3["DEFAULT_COST_BPS"],
+        cash_proxy_returns=ns3["cash_proxy_return_series"],
+    )
+    new_return_panel[sleeve_name] = path["net_return"].reindex(new_return_panel.index).fillna(0.0)
+    return new_return_panel, new_positions
+
+
 def build_action_directed_fallback_sleeve_panels(
     base_return_panel: pd.DataFrame,
     base_positions: dict[str, pd.DataFrame],
@@ -6032,6 +6230,7 @@ def build_state_conditional_decomposition_sleeve_panels(
     default_offense_cols: list[str],
     state_offense_recipe: dict[str, list[tuple[list[str], float]]],
     market_state_series: pd.Series,
+    state_defense_recipe: dict[str, list[tuple[list[str], float]]] | None = None,
 ) -> tuple[pd.DataFrame, dict[str, pd.DataFrame]]:
     """Phase GGG: state-conditional composite_regime_offense_component.
 
@@ -6043,7 +6242,8 @@ def build_state_conditional_decomposition_sleeve_panels(
     For each date and each recipe element ``(cols, w)``: re-project source
     positions onto ``cols`` (per-row sum-1 normalisation), then linearly
     blend by weights and renormalise so each output row sums to 1 over the
-    contributing columns. Defense and cash components are unchanged.
+    contributing columns. Defense and cash components are unchanged unless
+    ``state_defense_recipe`` is supplied.
     """
     source_name = "composite_regime_conditioned"
     cash_proxy = ns5["cash_proxy"]
@@ -6062,33 +6262,45 @@ def build_state_conditional_decomposition_sleeve_panels(
     states = market_state_series.reindex(source_positions.index).fillna("__default__")
     default_recipe = [(default_offense_cols, 1.0)]
 
-    offense_positions = pd.DataFrame(0.0, index=source_positions.index, columns=source_positions.columns)
-    for state_name, dates_idx in states.groupby(states).groups.items():
-        recipe = state_offense_recipe.get(state_name, default_recipe)
-        sub_blended = pd.DataFrame(0.0, index=dates_idx, columns=source_positions.columns)
-        weight_total = pd.Series(0.0, index=dates_idx)
-        for cols, weight in recipe:
-            cols = [c for c in cols if c in source_positions.columns]
-            if not cols or weight <= 0:
-                continue
-            sub = source_positions.loc[dates_idx, cols]
-            sub_sum = sub.sum(axis=1)
-            active = sub_sum > 1e-12
-            if active.any():
-                norm = sub.loc[active].div(sub_sum.loc[active], axis=0)
-                active_dates = norm.index
-                sub_blended.loc[active_dates, cols] = (
-                    sub_blended.loc[active_dates, cols].add(norm * weight, fill_value=0.0)
-                )
-                weight_total.loc[active_dates] += weight
-        positive = weight_total > 1e-12
-        if positive.any():
-            sub_blended.loc[positive] = sub_blended.loc[positive].div(weight_total.loc[positive], axis=0)
-        inactive = ~positive
-        if inactive.any():
-            sub_blended.loc[inactive, :] = 0.0
-            sub_blended.loc[inactive, cash_proxy] = 1.0
-        offense_positions.loc[dates_idx, :] = sub_blended.values
+    def _state_project_component(
+        *,
+        default_cols: list[str],
+        state_recipe: dict[str, list[tuple[list[str], float]]],
+    ) -> pd.DataFrame:
+        out_positions = pd.DataFrame(0.0, index=source_positions.index, columns=source_positions.columns)
+        default_local = [(default_cols, 1.0)]
+        for state_name, dates_idx in states.groupby(states).groups.items():
+            recipe = state_recipe.get(state_name, default_local)
+            sub_blended = pd.DataFrame(0.0, index=dates_idx, columns=source_positions.columns)
+            weight_total = pd.Series(0.0, index=dates_idx)
+            for cols, weight in recipe:
+                cols = [c for c in cols if c in source_positions.columns]
+                if not cols or weight <= 0:
+                    continue
+                sub = source_positions.loc[dates_idx, cols]
+                sub_sum = sub.sum(axis=1)
+                active = sub_sum > 1e-12
+                if active.any():
+                    norm = sub.loc[active].div(sub_sum.loc[active], axis=0)
+                    active_dates = norm.index
+                    sub_blended.loc[active_dates, cols] = (
+                        sub_blended.loc[active_dates, cols].add(norm * weight, fill_value=0.0)
+                    )
+                    weight_total.loc[active_dates] += weight
+            positive = weight_total > 1e-12
+            if positive.any():
+                sub_blended.loc[positive] = sub_blended.loc[positive].div(weight_total.loc[positive], axis=0)
+            inactive = ~positive
+            if inactive.any():
+                sub_blended.loc[inactive, :] = 0.0
+                sub_blended.loc[inactive, cash_proxy] = 1.0
+            out_positions.loc[dates_idx, :] = sub_blended.values
+        return out_positions
+
+    offense_positions = _state_project_component(
+        default_cols=default_offense_cols,
+        state_recipe=state_offense_recipe,
+    )
 
     offense_path = ns3["compute_strategy_path"](
         offense_positions,
@@ -6101,17 +6313,10 @@ def build_state_conditional_decomposition_sleeve_panels(
         offense_path["net_return"].reindex(new_return_panel.index).fillna(0.0)
     )
 
-    # Defense component (unchanged from YY/EEE1)
-    defense_positions = pd.DataFrame(0.0, index=source_positions.index, columns=source_positions.columns)
-    if defense_cols:
-        defense_sum = source_positions.reindex(columns=defense_cols).sum(axis=1)
-        defense_active = defense_sum > 1e-12
-        defense_positions.loc[defense_active, defense_cols] = (
-            source_positions.loc[defense_active, defense_cols].div(defense_sum.loc[defense_active], axis=0)
-        )
-        defense_positions.loc[~defense_active, cash_proxy] = 1.0
-    else:
-        defense_positions[cash_proxy] = 1.0
+    defense_positions = _state_project_component(
+        default_cols=defense_cols,
+        state_recipe=state_defense_recipe or {},
+    )
     defense_path = ns3["compute_strategy_path"](
         defense_positions,
         ns3["next_week_returns"],
@@ -6453,6 +6658,56 @@ phaseggg_blended_robust_return_panel, phaseggg_blended_robust_positions = build_
         "recovery_confirmed": [(_ggg_default_offense, 0.5), (_ggg_robust_offense, 0.5)],
     },
     market_state_series=_ggg_state_series,
+)
+
+# Phase LLL — rebuild only composite_regime_defense_component on top of GGG1.
+# KKK found recovery_confirmed drag was concentrated in TLT, while
+# recovery_fragile drag was concentrated in GLD. Stressed-panic defense remains
+# unchanged in all LLL candidates.
+_lll_default_defense = ["HYG", "LQD", "GLD", "TLT"]
+_lll_rc_filter_defense = ["HYG", "LQD", "GLD"]
+_lll_rf_filter_defense = ["HYG", "LQD", "TLT"]
+
+phaselll_recovery_filter_return_panel, phaselll_recovery_filter_positions = build_state_conditional_decomposition_sleeve_panels(
+    base_sleeve_return_panel, base_sleeve_positions,
+    default_offense_cols=_ggg_default_offense,
+    state_offense_recipe={"recovery_confirmed": [(_ggg_robust_offense, 1.0)]},
+    state_defense_recipe={
+        "recovery_confirmed": [(_lll_rc_filter_defense, 1.0)],
+        "recovery_fragile": [(_lll_rf_filter_defense, 1.0)],
+    },
+    market_state_series=_ggg_state_series,
+)
+phaselll_recovery_blend_return_panel, phaselll_recovery_blend_positions = build_state_conditional_decomposition_sleeve_panels(
+    base_sleeve_return_panel, base_sleeve_positions,
+    default_offense_cols=_ggg_default_offense,
+    state_offense_recipe={"recovery_confirmed": [(_ggg_robust_offense, 1.0)]},
+    state_defense_recipe={
+        "recovery_confirmed": [(_lll_default_defense, 0.50), (_lll_rc_filter_defense, 0.50)],
+        "recovery_fragile": [(_lll_default_defense, 0.50), (_lll_rf_filter_defense, 0.50)],
+    },
+    market_state_series=_ggg_state_series,
+)
+phaselll_conservative_polish_return_panel, phaselll_conservative_polish_positions = build_state_conditional_decomposition_sleeve_panels(
+    base_sleeve_return_panel, base_sleeve_positions,
+    default_offense_cols=_ggg_default_offense,
+    state_offense_recipe={"recovery_confirmed": [(_ggg_robust_offense, 1.0)]},
+    state_defense_recipe={
+        "recovery_confirmed": [(_lll_default_defense, 0.75), (_lll_rc_filter_defense, 0.25)],
+        "recovery_fragile": [(_lll_default_defense, 0.75), (_lll_rf_filter_defense, 0.25)],
+    },
+    market_state_series=_ggg_state_series,
+)
+
+# Phase MMM — rebuild only composite_selective_signals in recovery_confirmed.
+# Diagnostics show DBA is the main RC drag inside CSS and TLT is dead weight.
+_mmm_css_rc_keep = ["SPY", "QQQ", "IWM", "EFA", "VEA", "VWO", "EWJ", "VNQ", "HYG", "LQD", "GLD", "PDBC", "BIL"]
+phasemmm_css_filter_return_panel, phasemmm_css_filter_positions = build_state_filtered_sleeve_panels(
+    phaseggg_confirmed_robust_return_panel,
+    phaseggg_confirmed_robust_positions,
+    market_state_history,
+    sleeve_name="composite_selective_signals",
+    state_filter_cols={"recovery_confirmed": _mmm_css_rc_keep},
 )
 
 # Phase HHH — extend GGG1's state-conditional swap to ALSO cover stressed_panic.
@@ -9721,6 +9976,162 @@ version_specs = [
         "note": "Phase GGG1: EEE1 architecture; offense_component is broad EEE1 in all states EXCEPT recovery_confirmed, which uses FFF3 robust subset (drop PDBC + DBA).",
     },
     {
+        "version_name": "improved_phasennn_ml_risk_dial_overlay",
+        "method_name": "hrp", "subset_name": "phaseyy_conservative_decomposition",
+        "subset_sleeves": phaseyy_decomposed_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40, "rerisk_speed": 0.80,
+        "state_tilt": "phase_ddd_confirmed_near_exclude_dual",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "phasexx_conservative_hybrid_overlay",
+        "target_vol_ceil": 1.00, "phase2b_mode": "regime_confidence_boost_nnn_risk_dial",
+        "internal_redeploy": "phaseggg_confirmed_robust",
+        "note": "Phase NNN1: GGG1 plus a bounded hard-ML risk dial. Uses OOS NNN underperformance/stress probabilities to modestly lower regime_multiplier only when predicted GGG1 risk is high. GGG1 component logic unchanged.",
+    },
+    {
+        "version_name": "improved_phasennn_ml_opportunity_dial_overlay",
+        "method_name": "hrp", "subset_name": "phaseyy_conservative_decomposition",
+        "subset_sleeves": phaseyy_decomposed_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40, "rerisk_speed": 0.80,
+        "state_tilt": "phase_ddd_confirmed_near_exclude_dual",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "phasexx_conservative_hybrid_overlay",
+        "target_vol_ceil": 1.00, "phase2b_mode": "regime_confidence_boost_nnn_opportunity_dial",
+        "internal_redeploy": "phaseggg_confirmed_robust",
+        "note": "Phase NNN2: GGG1 plus a bounded hard-ML opportunity dial. Uses low OOS NNN underperformance/stress probabilities to modestly lift regime_multiplier in favorable states only. GGG1 component logic unchanged.",
+    },
+    {
+        "version_name": "improved_phasejjj3_targeted_lookthrough_repair",
+        "method_name": "hrp", "subset_name": "phaseyy_conservative_decomposition",
+        "subset_sleeves": phaseyy_decomposed_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40, "rerisk_speed": 0.80,
+        "state_tilt": "phase_jjj3_calm_css_cap",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "phasexx_conservative_hybrid_overlay",
+        "target_vol_ceil": 1.00, "phase2b_mode": "regime_confidence_boost",
+        "internal_redeploy": "phaseggg_confirmed_robust",
+        "note": "Phase JJJ3: GGG1 plus one targeted calm_trend cap on composite_selective_signals share of the offense bucket; excess stays in offense-family sleeves.",
+    },
+    {
+        "version_name": "improved_phasejjj4_state_risk_contribution_caps",
+        "method_name": "hrp", "subset_name": "phaseyy_conservative_decomposition",
+        "subset_sleeves": phaseyy_decomposed_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40, "rerisk_speed": 0.80,
+        "state_tilt": "phase_jjj4_state_risk_contribution_caps",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "phasexx_conservative_hybrid_overlay",
+        "target_vol_ceil": 1.00, "phase2b_mode": "regime_confidence_boost",
+        "internal_redeploy": "phaseggg_confirmed_robust",
+        "note": "Phase JJJ4-1: GGG1 plus a recovery_confirmed risk-contribution cap on composite_regime_offense_component; excess stays in cta_trend_long_only.",
+    },
+    {
+        "version_name": "improved_phasejjj4_adaptive_mom_vol_corr_budget",
+        "method_name": "hrp", "subset_name": "phaseyy_conservative_decomposition",
+        "subset_sleeves": phaseyy_decomposed_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40, "rerisk_speed": 0.80,
+        "state_tilt": "phase_jjj4_adaptive_mom_vol_corr_budget",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "phasexx_conservative_hybrid_overlay",
+        "target_vol_ceil": 1.00, "phase2b_mode": "regime_confidence_boost",
+        "internal_redeploy": "phaseggg_confirmed_robust",
+        "note": "Phase JJJ4-2: GGG1 plus small causal momentum/volatility and state-leadership tilts bounded at +/-6% before overlay/lookthrough.",
+    },
+    {
+        "version_name": "improved_phasejjj4_conservative_adaptive_risk_budget",
+        "method_name": "hrp", "subset_name": "phaseyy_conservative_decomposition",
+        "subset_sleeves": phaseyy_decomposed_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40, "rerisk_speed": 0.80,
+        "state_tilt": "phase_jjj4_conservative_adaptive_risk_budget",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "phasexx_conservative_hybrid_overlay",
+        "target_vol_ceil": 1.00, "phase2b_mode": "regime_confidence_boost",
+        "internal_redeploy": "phaseggg_confirmed_robust",
+        "note": "Phase JJJ4-3: GGG1 plus a minimal recovery_fragile defense-bucket risk budget shift from defense_component to taa_10m_sma.",
+    },
+    {
+        "version_name": "improved_phaselll_recovery_defense_filter",
+        "method_name": "hrp", "subset_name": "phaseyy_conservative_decomposition",
+        "subset_sleeves": phaseyy_decomposed_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40, "rerisk_speed": 0.80,
+        "state_tilt": "phase_ddd_confirmed_near_exclude_dual",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "phasexx_conservative_hybrid_overlay",
+        "target_vol_ceil": 1.00, "phase2b_mode": "regime_confidence_boost",
+        "internal_redeploy": "phaselll_recovery_filter",
+        "note": "Phase LLL1: GGG1 offense logic unchanged; defense_component drops TLT in recovery_confirmed and GLD in recovery_fragile. Stressed-panic defense unchanged.",
+    },
+    {
+        "version_name": "improved_phaselll_recovery_defense_blend",
+        "method_name": "hrp", "subset_name": "phaseyy_conservative_decomposition",
+        "subset_sleeves": phaseyy_decomposed_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40, "rerisk_speed": 0.80,
+        "state_tilt": "phase_ddd_confirmed_near_exclude_dual",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "phasexx_conservative_hybrid_overlay",
+        "target_vol_ceil": 1.00, "phase2b_mode": "regime_confidence_boost",
+        "internal_redeploy": "phaselll_recovery_blend",
+        "note": "Phase LLL2: GGG1 offense logic unchanged; defense_component uses 50/50 original plus recovery-filtered defense in recovery_confirmed/recovery_fragile only.",
+    },
+    {
+        "version_name": "improved_phaselll_conservative_defense_polish",
+        "method_name": "hrp", "subset_name": "phaseyy_conservative_decomposition",
+        "subset_sleeves": phaseyy_decomposed_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40, "rerisk_speed": 0.80,
+        "state_tilt": "phase_ddd_confirmed_near_exclude_dual",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "phasexx_conservative_hybrid_overlay",
+        "target_vol_ceil": 1.00, "phase2b_mode": "regime_confidence_boost",
+        "internal_redeploy": "phaselll_conservative_polish",
+        "note": "Phase LLL3: GGG1 offense logic unchanged; defense_component uses a 25% recovery-state filter blend, the smallest defense rebuild.",
+    },
+    {
+        "version_name": "improved_phasemmm_recovery_confirmed_css_cap",
+        "method_name": "hrp", "subset_name": "phaseyy_conservative_decomposition",
+        "subset_sleeves": phaseyy_decomposed_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40, "rerisk_speed": 0.80,
+        "state_tilt": "phase_mmm_recovery_confirmed_css_cap",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "phasexx_conservative_hybrid_overlay",
+        "target_vol_ceil": 1.00, "phase2b_mode": "regime_confidence_boost",
+        "internal_redeploy": "phaseggg_confirmed_robust",
+        "note": "Phase MMM1: GGG1 plus recovery_confirmed-only CSS cap at 0.08 of offense bucket; freed weight goes to offense_component/CTA.",
+    },
+    {
+        "version_name": "improved_phasemmm_recovery_confirmed_css_filter",
+        "method_name": "hrp", "subset_name": "phaseyy_conservative_decomposition",
+        "subset_sleeves": phaseyy_decomposed_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40, "rerisk_speed": 0.80,
+        "state_tilt": "phase_ddd_confirmed_near_exclude_dual",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "phasexx_conservative_hybrid_overlay",
+        "target_vol_ceil": 1.00, "phase2b_mode": "regime_confidence_boost",
+        "internal_redeploy": "phasemmm_css_filter",
+        "note": "Phase MMM2: GGG1 plus recovery_confirmed-only CSS internal filter dropping DBA/TLT; all other states unchanged.",
+    },
+    {
+        "version_name": "improved_phasemmm_conservative_css_polish",
+        "method_name": "hrp", "subset_name": "phaseyy_conservative_decomposition",
+        "subset_sleeves": phaseyy_decomposed_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40, "rerisk_speed": 0.80,
+        "state_tilt": "phase_mmm_conservative_css_polish",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "phasexx_conservative_hybrid_overlay",
+        "target_vol_ceil": 1.00, "phase2b_mode": "regime_confidence_boost",
+        "internal_redeploy": "phaseggg_confirmed_robust",
+        "note": "Phase MMM3: GGG1 plus recovery_confirmed-only conservative CSS cap at 0.12 of offense bucket.",
+    },
+    {
         "version_name": "improved_phaseggg_confirmed_only_quality_filtered_offense",
         "method_name": "hrp", "subset_name": "phaseyy_conservative_decomposition",
         "subset_sleeves": phaseyy_decomposed_subset,
@@ -9863,6 +10274,18 @@ for version in version_specs:
     elif version_redeploy_mode == "phaseggg_blended_robust":
         version_sleeve_return_panel = phaseggg_blended_robust_return_panel
         version_sleeve_positions = phaseggg_blended_robust_positions
+    elif version_redeploy_mode == "phaselll_recovery_filter":
+        version_sleeve_return_panel = phaselll_recovery_filter_return_panel
+        version_sleeve_positions = phaselll_recovery_filter_positions
+    elif version_redeploy_mode == "phaselll_recovery_blend":
+        version_sleeve_return_panel = phaselll_recovery_blend_return_panel
+        version_sleeve_positions = phaselll_recovery_blend_positions
+    elif version_redeploy_mode == "phaselll_conservative_polish":
+        version_sleeve_return_panel = phaselll_conservative_polish_return_panel
+        version_sleeve_positions = phaselll_conservative_polish_positions
+    elif version_redeploy_mode == "phasemmm_css_filter":
+        version_sleeve_return_panel = phasemmm_css_filter_return_panel
+        version_sleeve_positions = phasemmm_css_filter_positions
     elif version_redeploy_mode == "phasehhh_confirmed_stressed_robust":
         version_sleeve_return_panel = phasehhh_confirmed_stressed_robust_return_panel
         version_sleeve_positions = phasehhh_confirmed_stressed_robust_positions

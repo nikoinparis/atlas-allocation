@@ -1,0 +1,18 @@
+{
+  "phase": "LLL",
+  "base": "improved_phaseggg_confirmed_only_robust_offense",
+  "candidates": [
+    "improved_phaselll_recovery_defense_filter",
+    "improved_phaselll_recovery_defense_blend",
+    "improved_phaselll_conservative_defense_polish"
+  ],
+  "production_pipeline_build": true,
+  "selection_rule": "Reject unless GGG1 full-window, turnover, hidden-beta, stressed-panic, recovery_confirmed, and recovery_fragile gates are preserved and defense recovery drag improves.",
+  "best_candidate": "improved_phaselll_recovery_defense_filter",
+  "best_decision": "REJECT",
+  "audits": {
+    "research_committee": "skipped: no candidate qualified",
+    "realism": "skipped",
+    "allocator": "skipped"
+  }
+}

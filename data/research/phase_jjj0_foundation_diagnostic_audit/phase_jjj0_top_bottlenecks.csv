@@ -1,0 +1,7 @@
+severity,issue,evidence,recommendation
+HIGH,Component purity cannot be proven,"composite_regime_defense_component, composite_regime_offense_component",Persist component-level returns and ETF positions.
+MEDIUM,Overlay cash drag still appears in stage deltas,12 state/stage rows,Inspect overlay cash deltas before changing allocator complexity.
+MEDIUM,State budget mismatch flags exist,5 rows,Review state-level weights versus state sleeve performance.
+MEDIUM,GGG1 cleanness limited by missing component panels,Cannot directly audit offense/defense component purity.,"Add instrumentation, do not infer purity from final ETF weights alone."
+LOW,Turnover remains near policy boundary,Phase III turnover ratio is just under 1.10x.,Monitor during packaging/shadow tracking.
+INFO,Production pin unchanged,improved_phase2b_regime_confidence_boost,Rollback path remains intact.

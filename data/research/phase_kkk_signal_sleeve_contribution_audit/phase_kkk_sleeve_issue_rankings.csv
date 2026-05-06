@@ -1,0 +1,11 @@
+item,item_type,problem_type,evidence,affected_states,current_avg_weight_ggg1,already_mitigated_by_ggg1,recommended_future_action,severity
+composite_regime_defense_component,sleeve,state_harmful_or_weak_used_sleeve,"recovery_confirmed:-1.10%,w=21.9%; recovery_fragile:-7.62%,w=24.1%",recovery_confirmed|recovery_fragile,0.21715726897865606,False,REBUILD_WEAK_LAYER2A_SLEEVE,HIGH
+composite_selective_signals,sleeve,state_harmful_or_weak_used_sleeve,"recovery_confirmed:-1.44%,w=13.3%",recovery_confirmed,0.15429464018463726,True,REBUILD_WEAK_LAYER2A_SLEEVE,HIGH
+composite_regime_offense_component,sleeve,state_harmful_or_weak_used_sleeve,"calm_trend:-4.12%,w=8.9%",calm_trend,0.09783956370612855,False,REBUILD_WEAK_LAYER2A_SLEEVE,HIGH
+taa_10m_sma,sleeve,state_harmful_or_weak_used_sleeve,"stressed_panic:-5.19%,w=7.2%",stressed_panic,0.11239079300283962,False,STATE_GATING_REVIEW,MEDIUM
+cta_trend_long_only,sleeve,state_harmful_or_weak_used_sleeve,"calm_trend:1.54%,w=11.3%",calm_trend,0.10267671110120329,False,STATE_GATING_REVIEW,MEDIUM
+dual_momentum_topn,sleeve,state_harmful_or_weak_used_sleeve,"recovery_confirmed:0.10%,w=5.8%",recovery_confirmed,0.09028906284771644,True,STATE_GATING_REVIEW,MEDIUM
+contained_recovery_quality,signal,weak_or_redundant_signal_quality,"flag=NEEDS_REVALIDATION, nw=0.62, redundancy=0.28",unknown,,False,REVALIDATE_LAYER1_SIGNALS,MEDIUM
+residual_momentum,signal,weak_or_redundant_signal_quality,"flag=NEEDS_REVALIDATION, nw=0.49, redundancy=0.22",unknown,,False,REVALIDATE_LAYER1_SIGNALS,MEDIUM
+reversal_4w_asset_class_neutral,signal,weak_or_redundant_signal_quality,"flag=RETIRE_CANDIDATE, nw=0.10, redundancy=0.12",unknown,,False,REVALIDATE_LAYER1_SIGNALS,MEDIUM
+reversal_4w_global,signal,weak_or_redundant_signal_quality,"flag=RETIRE_CANDIDATE, nw=0.03, redundancy=0.15",unknown,,False,REVALIDATE_LAYER1_SIGNALS,MEDIUM

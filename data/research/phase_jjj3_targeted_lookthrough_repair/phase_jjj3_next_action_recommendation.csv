@@ -1,0 +1,2 @@
+recommendation,safe_to_proceed_to_adaptive_risk_contribution,reason,next_phase_prompt
+KEEP_GGG1_AND_PROCEED_TO_ADAPTIVE_RISK_CONTRIBUTION,True,The one-path repair did not clear all selection gates; keep GGG1.,Proceed to a narrowly scoped adaptive risk-contribution allocator test using GGG1 as the base and JJJ diagnostics as constraints; do not promote JJJ3 unless human review wants a shadow-only diagnostic.

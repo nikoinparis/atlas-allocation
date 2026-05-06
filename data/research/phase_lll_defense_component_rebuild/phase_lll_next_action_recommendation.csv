@@ -1,0 +1,2 @@
+recommendation,best_candidate,best_decision,reason,defense_component_rebuild_should_continue,next_phase_prompt
+REBUILD_COMPOSITE_SELECTIVE_SIGNALS_NEXT,improved_phaselll_recovery_defense_filter,REJECT,Defense rebuild candidates did not clearly improve GGG1; KKK's next strongest issue is composite_selective_signals.,False,Implement a narrow diagnostic-gated rebuild of composite_selective_signals focused only on recovery_confirmed drag; preserve GGG1 offense component logic and production pins.

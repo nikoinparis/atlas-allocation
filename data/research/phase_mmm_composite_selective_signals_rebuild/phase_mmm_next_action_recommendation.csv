@@ -1,0 +1,2 @@
+recommendation,best_candidate,best_decision,reason,css_rebuild_should_continue,next_phase_prompt
+KEEP_GGG1_AS_PRODUCTION_CANDIDATE,improved_phasemmm_recovery_confirmed_css_filter,REJECT,CSS rebuild candidates failed or only marginally helped; keep GGG1.,False,Keep GGG1 as production candidate and move to packaging/human review; do not force more Layer 2A rebuilds unless a new diagnostic identifies a larger issue.

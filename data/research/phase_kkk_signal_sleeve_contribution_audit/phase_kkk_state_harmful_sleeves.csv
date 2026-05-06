@@ -1,0 +1,8 @@
+version,state,sleeve,avg_weight,ann_return,sharpe,contribution_proxy,n_weeks,weight_rank,performance_rank,rank_gap_weight_minus_perf,state_flag
+improved_phaseggg_confirmed_only_robust_offense,recovery_confirmed,composite_selective_signals,0.13289825283276144,-0.014439163815455625,-0.1834669896943067,-0.001918939643440082,44,4.0,7.0,3.0,STATE_HARMFUL
+improved_phaseggg_confirmed_only_robust_offense,calm_trend,composite_regime_offense_component,0.0886672767835867,-0.04117448176796379,-0.21930045475385435,-0.0036508291713407896,295,6.0,7.0,1.0,STATE_HARMFUL
+improved_phaseggg_confirmed_only_robust_offense,recovery_confirmed,composite_regime_defense_component,0.21871773793031882,-0.010965054342898961,-0.10584712606916638,-0.0023982518821618793,44,2.0,6.0,4.0,STATE_HARMFUL
+improved_phaseggg_confirmed_only_robust_offense,recovery_fragile,composite_regime_defense_component,0.24073609687709926,-0.07619303026472102,-0.7864420956699243,-0.018342412715167636,49,1.0,7.0,6.0,STATE_HARMFUL
+improved_phaseggg_confirmed_only_robust_offense,stressed_panic,taa_10m_sma,0.07183161655141046,-0.05192321314884285,-0.1936707511733194,-0.0037297283370248333,229,4.0,7.0,3.0,STATE_HARMFUL
+improved_phase2b_regime_confidence_boost,recovery_confirmed,composite_selective_signals,0.23107260197421772,-0.014439163815455625,-0.1834669896943067,-0.0033364951531693046,44,2.0,6.0,4.0,STATE_HARMFUL
+improved_phase2b_regime_confidence_boost,stressed_panic,taa_10m_sma,0.07616459990740157,-0.05192321314884285,-0.1936707511733194,-0.003954710755388348,229,4.0,6.0,2.0,STATE_HARMFUL

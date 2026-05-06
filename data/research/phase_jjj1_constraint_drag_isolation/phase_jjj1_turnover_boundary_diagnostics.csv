@@ -1,0 +1,16 @@
+version,role,market_state,avg_one_week_l1_turnover,p95_one_week_l1_turnover,avg_return_file_turnover,near_turnover_boundary,turnover_source_stage
+improved_phaseggg_confirmed_only_robust_offense,production_candidate,calm_trend,0.12993912928650578,0.6728998744490503,0.06496956464325286,True,final ETF weight diff; deadband/rerisk trace not persisted
+improved_phaseggg_confirmed_only_robust_offense,production_candidate,neutral_mixed,0.11721218510177461,0.6093881259795729,0.05872521062517768,False,final ETF weight diff; deadband/rerisk trace not persisted
+improved_phaseggg_confirmed_only_robust_offense,production_candidate,recovery_confirmed,0.17165578009418,0.6732097444157549,0.08582789004708997,True,final ETF weight diff; deadband/rerisk trace not persisted
+improved_phaseggg_confirmed_only_robust_offense,production_candidate,recovery_fragile,0.20429556478342414,0.9754179839135674,0.10214778239171207,True,final ETF weight diff; deadband/rerisk trace not persisted
+improved_phaseggg_confirmed_only_robust_offense,production_candidate,stressed_panic,0.10252187043503268,0.7978590387808334,0.051260935217516304,False,final ETF weight diff; deadband/rerisk trace not persisted
+improved_phase2b_regime_confidence_boost,production,calm_trend,0.12443347175549065,0.5839955314400148,0.06221673587774529,False,final ETF weight diff; deadband/rerisk trace not persisted
+improved_phase2b_regime_confidence_boost,production,neutral_mixed,0.103180570182791,0.5025621184178212,0.05169514339442678,False,final ETF weight diff; deadband/rerisk trace not persisted
+improved_phase2b_regime_confidence_boost,production,recovery_confirmed,0.11537301033438237,0.4818872913383474,0.05768650516719116,False,final ETF weight diff; deadband/rerisk trace not persisted
+improved_phase2b_regime_confidence_boost,production,recovery_fragile,0.19032881659416812,0.8834692119228488,0.09516440829708403,False,final ETF weight diff; deadband/rerisk trace not persisted
+improved_phase2b_regime_confidence_boost,production,stressed_panic,0.09929256115932954,0.8289572811350515,0.04964628057966474,False,final ETF weight diff; deadband/rerisk trace not persisted
+improved_phase2b_combo_abc,official_shadow,calm_trend,0.12465071179257474,0.5839955314400148,0.06232535589628734,False,final ETF weight diff; deadband/rerisk trace not persisted
+improved_phase2b_combo_abc,official_shadow,neutral_mixed,0.10483404720594817,0.5035318305191389,0.052523562268833764,False,final ETF weight diff; deadband/rerisk trace not persisted
+improved_phase2b_combo_abc,official_shadow,recovery_confirmed,0.11636668630019464,0.4835660195716312,0.05818334315009728,False,final ETF weight diff; deadband/rerisk trace not persisted
+improved_phase2b_combo_abc,official_shadow,recovery_fragile,0.18704314908829645,0.8599173762370372,0.09352157454414818,False,final ETF weight diff; deadband/rerisk trace not persisted
+improved_phase2b_combo_abc,official_shadow,stressed_panic,0.09928012375119766,0.8289565122749766,0.049640061875598794,False,final ETF weight diff; deadband/rerisk trace not persisted

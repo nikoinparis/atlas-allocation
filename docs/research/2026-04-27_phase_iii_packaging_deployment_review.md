@@ -21,14 +21,17 @@ python3 scripts/phase_iii_packaging_review.py
 - `public/dashboard-state-summary.json`
 - `public/dashboard-exposures.json`
 - `docs/research/2026-04-27_phase_iii_packaging_deployment_review.md`
+- `docs/research/2026-04-27_ggg1_production_candidate_packaging_review.md`
 - `docs/research/project_journey.md`
-- `CLAUDE.md`
 
 ## Registry status
 
 GGG1 is registered as `PROMOTE_TO_PRODUCTION_CANDIDATE_PENDING_HUMAN_REVIEW`.
 Current production and rollback remain `improved_phase2b_regime_confidence_boost`. Official shadow remains
 `improved_phase2b_combo_abc`.
+
+Latest research status:
+`KEEP_GGG1_AS_PRODUCTION_CANDIDATE_AFTER_JJJ4_KKK_LLL_MMM`.
 
 ## Dashboard / export bundle status
 
@@ -72,20 +75,34 @@ annual-return gate. Realism audit passes doubled cost. Allocator benchmark
 passes. Robustness simulation point estimates beat production, but bootstrap
 intervals overlap.
 
+## Failed post-GGG1 research attempts
+
+- JJJ4 adaptive risk-contribution allocation: failed to clearly improve or
+  de-risk GGG1; final decision `KEEP_GGG1_AS_PRODUCTION_CANDIDATE`.
+- LLL defense component rebuild: all defense-component rebuild candidates were
+  rejected.
+- MMM composite selective signals rebuild: all CSS rebuild candidates were
+  rejected or failed turnover/quality gates.
+
 ## Caveats
 
 - committee internal +0.30pp annual-return gate was not met exactly
 - bootstrap confidence intervals overlap
 - worst single week is worse than production
+- turnover is close to the 1.10x limit
 - human deployment review still required
 
 ## Final packaging recommendation
 
 **READY FOR HUMAN DEPLOYMENT REVIEW.**
 
-## Exact next manual steps
+## Manual deployment checklist
 
-1. Human reviewer confirms GGG1 deployment acceptance despite the listed caveats.
-2. If accepted, update the live production pin in the dashboard/app config in a separate deployment PR.
-3. Preserve `improved_phase2b_regime_confidence_boost` as rollback in the registry and deployment notes.
-4. Rebuild the full dashboard payload only after the human deployment decision.
+1. Verify Vercel dashboard loads.
+2. Verify compact bundle loads.
+3. Verify old production rollback files exist.
+4. Verify GGG1 return/weight/sleeve files exist.
+5. Verify registry is correct.
+6. Verify no giant `dashboard-data.json` is tracked.
+7. Review caveats before officially flipping production pin.
+8. After human approval, optionally update `current_production_pin` to GGG1 in a separate commit.

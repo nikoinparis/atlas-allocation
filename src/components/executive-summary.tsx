@@ -46,7 +46,7 @@ export function ExecutiveSummary({ data }: { data: DashboardData | null }) {
     return (
       <section className="mx-auto w-full max-w-6xl px-4 pt-8">
         <p className="text-sm text-[#c8c1ad]">
-          Dashboard data is not available. Run <code className="mono">node scripts/build-dashboard-data.mjs</code> to generate <code className="mono">public/dashboard-data.json</code>.
+          Dashboard data is not available. Run <code className="mono">python3 scripts/phase_iii_packaging_review.py</code> to generate <code className="mono">public/production-candidate-dashboard-bundle.json</code>.
         </p>
       </section>
     );
@@ -157,7 +157,7 @@ export function ExecutiveSummary({ data }: { data: DashboardData | null }) {
     `Future Phase 3 work should report incremental contribution versus BOTH tracks: the official production candidate (${productionLabel}) and the shadow research runner-up (${researchLabel}). A new variant promotes to production only if it clears the 0.05 production-score margin against A AND does not deteriorate DD/CVaR vs A; it is adopted as a new research track only if it strictly dominates F on Calmar and stressed Sharpe together.`,
     productionPromoted
       ? null
-      : `Note: the dashboard payload's improvedVersion pin does not currently match the official production default ${productionLabel}. The dual-track pin will apply next time dashboard-data.json is rebuilt.`,
+      : `Note: the compact dashboard payload's improvedVersion pin does not currently match the official production default ${productionLabel}. The dual-track pin will apply next time the production-candidate bundle is rebuilt.`,
   ].filter((item): item is string => Boolean(item));
 
   return (
@@ -268,7 +268,7 @@ export function ExecutiveSummary({ data }: { data: DashboardData | null }) {
         <p className="mono text-[0.65rem] uppercase tracking-[0.2em] text-[#b8b19f]">How to read this page</p>
         <p className="mt-2 text-xs leading-relaxed text-[#c8c1ad]">
           The block above is the static executive summary — all numbers come from{" "}
-          <code className="mono">public/dashboard-data.json</code> at request time and are rendered
+          <code className="mono">public/production-candidate-dashboard-bundle.json</code> at request time and are rendered
           server-side. The interactive dashboard below adds Layer-1 signals, Layer-2 sleeves,
           Layer-3 portfolio construction, allocator comparisons, a version lab, and diagnostics,
           all of which require client-side JavaScript.

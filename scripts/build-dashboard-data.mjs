@@ -6,6 +6,9 @@ const ROOT = process.cwd();
 const DATA_ROOT = path.join(ROOT, "data");
 const PUBLIC_DIR = path.join(ROOT, "public");
 const OUTPUT_PATH = path.join(PUBLIC_DIR, "dashboard-data.json");
+const OUTPUT_DETAIL_RETURNS_PATH = path.join(PUBLIC_DIR, "dashboard-data-detail-returns.json");
+const OUTPUT_DETAIL_WEIGHTS_PATH = path.join(PUBLIC_DIR, "dashboard-data-detail-weights.json");
+const OUTPUT_DETAIL_ALLOCATION_PATH = path.join(PUBLIC_DIR, "dashboard-data-detail-allocation.json");
 
 const DIRS = {
   dataHub: path.join(DATA_ROOT, "01_data_hub"),
@@ -201,6 +204,28 @@ function weightPayload(dir, fileName, prefix) {
   });
 
   return [method, { latest, history, selectedColumns: selected }];
+}
+
+function latestOnlyWeightPayload(payload) {
+  return {
+    latest: payload?.latest ?? [],
+    history: [],
+    selectedColumns: payload?.selectedColumns ?? [],
+  };
+}
+
+function pickEntries(record, keys, mapValue = (value) => value) {
+  return Object.fromEntries(
+    keys
+      .filter(Boolean)
+      .filter((key) => Object.prototype.hasOwnProperty.call(record, key))
+      .map((key) => [key, mapValue(record[key])]),
+  );
+}
+
+function filterRowsByVersions(rows, versionNames) {
+  const allowed = new Set(versionNames.filter(Boolean));
+  return rows.filter((row) => allowed.has(String(row.version_name ?? "")));
 }
 
 function groupCount(rows, key) {
@@ -425,7 +450,24 @@ const manifests = {
   proxyMapping: readJson("data/01_data_hub/proxy_mapping.json", {}),
 };
 
-const payload = {
+const summaryVersionNames = [...new Set([
+  baselineVersion?.version_name,
+  improvedVersion?.version_name,
+  researchVersion?.version_name,
+].filter(Boolean))];
+
+const summaryPortfolioWeights = Object.fromEntries(
+  Object.entries(portfolioWeights).map(([method, payload]) => [method, latestOnlyWeightPayload(payload)]),
+);
+const summarySleeveWeights = Object.fromEntries(
+  Object.entries(sleeveWeights).map(([method, payload]) => [method, latestOnlyWeightPayload(payload)]),
+);
+const summaryVersionReturns = pickEntries(versionReturns, summaryVersionNames);
+const summaryVersionWeights = pickEntries(versionWeights, summaryVersionNames, latestOnlyWeightPayload);
+const summaryVersionSleeveWeights = pickEntries(versionSleeveWeights, summaryVersionNames, latestOnlyWeightPayload);
+const summaryAllocationDriverTimeseries = filterRowsByVersions(allocationDriverTimeseries, summaryVersionNames);
+
+const summaryPayload = {
   generatedAt: new Date().toISOString(),
   latestDate,
   overview: {
@@ -456,8 +498,8 @@ const payload = {
   metricsSummary,
   portfolioReturns,
   benchmarkReturns,
-  portfolioWeights,
-  sleeveWeights,
+  portfolioWeights: summaryPortfolioWeights,
+  sleeveWeights: summarySleeveWeights,
   strategySummary,
   candidateSleeves,
   regimeStates: sampleRows(regimeStates, 2),
@@ -494,14 +536,14 @@ const payload = {
     sleeveIncremental,
     sleeveSubsets,
     versions: versionComparison,
-    versionReturns,
-    versionWeights,
-    versionSleeveWeights,
+    versionReturns: summaryVersionReturns,
+    versionWeights: summaryVersionWeights,
+    versionSleeveWeights: summaryVersionSleeveWeights,
     versionRegimeSplit,
     versionSubperiods,
     allocationDrivers,
     allocationDriverBreakdown,
-    allocationDriverTimeseries,
+    allocationDriverTimeseries: summaryAllocationDriverTimeseries,
     upsideCaptureAnalysis,
     rallyWindowAttribution,
     offensiveDefensiveCashDuringRallies,
@@ -512,10 +554,41 @@ const payload = {
     sleevePerformanceByState,
     upsideCaptureVersionComparison,
   },
+  detailFiles: {
+    versionReturns: "/dashboard-data-detail-returns.json",
+    weightHistories: "/dashboard-data-detail-weights.json",
+    allocationTimeseries: "/dashboard-data-detail-allocation.json",
+  },
   manifests,
   artifacts,
 };
 
+const returnsDetailPayload = {
+  improvementLab: {
+    versionReturns,
+  },
+};
+
+const weightsDetailPayload = {
+  portfolioWeights,
+  sleeveWeights,
+  improvementLab: {
+    versionWeights,
+    versionSleeveWeights,
+  },
+};
+
+const allocationDetailPayload = {
+  improvementLab: {
+    allocationDriverTimeseries,
+  },
+};
+
 fs.mkdirSync(PUBLIC_DIR, { recursive: true });
-fs.writeFileSync(OUTPUT_PATH, `${JSON.stringify(payload, null, 2)}\n`);
-console.log(`Wrote ${path.relative(ROOT, OUTPUT_PATH)} with ${methods.length} portfolio methods`);
+fs.writeFileSync(OUTPUT_PATH, `${JSON.stringify(summaryPayload, null, 2)}\n`);
+fs.writeFileSync(OUTPUT_DETAIL_RETURNS_PATH, `${JSON.stringify(returnsDetailPayload, null, 2)}\n`);
+fs.writeFileSync(OUTPUT_DETAIL_WEIGHTS_PATH, `${JSON.stringify(weightsDetailPayload, null, 2)}\n`);
+fs.writeFileSync(OUTPUT_DETAIL_ALLOCATION_PATH, `${JSON.stringify(allocationDetailPayload, null, 2)}\n`);
+console.log(
+  `Wrote ${path.relative(ROOT, OUTPUT_PATH)}, ${path.relative(ROOT, OUTPUT_DETAIL_RETURNS_PATH)}, ${path.relative(ROOT, OUTPUT_DETAIL_WEIGHTS_PATH)}, and ${path.relative(ROOT, OUTPUT_DETAIL_ALLOCATION_PATH)} with ${methods.length} portfolio methods`,
+);

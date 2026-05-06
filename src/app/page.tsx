@@ -3,6 +3,7 @@ import path from "node:path";
 
 import { DashboardShell } from "@/components/dashboard-shell";
 import { ExecutiveSummary } from "@/components/executive-summary";
+import { compactBundleToDashboardData } from "@/lib/compact-dashboard";
 import type { DashboardData } from "@/types/dashboard";
 
 // Force dynamic rendering so the executive summary always reflects the latest JSON snapshot
@@ -13,9 +14,9 @@ export const revalidate = 0;
 
 async function loadDashboardData(): Promise<DashboardData | null> {
   try {
-    const filePath = path.join(process.cwd(), "public", "dashboard-data.json");
+    const filePath = path.join(process.cwd(), "public", "production-candidate-dashboard-bundle.json");
     const raw = await fs.readFile(filePath, "utf8");
-    return JSON.parse(raw) as DashboardData;
+    return compactBundleToDashboardData(JSON.parse(raw));
   } catch {
     return null;
   }

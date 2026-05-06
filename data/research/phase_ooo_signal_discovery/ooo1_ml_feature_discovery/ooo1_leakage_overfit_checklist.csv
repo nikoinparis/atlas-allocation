@@ -1,0 +1,8 @@
+check,passed,note
+all_features_lagged,True,Manifest lag rules all contain lag.
+no_target_columns_in_features,True,Feature panel excludes target columns.
+no_future_shift_feature_names,True,No future/fwd feature names in live feature panel.
+no_random_split,True,Models use expanding-window date splits only.
+target_panel_separate,True,Targets saved separately from features.
+high_missingness_screen,True,Model columns require >=60% non-missing and non-constant values.
+no_portfolio_candidates,True,OOO0/OOO1 create signal shortlist only.

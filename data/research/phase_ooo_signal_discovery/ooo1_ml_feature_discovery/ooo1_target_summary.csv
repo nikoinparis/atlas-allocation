@@ -1,0 +1,9 @@
+target,entity_type,n_observations,positive,negative,positive_rate,start_date,end_date,enough_samples,leakage_risk_notes,intended_later_use
+target_etf_forward_top_quantile_4w,ETF,38710,10030,28680,0.2591061741152157,2005-01-07,2026-03-13,True,forward outcome label only; never used as live feature,signal discovery and OOO2+ validation
+target_etf_forward_top_quantile_8w,ETF,38570,10002,28568,0.2593207155820586,2005-01-07,2026-02-13,True,forward outcome label only; never used as live feature,signal discovery and OOO2+ validation
+target_etf_forward_risk_adjusted_top_quantile_4w,ETF,38255,9605,28650,0.251078290419553,2005-04-08,2026-03-13,True,forward outcome label only; never used as live feature,signal discovery and OOO2+ validation
+target_sleeve_opportunity_top_quantile_4w,SLEEVE,39816,10240,29576,0.25718304199316855,2005-01-07,2026-03-13,True,forward outcome label only; never used as live feature,signal discovery and OOO2+ validation
+target_state_quality_good_4w,MARKET,1110,515,595,0.46396396396396394,2005-01-07,2026-04-10,True,forward outcome label only; never used as live feature,signal discovery and OOO2+ validation
+target_stress_transition_4w,MARKET,1106,306,800,0.2766726943942134,2005-01-07,2026-03-13,True,forward outcome label only; never used as live feature,signal discovery and OOO2+ validation
+target_ggg1_underperformance_4w,MARKET,1110,95,1015,0.08558558558558559,2005-01-07,2026-04-10,True,forward outcome label only; never used as live feature,signal discovery and OOO2+ validation
+target_triple_barrier_optional_8w,MARKET|ETF,0,0,0,,,,False,skipped in OOO1 to avoid adding a partially specified barrier label to the discovery foundation,OOO5 triple-barrier/meta-label validation

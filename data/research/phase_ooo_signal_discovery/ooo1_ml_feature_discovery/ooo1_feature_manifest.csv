@@ -1,0 +1,171 @@
+feature,feature_family,entity_type,source,lag_rule,live_feature
+asset_ret_4w,cross_asset_momentum,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+asset_vol_4w,volatility_risk,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+asset_ret_13w,cross_asset_momentum,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+asset_vol_13w,volatility_risk,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+asset_ret_26w,cross_asset_momentum,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+asset_vol_26w,volatility_risk,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+asset_ret_52w,cross_asset_momentum,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+asset_vol_52w,volatility_risk,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+asset_mom_multi_avg,cross_asset_momentum,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+asset_mom_agreement_count,cross_asset_momentum,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+asset_trend_acceleration,cross_asset_momentum,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+asset_ma_distance_26w,cross_asset_momentum,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+asset_ma_distance_52w,cross_asset_momentum,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+asset_downside_vol_13w,volatility_risk,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+asset_vol_change_13v26,volatility_risk,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+asset_drawdown_26w,volatility_risk,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+asset_cvar_proxy_26w,volatility_risk,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+asset_vol_adj_mom_26w,volatility_risk,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+asset_trend_consistency_13w,cross_asset_momentum,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_bab_bab_score_tradable,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_bab_bab_score_asset_class_neutral_tradable,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_bab_bab_score_observed,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_breadth_confirmation_breadth_confirmed_momentum_tradable,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_breadth_confirmation_breadth_confirmed_momentum_score_tradable,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_breadth_confirmation_breadth_confirmed_momentum_score_observed,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_carry_carry_yield_trailing_52w_tradable,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_carry_carry_score_tradable,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_carry_carry_score_asset_class_neutral_tradable,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_contained_recovery_contained_recovery_quality_tradable,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_contained_recovery_contained_recovery_quality_score_tradable,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_contained_recovery_contained_recovery_quality_score_observed,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_moving_average_distance_moving_average_distance_tradable,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_moving_average_distance_moving_average_distance_score_tradable,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_moving_average_distance_moving_average_distance_score_observed,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_multi_horizon_mom_multi_mom_equal_score_tradable,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_multi_horizon_mom_multi_mom_invvol_score_tradable,volatility_risk,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_multi_horizon_mom_multi_mom_equal_score_observed,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_quality_quality_score_tradable,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_quality_quality_score_asset_class_neutral_tradable,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_quality_quality_score_observed,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_residual_momentum_residual_mom_score_tradable,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_residual_momentum_residual_mom_score_observed,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_reversal_reversal_1w_score_tradable,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_reversal_reversal_1w_asset_class_neutral_tradable,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_reversal_reversal_4w_score_tradable,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_trend_quality_trend_clarity_momentum_raw_tradable,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_trend_quality_trend_clarity_momentum_score_tradable,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_trend_quality_trend_clarity_momentum_score_observed,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_tsmom_tsmom_vol_scaled_tradable,volatility_risk,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_tsmom_tsmom_score_tradable,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_tsmom_tsmom_score_observed,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_value_value_score_tradable,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_value_value_score_asset_class_neutral_tradable,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_value_value_gap_score_observed,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_xsmom_xsmom_score_tradable,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_xsmom_xsmom_asset_class_neutral_tradable,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+l1_xsmom_xsmom_score_observed,existing_layer1_signal,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+regime_risk_regime_score,regime_state,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+regime_market_drawdown,regime_state,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+regime_market_trend_positive,regime_state,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+regime_breadth_sma_43,regime_state,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+regime_breadth_26w_mom,regime_state,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+regime_breadth_13w_mom,regime_state,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+regime_breadth_change_4w,regime_state,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+regime_canary_breadth_default,regime_state,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+regime_canary_breadth_pair,regime_state,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+regime_recent_stress_26w,regime_state,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+regime_avg_corr_risk_off_z,regime_state,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+regime_google_fear_z_tradable,regime_state,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+regime_transition_persistence_prob,regime_state,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+regime_transition_good_state_prob,regime_state,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+regime_transition_non_stress_prob,regime_state,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+state_calm_trend,regime_state,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+state_neutral_mixed,regime_state,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+state_recovery_confirmed,regime_state,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+state_recovery_fragile,regime_state,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+state_stressed_panic,regime_state,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+breadth_ret13_positive,breadth_dispersion,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+breadth_ret26_positive,breadth_dispersion,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+cross_asset_dispersion_13w,breadth_dispersion,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+cross_asset_vol_median_13w,breadth_dispersion,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+cross_asset_mom_spread_13w,breadth_dispersion,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+offensive_breadth_13w,breadth_dispersion,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+defensive_breadth_13w,breadth_dispersion,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+leadlag_HYG_minus_LQD_13w,cross_asset_lead_lag,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+leadlag_HYG_minus_LQD_26w,cross_asset_lead_lag,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+leadlag_HYG_minus_TLT_13w,cross_asset_lead_lag,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+leadlag_HYG_minus_TLT_26w,cross_asset_lead_lag,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+leadlag_QQQ_minus_SPY_13w,cross_asset_lead_lag,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+leadlag_QQQ_minus_SPY_26w,cross_asset_lead_lag,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+leadlag_IWM_minus_SPY_13w,cross_asset_lead_lag,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+leadlag_IWM_minus_SPY_26w,cross_asset_lead_lag,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+leadlag_EFA_minus_SPY_13w,cross_asset_lead_lag,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+leadlag_EFA_minus_SPY_26w,cross_asset_lead_lag,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+leadlag_VWO_minus_SPY_13w,cross_asset_lead_lag,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+leadlag_VWO_minus_SPY_26w,cross_asset_lead_lag,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+leadlag_GLD_minus_SPY_13w,cross_asset_lead_lag,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+leadlag_GLD_minus_SPY_26w,cross_asset_lead_lag,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+leadlag_DBA_minus_SPY_13w,cross_asset_lead_lag,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+leadlag_DBA_minus_SPY_26w,cross_asset_lead_lag,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+leadlag_PDBC_minus_SPY_13w,cross_asset_lead_lag,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+leadlag_PDBC_minus_SPY_26w,cross_asset_lead_lag,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+leadlag_UUP_minus_SPY_13w,cross_asset_lead_lag,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+leadlag_UUP_minus_SPY_26w,cross_asset_lead_lag,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+leadlag_TLT_minus_SPY_13w,cross_asset_lead_lag,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+leadlag_TLT_minus_SPY_26w,cross_asset_lead_lag,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+leadlag_IEF_minus_SPY_13w,cross_asset_lead_lag,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+leadlag_IEF_minus_SPY_26w,cross_asset_lead_lag,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+avg_pairwise_corr_26w,breadth_dispersion,ETF,weekly returns/prices/layer1/regime,grouped one-week lag,True
+sleeve_ret_4w,sleeve_factor_momentum,SLEEVE,Layer2A/component returns,grouped one-week lag,True
+sleeve_vol_4w,sleeve_factor_momentum,SLEEVE,Layer2A/component returns,grouped one-week lag,True
+sleeve_mom_vol_4w,sleeve_factor_momentum,SLEEVE,Layer2A/component returns,grouped one-week lag,True
+sleeve_ret_13w,sleeve_factor_momentum,SLEEVE,Layer2A/component returns,grouped one-week lag,True
+sleeve_vol_13w,sleeve_factor_momentum,SLEEVE,Layer2A/component returns,grouped one-week lag,True
+sleeve_mom_vol_13w,sleeve_factor_momentum,SLEEVE,Layer2A/component returns,grouped one-week lag,True
+sleeve_ret_26w,sleeve_factor_momentum,SLEEVE,Layer2A/component returns,grouped one-week lag,True
+sleeve_vol_26w,sleeve_factor_momentum,SLEEVE,Layer2A/component returns,grouped one-week lag,True
+sleeve_mom_vol_26w,sleeve_factor_momentum,SLEEVE,Layer2A/component returns,grouped one-week lag,True
+sleeve_vs_ggg1_13w,sleeve_factor_momentum,SLEEVE,Layer2A/component returns,grouped one-week lag,True
+sleeve_trend_consistency_13w,sleeve_factor_momentum,SLEEVE,Layer2A/component returns,grouped one-week lag,True
+asset_ret_13w_x_state_calm_trend,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+asset_ret_13w_x_state_neutral_mixed,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+asset_ret_13w_x_state_recovery_confirmed,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+asset_ret_13w_x_state_recovery_fragile,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+asset_ret_13w_x_state_stressed_panic,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+asset_vol_13w_x_state_calm_trend,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+asset_vol_13w_x_state_neutral_mixed,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+asset_vol_13w_x_state_recovery_confirmed,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+asset_vol_13w_x_state_recovery_fragile,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+asset_vol_13w_x_state_stressed_panic,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+asset_mom_multi_avg_x_state_calm_trend,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+asset_mom_multi_avg_x_state_neutral_mixed,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+asset_mom_multi_avg_x_state_recovery_confirmed,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+asset_mom_multi_avg_x_state_recovery_fragile,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+asset_mom_multi_avg_x_state_stressed_panic,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+asset_downside_vol_13w_x_state_calm_trend,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+asset_downside_vol_13w_x_state_neutral_mixed,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+asset_downside_vol_13w_x_state_recovery_confirmed,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+asset_downside_vol_13w_x_state_recovery_fragile,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+asset_downside_vol_13w_x_state_stressed_panic,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+asset_vol_adj_mom_26w_x_state_calm_trend,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+asset_vol_adj_mom_26w_x_state_neutral_mixed,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+asset_vol_adj_mom_26w_x_state_recovery_confirmed,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+asset_vol_adj_mom_26w_x_state_recovery_fragile,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+asset_vol_adj_mom_26w_x_state_stressed_panic,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+breadth_ret13_positive_x_state_calm_trend,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+breadth_ret13_positive_x_state_neutral_mixed,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+breadth_ret13_positive_x_state_recovery_confirmed,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+breadth_ret13_positive_x_state_recovery_fragile,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+breadth_ret13_positive_x_state_stressed_panic,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+leadlag_HYG_minus_LQD_13w_x_state_calm_trend,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+leadlag_HYG_minus_LQD_13w_x_state_neutral_mixed,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+leadlag_HYG_minus_LQD_13w_x_state_recovery_confirmed,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+leadlag_HYG_minus_LQD_13w_x_state_recovery_fragile,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+leadlag_HYG_minus_LQD_13w_x_state_stressed_panic,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+sleeve_ret_13w_x_state_calm_trend,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+sleeve_ret_13w_x_state_neutral_mixed,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+sleeve_ret_13w_x_state_recovery_confirmed,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+sleeve_ret_13w_x_state_recovery_fragile,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+sleeve_ret_13w_x_state_stressed_panic,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+sleeve_vol_13w_x_state_calm_trend,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+sleeve_vol_13w_x_state_neutral_mixed,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+sleeve_vol_13w_x_state_recovery_confirmed,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+sleeve_vol_13w_x_state_recovery_fragile,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+sleeve_vol_13w_x_state_stressed_panic,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+sleeve_mom_vol_13w_x_state_calm_trend,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+sleeve_mom_vol_13w_x_state_neutral_mixed,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+sleeve_mom_vol_13w_x_state_recovery_confirmed,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+sleeve_mom_vol_13w_x_state_recovery_fragile,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True
+sleeve_mom_vol_13w_x_state_stressed_panic,regime_state_interaction,ALL,feature x lagged market state,both inputs lagged,True

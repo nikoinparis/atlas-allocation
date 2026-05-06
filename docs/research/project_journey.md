@@ -3863,3 +3863,21 @@ pins.
 
 **Reason.** ML prediction improved OOS, but portfolio pass-through failed the GGG1 selection gates.
 
+
+## Section 82 — Phase OOO0 Signal/Data Inventory Foundation
+
+Date: 2026-04-27. OOO0 inventoried the available signal-discovery data after
+NNN kept GGG1 as the production candidate. It found enough weekly ETF,
+Layer 1, Layer 2A, Layer 2B, GGG1, component, and prior-ML artifacts to support
+a connected signal research program.
+
+## Section 83 — Phase OOO1 ML-Assisted Feature Discovery
+
+Date: 2026-04-27. OOO1 built a lagged weekly feature library and used
+expanding-window ML models for feature discovery only. No portfolio candidates
+or strategy changes were created.
+
+**Decision.** `PROCEED_TO_OOO2_CROSS_ASSET_SIGNAL_TESTS`.
+
+**Reason.** Top stable discoveries are cross-asset momentum/lead-lag/Layer 1 feature ideas.
+

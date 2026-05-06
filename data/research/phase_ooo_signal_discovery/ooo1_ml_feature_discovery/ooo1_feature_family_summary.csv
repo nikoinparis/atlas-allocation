@@ -1,0 +1,9 @@
+feature_family,feature_count,entity_types
+breadth_dispersion,32,ETF|MARKET
+cross_asset_lead_lag,24,ETF
+cross_asset_momentum,10,ETF
+existing_layer1_signal,36,ETF
+regime_state,52,ETF|MARKET|SLEEVE
+regime_state_interaction,50,ALL
+sleeve_factor_momentum,11,SLEEVE
+volatility_risk,11,ETF

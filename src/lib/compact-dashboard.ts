@@ -1,4 +1,4 @@
-import type { DashboardData, MetricRow, ReturnPoint, WeightPayload } from "@/types/dashboard";
+import type { DashboardData, MetricRow, ReturnPoint, SignalRow, WeightPayload } from "@/types/dashboard";
 
 type AnyRow = Record<string, string | number | boolean | null>;
 
@@ -8,6 +8,17 @@ type CompactBundle = {
   state_summary?: AnyRow[];
   exposure_summary?: AnyRow[];
   promotion_checklist?: AnyRow[];
+  layer1_signal_validation_summary?: AnyRow[];
+  layer1_signal_quality_ranking?: AnyRow[];
+  layer1_incremental_signal_contribution?: AnyRow[];
+  layer1_signal_subset_comparison?: AnyRow[];
+  layer1_ic_decay_by_horizon?: AnyRow[];
+  layer1_signal_redundancy_matrix?: {
+    signals?: string[];
+    rowLabels?: string[];
+    values?: number[][];
+  };
+  layer1_data_status?: Record<string, unknown>;
   versionReturns?: Record<string, ReturnPoint[]>;
   versionWeights?: Record<string, WeightPayload>;
   versionSleeveWeights?: Record<string, WeightPayload>;
@@ -106,6 +117,34 @@ function asVersionRow(row: AnyRow): MetricRow {
 
 function rows(rows: AnyRow[] | undefined): AnyRow[] {
   return rows ?? [];
+}
+
+function normalizeDataRows(value: AnyRow[] | undefined): AnyRow[] {
+  return rows(value).map((row) => {
+    const normalized: AnyRow = {};
+    Object.entries(row).forEach(([key, value]) => {
+      normalized[key] = asNumber(value) ?? value;
+    });
+    return normalized;
+  });
+}
+
+function normalizeRedundancy(value: CompactBundle["layer1_signal_redundancy_matrix"]) {
+  const signals = Array.isArray(value?.signals) ? value.signals.map(String) : [];
+  const rowLabels = Array.isArray(value?.rowLabels) ? value.rowLabels.map(String) : signals;
+  const values = Array.isArray(value?.values)
+    ? value.values.map((row) => (Array.isArray(row) ? row.map((item) => asNumber(item) ?? 0) : []))
+    : [];
+  return { signals, rowLabels, values };
+}
+
+function normalizeSignalRows(value: AnyRow[] | undefined): SignalRow[] {
+  return normalizeDataRows(value)
+    .filter((row) => row.signal_name)
+    .map((row) => ({
+      ...row,
+      signal_name: String(row.signal_name),
+    }));
 }
 
 function emptyWeight(): WeightPayload {
@@ -222,6 +261,11 @@ export function compactBundleToDashboardData(bundle: CompactBundle): DashboardDa
     sleeve_name: row.name,
     avg_weight: row.weight,
   }));
+  const signalSummary = normalizeSignalRows(bundle.layer1_signal_validation_summary?.length ? bundle.layer1_signal_validation_summary : bundle.layer1_signal_quality_ranking);
+  const signalIc = normalizeDataRows(bundle.layer1_ic_decay_by_horizon);
+  const signalIncremental = normalizeDataRows(bundle.layer1_incremental_signal_contribution);
+  const signalSubsets = normalizeDataRows(bundle.layer1_signal_subset_comparison);
+  const signalRedundancy = normalizeRedundancy(bundle.layer1_signal_redundancy_matrix);
 
   return {
     generatedAt: String(bundle.registry?.generated_at ?? new Date().toISOString()),
@@ -268,12 +312,12 @@ export function compactBundleToDashboardData(bundle: CompactBundle): DashboardDa
     costSensitivity: [],
     dampenerSensitivity: [],
     blConfidenceSensitivity: [],
-    signalSummary: [],
-    signalIc: [],
-    signalRedundancy: { signals: [], values: [] },
+    signalSummary,
+    signalIc,
+    signalRedundancy,
     improvementLab: {
-      signalIncremental: [],
-      signalSubsets: [],
+      signalIncremental,
+      signalSubsets,
       sleeveIncremental: [],
       sleeveSubsets: [],
       versions: summaryRecords,
@@ -295,7 +339,7 @@ export function compactBundleToDashboardData(bundle: CompactBundle): DashboardDa
       sleevePerformanceByState: stateSummary,
       upsideCaptureVersionComparison: summaryRecords,
     },
-    manifests: { productionCandidateRegistry: bundle.registry ?? {} },
+    manifests: { productionCandidateRegistry: bundle.registry ?? {}, layer1DataStatus: bundle.layer1_data_status ?? {} },
     artifacts: [],
   };
 }

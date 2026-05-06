@@ -234,7 +234,7 @@ function RankingBar({ rows, metric, labelKey = "method_name" }: { rows: Array<Re
   );
 }
 
-function SimpleTable({ rows, columns, maxRows = 12 }: { rows: Array<Record<string, unknown>>; columns: string[]; maxRows?: number }) {
+function SimpleTable({ rows, columns, maxRows = 12, emptyMessage = "Data unavailable for this table." }: { rows: Array<Record<string, unknown>>; columns: string[]; maxRows?: number; emptyMessage?: string }) {
   return (
     <div className="scrollbar-thin overflow-x-auto rounded-2xl border border-white/10">
       <table className="min-w-full divide-y divide-white/10 text-left text-sm">
@@ -246,6 +246,11 @@ function SimpleTable({ rows, columns, maxRows = 12 }: { rows: Array<Record<strin
           </tr>
         </thead>
         <tbody className="divide-y divide-white/10">
+          {!rows.length ? (
+            <tr className="bg-white/[0.015]">
+              <td className="px-4 py-6 text-[#c8c1ad]" colSpan={columns.length}>{emptyMessage}</td>
+            </tr>
+          ) : null}
           {rows.slice(0, maxRows).map((row, index) => (
             <tr key={`${String(row[columns[0]])}-${index}`} className="bg-white/[0.015]">
               {columns.map((column) => (
@@ -338,7 +343,7 @@ function WeightBars({ rows, limit = 12 }: { rows: WeightPoint[]; limit?: number 
 
 function RedundancyHeatmap({ data }: { data: DashboardData["signalRedundancy"] }) {
   const labels = data.rowLabels ?? data.signals;
-  if (!data.signals.length) return <p className="text-sm text-[#c8c1ad]">No redundancy matrix found.</p>;
+  if (!data.signals.length) return <p className="text-sm text-[#c8c1ad]">Layer 1 redundancy matrix source file not found in compact bundle.</p>;
   return (
     <div className="scrollbar-thin overflow-auto rounded-2xl border border-white/10 p-3">
       <div className="grid min-w-[780px]" style={{ gridTemplateColumns: `160px repeat(${data.signals.length}, 32px)` }}>
@@ -632,6 +637,12 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
   const robustRows = [...data.methods].sort((a, b) => Number(b.robustness_score ?? 0) - Number(a.robustness_score ?? 0));
   const signalRows = [...data.signalSummary].sort((a, b) => Number(b.validation_quality_score ?? 0) - Number(a.validation_quality_score ?? 0));
   const signalIcChart = buildSignalIcChart(data.signalIc, signalRows.slice(0, 6).map((row) => row.signal_name));
+  const layer1DataStatus = data.manifests.layer1DataStatus as { missing_source_warnings?: string[] } | undefined;
+  const layer1Warnings = layer1DataStatus?.missing_source_warnings ?? [];
+  const layer1Fallback = (label: string) => {
+    const warning = layer1Warnings.find((item) => item.toLowerCase().includes(label.toLowerCase()));
+    return warning ? `Layer 1 ${label} source issue: ${warning}.` : `Layer 1 ${label} source file not found in compact bundle.`;
+  };
   const baselineSleeves = parseSerializedList(baselineVersionRow?.subset_sleeves);
   const comparisonSleeves = parseSerializedList(comparisonVersionRow?.subset_sleeves);
   const addedSleeves = comparisonSleeves.filter((name) => !baselineSleeves.includes(name));
@@ -900,7 +911,7 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
           <Section id="signals" eyebrow="Layer 1" title="Signal research findings">
             <div className="grid gap-5 xl:grid-cols-2">
               <Panel title="Signal validation summary" subtitle="IC, Newey-West t-stats, redundancy, and validation-quality score from Layer 1.">
-                <SimpleTable rows={signalRows} columns={["signal_name", "recommendation", "avg_mean_ic", "avg_ic_tstat_nw", "avg_cross_coverage", "avg_abs_redundancy", "validation_quality_score"]} maxRows={18} />
+                <SimpleTable rows={signalRows} columns={["signal_name", "recommendation", "avg_mean_ic", "avg_ic_tstat_nw", "avg_cross_coverage", "avg_abs_redundancy", "validation_quality_score"]} maxRows={18} emptyMessage={layer1Fallback("signal validation summary")} />
               </Panel>
               <Panel title="Signal quality ranking" subtitle="Higher quality does not guarantee production usefulness; redundancy and implementation cost still matter.">
                 {signalRows.length ? <RankingBar rows={signalRows as Array<Record<string, unknown>>} metric="validation_quality_score" labelKey="signal_name" /> : <ChartFallback message="Data unavailable for Layer 1 signal ranking in the compact bundle." />}
@@ -912,6 +923,7 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
                     .sort((a, b) => Number(b.delta_sharpe_vs_base ?? 0) - Number(a.delta_sharpe_vs_base ?? 0))}
                   columns={["candidate_signal", "delta_sharpe_vs_base", "delta_ann_return_vs_base", "delta_max_drawdown_vs_base", "delta_turnover_vs_base", "avg_bil_weight", "avg_spy_weight"]}
                   maxRows={8}
+                  emptyMessage={layer1Fallback("incremental signal contribution")}
                 />
               </Panel>
               <Panel title="Signal subset comparison" subtitle="Compact comparison of the current full blend versus cleaner finalist subsets.">
@@ -919,6 +931,7 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
                   rows={[...data.improvementLab.signalSubsets].sort((a, b) => Number(b.sharpe ?? 0) - Number(a.sharpe ?? 0))}
                   columns={["combo_name", "ann_return", "ann_vol", "sharpe", "max_drawdown", "cvar_5", "avg_weekly_turnover"]}
                   maxRows={8}
+                  emptyMessage={layer1Fallback("signal subset comparison")}
                 />
               </Panel>
               <Panel title="IC decay by horizon" subtitle="Forward-horizon IC curves show whether predictive relationships persist or decay quickly.">
@@ -934,7 +947,7 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
                       ))}
                     </LineChart>
                   </ResponsiveContainer>
-                ) : <ChartFallback message="Data unavailable for Layer 1 IC decay in the compact bundle." />}
+                ) : <ChartFallback message={layer1Fallback("IC decay")} />}
               </Panel>
               <Panel title="Signal redundancy heatmap" subtitle="Correlation among standardized signal panels. Similar signals may add less incremental value downstream.">
                 <RedundancyHeatmap data={data.signalRedundancy} />

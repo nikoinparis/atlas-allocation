@@ -7,6 +7,7 @@ available.
 from __future__ import annotations
 
 import json
+import math
 from pathlib import Path
 
 import pandas as pd
@@ -39,6 +40,20 @@ def read_csv(path: Path) -> pd.DataFrame:
     if not path.exists():
         raise FileNotFoundError(path)
     return pd.read_csv(path)
+
+
+def clean_json(value):
+    if isinstance(value, float):
+        return value if math.isfinite(value) else None
+    if isinstance(value, dict):
+        return {str(k): clean_json(v) for k, v in value.items()}
+    if isinstance(value, list):
+        return [clean_json(v) for v in value]
+    return value
+
+
+def write_json(path: Path, payload: dict) -> None:
+    path.write_text(json.dumps(clean_json(payload), indent=2, allow_nan=False) + "\n")
 
 
 def metric_rows() -> pd.DataFrame:
@@ -272,7 +287,7 @@ def main() -> None:
     exposure = exposure_rows(summary)
     checklist = read_csv(PHASE_DIR / "phase_iii_promotion_checklist.csv")
 
-    REGISTRY_JSON.write_text(json.dumps(registry(), indent=2) + "\n")
+    write_json(REGISTRY_JSON, registry())
     summary.to_csv(SUMMARY_CSV, index=False)
     state.to_csv(STATE_CSV, index=False)
     exposure.to_csv(EXPOSURE_CSV, index=False)
@@ -308,11 +323,11 @@ def main() -> None:
         **timeseries_payload,
         **exposure_payload,
     }
-    DASHBOARD_SUMMARY_JSON.write_text(json.dumps(summary_payload, indent=2) + "\n")
-    DASHBOARD_TIMESERIES_JSON.write_text(json.dumps(timeseries_payload, indent=2) + "\n")
-    DASHBOARD_STATE_JSON.write_text(json.dumps(state_payload, indent=2) + "\n")
-    DASHBOARD_EXPOSURES_JSON.write_text(json.dumps(exposure_payload, indent=2) + "\n")
-    BUNDLE_JSON.write_text(json.dumps(bundle, indent=2) + "\n")
+    write_json(DASHBOARD_SUMMARY_JSON, summary_payload)
+    write_json(DASHBOARD_TIMESERIES_JSON, timeseries_payload)
+    write_json(DASHBOARD_STATE_JSON, state_payload)
+    write_json(DASHBOARD_EXPOSURES_JSON, exposure_payload)
+    write_json(BUNDLE_JSON, bundle)
 
     status = artifact_status()
     write_report(summary, checklist, status)

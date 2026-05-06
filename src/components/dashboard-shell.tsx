@@ -45,6 +45,8 @@ const sections = [
   { id: "robustness", label: "Diagnostics", icon: ShieldCheck },
 ];
 
+const COMPACT_DASHBOARD_BUNDLE_PATH = "/production-candidate-dashboard-bundle.json";
+
 const methodTableColumns = [
   "method_name",
   "category",
@@ -519,15 +521,15 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
       return;
     }
 
-    fetch("/production-candidate-dashboard-bundle.json", { cache: "no-store" })
+    fetch(COMPACT_DASHBOARD_BUNDLE_PATH, { cache: "no-store" })
       .then((response) => {
-        if (!response.ok) throw new Error(`Unable to load dashboard data: ${response.status}`);
+        if (!response.ok) throw new Error(`Unable to load compact dashboard bundle at ${COMPACT_DASHBOARD_BUNDLE_PATH}: ${response.status}`);
         return response.json();
       })
       .then((payload) => compactBundleToDashboardData(payload))
       .then((payload) => loadDashboardBundle(payload))
       .then((payload) => setData(payload))
-      .catch((err: Error) => setError(err.message));
+      .catch((err: Error) => setError(`Unable to load compact dashboard bundle at ${COMPACT_DASHBOARD_BUNDLE_PATH}: ${err.message}`));
   }, [initialData]);
 
   useEffect(() => {

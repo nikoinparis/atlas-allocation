@@ -3,7 +3,7 @@ import type { DashboardData, ReturnPoint, WeightPayload } from "@/types/dashboar
 type AnyRow = Record<string, string | number | boolean | null>;
 
 type CompactBundle = {
-  registry?: AnyRow;
+  registry?: Record<string, unknown>;
   summary?: AnyRow[];
   state_summary?: AnyRow[];
   exposure_summary?: AnyRow[];

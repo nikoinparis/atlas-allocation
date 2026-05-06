@@ -11,3 +11,7 @@ pnpm-debug.log*
 public/dashboard-data-detail*.json
 public/dashboard-data.json
 .claude/
+data/research/phase_ooo_signal_discovery/ooo1_ml_feature_discovery/ooo1_feature_panel.csv
+data/research/phase_ooo_signal_discovery/**/ooo*_feature_panel.csv
+data/research/phase_ooo_signal_discovery/**/*_predictions.csv
+data/research/phase_ooo_signal_discovery/**/*_model_predictions.csv

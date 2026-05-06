@@ -1,0 +1,21 @@
+{
+  "phase": "Phase LL \u2014 Structural dual-bucket allocator with W1",
+  "architecture": "post-hoc dual-bucket: prod_w * (1 - w_W1) + W1_positions * w_W1",
+  "limitations": "post-hoc reconstruction at the ETF level; cost convention is the standard 5bp half-spread on the resulting series",
+  "candidates": [
+    "improved_phasell_w1_bucket_fixed5",
+    "improved_phasell_w1_bucket_state_conditional",
+    "improved_phasell_w1_bucket_ml_conditional"
+  ],
+  "w1_sleeve": "composite_structural_defense_sleeve",
+  "w1_avg_holdings": {
+    "BIL": 0.6478352973451742,
+    "GLD": 0.08034708385841087,
+    "TLT": 0.06961235339038932,
+    "LQD": 0.06242152670206364,
+    "HYG": 0.05552693073451125,
+    "DBA": 0.04912167283431558
+  },
+  "best_candidate": "",
+  "rationale": "NO Phase LL candidate passes. Best diagnostic: improved_phasell_w1_bucket_fixed5; failure reasons: return drag +0.95pp without offsetting risk benefit; sharpe_imp -0.0937 and no MDD/CVaR upside; turnover>1.10x (1.92x); calm_trend worsens materially (-0.000157/wk)."
+}

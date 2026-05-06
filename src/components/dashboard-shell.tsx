@@ -29,6 +29,7 @@ import {
 } from "recharts";
 import type { ReactNode } from "react";
 
+import { compactBundleToDashboardData } from "@/lib/compact-dashboard";
 import { chartColors, formatNumber, formatPercent, isFiniteNumber, methodColor, metricLabel, shortDate, titleCase } from "@/lib/format";
 import type { DashboardData, MetricRow, ReturnPoint, WeightPoint } from "@/types/dashboard";
 
@@ -449,6 +450,44 @@ function buildBreakdownRows(rows: Array<Record<string, string | number | boolean
     .slice(0, 8);
 }
 
+function mergeDashboardData(base: DashboardData, detail: Partial<DashboardData>) {
+  return {
+    ...base,
+    ...detail,
+    overview: { ...base.overview, ...(detail.overview ?? {}) },
+    portfolioReturns: { ...base.portfolioReturns, ...(detail.portfolioReturns ?? {}) },
+    benchmarkReturns: { ...base.benchmarkReturns, ...(detail.benchmarkReturns ?? {}) },
+    portfolioWeights: { ...base.portfolioWeights, ...(detail.portfolioWeights ?? {}) },
+    sleeveWeights: { ...base.sleeveWeights, ...(detail.sleeveWeights ?? {}) },
+    improvementLab: {
+      ...base.improvementLab,
+      ...(detail.improvementLab ?? {}),
+      versionReturns: { ...base.improvementLab.versionReturns, ...(detail.improvementLab?.versionReturns ?? {}) },
+      versionWeights: { ...base.improvementLab.versionWeights, ...(detail.improvementLab?.versionWeights ?? {}) },
+      versionSleeveWeights: { ...base.improvementLab.versionSleeveWeights, ...(detail.improvementLab?.versionSleeveWeights ?? {}) },
+    },
+    manifests: { ...base.manifests, ...(detail.manifests ?? {}) },
+  };
+}
+
+async function loadDashboardBundle(summaryPayload: DashboardData): Promise<DashboardData> {
+  const detailPaths = Object.values(summaryPayload.detailFiles ?? {}).filter((value): value is string => Boolean(value));
+  if (!detailPaths.length) return summaryPayload;
+
+  let merged = summaryPayload;
+  for (const detailPath of detailPaths) {
+    try {
+      const response = await fetch(detailPath, { cache: "no-store" });
+      if (!response.ok) throw new Error(`Unable to load dashboard detail bundle: ${response.status}`);
+      const detailPayload = (await response.json()) as Partial<DashboardData>;
+      merged = mergeDashboardData(merged, detailPayload);
+    } catch {
+      return merged;
+    }
+  }
+  return merged;
+}
+
 function NarrativeList({ items }: { items: string[] }) {
   return (
     <ul className="space-y-3">
@@ -473,12 +512,20 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
   const [comparisonVersion, setComparisonVersion] = useState<string>(initialView.comparisonVersion);
 
   useEffect(() => {
-    if (initialData) return;
-    fetch("/dashboard-data.json", { cache: "no-store" })
+    if (initialData) {
+      loadDashboardBundle(initialData)
+        .then((payload) => setData(payload))
+        .catch((err: Error) => setError(err.message));
+      return;
+    }
+
+    fetch("/production-candidate-dashboard-bundle.json", { cache: "no-store" })
       .then((response) => {
         if (!response.ok) throw new Error(`Unable to load dashboard data: ${response.status}`);
-        return response.json() as Promise<DashboardData>;
+        return response.json();
       })
+      .then((payload) => compactBundleToDashboardData(payload))
+      .then((payload) => loadDashboardBundle(payload))
       .then((payload) => setData(payload))
       .catch((err: Error) => setError(err.message));
   }, [initialData]);
@@ -515,7 +562,7 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
             <p className="mono text-xs uppercase tracking-[0.28em] text-[#b9853b]">Dashboard Bundle</p>
             <h1 className="mt-3 text-4xl font-semibold text-[#f5f1e8]">Research dashboard data is not available yet.</h1>
             <p className="mt-4 max-w-2xl text-base leading-7 text-[#c8c1ad]">
-              Run the research pipeline, refresh the saved artifacts, and regenerate <span className="mono text-[#d7b072]">public/dashboard-data.json</span>. The page now renders server-first when that bundle exists, so there is no heavy client-side loading shell in the normal path.
+              Run the packaging review to regenerate <span className="mono text-[#d7b072]">public/production-candidate-dashboard-bundle.json</span>. The page renders from the compact production-candidate bundle.
             </p>
           </div>
         </div>

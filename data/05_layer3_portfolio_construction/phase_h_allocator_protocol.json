@@ -1,0 +1,37 @@
+{
+  "phase": "Phase H",
+  "purpose": "Allocator return on refined redesigned sleeve panel",
+  "reference_panel": [
+    "dual_momentum_topn",
+    "cta_trend_long_only",
+    "composite_trend_quality_refined",
+    "composite_confirmation_aware_momentum",
+    "composite_regime_conditioned",
+    "taa_10m_sma"
+  ],
+  "active_panel": [
+    "dual_momentum_topn",
+    "composite_calm_trend_specialist",
+    "composite_healthier_recovery_specialist",
+    "composite_anti_chop_clarity",
+    "composite_regime_conditioned",
+    "taa_10m_sma"
+  ],
+  "baseline_versions": {
+    "improved_phaseh_reference_core_blend": "Reference panel equal blend",
+    "improved_phaseh_refined_panel_blend": "Active refined panel equal blend"
+  },
+  "candidate_versions": {
+    "improved_phaseh_refined_state_allocator": "A1 bounded state-conditioned allocator",
+    "improved_phaseh_refined_learned_allocator": "A2 learned sleeve-quality allocator",
+    "improved_phaseh_refined_concentration_allocator": "A3 conditional concentration allocator",
+    "improved_phaseh_refined_combo_allocator": "A4 disciplined combo allocator"
+  },
+  "constraints": {
+    "transaction_cost_bps": 10,
+    "horizon_weeks": 4,
+    "min_train_weeks": 156,
+    "retrain_frequency_weeks": 26,
+    "top_level_cash_overlay": "disabled"
+  }
+}

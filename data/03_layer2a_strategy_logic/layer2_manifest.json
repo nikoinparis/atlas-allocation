@@ -368,6 +368,63 @@
     "description": "Top-N long-only sleeve that augments the incumbent selective blend with a simple multi-horizon trend ensemble (cross-sectional momentum, multi-horizon momentum, and time-series momentum)."
   },
   {
+    "strategy_name": "composite_trend_quality_module",
+    "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+    "type": "strategy_logic",
+    "required_inputs": [
+      "signal_xsmom.csv",
+      "signal_multi_horizon_mom.csv",
+      "signal_tsmom.csv",
+      "signal_trend_quality.csv"
+    ],
+    "rebalance_frequency": "monthly",
+    "lag_convention": "Consumes Layer 1 tradable signals only; trend-clarity score is computed from lagged prices and passed through the standard monthly rebalance schedule.",
+    "output_files": [
+      "strategy_positions_composite_trend_quality_module.csv",
+      "strategy_returns_composite_trend_quality_module.csv"
+    ],
+    "caveats": "Phase B trend-quality module: a cleaner offensive trend sleeve, not a wholesale regime overlay. It should only survive if calmer / confirmed trend participation improves without simply becoming a higher-beta rewrite of the existing selective sleeve.",
+    "description": "Top-N long-only trend-quality sleeve that combines cross-sectional momentum, multi-horizon momentum, time-series momentum, and trend-clarity to emphasize cleaner, less choppy trends."
+  },
+  {
+    "strategy_name": "composite_confirmation_aware_momentum",
+    "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+    "type": "strategy_logic",
+    "required_inputs": [
+      "signal_xsmom.csv",
+      "signal_multi_horizon_mom.csv",
+      "signal_breadth_confirmation.csv"
+    ],
+    "rebalance_frequency": "monthly",
+    "lag_convention": "Consumes Layer 1 tradable signals only; breadth confirmation is lagged and used as an activation-quality input inside the sleeve rather than as a top-level overlay.",
+    "output_files": [
+      "strategy_positions_composite_confirmation_aware_momentum.csv",
+      "strategy_returns_composite_confirmation_aware_momentum.csv"
+    ],
+    "caveats": "Phase B confirmation-aware sleeve: intended to express safer improving-state offense when momentum has broader confirmation. It is not a crash canary and should only survive if it adds distinct participation quality.",
+    "description": "Top-N long-only sleeve that combines momentum with breadth-confirmed momentum so offensive deployment is strongest when cross-asset participation confirms the setup."
+  },
+  {
+    "strategy_name": "composite_trend_quality_refined",
+    "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+    "type": "strategy_logic",
+    "required_inputs": [
+      "signal_xsmom.csv",
+      "signal_multi_horizon_mom.csv",
+      "signal_tsmom.csv",
+      "signal_trend_quality.csv",
+      "signal_moving_average_distance.csv"
+    ],
+    "rebalance_frequency": "monthly",
+    "lag_convention": "Consumes Layer 1 tradable signals only; moving-average distance is treated as a refinement feature, not a separate overlay or timing layer.",
+    "output_files": [
+      "strategy_positions_composite_trend_quality_refined.csv",
+      "strategy_returns_composite_trend_quality_refined.csv"
+    ],
+    "caveats": "Phase B refinement-only sleeve: moving-average distance is only allowed to stay if it materially improves the simpler trend-quality module. Otherwise it is just a redundant feature.",
+    "description": "Refined trend-quality sleeve that augments the trend-quality module with moving-average distance as a setup-quality feature."
+  },
+  {
     "strategy_name": "composite_selective_strength_weighted",
     "notebook_origin": "03_layer2a_strategy_logic.ipynb",
     "type": "strategy_logic",

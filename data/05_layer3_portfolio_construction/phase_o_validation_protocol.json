@@ -1,0 +1,40 @@
+{
+  "phase": "Phase O \u2014 Decision-Aware Portfolio Allocation (ML Phase 2)",
+  "fixed_comparator_set": [
+    "improved_phase2b_regime_confidence_boost",
+    "improved_phase2b_combo_abc",
+    "improved_phaseh_refined_state_allocator",
+    "improved_phasen_distributional_tail_allocator",
+    "improved_phasel_tail_turnover_learning_allocator",
+    "improved_phaseh_refined_panel_blend"
+  ],
+  "phase_o_candidates": [
+    "improved_phaseo_uncertainty_shrunk_allocator",
+    "improved_phaseo_turnover_gated_allocator",
+    "improved_phaseo_tail_priority_allocator",
+    "improved_phaseo_production_proximity_allocator",
+    "improved_phaseo_combo_decision_allocator"
+  ],
+  "production_pin": "improved_phase2b_regime_confidence_boost",
+  "shadow_pin": "improved_phase2b_combo_abc",
+  "holdout_weeks": 104,
+  "rolling_origin_rule": {
+    "min_train_weeks": 260,
+    "test_weeks": 104,
+    "step_weeks": 52
+  },
+  "bootstrap_rule": {
+    "method": "moving_block_bootstrap",
+    "block_weeks": 13,
+    "samples": 2000
+  },
+  "phase_d_promotion_gate": {
+    "full_raw_composite_delta_vs_production_min": 0.015,
+    "holdout_raw_composite_delta_vs_production_min": 0.0,
+    "holdout_sharpe_delta_vs_production_min": -0.02,
+    "rolling_raw_win_rate_vs_production_min": 0.55,
+    "holdout_bootstrap_prob_excess_return_min": 0.6,
+    "max_drawdown_worsening_cap": -0.01,
+    "cvar_worsening_cap": -0.002
+  }
+}

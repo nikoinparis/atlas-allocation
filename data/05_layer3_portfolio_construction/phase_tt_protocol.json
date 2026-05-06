@@ -1,0 +1,61 @@
+{
+  "phase": "TT",
+  "production_pin": "improved_phase2b_regime_confidence_boost",
+  "shadow_pin": "improved_phase2b_combo_abc",
+  "ss_reference": "improved_phasess_recovery_explicit_bucket",
+  "candidates": [
+    "improved_phasett_recovery_two_stage_bucket",
+    "improved_phasett_recovery_neutral_two_stage_bucket",
+    "improved_phasett_ss1_overlay_coordinated"
+  ],
+  "best_candidate": "improved_phasett_recovery_two_stage_bucket",
+  "selection_rule": {
+    "annual_return_drag_vs_prod": -0.003,
+    "min_sharpe_delta_vs_prod": 0.005,
+    "max_drawdown_worsening_vs_prod": -0.005,
+    "cvar_worsening_vs_prod": -0.0005,
+    "max_turnover_multiple_vs_prod": 1.1,
+    "require_overlay_absorption_reduction": true
+  },
+  "stage1_risky_targets": {
+    "improved_phasett_recovery_two_stage_bucket": {
+      "recovery_confirmed": 0.94,
+      "recovery_fragile": 0.9
+    },
+    "improved_phasett_recovery_neutral_two_stage_bucket": {
+      "neutral_healthy_proxy": 0.84,
+      "recovery_confirmed": 0.94,
+      "recovery_fragile": 0.9
+    },
+    "improved_phasett_ss1_overlay_coordinated": {
+      "recovery_confirmed": 0.935,
+      "recovery_fragile": 0.895
+    }
+  },
+  "risky_bucket_targets": {
+    "recovery_confirmed": {
+      "offense": 0.58,
+      "defense": 0.2,
+      "composite": 0.22,
+      "cash": 0.06
+    },
+    "recovery_fragile": {
+      "offense": 0.5,
+      "defense": 0.28,
+      "composite": 0.22,
+      "cash": 0.1
+    },
+    "neutral_healthy_proxy": {
+      "offense": 0.54,
+      "defense": 0.21,
+      "composite": 0.25,
+      "cash": 0.16
+    },
+    "stressed_panic": {
+      "offense": 0.24,
+      "defense": 0.08,
+      "composite": 0.17,
+      "cash": 0.51
+    }
+  }
+}

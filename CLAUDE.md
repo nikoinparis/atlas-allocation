@@ -19,14 +19,18 @@ Rules:
 - keep only changes that help out of sample alone or in combination
 - prioritize state-transition quality, re-risking speed, and reducing unnecessary BIL/cash drag
 
-Current production candidate (official):
+Current production pin (official / rollback):
 - improved_phase2b_regime_confidence_boost
+
+Production candidate pending human deployment review:
+- improved_phaseggg_confirmed_only_robust_offense
 
 Current research runner-up (shadow / alternate baseline):
 - improved_phase2b_combo_abc
 
 Dual-track rule:
-- `improved_phase2b_regime_confidence_boost` is the single production default in the dashboard, narratives, and reports.
+- `improved_phase2b_regime_confidence_boost` remains the single live production default until a human deployment review explicitly changes the pin.
+- `improved_phaseggg_confirmed_only_robust_offense` is packaged as the Phase III production candidate pending human review, with the old production pin preserved as rollback.
 - `improved_phase2b_combo_abc` is kept alive as a tracked research runner-up. It appears in the dashboard as an alternate comparison only, never as the headline production candidate.
 - Future Phase 3 sprints should report incremental contribution versus BOTH tracks separately (production + shadow) before promoting anything new.
 

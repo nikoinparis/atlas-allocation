@@ -1,0 +1,15 @@
+{
+  "phase": "Phase FFF \u2014 Layer 2A composite_regime_offense_component re-engineering",
+  "candidates": [
+    "improved_phasefff_recovery_quality_filtered_offense",
+    "improved_phasefff_recovery_confirmed_tilted_offense",
+    "improved_phasefff_robust_composite_offense",
+    "improved_phasefff_conservative_offense_polish"
+  ],
+  "production_pin": "improved_phase2b_regime_confidence_boost",
+  "shadow_pin": "improved_phase2b_combo_abc",
+  "eee1_reference": "improved_phaseeee_smoothed_near_exclude_dual",
+  "ddd1_reference": "improved_phaseddd_confirmed_harder_dual_cap",
+  "best_candidate": "improved_phasefff_robust_composite_offense",
+  "rationale": "Selected improved_phasefff_robust_composite_offense as KEEP AS SHADOW (RC repair vs EEE1)."
+}

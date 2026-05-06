@@ -1,0 +1,25 @@
+{
+  "phase": "RR",
+  "production_pin": "improved_phase2b_regime_confidence_boost",
+  "shadow_pin": "improved_phase2b_combo_abc",
+  "qq_reference": "improved_phaseqq_pp_combined_score_filtered",
+  "candidates": [
+    "improved_phaserr_good_state_bucket_participation",
+    "improved_phaserr_recovery_bucket_repair",
+    "improved_phaserr_combined_bucket_allocator"
+  ],
+  "best_candidate": "improved_phaserr_combined_bucket_allocator",
+  "selection_rule": {
+    "annual_return_drag_vs_prod": -0.003,
+    "min_sharpe_delta_vs_prod": 0.005,
+    "max_drawdown_worsening_vs_prod": -0.005,
+    "cvar_worsening_vs_prod": -0.0005,
+    "max_turnover_multiple_vs_prod": 1.1
+  },
+  "commands": [
+    "python scripts/phase_rr_bucket_allocator_redesign.py",
+    "python scripts/research_committee_report.py <best_candidate> --quick",
+    "python scripts/backtest_realism_audit.py <best_candidate> --quick",
+    "python scripts/allocator_benchmark_audit.py <best_candidate> --quick"
+  ]
+}

@@ -1,0 +1,4 @@
+best_candidate,rationale,name,ann_drag_pp,sharpe_imp,mdd_imp_pp,cvar_imp_pp,turnover_ratio_vs_prod,bil_inc_pp,deteriorating_state_delta_wkly,passes_all_gates,fail_reasons
+,NO Phase GG candidate passes. Best diagnostic: improved_phasegg_hint_inallocator_10; failure reasons: sharpe_imp<0.005 (-0.0063); underperforms in neutral_deteriorating (Δ=-0.000003/wk).,,,,,,,,,,
+,,improved_phasegg_hint_inallocator_10,0.03478556861287174,-0.006273522485918948,-0.10952099721036612,-0.011513431642988514,1.0014384788233885,0.005258002983865584,-2.8317691864656203e-06,False,sharpe_imp<0.005 (-0.0063); underperforms in neutral_deteriorating (Δ=-0.000003/wk)
+,,improved_phasegg_hint_inallocator_15,0.038043870716286676,-0.006643858940630354,-0.11365238134536382,-0.011724330420613549,1.0015844394892253,0.018844625537361992,-4.693823038100188e-06,False,sharpe_imp<0.005 (-0.0066); underperforms in neutral_deteriorating (Δ=-0.000005/wk)

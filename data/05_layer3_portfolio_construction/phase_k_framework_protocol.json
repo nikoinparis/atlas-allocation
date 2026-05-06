@@ -1,0 +1,145 @@
+{
+  "phase": "Phase K",
+  "purpose": "Robustness-aware allocator framework on refined redesigned sleeve panel",
+  "current_refined_allocator_reference": "improved_phaseh_refined_state_allocator",
+  "active_panel_baseline": "improved_phaseh_refined_panel_blend",
+  "older_bounded_reference": "improved_phasec_state_conditioned_map",
+  "candidate_versions": {
+    "improved_phasek_robust_objective_framework": "F1 objective-based robust allocator framework",
+    "improved_phasek_confidence_turnover_framework": "F2 confidence-margin + turnover-aware framework",
+    "improved_phasek_tail_aware_role_framework": "F3 tail-aware robust role framework"
+  },
+  "selection_window_weeks": 156,
+  "selection_step_weeks": 26,
+  "frameworks": {
+    "improved_phasek_robust_objective_framework": [
+      {
+        "name": "conservative",
+        "mu_scale": 0.7,
+        "lambda_var": 1.65,
+        "lambda_down": 0.95,
+        "lambda_tail": 0.9,
+        "lambda_turn": 1.05,
+        "lambda_anchor": 0.95,
+        "lambda_hhi": 0.48,
+        "confidence_power": 1.2,
+        "floor_lift": 0.05,
+        "cap_lift": 0.0
+      },
+      {
+        "name": "balanced",
+        "mu_scale": 0.9,
+        "lambda_var": 1.2,
+        "lambda_down": 0.78,
+        "lambda_tail": 0.72,
+        "lambda_turn": 0.82,
+        "lambda_anchor": 0.75,
+        "lambda_hhi": 0.34,
+        "confidence_power": 1.0,
+        "floor_lift": 0.03,
+        "cap_lift": 0.02
+      },
+      {
+        "name": "conviction",
+        "mu_scale": 1.1,
+        "lambda_var": 0.95,
+        "lambda_down": 0.6,
+        "lambda_tail": 0.58,
+        "lambda_turn": 0.62,
+        "lambda_anchor": 0.58,
+        "lambda_hhi": 0.22,
+        "confidence_power": 0.85,
+        "floor_lift": 0.0,
+        "cap_lift": 0.05
+      }
+    ],
+    "improved_phasek_confidence_turnover_framework": [
+      {
+        "name": "margin_strict",
+        "mu_scale": 0.88,
+        "lambda_var": 1.08,
+        "lambda_down": 0.7,
+        "lambda_tail": 0.64,
+        "lambda_turn": 1.18,
+        "lambda_anchor": 0.86,
+        "lambda_hhi": 0.34,
+        "confidence_power": 1.45,
+        "floor_lift": 0.04,
+        "cap_lift": 0.0
+      },
+      {
+        "name": "margin_balanced",
+        "mu_scale": 1.02,
+        "lambda_var": 1.0,
+        "lambda_down": 0.62,
+        "lambda_tail": 0.58,
+        "lambda_turn": 0.94,
+        "lambda_anchor": 0.74,
+        "lambda_hhi": 0.28,
+        "confidence_power": 1.25,
+        "floor_lift": 0.02,
+        "cap_lift": 0.03
+      },
+      {
+        "name": "margin_fast",
+        "mu_scale": 1.18,
+        "lambda_var": 0.92,
+        "lambda_down": 0.56,
+        "lambda_tail": 0.5,
+        "lambda_turn": 0.74,
+        "lambda_anchor": 0.6,
+        "lambda_hhi": 0.2,
+        "confidence_power": 1.1,
+        "floor_lift": 0.0,
+        "cap_lift": 0.06
+      }
+    ],
+    "improved_phasek_tail_aware_role_framework": [
+      {
+        "name": "tail_guard",
+        "mu_scale": 0.82,
+        "lambda_var": 1.35,
+        "lambda_down": 1.05,
+        "lambda_tail": 1.1,
+        "lambda_turn": 0.88,
+        "lambda_anchor": 0.86,
+        "lambda_hhi": 0.38,
+        "confidence_power": 1.15,
+        "floor_lift": 0.05,
+        "cap_lift": -0.02
+      },
+      {
+        "name": "tail_balanced",
+        "mu_scale": 0.96,
+        "lambda_var": 1.15,
+        "lambda_down": 0.86,
+        "lambda_tail": 0.9,
+        "lambda_turn": 0.76,
+        "lambda_anchor": 0.72,
+        "lambda_hhi": 0.3,
+        "confidence_power": 1.0,
+        "floor_lift": 0.03,
+        "cap_lift": 0.0
+      },
+      {
+        "name": "tail_flexible",
+        "mu_scale": 1.06,
+        "lambda_var": 1.0,
+        "lambda_down": 0.74,
+        "lambda_tail": 0.78,
+        "lambda_turn": 0.68,
+        "lambda_anchor": 0.62,
+        "lambda_hhi": 0.24,
+        "confidence_power": 0.95,
+        "floor_lift": 0.01,
+        "cap_lift": 0.02
+      }
+    ]
+  },
+  "design_principles": [
+    "objective-based role-aware allocation",
+    "explicit turnover penalty inside objective",
+    "explicit downside and tail penalties inside objective",
+    "walk-forward selection of robust configurations using trailing history only"
+  ]
+}

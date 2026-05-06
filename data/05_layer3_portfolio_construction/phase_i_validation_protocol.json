@@ -1,0 +1,17 @@
+{
+  "phase": "Phase I",
+  "fixed_comparator_set": [
+    "improved_phase2b_regime_confidence_boost",
+    "improved_phase2b_combo_abc",
+    "improved_phaseh_refined_state_allocator",
+    "improved_phaseh_refined_panel_blend",
+    "improved_phaseh_reference_core_blend"
+  ],
+  "candidate_versions": [
+    "improved_phasei_smooth_state_allocator",
+    "improved_phasei_tail_disciplined_allocator",
+    "improved_phasei_turnover_aware_allocator",
+    "improved_phasei_robust_role_allocator"
+  ],
+  "validation_rules_source": "phase_d_validation_protocol.json"
+}

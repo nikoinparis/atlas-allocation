@@ -1,0 +1,4 @@
+best_candidate,rationale,name,ann_imp_pp,sharpe_imp,mdd_imp_pp,cvar_imp_pp,turnover_ratio_vs_prod,bil_inc_pp,stressed_panic_delta_wkly,recovery_fragile_delta_wkly,passes_all_gates,fail_reasons
+,NO Phase KK candidate passes. Best diagnostic: improved_phasekk_targeta_confidence_replacement; failure reasons: sharpe_imp<0.005 (-0.0010); mdd_worse>0.5pp (-0.53pp).,,,,,,,,,,,
+,,improved_phasekk_targeta_confidence_replacement,0.09357848293278792,-0.0009748480641844637,-0.5316980723739873,-0.03580143162933182,1.004903724788874,-0.7768395185742794,-1.2177699556691589e-05,1.065288366224092e-06,False,sharpe_imp<0.005 (-0.0010); mdd_worse>0.5pp (-0.53pp)
+,,improved_phasekk_targeta_confidence_blend25,0.030169853898875942,-0.0014077258181958152,-0.2009120771791495,-0.016133579395585795,1.0046211423127143,-0.3129579997114773,-7.5647119244781885e-06,-6.364128371765714e-06,False,sharpe_imp<0.005 (-0.0014)

@@ -1,0 +1,4 @@
+best_candidate,rationale,name,ann_imp_pp,sharpe_imp,mdd_imp_pp,cvar_imp_pp,turnover_ratio_vs_prod,bil_inc_pp,stressed_panic_delta_wkly,recovery_fragile_delta_wkly,neutral_healthy_delta_wkly,calm_trend_delta_wkly,passes_all_gates,fail_reasons
+,NO Phase JJ portfolio candidate passes. Best diagnostic: improved_phasejj_ml_riskdial_25; failure reasons: sharpe_imp<0.005 (-0.0012).,,,,,,,,,,,,,
+,,improved_phasejj_ml_riskdial_25,0.02780891649445394,-0.0011568511281877525,-0.2032766314426393,-0.014094372777041092,1.003686202317099,-0.2838310739130878,-8.853491028863476e-06,-1.0771762630921002e-05,2.109693024283238e-05,2.1901642703162126e-06,False,sharpe_imp<0.005 (-0.0012)
+,,improved_phasejj_ml_riskdial_50,0.06650047044272078,-0.002079541023802589,-0.5085219921760031,-0.030207549211078155,1.00500694100819,-0.6265104097151697,-1.5605550584458475e-05,-1.0263668310735033e-05,5.730186967084234e-05,1.477260702079878e-06,False,sharpe_imp<0.005 (-0.0021); mdd_worse>0.5pp (-0.51pp)

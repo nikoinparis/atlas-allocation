@@ -1,0 +1,34 @@
+{
+  "phase": "Phase HH \u2014 Refined-state regime-confidence FEATURE",
+  "portfolio_candidates": [
+    "improved_phasehh_refined_confidence_additive",
+    "improved_phasehh_refined_confidence_smoothing"
+  ],
+  "ablation_only": [
+    "phase_hh_feature_ablation"
+  ],
+  "integration_point": "scripts/build_improvement_artifacts.py \u2014 apply_overlays_custom (HH1 adds \u00b10.02 to regime_multiplier from refined_state; HH2 scales dynamic_speed by 0.85 in neutral_deteriorating only)",
+  "selection_rule": {
+    "ann_ret_drag_max_pp": 0.3,
+    "sharpe_improvement_min": 0.005,
+    "mdd_worsening_max_pp": 0.5,
+    "cvar_worsening_max_pp": 0.05,
+    "turnover_ratio_max_vs_prod": 1.1,
+    "bil_increase_max_pp": 5.0,
+    "neutral_deteriorating_state_must_not_underperform": true,
+    "neutral_healthy_must_not_materially_worsen": true,
+    "recovery_confirmed_must_not_materially_worsen": true
+  },
+  "best_candidate": "",
+  "rationale": "NO Phase HH portfolio candidate passes. Best diagnostic: improved_phasehh_refined_confidence_additive; failure reasons: sharpe_imp<0.005 (+0.0014); underperforms in neutral_deteriorating (\u0394=-0.000028/wk).",
+  "branch_should_retire": true,
+  "branch_decision": "RETIRE Phase CC refined-state PORTFOLIO-CONSUMPTION path. Refined state remains useful upstream intelligence (state classification reporting / dashboards), but does not deliver portfolio improvement either as a sleeve/ETF multiplier (DD/EE/FF/GG) or as a regime-confidence feature (HH1/HH2).",
+  "feature_ablation": {
+    "available": true,
+    "n_obs": 906,
+    "brier_baseline": 0.21109638851245116,
+    "brier_aug_with_refined_state": 0.19242729557060315,
+    "improvement_baseline_minus_aug": 0.018669092941848014,
+    "interpretation": "augmented improves forward-panic Brier"
+  }
+}

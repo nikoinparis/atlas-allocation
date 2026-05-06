@@ -1,0 +1,36 @@
+{
+  "phase": "QQ",
+  "production_pin": "improved_phase2b_regime_confidence_boost",
+  "shadow_pin": "improved_phase2b_combo_abc",
+  "target_sleeve": "composite_regime_conditioned",
+  "candidate_names": [
+    "improved_phaseqq_cash_defense_score_fallback",
+    "improved_phaseqq_reason_specific_fallback",
+    "improved_phaseqq_pp_combined_score_filtered"
+  ],
+  "commands_executed": [
+    "python scripts/phase_qq_composite_cash_reason_score.py",
+    "/Library/Developer/CommandLineTools/usr/bin/python3 /Users/nicholasturangan/Documents/Portfolio Optimizer/scripts/build_improvement_artifacts.py",
+    "/Library/Developer/CommandLineTools/usr/bin/python3 /Users/nicholasturangan/Documents/Portfolio Optimizer/scripts/research_committee_report.py improved_phaseqq_pp_combined_score_filtered --quick"
+  ],
+  "diagnostic_outputs": [
+    "data/research/phase_qq_composite_cash_reason_score/phase_qq_cash_reason_by_state.csv",
+    "data/research/phase_qq_composite_cash_reason_score/phase_qq_cash_reason_forward_outcomes.csv",
+    "data/research/phase_qq_composite_cash_reason_score/phase_qq_cash_reason_feature_profile.csv",
+    "data/research/phase_qq_composite_cash_reason_score/phase_qq_cash_defense_score.csv",
+    "data/research/phase_qq_composite_cash_reason_score/phase_qq_cash_defense_bucket_forward_outcomes.csv",
+    "data/research/phase_qq_composite_cash_reason_score/phase_qq_cash_defense_thresholds.json",
+    "data/research/phase_qq_composite_cash_reason_score/phase_qq_fallback_mix_by_bucket.csv",
+    "data/research/phase_qq_composite_cash_reason_score/phase_qq_fallback_mix_risk_summary.csv",
+    "data/research/phase_qq_composite_cash_reason_score/phase_qq_candidate_diagnostics.csv"
+  ],
+  "candidate_outputs": [
+    "data/05_layer3_portfolio_construction/phase_qq_candidate_metrics_full.csv",
+    "data/05_layer3_portfolio_construction/phase_qq_state_summary.csv",
+    "data/05_layer3_portfolio_construction/phase_qq_selection_table.csv"
+  ],
+  "best_candidate": "improved_phaseqq_pp_combined_score_filtered",
+  "quick_verdict": "KEEP AS SHADOW",
+  "layer56_quick_audits_ran": false,
+  "score_separates_danger_vs_drag": false
+}

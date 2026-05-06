@@ -1,0 +1,11 @@
+{
+  "phase": "Phase III \u2014 GGG1 production candidate review",
+  "candidate": "improved_phaseggg_confirmed_only_robust_offense",
+  "production_pin": "improved_phase2b_regime_confidence_boost",
+  "shadow_pin": "improved_phase2b_combo_abc",
+  "eee1_reference": "improved_phaseeee_smoothed_near_exclude_dual",
+  "decision": "PROMOTE TO PRODUCTION CANDIDATE",
+  "rationale": "Sharpe vs prod +0.0518; ann return vs prod +0.246pp; checklist 18/18 passed. Failed: none.",
+  "polish_candidate_created": false,
+  "polish_skip_reason": "GGG1 turnover already at 1.0998x (under 1.10 cap by 0.0002); any sleeve_reallocation_speed reduction risks RC repair regression. No obvious safe polish."
+}

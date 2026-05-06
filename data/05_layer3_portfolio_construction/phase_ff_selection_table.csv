@@ -1,0 +1,4 @@
+best_candidate,rationale,name,ann_drag_pp,sharpe_imp,mdd_imp_pp,cvar_imp_pp,turnover_ratio_vs_prod,bil_inc_pp,deteriorating_state_delta_wkly,passes_all_gates,fail_reasons
+,NO Phase FF candidate passes. Best diagnostic: improved_phaseff_hint_inallocator_light; failure reasons: sharpe_imp<0.005 (-0.0059); underperforms in neutral_deteriorating (Δ=-0.000001/wk).,,,,,,,,,,
+,,improved_phaseff_hint_inallocator_light,0.03168888146531934,-0.005930063381070716,-0.10568605282854637,-0.01135833413374622,1.0013132744264948,-0.00821152308629891,-7.666591242175801e-07,False,sharpe_imp<0.005 (-0.0059); underperforms in neutral_deteriorating (Δ=-0.000001/wk)
+,,improved_phaseff_hint_inallocator_state_gated,0.03168888146531934,-0.005930063381070716,-0.10568605282854637,-0.01135833413374622,1.0013132744264948,-0.00821152308629891,-7.666591242175801e-07,False,sharpe_imp<0.005 (-0.0059); underperforms in neutral_deteriorating (Δ=-0.000001/wk)

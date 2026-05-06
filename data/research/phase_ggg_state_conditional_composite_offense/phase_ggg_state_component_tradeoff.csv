@@ -1,0 +1,6 @@
+version,construction,states_using_filtered,default_offense_etfs,recovery_confirmed_offense_etfs
+improved_phaseeee_smoothed_near_exclude_dual,static_broad,,"SPY,QQQ,IWM,EFA,VEA,VWO,EWJ,VNQ,PDBC,DBA","SPY,QQQ,IWM,EFA,VEA,VWO,EWJ,VNQ,PDBC,DBA"
+improved_phasefff_robust_composite_offense,static_filtered,all,"SPY,QQQ,IWM,EFA,VEA,VWO,EWJ,VNQ","SPY,QQQ,IWM,EFA,VEA,VWO,EWJ,VNQ"
+improved_phaseggg_confirmed_only_robust_offense,state_conditional,recovery_confirmed,"SPY,QQQ,IWM,EFA,VEA,VWO,EWJ,VNQ,PDBC,DBA","SPY,QQQ,IWM,EFA,VEA,VWO,EWJ,VNQ"
+improved_phaseggg_confirmed_only_quality_filtered_offense,state_conditional,recovery_confirmed,"SPY,QQQ,IWM,EFA,VEA,VWO,EWJ,VNQ,PDBC,DBA","SPY,QQQ,IWM,EFA,VEA,VWO,VNQ"
+improved_phaseggg_blended_confirmed_robust_offense,state_conditional_blended,recovery_confirmed (50/50 blend),"SPY,QQQ,IWM,EFA,VEA,VWO,EWJ,VNQ,PDBC,DBA","0.5*broad + 0.5*(SPY,QQQ,IWM,EFA,VEA,VWO,EWJ,VNQ)"

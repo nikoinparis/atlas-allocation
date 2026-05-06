@@ -1,0 +1,128 @@
+{
+  "phase": "Phase M",
+  "purpose": "Final allocator-category sprint on refined redesigned panel",
+  "current_refined_allocator_reference": "improved_phaseh_refined_state_allocator",
+  "current_learning_branch": "improved_phasel_tail_turnover_learning_allocator",
+  "active_panel_baseline": "improved_phaseh_refined_panel_blend",
+  "candidate_versions": {
+    "improved_phasem_validation_first_learning_allocator": "F1 validation-first learning objective allocator",
+    "improved_phasem_production_proximity_allocator": "F2 production-proximity allocator"
+  },
+  "selection_window_weeks": 156,
+  "pseudo_holdout_weeks": 52,
+  "selection_step_weeks": 26,
+  "config_sets": {
+    "improved_phasem_validation_first_learning_allocator": [
+      {
+        "name": "vf_stable",
+        "decision_weight": 0.46,
+        "tail_weight": 0.22,
+        "simple_weight": 0.12,
+        "prior_weight": 0.08,
+        "ref_weight": 0.08,
+        "tail_ref_weight": 0.04,
+        "mu_scale": 0.86,
+        "lambda_var": 1.12,
+        "lambda_down": 0.92,
+        "lambda_tail": 0.92,
+        "lambda_turn": 0.95,
+        "lambda_anchor": 0.82,
+        "lambda_hhi": 0.28,
+        "confidence_scale": 0.78
+      },
+      {
+        "name": "vf_balanced",
+        "decision_weight": 0.52,
+        "tail_weight": 0.2,
+        "simple_weight": 0.12,
+        "prior_weight": 0.06,
+        "ref_weight": 0.06,
+        "tail_ref_weight": 0.04,
+        "mu_scale": 0.94,
+        "lambda_var": 1.02,
+        "lambda_down": 0.78,
+        "lambda_tail": 0.78,
+        "lambda_turn": 0.86,
+        "lambda_anchor": 0.74,
+        "lambda_hhi": 0.24,
+        "confidence_scale": 0.92
+      },
+      {
+        "name": "vf_retentive",
+        "decision_weight": 0.58,
+        "tail_weight": 0.16,
+        "simple_weight": 0.12,
+        "prior_weight": 0.06,
+        "ref_weight": 0.05,
+        "tail_ref_weight": 0.03,
+        "mu_scale": 1.0,
+        "lambda_var": 0.96,
+        "lambda_down": 0.68,
+        "lambda_tail": 0.66,
+        "lambda_turn": 0.78,
+        "lambda_anchor": 0.64,
+        "lambda_hhi": 0.2,
+        "confidence_scale": 1.04
+      }
+    ],
+    "improved_phasem_production_proximity_allocator": [
+      {
+        "name": "pp_close",
+        "decision_weight": 0.42,
+        "tail_weight": 0.28,
+        "simple_weight": 0.1,
+        "prior_weight": 0.07,
+        "ref_weight": 0.06,
+        "tail_ref_weight": 0.07,
+        "mu_scale": 0.82,
+        "lambda_var": 1.18,
+        "lambda_down": 1.02,
+        "lambda_tail": 1.05,
+        "lambda_turn": 1.02,
+        "lambda_anchor": 0.9,
+        "lambda_hhi": 0.3,
+        "confidence_scale": 0.72
+      },
+      {
+        "name": "pp_holdout",
+        "decision_weight": 0.48,
+        "tail_weight": 0.24,
+        "simple_weight": 0.1,
+        "prior_weight": 0.06,
+        "ref_weight": 0.06,
+        "tail_ref_weight": 0.06,
+        "mu_scale": 0.88,
+        "lambda_var": 1.1,
+        "lambda_down": 0.9,
+        "lambda_tail": 0.92,
+        "lambda_turn": 0.94,
+        "lambda_anchor": 0.82,
+        "lambda_hhi": 0.26,
+        "confidence_scale": 0.82
+      },
+      {
+        "name": "pp_upside",
+        "decision_weight": 0.54,
+        "tail_weight": 0.2,
+        "simple_weight": 0.12,
+        "prior_weight": 0.05,
+        "ref_weight": 0.05,
+        "tail_ref_weight": 0.04,
+        "mu_scale": 0.96,
+        "lambda_var": 1.0,
+        "lambda_down": 0.78,
+        "lambda_tail": 0.78,
+        "lambda_turn": 0.84,
+        "lambda_anchor": 0.72,
+        "lambda_hhi": 0.22,
+        "confidence_scale": 0.92
+      }
+    ]
+  },
+  "design_principles": [
+    "validation-first config selection using trailing pseudo-holdout and rolling proxy quality",
+    "production-proximity scoring against Phase D-like acceptance shape",
+    "role-aware learning signals from decision and tail utility models",
+    "no broad sleeve search or model zoo expansion"
+  ]
+}

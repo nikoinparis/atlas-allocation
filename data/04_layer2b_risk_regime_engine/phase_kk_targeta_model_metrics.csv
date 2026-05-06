@@ -1,0 +1,3 @@
+model,label,target,n_obs,brier,auc,log_loss,pos_rate,pred_mean
+baseline_existing,p_regime_only_inverted,target_A_stress_transition_4w,1105,0.22138666646930236,0.7339975623123676,0.6323669397495578,0.27692307692307694,0.5055310785978726
+logistic_kk,regime_only_target_a,target_A_stress_transition_4w,845,0.09365967568360004,0.8805711051971492,0.3526291859263936,0.24142011834319527,0.20779193271275764

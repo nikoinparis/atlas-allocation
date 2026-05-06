@@ -92,6 +92,7 @@ export type SignalRow = {
 export type DashboardData = {
   generatedAt: string;
   latestDate: string | null;
+  detailFiles?: Record<string, string | null> | null;
   overview: {
     projectTitle: string;
     bestByRobustness: MetricRow | null;

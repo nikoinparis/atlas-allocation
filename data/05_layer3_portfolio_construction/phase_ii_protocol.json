@@ -1,0 +1,28 @@
+{
+  "phase": "Phase II \u2014 Return-participation upgrade for production (NO Phase CC features used)",
+  "candidates": [
+    "improved_phaseii_good_state_participation_light",
+    "improved_phaseii_recovery_confirmed_participation_light"
+  ],
+  "integration_point": "scripts/build_improvement_artifacts.py \u2014 apply_overlays_custom (II1/II2 add +0.015 to regime_multiplier in qualifying favorable weeks)",
+  "features_used": [
+    "market_state",
+    "breadth_sma_43",
+    "breadth_26w_mom",
+    "market_trend_positive",
+    "is_strong_neutral_state_row helper"
+  ],
+  "phase_cc_artifacts_used": "NONE \u2014 refined_state, defensive_overlay_hint, deterioration_z explicitly NOT consulted",
+  "selection_rule": {
+    "ann_return_improvement_min_pp_or_sharpe_min": "0.20pp OR 0.005",
+    "mdd_worsening_max_pp": 0.5,
+    "cvar_worsening_max_pp": 0.05,
+    "turnover_ratio_max_vs_prod": 1.1,
+    "bil_drop_max_pp_without_offsetting_benefit": 5.0,
+    "stressed_panic_must_not_be_materially_worse": true,
+    "recovery_fragile_must_not_be_materially_worse": true,
+    "no_hidden_beta_inflation": true
+  },
+  "best_candidate": "",
+  "rationale": "NO Phase II candidate passes. Best diagnostic: improved_phaseii_good_state_participation_light; failure reasons: no qualifying improvement (ann +0.02pp, sharpe +0.0004)."
+}

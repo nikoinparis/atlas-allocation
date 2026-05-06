@@ -1,0 +1,31 @@
+{
+  "phase": "PP",
+  "production_pin": "improved_phase2b_regime_confidence_boost",
+  "shadow_pin": "improved_phase2b_combo_abc",
+  "target_sleeve": "composite_regime_conditioned",
+  "candidate_names": [
+    "improved_phasepp_composite_bond_gold_fallback",
+    "improved_phasepp_composite_balanced_defensive_fallback",
+    "improved_phasepp_composite_combined_fallback_redesign"
+  ],
+  "commands_executed": [
+    "python scripts/phase_pp_composite_fallback_redesign.py",
+    "/Library/Developer/CommandLineTools/usr/bin/python3 /Users/nicholasturangan/Documents/Portfolio Optimizer/scripts/build_improvement_artifacts.py",
+    "/Library/Developer/CommandLineTools/usr/bin/python3 /Users/nicholasturangan/Documents/Portfolio Optimizer/scripts/research_committee_report.py improved_phasepp_composite_combined_fallback_redesign --quick",
+    "/Library/Developer/CommandLineTools/usr/bin/python3 /Users/nicholasturangan/Documents/Portfolio Optimizer/scripts/backtest_realism_audit.py improved_phasepp_composite_combined_fallback_redesign --quick",
+    "/Library/Developer/CommandLineTools/usr/bin/python3 /Users/nicholasturangan/Documents/Portfolio Optimizer/scripts/allocator_benchmark_audit.py improved_phasepp_composite_combined_fallback_redesign --quick"
+  ],
+  "diagnostic_outputs": [
+    "data/research/phase_pp_composite_fallback_redesign/phase_pp_fallback_tier_by_state.csv",
+    "data/research/phase_pp_composite_fallback_redesign/phase_pp_fallback_mix_diagnostics.csv",
+    "data/research/phase_pp_composite_fallback_redesign/phase_pp_candidate_diagnostics.csv"
+  ],
+  "candidate_outputs": [
+    "data/05_layer3_portfolio_construction/phase_pp_candidate_metrics_full.csv",
+    "data/05_layer3_portfolio_construction/phase_pp_state_summary.csv",
+    "data/05_layer3_portfolio_construction/phase_pp_selection_table.csv"
+  ],
+  "best_candidate": "improved_phasepp_composite_combined_fallback_redesign",
+  "quick_verdict": "KEEP AS SHADOW",
+  "layer56_quick_audits_ran": true
+}

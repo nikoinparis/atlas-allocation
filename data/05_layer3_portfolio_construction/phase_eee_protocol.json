@@ -1,0 +1,14 @@
+{
+  "phase": "Phase EEE \u2014 turnover-smoothed aggressive dual cap",
+  "candidates": [
+    "improved_phaseeee_smoothed_near_exclude_dual",
+    "improved_phaseeee_turnover_aware_dual_cap",
+    "improved_phaseeee_selective_dual_escalation"
+  ],
+  "production_pin": "improved_phase2b_regime_confidence_boost",
+  "shadow_pin": "improved_phase2b_combo_abc",
+  "ddd1_reference": "improved_phaseddd_confirmed_harder_dual_cap",
+  "ddd2_reference": "improved_phaseddd_confirmed_near_exclude_dual",
+  "best_candidate": "improved_phaseeee_selective_dual_escalation",
+  "rationale": "Selected improved_phaseeee_selective_dual_escalation (strict gates passed; below challenger threshold)."
+}

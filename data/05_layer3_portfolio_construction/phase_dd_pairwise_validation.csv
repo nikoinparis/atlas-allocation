@@ -1,0 +1,4 @@
+version_name,full_raw_delta_vs_production,holdout_raw_delta_vs_production,holdout_sharpe_delta_vs_production,bootstrap_prob_vs_production,max_drawdown_delta_vs_production,cvar_delta_vs_production
+improved_phasedd_hint_light,-0.15921285368275895,-0.1571774989209073,-0.10385387671147539,0.0,-0.004426450382402636,-0.000492162204919086
+improved_phasedd_hint_moderate,-0.15564126149974017,-0.1543059472583379,-0.10540247213557952,0.0,0.000659110200939117,-0.0002261854559447267
+improved_phasedd_hint_state_gated,-0.18091837594498267,-0.17737251383553151,-0.10897482934564284,0.0,-0.010334254834036383,-0.0005016882290966619

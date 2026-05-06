@@ -1,0 +1,19 @@
+check,passed,value
+sharpe_beats_prod_by_>=_+0.020,True,+0.0518
+ann_return_beats_prod,True,+0.246pp
+mdd_not_materially_worse_(<=+0.5pp),True,+2.202pp
+cvar_not_materially_worse_(<=+0.05pp),True,+0.080pp
+holdout_sharpe_improves,True,+0.1975
+holdout_ann_return_improves,True,+2.218pp
+turnover_under_1.10x_cap,True,1.0998x
+spy_exposure_not_higher,True,-1.056pp
+bil_exposure_not_higher_(no_hidden_cash),True,-1.734pp
+stressed_panic_no_material_regression,True,+0.211pp
+recovery_confirmed_close_to_prod,True,-0.044pp
+recovery_fragile_no_unacceptable_regression,True,-0.306pp
+calm_trend_no_regression,True,+0.527pp
+neutral_mixed_no_regression,True,+0.168pp
+survives_doubled_cost_(10bp),True,+0.254pp
+survives_1w_delay,True,+0.362pp
+causal_production_pipeline_clean,True,same saved production artifact pipeline
+allocator_benchmark_passed,True,full audit required in Phase III

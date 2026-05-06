@@ -1,0 +1,32 @@
+{
+  "phase": "OO",
+  "production_pin": "improved_phase2b_regime_confidence_boost",
+  "shadow_pin": "improved_phase2b_combo_abc",
+  "target_sleeve": "composite_regime_conditioned",
+  "candidate_names": [
+    "improved_phaseoo_composite_recovery_cash_relief",
+    "improved_phaseoo_composite_neutral_cash_relief",
+    "improved_phaseoo_composite_combined_cash_relief"
+  ],
+  "commands_executed": [
+    "python scripts/phase_oo_composite_regime_cash_audit.py",
+    "/Library/Developer/CommandLineTools/usr/bin/python3 /Users/nicholasturangan/Documents/Portfolio Optimizer/scripts/build_improvement_artifacts.py",
+    "/Library/Developer/CommandLineTools/usr/bin/python3 /Users/nicholasturangan/Documents/Portfolio Optimizer/scripts/research_committee_report.py improved_phaseoo_composite_combined_cash_relief --quick",
+    "/Library/Developer/CommandLineTools/usr/bin/python3 /Users/nicholasturangan/Documents/Portfolio Optimizer/scripts/backtest_realism_audit.py improved_phaseoo_composite_combined_cash_relief --quick",
+    "/Library/Developer/CommandLineTools/usr/bin/python3 /Users/nicholasturangan/Documents/Portfolio Optimizer/scripts/allocator_benchmark_audit.py improved_phaseoo_composite_combined_cash_relief --quick"
+  ],
+  "diagnostic_outputs": [
+    "data/research/phase_oo_composite_regime_cash/phase_oo_composite_regime_exposure_by_state.csv",
+    "data/research/phase_oo_composite_regime_cash/phase_oo_composite_regime_bil_source_diagnostics.csv",
+    "data/research/phase_oo_composite_regime_cash/phase_oo_composite_regime_component_breakdown.csv",
+    "data/research/phase_oo_composite_regime_cash/phase_oo_candidate_diagnostics.csv"
+  ],
+  "candidate_outputs": [
+    "data/05_layer3_portfolio_construction/phase_oo_candidate_metrics_full.csv",
+    "data/05_layer3_portfolio_construction/phase_oo_state_summary.csv",
+    "data/05_layer3_portfolio_construction/phase_oo_selection_table.csv"
+  ],
+  "best_candidate": "improved_phaseoo_composite_combined_cash_relief",
+  "quick_verdict": "KEEP AS SHADOW",
+  "layer56_quick_audits_ran": true
+}

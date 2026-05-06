@@ -1,0 +1,14 @@
+{
+  "phase": "Phase ZZ \u2014 Decomposed-component allocator rebudgeting",
+  "candidates": [
+    "improved_phasezz_recovery_offense_rebudget",
+    "improved_phasezz_recovery_neutral_offense_rebudget",
+    "improved_phasezz_confirmed_freer_fragile_conservative",
+    "improved_phasezz_conservative_decomposition_repair"
+  ],
+  "production_pin": "improved_phase2b_regime_confidence_boost",
+  "shadow_pin": "improved_phase2b_combo_abc",
+  "yy_reference": "improved_phaseyy_conservative_decomposition",
+  "best_candidate": "",
+  "rationale": "NO Phase ZZ candidate passes strict OR shadow gates. Best diagnostic: improved_phasezz_recovery_offense_rebudget; failure reasons: recovery_confirmed not repaired (-1.06pp ann); recovery_fragile not repaired (-0.50pp ann)."
+}

@@ -1,0 +1,30 @@
+{
+  "date": "2026-04-30",
+  "references": [
+    "improved_phase2b_regime_confidence_boost",
+    "improved_phase2b_combo_abc",
+    "improved_phasett_recovery_two_stage_bucket",
+    "improved_phaseuu_tt1_budget_aware_lighter_both",
+    "improved_phasevv_recovery_neutral_budget_aware_overlay"
+  ],
+  "main_candidates": [
+    "improved_phaseww_recovery_budget_native_lighter_both",
+    "improved_phaseww_split_recovery_lighter_both",
+    "improved_phaseww_vv_direct_lighter_both_rewrite"
+  ],
+  "rescue_candidates": [
+    "improved_phaseww_confirmed_only_lighter_both",
+    "improved_phaseww_fragile_defense_lighter_both",
+    "improved_phaseww_vv_shadow_polish"
+  ],
+  "rescue_created": true,
+  "rescue_reason": "All three main candidates failed narrowly: return and Sharpe improved, but the exact Sharpe gate or recovery overlay-absorption gate still failed.",
+  "full_candidate_names": [
+    "improved_phaseww_recovery_budget_native_lighter_both",
+    "improved_phaseww_split_recovery_lighter_both",
+    "improved_phaseww_vv_direct_lighter_both_rewrite",
+    "improved_phaseww_confirmed_only_lighter_both",
+    "improved_phaseww_fragile_defense_lighter_both",
+    "improved_phaseww_vv_shadow_polish"
+  ]
+}

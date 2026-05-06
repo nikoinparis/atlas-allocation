@@ -1,0 +1,2 @@
+available,n_obs,brier_baseline,brier_aug_with_refined_state,improvement_baseline_minus_aug,interpretation
+True,906,0.21109638851245116,0.19242729557060315,0.018669092941848014,augmented improves forward-panic Brier

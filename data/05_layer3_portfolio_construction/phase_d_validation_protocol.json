@@ -1,0 +1,56 @@
+{
+  "fixed_comparator_set": [
+    "improved_phase2b_regime_confidence_boost",
+    "improved_phase2b_combo_abc",
+    "improved_phasec_sleeve_universe_base",
+    "improved_phasec_state_conditioned_map"
+  ],
+  "production_pin": "improved_phase2b_regime_confidence_boost",
+  "shadow_pin": "improved_phase2b_combo_abc",
+  "holdout_rule": {
+    "default_holdout_weeks": 104,
+    "default_holdout_description": "trailing 104 weekly observations",
+    "development_sample": "all observations before the default holdout"
+  },
+  "rolling_origin_rule": {
+    "min_train_weeks": 260,
+    "test_weeks": 104,
+    "step_weeks": 52
+  },
+  "bootstrap_rule": {
+    "method": "moving_block_bootstrap",
+    "block_weeks": 13,
+    "samples": 2000
+  },
+  "raw_metric_composite_weights": {
+    "ann_return": 0.14,
+    "sharpe": 0.22,
+    "calmar": 0.14,
+    "max_drawdown": 0.12,
+    "cvar_5": 0.1,
+    "upside_capture": 0.08,
+    "recovery_capture": 0.08,
+    "turnover": 0.05,
+    "avg_bil": 0.07
+  },
+  "future_promotion_rule": {
+    "production_pin": {
+      "full_raw_composite_delta_vs_production_min": 0.015,
+      "holdout_raw_composite_delta_vs_production_min": 0.0,
+      "holdout_sharpe_delta_vs_production_min": -0.02,
+      "rolling_raw_win_rate_vs_production_min": 0.55,
+      "rolling_mean_raw_delta_vs_production_min": 0.0,
+      "holdout_bootstrap_prob_excess_return_min": 0.6,
+      "max_drawdown_worsening_cap": -0.01,
+      "cvar_worsening_cap": -0.002
+    },
+    "shadow_pin": {
+      "best_non_production_candidate": true,
+      "holdout_raw_composite_delta_vs_production_min": -0.01,
+      "rolling_raw_win_rate_vs_production_min": 0.45,
+      "holdout_bootstrap_prob_excess_return_min": 0.5,
+      "max_drawdown_worsening_cap": -0.015,
+      "cvar_worsening_cap": -0.0025
+    }
+  }
+}

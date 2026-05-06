@@ -1,0 +1,18 @@
+{
+  "phase": "Phase NN \u2014 sleeve-to-ETF participation loss audit and fix",
+  "production_pin": "improved_phase2b_regime_confidence_boost",
+  "shadow_pin": "improved_phase2b_combo_abc",
+  "checkpoint_files": [
+    "data/research/allocator_checkpoints/improved_phase2b_regime_confidence_boost__final_sleeve_weights.csv",
+    "data/research/allocator_checkpoints/improved_phase2b_regime_confidence_boost__final_etf_weights.csv"
+  ],
+  "commands_executed": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3 /Users/nicholasturangan/Documents/Portfolio Optimizer/scripts/build_improvement_artifacts.py",
+    "/Library/Developer/CommandLineTools/usr/bin/python3 /Users/nicholasturangan/Documents/Portfolio Optimizer/scripts/research_committee_report.py improved_phasenn_mm_plus_lookthrough_relief --quick",
+    "/Library/Developer/CommandLineTools/usr/bin/python3 /Users/nicholasturangan/Documents/Portfolio Optimizer/scripts/backtest_realism_audit.py improved_phasenn_mm_plus_lookthrough_relief --quick",
+    "/Library/Developer/CommandLineTools/usr/bin/python3 /Users/nicholasturangan/Documents/Portfolio Optimizer/scripts/allocator_benchmark_audit.py improved_phasenn_mm_plus_lookthrough_relief --quick"
+  ],
+  "best_candidate": "improved_phasenn_mm_plus_lookthrough_relief",
+  "quick_verdict": "KEEP AS SHADOW",
+  "layer5_6_quick_audits_ran": true
+}

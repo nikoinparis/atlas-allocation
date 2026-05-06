@@ -1,0 +1,22 @@
+{
+  "phase": "UU",
+  "production_pin": "improved_phase2b_regime_confidence_boost",
+  "shadow_pin": "improved_phase2b_combo_abc",
+  "ss_reference": "improved_phasess_recovery_explicit_bucket",
+  "tt_reference": "improved_phasett_recovery_two_stage_bucket",
+  "candidates": [
+    "improved_phaseuu_tt1_overlay_preserved_recovery",
+    "improved_phaseuu_recovery_overlay_cash_cap",
+    "improved_phaseuu_tt1_budget_aware_lighter_both"
+  ],
+  "best_candidate": "improved_phaseuu_tt1_budget_aware_lighter_both",
+  "selection_rule": {
+    "annual_return_drag_vs_prod": -0.003,
+    "min_sharpe_delta_vs_prod": 0.005,
+    "must_improve_sharpe_vs_tt1": true,
+    "max_drawdown_worsening_vs_prod": -0.005,
+    "cvar_worsening_vs_prod": -0.0005,
+    "max_turnover_multiple_vs_prod": 1.1,
+    "require_recovery_overlay_absorption_reduction": true
+  }
+}

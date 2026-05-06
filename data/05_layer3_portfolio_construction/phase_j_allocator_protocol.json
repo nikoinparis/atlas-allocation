@@ -1,0 +1,19 @@
+{
+  "phase": "Phase J",
+  "purpose": "Structural allocator redesign on refined redesigned sleeve panel",
+  "current_refined_allocator_reference": "improved_phaseh_refined_state_allocator",
+  "reference_panel_version": "improved_phaseh_reference_core_blend",
+  "active_panel_baseline": "improved_phaseh_refined_panel_blend",
+  "candidate_versions": {
+    "improved_phasej_robust_objective_allocator": "S1 objective-based robust allocator",
+    "improved_phasej_margin_confidence_allocator": "S2 confidence-margin allocator",
+    "improved_phasej_turnover_tail_allocator": "S3 turnover-and-tail-aware allocator",
+    "improved_phasej_structural_combo_allocator": "S4 structural combo allocator"
+  },
+  "design_principles": [
+    "objective-based allocation around role-aware reference weights",
+    "confidence-margin-aware concentration",
+    "embedded turnover penalty",
+    "embedded tail and concentration penalties"
+  ]
+}

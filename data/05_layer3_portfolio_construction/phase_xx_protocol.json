@@ -1,0 +1,18 @@
+{
+  "date": "2026-04-30",
+  "references": [
+    "improved_phase2b_regime_confidence_boost",
+    "improved_phase2b_combo_abc",
+    "improved_phasett_recovery_two_stage_bucket",
+    "improved_phaseuu_tt1_budget_aware_lighter_both",
+    "improved_phasevv_recovery_neutral_budget_aware_overlay",
+    "improved_phaseww_confirmed_only_lighter_both"
+  ],
+  "candidates": [
+    "improved_phasexx_guardrail_only_overlay",
+    "improved_phasexx_guardrail_overlay_fragile_floor",
+    "improved_phasexx_recovery_neutral_overlay_simplified",
+    "improved_phasexx_conservative_hybrid_overlay"
+  ],
+  "best_candidate": "improved_phasexx_conservative_hybrid_overlay"
+}

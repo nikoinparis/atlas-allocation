@@ -1,0 +1,47 @@
+{
+  "phase": "Phase EE \u2014 Sleeve-level downstream test of Phase CC defensive_overlay_hint",
+  "candidates": [
+    "improved_phaseee_sleeve_hint_light",
+    "improved_phaseee_sleeve_hint_state_gated"
+  ],
+  "variant_configs": {
+    "improved_phaseee_sleeve_hint_light": {
+      "delta": 0.1,
+      "gate_kind": "hint_excluding_already_stressed",
+      "exclude_states": [
+        "stressed_panic",
+        "recovery_fragile"
+      ],
+      "description": "Scale offensive sleeves by (1-delta); redirect freed weight into defensive sleeves proportionally. Gate: hint == +1 AND state NOT IN {stressed_panic, recovery_fragile}."
+    },
+    "improved_phaseee_sleeve_hint_state_gated": {
+      "delta": 0.1,
+      "gate_kind": "refined_state_gated",
+      "trigger_states": [
+        "neutral_deteriorating"
+      ],
+      "description": "Same sleeve-level rotation; gate fires ONLY when refined_state == 'neutral_deteriorating'."
+    }
+  },
+  "offensive_sleeves": [
+    "dual_momentum_topn",
+    "cta_trend_long_only",
+    "composite_selective_signals"
+  ],
+  "defensive_sleeves": [
+    "composite_regime_conditioned",
+    "taa_10m_sma"
+  ],
+  "tilt_mechanic": "On gate weeks at the SLEEVE level: scale all offensive sleeves by (1-delta); redistribute the freed weight proportionally across defensive sleeves. cash::BIL is untouched. ETF weights are then re-derived as the standard long-only weighted sum of sleeve_positions \u00d7 sleeve_weights + cash share.",
+  "selection_rule": {
+    "ann_ret_drag_max_pp": 0.3,
+    "sharpe_improvement_min": 0.005,
+    "mdd_worsening_max_pp": 0.5,
+    "cvar_worsening_max_pp": 0.05,
+    "turnover_ratio_max_vs_prod": 1.1,
+    "bil_increase_max_pp": 5.0,
+    "neutral_deteriorating_state_must_not_underperform": true
+  },
+  "best_candidate": "",
+  "rationale": "NO Phase EE candidate passes. Best diagnostic: improved_phaseee_sleeve_hint_light; failure reasons: drag>0.30pp; sharpe_imp<0.005; mdd_worse>0.5pp; cvar_worse>0.05pp; turnover>1.10x; underperforms in neutral_deteriorating (\u0394=-0.00016/wk)."
+}

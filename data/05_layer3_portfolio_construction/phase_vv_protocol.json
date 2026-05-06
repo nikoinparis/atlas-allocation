@@ -1,0 +1,23 @@
+{
+  "phase": "VV",
+  "production_pin": "improved_phase2b_regime_confidence_boost",
+  "shadow_pin": "improved_phase2b_combo_abc",
+  "tt_reference": "improved_phasett_recovery_two_stage_bucket",
+  "uu_reference": "improved_phaseuu_tt1_budget_aware_lighter_both",
+  "candidates": [
+    "improved_phasevv_recovery_budget_aware_overlay",
+    "improved_phasevv_recovery_overlay_tolerance_band",
+    "improved_phasevv_recovery_neutral_budget_aware_overlay"
+  ],
+  "best_candidate": "improved_phasevv_recovery_neutral_budget_aware_overlay",
+  "selection_rule": {
+    "annual_return_drag_vs_prod": -0.003,
+    "min_sharpe_delta_vs_prod": 0.005,
+    "must_improve_sharpe_vs_uu": true,
+    "max_drawdown_worsening_vs_prod": -0.005,
+    "cvar_worsening_vs_prod": -0.0005,
+    "max_turnover_multiple_vs_prod": 1.1,
+    "require_recovery_overlay_absorption_reduction": true,
+    "require_safe_target_vol_guardrails": true
+  }
+}

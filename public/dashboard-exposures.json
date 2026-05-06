@@ -1,0 +1,385 @@
+{
+  "exposure_summary": [
+    {
+      "role": "production_candidate_pending_human_review",
+      "name": "improved_phaseggg_confirmed_only_robust_offense",
+      "avg_BIL": 0.2665801265614856,
+      "avg_SPY": 0.0602565651232749,
+      "avg_turnover": 0.1235662123629263,
+      "turnover_ratio_vs_production": 1.0997629651053815,
+      "max_single_etf_weight": 1.0,
+      "avg_BIL_delta_vs_production": -0.017337750680784192,
+      "avg_SPY_delta_vs_production": -0.010555106298073894,
+      "avg_turnover_delta_vs_production": 0.01120908061400809
+    },
+    {
+      "role": "current_production_and_rollback",
+      "name": "improved_phase2b_regime_confidence_boost",
+      "avg_BIL": 0.2839178772422698,
+      "avg_SPY": 0.0708116714213488,
+      "avg_turnover": 0.1123571317489182,
+      "turnover_ratio_vs_production": 1.0,
+      "max_single_etf_weight": 1.0,
+      "avg_BIL_delta_vs_production": 0.0,
+      "avg_SPY_delta_vs_production": 0.0,
+      "avg_turnover_delta_vs_production": 0.0
+    },
+    {
+      "role": "official_shadow",
+      "name": "improved_phase2b_combo_abc",
+      "avg_BIL": 0.2855524975472375,
+      "avg_SPY": 0.0707565085039652,
+      "avg_turnover": 0.1130410289125237,
+      "turnover_ratio_vs_production": 1.006086815789618,
+      "max_single_etf_weight": 1.0,
+      "avg_BIL_delta_vs_production": 0.0016346203049676933,
+      "avg_SPY_delta_vs_production": -5.516291738359713e-05,
+      "avg_turnover_delta_vs_production": 0.000683897163605493
+    }
+  ],
+  "versionWeights": {
+    "improved_phaseggg_confirmed_only_robust_offense": {
+      "latest": [
+        {
+          "name": "EFA",
+          "weight": 0.1710887342699647
+        },
+        {
+          "name": "GLD",
+          "weight": 0.1621542157908599
+        },
+        {
+          "name": "VEA",
+          "weight": 0.1611161038765094
+        },
+        {
+          "name": "LQD",
+          "weight": 0.1303382562508159
+        },
+        {
+          "name": "BIL",
+          "weight": 0.062102564879408
+        },
+        {
+          "name": "PDBC",
+          "weight": 0.0587402011839254
+        },
+        {
+          "name": "EWJ",
+          "weight": 0.0555139382917383
+        },
+        {
+          "name": "HYG",
+          "weight": 0.0483809675449828
+        },
+        {
+          "name": "TLT",
+          "weight": 0.0483809675449828
+        },
+        {
+          "name": "IWM",
+          "weight": 0.0268953490554701
+        },
+        {
+          "name": "QQQ",
+          "weight": 0.0234891637172374
+        },
+        {
+          "name": "VNQ",
+          "weight": 0.0175040319505173
+        },
+        {
+          "name": "VWO",
+          "weight": 0.0175040319505173
+        },
+        {
+          "name": "SPY",
+          "weight": 0.0167914736930701
+        }
+      ],
+      "history": [],
+      "selectedColumns": [
+        "EFA",
+        "GLD",
+        "VEA",
+        "LQD",
+        "BIL",
+        "PDBC",
+        "EWJ",
+        "HYG",
+        "TLT",
+        "IWM",
+        "QQQ",
+        "VNQ"
+      ]
+    },
+    "improved_phase2b_regime_confidence_boost": {
+      "latest": [
+        {
+          "name": "BIL",
+          "weight": 0.2106132903036579
+        },
+        {
+          "name": "GLD",
+          "weight": 0.1296558303744939
+        },
+        {
+          "name": "EFA",
+          "weight": 0.1008713059815308
+        },
+        {
+          "name": "HYG",
+          "weight": 0.0792627784583001
+        },
+        {
+          "name": "TLT",
+          "weight": 0.0792627784583001
+        },
+        {
+          "name": "PDBC",
+          "weight": 0.0720236518694779
+        },
+        {
+          "name": "EWJ",
+          "weight": 0.0637115614800058
+        },
+        {
+          "name": "LQD",
+          "weight": 0.0630092922145455
+        },
+        {
+          "name": "SPY",
+          "weight": 0.0482199450356302
+        },
+        {
+          "name": "VEA",
+          "weight": 0.0368308455372095
+        },
+        {
+          "name": "VNQ",
+          "weight": 0.0366722817449909
+        },
+        {
+          "name": "VWO",
+          "weight": 0.0366722817449909
+        },
+        {
+          "name": "IWM",
+          "weight": 0.0230571233158317
+        },
+        {
+          "name": "QQQ",
+          "weight": 0.0201370334810341
+        }
+      ],
+      "history": [],
+      "selectedColumns": [
+        "BIL",
+        "GLD",
+        "EFA",
+        "HYG",
+        "TLT",
+        "PDBC",
+        "EWJ",
+        "LQD",
+        "SPY",
+        "VEA",
+        "VNQ",
+        "VWO"
+      ]
+    },
+    "improved_phase2b_combo_abc": {
+      "latest": [
+        {
+          "name": "BIL",
+          "weight": 0.2106132903036579
+        },
+        {
+          "name": "GLD",
+          "weight": 0.1296558303744939
+        },
+        {
+          "name": "EFA",
+          "weight": 0.1008713059815308
+        },
+        {
+          "name": "HYG",
+          "weight": 0.0792627784583001
+        },
+        {
+          "name": "TLT",
+          "weight": 0.0792627784583001
+        },
+        {
+          "name": "PDBC",
+          "weight": 0.0720236518694779
+        },
+        {
+          "name": "EWJ",
+          "weight": 0.0637115614800058
+        },
+        {
+          "name": "LQD",
+          "weight": 0.0630092922145455
+        },
+        {
+          "name": "SPY",
+          "weight": 0.0482199450356302
+        },
+        {
+          "name": "VEA",
+          "weight": 0.0368308455372095
+        },
+        {
+          "name": "VNQ",
+          "weight": 0.0366722817449909
+        },
+        {
+          "name": "VWO",
+          "weight": 0.0366722817449909
+        },
+        {
+          "name": "IWM",
+          "weight": 0.0230571233158317
+        },
+        {
+          "name": "QQQ",
+          "weight": 0.0201370334810341
+        }
+      ],
+      "history": [],
+      "selectedColumns": [
+        "BIL",
+        "GLD",
+        "EFA",
+        "HYG",
+        "TLT",
+        "PDBC",
+        "EWJ",
+        "LQD",
+        "SPY",
+        "VEA",
+        "VNQ",
+        "VWO"
+      ]
+    }
+  },
+  "versionSleeveWeights": {
+    "improved_phaseggg_confirmed_only_robust_offense": {
+      "latest": [
+        {
+          "name": "composite_regime_offense_component",
+          "weight": 0.2839440129607173
+        },
+        {
+          "name": "composite_regime_defense_component",
+          "weight": 0.1989226413127009
+        },
+        {
+          "name": "cta_trend_long_only",
+          "weight": 0.174156727298424
+        },
+        {
+          "name": "composite_selective_signals",
+          "weight": 0.1235077423778619
+        },
+        {
+          "name": "taa_10m_sma",
+          "weight": 0.1225282236536216
+        },
+        {
+          "name": "cash::BIL",
+          "weight": 0.0621025648794076
+        },
+        {
+          "name": "dual_momentum_topn",
+          "weight": 0.0348380875172662
+        }
+      ],
+      "history": [],
+      "selectedColumns": [
+        "composite_regime_offense_component",
+        "composite_regime_defense_component",
+        "cta_trend_long_only",
+        "composite_selective_signals",
+        "taa_10m_sma",
+        "cash::BIL",
+        "dual_momentum_topn"
+      ]
+    },
+    "improved_phase2b_regime_confidence_boost": {
+      "latest": [
+        {
+          "name": "taa_10m_sma",
+          "weight": 0.2567059722149367
+        },
+        {
+          "name": "composite_regime_conditioned",
+          "weight": 0.2333576628712727
+        },
+        {
+          "name": "composite_selective_signals",
+          "weight": 0.1703619868532368
+        },
+        {
+          "name": "cta_trend_long_only",
+          "weight": 0.1493028824173126
+        },
+        {
+          "name": "dual_momentum_topn",
+          "weight": 0.1313406862059106
+        },
+        {
+          "name": "cash::BIL",
+          "weight": 0.0589308094373306
+        }
+      ],
+      "history": [],
+      "selectedColumns": [
+        "taa_10m_sma",
+        "composite_regime_conditioned",
+        "composite_selective_signals",
+        "cta_trend_long_only",
+        "dual_momentum_topn",
+        "cash::BIL"
+      ]
+    },
+    "improved_phase2b_combo_abc": {
+      "latest": [
+        {
+          "name": "taa_10m_sma",
+          "weight": 0.2567059722149367
+        },
+        {
+          "name": "composite_regime_conditioned",
+          "weight": 0.2333576628712727
+        },
+        {
+          "name": "composite_selective_signals",
+          "weight": 0.1703619868532368
+        },
+        {
+          "name": "cta_trend_long_only",
+          "weight": 0.1493028824173126
+        },
+        {
+          "name": "dual_momentum_topn",
+          "weight": 0.1313406862059106
+        },
+        {
+          "name": "cash::BIL",
+          "weight": 0.0589308094373306
+        }
+      ],
+      "history": [],
+      "selectedColumns": [
+        "taa_10m_sma",
+        "composite_regime_conditioned",
+        "composite_selective_signals",
+        "cta_trend_long_only",
+        "dual_momentum_topn",
+        "cash::BIL"
+      ]
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "phase": "Phase I",
+  "purpose": "Focused allocator refinement on refined redesigned sleeve panel",
+  "reference_panel_version": "improved_phaseh_reference_core_blend",
+  "active_panel_baseline": "improved_phaseh_refined_panel_blend",
+  "current_refined_allocator_reference": "improved_phaseh_refined_state_allocator",
+  "candidate_versions": {
+    "improved_phasei_smooth_state_allocator": "R1 smoother holdout-aware state allocator",
+    "improved_phasei_tail_disciplined_allocator": "R2 tail-disciplined role allocator",
+    "improved_phasei_turnover_aware_allocator": "R3 turnover-aware allocator refinement",
+    "improved_phasei_robust_role_allocator": "R4 best justified robust combo"
+  },
+  "guiding_principles": [
+    "preserve role-aware sleeve use",
+    "smooth state-to-state transitions",
+    "improve tail control in stressed and weak-separation states",
+    "reduce unnecessary turnover"
+  ]
+}

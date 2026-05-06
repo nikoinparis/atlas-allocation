@@ -1,0 +1,33 @@
+{
+  "phase": "Phase MM \u2014 offensive participation ceiling / overlay audit",
+  "production_pin": "improved_phase2b_regime_confidence_boost",
+  "shadow_pin": "improved_phase2b_combo_abc",
+  "candidates": [
+    "improved_phasemm_recovery_cash_relief",
+    "improved_phasemm_good_state_overlay_relief",
+    "improved_phasemm_recovery_confirmed_sleeve_fix"
+  ],
+  "commands_executed": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3 /Users/nicholasturangan/Documents/Portfolio Optimizer/scripts/build_improvement_artifacts.py",
+    "/Library/Developer/CommandLineTools/usr/bin/python3 /Users/nicholasturangan/Documents/Portfolio Optimizer/scripts/build_improvement_artifacts.py",
+    "/Library/Developer/CommandLineTools/usr/bin/python3 /Users/nicholasturangan/Documents/Portfolio Optimizer/scripts/research_committee_report.py improved_phasemm_recovery_confirmed_sleeve_fix --quick",
+    "/Library/Developer/CommandLineTools/usr/bin/python3 /Users/nicholasturangan/Documents/Portfolio Optimizer/scripts/backtest_realism_audit.py improved_phasemm_recovery_confirmed_sleeve_fix --quick",
+    "/Library/Developer/CommandLineTools/usr/bin/python3 /Users/nicholasturangan/Documents/Portfolio Optimizer/scripts/allocator_benchmark_audit.py improved_phasemm_recovery_confirmed_sleeve_fix --quick"
+  ],
+  "best_candidate": "improved_phasemm_recovery_confirmed_sleeve_fix",
+  "quick_committee_verdict": "KEEP AS SHADOW",
+  "layer5_6_quick_audits_ran": true,
+  "checkpoint_files": [
+    "data/research/allocator_checkpoints/improved_phase2b_regime_confidence_boost__raw_hrp_sleeve_weights.csv",
+    "data/research/allocator_checkpoints/improved_phase2b_regime_confidence_boost__post_state_tilt_sleeve_weights.csv",
+    "data/research/allocator_checkpoints/improved_phase2b_regime_confidence_boost__post_layer3_expression_sleeve_weights.csv",
+    "data/research/allocator_checkpoints/improved_phase2b_regime_confidence_boost__post_overlay_pre_lookthrough_sleeve_weights.csv",
+    "data/research/allocator_checkpoints/improved_phase2b_regime_confidence_boost__final_sleeve_weights.csv",
+    "data/research/allocator_checkpoints/improved_phase2b_regime_confidence_boost__final_etf_weights.csv"
+  ],
+  "notes": [
+    "No production or shadow pin change was made by this script.",
+    "No new ML or Phase CC refined_state / defensive_overlay_hint features were used.",
+    "Candidate count capped at three and integrated inside the production construction pipeline."
+  ]
+}

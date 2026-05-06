@@ -1,0 +1,68 @@
+{
+  "phase": "Phase T \u2014 Regime Engine Softening / Layer 2B Revisit",
+  "fixed_comparator_set": [
+    "improved_phase2b_regime_confidence_boost",
+    "improved_phase2b_combo_abc",
+    "improved_phaseh_refined_state_allocator",
+    "improved_phasen_distributional_tail_allocator",
+    "improved_phaseo_tail_priority_allocator",
+    "improved_phasep_regret_aware_meta_allocator",
+    "improved_phaseq_regime_bucket_meta_allocator",
+    "improved_phaser_light_abstention_overlay_allocator",
+    "improved_phaser_fast_narrow_regret_allocator",
+    "improved_phaseh_refined_panel_blend"
+  ],
+  "phase_t_candidates": [
+    "improved_phaset_soft_regime_posterior_allocator",
+    "improved_phaset_soft_trust_weighted_allocator",
+    "improved_phaset_production_anchored_soft_combo"
+  ],
+  "production_rule": {
+    "full_raw_composite_delta_vs_production_min": 0.015,
+    "holdout_raw_composite_delta_vs_production_min": 0.0,
+    "holdout_sharpe_delta_vs_production_min": -0.02,
+    "rolling_raw_win_rate_vs_production_min": 0.55,
+    "rolling_mean_raw_delta_vs_production_min": 0.0,
+    "holdout_bootstrap_prob_excess_return_min": 0.6,
+    "max_drawdown_worsening_cap": -0.01,
+    "cvar_worsening_cap": -0.002
+  },
+  "shadow_rule": {
+    "holdout_raw_composite_delta_vs_production_min": -0.01,
+    "rolling_raw_win_rate_vs_production_min": 0.45,
+    "holdout_bootstrap_prob_excess_return_min": 0.5,
+    "max_drawdown_worsening_cap": -0.015,
+    "cvar_worsening_cap": -0.003
+  },
+  "holdout_weeks": 104,
+  "rolling_origin": {
+    "min_train_weeks": 260,
+    "test_weeks": 104,
+    "step_weeks": 52
+  },
+  "bootstrap": {
+    "method": "moving_block_bootstrap",
+    "block_weeks": 13,
+    "samples": 2000
+  },
+  "posterior": {
+    "temperature": 0.45,
+    "ema_half_life_weeks": 3,
+    "buckets": [
+      "calm_trust",
+      "recovery_trust",
+      "defense_production",
+      "ambiguous_abstain"
+    ]
+  },
+  "t2": {
+    "sharpness_low": 0.4,
+    "sharpness_high": 0.65,
+    "defensive_pull_max": 0.3
+  },
+  "t3": {
+    "anchor_low": 0.4,
+    "anchor_high": 0.6,
+    "anchor_max": 0.15
+  }
+}

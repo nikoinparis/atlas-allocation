@@ -1,0 +1,24 @@
+{
+  "low_defense_threshold": 0.3318559556786704,
+  "high_defense_threshold": 0.6709141274238228,
+  "bucket_method": "33/67 percentile split on favorable-state 25% BIL weeks",
+  "reason_thresholds": {
+    "corr_high": 0.6407003982224198,
+    "corr_mid": -0.1675629589272404,
+    "stress_high": 1.0,
+    "stress_mid": 0.0,
+    "drawdown_bad": -0.09413192718533303,
+    "drawdown_mid": -0.0228334913312633,
+    "breadth43_low": 0.5714285714285714,
+    "breadth43_high": 0.7857142857142857,
+    "breadth13_low": 0.5,
+    "breadth13_high": 0.7857142857142857,
+    "breadth4_low": -0.0714285714285714,
+    "breadth4_high": 0.0714285714285714,
+    "good_low": 0.08427304756312387,
+    "good_high": 0.5696138996139,
+    "nonstress_low": 0.9294871794871796,
+    "nonstress_high": 1.0,
+    "persist_low": 0.8012820512820513
+  }
+}

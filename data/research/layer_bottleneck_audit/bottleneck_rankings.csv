@@ -1,0 +1,11 @@
+rank,bottleneck,severity,score,evidence,affected_metric,next_phase,change_scope
+1,Layer 3 overlays/lighter_both,MEDIUM,70.0,Regime binding rate 15.14% vs target-vol binding 0.18%; good-state BIL 17.39%.,"Upside capture, SPY participation, raw return",offensive participation ceiling/cap audit,small tweak
+2,Layer 2B regime-to-action mapping,MEDIUM,62.0,Avg good-state confidence 0.53 with avg offense 61.77% and avg benchmark gap -7.45%.,"Holdout robustness, neutral/calm conversion",offensive participation ceiling/cap audit,small tweak
+3,BIL/cash drag,MEDIUM,58.0,Average BIL in good-to-neutral opportunity states is 17.39% while production-vs-SPY ann gap is -7.45%.,"Annual return, upside capture",offensive participation ceiling/cap audit,small tweak
+4,offensive participation ceiling,MEDIUM,55.0,Average offensive exposure in good-to-neutral opportunity states is 61.77%.,"SPY participation, recovery capture",offensive participation ceiling/cap audit,small tweak
+5,defensive sleeve design,LOW,40.0,1 sleeve-state rows show meaningful production weight in a negative-Sharpe state.,"State efficiency, tail carry cost",defensive sleeve redesign,architectural change
+6,Layer 3 caps/normalization,LOW,35.0,Any-sleeve cap hit rate is 1.17% with production max sleeve weight fixed at 45%.,"Concentration flexibility, offensive participation",offensive participation ceiling/cap audit,small tweak
+7,Layer 2A sleeve quality,LOW,30.0,0 production sleeves are flagged as redundant or weaker high-correlation copies.,"Diversification efficiency, allocator choice set",sleeve pruning/reweighting,small tweak
+8,Layer 3 HRP allocation,LOW,28.0,HRP allocates into a correlated 5-sleeve set with cap hit rate 1.17%.,Weight efficiency,in-allocator W1 dual-bucket architecture,architectural change
+9,transaction cost/turnover,LOW,28.0,Production turnover is meaningful but not the dominant limiter relative to cash drag and overlay binding.,Net return,recovery re-risking speed test,small tweak
+10,Layer 2B regime prediction,LOW,18.0,Current audit found more evidence of suppressed action than of missing state signal; recent ML phases also improved prediction more than portfolio conversion.,Signal quality,targeted Phase 2B ML refresh,small tweak

@@ -335,5 +335,67 @@
     "lag_applied": 2,
     "normalization_method": "rolling z-score of fear composite",
     "caveats": "Noisy and potentially unstable; best used as a conditioning feature, not a headline alpha."
+  },
+  {
+    "signal_name": "trend_clarity_momentum",
+    "file_name": "signal_trend_quality.csv",
+    "description": "52-4 week momentum weighted by 52-week trend-regression R-squared as a path-clarity proxy.",
+    "category": "trend_quality",
+    "cross_sectional_or_time_series": "both",
+    "required_inputs": [
+      "weekly_prices.csv"
+    ],
+    "lookback": "52 weeks",
+    "skip_period": "4 weeks",
+    "lag_applied": 1,
+    "normalization_method": "winsorized cross-sectional rank of momentum times rolling trend-clarity R-squared",
+    "caveats": "A weekly approximation of trend clarity; still related to medium-term momentum by construction."
+  },
+  {
+    "signal_name": "moving_average_distance",
+    "file_name": "signal_moving_average_distance.csv",
+    "description": "13-week versus 52-week moving-average distance as a trend setup-quality signal.",
+    "category": "trend_quality",
+    "cross_sectional_or_time_series": "both",
+    "required_inputs": [
+      "weekly_prices.csv"
+    ],
+    "lookback": "13 and 52 weeks",
+    "skip_period": "0 weeks",
+    "lag_applied": 1,
+    "normalization_method": "winsorized cross-sectional rank of 13w / 52w moving-average distance",
+    "caveats": "Closely related to trend strength, but intended to capture setup quality rather than only cumulative return."
+  },
+  {
+    "signal_name": "breadth_confirmed_momentum",
+    "file_name": "signal_breadth_confirmation.csv",
+    "description": "26-4 week momentum strengthened or weakened by asset-class breadth confirmation.",
+    "category": "cross_asset_confirmation",
+    "cross_sectional_or_time_series": "both",
+    "required_inputs": [
+      "weekly_prices.csv",
+      "universe_metadata.csv"
+    ],
+    "lookback": "26 weeks",
+    "skip_period": "4 weeks",
+    "lag_applied": 1,
+    "normalization_method": "winsorized cross-sectional rank of 26-4 momentum scaled by signed peer breadth confirmation",
+    "caveats": "Uses asset-class peer breadth as a causal confirmation proxy; thin groups fall back to global breadth."
+  },
+  {
+    "signal_name": "contained_recovery_quality",
+    "file_name": "signal_contained_recovery.csv",
+    "description": "13-week recovery strength scaled by 13-week volatility and penalized by distance from 26-week highs.",
+    "category": "recovery_quality",
+    "cross_sectional_or_time_series": "both",
+    "required_inputs": [
+      "weekly_prices.csv",
+      "weekly_returns.csv"
+    ],
+    "lookback": "13 and 26 weeks",
+    "skip_period": "0 weeks",
+    "lag_applied": 1,
+    "normalization_method": "winsorized cross-sectional rank of volatility-scaled recovery return times a drawdown containment multiplier",
+    "caveats": "Targets orderly recoveries; may behave like quality-adjusted momentum in already benign states."
   }
 ]

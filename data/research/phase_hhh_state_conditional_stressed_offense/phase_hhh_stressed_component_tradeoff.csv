@@ -1,0 +1,5 @@
+version,construction,rc_offense,sp_offense,other_states_offense
+improved_phaseggg_confirmed_only_robust_offense,state_conditional,FFF3 robust (8 ETFs),broad EEE1 (10 ETFs),broad EEE1 (10 ETFs)
+improved_phasehhh_confirmed_stressed_robust_offense,state_conditional,FFF3 robust (8 ETFs),FFF3 robust (8 ETFs),broad EEE1 (10 ETFs)
+improved_phasehhh_confirmed_robust_stressed_blended_offense,state_conditional_blended,FFF3 robust (8 ETFs),0.5*broad + 0.5*FFF3 robust,broad EEE1 (10 ETFs)
+improved_phasehhh_confirmed_quality_stressed_robust_offense,state_conditional,FFF1 quality_filtered (7 ETFs),FFF3 robust (8 ETFs),broad EEE1 (10 ETFs)

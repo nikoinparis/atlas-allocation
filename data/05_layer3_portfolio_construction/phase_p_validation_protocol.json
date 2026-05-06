@@ -1,0 +1,44 @@
+{
+  "phase": "Phase P \u2014 Meta-Allocator / Trust Model (ML Phase 3)",
+  "fixed_comparator_set": [
+    "improved_phase2b_regime_confidence_boost",
+    "improved_phase2b_combo_abc",
+    "improved_phaseh_refined_state_allocator",
+    "improved_phasen_distributional_tail_allocator",
+    "improved_phaseo_tail_priority_allocator",
+    "improved_phaseh_refined_panel_blend"
+  ],
+  "phase_p_candidates": [
+    "improved_phasep_hard_trust_switch_allocator",
+    "improved_phasep_soft_trust_blend_allocator",
+    "improved_phasep_regret_aware_meta_allocator"
+  ],
+  "production_rule": {
+    "full_raw_composite_delta_vs_production_min": 0.015,
+    "holdout_raw_composite_delta_vs_production_min": 0.0,
+    "holdout_sharpe_delta_vs_production_min": -0.02,
+    "rolling_raw_win_rate_vs_production_min": 0.55,
+    "rolling_mean_raw_delta_vs_production_min": 0.0,
+    "holdout_bootstrap_prob_excess_return_min": 0.6,
+    "max_drawdown_worsening_cap": -0.01,
+    "cvar_worsening_cap": -0.002
+  },
+  "shadow_rule": {
+    "holdout_raw_composite_delta_vs_production_min": -0.01,
+    "rolling_raw_win_rate_vs_production_min": 0.45,
+    "holdout_bootstrap_prob_excess_return_min": 0.5,
+    "max_drawdown_worsening_cap": -0.015,
+    "cvar_worsening_cap": -0.003
+  },
+  "holdout_weeks": 104,
+  "rolling_origin": {
+    "min_train_weeks": 260,
+    "test_weeks": 104,
+    "step_weeks": 52
+  },
+  "bootstrap": {
+    "method": "moving_block_bootstrap",
+    "block_weeks": 13,
+    "samples": 2000
+  }
+}

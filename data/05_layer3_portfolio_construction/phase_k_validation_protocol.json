@@ -1,0 +1,24 @@
+{
+  "phase": "Phase K",
+  "purpose": "Robustness-aware allocator framework validation",
+  "fixed_comparator_set": [
+    "improved_phase2b_regime_confidence_boost",
+    "improved_phase2b_combo_abc",
+    "improved_phaseh_refined_state_allocator",
+    "improved_phaseh_refined_panel_blend",
+    "improved_phasec_state_conditioned_map",
+    "improved_phaseh_reference_core_blend"
+  ],
+  "candidate_versions": [
+    "improved_phasek_robust_objective_framework",
+    "improved_phasek_confidence_turnover_framework",
+    "improved_phasek_tail_aware_role_framework"
+  ],
+  "holdout_weeks": 104,
+  "rolling_origin": {
+    "min_train_weeks": 260,
+    "test_weeks": 104,
+    "step_weeks": 52
+  },
+  "promotion_rule_reference": "phase_d_validation_protocol.json"
+}

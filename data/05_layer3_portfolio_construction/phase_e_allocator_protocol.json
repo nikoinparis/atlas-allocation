@@ -1,0 +1,25 @@
+{
+  "phase": "Phase E",
+  "purpose": "Heavier learned allocator / richer model class",
+  "candidates": {
+    "improved_phasee_gbt_allocator": "E1 richer learned sleeve allocator",
+    "improved_phasee_concentration_gate": "E2 learned conditional concentration model",
+    "improved_phasee_state_sleeve_boosting": "E3 richer state x sleeve interaction allocator",
+    "improved_phasee_combo_allocator": "E4 disciplined heavier combo",
+    "improved_phasee_state_prior_concentration": "E5 conservative state-prior concentration blend"
+  },
+  "baseline_versions": [
+    "improved_phase2b_regime_confidence_boost",
+    "improved_phase2b_combo_abc",
+    "improved_phasec_sleeve_universe_base",
+    "improved_phasec_state_conditioned_map"
+  ],
+  "constraints": {
+    "cash_split_anchor": "improved_phasec_sleeve_universe_base",
+    "bounded_state_prior": "improved_phasec_state_conditioned_map",
+    "horizon_weeks": 4,
+    "min_train_weeks": 156,
+    "retrain_frequency_weeks": 13,
+    "transaction_cost_bps": 10
+  }
+}

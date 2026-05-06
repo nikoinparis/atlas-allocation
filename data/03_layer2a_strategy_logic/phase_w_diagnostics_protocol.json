@@ -1,0 +1,25 @@
+{
+  "phase": "Phase W \u2014 Sleeve-Panel Revisit / Opportunity-Set Upgrade",
+  "active_panel": [
+    "dual_momentum_topn",
+    "composite_calm_trend_specialist",
+    "composite_healthier_recovery_specialist",
+    "composite_anti_chop_clarity",
+    "composite_regime_conditioned",
+    "taa_10m_sma"
+  ],
+  "new_sleeves": [
+    "composite_structural_defense_sleeve",
+    "composite_recovery_confirmed_offense_sleeve",
+    "composite_calm_carry_sleeve",
+    "composite_macro_trend_diversifier_sleeve"
+  ],
+  "design_rationale": {
+    "W1": "Structural defensive sleeve \u2014 explicit causal capture of production's adverse-tape positioning (GLD/TLT/HYG/LQD/DBA/BIL).",
+    "W2": "Recovery-confirmed offense \u2014 silent in calm/chop/stress, decisive only in confirmed/fragile recovery with breadth confirmation.",
+    "W3": "Calm-trend carry/quality sleeve \u2014 distinct from existing calm-trend-specialist via carry+quality scoring.",
+    "W4": "Cross-asset managed-futures-style trend diversifier \u2014 equity/rates/commodity/FX universe, distinct from sector trend."
+  },
+  "holdout_weeks": 139,
+  "cost_bps": 10
+}

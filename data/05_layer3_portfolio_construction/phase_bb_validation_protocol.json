@@ -1,0 +1,94 @@
+{
+  "phase": "Phase BB \u2014 W1-Specific Cap Relaxation Inside the HRP Architecture",
+  "panel_7": [
+    "dual_momentum_topn",
+    "composite_calm_trend_specialist",
+    "composite_healthier_recovery_specialist",
+    "composite_anti_chop_clarity",
+    "composite_regime_conditioned",
+    "taa_10m_sma",
+    "composite_structural_defense_sleeve"
+  ],
+  "fixed_comparator_set": [
+    "improved_phase2b_regime_confidence_boost",
+    "improved_phase2b_combo_abc",
+    "improved_phaseh_refined_state_allocator",
+    "improved_phasen_distributional_tail_allocator",
+    "improved_phaseo_tail_priority_allocator",
+    "improved_phasep_regret_aware_meta_allocator",
+    "improved_phaseq_regime_bucket_meta_allocator",
+    "improved_phaser_light_abstention_overlay_allocator",
+    "improved_phaser_fast_narrow_regret_allocator",
+    "improved_phaset_soft_regime_posterior_allocator",
+    "improved_phaseu_prod90_r2_10_holdings_blend",
+    "improved_phaseu_conditional_prod_r2_holdings_blend",
+    "improved_phasev_prod90_phasen_10_holdings_blend",
+    "improved_phaseh_refined_panel_blend",
+    "improved_phasez_production_hrp_7sleeve",
+    "improved_phaseaa_prod95_z1_05_holdings_blend",
+    "improved_phaseaa_prod90_z1_10_holdings_blend",
+    "improved_phaseaa_state_conditional_prod_z1_holdings_blend"
+  ],
+  "phase_bb_candidates": [
+    "improved_phasebb_w1cap_055_hrp_7sleeve",
+    "improved_phasebb_w1cap_060_hrp_7sleeve",
+    "improved_phasebb_w1cap_055_others_050_hrp_7sleeve"
+  ],
+  "candidate_cap_configs": {
+    "improved_phasebb_w1cap_055_hrp_7sleeve": {
+      "default_max": 0.45,
+      "overrides": {
+        "composite_structural_defense_sleeve": 0.55
+      }
+    },
+    "improved_phasebb_w1cap_060_hrp_7sleeve": {
+      "default_max": 0.45,
+      "overrides": {
+        "composite_structural_defense_sleeve": 0.6
+      }
+    },
+    "improved_phasebb_w1cap_055_others_050_hrp_7sleeve": {
+      "default_max": 0.5,
+      "overrides": {
+        "composite_structural_defense_sleeve": 0.55
+      }
+    }
+  },
+  "production_rule": {
+    "full_raw_composite_delta_vs_production_min": 0.015,
+    "holdout_raw_composite_delta_vs_production_min": 0.0,
+    "holdout_sharpe_delta_vs_production_min": -0.02,
+    "rolling_raw_win_rate_vs_production_min": 0.55,
+    "rolling_mean_raw_delta_vs_production_min": 0.0,
+    "holdout_bootstrap_prob_excess_return_min": 0.6,
+    "max_drawdown_worsening_cap": -0.01,
+    "cvar_worsening_cap": -0.002
+  },
+  "shadow_rule": {
+    "holdout_raw_composite_delta_vs_production_min": -0.01,
+    "rolling_raw_win_rate_vs_production_min": 0.45,
+    "holdout_bootstrap_prob_excess_return_min": 0.5,
+    "max_drawdown_worsening_cap": -0.015,
+    "cvar_worsening_cap": -0.003
+  },
+  "holdout_weeks": 104,
+  "rolling_origin": {
+    "min_train_weeks": 260,
+    "test_weeks": 104,
+    "step_weeks": 52
+  },
+  "bootstrap": {
+    "method": "moving_block_bootstrap",
+    "block_weeks": 13,
+    "samples": 2000
+  },
+  "architecture": {
+    "allocator": "HRP (single-linkage on correlation distance, bisection inverse-variance) \u2014 Phase Z",
+    "tilt": "dynamic_risk_budget \u2014 Phase Z",
+    "overlay": "lighter_both_targeted_narrow_plus_confirmed \u2014 Phase Z",
+    "meta": "regime_confidence_boost \u2014 Phase Z",
+    "intervention": "per-sleeve cap relaxation only; all other parameters unchanged from Phase Z",
+    "default_max_sleeve_weight": 0.45,
+    "target_vol_ann": 0.12
+  }
+}

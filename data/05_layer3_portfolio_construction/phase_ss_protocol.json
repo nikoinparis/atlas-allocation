@@ -1,0 +1,51 @@
+{
+  "phase": "SS",
+  "production_pin": "improved_phase2b_regime_confidence_boost",
+  "shadow_pin": "improved_phase2b_combo_abc",
+  "rr_reference": "improved_phaserr_combined_bucket_allocator",
+  "candidates": [
+    "improved_phasess_recovery_explicit_bucket",
+    "improved_phasess_good_state_explicit_bucket",
+    "improved_phasess_combined_explicit_bucket"
+  ],
+  "best_candidate": "improved_phasess_recovery_explicit_bucket",
+  "selection_rule": {
+    "annual_return_drag_vs_prod": -0.003,
+    "min_sharpe_delta_vs_prod": 0.005,
+    "max_drawdown_worsening_vs_prod": -0.005,
+    "cvar_worsening_vs_prod": -0.0005,
+    "max_turnover_multiple_vs_prod": 1.1
+  },
+  "target_budgets": {
+    "calm_trend": {
+      "offense": 0.56,
+      "defense": 0.19,
+      "composite": 0.25,
+      "cash": 0.05
+    },
+    "neutral_healthy_proxy": {
+      "offense": 0.5,
+      "defense": 0.18,
+      "composite": 0.23,
+      "cash": 0.09
+    },
+    "recovery_confirmed": {
+      "offense": 0.51,
+      "defense": 0.2,
+      "composite": 0.24,
+      "cash": 0.07
+    },
+    "recovery_fragile": {
+      "offense": 0.47,
+      "defense": 0.19,
+      "composite": 0.23,
+      "cash": 0.11
+    },
+    "stressed_panic": {
+      "offense": 0.24,
+      "defense": 0.08,
+      "composite": 0.17,
+      "cash": 0.51
+    }
+  }
+}

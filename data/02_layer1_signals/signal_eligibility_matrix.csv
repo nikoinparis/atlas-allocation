@@ -17,6 +17,10 @@ bab_proxy,High,Medium,Low,Low,Low,Medium,"Low-beta proxy, not full BAB construct
 bab_proxy_asset_class_neutral,High,Medium,Low,Low,Low,Medium,Within-asset-class low-beta ranking.,0.9100326157860404,Medium-High
 quality_proxy,Medium,Medium,Medium,Medium,Low,High,Return-path stability proxy.,0.9631379962192815,High
 quality_proxy_asset_class_neutral,Medium,Medium,Medium,Medium,Low,High,Within-asset-class quality ranking.,0.9089386983526869,High
+trend_clarity_momentum,High,High,Medium,High,Medium,High,Momentum weighted by trend-path clarity (R-squared).,0.9630681818181819,High
+moving_average_distance,High,High,Medium,Medium,Medium,High,Setup-quality signal from short-vs-long moving-average distance.,0.9639889196675899,High
+breadth_confirmed_momentum,High,High,Low,High,Low,Medium,Own momentum confirmed by peer breadth in the same asset class.,0.9639556377079482,Medium-High
+contained_recovery_quality,High,Medium,Medium,Medium,Low,Medium,Rewards orderly recoveries near highs and penalizes volatile rebounds.,0.9643835616438357,Medium-High
 vix_term_structure_regime,Conditioning,Conditioning,Conditioning,Conditioning,Conditioning,High,"Market-level conditioning feature, not a per-ETF alpha.",,Medium-High
 macro_risk_score,Conditioning,Conditioning,Conditioning,Conditioning,Conditioning,Medium,Macro conditioning signal with conservative lagging.,,Medium
 google_fear_regime,Conditioning,Conditioning,Conditioning,Conditioning,Conditioning,Low,Noisy fear / sentiment conditioning feature.,,Low

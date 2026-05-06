@@ -1,0 +1,870 @@
+{
+  "holdout_start": "2024-04-19",
+  "windows": {
+    "full_history": {
+      "date_min": "2006-06-30",
+      "date_max": "2026-04-10",
+      "n_weeks": 1033,
+      "versions": {
+        "improved_phase2b_regime_confidence_boost": {
+          "n_weeks": 1033,
+          "ann_return": 0.07424728990418306,
+          "ann_vol": 0.08070044520851266,
+          "sharpe": 0.9285635033080923,
+          "max_drawdown": -0.1397540394638661,
+          "calmar": 0.5312711545871269,
+          "cvar_5": -0.02689382039078653
+        },
+        "improved_phase2b_combo_abc": {
+          "n_weeks": 1033,
+          "ann_return": 0.07388060727634294,
+          "ann_vol": 0.08037488845621608,
+          "sharpe": 0.9277427039415779,
+          "max_drawdown": -0.13674121541523387,
+          "calmar": 0.5402950899039043,
+          "cvar_5": -0.026801229552457492
+        },
+        "improved_phase3_1_combo_c1a_a1g": {
+          "n_weeks": 1033,
+          "ann_return": 0.07631996121326123,
+          "ann_vol": 0.08057685737150504,
+          "sharpe": 0.9538199096289309,
+          "max_drawdown": -0.14192705292899965,
+          "calmar": 0.5377407593423433,
+          "cvar_5": -0.026975567998863272
+        },
+        "improved_phase3_4_combo_fragile_guard": {
+          "n_weeks": 1033,
+          "ann_return": 0.07599365583658124,
+          "ann_vol": 0.08055142266365986,
+          "sharpe": 0.9503256397040565,
+          "max_drawdown": -0.14192705292899976,
+          "calmar": 0.5354416530765119,
+          "cvar_5": -0.026975567998863272
+        },
+        "improved_phase3_4_combo_tilt_dampened": {
+          "n_weeks": 1033,
+          "ann_return": 0.07631449761591336,
+          "ann_vol": 0.08063534509614721,
+          "sharpe": 0.953123796226151,
+          "max_drawdown": -0.14192705292899965,
+          "calmar": 0.5377022635289299,
+          "cvar_5": -0.026997785004067448
+        },
+        "improved_phase3_4_combo_fragile_guard_tilt_dampened": {
+          "n_weeks": 1033,
+          "ann_return": 0.07598815790852465,
+          "ann_vol": 0.08060990783766712,
+          "sharpe": 0.9496314355359706,
+          "max_drawdown": -0.14192705292899965,
+          "calmar": 0.5354029153732829,
+          "cvar_5": -0.026997785004067448
+        }
+      }
+    },
+    "pre_holdout": {
+      "date_min": "2006-06-30",
+      "date_max": "2024-04-12",
+      "n_weeks": 929,
+      "versions": {
+        "improved_phase2b_regime_confidence_boost": {
+          "n_weeks": 929,
+          "ann_return": 0.06569893525867121,
+          "ann_vol": 0.08145752055333441,
+          "sharpe": 0.8224928759344414,
+          "max_drawdown": -0.1397540394638661,
+          "calmar": 0.4701040163898654,
+          "cvar_5": -0.027498976742148847
+        },
+        "improved_phase2b_combo_abc": {
+          "n_weeks": 929,
+          "ann_return": 0.06530623028942517,
+          "ann_vol": 0.08115008636607934,
+          "sharpe": 0.8207510832117435,
+          "max_drawdown": -0.13674121541523387,
+          "calmar": 0.47758995041190505,
+          "cvar_5": -0.027416336942646374
+        },
+        "improved_phase3_1_combo_c1a_a1g": {
+          "n_weeks": 929,
+          "ann_return": 0.06805533007560793,
+          "ann_vol": 0.08118206038168314,
+          "sharpe": 0.8522480243894717,
+          "max_drawdown": -0.14192705292899965,
+          "calmar": 0.4795092173840406,
+          "cvar_5": -0.027530429745748885
+        },
+        "improved_phase3_4_combo_fragile_guard": {
+          "n_weeks": 929,
+          "ann_return": 0.0676952875297554,
+          "ann_vol": 0.08115336957449797,
+          "sharpe": 0.8483602910431531,
+          "max_drawdown": -0.14192705292899976,
+          "calmar": 0.4769724033065109,
+          "cvar_5": -0.027530429745748885
+        },
+        "improved_phase3_4_combo_tilt_dampened": {
+          "n_weeks": 929,
+          "ann_return": 0.06804930148869182,
+          "ann_vol": 0.08124660794913606,
+          "sharpe": 0.851566227296118,
+          "max_drawdown": -0.14192705292899965,
+          "calmar": 0.479466740725844,
+          "cvar_5": -0.027555010262144998
+        },
+        "improved_phase3_4_combo_fragile_guard_tilt_dampened": {
+          "n_weeks": 929,
+          "ann_return": 0.06768922126792809,
+          "ann_vol": 0.08121791668756553,
+          "sharpe": 0.8476808658804718,
+          "max_drawdown": -0.14192705292899965,
+          "calmar": 0.47692966119567254,
+          "cvar_5": -0.027555010262144998
+        }
+      }
+    },
+    "holdout": {
+      "date_min": "2024-04-19",
+      "date_max": "2026-04-10",
+      "n_weeks": 104,
+      "versions": {
+        "improved_phase2b_regime_confidence_boost": {
+          "n_weeks": 104,
+          "ann_return": 0.15371447243833636,
+          "ann_vol": 0.07285902878736882,
+          "sharpe": 2.0016265934220794,
+          "max_drawdown": -0.056647925452990244,
+          "calmar": 2.713505767583627,
+          "cvar_5": -0.020446738621228366
+        },
+        "improved_phase2b_combo_abc": {
+          "n_weeks": 104,
+          "ann_return": 0.15360056703092395,
+          "ann_vol": 0.07234243409825529,
+          "sharpe": 2.0140321430701755,
+          "max_drawdown": -0.05531110075457324,
+          "calmar": 2.7770296547248505,
+          "cvar_5": -0.020291629785145964
+        },
+        "improved_phase3_1_combo_c1a_a1g": {
+          "n_weeks": 104,
+          "ann_return": 0.15304129023086177,
+          "ann_vol": 0.0742819386164515,
+          "sharpe": 1.9568242643042473,
+          "max_drawdown": -0.059633390296452427,
+          "calmar": 2.5663691007681337,
+          "cvar_5": -0.020908711384706666
+        },
+        "improved_phase3_4_combo_fragile_guard": {
+          "n_weeks": 104,
+          "ann_return": 0.15304129023086177,
+          "ann_vol": 0.0742819386164515,
+          "sharpe": 1.9568242643042473,
+          "max_drawdown": -0.059633390296452427,
+          "calmar": 2.5663691007681337,
+          "cvar_5": -0.020908711384706666
+        },
+        "improved_phase3_4_combo_tilt_dampened": {
+          "n_weeks": 104,
+          "ann_return": 0.15304129023086177,
+          "ann_vol": 0.0742819386164515,
+          "sharpe": 1.9568242643042473,
+          "max_drawdown": -0.059633390296452427,
+          "calmar": 2.5663691007681337,
+          "cvar_5": -0.020908711384706666
+        },
+        "improved_phase3_4_combo_fragile_guard_tilt_dampened": {
+          "n_weeks": 104,
+          "ann_return": 0.15304129023086177,
+          "ann_vol": 0.0742819386164515,
+          "sharpe": 1.9568242643042473,
+          "max_drawdown": -0.059633390296452427,
+          "calmar": 2.5663691007681337,
+          "cvar_5": -0.020908711384706666
+        }
+      }
+    }
+  },
+  "deltas": {
+    "full_history": {
+      "improved_phase2b_regime_confidence_boost": {
+        "vs_A": {
+          "sharpe": 0.0,
+          "ann_return": 0.0,
+          "max_drawdown": 0.0,
+          "cvar_5": 0.0,
+          "calmar": 0.0
+        },
+        "vs_F": {
+          "sharpe": 0.0008207993665144686,
+          "ann_return": 0.0003666826278401203,
+          "max_drawdown": -0.0030128240486322344,
+          "cvar_5": -9.259083832903817e-05,
+          "calmar": -0.009023935316777365
+        },
+        "vs_Combo1": {
+          "sharpe": -0.025256406320838587,
+          "ann_return": -0.002072671309078178,
+          "max_drawdown": 0.002173013465133544,
+          "cvar_5": 8.17476080767418e-05,
+          "calmar": -0.006469604755216407
+        }
+      },
+      "improved_phase2b_combo_abc": {
+        "vs_A": {
+          "sharpe": -0.0008207993665144686,
+          "ann_return": -0.0003666826278401203,
+          "max_drawdown": 0.0030128240486322344,
+          "cvar_5": 9.259083832903817e-05,
+          "calmar": 0.009023935316777365
+        },
+        "vs_F": {
+          "sharpe": 0.0,
+          "ann_return": 0.0,
+          "max_drawdown": 0.0,
+          "cvar_5": 0.0,
+          "calmar": 0.0
+        },
+        "vs_Combo1": {
+          "sharpe": -0.026077205687353056,
+          "ann_return": -0.002439353936918298,
+          "max_drawdown": 0.005185837513765779,
+          "cvar_5": 0.00017433844640577997,
+          "calmar": 0.002554330561560958
+        }
+      },
+      "improved_phase3_1_combo_c1a_a1g": {
+        "vs_A": {
+          "sharpe": 0.025256406320838587,
+          "ann_return": 0.002072671309078178,
+          "max_drawdown": -0.002173013465133544,
+          "cvar_5": -8.17476080767418e-05,
+          "calmar": 0.006469604755216407
+        },
+        "vs_F": {
+          "sharpe": 0.026077205687353056,
+          "ann_return": 0.002439353936918298,
+          "max_drawdown": -0.005185837513765779,
+          "cvar_5": -0.00017433844640577997,
+          "calmar": -0.002554330561560958
+        },
+        "vs_Combo1": {
+          "sharpe": 0.0,
+          "ann_return": 0.0,
+          "max_drawdown": 0.0,
+          "cvar_5": 0.0,
+          "calmar": 0.0
+        }
+      },
+      "improved_phase3_4_combo_fragile_guard": {
+        "vs_A": {
+          "sharpe": 0.021762136395964138,
+          "ann_return": 0.0017463659323981862,
+          "max_drawdown": -0.0021730134651336552,
+          "cvar_5": -8.17476080767418e-05,
+          "calmar": 0.0041704984893849995
+        },
+        "vs_F": {
+          "sharpe": 0.022582935762478606,
+          "ann_return": 0.0021130485602383065,
+          "max_drawdown": -0.00518583751376589,
+          "cvar_5": -0.00017433844640577997,
+          "calmar": -0.004853436827392366
+        },
+        "vs_Combo1": {
+          "sharpe": -0.003494269924874449,
+          "ann_return": -0.0003263053766799917,
+          "max_drawdown": -1.1102230246251565e-16,
+          "cvar_5": 0.0,
+          "calmar": -0.0022991062658314076
+        }
+      },
+      "improved_phase3_4_combo_tilt_dampened": {
+        "vs_A": {
+          "sharpe": 0.024560292918058613,
+          "ann_return": 0.002067207711730301,
+          "max_drawdown": -0.002173013465133544,
+          "cvar_5": -0.00010396461328091716,
+          "calmar": 0.006431108941802988
+        },
+        "vs_F": {
+          "sharpe": 0.02538109228457308,
+          "ann_return": 0.0024338903395704214,
+          "max_drawdown": -0.005185837513765779,
+          "cvar_5": -0.00019655545160995533,
+          "calmar": -0.0025928263749743774
+        },
+        "vs_Combo1": {
+          "sharpe": -0.0006961134027799742,
+          "ann_return": -5.463597347876714e-06,
+          "max_drawdown": 0.0,
+          "cvar_5": -2.2217005204175355e-05,
+          "calmar": -3.8495813413419455e-05
+        }
+      },
+      "improved_phase3_4_combo_fragile_guard_tilt_dampened": {
+        "vs_A": {
+          "sharpe": 0.021067932227878283,
+          "ann_return": 0.0017408680043415892,
+          "max_drawdown": -0.002173013465133544,
+          "cvar_5": -0.00010396461328091716,
+          "calmar": 0.004131760786155958
+        },
+        "vs_F": {
+          "sharpe": 0.021888731594392752,
+          "ann_return": 0.0021075506321817095,
+          "max_drawdown": -0.005185837513765779,
+          "cvar_5": -0.00019655545160995533,
+          "calmar": -0.004892174530621407
+        },
+        "vs_Combo1": {
+          "sharpe": -0.004188474092960304,
+          "ann_return": -0.0003318033047365887,
+          "max_drawdown": 0.0,
+          "cvar_5": -2.2217005204175355e-05,
+          "calmar": -0.002337843969060449
+        }
+      }
+    },
+    "pre_holdout": {
+      "improved_phase2b_regime_confidence_boost": {
+        "vs_A": {
+          "sharpe": 0.0,
+          "ann_return": 0.0,
+          "max_drawdown": 0.0,
+          "cvar_5": 0.0,
+          "calmar": 0.0
+        },
+        "vs_F": {
+          "sharpe": 0.0017417927226979213,
+          "ann_return": 0.00039270496924603826,
+          "max_drawdown": -0.0030128240486322344,
+          "cvar_5": -8.263979950247358e-05,
+          "calmar": -0.007485934022039675
+        },
+        "vs_Combo1": {
+          "sharpe": -0.029755148455030245,
+          "ann_return": -0.0023563948169367244,
+          "max_drawdown": 0.002173013465133544,
+          "cvar_5": 3.1453003600037666e-05,
+          "calmar": -0.009405200994175245
+        }
+      },
+      "improved_phase2b_combo_abc": {
+        "vs_A": {
+          "sharpe": -0.0017417927226979213,
+          "ann_return": -0.00039270496924603826,
+          "max_drawdown": 0.0030128240486322344,
+          "cvar_5": 8.263979950247358e-05,
+          "calmar": 0.007485934022039675
+        },
+        "vs_F": {
+          "sharpe": 0.0,
+          "ann_return": 0.0,
+          "max_drawdown": 0.0,
+          "cvar_5": 0.0,
+          "calmar": 0.0
+        },
+        "vs_Combo1": {
+          "sharpe": -0.031496941177728166,
+          "ann_return": -0.0027490997861827626,
+          "max_drawdown": 0.005185837513765779,
+          "cvar_5": 0.00011409280310251124,
+          "calmar": -0.0019192669721355693
+        }
+      },
+      "improved_phase3_1_combo_c1a_a1g": {
+        "vs_A": {
+          "sharpe": 0.029755148455030245,
+          "ann_return": 0.0023563948169367244,
+          "max_drawdown": -0.002173013465133544,
+          "cvar_5": -3.1453003600037666e-05,
+          "calmar": 0.009405200994175245
+        },
+        "vs_F": {
+          "sharpe": 0.031496941177728166,
+          "ann_return": 0.0027490997861827626,
+          "max_drawdown": -0.005185837513765779,
+          "cvar_5": -0.00011409280310251124,
+          "calmar": 0.0019192669721355693
+        },
+        "vs_Combo1": {
+          "sharpe": 0.0,
+          "ann_return": 0.0,
+          "max_drawdown": 0.0,
+          "cvar_5": 0.0,
+          "calmar": 0.0
+        }
+      },
+      "improved_phase3_4_combo_fragile_guard": {
+        "vs_A": {
+          "sharpe": 0.02586741510871171,
+          "ann_return": 0.0019963522710841897,
+          "max_drawdown": -0.0021730134651336552,
+          "cvar_5": -3.1453003600037666e-05,
+          "calmar": 0.006868386916645541
+        },
+        "vs_F": {
+          "sharpe": 0.027609207831409632,
+          "ann_return": 0.002389057240330228,
+          "max_drawdown": -0.00518583751376589,
+          "cvar_5": -0.00011409280310251124,
+          "calmar": -0.0006175471053941339
+        },
+        "vs_Combo1": {
+          "sharpe": -0.0038877333463185337,
+          "ann_return": -0.0003600425458525347,
+          "max_drawdown": -1.1102230246251565e-16,
+          "cvar_5": 0.0,
+          "calmar": -0.0025368140775297032
+        }
+      },
+      "improved_phase3_4_combo_tilt_dampened": {
+        "vs_A": {
+          "sharpe": 0.029073351361676547,
+          "ann_return": 0.0023503662300206063,
+          "max_drawdown": -0.002173013465133544,
+          "cvar_5": -5.603351999615078e-05,
+          "calmar": 0.009362724335978623
+        },
+        "vs_F": {
+          "sharpe": 0.03081514408437447,
+          "ann_return": 0.0027430711992666446,
+          "max_drawdown": -0.005185837513765779,
+          "cvar_5": -0.00013867331949862435,
+          "calmar": 0.0018767903139389475
+        },
+        "vs_Combo1": {
+          "sharpe": -0.0006817970933536976,
+          "ann_return": -6.028586916118073e-06,
+          "max_drawdown": 0.0,
+          "cvar_5": -2.458051639611311e-05,
+          "calmar": -4.247665819662183e-05
+        }
+      },
+      "improved_phase3_4_combo_fragile_guard_tilt_dampened": {
+        "vs_A": {
+          "sharpe": 0.02518798994603033,
+          "ann_return": 0.001990286009256881,
+          "max_drawdown": -0.002173013465133544,
+          "cvar_5": -5.603351999615078e-05,
+          "calmar": 0.006825644805807163
+        },
+        "vs_F": {
+          "sharpe": 0.026929782668728253,
+          "ann_return": 0.002382990978502919,
+          "max_drawdown": -0.005185837513765779,
+          "cvar_5": -0.00013867331949862435,
+          "calmar": -0.0006602892162325125
+        },
+        "vs_Combo1": {
+          "sharpe": -0.004567158508999913,
+          "ann_return": -0.00036610880767984355,
+          "max_drawdown": 0.0,
+          "cvar_5": -2.458051639611311e-05,
+          "calmar": -0.0025795561883680818
+        }
+      }
+    },
+    "holdout": {
+      "improved_phase2b_regime_confidence_boost": {
+        "vs_A": {
+          "sharpe": 0.0,
+          "ann_return": 0.0,
+          "max_drawdown": 0.0,
+          "cvar_5": 0.0,
+          "calmar": 0.0
+        },
+        "vs_F": {
+          "sharpe": -0.012405549648096148,
+          "ann_return": 0.00011390540741240684,
+          "max_drawdown": -0.0013368246984170051,
+          "cvar_5": -0.00015510883608240225,
+          "calmar": -0.06352388714122359
+        },
+        "vs_Combo1": {
+          "sharpe": 0.04480232911783211,
+          "ann_return": 0.0006731822074745875,
+          "max_drawdown": 0.002985464843462182,
+          "cvar_5": 0.0004619727634782994,
+          "calmar": 0.1471366668154932
+        }
+      },
+      "improved_phase2b_combo_abc": {
+        "vs_A": {
+          "sharpe": 0.012405549648096148,
+          "ann_return": -0.00011390540741240684,
+          "max_drawdown": 0.0013368246984170051,
+          "cvar_5": 0.00015510883608240225,
+          "calmar": 0.06352388714122359
+        },
+        "vs_F": {
+          "sharpe": 0.0,
+          "ann_return": 0.0,
+          "max_drawdown": 0.0,
+          "cvar_5": 0.0,
+          "calmar": 0.0
+        },
+        "vs_Combo1": {
+          "sharpe": 0.057207878765928255,
+          "ann_return": 0.0005592768000621806,
+          "max_drawdown": 0.004322289541879187,
+          "cvar_5": 0.0006170815995607017,
+          "calmar": 0.2106605539567168
+        }
+      },
+      "improved_phase3_1_combo_c1a_a1g": {
+        "vs_A": {
+          "sharpe": -0.04480232911783211,
+          "ann_return": -0.0006731822074745875,
+          "max_drawdown": -0.002985464843462182,
+          "cvar_5": -0.0004619727634782994,
+          "calmar": -0.1471366668154932
+        },
+        "vs_F": {
+          "sharpe": -0.057207878765928255,
+          "ann_return": -0.0005592768000621806,
+          "max_drawdown": -0.004322289541879187,
+          "cvar_5": -0.0006170815995607017,
+          "calmar": -0.2106605539567168
+        },
+        "vs_Combo1": {
+          "sharpe": 0.0,
+          "ann_return": 0.0,
+          "max_drawdown": 0.0,
+          "cvar_5": 0.0,
+          "calmar": 0.0
+        }
+      },
+      "improved_phase3_4_combo_fragile_guard": {
+        "vs_A": {
+          "sharpe": -0.04480232911783211,
+          "ann_return": -0.0006731822074745875,
+          "max_drawdown": -0.002985464843462182,
+          "cvar_5": -0.0004619727634782994,
+          "calmar": -0.1471366668154932
+        },
+        "vs_F": {
+          "sharpe": -0.057207878765928255,
+          "ann_return": -0.0005592768000621806,
+          "max_drawdown": -0.004322289541879187,
+          "cvar_5": -0.0006170815995607017,
+          "calmar": -0.2106605539567168
+        },
+        "vs_Combo1": {
+          "sharpe": 0.0,
+          "ann_return": 0.0,
+          "max_drawdown": 0.0,
+          "cvar_5": 0.0,
+          "calmar": 0.0
+        }
+      },
+      "improved_phase3_4_combo_tilt_dampened": {
+        "vs_A": {
+          "sharpe": -0.04480232911783211,
+          "ann_return": -0.0006731822074745875,
+          "max_drawdown": -0.002985464843462182,
+          "cvar_5": -0.0004619727634782994,
+          "calmar": -0.1471366668154932
+        },
+        "vs_F": {
+          "sharpe": -0.057207878765928255,
+          "ann_return": -0.0005592768000621806,
+          "max_drawdown": -0.004322289541879187,
+          "cvar_5": -0.0006170815995607017,
+          "calmar": -0.2106605539567168
+        },
+        "vs_Combo1": {
+          "sharpe": 0.0,
+          "ann_return": 0.0,
+          "max_drawdown": 0.0,
+          "cvar_5": 0.0,
+          "calmar": 0.0
+        }
+      },
+      "improved_phase3_4_combo_fragile_guard_tilt_dampened": {
+        "vs_A": {
+          "sharpe": -0.04480232911783211,
+          "ann_return": -0.0006731822074745875,
+          "max_drawdown": -0.002985464843462182,
+          "cvar_5": -0.0004619727634782994,
+          "calmar": -0.1471366668154932
+        },
+        "vs_F": {
+          "sharpe": -0.057207878765928255,
+          "ann_return": -0.0005592768000621806,
+          "max_drawdown": -0.004322289541879187,
+          "cvar_5": -0.0006170815995607017,
+          "calmar": -0.2106605539567168
+        },
+        "vs_Combo1": {
+          "sharpe": 0.0,
+          "ann_return": 0.0,
+          "max_drawdown": 0.0,
+          "cvar_5": 0.0,
+          "calmar": 0.0
+        }
+      }
+    }
+  },
+  "bootstrap": {
+    "holdout": {
+      "improved_phase3_1_combo_c1a_a1g_sharpe_vs_A": {
+        "n": 104,
+        "mean_diff": -0.03600645203195502,
+        "ci_2_5": -0.16287819985856267,
+        "ci_97_5": 0.054654624730326014,
+        "p_target_beats_base": 0.2575
+      },
+      "improved_phase3_1_combo_c1a_a1g_ann_return_vs_A": {
+        "n": 104,
+        "mean_diff": 0.00044457119190703773,
+        "ci_2_5": -0.004601150815615485,
+        "ci_97_5": 0.006473232396110482,
+        "p_target_beats_base": 0.539
+      },
+      "improved_phase3_1_combo_c1a_a1g_max_dd_vs_A": {
+        "n": 104,
+        "mean_diff": -0.0007198986973004915,
+        "ci_2_5": -0.003902678220233685,
+        "ci_97_5": 0.0022804221624259133,
+        "p_target_beats_base": 0.52
+      },
+      "improved_phase3_4_combo_fragile_guard_sharpe_vs_A": {
+        "n": 104,
+        "mean_diff": -0.03600645203195502,
+        "ci_2_5": -0.16287819985856267,
+        "ci_97_5": 0.054654624730326014,
+        "p_target_beats_base": 0.2575
+      },
+      "improved_phase3_4_combo_fragile_guard_ann_return_vs_A": {
+        "n": 104,
+        "mean_diff": 0.00044457119190703773,
+        "ci_2_5": -0.004601150815615485,
+        "ci_97_5": 0.006473232396110482,
+        "p_target_beats_base": 0.539
+      },
+      "improved_phase3_4_combo_fragile_guard_max_dd_vs_A": {
+        "n": 104,
+        "mean_diff": -0.0007198986973004915,
+        "ci_2_5": -0.003902678220233685,
+        "ci_97_5": 0.0022804221624259133,
+        "p_target_beats_base": 0.52
+      },
+      "improved_phase3_4_combo_tilt_dampened_sharpe_vs_A": {
+        "n": 104,
+        "mean_diff": -0.03600645203195502,
+        "ci_2_5": -0.16287819985856267,
+        "ci_97_5": 0.054654624730326014,
+        "p_target_beats_base": 0.2575
+      },
+      "improved_phase3_4_combo_tilt_dampened_ann_return_vs_A": {
+        "n": 104,
+        "mean_diff": 0.00044457119190703773,
+        "ci_2_5": -0.004601150815615485,
+        "ci_97_5": 0.006473232396110482,
+        "p_target_beats_base": 0.539
+      },
+      "improved_phase3_4_combo_tilt_dampened_max_dd_vs_A": {
+        "n": 104,
+        "mean_diff": -0.0007198986973004915,
+        "ci_2_5": -0.003902678220233685,
+        "ci_97_5": 0.0022804221624259133,
+        "p_target_beats_base": 0.52
+      },
+      "improved_phase3_4_combo_fragile_guard_tilt_dampened_sharpe_vs_A": {
+        "n": 104,
+        "mean_diff": -0.03600645203195502,
+        "ci_2_5": -0.16287819985856267,
+        "ci_97_5": 0.054654624730326014,
+        "p_target_beats_base": 0.2575
+      },
+      "improved_phase3_4_combo_fragile_guard_tilt_dampened_ann_return_vs_A": {
+        "n": 104,
+        "mean_diff": 0.00044457119190703773,
+        "ci_2_5": -0.004601150815615485,
+        "ci_97_5": 0.006473232396110482,
+        "p_target_beats_base": 0.539
+      },
+      "improved_phase3_4_combo_fragile_guard_tilt_dampened_max_dd_vs_A": {
+        "n": 104,
+        "mean_diff": -0.0007198986973004915,
+        "ci_2_5": -0.003902678220233685,
+        "ci_97_5": 0.0022804221624259133,
+        "p_target_beats_base": 0.52
+      }
+    },
+    "pre_holdout": {
+      "improved_phase3_1_combo_c1a_a1g_sharpe_vs_A": {
+        "n": 929,
+        "mean_diff": 0.032189203184909386,
+        "ci_2_5": -0.006855861473885744,
+        "ci_97_5": 0.07426296711696459,
+        "p_target_beats_base": 0.9445
+      },
+      "improved_phase3_1_combo_c1a_a1g_ann_return_vs_A": {
+        "n": 929,
+        "mean_diff": 0.002564063674556306,
+        "ci_2_5": -0.0010064943983800311,
+        "ci_97_5": 0.006384273537578276,
+        "p_target_beats_base": 0.9205
+      },
+      "improved_phase3_1_combo_c1a_a1g_max_dd_vs_A": {
+        "n": 929,
+        "mean_diff": 0.0013298728555827836,
+        "ci_2_5": -0.007412243085194231,
+        "ci_97_5": 0.016875263748465118,
+        "p_target_beats_base": 0.4775
+      },
+      "improved_phase3_4_combo_fragile_guard_sharpe_vs_A": {
+        "n": 929,
+        "mean_diff": 0.02825465893046303,
+        "ci_2_5": -0.00987680559584649,
+        "ci_97_5": 0.06937340276116852,
+        "p_target_beats_base": 0.923
+      },
+      "improved_phase3_4_combo_fragile_guard_ann_return_vs_A": {
+        "n": 929,
+        "mean_diff": 0.002200025435547259,
+        "ci_2_5": -0.0011614918382541084,
+        "ci_97_5": 0.0059776318762488284,
+        "p_target_beats_base": 0.8945
+      },
+      "improved_phase3_4_combo_fragile_guard_max_dd_vs_A": {
+        "n": 929,
+        "mean_diff": 0.0012710852471201361,
+        "ci_2_5": -0.007424337947663701,
+        "ci_97_5": 0.01644422420319713,
+        "p_target_beats_base": 0.4765
+      },
+      "improved_phase3_4_combo_tilt_dampened_sharpe_vs_A": {
+        "n": 929,
+        "mean_diff": 0.031483850039924606,
+        "ci_2_5": -0.007750234153380153,
+        "ci_97_5": 0.07364549847582665,
+        "p_target_beats_base": 0.9415
+      },
+      "improved_phase3_4_combo_tilt_dampened_ann_return_vs_A": {
+        "n": 929,
+        "mean_diff": 0.002557179583433783,
+        "ci_2_5": -0.0009862257749470027,
+        "ci_97_5": 0.006364611660267959,
+        "p_target_beats_base": 0.9195
+      },
+      "improved_phase3_4_combo_tilt_dampened_max_dd_vs_A": {
+        "n": 929,
+        "mean_diff": 0.0012669253982326234,
+        "ci_2_5": -0.00742433794766402,
+        "ci_97_5": 0.01672820150984737,
+        "p_target_beats_base": 0.4735
+      },
+      "improved_phase3_4_combo_fragile_guard_tilt_dampened_sharpe_vs_A": {
+        "n": 929,
+        "mean_diff": 0.027551546921307717,
+        "ci_2_5": -0.010332500830613187,
+        "ci_97_5": 0.06864892576904508,
+        "p_target_beats_base": 0.9185
+      },
+      "improved_phase3_4_combo_fragile_guard_tilt_dampened_ann_return_vs_A": {
+        "n": 929,
+        "mean_diff": 0.0021931024465697644,
+        "ci_2_5": -0.0011582123940219347,
+        "ci_97_5": 0.005971365992536515,
+        "p_target_beats_base": 0.8935
+      },
+      "improved_phase3_4_combo_fragile_guard_tilt_dampened_max_dd_vs_A": {
+        "n": 929,
+        "mean_diff": 0.0012081276586472973,
+        "ci_2_5": -0.007436329589426252,
+        "ci_97_5": 0.016272755881842692,
+        "p_target_beats_base": 0.473
+      }
+    },
+    "full_history": {
+      "improved_phase3_1_combo_c1a_a1g_sharpe_vs_A": {
+        "n": 1033,
+        "mean_diff": 0.028982679117657496,
+        "ci_2_5": -0.007306966415336205,
+        "ci_97_5": 0.06913042659075168,
+        "p_target_beats_base": 0.934
+      },
+      "improved_phase3_1_combo_c1a_a1g_ann_return_vs_A": {
+        "n": 1033,
+        "mean_diff": 0.002368867308042675,
+        "ci_2_5": -0.0010341499579404555,
+        "ci_97_5": 0.006148305240080233,
+        "p_target_beats_base": 0.9155
+      },
+      "improved_phase3_1_combo_c1a_a1g_max_dd_vs_A": {
+        "n": 1033,
+        "mean_diff": 0.0008583157171573562,
+        "ci_2_5": -0.006933625039178257,
+        "ci_97_5": 0.013858070933956596,
+        "p_target_beats_base": 0.467
+      },
+      "improved_phase3_4_combo_fragile_guard_sharpe_vs_A": {
+        "n": 1033,
+        "mean_diff": 0.025435706415626206,
+        "ci_2_5": -0.011145177250519639,
+        "ci_97_5": 0.06520467538298234,
+        "p_target_beats_base": 0.915
+      },
+      "improved_phase3_4_combo_fragile_guard_ann_return_vs_A": {
+        "n": 1033,
+        "mean_diff": 0.0020399368457468875,
+        "ci_2_5": -0.0012641807630766,
+        "ci_97_5": 0.005762343258147588,
+        "p_target_beats_base": 0.881
+      },
+      "improved_phase3_4_combo_fragile_guard_max_dd_vs_A": {
+        "n": 1033,
+        "mean_diff": 0.0008256381975293387,
+        "ci_2_5": -0.0068323625666156795,
+        "ci_97_5": 0.01359734694994885,
+        "p_target_beats_base": 0.4645
+      },
+      "improved_phase3_4_combo_tilt_dampened_sharpe_vs_A": {
+        "n": 1033,
+        "mean_diff": 0.02827271379726474,
+        "ci_2_5": -0.007879349653335747,
+        "ci_97_5": 0.06858531951719736,
+        "p_target_beats_base": 0.931
+      },
+      "improved_phase3_4_combo_tilt_dampened_ann_return_vs_A": {
+        "n": 1033,
+        "mean_diff": 0.002363231715593182,
+        "ci_2_5": -0.0010215264346335074,
+        "ci_97_5": 0.006172805481467979,
+        "p_target_beats_base": 0.915
+      },
+      "improved_phase3_4_combo_tilt_dampened_max_dd_vs_A": {
+        "n": 1033,
+        "mean_diff": 0.0007997376479200844,
+        "ci_2_5": -0.006961411111035992,
+        "ci_97_5": 0.01363926762549022,
+        "p_target_beats_base": 0.464
+      },
+      "improved_phase3_4_combo_fragile_guard_tilt_dampened_sharpe_vs_A": {
+        "n": 1033,
+        "mean_diff": 0.0247276317996579,
+        "ci_2_5": -0.011518606165621023,
+        "ci_97_5": 0.06454215166779523,
+        "p_target_beats_base": 0.911
+      },
+      "improved_phase3_4_combo_fragile_guard_tilt_dampened_ann_return_vs_A": {
+        "n": 1033,
+        "mean_diff": 0.002034265214913991,
+        "ci_2_5": -0.0012804053137792037,
+        "ci_97_5": 0.005744082023736928,
+        "p_target_beats_base": 0.882
+      },
+      "improved_phase3_4_combo_fragile_guard_tilt_dampened_max_dd_vs_A": {
+        "n": 1033,
+        "mean_diff": 0.0007671227028901446,
+        "ci_2_5": -0.006883938081192165,
+        "ci_97_5": 0.013506537992629063,
+        "p_target_beats_base": 0.461
+      }
+    }
+  }
+}

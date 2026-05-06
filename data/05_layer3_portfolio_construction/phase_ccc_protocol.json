@@ -1,0 +1,17 @@
+{
+  "phase": "Phase CCC \u2014 bounded recovery_confirmed offense pruning",
+  "candidates": [
+    "improved_phaseccc_confirmed_cap_css",
+    "improved_phaseccc_confirmed_cap_dual",
+    "improved_phaseccc_confirmed_cap_dual_css",
+    "improved_phaseccc_conservative_confirmed_pruning"
+  ],
+  "production_pin": "improved_phase2b_regime_confidence_boost",
+  "shadow_pin": "improved_phase2b_combo_abc",
+  "yy_reference": "improved_phaseyy_conservative_decomposition",
+  "zz2_reference": "improved_phasezz_recovery_neutral_offense_rebudget",
+  "aaa2_reference": "improved_phaseaaa_confirmed_offense_mix_tilt",
+  "bbb3_reference": "improved_phasebbb_offense_defense_composition_combo",
+  "best_candidate": "improved_phaseccc_confirmed_cap_dual",
+  "rationale": "Selected improved_phaseccc_confirmed_cap_dual (strict CCC gates passed)."
+}

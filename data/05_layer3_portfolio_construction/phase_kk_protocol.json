@@ -1,0 +1,41 @@
+{
+  "phase": "Phase KK \u2014 Targeted Phase 2B ML refresh (Target A + Group A only)",
+  "model": "LogisticRegression(liblinear, max_iter=1000) with StandardScaler",
+  "validation": {
+    "method": "expanding-window walk-forward",
+    "initial_train_weeks": 260,
+    "retrain_freq_weeks": 26
+  },
+  "features_used": [
+    "market_drawdown",
+    "market_trend_positive",
+    "breadth_sma_43",
+    "breadth_26w_mom",
+    "breadth_13w_mom",
+    "breadth_change_4w",
+    "canary_breadth_default",
+    "recent_stress_26w",
+    "transition_persistence_prob",
+    "transition_good_state_prob",
+    "transition_non_stress_prob",
+    "avg_corr_risk_off_z",
+    "p_regime_confidence",
+    "p_transition_quality",
+    "p_tail_risk"
+  ],
+  "phase_cc_features_used": "NONE",
+  "macro_features_used": "NONE",
+  "target": "target_A_stress_transition_4w (forward 4w max indicator of stressed_panic)",
+  "metrics": {
+    "baseline_brier": 0.22138666646930236,
+    "baseline_auc": 0.7339975623123676,
+    "refreshed_brier": 0.09365967568360004,
+    "refreshed_auc": 0.8805711051971492
+  },
+  "candidates": [
+    "improved_phasekk_targeta_confidence_replacement",
+    "improved_phasekk_targeta_confidence_blend25"
+  ],
+  "best_candidate": "",
+  "rationale": "NO Phase KK candidate passes. Best diagnostic: improved_phasekk_targeta_confidence_replacement; failure reasons: sharpe_imp<0.005 (-0.0010); mdd_worse>0.5pp (-0.53pp)."
+}

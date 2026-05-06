@@ -1,0 +1,22 @@
+{
+  "phase": "Phase L",
+  "purpose": "Decision-aware / robustness-aware learning allocator on refined redesigned sleeve panel",
+  "current_refined_allocator_reference": "improved_phaseh_refined_state_allocator",
+  "conditional_tail_aware_branch": "improved_phasek_tail_aware_role_framework",
+  "active_panel_baseline": "improved_phaseh_refined_panel_blend",
+  "candidate_versions": {
+    "improved_phasel_decision_utility_allocator": "L1 decision-aware role allocator",
+    "improved_phasel_selective_concentration_allocator": "L2 robustness-aware selective concentration allocator",
+    "improved_phasel_tail_turnover_learning_allocator": "L3 tail/turnover constrained learning allocator"
+  },
+  "training_design": {
+    "decision_utility_label": "forward 4w sleeve return penalized for downside, trailing risk, drawdown, and fragile offensive exposure; cross-sectionally ranked by date",
+    "tail_utility_label": "more heavily downside/tail-penalized decision utility; cross-sectionally ranked by date",
+    "date_spread_label": "future utility winner spread for learned concentration gating",
+    "walk_forward": {
+      "min_train_weeks": 156,
+      "retrain_frequency_weeks": 26,
+      "label_horizon_weeks": 4
+    }
+  }
+}

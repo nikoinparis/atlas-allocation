@@ -1,0 +1,37 @@
+{
+  "phase": "YY",
+  "best_candidate": "improved_phaseyy_conservative_decomposition",
+  "production_reference": "improved_phase2b_regime_confidence_boost",
+  "shadow_reference": "improved_phase2b_combo_abc",
+  "vv_reference": "improved_phasevv_recovery_neutral_budget_aware_overlay",
+  "xx_reference": "improved_phasexx_conservative_hybrid_overlay",
+  "candidates": [
+    "improved_phaseyy_composite_cash_explicit",
+    "improved_phaseyy_composite_offense_defense_split",
+    "improved_phaseyy_decomposition_vv_reference",
+    "improved_phaseyy_conservative_decomposition"
+  ],
+  "decomposition_method": {
+    "source_sleeve": "composite_regime_conditioned",
+    "offense_etfs": [
+      "SPY",
+      "QQQ",
+      "IWM",
+      "EFA",
+      "VEA",
+      "VWO",
+      "EWJ",
+      "VNQ",
+      "PDBC",
+      "DBA"
+    ],
+    "defense_etfs": [
+      "HYG",
+      "LQD",
+      "GLD",
+      "TLT"
+    ],
+    "cash_etf": "BIL",
+    "note": "Component sleeves are causal ETF-position decompositions of composite_regime_conditioned. Candidate portfolio returns are still generated through the canonical production construction path."
+  }
+}

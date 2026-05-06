@@ -1,0 +1,18 @@
+{
+  "phase": "Phase J",
+  "fixed_comparator_set": [
+    "improved_phase2b_regime_confidence_boost",
+    "improved_phase2b_combo_abc",
+    "improved_phaseh_refined_state_allocator",
+    "improved_phaseh_refined_panel_blend",
+    "improved_phasec_state_conditioned_map",
+    "improved_phaseh_reference_core_blend"
+  ],
+  "candidate_versions": [
+    "improved_phasej_robust_objective_allocator",
+    "improved_phasej_margin_confidence_allocator",
+    "improved_phasej_turnover_tail_allocator",
+    "improved_phasej_structural_combo_allocator"
+  ],
+  "validation_rules_source": "phase_d_validation_protocol.json"
+}

@@ -1,0 +1,104 @@
+{
+  "phase": "Phase R \u2014 Bucket-Trust Refinement",
+  "fixed_comparator_set": [
+    "improved_phase2b_regime_confidence_boost",
+    "improved_phase2b_combo_abc",
+    "improved_phaseh_refined_state_allocator",
+    "improved_phasen_distributional_tail_allocator",
+    "improved_phaseo_tail_priority_allocator",
+    "improved_phasep_regret_aware_meta_allocator",
+    "improved_phaseq_regime_bucket_meta_allocator",
+    "improved_phaseq_abstention_aware_meta_allocator",
+    "improved_phaseh_refined_panel_blend"
+  ],
+  "phase_r_candidates": [
+    "improved_phaser_bucket_refined_meta_allocator",
+    "improved_phaser_light_abstention_overlay_allocator",
+    "improved_phaser_fast_narrow_regret_allocator",
+    "improved_phaser_refined_bucket_fast_regret_combo"
+  ],
+  "production_rule": {
+    "full_raw_composite_delta_vs_production_min": 0.015,
+    "holdout_raw_composite_delta_vs_production_min": 0.0,
+    "holdout_sharpe_delta_vs_production_min": -0.02,
+    "rolling_raw_win_rate_vs_production_min": 0.55,
+    "rolling_mean_raw_delta_vs_production_min": 0.0,
+    "holdout_bootstrap_prob_excess_return_min": 0.6,
+    "max_drawdown_worsening_cap": -0.01,
+    "cvar_worsening_cap": -0.002
+  },
+  "shadow_rule": {
+    "holdout_raw_composite_delta_vs_production_min": -0.01,
+    "rolling_raw_win_rate_vs_production_min": 0.45,
+    "holdout_bootstrap_prob_excess_return_min": 0.5,
+    "max_drawdown_worsening_cap": -0.015,
+    "cvar_worsening_cap": -0.003
+  },
+  "holdout_weeks": 104,
+  "rolling_origin": {
+    "min_train_weeks": 260,
+    "test_weeks": 104,
+    "step_weeks": 52
+  },
+  "bootstrap": {
+    "method": "moving_block_bootstrap",
+    "block_weeks": 13,
+    "samples": 2000
+  },
+  "bucket_persistence_weeks": 3,
+  "fast_regret_half_life_weeks": 8,
+  "r1_base_mix": {
+    "calm_trust": {
+      "production": 0.18,
+      "phasen": 0.28,
+      "phaseo": 0.54,
+      "abstain": 0.0
+    },
+    "recovery_trust": {
+      "production": 0.18,
+      "phasen": 0.54,
+      "phaseo": 0.28,
+      "abstain": 0.0
+    },
+    "defense_production": {
+      "production": 0.8,
+      "phasen": 0.08,
+      "phaseo": 0.08,
+      "abstain": 0.04
+    },
+    "ambiguous_abstain": {
+      "production": 0.62,
+      "phasen": 0.13,
+      "phaseo": 0.13,
+      "abstain": 0.12
+    }
+  },
+  "r2_base_mix": {
+    "calm_trust": {
+      "production": 0.2,
+      "phasen": 0.25,
+      "phaseo": 0.55,
+      "abstain": 0.0
+    },
+    "recovery_trust": {
+      "production": 0.25,
+      "phasen": 0.5,
+      "phaseo": 0.25,
+      "abstain": 0.0
+    },
+    "defense_production": {
+      "production": 0.85,
+      "phasen": 0.075,
+      "phaseo": 0.075,
+      "abstain": 0.0
+    },
+    "ambiguous_abstain": {
+      "production": 0.65,
+      "phasen": 0.13,
+      "phaseo": 0.12,
+      "abstain": 0.1
+    }
+  },
+  "r2_abstain_score_gate": 0.6,
+  "r2_abstain_max_weight": 0.1
+}

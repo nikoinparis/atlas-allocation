@@ -1,0 +1,6 @@
+state,bottleneck,severity,evidence,suggested_rr_candidate
+calm_trend,good_state participation still leans too heavily on composite drag,HIGH,"bucket_composite=0.311, bucket_cash=0.034, prod_ann_return=0.0393, spy_ann_return=0.1559",improved_phaserr_good_state_bucket_participation
+neutral_healthy_proxy,healthy neutral still carries too much composite plus sleeve-level cash drag,HIGH,"bucket_composite=0.275, bucket_cash=0.149, avg_BIL=0.213",improved_phaserr_good_state_bucket_participation
+recovery_confirmed,recovery mix still overweights composite and weak recovery offense,HIGH,"bucket_composite=0.331, bucket_defense=0.178, avg_BIL=0.126",improved_phaserr_recovery_bucket_repair
+recovery_fragile,fragile recovery still carries too much composite/cash drag into the rerisk handoff,HIGH,"bucket_composite=0.279, bucket_cash=0.124, avg_BIL=0.218",improved_phaserr_recovery_bucket_repair
+stressed_panic,stress defense looks appropriate; this state is mainly a guardrail,LOW,"bucket_cash=0.509, avg_BIL=0.607, prod_sharpe=0.524",preserve current behavior

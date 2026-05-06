@@ -1,0 +1,16 @@
+version_name,market_state,observations,avg_w1_weight,median_w1_weight,max_w1_weight
+improved_phasey_state_capped_w1,calm_trend,295,0.04999999999999999,0.05,0.05
+improved_phasey_state_capped_w1,neutral_mixed,493,0.0766659784616472,0.07609921804308187,0.0796
+improved_phasey_state_capped_w1,recovery_confirmed,44,0.08025157166335985,0.08000000000000002,0.08318724590613269
+improved_phasey_state_capped_w1,recovery_fragile,49,0.10043463178092006,0.099,0.10710000000000001
+improved_phasey_state_capped_w1,stressed_panic,229,0.0,0.0,0.0
+improved_phasey_trigger_driven_w1,calm_trend,295,0.02853838913125914,0.021433801493632,0.09670836881191783
+improved_phasey_trigger_driven_w1,neutral_mixed,493,0.046321270471554696,0.0290940498666076,0.2375
+improved_phasey_trigger_driven_w1,recovery_confirmed,44,0.022163889047764892,0.016530817047222424,0.0522875344246873
+improved_phasey_trigger_driven_w1,recovery_fragile,49,0.023328434549132342,0.01834718660354436,0.05632172187040846
+improved_phasey_trigger_driven_w1,stressed_panic,229,0.0,0.0,0.0
+improved_phasey_cash_replacement_w1,calm_trend,295,0.0,0.0,0.0
+improved_phasey_cash_replacement_w1,neutral_mixed,493,0.0027523207273470853,0.0008131590596003862,0.025000000000000022
+improved_phasey_cash_replacement_w1,recovery_confirmed,44,0.0032997766205700805,0.0002469577869722572,0.01972148610037353
+improved_phasey_cash_replacement_w1,recovery_fragile,49,0.02126552062664082,0.010231228246882294,0.0806117582675249
+improved_phasey_cash_replacement_w1,stressed_panic,229,0.0,0.0,0.0

@@ -1,0 +1,36 @@
+{
+  "phase": "Phase P \u2014 Meta-Allocator / Trust Model (ML Phase 3)",
+  "production_pin": "improved_phase2b_regime_confidence_boost",
+  "shadow_pin": "improved_phase2b_combo_abc",
+  "reference_allocators": {
+    "phaseh": "improved_phaseh_refined_state_allocator",
+    "phasen": "improved_phasen_distributional_tail_allocator",
+    "phaseo": "improved_phaseo_tail_priority_allocator"
+  },
+  "phase_p_candidates": {
+    "improved_phasep_hard_trust_switch_allocator": "M3-A hard trust switch",
+    "improved_phasep_soft_trust_blend_allocator": "M3-B soft trust blend",
+    "improved_phasep_regret_aware_meta_allocator": "M3-C regret-aware expert blend"
+  },
+  "feature_family": {
+    "state_confidence": true,
+    "phase_n_uncertainty": true,
+    "phase_o_controls": true,
+    "expert_disagreement": true,
+    "role_exposure_summaries": true,
+    "recent_relative_quality": true,
+    "state_conditioned_trust": true
+  },
+  "target_definition": {
+    "forward_horizon_weeks": 4,
+    "window_utility": "sum(net_return) + 0.35*max_drawdown + 0.15*tail_mean_25pct - 0.03*avg_turnover",
+    "binary_target": "phaseo_forward_utility > production_forward_utility",
+    "second_binary_target": "phasen_forward_utility > production_forward_utility"
+  },
+  "training_rule": {
+    "min_train_weeks": 156,
+    "retrain_frequency_weeks": 13,
+    "walkforward_safe": true,
+    "default_before_training": "production"
+  }
+}

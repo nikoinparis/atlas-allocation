@@ -1,0 +1,14 @@
+{
+  "phase": "Phase GGG \u2014 State-conditional composite_regime_offense_component construction",
+  "candidates": [
+    "improved_phaseggg_confirmed_only_robust_offense",
+    "improved_phaseggg_confirmed_only_quality_filtered_offense",
+    "improved_phaseggg_blended_confirmed_robust_offense"
+  ],
+  "production_pin": "improved_phase2b_regime_confidence_boost",
+  "shadow_pin": "improved_phase2b_combo_abc",
+  "eee1_reference": "improved_phaseeee_smoothed_near_exclude_dual",
+  "fff3_reference": "improved_phasefff_robust_composite_offense",
+  "best_candidate": "improved_phaseggg_confirmed_only_robust_offense",
+  "rationale": "Selected improved_phaseggg_confirmed_only_robust_offense (strict gates passed; below challenger threshold)."
+}

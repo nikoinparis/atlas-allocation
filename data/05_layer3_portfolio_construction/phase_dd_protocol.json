@@ -1,0 +1,48 @@
+{
+  "phase": "Phase DD \u2014 Production-family additive tilt consuming Phase CC defensive_overlay_hint",
+  "candidates": [
+    "improved_phasedd_hint_light",
+    "improved_phasedd_hint_moderate",
+    "improved_phasedd_hint_state_gated"
+  ],
+  "variant_configs": {
+    "improved_phasedd_hint_light": {
+      "delta": 0.05,
+      "gate_kind": "hint_with_bil_guard",
+      "bil_guard": 0.5,
+      "description": "Tilt 5% of risk budget into BIL when defensive_overlay_hint == +1 AND production BIL exposure < 50%."
+    },
+    "improved_phasedd_hint_moderate": {
+      "delta": 0.1,
+      "gate_kind": "hint_with_bil_guard",
+      "bil_guard": 0.5,
+      "description": "Tilt 10% of risk budget into BIL when defensive_overlay_hint == +1 AND production BIL exposure < 50%."
+    },
+    "improved_phasedd_hint_state_gated": {
+      "delta": 0.1,
+      "gate_kind": "refined_state_gated",
+      "trigger_states": [
+        "neutral_deteriorating"
+      ],
+      "description": "Tilt 10% of risk budget into BIL ONLY in `neutral_deteriorating` weeks (the new state Phase CC created)."
+    }
+  },
+  "tilt_mechanic": "On gate weeks: scale all non-BIL ETF weights by (1-delta); add freed share to BIL. On non-gate weeks: candidate weights == production weights exactly (full ablate-ability).",
+  "gates": {
+    "improved_phasedd_hint_light": "defensive_overlay_hint == +1 AND production BIL exposure < 0.50",
+    "improved_phasedd_hint_moderate": "defensive_overlay_hint == +1 AND production BIL exposure < 0.50",
+    "improved_phasedd_hint_state_gated": "refined_state == 'neutral_deteriorating' (the new state Phase CC created)"
+  },
+  "cost_convention": "5bp half-spread (0.0005 * 0.5)",
+  "selection_rule": {
+    "ann_ret_drag_max_pp": 0.3,
+    "sharpe_improvement_min": 0.005,
+    "mdd_worsening_max_pp": 0.5,
+    "cvar_worsening_max_pp": 0.05,
+    "turnover_ratio_max_vs_prod": 1.1,
+    "bil_increase_max_pp": 5.0,
+    "tie_break": "highest sharpe_improvement; then lowest ann_ret_drag"
+  },
+  "best_candidate": "",
+  "rationale": "NO Phase DD candidate passes all selection gates. Best diagnostic candidate: improved_phasedd_hint_light; failure reason(s): drag>0.30pp; sharpe_imp<0.005; turnover>1.10x."
+}

@@ -1,0 +1,53 @@
+{
+  "phase": "Phase CC \u2014 Layer 2B Regime Engine Refinement",
+  "objective": "Split neutral_mixed into neutral_healthy and neutral_deteriorating using a causal walk-forward deterioration score so that the next production allocator rerun can size W1 selectively.",
+  "primary_features": [
+    "dd_neg",
+    "breadth_decay",
+    "stress",
+    "corr",
+    "inv_trans"
+  ],
+  "feature_definitions": {
+    "dd_neg": "-market_drawdown (deeper drawdown = larger positive)",
+    "breadth_decay": "-(breadth_sma_43 + breadth_26w_mom)/2",
+    "stress": "recent_stress_26w",
+    "corr": "avg_corr_risk_off_z",
+    "inv_trans": "-transition_non_stress_prob"
+  },
+  "z_window_weeks": 156,
+  "z_min_obs": 78,
+  "z_lagged_by_weeks": 1,
+  "rank_reference_set": "past neutral_mixed weeks only, strictly t' < t",
+  "rank_min_history": 26,
+  "split_threshold_rank": 0.5,
+  "split_rule": "rank >= 0.50 \u2192 neutral_deteriorating; rank < 0.50 \u2192 neutral_healthy; missing rank \u2192 fall back to neutral_mixed (no split).",
+  "secondary_confidence_score": "(z(p_tail_risk) - z(p_regime_confidence)) / 2 over Phase 2B horizon (post-2008-11). Diagnostic only; does not enter the split rule.",
+  "defensive_overlay_hint": {
+    "+1": [
+      "stressed_panic",
+      "recovery_fragile",
+      "neutral_deteriorating"
+    ],
+    "0": [],
+    "-1": [
+      "calm_trend",
+      "recovery_confirmed",
+      "neutral_healthy"
+    ],
+    "neutral_mixed_fallback": 0
+  },
+  "outputs": [
+    "market_state_history_refined.csv",
+    "phase_cc_refined_state_diagnostics.csv",
+    "phase_cc_state_transition_matrix.csv",
+    "phase_cc_neutral_split_summary.csv",
+    "phase_cc_state_counts.csv"
+  ],
+  "causal_safety": [
+    "All primary features are computed by the regime engine from 1-week-lagged inputs.",
+    "trailing_z lags by one week (t excluded from its own moving window).",
+    "walk_forward_percentile_rank uses only past values (s < t).",
+    "Forward-window diagnostics enter NO score; they only validate."
+  ]
+}

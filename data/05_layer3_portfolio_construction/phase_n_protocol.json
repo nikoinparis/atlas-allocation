@@ -1,0 +1,24 @@
+{
+  "phase": "Phase N",
+  "purpose": "Ambitious ML phase: decision-aware, uncertainty-aware multi-sleeve allocator",
+  "reference_panel_version": "improved_phaseh_reference_core_blend",
+  "active_panel_version": "improved_phaseh_refined_panel_blend",
+  "current_refined_allocator_reference": "improved_phaseh_refined_state_allocator",
+  "current_learning_branch": "improved_phasel_tail_turnover_learning_allocator",
+  "current_tail_aware_branch": "improved_phasek_tail_aware_role_framework",
+  "candidate_versions": {
+    "improved_phasen_uncertainty_adjusted_allocator": "ML1/ML2 uncertainty-adjusted decision allocator",
+    "improved_phasen_distributional_tail_allocator": "ML1/ML2 distributional tail-aware allocator",
+    "improved_phasen_moe_role_gating_allocator": "ML3 mixture-of-experts role-gating allocator"
+  },
+  "training_design": {
+    "label_horizon_weeks": 4,
+    "walk_forward_min_train_weeks": 156,
+    "retrain_frequency_weeks": 26,
+    "label_purging": "train cut-off is current date minus 4 weeks to avoid overlap with forward 4-week labels",
+    "decision_target": "cross-sectionally ranked forward sleeve utility penalized for downside, realized volatility, drawdown, tail mean, and fragile offensive exposure",
+    "tail_target": "more conservative utility with heavier left-tail penalties",
+    "uncertainty_model": "quantile interval width + model disagreement + classifier entropy",
+    "moe_design": "three linear experts (calm, recovery, defense) blended by a learned multinomial gate on date-level features"
+  }
+}

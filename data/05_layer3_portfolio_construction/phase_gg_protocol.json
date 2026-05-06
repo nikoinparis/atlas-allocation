@@ -1,0 +1,26 @@
+{
+  "phase": "Phase GG \u2014 Magnitude test for Phase CC hint integration (last test in branch)",
+  "candidates": [
+    "improved_phasegg_hint_inallocator_10",
+    "improved_phasegg_hint_inallocator_15"
+  ],
+  "magnitudes": {
+    "improved_phasegg_hint_inallocator_10": 0.1,
+    "improved_phasegg_hint_inallocator_15": 0.15
+  },
+  "gate": "defensive_overlay_hint == +1 AND market_state NOT IN {stressed_panic, recovery_fragile}",
+  "integration_point": "scripts/build_improvement_artifacts.py \u2014 apply_state_conditioned_tilt() new branches 'dynamic_risk_budget_phasegg_10' and 'dynamic_risk_budget_phasegg_15'",
+  "selection_rule": {
+    "ann_ret_drag_max_pp": 0.3,
+    "sharpe_improvement_min": 0.005,
+    "mdd_worsening_max_pp": 0.5,
+    "cvar_worsening_max_pp": 0.05,
+    "turnover_ratio_max_vs_prod": 1.1,
+    "bil_increase_max_pp": 5.0,
+    "neutral_deteriorating_state_must_not_underperform": true
+  },
+  "best_candidate": "",
+  "rationale": "NO Phase GG candidate passes. Best diagnostic: improved_phasegg_hint_inallocator_10; failure reasons: sharpe_imp<0.005 (-0.0063); underperforms in neutral_deteriorating (\u0394=-0.000003/wk).",
+  "branch_decision": "RETIRE Phase CC hint-consumption branch \u2014 neither 10pp nor 15pp magnitude improves Sharpe AND neutral_deteriorating delta. Recommend returning to a different improvement path.",
+  "branch_should_retire": true
+}

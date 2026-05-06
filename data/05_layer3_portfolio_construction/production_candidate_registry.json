@@ -1,0 +1,26 @@
+{
+  "current_production_pin": "improved_phase2b_regime_confidence_boost",
+  "rollback_pin": "improved_phase2b_regime_confidence_boost",
+  "official_shadow_pin": "improved_phase2b_combo_abc",
+  "production_candidate": "improved_phaseggg_confirmed_only_robust_offense",
+  "candidate_status": "PROMOTE_TO_PRODUCTION_CANDIDATE_PENDING_HUMAN_REVIEW",
+  "promotion_phase": "Phase III",
+  "promotion_report": "docs/research/2026-04-27_phase_iii_production_candidate_review_report.md",
+  "promotion_reason_summary": [
+    "improves annual return",
+    "improves Sharpe",
+    "improves max drawdown",
+    "improves CVaR",
+    "improves holdout Sharpe",
+    "survives doubled-cost and 1-week delay",
+    "passes allocator benchmark",
+    "lowers SPY exposure",
+    "turnover remains under 1.10x cap"
+  ],
+  "known_caveats": [
+    "committee internal +0.30pp annual-return gate was not met exactly",
+    "bootstrap confidence intervals overlap",
+    "worst single week is worse than production",
+    "human deployment review still required"
+  ]
+}

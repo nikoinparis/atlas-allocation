@@ -1,0 +1,13 @@
+version_name,bucket,observations,share,avg_production_weight,avg_phasen_weight,avg_phaseo_weight,avg_abstain_weight
+improved_phases_defense_reshape_allocator,ambiguous_abstain,86,0.0775473399458972,0.65,0.13000000000000003,0.11999999999999997,0.09999999999999998
+improved_phases_defense_reshape_allocator,calm_trust,209,0.1884580703336339,0.19999999999999998,0.25,0.5499999999999998,0.0
+improved_phases_defense_reshape_allocator,defense_production,749,0.6753832281334535,0.95,0.024999999999999998,0.024999999999999998,0.0
+improved_phases_defense_reshape_allocator,recovery_trust,65,0.058611361587015326,0.25,0.5,0.25,0.0
+improved_phases_conditional_ml_attenuator_allocator,ambiguous_abstain,86,0.0775473399458972,0.6838103355441179,0.11232619554813636,0.10386346890774584,0.09999999999999998
+improved_phases_conditional_ml_attenuator_allocator,calm_trust,209,0.1884580703336339,0.27439991079086073,0.2260330950877545,0.4995669941213848,0.0
+improved_phases_conditional_ml_attenuator_allocator,defense_production,749,0.6753832281334535,0.8499999999999999,0.075,0.075,0.0
+improved_phases_conditional_ml_attenuator_allocator,recovery_trust,65,0.058611361587015326,0.2914316247571147,0.4719707565597889,0.2365976186830964,0.0
+improved_phases_defense_reshape_ml_attenuator_combo,ambiguous_abstain,86,0.0775473399458972,0.6838103355441179,0.11232619554813636,0.10386346890774584,0.09999999999999998
+improved_phases_defense_reshape_ml_attenuator_combo,calm_trust,209,0.1884580703336339,0.27439991079086073,0.2260330950877545,0.4995669941213848,0.0
+improved_phases_defense_reshape_ml_attenuator_combo,defense_production,749,0.6753832281334535,0.95,0.024999999999999998,0.024999999999999998,0.0
+improved_phases_defense_reshape_ml_attenuator_combo,recovery_trust,65,0.058611361587015326,0.2914316247571147,0.4719707565597889,0.2365976186830964,0.0

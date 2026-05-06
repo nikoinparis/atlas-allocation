@@ -1,0 +1,16 @@
+{
+  "phase": "Phase DDD \u2014 recovery_confirmed-only harder weak-sleeve exclusion",
+  "main_candidates": [
+    "improved_phaseddd_confirmed_harder_dual_cap",
+    "improved_phaseddd_confirmed_near_exclude_dual",
+    "improved_phaseddd_confirmed_dual_hard_css_soft",
+    "improved_phaseddd_confirmed_defensive_balanced_substitution"
+  ],
+  "rescue_candidates": [],
+  "production_pin": "improved_phase2b_regime_confidence_boost",
+  "shadow_pin": "improved_phase2b_combo_abc",
+  "ccc_reference": "improved_phaseccc_confirmed_cap_dual",
+  "best_candidate": "improved_phaseddd_confirmed_harder_dual_cap",
+  "rationale": "Selected improved_phaseddd_confirmed_harder_dual_cap (strict gates passed; below challenger threshold).",
+  "rescue_used": false
+}

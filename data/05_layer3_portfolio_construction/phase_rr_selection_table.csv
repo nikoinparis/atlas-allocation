@@ -1,0 +1,4 @@
+name,quick_screen_status,quick_screen_reasons,ann_return_delta_vs_prod,sharpe_delta_vs_prod,avg_BIL_delta_vs_prod,avg_SPY_delta_vs_prod,avg_bucket_composite_delta_vs_prod,avg_bucket_offense_delta_vs_prod
+improved_phaserr_combined_bucket_allocator,REJECT,Sharpe improvement < 0.005,0.0009487161154380641,-0.0003170071252369677,-0.005508481113026487,0.002600163648728407,-0.02925809612447522,0.026797559121749526
+improved_phaserr_recovery_bucket_repair,REJECT,Sharpe improvement < 0.005,0.00037883479498906913,-0.001665571058009796,-0.0016900099461933937,0.001292616231697949,-0.006822069284831395,0.004560608395862309
+improved_phaserr_good_state_bucket_participation,REJECT,Sharpe improvement < 0.005,9.550380301219519e-05,-0.004392667859434263,-0.0029103296156861025,0.0009518175352548064,-0.017018379194764705,0.016135824156657597

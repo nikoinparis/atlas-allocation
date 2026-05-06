@@ -1,0 +1,20 @@
+{
+  "phase": "Phase FF \u2014 In-allocator integration of Phase CC's defensive_overlay_hint",
+  "candidates": [
+    "improved_phaseff_hint_inallocator_light",
+    "improved_phaseff_hint_inallocator_state_gated"
+  ],
+  "integration_point": "scripts/build_improvement_artifacts.py \u2014 apply_state_conditioned_tilt() new branches 'dynamic_risk_budget_phaseff_light' and 'dynamic_risk_budget_phaseff_state_gated'; tilt fires BEFORE per-sleeve cap and lighter_both overlay, preserving production's cost / overlay / cap pipeline",
+  "tilt_mechanic": "On gate weeks, scale offensive sleeves by an additional 0.95 multiplier (5pp scale-down). Production cap, lighter_both overlay, regime_confidence_boost meta layer, and beta participation overlay all run unchanged.",
+  "selection_rule": {
+    "ann_ret_drag_max_pp": 0.3,
+    "sharpe_improvement_min": 0.005,
+    "mdd_worsening_max_pp": 0.5,
+    "cvar_worsening_max_pp": 0.05,
+    "turnover_ratio_max_vs_prod": 1.1,
+    "bil_increase_max_pp": 5.0,
+    "neutral_deteriorating_state_must_not_underperform": true
+  },
+  "best_candidate": "",
+  "rationale": "NO Phase FF candidate passes. Best diagnostic: improved_phaseff_hint_inallocator_light; failure reasons: sharpe_imp<0.005 (-0.0059); underperforms in neutral_deteriorating (\u0394=-0.000001/wk)."
+}

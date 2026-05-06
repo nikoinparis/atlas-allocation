@@ -1,0 +1,19 @@
+{
+  "phase": "Phase H",
+  "reference_panel": "improved_phaseh_reference_core_blend",
+  "active_panel_baseline": "improved_phaseh_refined_panel_blend",
+  "fixed_comparator_set": [
+    "improved_phase2b_regime_confidence_boost",
+    "improved_phase2b_combo_abc",
+    "improved_phasec_state_conditioned_map",
+    "improved_phaseh_reference_core_blend",
+    "improved_phaseh_refined_panel_blend"
+  ],
+  "candidate_versions": [
+    "improved_phaseh_refined_state_allocator",
+    "improved_phaseh_refined_learned_allocator",
+    "improved_phaseh_refined_concentration_allocator",
+    "improved_phaseh_refined_combo_allocator"
+  ],
+  "validation_rules_source": "phase_d_validation_protocol.json"
+}

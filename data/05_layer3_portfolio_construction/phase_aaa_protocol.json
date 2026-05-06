@@ -1,0 +1,15 @@
+{
+  "phase": "Phase AAA \u2014 recovery_confirmed-only deeper rebudget",
+  "candidates": [
+    "improved_phaseaaa_confirmed_offense_escalation",
+    "improved_phaseaaa_confirmed_offense_mix_tilt",
+    "improved_phaseaaa_confirmed_defense_composition_repair",
+    "improved_phaseaaa_confirmed_only_combined_repair"
+  ],
+  "production_pin": "improved_phase2b_regime_confidence_boost",
+  "shadow_pin": "improved_phase2b_combo_abc",
+  "yy_reference": "improved_phaseyy_conservative_decomposition",
+  "zz2_reference": "improved_phasezz_recovery_neutral_offense_rebudget",
+  "best_candidate": "improved_phaseaaa_confirmed_offense_mix_tilt",
+  "rationale": "Selected improved_phaseaaa_confirmed_offense_mix_tilt (strict gates passed; just below challenger threshold)."
+}

@@ -1,0 +1,70 @@
+{
+  "phase": "Phase JJ \u2014 Controlled ML sprint",
+  "ml_dataset_shape": [
+    1109,
+    35
+  ],
+  "targets_evaluated": [
+    "target_A_stress_transition_4w",
+    "target_B_prod_bad_return_4w",
+    "target_C_spy_bad_return_4w",
+    "target_D_prod_drawdown_worsens_4w"
+  ],
+  "models_tested": [
+    {
+      "model": "logistic",
+      "label": "regime_only",
+      "feature_subset_size": 15
+    },
+    {
+      "model": "logistic",
+      "label": "regime_plus_refined",
+      "feature_subset_size": 35
+    },
+    {
+      "model": "logistic_l2",
+      "label": "all",
+      "feature_subset_size": 35
+    },
+    {
+      "model": "tree_d3",
+      "label": "all",
+      "feature_subset_size": 35
+    },
+    {
+      "model": "rf_shallow",
+      "label": "all",
+      "feature_subset_size": 35
+    },
+    {
+      "model": "hgb_shallow",
+      "label": "all",
+      "feature_subset_size": 35
+    }
+  ],
+  "validation_scheme": {
+    "method": "expanding-window walk-forward",
+    "initial_train_weeks": 260,
+    "retrain_freq_weeks": 26,
+    "min_train_pos": 5
+  },
+  "leakage_checks": [
+    "All features lagged by 1 week before entering X (causal_lag).",
+    "Targets are forward-looking by construction; never appear as features.",
+    "Train indices strictly less than score indices in walk-forward loop.",
+    "Refined-state features inherit Phase CC's walk-forward construction (rank uses only past neutral_mixed weeks, z-score uses trailing 156-week window lagged 1 week)."
+  ],
+  "best_ml_model": {
+    "model": "logistic",
+    "label": "regime_only",
+    "baseline_brier": 0.26821531792561865,
+    "best_brier": 0.09412693539848956,
+    "improves_oos": true
+  },
+  "portfolio_candidates": [
+    "improved_phasejj_ml_riskdial_25",
+    "improved_phasejj_ml_riskdial_50"
+  ],
+  "best_portfolio_candidate": "",
+  "portfolio_selection_rationale": "NO Phase JJ portfolio candidate passes. Best diagnostic: improved_phasejj_ml_riskdial_25; failure reasons: sharpe_imp<0.005 (-0.0012)."
+}

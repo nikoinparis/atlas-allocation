@@ -1,0 +1,23 @@
+{
+  "phase": "Phase L",
+  "purpose": "Decision-aware / robustness-aware learning allocator validation",
+  "fixed_comparator_set": [
+    "improved_phase2b_regime_confidence_boost",
+    "improved_phase2b_combo_abc",
+    "improved_phaseh_refined_state_allocator",
+    "improved_phasek_tail_aware_role_framework",
+    "improved_phaseh_refined_panel_blend"
+  ],
+  "candidate_versions": [
+    "improved_phasel_decision_utility_allocator",
+    "improved_phasel_selective_concentration_allocator",
+    "improved_phasel_tail_turnover_learning_allocator"
+  ],
+  "holdout_weeks": 104,
+  "rolling_origin": {
+    "min_train_weeks": 260,
+    "test_weeks": 104,
+    "step_weeks": 52
+  },
+  "promotion_rule_reference": "phase_d_validation_protocol.json"
+}

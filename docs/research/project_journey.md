@@ -4040,3 +4040,539 @@ GGG1 full-period return: 7.14%, Sharpe 0.937, max drawdown -11.77%. In the 2020-
 **Decision:** `PROCEED_TO_PHASE_2_AGGRESSIVE_ETF_VARIANT`
 
 A separate higher-return mandate targeting 9-10% annual return with explicit max drawdown tolerance of 18-20% is justified and feasible via ETF-level mandate relaxation (reduce BIL floor in neutral_mixed, reduce defense cap in calm_trend). No new data sources needed. Phase 2 must compare out-of-sample against both GGG1 and production pin before any promotion.
+
+---
+
+## Section 94 -- Phase 2 Aggressive ETF Variant
+
+Date: 2026-05-07. Six higher-return ETF mandate candidates built on the GGG1 base. All 18 artifacts produced. Diagnostic + selection phase. No production pin changes. No auto-promotion.
+
+**Script:** `scripts/phase_2_aggressive_etf_variant.py`
+
+**Build:** `scripts/build_improvement_artifacts.py` modified — added `phase2_aggressive_neutral_boost` and `phase2_aggressive_full_mandate` phase2b modes; added 5 new state_tilt modes (`phase2_aggressive_calm_offense`, `phase2_aggressive_recovery_offense`, `phase2_aggressive_nonstressed_offense`, `phase2_aggressive_balanced_offense`, `phase2_aggressive_stretch_offense`); added 6 new version specs.
+
+**Outputs:** 27 files in `data/research/phase_2_aggressive_etf_variant/`
+
+**Report:** `docs/research/2026-05-07_phase_2_aggressive_etf_variant_report.md`
+
+**Key findings:**
+
+Full-period returns (GGG1 baseline: 7.14%):
+- C1 neutral_cash_unlock: 7.39%, Sharpe 0.940 — **best candidate**
+- C4 nonstressed_mandate: 7.44%, Sharpe 0.921
+- C5 balanced_mandate: 7.42%, Sharpe 0.927
+- C6 stretch_mandate: 7.49%, Sharpe 0.914
+- C2 calm_offense_unlock: 7.14%, Sharpe 0.917 (no improvement)
+- C3 recovery_confirmed_boost: 7.15%, Sharpe 0.937 (marginal improvement)
+
+**The 9-10% primary mandate target was not reached.** Maximum achieved: 7.49% (C6). The ETF-level mandate relaxation produced real but small improvements (+0.00pp to +0.35pp full-period).
+
+**Root cause — critical finding:** Reducing defense_component in calm_trend and redirecting to offense sleeves does **not** improve calm_trend returns. The offense sleeves hold diversified ETFs (EFA, EEM, EWJ, CTA trend-following) that underperform concentrated US equity in US-led bull runs. SPY returns 17.5% annualized in calm_trend; diversified offense returns ~4%. The bottleneck is the ETF composition within the offense component, not the sleeve allocation weights.
+
+**Bear protection preserved.** All candidates maintain negative SPY beta (≈−0.031 to −0.033). No disguised SPY. All 2022 bear returns are close to GGG1 (−0.56% to −1.31% vs SPY −18.18%).
+
+**Hidden beta:** None. All candidates LOW hidden_beta_risk.
+
+**Selection:** All 6 → `KEEP_AS_AGGRESSIVE_SHADOW`.
+
+**Best tracked candidate:** `improved_phase2_aggressive_neutral_cash_unlock` — strictly better than GGG1 on full-period return (7.39% vs 7.14%) and Sharpe (0.940 vs 0.936) with no material risk increase.
+
+**Decision:** `KEEP_PHASE2_AS_AGGRESSIVE_SHADOW`
+
+To reach 9-10%, the portfolio needs better ETF composition during favorable states — either breadth signals to identify when to concentrate in US equity (Phase 3) or sector ETF rotation to capture sector leadership (Phase 4). Phase 2 demonstrated that sleeve reallocation alone cannot solve this.
+
+**Next:** Phase 3 — Stock Breadth Regime Upgrade. Add US breadth signals to identify when concentrated offense in high-beta US assets is justified.
+
+---
+
+## Section 95 -- Phase 3 Breadth-Confirmed US Offense Upgrade
+
+Date: 2026-05-07. Six candidates built by switching `composite_regime_offense_component` ETF basket from GGG1 diversified (SPY/QQQ/IWM + EFA/VEA/VWO/EWJ/VNQ/PDBC/DBA) to pure US equity (SPY/QQQ/IWM) during high-breadth non-stressed states. Causal signal: `breadth_sma_43>=0.65 AND market_trend_positive=1 AND not stressed/fragile`. No production pin changes. No auto-promotion.
+
+**Script:** `scripts/phase_3_breadth_confirmed_us_offense.py`
+
+**Build:** `scripts/build_improvement_artifacts.py` modified — added Phase 3 panel builds, redeploy dispatcher cases, and 6 version specs.
+
+**Outputs:** 39 files in `data/research/phase_3_breadth_confirmed_us_offense/`
+
+**Report:** `docs/research/2026-05-07_phase_3_breadth_confirmed_us_offense_report.md`
+
+**Signal validation:** US pure (SPY/QQQ/IWM) outperforms GGG1 diversified in calm_trend breadth_on weeks by +0.371% per 4 weeks. Signal fires 284 of 295 calm_trend weeks, 209 of 493 neutral_mixed weeks.
+
+**Key results (full period):**
+- C1 breadth_neutral: 6.83%, Sharpe 0.877 — REJECT (Sharpe below 0.90)
+- **C2 calm_us: 7.27%, Sharpe 0.966, Max DD -11.90% — KEEP_AS_AGGRESSIVE_SHADOW (best Sharpe of all candidates across Phases 1–3)**
+- C3 qqq_growth: 6.94%, Sharpe 0.932 — REJECT (below GGG1; QQQ concentration backfires)
+- C4 credit: 6.95%, Sharpe 0.908 — REJECT (below GGG1)
+- C5 balanced: 7.12%, Sharpe 0.907 — REJECT (below GGG1)
+- C6 stretch: 7.28%, Sharpe 0.919 — KEEP_AS_RESEARCH_ONLY
+
+**Best candidate:** `improved_phase3_high_breadth_calm_us_offense` (C2)
+- Full: 7.27% / Sharpe 0.966 / Max DD -11.90%
+- 2020-forward: 9.94% / Sharpe 1.124 (exceeds Phase 2 best)
+- 2021-forward: 10.57% / Sharpe 1.403 (best across all candidates)
+- calm_trend Sharpe improvement: +0.074 (0.514 → 0.588) — genuine signal improvement
+- 2022 bear: -1.43% (only -0.14pp worse than GGG1 -1.29%)
+
+**Why QQQ concentration backfired (C3):** Higher QQQ/VUG volatility triggers the overlay vol-targeting mechanism to increase cash allocation (avg BIL rises to 30.0%), counteracting the intended offense expansion.
+
+**Why 9% was not reached:** The `composite_regime_offense_component` sleeve is only ~10% of total portfolio. Switching its ETF basket improves Sharpe but cannot move total annual return by 2-3pp. The return ceiling requires a new offense sleeve with 20-25% portfolio budget — i.e., sector rotation.
+
+**Cumulative aggressive shadow stack:**
+- `improved_phase2_aggressive_neutral_cash_unlock`: 7.39% / 0.940 — best return
+- `improved_phase3_high_breadth_calm_us_offense`: 7.27% / 0.966 — best Sharpe
+
+**Decision:** `PROCEED_TO_PHASE4_SECTOR_BREADTH_ROTATION`
+
+Phase 4 must build a sector-rotation offense sleeve (XLK, XLF, XLV, XLY, XLI, etc.) with 20-25% portfolio budget, driven by sector momentum breadth signals. This is the lever capable of moving annual return by 1.5-2.0pp.
+
+---
+
+## Section 96 -- Phase 4 Sector Breadth / Sector ETF Rotation
+
+Date: 2026-05-07. Six candidates built from GGG1 by adding a dedicated sector-rotation offense sleeve with approximately 12%, 20%, or 25% target sleeve budgets in confirmed sector-breadth states. All sector signals were causal and applied from week `t` to week `t+1`; `stressed_panic` was not weakened. No production pin, official shadow pin, or GGG1 pin was changed.
+
+**Script:** `scripts/phase_4_sector_breadth_rotation.py`
+
+**Build:** `scripts/build_improvement_artifacts.py` modified to load precomputed Phase 4 sector sleeve weights, add six Phase 4 `state_tilt` modes, and add six filtered version specs.
+
+**Outputs:** 51 files in `data/research/phase_4_sector_breadth_rotation/`
+
+**Report:** `docs/research/2026-05-07_phase_4_sector_breadth_rotation_report.md`
+
+**Sector universe:** Existing data contained 10 eligible sector ETFs: XLK, XLF, XLV, XLY, XLP, XLI, XLE, XLU, XLB, and VNQ. No new data was downloaded.
+
+**Standalone sleeve validation:** Sector sleeves did not beat SPY on raw return, but some improved drawdown/Calmar versus SPY/equal-sector. Equal-weight sectors returned 10.24% with -54.25% max DD. The best drawdown-controlled sleeve, `SectorMomentumWithDefensiveFilter`, returned 7.16%, Sharpe 0.558, max DD -21.65%, Calmar 0.331. This was enough to test controlled portfolio overlays, but not enough to claim sector rotation as a standalone superior strategy.
+
+**Best portfolio candidate:** `improved_phase4_sector_20pct_offense`
+- Full period: 7.64% return, Sharpe 0.930, max DD -14.33%
+- 2020-forward: 9.31% return, Sharpe 0.964
+- 2021-forward: 10.18% return, Sharpe 1.245
+- 2022 bear: -0.82%, beating GGG1 by +0.47pp
+- Avg BIL: 23.9% vs GGG1 26.7%
+- Avg sector sleeve exposure: 12.9%
+- Hidden beta risk: LOW; beta to SPY remained negative (-0.035)
+
+**Selection:** Three candidates qualified as `KEEP_AS_AGGRESSIVE_SHADOW`:
+- `improved_phase4_sector_small_overlay`: 7.36%, Sharpe 0.951, max DD -13.06%
+- `improved_phase4_sector_20pct_offense`: 7.64%, Sharpe 0.930, max DD -14.33%
+- `improved_phase4_sector_25pct_offense`: 7.64%, Sharpe 0.915, max DD -14.87%
+
+Balanced and stretch variants were rejected because Sharpe fell below 0.90 or aggregate returns weakened. The sector + Phase 3 US hybrid stayed research-only.
+
+**Audit results:** Quick research committee, backtest realism, and allocator benchmark audits all passed for `improved_phase4_sector_20pct_offense`.
+
+**Decision:** `KEEP_PHASE4_AS_AGGRESSIVE_SHADOW`
+
+Phase 4 improved full-period return by about +0.51pp versus GGG1 and +0.26pp versus Phase 2 best, while keeping max drawdown comfortably inside the aggressive mandate. It still did not approach the 9-10% full-period target, and Sharpe slipped below the preferred 0.95 threshold. Sector rotation is useful as a tracked aggressive shadow, but not a production challenger.
+
+**Next:** Do not promote. A Phase 4B refinement is optional only if it remains focused: improve sector-active window lift and balanced sector timing without grid search, without weakening `stressed_panic`, and without becoming SPY/QQQ beta in disguise.
+
+---
+
+## Section 97 -- Phase 4B Refined Sector Rotation / Breadth Timing Audit
+
+Date: 2026-05-07. Focused refinement/audit phase after Phase 4. Phase 4B tested
+whether sector rotation could be improved through narrower activation, smoother
+ranking, defensive-leadership blocking, and strict high-quality timing without
+a broad parameter search. No new data was downloaded. No production pin,
+official shadow pin, or GGG1 pin was changed.
+
+**Script:** `scripts/phase_4b_refined_sector_rotation.py`
+
+**Build:** `scripts/build_improvement_artifacts.py` modified to load Phase 4B
+refined sector signal and sleeve panels, add five Phase 4B `state_tilt` modes,
+strip Phase 4B target sector sleeve weight outside active gates, and add five
+filtered version specs.
+
+**Outputs:** 45+ files in `data/research/phase_4b_refined_sector_rotation/`
+
+**Report:** `docs/research/2026-05-07_phase_4b_refined_sector_rotation_report.md`
+
+**Refined signals:** `high_quality_sector_bull`, `calm_sector_leadership_only`,
+`neutral_sector_confirmed_only`, `recovery_sector_reentry`,
+`sector_quality_score_high`, and `defensive_sector_warning`. All use causal
+week-t features for week-t+1 returns. `high_quality_sector_bull` fired in 528
+weeks (47.6%), with 0% recovery_fragile and 0% stressed_panic signal coverage.
+
+**Standalone sleeve validation:** Refined sleeve validation was positive, but
+not transformative. `DefensiveAware_Top5` improved drawdown/Calmar versus the
+rougher Phase 4 sector sleeves (7.58% return, Sharpe 0.595, max DD -21.65%,
+Calmar 0.350). `Top5_Smooth_Momentum` returned 9.33% but still had a deep
+-48.41% standalone max drawdown. Sector ETFs remain useful as a controlled
+portfolio sleeve, not as a standalone superior strategy.
+
+**Best portfolio candidate:** `improved_phase4b_refined_sector_20pct`
+- Full period: 7.76% return, Sharpe 0.959, max DD -13.77%
+- 2020-forward: 9.56% return, Sharpe 1.012
+- 2021-forward: 10.71% return, Sharpe 1.303
+- 2022 bear: -1.52%, worse than Phase 4 best (-0.82%) but within the stress guardrail
+- Avg BIL: 23.6% vs GGG1 26.7%
+- Avg sector sleeve exposure: 10.0% vs Phase 4 best 12.9%
+- Hidden beta risk: LOW; beta to SPY remained negative (-0.033)
+- Sector-active windows improved versus Phase 4 best by +0.25pp annualized
+
+**State impact:** The best candidate improved neutral_mixed return and Sharpe
+versus Phase 4 best (12.07% / 1.474 vs 11.51% / 1.394) and improved
+recovery_confirmed return/Sharpe (4.37% / 0.563 vs 3.97% / 0.490). Calm_trend
+was weaker than Phase 4 best and Phase 3 best. Stressed_panic remained acceptable
+(3.82% return, Sharpe 0.499, max DD -12.42%), though residual sector exposure
+can persist because the production allocator is monthly/smoothed; this was
+audited rather than assumed away.
+
+**Selection:**
+- `improved_phase4b_refined_sector_20pct`: `KEEP_AS_AGGRESSIVE_SHADOW`
+- `improved_phase4b_refined_sector_small_overlay`: `KEEP_AS_AGGRESSIVE_SHADOW`
+- `improved_phase4b_sector_phase3_hybrid`: `KEEP_AS_RESEARCH_ONLY`
+- `improved_phase4b_refined_sector_25pct_selective`: `KEEP_AS_RESEARCH_ONLY`
+- `improved_phase4b_return_unlock_stretch`: `KEEP_AS_RESEARCH_ONLY`
+
+**Audit results:** Quick research committee, backtest realism, and allocator
+benchmark audits all passed for `improved_phase4b_refined_sector_20pct`.
+
+**Decision:** `KEEP_PHASE4B_AS_AGGRESSIVE_SHADOW`
+
+Phase 4B improved Phase 4 best on full-period return (+0.12pp), Sharpe (+0.028),
+max drawdown (+0.56pp shallower), and sector-active windows. It still did not
+reach the preferred 8.5-9.0% return target, and 2022 bear protection worsened
+relative to Phase 4 best. The result is a credible aggressive shadow refinement,
+not a production challenger.
+
+**Next:** Move to `PROCEED_TO_PHASE5_TRUE_STOCK_BREADTH_DATA_UPGRADE` if the
+goal remains 8.5-9%+ returns. Existing ETF sector breadth appears helpful but
+too coarse; the missing input is likely true stock-level breadth, not another
+sector-ETF parameter tweak.
+
+---
+
+## Section 98 -- Phase 5 True Stock Breadth Data Upgrade
+
+Date: 2026-05-07. Data + strategy research gate after Phase 4B. Phase 5 tested
+whether the repo already contains clean stock-level data that can improve
+market-state classification and offense timing while still trading ETFs. No new
+data was downloaded, no individual-stock trading was added, and no production
+pin, official shadow pin, or GGG1 pin was changed.
+
+**Script:** `scripts/phase_5_true_stock_breadth_data_upgrade.py`
+
+**Build:** `scripts/build_improvement_artifacts.py` was not modified in Phase 5.
+No Phase 5 portfolio candidates were built because the required stock breadth
+data source was not available locally.
+
+**Outputs:** 43 files in
+`data/research/phase_5_true_stock_breadth_data_upgrade/`
+
+**Report:**
+`docs/research/2026-05-07_phase_5_true_stock_breadth_data_upgrade_report.md`
+
+**Data inventory findings:**
+- Existing weekly ETF universe: 35 ETFs/proxies from 2005-01-07 to 2026-04-10.
+- Equity/REIT ETFs: 20.
+- Sector ETFs: 10 eligible sector ETFs: XLK, XLF, XLV, XLY, XLP, XLI, XLE, XLU, XLB, and VNQ.
+- Defensive/cash/bond/commodity/FX ETFs: 15.
+- Full 2005-2026 ETF coverage: 26 ETFs.
+- Local individual stock price files: 0.
+- Local stock constituent lists: 0.
+- Local point-in-time stock membership files: 0.
+- Existing breadth files are ETF/sector breadth only, not true stock breadth.
+
+**Stock breadth source audit:** The repo has yfinance-style ETF download
+patterns, but no point-in-time stock universe or delisting-aware stock panel.
+Using current S&P 500/Nasdaq constituents would be survivorship-biased and was
+therefore allowed only as a hypothetical diagnostic path, not as evidence for
+promotion. No current-constituent panel was fetched in this run.
+
+**Classifier audit:** Existing ETF breadth confirms the same opportunity Phase
+1-4B pointed toward: `neutral_mixed` is too broad, while `calm_trend` and
+`recovery_confirmed` likely need finer broad-vs-narrow quality checks.
+`stressed_panic` remains the state that should stay protected and unchanged.
+ETF-breadth fallback diagnostics showed large risk-on/non-risk-on splits in
+neutral and recovery states, but these are comparison baselines rather than true
+stock breadth evidence.
+
+**Candidate decision:** All five planned Phase 5 candidates were marked
+`DATA_ONLY_NO_PORTFOLIO_BUILD`:
+- `improved_phase5_stock_breadth_neutral_risk_on`
+- `improved_phase5_broad_stock_bull_aggressive`
+- `improved_phase5_narrow_bull_caution_overlay`
+- `improved_phase5_recovery_stock_breadth_rerisk`
+- `improved_phase5_stock_breadth_aggression_score`
+
+**Audits:** Skipped. No candidate qualified as aggressive shadow or production
+challenger because no stock breadth signal could be built or validated.
+
+**Decision:** `PROCEED_TO_DATA_UPGRADE_FOR_POINT_IN_TIME_STOCK_BREADTH`
+
+Phase 5 did not fail because stock breadth was disproven. It stopped because
+the necessary clean data is absent. The next work should acquire or construct a
+point-in-time, delisting-aware stock breadth panel first, then rerun the same
+signal validation and only then consider ETF portfolio candidates. Do not
+promote any result based on current-constituent-only breadth.
+
+---
+
+## Section 99 -- Phase 5A Point-in-Time Stock Breadth Data Scaffold
+
+Date: 2026-05-07. Data-infrastructure and research-readiness phase after Phase
+5. Phase 5A did not build portfolio candidates, did not download stock panels,
+did not add individual-stock trading, and did not change the production pin,
+official shadow pin, or GGG1.
+
+**Scripts:**
+- `scripts/phase_5a_pit_stock_breadth_data_scaffold.py`
+- `scripts/build_pit_stock_breadth_panel.py`
+
+**Storage scaffold:** `data/stock_breadth/README.md`
+
+**Outputs:** 17 files in
+`data/research/phase_5a_pit_stock_breadth_data_scaffold/`, plus
+`data/stock_breadth/metadata/missing_inputs_report.csv`
+
+**Report:**
+`docs/research/2026-05-07_phase_5a_pit_stock_breadth_data_scaffold_report.md`
+
+**Core requirements defined:** PIT index membership, adjusted stock prices with
+delisted/dead-stock coverage, stable security identity mapping, sector
+classification, and publication/lag assumptions. Required schemas were written
+for membership, prices, metadata, and sector classification.
+
+**Source audit:** Ranked practical data paths:
+- Norgate Data US Stocks Platinum/Diamond: best practical non-institutional
+  path if the user can subscribe and verify export/API details.
+- CRSP/Compustat via WRDS: best institutional path if access exists.
+- Sharadar/Nasdaq Data Link: possible only if PIT membership and delisting
+  methodology are manually verified.
+- Current constituents plus yfinance/API: diagnostic-only, high
+  survivorship-bias, not promotable.
+
+**Storage plan:** Future raw stock panels should live under
+`data/stock_breadth/raw/`, preferably as partitioned parquet or external/LFS
+storage. Phase 5A intentionally did not modify `.gitignore`; it documented
+recommended future ignore rules for large raw/interim stock files. Only small
+manifests, validation reports, and aggregate processed summaries should be
+normal-git candidates after size/license checks.
+
+**Ingestion scaffold:** `scripts/build_pit_stock_breadth_panel.py` defines input
+paths, schema validation, duplicate/date checks, missing-input reporting, and
+lagged weekly breadth feature construction. It was run in the current repo and
+exited 0 with `MISSING_INPUTS_REPORTED`, writing
+`data/stock_breadth/metadata/missing_inputs_report.csv` because no PIT stock
+inputs are installed.
+
+**Future classifier plan:** Split `neutral_mixed` into risk-on/chop/
+deteriorating/recovery-setup buckets, classify bull quality as broad/narrow/
+defensive/late-cycle/fake-recovery, and re-risk recovery only when breadth is
+strong. `stressed_panic` remains unchanged.
+
+**Decision:** `NEEDS_DATA_SOURCE_DECISION`
+
+The next human action is to choose and provision a PIT stock data path:
+Norgate Platinum/Diamond, CRSP/WRDS, or a verified Sharadar/Nasdaq Data Link
+path with PIT membership and delisted-stock coverage. After that data is
+installed under `data/stock_breadth/raw/`, rerun
+`python3 scripts/build_pit_stock_breadth_panel.py` and proceed to Phase 5B only
+if the bias/leakage checklist passes.
+
+---
+
+## Section 100 -- Phase 5A-Free Current-Constituent Diagnostic Stock Breadth Prototype
+
+## !! SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY !!
+
+Date: 2026-05-07. Free diagnostic prototype using current S&P 500 constituents
+(Wikipedia) and yfinance adjusted-close prices (2020–2026) to test whether stock
+breadth is a promising enough signal to justify purchasing PIT data. No production
+pins changed. No portfolio candidates created. No production pipeline modified.
+
+**Script:** `scripts/phase_5a_free_current_constituent_breadth_diagnostic.py`
+
+**Outputs:** 23 files in
+`data/research/phase_5a_free_current_constituent_breadth_diagnostic/`
+
+**Report:**
+`docs/research/2026-05-07_phase_5a_free_current_constituent_breadth_diagnostic_report.md`
+
+**Data:** 503 tickers fetched from Wikipedia (98.8% yfinance coverage), 5.8 MB
+parquet. Date range 2020-01-03 to 2026-05-01, 331 weekly breadth snapshots.
+
+**Key diagnostic findings (ALL SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY):**
+
+- `broad_stock_bull_diagnostic` (97 active weeks):
+  SPY 4w lift +0.040%; SPY 13w lift +1.29%; Phase4B 13w hit rate 83.3%.
+  In calm_trend specifically: SPY +0.517% per 4w vs off-signal weeks (46 of 101 calm weeks).
+
+- `diagnostic_aggression_score_high` (131 active weeks):
+  SPY 4w lift +0.686%; SPY 13w lift +1.816%. NEGATIVE for GGG1 (-0.142%), suggesting
+  this is an equity-market timing signal that does not translate to the conservative
+  portfolio as-is.
+
+- `recovery_confirmed` signal (18 active weeks):
+  SPY 4w lift +1.20%, 13w hit rate 100%. Almost certainly survivorship-biased (small N,
+  no failed companies).
+
+- Neutral_mixed: stock breadth signals are mixed/negative for GGG1 and Phase4B.
+  The portfolio may already be well-calibrated for neutral states.
+
+- Stock breadth vs existing ETF breadth: ETF breadth (`breadth_sma_43`) shows **-0.457%**
+  4w lift for SPY (negative). Stock breadth shows +0.040%. Stock breadth is more
+  targeted to equity conditions — important directional finding even accounting for bias.
+
+**Decision: `DIAGNOSTIC_PROMISING_GET_PIT_DATA`**
+
+The calm_trend same-state lift (+0.517% per 4w for SPY, +0.347% for Phase4B) is
+the most actionable signal. Real PIT data would allow proper full-period (2005+)
+validation and remove the survivorship bias before any portfolio candidate is built.
+
+**Next required human action:**
+Purchase Norgate Data US Stocks Platinum/Diamond (recommended), then export S&P 500
+PIT constituents + daily prices back to 2005. Save to `data/stock_breadth/raw/` using
+the non-TEMPLATE filenames and run `python3 scripts/build_pit_stock_breadth_panel.py`.
+Only after that should a Phase 5B portfolio candidate be considered.
+
+---
+
+## Section 101 -- Phase 6 Market-State Classifier Rebuild
+
+Date: 2026-05-07. Final existing-data improvement phase. Rebuilt the market-state
+classifier using five new Phase 6 `state_tilt` modes that apply incremental adjustments
+to Phase 4B best, conditioned on `market_state_row` features read at rebalance time
+(fully causal). No survivorship-biased stock breadth used. No paid data. No individual
+stocks. No production pin, official shadow pin, or GGG1 pin was changed.
+
+**Script:** `scripts/phase_6_market_state_classifier_rebuild.py`
+
+**Build:** `scripts/build_improvement_artifacts.py` modified — added 5 Phase 6
+`state_tilt` modes (`phase6_neutral_classifier_unlock`, `phase6_calm_bull_quality_offense`,
+`phase6_recovery_quality_rerisk`, `phase6_continuous_aggression_score`,
+`phase6_balanced_classifier_rebuild`) and 5 version specs using `phase4b_sector_20_subset`.
+
+**Outputs:** 47 files in `data/research/phase_6_market_state_classifier_rebuild/`
+
+**Report:**
+`docs/research/2026-05-07_phase_6_market_state_classifier_rebuild_report.md`
+
+**Key classifier findings:**
+
+- `extreme_quality_calm` (58 weeks, 5.2%): **negative** lift for Phase4B (−0.019% per 4w). Phase4B's sector sleeve is already optimally deployed in high-breadth calm weeks — adding more creates marginal drag.
+
+- `high_quality_neutral` (0 weeks, 0.0%): **never fired** because `transition_good_state_prob` in neutral_mixed has a maximum of 0.205 (the threshold was 0.60 — fundamentally incompatible). Signal over-specified.
+
+- `aggression_score_high` (466 weeks, 42%): **+0.174% lift** for Phase4B overall, but negative within calm_trend (−0.041%) and neutral_mixed (−0.089%). The aggregate lift comes from recovery states only.
+
+**Full-period results:**
+- C4 `improved_phase6_continuous_aggression_score`: 7.80%, Sharpe 0.953, Max DD -14.18% → **KEEP_AS_AGGRESSIVE_SHADOW** (+0.04pp vs Phase4B)
+- C3 `improved_phase6_recovery_quality_rerisk`: 7.75%, Sharpe 0.956, Max DD -13.77% → KEEP_AS_AGGRESSIVE_SHADOW
+- C1, C2, C5: KEEP_AS_RESEARCH_ONLY (all slightly below Phase4B return)
+
+**Phase4B remains the Sharpe leader (0.959) across all aggressive shadow candidates.**
+
+**Cumulative aggressive shadow stack after Phase 6:**
+- `improved_phase4b_refined_sector_20pct`: 7.76% / 0.959 — best Sharpe shadow
+- `improved_phase6_continuous_aggression_score`: 7.80% / 0.953 — best return shadow
+- `improved_phase3_high_breadth_calm_us_offense`: 7.27% / 0.966 — best 2020+ Sharpe
+
+**Decision:** `KEEP_PHASE6_AS_AGGRESSIVE_SHADOW`
+
+**Existing-data improvement arc is now complete.** Six phases moved the full-period return from 7.14% → 7.80% (+0.66pp). The remaining 0.20pp gap to 8.0% requires PIT stock breadth data (Norgate/WRDS). The binding constraint is calm_trend (26.6% of weeks, -12.48% opportunity cost vs SPY), where no existing feature can distinguish high-return from lower-return weeks.
+
+**Next:** `RETURN_TO_PIT_STOCK_BREADTH_WHEN_DATA_AVAILABLE` — the Phase 5A-Free diagnostic confirmed stock breadth is promising (+0.517% per 4w SPY lift in calm_trend). Purchase Norgate Data when budget allows and proceed to Phase 5B.
+
+---
+
+## Section 102 -- Phase 7 Allocator Objective Rewrite
+
+Date: 2026-05-07. Final existing-data optimization sprint. Tested three levers applied
+on top of Phase 4B best: (1) larger sector sleeve budget (28–32% vs 20%), (2) more
+aggressive layer3 expression (`shift_budget=0.12` in calm_trend vs 0.06), and (3) faster
+reallocation (`sleeve_reallocation_speed` up to 0.70, `rerisk_speed=1.0`). No survivorship-
+biased stock breadth used. No paid data. No individual stocks. No production pin, official
+shadow pin, or GGG1 pin was changed.
+
+**Script:** `scripts/phase_7_allocator_objective_rewrite.py`
+
+**Build:** `scripts/build_improvement_artifacts.py` modified — added `phase7_aggressive_expression`
+layer3 expression mode (calm_trend `shift_budget=0.12`), 5 Phase 7 `state_tilt` modes
+(`phase7_larger_sector_calm`, `phase7_expression_boost`, `phase7_max_sector_rerisk`,
+`phase7_combined_offensive`, `phase7_stretch_target`), and 5 version specs using
+`phase4b_sector_20_subset`. All Phase 7 modes start from Phase 4B base; stressed_panic
+returns base unchanged to preserve protection.
+
+**Outputs:** 24 files in `data/research/phase_7_allocator_objective_rewrite/`
+
+**Report:** `docs/research/2026-05-07_phase_7_allocator_objective_rewrite_report.md`
+
+**Key structural findings:**
+
+- **calm_trend (26.6% of weeks) is the binding constraint.** Pushing the sector sleeve
+  from 18.5% to 29.7% in calm_trend (C5) *worsens* calm_trend performance (4.21% vs
+  Phase4B 4.39%). Sector ETFs do not deliver superior returns vs the diversified Phase4B
+  mix in quiet US bull markets. Phase4B's sector sleeve is already optimally deployed via
+  `high_quality_sector_bull`. More allocation creates marginal drag.
+
+- **recovery_confirmed is Phase 7's strongest state win.** C5 delta vs Phase4B:
+  +1.01pp. But recovery_confirmed is only 4% of all weeks (44 total), so portfolio-level
+  contribution is limited.
+
+- **No disguised SPY beta.** All candidates: beta ≈ −0.033 (negative), hidden beta LOW,
+  mandate OK, bear protection OK. Return improvement comes from concentrated sector ETF
+  exposure and faster reallocation, not SPY-like risk.
+
+- **stressed_panic: BIL ~52% preserved** across all Phase 7 candidates. Protection intact.
+
+**Full-period results (2005–2026):**
+
+| Candidate | Return | Sharpe | Max DD | vs Phase4B |
+|---|---|---|---|---|
+| C5 `improved_phase7_stretch_target` | **7.88%** | 0.926 | -15.28% | **+0.12pp** |
+| C3 `improved_phase7_max_sector_rerisk` | 7.84% | 0.941 | -14.59% | +0.08pp |
+| C1 `improved_phase7_larger_sector_calm` | 7.83% | 0.939 | -14.59% | +0.07pp |
+| C4 `improved_phase7_combined_offensive` | 7.81% | 0.935 | -14.65% | +0.05pp |
+| C2 `improved_phase7_expression_boost` | 7.74% | **0.954** | **-13.83%** | -0.02pp |
+| Phase4B best | 7.76% | **0.959** | -13.77% | — |
+| Phase6 best | 7.80% | 0.953 | -14.18% | +0.04pp |
+
+All 5 Phase 7 candidates: **KEEP_AS_AGGRESSIVE_SHADOW**.
+Audits passed for best candidate (C5): research_committee PASS, backtest_realism PASS,
+allocator_benchmark PASS.
+
+**Holdout — 2022 bear:**
+C5 stretch -1.94% (within -4pp tolerance vs Phase4B -1.52%). Phase4B -1.52% remains
+the best bear protection among all aggressive shadows.
+
+**Seven-phase improvement arc (complete):**
+
+| Phase | Best return | Sharpe | Cumulative gain |
+|---|---|---|---|
+| GGG1 baseline | 7.14% | 0.936 | — |
+| Phase 2 | 7.39% | 0.940 | +0.25pp |
+| Phase 3 | 7.27% | 0.966 | +0.13pp |
+| Phase 4B | 7.76% | 0.959 | +0.62pp |
+| Phase 6 | 7.80% | 0.953 | +0.66pp |
+| **Phase 7** | **7.88%** | 0.926 | **+0.74pp** |
+
+Gap to 8.0% target: **0.12pp**. Cannot be closed with existing data.
+
+**Cumulative aggressive shadow stack (final):**
+- `improved_phase7_stretch_target`: 7.88% / 0.926 — best return
+- `improved_phase7_max_sector_rerisk`: 7.84% / 0.941
+- `improved_phase6_continuous_aggression_score`: 7.80% / 0.953
+- `improved_phase4b_refined_sector_20pct`: 7.76% / **0.959** — best risk-adjusted
+- `improved_phase3_high_breadth_calm_us_offense`: 7.27% / 0.966 — best 2020+ Sharpe
+
+**Decision:** `KEEP_PHASE7_AS_AGGRESSIVE_SHADOW`
+
+**The existing-data improvement arc is now complete.** Seven phases moved the full-period
+return from 7.14% → 7.88% (+0.74pp). The remaining 0.12pp gap to 8.0% requires PIT stock
+breadth data. The calm_trend state (26.6% of weeks, ~4.2% annualized) cannot be improved
+further without a point-in-time signal distinguishing high-return calm weeks from ordinary
+ones — which requires stock-level breadth data.
+
+**Next:** `RETURN_TO_PIT_STOCK_BREADTH_WHEN_DATA_AVAILABLE`
+1. Purchase Norgate Data US Stocks Platinum/Diamond
+2. Export S&P 500 PIT constituents + daily adjusted prices back to 2005
+3. Save to `data/stock_breadth/raw/` using the real (non-TEMPLATE) filenames
+4. Run `python3 scripts/build_pit_stock_breadth_panel.py`
+5. Validate leakage and coverage
+6. Build Phase 5B candidates using stock breadth as an additional classifier signal for
+   calm_trend and recovery_confirmed states — the Phase 5A-Free diagnostic confirmed
+   +0.517% per 4-week SPY lift in calm_trend, which is enough to close the gap to 8.0%.

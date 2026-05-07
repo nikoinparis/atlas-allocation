@@ -2,12 +2,14 @@ import type { DashboardData, MetricRow, ReturnPoint, SignalRow, WeightPayload } 
 
 type AnyRow = Record<string, string | number | boolean | null>;
 
+type InputRow = Record<string, string | number | boolean | null | undefined>;
+
 type CompactBundle = {
   registry?: Record<string, unknown>;
-  summary?: AnyRow[];
-  state_summary?: AnyRow[];
-  exposure_summary?: AnyRow[];
-  promotion_checklist?: AnyRow[];
+  summary?: InputRow[];
+  state_summary?: InputRow[];
+  exposure_summary?: InputRow[];
+  promotion_checklist?: InputRow[];
   layer1_signal_validation_summary?: AnyRow[];
   layer1_signal_quality_ranking?: AnyRow[];
   layer1_incremental_signal_contribution?: AnyRow[];
@@ -119,6 +121,17 @@ function rows(rows: AnyRow[] | undefined): AnyRow[] {
   return rows ?? [];
 }
 
+function normalizeInputRows(value: InputRow[] | undefined): AnyRow[] {
+  if (!value) return [];
+  return value.map((row) => {
+    const out: AnyRow = {};
+    for (const [k, v] of Object.entries(row)) {
+      out[k] = v !== undefined ? (v as string | number | boolean | null) : null;
+    }
+    return out;
+  });
+}
+
 function normalizeDataRows(value: AnyRow[] | undefined): AnyRow[] {
   return rows(value).map((row) => {
     const normalized: AnyRow = {};
@@ -152,7 +165,7 @@ function emptyWeight(): WeightPayload {
 }
 
 export function compactBundleToDashboardData(bundle: CompactBundle): DashboardData {
-  const summary: MetricRow[] = rows(bundle.summary).map(asVersionRow);
+  const summary: MetricRow[] = normalizeInputRows(bundle.summary).map(asVersionRow);
   const findVersion = (name: string) => summary.find((row) => row.version_name === name) ?? null;
   const production = findVersion(PRODUCTION);
   const shadow = findVersion(SHADOW);
@@ -175,7 +188,7 @@ export function compactBundleToDashboardData(bundle: CompactBundle): DashboardDa
     .flatMap((rows) => rows.map((row) => row.date).filter(Boolean))
     .sort()
     .at(-1) ?? null;
-  const exposureRows = rows(bundle.exposure_summary);
+  const exposureRows = normalizeInputRows(bundle.exposure_summary);
   const candidateExposure = exposureRows.find((row) => row.name === CANDIDATE);
   const productionExposure = exposureRows.find((row) => row.name === PRODUCTION);
   const latestMarketState: AnyRow = {
@@ -246,7 +259,7 @@ export function compactBundleToDashboardData(bundle: CompactBundle): DashboardDa
       },
     ];
   });
-  const stateSummary = rows(bundle.state_summary).map((row) => ({
+  const stateSummary = normalizeInputRows(bundle.state_summary).map((row) => ({
     ...row,
     version_name: row.candidate,
     method_name: row.candidate,

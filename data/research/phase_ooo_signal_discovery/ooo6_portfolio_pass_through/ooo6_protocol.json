@@ -1,0 +1,35 @@
+{
+  "phase": "OOO6",
+  "base": "improved_phaseggg_confirmed_only_robust_offense",
+  "production_pin": "improved_phase2b_regime_confidence_boost",
+  "official_shadow": "improved_phase2b_combo_abc",
+  "candidate_count": 3,
+  "candidates": [
+    "improved_phaseooo6_efa_spy_selective_tilt",
+    "improved_phaseooo6_efa_spy_vol_filtered_tilt",
+    "improved_phaseooo6_efa_spy_trend_confirmed_tilt"
+  ],
+  "event_mapping": {
+    "improved_phaseooo6_efa_spy_selective_tilt": [
+      "efa_spy_raw_top10_event"
+    ],
+    "improved_phaseooo6_efa_spy_vol_filtered_tilt": [
+      "efa_spy_vol_filtered_top20_event"
+    ],
+    "improved_phaseooo6_efa_spy_trend_confirmed_tilt": [
+      "efa_spy_market_trend_confirmed_top20_event",
+      "market_trend_breadth_confirmed_event"
+    ]
+  },
+  "guardrails": {
+    "turnover_ratio_vs_production_max": 1.1,
+    "preserve_states": [
+      "stressed_panic",
+      "recovery_confirmed",
+      "recovery_fragile"
+    ],
+    "no_direct_spy_add": true,
+    "production_pipeline": true
+  },
+  "final_decision": "KEEP_OOO6_AS_SHADOW"
+}

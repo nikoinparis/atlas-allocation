@@ -1,0 +1,5 @@
+scenario,target_return,allowed_max_drawdown,expected_vol,avg_bil,avg_spy_direct,feasible,notes
+current_ggg1,0.071381,-0.117739,0.076248,0.2665801265614856,0.06025656512327496,yes_current_mandate,Current production candidate
+target_9pct_etf_aggressive,0.09,-0.18,0.0991,0.1466,0.1103,likely_feasible_with_higher_offense,"Reduce BIL ~12pp, increase offense. Max DD allowed 18%."
+target_10pct_etf_aggressive,0.1,-0.2,0.1182,0.0866,0.1403,feasible_with_mandate_change,Requires meaningful max DD tolerance increase. New mandate needed.
+target_11pct_etf_aggressive,0.11,-0.22,0.1372,0.0466,0.1803,aggressive_mandate_required,"Near-full offense in good states, near-zero BIL in calm/neutral. Very different risk profile."

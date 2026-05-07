@@ -1,0 +1,5 @@
+benchmark,description,source
+spy,S&P 500 ETF (SPY),benchmark_prices_weekly.csv
+bench_60_40,60% SPY / 40% IEF rebalanced weekly,constructed
+bil,T-bill cash proxy (BIL),benchmark_prices_weekly.csv
+equal_weight,Equal weight ETF universe,portfolio_returns_equal_weight.csv

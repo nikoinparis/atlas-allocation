@@ -1,0 +1,6 @@
+state,n_weeks,freq,log_wealth_contribution,pct_of_total_log_wealth,ann_portfolio_return_in_state,ann_spy_in_state,opportunity_cost_vs_spy_ann
+neutral_mixed,493,0.4441,1.00744,0.6845,0.1154,0.0979,0.0174
+calm_trend,295,0.2658,0.22714,0.1543,0.0441,0.1752,-0.1311
+stressed_panic,229,0.2063,0.15491,0.1053,0.0387,-0.0075,0.0462
+recovery_fragile,49,0.0441,0.06082,0.0413,0.0685,0.5476,-0.4791
+recovery_confirmed,44,0.0396,0.02148,0.0146,0.0285,0.4078,-0.3793

@@ -27,7 +27,7 @@ export type MetricRow = {
 
 export type ReturnPoint = {
   date: string;
-  method: string;
+  method?: string;
   gross_return?: number | null;
   net_return?: number | null;
   turnover?: number | null;

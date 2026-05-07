@@ -151,8 +151,9 @@ export function ExecutiveSummary({ data }: { data: DashboardData | null }) {
     phase2bComboAbc
       ? `${researchLabel} remains the official shadow. It is included in the compact bundle so the deployment reviewer can compare GGG1 against both the live rollback pin and the shadow track.`
       : null,
-    `Post-GGG1 allocator and Layer 2A rebuild branches did not beat GGG1. The next step is packaging and human deployment review, not another research search.`,
-    `Known caveats: the old +0.30pp annual-return committee gate was not fully met, bootstrap intervals overlap, worst single week is worse than production, and turnover is close to the 1.10x limit.`,
+    `Seven phases of systematic improvement (Phases 2–7) moved the full-period return from GGG1 7.14% to 7.88% (+0.74pp). Best aggressive shadow: improved_phase7_stretch_target (7.88%, Sharpe 0.926). Best risk-adjusted shadow: improved_phase4b_refined_sector_20pct (7.76%, Sharpe 0.959). The existing-data improvement arc is now complete.`,
+    `Remaining bottleneck is calm_trend (26.6% of weeks). No existing feature can distinguish high-return from ordinary calm weeks without PIT stock breadth data. Next step is PIT data (Norgate/WRDS) when budget allows. Aggressive shadows are tracked separately from production governance and are not auto-promoted.`,
+    `Known caveats (GGG1 vs production): the old +0.30pp annual-return committee gate was not fully met, bootstrap intervals overlap, worst single week is worse than production, and turnover is close to the 1.10x limit. Phase 5A-Free stock breadth diagnostic is SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY and is not used in any production or shadow candidate.`,
   ].filter((item): item is string => Boolean(item));
 
   return (

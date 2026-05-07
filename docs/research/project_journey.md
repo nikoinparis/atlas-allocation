@@ -4003,3 +4003,40 @@ logic, or live trading behavior was changed.
 **Decision.** `KEEP_SSS3_AS_SHADOW`.
 
 **Reason.** improved_phasesss3_calm_old_low_stress_derisk improves a sequence-defined weakness and passed quick audits, but does not clearly dominate GGG1.
+
+---
+
+## Section 93 -- Phase 1 Return Unlock Audit
+
+Date: 2026-05-07. Diagnostic-only audit phase. No strategy candidates created. No pins changed. Goal: understand why annual returns are stuck near ~7% and whether a separate higher-return ETF mandate targeting 9–11% is justified.
+
+**Script:** `scripts/phase_1_return_unlock_audit.py`
+
+**Outputs:** 20 CSV files in `data/research/phase_1_return_unlock_audit/`
+
+**Report:** `docs/research/2026-05-07_phase_1_return_unlock_audit_report.md`
+
+**Key findings:**
+
+GGG1 full-period return: 7.14%, Sharpe 0.937, max drawdown -11.77%. In the 2020-forward holdout: 9.55%, Sharpe 1.082, max DD -11.77%. These compare favorably to 60/40 (8.81%, Sharpe 0.733, max DD -20.76%) on a risk-adjusted basis, but trail SPY raw return (14.14%).
+
+**State distribution and BIL exposure:**
+- neutral_mixed: 44.4% of weeks, avg BIL 26.0%, generates 68.5% of total log wealth.
+- calm_trend: 26.6% of weeks, avg BIL 11.0%, SPY earns 17.5% annualized but GGG1 earns only 4.3% (opportunity cost -13.2%).
+- stressed_panic: 20.6% of weeks, avg BIL 53.1% — protection justified; GGG1 +16.9% active vs SPY in 2022 bear.
+- recovery states: only 8.4% combined frequency; large per-week opportunity cost but limited total impact.
+
+**Primary bottleneck:** The return ceiling is a mandate constraint, not a regime-timing failure. The regime engine correctly classifies states. The constraint is that 26% BIL persists in neutral_mixed (44% of weeks) and the defense_component sleeve (29%) remains large even in calm_trend bull markets. Direct SPY exposure averages only 6% across all states.
+
+**Capture ratios:** GGG1 upside capture vs SPY is 4-14% depending on window. Downside capture is -12 to -23% (near-zero beta to SPY, negative correlation). Capture spread of 17-37% confirms genuinely defensive character.
+
+**Return target scenarios:**
+- 9%: requires avg BIL reduction of ~20pp (from 26.7% to ~6.2%), max DD ~14.1%.
+- 10%: requires near-zero BIL in non-stressed states, max DD ~15.3%.
+- 11%: requires near-complete offense in good states, max DD ~16.5%.
+
+**Holdout diagnosis:** In every non-crisis window (2016+, 2020+, 2021+, 2023+), the primary bottleneck is consistently "low offense exposure vs SPY." In 2022, GGG1 excelled — protection worked as designed.
+
+**Decision:** `PROCEED_TO_PHASE_2_AGGRESSIVE_ETF_VARIANT`
+
+A separate higher-return mandate targeting 9-10% annual return with explicit max drawdown tolerance of 18-20% is justified and feasible via ETF-level mandate relaxation (reduce BIL floor in neutral_mixed, reduce defense cap in calm_trend). No new data sources needed. Phase 2 must compare out-of-sample against both GGG1 and production pin before any promotion.

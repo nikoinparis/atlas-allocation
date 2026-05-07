@@ -1,0 +1,13 @@
+feature,source,non_null_pct,mean,causal_ok,already_in_ggg1,role
+breadth_sma_43,market_state_history.csv,1.0,0.63,True,True,breadth/trend/regime confirmation
+breadth_26w_mom,market_state_history.csv,1.0,0.611,True,False,breadth/trend/regime confirmation
+breadth_13w_mom,market_state_history.csv,1.0,0.597,True,False,breadth/trend/regime confirmation
+breadth_change_4w,market_state_history.csv,0.996,0.003,True,False,breadth/trend/regime confirmation
+market_trend_positive,market_state_history.csv,1.0,0.78,True,True,breadth/trend/regime confirmation
+canary_breadth_default,market_state_history.csv,1.0,0.572,True,False,breadth/trend/regime confirmation
+canary_breadth_pair,market_state_history.csv,1.0,0.632,True,False,breadth/trend/regime confirmation
+transition_good_state_prob,market_state_history.csv,0.955,0.335,True,True,breadth/trend/regime confirmation
+transition_non_stress_prob,market_state_history.csv,0.955,0.798,True,True,breadth/trend/regime confirmation
+vix_level_z_tradable,regime_features.csv,0.953,0.085,True,False,volatility/macro risk proxy
+vix_slope_risk_off_z_tradable,regime_features.csv,0.881,0.071,True,False,volatility/macro risk proxy
+macro_risk_score_tradable,regime_features.csv,0.953,0.083,True,False,volatility/macro risk proxy

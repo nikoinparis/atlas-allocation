@@ -1,0 +1,5 @@
+input_group,required,status,resolved_path,accepted_paths,required_columns
+index_membership,True,MISSING,,data/stock_breadth/raw/index_membership.parquet | data/stock_breadth/raw/index_membership.csv,security_id | ticker | index_name | membership_start | membership_end
+stock_prices_daily,True,MISSING,,data/stock_breadth/raw/stock_prices_daily.parquet | data/stock_breadth/raw/stock_prices_daily.csv | data/stock_breadth/raw/stock_prices_daily,date | security_id | adjusted_close
+security_master,True,MISSING,,data/stock_breadth/raw/security_master.csv | data/stock_breadth/raw/security_master.parquet,security_id | ticker | name | first_trade_date | last_trade_date
+sector_classification,False,MISSING,,data/stock_breadth/raw/sector_classification.csv | data/stock_breadth/raw/sector_classification.parquet,security_id | sector | classification_start | classification_end

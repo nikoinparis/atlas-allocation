@@ -1,0 +1,192 @@
+feature_name,feature_family,source,lag_rule,used_in_sequence_model,used_in_layer2b_baseline,used_in_qqq_control,leakage_check,missingness,non_missing_rows
+state_lag1_OTHER,state_identity,state_lag1,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+state_lag1_calm_trend,state_identity,state_lag1,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+state_lag1_neutral_mixed,state_identity,state_lag1,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+state_lag1_recovery_confirmed,state_identity,state_lag1,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+state_lag1_recovery_fragile,state_identity,state_lag1,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+state_lag1_stressed_panic,state_identity,state_lag1,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+state_lag2_OTHER,state_identity,state_lag2,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+state_lag2_calm_trend,state_identity,state_lag2,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+state_lag2_neutral_mixed,state_identity,state_lag2,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+state_lag2_recovery_confirmed,state_identity,state_lag2,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+state_lag2_recovery_fragile,state_identity,state_lag2,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+state_lag2_stressed_panic,state_identity,state_lag2,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+state_lag4_OTHER,state_identity,state_lag4,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+state_lag4_calm_trend,state_identity,state_lag4,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+state_lag4_neutral_mixed,state_identity,state_lag4,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+state_lag4_recovery_confirmed,state_identity,state_lag4,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+state_lag4_recovery_fragile,state_identity,state_lag4,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+state_lag4_stressed_panic,state_identity,state_lag4,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+refined_state_lag1_OTHER,state_identity,refined_state_lag1,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+refined_state_lag1_calm_trend,state_identity,refined_state_lag1,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+refined_state_lag1_neutral_deteriorating,state_identity,refined_state_lag1,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+refined_state_lag1_neutral_healthy,state_identity,refined_state_lag1,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+refined_state_lag1_neutral_mixed,state_identity,refined_state_lag1,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+refined_state_lag1_recovery_confirmed,state_identity,refined_state_lag1,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+refined_state_lag1_recovery_fragile,state_identity,refined_state_lag1,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+refined_state_lag1_stressed_panic,state_identity,refined_state_lag1,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+risk_state_lag1_OTHER,state_identity,risk_state_lag1,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+risk_state_lag1_calm,state_identity,risk_state_lag1,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+risk_state_lag1_neutral,state_identity,risk_state_lag1,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+risk_state_lag1_stressed,state_identity,risk_state_lag1,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+state_dwell_bucket_lag1_OTHER,state_identity,state_dwell_bucket_lag1,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+state_dwell_bucket_lag1_mature_7_13w,state_identity,state_dwell_bucket_lag1,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+state_dwell_bucket_lag1_new_state_1_2w,state_identity,state_dwell_bucket_lag1,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+state_dwell_bucket_lag1_old_14w_plus,state_identity,state_dwell_bucket_lag1,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+state_dwell_bucket_lag1_young_3_6w,state_identity,state_dwell_bucket_lag1,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path2_lag_OTHER,state_ngram,path2_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path2_lag_calm_trend->calm_trend,state_ngram,path2_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path2_lag_calm_trend->neutral_mixed,state_ngram,path2_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path2_lag_neutral_mixed->calm_trend,state_ngram,path2_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path2_lag_neutral_mixed->neutral_mixed,state_ngram,path2_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path2_lag_neutral_mixed->recovery_confirmed,state_ngram,path2_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path2_lag_neutral_mixed->recovery_fragile,state_ngram,path2_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path2_lag_neutral_mixed->stressed_panic,state_ngram,path2_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path2_lag_recovery_confirmed->neutral_mixed,state_ngram,path2_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path2_lag_recovery_confirmed->recovery_confirmed,state_ngram,path2_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path2_lag_recovery_fragile->neutral_mixed,state_ngram,path2_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path2_lag_recovery_fragile->recovery_fragile,state_ngram,path2_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path2_lag_stressed_panic->neutral_mixed,state_ngram,path2_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path2_lag_stressed_panic->stressed_panic,state_ngram,path2_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path3_lag_OTHER,state_ngram,path3_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path3_lag_calm_trend->calm_trend->calm_trend,state_ngram,path3_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path3_lag_calm_trend->calm_trend->neutral_mixed,state_ngram,path3_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path3_lag_calm_trend->neutral_mixed->calm_trend,state_ngram,path3_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path3_lag_calm_trend->neutral_mixed->neutral_mixed,state_ngram,path3_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path3_lag_neutral_mixed->calm_trend->calm_trend,state_ngram,path3_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path3_lag_neutral_mixed->calm_trend->neutral_mixed,state_ngram,path3_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path3_lag_neutral_mixed->neutral_mixed->calm_trend,state_ngram,path3_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path3_lag_neutral_mixed->neutral_mixed->neutral_mixed,state_ngram,path3_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path3_lag_neutral_mixed->neutral_mixed->recovery_confirmed,state_ngram,path3_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path3_lag_neutral_mixed->neutral_mixed->recovery_fragile,state_ngram,path3_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path3_lag_neutral_mixed->neutral_mixed->stressed_panic,state_ngram,path3_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path3_lag_neutral_mixed->recovery_confirmed->recovery_confirmed,state_ngram,path3_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path3_lag_neutral_mixed->stressed_panic->neutral_mixed,state_ngram,path3_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path3_lag_neutral_mixed->stressed_panic->stressed_panic,state_ngram,path3_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path3_lag_recovery_confirmed->neutral_mixed->neutral_mixed,state_ngram,path3_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path3_lag_recovery_confirmed->recovery_confirmed->neutral_mixed,state_ngram,path3_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path3_lag_recovery_confirmed->recovery_confirmed->recovery_confirmed,state_ngram,path3_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path3_lag_recovery_fragile->neutral_mixed->neutral_mixed,state_ngram,path3_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path3_lag_recovery_fragile->recovery_fragile->neutral_mixed,state_ngram,path3_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path3_lag_recovery_fragile->recovery_fragile->recovery_fragile,state_ngram,path3_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path3_lag_stressed_panic->neutral_mixed->neutral_mixed,state_ngram,path3_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path3_lag_stressed_panic->stressed_panic->neutral_mixed,state_ngram,path3_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path3_lag_stressed_panic->stressed_panic->stressed_panic,state_ngram,path3_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path4_lag_OTHER,state_ngram,path4_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path4_lag_calm_trend->calm_trend->calm_trend->calm_trend,state_ngram,path4_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path4_lag_calm_trend->calm_trend->calm_trend->neutral_mixed,state_ngram,path4_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path4_lag_calm_trend->calm_trend->neutral_mixed->calm_trend,state_ngram,path4_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path4_lag_calm_trend->calm_trend->neutral_mixed->neutral_mixed,state_ngram,path4_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path4_lag_calm_trend->neutral_mixed->calm_trend->calm_trend,state_ngram,path4_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path4_lag_calm_trend->neutral_mixed->neutral_mixed->neutral_mixed,state_ngram,path4_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path4_lag_neutral_mixed->calm_trend->calm_trend->calm_trend,state_ngram,path4_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path4_lag_neutral_mixed->neutral_mixed->calm_trend->calm_trend,state_ngram,path4_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path4_lag_neutral_mixed->neutral_mixed->neutral_mixed->calm_trend,state_ngram,path4_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path4_lag_neutral_mixed->neutral_mixed->neutral_mixed->neutral_mixed,state_ngram,path4_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path4_lag_neutral_mixed->neutral_mixed->neutral_mixed->recovery_confirmed,state_ngram,path4_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path4_lag_neutral_mixed->neutral_mixed->neutral_mixed->recovery_fragile,state_ngram,path4_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path4_lag_neutral_mixed->neutral_mixed->neutral_mixed->stressed_panic,state_ngram,path4_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path4_lag_neutral_mixed->neutral_mixed->stressed_panic->neutral_mixed,state_ngram,path4_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path4_lag_neutral_mixed->neutral_mixed->stressed_panic->stressed_panic,state_ngram,path4_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path4_lag_neutral_mixed->stressed_panic->neutral_mixed->neutral_mixed,state_ngram,path4_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path4_lag_neutral_mixed->stressed_panic->stressed_panic->stressed_panic,state_ngram,path4_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path4_lag_recovery_confirmed->neutral_mixed->neutral_mixed->neutral_mixed,state_ngram,path4_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path4_lag_recovery_confirmed->recovery_confirmed->recovery_confirmed->recovery_confirmed,state_ngram,path4_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path4_lag_recovery_fragile->neutral_mixed->neutral_mixed->neutral_mixed,state_ngram,path4_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path4_lag_stressed_panic->neutral_mixed->neutral_mixed->neutral_mixed,state_ngram,path4_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path4_lag_stressed_panic->stressed_panic->stressed_panic->neutral_mixed,state_ngram,path4_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+path4_lag_stressed_panic->stressed_panic->stressed_panic->stressed_panic,state_ngram,path4_lag,categorical state/path uses states through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+state_age_lag1,dwell_time,engineered_from_market_state,uses state history through t-1 only,True,False,False,causal_lagged_state_feature,0.0009009009009009009,1109
+time_since_last_stressed_panic,dwell_time,engineered_from_market_state,uses state history through t-1 only,True,False,False,causal_lagged_state_feature,0.06576576576576576,1037
+time_since_last_recovery_confirmed,dwell_time,engineered_from_market_state,uses state history through t-1 only,True,False,False,causal_lagged_state_feature,0.08738738738738738,1013
+recovery_confirmed_after_stress_lag,state_memory,engineered_from_market_state,uses state history through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+recovery_confirmed_after_fragile_lag,state_memory,engineered_from_market_state,uses state history through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+recovery_confirmed_after_neutral_lag,state_memory,engineered_from_market_state,uses state history through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+recovery_fragile_after_stress_lag,state_memory,engineered_from_market_state,uses state history through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+neutral_after_stress_lag,state_memory,engineered_from_market_state,uses state history through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+neutral_after_calm_lag,state_memory,engineered_from_market_state,uses state history through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+stress_memory_neutral_lag,state_memory,engineered_from_market_state,uses state history through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+recent_transition_instability_lag,state_memory,engineered_from_market_state,uses state history through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+stress_count_last_4w,state_memory,engineered_from_market_state,uses state history through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+recovery_count_last_4w,state_memory,engineered_from_market_state,uses state history through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+stress_count_last_8w,state_memory,engineered_from_market_state,uses state history through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+recovery_count_last_8w,state_memory,engineered_from_market_state,uses state history through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+stress_count_last_13w,state_memory,engineered_from_market_state,uses state history through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+recovery_count_last_13w,state_memory,engineered_from_market_state,uses state history through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+stress_count_last_26w,state_memory,engineered_from_market_state,uses state history through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+recovery_count_last_26w,state_memory,engineered_from_market_state,uses state history through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+state_changes_last_4w,state_memory,engineered_from_market_state,uses state history through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+transition_volatility_last_4w,state_memory,engineered_from_market_state,uses state history through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+state_entropy_last_4w,state_memory,engineered_from_market_state,uses state history through t-1 only,True,False,False,causal_lagged_state_feature,0.0009009009009009009,1109
+state_changes_last_8w,state_memory,engineered_from_market_state,uses state history through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+transition_volatility_last_8w,state_memory,engineered_from_market_state,uses state history through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+state_entropy_last_8w,state_memory,engineered_from_market_state,uses state history through t-1 only,True,False,False,causal_lagged_state_feature,0.0009009009009009009,1109
+state_changes_last_13w,state_memory,engineered_from_market_state,uses state history through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+transition_volatility_last_13w,state_memory,engineered_from_market_state,uses state history through t-1 only,True,False,False,causal_lagged_state_feature,0.0,1110
+state_entropy_last_13w,state_memory,engineered_from_market_state,uses state history through t-1 only,True,False,False,causal_lagged_state_feature,0.0009009009009009009,1109
+l2b_risk_regime_score_lag1,existing_layer2b_probability_or_input,risk_regime_score,shifted one week before modeling,False,True,False,causal_lagged_layer2b_feature,0.024324324324324326,1083
+l2b_market_drawdown_lag1,existing_layer2b_probability_or_input,market_drawdown,shifted one week before modeling,False,True,False,causal_lagged_layer2b_feature,0.0009009009009009009,1109
+l2b_market_trend_positive_lag1,existing_layer2b_probability_or_input,market_trend_positive,shifted one week before modeling,False,True,False,causal_lagged_layer2b_feature,0.0009009009009009009,1109
+l2b_breadth_sma_43_lag1,existing_layer2b_probability_or_input,breadth_sma_43,shifted one week before modeling,False,True,False,causal_lagged_layer2b_feature,0.0009009009009009009,1109
+l2b_breadth_26w_mom_lag1,existing_layer2b_probability_or_input,breadth_26w_mom,shifted one week before modeling,False,True,False,causal_lagged_layer2b_feature,0.0009009009009009009,1109
+l2b_breadth_13w_mom_lag1,existing_layer2b_probability_or_input,breadth_13w_mom,shifted one week before modeling,False,True,False,causal_lagged_layer2b_feature,0.0009009009009009009,1109
+l2b_breadth_change_4w_lag1,existing_layer2b_probability_or_input,breadth_change_4w,shifted one week before modeling,False,True,False,causal_lagged_layer2b_feature,0.0045045045045045045,1105
+l2b_canary_breadth_default_lag1,existing_layer2b_probability_or_input,canary_breadth_default,shifted one week before modeling,False,True,False,causal_lagged_layer2b_feature,0.0009009009009009009,1109
+l2b_canary_breadth_pair_lag1,existing_layer2b_probability_or_input,canary_breadth_pair,shifted one week before modeling,False,True,False,causal_lagged_layer2b_feature,0.0009009009009009009,1109
+l2b_recent_stress_26w_lag1,existing_layer2b_probability_or_input,recent_stress_26w,shifted one week before modeling,False,True,False,causal_lagged_layer2b_feature,0.0009009009009009009,1109
+l2b_avg_corr_risk_off_z_lag1,existing_layer2b_probability_or_input,avg_corr_risk_off_z,shifted one week before modeling,False,True,False,causal_lagged_layer2b_feature,0.036036036036036036,1070
+l2b_google_fear_z_tradable_lag1,existing_layer2b_probability_or_input,google_fear_z_tradable,shifted one week before modeling,False,True,False,causal_lagged_layer2b_feature,0.06846846846846846,1034
+l2b_transition_persistence_prob_lag1,existing_layer2b_probability_or_input,transition_persistence_prob,shifted one week before modeling,False,True,False,causal_lagged_layer2b_feature,0.04594594594594595,1059
+l2b_transition_good_state_prob_lag1,existing_layer2b_probability_or_input,transition_good_state_prob,shifted one week before modeling,False,True,False,causal_lagged_layer2b_feature,0.04594594594594595,1059
+l2b_transition_non_stress_prob_lag1,existing_layer2b_probability_or_input,transition_non_stress_prob,shifted one week before modeling,False,True,False,causal_lagged_layer2b_feature,0.04594594594594595,1059
+l2b_deterioration_z_lag1,existing_layer2b_probability_or_input,deterioration_z,shifted one week before modeling,False,True,False,causal_lagged_layer2b_feature,0.12522522522522522,971
+l2b_deterioration_rank_neutral_mixed_lag1,existing_layer2b_probability_or_input,deterioration_rank_neutral_mixed,shifted one week before modeling,False,True,False,causal_lagged_layer2b_feature,0.6567567567567567,381
+l2b_confidence_score_p2b_lag1,existing_layer2b_probability_or_input,confidence_score_p2b,shifted one week before modeling,False,True,False,causal_lagged_layer2b_feature,0.25135135135135134,831
+l2b_defensive_overlay_hint_lag1,existing_layer2b_probability_or_input,defensive_overlay_hint,shifted one week before modeling,False,True,False,causal_lagged_layer2b_feature,0.0009009009009009009,1109
+l2b_p_regime_confidence_lag1,existing_layer2b_probability_or_input,p_regime_confidence,shifted one week before modeling,False,True,False,causal_lagged_layer2b_feature,0.1810810810810811,909
+l2b_p_transition_quality_lag1,existing_layer2b_probability_or_input,p_transition_quality,shifted one week before modeling,False,True,False,causal_lagged_layer2b_feature,0.1810810810810811,909
+l2b_p_tail_risk_lag1,existing_layer2b_probability_or_input,p_tail_risk,shifted one week before modeling,False,True,False,causal_lagged_layer2b_feature,0.1810810810810811,909
+l2b_p_stress_forecast_lag1,existing_layer2b_probability_or_input,p_stress_forecast,shifted one week before modeling,False,True,False,causal_lagged_layer2b_feature,0.0018018018018018018,1108
+l2b_p_regime_confidence_refreshed_lag1,existing_layer2b_probability_or_input,p_regime_confidence_refreshed,shifted one week before modeling,False,True,False,causal_lagged_layer2b_feature,0.0018018018018018018,1108
+l2b_p_regime_confidence_blend25_lag1,existing_layer2b_probability_or_input,p_regime_confidence_blend25,shifted one week before modeling,False,True,False,causal_lagged_layer2b_feature,0.0018018018018018018,1108
+qqq_active_int_efa_spy_strength_x_market_trend_lag1,qqq_rule_context,qqq_active_int_efa_spy_strength_x_market_trend,QQQ context shifted one week again for SSS,False,False,True,causal_lagged_qqq_context,0.007207207207207207,1102
+qqq_active_int_market_trend_x_mom13_lag1,qqq_rule_context,qqq_active_int_market_trend_x_mom13,QQQ context shifted one week again for SSS,False,False,True,causal_lagged_qqq_context,0.007207207207207207,1102
+qqq_any_shortlist_rule_active_lag1,qqq_rule_context,qqq_any_shortlist_rule_active,QQQ context shifted one week again for SSS,False,False,True,causal_lagged_qqq_context,0.007207207207207207,1102
+qqq_mean_shortlist_rule_active_lag1,qqq_rule_context,qqq_mean_shortlist_rule_active,QQQ context shifted one week again for SSS,False,False,True,causal_lagged_qqq_context,0.007207207207207207,1102
+ooo2_leadlag_EFA_minus_SPY_13w_signal_lag1,ooo_signal_context,ooo2_leadlag_EFA_minus_SPY_13w_signal,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.006306306306306306,1103
+ooo2_leadlag_GLD_minus_SPY_13w_signal_lag1,ooo_signal_context,ooo2_leadlag_GLD_minus_SPY_13w_signal,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.006306306306306306,1103
+ooo2_leadlag_DBA_minus_SPY_13w_signal_lag1,ooo_signal_context,ooo2_leadlag_DBA_minus_SPY_13w_signal,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.006306306306306306,1103
+ooo2_leadlag_HYG_minus_LQD_13w_signal_lag1,ooo_signal_context,ooo2_leadlag_HYG_minus_LQD_13w_signal,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.006306306306306306,1103
+ooo2_breadth_ret13_positive_signal_lag1,ooo_signal_context,ooo2_breadth_ret13_positive_signal,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.0018018018018018018,1108
+ooo2_breadth_ret26_positive_signal_lag1,ooo_signal_context,ooo2_breadth_ret26_positive_signal,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.0018018018018018018,1108
+ooo2_canary_breadth_pair_signal_lag1,ooo_signal_context,ooo2_canary_breadth_pair_signal,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.0018018018018018018,1108
+ooo2_recent_stress_26w_signal_lag1,ooo_signal_context,ooo2_recent_stress_26w_signal,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.0018018018018018018,1108
+ooo2_market_drawdown_signal_lag1,ooo_signal_context,ooo2_market_drawdown_signal,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.0018018018018018018,1108
+ooo2_market_trend_positive_signal_lag1,ooo_signal_context,ooo2_market_trend_positive_signal,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.0018018018018018018,1108
+ooo2_breadth_ret13_positive_x_recovery_confirmed_signal_lag1,ooo_signal_context,ooo2_breadth_ret13_positive_x_recovery_confirmed_signal,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.0018018018018018018,1108
+ooo2_breadth_ret13_positive_x_neutral_mixed_signal_lag1,ooo_signal_context,ooo2_breadth_ret13_positive_x_neutral_mixed_signal,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.0018018018018018018,1108
+ooo2_breadth_ret13_positive_x_stressed_panic_signal_lag1,ooo_signal_context,ooo2_breadth_ret13_positive_x_stressed_panic_signal,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.0018018018018018018,1108
+ooo2_leadlag_HYG_minus_LQD_13w_x_calm_trend_signal_lag1,ooo_signal_context,ooo2_leadlag_HYG_minus_LQD_13w_x_calm_trend_signal,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.006306306306306306,1103
+ooo3event_efa_spy_raw_top20_event_lag1,ooo_signal_context,ooo3event_efa_spy_raw_top20_event,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.0009009009009009009,1109
+ooo3event_efa_spy_raw_top10_event_lag1,ooo_signal_context,ooo3event_efa_spy_raw_top10_event,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.0009009009009009009,1109
+ooo3event_efa_spy_raw_top30_event_lag1,ooo_signal_context,ooo3event_efa_spy_raw_top30_event,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.0009009009009009009,1109
+ooo3event_efa_spy_vol_filtered_top20_event_lag1,ooo_signal_context,ooo3event_efa_spy_vol_filtered_top20_event,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.0009009009009009009,1109
+ooo3event_efa_spy_low_or_normal_vol_top20_event_lag1,ooo_signal_context,ooo3event_efa_spy_low_or_normal_vol_top20_event,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.0009009009009009009,1109
+ooo3event_efa_spy_strength_scaled_score_event_lag1,ooo_signal_context,ooo3event_efa_spy_strength_scaled_score_event,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.0009009009009009009,1109
+ooo3event_efa_spy_drawdown_aware_top20_event_lag1,ooo_signal_context,ooo3event_efa_spy_drawdown_aware_top20_event,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.0009009009009009009,1109
+ooo3event_efa_spy_market_trend_confirmed_top20_event_lag1,ooo_signal_context,ooo3event_efa_spy_market_trend_confirmed_top20_event,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.0009009009009009009,1109
+ooo3event_market_trend_raw_event_lag1,ooo_signal_context,ooo3event_market_trend_raw_event,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.0009009009009009009,1109
+ooo3event_market_trend_breadth_confirmed_event_lag1,ooo_signal_context,ooo3event_market_trend_breadth_confirmed_event,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.0009009009009009009,1109
+ooo3event_market_trend_ex_high_vol_drawdown_event_lag1,ooo_signal_context,ooo3event_market_trend_ex_high_vol_drawdown_event,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.0009009009009009009,1109
+ooo3event_market_trend_recent_stress_filtered_event_lag1,ooo_signal_context,ooo3event_market_trend_recent_stress_filtered_event,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.0009009009009009009,1109
+ooo3event_market_trend_calm_neutral_event_lag1,ooo_signal_context,ooo3event_market_trend_calm_neutral_event,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.0009009009009009009,1109
+ooo3event_market_trend_vol_scaled_score_event_lag1,ooo_signal_context,ooo3event_market_trend_vol_scaled_score_event,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.0009009009009009009,1109
+ooo3event_market_drawdown_top20_event_lag1,ooo_signal_context,ooo3event_market_drawdown_top20_event,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.0009009009009009009,1109
+ooo3event_market_drawdown_vol_filtered_top20_event_lag1,ooo_signal_context,ooo3event_market_drawdown_vol_filtered_top20_event,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.0009009009009009009,1109
+ooo3event_leadlag_GLD_minus_SPY_13w_top20_event_lag1,ooo_signal_context,ooo3event_leadlag_GLD_minus_SPY_13w_top20_event,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.0009009009009009009,1109
+ooo3event_leadlag_GLD_minus_SPY_13w_vol_filtered_top20_event_lag1,ooo_signal_context,ooo3event_leadlag_GLD_minus_SPY_13w_vol_filtered_top20_event,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.0009009009009009009,1109
+ooo3event_leadlag_DBA_minus_SPY_13w_top20_event_lag1,ooo_signal_context,ooo3event_leadlag_DBA_minus_SPY_13w_top20_event,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.0009009009009009009,1109
+ooo3event_leadlag_DBA_minus_SPY_13w_vol_filtered_top20_event_lag1,ooo_signal_context,ooo3event_leadlag_DBA_minus_SPY_13w_vol_filtered_top20_event,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.0009009009009009009,1109
+ooo3event_breadth_ret13_positive_x_recovery_confirmed_top20_event_lag1,ooo_signal_context,ooo3event_breadth_ret13_positive_x_recovery_confirmed_top20_event,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.0009009009009009009,1109
+ooo3event_breadth_ret13_positive_x_recovery_confirmed_vol_filtered_top20_event_lag1,ooo_signal_context,ooo3event_breadth_ret13_positive_x_recovery_confirmed_vol_filtered_top20_event,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.0009009009009009009,1109
+ooo3event_breadth_ret13_positive_x_recovery_confirmed_state_filtered_event_lag1,ooo_signal_context,ooo3event_breadth_ret13_positive_x_recovery_confirmed_state_filtered_event,OOO context shifted one week for SSS overlap diagnostics,False,False,False,causal_lagged_ooo_context,0.0009009009009009009,1109

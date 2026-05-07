@@ -1,0 +1,7 @@
+component,weight,inputs,interpretation
+breadth_level,0.3,"pct_members_above_200d_ma_lag1w, pct_members_positive_26w_return_lag1w",higher when broad market participation is strong
+breadth_thrust,0.2,"breadth_thrust_4w_lag1w, breadth_thrust_8w_lag1w",higher when participation is improving
+sector_confirmation,0.15,sector-level breadth dispersion and number of sectors above thresholds,blocks narrow single-sector leadership from looking broad
+volatility_containment,0.15,existing VIX/regime volatility features,reduces aggression when market risk is elevated
+credit_and_risk_appetite,0.1,existing canary/credit ETF breadth features,requires risk appetite confirmation
+state_stability,0.1,weeks since state transition and no recovery_fragile/stressed_panic,penalizes unstable transitions

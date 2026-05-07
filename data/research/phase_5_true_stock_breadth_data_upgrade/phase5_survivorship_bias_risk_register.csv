@@ -1,0 +1,6 @@
+risk,severity,description,mitigation
+current_constituent_survivorship_bias,HIGH,"Today's index members exclude historical bankruptcies, delistings, removals, and weak firms, overstating historical breadth and trend quality.",Require PIT membership and delisting-aware prices before production decisions.
+lookahead_membership_dates,HIGH,Using future constituent additions/removals to define past breadth leaks information.,"For each week, include only stocks that were members as of that week."
+delisting_return_omission,HIGH,Ignoring delisted stocks removes adverse outcomes and inflates breadth.,Use a source with delisting returns or explicit dead-stock coverage.
+vendor_revision_or_publication_lag,MEDIUM,Constituent data may be known only after announcements/effective dates.,Use effective dates and lag signal availability by at least one rebalance period.
+ETF_breadth_substitution,LOW_FOR_BIAS_HIGH_FOR_SIGNAL_LIMIT,"ETF breadth is clean and available, but too coarse to answer true stock breadth questions.","Keep as baseline, not as a substitute for Phase 5 stock breadth."

@@ -1,0 +1,13 @@
+item,value,notes
+state_file_used,data/04_layer2b_risk_regime_engine/market_state_history_refined.csv,refined state file preferred when available
+date_range,2005-01-07 to 2026-04-10,
+n_weeks,1110,aligned to GGG1 return dates
+n_base_states,5,"calm_trend,neutral_mixed,recovery_confirmed,recovery_fragile,stressed_panic"
+n_refined_states,7,"calm_trend,neutral_deteriorating,neutral_healthy,neutral_mixed,recovery_confirmed,recovery_fragile,stressed_panic"
+aligned_to_ggg1,True,inner frame seeded from GGG1 dates
+missing_state_dates,0,
+refined_states_exist,True,
+neutral_healthy_split_exists,True,
+neutral_deteriorating_split_exists,True,
+qqq_context_features_loaded,4,"qqq_active_int_efa_spy_strength_x_market_trend,qqq_active_int_market_trend_x_mom13,qqq_any_shortlist_rule_active,qqq_mean_shortlist_rule_active"
+hmmlearn_available,False,HMM skipped unless package already installed

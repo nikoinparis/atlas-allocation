@@ -1,0 +1,8 @@
+signal,active_weeks,active_frequency,lag_rule,state_coverage_calm,state_coverage_neutral,state_coverage_stressed,state_coverage_rc,causal_ok,diagnostic_label
+broad_stock_bull_diagnostic,97,0.087,use _lag1w features — 1 week causal lag,46,40,0,10,True,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+narrow_bull_warning_diagnostic,38,0.034,use _lag1w features — 1 week causal lag,4,6,27,0,True,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+neutral_stock_risk_on_diagnostic,80,0.072,use _lag1w features — 1 week causal lag,0,80,0,0,True,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+neutral_stock_chop_warning_diagnostic,394,0.355,use _lag1w features — 1 week causal lag,0,394,0,0,True,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+recovery_stock_confirmed_diagnostic,18,0.016,use _lag1w features — 1 week causal lag,0,0,0,10,True,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+fake_recovery_warning_diagnostic,2,0.002,use _lag1w features — 1 week causal lag,0,0,0,0,True,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+diagnostic_aggression_score_high,131,0.118,use _lag1w features — 1 week causal lag,69,49,2,9,True,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY

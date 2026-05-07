@@ -1,0 +1,6 @@
+state,n_weeks,freq,phase4b_ann_return,phase4b_sharpe,phase4b_max_dd,ggg1_ann_return,ggg1_sharpe,spy_ann_return,delta_phase4b_vs_ggg1,opportunity_cost_vs_spy,assessment
+neutral_mixed,493,0.444,0.120736,1.474212,-0.106241,0.112112,1.461561,0.086392,0.0086,0.0343,IMPROVED
+calm_trend,295,0.266,0.04387,0.510065,-0.135916,0.040851,0.513625,0.168678,0.003,-0.1248,BOTTLENECK_PRIMARY
+stressed_panic,229,0.206,0.038174,0.499436,-0.124206,0.035803,0.480687,-0.049182,0.0024,0.0874,PROTECTED
+recovery_fragile,49,0.044,0.077134,1.277422,-0.030084,0.066671,1.142121,0.539038,0.0105,-0.4619,IMPROVED
+recovery_confirmed,44,0.04,0.04366,0.562973,-0.052874,0.025705,0.344267,0.400876,0.018,-0.3572,IMPROVED

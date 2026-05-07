@@ -1,0 +1,6 @@
+portfolio,state,ann_return,sharpe,delta_ann_return_vs_ggg1,delta_sharpe_vs_ggg1,avg_sector_sleeve_exposure,phase4b_response,phase6_focus
+improved_phase4_sector_20pct_offense,calm_trend,0.0467962630432263,0.5482937144761398,0.0059457611179909,0.0346687765236197,0.1858594317438943,allow only if high-quality signal or state-specific confirmation is true,HIGH
+improved_phase4_sector_20pct_offense,neutral_mixed,0.1151229406309843,1.3937384997705953,0.0030106015733654,-0.0678220920375167,0.1329079409206252,allow only if high-quality signal or state-specific confirmation is true,MEDIUM
+improved_phase4_sector_20pct_offense,recovery_confirmed,0.0396501219022644,0.4897066886743704,0.013945606784898,0.145439419683988,0.1564576658343097,allow only if high-quality signal or state-specific confirmation is true,MEDIUM
+improved_phase4_sector_20pct_offense,recovery_fragile,0.0803343433889478,1.3173187815440135,0.0136638157748475,0.1751974663471929,0.0841135788806581,allow only if high-quality signal or state-specific confirmation is true,LOW
+improved_phase4_sector_20pct_offense,stressed_panic,0.0403644628564852,0.4959604525986092,0.0045616570217629,0.0152733905111362,0.0511915435264499,allow only if high-quality signal or state-specific confirmation is true,LOW

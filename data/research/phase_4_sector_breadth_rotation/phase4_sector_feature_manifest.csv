@@ -1,0 +1,121 @@
+feature,ticker,formula,causal_lag_rule,lookahead
+XLK_mom_4w,XLK,4-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLF_mom_4w,XLF,4-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLV_mom_4w,XLV,4-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLY_mom_4w,XLY,4-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLP_mom_4w,XLP,4-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLI_mom_4w,XLI,4-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLE_mom_4w,XLE,4-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLU_mom_4w,XLU,4-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLB_mom_4w,XLB,4-week sector momentum,computed through week t and applied to week t+1 returns,False
+VNQ_mom_4w,VNQ,4-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLK_mom_13w,XLK,13-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLF_mom_13w,XLF,13-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLV_mom_13w,XLV,13-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLY_mom_13w,XLY,13-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLP_mom_13w,XLP,13-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLI_mom_13w,XLI,13-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLE_mom_13w,XLE,13-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLU_mom_13w,XLU,13-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLB_mom_13w,XLB,13-week sector momentum,computed through week t and applied to week t+1 returns,False
+VNQ_mom_13w,VNQ,13-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLK_mom_26w,XLK,26-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLF_mom_26w,XLF,26-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLV_mom_26w,XLV,26-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLY_mom_26w,XLY,26-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLP_mom_26w,XLP,26-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLI_mom_26w,XLI,26-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLE_mom_26w,XLE,26-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLU_mom_26w,XLU,26-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLB_mom_26w,XLB,26-week sector momentum,computed through week t and applied to week t+1 returns,False
+VNQ_mom_26w,VNQ,26-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLK_mom_52w,XLK,52-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLF_mom_52w,XLF,52-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLV_mom_52w,XLV,52-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLY_mom_52w,XLY,52-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLP_mom_52w,XLP,52-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLI_mom_52w,XLI,52-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLE_mom_52w,XLE,52-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLU_mom_52w,XLU,52-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLB_mom_52w,XLB,52-week sector momentum,computed through week t and applied to week t+1 returns,False
+VNQ_mom_52w,VNQ,52-week sector momentum,computed through week t and applied to week t+1 returns,False
+XLK_vol_13w,XLK,13-week annualized volatility,computed through week t and applied to week t+1 returns,False
+XLF_vol_13w,XLF,13-week annualized volatility,computed through week t and applied to week t+1 returns,False
+XLV_vol_13w,XLV,13-week annualized volatility,computed through week t and applied to week t+1 returns,False
+XLY_vol_13w,XLY,13-week annualized volatility,computed through week t and applied to week t+1 returns,False
+XLP_vol_13w,XLP,13-week annualized volatility,computed through week t and applied to week t+1 returns,False
+XLI_vol_13w,XLI,13-week annualized volatility,computed through week t and applied to week t+1 returns,False
+XLE_vol_13w,XLE,13-week annualized volatility,computed through week t and applied to week t+1 returns,False
+XLU_vol_13w,XLU,13-week annualized volatility,computed through week t and applied to week t+1 returns,False
+XLB_vol_13w,XLB,13-week annualized volatility,computed through week t and applied to week t+1 returns,False
+VNQ_vol_13w,VNQ,13-week annualized volatility,computed through week t and applied to week t+1 returns,False
+XLK_vol_26w,XLK,26-week annualized volatility,computed through week t and applied to week t+1 returns,False
+XLF_vol_26w,XLF,26-week annualized volatility,computed through week t and applied to week t+1 returns,False
+XLV_vol_26w,XLV,26-week annualized volatility,computed through week t and applied to week t+1 returns,False
+XLY_vol_26w,XLY,26-week annualized volatility,computed through week t and applied to week t+1 returns,False
+XLP_vol_26w,XLP,26-week annualized volatility,computed through week t and applied to week t+1 returns,False
+XLI_vol_26w,XLI,26-week annualized volatility,computed through week t and applied to week t+1 returns,False
+XLE_vol_26w,XLE,26-week annualized volatility,computed through week t and applied to week t+1 returns,False
+XLU_vol_26w,XLU,26-week annualized volatility,computed through week t and applied to week t+1 returns,False
+XLB_vol_26w,XLB,26-week annualized volatility,computed through week t and applied to week t+1 returns,False
+VNQ_vol_26w,VNQ,26-week annualized volatility,computed through week t and applied to week t+1 returns,False
+XLK_risk_adj_mom,XLK,0.4*13w + 0.6*26w momentum divided by 26w vol,computed through week t and applied to week t+1 returns,False
+XLF_risk_adj_mom,XLF,0.4*13w + 0.6*26w momentum divided by 26w vol,computed through week t and applied to week t+1 returns,False
+XLV_risk_adj_mom,XLV,0.4*13w + 0.6*26w momentum divided by 26w vol,computed through week t and applied to week t+1 returns,False
+XLY_risk_adj_mom,XLY,0.4*13w + 0.6*26w momentum divided by 26w vol,computed through week t and applied to week t+1 returns,False
+XLP_risk_adj_mom,XLP,0.4*13w + 0.6*26w momentum divided by 26w vol,computed through week t and applied to week t+1 returns,False
+XLI_risk_adj_mom,XLI,0.4*13w + 0.6*26w momentum divided by 26w vol,computed through week t and applied to week t+1 returns,False
+XLE_risk_adj_mom,XLE,0.4*13w + 0.6*26w momentum divided by 26w vol,computed through week t and applied to week t+1 returns,False
+XLU_risk_adj_mom,XLU,0.4*13w + 0.6*26w momentum divided by 26w vol,computed through week t and applied to week t+1 returns,False
+XLB_risk_adj_mom,XLB,0.4*13w + 0.6*26w momentum divided by 26w vol,computed through week t and applied to week t+1 returns,False
+VNQ_risk_adj_mom,VNQ,0.4*13w + 0.6*26w momentum divided by 26w vol,computed through week t and applied to week t+1 returns,False
+XLK_drawdown_52w,XLK,drawdown from trailing 52-week high,computed through week t and applied to week t+1 returns,False
+XLF_drawdown_52w,XLF,drawdown from trailing 52-week high,computed through week t and applied to week t+1 returns,False
+XLV_drawdown_52w,XLV,drawdown from trailing 52-week high,computed through week t and applied to week t+1 returns,False
+XLY_drawdown_52w,XLY,drawdown from trailing 52-week high,computed through week t and applied to week t+1 returns,False
+XLP_drawdown_52w,XLP,drawdown from trailing 52-week high,computed through week t and applied to week t+1 returns,False
+XLI_drawdown_52w,XLI,drawdown from trailing 52-week high,computed through week t and applied to week t+1 returns,False
+XLE_drawdown_52w,XLE,drawdown from trailing 52-week high,computed through week t and applied to week t+1 returns,False
+XLU_drawdown_52w,XLU,drawdown from trailing 52-week high,computed through week t and applied to week t+1 returns,False
+XLB_drawdown_52w,XLB,drawdown from trailing 52-week high,computed through week t and applied to week t+1 returns,False
+VNQ_drawdown_52w,VNQ,drawdown from trailing 52-week high,computed through week t and applied to week t+1 returns,False
+XLK_ma_dist_26w,XLK,price distance from 26-week moving average,computed through week t and applied to week t+1 returns,False
+XLF_ma_dist_26w,XLF,price distance from 26-week moving average,computed through week t and applied to week t+1 returns,False
+XLV_ma_dist_26w,XLV,price distance from 26-week moving average,computed through week t and applied to week t+1 returns,False
+XLY_ma_dist_26w,XLY,price distance from 26-week moving average,computed through week t and applied to week t+1 returns,False
+XLP_ma_dist_26w,XLP,price distance from 26-week moving average,computed through week t and applied to week t+1 returns,False
+XLI_ma_dist_26w,XLI,price distance from 26-week moving average,computed through week t and applied to week t+1 returns,False
+XLE_ma_dist_26w,XLE,price distance from 26-week moving average,computed through week t and applied to week t+1 returns,False
+XLU_ma_dist_26w,XLU,price distance from 26-week moving average,computed through week t and applied to week t+1 returns,False
+XLB_ma_dist_26w,XLB,price distance from 26-week moving average,computed through week t and applied to week t+1 returns,False
+VNQ_ma_dist_26w,VNQ,price distance from 26-week moving average,computed through week t and applied to week t+1 returns,False
+XLK_ma_dist_43w,XLK,price distance from 43-week moving average,computed through week t and applied to week t+1 returns,False
+XLF_ma_dist_43w,XLF,price distance from 43-week moving average,computed through week t and applied to week t+1 returns,False
+XLV_ma_dist_43w,XLV,price distance from 43-week moving average,computed through week t and applied to week t+1 returns,False
+XLY_ma_dist_43w,XLY,price distance from 43-week moving average,computed through week t and applied to week t+1 returns,False
+XLP_ma_dist_43w,XLP,price distance from 43-week moving average,computed through week t and applied to week t+1 returns,False
+XLI_ma_dist_43w,XLI,price distance from 43-week moving average,computed through week t and applied to week t+1 returns,False
+XLE_ma_dist_43w,XLE,price distance from 43-week moving average,computed through week t and applied to week t+1 returns,False
+XLU_ma_dist_43w,XLU,price distance from 43-week moving average,computed through week t and applied to week t+1 returns,False
+XLB_ma_dist_43w,XLB,price distance from 43-week moving average,computed through week t and applied to week t+1 returns,False
+VNQ_ma_dist_43w,VNQ,price distance from 43-week moving average,computed through week t and applied to week t+1 returns,False
+XLK_trend_positive_26w,XLK,price above 26-week moving average,computed through week t and applied to week t+1 returns,False
+XLF_trend_positive_26w,XLF,price above 26-week moving average,computed through week t and applied to week t+1 returns,False
+XLV_trend_positive_26w,XLV,price above 26-week moving average,computed through week t and applied to week t+1 returns,False
+XLY_trend_positive_26w,XLY,price above 26-week moving average,computed through week t and applied to week t+1 returns,False
+XLP_trend_positive_26w,XLP,price above 26-week moving average,computed through week t and applied to week t+1 returns,False
+XLI_trend_positive_26w,XLI,price above 26-week moving average,computed through week t and applied to week t+1 returns,False
+XLE_trend_positive_26w,XLE,price above 26-week moving average,computed through week t and applied to week t+1 returns,False
+XLU_trend_positive_26w,XLU,price above 26-week moving average,computed through week t and applied to week t+1 returns,False
+XLB_trend_positive_26w,XLB,price above 26-week moving average,computed through week t and applied to week t+1 returns,False
+VNQ_trend_positive_26w,VNQ,price above 26-week moving average,computed through week t and applied to week t+1 returns,False
+XLK_trend_positive_43w,XLK,price above 43-week moving average,computed through week t and applied to week t+1 returns,False
+XLF_trend_positive_43w,XLF,price above 43-week moving average,computed through week t and applied to week t+1 returns,False
+XLV_trend_positive_43w,XLV,price above 43-week moving average,computed through week t and applied to week t+1 returns,False
+XLY_trend_positive_43w,XLY,price above 43-week moving average,computed through week t and applied to week t+1 returns,False
+XLP_trend_positive_43w,XLP,price above 43-week moving average,computed through week t and applied to week t+1 returns,False
+XLI_trend_positive_43w,XLI,price above 43-week moving average,computed through week t and applied to week t+1 returns,False
+XLE_trend_positive_43w,XLE,price above 43-week moving average,computed through week t and applied to week t+1 returns,False
+XLU_trend_positive_43w,XLU,price above 43-week moving average,computed through week t and applied to week t+1 returns,False
+XLB_trend_positive_43w,XLB,price above 43-week moving average,computed through week t and applied to week t+1 returns,False
+VNQ_trend_positive_43w,VNQ,price above 43-week moving average,computed through week t and applied to week t+1 returns,False

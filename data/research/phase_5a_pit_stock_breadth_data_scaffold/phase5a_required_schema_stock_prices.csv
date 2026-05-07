@@ -1,0 +1,9 @@
+column_name,dtype,required,description,validation_rule
+date,date,True,trading date,non-null market date
+security_id,string,True,stable id matching membership,non-null
+ticker,string,False,ticker as of date,informational only
+adjusted_close,float,True,split/dividend-adjusted close,> 0
+close,float,False,raw close,> 0 if present
+volume,float,False,daily volume,>= 0 if present
+delisting_return,float,False,delisting return if applicable,document missing policy
+adjustment_source,string,True,adjustment methodology/source,non-null

@@ -1,0 +1,4 @@
+basket,tickers,weighting,causal_lag,role,problem
+ggg1_default_offense,"SPY,QQQ,IWM,EFA,VEA,VWO,EWJ,VNQ,PDBC,DBA",momentum-based via composite_regime_conditioned positions,positions from prior allocation,Current GGG1 default — baseline for comparison,International/commodity drag dilutes US bull-market upside
+p3_us_pure_offense,"SPY,QQQ,IWM",proportional to composite_regime_conditioned weights for SPY/QQQ/IWM,positions from prior allocation,Phase 3 primary — US broad equity offense,Misses growth tilt — may underperform during QQQ bull runs
+p3_us_growth_offense,"QQQ,SPY,VUG",proportional to composite_regime_conditioned weights,positions from prior allocation,Phase 3 stretch — US growth/tech tilt,More tech concentration risk; tested in C3/C6

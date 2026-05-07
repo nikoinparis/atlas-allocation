@@ -1,0 +1,10 @@
+check,passed,note
+state_sequence_lagged,True,model features use state_lag1 or older
+refined_state_lagged,True,refined_state only appears as lag1 dummies/features
+layer2b_numeric_context_lagged,True,Layer 2B probabilities/inputs are shifted one week
+qqq_context_lagged,True,QQQ rule context is shifted one week again
+ooo_context_lagged,True,OOO signal/event context is shifted one week for overlap diagnostics
+no_future_state_features,True,future states are used only in target labels
+no_future_returns_as_features,True,forward returns are saved in target panel only
+no_random_splits,True,walk-forward expanding splits only
+production_shadow_ggg1_unchanged,True,production=improved_phase2b_regime_confidence_boost; shadow=improved_phase2b_combo_abc; GGG1=improved_phaseggg_confirmed_only_robust_offense

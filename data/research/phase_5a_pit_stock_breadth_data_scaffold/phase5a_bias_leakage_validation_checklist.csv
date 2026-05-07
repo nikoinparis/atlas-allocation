@@ -1,0 +1,19 @@
+check_id,required_for_phase5b,description,failure_action
+point_in_time_membership_only,True,Membership rows include effective start/end dates and active members are selected as of week t only.,block production/shadow promotion; research-only at most
+no_current_constituent_backfill,True,No current S&P 500/Nasdaq list is used as a historical universe.,block production/shadow promotion; research-only at most
+no_future_membership_additions,True,A future addition cannot enter active membership before its effective date plus lag rule.,block production/shadow promotion; research-only at most
+no_delisted_stock_omission,True,Delisted/dead members are represented or omission is explicitly blocking production use.,block production/shadow promotion; research-only at most
+price_adjustment_documented,True,Split/dividend/delisting adjustment method is documented.,block production/shadow promotion; research-only at most
+ticker_changes_mapped,True,Ticker changes map through stable security id.,block production/shadow promotion; research-only at most
+duplicate_security_ids_handled,True,Duplicate ticker/security/date rows are absent or resolved deterministically.,block production/shadow promotion; research-only at most
+sector_classifications_timestamped,True,Sector intervals are PIT or static caveat is explicitly recorded.,block production/shadow promotion; research-only at most
+signal_lag_applied,True,All features have lag1w columns used for portfolio signals.,block production/shadow promotion; research-only at most
+no_centered_rolling_windows,True,All rolling calculations are trailing only.,block production/shadow promotion; research-only at most
+no_future_returns_in_features,True,"Forward returns appear only in validation outputs, never features.",block production/shadow promotion; research-only at most
+no_random_train_test_split,True,Validation is time ordered.,block production/shadow promotion; research-only at most
+coverage_by_week,True,Active member count and price coverage are reported by week.,block production/shadow promotion; research-only at most
+missing_price_rate_by_week,True,Weekly missing price rate is below acceptance threshold or caveated.,block production/shadow promotion; research-only at most
+delisting_count_by_year,True,Delisting count by year is reconciled if vendor supplies it.,block production/shadow promotion; research-only at most
+membership_turnover_sanity,True,Additions/removals by year are plausible and source-aligned.,block production/shadow promotion; research-only at most
+compare_stock_vs_etf_breadth,True,Stock breadth is compared to Phase 4B ETF/sector breadth.,block production/shadow promotion; research-only at most
+compare_index_vs_equal_weight,True,Broad index return is compared to equal-weight member return.,block production/shadow promotion; research-only at most

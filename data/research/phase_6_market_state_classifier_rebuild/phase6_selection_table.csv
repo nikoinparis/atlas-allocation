@@ -1,0 +1,6 @@
+portfolio,classification,reason,full_ann_return,full_sharpe,full_max_dd,holdout_2020_return,holdout_2020_sharpe,bear_2022_return,beats_phase4b,beats_ggg1,mandate_ok,bear_ok,disguised
+improved_phase6_neutral_classifier_unlock,KEEP_AS_RESEARCH_ONLY,Beats GGG1 but not Phase4B; or holdout modest,0.0775,0.9579,-0.1377,0.0951,1.0076,-0.0152,False,True,True,True,False
+improved_phase6_calm_bull_quality_offense,KEEP_AS_RESEARCH_ONLY,Beats GGG1 but not Phase4B; or holdout modest,0.0773,0.9516,-0.1432,0.0943,0.9902,-0.0152,False,True,True,True,False
+improved_phase6_recovery_quality_rerisk,KEEP_AS_AGGRESSIVE_SHADOW,Beats GGG1 but not Phase4B; or holdout modest,0.0775,0.9563,-0.1377,0.0957,1.0084,-0.0152,False,True,True,True,False
+improved_phase6_continuous_aggression_score,KEEP_AS_AGGRESSIVE_SHADOW,Beats Phase4B return with acceptable risk,0.078,0.953,-0.1418,0.0953,0.9942,-0.0153,True,True,True,True,False
+improved_phase6_balanced_classifier_rebuild,KEEP_AS_RESEARCH_ONLY,Beats GGG1 but not Phase4B; or holdout modest,0.0771,0.9504,-0.1425,0.0941,0.9877,-0.0152,False,True,True,True,False

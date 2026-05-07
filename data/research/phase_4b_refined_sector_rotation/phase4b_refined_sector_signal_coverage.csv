@@ -1,0 +1,7 @@
+signal,active_weeks,active_frequency,active_states,calm_trend_coverage,neutral_mixed_coverage,recovery_confirmed_coverage,recovery_fragile_coverage,stressed_panic_coverage
+high_quality_sector_bull,528,0.4756756756756757,calm_trend|neutral_mixed|recovery_confirmed,0.888135593220339,0.46247464503042596,0.8636363636363636,0.0,0.0
+calm_sector_leadership_only,286,0.25765765765765763,calm_trend,0.9694915254237289,0.0,0.0,0.0,0.0
+neutral_sector_confirmed_only,174,0.15675675675675677,neutral_mixed,0.0,0.35294117647058826,0.0,0.0,0.0
+recovery_sector_reentry,36,0.032432432432432434,recovery_confirmed,0.0,0.0,0.8181818181818182,0.0,0.0
+sector_quality_score_high,560,0.5045045045045045,calm_trend|neutral_mixed|recovery_confirmed,0.9423728813559322,0.4908722109533469,0.9090909090909091,0.0,0.0
+defensive_sector_warning,13,0.011711711711711712,neutral_mixed,0.0,0.02636916835699797,0.0,0.0,0.0

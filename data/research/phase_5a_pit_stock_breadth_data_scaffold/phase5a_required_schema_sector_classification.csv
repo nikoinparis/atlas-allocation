@@ -1,0 +1,8 @@
+column_name,dtype,required,description,validation_rule
+security_id,string,True,stable id,non-null
+sector,string,True,GICS or vendor sector,non-null
+industry,string,False,GICS industry or equivalent,optional
+classification_start,date,True,effective classification start,non-null
+classification_end,date,True,effective classification end; blank if current,blank or >= start
+classification_system,string,True,GICS/vendor/static,non-null
+source,string,True,vendor/source identifier,non-null

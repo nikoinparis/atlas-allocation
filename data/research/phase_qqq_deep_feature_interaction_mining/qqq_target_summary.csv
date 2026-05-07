@@ -1,0 +1,26 @@
+target,entity_type,n_observations,positive_rate,start_date,end_date,enough_samples,definition,horizon_weeks
+target_etf_forward_top_quantile_4w,ETF,37345,0.26032936136028917,2005-01-07,2026-03-13,True,forward_top_quantile,4.0
+target_etf_forward_top_quantile_4w__state_calm_trend,ETF_STATE_SUBSET,10060,0.26043737574552683,2005-08-19,2025-08-29,True,state-specific diagnostic target balance only,4.0
+target_etf_forward_top_quantile_4w__state_neutral_mixed,ETF_STATE_SUBSET,16264,0.2606984751598623,2005-01-07,2026-03-06,True,state-specific diagnostic target balance only,4.0
+target_etf_forward_top_quantile_4w__state_recovery_confirmed,ETF_STATE_SUBSET,1479,0.25760649087221094,2006-11-10,2025-11-14,True,state-specific diagnostic target balance only,4.0
+target_etf_forward_top_quantile_4w__state_recovery_fragile,ETF_STATE_SUBSET,1678,0.2592371871275328,2006-08-18,2025-06-27,True,state-specific diagnostic target balance only,4.0
+target_etf_forward_top_quantile_4w__state_stressed_panic,ETF_STATE_SUBSET,7864,0.2601729399796541,2006-05-26,2026-03-13,True,state-specific diagnostic target balance only,4.0
+target_etf_forward_top_quantile_8w,ETF,37205,0.2603413519688214,2005-01-07,2026-02-13,True,forward_top_quantile,8.0
+target_etf_forward_top_quantile_8w__state_calm_trend,ETF_STATE_SUBSET,10060,0.26043737574552683,2005-08-19,2025-08-29,True,state-specific diagnostic target balance only,8.0
+target_etf_forward_top_quantile_8w__state_neutral_mixed,ETF_STATE_SUBSET,16159,0.2607215793056501,2005-01-07,2026-02-13,True,state-specific diagnostic target balance only,8.0
+target_etf_forward_top_quantile_8w__state_recovery_confirmed,ETF_STATE_SUBSET,1479,0.25760649087221094,2006-11-10,2025-11-14,True,state-specific diagnostic target balance only,8.0
+target_etf_forward_top_quantile_8w__state_recovery_fragile,ETF_STATE_SUBSET,1678,0.2592371871275328,2006-08-18,2025-06-27,True,state-specific diagnostic target balance only,8.0
+target_etf_forward_top_quantile_8w__state_stressed_panic,ETF_STATE_SUBSET,7829,0.26018648614126966,2006-05-26,2025-05-30,True,state-specific diagnostic target balance only,8.0
+target_etf_forward_risk_adjusted_top_quantile_4w,ETF,37100,0.2603504043126685,2005-02-25,2026-03-13,True,risk_adjusted_top_quantile,4.0
+target_etf_forward_risk_adjusted_top_quantile_4w__state_calm_trend,ETF_STATE_SUBSET,10052,0.2599482690011938,2005-08-19,2025-08-29,True,state-specific diagnostic target balance only,4.0
+target_etf_forward_risk_adjusted_top_quantile_4w__state_neutral_mixed,ETF_STATE_SUBSET,16039,0.2608641436498535,2005-02-25,2026-03-06,True,state-specific diagnostic target balance only,4.0
+target_etf_forward_risk_adjusted_top_quantile_4w__state_recovery_confirmed,ETF_STATE_SUBSET,1479,0.25760649087221094,2006-11-10,2025-11-14,True,state-specific diagnostic target balance only,4.0
+target_etf_forward_risk_adjusted_top_quantile_4w__state_recovery_fragile,ETF_STATE_SUBSET,1675,0.25970149253731345,2006-08-18,2025-06-27,True,state-specific diagnostic target balance only,4.0
+target_etf_forward_risk_adjusted_top_quantile_4w__state_stressed_panic,ETF_STATE_SUBSET,7855,0.260471037555697,2006-05-26,2026-03-13,True,state-specific diagnostic target balance only,4.0
+target_etf_forward_risk_adjusted_top_quantile_8w,ETF,36960,0.2603625541125541,2005-02-25,2026-02-13,True,risk_adjusted_top_quantile,8.0
+target_etf_forward_risk_adjusted_top_quantile_8w__state_calm_trend,ETF_STATE_SUBSET,10052,0.2599482690011938,2005-08-19,2025-08-29,True,state-specific diagnostic target balance only,8.0
+target_etf_forward_risk_adjusted_top_quantile_8w__state_neutral_mixed,ETF_STATE_SUBSET,15934,0.26088866574620306,2005-02-25,2026-02-13,True,state-specific diagnostic target balance only,8.0
+target_etf_forward_risk_adjusted_top_quantile_8w__state_recovery_confirmed,ETF_STATE_SUBSET,1479,0.25760649087221094,2006-11-10,2025-11-14,True,state-specific diagnostic target balance only,8.0
+target_etf_forward_risk_adjusted_top_quantile_8w__state_recovery_fragile,ETF_STATE_SUBSET,1675,0.25970149253731345,2006-08-18,2025-06-27,True,state-specific diagnostic target balance only,8.0
+target_etf_forward_risk_adjusted_top_quantile_8w__state_stressed_panic,ETF_STATE_SUBSET,7820,0.2604859335038363,2006-05-26,2025-05-30,True,state-specific diagnostic target balance only,8.0
+optional_sleeve_component_opportunity,SLEEVE,0,,,,False,not built in QQQ because PPP source is ETF-level and clean sleeve/component opportunity labels require a separate RRR sleeve meta-labeling panel,

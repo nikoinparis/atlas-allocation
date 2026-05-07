@@ -1,0 +1,4 @@
+classifier_area,future_labels,stock_breadth_inputs,intended_effect,states_unchanged
+neutral_mixed_split,neutral_stock_risk_on | neutral_chop | neutral_deteriorating | neutral_recovery_setup,"pct above 200d, positive 13w/26w returns, breadth thrust, narrow warning",reduce unnecessary BIL only in broad neutral risk-on weeks,stressed_panic remains unchanged
+bull_quality,broad_bull | narrow_bull | defensive_bull | late_cycle_bull | fake_recovery,"stock breadth level, sector breadth, index-vs-equal-weight divergence, defensive leadership",distinguish strong broad bull from QQQ/SPY-only narrow market,stressed_panic remains unchanged
+recovery_rerisk,recovery_confirmed_breadth_strong | recovery_confirmed_breadth_weak | recovery_fragile_fakeout,"breadth thrust 4w/8w, percentage above MA, active member count improvement",re-risk faster only when recovery has broad participation,recovery_fragile cautious unless separately confirmed

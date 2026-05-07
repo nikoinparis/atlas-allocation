@@ -1,0 +1,2 @@
+decision,rationale,broad_bull_spy_4w_lift,neutral_ggg1_4w_lift,stock_vs_etf_breadth_spy,coverage_pct,survivorship_bias_warning,next_action,diagnostic_label
+DIAGNOSTIC_PROMISING_GET_PIT_DATA,Stock breadth shows lift vs inactive (+0.040% SPY 4w). Competitive with ETF breadth. PIT data worth purchasing.,0.0004,0.00193,+0.0004,98.8,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY,Purchase Norgate Platinum/Diamond and run build_pit_stock_breadth_panel.py with real PIT data.,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY

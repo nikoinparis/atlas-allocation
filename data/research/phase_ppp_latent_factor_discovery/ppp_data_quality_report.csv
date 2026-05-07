@@ -1,0 +1,208 @@
+section,item,metric,value,notes
+dataset_summary,weekly_panel,date_range,2005-01-07 to 2026-04-10,1110 GGG1-aligned weekly dates; 35 ETF columns.
+dataset_summary,weekly_panel,median_date_gap_days,7.0,Expected roughly weekly frequency.
+dataset_summary,characteristics,rows_columns,38850 x 162,Long ETF panel: one Date/Ticker row per available ETF/date.
+dataset_summary,sleeves,rows_columns,1110 x 46,Layer 2A sleeve returns plus GGG1 component/portfolio/sleeve-weight context.
+etf_missingness,BIL,valid_weeks_missingness,984; 0.1135,"first_valid=2007-06-08, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,DBA,valid_weeks_missingness,1005; 0.0946,"first_valid=2007-01-12, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,EEM,valid_weeks_missingness,1109; 0.0009,"first_valid=2005-01-14, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,EFA,valid_weeks_missingness,1109; 0.0009,"first_valid=2005-01-14, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,EWJ,valid_weeks_missingness,1109; 0.0009,"first_valid=2005-01-14, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,GLD,valid_weeks_missingness,1109; 0.0009,"first_valid=2005-01-14, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,HYG,valid_weeks_missingness,991; 0.1072,"first_valid=2007-04-20, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,IAU,valid_weeks_missingness,1106; 0.0036,"first_valid=2005-02-04, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,IEF,valid_weeks_missingness,1109; 0.0009,"first_valid=2005-01-14, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,IWM,valid_weeks_missingness,1109; 0.0009,"first_valid=2005-01-14, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,LQD,valid_weeks_missingness,1109; 0.0009,"first_valid=2005-01-14, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,MBB,valid_weeks_missingness,995; 0.1036,"first_valid=2007-03-23, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,PDBC,valid_weeks_missingness,596; 0.4631,"first_valid=2014-11-14, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,QQQ,valid_weeks_missingness,1109; 0.0009,"first_valid=2005-01-14, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,SHY,valid_weeks_missingness,1109; 0.0009,"first_valid=2005-01-14, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,SLV,valid_weeks_missingness,1041; 0.0622,"first_valid=2006-05-05, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,SPY,valid_weeks_missingness,1109; 0.0009,"first_valid=2005-01-14, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,TIP,valid_weeks_missingness,1109; 0.0009,"first_valid=2005-01-14, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,TLT,valid_weeks_missingness,1109; 0.0009,"first_valid=2005-01-14, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,USO,valid_weeks_missingness,1043; 0.0604,"first_valid=2006-04-21, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,UUP,valid_weeks_missingness,997; 0.1018,"first_valid=2007-03-09, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,VEA,valid_weeks_missingness,976; 0.1207,"first_valid=2007-08-03, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,VNQ,valid_weeks_missingness,1109; 0.0009,"first_valid=2005-01-14, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,VTV,valid_weeks_missingness,1109; 0.0009,"first_valid=2005-01-14, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,VUG,valid_weeks_missingness,1109; 0.0009,"first_valid=2005-01-14, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,VWO,valid_weeks_missingness,1100; 0.0090,"first_valid=2005-03-18, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,XLB,valid_weeks_missingness,1109; 0.0009,"first_valid=2005-01-14, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,XLE,valid_weeks_missingness,1109; 0.0009,"first_valid=2005-01-14, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,XLF,valid_weeks_missingness,1109; 0.0009,"first_valid=2005-01-14, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,XLI,valid_weeks_missingness,1109; 0.0009,"first_valid=2005-01-14, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,XLK,valid_weeks_missingness,1109; 0.0009,"first_valid=2005-01-14, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,XLP,valid_weeks_missingness,1109; 0.0009,"first_valid=2005-01-14, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,XLU,valid_weeks_missingness,1109; 0.0009,"first_valid=2005-01-14, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,XLV,valid_weeks_missingness,1109; 0.0009,"first_valid=2005-01-14, last_valid=2026-04-10, pca_universe=yes"
+etf_missingness,XLY,valid_weeks_missingness,1109; 0.0009,"first_valid=2005-01-14, last_valid=2026-04-10, pca_universe=yes"
+feature_missingness,mom_4w,missingness,0.03873873873873874,family=rolling_etf_characteristic; lag=trailing weekly calculation shifted one week; no centered windows
+feature_missingness,mom_13w,missingness,0.04144144144144144,family=rolling_etf_characteristic; lag=trailing weekly calculation shifted one week; no centered windows
+feature_missingness,mom_26w,missingness,0.047747747747747746,family=rolling_etf_characteristic; lag=trailing weekly calculation shifted one week; no centered windows
+feature_missingness,mom_52w,missingness,0.05945945945945946,family=rolling_etf_characteristic; lag=trailing weekly calculation shifted one week; no centered windows
+feature_missingness,vol_4w,missingness,0.03873873873873874,family=rolling_etf_characteristic; lag=trailing weekly calculation shifted one week; no centered windows
+feature_missingness,vol_13w,missingness,0.04144144144144144,family=rolling_etf_characteristic; lag=trailing weekly calculation shifted one week; no centered windows
+feature_missingness,vol_26w,missingness,0.047747747747747746,family=rolling_etf_characteristic; lag=trailing weekly calculation shifted one week; no centered windows
+feature_missingness,downside_vol_13w,missingness,0.005405405405405406,family=rolling_etf_characteristic; lag=trailing weekly calculation shifted one week; no centered windows
+feature_missingness,downside_vol_26w,missingness,0.011711711711711712,family=rolling_etf_characteristic; lag=trailing weekly calculation shifted one week; no centered windows
+feature_missingness,drawdown_26w,missingness,0.047747747747747746,family=rolling_etf_characteristic; lag=trailing weekly calculation shifted one week; no centered windows
+feature_missingness,drawdown_52w,missingness,0.05945945945945946,family=rolling_etf_characteristic; lag=trailing weekly calculation shifted one week; no centered windows
+feature_missingness,ma_distance_13w,missingness,0.04054054054054054,family=rolling_etf_characteristic; lag=trailing weekly calculation shifted one week; no centered windows
+feature_missingness,ma_distance_26w,missingness,0.04684684684684685,family=rolling_etf_characteristic; lag=trailing weekly calculation shifted one week; no centered windows
+feature_missingness,ma_distance_52w,missingness,0.05855855855855856,family=rolling_etf_characteristic; lag=trailing weekly calculation shifted one week; no centered windows
+feature_missingness,trend_consistency_13w,missingness,0.005405405405405406,family=rolling_etf_characteristic; lag=trailing weekly calculation shifted one week; no centered windows
+feature_missingness,trend_consistency_26w,missingness,0.011711711711711712,family=rolling_etf_characteristic; lag=trailing weekly calculation shifted one week; no centered windows
+feature_missingness,mom_vol_ratio_26w,missingness,0.047747747747747746,family=rolling_etf_characteristic; lag=trailing weekly calculation shifted one week; no centered windows
+feature_missingness,vol_change_13v26,missingness,0.047747747747747746,family=rolling_etf_characteristic; lag=trailing weekly calculation shifted one week; no centered windows
+feature_missingness,rel_strength_SPY_13w,missingness,0.04144144144144144,family=rolling_etf_characteristic; lag=trailing weekly calculation shifted one week; no centered windows
+feature_missingness,rel_strength_SPY_26w,missingness,0.047747747747747746,family=rolling_etf_characteristic; lag=trailing weekly calculation shifted one week; no centered windows
+feature_missingness,rel_strength_BIL_13w,missingness,0.12911196911196912,family=rolling_etf_characteristic; lag=trailing weekly calculation shifted one week; no centered windows
+feature_missingness,rel_strength_BIL_26w,missingness,0.13541827541827542,family=rolling_etf_characteristic; lag=trailing weekly calculation shifted one week; no centered windows
+feature_missingness,rel_strength_TLT_13w,missingness,0.04144144144144144,family=rolling_etf_characteristic; lag=trailing weekly calculation shifted one week; no centered windows
+feature_missingness,rel_strength_TLT_26w,missingness,0.047747747747747746,family=rolling_etf_characteristic; lag=trailing weekly calculation shifted one week; no centered windows
+feature_missingness,rel_strength_GLD_13w,missingness,0.04144144144144144,family=rolling_etf_characteristic; lag=trailing weekly calculation shifted one week; no centered windows
+feature_missingness,rel_strength_GLD_26w,missingness,0.047747747747747746,family=rolling_etf_characteristic; lag=trailing weekly calculation shifted one week; no centered windows
+feature_missingness,rel_strength_HYG_13w,missingness,0.12334620334620335,family=rolling_etf_characteristic; lag=trailing weekly calculation shifted one week; no centered windows
+feature_missingness,rel_strength_HYG_26w,missingness,0.12965250965250966,family=rolling_etf_characteristic; lag=trailing weekly calculation shifted one week; no centered windows
+feature_missingness,rel_strength_LQD_13w,missingness,0.04144144144144144,family=rolling_etf_characteristic; lag=trailing weekly calculation shifted one week; no centered windows
+feature_missingness,rel_strength_LQD_26w,missingness,0.047747747747747746,family=rolling_etf_characteristic; lag=trailing weekly calculation shifted one week; no centered windows
+feature_missingness,ggg1_etf_weight,missingness,0.0,"family=ggg1_exposure_context; lag=contemporaneous saved GGG1 exposure used for exposure diagnostics, not IPCA prediction"
+feature_missingness,l1_bab_bab_score_tradable,missingness,0.0487001287001287,family=existing_layer1_signal; lag=source tradable signal shifted one additional week for PPP prediction safety
+feature_missingness,l1_bab_bab_score_asset_class_neutral_tradable,missingness,0.10226512226512227,family=existing_layer1_signal; lag=source tradable signal shifted one additional week for PPP prediction safety
+feature_missingness,l1_breadth_confirmation_breadth_confirmed_momentum_tradable,missingness,0.06036036036036036,family=existing_layer1_signal; lag=source tradable signal shifted one additional week for PPP prediction safety
+feature_missingness,l1_breadth_confirmation_breadth_confirmed_momentum_score_tradable,missingness,0.06036036036036036,family=existing_layer1_signal; lag=source tradable signal shifted one additional week for PPP prediction safety
+feature_missingness,l1_carry_carry_yield_trailing_52w_tradable,missingness,0.15006435006435007,family=existing_layer1_signal; lag=source tradable signal shifted one additional week for PPP prediction safety
+feature_missingness,l1_carry_carry_score_tradable,missingness,0.15006435006435007,family=existing_layer1_signal; lag=source tradable signal shifted one additional week for PPP prediction safety
+feature_missingness,l1_carry_carry_score_asset_class_neutral_tradable,missingness,0.2146203346203346,family=existing_layer1_signal; lag=source tradable signal shifted one additional week for PPP prediction safety
+feature_missingness,l1_contained_recovery_contained_recovery_quality_tradable,missingness,0.04864864864864865,family=existing_layer1_signal; lag=source tradable signal shifted one additional week for PPP prediction safety
+feature_missingness,l1_contained_recovery_contained_recovery_quality_score_tradable,missingness,0.04864864864864865,family=existing_layer1_signal; lag=source tradable signal shifted one additional week for PPP prediction safety
+feature_missingness,l1_moving_average_distance_moving_average_distance_tradable,missingness,0.05945945945945946,family=existing_layer1_signal; lag=source tradable signal shifted one additional week for PPP prediction safety
+feature_missingness,l1_moving_average_distance_moving_average_distance_score_tradable,missingness,0.05945945945945946,family=existing_layer1_signal; lag=source tradable signal shifted one additional week for PPP prediction safety
+feature_missingness,l1_multi_horizon_mom_multi_mom_equal_score_tradable,missingness,0.08378378378378379,family=existing_layer1_signal; lag=source tradable signal shifted one additional week for PPP prediction safety
+feature_missingness,l1_multi_horizon_mom_multi_mom_invvol_score_tradable,missingness,0.1063063063063063,family=existing_layer1_signal; lag=source tradable signal shifted one additional week for PPP prediction safety
+feature_missingness,l1_quality_quality_score_tradable,missingness,0.08198198198198198,family=existing_layer1_signal; lag=source tradable signal shifted one additional week for PPP prediction safety
+feature_missingness,l1_quality_quality_score_asset_class_neutral_tradable,missingness,0.13364221364221365,family=existing_layer1_signal; lag=source tradable signal shifted one additional week for PPP prediction safety
+feature_missingness,l1_residual_momentum_residual_mom_score_tradable,missingness,0.08558558558558559,family=existing_layer1_signal; lag=source tradable signal shifted one additional week for PPP prediction safety
+feature_missingness,l1_reversal_reversal_1w_score_tradable,missingness,0.03783783783783784,family=existing_layer1_signal; lag=source tradable signal shifted one additional week for PPP prediction safety
+feature_missingness,l1_reversal_reversal_1w_asset_class_neutral_tradable,missingness,0.09202059202059203,family=existing_layer1_signal; lag=source tradable signal shifted one additional week for PPP prediction safety
+feature_missingness,l1_reversal_reversal_4w_score_tradable,missingness,0.04054054054054054,family=existing_layer1_signal; lag=source tradable signal shifted one additional week for PPP prediction safety
+feature_missingness,l1_reversal_reversal_4w_asset_class_neutral_tradable,missingness,0.09456885456885457,family=existing_layer1_signal; lag=source tradable signal shifted one additional week for PPP prediction safety
+feature_missingness,l1_trend_quality_trend_clarity_momentum_raw_tradable,missingness,0.08378378378378379,family=existing_layer1_signal; lag=source tradable signal shifted one additional week for PPP prediction safety
+feature_missingness,l1_trend_quality_trend_clarity_momentum_score_tradable,missingness,0.08378378378378379,family=existing_layer1_signal; lag=source tradable signal shifted one additional week for PPP prediction safety
+feature_missingness,l1_tsmom_tsmom_vol_scaled_tradable,missingness,0.08378378378378379,family=existing_layer1_signal; lag=source tradable signal shifted one additional week for PPP prediction safety
+feature_missingness,l1_tsmom_tsmom_score_tradable,missingness,0.08378378378378379,family=existing_layer1_signal; lag=source tradable signal shifted one additional week for PPP prediction safety
+feature_missingness,l1_value_value_score_tradable,missingness,0.12972972972972974,family=existing_layer1_signal; lag=source tradable signal shifted one additional week for PPP prediction safety
+feature_missingness,l1_value_value_score_asset_class_neutral_tradable,missingness,0.17866151866151866,family=existing_layer1_signal; lag=source tradable signal shifted one additional week for PPP prediction safety
+feature_missingness,l1_xsmom_xsmom_score_tradable,missingness,0.08378378378378379,family=existing_layer1_signal; lag=source tradable signal shifted one additional week for PPP prediction safety
+feature_missingness,l1_xsmom_xsmom_asset_class_neutral_tradable,missingness,0.13534105534105534,family=existing_layer1_signal; lag=source tradable signal shifted one additional week for PPP prediction safety
+feature_missingness,ooo2_leadlag_EFA_minus_SPY_13w_signal,missingness,0.006306306306306306,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo2_leadlag_GLD_minus_SPY_13w_signal,missingness,0.006306306306306306,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo2_leadlag_DBA_minus_SPY_13w_signal,missingness,0.006306306306306306,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo2_leadlag_HYG_minus_LQD_13w_signal,missingness,0.006306306306306306,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo2_breadth_ret13_positive_signal,missingness,0.0018018018018018018,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo2_breadth_ret26_positive_signal,missingness,0.0018018018018018018,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo2_canary_breadth_pair_signal,missingness,0.0018018018018018018,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo2_recent_stress_26w_signal,missingness,0.0018018018018018018,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo2_market_drawdown_signal,missingness,0.0018018018018018018,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo2_market_trend_positive_signal,missingness,0.0018018018018018018,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo2_breadth_ret13_positive_x_recovery_confirmed_signal,missingness,0.0018018018018018018,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo2_breadth_ret13_positive_x_neutral_mixed_signal,missingness,0.0018018018018018018,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo2_breadth_ret13_positive_x_stressed_panic_signal,missingness,0.0018018018018018018,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo2_leadlag_HYG_minus_LQD_13w_x_calm_trend_signal,missingness,0.006306306306306306,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_ggg1_trailing_vol_13w,missingness,0.008108108108108109,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_ggg1_trailing_vol_26w,missingness,0.012612612612612612,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_ggg1_vol_percentile,missingness,0.05405405405405406,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_ggg1_trailing_drawdown,missingness,0.0018018018018018018,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_BIL_weight,missingness,0.0009009009009009009,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_SPY_weight,missingness,0.0009009009009009009,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_market_drawdown_signal,missingness,0.0018018018018018018,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_recent_stress_26w_signal,missingness,0.0018018018018018018,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_market_trend_positive_signal,missingness,0.0018018018018018018,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_breadth_ret26_positive_signal,missingness,0.0018018018018018018,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_leadlag_EFA_minus_SPY_13w_signal__raw,missingness,0.006306306306306306,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_leadlag_EFA_minus_SPY_13w_signal__percentile,missingness,0.05225225225225225,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_leadlag_EFA_minus_SPY_13w_signal__zscore,missingness,0.05225225225225225,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_leadlag_EFA_minus_SPY_13w_signal__abs_strength,missingness,0.006306306306306306,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_leadlag_EFA_minus_SPY_13w_signal__direction_strength,missingness,0.05225225225225225,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_leadlag_EFA_minus_SPY_13w_signal__strength_scaled_score,missingness,0.05405405405405406,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_market_trend_positive_signal__raw,missingness,0.0018018018018018018,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_market_trend_positive_signal__percentile,missingness,0.047747747747747746,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_market_trend_positive_signal__zscore,missingness,0.07837837837837838,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_market_trend_positive_signal__abs_strength,missingness,0.0018018018018018018,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_market_trend_positive_signal__direction_strength,missingness,0.047747747747747746,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_market_trend_positive_signal__strength_scaled_score,missingness,0.05405405405405406,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_market_drawdown_signal__raw,missingness,0.0018018018018018018,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_market_drawdown_signal__percentile,missingness,0.047747747747747746,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_market_drawdown_signal__zscore,missingness,0.047747747747747746,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_market_drawdown_signal__abs_strength,missingness,0.0018018018018018018,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_market_drawdown_signal__direction_strength,missingness,0.047747747747747746,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_market_drawdown_signal__strength_scaled_score,missingness,0.05405405405405406,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_leadlag_GLD_minus_SPY_13w_signal__raw,missingness,0.006306306306306306,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_leadlag_GLD_minus_SPY_13w_signal__percentile,missingness,0.05225225225225225,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_leadlag_GLD_minus_SPY_13w_signal__zscore,missingness,0.05225225225225225,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_leadlag_GLD_minus_SPY_13w_signal__abs_strength,missingness,0.006306306306306306,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_leadlag_GLD_minus_SPY_13w_signal__direction_strength,missingness,0.05225225225225225,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_leadlag_GLD_minus_SPY_13w_signal__strength_scaled_score,missingness,0.05405405405405406,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_leadlag_DBA_minus_SPY_13w_signal__raw,missingness,0.006306306306306306,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_leadlag_DBA_minus_SPY_13w_signal__percentile,missingness,0.05225225225225225,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_leadlag_DBA_minus_SPY_13w_signal__zscore,missingness,0.05225225225225225,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_leadlag_DBA_minus_SPY_13w_signal__abs_strength,missingness,0.006306306306306306,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_leadlag_DBA_minus_SPY_13w_signal__direction_strength,missingness,0.05225225225225225,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_leadlag_DBA_minus_SPY_13w_signal__strength_scaled_score,missingness,0.05405405405405406,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_breadth_ret13_positive_x_recovery_confirmed_signal__raw,missingness,0.0018018018018018018,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_breadth_ret13_positive_x_recovery_confirmed_signal__percentile,missingness,0.047747747747747746,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_breadth_ret13_positive_x_recovery_confirmed_signal__zscore,missingness,0.4045045045045045,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_breadth_ret13_positive_x_recovery_confirmed_signal__abs_strength,missingness,0.0018018018018018018,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_breadth_ret13_positive_x_recovery_confirmed_signal__direction_strength,missingness,0.047747747747747746,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3_breadth_ret13_positive_x_recovery_confirmed_signal__strength_scaled_score,missingness,0.05405405405405406,family=ooo_discovered_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3event_efa_spy_raw_top20_event,missingness,0.0009009009009009009,family=ooo_sized_event_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3event_efa_spy_raw_top10_event,missingness,0.0009009009009009009,family=ooo_sized_event_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3event_efa_spy_raw_top30_event,missingness,0.0009009009009009009,family=ooo_sized_event_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3event_efa_spy_vol_filtered_top20_event,missingness,0.0009009009009009009,family=ooo_sized_event_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3event_efa_spy_low_or_normal_vol_top20_event,missingness,0.0009009009009009009,family=ooo_sized_event_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3event_efa_spy_strength_scaled_score_event,missingness,0.0009009009009009009,family=ooo_sized_event_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3event_efa_spy_drawdown_aware_top20_event,missingness,0.0009009009009009009,family=ooo_sized_event_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3event_efa_spy_market_trend_confirmed_top20_event,missingness,0.0009009009009009009,family=ooo_sized_event_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3event_market_trend_raw_event,missingness,0.0009009009009009009,family=ooo_sized_event_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3event_market_trend_breadth_confirmed_event,missingness,0.0009009009009009009,family=ooo_sized_event_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3event_market_trend_ex_high_vol_drawdown_event,missingness,0.0009009009009009009,family=ooo_sized_event_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3event_market_trend_recent_stress_filtered_event,missingness,0.0009009009009009009,family=ooo_sized_event_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3event_market_trend_calm_neutral_event,missingness,0.0009009009009009009,family=ooo_sized_event_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3event_market_trend_vol_scaled_score_event,missingness,0.0009009009009009009,family=ooo_sized_event_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3event_market_drawdown_top20_event,missingness,0.0009009009009009009,family=ooo_sized_event_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3event_market_drawdown_vol_filtered_top20_event,missingness,0.0009009009009009009,family=ooo_sized_event_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3event_leadlag_GLD_minus_SPY_13w_top20_event,missingness,0.0009009009009009009,family=ooo_sized_event_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3event_leadlag_GLD_minus_SPY_13w_vol_filtered_top20_event,missingness,0.0009009009009009009,family=ooo_sized_event_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3event_leadlag_DBA_minus_SPY_13w_top20_event,missingness,0.0009009009009009009,family=ooo_sized_event_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3event_leadlag_DBA_minus_SPY_13w_vol_filtered_top20_event,missingness,0.0009009009009009009,family=ooo_sized_event_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3event_breadth_ret13_positive_x_recovery_confirmed_top20_event,missingness,0.0009009009009009009,family=ooo_sized_event_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3event_breadth_ret13_positive_x_recovery_confirmed_vol_filtered_top20_event,missingness,0.0009009009009009009,family=ooo_sized_event_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,ooo3event_breadth_ret13_positive_x_recovery_confirmed_state_filtered_event,missingness,0.0009009009009009009,family=ooo_sized_event_signal; lag=market-level source shifted 1 week(s)
+feature_missingness,regime_risk_regime_score,missingness,0.024324324324324326,family=regime_numeric_context; lag=market-level source shifted 1 week(s)
+feature_missingness,regime_market_drawdown,missingness,0.0009009009009009009,family=regime_numeric_context; lag=market-level source shifted 1 week(s)
+feature_missingness,regime_market_trend_positive,missingness,0.0009009009009009009,family=regime_numeric_context; lag=market-level source shifted 1 week(s)
+feature_missingness,regime_breadth_sma_43,missingness,0.0009009009009009009,family=regime_numeric_context; lag=market-level source shifted 1 week(s)
+feature_missingness,regime_breadth_26w_mom,missingness,0.0009009009009009009,family=regime_numeric_context; lag=market-level source shifted 1 week(s)
+feature_missingness,regime_breadth_13w_mom,missingness,0.0009009009009009009,family=regime_numeric_context; lag=market-level source shifted 1 week(s)
+feature_missingness,regime_breadth_change_4w,missingness,0.0045045045045045045,family=regime_numeric_context; lag=market-level source shifted 1 week(s)
+feature_missingness,regime_canary_breadth_default,missingness,0.0009009009009009009,family=regime_numeric_context; lag=market-level source shifted 1 week(s)
+feature_missingness,regime_canary_breadth_pair,missingness,0.0009009009009009009,family=regime_numeric_context; lag=market-level source shifted 1 week(s)
+feature_missingness,regime_recent_stress_26w,missingness,0.0009009009009009009,family=regime_numeric_context; lag=market-level source shifted 1 week(s)
+feature_missingness,regime_avg_corr_risk_off_z,missingness,0.036036036036036036,family=regime_numeric_context; lag=market-level source shifted 1 week(s)
+feature_missingness,regime_google_fear_z_tradable,missingness,0.06846846846846846,family=regime_numeric_context; lag=market-level source shifted 1 week(s)
+feature_missingness,regime_transition_persistence_prob,missingness,0.04594594594594595,family=regime_numeric_context; lag=market-level source shifted 1 week(s)
+feature_missingness,regime_transition_good_state_prob,missingness,0.04594594594594595,family=regime_numeric_context; lag=market-level source shifted 1 week(s)
+feature_missingness,regime_transition_non_stress_prob,missingness,0.04594594594594595,family=regime_numeric_context; lag=market-level source shifted 1 week(s)
+feature_missingness,market_state,missingness,0.0,family=regime_state_label; lag=state label/context; lagged variant provided; current label used only for validation grouping
+feature_missingness,market_state_lag1,missingness,0.0009009009009009009,family=regime_state_label; lag=state label/context; lagged variant provided; current label used only for validation grouping
+feature_missingness,risk_state_lag1,missingness,0.0009009009009009009,family=regime_state_label; lag=state label/context; lagged variant provided; current label used only for validation grouping
+leakage_checks,all_constructed_characteristics_lagged,passed,True,rolling ETF features are shifted one week
+leakage_checks,layer1_values_lagged_again,passed,True,source tradable Layer 1 values are shifted one additional week
+leakage_checks,ooo_values_lagged,passed,True,OOO market-level signals/events are shifted one week
+leakage_checks,no_forward_returns_as_features,passed,True,forward returns are never saved into characteristic panel
+leakage_checks,no_centered_rolling_windows,passed,True,all rolling windows are trailing
+leakage_checks,no_random_train_test_split,passed,True,PCA/IPCA validation uses full diagnostic or expanding/walk-forward windows
+leakage_checks,production_pins_unchanged,passed,True,production=improved_phase2b_regime_confidence_boost; shadow=improved_phase2b_combo_abc; GGG1 remains candidate
+dropped_features,none_at_manifest_stage,reason,,

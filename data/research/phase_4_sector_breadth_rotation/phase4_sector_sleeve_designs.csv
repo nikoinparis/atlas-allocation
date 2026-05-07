@@ -1,0 +1,9 @@
+sleeve,selection,weighting,gate,fallback,portfolio_use
+EqualWeightSector,all eligible sector ETFs,equal weight,none,eligible sectors with available prices; otherwise BIL,benchmark only
+Top3SectorMomentum,top 3 by 0.5*13w + 0.5*26w momentum,equal weight,none at sleeve level; portfolio gate applied by Layer 3 state tilt,BIL if fewer than 2 valid sectors,C2/C3 dedicated offense
+Top5SectorMomentum,top 5 by 0.5*13w + 0.5*26w momentum,equal weight,none at sleeve level; portfolio gate applied by Layer 3 state tilt,BIL if fewer than 3 valid sectors,small overlay benchmark
+RiskAdjustedTop3,top 3 by blended momentum / 26w volatility,"inverse vol, 45% cap",requires positive 26w/43w trend,BIL,standalone validation
+SectorMomentumWithBreadthGate,top 5 by blended momentum when sector_breadth_confirmed,equal weight,sector_breadth_confirmed,BIL,standalone gate validation
+SectorMomentumWithDefensiveFilter,"top 5 by blended momentum, exclude sectors below 43w trend, no one-sector-only concentration","equal weight, 35% cap",trend positive sectors only,BIL,standalone filter validation
+SectorBalancedAggressive,"top 5 by blended momentum, only in breadth-confirmed states","inverse vol, 30% cap",sector_breadth_confirmed,BIL,C4/C6 balanced sleeve
+SectorStretchAggressive,"top 3 by risk-adjusted momentum, only in high_breadth_sector_bull states","inverse vol, 45% cap",high_breadth_sector_bull,BIL,C5 stretch sleeve

@@ -1,0 +1,7 @@
+candidate,sector_sleeve,budget,logic
+improved_phase4_sector_small_overlay,Top5SectorMomentum,12% target in sector_breadth_confirmed states,small overlay funded from cash/defense/old diversified offense; stressed_panic unchanged
+improved_phase4_sector_20pct_offense,Top3SectorMomentum,20% target in sector_breadth_confirmed states,first true return-unlock candidate; neutral boost plus dedicated sector offense; stressed_panic unchanged
+improved_phase4_sector_25pct_offense,Top3SectorMomentum,25% target in sector_breadth_confirmed states,more aggressive sector budget; reject on Sharpe/drawdown/CVaR failure
+improved_phase4_balanced_sector_breadth,SectorBalancedAggressive,20% target in sector_breadth_confirmed states,top5 inverse-vol sector sleeve for Sharpe preservation
+improved_phase4_stretch_sector_momentum,SectorStretchAggressive,25% target only in high_breadth_sector_bull states,concentrated stretch candidate; reject if hidden beta or drawdown dominates
+improved_phase4_sector_us_hybrid,SectorBalancedAggressive + Phase 3 calm US offense,16% target when sector_leadership_confirmed,hybrid of Phase 3 US pure offense and sector leadership sleeve

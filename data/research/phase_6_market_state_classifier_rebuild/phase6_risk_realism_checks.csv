@@ -1,0 +1,6 @@
+portfolio,full_ann_return,full_sharpe,full_max_dd,holdout_2020_return,holdout_2020_sharpe,avg_BIL,avg_turnover,passes_mandate,bear_ok,disguised_spy,active_return_vs_p4b,active_return_vs_ggg1
+improved_phase6_neutral_classifier_unlock,0.0775,0.9579,-0.1377,0.0951,1.0076,0.2358,0.0732,True,True,False,-0.0001,0.0061
+improved_phase6_calm_bull_quality_offense,0.0773,0.9516,-0.1432,0.0943,0.9902,0.2353,0.0735,True,True,False,-0.0003,0.0059
+improved_phase6_recovery_quality_rerisk,0.0775,0.9563,-0.1377,0.0957,1.0084,0.236,0.0738,True,True,False,-0.0001,0.0061
+improved_phase6_continuous_aggression_score,0.078,0.953,-0.1418,0.0953,0.9942,0.2341,0.0744,True,True,False,0.0004,0.0067
+improved_phase6_balanced_classifier_rebuild,0.0771,0.9504,-0.1425,0.0941,0.9877,0.2355,0.0736,True,True,False,-0.0005,0.0058

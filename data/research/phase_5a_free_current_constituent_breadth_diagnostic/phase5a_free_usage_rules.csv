@@ -1,0 +1,6 @@
+rule,description,diagnostic_label
+DO_NOT_PROMOTE,Do not promote any strategy candidate from this diagnostic,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+DO_NOT_CLAIM_VALIDITY,Do not claim these results are valid production backtests,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+DO_NOT_CHANGE_PINS,Do not change production or shadow pins,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+DO_NOT_USE_CURRENT_AS_HISTORICAL,Current constituents are not historical PIT truth,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ONLY_DECIDE_IF_PIT_DATA_WORTH_PAYING,Sole purpose: assess whether PIT stock breadth signal is promising,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY

@@ -1,0 +1,5 @@
+item,risk,recommendation,gitignore_change
+raw daily stock price panel,likely over GitHub 100 MB limit,"store outside git, partition parquet locally, or use Git LFS if repository policy allows",recommend only; do not modify .gitignore in Phase 5A
+processed weekly breadth panel,probably small if aggregate-only,check size before committing; keep member-level wide panels out of normal git,none now
+metadata and validation reports,small,safe to commit if license permits,none
+current-constituent diagnostics,bias and possible large downloads,avoid unless explicitly labeled diagnostic-only,keep raw diagnostics local

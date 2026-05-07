@@ -1,0 +1,11 @@
+signal,state,event_count,state_weeks,signal_freq_in_state,overall_freq,description,causal_ok,lag_rule
+breadth_confirmed_standard,neutral_mixed,209,493,0.424,0.482,breadth_sma_43>=0.65 AND market_trend_positive=1 AND not stressed/fragile,True,1-week lag applied via augmented state series in build pipeline
+breadth_confirmed_standard,calm_trend,284,295,0.963,0.482,breadth_sma_43>=0.65 AND market_trend_positive=1 AND not stressed/fragile,True,1-week lag applied via augmented state series in build pipeline
+breadth_confirmed_standard,stressed_panic,0,229,0.0,0.482,breadth_sma_43>=0.65 AND market_trend_positive=1 AND not stressed/fragile,True,1-week lag applied via augmented state series in build pipeline
+breadth_confirmed_standard,recovery_fragile,0,49,0.0,0.482,breadth_sma_43>=0.65 AND market_trend_positive=1 AND not stressed/fragile,True,1-week lag applied via augmented state series in build pipeline
+breadth_confirmed_standard,recovery_confirmed,42,44,0.955,0.482,breadth_sma_43>=0.65 AND market_trend_positive=1 AND not stressed/fragile,True,1-week lag applied via augmented state series in build pipeline
+breadth_confirmed_double,neutral_mixed,45,493,0.091,0.119,breadth_sma_43>=0.65 AND trend=1 AND canary=1 AND not stressed/fragile,True,1-week lag applied via augmented state series in build pipeline
+breadth_confirmed_double,calm_trend,82,295,0.278,0.119,breadth_sma_43>=0.65 AND trend=1 AND canary=1 AND not stressed/fragile,True,1-week lag applied via augmented state series in build pipeline
+breadth_confirmed_double,stressed_panic,0,229,0.0,0.119,breadth_sma_43>=0.65 AND trend=1 AND canary=1 AND not stressed/fragile,True,1-week lag applied via augmented state series in build pipeline
+breadth_confirmed_double,recovery_fragile,0,49,0.0,0.119,breadth_sma_43>=0.65 AND trend=1 AND canary=1 AND not stressed/fragile,True,1-week lag applied via augmented state series in build pipeline
+breadth_confirmed_double,recovery_confirmed,5,44,0.114,0.119,breadth_sma_43>=0.65 AND trend=1 AND canary=1 AND not stressed/fragile,True,1-week lag applied via augmented state series in build pipeline

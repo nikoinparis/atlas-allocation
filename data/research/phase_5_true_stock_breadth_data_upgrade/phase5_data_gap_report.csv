@@ -1,0 +1,6 @@
+gap,status,impact,required_upgrade
+individual_stock_price_panel,MISSING,Cannot build true stock-level breadth features locally.,Survivorship-controlled daily/weekly adjusted stock prices with delisting handling.
+point_in_time_constituents,MISSING,Cannot use S&P 500/Nasdaq breadth for production decisions without survivorship bias.,PIT index constituent membership by effective date.
+stock_sector_classification_history,MISSING,Cannot build sector-level stock breadth safely.,Current and historical GICS/sector mapping or equivalent.
+stock_weights_or_market_caps,MISSING,Can only build equal-weight breadth if stock prices and PIT membership are acquired.,PIT market caps or index weights for cap-weight breadth.
+existing_yfinance_pattern,PRESENT_FOR_PRICE_DOWNLOADS_ONLY,"Could fetch current-constituent diagnostics, but that would be survivorship-biased and not promotable.",Do not use as production evidence unless paired with PIT universe.

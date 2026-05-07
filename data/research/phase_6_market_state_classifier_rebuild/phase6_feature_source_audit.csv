@@ -1,0 +1,4 @@
+source,features,production_safe,causal,date_range,note
+market_state_history.csv,20,True,True,2005-2026,All features are lagged/causal
+weekly_returns.csv (sector ETFs),9,True,True,2005-2026,"XLK, XLF, XLV, XLY, XLI, XLB, XLE, XLU, XLP"
+phase_5a_free stock breadth,16,False,True,2020-2026,SURVIVORSHIP_BIASED — DO NOT USE IN CANDIDATES

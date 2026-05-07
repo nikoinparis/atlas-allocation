@@ -1,0 +1,2 @@
+recommendation,reason,next_prompt_outline
+PROCEED_TO_OOO3_VOL_MANAGED_SIGNAL_SIZING,"OOO5 found event evidence, but direct pass-through gates were not clean enough; volatility/selectivity sizing is needed first.","Use OOO5 event decisions to test volatility-managed sizing or, only for direct keep signals, a later GGG1 portfolio pass-through. Do not create portfolio candidates before that gate."

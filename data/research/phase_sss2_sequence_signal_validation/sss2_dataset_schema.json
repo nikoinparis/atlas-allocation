@@ -1,0 +1,28 @@
+{
+  "created_by": "scripts/phase_sss2_sequence_signal_validation.py",
+  "date_range": {
+    "start": "2005-01-07",
+    "end": "2026-04-10",
+    "rows": 1110
+  },
+  "signals": [
+    "calm_old_low_stress_signal",
+    "stress_new_state_signal",
+    "stress_memory_neutral_signal",
+    "qqq_efa_spy_trend_after_calm_or_recovery_signal",
+    "high_transition_instability_signal",
+    "refined_neutral_deteriorating_signal"
+  ],
+  "target_columns_excluded_from_signal_panel": [
+    "stress_transition_4w",
+    "stress_transition_8w",
+    "recovery_quality_4w",
+    "recovery_quality_8w",
+    "ggg1_underperformance_4w",
+    "ggg1_tail_risk_4w",
+    "false_recovery_label"
+  ],
+  "production_pin": "improved_phase2b_regime_confidence_boost",
+  "official_shadow_pin": "improved_phase2b_combo_abc",
+  "current_production_candidate": "improved_phaseggg_confirmed_only_robust_offense"
+}

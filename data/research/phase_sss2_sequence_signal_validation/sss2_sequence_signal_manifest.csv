@@ -1,0 +1,7 @@
+feature_name,feature_type,source_rule,rule_formula,priority,intended_use,lagged_causal,uses_future_state,uses_forward_return,missingness,event_count,event_frequency
+calm_old_low_stress_signal,binary_sequence_signal,calm_old_low_stress,state_lag1 == 'calm_trend' and state_age_lag1 >= 14 and stress_count_last_13w == 0,primary,GGG1 weak-window warning,True,False,False,0.0,50,0.04504504504504504
+stress_new_state_signal,binary_sequence_signal,stress_new_state,state_lag1 == 'stressed_panic' and state_age_lag1 <= 2,primary,stress-transition warning,True,False,False,0.0,49,0.044144144144144144
+stress_memory_neutral_signal,binary_sequence_signal,stress_memory_neutral,state_lag1 == 'neutral_mixed' and stress_count_last_13w > 0,primary,neutral-after-stress warning,True,False,False,0.0,119,0.10720720720720721
+qqq_efa_spy_trend_after_calm_or_recovery_signal,binary_sequence_signal,qqq_efa_spy_trend_after_calm_or_recovery,qqq_active_int_efa_spy_strength_x_market_trend_lag1 > 0.05 and (state_lag1 == 'calm_trend' or recovery_count_last_13w > 0),primary,re-risking quality filter,True,False,False,0.0,44,0.03963963963963964
+high_transition_instability_signal,binary_sequence_signal,high_transition_instability,state_changes_last_8w >= 3,watchlist,transition-instability warning,True,False,False,0.0,256,0.23063063063063063
+refined_neutral_deteriorating_signal,binary_sequence_signal,refined_neutral_deteriorating,refined_state_lag1 == 'neutral_deteriorating',watchlist,Layer 2B deterioration benchmark comparison,True,False,False,0.0,171,0.15405405405405406

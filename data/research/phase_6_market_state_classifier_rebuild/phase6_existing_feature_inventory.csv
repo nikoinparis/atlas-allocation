@@ -1,0 +1,18 @@
+feature,source,lag_rule,causal_ok,missingness,role,already_used_in_phase4b,production_safe
+breadth_sma_43,market_state_history.csv,applied at week T for T+1 allocation,True,0.0,% ETFs above 43w SMA — ETF breadth level,True,True
+breadth_26w_mom,market_state_history.csv,applied at week T for T+1 allocation,True,0.0,% ETFs with positive 26w return,True,True
+breadth_13w_mom,market_state_history.csv,applied at week T for T+1 allocation,True,0.0,% ETFs with positive 13w return,False,True
+breadth_change_4w,market_state_history.csv,applied at week T for T+1 allocation,True,0.004,4w change in breadth_sma_43 — momentum of breadth,False,True
+market_trend_positive,market_state_history.csv,applied at week T for T+1 allocation,True,0.0,Binary market trend flag,True,True
+canary_breadth_default,market_state_history.csv,applied at week T for T+1 allocation,True,0.0,Canary breadth indicator,False,True
+canary_breadth_pair,market_state_history.csv,applied at week T for T+1 allocation,True,0.0,Canary breadth pair indicator,False,True
+transition_good_state_prob,market_state_history.csv,applied at week T for T+1 allocation,True,0.045,P(next state in good regimes) — regime engine,False,True
+transition_non_stress_prob,market_state_history.csv,applied at week T for T+1 allocation,True,0.045,P(stay out of stress) — regime engine,True,True
+transition_persistence_prob,market_state_history.csv,applied at week T for T+1 allocation,True,0.045,P(current state persists) — regime engine,False,True
+market_drawdown,market_state_history.csv,applied at week T for T+1 allocation,True,0.0,Current market drawdown level,True,True
+google_fear_z_tradable,market_state_history.csv,applied at week T for T+1 allocation,True,0.068,Google fear sentiment z-score (lagged),False,True
+avg_corr_risk_off_z,market_state_history.csv,applied at week T for T+1 allocation,True,0.035,Average risk-off correlation z-score,False,True
+sector_momentum_top5,weekly_returns.csv (XL*),applied at week T for T+1 allocation,True,external,Top-5 sector ETF by 13w/26w momentum,True,True
+HYG_trend,weekly_returns.csv,applied at week T for T+1 allocation,True,external,HYG credit ETF trend — risk appetite proxy,False,True
+spy_rvol_13w,weekly_returns.csv (derived),applied at week T for T+1 allocation,True,external,SPY realized volatility 13w,False,True
+current_constituent_stock_breadth,phase_5a_free (SURVIVORSHIP_BIASED),applied at week T for T+1 allocation,True,external,Diagnostic only — NOT production safe,False,False

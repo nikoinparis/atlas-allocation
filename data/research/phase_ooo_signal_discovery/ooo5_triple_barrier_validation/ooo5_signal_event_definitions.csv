@@ -1,0 +1,29 @@
+signal_name,event_direction,threshold_type,threshold_side,threshold_value,state_filter,n_events,event_frequency,min_event_count_passed,event_selectivity_passed,economic_interpretation
+market_drawdown_signal,risk_off_stress,primary_20pct,bottom,-0.12271572416482769,none,222,0.20018034265103696,True,True,Deep/weak drawdown readings should flag adverse GGG1 risk.
+market_drawdown_signal,risk_off_stress,diagnostic_30pct,bottom,-0.07196817058344351,none,333,0.30027051397655546,True,True,Deep/weak drawdown readings should flag adverse GGG1 risk.
+breadth_ret13_positive_x_stressed_panic_signal,state_quality_or_risk,primary_20pct,top,0.4857142857142857,stressed_panic,47,0.2052401746724891,True,True,State-conditioned breadth in stressed_panic should identify higher-quality stress events.
+breadth_ret13_positive_x_stressed_panic_signal,state_quality_or_risk,diagnostic_30pct,top,0.3714285714285714,stressed_panic,84,0.36681222707423583,True,True,State-conditioned breadth in stressed_panic should identify higher-quality stress events.
+recent_stress_26w_signal,risk_off_stress,primary_20pct,top,1.0,none,538,0.48512173128944996,True,False,Recent stress memory should flag adverse GGG1 risk.
+recent_stress_26w_signal,risk_off_stress,diagnostic_30pct,top,1.0,none,538,0.48512173128944996,True,False,Recent stress memory should flag adverse GGG1 risk.
+breadth_ret26_positive_signal,risk_on_opportunity,primary_20pct,top,0.8571428571428571,none,227,0.20468890892696123,True,True,Broad participation/trend should identify better opportunity states.
+breadth_ret26_positive_signal,risk_on_opportunity,diagnostic_30pct,top,0.8,none,346,0.31199278629395855,True,True,Broad participation/trend should identify better opportunity states.
+breadth_ret13_positive_x_neutral_mixed_signal,risk_on_opportunity,primary_20pct,top,0.7714285714285715,neutral_mixed,112,0.22764227642276422,True,True,Broad participation/trend should identify better opportunity states.
+breadth_ret13_positive_x_neutral_mixed_signal,risk_on_opportunity,diagnostic_30pct,top,0.7142857142857143,neutral_mixed,156,0.3170731707317073,True,True,Broad participation/trend should identify better opportunity states.
+market_trend_positive_signal,risk_on_opportunity,primary_20pct,top,1.0,none,865,0.7799819657348963,True,False,Broad participation/trend should identify better opportunity states.
+market_trend_positive_signal,risk_on_opportunity,diagnostic_30pct,top,1.0,none,865,0.7799819657348963,True,False,Broad participation/trend should identify better opportunity states.
+canary_breadth_pair_signal,risk_on_opportunity,primary_20pct,top,1.0,none,477,0.43011722272317404,True,True,Broad participation/trend should identify better opportunity states.
+canary_breadth_pair_signal,risk_on_opportunity,diagnostic_30pct,top,1.0,none,477,0.43011722272317404,True,True,Broad participation/trend should identify better opportunity states.
+breadth_ret13_positive_x_recovery_confirmed_signal,risk_on_opportunity,primary_20pct,top,0.8857142857142857,recovery_confirmed,12,0.2727272727272727,False,True,Broad participation/trend should identify better opportunity states.
+breadth_ret13_positive_x_recovery_confirmed_signal,risk_on_opportunity,diagnostic_30pct,top,0.8571428571428571,recovery_confirmed,16,0.36363636363636365,False,True,Broad participation/trend should identify better opportunity states.
+breadth_ret13_positive_signal,risk_on_opportunity,primary_20pct,top,0.8285714285714286,none,251,0.22633002705139765,True,True,Broad participation/trend should identify better opportunity states.
+breadth_ret13_positive_signal,risk_on_opportunity,diagnostic_30pct,top,0.7714285714285715,none,369,0.3327321911632101,True,True,Broad participation/trend should identify better opportunity states.
+leadlag_DBA_minus_SPY_13w_signal,defensive_leadership,primary_20pct,top,0.04213222691115509,none,221,0.20018115942028986,True,True,Real-asset leadership over SPY should flag defensive/risk regime pressure.
+leadlag_DBA_minus_SPY_13w_signal,defensive_leadership,diagnostic_30pct,top,0.012340293631735588,none,331,0.29981884057971014,True,True,Real-asset leadership over SPY should flag defensive/risk regime pressure.
+leadlag_GLD_minus_SPY_13w_signal,defensive_leadership,primary_20pct,top,0.08242176539111289,none,221,0.20018115942028986,True,True,Real-asset leadership over SPY should flag defensive/risk regime pressure.
+leadlag_GLD_minus_SPY_13w_signal,defensive_leadership,diagnostic_30pct,top,0.04628203415449869,none,331,0.29981884057971014,True,True,Real-asset leadership over SPY should flag defensive/risk regime pressure.
+leadlag_EFA_minus_SPY_13w_signal,risk_on_opportunity,primary_20pct,top,0.026594069318343662,none,221,0.20018115942028986,True,True,Relative strength should identify risk appetite/opportunity.
+leadlag_EFA_minus_SPY_13w_signal,risk_on_opportunity,diagnostic_30pct,top,0.00953007751286257,none,331,0.29981884057971014,True,True,Relative strength should identify risk appetite/opportunity.
+leadlag_HYG_minus_LQD_13w_signal,risk_on_opportunity,primary_20pct,top,0.02682676094442784,none,221,0.20018115942028986,True,True,Relative strength should identify risk appetite/opportunity.
+leadlag_HYG_minus_LQD_13w_signal,risk_on_opportunity,diagnostic_30pct,top,0.01753402476816361,none,331,0.29981884057971014,True,True,Relative strength should identify risk appetite/opportunity.
+leadlag_HYG_minus_LQD_13w_x_calm_trend_signal,risk_on_opportunity,primary_20pct,top,0.029574286704715548,calm_trend,59,0.2,True,True,Relative strength should identify risk appetite/opportunity.
+leadlag_HYG_minus_LQD_13w_x_calm_trend_signal,risk_on_opportunity,diagnostic_30pct,top,0.017485132623001196,calm_trend,89,0.3016949152542373,True,True,Relative strength should identify risk appetite/opportunity.

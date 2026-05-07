@@ -1,0 +1,7 @@
+component,state,conditions,action,rationale
+extreme_quality_calm,calm_trend,breadth_sma_43>=0.80 AND market_trend_positive=1 AND canary_breadth_default=1,+4pp sector sleeve from defense_component,Very high breadth calm = full bull
+high_quality_neutral,neutral_mixed,breadth_sma_43>=0.70 AND trend=1 AND canary=1 AND transition_good_state_prob>=0.60,+4pp sector sleeve from defense,Confirm neutral_risk_on with multi-feature gate
+low_quality_neutral,neutral_mixed,breadth_sma_43<0.50 OR breadth_change_4w<-0.05,-3pp sector retraction to defense,Choppy/deteriorating — stay conservative
+strong_recovery,recovery_confirmed,breadth_change_4w>=0.0 AND transition_good_state_prob>=0.55,+4pp sector sleeve from defense,Improving breadth in recovery = safer re-risk
+aggression_score_high,non-stressed,composite_score>=0.72 (breadth+b26w+trend+canary+good_prob),+3pp sector sleeve from defense,Continuous quality signal across states
+aggression_score_low,non-stressed,composite_score<=0.28,-2pp sector retraction,Broadly weak conditions — reduce risk

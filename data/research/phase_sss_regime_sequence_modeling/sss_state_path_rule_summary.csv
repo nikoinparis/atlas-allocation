@@ -1,0 +1,16 @@
+rule_name,rule_family,state_path_interpretation,targets_tested,max_precision_lift,avg_precision_lift,max_event_count,max_stability
+stress_old_state,stress_dwell,mature stressed_panic state,8,0.5,0.0674005037744019,127,0.6666666666666666
+neutral_after_stress_short_dwell,stress_memory,neutral_mixed immediately after stress with young dwell,8,0.46875,0.11234234811014165,23,1.0
+refined_neutral_healthy_after_stress,refined_state,neutral_healthy despite recent stress memory,8,0.4097166913186938,0.003879200005049821,11,1.0
+recovery_confirmed_after_fragile_low_stress,recovery_quality,confirmed recovery that graduates from fragile recovery with limited recent stress,8,0.32278481012658233,-0.07079612467027484,2,0.0
+recovery_fragile_after_stress,recovery_path,fragile recovery immediately after stress,8,0.3006257822277848,0.0863467324725823,6,0.0
+refined_neutral_deteriorating,refined_state,Layer 2B neutral deterioration refinement,8,0.28125,0.08738612887281948,169,1.0
+calm_old_low_stress,calm_persistence,mature calm trend with no recent stress memory,8,0.24278481012658237,0.01761285455134601,50,1.0
+stress_memory_neutral,stress_memory,neutral_mixed with recent stress memory,8,0.24255952380952384,0.08074931401802098,117,1.0
+stress_new_state,stress_dwell,new stressed_panic state,8,0.2209522338494806,0.003929004661463689,47,1.0
+qqq_efa_spy_trend_after_calm_or_recovery,qqq_sequence_overlap,QQQ international leadership rule under calm/recovery sequence,8,0.16729244889445138,0.023010100870219454,44,0.6666666666666666
+recovery_confirmed_after_neutral,recovery_path,confirmed recovery after neutral_mixed rather than fragile recovery,8,0.16729244889445138,-0.09460564847979866,12,1.0
+high_transition_instability,instability,high recent transition instability,8,0.07331300689738829,0.0056416882539136876,255,1.0
+neutral_after_calm_old_dwell,dwell_transition,old neutral_mixed after calm_trend,8,,,0,0.0
+neutral_old_high_state_changes,instability,old neutral state with repeated recent regime changes,8,,,0,0.0
+qqq_market_trend_mom13_after_recovery,qqq_sequence_overlap,QQQ state-gated momentum rule after recovery context,8,,,0,0.0

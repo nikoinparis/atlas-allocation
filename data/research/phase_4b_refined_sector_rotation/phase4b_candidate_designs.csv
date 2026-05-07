@@ -1,0 +1,6 @@
+candidate,sector_sleeve,budget,logic
+improved_phase4b_refined_sector_small_overlay,Top5_Smooth_Momentum,12% target in high_quality_sector_bull,"Sharpe-first small overlay, GGG1 base, stressed_panic/recovery_fragile unchanged."
+improved_phase4b_refined_sector_20pct,DefensiveAware_Top5,20% target in high_quality_sector_bull or calm_sector_leadership_only,Main Phase 4B test: smoother/defensive-aware replacement for Phase 4 20pct top3 sleeve.
+improved_phase4b_refined_sector_25pct_selective,Top3_Strict_Leadership,25% target only when sector_quality_score_high,Selective concentrated version; accepts top3 only under the strongest fixed-quality signal.
+improved_phase4b_sector_phase3_hybrid,SectorBlend_SPY_QQQ plus Phase 3 calm US offense,16% target in high-quality/calm-leadership sector regimes,Risk-adjusted hybrid that combines Phase 3 calm US offense with a blended sector sleeve.
+improved_phase4b_return_unlock_stretch,Top3_Strict_Leadership,25% target in strongest quality/confirmed neutral regimes plus full aggressive mandate,"Strongest return-unlock attempt; reject on Sharpe, drawdown, 2022/stress, or hidden beta failure."

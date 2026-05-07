@@ -1,0 +1,111 @@
+=== PART A: Mandate design ===
+  Saved phase2_aggressive_mandate_design.csv, phase2_candidate_designs.csv
+
+=== PART B: Run production pipeline ===
+  Running: BUILD_VERSION_NAMES='improved_phase2_aggressive_neutral_cash_unlock,improved_phase2_aggressive_calm_offense_unlock,improved_phase2_aggressive_recovery_confirmed_boost,improved_phase2_aggressive_nonstressed_offense_mandate,improved_phase2_aggressive_balanced_mandate,improved_phase2_aggressive_stretch_mandate' python3 build_improvement_artifacts.py
+  Build completed (exit code 0). Log: phase2_build.log
+  All 18 candidate artifacts confirmed.
+
+=== Loading return series ===
+  improved_phase2_aggressive_neutral_cash_unlock: 1110 weeks
+  improved_phase2_aggressive_calm_offense_unlock: 1110 weeks
+  improved_phase2_aggressive_recovery_confirmed_boost: 1110 weeks
+  improved_phase2_aggressive_nonstressed_offense_mandate: 1110 weeks
+  improved_phase2_aggressive_balanced_mandate: 1110 weeks
+  improved_phase2_aggressive_stretch_mandate: 1110 weeks
+
+=== PART D: Metrics ===
+  Saved phase2_candidate_metrics_full.csv (72 rows)
+  Saved phase2_candidate_vs_benchmark_table.csv
+  Saved phase2_capture_beta_by_window.csv
+
+  Full-period metrics comparison:
+                                                        ann_return  sharpe  max_drawdown  cvar_5  avg_BIL  beta_spy
+portfolio                                                                                                          
+improved_phase2_aggressive_neutral_cash_unlock              0.0739  0.9398       -0.1250 -0.0260   0.2462   -0.0321
+improved_phase2_aggressive_calm_offense_unlock              0.0714  0.9171       -0.1275 -0.0260   0.2615   -0.0313
+improved_phase2_aggressive_recovery_confirmed_boost         0.0715  0.9371       -0.1175 -0.0254   0.2685   -0.0310
+improved_phase2_aggressive_nonstressed_offense_mandate      0.0744  0.9208       -0.1365 -0.0268   0.2411   -0.0327
+improved_phase2_aggressive_balanced_mandate                 0.0742  0.9271       -0.1329 -0.0266   0.2416   -0.0325
+improved_phase2_aggressive_stretch_mandate                  0.0749  0.9140       -0.1427 -0.0272   0.2368   -0.0329
+ggg1                                                        0.0714  0.9362       -0.1177 -0.0254      NaN   -0.0308
+prod_pin                                                    0.0689  0.8844       -0.1398 -0.0262      NaN   -0.0249
+spy                                                         0.1054  0.5999       -0.5461 -0.0580      NaN    1.0000
+
+=== PART E: State-by-state diagnosis ===
+  Saved phase2_state_summary.csv, phase2_state_deltas_vs_ggg1.csv, phase2_state_exposure_summary.csv
+  Saved state diagnostic files
+
+=== PART F: Risk / realism / hidden beta checks ===
+  Saved phase2_risk_realism_checks.csv, phase2_hidden_beta_cash_checks.csv, phase2_2022_bear_check.csv
+
+  Risk / hidden beta summary:
+    improved_phase2_aggressive_neutral_cash_unlock: return=7.390% sharpe=0.940 maxDD=-12.500% BIL=24.620% beta=-0.032 mandate=OK bear=OK
+    improved_phase2_aggressive_calm_offense_unlock: return=7.140% sharpe=0.917 maxDD=-12.750% BIL=26.150% beta=-0.031 mandate=OK bear=OK
+    improved_phase2_aggressive_recovery_confirmed_boost: return=7.150% sharpe=0.937 maxDD=-11.750% BIL=26.850% beta=-0.031 mandate=OK bear=OK
+    improved_phase2_aggressive_nonstressed_offense_mandate: return=7.440% sharpe=0.921 maxDD=-13.650% BIL=24.110% beta=-0.033 mandate=OK bear=OK
+    improved_phase2_aggressive_balanced_mandate: return=7.420% sharpe=0.927 maxDD=-13.290% BIL=24.160% beta=-0.033 mandate=OK bear=OK
+    improved_phase2_aggressive_stretch_mandate: return=7.490% sharpe=0.914 maxDD=-14.270% BIL=23.680% beta=-0.033 mandate=OK bear=OK
+
+=== PART G: Selection ===
+  Saved phase2_selection_table.csv
+
+  Selection results:
+    improved_phase2_aggressive_neutral_cash_unlock: KEEP_AS_AGGRESSIVE_SHADOW
+      return=7.390% sharpe=0.940 maxDD=-12.500% | Beats GGG1 full + holdout, passes mandate guardrails
+    improved_phase2_aggressive_calm_offense_unlock: KEEP_AS_AGGRESSIVE_SHADOW
+      return=7.140% sharpe=0.917 maxDD=-12.750% | Beats GGG1 full-period but holdout benefit modest or Sharpe marginal
+    improved_phase2_aggressive_recovery_confirmed_boost: KEEP_AS_AGGRESSIVE_SHADOW
+      return=7.150% sharpe=0.937 maxDD=-11.750% | Beats GGG1 full + holdout, passes mandate guardrails
+    improved_phase2_aggressive_nonstressed_offense_mandate: KEEP_AS_AGGRESSIVE_SHADOW
+      return=7.440% sharpe=0.921 maxDD=-13.650% | Beats GGG1 full + holdout, passes mandate guardrails
+    improved_phase2_aggressive_balanced_mandate: KEEP_AS_AGGRESSIVE_SHADOW
+      return=7.420% sharpe=0.927 maxDD=-13.290% | Beats GGG1 full + holdout, passes mandate guardrails
+    improved_phase2_aggressive_stretch_mandate: KEEP_AS_AGGRESSIVE_SHADOW
+      return=7.490% sharpe=0.914 maxDD=-14.270% | Beats GGG1 full + holdout, passes mandate guardrails
+
+=== PART H: Audits ===
+  Best candidate: improved_phase2_aggressive_neutral_cash_unlock (KEEP_AS_AGGRESSIVE_SHADOW)
+  Running: /Users/nicholasturangan/Documents/Portfolio Optimizer/.venv/bin/python3 /Users/nicholasturangan/Documents/Portfolio Optimizer/scripts/research_committee_report.py improved_phase2_aggressive_neutral_cash_unlock --quick
+  Running: /Users/nicholasturangan/Documents/Portfolio Optimizer/.venv/bin/python3 /Users/nicholasturangan/Documents/Portfolio Optimizer/scripts/backtest_realism_audit.py improved_phase2_aggressive_neutral_cash_unlock --quick
+  Running: /Users/nicholasturangan/Documents/Portfolio Optimizer/.venv/bin/python3 /Users/nicholasturangan/Documents/Portfolio Optimizer/scripts/allocator_benchmark_audit.py improved_phase2_aggressive_neutral_cash_unlock --quick
+  Saved phase2_audit_results.csv, phase2_audit_summary.md
+
+=== PART I: Next phase decision ===
+
+  DECISION: KEEP_PHASE2_AS_AGGRESSIVE_SHADOW
+  Rationale: improved_phase2_aggressive_neutral_cash_unlock improves on GGG1 return with acceptable risk but does not fully satisfy the production-challenger guardrails. Track as aggressive shadow.
+
+=== SUMMARY ===
+Output directory: /Users/nicholasturangan/Documents/Portfolio Optimizer/data/research/phase_2_aggressive_etf_variant
+Files created: 27
+  phase2_2022_bear_check.csv
+  phase2_aggressive_mandate_design.csv
+  phase2_allocator_benchmark_quick.log
+  phase2_audit_results.csv
+  phase2_audit_summary.md
+  phase2_backtest_realism_quick.log
+  phase2_build.log
+  phase2_calm_offense_unlock_diagnostics.csv
+  phase2_candidate_designs.csv
+  phase2_candidate_failure_reasons.csv
+  phase2_candidate_holdout_metrics.csv
+  phase2_candidate_metrics_full.csv
+  phase2_candidate_vs_benchmark_table.csv
+  phase2_capture_beta_by_window.csv
+  phase2_hidden_beta_cash_checks.csv
+  phase2_neutral_cash_unlock_diagnostics.csv
+  phase2_next_phase_decision.csv
+  phase2_protocol.json
+  phase2_recovery_rerisk_diagnostics.csv
+  phase2_research_committee_quick.log
+  phase2_risk_realism_checks.csv
+  phase2_run.log
+  phase2_selection_table.csv
+  phase2_state_deltas_vs_ggg1.csv
+  phase2_state_exposure_summary.csv
+  phase2_state_summary.csv
+  phase2_stress_protection_diagnostics.csv
+
+Done. Phase 2 Aggressive ETF Variant complete.
+No production pins changed. No auto-promotion.

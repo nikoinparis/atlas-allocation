@@ -1,0 +1,8 @@
+test_id,scope,acceptance_rule
+missing_inputs_exit_zero,ingestion scaffold,script exits 0 and writes metadata/missing_inputs_report.csv when raw inputs are absent
+schema_required_columns,all raw tables,all required schema columns present before feature build
+membership_date_order,index membership,membership_start exists and membership_end is blank or >= start
+duplicate_membership_rows,index membership,no duplicate security/index/start/end rows
+weekly_active_member_count,built panel,active member count is plausible by week and not a constant current-constituent backfill
+lag_columns_exist,built panel,all signal fields have explicit *_lag1w equivalents
+no_phase5b_without_bias_pass,research governance,"candidate builds are blocked until source, bias, and alignment checks pass"

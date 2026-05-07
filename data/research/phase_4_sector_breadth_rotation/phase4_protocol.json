@@ -1,0 +1,21 @@
+{
+  "phase": "phase_4_sector_breadth_rotation",
+  "date": "2026-05-07",
+  "production_pin": "improved_phase2b_regime_confidence_boost",
+  "official_shadow_pin": "improved_phase2b_combo_abc",
+  "base_candidate": "improved_phaseggg_confirmed_only_robust_offense",
+  "phase2_best": "improved_phase2_aggressive_neutral_cash_unlock",
+  "phase3_best": "improved_phase3_high_breadth_calm_us_offense",
+  "candidates": [
+    "improved_phase4_sector_small_overlay",
+    "improved_phase4_sector_20pct_offense",
+    "improved_phase4_sector_25pct_offense",
+    "improved_phase4_balanced_sector_breadth",
+    "improved_phase4_stretch_sector_momentum",
+    "improved_phase4_sector_us_hybrid"
+  ],
+  "best_candidate": "improved_phase4_sector_20pct_offense",
+  "decision": "KEEP_PHASE4_AS_AGGRESSIVE_SHADOW",
+  "sector_validation_positive": true,
+  "no_pin_changes": true
+}

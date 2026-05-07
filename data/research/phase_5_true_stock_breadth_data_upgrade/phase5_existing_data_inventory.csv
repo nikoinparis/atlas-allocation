@@ -1,0 +1,11 @@
+item,value,evidence
+total_etfs_in_weekly_return_data,35,data/01_data_hub/weekly_prices.csv columns excluding Date
+equity_etfs,20,universe_metadata.csv asset_class in Equities/REITs
+sector_etfs,10,"XLV,XLU,XLP,XLK,XLI,XLF,XLE,XLB,VNQ,XLY"
+defensive_cash_bond_commodity_fx_etfs,15,universe_metadata.csv asset_class in Bonds/Commodities/FX
+full_coverage_2005_2026_etfs,26,"TIP,SPY,XLV,XLU,XLP,XLK,XLI,XLF,XLE,XLB,VUG,VTV,VNQ,TLT,XLY,IEF,EEM,QQQ,EFA,EWJ,GLD,LQD,SHY,IWM,IAU,VWO"
+liquid_tradable_current_system_etfs,34,Completeness >=80% and >=900 weekly observations
+individual_stock_price_files,0,No local stock price panel found outside .venv/.claude; daily/weekly panels contain ETF universe only.
+stock_constituent_lists,0,"No usable local S&P 500/Nasdaq constituent list found; holdings artifacts are portfolio/ETF diagnostics, not stock universes."
+point_in_time_universe_membership,0,No point-in-time stock membership file found.
+prior_breadth_files,35,"Existing breadth is ETF/sector breadth, not true stock breadth."

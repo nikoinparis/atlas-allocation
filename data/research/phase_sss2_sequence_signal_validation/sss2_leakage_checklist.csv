@@ -1,0 +1,7 @@
+check,status,detail
+all_signal_inputs_lagged_or_trailing,PASS,"Formulas use state_lag1, refined_state_lag1, lagged QQQ activity, trailing stress/recovery counts, trailing state changes, and lagged dwell age."
+no_future_state_features,PASS,Signal panel excludes future regime labels; current market_state/refined_state retained only for diagnostics and same-state baselines.
+no_forward_returns_as_features,PASS,"Signal panel does not include forward return, target, or future path columns."
+no_random_splits,PASS,Validation uses deterministic calendar subperiods and pre-2016/2016-forward holdout comparisons.
+sss_queue_filter,PASS,Only SSS high-priority/promising rules and watchlist NEEDS_TRIPLE_BARRIER_VALIDATION rules were converted.
+production_shadow_ggg1_unchanged,PASS,"Script reads production, shadow, and GGG1 artifacts only; it creates no strategy variants or portfolio candidates."

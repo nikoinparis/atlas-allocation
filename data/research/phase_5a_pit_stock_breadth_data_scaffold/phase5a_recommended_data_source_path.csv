@@ -1,0 +1,5 @@
+rank,path,when_to_choose,why,blocking_manual_checks
+1,Norgate Data US Stocks Platinum/Diamond,User wants a practical desktop/vendor workflow and can subscribe.,"Combines historical daily data, delisted stock coverage, and historical constituent access in one vendor path.","Confirm Python/export access, schema fields, sector support, license, and how historical constituent plugin exposes effective dates."
+2,CRSP / Compustat via WRDS,User has university/institutional WRDS access.,Best institutional identity/delisting framework via PERMNO/PERMCO and delisting return fields.,Confirm PIT S&P 500/Nasdaq constituent table access and export workflow.
+3,Sharadar/Nasdaq Data Link,User already has Sharadar/Nasdaq subscription and can verify PIT membership.,"Active/delisted stock coverage appears promising, but constituent membership must be verified before promotion.","Confirm historical index membership, delisting returns/adjustments, ticker mapping, and sector history."
+4,Current constituents plus yfinance/API,Only for code-path smoke tests.,Survivorship-biased and not promotable.,Must label all outputs SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY.

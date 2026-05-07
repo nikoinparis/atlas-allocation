@@ -1,0 +1,126 @@
+=== PART A: Signal inventory ===
+  Saved signal inventory, asset inventory, feature audit
+
+=== PART B: Signal definitions ===
+  breadth_confirmed_standard: 535 active weeks (calm: 284, neutral: 209)
+  breadth_confirmed_double: 132 active weeks
+
+=== PART C: Offense basket designs ===
+  Saved offense basket designs
+
+=== PART D: Event / forward-return validation ===
+  Signal validation key results:
+  calm_trend breadth_on 4w: spy=0.568% us_pure=0.504% ggg=0.133% lift=0.371%
+  neutral_mixed breadth_on 4w: spy=1.156% us_pure=1.223% ggg=0.983% lift=0.240%
+  Signal shows positive lift in calm_trend and neutral_mixed — proceeding with portfolio build
+
+=== PART E: Candidate designs ===
+  Saved candidate designs
+
+=== PART F: Run production pipeline ===
+  Running: BUILD_VERSION_NAMES='...phase3...' python3 build_improvement_artifacts.py
+  Build completed (exit 0). Log: phase3_build.log
+  All 18 candidate artifacts confirmed.
+
+=== Loading return series ===
+  improved_phase3_breadth_neutral_cash_unlock: 1110 weeks
+  improved_phase3_high_breadth_calm_us_offense: 1110 weeks
+  improved_phase3_qqq_us_growth_leadership: 1110 weeks
+  improved_phase3_breadth_credit_risk_on_offense: 1110 weeks
+  improved_phase3_balanced_breadth_aggressive: 1110 weeks
+  improved_phase3_stretch_breadth_aggressive: 1110 weeks
+
+=== PART G: Metrics ===
+  Full-period comparison:
+                                                ann_return  sharpe  max_drawdown  cvar_5  avg_BIL  avg_SPY  avg_QQQ  beta_spy  active_return_vs_ggg1  active_return_vs_phase2_best
+portfolio                                                                                                                                                                         
+improved_phase3_breadth_neutral_cash_unlock         0.0683  0.8766       -0.1537 -0.0258   0.2631   0.0626   0.0285   -0.0318                -0.0029                       -0.0057
+improved_phase3_high_breadth_calm_us_offense        0.0727  0.9659       -0.1190 -0.0248   0.2793   0.0637   0.0275   -0.0304                 0.0012                       -0.0015
+improved_phase3_qqq_us_growth_leadership            0.0694  0.9324       -0.1365 -0.0242   0.3002   0.0663   0.0329   -0.0303                -0.0022                       -0.0049
+improved_phase3_breadth_credit_risk_on_offense      0.0695  0.9079       -0.1467 -0.0254   0.2768   0.0608   0.0260   -0.0313                -0.0018                       -0.0045
+improved_phase3_balanced_breadth_aggressive         0.0712  0.9069       -0.1532 -0.0256   0.2768   0.0689   0.0348   -0.0318                 0.0000                       -0.0027
+improved_phase3_stretch_breadth_aggressive          0.0728  0.9187       -0.1576 -0.0257   0.2777   0.0715   0.0367   -0.0315                 0.0017                       -0.0010
+ggg1                                                0.0714  0.9362       -0.1177 -0.0254      NaN      NaN      NaN   -0.0308                 0.0000                       -0.0027
+phase2_best                                         0.0739  0.9398       -0.1250 -0.0260      NaN      NaN      NaN   -0.0321                 0.0027                        0.0000
+spy                                                 0.1054  0.5999       -0.5461 -0.0580      NaN      NaN      NaN    1.0000                 0.0482                        0.0455
+
+=== PART H: State diagnostics ===
+  Saved state summary, deltas, exposure, and diagnostic files
+
+=== PART I: Risk / realism / hidden beta ===
+  Risk / hidden beta summary:
+    improved_phase3_breadth_neutral_cash_unlock: return=6.830% sharpe=0.877 maxDD=-15.370% BIL=26.310% QQQ=2.850% beta=-0.032 mandate=FAIL bear=OK
+    improved_phase3_high_breadth_calm_us_offense: return=7.270% sharpe=0.966 maxDD=-11.900% BIL=27.930% QQQ=2.750% beta=-0.030 mandate=OK bear=OK
+    improved_phase3_qqq_us_growth_leadership: return=6.940% sharpe=0.932 maxDD=-13.650% BIL=30.020% QQQ=3.290% beta=-0.030 mandate=OK bear=OK
+    improved_phase3_breadth_credit_risk_on_offense: return=6.950% sharpe=0.908 maxDD=-14.670% BIL=27.680% QQQ=2.600% beta=-0.031 mandate=OK bear=OK
+    improved_phase3_balanced_breadth_aggressive: return=7.120% sharpe=0.907 maxDD=-15.320% BIL=27.680% QQQ=3.480% beta=-0.032 mandate=OK bear=OK
+    improved_phase3_stretch_breadth_aggressive: return=7.280% sharpe=0.919 maxDD=-15.760% BIL=27.770% QQQ=3.670% beta=-0.032 mandate=OK bear=OK
+
+=== PART J: Selection ===
+  Selection results:
+    improved_phase3_breadth_neutral_cash_unlock: REJECT
+      return=6.830% sharpe=0.877 maxDD=-15.370% | Sharpe 0.877 below 0.90
+    improved_phase3_high_breadth_calm_us_offense: KEEP_AS_AGGRESSIVE_SHADOW
+      return=7.270% sharpe=0.966 maxDD=-11.900% | Beats GGG1 but not Phase2 best, or holdout modest
+    improved_phase3_qqq_us_growth_leadership: REJECT
+      return=6.940% sharpe=0.932 maxDD=-13.650% | return 6.94% does not beat GGG1 7.14%
+    improved_phase3_breadth_credit_risk_on_offense: REJECT
+      return=6.950% sharpe=0.908 maxDD=-14.670% | return 6.95% does not beat GGG1 7.14%
+    improved_phase3_balanced_breadth_aggressive: REJECT
+      return=7.120% sharpe=0.907 maxDD=-15.320% | return 7.12% does not beat GGG1 7.14%
+    improved_phase3_stretch_breadth_aggressive: KEEP_AS_RESEARCH_ONLY
+      return=7.280% sharpe=0.919 maxDD=-15.760% | Beats GGG1 but not Phase2 best, or holdout modest
+
+=== PART K: Audits ===
+  Best candidate: improved_phase3_high_breadth_calm_us_offense (KEEP_AS_AGGRESSIVE_SHADOW)
+
+=== PART L: Next phase decision ===
+
+  DECISION: PROCEED_TO_PHASE3B_REFINED_US_OFFENSE_ENGINE
+  Rationale: Phase 3 shows improvement (best 7.27%) but needs refinement. Consider stronger US offense concentration or better breadth signal thresholds.
+
+=== SUMMARY ===
+Output directory: /Users/nicholasturangan/Documents/Portfolio Optimizer/data/research/phase_3_breadth_confirmed_us_offense
+Files created: 39
+  phase3_2022_bear_check.csv
+  phase3_allocator_benchmark_audit_quick.log
+  phase3_audit_results.csv
+  phase3_audit_summary.md
+  phase3_available_us_offense_assets.csv
+  phase3_backtest_realism_audit_quick.log
+  phase3_breadth_confirmed_signal_definitions.csv
+  phase3_breadth_signal_inventory.csv
+  phase3_breadth_signal_summary.csv
+  phase3_build.log
+  phase3_calm_us_offense_diagnostics.csv
+  phase3_candidate_designs.csv
+  phase3_candidate_failure_reasons.csv
+  phase3_candidate_holdout_metrics.csv
+  phase3_candidate_metrics_full.csv
+  phase3_candidate_vs_benchmark_table.csv
+  phase3_capture_beta_by_window.csv
+  phase3_feature_source_audit.csv
+  phase3_hidden_beta_cash_checks.csv
+  phase3_neutral_cash_unlock_diagnostics.csv
+  phase3_next_phase_decision.csv
+  phase3_offense_asset_inventory.csv
+  phase3_offense_basket_designs.csv
+  phase3_offense_basket_forward_returns.csv
+  phase3_protocol.json
+  phase3_recovery_participation_diagnostics.csv
+  phase3_research_committee_quick.log
+  phase3_risk_realism_checks.csv
+  phase3_run.log
+  phase3_same_state_signal_lift.csv
+  phase3_selection_table.csv
+  phase3_signal_active_candidate_performance.csv
+  phase3_signal_event_validation.csv
+  phase3_signal_state_coverage.csv
+  phase3_state_deltas_vs_ggg1.csv
+  phase3_state_deltas_vs_phase2_best.csv
+  phase3_state_exposure_summary.csv
+  phase3_state_summary.csv
+  phase3_stress_protection_diagnostics.csv
+
+Done. Phase 3 Breadth-Confirmed US Offense Upgrade complete.
+No production pins changed. No auto-promotion.

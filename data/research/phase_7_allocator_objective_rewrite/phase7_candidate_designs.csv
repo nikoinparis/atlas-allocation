@@ -1,0 +1,6 @@
+candidate,base,sector_target,expression_mode,rerisk_speed,realloc_speed,phase2b,hypothesis
+improved_phase7_larger_sector_calm,phase4b_refined_sector_20pct,28% (vs 20% for Phase4B),none,1.0,0.55,neutral_boost,Larger sector budget captures more calm_trend upside
+improved_phase7_expression_boost,phase4b_refined_sector_20pct,Phase4B default (20%),phase7_aggressive_expression (shift=0.12),0.95,0.55,neutral_boost,Shifts more within-risky-budget from defense to offense in calm
+improved_phase7_max_sector_rerisk,phase4b_refined_sector_20pct,28%,none,1.0,0.65,neutral_boost,Faster commitment speed + larger sector budget
+improved_phase7_combined_offensive,phase4b_refined_sector_20pct,28%,phase7_aggressive_expression (shift=0.12),1.0,0.6,neutral_boost,Main 8%+ candidate: all three levers combined
+improved_phase7_stretch_target,phase4b_refined_sector_20pct,32%,phase7_aggressive_expression (shift=0.12),1.0,0.7,full_mandate,"Maximum return stretch: 8.5%+ target, accept higher drawdown"

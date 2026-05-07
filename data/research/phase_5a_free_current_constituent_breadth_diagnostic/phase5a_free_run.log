@@ -1,0 +1,8 @@
+=== PART A: Bias disclosure ===
+  Saved bias disclosure and usage rules
+
+=== PART B: Fetch current constituent universe ===
+  S&P 500 fetch failed: HTTP Error 403: Forbidden
+  Nasdaq-100 fetch failed (non-critical): HTTP Error 403: Forbidden
+  STOPPED: No constituent universe could be fetched.
+  Check internet connection and re-run.

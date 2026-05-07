@@ -1,0 +1,3 @@
+action,description,priority,diagnostic_label
+REQUIRED_BEFORE_ANY_PRODUCTION_USE,Replace current-constituent data with Norgate/WRDS/Sharadar PIT data,1,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+DO_NOT_PROMOTE,Do not promote any strategy candidate based on this survivorship-biased diagnostic,0,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY

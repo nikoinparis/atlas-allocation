@@ -1,0 +1,2 @@
+script,ran_in_phase5a,exit_expected,missing_inputs_report_exists,data_quality_report_exists,processed_weekly_panel_exists,status,message
+scripts/build_pit_stock_breadth_panel.py,True,0 even when raw stock inputs are missing,True,False,False,MISSING_INPUTS_REPORTED,No raw PIT stock files installed; scaffold exited cleanly and wrote missing input report.

@@ -1,0 +1,8 @@
+portfolio,state,ann_return,sharpe,max_drawdown,delta_ann_return_vs_ggg1,avg_defense_component,avg_offense_component,avg_cash_bil_sleeve
+improved_phase2_aggressive_neutral_cash_unlock,stressed_panic,0.035563,0.457031,-0.130394,-0.0002,0.1521,0.0498,0.4988
+improved_phase2_aggressive_calm_offense_unlock,stressed_panic,0.035749,0.470389,-0.125922,-0.0001,0.1465,0.0492,0.5092
+improved_phase2_aggressive_recovery_confirmed_boost,stressed_panic,0.035699,0.479474,-0.12153,-0.0001,0.149,0.0487,0.5092
+improved_phase2_aggressive_nonstressed_offense_mandate,stressed_panic,0.034572,0.431712,-0.13635,-0.0012,0.1457,0.051,0.4988
+improved_phase2_aggressive_balanced_mandate,stressed_panic,0.035404,0.445571,-0.134588,-0.0004,0.1471,0.0513,0.4988
+improved_phase2_aggressive_stretch_mandate,stressed_panic,0.033807,0.413246,-0.140894,-0.002,0.1439,0.0511,0.4967
+ggg1,stressed_panic,0.035803,0.480687,-0.121622,0.0,,,

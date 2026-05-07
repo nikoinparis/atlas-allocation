@@ -1,0 +1,8 @@
+column_name,dtype,required,description,validation_rule
+security_id,string,True,stable vendor/permanent security id,non-null; stable across ticker changes
+ticker,string,True,ticker active during membership interval,non-null; not used as sole join key
+index_name,string,True,S&P 500 or Nasdaq-100,controlled vocabulary
+membership_start,date,True,effective membership start date,must be <= membership_end when end exists
+membership_end,date,True,effective membership end date; blank if still active,blank or >= membership_start
+announcement_date,date,False,announcement date if available,"if after effective date, use conservative lag"
+source,string,True,vendor/source identifier,non-null

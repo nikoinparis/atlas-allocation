@@ -1,0 +1,151 @@
+=== PART A: Classifier failure map ===
+  Classifier failure map saved
+  State opportunity costs vs SPY:
+    neutral_mixed       : phase4b=12.07% spy=8.64% opp_cost=+3.43% [IMPROVED]
+    calm_trend          : phase4b=4.39% spy=16.87% opp_cost=-12.48% [BOTTLENECK_PRIMARY]
+    stressed_panic      : phase4b=3.82% spy=-4.92% opp_cost=+8.74% [PROTECTED]
+    recovery_fragile    : phase4b=7.71% spy=53.90% opp_cost=-46.19% [IMPROVED]
+    recovery_confirmed  : phase4b=4.37% spy=40.09% opp_cost=-35.72% [IMPROVED]
+
+=== PART B: Feature inventory ===
+  Feature inventory: 17 features
+
+=== PART C: Classifier design ===
+  Classifier design saved
+
+=== PART D: Build classifier panel ===
+  Classifier panel saved (1110 weeks)
+  Signal active weeks:
+    extreme_quality_calm               :   58 (5.2%)
+    high_quality_neutral               :    0 (0.0%)
+    low_quality_neutral                :  264 (23.8%)
+    strong_recovery                    :   34 (3.1%)
+
+=== PART E: Classifier validation ===
+  Classifier validation: 60 rows
+
+  Key: Phase4B 4w forward return, signal active vs inactive:
+    extreme_quality_calm: on=0.576% off=0.595% lift=-0.019% (N=58)
+    high_quality_neutral: on=nan% off=0.594% lift=+nan% (N=0)
+    aggression_score_high: on=0.694% off=0.520% lift=+0.174% (N=466)
+
+  WARNING: Classifier validation weak — proceeding anyway (incremental signals may still help in combination)
+
+=== PART F: Candidate designs ===
+  Candidate designs saved (5 candidates)
+
+=== PART G: Run production pipeline ===
+  Running filtered build for 5 Phase 6 candidates
+  All 15 candidate artifacts confirmed.
+
+=== Loading return series ===
+  improved_phase6_neutral_classifier_unlock: 1110 weeks
+  improved_phase6_calm_bull_quality_offense: 1110 weeks
+  improved_phase6_recovery_quality_rerisk: 1110 weeks
+  improved_phase6_continuous_aggression_score: 1110 weeks
+  improved_phase6_balanced_classifier_rebuild: 1110 weeks
+
+=== PART H: Metrics ===
+  Full-period comparison:
+                                             ann_return  sharpe  max_drawdown  cvar_5  avg_BIL  avg_sector_sleeve  beta_spy  active_return_vs_ggg1  active_return_vs_phase4b_best
+portfolio                                                                                                                                                                        
+improved_phase6_neutral_classifier_unlock        0.0775  0.9579       -0.1377 -0.0267   0.2358             0.0993   -0.0326                 0.0065                        -0.0002
+improved_phase6_calm_bull_quality_offense        0.0773  0.9516       -0.1432 -0.0268   0.2353             0.1026   -0.0327                 0.0063                        -0.0003
+improved_phase6_recovery_quality_rerisk          0.0775  0.9563       -0.1377 -0.0267   0.2360             0.1027   -0.0328                 0.0066                        -0.0001
+improved_phase6_continuous_aggression_score      0.0780  0.9530       -0.1418 -0.0270   0.2341             0.1139   -0.0326                 0.0072                         0.0005
+improved_phase6_balanced_classifier_rebuild      0.0771  0.9504       -0.1425 -0.0268   0.2355             0.1024   -0.0325                 0.0062                        -0.0005
+ggg1                                             0.0714  0.9362       -0.1177 -0.0254      NaN                NaN   -0.0308                 0.0000                        -0.0066
+phase4b_best                                     0.0776  0.9586       -0.1377 -0.0267      NaN                NaN   -0.0327                 0.0066                         0.0000
+spy                                              0.1054  0.5999       -0.5461 -0.0580      NaN                NaN    1.0000                 0.0482                         0.0416
+
+=== PART I: State diagnostics ===
+  State diagnostics saved
+
+  State summary (Phase 6 vs Phase4B best):
+    calm_trend          : C5=4.29% P4B=4.39% delta=-0.10%
+    neutral_mixed       : C5=12.06% P4B=12.07% delta=-0.01%
+    recovery_confirmed  : C5=4.17% P4B=4.37% delta=-0.20%
+    stressed_panic      : C5=3.78% P4B=3.82% delta=-0.04%
+
+=== PART J: Risk / hidden beta checks ===
+  Risk/hidden beta summary:
+    improved_phase6_neutral_classifier_unlock: ret=7.750% sharpe=0.958 maxDD=-13.770% vs_p4b=-0.010% beta=-0.033 mandate=OK bear=OK hb=LOW
+    improved_phase6_calm_bull_quality_offense: ret=7.730% sharpe=0.952 maxDD=-14.320% vs_p4b=-0.030% beta=-0.033 mandate=OK bear=OK hb=LOW
+    improved_phase6_recovery_quality_rerisk: ret=7.750% sharpe=0.956 maxDD=-13.770% vs_p4b=-0.010% beta=-0.033 mandate=OK bear=OK hb=LOW
+    improved_phase6_continuous_aggression_score: ret=7.800% sharpe=0.953 maxDD=-14.180% vs_p4b=+0.040% beta=-0.033 mandate=OK bear=OK hb=LOW
+    improved_phase6_balanced_classifier_rebuild: ret=7.710% sharpe=0.950 maxDD=-14.250% vs_p4b=-0.050% beta=-0.033 mandate=OK bear=OK hb=LOW
+
+=== PART K: Selection ===
+  Selection results:
+    improved_phase6_neutral_classifier_unlock: KEEP_AS_RESEARCH_ONLY
+      return=7.750% sharpe=0.958 maxDD=-13.770% | Beats GGG1 but not Phase4B; or holdout modest
+    improved_phase6_calm_bull_quality_offense: KEEP_AS_RESEARCH_ONLY
+      return=7.730% sharpe=0.952 maxDD=-14.320% | Beats GGG1 but not Phase4B; or holdout modest
+    improved_phase6_recovery_quality_rerisk: KEEP_AS_AGGRESSIVE_SHADOW
+      return=7.750% sharpe=0.956 maxDD=-13.770% | Beats GGG1 but not Phase4B; or holdout modest
+    improved_phase6_continuous_aggression_score: KEEP_AS_AGGRESSIVE_SHADOW
+      return=7.800% sharpe=0.953 maxDD=-14.180% | Beats Phase4B return with acceptable risk
+    improved_phase6_balanced_classifier_rebuild: KEEP_AS_RESEARCH_ONLY
+      return=7.710% sharpe=0.950 maxDD=-14.250% | Beats GGG1 but not Phase4B; or holdout modest
+
+=== PART L: Audits ===
+  Best candidate: improved_phase6_continuous_aggression_score (KEEP_AS_AGGRESSIVE_SHADOW)
+
+=== PART M: Next phase decision ===
+
+  DECISION: KEEP_PHASE6_AS_AGGRESSIVE_SHADOW
+  Rationale: improved_phase6_continuous_aggression_score (7.80%) improves over Phase4B (7.76%) with acceptable risk.
+
+=== SUMMARY ===
+Output directory: /Users/nicholasturangan/Documents/Portfolio Optimizer/data/research/phase_6_market_state_classifier_rebuild
+Files created: 47
+  phase6_2022_bear_check.csv
+  phase6_aggression_bucket_coverage.csv
+  phase6_aggression_score_design.csv
+  phase6_aggression_score_validation.csv
+  phase6_allocator_benchmark_audit_quick.log
+  phase6_audit_results.csv
+  phase6_audit_summary.md
+  phase6_backtest_realism_audit_quick.log
+  phase6_build.log
+  phase6_calm_quality_portfolio_diagnostics.csv
+  phase6_candidate_designs.csv
+  phase6_candidate_failure_reasons.csv
+  phase6_candidate_holdout_metrics.csv
+  phase6_candidate_metrics_full.csv
+  phase6_candidate_vs_benchmark_table.csv
+  phase6_capture_beta_by_window.csv
+  phase6_classifier_design.csv
+  phase6_classifier_failure_map.csv
+  phase6_classifier_panel.csv
+  phase6_classifier_signal_definitions.csv
+  phase6_classifier_state_counts.csv
+  phase6_classifier_validation.csv
+  phase6_existing_feature_inventory.csv
+  phase6_feature_source_audit.csv
+  phase6_hidden_beta_cash_checks.csv
+  phase6_neutral_split_portfolio_diagnostics.csv
+  phase6_next_action_recommendation.csv
+  phase6_next_phase_decision.csv
+  phase6_phase4b_lessons.csv
+  phase6_protocol.json
+  phase6_recovery_quality_portfolio_diagnostics.csv
+  phase6_research_committee_quick.log
+  phase6_risk_realism_checks.csv
+  phase6_run.log
+  phase6_same_state_lift.csv
+  phase6_selection_table.csv
+  phase6_signal_active_candidate_performance.csv
+  phase6_state_cash_defense_drag.csv
+  phase6_state_deltas_vs_ggg1.csv
+  phase6_state_deltas_vs_phase4b_best.csv
+  phase6_state_exposure_summary.csv
+  phase6_state_label_definitions.csv
+  phase6_state_opportunity_cost.csv
+  phase6_state_summary.csv
+  phase6_stress_guard_validation.csv
+  phase6_stress_protection_diagnostics.csv
+  phase6_transition_validation.csv
+
+Done. Phase 6 Market-State Classifier Rebuild complete.
+No production pins changed. No auto-promotion.

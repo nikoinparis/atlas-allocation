@@ -1,0 +1,45 @@
+target,definition,horizon_weeks,n_observations,positive_count,positive_rate,start_date,end_date,enough_samples,leakage_risk_note
+stress_transition_4w,stress_transition_start,4,1106,119,0.10759493670886076,2005-01-07,2026-03-13,True,future states/returns define target only; not included as live features
+stress_transition_4w__state_calm_trend,state-specific target balance,4,295,7,0.023728813559322035,2005-08-19,2025-08-29,True,diagnostic grouping only
+stress_transition_4w__state_neutral_mixed,state-specific target balance,4,491,82,0.1670061099796334,2005-01-07,2026-03-06,True,diagnostic grouping only
+stress_transition_4w__state_recovery_confirmed,state-specific target balance,4,43,0,0.0,2006-11-10,2025-11-14,False,diagnostic grouping only
+stress_transition_4w__state_recovery_fragile,state-specific target balance,4,49,5,0.10204081632653061,2006-08-18,2025-06-27,True,diagnostic grouping only
+stress_transition_4w__state_stressed_panic,state-specific target balance,4,228,25,0.10964912280701754,2006-05-26,2026-03-13,True,diagnostic grouping only
+stress_transition_8w,stress_transition_start,8,1102,202,0.18330308529945555,2005-01-07,2026-02-13,True,future states/returns define target only; not included as live features
+stress_transition_8w__state_calm_trend,state-specific target balance,8,295,18,0.061016949152542375,2005-08-19,2025-08-29,True,diagnostic grouping only
+stress_transition_8w__state_neutral_mixed,state-specific target balance,8,488,118,0.24180327868852458,2005-01-07,2026-02-13,True,diagnostic grouping only
+stress_transition_8w__state_recovery_confirmed,state-specific target balance,8,43,0,0.0,2006-11-10,2025-11-14,False,diagnostic grouping only
+stress_transition_8w__state_recovery_fragile,state-specific target balance,8,49,11,0.22448979591836735,2006-08-18,2025-06-27,True,diagnostic grouping only
+stress_transition_8w__state_stressed_panic,state-specific target balance,8,227,55,0.2422907488986784,2006-05-26,2025-05-30,True,diagnostic grouping only
+recovery_quality_4w,recovery_quality,4,802,401,0.5,2006-07-07,2026-03-06,True,future states/returns define target only; not included as live features
+recovery_quality_4w__state_calm_trend,state-specific target balance,4,287,144,0.5017421602787456,2006-11-24,2025-08-29,True,diagnostic grouping only
+recovery_quality_4w__state_neutral_mixed,state-specific target balance,4,423,208,0.491725768321513,2006-07-07,2026-03-06,True,diagnostic grouping only
+recovery_quality_4w__state_recovery_confirmed,state-specific target balance,4,43,28,0.6511627906976745,2006-11-10,2025-11-14,True,diagnostic grouping only
+recovery_quality_4w__state_recovery_fragile,state-specific target balance,4,49,21,0.42857142857142855,2006-08-18,2025-06-27,True,diagnostic grouping only
+recovery_quality_8w,recovery_quality,8,799,399,0.49937421777221525,2006-07-07,2026-02-13,True,future states/returns define target only; not included as live features
+recovery_quality_8w__state_calm_trend,state-specific target balance,8,287,135,0.47038327526132406,2006-11-24,2025-08-29,True,diagnostic grouping only
+recovery_quality_8w__state_neutral_mixed,state-specific target balance,8,420,202,0.48095238095238096,2006-07-07,2026-02-13,True,diagnostic grouping only
+recovery_quality_8w__state_recovery_confirmed,state-specific target balance,8,43,35,0.813953488372093,2006-11-10,2025-11-14,True,diagnostic grouping only
+recovery_quality_8w__state_recovery_fragile,state-specific target balance,8,49,27,0.5510204081632653,2006-08-18,2025-06-27,True,diagnostic grouping only
+ggg1_underperformance_4w,ggg1_underperformance,4,1106,749,0.6772151898734177,2005-01-07,2026-03-13,True,future states/returns define target only; not included as live features
+ggg1_underperformance_4w__state_calm_trend,state-specific target balance,4,295,233,0.7898305084745763,2005-08-19,2025-08-29,True,diagnostic grouping only
+ggg1_underperformance_4w__state_neutral_mixed,state-specific target balance,4,491,306,0.6232179226069247,2005-01-07,2026-03-06,True,diagnostic grouping only
+ggg1_underperformance_4w__state_recovery_confirmed,state-specific target balance,4,43,19,0.4418604651162791,2006-11-10,2025-11-14,True,diagnostic grouping only
+ggg1_underperformance_4w__state_recovery_fragile,state-specific target balance,4,49,36,0.7346938775510204,2006-08-18,2025-06-27,True,diagnostic grouping only
+ggg1_underperformance_4w__state_stressed_panic,state-specific target balance,4,228,155,0.6798245614035088,2006-05-26,2026-03-13,True,diagnostic grouping only
+ggg1_tail_risk_4w,ggg1_tail_risk,4,1106,273,0.2468354430379747,2005-01-07,2026-03-13,True,future states/returns define target only; not included as live features
+ggg1_tail_risk_4w__state_calm_trend,state-specific target balance,4,295,86,0.29152542372881357,2005-08-19,2025-08-29,True,diagnostic grouping only
+ggg1_tail_risk_4w__state_neutral_mixed,state-specific target balance,4,491,117,0.23828920570264767,2005-01-07,2026-03-06,True,diagnostic grouping only
+ggg1_tail_risk_4w__state_recovery_confirmed,state-specific target balance,4,43,6,0.13953488372093023,2006-11-10,2025-11-14,True,diagnostic grouping only
+ggg1_tail_risk_4w__state_recovery_fragile,state-specific target balance,4,49,16,0.32653061224489793,2006-08-18,2025-06-27,True,diagnostic grouping only
+ggg1_tail_risk_4w__state_stressed_panic,state-specific target balance,4,228,48,0.21052631578947367,2006-05-26,2026-03-13,True,diagnostic grouping only
+false_recovery_label,false_recovery,8,128,36,0.28125,2006-08-18,2025-11-21,False,future states/returns define target only; not included as live features
+false_recovery_label__state_calm_trend,state-specific target balance,8,3,0,0.0,2006-11-24,2014-06-06,False,diagnostic grouping only
+false_recovery_label__state_neutral_mixed,state-specific target balance,8,30,8,0.26666666666666666,2006-08-25,2025-11-21,False,diagnostic grouping only
+false_recovery_label__state_recovery_confirmed,state-specific target balance,8,43,4,0.09302325581395349,2006-11-10,2025-11-14,False,diagnostic grouping only
+false_recovery_label__state_recovery_fragile,state-specific target balance,8,49,24,0.4897959183673469,2006-08-18,2025-06-27,True,diagnostic grouping only
+false_recovery_label__state_stressed_panic,state-specific target balance,8,3,0,0.0,2007-10-12,2015-02-06,False,diagnostic grouping only
+qqq_interaction_success_label,optional_qqq_interaction_success,8,6,3,0.5,2009-06-26,2025-06-06,False,future states/returns define target only; not included as live features
+qqq_interaction_success_label__state_neutral_mixed,state-specific target balance,8,1,1,1.0,2023-02-10,2023-02-10,False,diagnostic grouping only
+qqq_interaction_success_label__state_recovery_fragile,state-specific target balance,8,4,2,0.5,2009-06-26,2025-06-06,False,diagnostic grouping only
+qqq_interaction_success_label__state_stressed_panic,state-specific target balance,8,1,0,0.0,2025-03-21,2025-03-21,False,diagnostic grouping only

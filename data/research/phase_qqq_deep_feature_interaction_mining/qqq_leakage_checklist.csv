@@ -1,0 +1,10 @@
+check,passed,note
+all_ppp_source_features_lagged,True,PPP manifest states rolling/Layer1/OOO features are lagged.
+qqq_generated_proxy_features_lagged,True,Known proxy and PPP factor context shifted one week.
+target_columns_excluded_from_feature_list,True,Feature manifest excludes target/fwd_return columns.
+current_market_state_not_live_feature,True,Current market_state retained only for validation grouping; live state dummies use lag1.
+no_forward_returns_as_features,True,Forward returns are target/outcome columns only.
+no_random_splits,True,Walk-forward expanding dates only.
+no_centered_windows,True,QQQ uses PPP trailing features and same-date cross-sectional z-scores.
+no_production_or_shadow_change,True,production=improved_phase2b_regime_confidence_boost; shadow=improved_phase2b_combo_abc; GGG1=improved_phaseggg_confirmed_only_robust_offense.
+dataset_has_targets,True,All four requested ETF targets exist.

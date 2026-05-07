@@ -1,0 +1,2 @@
+decision,best_candidate,rationale,n_candidates_tested,n_reject,n_shadow,n_challenger
+KEEP_PHASE2_AS_AGGRESSIVE_SHADOW,improved_phase2_aggressive_neutral_cash_unlock,improved_phase2_aggressive_neutral_cash_unlock improves on GGG1 return with acceptable risk but does not fully satisfy the production-challenger guardrails. Track as aggressive shadow.,6,0,6,0

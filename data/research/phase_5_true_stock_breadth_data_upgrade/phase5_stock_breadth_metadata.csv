@@ -1,0 +1,2 @@
+panel_name,status,data_source,survivorship_bias_label,causal_lag_rule,notes
+phase5_stock_breadth_panel,NOT_BUILT_NO_LOCAL_STOCK_PRICES_OR_POINT_IN_TIME_MEMBERSHIP,none,NO_STOCK_PANEL_BUILT,not_applicable,No individual-stock price panel or point-in-time membership exists in the repo. Current-constituent data was not fetched.

@@ -1,0 +1,7 @@
+path,purpose,format,commit_policy
+data/stock_breadth/raw/index_membership.parquet,PIT S&P 500/Nasdaq membership intervals,parquet preferred; csv accepted by scaffold,avoid committing if large; commit only small samples/manifests
+data/stock_breadth/raw/stock_prices_daily.parquet or partitioned directory,daily adjusted stock prices for active and delisted historical members,partitioned parquet preferred,keep local/external/LFS; do not normal-git commit large raw panel
+data/stock_breadth/raw/security_master.csv,stable identity mapping and ticker history,csv acceptable if small,can commit if license permits and file is small
+data/stock_breadth/raw/sector_classification.csv,sector/GICS classification intervals,csv or parquet,can commit if license permits and file is small
+data/stock_breadth/processed/stock_breadth_weekly.csv,weekly aggregate stock breadth signals,csv,commit only after size and bias checks pass
+data/stock_breadth/metadata/missing_inputs_report.csv,safe scaffold status when data is absent,csv,safe to commit

@@ -1,0 +1,14 @@
+parameter,value
+target_return_primary,9–10.5%
+target_return_stretch,10.5–12%
+max_drawdown_primary,-0.2
+max_drawdown_stretch,-0.22
+sharpe_preferred,0.95
+sharpe_minimum,0.9
+stressed_panic_rule,UNCHANGED — do not weaken stressed_panic protection
+neutral_mixed_rule,Reduce BIL/cash; reallocate to existing offense sleeves
+calm_trend_rule,Reduce defense_component; reallocate to offense
+recovery_confirmed_rule,Increase offense; allow lower defense floor
+recovery_fragile_rule,Keep cautious — small or no change
+hidden_beta_rule,Improvement must not be explained by pure SPY beta increase
+holdout_requirement,Must beat GGG1 in 2020+ and 2021+ holdout on primary objective

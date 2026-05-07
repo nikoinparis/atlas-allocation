@@ -1,0 +1,2 @@
+recommendation,reason,mean_oos_spearman_ic,mean_oos_top_bottom_spread,mostly_redundant,mean_state_ann_return_spread,high_priority_count,promising_long_short_count
+PROCEED_TO_QQQ_DEEP_FEATURE_INTERACTION_MINING,"Latent factors are mostly redundant/proxy-like, but the walk-forward characteristic model has positive cross-sectional IC/spread evidence.",0.03082378005800711,0.000817565159351897,True,0.13816733229749456,0,0

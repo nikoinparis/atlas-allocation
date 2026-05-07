@@ -1,0 +1,24 @@
+variant_name,base_signal,formula,threshold_rule,vol_filter_rule,state_filter_rule,expected_use,causal_ok,complexity_level
+efa_spy_raw_top20_event,leadlag_EFA_minus_SPY_13w_signal,direction percentile >= 80%,top20,none,none,risk-on selectivity,True,LOW
+efa_spy_raw_top10_event,leadlag_EFA_minus_SPY_13w_signal,direction percentile >= 90%,top10,none,none,risk-on selectivity,True,LOW
+efa_spy_raw_top30_event,leadlag_EFA_minus_SPY_13w_signal,direction percentile >= 70%,top30,none,none,risk-on selectivity,True,LOW
+efa_spy_vol_filtered_top20_event,leadlag_EFA_minus_SPY_13w_signal,top20 and vol percentile <= 80%,top20,exclude highest vol quintile,none,risk-on selectivity,True,LOW
+efa_spy_low_or_normal_vol_top20_event,leadlag_EFA_minus_SPY_13w_signal,top20 and not HIGH_VOL,top20,LOW/NORMAL_VOL only,none,risk-on selectivity,True,LOW
+efa_spy_strength_scaled_score_event,leadlag_EFA_minus_SPY_13w_signal,signal percentile / vol percentile top20,scaled top20,vol scaled,none,risk-on selectivity,True,MEDIUM
+efa_spy_drawdown_aware_top20_event,leadlag_EFA_minus_SPY_13w_signal,top20 and GGG1 drawdown > -8%,top20,none,exclude deep drawdown,risk-on selectivity,True,LOW
+efa_spy_market_trend_confirmed_top20_event,leadlag_EFA_minus_SPY_13w_signal,top20 and market trend positive,top20,none,trend positive,risk-on selectivity,True,LOW
+market_trend_raw_event,market_trend_positive_signal,market trend positive == 1,binary raw,none,none,trend gate,True,LOW
+market_trend_breadth_confirmed_event,market_trend_positive_signal,trend positive and breadth_ret26 top30,binary + breadth,none,breadth confirmation,trend gate,True,LOW
+market_trend_ex_high_vol_drawdown_event,market_trend_positive_signal,trend positive excluding high vol/deep drawdown,binary,vol <= 80%,drawdown > -8%,trend gate,True,LOW
+market_trend_recent_stress_filtered_event,market_trend_positive_signal,trend positive and no recent stress,binary,none,recent_stress_26w <= 0,trend gate,True,LOW
+market_trend_calm_neutral_event,market_trend_positive_signal,trend positive in calm/neutral states,binary,none,calm_trend or neutral_mixed,trend gate,True,LOW
+market_trend_vol_scaled_score_event,market_trend_positive_signal,trend positive and inverse-vol score top20,binary + scaled,low vol favored,none,trend gate,True,MEDIUM
+market_drawdown_top20_event,market_drawdown_signal,direction percentile top20,top20,none,none,secondary reference,True,LOW
+market_drawdown_vol_filtered_top20_event,market_drawdown_signal,top20 and vol percentile <= 80%,top20,exclude highest vol quintile,none,secondary reference,True,LOW
+leadlag_GLD_minus_SPY_13w_top20_event,leadlag_GLD_minus_SPY_13w_signal,direction percentile top20,top20,none,none,secondary reference,True,LOW
+leadlag_GLD_minus_SPY_13w_vol_filtered_top20_event,leadlag_GLD_minus_SPY_13w_signal,top20 and vol percentile <= 80%,top20,exclude highest vol quintile,none,secondary reference,True,LOW
+leadlag_DBA_minus_SPY_13w_top20_event,leadlag_DBA_minus_SPY_13w_signal,direction percentile top20,top20,none,none,secondary reference,True,LOW
+leadlag_DBA_minus_SPY_13w_vol_filtered_top20_event,leadlag_DBA_minus_SPY_13w_signal,top20 and vol percentile <= 80%,top20,exclude highest vol quintile,none,secondary reference,True,LOW
+breadth_ret13_positive_x_recovery_confirmed_top20_event,breadth_ret13_positive_x_recovery_confirmed_signal,direction percentile top20,top20,none,none,secondary reference,True,LOW
+breadth_ret13_positive_x_recovery_confirmed_vol_filtered_top20_event,breadth_ret13_positive_x_recovery_confirmed_signal,top20 and vol percentile <= 80%,top20,exclude highest vol quintile,none,secondary reference,True,LOW
+breadth_ret13_positive_x_recovery_confirmed_state_filtered_event,breadth_ret13_positive_x_recovery_confirmed_signal,top20 inside recovery_confirmed,top20,none,recovery_confirmed,secondary reference,True,LOW

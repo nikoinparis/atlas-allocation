@@ -1,0 +1,7 @@
+source_option,available_now,implementation_cost,survivorship_bias_risk,point_in_time_safe,can_be_used_for_research_only,can_be_used_for_production_decision,recommended_use
+Existing repo stock files,False,none if present; unavailable now,N/A because absent,False,False,False,Do not build stock breadth; no local stock price/PIT membership source exists.
+Existing yfinance/data-hub download pattern,True,medium once a stock universe is supplied,HIGH if paired with today's constituents,False,True,False,Use only for explicitly labeled current-constituent diagnostics after a universe list is supplied; no promotion.
+Current S&P 500/Nasdaq constituents,False,medium via external fetch; not local,HIGH,False,True,False,Allowed only as SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY; not used in this run because no local list exists.
+Point-in-time constituents plus adjusted stock prices,False,high; likely paid/curated data,LOW if delistings and membership dates are included,True,True,True,Preferred Phase 5 data upgrade path.
+ETF/sector breadth fallback,True,already built,LOW for ETF panels but not true stock breadth,True,True,True,Use as comparison baseline only; Phase 4B already tested it.
+External clean breadth series,False,medium/high depending vendor,LOW if vendor supplies historical constituents methodology,True,True,True,"Acceptable if methodology, revisions, and lag availability are documented."

@@ -1,0 +1,6 @@
+candidate,base,signal,action,phase2b_mode,rerisk_speed
+improved_phase6_neutral_classifier_unlock,phase4b_refined_sector_20pct,"high_quality_neutral (breadth>=0.70, trend, canary, good_prob>=0.60)",+4pp sector sleeve in high_quality_neutral; -3pp in low_quality_neutral,phase2_aggressive_neutral_boost,0.95
+improved_phase6_calm_bull_quality_offense,phase4b_refined_sector_20pct,"extreme_quality_calm (breadth>=0.80, trend, canary)",+4pp sector sleeve in extreme_quality_calm,phase2_aggressive_neutral_boost,0.95
+improved_phase6_recovery_quality_rerisk,phase4b_refined_sector_20pct,"strong_recovery (breadth_change>=0, good_prob>=0.55)",+4pp sector sleeve in strong_recovery; faster rerisk,phase2_aggressive_neutral_boost,1.0
+improved_phase6_continuous_aggression_score,phase4b_refined_sector_20pct,aggression_score>=0.72 or <=0.28,+3pp when score>=0.72; -2pp when score<=0.28,phase2_aggressive_neutral_boost,0.95
+improved_phase6_balanced_classifier_rebuild,phase4b_refined_sector_20pct,all Phase 6 signals combined (conservative magnitude),+3.5pp in high_quality_neutral/extreme_quality_calm; +2.5pp strong_recovery; -2.5pp low_quality_neutral,phase2_aggressive_neutral_boost,0.95

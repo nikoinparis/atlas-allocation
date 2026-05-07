@@ -1,0 +1,12 @@
+ticker,description,asset_class,full_period_ann_return,full_period_ann_vol,in_ggg1_default_offense,in_p3_us_pure,in_p3_us_growth
+SPY,S&P 500 ETF — US broad market,US Equity,0.102,0.1767,True,True,True
+QQQ,NASDAQ 100 ETF — US tech/growth,US Equity,0.1416,0.1995,True,True,True
+IWM,Russell 2000 ETF — US small cap,US Equity,0.0796,0.2299,True,True,False
+VUG,Vanguard Growth ETF — US large-cap growth,US Equity,0.1172,0.1888,False,False,True
+VTV,Vanguard Value ETF — US large-cap value,US Equity,0.0892,0.177,False,False,False
+EFA,iShares MSCI EAFE — developed ex-US equity,Int'l Equity,0.0572,0.1922,True,False,False
+VEA,Vanguard FTSE Dev'd Markets — developed ex-US,Int'l Equity,0.0407,0.1857,True,False,False
+VWO,Vanguard FTSE EM — emerging markets,Int'l Equity,0.0578,0.2247,True,False,False
+EWJ,iShares Japan — Japan equity,Int'l Equity,0.0471,0.1843,True,False,False
+PDBC,Invesco DB Commodity — diversified commodity,Commodity,0.0193,0.1315,True,False,False
+DBA,Invesco DB Agriculture — agricultural commodity,Commodity,0.0117,0.1559,True,False,False

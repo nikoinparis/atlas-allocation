@@ -1,0 +1,6 @@
+state_label,base_state,n_weeks,expected_active_pct,description
+extreme_quality_calm,calm_trend,295,~60-70%,High-breadth confirmed calm bull
+high_quality_neutral,neutral_mixed,493,~25-35%,Confirmed neutral risk-on
+low_quality_neutral,neutral_mixed,493,~20-30%,Choppy/deteriorating neutral
+strong_recovery,recovery_confirmed,44,~50-65%,Breadth-improving confirmed recovery
+stressed_panic_unchanged,stressed_panic,229,0%,Never modified — protection preserved

@@ -1,0 +1,9 @@
+item,value,diagnostic_label
+data_source,current S&P 500 constituents + yfinance,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+point_in_time_safe,False,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+survivorship_biased,True,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+production_decision_safe,False,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+research_only_safe,True,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+allowed_use,diagnostic only — decide if PIT data is worth buying,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+prohibited_use,production promotion; final strategy claim; survivorship-bias-free claim,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+reason,current members are backfilled historically and exclude removed/delisted/failed companies,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY

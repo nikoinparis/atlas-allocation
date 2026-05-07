@@ -1,0 +1,9 @@
+column_name,dtype,required,description,validation_rule
+security_id,string,True,stable id,unique
+permanent_id_source,string,True,CRSP/Norgate/Sharadar/etc.,non-null
+ticker,string,True,latest or primary ticker,non-null
+name,string,True,company/security name,non-null
+exchange,string,False,primary exchange,document missing
+first_trade_date,date,True,first available trading date,non-null
+last_trade_date,date,True,last available trading date,>= first_trade_date
+delisting_date,date,False,delisting date when applicable,must align with prices

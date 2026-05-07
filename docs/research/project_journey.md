@@ -3881,3 +3881,125 @@ or strategy changes were created.
 
 **Reason.** Top stable discoveries are cross-asset momentum/lead-lag/Layer 1 feature ideas.
 
+
+
+
+## Section 84 — Phase OOO2 Cross-Asset Signal Expansion
+
+Date: 2026-04-27. OOO2 converted the strongest OOO1 discoveries into explicit
+lagged weekly candidate Layer 1 signals and validated them with IC decay,
+state behavior, redundancy, and keep/reject screens. No portfolio candidates,
+production pins, or strategy logic were changed.
+
+**Decision.** `PROCEED_TO_OOO5_TRIPLE_BARRIER_VALIDATION`.
+
+**Reason.** OOO2 produced surviving explicit signals with validation evidence.
+
+
+
+## Section 85 -- Phase OOO5 Triple-Barrier Signal Validation
+
+Date: 2026-04-27. OOO5 tested the OOO2 surviving signals with fixed event
+thresholds, GGG1 triple-barrier outcomes, same-state/all-week baselines, and
+event-overlap incrementality checks. No portfolio candidates, production pins,
+or strategy logic were changed.
+
+**Decision.** `PROCEED_TO_OOO3_VOL_MANAGED_SIGNAL_SIZING`.
+
+**Reason.** OOO5 found event evidence, but direct pass-through gates were not clean enough; volatility/selectivity sizing is needed first.
+
+
+
+## Section 86 -- Phase OOO3 Volatility-Managed Signal Sizing
+
+Date: 2026-04-27. OOO3 tested volatility/selectivity-managed versions of OOO5
+survivor signals using GGG1 triple-barrier outcomes, holdout checks, event
+overlap, and transition-count turnover proxies. No portfolio candidates,
+production pins, or strategy logic were changed.
+
+**Decision.** `PROCEED_TO_OOO6_PORTFOLIO_PASS_THROUGH`.
+
+**Reason.** OOO3 found at least one sized signal that cleared selectivity, raw-improvement, and holdout gates.
+
+## Section 87 -- Phase OOO6 Signal Portfolio Pass-Through
+
+Date: 2026-04-27. OOO6 passed the strongest OOO3 sized signals through the
+GGG1 production construction pipeline as three small event-gated sleeve tilts.
+No production pins were changed and GGG1 component logic remained the base.
+
+**Decision.** `KEEP_OOO6_AS_SHADOW`.
+
+**Reason.** improved_phaseooo6_efa_spy_trend_confirmed_tilt qualified as KEEP_AS_SHADOW.
+
+## Section 88 -- Phase PPP0/PPP1 Latent Factor and Sleeve Discovery
+
+Date: 2026-04-27. Phase PPP was diagnostic-only. It built a GGG1-aligned weekly
+ETF return and lagged characteristic panel, ran full-sample diagnostic PCA,
+expanding-window PCA, and an internal IPCA-style characteristic-conditioned
+latent factor approximation. It compared latent factors to existing Layer 2A
+sleeves, GGG1 components, market states, known proxies, and GGG1 exposures.
+No production pin, official shadow pin, GGG1 logic, live-trading logic, or
+portfolio candidate was changed.
+
+**Decision.** `PROCEED_TO_QQQ_DEEP_FEATURE_INTERACTION_MINING`.
+
+**Reason.** Latent factors are mostly redundant/proxy-like, but the walk-forward characteristic model has positive cross-sectional IC/spread evidence.
+
+## Section 89 -- Phase QQQ Deep Feature Interaction Mining
+
+Date: 2026-04-27. Phase QQQ was diagnostic-only. It used the PPP lagged
+ETF-characteristic panel, OOO signal lineage, Layer 1 features, lagged state
+context, known proxy context, and PPP factor context to test controlled
+nonlinear empirical-asset-pricing style feature interactions with expanding
+walk-forward validation. It created no portfolio candidates and did not change
+production, shadow, GGG1 logic, or live trading behavior.
+
+**Decision.** `PROCEED_TO_SSS_REGIME_SEQUENCE_MODELING`.
+
+**Reason.** Interaction value appears state-specific or state-engine-like rather than a clean broad ETF signal.
+
+## Section 90 -- Phase SSS Regime-Sequence Modeling
+
+Date: 2026-04-27. Phase SSS was diagnostic-only. It used the refined Layer 2B
+state history aligned to GGG1 dates, modeled original five-state market-state
+paths with lagged dwell, path, stress-memory, transition-instability, refined
+state, QQQ, OOO, and Layer 2B context controls, and tested stress-transition,
+recovery-quality, false-recovery, GGG1 underperformance, and tail-risk targets
+with expanding walk-forward validation. It created no portfolio candidates and
+did not change production, shadow, GGG1 logic, or live trading behavior.
+
+**Decision.** `PROCEED_TO_SSS2_SEQUENCE_SIGNAL_VALIDATION`.
+
+**Reason.** At least one stable, interpretable, incremental sequence rule clears high-priority gates.
+
+## Section 91 -- Phase SSS2 Sequence Signal Validation
+
+Date: 2026-04-27. Phase SSS2 was diagnostic-only. It converted the high-priority
+SSS sequence rules into explicit lagged binary signals, validated event
+precision, same-state incrementality, 4w/8w/13w triple-barrier path outcomes,
+pre-2016 versus 2016-forward holdout stability, calendar/state/path stability,
+and redundancy versus Layer 2B, OOO/QQQ, and GGG1 exposure regimes. It created no
+portfolio candidates and did not change production, shadow, GGG1 logic, or live
+trading behavior.
+
+**Signal decisions.** `{'KEEP_FOR_SSS3_PORTFOLIO_PASS_THROUGH': 3, 'KEEP_AS_DIAGNOSTIC_WARNING_SIGNAL': 2, 'MOSTLY_DUPLICATIVE': 1}`.
+
+**Decision.** `PROCEED_TO_SSS3_SEQUENCE_PORTFOLIO_PASS_THROUGH`.
+
+**Reason.** At least one explicit sequence signal passed event, holdout, path-asymmetry, incrementality, and turnover gates for a controlled diagnostic pass-through.
+
+## Section 92 -- Phase SSS3 Sequence Portfolio Pass-Through
+
+Date: 2026-04-27. Phase SSS3 was diagnostic-only. It passed the three SSS2-cleared
+regime-sequence signals through the real GGG1 production construction pipeline
+as four tiny bounded `state_tilt` candidates. Candidate construction used
+`BUILD_VERSION_NAMES` in `scripts/build_improvement_artifacts.py`, so allocator,
+overlay, cap, turnover, cost, ETF-weight, and sleeve-weight artifacts stayed in
+the normal Layer 3 convention. No production pin, official shadow pin, GGG1
+logic, or live trading behavior was changed.
+
+**Candidate decisions.** `{'KEEP_AS_SHADOW': 4}`.
+
+**Decision.** `KEEP_SSS3_AS_SHADOW`.
+
+**Reason.** improved_phasesss3_calm_old_low_stress_derisk improves a sequence-defined weakness and passed quick audits, but does not clearly dominate GGG1.

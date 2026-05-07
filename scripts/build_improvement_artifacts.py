@@ -1051,7 +1051,65 @@ def _apply_phase_yy_decomposition_architecture(
         "phase_jjj4_conservative_adaptive_risk_budget",
         "phase_mmm_recovery_confirmed_css_cap",
         "phase_mmm_conservative_css_polish",
+        "phase_ooo6_efa_spy_selective_tilt",
+        "phase_ooo6_efa_spy_vol_filtered_tilt",
+        "phase_ooo6_efa_spy_trend_confirmed_tilt",
     }:
+        ooo6_modes = {
+            "phase_ooo6_efa_spy_selective_tilt",
+            "phase_ooo6_efa_spy_vol_filtered_tilt",
+            "phase_ooo6_efa_spy_trend_confirmed_tilt",
+        }
+
+        def _ooo6_event_fires(mode: str) -> bool:
+            date_key = getattr(market_state_row, "name", None) if isinstance(market_state_row, pd.Series) else None
+            if date_key is None:
+                return False
+            date_key = pd.to_datetime(date_key).tz_localize(None)
+            if mode == "phase_ooo6_efa_spy_selective_tilt":
+                return bool(OOO3_EVENT_LOOKUPS.get("efa_spy_raw_top10_event", {}).get(date_key, 0))
+            if mode == "phase_ooo6_efa_spy_vol_filtered_tilt":
+                return bool(OOO3_EVENT_LOOKUPS.get("efa_spy_vol_filtered_top20_event", {}).get(date_key, 0))
+            if mode == "phase_ooo6_efa_spy_trend_confirmed_tilt":
+                efa_gate = bool(OOO3_EVENT_LOOKUPS.get("efa_spy_market_trend_confirmed_top20_event", {}).get(date_key, 0))
+                trend_gate = bool(OOO3_EVENT_LOOKUPS.get("market_trend_breadth_confirmed_event", {}).get(date_key, 0))
+                return efa_gate and trend_gate
+            return False
+
+        def _apply_ooo6_event_tilt(base: pd.Series, mode: str) -> pd.Series:
+            if mode not in ooo6_modes:
+                return base
+            if market_state not in {"calm_trend", "neutral_mixed"} and not strong_neutral_flag:
+                return base
+            if not _ooo6_event_fires(mode):
+                return base
+            if mode == "phase_ooo6_efa_spy_selective_tilt":
+                multipliers = {
+                    "composite_regime_offense_component": 1.06,
+                    "cta_trend_long_only": 1.02,
+                    "composite_regime_defense_component": 0.96,
+                    "taa_10m_sma": 0.98,
+                }
+            elif mode == "phase_ooo6_efa_spy_vol_filtered_tilt":
+                multipliers = {
+                    "composite_regime_offense_component": 1.04,
+                    "cta_trend_long_only": 1.01,
+                    "composite_regime_defense_component": 0.98,
+                    "taa_10m_sma": 0.99,
+                }
+            else:
+                multipliers = {
+                    "composite_regime_offense_component": 1.05,
+                    "cta_trend_long_only": 1.015,
+                    "composite_regime_defense_component": 0.97,
+                    "taa_10m_sma": 0.985,
+                }
+            out = pd.Series(base, dtype=float).copy()
+            for sleeve, multiplier in multipliers.items():
+                if sleeve in out.index:
+                    out.loc[sleeve] *= multiplier
+            return ns5["normalize_long_only"](out, max_weight=ns5["MAX_SLEEVE_WEIGHT"])
+
         def _jjj4_adaptive_budget(base: pd.Series, strength: float = 0.05) -> pd.Series:
             if conviction is None and state_lead_tilt is None:
                 return base
@@ -1067,7 +1125,7 @@ def _apply_phase_yy_decomposition_architecture(
             return ns5["normalize_long_only"](out, max_weight=ns5["MAX_SLEEVE_WEIGHT"])
 
         if strong_neutral_flag:
-            return _apply_explicit_bucket_budget(
+            strong_neutral_base = _apply_explicit_bucket_budget(
                 adjusted,
                 target_bucket_weights={"offense": 0.65, "defense": 0.35},
                 offense_target_mix={
@@ -1077,6 +1135,7 @@ def _apply_phase_yy_decomposition_architecture(
                 },
                 offense_mix_strength=0.40,
             )
+            return _apply_ooo6_event_tilt(strong_neutral_base, tilt_mode)
         if market_state == "recovery_confirmed":
             confirmed = _apply_explicit_bucket_budget(
                 adjusted,
@@ -1159,6 +1218,9 @@ def _apply_phase_yy_decomposition_architecture(
                 "phase_jjj4_conservative_adaptive_risk_budget",
                 "phase_mmm_recovery_confirmed_css_cap",
                 "phase_mmm_conservative_css_polish",
+                "phase_ooo6_efa_spy_selective_tilt",
+                "phase_ooo6_efa_spy_vol_filtered_tilt",
+                "phase_ooo6_efa_spy_trend_confirmed_tilt",
             }:
                 confirmed_base = _apply_bucket_share_caps(
                     confirmed,
@@ -1289,6 +1351,8 @@ def _apply_phase_yy_decomposition_architecture(
             market_state in {"calm_trend", "neutral_mixed"} or strong_neutral_flag
         ):
             return _jjj4_adaptive_budget(adjusted, strength=0.05)
+        if tilt_mode in ooo6_modes:
+            return _apply_ooo6_event_tilt(adjusted, tilt_mode)
         if tilt_mode == "phase_jjj3_calm_css_cap" and market_state == "calm_trend":
             offense_members = [
                 name
@@ -1528,6 +1592,44 @@ try:
             PHASENNN_STRESS_LOOKUP = _phasennn_df["p_nnn_stress_transition_4w"].astype(float).to_dict()
 except Exception:
     pass
+
+# ----------------------------------------------------------------------
+# Phase OOO6 — OOO3-sized signal events for portfolio pass-through tests.
+# These are lagged/causal event indicators written by the OOO3 diagnostic.
+# They are used only by OOO6 state_tilt modes and do not alter GGG1 unless
+# those explicit candidate versions are requested.
+# ----------------------------------------------------------------------
+OOO3_EVENT_LOOKUPS: dict[str, dict] = {}
+try:
+    _ooo3_event_panel_path = ROOT / "data" / "research" / "phase_ooo_signal_discovery" / "ooo3_vol_managed_signal_sizing" / "ooo3_sized_signal_event_panel.csv"
+    if _ooo3_event_panel_path.exists():
+        _ooo3_events = pd.read_csv(_ooo3_event_panel_path, parse_dates=["date"])
+        _ooo3_events["date"] = pd.to_datetime(_ooo3_events["date"]).dt.tz_localize(None)
+        _ooo3_events = _ooo3_events.set_index("date").sort_index()
+        for _col in _ooo3_events.columns:
+            OOO3_EVENT_LOOKUPS[_col] = _ooo3_events[_col].fillna(0).astype(int).to_dict()
+except Exception:
+    OOO3_EVENT_LOOKUPS = {}
+
+
+# ----------------------------------------------------------------------
+# Phase SSS3 — SSS2-validated regime-sequence signal pass-through tests.
+# These are explicit lagged/causal binary signals written by the SSS2
+# diagnostic. They are used only by SSS3 state_tilt modes and do not alter
+# GGG1 unless those explicit candidate versions are requested.
+# ----------------------------------------------------------------------
+SSS2_SIGNAL_LOOKUPS: dict[str, dict] = {}
+try:
+    _sss2_signal_panel_path = ROOT / "data" / "research" / "phase_sss2_sequence_signal_validation" / "sss2_sequence_signal_panel.csv"
+    if _sss2_signal_panel_path.exists():
+        _sss2_signals = pd.read_csv(_sss2_signal_panel_path, parse_dates=["date"])
+        _sss2_signals["date"] = pd.to_datetime(_sss2_signals["date"]).dt.tz_localize(None)
+        _sss2_signals = _sss2_signals.set_index("date").sort_index()
+        for _col in _sss2_signals.columns:
+            if _col.endswith("_signal"):
+                SSS2_SIGNAL_LOOKUPS[_col] = _sss2_signals[_col].fillna(0).astype(int).to_dict()
+except Exception:
+    SSS2_SIGNAL_LOOKUPS = {}
 
 
 # ----------------------------------------------------------------------
@@ -2782,6 +2884,150 @@ def apply_state_conditioned_tilt(
     strong_neutral_flag = False
     if market_state_row is not None and isinstance(market_state_row, pd.Series) and not market_state_row.empty:
         strong_neutral_flag = is_strong_neutral_state_row(market_state_row)
+
+    ooo6_modes = {
+        "phase_ooo6_efa_spy_selective_tilt",
+        "phase_ooo6_efa_spy_vol_filtered_tilt",
+        "phase_ooo6_efa_spy_trend_confirmed_tilt",
+    }
+    sss3_modes = {
+        "phase_sss3_calm_old_low_stress_derisk",
+        "phase_sss3_stress_new_state_defense",
+        "phase_sss3_recovery_sequence_rerisk",
+        "phase_sss3_combined_sequence_overlay",
+    }
+    if tilt_mode in sss3_modes:
+        # Start from GGG1's confirmed-only robust offense architecture, then
+        # apply tiny sequence overlays only when the explicit SSS2 lagged signal
+        # is active. This keeps recovery/stress component logic intact.
+        base = apply_state_conditioned_tilt(
+            raw_weights,
+            market_state,
+            "phase_ddd_confirmed_near_exclude_dual",
+            conviction=conviction,
+            market_state_row=market_state_row,
+            state_lead_tilt=state_lead_tilt,
+        )
+        date_key = getattr(market_state_row, "name", None) if isinstance(market_state_row, pd.Series) else None
+        if date_key is None:
+            return base
+        date_key = pd.to_datetime(date_key).tz_localize(None)
+
+        def _sss2_signal_fires(signal_name: str) -> bool:
+            return bool(SSS2_SIGNAL_LOOKUPS.get(signal_name, {}).get(date_key, 0))
+
+        offense_sources = [
+            name for name in [
+                "dual_momentum_topn",
+                "cta_trend_long_only",
+                "composite_selective_signals",
+                "composite_regime_offense_component",
+            ]
+            if name in base.index
+        ]
+        defense_sources = [
+            name for name in ["composite_regime_defense_component", "taa_10m_sma"]
+            if name in base.index
+        ]
+
+        def _sequence_derisk(weights: pd.Series, amount: float) -> pd.Series:
+            out = _shift_bucket_mass(
+                weights,
+                source_names=offense_sources,
+                shift_amount=amount,
+                target_mix={
+                    "composite_regime_defense_component": 0.65,
+                    "taa_10m_sma": 0.35,
+                },
+            )
+            return ns5["normalize_long_only"](out, max_weight=ns5["MAX_SLEEVE_WEIGHT"])
+
+        def _sequence_rerisk(weights: pd.Series, amount: float) -> pd.Series:
+            out = _shift_bucket_mass(
+                weights,
+                source_names=defense_sources,
+                shift_amount=amount,
+                target_mix={
+                    "composite_regime_offense_component": 0.62,
+                    "cta_trend_long_only": 0.28,
+                    "dual_momentum_topn": 0.10,
+                },
+            )
+            return ns5["normalize_long_only"](out, max_weight=ns5["MAX_SLEEVE_WEIGHT"])
+
+        calm_warning = _sss2_signal_fires("calm_old_low_stress_signal")
+        stress_warning = _sss2_signal_fires("stress_new_state_signal")
+        rerisk_confirm = _sss2_signal_fires("qqq_efa_spy_trend_after_calm_or_recovery_signal")
+
+        if tilt_mode == "phase_sss3_calm_old_low_stress_derisk":
+            if calm_warning and market_state in {"calm_trend", "neutral_mixed"}:
+                return _sequence_derisk(base, 0.015)
+            return base
+        if tilt_mode == "phase_sss3_stress_new_state_defense":
+            if stress_warning and market_state == "stressed_panic":
+                return _sequence_derisk(base, 0.020)
+            return base
+        if tilt_mode == "phase_sss3_recovery_sequence_rerisk":
+            if rerisk_confirm and (market_state in {"recovery_confirmed", "calm_trend"} or strong_neutral_flag):
+                return _sequence_rerisk(base, 0.015)
+            return base
+        if tilt_mode == "phase_sss3_combined_sequence_overlay":
+            if stress_warning and market_state == "stressed_panic":
+                return _sequence_derisk(base, 0.015)
+            if calm_warning and market_state in {"calm_trend", "neutral_mixed"}:
+                return _sequence_derisk(base, 0.010)
+            if rerisk_confirm and (market_state in {"recovery_confirmed", "calm_trend"} or strong_neutral_flag):
+                return _sequence_rerisk(base, 0.012)
+            return base
+
+    if tilt_mode in ooo6_modes:
+        base = apply_state_conditioned_tilt(
+            raw_weights,
+            market_state,
+            "phase_ddd_confirmed_near_exclude_dual",
+            conviction=conviction,
+            market_state_row=market_state_row,
+            state_lead_tilt=state_lead_tilt,
+        )
+        if market_state not in {"calm_trend", "neutral_mixed"} and not strong_neutral_flag:
+            return base
+        date_key = getattr(market_state_row, "name", None) if isinstance(market_state_row, pd.Series) else None
+        if date_key is None:
+            return base
+        date_key = pd.to_datetime(date_key).tz_localize(None)
+        if tilt_mode == "phase_ooo6_efa_spy_selective_tilt":
+            fires = bool(OOO3_EVENT_LOOKUPS.get("efa_spy_raw_top10_event", {}).get(date_key, 0))
+            multipliers = {
+                "composite_regime_offense_component": 1.06,
+                "cta_trend_long_only": 1.02,
+                "composite_regime_defense_component": 0.96,
+                "taa_10m_sma": 0.98,
+            }
+        elif tilt_mode == "phase_ooo6_efa_spy_vol_filtered_tilt":
+            fires = bool(OOO3_EVENT_LOOKUPS.get("efa_spy_vol_filtered_top20_event", {}).get(date_key, 0))
+            multipliers = {
+                "composite_regime_offense_component": 1.04,
+                "cta_trend_long_only": 1.01,
+                "composite_regime_defense_component": 0.98,
+                "taa_10m_sma": 0.99,
+            }
+        else:
+            efa_gate = bool(OOO3_EVENT_LOOKUPS.get("efa_spy_market_trend_confirmed_top20_event", {}).get(date_key, 0))
+            trend_gate = bool(OOO3_EVENT_LOOKUPS.get("market_trend_breadth_confirmed_event", {}).get(date_key, 0))
+            fires = efa_gate and trend_gate
+            multipliers = {
+                "composite_regime_offense_component": 1.05,
+                "cta_trend_long_only": 1.015,
+                "composite_regime_defense_component": 0.97,
+                "taa_10m_sma": 0.985,
+            }
+        if not fires:
+            return base
+        out = pd.Series(base, dtype=float).copy()
+        for sleeve, multiplier in multipliers.items():
+            if sleeve in out.index:
+                out.loc[sleeve] *= multiplier
+        return ns5["normalize_long_only"](out, max_weight=ns5["MAX_SLEEVE_WEIGHT"])
 
     if tilt_mode in {
         "phase_rr_good_state_bucket_participation",
@@ -10130,6 +10376,97 @@ version_specs = [
         "target_vol_ceil": 1.00, "phase2b_mode": "regime_confidence_boost",
         "internal_redeploy": "phaseggg_confirmed_robust",
         "note": "Phase MMM3: GGG1 plus recovery_confirmed-only conservative CSS cap at 0.12 of offense bucket.",
+    },
+    {
+        "version_name": "improved_phaseooo6_efa_spy_selective_tilt",
+        "method_name": "hrp", "subset_name": "phaseyy_conservative_decomposition",
+        "subset_sleeves": phaseyy_decomposed_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40, "rerisk_speed": 0.80,
+        "state_tilt": "phase_ooo6_efa_spy_selective_tilt",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "phasexx_conservative_hybrid_overlay",
+        "target_vol_ceil": 1.00, "phase2b_mode": "regime_confidence_boost",
+        "internal_redeploy": "phaseggg_confirmed_robust",
+        "note": "Phase OOO6-1: GGG1 plus a small calm/neutral offense-family tilt when efa_spy_raw_top10_event fires. Recovery and stressed states unchanged.",
+    },
+    {
+        "version_name": "improved_phaseooo6_efa_spy_vol_filtered_tilt",
+        "method_name": "hrp", "subset_name": "phaseyy_conservative_decomposition",
+        "subset_sleeves": phaseyy_decomposed_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40, "rerisk_speed": 0.80,
+        "state_tilt": "phase_ooo6_efa_spy_vol_filtered_tilt",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "phasexx_conservative_hybrid_overlay",
+        "target_vol_ceil": 1.00, "phase2b_mode": "regime_confidence_boost",
+        "internal_redeploy": "phaseggg_confirmed_robust",
+        "note": "Phase OOO6-2: GGG1 plus a smaller calm/neutral offense-family tilt when efa_spy_vol_filtered_top20_event fires. Recovery and stressed states unchanged.",
+    },
+    {
+        "version_name": "improved_phaseooo6_efa_spy_trend_confirmed_tilt",
+        "method_name": "hrp", "subset_name": "phaseyy_conservative_decomposition",
+        "subset_sleeves": phaseyy_decomposed_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40, "rerisk_speed": 0.80,
+        "state_tilt": "phase_ooo6_efa_spy_trend_confirmed_tilt",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "phasexx_conservative_hybrid_overlay",
+        "target_vol_ceil": 1.00, "phase2b_mode": "regime_confidence_boost",
+        "internal_redeploy": "phaseggg_confirmed_robust",
+        "note": "Phase OOO6-3: GGG1 plus a small calm/neutral offense-family tilt only when EFA/SPY strength and market trend/breadth confirmation both fire.",
+    },
+    {
+        "version_name": "improved_phasesss3_calm_old_low_stress_derisk",
+        "method_name": "hrp", "subset_name": "phaseyy_conservative_decomposition",
+        "subset_sleeves": phaseyy_decomposed_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40, "rerisk_speed": 0.80,
+        "state_tilt": "phase_sss3_calm_old_low_stress_derisk",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "phasexx_conservative_hybrid_overlay",
+        "target_vol_ceil": 1.00, "phase2b_mode": "regime_confidence_boost",
+        "internal_redeploy": "phaseggg_confirmed_robust",
+        "note": "Phase SSS3-1: GGG1 plus a tiny mature-calm sequence de-risk overlay, shifting at most 1.5% sleeve mass from offense to existing defense sleeves when calm_old_low_stress_signal fires.",
+    },
+    {
+        "version_name": "improved_phasesss3_stress_new_state_defense",
+        "method_name": "hrp", "subset_name": "phaseyy_conservative_decomposition",
+        "subset_sleeves": phaseyy_decomposed_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40, "rerisk_speed": 0.80,
+        "state_tilt": "phase_sss3_stress_new_state_defense",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "phasexx_conservative_hybrid_overlay",
+        "target_vol_ceil": 1.00, "phase2b_mode": "regime_confidence_boost",
+        "internal_redeploy": "phaseggg_confirmed_robust",
+        "note": "Phase SSS3-2: GGG1 plus a tiny early-stressed-panic defense overlay, shifting at most 2% sleeve mass from offense to existing defense sleeves when stress_new_state_signal fires in stressed_panic.",
+    },
+    {
+        "version_name": "improved_phasesss3_recovery_sequence_rerisk",
+        "method_name": "hrp", "subset_name": "phaseyy_conservative_decomposition",
+        "subset_sleeves": phaseyy_decomposed_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40, "rerisk_speed": 0.80,
+        "state_tilt": "phase_sss3_recovery_sequence_rerisk",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "phasexx_conservative_hybrid_overlay",
+        "target_vol_ceil": 1.00, "phase2b_mode": "regime_confidence_boost",
+        "internal_redeploy": "phaseggg_confirmed_robust",
+        "note": "Phase SSS3-3: GGG1 plus a tiny recovery/calm re-risk confirmation tilt, shifting at most 1.5% sleeve mass from existing defense sleeves to offense-approved sleeves when qqq_efa_spy_trend_after_calm_or_recovery_signal fires.",
+    },
+    {
+        "version_name": "improved_phasesss3_combined_sequence_overlay",
+        "method_name": "hrp", "subset_name": "phaseyy_conservative_decomposition",
+        "subset_sleeves": phaseyy_decomposed_subset,
+        "overlay_variant": "good_state_fragile_expression",
+        "sleeve_reallocation_speed": 0.40, "rerisk_speed": 0.80,
+        "state_tilt": "phase_sss3_combined_sequence_overlay",
+        "layer3_expression_mode": "none",
+        "overlay_penalty_mode": "phasexx_conservative_hybrid_overlay",
+        "target_vol_ceil": 1.00, "phase2b_mode": "regime_confidence_boost",
+        "internal_redeploy": "phaseggg_confirmed_robust",
+        "note": "Phase SSS3-4: GGG1 plus conservative combined sequence overlay. Stress/calm de-risk warnings dominate conflicts; re-risk confirmation applies only when no de-risk sequence warning is active.",
     },
     {
         "version_name": "improved_phaseggg_confirmed_only_quality_filtered_offense",

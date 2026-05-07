@@ -1,0 +1,58 @@
+{
+  "phase": "SSS3",
+  "base": "improved_phaseggg_confirmed_only_robust_offense",
+  "production_pin": "improved_phase2b_regime_confidence_boost",
+  "official_shadow_pin": "improved_phase2b_combo_abc",
+  "candidate_count": 4,
+  "candidates": [
+    "improved_phasesss3_calm_old_low_stress_derisk",
+    "improved_phasesss3_stress_new_state_defense",
+    "improved_phasesss3_recovery_sequence_rerisk",
+    "improved_phasesss3_combined_sequence_overlay"
+  ],
+  "candidate_signal_map": {
+    "improved_phasesss3_calm_old_low_stress_derisk": [
+      "calm_old_low_stress_signal"
+    ],
+    "improved_phasesss3_stress_new_state_defense": [
+      "stress_new_state_signal"
+    ],
+    "improved_phasesss3_recovery_sequence_rerisk": [
+      "qqq_efa_spy_trend_after_calm_or_recovery_signal"
+    ],
+    "improved_phasesss3_combined_sequence_overlay": [
+      "calm_old_low_stress_signal",
+      "stress_new_state_signal",
+      "qqq_efa_spy_trend_after_calm_or_recovery_signal"
+    ]
+  },
+  "construction": {
+    "delegated_to": "scripts/build_improvement_artifacts.py",
+    "filter_env": "BUILD_VERSION_NAMES",
+    "production_pipeline": true,
+    "post_hoc_etf_reconstruction": false,
+    "max_candidates": 4
+  },
+  "guardrails": {
+    "turnover_ratio_vs_production_max": 1.1,
+    "no_direct_spy_add": true,
+    "hidden_beta_guard": "avg_SPY <= GGG1 + 0.005 and beta <= GGG1 + 0.020",
+    "hidden_cash_guard": "no material BIL reduction unless beta/SPY remain flat",
+    "state_guards": [
+      "stressed_panic",
+      "recovery_confirmed",
+      "recovery_fragile",
+      "calm_trend"
+    ],
+    "signals_used": [
+      "calm_old_low_stress_signal",
+      "stress_new_state_signal",
+      "qqq_efa_spy_trend_after_calm_or_recovery_signal"
+    ]
+  },
+  "final_recommendation": {
+    "recommendation": "KEEP_SSS3_AS_SHADOW",
+    "reason": "improved_phasesss3_calm_old_low_stress_derisk improves a sequence-defined weakness and passed quick audits, but does not clearly dominate GGG1.",
+    "best_candidate": "improved_phasesss3_calm_old_low_stress_derisk"
+  }
+}

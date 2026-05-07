@@ -1,0 +1,63 @@
+Project directory: /Users/nicholasturangan/Documents/Portfolio Optimizer
+Data hub directory: /Users/nicholasturangan/Documents/Portfolio Optimizer/data/01_data_hub
+Layer 1 directory: /Users/nicholasturangan/Documents/Portfolio Optimizer/data/02_layer1_signals
+Layer 2A output directory: /Users/nicholasturangan/Documents/Portfolio Optimizer/data/03_layer2a_strategy_logic
+Optional Layer 2B regime directory: /Users/nicholasturangan/Documents/Portfolio Optimizer/data/04_layer2b_risk_regime_engine
+Layer 2A input audit
+==========================================================================================
+                  item                                                                        value
+    Data hub input dir       /Users/nicholasturangan/Documents/Portfolio Optimizer/data/01_data_hub
+     Layer 1 input dir /Users/nicholasturangan/Documents/Portfolio Optimizer/data/02_layer1_signals
+         Regime source                                                   Layer 2B regime_states.csv
+Research universe size                                                                           35
+       Defensive asset                                                                          BIL
+        Duration proxy                                                                          IEF
+          Market proxy                                                                          SPY
+     Broad risk assets        SPY, QQQ, IWM, EFA, VEA, VWO, EWJ, VNQ, HYG, LQD, GLD, PDBC, DBA, TLT
+
+Available Layer 1 signal panels
+['bab_proxy', 'carry_proxy', 'multi_mom_equal', 'multi_mom_invvol', 'quality_proxy', 'residual_momentum', 'reversal_1w_global', 'reversal_4w_global', 'tsmom_vol_scaled', 'value_proxy', 'xsmom_asset_class_neutral', 'xsmom_global']
+
+Asset-class counts
+Equities       19
+Bonds           8
+Commodities     6
+REITs           1
+FX              1
+Layer 3 output directory: /Users/nicholasturangan/Documents/Portfolio Optimizer/data/05_layer3_portfolio_construction
+Monthly rebalancing on weekly data with train window: 156 weeks
+Data hub directory: /Users/nicholasturangan/Documents/Portfolio Optimizer/data/01_data_hub
+Layer 1 directory: /Users/nicholasturangan/Documents/Portfolio Optimizer/data/02_layer1_signals
+Layer 2A directory: /Users/nicholasturangan/Documents/Portfolio Optimizer/data/03_layer2a_strategy_logic
+Layer 2B directory: /Users/nicholasturangan/Documents/Portfolio Optimizer/data/04_layer2b_risk_regime_engine
+Available sleeves: ['dual_momentum_topn', 'cta_trend_long_only', 'composite_equal_weight', 'composite_regime_conditioned', 'taa_10m_sma', 'composite_breadth_filtered']
+Loaded signal panels: ['xsmom_global', 'multi_mom_invvol', 'residual_momentum', 'quality_proxy', 'value_proxy', 'carry_proxy', 'bab_proxy', 'reversal_4w_global']
+Candidate sleeves for Layer 3
+                 sleeve_name         role
+          dual_momentum_topn         core
+         cta_trend_long_only         core
+      composite_equal_weight         core
+composite_regime_conditioned         core
+                 taa_10m_sma         core
+  composite_breadth_filtered experimental
+
+Conviction input availability
+input_name
+default_blend     0.9610
+equal_signal      0.9730
+ic_signal         0.9610
+regime_signal     0.9730
+sleeve_momentum   0.9950
+           method_name               category              engine expected_return_key covariance_method
+          equal_weight               baseline        equal_weight                None            sample
+           inverse_vol               baseline         inverse_vol                None            sample
+          min_variance classical_optimization        min_variance                None       ledoit_wolf
+                mvo_ic classical_optimization                 mvo           ic_signal       ledoit_wolf
+         max_sharpe_ic classical_optimization          max_sharpe           ic_signal       ledoit_wolf
+black_litterman_regime classical_optimization     black_litterman       regime_signal       ledoit_wolf
+       erc_risk_parity             risk_based                 erc                None       ledoit_wolf
+                   hrp           hierarchical                 hrp                None            sample
+                  herc           hierarchical                herc                None            sample
+   max_diversification             risk_based max_diversification                None       ledoit_wolf
+Filtered improvement build: 4 versions -> ['improved_phasesss3_calm_old_low_stress_derisk', 'improved_phasesss3_combined_sequence_overlay', 'improved_phasesss3_recovery_sequence_rerisk', 'improved_phasesss3_stress_new_state_defense']
+Filtered improvement build wrote version-specific artifacts only; shared comparison tables were preserved.

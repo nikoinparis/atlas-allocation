@@ -1,0 +1,74 @@
+{
+  "phase": "MLX-5C multi-seed walk-forward sequence robustness",
+  "production_valid": false,
+  "research_only": true,
+  "selection_bias_warning": true,
+  "data_mining_warning": true,
+  "overfitting_warning": true,
+  "purpose": "experimental ML sandbox only",
+  "torch": {
+    "available": true,
+    "version": "2.8.0",
+    "cuda_available": false,
+    "mps_available": true
+  },
+  "device_used": "cpu",
+  "bounded_runtime": true,
+  "runs_completed": 9,
+  "portfolio_rows": 36,
+  "sequence_lengths_tested": [
+    13,
+    26
+  ],
+  "seeds_tested": [
+    0,
+    1,
+    2
+  ],
+  "folds_tested": [
+    "fold_a_2017_2018",
+    "fold_b_2019_2020",
+    "fold_c_2021_2022",
+    "fold_d_2023_2026"
+  ],
+  "model_types_tested": [
+    "gru",
+    "lstm",
+    "tcn"
+  ],
+  "theoretical_grid_runs": 108,
+  "bounded_training_runs_planned": 9,
+  "skipped_runs": 99,
+  "overall_mean_sharpe": 1.276038782680625,
+  "overall_median_sharpe": 1.6283396006078545,
+  "overall_min_sharpe": 0.15850824609570066,
+  "overall_max_sharpe": 1.9609713800642807,
+  "overall_std_sharpe": 0.6533240726222698,
+  "overall_pct_sharpe_gt_0": 1.0,
+  "overall_pct_beating_simple_momentum": 0.7777777777777778,
+  "overall_pct_beating_current_production": 0.5555555555555556,
+  "overall_pct_beating_official_shadow": 0.5555555555555556,
+  "overall_pct_beating_phase4b": 0.3888888888888889,
+  "overall_worst_case_max_drawdown": -0.14563007572051745,
+  "overall_worst_case_cvar_5": -0.04166140782620685,
+  "final_recommendation": "PROMISING OFFENSIVE SLEEVE BUT NOT PRODUCTION",
+  "warnings": [
+    "52-week sequence grid and full GRU/TCN seed expansion skipped for bounded CPU runtime.",
+    "Experimental research-only Phase MLX output; not production-valid."
+  ],
+  "no_production_pins_changed": true,
+  "no_dashboard_changes": true,
+  "no_production_strategy_logic_changed": true,
+  "outputs": {
+    "predictions": "data/research/ml_lab/sequence_models/multiseed_walkforward/sequence_multiseed_predictions.parquet",
+    "backtest_returns": "data/research/ml_lab/sequence_models/multiseed_walkforward/sequence_multiseed_backtest_returns.csv",
+    "run_metrics": "data/research/ml_lab/sequence_models/multiseed_walkforward/sequence_multiseed_run_metrics.csv",
+    "stability_summary": "data/research/ml_lab/sequence_models/multiseed_walkforward/sequence_multiseed_stability_summary.csv",
+    "fold_definitions": "data/research/ml_lab/sequence_models/multiseed_walkforward/sequence_multiseed_fold_definitions.csv",
+    "training_curves": "data/research/ml_lab/sequence_models/multiseed_walkforward/sequence_multiseed_training_curves.csv",
+    "strategy_comparison": "data/research/ml_lab/sequence_models/multiseed_walkforward/sequence_multiseed_strategy_comparison.csv",
+    "skipped_runs": "data/research/ml_lab/sequence_models/multiseed_walkforward/sequence_multiseed_skipped_runs.json",
+    "summary_json": "data/research/ml_lab/sequence_models/multiseed_walkforward/sequence_multiseed_summary.json",
+    "markdown_report": "docs/research/ml_lab/phase_mlx_5c_sequence_multiseed_walkforward_report.md"
+  }
+}

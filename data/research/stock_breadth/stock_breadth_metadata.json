@@ -1,0 +1,60 @@
+{
+  "source": "yfinance + current Wikipedia S&P 500 list",
+  "point_in_time_safe": false,
+  "survivorship_bias_warning": true,
+  "production_valid": false,
+  "purpose": "Pipeline prototype and research-only diagnostic. The data backend can later be swapped to WRDS/CRSP or Norgate for production-valid (point-in-time) signals.",
+  "diagnostic_label": "SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY",
+  "fetch_date": "2026-05-12",
+  "price_window_start": "2010-01-01",
+  "price_window_end": "2026-05-12",
+  "tickers_requested": 503,
+  "tickers_good": 477,
+  "tickers_failed": 26,
+  "coverage_pct": 94.8,
+  "first_breadth_week": "2010-01-08",
+  "last_breadth_week": "2026-04-10",
+  "project_weeks_total": 1110,
+  "breadth_weeks_populated": 849,
+  "sectors_computed": [
+    "Communication Services",
+    "Consumer Discretionary",
+    "Consumer Staples",
+    "Energy",
+    "Financials",
+    "Health Care",
+    "Industrials",
+    "Information Technology",
+    "Materials",
+    "Real Estate",
+    "Utilities"
+  ],
+  "breadth_features": [
+    "pct_above_50d_ma",
+    "pct_above_100d_ma",
+    "pct_above_200d_ma",
+    "pct_positive_13w_return",
+    "pct_positive_26w_return",
+    "pct_near_52w_high",
+    "equal_weight_stock_return",
+    "stock_count_available",
+    "median_stock_13w_return",
+    "median_stock_26w_return"
+  ],
+  "output_files": [
+    "sp500_current_universe.csv",
+    "stock_prices_weekly.csv",
+    "stock_returns_weekly.csv",
+    "stock_breadth_weekly.csv",
+    "sector_breadth_weekly.csv",
+    "stock_breadth_coverage_report.csv",
+    "stock_breadth_metadata.json"
+  ],
+  "do_not": [
+    "Use these outputs for production portfolio decisions",
+    "Promote any strategy candidate based on these results",
+    "Claim survivorship-bias-free analysis",
+    "Change production or shadow pins"
+  ],
+  "next_step": "Purchase Norgate US Stocks Platinum/Diamond or WRDS/CRSP for point-in-time constituent history before building a production-valid stock breadth signal."
+}

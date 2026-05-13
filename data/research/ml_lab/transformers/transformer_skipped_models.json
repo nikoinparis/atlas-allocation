@@ -1,0 +1,26 @@
+[
+  {
+    "model_name": "transformer_encoder_top_quintile_forward_4w_seq52_seed0",
+    "reason": "skipped 52-week Transformer for bounded CPU runtime"
+  },
+  {
+    "model_name": "transformer_encoder_top_quintile_forward_4w_seq26_seed1",
+    "reason": "skipped additional Transformer seed for bounded CPU runtime"
+  },
+  {
+    "model_name": "transformer_encoder_top_quintile_forward_4w_seq26_seed2",
+    "reason": "skipped additional Transformer seed for bounded CPU runtime"
+  },
+  {
+    "model_name": "transformer_encoder_beats_SPY_4w_seq26_seed0",
+    "reason": "skipped secondary beats_SPY target for bounded CPU runtime"
+  },
+  {
+    "model_name": "transformer_walk_forward_retraining",
+    "reason": "deferred full Transformer walk-forward retraining; use MLX-5C walk-forward sequence results for robustness context"
+  },
+  {
+    "model_name": "transformer_equal_weight_portfolios",
+    "reason": "skipped optional equal-weight portfolios to keep MLX-6 bounded"
+  }
+]

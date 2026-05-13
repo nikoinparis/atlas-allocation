@@ -17,3 +17,35 @@ data/research/phase_ooo_signal_discovery/**/*_predictions.csv
 data/research/phase_ooo_signal_discovery/**/*_model_predictions.csv
 data/research/phase_qqq_deep_feature_interaction_mining/qqq_ml_dataset.csv
 data/research/phase_qqq_deep_feature_interaction_mining/qqq_model_predictions.csv
+
+# Python virtual environment — never commit
+.venv/
+venv/
+env/
+
+# macOS and editor noise
+.DS_Store
+*.DS_Store
+
+# TypeScript build artifacts
+tsconfig.tsbuildinfo
+
+# Large ML model weights
+*.pt
+*.pth
+*.ckpt
+*.pkl
+*.joblib
+
+# ML Lab — large regeneratable outputs (run scripts to rebuild)
+# Full prediction parquets (20 MB, 14 MB, 4 MB, 3 MB, 2 MB, 1.8 MB, 1 MB each)
+data/research/ml_lab/**/*.parquet
+# Full per-week backtest return time series (53 MB, 43 MB, 10 MB, 7.7 MB, 7 MB, 1.5 MB each)
+data/research/ml_lab/**/*_returns.csv
+# Raw yfinance daily price / volume downloads for the expanded ETF universe
+data/research/ml_lab/expanded_universe/yfinance_*.csv
+
+# Stock breadth — raw reconstructable wide tables (8 MB, 7 MB)
+data/research/stock_breadth/stock_prices_daily_raw.parquet
+data/research/stock_breadth/stock_prices_weekly.csv
+data/research/stock_breadth/stock_returns_weekly.csv

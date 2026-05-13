@@ -1,0 +1,9 @@
+item,value
+data_source,yfinance + current Wikipedia S&P 500 list
+point_in_time_safe,False
+survivorship_biased,True
+production_valid,False
+purpose,pipeline prototype and research-only diagnostic
+allowed_use,diagnostic only; decide if PIT data is worth purchasing
+prohibited_use,production promotion; survivorship-bias-free claim
+note,"Current constituents are backfilled into history. Removed, delisted, or bankrupt companies are excluded, biasing breadth upward throughout history."

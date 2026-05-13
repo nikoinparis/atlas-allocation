@@ -1,0 +1,16 @@
+metric,value
+tickers_requested,503
+tickers_good,477
+tickers_failed,26
+coverage_pct,94.8
+download_start_date,2010-01-01
+download_end_date,2026-05-12
+first_breadth_week,2010-01-08
+last_breadth_week,2026-04-10
+project_weeks_total,1110
+breadth_weeks_populated,849
+thin_weeks_lt50pct,261
+sectors_computed,11
+diagnostic_label,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+survivorship_bias_warning,TRUE — current members backfilled into history
+production_valid,FALSE

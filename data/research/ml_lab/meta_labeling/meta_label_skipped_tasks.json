@@ -1,0 +1,9 @@
+{
+  "skipped_tasks": [],
+  "skipped_models": [
+    {
+      "model_name": "small_torch_mlp",
+      "reason": "optional MLP skipped to keep MLX-7 bounded and interpretable"
+    }
+  ]
+}

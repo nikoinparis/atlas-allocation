@@ -1,0 +1,52 @@
+{
+  "task_a_core_production_risk_filter": {
+    "label_col": "label_task_a_core_production_risk_filter",
+    "label_positive_meaning": "production next 4-week return is positive or beats BIL",
+    "purpose": "identify when production should be trusted or risk-reduced",
+    "strategy_family": "production_bil_filter"
+  },
+  "task_b_production_beats_bil": {
+    "label_col": "label_task_b_production_beats_bil",
+    "label_positive_meaning": "production beats BIL over next 4 weeks",
+    "purpose": "reduce exposure when production expected excess return is poor",
+    "strategy_family": "production_bil_filter"
+  },
+  "task_c_phase4b_beats_production": {
+    "label_col": "label_task_c_phase4b_beats_production",
+    "label_positive_meaning": "Phase 4B beats production over next 4 weeks",
+    "purpose": "identify when more aggressive Phase 4B-like offense should be preferred",
+    "strategy_family": "phase4b_switch"
+  },
+  "task_d_mlx5_sleeve_activation": {
+    "label_col": "label_task_d_mlx5_sleeve_activation",
+    "label_positive_meaning": "MLX-5 sequence sleeve beats production or BIL over next 4 weeks",
+    "purpose": "decide when to activate ML offensive sleeve",
+    "strategy_family": "mlx5_activation"
+  },
+  "task_e_bad_week_avoidance": {
+    "label_col": "label_task_e_bad_week_avoidance",
+    "label_positive_meaning": "next 4-week production loss or weekly shock exceeds threshold",
+    "purpose": "predict when to reduce ML or offensive exposure",
+    "strategy_family": "bad_week_filter"
+  },
+  "_metadata": {
+    "research_only": true,
+    "production_valid": false,
+    "feature_count": 104,
+    "return_sources": {
+      "production": "data/05_layer3_portfolio_construction/portfolio_version_returns_improved_phase2b_regime_confidence_boost.csv",
+      "official_shadow": "data/05_layer3_portfolio_construction/portfolio_version_returns_improved_phase2b_combo_abc.csv",
+      "phase4b": "data/05_layer3_portfolio_construction/portfolio_version_returns_improved_phase4b_sector_phase3_hybrid.csv",
+      "phase6": "data/05_layer3_portfolio_construction/portfolio_version_returns_improved_phase6_recovery_quality_rerisk.csv",
+      "phase7": "data/05_layer3_portfolio_construction/portfolio_version_returns_improved_phase7_expression_boost.csv",
+      "BIL": "data/research/ml_lab/expanded_universe/expanded_etf_returns_weekly.csv",
+      "SPY": "data/research/ml_lab/expanded_universe/expanded_etf_returns_weekly.csv",
+      "sixty_forty": "data/research/ml_lab/expanded_universe/expanded_etf_returns_weekly.csv",
+      "mlx5_sequence": "data/research/ml_lab/sequence_models/sequence_backtest_returns.csv",
+      "mlx6_transformer": "data/research/ml_lab/transformers/transformer_backtest_returns.csv",
+      "simple_momentum": "data/research/ml_lab/sequence_models/sequence_backtest_returns.csv"
+    },
+    "train_only_preprocessing": true,
+    "label_horizon": "future 4 weekly returns from t+1 through t+4"
+  }
+}

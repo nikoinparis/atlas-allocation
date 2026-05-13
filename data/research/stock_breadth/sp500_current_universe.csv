@@ -1,0 +1,504 @@
+ticker_raw,ticker,name,sector,sub_industry,index,source_url,fetch_date,diagnostic_label
+MMM,MMM,3M,Industrials,Industrial Conglomerates,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+AOS,AOS,A. O. Smith,Industrials,Building Products,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ABT,ABT,Abbott Laboratories,Health Care,Health Care Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ABBV,ABBV,AbbVie,Health Care,Biotechnology,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ACN,ACN,Accenture,Information Technology,IT Consulting & Other Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ADBE,ADBE,Adobe Inc.,Information Technology,Application Software,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+AMD,AMD,Advanced Micro Devices,Information Technology,Semiconductors,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+AES,AES,AES Corporation,Utilities,Independent Power Producers & Energy Traders,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+AFL,AFL,Aflac,Financials,Life & Health Insurance,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+A,A,Agilent Technologies,Health Care,Life Sciences Tools & Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+APD,APD,Air Products,Materials,Industrial Gases,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ABNB,ABNB,Airbnb,Consumer Discretionary,"Hotels, Resorts & Cruise Lines",S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+AKAM,AKAM,Akamai Technologies,Information Technology,Internet Services & Infrastructure,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ALB,ALB,Albemarle Corporation,Materials,Specialty Chemicals,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ARE,ARE,Alexandria Real Estate Equities,Real Estate,Office REITs,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ALGN,ALGN,Align Technology,Health Care,Health Care Supplies,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ALLE,ALLE,Allegion,Industrials,Building Products,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+LNT,LNT,Alliant Energy,Utilities,Electric Utilities,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ALL,ALL,Allstate,Financials,Property & Casualty Insurance,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+GOOGL,GOOGL,Alphabet Inc. (Class A),Communication Services,Interactive Media & Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+GOOG,GOOG,Alphabet Inc. (Class C),Communication Services,Interactive Media & Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+MO,MO,Altria,Consumer Staples,Tobacco,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+AMZN,AMZN,Amazon,Consumer Discretionary,Broadline Retail,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+AMCR,AMCR,Amcor,Materials,Paper & Plastic Packaging Products & Materials,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+AEE,AEE,Ameren,Utilities,Multi-Utilities,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+AEP,AEP,American Electric Power,Utilities,Electric Utilities,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+AXP,AXP,American Express,Financials,Consumer Finance,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+AIG,AIG,American International Group,Financials,Multi-line Insurance,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+AMT,AMT,American Tower,Real Estate,Telecom Tower REITs,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+AWK,AWK,American Water Works,Utilities,Water Utilities,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+AMP,AMP,Ameriprise Financial,Financials,Asset Management & Custody Banks,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+AME,AME,Ametek,Industrials,Electrical Components & Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+AMGN,AMGN,Amgen,Health Care,Biotechnology,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+APH,APH,Amphenol,Information Technology,Electronic Components,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ADI,ADI,Analog Devices,Information Technology,Semiconductors,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+AON,AON,Aon plc,Financials,Insurance Brokers,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+APA,APA,APA Corporation,Energy,Oil & Gas Exploration & Production,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+APO,APO,Apollo Global Management,Financials,Asset Management & Custody Banks,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+AAPL,AAPL,Apple Inc.,Information Technology,"Technology Hardware, Storage & Peripherals",S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+AMAT,AMAT,Applied Materials,Information Technology,Semiconductor Materials & Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+APP,APP,AppLovin,Information Technology,Application Software,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+APTV,APTV,Aptiv,Consumer Discretionary,Automotive Parts & Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ACGL,ACGL,Arch Capital Group,Financials,Property & Casualty Insurance,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ADM,ADM,Archer Daniels Midland,Consumer Staples,Agricultural Products & Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ARES,ARES,Ares Management,Financials,Asset Management & Custody Banks,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ANET,ANET,Arista Networks,Information Technology,Communications Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+AJG,AJG,Arthur J. Gallagher & Co.,Financials,Insurance Brokers,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+AIZ,AIZ,Assurant,Financials,Multi-line Insurance,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+T,T,AT&T,Communication Services,Integrated Telecommunication Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ATO,ATO,Atmos Energy,Utilities,Gas Utilities,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ADSK,ADSK,Autodesk,Information Technology,Application Software,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ADP,ADP,Automatic Data Processing,Industrials,Human Resource & Employment Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+AZO,AZO,AutoZone,Consumer Discretionary,Automotive Retail,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+AVB,AVB,AvalonBay Communities,Real Estate,Multi-Family Residential REITs,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+AVY,AVY,Avery Dennison,Materials,Paper & Plastic Packaging Products & Materials,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+AXON,AXON,Axon Enterprise,Industrials,Aerospace & Defense,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+BKR,BKR,Baker Hughes,Energy,Oil & Gas Equipment & Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+BALL,BALL,Ball Corporation,Materials,"Metal, Glass & Plastic Containers",S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+BAC,BAC,Bank of America,Financials,Diversified Banks,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+BAX,BAX,Baxter International,Health Care,Health Care Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+BDX,BDX,Becton Dickinson,Health Care,Health Care Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+BRK.B,BRK-B,Berkshire Hathaway,Financials,Multi-Sector Holdings,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+BBY,BBY,Best Buy,Consumer Discretionary,Computer & Electronics Retail,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+TECH,TECH,Bio-Techne,Health Care,Life Sciences Tools & Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+BIIB,BIIB,Biogen,Health Care,Biotechnology,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+BLK,BLK,BlackRock,Financials,Asset Management & Custody Banks,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+BX,BX,Blackstone Inc.,Financials,Asset Management & Custody Banks,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+XYZ,XYZ,"Block, Inc.",Financials,Transaction & Payment Processing Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+BK,BK,BNY Mellon,Financials,Asset Management & Custody Banks,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+BA,BA,Boeing,Industrials,Aerospace & Defense,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+BKNG,BKNG,Booking Holdings,Consumer Discretionary,"Hotels, Resorts & Cruise Lines",S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+BSX,BSX,Boston Scientific,Health Care,Health Care Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+BMY,BMY,Bristol Myers Squibb,Health Care,Pharmaceuticals,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+AVGO,AVGO,Broadcom,Information Technology,Semiconductors,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+BR,BR,Broadridge Financial Solutions,Industrials,Data Processing & Outsourced Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+BRO,BRO,Brown & Brown,Financials,Insurance Brokers,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+BF.B,BF-B,Brown–Forman,Consumer Staples,Distillers & Vintners,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+BLDR,BLDR,Builders FirstSource,Industrials,Building Products,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+BG,BG,Bunge Global,Consumer Staples,Agricultural Products & Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+BXP,BXP,"BXP, Inc.",Real Estate,Office REITs,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CHRW,CHRW,C.H. Robinson,Industrials,Air Freight & Logistics,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CDNS,CDNS,Cadence Design Systems,Information Technology,Application Software,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CPT,CPT,Camden Property Trust,Real Estate,Multi-Family Residential REITs,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CPB,CPB,Campbell's Company (The),Consumer Staples,Packaged Foods & Meats,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+COF,COF,Capital One,Financials,Consumer Finance,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CAH,CAH,Cardinal Health,Health Care,Health Care Distributors,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CCL,CCL,Carnival Corporation,Consumer Discretionary,"Hotels, Resorts & Cruise Lines",S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CARR,CARR,Carrier Global,Industrials,Building Products,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CVNA,CVNA,Carvana,Consumer Discretionary,Automotive Retail,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CASY,CASY,Casey's,Consumer Staples,Food Retail,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CAT,CAT,Caterpillar Inc.,Industrials,Construction Machinery & Heavy Transportation Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CBOE,CBOE,Cboe Global Markets,Financials,Financial Exchanges & Data,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CBRE,CBRE,CBRE Group,Real Estate,Real Estate Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CDW,CDW,CDW Corporation,Information Technology,Technology Distributors,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+COR,COR,Cencora,Health Care,Health Care Distributors,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CNC,CNC,Centene Corporation,Health Care,Managed Health Care,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CNP,CNP,CenterPoint Energy,Utilities,Multi-Utilities,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CF,CF,CF Industries,Materials,Fertilizers & Agricultural Chemicals,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CRL,CRL,Charles River Laboratories,Health Care,Life Sciences Tools & Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+SCHW,SCHW,Charles Schwab Corporation,Financials,Investment Banking & Brokerage,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CHTR,CHTR,Charter Communications,Communication Services,Cable & Satellite,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CVX,CVX,Chevron Corporation,Energy,Integrated Oil & Gas,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CMG,CMG,Chipotle Mexican Grill,Consumer Discretionary,Restaurants,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CB,CB,Chubb Limited,Financials,Property & Casualty Insurance,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CHD,CHD,Church & Dwight,Consumer Staples,Household Products,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CIEN,CIEN,Ciena,Information Technology,Communications Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CI,CI,Cigna,Health Care,Health Care Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CINF,CINF,Cincinnati Financial,Financials,Property & Casualty Insurance,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CTAS,CTAS,Cintas,Industrials,Diversified Support Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CSCO,CSCO,Cisco,Information Technology,Communications Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+C,C,Citigroup,Financials,Diversified Banks,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CFG,CFG,Citizens Financial Group,Financials,Regional Banks,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CLX,CLX,Clorox,Consumer Staples,Household Products,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CME,CME,CME Group,Financials,Financial Exchanges & Data,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CMS,CMS,CMS Energy,Utilities,Multi-Utilities,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+KO,KO,Coca-Cola Company (The),Consumer Staples,Soft Drinks & Non-alcoholic Beverages,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CTSH,CTSH,Cognizant,Information Technology,IT Consulting & Other Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+COHR,COHR,Coherent Corp.,Information Technology,Electronic Components,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+COIN,COIN,Coinbase,Financials,Financial Exchanges & Data,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CL,CL,Colgate-Palmolive,Consumer Staples,Household Products,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CMCSA,CMCSA,Comcast,Communication Services,Cable & Satellite,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+FIX,FIX,Comfort Systems USA,Industrials,Construction & Engineering,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CAG,CAG,Conagra Brands,Consumer Staples,Packaged Foods & Meats,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+COP,COP,ConocoPhillips,Energy,Oil & Gas Exploration & Production,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ED,ED,Consolidated Edison,Utilities,Multi-Utilities,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+STZ,STZ,Constellation Brands,Consumer Staples,Distillers & Vintners,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CEG,CEG,Constellation Energy,Utilities,Electric Utilities,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+COO,COO,Cooper Companies (The),Health Care,Health Care Supplies,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CPRT,CPRT,Copart,Industrials,Diversified Support Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+GLW,GLW,Corning Inc.,Information Technology,Electronic Components,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CPAY,CPAY,Corpay,Financials,Transaction & Payment Processing Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CTVA,CTVA,Corteva,Materials,Fertilizers & Agricultural Chemicals,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CSGP,CSGP,CoStar Group,Real Estate,Real Estate Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+COST,COST,Costco,Consumer Staples,Consumer Staples Merchandise Retail,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CRH,CRH,CRH plc,Materials,Construction Materials,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CRWD,CRWD,CrowdStrike,Information Technology,Systems Software,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CCI,CCI,Crown Castle,Real Estate,Telecom Tower REITs,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CSX,CSX,CSX Corporation,Industrials,Rail Transportation,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CMI,CMI,Cummins,Industrials,Construction Machinery & Heavy Transportation Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CVS,CVS,CVS Health,Health Care,Health Care Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+DHR,DHR,Danaher Corporation,Health Care,Life Sciences Tools & Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+DRI,DRI,Darden Restaurants,Consumer Discretionary,Restaurants,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+DDOG,DDOG,Datadog,Information Technology,Application Software,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+DVA,DVA,DaVita,Health Care,Health Care Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+DECK,DECK,Deckers Brands,Consumer Discretionary,Footwear,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+DE,DE,Deere & Company,Industrials,Agricultural & Farm Machinery,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+DELL,DELL,Dell Technologies,Information Technology,"Technology Hardware, Storage & Peripherals",S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+DAL,DAL,Delta Air Lines,Industrials,Passenger Airlines,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+DVN,DVN,Devon Energy,Energy,Oil & Gas Exploration & Production,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+DXCM,DXCM,Dexcom,Health Care,Health Care Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+FANG,FANG,Diamondback Energy,Energy,Oil & Gas Exploration & Production,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+DLR,DLR,Digital Realty,Real Estate,Data Center REITs,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+DG,DG,Dollar General,Consumer Staples,Consumer Staples Merchandise Retail,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+DLTR,DLTR,Dollar Tree,Consumer Staples,Consumer Staples Merchandise Retail,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+D,D,Dominion Energy,Utilities,Multi-Utilities,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+DPZ,DPZ,Domino's,Consumer Discretionary,Restaurants,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+DASH,DASH,DoorDash,Consumer Discretionary,Specialized Consumer Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+DOV,DOV,Dover Corporation,Industrials,Industrial Machinery & Supplies & Components,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+DOW,DOW,Dow Inc.,Materials,Commodity Chemicals,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+DHI,DHI,D. R. Horton,Consumer Discretionary,Homebuilding,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+DTE,DTE,DTE Energy,Utilities,Multi-Utilities,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+DUK,DUK,Duke Energy,Utilities,Electric Utilities,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+DD,DD,DuPont,Materials,Specialty Chemicals,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ETN,ETN,Eaton Corporation,Industrials,Electrical Components & Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+EBAY,EBAY,eBay Inc.,Consumer Discretionary,Broadline Retail,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+SATS,SATS,EchoStar,Communication Services,Wireless Telecommunication Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ECL,ECL,Ecolab,Materials,Specialty Chemicals,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+EIX,EIX,Edison International,Utilities,Electric Utilities,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+EW,EW,Edwards Lifesciences,Health Care,Health Care Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+EA,EA,Electronic Arts,Communication Services,Interactive Home Entertainment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ELV,ELV,Elevance Health,Health Care,Managed Health Care,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+EME,EME,Emcor,Industrials,Construction & Engineering,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+EMR,EMR,Emerson Electric,Industrials,Electrical Components & Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ETR,ETR,Entergy,Utilities,Electric Utilities,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+EOG,EOG,EOG Resources,Energy,Oil & Gas Exploration & Production,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+EPAM,EPAM,EPAM Systems,Information Technology,IT Consulting & Other Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+EQT,EQT,EQT Corporation,Energy,Oil & Gas Exploration & Production,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+EFX,EFX,Equifax,Industrials,Research & Consulting Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+EQIX,EQIX,Equinix,Real Estate,Data Center REITs,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+EQR,EQR,Equity Residential,Real Estate,Multi-Family Residential REITs,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ERIE,ERIE,Erie Indemnity,Financials,Insurance Brokers,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ESS,ESS,Essex Property Trust,Real Estate,Multi-Family Residential REITs,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+EL,EL,Estée Lauder Companies (The),Consumer Staples,Personal Care Products,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+EG,EG,Everest Group,Financials,Reinsurance,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+EVRG,EVRG,Evergy,Utilities,Electric Utilities,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ES,ES,Eversource Energy,Utilities,Electric Utilities,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+EXC,EXC,Exelon,Utilities,Electric Utilities,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+EXE,EXE,Expand Energy,Energy,Oil & Gas Exploration & Production,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+EXPE,EXPE,Expedia Group,Consumer Discretionary,"Hotels, Resorts & Cruise Lines",S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+EXPD,EXPD,Expeditors International,Industrials,Air Freight & Logistics,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+EXR,EXR,Extra Space Storage,Real Estate,Self-Storage REITs,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+XOM,XOM,ExxonMobil,Energy,Integrated Oil & Gas,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+FFIV,FFIV,"F5, Inc.",Information Technology,Communications Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+FDS,FDS,FactSet,Financials,Financial Exchanges & Data,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+FICO,FICO,Fair Isaac,Information Technology,Application Software,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+FAST,FAST,Fastenal,Industrials,Trading Companies & Distributors,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+FRT,FRT,Federal Realty Investment Trust,Real Estate,Retail REITs,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+FDX,FDX,FedEx,Industrials,Air Freight & Logistics,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+FIS,FIS,Fidelity National Information Services,Financials,Transaction & Payment Processing Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+FITB,FITB,Fifth Third Bancorp,Financials,Regional Banks,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+FSLR,FSLR,First Solar,Information Technology,Semiconductors,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+FE,FE,FirstEnergy,Utilities,Electric Utilities,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+FISV,FISV,Fiserv,Financials,Transaction & Payment Processing Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+F,F,Ford Motor Company,Consumer Discretionary,Automobile Manufacturers,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+FTNT,FTNT,Fortinet,Information Technology,Systems Software,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+FTV,FTV,Fortive,Industrials,Industrial Machinery & Supplies & Components,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+FOXA,FOXA,Fox Corporation (Class A),Communication Services,Broadcasting,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+FOX,FOX,Fox Corporation (Class B),Communication Services,Broadcasting,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+BEN,BEN,Franklin Resources,Financials,Asset Management & Custody Banks,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+FCX,FCX,Freeport-McMoRan,Materials,Copper,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+GRMN,GRMN,Garmin,Consumer Discretionary,Consumer Electronics,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+IT,IT,Gartner,Information Technology,IT Consulting & Other Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+GE,GE,GE Aerospace,Industrials,Aerospace & Defense,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+GEHC,GEHC,GE HealthCare,Health Care,Health Care Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+GEV,GEV,GE Vernova,Industrials,Heavy Electrical Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+GEN,GEN,Gen Digital,Information Technology,Systems Software,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+GNRC,GNRC,Generac,Industrials,Electrical Components & Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+GD,GD,General Dynamics,Industrials,Aerospace & Defense,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+GIS,GIS,General Mills,Consumer Staples,Packaged Foods & Meats,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+GM,GM,General Motors,Consumer Discretionary,Automobile Manufacturers,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+GPC,GPC,Genuine Parts Company,Consumer Discretionary,Distributors,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+GILD,GILD,Gilead Sciences,Health Care,Biotechnology,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+GPN,GPN,Global Payments,Financials,Transaction & Payment Processing Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+GL,GL,Globe Life,Financials,Life & Health Insurance,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+GDDY,GDDY,GoDaddy,Information Technology,Internet Services & Infrastructure,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+GS,GS,Goldman Sachs,Financials,Investment Banking & Brokerage,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+HAL,HAL,Halliburton,Energy,Oil & Gas Equipment & Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+HIG,HIG,Hartford (The),Financials,Property & Casualty Insurance,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+HAS,HAS,Hasbro,Consumer Discretionary,Leisure Products,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+HCA,HCA,HCA Healthcare,Health Care,Health Care Facilities,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+DOC,DOC,Healthpeak Properties,Real Estate,Health Care REITs,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+HSIC,HSIC,Henry Schein,Health Care,Health Care Distributors,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+HSY,HSY,Hershey Company (The),Consumer Staples,Packaged Foods & Meats,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+HPE,HPE,Hewlett Packard Enterprise,Information Technology,"Technology Hardware, Storage & Peripherals",S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+HLT,HLT,Hilton Worldwide,Consumer Discretionary,"Hotels, Resorts & Cruise Lines",S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+HD,HD,Home Depot (The),Consumer Discretionary,Home Improvement Retail,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+HON,HON,Honeywell,Industrials,Industrial Conglomerates,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+HRL,HRL,Hormel Foods,Consumer Staples,Packaged Foods & Meats,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+HST,HST,Host Hotels & Resorts,Real Estate,Hotel & Resort REITs,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+HWM,HWM,Howmet Aerospace,Industrials,Aerospace & Defense,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+HPQ,HPQ,HP Inc.,Information Technology,"Technology Hardware, Storage & Peripherals",S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+HUBB,HUBB,Hubbell Incorporated,Industrials,Industrial Machinery & Supplies & Components,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+HUM,HUM,Humana,Health Care,Managed Health Care,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+HBAN,HBAN,Huntington Bancshares,Financials,Regional Banks,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+HII,HII,Huntington Ingalls Industries,Industrials,Aerospace & Defense,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+IBM,IBM,IBM,Information Technology,IT Consulting & Other Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+IEX,IEX,IDEX Corporation,Industrials,Industrial Machinery & Supplies & Components,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+IDXX,IDXX,Idexx Laboratories,Health Care,Health Care Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ITW,ITW,Illinois Tool Works,Industrials,Industrial Machinery & Supplies & Components,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+INCY,INCY,Incyte,Health Care,Biotechnology,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+IR,IR,Ingersoll Rand,Industrials,Industrial Machinery & Supplies & Components,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+PODD,PODD,Insulet Corporation,Health Care,Health Care Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+INTC,INTC,Intel,Information Technology,Semiconductors,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+IBKR,IBKR,Interactive Brokers,Financials,Investment Banking & Brokerage,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ICE,ICE,Intercontinental Exchange,Financials,Financial Exchanges & Data,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+IFF,IFF,International Flavors & Fragrances,Materials,Specialty Chemicals,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+IP,IP,International Paper,Materials,Paper & Plastic Packaging Products & Materials,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+INTU,INTU,Intuit,Information Technology,Application Software,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ISRG,ISRG,Intuitive Surgical,Health Care,Health Care Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+IVZ,IVZ,Invesco,Financials,Asset Management & Custody Banks,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+INVH,INVH,Invitation Homes,Real Estate,Single-Family Residential REITs,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+IQV,IQV,IQVIA,Health Care,Life Sciences Tools & Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+IRM,IRM,Iron Mountain,Real Estate,Other Specialized REITs,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+JBHT,JBHT,J.B. Hunt,Industrials,Cargo Ground Transportation,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+JBL,JBL,Jabil,Information Technology,Electronic Manufacturing Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+JKHY,JKHY,Jack Henry & Associates,Financials,Transaction & Payment Processing Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+J,J,Jacobs Solutions,Industrials,Construction & Engineering,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+JNJ,JNJ,Johnson & Johnson,Health Care,Pharmaceuticals,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+JCI,JCI,Johnson Controls,Industrials,Building Products,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+JPM,JPM,JPMorgan Chase,Financials,Diversified Banks,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+KVUE,KVUE,Kenvue,Consumer Staples,Personal Care Products,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+KDP,KDP,Keurig Dr Pepper,Consumer Staples,Soft Drinks & Non-alcoholic Beverages,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+KEY,KEY,KeyCorp,Financials,Regional Banks,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+KEYS,KEYS,Keysight Technologies,Information Technology,Electronic Equipment & Instruments,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+KMB,KMB,Kimberly-Clark,Consumer Staples,Household Products,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+KIM,KIM,Kimco Realty,Real Estate,Retail REITs,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+KMI,KMI,Kinder Morgan,Energy,Oil & Gas Storage & Transportation,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+KKR,KKR,KKR & Co.,Financials,Asset Management & Custody Banks,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+KLAC,KLAC,KLA Corporation,Information Technology,Semiconductor Materials & Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+KHC,KHC,Kraft Heinz,Consumer Staples,Packaged Foods & Meats,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+KR,KR,Kroger,Consumer Staples,Food Retail,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+LHX,LHX,L3Harris,Industrials,Aerospace & Defense,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+LH,LH,Labcorp,Health Care,Health Care Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+LRCX,LRCX,Lam Research,Information Technology,Semiconductor Materials & Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+LVS,LVS,Las Vegas Sands,Consumer Discretionary,Casinos & Gaming,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+LDOS,LDOS,Leidos,Industrials,Diversified Support Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+LEN,LEN,Lennar,Consumer Discretionary,Homebuilding,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+LII,LII,Lennox International,Industrials,Building Products,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+LLY,LLY,Lilly (Eli),Health Care,Pharmaceuticals,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+LIN,LIN,Linde plc,Materials,Industrial Gases,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+LYV,LYV,Live Nation Entertainment,Communication Services,Movies & Entertainment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+LMT,LMT,Lockheed Martin,Industrials,Aerospace & Defense,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+L,L,Loews Corporation,Financials,Multi-line Insurance,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+LOW,LOW,Lowe's,Consumer Discretionary,Home Improvement Retail,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+LULU,LULU,Lululemon Athletica,Consumer Discretionary,"Apparel, Accessories & Luxury Goods",S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+LITE,LITE,Lumentum,Information Technology,Communications Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+LYB,LYB,LyondellBasell,Materials,Specialty Chemicals,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+MTB,MTB,M&T Bank,Financials,Regional Banks,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+MPC,MPC,Marathon Petroleum,Energy,Oil & Gas Refining & Marketing,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+MAR,MAR,Marriott International,Consumer Discretionary,"Hotels, Resorts & Cruise Lines",S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+MRSH,MRSH,Marsh McLennan,Financials,Insurance Brokers,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+MLM,MLM,Martin Marietta Materials,Materials,Construction Materials,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+MAS,MAS,Masco,Industrials,Building Products,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+MA,MA,Mastercard,Financials,Transaction & Payment Processing Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+MKC,MKC,McCormick & Company,Consumer Staples,Packaged Foods & Meats,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+MCD,MCD,McDonald's,Consumer Discretionary,Restaurants,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+MCK,MCK,McKesson Corporation,Health Care,Health Care Distributors,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+MDT,MDT,Medtronic,Health Care,Health Care Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+MRK,MRK,Merck & Co.,Health Care,Pharmaceuticals,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+META,META,Meta Platforms,Communication Services,Interactive Media & Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+MET,MET,MetLife,Financials,Life & Health Insurance,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+MTD,MTD,Mettler Toledo,Health Care,Life Sciences Tools & Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+MGM,MGM,MGM Resorts,Consumer Discretionary,Casinos & Gaming,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+MCHP,MCHP,Microchip Technology,Information Technology,Semiconductors,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+MU,MU,Micron Technology,Information Technology,Semiconductors,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+MSFT,MSFT,Microsoft,Information Technology,Systems Software,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+MAA,MAA,Mid-America Apartment Communities,Real Estate,Multi-Family Residential REITs,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+MRNA,MRNA,Moderna,Health Care,Biotechnology,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+TAP,TAP,Molson Coors Beverage Company,Consumer Staples,Brewers,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+MDLZ,MDLZ,Mondelez International,Consumer Staples,Packaged Foods & Meats,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+MPWR,MPWR,Monolithic Power Systems,Information Technology,Semiconductors,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+MNST,MNST,Monster Beverage,Consumer Staples,Soft Drinks & Non-alcoholic Beverages,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+MCO,MCO,Moody's Corporation,Financials,Financial Exchanges & Data,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+MS,MS,Morgan Stanley,Financials,Investment Banking & Brokerage,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+MOS,MOS,Mosaic Company (The),Materials,Fertilizers & Agricultural Chemicals,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+MSI,MSI,Motorola Solutions,Information Technology,Communications Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+MSCI,MSCI,MSCI Inc.,Financials,Financial Exchanges & Data,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+NDAQ,NDAQ,"Nasdaq, Inc.",Financials,Financial Exchanges & Data,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+NTAP,NTAP,NetApp,Information Technology,"Technology Hardware, Storage & Peripherals",S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+NFLX,NFLX,Netflix,Communication Services,Movies & Entertainment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+NEM,NEM,Newmont,Materials,Gold,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+NWSA,NWSA,News Corp (Class A),Communication Services,Publishing,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+NWS,NWS,News Corp (Class B),Communication Services,Publishing,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+NEE,NEE,NextEra Energy,Utilities,Multi-Utilities,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+NKE,NKE,"Nike, Inc.",Consumer Discretionary,"Apparel, Accessories & Luxury Goods",S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+NI,NI,NiSource,Utilities,Multi-Utilities,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+NDSN,NDSN,Nordson Corporation,Industrials,Industrial Machinery & Supplies & Components,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+NSC,NSC,Norfolk Southern,Industrials,Rail Transportation,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+NTRS,NTRS,Northern Trust,Financials,Asset Management & Custody Banks,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+NOC,NOC,Northrop Grumman,Industrials,Aerospace & Defense,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+NCLH,NCLH,Norwegian Cruise Line Holdings,Consumer Discretionary,"Hotels, Resorts & Cruise Lines",S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+NRG,NRG,NRG Energy,Utilities,Independent Power Producers & Energy Traders,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+NUE,NUE,Nucor,Materials,Steel,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+NVDA,NVDA,Nvidia,Information Technology,Semiconductors,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+NVR,NVR,"NVR, Inc.",Consumer Discretionary,Homebuilding,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+NXPI,NXPI,NXP Semiconductors,Information Technology,Semiconductors,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ORLY,ORLY,O’Reilly Automotive,Consumer Discretionary,Automotive Retail,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+OXY,OXY,Occidental Petroleum,Energy,Oil & Gas Exploration & Production,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ODFL,ODFL,Old Dominion,Industrials,Cargo Ground Transportation,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+OMC,OMC,Omnicom Group,Communication Services,Advertising,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ON,ON,ON Semiconductor,Information Technology,Semiconductors,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+OKE,OKE,Oneok,Energy,Oil & Gas Storage & Transportation,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ORCL,ORCL,Oracle Corporation,Information Technology,Application Software,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+OTIS,OTIS,Otis Worldwide,Industrials,Industrial Machinery & Supplies & Components,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+PCAR,PCAR,Paccar,Industrials,Construction Machinery & Heavy Transportation Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+PKG,PKG,Packaging Corporation of America,Materials,Paper & Plastic Packaging Products & Materials,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+PLTR,PLTR,Palantir Technologies,Information Technology,Application Software,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+PANW,PANW,Palo Alto Networks,Information Technology,Systems Software,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+PSKY,PSKY,Paramount Skydance Corporation,Communication Services,Movies & Entertainment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+PH,PH,Parker Hannifin,Industrials,Industrial Machinery & Supplies & Components,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+PAYX,PAYX,Paychex,Industrials,Human Resource & Employment Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+PYPL,PYPL,PayPal,Financials,Transaction & Payment Processing Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+PNR,PNR,Pentair,Industrials,Industrial Machinery & Supplies & Components,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+PEP,PEP,PepsiCo,Consumer Staples,Soft Drinks & Non-alcoholic Beverages,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+PFE,PFE,Pfizer,Health Care,Pharmaceuticals,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+PCG,PCG,PG&E Corporation,Utilities,Multi-Utilities,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+PM,PM,Philip Morris International,Consumer Staples,Tobacco,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+PSX,PSX,Phillips 66,Energy,Oil & Gas Refining & Marketing,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+PNW,PNW,Pinnacle West Capital,Utilities,Multi-Utilities,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+PNC,PNC,PNC Financial Services,Financials,Diversified Banks,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+POOL,POOL,Pool Corporation,Consumer Discretionary,Distributors,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+PPG,PPG,PPG Industries,Materials,Specialty Chemicals,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+PPL,PPL,PPL Corporation,Utilities,Electric Utilities,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+PFG,PFG,Principal Financial Group,Financials,Life & Health Insurance,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+PG,PG,Procter & Gamble,Consumer Staples,Personal Care Products,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+PGR,PGR,Progressive Corporation,Financials,Property & Casualty Insurance,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+PLD,PLD,Prologis,Real Estate,Industrial REITs,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+PRU,PRU,Prudential Financial,Financials,Life & Health Insurance,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+PEG,PEG,Public Service Enterprise Group,Utilities,Electric Utilities,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+PTC,PTC,PTC Inc.,Information Technology,Application Software,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+PSA,PSA,Public Storage,Real Estate,Self-Storage REITs,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+PHM,PHM,PulteGroup,Consumer Discretionary,Homebuilding,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+PWR,PWR,Quanta Services,Industrials,Construction & Engineering,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+QCOM,QCOM,Qualcomm,Information Technology,Semiconductors,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+DGX,DGX,Quest Diagnostics,Health Care,Health Care Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+Q,Q,Qnity Electronics,Information Technology,Semiconductor Materials & Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+RL,RL,Ralph Lauren Corporation,Consumer Discretionary,"Apparel, Accessories & Luxury Goods",S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+RJF,RJF,Raymond James Financial,Financials,Investment Banking & Brokerage,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+RTX,RTX,RTX Corporation,Industrials,Aerospace & Defense,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+O,O,Realty Income,Real Estate,Retail REITs,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+REG,REG,Regency Centers,Real Estate,Retail REITs,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+REGN,REGN,Regeneron Pharmaceuticals,Health Care,Biotechnology,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+RF,RF,Regions Financial Corporation,Financials,Regional Banks,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+RSG,RSG,Republic Services,Industrials,Environmental & Facilities Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+RMD,RMD,ResMed,Health Care,Health Care Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+RVTY,RVTY,Revvity,Health Care,Health Care Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+HOOD,HOOD,Robinhood Markets,Financials,Investment Banking & Brokerage,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ROK,ROK,Rockwell Automation,Industrials,Electrical Components & Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ROL,ROL,"Rollins, Inc.",Industrials,Environmental & Facilities Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ROP,ROP,Roper Technologies,Information Technology,Electronic Equipment & Instruments,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ROST,ROST,Ross Stores,Consumer Discretionary,Apparel Retail,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+RCL,RCL,Royal Caribbean Group,Consumer Discretionary,"Hotels, Resorts & Cruise Lines",S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+SPGI,SPGI,S&P Global,Financials,Financial Exchanges & Data,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+CRM,CRM,Salesforce,Information Technology,Application Software,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+SNDK,SNDK,Sandisk,Information Technology,"Technology Hardware, Storage & Peripherals",S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+SBAC,SBAC,SBA Communications,Real Estate,Telecom Tower REITs,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+SLB,SLB,Schlumberger,Energy,Oil & Gas Equipment & Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+STX,STX,Seagate Technology,Information Technology,"Technology Hardware, Storage & Peripherals",S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+SRE,SRE,Sempra,Utilities,Multi-Utilities,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+NOW,NOW,ServiceNow,Information Technology,Systems Software,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+SHW,SHW,Sherwin-Williams,Materials,Specialty Chemicals,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+SPG,SPG,Simon Property Group,Real Estate,Retail REITs,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+SWKS,SWKS,Skyworks Solutions,Information Technology,Semiconductors,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+SJM,SJM,J.M. Smucker Company (The),Consumer Staples,Packaged Foods & Meats,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+SW,SW,Smurfit Westrock,Materials,Paper & Plastic Packaging Products & Materials,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+SNA,SNA,Snap-on,Industrials,Industrial Machinery & Supplies & Components,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+SOLV,SOLV,Solventum,Health Care,Health Care Technology,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+SO,SO,Southern Company,Utilities,Electric Utilities,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+LUV,LUV,Southwest Airlines,Industrials,Passenger Airlines,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+SWK,SWK,Stanley Black & Decker,Industrials,Industrial Machinery & Supplies & Components,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+SBUX,SBUX,Starbucks,Consumer Discretionary,Restaurants,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+STT,STT,State Street Corporation,Financials,Asset Management & Custody Banks,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+STLD,STLD,Steel Dynamics,Materials,Steel,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+STE,STE,Steris,Health Care,Health Care Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+SYK,SYK,Stryker Corporation,Health Care,Health Care Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+SMCI,SMCI,Supermicro,Information Technology,"Technology Hardware, Storage & Peripherals",S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+SYF,SYF,Synchrony Financial,Financials,Consumer Finance,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+SNPS,SNPS,Synopsys,Information Technology,Application Software,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+SYY,SYY,Sysco,Consumer Staples,Food Distributors,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+TMUS,TMUS,T-Mobile US,Communication Services,Wireless Telecommunication Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+TROW,TROW,T. Rowe Price,Financials,Asset Management & Custody Banks,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+TTWO,TTWO,Take-Two Interactive,Communication Services,Interactive Home Entertainment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+TPR,TPR,"Tapestry, Inc.",Consumer Discretionary,"Apparel, Accessories & Luxury Goods",S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+TRGP,TRGP,Targa Resources,Energy,Oil & Gas Storage & Transportation,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+TGT,TGT,Target Corporation,Consumer Staples,Consumer Staples Merchandise Retail,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+TEL,TEL,TE Connectivity,Information Technology,Electronic Manufacturing Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+TDY,TDY,Teledyne Technologies,Information Technology,Electronic Equipment & Instruments,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+TER,TER,Teradyne,Information Technology,Semiconductor Materials & Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+TSLA,TSLA,"Tesla, Inc.",Consumer Discretionary,Automobile Manufacturers,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+TXN,TXN,Texas Instruments,Information Technology,Semiconductors,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+TPL,TPL,Texas Pacific Land Corporation,Energy,Oil & Gas Exploration & Production,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+TXT,TXT,Textron,Industrials,Aerospace & Defense,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+TMO,TMO,Thermo Fisher Scientific,Health Care,Life Sciences Tools & Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+TJX,TJX,TJX Companies,Consumer Discretionary,Apparel Retail,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+TKO,TKO,TKO Group Holdings,Communication Services,Movies & Entertainment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+TTD,TTD,Trade Desk (The),Communication Services,Advertising,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+TSCO,TSCO,Tractor Supply,Consumer Discretionary,Other Specialty Retail,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+TT,TT,Trane Technologies,Industrials,Building Products,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+TDG,TDG,TransDigm Group,Industrials,Aerospace & Defense,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+TRV,TRV,Travelers Companies (The),Financials,Property & Casualty Insurance,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+TRMB,TRMB,Trimble Inc.,Information Technology,Application Software,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+TFC,TFC,Truist Financial,Financials,Diversified Banks,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+TYL,TYL,Tyler Technologies,Information Technology,Application Software,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+TSN,TSN,Tyson Foods,Consumer Staples,Packaged Foods & Meats,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+USB,USB,U.S. Bancorp,Financials,Diversified Banks,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+UBER,UBER,Uber,Industrials,Passenger Ground Transportation,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+UDR,UDR,"UDR, Inc.",Real Estate,Multi-Family Residential REITs,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ULTA,ULTA,Ulta Beauty,Consumer Discretionary,Other Specialty Retail,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+UNP,UNP,Union Pacific Corporation,Industrials,Rail Transportation,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+UAL,UAL,United Airlines Holdings,Industrials,Passenger Airlines,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+UPS,UPS,United Parcel Service,Industrials,Air Freight & Logistics,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+URI,URI,United Rentals,Industrials,Trading Companies & Distributors,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+UNH,UNH,UnitedHealth Group,Health Care,Managed Health Care,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+UHS,UHS,Universal Health Services,Health Care,Health Care Facilities,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+VLO,VLO,Valero Energy,Energy,Oil & Gas Refining & Marketing,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+VEEV,VEEV,Veeva Systems,Health Care,Health Care Technology,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+VTR,VTR,Ventas,Real Estate,Health Care REITs,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+VLTO,VLTO,Veralto,Industrials,Environmental & Facilities Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+VRSN,VRSN,Verisign,Information Technology,Internet Services & Infrastructure,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+VRSK,VRSK,Verisk Analytics,Industrials,Research & Consulting Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+VZ,VZ,Verizon,Communication Services,Integrated Telecommunication Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+VRTX,VRTX,Vertex Pharmaceuticals,Health Care,Biotechnology,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+VRT,VRT,Vertiv,Industrials,Electrical Components & Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+VTRS,VTRS,Viatris,Health Care,Pharmaceuticals,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+VICI,VICI,Vici Properties,Real Estate,Hotel & Resort REITs,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+V,V,Visa Inc.,Financials,Transaction & Payment Processing Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+VST,VST,Vistra Corp.,Utilities,Electric Utilities,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+VMC,VMC,Vulcan Materials Company,Materials,Construction Materials,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+WRB,WRB,W. R. Berkley Corporation,Financials,Property & Casualty Insurance,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+GWW,GWW,W. W. Grainger,Industrials,Industrial Machinery & Supplies & Components,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+WAB,WAB,Wabtec,Industrials,Construction Machinery & Heavy Transportation Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+WMT,WMT,Walmart,Consumer Staples,Consumer Staples Merchandise Retail,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+DIS,DIS,Walt Disney Company (The),Communication Services,Movies & Entertainment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+WBD,WBD,Warner Bros. Discovery,Communication Services,Broadcasting,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+WM,WM,Waste Management,Industrials,Environmental & Facilities Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+WAT,WAT,Waters Corporation,Health Care,Life Sciences Tools & Services,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+WEC,WEC,WEC Energy Group,Utilities,Electric Utilities,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+WFC,WFC,Wells Fargo,Financials,Diversified Banks,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+WELL,WELL,Welltower,Real Estate,Health Care REITs,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+WST,WST,West Pharmaceutical Services,Health Care,Health Care Supplies,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+WDC,WDC,Western Digital,Information Technology,"Technology Hardware, Storage & Peripherals",S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+WY,WY,Weyerhaeuser,Real Estate,Timber REITs,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+WSM,WSM,"Williams-Sonoma, Inc.",Consumer Discretionary,Homefurnishing Retail,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+WMB,WMB,Williams Companies,Energy,Oil & Gas Storage & Transportation,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+WTW,WTW,Willis Towers Watson,Financials,Insurance Brokers,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+WDAY,WDAY,"Workday, Inc.",Information Technology,Application Software,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+WYNN,WYNN,Wynn Resorts,Consumer Discretionary,Casinos & Gaming,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+XEL,XEL,Xcel Energy,Utilities,Multi-Utilities,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+XYL,XYL,Xylem Inc.,Industrials,Industrial Machinery & Supplies & Components,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+YUM,YUM,Yum! Brands,Consumer Discretionary,Restaurants,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ZBRA,ZBRA,Zebra Technologies,Information Technology,Electronic Equipment & Instruments,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ZBH,ZBH,Zimmer Biomet,Health Care,Health Care Equipment,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY
+ZTS,ZTS,Zoetis,Health Care,Pharmaceuticals,S&P 500,https://en.wikipedia.org/wiki/List_of_S%26P_500_companies,2026-05-12,SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY

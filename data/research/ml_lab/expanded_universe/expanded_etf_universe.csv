@@ -1,0 +1,105 @@
+ticker,category,description,in_curated_mlx_universe,in_existing_project_universe,leveraged_inverse_excluded_by_default,research_only,production_valid
+ACWX,International equity,Global ex-US equity,True,False,False,True,False
+AGG,Bonds,US aggregate bonds,True,False,False,True,False
+ASHR,International equity,China A-shares equity,True,False,False,True,False
+BIL,Bonds,Treasury bills cash proxy,True,True,False,True,False
+BKLN,Credit,Senior loans,True,False,False,True,False
+BND,Bonds,Total US bond market,True,False,False,True,False
+CPER,Commodities,Copper,True,False,False,True,False
+CYB,Currency/dollar,Chinese yuan currency proxy,True,False,False,True,False
+DBA,Commodities,Agriculture commodities,True,True,False,True,False
+DBC,Commodities,Broad commodities alternate,True,False,False,True,False
+DIA,US broad equity,Dow Jones Industrial Average,True,False,False,True,False
+DVY,Factors/styles,US dividend equity alternate,True,False,False,True,False
+EDV,Bonds,Extended-duration Treasuries,True,False,False,True,False
+EEM,International equity,Emerging-market equity,True,True,False,True,False
+EFA,International equity,Developed ex-US equity,True,True,False,True,False
+EMB,Credit,USD emerging-market sovereign debt,True,False,False,True,False
+EWA,International equity,Australia equity,True,False,False,True,False
+EWC,International equity,Canada equity,True,False,False,True,False
+EWG,International equity,Germany equity,True,False,False,True,False
+EWJ,International equity,Japan equity,True,True,False,True,False
+EWT,International equity,Taiwan equity,True,False,False,True,False
+EWU,International equity,United Kingdom equity,True,False,False,True,False
+EWW,International equity,Mexico equity,True,False,False,True,False
+EWY,International equity,South Korea equity,True,False,False,True,False
+EWZ,International equity,Brazil equity,True,False,False,True,False
+FXE,Currency/dollar,Euro currency proxy,True,False,False,True,False
+FXF,Currency/dollar,Swiss franc currency proxy,True,False,False,True,False
+FXI,International equity,China large-cap equity,True,False,False,True,False
+FXY,Currency/dollar,Japanese yen currency proxy,True,False,False,True,False
+GLD,Commodities,Gold,True,True,False,True,False
+HYG,Credit,High-yield corporate credit,True,True,False,True,False
+IAU,Commodities,Gold alternate,True,True,False,True,False
+IBB,US sectors,Biotechnology industry proxy,True,False,False,True,False
+IEF,Bonds,7-10 year Treasuries,True,True,False,True,False
+IEFA,International equity,Core developed ex-US equity,True,False,False,True,False
+IEMG,International equity,Core emerging-market equity,True,False,False,True,False
+IJH,US broad equity,S&P mid-cap equity,True,False,False,True,False
+IJR,US broad equity,S&P small-cap equity,True,False,False,True,False
+INDA,International equity,India equity,True,False,False,True,False
+ITOT,US broad equity,Total US stock market alternate,True,False,False,True,False
+IVE,Factors/styles,S&P 500 value,True,False,False,True,False
+IVV,US broad equity,S&P 500 large-cap equity alternate,True,False,False,True,False
+IVW,Factors/styles,S&P 500 growth,True,False,False,True,False
+IWD,Factors/styles,Russell 1000 value,True,False,False,True,False
+IWF,Factors/styles,Russell 1000 growth,True,False,False,True,False
+IWM,US broad equity,Russell 2000 small-cap equity,True,True,False,True,False
+IYR,Real estate,US real estate,True,False,False,True,False
+JNK,Credit,High-yield corporate credit alternate,True,False,False,True,False
+KRE,US sectors,Regional banks industry proxy,True,False,False,True,False
+LQD,Credit,Investment-grade corporate credit,True,True,False,True,False
+MBB,Bonds,Agency mortgage-backed securities,True,True,False,True,False
+MDY,US broad equity,S&P mid-cap equity alternate,True,False,False,True,False
+MTUM,Factors/styles,US momentum factor,True,False,False,True,False
+MUB,Bonds,National municipal bonds,True,False,False,True,False
+PDBC,Commodities,Broad commodities,True,True,False,True,False
+QQQ,US broad equity,Nasdaq 100 growth and technology tilt,True,True,False,True,False
+QUAL,Factors/styles,US quality factor,True,False,False,True,False
+REET,Real estate,Global REITs,True,False,False,True,False
+RSP,Factors/styles,S&P 500 equal weight,True,False,False,True,False
+SCHB,US broad equity,Broad US equity,True,False,False,True,False
+SCHD,Factors/styles,US dividend equity,True,False,False,True,False
+SCHH,Real estate,US REITs alternate,True,False,False,True,False
+SHV,Bonds,Short Treasury bills,True,False,False,True,False
+SHY,Bonds,1-3 year Treasuries,True,True,False,True,False
+SJNK,Credit,Short-term high-yield credit,True,False,False,True,False
+SLV,Commodities,Silver,True,True,False,True,False
+SMH,US sectors,Semiconductor industry proxy,True,False,False,True,False
+SPLV,Factors/styles,S&P 500 low volatility,True,False,False,True,False
+SPY,US broad equity,S&P 500 large-cap equity,True,True,False,True,False
+STIP,Bonds,Short-term TIPS,True,False,False,True,False
+TIP,Bonds,Treasury inflation-protected securities,True,True,False,True,False
+TLT,Bonds,20+ year Treasuries,True,True,False,True,False
+UNG,Commodities,Natural gas,True,False,False,True,False
+USMV,Factors/styles,US minimum volatility factor,True,False,False,True,False
+USO,Commodities,Crude oil,True,True,False,True,False
+UUP,Currency/dollar,US dollar bullish index,True,True,False,True,False
+VCIT,Credit,Intermediate corporate credit,True,False,False,True,False
+VCSH,Credit,Short-term corporate credit,True,False,False,True,False
+VEA,International equity,Developed ex-US equity alternate,True,True,False,True,False
+VGIT,Bonds,Intermediate-term Treasury,True,False,False,True,False
+VGSH,Bonds,Short-term Treasury,True,False,False,True,False
+VIXY,Volatility proxies,Short-term VIX futures proxy,True,False,False,True,False
+VLUE,Factors/styles,US value factor,True,False,False,True,False
+VNQ,Real estate,US REITs,True,True,False,True,False
+VNQI,Real estate,Global ex-US real estate,True,False,False,True,False
+VOO,US broad equity,S&P 500 large-cap equity Vanguard,True,False,False,True,False
+VT,International equity,Global all-country equity,True,False,False,True,False
+VTI,US broad equity,Total US stock market,True,False,False,True,False
+VTV,Factors/styles,Large-cap value,True,True,False,True,False
+VUG,Factors/styles,Large-cap growth,True,True,False,True,False
+VWO,International equity,Emerging-market equity alternate,True,True,False,True,False
+VXX,Volatility proxies,Short-term VIX futures ETN proxy,True,False,False,True,False
+XBI,US sectors,Biotechnology equal-weight proxy,True,False,False,True,False
+XLB,US sectors,Materials sector,True,True,False,True,False
+XLC,US sectors,Communication services sector,True,False,False,True,False
+XLE,US sectors,Energy sector,True,True,False,True,False
+XLF,US sectors,Financials sector,True,True,False,True,False
+XLI,US sectors,Industrials sector,True,True,False,True,False
+XLK,US sectors,Technology sector,True,True,False,True,False
+XLP,US sectors,Consumer staples sector,True,True,False,True,False
+XLRE,US sectors,Real estate sector,True,False,False,True,False
+XLU,US sectors,Utilities sector,True,True,False,True,False
+XLV,US sectors,Health care sector,True,True,False,True,False
+XLY,US sectors,Consumer discretionary sector,True,True,False,True,False

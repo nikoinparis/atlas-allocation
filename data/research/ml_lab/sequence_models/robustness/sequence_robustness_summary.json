@@ -1,0 +1,183 @@
+{
+  "phase": "MLX-5B sequence overlay robustness",
+  "research_only": true,
+  "production_valid": false,
+  "overfitting_warning": true,
+  "selection_bias_warning": true,
+  "data_mining_warning": true,
+  "purpose": "experimental ML sandbox only",
+  "best_mlx5_strategy_tested": "lstm_classifier_top_quintile_forward_4w_seq26__top10__inverse_vol__bil_fallback",
+  "best_overlay_variant_by_sharpe": {
+    "annual_return": 0.11655065433061451,
+    "annual_volatility": 0.12084122760840912,
+    "sharpe": 0.9644941270234494,
+    "max_drawdown": -0.11341231663787943,
+    "calmar": 1.0276719300493231,
+    "cvar_5": -0.03627059595287649,
+    "average_turnover": 0.34174415822115034,
+    "annual_cost_drag": 0.01777069622749982,
+    "average_bil_weight": 0.25150602409638556,
+    "average_spy_weight": 0.0,
+    "average_offensive_weight": 0.7057961226141306,
+    "average_ml_exposure": 0.7484939759036144,
+    "average_number_of_etfs_held": 10.548192771084338,
+    "active_weeks": 332,
+    "overlay_variant": "bil_fallback_original",
+    "model_name": "lstm_classifier_top_quintile_forward_4w_seq26",
+    "target": "top_quintile_forward_4w",
+    "top_n": 10.0,
+    "weighting": "inverse_vol",
+    "window": "2020_onward"
+  },
+  "best_topn_weighting_by_sharpe": {
+    "annual_return": 0.11959670069886097,
+    "annual_volatility": 0.11487505103729105,
+    "sharpe": 1.0411024815130412,
+    "max_drawdown": -0.1193951481280181,
+    "calmar": 1.001688113579178,
+    "cvar_5": -0.034714926252329685,
+    "average_turnover": 0.28645128303066436,
+    "annual_cost_drag": 0.01489546671759455,
+    "average_bil_weight": 0.25150602409638556,
+    "average_spy_weight": 0.0,
+    "average_offensive_weight": 0.7067514345261007,
+    "average_ml_exposure": 0.7484939759036144,
+    "average_number_of_etfs_held": 15.533132530120483,
+    "active_weeks": 332,
+    "model_name": "lstm_classifier_top_quintile_forward_4w_seq26",
+    "target": "top_quintile_forward_4w",
+    "top_n": 15,
+    "weighting": "inverse_vol",
+    "overlay_variant": "bil_fallback_original",
+    "window": "2020_onward"
+  },
+  "cost_10bps_result": {
+    "annual_return": 0.11655065433061451,
+    "annual_volatility": 0.12084122760840912,
+    "sharpe": 0.9644941270234494,
+    "max_drawdown": -0.11341231663787943,
+    "calmar": 1.0276719300493231,
+    "cvar_5": -0.03627059595287649,
+    "average_turnover": 0.34174415822115034,
+    "annual_cost_drag": 0.01777069622749982,
+    "average_bil_weight": 0.25150602409638556,
+    "average_spy_weight": 0.0,
+    "average_offensive_weight": 0.7057961226141306,
+    "average_ml_exposure": 0.7484939759036144,
+    "average_number_of_etfs_held": 10.548192771084338,
+    "active_weeks": 332,
+    "cost_bps": 10.0,
+    "overlay_variant": "bil_fallback_original",
+    "model_name": "lstm_classifier_top_quintile_forward_4w_seq26",
+    "target": "top_quintile_forward_4w",
+    "top_n": 10.0,
+    "weighting": "inverse_vol",
+    "window": "2020_onward"
+  },
+  "beats_current_production_2020_sharpe": true,
+  "beats_official_shadow_2020_sharpe": true,
+  "beats_phase4b_2020_sharpe": false,
+  "beats_current_production_all_tested_windows": false,
+  "beats_official_shadow_all_tested_windows": false,
+  "beats_phase4b_all_tested_windows": false,
+  "sequence_2020_sharpe": 0.9644941270234458,
+  "production_2020_sharpe": 0.937601777810317,
+  "shadow_2020_sharpe": 0.9429240485193426,
+  "phase4b_2020_sharpe": 1.0704046489885417,
+  "sequence_2020_cvar_5": -0.03627059595287643,
+  "production_2020_cvar_5": -0.0272982669707991,
+  "top_holdings": [
+    {
+      "item": "BIL",
+      "average_weight": 0.25150602409638556,
+      "holding_frequency": 0.5783132530120482,
+      "max_weight": 0.75,
+      "category": "Bonds"
+    },
+    {
+      "item": "SMH",
+      "average_weight": 0.05934766628152073,
+      "holding_frequency": 0.7590361445783133,
+      "max_weight": 0.1539799881640015,
+      "category": "US sectors"
+    },
+    {
+      "item": "SLV",
+      "average_weight": 0.056875555318186534,
+      "holding_frequency": 0.7228915662650602,
+      "max_weight": 0.17575550156166775,
+      "category": "Commodities"
+    },
+    {
+      "item": "XBI",
+      "average_weight": 0.056394085715255636,
+      "holding_frequency": 0.713855421686747,
+      "max_weight": 0.17111735330678388,
+      "category": "US sectors"
+    },
+    {
+      "item": "KRE",
+      "average_weight": 0.05255138671049847,
+      "holding_frequency": 0.6897590361445783,
+      "max_weight": 0.16724364510960746,
+      "category": "US sectors"
+    },
+    {
+      "item": "USO",
+      "average_weight": 0.047945775769650166,
+      "holding_frequency": 0.7409638554216867,
+      "max_weight": 0.14769331117043544,
+      "category": "Commodities"
+    },
+    {
+      "item": "FXI",
+      "average_weight": 0.04632927896033869,
+      "holding_frequency": 0.5813253012048193,
+      "max_weight": 0.1468900179170277,
+      "category": "International equity"
+    },
+    {
+      "item": "XLE",
+      "average_weight": 0.046076210741706994,
+      "holding_frequency": 0.6204819277108434,
+      "max_weight": 0.15268133196786657,
+      "category": "US sectors"
+    },
+    {
+      "item": "EWZ",
+      "average_weight": 0.037575938506984985,
+      "holding_frequency": 0.5090361445783133,
+      "max_weight": 0.19031143479550516,
+      "category": "International equity"
+    },
+    {
+      "item": "UNG",
+      "average_weight": 0.035164844806095136,
+      "holding_frequency": 0.8795180722891566,
+      "max_weight": 0.10077767547181016,
+      "category": "Commodities"
+    }
+  ],
+  "average_QQQ_weight": 0.005633418866719582,
+  "average_SPY_weight": 0.0,
+  "average_tech_like_weight": 0.0817357566870879,
+  "average_BIL_weight": 0.25150602409638556,
+  "final_recommendation": "NEEDS MULTI-SEED / WALK-FORWARD BEFORE JUDGMENT",
+  "warnings": [
+    "Random-seed robustness was not retrained in MLX-5B; saved MLX-5 predictions appear to come from one training seed. MLX-5C should run multi-seed or walk-forward checks."
+  ],
+  "no_production_pins_changed": true,
+  "no_dashboard_changes": true,
+  "no_production_strategy_logic_changed": true,
+  "outputs": {
+    "window_sensitivity": "data/research/ml_lab/sequence_models/robustness/sequence_robustness_window_sensitivity.csv",
+    "overlay_sensitivity": "data/research/ml_lab/sequence_models/robustness/sequence_robustness_overlay_sensitivity.csv",
+    "topn_weighting_sensitivity": "data/research/ml_lab/sequence_models/robustness/sequence_robustness_topn_weighting_sensitivity.csv",
+    "cost_sensitivity": "data/research/ml_lab/sequence_models/robustness/sequence_robustness_cost_sensitivity.csv",
+    "state_by_state": "data/research/ml_lab/sequence_models/robustness/sequence_robustness_state_by_state.csv",
+    "holdings_exposure": "data/research/ml_lab/sequence_models/robustness/sequence_robustness_holdings_exposure.csv",
+    "strategy_comparison": "data/research/ml_lab/sequence_models/robustness/sequence_robustness_strategy_comparison.csv",
+    "summary_json": "data/research/ml_lab/sequence_models/robustness/sequence_robustness_summary.json",
+    "markdown_report": "docs/research/ml_lab/phase_mlx_5b_sequence_overlay_robustness_report.md"
+  }
+}

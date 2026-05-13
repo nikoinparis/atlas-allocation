@@ -1,0 +1,695 @@
+[
+  {
+    "fold_name": "fold_a_2017_2018",
+    "model_type": "lstm",
+    "sequence_length": 13,
+    "seed": 0,
+    "reason": "skipped non-primary 13-week seed/model expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_a_2017_2018",
+    "model_type": "lstm",
+    "sequence_length": 13,
+    "seed": 1,
+    "reason": "skipped non-primary 13-week seed/model expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_a_2017_2018",
+    "model_type": "lstm",
+    "sequence_length": 13,
+    "seed": 2,
+    "reason": "skipped non-primary 13-week seed/model expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_a_2017_2018",
+    "model_type": "lstm",
+    "sequence_length": 26,
+    "seed": 1,
+    "reason": "skipped by bounded MLX-5C grid"
+  },
+  {
+    "fold_name": "fold_a_2017_2018",
+    "model_type": "lstm",
+    "sequence_length": 26,
+    "seed": 2,
+    "reason": "skipped by bounded MLX-5C grid"
+  },
+  {
+    "fold_name": "fold_a_2017_2018",
+    "model_type": "lstm",
+    "sequence_length": 52,
+    "seed": 0,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_a_2017_2018",
+    "model_type": "lstm",
+    "sequence_length": 52,
+    "seed": 1,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_a_2017_2018",
+    "model_type": "lstm",
+    "sequence_length": 52,
+    "seed": 2,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_a_2017_2018",
+    "model_type": "gru",
+    "sequence_length": 13,
+    "seed": 0,
+    "reason": "skipped non-primary 13-week seed/model expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_a_2017_2018",
+    "model_type": "gru",
+    "sequence_length": 13,
+    "seed": 1,
+    "reason": "skipped non-LSTM seed expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_a_2017_2018",
+    "model_type": "gru",
+    "sequence_length": 13,
+    "seed": 2,
+    "reason": "skipped non-LSTM seed expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_a_2017_2018",
+    "model_type": "gru",
+    "sequence_length": 26,
+    "seed": 0,
+    "reason": "skipped by bounded MLX-5C grid"
+  },
+  {
+    "fold_name": "fold_a_2017_2018",
+    "model_type": "gru",
+    "sequence_length": 26,
+    "seed": 1,
+    "reason": "skipped non-LSTM seed expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_a_2017_2018",
+    "model_type": "gru",
+    "sequence_length": 26,
+    "seed": 2,
+    "reason": "skipped non-LSTM seed expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_a_2017_2018",
+    "model_type": "gru",
+    "sequence_length": 52,
+    "seed": 0,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_a_2017_2018",
+    "model_type": "gru",
+    "sequence_length": 52,
+    "seed": 1,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_a_2017_2018",
+    "model_type": "gru",
+    "sequence_length": 52,
+    "seed": 2,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_a_2017_2018",
+    "model_type": "tcn",
+    "sequence_length": 13,
+    "seed": 0,
+    "reason": "skipped non-primary 13-week seed/model expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_a_2017_2018",
+    "model_type": "tcn",
+    "sequence_length": 13,
+    "seed": 1,
+    "reason": "skipped non-LSTM seed expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_a_2017_2018",
+    "model_type": "tcn",
+    "sequence_length": 13,
+    "seed": 2,
+    "reason": "skipped non-LSTM seed expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_a_2017_2018",
+    "model_type": "tcn",
+    "sequence_length": 26,
+    "seed": 0,
+    "reason": "skipped by bounded MLX-5C grid"
+  },
+  {
+    "fold_name": "fold_a_2017_2018",
+    "model_type": "tcn",
+    "sequence_length": 26,
+    "seed": 1,
+    "reason": "skipped non-LSTM seed expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_a_2017_2018",
+    "model_type": "tcn",
+    "sequence_length": 26,
+    "seed": 2,
+    "reason": "skipped non-LSTM seed expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_a_2017_2018",
+    "model_type": "tcn",
+    "sequence_length": 52,
+    "seed": 0,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_a_2017_2018",
+    "model_type": "tcn",
+    "sequence_length": 52,
+    "seed": 1,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_a_2017_2018",
+    "model_type": "tcn",
+    "sequence_length": 52,
+    "seed": 2,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_b_2019_2020",
+    "model_type": "lstm",
+    "sequence_length": 13,
+    "seed": 0,
+    "reason": "skipped non-primary 13-week seed/model expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_b_2019_2020",
+    "model_type": "lstm",
+    "sequence_length": 13,
+    "seed": 1,
+    "reason": "skipped non-primary 13-week seed/model expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_b_2019_2020",
+    "model_type": "lstm",
+    "sequence_length": 13,
+    "seed": 2,
+    "reason": "skipped non-primary 13-week seed/model expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_b_2019_2020",
+    "model_type": "lstm",
+    "sequence_length": 26,
+    "seed": 1,
+    "reason": "skipped by bounded MLX-5C grid"
+  },
+  {
+    "fold_name": "fold_b_2019_2020",
+    "model_type": "lstm",
+    "sequence_length": 26,
+    "seed": 2,
+    "reason": "skipped by bounded MLX-5C grid"
+  },
+  {
+    "fold_name": "fold_b_2019_2020",
+    "model_type": "lstm",
+    "sequence_length": 52,
+    "seed": 0,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_b_2019_2020",
+    "model_type": "lstm",
+    "sequence_length": 52,
+    "seed": 1,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_b_2019_2020",
+    "model_type": "lstm",
+    "sequence_length": 52,
+    "seed": 2,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_b_2019_2020",
+    "model_type": "gru",
+    "sequence_length": 13,
+    "seed": 0,
+    "reason": "skipped non-primary 13-week seed/model expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_b_2019_2020",
+    "model_type": "gru",
+    "sequence_length": 13,
+    "seed": 1,
+    "reason": "skipped non-LSTM seed expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_b_2019_2020",
+    "model_type": "gru",
+    "sequence_length": 13,
+    "seed": 2,
+    "reason": "skipped non-LSTM seed expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_b_2019_2020",
+    "model_type": "gru",
+    "sequence_length": 26,
+    "seed": 0,
+    "reason": "skipped by bounded MLX-5C grid"
+  },
+  {
+    "fold_name": "fold_b_2019_2020",
+    "model_type": "gru",
+    "sequence_length": 26,
+    "seed": 1,
+    "reason": "skipped non-LSTM seed expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_b_2019_2020",
+    "model_type": "gru",
+    "sequence_length": 26,
+    "seed": 2,
+    "reason": "skipped non-LSTM seed expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_b_2019_2020",
+    "model_type": "gru",
+    "sequence_length": 52,
+    "seed": 0,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_b_2019_2020",
+    "model_type": "gru",
+    "sequence_length": 52,
+    "seed": 1,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_b_2019_2020",
+    "model_type": "gru",
+    "sequence_length": 52,
+    "seed": 2,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_b_2019_2020",
+    "model_type": "tcn",
+    "sequence_length": 13,
+    "seed": 0,
+    "reason": "skipped non-primary 13-week seed/model expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_b_2019_2020",
+    "model_type": "tcn",
+    "sequence_length": 13,
+    "seed": 1,
+    "reason": "skipped non-LSTM seed expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_b_2019_2020",
+    "model_type": "tcn",
+    "sequence_length": 13,
+    "seed": 2,
+    "reason": "skipped non-LSTM seed expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_b_2019_2020",
+    "model_type": "tcn",
+    "sequence_length": 26,
+    "seed": 0,
+    "reason": "skipped by bounded MLX-5C grid"
+  },
+  {
+    "fold_name": "fold_b_2019_2020",
+    "model_type": "tcn",
+    "sequence_length": 26,
+    "seed": 1,
+    "reason": "skipped non-LSTM seed expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_b_2019_2020",
+    "model_type": "tcn",
+    "sequence_length": 26,
+    "seed": 2,
+    "reason": "skipped non-LSTM seed expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_b_2019_2020",
+    "model_type": "tcn",
+    "sequence_length": 52,
+    "seed": 0,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_b_2019_2020",
+    "model_type": "tcn",
+    "sequence_length": 52,
+    "seed": 1,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_b_2019_2020",
+    "model_type": "tcn",
+    "sequence_length": 52,
+    "seed": 2,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_c_2021_2022",
+    "model_type": "lstm",
+    "sequence_length": 13,
+    "seed": 0,
+    "reason": "skipped non-primary 13-week seed/model expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_c_2021_2022",
+    "model_type": "lstm",
+    "sequence_length": 13,
+    "seed": 1,
+    "reason": "skipped non-primary 13-week seed/model expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_c_2021_2022",
+    "model_type": "lstm",
+    "sequence_length": 13,
+    "seed": 2,
+    "reason": "skipped non-primary 13-week seed/model expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_c_2021_2022",
+    "model_type": "lstm",
+    "sequence_length": 26,
+    "seed": 1,
+    "reason": "skipped by bounded MLX-5C grid"
+  },
+  {
+    "fold_name": "fold_c_2021_2022",
+    "model_type": "lstm",
+    "sequence_length": 26,
+    "seed": 2,
+    "reason": "skipped by bounded MLX-5C grid"
+  },
+  {
+    "fold_name": "fold_c_2021_2022",
+    "model_type": "lstm",
+    "sequence_length": 52,
+    "seed": 0,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_c_2021_2022",
+    "model_type": "lstm",
+    "sequence_length": 52,
+    "seed": 1,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_c_2021_2022",
+    "model_type": "lstm",
+    "sequence_length": 52,
+    "seed": 2,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_c_2021_2022",
+    "model_type": "gru",
+    "sequence_length": 13,
+    "seed": 0,
+    "reason": "skipped non-primary 13-week seed/model expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_c_2021_2022",
+    "model_type": "gru",
+    "sequence_length": 13,
+    "seed": 1,
+    "reason": "skipped non-LSTM seed expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_c_2021_2022",
+    "model_type": "gru",
+    "sequence_length": 13,
+    "seed": 2,
+    "reason": "skipped non-LSTM seed expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_c_2021_2022",
+    "model_type": "gru",
+    "sequence_length": 26,
+    "seed": 0,
+    "reason": "skipped by bounded MLX-5C grid"
+  },
+  {
+    "fold_name": "fold_c_2021_2022",
+    "model_type": "gru",
+    "sequence_length": 26,
+    "seed": 1,
+    "reason": "skipped non-LSTM seed expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_c_2021_2022",
+    "model_type": "gru",
+    "sequence_length": 26,
+    "seed": 2,
+    "reason": "skipped non-LSTM seed expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_c_2021_2022",
+    "model_type": "gru",
+    "sequence_length": 52,
+    "seed": 0,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_c_2021_2022",
+    "model_type": "gru",
+    "sequence_length": 52,
+    "seed": 1,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_c_2021_2022",
+    "model_type": "gru",
+    "sequence_length": 52,
+    "seed": 2,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_c_2021_2022",
+    "model_type": "tcn",
+    "sequence_length": 13,
+    "seed": 0,
+    "reason": "skipped non-primary 13-week seed/model expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_c_2021_2022",
+    "model_type": "tcn",
+    "sequence_length": 13,
+    "seed": 1,
+    "reason": "skipped non-LSTM seed expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_c_2021_2022",
+    "model_type": "tcn",
+    "sequence_length": 13,
+    "seed": 2,
+    "reason": "skipped non-LSTM seed expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_c_2021_2022",
+    "model_type": "tcn",
+    "sequence_length": 26,
+    "seed": 0,
+    "reason": "skipped by bounded MLX-5C grid"
+  },
+  {
+    "fold_name": "fold_c_2021_2022",
+    "model_type": "tcn",
+    "sequence_length": 26,
+    "seed": 1,
+    "reason": "skipped non-LSTM seed expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_c_2021_2022",
+    "model_type": "tcn",
+    "sequence_length": 26,
+    "seed": 2,
+    "reason": "skipped non-LSTM seed expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_c_2021_2022",
+    "model_type": "tcn",
+    "sequence_length": 52,
+    "seed": 0,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_c_2021_2022",
+    "model_type": "tcn",
+    "sequence_length": 52,
+    "seed": 1,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_c_2021_2022",
+    "model_type": "tcn",
+    "sequence_length": 52,
+    "seed": 2,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_d_2023_2026",
+    "model_type": "lstm",
+    "sequence_length": 13,
+    "seed": 1,
+    "reason": "skipped non-primary 13-week seed/model expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_d_2023_2026",
+    "model_type": "lstm",
+    "sequence_length": 13,
+    "seed": 2,
+    "reason": "skipped non-primary 13-week seed/model expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_d_2023_2026",
+    "model_type": "lstm",
+    "sequence_length": 52,
+    "seed": 0,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_d_2023_2026",
+    "model_type": "lstm",
+    "sequence_length": 52,
+    "seed": 1,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_d_2023_2026",
+    "model_type": "lstm",
+    "sequence_length": 52,
+    "seed": 2,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_d_2023_2026",
+    "model_type": "gru",
+    "sequence_length": 13,
+    "seed": 0,
+    "reason": "skipped non-primary 13-week seed/model expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_d_2023_2026",
+    "model_type": "gru",
+    "sequence_length": 13,
+    "seed": 1,
+    "reason": "skipped non-LSTM seed expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_d_2023_2026",
+    "model_type": "gru",
+    "sequence_length": 13,
+    "seed": 2,
+    "reason": "skipped non-LSTM seed expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_d_2023_2026",
+    "model_type": "gru",
+    "sequence_length": 26,
+    "seed": 1,
+    "reason": "skipped non-LSTM seed expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_d_2023_2026",
+    "model_type": "gru",
+    "sequence_length": 26,
+    "seed": 2,
+    "reason": "skipped non-LSTM seed expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_d_2023_2026",
+    "model_type": "gru",
+    "sequence_length": 52,
+    "seed": 0,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_d_2023_2026",
+    "model_type": "gru",
+    "sequence_length": 52,
+    "seed": 1,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_d_2023_2026",
+    "model_type": "gru",
+    "sequence_length": 52,
+    "seed": 2,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_d_2023_2026",
+    "model_type": "tcn",
+    "sequence_length": 13,
+    "seed": 0,
+    "reason": "skipped non-primary 13-week seed/model expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_d_2023_2026",
+    "model_type": "tcn",
+    "sequence_length": 13,
+    "seed": 1,
+    "reason": "skipped non-LSTM seed expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_d_2023_2026",
+    "model_type": "tcn",
+    "sequence_length": 13,
+    "seed": 2,
+    "reason": "skipped non-LSTM seed expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_d_2023_2026",
+    "model_type": "tcn",
+    "sequence_length": 26,
+    "seed": 1,
+    "reason": "skipped non-LSTM seed expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_d_2023_2026",
+    "model_type": "tcn",
+    "sequence_length": 26,
+    "seed": 2,
+    "reason": "skipped non-LSTM seed expansion for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_d_2023_2026",
+    "model_type": "tcn",
+    "sequence_length": 52,
+    "seed": 0,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_d_2023_2026",
+    "model_type": "tcn",
+    "sequence_length": 52,
+    "seed": 1,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  },
+  {
+    "fold_name": "fold_d_2023_2026",
+    "model_type": "tcn",
+    "sequence_length": 52,
+    "seed": 2,
+    "reason": "skipped 52-week sequence grid for bounded CPU runtime"
+  }
+]

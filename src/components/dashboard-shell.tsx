@@ -41,14 +41,15 @@ const sections = [
   { id: "performance", label: "Layer 3", icon: LineChartIcon },
   { id: "methods", label: "Allocators", icon: Table2 },
   { id: "improvement-lab", label: "Version Lab", icon: Layers3 },
-  { id: "current-state", label: "Current State", icon: WalletCards },
+  { id: "current-state", label: "Guardrails", icon: WalletCards },
   { id: "robustness", label: "Diagnostics", icon: ShieldCheck },
 ];
 
 const COMPACT_DASHBOARD_BUNDLE_PATH = "/production-candidate-dashboard-bundle.json";
-const PRODUCTION = "improved_phase2b_regime_confidence_boost";
+const PRODUCTION = "improved_frontier_phase5_fragility_guard";
+const PRIOR_PRODUCTION = "improved_phase2b_regime_confidence_boost";
 const SHADOW = "improved_phase2b_combo_abc";
-const CANDIDATE = "improved_phaseggg_confirmed_only_robust_offense";
+const CANDIDATE = "improved_frontier_phase5_fragility_guard";
 
 const methodTableColumns = [
   "method_name",
@@ -103,8 +104,8 @@ function metricValue(key: string, value: unknown) {
 }
 
 function seriesLabel(name: string) {
-  if (name === CANDIDATE) return "Production candidate: GGG1";
-  if (name === PRODUCTION) return "Current production / rollback";
+  if (name === PRODUCTION || name === CANDIDATE) return "Current production: Frontier Phase5 Fragility Guard";
+  if (name === PRIOR_PRODUCTION) return "Prior production / rollback";
   if (name === SHADOW) return "Official shadow";
   return titleCase(name.replace(/^benchmark::/, ""));
 }
@@ -411,7 +412,7 @@ function buildDefaultDashboardView(data: DashboardData | null): DefaultDashboard
     methods: [...new Set(methods.length ? methods : fallbackMethods)],
     benchmarks: Object.keys(data.benchmarkReturns).slice(0, 2),
     weightMethod: data.overview.defaultCandidate?.method_name ?? Object.keys(data.portfolioWeights)[0] ?? Object.keys(data.improvementLab.versionWeights)[0] ?? "",
-    baselineVersion: PRODUCTION in data.improvementLab.versionReturns ? PRODUCTION : String(data.overview.baselineVersion?.version_name ?? Object.keys(data.improvementLab.versionReturns)[0] ?? ""),
+    baselineVersion: String(data.overview.baselineVersion?.version_name ?? (PRIOR_PRODUCTION in data.improvementLab.versionReturns ? PRIOR_PRODUCTION : Object.keys(data.improvementLab.versionReturns)[0] ?? "")),
     comparisonVersion: CANDIDATE in data.improvementLab.versionReturns ? CANDIDATE : String(data.overview.improvedVersion?.version_name ?? Object.keys(data.improvementLab.versionReturns).slice(-1)[0] ?? ""),
   };
 }
@@ -612,15 +613,6 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
     { metric: "Avg Target Vol Multiplier", value: currentAllocationSummary?.avg_target_vol_multiplier },
     { metric: "Stressed Regime Frequency", value: currentAllocationSummary?.stressed_regime_frequency },
   ];
-  const marketStateFeatureRows = [
-    { metric: "Market State", value: latestMarketState?.market_state },
-    { metric: "Risk State", value: latestMarketState?.risk_state },
-    { metric: "State Reason", value: latestMarketState?.market_state_reason },
-    { metric: "Breadth Above 10m", value: latestMarketState?.breadth_sma_43 },
-    { metric: "Breadth 26w Momentum", value: latestMarketState?.breadth_26w_mom },
-    { metric: "Market Drawdown", value: latestMarketState?.market_drawdown },
-    { metric: "Google Fear Z", value: latestMarketState?.google_fear_z_tradable },
-  ];
   const versionUpsideRows = [...data.improvementLab.upsideCaptureVersionComparison].sort((a, b) => Number(b.production_score ?? 0) - Number(a.production_score ?? 0));
   const targetedWindowComparisonRows = data.improvementLab.targetedWindowSummary.filter((row) => [baselineVersion, comparisonVersion].includes(String(row.version_name ?? "")));
   const rallyComparisonRows = data.improvementLab.rallyWindowAttribution.filter((row) => [baselineVersion, comparisonVersion].includes(String(row.version_name ?? "")));
@@ -647,49 +639,47 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
   const comparisonSleeves = parseSerializedList(comparisonVersionRow?.subset_sleeves);
   const addedSleeves = comparisonSleeves.filter((name) => !baselineSleeves.includes(name));
   const removedSleeves = baselineSleeves.filter((name) => !comparisonSleeves.includes(name));
-  const bestSignalAddition = [...data.improvementLab.signalIncremental]
-    .filter((row) => row.test_type === "add_one")
-    .sort((a, b) => Number(b.delta_sharpe_vs_base ?? 0) - Number(a.delta_sharpe_vs_base ?? 0))[0];
-  const worstSignalAddition = [...data.improvementLab.signalIncremental]
-    .filter((row) => row.test_type === "add_one")
-    .sort((a, b) => Number(a.delta_sharpe_vs_base ?? 0) - Number(b.delta_sharpe_vs_base ?? 0))[0];
-  const topStrategies = [...data.strategySummary]
-    .sort((a, b) => Number((b.validation_score ?? b.sharpe ?? 0)) - Number((a.validation_score ?? a.sharpe ?? 0)))
-    .slice(0, 3);
   const visibleWeights = versionLatestWeights.length ? versionLatestWeights : latestWeights;
   const visibleSleeves = versionLatestSleeves.length ? versionLatestSleeves : latestSleeves;
   const topHoldingSummary = visibleWeights.slice(0, 4).map((item) => `${item.name} ${formatPercent(item.weight, 1)}`).join(", ");
-  const topSleeveSummary = visibleSleeves.slice(0, 4).map((item) => `${titleCase(item.name.replace(/^cash::/, ""))} ${formatPercent(item.weight, 1)}`).join(", ");
   const comparisonName = titleCase(String(comparisonVersionRow?.version_name ?? defaultCandidate?.method_name ?? ""));
   const baselineName = titleCase(String(baselineVersionRow?.version_name ?? ""));
   const layerSummaryCards = [
     {
-      title: "Layer 1 summary",
+      title: "Layer 1 - Signal Foundation",
       copy: signalRows.length
-        ? `${signalRows.slice(0, 3).map((row) => titleCase(row.signal_name)).join(", ")} lead validation quality. ${bestSignalAddition ? `${titleCase(String(bestSignalAddition.candidate_signal ?? ""))} is the cleanest add-on winner on Sharpe, while ${titleCase(String(worstSignalAddition?.candidate_signal ?? ""))} is the clearest drag.` : "Signal quality is led by the momentum complex."}`
+        ? `${signalRows.slice(0, 3).map((row) => titleCase(row.signal_name)).join(", ")} lead validation quality. Weak, redundant, or unstable discoveries stayed diagnostic-only instead of being promoted automatically.`
         : "Signal diagnostics will appear after the Layer 1 bundle is refreshed.",
     },
     {
-      title: "Layer 2 summary",
-      copy: topStrategies.length
-        ? `${topStrategies.map((row) => titleCase(row.strategy_name)).join(", ")} lead the strategy layer. The current ${titleCase(String(latestMarketState?.market_state ?? ""))} state keeps the sleeve mix tilted toward ${topSleeveSummary || "the stronger trend and regime sleeves"}.`
-        : "Layer 2 strategy comparisons will appear here once the saved bundle is available.",
+      title: "Layer 2 - Market State Quality",
+      copy: "Phase 1 built the R2A state-quality signal to judge whether a market state is trustworthy enough for offense. It helped in holdout, but the evidence said it needed a guardrail.",
     },
     {
-      title: "Layer 3 summary",
-      copy: `${comparisonName} is the current production candidate. It improves return by ${signedMetricValue("ann_return", deltaValue(comparisonVersionRow?.ann_return, baselineVersionRow?.ann_return))}, raises Sharpe by ${signedMetricValue("sharpe", deltaValue(comparisonVersionRow?.sharpe, baselineVersionRow?.sharpe))}, and lowers average BIL by ${metricValue("avg_bil_weight", Math.abs(Number(deltaValue(comparisonVersionRow?.avg_bil_weight, baselineVersionRow?.avg_bil_weight) ?? 0)))} versus ${baselineName}.`,
+      title: "Layer 3 - Portfolio Construction",
+      copy: "The checkpointed allocator lets each research idea be tested against exact GGG plumbing, the prior production pin, and the official shadow without changing production logic.",
     },
     {
-      title: "Diagnostics summary",
-      copy: robustRows.length
-        ? `${titleCase(robustRows[0]?.method_name)} still leads the broad robustness ranking, but the latest stacked-defense pass found the main good-state tax in overlay cash rather than target-vol caps. The version lab is still choosing the current candidate on production score plus tail discipline, not on raw return alone.`
-        : "Robustness and fragility diagnostics will appear here when the Layer 3 bundle is present.",
+      title: "Phase 5 - Winning Guardrail",
+      copy: "The final promoted strategy keeps the useful Phase 1 offense scaling, then blocks that boost when Phase 4 leadership diagnostics indicate crowded or late-cycle conditions.",
     },
   ];
+  const journeyValidationCards = [
+    { label: "Passed 8/8 Phase D Gates", value: "8/8", detail: "Final promotion review cleared every Phase D gate." },
+    { label: "Bootstrap Support", value: "84%", detail: "Phase 10A bootstrap support was about 0.841." },
+    { label: "Rolling Win Rate", value: "73%", detail: "Rolling validation favored the guardrail design." },
+    { label: "Stressed-Panic Defense", value: "Preserved", detail: "Offense max diff vs GGG was 0.000e+00." },
+  ];
+  const journeyMetricCards = [
+    { label: "Sharpe", value: "0.884 → 0.948", detail: "Prior production to Frontier Phase5." },
+    { label: "Max Drawdown", value: "-13.98% → -11.60%", detail: "Improved drawdown in final evaluation." },
+    { label: "Holdout Sharpe", value: "2.100 → 2.179", detail: "Holdout behavior improved versus prior production." },
+    { label: "Production Pin", value: "Frontier Phase5", detail: "improved_frontier_phase5_fragility_guard" },
+  ];
   const diagnosticsHighlights = [
-    `${titleCase(robustRows[0]?.method_name)} leads robustness at ${metricValue("robustness_score", robustRows[0]?.robustness_score)}.`,
-    `${comparisonName} posts a production score of ${metricValue("production_score", comparisonVersionRow?.production_score)} versus ${metricValue("production_score", baselineVersionRow?.production_score)} for ${baselineName}.`,
-    `Current posture is ${titleCase(String(currentAllocationSummary?.current_market_state ?? latestMarketState?.market_state ?? ""))} with ${formatPercent(Number(currentAllocationSummary?.current_offensive_weight ?? 0), 1)} offense and ${formatPercent(Number(currentAllocationSummary?.current_cash_proxy_weight ?? 0), 1)} cash proxy.`,
+    `${comparisonName} is the official production pin after Phase 10A final evaluation and human authorization.`,
+    `${comparisonName} posts Sharpe ${metricValue("sharpe", comparisonVersionRow?.sharpe)} versus ${metricValue("sharpe", baselineVersionRow?.sharpe)} for ${baselineName}.`,
+    `The promotion preserved stressed_panic defense: the final review measured 0.000e+00 max offense difference versus exact GGG in stressed_panic.`,
     `Top current ETF weights are ${topHoldingSummary || "not available yet"}.`,
   ];
   const whatChangedItems = [
@@ -734,16 +724,16 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
   ].filter((item): item is string => Boolean(item));
   const improvedItems = [
     `Annual return improved from ${metricValue("ann_return", baselineVersionRow?.ann_return)} to ${metricValue("ann_return", comparisonVersionRow?.ann_return)}, and Sharpe improved from ${metricValue("sharpe", baselineVersionRow?.sharpe)} to ${metricValue("sharpe", comparisonVersionRow?.sharpe)}.`,
-    `Recovery capture improved from ${metricValue("recovery_week_capture", baselineVersionRow?.recovery_week_capture)} to ${metricValue("recovery_week_capture", comparisonVersionRow?.recovery_week_capture)}, while calm-week capture improved from ${metricValue("calm_week_capture", baselineVersionRow?.calm_week_capture)} to ${metricValue("calm_week_capture", comparisonVersionRow?.calm_week_capture)}.`,
-    `Average BIL fell from ${metricValue("avg_bil_weight", baselineVersionRow?.avg_bil_weight)} to ${metricValue("avg_bil_weight", comparisonVersionRow?.avg_bil_weight)}, average cash fell from ${metricValue("avg_cash_weight", baselineVersionRow?.avg_cash_weight)} to ${metricValue("avg_cash_weight", comparisonVersionRow?.avg_cash_weight)}, and average SPY rose to ${metricValue("avg_spy_weight", comparisonVersionRow?.avg_spy_weight)}.`,
-    `Production score improved from ${metricValue("production_score", baselineVersionRow?.production_score)} to ${metricValue("production_score", comparisonVersionRow?.production_score)}, with effective N up to ${metricValue("avg_effective_n", comparisonVersionRow?.avg_effective_n)} and weekly turnover slightly lower.`,
+    `Holdout Sharpe improved from ${metricValue("sharpe", baselineVersionRow?.holdout_sharpe)} to ${metricValue("sharpe", comparisonVersionRow?.holdout_sharpe)}, and average BIL fell from ${metricValue("avg_bil_weight", baselineVersionRow?.avg_bil_weight)} to ${metricValue("avg_bil_weight", comparisonVersionRow?.avg_bil_weight)}.`,
+    `CVaR 5% improved from ${metricValue("cvar_5", baselineVersionRow?.cvar_5)} to ${metricValue("cvar_5", comparisonVersionRow?.cvar_5)}, and annual volatility improved from ${metricValue("ann_vol", baselineVersionRow?.ann_vol)} to ${metricValue("ann_vol", comparisonVersionRow?.ann_vol)}.`,
+    `Max drawdown improved from ${metricValue("max_drawdown", baselineVersionRow?.max_drawdown)} to ${metricValue("max_drawdown", comparisonVersionRow?.max_drawdown)}; the promotion cleared all 8 Phase D validation gates.`,
   ];
   const gotWorseItems = [
-    `Max drawdown deepened from ${metricValue("max_drawdown", baselineVersionRow?.max_drawdown)} to ${metricValue("max_drawdown", comparisonVersionRow?.max_drawdown)}.`,
-    `CVaR 5% worsened from ${metricValue("cvar_5", baselineVersionRow?.cvar_5)} to ${metricValue("cvar_5", comparisonVersionRow?.cvar_5)}, and annual volatility rose from ${metricValue("ann_vol", baselineVersionRow?.ann_vol)} to ${metricValue("ann_vol", comparisonVersionRow?.ann_vol)}.`,
-    `Downside capture rose from ${metricValue("downside_capture_negative_weeks", baselineVersionRow?.downside_capture_negative_weeks)} to ${metricValue("downside_capture_negative_weeks", comparisonVersionRow?.downside_capture_negative_weeks)}, so the faster re-risking still carries more stress sensitivity.`,
+    `Weekly turnover increased from ${metricValue("avg_weekly_turnover", baselineVersionRow?.avg_weekly_turnover)} to ${metricValue("avg_weekly_turnover", comparisonVersionRow?.avg_weekly_turnover)} — the wrapper's conditional scaling adds extra rebalancing steps.`,
+    `Average SPY exposure fell from ${metricValue("avg_spy_weight", baselineVersionRow?.avg_spy_weight)} to ${metricValue("avg_spy_weight", comparisonVersionRow?.avg_spy_weight)} — the fragility guardrail blocks market participation when leadership looks crowded.`,
+    `The guardrail is a judgment call: if Phase 4 crowding diagnostics fire at the wrong time, the strategy misses a rally it would have caught without the filter.`,
   ];
-  const overallInterpretation = `The current production candidate is still a participation-efficiency upgrade: momentum already exists in the stack, and the latest research says the remaining bottleneck is stacked defense, especially overlay cash in good states. ${comparisonName} is still being judged on whether it reduces unnecessary defensive drag, improves upside and calm-state participation, and lifts production score without turning into a blunt benchmark chase or paying for the gain with worse tails.`;
+  const overallInterpretation = `${comparisonName} is the official production pin after Phase 10A final evaluation and human authorization. The strategy combines Phase 1 R2A state-quality offense scaling with a Phase 4 fragility guardrail. Compared to the prior production pin, it improves full-period Sharpe, max drawdown, CVaR, and holdout Sharpe while preserving stressed_panic defense — with a slight increase in turnover and reduction in SPY exposure as the main trade-offs.`;
 
   return (
     <main className="dashboard-shell">
@@ -776,10 +766,10 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
                   <p className="mono text-xs uppercase tracking-[0.28em] text-[#b9853b]">Layered ETF Quant Research</p>
                   <h1 className="section-title mt-4 text-5xl font-bold leading-[0.96] text-[#f5f1e8] md:text-7xl">{data.overview.projectTitle}</h1>
                   <p className="mt-4 inline-flex rounded-full border border-white/10 bg-white/[0.045] px-3 py-1 text-xs text-[#c8c1ad]">
-                    Compact dashboard bundle loaded · {seriesLabel(comparisonVersion) || "Production candidate: GGG1"} · Last date {shortDate(String(data.latestDate ?? ""))} · {timeSeriesRowCount} time-series rows
+                    Compact dashboard bundle loaded · {seriesLabel(comparisonVersion) || "Production candidate: Frontier Phase5 Fragility Guard"} · Last date {shortDate(String(data.latestDate ?? ""))} · {timeSeriesRowCount} time-series rows
                   </p>
                   <p className="mt-5 max-w-3xl text-lg leading-8 text-[#d7d0bd]">
-                    The homepage now acts as a complete executive summary: diagnostics, robustness, benchmarks, current state, allocations, and the Layer 1 to Layer 3 workflow are all visible on initial load so the research story is inspectable without extra clicks. The current diagnosis is that momentum already exists, but some of it is still getting muted by stacked defense: sleeves self-gate, the overlay de-risks again, and BIL absorbs too much of that caution in long benign markets while target-vol mostly stays out of the way.
+                    The homepage now explains how the current production strategy was built. Frontier Phase5 Fragility Guard combines a state-quality offense signal with a leadership/crowding guardrail, improving risk-adjusted performance while keeping stressed-market defense intact.
                   </p>
                   <div className="mt-6 grid gap-3 md:grid-cols-2">
                     {layerSummaryCards.map((item) => (
@@ -791,19 +781,19 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
                   </div>
                 </div>
                 <div className="rounded-[2rem] border border-white/10 bg-[#0c1324]/60 p-5">
-                  <p className="mono text-xs uppercase tracking-[0.22em] text-[#b8b19f]">Production Candidate · Pending Human Review</p>
+                  <p className="mono text-xs uppercase tracking-[0.22em] text-[#b8b19f]">Current Production · Human Approved</p>
                   <h2 className="mt-3 text-3xl font-semibold text-[#f5f1e8]">{comparisonName}</h2>
                   <p className="mt-3 text-sm leading-6 text-[#c8c1ad]">
                     {String(comparisonVersionRow?.note ?? defaultCandidate?.description ?? "Chosen from the robustness framework when available.")}
                   </p>
                   <p className="mt-3 rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm leading-6 text-[#d7d0bd]">
-                    GGG1 is packaged for human deployment review. Current production remains {seriesLabel(PRODUCTION)} and rollback stays preserved until a separate approval flips the live pin.
+                    Frontier Phase5 Fragility Guard is now the official production pin. Prior production remains {seriesLabel(PRIOR_PRODUCTION)} for rollback reference.
                   </p>
                   <div className="mt-5 grid grid-cols-2 gap-3">
-                    <MetricCard label="Current Market State" value={titleCase(String(latestMarketState?.market_state ?? latestRegime?.risk_state ?? ""))} detail={String(currentAllocationSummary?.current_market_state_reason ?? latestMarketState?.market_state_reason ?? "")} tone={String(latestMarketState?.market_state ?? latestRegime?.risk_state ?? "") === "stressed_panic" ? "warn" : "good"} />
-                    <MetricCard label="Best by Sharpe" value={titleCase(data.overview.bestBySharpe?.method_name)} />
-                    <MetricCard label="Most Robust" value={titleCase(data.overview.bestByRobustness?.method_name)} tone="good" />
-                    <MetricCard label="Drawdown Control" value={titleCase(data.overview.bestDrawdown?.method_name)} />
+                    <MetricCard label="Phase D Gates" value="8/8" detail="Final promotion gates passed." tone="good" />
+                    <MetricCard label="Bootstrap Support" value="84%" detail="Phase 10A support was about 0.841." tone="good" />
+                    <MetricCard label="Rolling Win Rate" value="73%" detail="Rolling validation favored the guardrail." tone="good" />
+                    <MetricCard label="Stressed-Panic Defense" value="Preserved" detail="No offensive increase in stressed_panic." tone="good" />
                   </div>
                   <div className="mt-4 rounded-3xl border border-white/10 bg-white/[0.035] p-4">
                     <p className="mono text-[0.68rem] uppercase tracking-[0.18em] text-[#b8b19f]">Baseline vs Improved</p>
@@ -827,20 +817,31 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
             </div>
 
             <div className="mt-5 grid gap-5 xl:grid-cols-[1.15fr_0.85fr]">
-              <Panel title="Immediate visible summary" subtitle="These are the headline numbers and current posture external viewers should be able to read from the initial page load without interaction.">
-                <div className="metric-grid">
-                  <MetricCard label="Production Candidate" value={comparisonName} detail={`As of ${shortDate(String(currentAllocationSummary?.current_date ?? latestMarketState?.Date ?? data.latestDate ?? ""))}`} tone="good" />
-                  <MetricCard label="Ann. Return" value={metricValue("ann_return", comparisonVersionRow?.ann_return ?? defaultCandidate?.ann_return)} detail={isFiniteNumber(deltaValue(comparisonVersionRow?.ann_return, baselineVersionRow?.ann_return)) ? `vs baseline ${signedMetricValue("ann_return", deltaValue(comparisonVersionRow?.ann_return, baselineVersionRow?.ann_return))}` : undefined} />
-                  <MetricCard label="Ann. Vol" value={metricValue("ann_vol", comparisonVersionRow?.ann_vol ?? defaultCandidate?.ann_vol)} detail={isFiniteNumber(deltaValue(comparisonVersionRow?.ann_vol, baselineVersionRow?.ann_vol)) ? `vs baseline ${signedMetricValue("ann_vol", deltaValue(comparisonVersionRow?.ann_vol, baselineVersionRow?.ann_vol))}` : undefined} />
-                  <MetricCard label="Sharpe" value={metricValue("sharpe", comparisonVersionRow?.sharpe ?? defaultCandidate?.sharpe)} detail={isFiniteNumber(deltaValue(comparisonVersionRow?.sharpe, baselineVersionRow?.sharpe)) ? `vs baseline ${signedMetricValue("sharpe", deltaValue(comparisonVersionRow?.sharpe, baselineVersionRow?.sharpe))}` : undefined} tone="good" />
-                  <MetricCard label="Max Drawdown" value={metricValue("max_drawdown", comparisonVersionRow?.max_drawdown ?? defaultCandidate?.max_drawdown)} detail={isFiniteNumber(deltaValue(comparisonVersionRow?.max_drawdown, baselineVersionRow?.max_drawdown)) ? `vs baseline ${signedMetricValue("max_drawdown", deltaValue(comparisonVersionRow?.max_drawdown, baselineVersionRow?.max_drawdown))}` : undefined} />
-                  <MetricCard label="Calmar" value={metricValue("calmar", comparisonVersionRow?.calmar ?? defaultCandidate?.calmar)} detail={isFiniteNumber(deltaValue(comparisonVersionRow?.calmar, baselineVersionRow?.calmar)) ? `vs baseline ${signedMetricValue("calmar", deltaValue(comparisonVersionRow?.calmar, baselineVersionRow?.calmar))}` : undefined} tone="good" />
-                  <MetricCard label="CVaR 5%" value={metricValue("cvar_5", comparisonVersionRow?.cvar_5 ?? defaultCandidate?.cvar_5)} detail={isFiniteNumber(deltaValue(comparisonVersionRow?.cvar_5, baselineVersionRow?.cvar_5)) ? `vs baseline ${signedMetricValue("cvar_5", deltaValue(comparisonVersionRow?.cvar_5, baselineVersionRow?.cvar_5))}` : undefined} />
-                  <MetricCard label="Turnover" value={metricValue("avg_weekly_turnover", comparisonVersionRow?.avg_weekly_turnover ?? defaultCandidate?.avg_weekly_turnover)} detail={isFiniteNumber(deltaValue(comparisonVersionRow?.avg_weekly_turnover, baselineVersionRow?.avg_weekly_turnover)) ? `vs baseline ${signedMetricValue("avg_weekly_turnover", deltaValue(comparisonVersionRow?.avg_weekly_turnover, baselineVersionRow?.avg_weekly_turnover))}` : undefined} />
-                  <MetricCard label="Market State" value={titleCase(String(currentAllocationSummary?.current_market_state ?? latestMarketState?.market_state ?? ""))} detail={String(currentAllocationSummary?.current_market_state_reason ?? latestMarketState?.market_state_reason ?? "")} tone={String(currentAllocationSummary?.current_state_label ?? "") === "defensive" ? "warn" : "good"} />
-                  <MetricCard label="Off / Def / Cash" value={`${formatPercent(Number(currentAllocationSummary?.current_offensive_weight ?? 0), 1)} / ${formatPercent(Number(currentAllocationSummary?.current_defensive_weight ?? 0), 1)} / ${formatPercent(Number(currentAllocationSummary?.current_cash_proxy_weight ?? 0), 1)}`} />
-                  <MetricCard label="Current SPY" value={metricValue("ann_return", currentAllocationSummary?.current_spy_weight)} detail={`avg ${metricValue("avg_spy_weight", comparisonVersionRow?.avg_spy_weight)}`} />
-                  <MetricCard label="Current BIL" value={metricValue("ann_return", currentAllocationSummary?.current_bil_weight)} detail={`avg ${metricValue("avg_bil_weight", comparisonVersionRow?.avg_bil_weight)}`} />
+              <Panel title="Research Journey: How Phase 5 Became Production" subtitle="The compact bundle does not carry live market-state capture diagnostics, so this overview tells the promotion story directly.">
+                <div className="rounded-3xl border border-white/10 bg-white/[0.035] p-5">
+                  <p className="mono text-[0.68rem] uppercase tracking-[0.2em] text-[#b8b19f]">Production Strategy</p>
+                  <h3 className="mt-2 text-2xl font-semibold text-[#f5f1e8]">Frontier Phase5 Fragility Guard</h3>
+                  <p className="mt-3 text-sm leading-7 text-[#d7d0bd]">
+                    The winning design pairs Phase 1 R2A state-quality offense scaling with a Phase 4 leadership/crowding guardrail. Phase 4 did not work as a buy-more signal, but it became valuable as a risk-control check that blocks offense boosts when leadership looks crowded or late-cycle.
+                  </p>
+                </div>
+                <div className="mt-4 grid gap-3 md:grid-cols-2">
+                  {layerSummaryCards.map((item) => (
+                    <div key={item.title} className="rounded-3xl border border-white/10 bg-white/[0.035] p-4">
+                      <p className="font-semibold text-[#f5f1e8]">{item.title}</p>
+                      <p className="mt-2 text-sm leading-6 text-[#c8c1ad]">{item.copy}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-4 grid gap-3 md:grid-cols-4">
+                  {journeyValidationCards.map((item) => (
+                    <MetricCard key={item.label} label={item.label} value={item.value} detail={item.detail} tone="good" />
+                  ))}
+                </div>
+                <div className="mt-4 grid gap-3 md:grid-cols-4">
+                  {journeyMetricCards.map((item) => (
+                    <MetricCard key={item.label} label={item.label} value={item.value} detail={item.detail} tone="good" />
+                  ))}
                 </div>
               </Panel>
               <Panel title="Diagnostics / robustness highlights" subtitle="Visible context for whether the candidate is improving for the right reasons, not just because one chart happens to look nicer.">
@@ -886,7 +887,7 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
               <div className="metric-grid">
                 <MetricCard label="Return Delta" value={signedMetricValue("ann_return", deltaValue(comparisonVersionRow?.ann_return, baselineVersionRow?.ann_return))} tone="good" />
                 <MetricCard label="Sharpe Delta" value={signedMetricValue("sharpe", deltaValue(comparisonVersionRow?.sharpe, baselineVersionRow?.sharpe))} tone="good" />
-                <MetricCard label="Recovery Capture Delta" value={signedMetricValue("recovery_week_capture", deltaValue(comparisonVersionRow?.recovery_week_capture, baselineVersionRow?.recovery_week_capture))} tone="good" />
+                <MetricCard label="Holdout Sharpe Delta" value={signedMetricValue("sharpe", deltaValue(comparisonVersionRow?.holdout_sharpe, baselineVersionRow?.holdout_sharpe))} tone="good" />
                 <MetricCard label="Avg BIL Delta" value={signedMetricValue("avg_bil_weight", deltaValue(comparisonVersionRow?.avg_bil_weight, baselineVersionRow?.avg_bil_weight))} tone="good" />
                 <MetricCard label="Max Drawdown Delta" value={signedMetricValue("max_drawdown", deltaValue(comparisonVersionRow?.max_drawdown, baselineVersionRow?.max_drawdown))} tone="warn" />
                 <MetricCard label="CVaR 5% Delta" value={signedMetricValue("cvar_5", deltaValue(comparisonVersionRow?.cvar_5, baselineVersionRow?.cvar_5))} tone="warn" />
@@ -1118,8 +1119,8 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
                 <SimpleTable rows={data.improvementLab.versions} columns={["version_name", "method_name", "production_score", "ann_return", "ann_vol", "sharpe", "max_drawdown", "cvar_5", "avg_weekly_turnover", "avg_effective_n", "avg_bil_weight", "avg_cash_weight"]} maxRows={12} />
               </Panel>
               <div className="grid gap-5 xl:grid-cols-2">
-                <Panel title="Upside and downside capture" subtitle="This is the key check for the new pass: do we participate better in rallies without giving back too much of the downside discipline?">
-                  <SimpleTable rows={versionUpsideRows} columns={["version_name", "production_score", "upside_capture_positive_weeks", "recovery_week_capture", "calm_week_capture", "downside_capture_negative_weeks", "avg_cash_when_benchmark_positive"]} maxRows={10} />
+                <Panel title="Full-period vs holdout comparison" subtitle="Full-period and holdout Sharpe side by side — the compact bundle does not carry live capture metrics.">
+                  <SimpleTable rows={versionUpsideRows} columns={["version_name", "sharpe", "holdout_sharpe", "max_drawdown", "avg_bil_weight", "avg_spy_weight"]} maxRows={10} />
                 </Panel>
                 <Panel title="Re-risking lag after stress" subtitle="The best improved versions should move back into offense faster once stress subsides or positive trend conditions reassert themselves.">
                   <SimpleTable rows={reriskComparisonRows} columns={["version_name", "window_name", "weeks_to_offensive_50", "weeks_to_offensive_60", "weeks_to_cash_below_35", "weeks_to_cash_below_25", "avg_dynamic_speed"]} maxRows={12} />
@@ -1134,21 +1135,28 @@ export function DashboardShell({ initialData }: { initialData: DashboardData | n
             </div>
           </Section>
 
-          <Section id="current-state" eyebrow="Current State" title="Current allocation drivers">
+          <Section id="current-state" eyebrow="Production Logic" title="Strategy guardrails and allocation context">
             <div className="grid gap-5">
               <div className="metric-grid">
-                <MetricCard label="Market State" value={titleCase(String(currentAllocationSummary?.current_market_state ?? latestMarketState?.market_state ?? ""))} detail={titleCase(String(currentAllocationSummary?.current_market_state_reason ?? latestMarketState?.market_state_reason ?? ""))} tone={String(currentAllocationSummary?.current_state_label ?? "") === "defensive" ? "warn" : "good"} />
-                <MetricCard label="Offensive" value={metricValue("ann_return", currentAllocationSummary?.current_offensive_weight)} />
-                <MetricCard label="Defensive" value={metricValue("ann_return", currentAllocationSummary?.current_defensive_weight)} />
-                <MetricCard label="Cash Proxy" value={metricValue("ann_return", currentAllocationSummary?.current_cash_proxy_weight)} />
-                <MetricCard label="Avg Offensive" value={metricValue("ann_return", currentAllocationSummary?.avg_offensive_weight)} />
-                <MetricCard label="Avg Cash Proxy" value={metricValue("ann_return", currentAllocationSummary?.avg_cash_proxy_weight)} />
-                <MetricCard label="Current BIL" value={metricValue("ann_return", currentAllocationSummary?.current_bil_weight)} />
-                <MetricCard label="Current SPY" value={metricValue("ann_return", currentAllocationSummary?.current_spy_weight)} />
+                <MetricCard label="Offense Scaling" value="1 + 0.08 x R2A" detail="Phase 1 state-quality signal, clipped and one-week lagged." />
+                <MetricCard label="Active States" value="Outside Stress" detail="No offensive increase is allowed in stressed_panic." tone="good" />
+                <MetricCard label="Fragility Guard" value="Leadership > 0.50" detail="Blocks the Phase 1 boost when leadership looks crowded." tone="good" />
+                <MetricCard label="Rollback Reference" value="Phase2B" detail="Prior production remains preserved for comparison." />
+                <MetricCard label="Sharpe Lift" value="0.884 → 0.948" detail="Prior production to promoted production." tone="good" />
+                <MetricCard label="Drawdown" value="-13.98% → -11.60%" detail="Final evaluation improved max drawdown." tone="good" />
+                <MetricCard label="Holdout Sharpe" value="2.100 → 2.179" detail="Holdout validation improved." tone="good" />
+                <MetricCard label="Stress Offense Diff" value="0.000e+00" detail="Stressed-panic offense preserved versus GGG." tone="good" />
               </div>
               <div className="grid gap-5 xl:grid-cols-3">
-                <Panel title="Causal market-state explainer" subtitle="Uses only contemporaneously observable inputs: existing risk state, drawdown, breadth, and lagged fear/stress features.">
-                  <SimpleTable rows={marketStateFeatureRows as Array<Record<string, unknown>>} columns={["metric", "value"]} maxRows={12} />
+                <Panel title="Guardrail design" subtitle="Newcomer summary of why Phase 5 became production.">
+                  <NarrativeList
+                    items={[
+                      "Phase 1 R2A estimates whether the current state is high quality enough to modestly scale offense.",
+                      "Phase 4 leadership diagnostics were not promoted as alpha, but they were useful as a fragility and crowding guardrail.",
+                      "The final strategy allows small bounded offense only when quality is favorable and leadership is not already crowded.",
+                      "Stressed_panic behavior is intentionally unchanged, preserving the defensive behavior that made GGG valuable.",
+                    ]}
+                  />
                 </Panel>
                 <Panel title="Allocation mix through time" subtitle="Offensive, defensive, and cash-proxy weights for the selected production candidate.">
                   {allocationMixChart.length ? <ResponsiveContainer width="100%" height={340}>

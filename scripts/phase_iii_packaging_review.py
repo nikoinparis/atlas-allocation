@@ -484,6 +484,14 @@ def write_report(summary: pd.DataFrame, checklist: pd.DataFrame, status: dict[st
 
 
 def main() -> None:
+    if REGISTRY_JSON.exists():
+        existing_registry = json.loads(REGISTRY_JSON.read_text())
+        if existing_registry.get("production_candidate") != CANDIDATE:
+            from build_production_candidate_dashboard_bundle import main as build_current_candidate_bundle
+
+            build_current_candidate_bundle()
+            return
+
     summary = metric_rows()
     state = state_rows()
     exposure = exposure_rows(summary)

@@ -18,19 +18,6 @@ function str(row: Row | null | undefined, key: string): string {
   return v == null ? "" : String(v);
 }
 
-function delta(current: number | null, baseline: number | null) {
-  if (current == null || baseline == null) return null;
-  return current - baseline;
-}
-
-function signedValue(value: number | null, kind: "percent" | "number" = "number", digits = 2) {
-  if (value == null || !Number.isFinite(value)) return "n/a";
-  const formatted = kind === "percent" ? formatPercent(Math.abs(value), digits) : formatNumber(Math.abs(value), digits);
-  if (value > 0) return `+${formatted}`;
-  if (value < 0) return `-${formatted}`;
-  return formatted;
-}
-
 function Stat({ label, value, detail }: { label: string; value: string; detail?: string }) {
   return (
     <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
@@ -55,13 +42,10 @@ export function ExecutiveSummary({ data }: { data: DashboardData | null }) {
   const overview = data.overview ?? ({} as DashboardData["overview"]);
   const improved = (overview.improvedVersion ?? null) as Row | null;
   const baseline = (overview.baselineVersion ?? null) as Row | null;
-  const alloc = (overview.currentAllocationSummary ?? null) as Row | null;
-  const marketState = (overview.latestMarketState ?? null) as Row | null;
 
-  const productionName = str(improved, "version_name") || "improved_phase2b_regime_confidence_boost";
+  const productionName = str(improved, "version_name") || "improved_frontier_phase5_fragility_guard";
   const researchRow = (overview.researchVersion ?? null) as Row | null;
   const researchName = str(researchRow, "version_name");
-  const trackPolicy = overview.trackPolicy ?? null;
   const annRet = num(improved, "ann_return");
   const annVol = num(improved, "ann_vol");
   const sharpe = num(improved, "sharpe");
@@ -70,91 +54,69 @@ export function ExecutiveSummary({ data }: { data: DashboardData | null }) {
   const cvar5 = num(improved, "cvar_5");
   const turnover = num(improved, "avg_weekly_turnover");
   const annualTurnover = num(improved, "annual_turnover");
-  const upsideCapture = num(improved, "upside_capture_positive_weeks");
-  const downsideCapture = num(improved, "downside_capture_negative_weeks");
-  const calmCapture = num(improved, "calm_week_capture");
-  const stressDownside = num(improved, "stress_downside_capture");
-  const recoveryCapture = num(improved, "recovery_week_capture");
-  const recoveryFragile = num(improved, "recovery_fragile_capture");
-  const recoveryConfirmed = num(improved, "recovery_confirmed_capture");
   const productionScore = num(improved, "production_score");
-
-  const currentMarketState = str(alloc, "current_market_state") || str(marketState, "market_state");
-  const currentStateReason = str(alloc, "current_market_state_reason") || str(marketState, "market_state_reason");
-  const offWeight = num(alloc, "current_offensive_weight");
-  const defWeight = num(alloc, "current_defensive_weight");
-  const cashProxy = num(alloc, "current_cash_proxy_weight");
-  const bilWeight = num(alloc, "current_bil_weight");
-  const spyWeight = num(alloc, "current_spy_weight");
 
   const baseSharpe = num(baseline, "sharpe");
   const baseReturn = num(baseline, "ann_return");
   const baseDD = num(baseline, "max_drawdown");
 
-  const benchmarkSummary = Array.isArray(overview.benchmarkSummary) ? overview.benchmarkSummary : [];
-  const findBench = (needles: string[]) =>
-    benchmarkSummary.find((row) => {
-      const n = String(row.strategy_name || "").toLowerCase();
-      return needles.some((needle) => n.includes(needle));
-    }) ?? null;
-  // SPY exposure benchmark ≈ the market-proxy buy-and-hold; BIL-like stable is approximated by
-  // the 60/40 proxy, which is the closest all-cash/safer mix available in the benchmark summary.
-  const spyRow = findBench(["market_proxy", "buy_hold_spy", "spy"]);
-  const bilRow = findBench(["60_40", "buy_hold_bil", "bil", "equal_weight_risk"]);
-  const spySharpe = num(spyRow as Row, "sharpe");
-  const spyReturn = num(spyRow as Row, "ann_return");
-  const spyDD = num(spyRow as Row, "max_drawdown");
-  const bilSharpe = num(bilRow as Row, "sharpe");
-  const bilReturn = num(bilRow as Row, "ann_return");
-  const spyLabel = spyRow ? titleCase(String(spyRow.strategy_name ?? "SPY")) : "SPY Buy-and-Hold";
-  const bilLabel = bilRow ? titleCase(String(bilRow.strategy_name ?? "BIL")) : "BIL Cash Benchmark";
-
-  const latestDate = data.latestDate || str(marketState, "Date") || "n/a";
+  const latestDate = data.latestDate || "n/a";
   const generatedAt = data.generatedAt || "n/a";
   const versionRows = Array.isArray(data.improvementLab?.versions) ? data.improvementLab.versions : [];
   const findVersion = (name: string) =>
     (versionRows.find((row) => String(row.version_name ?? "") === name) as Row | null | undefined) ?? null;
 
-  // Phase 2B dual-track context. Production = A; research runner-up = F. Control = Phase 1 winner.
-  const phase1Control = findVersion("improved_hrp_phase1_dynamic_risk_budget");
+  // Current production, prior production/rollback, and official shadow context.
   const phase2bConfBoost = findVersion("improved_phase2b_regime_confidence_boost");
   const phase2bComboAbc = findVersion("improved_phase2b_combo_abc");
-  const phase2bTransGate = findVersion("improved_phase2b_transition_quality_gate");
-  const phase2bTailSuppress = findVersion("improved_phase2b_tail_risk_suppression");
-  const phase2bComboAc = findVersion("improved_phase2b_combo_ac");
-
-  const controlScore = num(phase1Control, "production_score");
-  const prodScore = num(phase2bConfBoost, "production_score") ?? num(improved, "production_score");
   const prodSharpe = num(phase2bConfBoost, "sharpe") ?? sharpe;
-  const prodCalmar = num(phase2bConfBoost, "calmar") ?? calmar;
   const prodDD = num(phase2bConfBoost, "max_drawdown") ?? mdd;
   const prodCVaR = num(phase2bConfBoost, "cvar_5") ?? cvar5;
-  const prodScoreDelta = delta(prodScore, controlScore);
-  const prodSharpeDelta = delta(prodSharpe, num(phase1Control, "sharpe"));
 
-  const shadowScore = num(phase2bComboAbc, "production_score");
-  const shadowSharpe = num(phase2bComboAbc, "sharpe");
-  const shadowCalmar = num(phase2bComboAbc, "calmar");
-  const shadowDD = num(phase2bComboAbc, "max_drawdown");
-  const shadowScoreDelta = delta(shadowScore, controlScore);
-  const shadowCalmarDelta = delta(shadowCalmar, num(phase1Control, "calmar"));
-  const shadowDDDelta = delta(shadowDD, num(phase1Control, "max_drawdown"));
-
-  const productionLabel = titleCase(productionName);
   const researchLabel = researchName ? titleCase(researchName) : titleCase("improved_phase2b_combo_abc");
+  const candidateLabel = titleCase(String(improved?.version_name ?? "improved_frontier_phase5_fragility_guard"));
 
   const researchRead = [
-    `GGG1 is packaged as the production candidate pending human review. The live production pin remains ${titleCase("improved_phase2b_regime_confidence_boost")} and is preserved as rollback until a separate human-approved change flips the production registry.`,
+    `${candidateLabel} is now the official production pin after Phase 10A final evaluation and human authorization.`,
     phase2bConfBoost
-      ? `Current production / rollback posts Sharpe ${formatNumber(prodSharpe, 3)}, max drawdown ${formatPercent(prodDD, 2)}, and CVaR ${formatPercent(prodCVaR, 2)}. GGG1 improves the headline risk-adjusted profile while keeping lower SPY exposure and staying just under the 1.10x turnover cap.`
+      ? `Prior production / rollback posts Sharpe ${formatNumber(prodSharpe, 3)}, max drawdown ${formatPercent(prodDD, 2)}, and CVaR ${formatPercent(prodCVaR, 2)}. ${candidateLabel} improves the headline risk-adjusted profile while preserving stressed_panic offense behavior.`
       : null,
     phase2bComboAbc
-      ? `${researchLabel} remains the official shadow. It is included in the compact bundle so the deployment reviewer can compare GGG1 against both the live rollback pin and the shadow track.`
+      ? `${researchLabel} remains the official shadow. It is included in the compact bundle so reviewers can compare ${candidateLabel} against both the rollback pin and the shadow track.`
       : null,
-    `Seven phases of systematic improvement (Phases 2–7) moved the full-period return from GGG1 7.14% to 7.88% (+0.74pp). Best aggressive shadow: improved_phase7_stretch_target (7.88%, Sharpe 0.926). Best risk-adjusted shadow: improved_phase4b_refined_sector_20pct (7.76%, Sharpe 0.959). The existing-data improvement arc is now complete.`,
-    `Remaining bottleneck is calm_trend (26.6% of weeks). No existing feature can distinguish high-return from ordinary calm weeks without PIT stock breadth data. Next step is PIT data (Norgate/WRDS) when budget allows. Aggressive shadows are tracked separately from production governance and are not auto-promoted.`,
-    `Known caveats (GGG1 vs production): the old +0.30pp annual-return committee gate was not fully met, bootstrap intervals overlap, worst single week is worse than production, and turnover is close to the 1.10x limit. Phase 5A-Free stock breadth diagnostic is SURVIVORSHIP_BIASED_DIAGNOSTIC_ONLY and is not used in any production or shadow candidate.`,
+    `The former production pin, ${titleCase("improved_phase2b_regime_confidence_boost")}, is preserved as rollback. GGG1 remains a historical prior production-candidate reference.`,
+    `Known caveat: the sleeve-weight artifact is a review proxy for a wrapper modifier; returns and ETF weights are the production source of truth.`,
   ].filter((item): item is string => Boolean(item));
+  const researchPathCards = [
+    {
+      title: "Layer 1 — Signal Foundation",
+      copy: "Built and validated ETF momentum, trend, breadth, dollar-strength, and regime-aware signals. Weak, redundant, or unstable signals stayed diagnostic-only instead of being pushed into production.",
+    },
+    {
+      title: "Layer 2 — Market State Quality",
+      copy: "Phase 1 created the R2A state-quality score to ask whether a market state is trustworthy enough for offense. It improved holdout behavior, but was not promoted as a standalone strategy.",
+    },
+    {
+      title: "Layer 3 — Portfolio Construction",
+      copy: "The allocator now uses checkpointed research plumbing, so new ideas can be tested against GGG, the prior production pin, and the official shadow without rewriting production logic.",
+    },
+    {
+      title: "Phase 5 — Winning Guardrail",
+      copy: "The promoted design keeps Phase 1 offense scaling, then blocks that boost when Phase 4 leadership diagnostics say the market is crowded, mature, or fragile.",
+    },
+  ];
+  const validationCards = [
+    { label: "Passed Phase D Gates", value: "8/8", detail: "Promotion review cleared every final validation gate." },
+    { label: "Bootstrap Support", value: "84%", detail: "Final Phase 10A bootstrap support was about 0.841." },
+    { label: "Rolling Win Rate", value: "73%", detail: "Rolling validation favored the frontier guardrail design." },
+    { label: "Stressed-Panic Defense", value: "Preserved", detail: "Stressed-panic offense max diff vs GGG was 0.000e+00." },
+  ];
+  const beforeAfterCards = [
+    { label: "Sharpe", value: "0.884 → 0.948", detail: "Prior production to Frontier Phase5." },
+    { label: "Max Drawdown", value: "-13.98% → -11.60%", detail: "Improved drawdown without adding stressed-panic offense." },
+    { label: "Holdout Sharpe", value: "2.100 → 2.179", detail: "Holdout behavior improved in final evaluation." },
+    { label: "Production Pin", value: "Frontier Phase5", detail: "improved_frontier_phase5_fragility_guard" },
+  ];
 
   return (
     <section
@@ -164,11 +126,12 @@ export function ExecutiveSummary({ data }: { data: DashboardData | null }) {
     >
       <p className="mono text-xs uppercase tracking-[0.28em] text-[#b9853b]">Executive Summary</p>
       <h1 className="mt-2 text-3xl font-semibold text-[#f5f1e8] md:text-4xl">
-        Layered ETF quant portfolio — production candidate snapshot
+        Layered ETF quant portfolio — production strategy snapshot
       </h1>
       <p className="mt-3 max-w-3xl text-sm leading-relaxed text-[#c8c1ad]">
-        This page is rendered server-side so the key metrics are visible on first paint without
-        JavaScript, tabs, or accordions. The interactive dashboard loads below.
+        The current production strategy is Frontier Phase5 Fragility Guard. It was selected after
+        a multi-phase research process that combined signal discovery, exact allocator plumbing,
+        statistical governance, and final promotion review.
       </p>
 
       <div className="mt-6 grid gap-4 rounded-3xl border border-white/10 bg-white/[0.03] p-5 md:grid-cols-2">
@@ -176,10 +139,10 @@ export function ExecutiveSummary({ data }: { data: DashboardData | null }) {
           <p className="mono text-[0.65rem] uppercase tracking-[0.2em] text-[#b8b19f]">Production Candidate</p>
           <p className="mt-2 text-lg font-semibold text-[#f5f1e8]">{titleCase(productionName)}</p>
           <p className="mt-1 text-xs text-[#c8c1ad]">
-            Allocator: {titleCase(str(improved, "method_name") || "hrp")} · Subset: {titleCase(str(improved, "subset_name") || "n/a")}
+            Design: HRP wrapper · Phase 1 R2A offense scaling + Phase 4 fragility guardrail
           </p>
           <p className="mt-1 text-xs text-[#c8c1ad]">
-            Overlay: {titleCase(str(improved, "overlay_variant") || "n/a")} · State tilt: {titleCase(str(improved, "state_tilt") || "n/a")}
+            Stressed-panic defense preserved · Phase 4 crowding check gates the offense boost
           </p>
         </div>
         <div>
@@ -206,47 +169,34 @@ export function ExecutiveSummary({ data }: { data: DashboardData | null }) {
         <Stat label="Production Score" value={formatNumber(productionScore, 2)} />
       </div>
 
-      <div className="mt-6 grid gap-4 rounded-3xl border border-white/10 bg-white/[0.03] p-5 md:grid-cols-2">
-        <div>
-          <p className="mono text-[0.65rem] uppercase tracking-[0.2em] text-[#b8b19f]">Current Market State</p>
-          <p className="mt-2 text-lg font-semibold text-[#f5f1e8]">{titleCase(currentMarketState || "n/a")}</p>
-          {currentStateReason ? (
-            <p className="mt-1 text-xs leading-relaxed text-[#c8c1ad]">{currentStateReason}</p>
-          ) : null}
-        </div>
-        <div>
-          <p className="mono text-[0.65rem] uppercase tracking-[0.2em] text-[#b8b19f]">Current Posture</p>
-          <p className="mt-2 text-sm text-[#f5f1e8]">
-            Offense {formatPercent(offWeight, 1)} · Defense {formatPercent(defWeight, 1)} · Cash proxy {formatPercent(cashProxy, 1)}
-          </p>
-          <p className="mt-1 text-xs text-[#c8c1ad]">
-            BIL {formatPercent(bilWeight, 1)} · SPY {formatPercent(spyWeight, 1)}
-          </p>
+      <div className="mt-6 rounded-3xl border border-white/10 bg-white/[0.03] p-5">
+        <p className="mono text-[0.65rem] uppercase tracking-[0.2em] text-[#b8b19f]">Research Journey</p>
+        <h2 className="mt-2 text-2xl font-semibold text-[#f5f1e8]">Production Strategy: Frontier Phase5 Fragility Guard</h2>
+        <p className="mt-3 max-w-4xl text-sm leading-7 text-[#d7d0bd]">
+          The current production strategy was selected after a seven-phase frontier research process.
+          The winning design combines a state-quality offense signal with a leadership/crowding
+          guardrail, improving Sharpe and drawdown while preserving stressed-market defense.
+        </p>
+        <div className="mt-5 grid gap-3 md:grid-cols-2">
+          {researchPathCards.map((card) => (
+            <div key={card.title} className="rounded-2xl border border-white/10 bg-black/20 p-4">
+              <p className="font-semibold text-[#f5f1e8]">{card.title}</p>
+              <p className="mt-2 text-sm leading-6 text-[#c8c1ad]">{card.copy}</p>
+            </div>
+          ))}
         </div>
       </div>
 
-      <div className="mt-4 grid gap-3 md:grid-cols-3">
-        <Stat label="Upside Capture (up weeks)" value={formatPercent(upsideCapture, 1)} />
-        <Stat label="Downside Capture (down weeks)" value={formatPercent(downsideCapture, 1)} />
-        <Stat label="Calm-State Capture" value={formatPercent(calmCapture, 1)} />
-        <Stat label="Recovery Capture (all)" value={formatPercent(recoveryCapture, 1)} />
-        <Stat label="Recovery (Fragile) Capture" value={formatPercent(recoveryFragile, 1)} />
-        <Stat label="Recovery (Confirmed) Capture" value={formatPercent(recoveryConfirmed, 1)} />
-        <Stat label="Stress-State Downside Capture" value={formatPercent(stressDownside, 1)} />
-        <Stat
-          label={spyLabel}
-          value={isFiniteNumber(spySharpe) ? `Sharpe ${formatNumber(spySharpe, 2)}` : "n/a"}
-          detail={
-            isFiniteNumber(spyReturn) && isFiniteNumber(spyDD)
-              ? `${formatPercent(spyReturn, 2)} ret · ${formatPercent(spyDD, 2)} MDD`
-              : undefined
-          }
-        />
-        <Stat
-          label={bilLabel}
-          value={isFiniteNumber(bilSharpe) ? `Sharpe ${formatNumber(bilSharpe, 2)}` : "n/a"}
-          detail={isFiniteNumber(bilReturn) ? `${formatPercent(bilReturn, 2)} ret` : undefined}
-        />
+      <div className="mt-4 grid gap-3 md:grid-cols-4">
+        {validationCards.map((card) => (
+          <Stat key={card.label} label={card.label} value={card.value} detail={card.detail} />
+        ))}
+      </div>
+
+      <div className="mt-4 grid gap-3 md:grid-cols-4">
+        {beforeAfterCards.map((card) => (
+          <Stat key={card.label} label={card.label} value={card.value} detail={card.detail} />
+        ))}
       </div>
 
       <div className="mt-6 rounded-3xl border border-white/10 bg-white/[0.03] p-5">

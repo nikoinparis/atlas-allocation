@@ -48,21 +48,33 @@ Stop and report if any prerequisite files or artifacts referenced in the task ar
 
 ## Strategy Pins
 
-**Production pin (official / rollback):**
+**Production pin (official):**
+- `improved_frontier_phase5_fragility_guard`
+- Production pin updated after Phase 10A final evaluation verdict **PROMOTE** and explicit human authorization.
+
+**Prior production pin / rollback reference:**
 - `improved_phase2b_regime_confidence_boost`
 
-**Production candidate (pending human deployment review):**
-- `improved_phaseggg_confirmed_only_robust_offense`
+**Production candidate promoted to current production:**
+- `improved_frontier_phase5_fragility_guard`
+- Source research winner: `phase5_fragility_guard`
+- Phase 10A final evaluation verdict: **PROMOTE**.
+- This strategy is implemented as a wrapper modifier (Phase 1 R2A offense scaling + Phase 4 fragility guardrail) applied to the GGG1 base.
+- See governance checklist: `docs/research/phase5_fragility_guard_production_review_checklist.md`
+
+**Prior production candidate (superseded by Phase 10A evaluation):**
+- `improved_phaseggg_confirmed_only_robust_offense` (GGG1 — Phase III candidate, still valid rollback reference; superseded by phase5_fragility_guard which improves on it across all metrics)
 
 **Shadow / research runner-up:**
 - `improved_phase2b_combo_abc`
 
 ### Dual-Track Rule
 
-- `improved_phase2b_regime_confidence_boost` remains the single live production default until a human deployment review explicitly changes the pin.
-- `improved_phaseggg_confirmed_only_robust_offense` is the Phase III production candidate pending human review; old production pin is preserved as rollback.
+- `improved_frontier_phase5_fragility_guard` is the single live production default after Phase 10A final evaluation and human authorization.
+- `improved_phase2b_regime_confidence_boost` remains the prior production pin and rollback reference.
+- `improved_phaseggg_confirmed_only_robust_offense` remains in the candidate registry as the prior Phase III candidate. It is still a valid rollback reference and a valid comparison benchmark.
 - `improved_phase2b_combo_abc` is a tracked research runner-up. It appears in the dashboard as an alternate comparison only — never as the headline production candidate.
-- Future sprints must report incremental contribution versus **both** tracks (production + shadow) before promoting anything new.
+- Future sprints must report incremental contribution versus the **new production pin**, prior production/rollback, and official shadow before promoting anything new.
 
 ### Pin Governance
 
@@ -80,6 +92,9 @@ Stop and report if any prerequisite files or artifacts referenced in the task ar
 | PPP   | Null result | Found no new latent sleeve |
 | QQQ   | Direction set | Pointed to regime-sequence modeling |
 | SSS2  | Signal audit | Cleared `calm_old_low_stress_signal`, `stress_new_state_signal`, and `qqq_efa_spy_trend_after_calm_or_recovery_signal` for SSS3 |
+| Frontier Phases 1–7 | Complete | Deployment-state intelligence, trend quality, re-risking, leadership, allocator, ML, cross-asset |
+| Phase 5 (frontier) | **PROMOTED** | `improved_frontier_phase5_fragility_guard` — Phase 10A verdict: all 8 Phase D gates passed vs GGG and vs prior production pin |
+| Phase 10A | Governance | Final evaluation complete; production pin updated after human authorization |
 
 ---
 

@@ -1,23 +1,11 @@
 {
   "exposure_summary": [
     {
-      "role": "production_candidate_pending_human_review",
-      "name": "improved_phaseggg_confirmed_only_robust_offense",
-      "avg_BIL": 0.2665801265614856,
-      "avg_SPY": 0.0602565651232749,
-      "avg_turnover": 0.1235662123629263,
-      "turnover_ratio_vs_production": 1.0997629651053815,
-      "max_single_etf_weight": 1.0,
-      "avg_BIL_delta_vs_production": -0.017337750680784192,
-      "avg_SPY_delta_vs_production": -0.010555106298073894,
-      "avg_turnover_delta_vs_production": 0.01120908061400809
-    },
-    {
-      "role": "current_production_and_rollback",
-      "name": "improved_phase2b_regime_confidence_boost",
-      "avg_BIL": 0.2839178772422698,
-      "avg_SPY": 0.0708116714213488,
-      "avg_turnover": 0.1123571317489182,
+      "role": "current_production",
+      "name": "improved_frontier_phase5_fragility_guard",
+      "avg_BIL": 0.276060319177734,
+      "avg_SPY": 0.0591204571328415,
+      "avg_turnover": 0.0673878026565274,
       "turnover_ratio_vs_production": 1.0,
       "max_single_etf_weight": 1.0,
       "avg_BIL_delta_vs_production": 0.0,
@@ -25,32 +13,44 @@
       "avg_turnover_delta_vs_production": 0.0
     },
     {
+      "role": "prior_production_pin_and_rollback",
+      "name": "improved_phase2b_regime_confidence_boost",
+      "avg_BIL": 0.2839178772422698,
+      "avg_SPY": 0.0708116714213488,
+      "avg_turnover": 0.0562292228319653,
+      "turnover_ratio_vs_production": 0.8344124695467979,
+      "max_single_etf_weight": 1.0,
+      "avg_BIL_delta_vs_production": 0.0078575580645358,
+      "avg_SPY_delta_vs_production": 0.0116912142885072,
+      "avg_turnover_delta_vs_production": -0.0111585798245621
+    },
+    {
       "role": "official_shadow",
       "name": "improved_phase2b_combo_abc",
       "avg_BIL": 0.2855524975472375,
       "avg_SPY": 0.0707565085039652,
-      "avg_turnover": 0.1130410289125237,
-      "turnover_ratio_vs_production": 1.006086815789618,
+      "avg_turnover": 0.0565714797533369,
+      "turnover_ratio_vs_production": 0.8394913845414903,
       "max_single_etf_weight": 1.0,
-      "avg_BIL_delta_vs_production": 0.0016346203049676933,
-      "avg_SPY_delta_vs_production": -5.516291738359713e-05,
-      "avg_turnover_delta_vs_production": 0.000683897163605493
+      "avg_BIL_delta_vs_production": 0.0094921783695035,
+      "avg_SPY_delta_vs_production": 0.0116360513711236,
+      "avg_turnover_delta_vs_production": -0.0108163229031904
     }
   ],
   "versionWeights": {
-    "improved_phaseggg_confirmed_only_robust_offense": {
+    "improved_frontier_phase5_fragility_guard": {
       "latest": [
-        {
-          "name": "EFA",
-          "weight": 0.1710887342699647
-        },
         {
           "name": "GLD",
           "weight": 0.1621542157908599
         },
         {
+          "name": "EFA",
+          "weight": 0.1586808277088776
+        },
+        {
           "name": "VEA",
-          "weight": 0.1611161038765094
+          "weight": 0.1494314446210864
         },
         {
           "name": "LQD",
@@ -58,7 +58,7 @@
         },
         {
           "name": "BIL",
-          "weight": 0.062102564879408
+          "weight": 0.101140640952281
         },
         {
           "name": "PDBC",
@@ -66,48 +66,48 @@
         },
         {
           "name": "EWJ",
-          "weight": 0.0555139382917383
-        },
-        {
-          "name": "HYG",
-          "weight": 0.0483809675449828
+          "weight": 0.0514878885222955
         },
         {
           "name": "TLT",
           "weight": 0.0483809675449828
         },
         {
+          "name": "HYG",
+          "weight": 0.0448722238091977
+        },
+        {
           "name": "IWM",
-          "weight": 0.0268953490554701
+          "weight": 0.024944811637375
         },
         {
           "name": "QQQ",
-          "weight": 0.0234891637172374
+          "weight": 0.0217856538406509
         },
         {
           "name": "VNQ",
-          "weight": 0.0175040319505173
+          "weight": 0.0162345831243801
         },
         {
           "name": "VWO",
-          "weight": 0.0175040319505173
+          "weight": 0.0162345831243801
         },
         {
           "name": "SPY",
-          "weight": 0.0167914736930701
+          "weight": 0.0155737018888915
         }
       ],
       "history": [],
       "selectedColumns": [
-        "EFA",
         "GLD",
+        "EFA",
         "VEA",
         "LQD",
         "BIL",
         "PDBC",
         "EWJ",
-        "HYG",
         "TLT",
+        "HYG",
         "IWM",
         "QQQ",
         "VNQ"
@@ -265,11 +265,11 @@
     }
   },
   "versionSleeveWeights": {
-    "improved_phaseggg_confirmed_only_robust_offense": {
+    "improved_frontier_phase5_fragility_guard": {
       "latest": [
         {
           "name": "composite_regime_offense_component",
-          "weight": 0.2839440129607173
+          "weight": 0.2633514777687892
         },
         {
           "name": "composite_regime_defense_component",
@@ -280,20 +280,20 @@
           "weight": 0.174156727298424
         },
         {
-          "name": "composite_selective_signals",
-          "weight": 0.1235077423778619
-        },
-        {
           "name": "taa_10m_sma",
           "weight": 0.1225282236536216
         },
         {
+          "name": "composite_selective_signals",
+          "weight": 0.1145505627392703
+        },
+        {
           "name": "cash::BIL",
-          "weight": 0.0621025648794076
+          "weight": 0.0941788501268854
         },
         {
           "name": "dual_momentum_topn",
-          "weight": 0.0348380875172662
+          "weight": 0.0323115171003085
         }
       ],
       "history": [],
@@ -301,8 +301,8 @@
         "composite_regime_offense_component",
         "composite_regime_defense_component",
         "cta_trend_long_only",
-        "composite_selective_signals",
         "taa_10m_sma",
+        "composite_selective_signals",
         "cash::BIL",
         "dual_momentum_topn"
       ]

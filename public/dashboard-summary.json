@@ -1,189 +1,150 @@
 {
   "registry": {
-    "current_production_pin": "improved_phase2b_regime_confidence_boost",
+    "current_production_pin": "improved_frontier_phase5_fragility_guard",
     "rollback_pin": "improved_phase2b_regime_confidence_boost",
     "official_shadow_pin": "improved_phase2b_combo_abc",
-    "production_candidate": "improved_phaseggg_confirmed_only_robust_offense",
-    "candidate_status": "PROMOTE_TO_PRODUCTION_CANDIDATE_PENDING_HUMAN_REVIEW",
-    "promotion_phase": "Phase III",
-    "promotion_report": "docs/research/2026-04-27_phase_iii_production_candidate_review_report.md",
-    "latest_research_status": "KEEP_GGG1_AS_PRODUCTION_CANDIDATE_AFTER_JJJ4_KKK_LLL_MMM",
-    "do_not_auto_promote": true,
+    "production_candidate": "improved_frontier_phase5_fragility_guard",
+    "candidate_status": "PROMOTED_TO_PRODUCTION",
+    "promotion_phase": "Frontier Phase 10A",
+    "promotion_report": "docs/research/frontier_phase10_final_evaluation_report.md",
+    "latest_research_status": "PHASE10A_PRODUCTION_PIN_UPDATED_WITH_HUMAN_AUTHORIZATION",
+    "do_not_auto_promote": false,
     "rollback_available": true,
-    "dashboard_status_label": "Production candidate: GGG1",
-    "production_label": "Current production / rollback",
+    "dashboard_status_label": "Current production: Frontier Phase5 Fragility Guard",
+    "production_label": "Current production",
     "shadow_label": "Official shadow",
-    "candidate_label": "Production candidate: GGG1",
-    "generated_at": "2026-05-06T18:19:23.873281+00:00",
+    "candidate_label": "Current production: Frontier Phase5 Fragility Guard",
+    "generated_at": "2026-05-23T06:13:10.643081+00:00",
     "headline_metric_comparison": {
-      "vs_old_production": {
+      "vs_prior_production_pin": {
         "comparator": "improved_phase2b_regime_confidence_boost",
         "annual_return": {
-          "candidate": 0.0713809925349517,
-          "comparator": 0.0689233974459273,
-          "delta": 0.002457595089024392
+          "production": 0.0713416943193356,
+          "comparator": 0.0689233974459284,
+          "delta": 0.002418296873407194
         },
         "sharpe": {
-          "candidate": 0.9365901869313924,
-          "comparator": 0.8848149411100881,
-          "delta": 0.05177524582130433
+          "production": 0.9482556438408292,
+          "comparator": 0.884416286013895,
+          "delta": 0.06383935782693417
         },
         "max_drawdown": {
-          "candidate": -0.1177385440350171,
-          "comparator": -0.1397540394638661,
-          "delta": 0.022015495428849008
+          "production": -0.1160345788576096,
+          "comparator": -0.139754039463866,
+          "delta": 0.023719460606256404
         },
         "cvar_5": {
-          "candidate": -0.0253771457181608,
+          "production": -0.0249479288573999,
           "comparator": -0.0261810418470039,
-          "delta": 0.0008038961288431012
+          "delta": 0.001233112989604001
         },
         "holdout_sharpe": {
-          "candidate": 1.8223675080020656,
-          "comparator": 1.624899271571444,
-          "delta": 0.1974682364306215
+          "production": 2.1785851785849784,
+          "comparator": 2.0995843347674885,
+          "delta": 0.07900084381748984
         },
         "avg_BIL": {
-          "candidate": 0.2665801265614856,
+          "production": 0.276060319177734,
           "comparator": 0.2839178772422698,
-          "delta": -0.017337750680784192
+          "delta": -0.007857558064535808
         },
         "avg_SPY": {
-          "candidate": 0.0602565651232749,
+          "production": 0.0591204571328415,
           "comparator": 0.0708116714213488,
-          "delta": -0.010555106298073894
+          "delta": -0.011691214288507293
+        },
+        "avg_turnover": {
+          "production": 0.0673878026565274,
+          "comparator": 0.0562292228319653,
+          "delta": 0.011158579824562101
         }
       },
       "vs_official_shadow": {
         "comparator": "improved_phase2b_combo_abc",
         "annual_return": {
-          "candidate": 0.0713809925349517,
-          "comparator": 0.0685838385312815,
-          "delta": 0.002797154003670199
+          "production": 0.0713416943193356,
+          "comparator": 0.0685838385312824,
+          "delta": 0.0027578557880531956
         },
         "sharpe": {
-          "candidate": 0.9365901869313924,
-          "comparator": 0.8840229648352725,
-          "delta": 0.05256722209611986
+          "production": 0.9482556438408292,
+          "comparator": 0.883624666565531,
+          "delta": 0.06463097727529821
         },
         "max_drawdown": {
-          "candidate": -0.1177385440350171,
-          "comparator": -0.1367412154152338,
-          "delta": 0.01900267138021669
+          "production": -0.1160345788576096,
+          "comparator": -0.1367412154152335,
+          "delta": 0.02070663655762392
         },
         "cvar_5": {
-          "candidate": -0.0253771457181608,
-          "comparator": -0.026085048036177,
-          "delta": 0.0007079023180162
+          "production": -0.0249479288573999,
+          "comparator": -0.0260850480361771,
+          "delta": 0.0011371191787772003
         },
         "holdout_sharpe": {
-          "candidate": 1.8223675080020656,
-          "comparator": 1.6276887811347291,
-          "delta": 0.19467872686733645
+          "production": 2.1785851785849784,
+          "comparator": 2.113010447204791,
+          "delta": 0.06557473138018732
         },
         "avg_BIL": {
-          "candidate": 0.2665801265614856,
+          "production": 0.276060319177734,
           "comparator": 0.2855524975472375,
-          "delta": -0.018972370985751885
+          "delta": -0.009492178369503501
         },
         "avg_SPY": {
-          "candidate": 0.0602565651232749,
+          "production": 0.0591204571328415,
           "comparator": 0.0707565085039652,
-          "delta": -0.010499943380690296
+          "delta": -0.011636051371123696
+        },
+        "avg_turnover": {
+          "production": 0.0673878026565274,
+          "comparator": 0.0565714797533369,
+          "delta": 0.010816322903190498
         }
       }
     },
     "promotion_reason_summary": [
-      "higher annual return",
-      "higher Sharpe",
-      "better max drawdown",
-      "better CVaR",
-      "better holdout Sharpe",
-      "survives doubled-cost and 1-week delay",
-      "passes allocator benchmark",
-      "lower SPY exposure",
-      "turnover remains under 1.10x cap"
+      "Phase 10A verdict PROMOTE",
+      "human authorization received for production pin update",
+      "named artifact reproduced Phase 10A metrics at machine precision",
+      "dashboard exposure and smoke tests passed",
+      "higher Sharpe than prior production pin and official shadow",
+      "better max drawdown and CVaR than prior production pin",
+      "holdout Sharpe improvement versus prior production pin",
+      "stressed_panic offense unchanged versus GGG baseline"
     ],
     "known_caveats": [
-      "old committee +0.30pp annual-return gate was not fully met",
-      "bootstrap confidence intervals overlap",
-      "worst single week is worse than production",
-      "turnover is close to the 1.10x limit",
-      "human deployment review still required"
+      "sleeve-weight artifact is a review proxy derived from GGG sleeve weights because the strategy is a wrapper modifier",
+      "prior production pin retained as rollback",
+      "future research should compare against the new production pin and preserve Phase2B as rollback reference"
     ],
     "next_manual_steps": [
-      "Verify Vercel dashboard loads the compact bundle.",
-      "Verify old production rollback files exist.",
-      "Verify GGG1 return, ETF weight, and sleeve weight files exist.",
-      "Review caveats before officially flipping the live production pin.",
-      "After human approval, update current_production_pin to GGG1 in a separate commit."
-    ]
+      "Review final production promotion report.",
+      "Commit the production-pin update with the suggested commit message.",
+      "Deploy/review the dashboard build.",
+      "Monitor future research against the new production baseline."
+    ],
+    "prior_production_candidate": "improved_phaseggg_confirmed_only_robust_offense",
+    "prior_production_pin": "improved_phase2b_regime_confidence_boost"
   },
   "summary": [
     {
-      "role": "production_candidate_pending_human_review",
-      "name": "improved_phaseggg_confirmed_only_robust_offense",
-      "full_ann_return": 0.0713809925349517,
-      "full_ann_vol": 0.0762136882608408,
-      "full_sharpe": 0.9365901869313924,
-      "full_max_drawdown": -0.1177385440350171,
-      "full_cvar_5": -0.0253771457181608,
-      "full_calmar": 0.6062669886058897,
-      "holdout_ann_return": 0.1465206010245718,
-      "holdout_ann_vol": 0.0804012365130501,
-      "holdout_sharpe": 1.8223675080020656,
-      "holdout_max_drawdown": -0.0725406061922098,
-      "holdout_cvar_5": -0.0220217597188125,
-      "avg_BIL": 0.2665801265614856,
-      "avg_SPY": 0.0602565651232749,
-      "avg_turnover": 0.1235662123629263,
-      "max_single_etf_weight": 1.0,
-      "window": "full_window",
-      "start": null,
-      "end": null,
-      "ann_return": null,
-      "ann_vol": null,
-      "sharpe": null,
-      "max_drawdown": null,
-      "cvar_5": null,
-      "calmar": null,
-      "full_ann_return_delta_vs_production": 0.002457595089024392,
-      "full_ann_return_delta_vs_official_shadow": 0.002797154003670199,
-      "full_sharpe_delta_vs_production": 0.05177524582130433,
-      "full_sharpe_delta_vs_official_shadow": 0.05256722209611986,
-      "full_max_drawdown_delta_vs_production": 0.022015495428849008,
-      "full_max_drawdown_delta_vs_official_shadow": 0.01900267138021669,
-      "full_cvar_5_delta_vs_production": 0.0008038961288431012,
-      "full_cvar_5_delta_vs_official_shadow": 0.0007079023180162,
-      "holdout_ann_return_delta_vs_production": 0.02217759523054269,
-      "holdout_ann_return_delta_vs_official_shadow": 0.022942452151247794,
-      "holdout_sharpe_delta_vs_production": 0.1974682364306215,
-      "holdout_sharpe_delta_vs_official_shadow": 0.19467872686733645,
-      "avg_BIL_delta_vs_production": -0.017337750680784192,
-      "avg_BIL_delta_vs_official_shadow": -0.018972370985751885,
-      "avg_SPY_delta_vs_production": -0.010555106298073894,
-      "avg_SPY_delta_vs_official_shadow": -0.010499943380690296,
-      "avg_turnover_delta_vs_production": 0.01120908061400809,
-      "avg_turnover_delta_vs_official_shadow": 0.010525183450402598,
-      "turnover_ratio_vs_production": 1.0997629651053815
-    },
-    {
-      "role": "current_production_and_rollback",
-      "name": "improved_phase2b_regime_confidence_boost",
-      "full_ann_return": 0.0689233974459273,
-      "full_ann_vol": 0.0778958336298617,
-      "full_sharpe": 0.8848149411100881,
-      "full_max_drawdown": -0.1397540394638661,
-      "full_cvar_5": -0.0261810418470039,
-      "full_calmar": 0.4931764241687463,
-      "holdout_ann_return": 0.1243430057940291,
-      "holdout_ann_vol": 0.076523516238503,
-      "holdout_sharpe": 1.624899271571444,
-      "holdout_max_drawdown": -0.0626419889493987,
-      "holdout_cvar_5": -0.0210108195527506,
-      "avg_BIL": 0.2839178772422698,
-      "avg_SPY": 0.0708116714213488,
-      "avg_turnover": 0.1123571317489182,
+      "role": "current_production",
+      "name": "improved_frontier_phase5_fragility_guard",
+      "full_ann_return": 0.0713416943193356,
+      "full_ann_vol": 0.0752346635453412,
+      "full_sharpe": 0.9482556438408292,
+      "full_max_drawdown": -0.1160345788576096,
+      "full_cvar_5": -0.0249479288573999,
+      "full_calmar": 0.6148313289168892,
+      "holdout_ann_return": 0.1790929966410082,
+      "holdout_ann_vol": 0.0822061025666811,
+      "holdout_sharpe": 2.1785851785849784,
+      "holdout_max_drawdown": -0.0728525894861895,
+      "holdout_cvar_5": -0.0230007982838633,
+      "avg_BIL": 0.276060319177734,
+      "avg_SPY": 0.0591204571328415,
+      "avg_turnover": 0.0673878026565274,
       "max_single_etf_weight": 1.0,
       "window": "full_window",
       "start": null,
@@ -195,42 +156,43 @@
       "cvar_5": null,
       "calmar": null,
       "full_ann_return_delta_vs_production": 0.0,
-      "full_ann_return_delta_vs_official_shadow": 0.00033955891464580723,
+      "full_ann_return_delta_vs_official_shadow": 0.0027578557880531,
       "full_sharpe_delta_vs_production": 0.0,
-      "full_sharpe_delta_vs_official_shadow": 0.0007919762748155312,
+      "full_sharpe_delta_vs_official_shadow": 0.0646309772752982,
       "full_max_drawdown_delta_vs_production": 0.0,
-      "full_max_drawdown_delta_vs_official_shadow": -0.0030128240486323177,
+      "full_max_drawdown_delta_vs_official_shadow": 0.0207066365576239,
       "full_cvar_5_delta_vs_production": 0.0,
-      "full_cvar_5_delta_vs_official_shadow": -9.599381082690123e-05,
+      "full_cvar_5_delta_vs_official_shadow": 0.0011371191787772,
       "holdout_ann_return_delta_vs_production": 0.0,
-      "holdout_ann_return_delta_vs_official_shadow": 0.0007648569207051037,
+      "holdout_ann_return_delta_vs_official_shadow": 0.0254924296100831,
       "holdout_sharpe_delta_vs_production": 0.0,
-      "holdout_sharpe_delta_vs_official_shadow": -0.002789509563285053,
+      "holdout_sharpe_delta_vs_official_shadow": 0.0655747313801873,
       "avg_BIL_delta_vs_production": 0.0,
-      "avg_BIL_delta_vs_official_shadow": -0.0016346203049676933,
+      "avg_BIL_delta_vs_official_shadow": -0.0094921783695035,
       "avg_SPY_delta_vs_production": 0.0,
-      "avg_SPY_delta_vs_official_shadow": 5.516291738359713e-05,
+      "avg_SPY_delta_vs_official_shadow": -0.0116360513711236,
       "avg_turnover_delta_vs_production": 0.0,
-      "avg_turnover_delta_vs_official_shadow": -0.000683897163605493,
-      "turnover_ratio_vs_production": 1.0
+      "avg_turnover_delta_vs_official_shadow": 0.0108163229031904,
+      "turnover_ratio_vs_production": 1.0,
+      "hidden_beta": 0.2404475552372669
     },
     {
-      "role": "official_shadow",
-      "name": "improved_phase2b_combo_abc",
-      "full_ann_return": 0.0685838385312815,
-      "full_ann_vol": 0.0775815123129311,
-      "full_sharpe": 0.8840229648352725,
-      "full_max_drawdown": -0.1367412154152338,
-      "full_cvar_5": -0.026085048036177,
-      "full_calmar": 0.5015593749332792,
-      "holdout_ann_return": 0.123578148873324,
-      "holdout_ann_vol": 0.0759224676766357,
-      "holdout_sharpe": 1.6276887811347291,
-      "holdout_max_drawdown": -0.0623953152856741,
-      "holdout_cvar_5": -0.0208944879256888,
-      "avg_BIL": 0.2855524975472375,
-      "avg_SPY": 0.0707565085039652,
-      "avg_turnover": 0.1130410289125237,
+      "role": "prior_production_pin_and_rollback",
+      "name": "improved_phase2b_regime_confidence_boost",
+      "full_ann_return": 0.0689233974459284,
+      "full_ann_vol": 0.0779309455692741,
+      "full_sharpe": 0.884416286013895,
+      "full_max_drawdown": -0.139754039463866,
+      "full_cvar_5": -0.0261810418470039,
+      "full_calmar": 0.4931764241687547,
+      "holdout_ann_return": 0.1537144724383381,
+      "holdout_ann_vol": 0.0732118590775067,
+      "holdout_sharpe": 2.0995843347674885,
+      "holdout_max_drawdown": -0.0566479254529906,
+      "holdout_cvar_5": -0.0204467386212284,
+      "avg_BIL": 0.2839178772422698,
+      "avg_SPY": 0.0708116714213488,
+      "avg_turnover": 0.0562292228319653,
       "max_single_etf_weight": 1.0,
       "window": "full_window",
       "start": null,
@@ -241,117 +203,90 @@
       "max_drawdown": null,
       "cvar_5": null,
       "calmar": null,
-      "full_ann_return_delta_vs_production": -0.00033955891464580723,
+      "full_ann_return_delta_vs_production": -0.0024182968734071,
+      "full_ann_return_delta_vs_official_shadow": 0.000339558914646,
+      "full_sharpe_delta_vs_production": -0.0638393578269341,
+      "full_sharpe_delta_vs_official_shadow": 0.000791619448364,
+      "full_max_drawdown_delta_vs_production": -0.0237194606062564,
+      "full_max_drawdown_delta_vs_official_shadow": -0.0030128240486324,
+      "full_cvar_5_delta_vs_production": -0.001233112989604,
+      "full_cvar_5_delta_vs_official_shadow": -9.59938108268006e-05,
+      "holdout_ann_return_delta_vs_production": -0.02537852420267,
+      "holdout_ann_return_delta_vs_official_shadow": 0.0001139054074131,
+      "holdout_sharpe_delta_vs_production": -0.0790008438174898,
+      "holdout_sharpe_delta_vs_official_shadow": -0.0134261124373025,
+      "avg_BIL_delta_vs_production": 0.0078575580645358,
+      "avg_BIL_delta_vs_official_shadow": -0.0016346203049676,
+      "avg_SPY_delta_vs_production": 0.0116912142885072,
+      "avg_SPY_delta_vs_official_shadow": 5.516291738359713e-05,
+      "avg_turnover_delta_vs_production": -0.0111585798245621,
+      "avg_turnover_delta_vs_official_shadow": -0.0003422569213716,
+      "turnover_ratio_vs_production": 0.8344124695467979,
+      "hidden_beta": 0.2516072556425832
+    },
+    {
+      "role": "official_shadow",
+      "name": "improved_phase2b_combo_abc",
+      "full_ann_return": 0.0685838385312824,
+      "full_ann_vol": 0.0776164825704265,
+      "full_sharpe": 0.883624666565531,
+      "full_max_drawdown": -0.1367412154152335,
+      "full_cvar_5": -0.0260850480361771,
+      "full_calmar": 0.501559374933287,
+      "holdout_ann_return": 0.153600567030925,
+      "holdout_ann_vol": 0.0726927627045651,
+      "holdout_sharpe": 2.113010447204791,
+      "holdout_max_drawdown": -0.0553111007545734,
+      "holdout_cvar_5": -0.020291629785146,
+      "avg_BIL": 0.2855524975472375,
+      "avg_SPY": 0.0707565085039652,
+      "avg_turnover": 0.0565714797533369,
+      "max_single_etf_weight": 1.0,
+      "window": "full_window",
+      "start": null,
+      "end": null,
+      "ann_return": null,
+      "ann_vol": null,
+      "sharpe": null,
+      "max_drawdown": null,
+      "cvar_5": null,
+      "calmar": null,
+      "full_ann_return_delta_vs_production": -0.0027578557880531,
       "full_ann_return_delta_vs_official_shadow": 0.0,
-      "full_sharpe_delta_vs_production": -0.0007919762748155312,
+      "full_sharpe_delta_vs_production": -0.0646309772752982,
       "full_sharpe_delta_vs_official_shadow": 0.0,
-      "full_max_drawdown_delta_vs_production": 0.0030128240486323177,
+      "full_max_drawdown_delta_vs_production": -0.0207066365576239,
       "full_max_drawdown_delta_vs_official_shadow": 0.0,
-      "full_cvar_5_delta_vs_production": 9.599381082690123e-05,
+      "full_cvar_5_delta_vs_production": -0.0011371191787772,
       "full_cvar_5_delta_vs_official_shadow": 0.0,
-      "holdout_ann_return_delta_vs_production": -0.0007648569207051037,
+      "holdout_ann_return_delta_vs_production": -0.0254924296100831,
       "holdout_ann_return_delta_vs_official_shadow": 0.0,
-      "holdout_sharpe_delta_vs_production": 0.002789509563285053,
+      "holdout_sharpe_delta_vs_production": -0.0655747313801873,
       "holdout_sharpe_delta_vs_official_shadow": 0.0,
-      "avg_BIL_delta_vs_production": 0.0016346203049676933,
+      "avg_BIL_delta_vs_production": 0.0094921783695035,
       "avg_BIL_delta_vs_official_shadow": 0.0,
-      "avg_SPY_delta_vs_production": -5.516291738359713e-05,
+      "avg_SPY_delta_vs_production": 0.0116360513711236,
       "avg_SPY_delta_vs_official_shadow": 0.0,
-      "avg_turnover_delta_vs_production": 0.000683897163605493,
+      "avg_turnover_delta_vs_production": -0.0108163229031904,
       "avg_turnover_delta_vs_official_shadow": 0.0,
-      "turnover_ratio_vs_production": 1.006086815789618
+      "turnover_ratio_vs_production": 0.8394913845414903,
+      "hidden_beta": 0.2502778268204856
     }
   ],
   "promotion_checklist": [
     {
-      "check": "sharpe_beats_prod_by_>=_+0.020",
-      "passed": true,
-      "value": "+0.0518"
+      "check": "FG_vs_GGG",
+      "verdict": "PASS",
+      "passed_detail": "Full Sharpe \u0394=+0.0121 \u2265 +0.01; Holdout Sharpe \u0394=+0.0276 \u2265 -0.02; MaxDD \u0394=+0.0017 \u2265 -0.01; CVaR \u0394=+0.0004 \u2265 -0.002; SP Sharpe \u0394=-0.0014 (intact); Extra cost=0.029% (< 0.15%); Bootstrap P=0.841 \u2265 0.60; Rolling win=73.3% \u2265 55%",
+      "failed_detail": null,
+      "passed": true
     },
     {
-      "check": "ann_return_beats_prod",
-      "passed": true,
-      "value": "+0.246pp"
-    },
-    {
-      "check": "mdd_not_materially_worse_(<=+0.5pp)",
-      "passed": true,
-      "value": "+2.202pp"
-    },
-    {
-      "check": "cvar_not_materially_worse_(<=+0.05pp)",
-      "passed": true,
-      "value": "+0.080pp"
-    },
-    {
-      "check": "holdout_sharpe_improves",
-      "passed": true,
-      "value": "+0.1975"
-    },
-    {
-      "check": "holdout_ann_return_improves",
-      "passed": true,
-      "value": "+2.218pp"
-    },
-    {
-      "check": "turnover_under_1.10x_cap",
-      "passed": true,
-      "value": "1.0998x"
-    },
-    {
-      "check": "spy_exposure_not_higher",
-      "passed": true,
-      "value": "-1.056pp"
-    },
-    {
-      "check": "bil_exposure_not_higher_(no_hidden_cash)",
-      "passed": true,
-      "value": "-1.734pp"
-    },
-    {
-      "check": "stressed_panic_no_material_regression",
-      "passed": true,
-      "value": "+0.211pp"
-    },
-    {
-      "check": "recovery_confirmed_close_to_prod",
-      "passed": true,
-      "value": "-0.044pp"
-    },
-    {
-      "check": "recovery_fragile_no_unacceptable_regression",
-      "passed": true,
-      "value": "-0.306pp"
-    },
-    {
-      "check": "calm_trend_no_regression",
-      "passed": true,
-      "value": "+0.527pp"
-    },
-    {
-      "check": "neutral_mixed_no_regression",
-      "passed": true,
-      "value": "+0.168pp"
-    },
-    {
-      "check": "survives_doubled_cost_(10bp)",
-      "passed": true,
-      "value": "+0.254pp"
-    },
-    {
-      "check": "survives_1w_delay",
-      "passed": true,
-      "value": "+0.362pp"
-    },
-    {
-      "check": "causal_production_pipeline_clean",
-      "passed": true,
-      "value": "same saved production artifact pipeline"
-    },
-    {
-      "check": "allocator_benchmark_passed",
-      "passed": true,
-      "value": "full audit required in Phase III"
+      "check": "FG_vs_PROD",
+      "verdict": "PASS",
+      "passed_detail": "Full Sharpe \u0394=+0.0638 \u2265 +0.01; Holdout Sharpe \u0394=+0.0790 \u2265 -0.02; MaxDD \u0394=+0.0237 \u2265 -0.01; CVaR \u0394=+0.0012 \u2265 -0.002; SP Sharpe \u0394=-0.0174 (intact); Extra cost=0.058% (< 0.15%); Bootstrap P=0.842 \u2265 0.60; Rolling win=73.3% \u2265 55%",
+      "failed_detail": null,
+      "passed": true
     }
   ],
   "layer1_signal_validation_summary": [

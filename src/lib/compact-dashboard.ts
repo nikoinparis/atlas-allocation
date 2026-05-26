@@ -26,13 +26,15 @@ type CompactBundle = {
   versionSleeveWeights?: Record<string, WeightPayload>;
 };
 
-const PRODUCTION = "improved_phase2b_regime_confidence_boost";
+const PRODUCTION = "improved_frontier_phase5_fragility_guard";
+const PRIOR_PRODUCTION = "improved_phase2b_regime_confidence_boost";
 const SHADOW = "improved_phase2b_combo_abc";
-const CANDIDATE = "improved_phaseggg_confirmed_only_robust_offense";
+const CANDIDATE = "improved_frontier_phase5_fragility_guard";
 
 function roleLabel(name: string, role: unknown): string {
-  if (name === CANDIDATE || role === "production_candidate_pending_human_review") return "Production candidate: GGG1";
-  if (name === PRODUCTION) return "Current production / rollback";
+  if (name === PRODUCTION || role === "current_production") return "Current production: Frontier Phase5 Fragility Guard";
+  if (name === PRIOR_PRODUCTION || role === "prior_production_pin_and_rollback") return "Prior production / rollback";
+  if (name === CANDIDATE || role === "production_candidate_pending_human_review") return "Production candidate: Frontier Phase5 Fragility Guard";
   if (name === SHADOW) return "Official shadow";
   return typeof role === "string" ? role : "Tracked strategy";
 }
@@ -112,8 +114,8 @@ function asVersionRow(row: AnyRow): MetricRow {
     avg_spy_weight: asNumber(avgSpy),
     avg_cash_weight: asNumber(avgBil),
     avg_cash_proxy_weight: asNumber(avgBil),
-    production_score: row.role === "production_candidate_pending_human_review" ? 1 : 0,
-    robustness_score: row.role === "production_candidate_pending_human_review" ? 1 : 0,
+    production_score: row.role === "production_candidate_pending_human_review" || row.role === "current_production" ? 1 : 0,
+    robustness_score: row.role === "production_candidate_pending_human_review" || row.role === "current_production" ? 1 : 0,
   };
 }
 
@@ -168,6 +170,7 @@ export function compactBundleToDashboardData(bundle: CompactBundle): DashboardDa
   const summary: MetricRow[] = normalizeInputRows(bundle.summary).map(asVersionRow);
   const findVersion = (name: string) => summary.find((row) => row.version_name === name) ?? null;
   const production = findVersion(PRODUCTION);
+  const priorProduction = findVersion(PRIOR_PRODUCTION);
   const shadow = findVersion(SHADOW);
   const candidate = findVersion(CANDIDATE);
   const summaryRecords = summary.map((row) => cleanRecord(row)).filter((row): row is AnyRow => Boolean(row));
@@ -177,12 +180,10 @@ export function compactBundleToDashboardData(bundle: CompactBundle): DashboardDa
   const versionWeights = bundle.versionWeights ?? {
     [PRODUCTION]: emptyWeight(),
     [SHADOW]: emptyWeight(),
-    [CANDIDATE]: emptyWeight(),
   };
   const versionSleeveWeights = bundle.versionSleeveWeights ?? {
     [PRODUCTION]: emptyWeight(),
     [SHADOW]: emptyWeight(),
-    [CANDIDATE]: emptyWeight(),
   };
   const latestDate = Object.values(versionReturns)
     .flatMap((rows) => rows.map((row) => row.date).filter(Boolean))
@@ -193,9 +194,9 @@ export function compactBundleToDashboardData(bundle: CompactBundle): DashboardDa
   const productionExposure = exposureRows.find((row) => row.name === PRODUCTION);
   const latestMarketState: AnyRow = {
     date: latestDate,
-    market_state: "phase_iii_review",
-    risk_state: "production_candidate_review",
-    market_state_reason: "Compact bundle includes Phase III deployment data, not live market-state history.",
+    market_state: "frontier_phase5_production",
+    risk_state: "production",
+    market_state_reason: "Compact bundle carries Phase 5 production data; live market-state history not included.",
   };
   const sleeveGroups = {
     offensive: ["dual_momentum_topn", "cta_trend_long_only", "composite_selective_signals", "composite_regime_offense_component"],
@@ -295,7 +296,7 @@ export function compactBundleToDashboardData(bundle: CompactBundle): DashboardDa
       latestMarketState,
       benchmarkSummary: [],
       regimeCounts: [],
-      baselineVersion: cleanRecord(production),
+      baselineVersion: cleanRecord(priorProduction ?? production),
       improvedVersion: cleanRecord(candidate),
       researchVersion: cleanRecord(shadow),
       currentAllocationSummary: allocationDrivers.find((row) => row.version_name === CANDIDATE) ?? null,
@@ -304,7 +305,7 @@ export function compactBundleToDashboardData(bundle: CompactBundle): DashboardDa
         productionVersion: PRODUCTION,
         researchVersion: SHADOW,
         promotionMargin: 0,
-        note: "Compact package: GGG1 is the production candidate pending human review; current production remains rollback.",
+        note: "Compact package: Frontier Phase5 Fragility Guard is now the current production pin; Phase2B is preserved as rollback.",
       },
     },
     methods: summary,

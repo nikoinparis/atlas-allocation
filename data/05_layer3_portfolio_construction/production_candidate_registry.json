@@ -1,120 +1,128 @@
 {
-  "current_production_pin": "improved_phase2b_regime_confidence_boost",
+  "current_production_pin": "improved_frontier_phase5_fragility_guard",
   "rollback_pin": "improved_phase2b_regime_confidence_boost",
   "official_shadow_pin": "improved_phase2b_combo_abc",
-  "production_candidate": "improved_phaseggg_confirmed_only_robust_offense",
-  "candidate_status": "PROMOTE_TO_PRODUCTION_CANDIDATE_PENDING_HUMAN_REVIEW",
-  "promotion_phase": "Phase III",
-  "promotion_report": "docs/research/2026-04-27_phase_iii_production_candidate_review_report.md",
-  "latest_research_status": "KEEP_GGG1_AS_PRODUCTION_CANDIDATE_AFTER_JJJ4_KKK_LLL_MMM",
-  "do_not_auto_promote": true,
+  "production_candidate": "improved_frontier_phase5_fragility_guard",
+  "candidate_status": "PROMOTED_TO_PRODUCTION",
+  "promotion_phase": "Frontier Phase 10A",
+  "promotion_report": "docs/research/frontier_phase10_final_evaluation_report.md",
+  "latest_research_status": "PHASE10A_PRODUCTION_PIN_UPDATED_WITH_HUMAN_AUTHORIZATION",
+  "do_not_auto_promote": false,
   "rollback_available": true,
-  "dashboard_status_label": "Production candidate: GGG1",
-  "production_label": "Current production / rollback",
+  "dashboard_status_label": "Current production: Frontier Phase5 Fragility Guard",
+  "production_label": "Current production",
   "shadow_label": "Official shadow",
-  "candidate_label": "Production candidate: GGG1",
-  "generated_at": "2026-05-06T18:19:23.873281+00:00",
+  "candidate_label": "Current production: Frontier Phase5 Fragility Guard",
+  "generated_at": "2026-05-23T06:13:10.643081+00:00",
   "headline_metric_comparison": {
-    "vs_old_production": {
+    "vs_prior_production_pin": {
       "comparator": "improved_phase2b_regime_confidence_boost",
       "annual_return": {
-        "candidate": 0.0713809925349517,
-        "comparator": 0.0689233974459273,
-        "delta": 0.002457595089024392
+        "production": 0.0713416943193356,
+        "comparator": 0.0689233974459284,
+        "delta": 0.002418296873407194
       },
       "sharpe": {
-        "candidate": 0.9365901869313924,
-        "comparator": 0.8848149411100881,
-        "delta": 0.05177524582130433
+        "production": 0.9482556438408292,
+        "comparator": 0.884416286013895,
+        "delta": 0.06383935782693417
       },
       "max_drawdown": {
-        "candidate": -0.1177385440350171,
-        "comparator": -0.1397540394638661,
-        "delta": 0.022015495428849008
+        "production": -0.1160345788576096,
+        "comparator": -0.139754039463866,
+        "delta": 0.023719460606256404
       },
       "cvar_5": {
-        "candidate": -0.0253771457181608,
+        "production": -0.0249479288573999,
         "comparator": -0.0261810418470039,
-        "delta": 0.0008038961288431012
+        "delta": 0.001233112989604001
       },
       "holdout_sharpe": {
-        "candidate": 1.8223675080020656,
-        "comparator": 1.624899271571444,
-        "delta": 0.1974682364306215
+        "production": 2.1785851785849784,
+        "comparator": 2.0995843347674885,
+        "delta": 0.07900084381748984
       },
       "avg_BIL": {
-        "candidate": 0.2665801265614856,
+        "production": 0.276060319177734,
         "comparator": 0.2839178772422698,
-        "delta": -0.017337750680784192
+        "delta": -0.007857558064535808
       },
       "avg_SPY": {
-        "candidate": 0.0602565651232749,
+        "production": 0.0591204571328415,
         "comparator": 0.0708116714213488,
-        "delta": -0.010555106298073894
+        "delta": -0.011691214288507293
+      },
+      "avg_turnover": {
+        "production": 0.0673878026565274,
+        "comparator": 0.0562292228319653,
+        "delta": 0.011158579824562101
       }
     },
     "vs_official_shadow": {
       "comparator": "improved_phase2b_combo_abc",
       "annual_return": {
-        "candidate": 0.0713809925349517,
-        "comparator": 0.0685838385312815,
-        "delta": 0.002797154003670199
+        "production": 0.0713416943193356,
+        "comparator": 0.0685838385312824,
+        "delta": 0.0027578557880531956
       },
       "sharpe": {
-        "candidate": 0.9365901869313924,
-        "comparator": 0.8840229648352725,
-        "delta": 0.05256722209611986
+        "production": 0.9482556438408292,
+        "comparator": 0.883624666565531,
+        "delta": 0.06463097727529821
       },
       "max_drawdown": {
-        "candidate": -0.1177385440350171,
-        "comparator": -0.1367412154152338,
-        "delta": 0.01900267138021669
+        "production": -0.1160345788576096,
+        "comparator": -0.1367412154152335,
+        "delta": 0.02070663655762392
       },
       "cvar_5": {
-        "candidate": -0.0253771457181608,
-        "comparator": -0.026085048036177,
-        "delta": 0.0007079023180162
+        "production": -0.0249479288573999,
+        "comparator": -0.0260850480361771,
+        "delta": 0.0011371191787772003
       },
       "holdout_sharpe": {
-        "candidate": 1.8223675080020656,
-        "comparator": 1.6276887811347291,
-        "delta": 0.19467872686733645
+        "production": 2.1785851785849784,
+        "comparator": 2.113010447204791,
+        "delta": 0.06557473138018732
       },
       "avg_BIL": {
-        "candidate": 0.2665801265614856,
+        "production": 0.276060319177734,
         "comparator": 0.2855524975472375,
-        "delta": -0.018972370985751885
+        "delta": -0.009492178369503501
       },
       "avg_SPY": {
-        "candidate": 0.0602565651232749,
+        "production": 0.0591204571328415,
         "comparator": 0.0707565085039652,
-        "delta": -0.010499943380690296
+        "delta": -0.011636051371123696
+      },
+      "avg_turnover": {
+        "production": 0.0673878026565274,
+        "comparator": 0.0565714797533369,
+        "delta": 0.010816322903190498
       }
     }
   },
   "promotion_reason_summary": [
-    "higher annual return",
-    "higher Sharpe",
-    "better max drawdown",
-    "better CVaR",
-    "better holdout Sharpe",
-    "survives doubled-cost and 1-week delay",
-    "passes allocator benchmark",
-    "lower SPY exposure",
-    "turnover remains under 1.10x cap"
+    "Phase 10A verdict PROMOTE",
+    "human authorization received for production pin update",
+    "named artifact reproduced Phase 10A metrics at machine precision",
+    "dashboard exposure and smoke tests passed",
+    "higher Sharpe than prior production pin and official shadow",
+    "better max drawdown and CVaR than prior production pin",
+    "holdout Sharpe improvement versus prior production pin",
+    "stressed_panic offense unchanged versus GGG baseline"
   ],
   "known_caveats": [
-    "old committee +0.30pp annual-return gate was not fully met",
-    "bootstrap confidence intervals overlap",
-    "worst single week is worse than production",
-    "turnover is close to the 1.10x limit",
-    "human deployment review still required"
+    "sleeve-weight artifact is a review proxy derived from GGG sleeve weights because the strategy is a wrapper modifier",
+    "prior production pin retained as rollback",
+    "future research should compare against the new production pin and preserve Phase2B as rollback reference"
   ],
   "next_manual_steps": [
-    "Verify Vercel dashboard loads the compact bundle.",
-    "Verify old production rollback files exist.",
-    "Verify GGG1 return, ETF weight, and sleeve weight files exist.",
-    "Review caveats before officially flipping the live production pin.",
-    "After human approval, update current_production_pin to GGG1 in a separate commit."
-  ]
+    "Review final production promotion report.",
+    "Commit the production-pin update with the suggested commit message.",
+    "Deploy/review the dashboard build.",
+    "Monitor future research against the new production baseline."
+  ],
+  "prior_production_candidate": "improved_phaseggg_confirmed_only_robust_offense",
+  "prior_production_pin": "improved_phase2b_regime_confidence_boost"
 }

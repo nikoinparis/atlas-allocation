@@ -13,6 +13,7 @@ APP = Path(__file__).resolve().parents[1]
 V2 = APP.parent
 WEIGHTS = V2 / "evidence/forward_return_first_60_40_blend_v1/frozen_weights.csv"
 PRICES = V2 / "data/ggg_vintages/ggg_causal_v2_027530550388432a/data/01_data_hub/weekly_prices.csv"
+DAILY_PRICES = V2 / "data/vintages/20260812T035702Z-0c1bf62d74413e2a/payload/prices.csv"
 RESULT = V2 / "evidence/forward_return_first_60_40_blend_v1/result.json"
 STATUS = V2 / "evidence/forward_return_first_60_40_blend_v1/status.json"
 CONFIG = V2 / "config/forward/return_first_60_40_blend_v1.json"
@@ -73,6 +74,63 @@ def main() -> int:
         )
         previous = row
 
+    daily_source = pd.read_csv(
+        DAILY_PRICES,
+        usecols=["observation_date", "ticker", "adjusted_close"],
+    )
+    daily_source["observation_date"] = pd.to_datetime(daily_source["observation_date"], errors="coerce")
+    daily_source["adjusted_close"] = pd.to_numeric(daily_source["adjusted_close"], errors="coerce")
+    daily_prices = daily_source.pivot_table(
+        index="observation_date",
+        columns="ticker",
+        values="adjusted_close",
+        aggfunc="last",
+    ).sort_index()
+    daily_prices = daily_prices.reindex(columns=[column for column in weights.columns if column != "cash::USD"])
+
+    rebalance_by_date = {record["date"]: bool(record["rebalance"]) for record in records}
+    daily_records: list[dict[str, object]] = [
+        {
+            "date": weights.index[0].strftime("%Y-%m-%d"),
+            "netReturn": 0.0,
+            "rebalance": rebalance_by_date[weights.index[0].strftime("%Y-%m-%d")],
+            "tradingDay": True,
+        }
+    ]
+    for index in range(len(weights.index) - 1):
+        decision = weights.index[index]
+        realization = weights.index[index + 1]
+        interval = daily_prices.loc[(daily_prices.index > decision) & (daily_prices.index <= realization)]
+        if interval.empty:
+            continue
+        target = weights.iloc[index].drop(labels="cash::USD", errors="ignore")
+        base = daily_prices.loc[:decision].iloc[-1]
+        relatives = interval.divide(base).replace([np.inf, -np.inf], np.nan)
+        invested = relatives.mul(target, axis=1).sum(axis=1, min_count=1)
+        cash_weight = float(weights.iloc[index].get("cash::USD", 0.0))
+        portfolio_level = (invested + cash_weight).fillna(1.0)
+        raw_daily = portfolio_level.pct_change()
+        raw_daily.iloc[0] = float(portfolio_level.iloc[0] - 1.0)
+
+        desired_multiple = 1.0 + float(net.iloc[index])
+        prior_multiple = float((1.0 + raw_daily.iloc[:-1]).prod()) if len(raw_daily) > 1 else 1.0
+        raw_daily.iloc[-1] = desired_multiple / prior_multiple - 1.0
+        for day, daily_return in raw_daily.items():
+            date_string = day.strftime("%Y-%m-%d")
+            daily_records.append(
+                {
+                    "date": date_string,
+                    "netReturn": clean(daily_return),
+                    "rebalance": rebalance_by_date.get(date_string, False),
+                    "tradingDay": True,
+                }
+            )
+    daily_dates = {record["date"] for record in daily_records}
+    for date_string, is_rebalance in rebalance_by_date.items():
+        if is_rebalance and date_string not in daily_dates:
+            daily_records.append({"date": date_string, "netReturn": 0.0, "rebalance": True, "tradingDay": False})
+    daily_records.sort(key=lambda record: str(record["date"]))
+
     result = json.loads(RESULT.read_text())
     status = json.loads(STATUS.read_text())
     config = json.loads(CONFIG.read_text())
@@ -108,9 +166,13 @@ def main() -> int:
             },
         },
         "records": records,
+        "dailyRecords": daily_records,
     }
     OUTPUT.write_text(json.dumps(payload, separators=(",", ":")) + "\n")
-    print(f"wrote {OUTPUT} ({OUTPUT.stat().st_size:,} bytes, {len(records):,} weekly records)")
+    print(
+        f"wrote {OUTPUT} ({OUTPUT.stat().st_size:,} bytes, "
+        f"{len(records):,} weekly allocations, {len(daily_records):,} daily returns)"
+    )
     return 0
 
 

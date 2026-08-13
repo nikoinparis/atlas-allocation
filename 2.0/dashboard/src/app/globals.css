@@ -68,7 +68,7 @@ h1 { margin-top: 11px; font-size: clamp(35px, 4vw, 55px); line-height: 1; letter
 .calendar-legend { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 14px; margin: 18px 0 15px; color: var(--muted-2); font: 500 10px var(--font-mono), monospace; }
 .calendar-legend span { display: inline-flex; align-items: center; gap: 6px; }
 .legend-dot { width: 7px; height: 7px; border-radius: 2px; }
-.legend-dot.green { background: rgba(57,217,151,.55); }.legend-dot.red { background: rgba(239,109,98,.55); }
+.legend-dot.green { background: rgba(57,217,151,.55); }.legend-dot.red { background: rgba(239,109,98,.55); }.legend-dot.bone { background: #eee8da; box-shadow: 0 0 0 1px rgba(238,232,218,.25); }
 .rebalance-mark { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #e8b957; box-shadow: 0 0 0 2px rgba(232,185,87,.12); }
 .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
 .weekdays { margin-bottom: 8px; color: #50615b; text-align: center; font: 600 10px var(--font-mono), monospace; letter-spacing: .12em; }
@@ -78,8 +78,12 @@ button.day-cell { padding: 10px 5px; cursor: pointer; color: #e3eae6; }
 .day-cell.positive { border-color: rgba(57,217,151,.09); background: var(--green-soft); }
 .day-cell.negative { border-color: rgba(239,109,98,.09); background: var(--red-soft); }
 .day-cell.positive strong { color: #6bd9a8; }.day-cell.negative strong { color: #e98b82; }
+.day-cell.rebalance { border-color: #eee8da; background: #eee8da; color: #17201d; box-shadow: 0 5px 18px rgba(238,232,218,.08); }
+.day-cell.rebalance strong.positive-return { color: #17724f; }.day-cell.rebalance strong.negative-return { color: #a6413a; }
+.day-cell.rebalance .rebalance-mark { background: #9a792e; box-shadow: none; }
 .day-cell.empty { background: rgba(255,255,255,.005); color: #34413d; cursor: default; }
 .day-cell.selected { border-color: var(--green); box-shadow: 0 0 0 2px rgba(57,217,151,.09); }
+.day-cell.rebalance.selected { border-color: #fffdf7; box-shadow: 0 0 0 2px rgba(238,232,218,.2), 0 5px 18px rgba(238,232,218,.1); }
 .day-cell .rebalance-mark { position: absolute; top: 7px; right: 7px; }
 
 .date-inspector { margin-top: 30px; padding-top: 27px; border-top: 1px solid var(--border); }
@@ -93,6 +97,7 @@ button.day-cell { padding: 10px 5px; cursor: pointer; color: #e3eae6; }
 .table-row > span:last-child { text-align: right; }
 .table-row > span:first-child { font-family: var(--font-display), sans-serif; }
 .table-row b { display: block; color: var(--text); font: 600 13px var(--font-mono), monospace; }
+.weight-transition b { display: inline; color: currentColor; font-size: inherit; }.weight-transition i, .trade-transition i { padding: 0 3px; color: #687a73; font-style: normal; }.trade-transition b { color: var(--text); font-weight: 700; }
 .table-row small { display: block; margin-top: 3px; color: #60736c; font-size: 10px; }
 .table-row.table-head { min-height: 30px; color: #53645e; font-size: 9px; letter-spacing: .11em; }
 .trade-log { margin-top: 22px; }

@@ -1,4 +1,6 @@
 {
   "framework": "nextjs",
-  "buildCommand": "npm run build"
+  "installCommand": "npm install --prefix 2.0/dashboard --no-audit --no-fund",
+  "buildCommand": "npm run build --prefix 2.0/dashboard",
+  "outputDirectory": "2.0/dashboard/.next"
 }

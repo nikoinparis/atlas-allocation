@@ -24,6 +24,12 @@ type StrategyRecord = {
   rebalance: boolean;
   holdings: Holding[];
 };
+type DailyRecord = {
+  date: string;
+  netReturn: number | null;
+  rebalance: boolean;
+  tradingDay: boolean;
+};
 type DashboardPayload = {
   strategy: {
     id: string;
@@ -36,6 +42,7 @@ type DashboardPayload = {
     disclosures: { researchOnly: boolean; liveTradingEnabled: boolean; costBps: number; returnConvention: string };
   };
   records: StrategyRecord[];
+  dailyRecords: DailyRecord[];
 };
 
 const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 2 });
@@ -59,15 +66,16 @@ function formatDate(value: string) {
   return parseDate(value).toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
 }
 
-function portfolioMetrics(records: StrategyRecord[], capital: number) {
+function portfolioMetrics(records: DailyRecord[], capital: number) {
   const returns = records.map((row) => row.netReturn ?? 0);
-  const nonZero = returns.filter((value) => value !== 0);
+  const tradingReturns = records.filter((row) => row.tradingDay).map((row) => row.netReturn ?? 0);
+  const nonZero = tradingReturns.filter((value) => value !== 0);
   const totalMultiple = returns.reduce((wealth, value) => wealth * (1 + value), 1);
-  const years = Math.max(returns.length / 52, 1 / 52);
+  const years = Math.max(tradingReturns.length / 252, 1 / 252);
   const annualizedReturn = totalMultiple > 0 ? Math.pow(totalMultiple, 1 / years) - 1 : -1;
-  const mean = returns.reduce((sum, value) => sum + value, 0) / Math.max(returns.length, 1);
-  const variance = returns.reduce((sum, value) => sum + Math.pow(value - mean, 2), 0) / Math.max(returns.length - 1, 1);
-  const sharpe = variance > 0 ? (mean / Math.sqrt(variance)) * Math.sqrt(52) : 0;
+  const mean = tradingReturns.reduce((sum, value) => sum + value, 0) / Math.max(tradingReturns.length, 1);
+  const variance = tradingReturns.reduce((sum, value) => sum + Math.pow(value - mean, 2), 0) / Math.max(tradingReturns.length - 1, 1);
+  const sharpe = variance > 0 ? (mean / Math.sqrt(variance)) * Math.sqrt(252) : 0;
   let wealth = 1;
   let peak = 1;
   let maxDrawdown = 0;
@@ -128,22 +136,28 @@ export function ReturnFirstDashboard() {
 
 function DashboardView({ data }: { data: DashboardPayload }) {
   const latest = data.records.at(-1)!;
-  const firstHoldoutRecord = data.records.find((row) => row.date > data.strategy.retrospectiveHoldout.start)?.date ?? data.strategy.retrospectiveHoldout.start;
+  const latestDay = data.dailyRecords.at(-1)!;
+  const firstHoldoutRecord = data.dailyRecords.find((row) => row.date > data.strategy.retrospectiveHoldout.start)?.date ?? data.strategy.retrospectiveHoldout.start;
   const [capital, setCapital] = useState(10_000);
   const [startDate, setStartDate] = useState(firstHoldoutRecord);
-  const [selectedDate, setSelectedDate] = useState(latest.date);
-  const [calendarDate, setCalendarDate] = useState(parseDate(latest.date));
+  const [selectedDate, setSelectedDate] = useState(latestDay.date);
+  const [calendarDate, setCalendarDate] = useState(parseDate(latestDay.date));
   const [settingsOpen, setSettingsOpen] = useState(false);
 
-  const recordMap = useMemo(() => new Map(data.records.map((row) => [row.date, row])), [data.records]);
-  const selected = recordMap.get(selectedDate) ?? latest;
-  const simulationRecords = useMemo(() => data.records.filter((row) => row.date >= startDate), [data.records, startDate]);
+  const recordMap = useMemo(() => new Map(data.dailyRecords.map((row) => [row.date, row])), [data.dailyRecords]);
+  const selected = recordMap.get(selectedDate) ?? latestDay;
+  const selectedAllocation = useMemo(
+    () => data.records.findLast((row) => row.date <= selectedDate) ?? data.records[0],
+    [data.records, selectedDate],
+  );
+  const simulationRecords = useMemo(() => data.dailyRecords.filter((row) => row.date >= startDate), [data.dailyRecords, startDate]);
   const metrics = useMemo(() => portfolioMetrics(simulationRecords, capital), [simulationRecords, capital]);
   const selectedIndex = simulationRecords.findIndex((row) => row.date === selected.date);
   const selectedValue = selectedIndex >= 0 ? metrics.path[selectedIndex]?.value ?? capital : capital;
+  const allocationChangedToday = selected.rebalance && selectedAllocation.date === selected.date;
 
   const currentHoldings = latest.holdings.filter((holding) => (holding.weight ?? 0) > 1e-8);
-  const changedHoldings = selected.holdings.filter((holding) => Math.abs(holding.change ?? 0) > 1e-8);
+  const changedHoldings = selectedAllocation.holdings.filter((holding) => Math.abs(holding.change ?? 0) > 1e-8);
   const recentRebalances = useMemo(() => data.records.filter((row) => row.rebalance).slice(-7).reverse(), [data.records]);
 
   const month = calendarDate.getMonth();
@@ -159,13 +173,13 @@ function DashboardView({ data }: { data: DashboardPayload }) {
 
   function setQuickRange(years: number | "max") {
     if (years === "max") {
-      setStartDate(data.records[0].date);
+      setStartDate(data.dailyRecords[0].date);
       return;
     }
-    const target = parseDate(latest.date);
+    const target = parseDate(latestDay.date);
     target.setFullYear(target.getFullYear() - years);
     const iso = target.toISOString().slice(0, 10);
-    const nearest = data.records.find((row) => row.date >= iso) ?? data.records[0];
+    const nearest = data.dailyRecords.find((row) => row.date >= iso) ?? data.dailyRecords[0];
     setStartDate(nearest.date);
   }
 
@@ -199,12 +213,12 @@ function DashboardView({ data }: { data: DashboardPayload }) {
         <article className="metric-card featured">
           <span>ANNUALIZED RETURN</span>
           <strong className={metrics.annualizedReturn >= 0 ? "gain" : "loss"}>{pct(metrics.annualizedReturn, 1)}</strong>
-          <small>{startDate} to {latest.date}</small>
+          <small>{startDate} to {latestDay.date}</small>
         </article>
         <article className="metric-card">
           <span>SHARPE RATIO</span>
           <strong>{metrics.sharpe.toFixed(2)}</strong>
-          <small>weekly, zero risk-free rate</small>
+          <small>daily, zero risk-free rate</small>
         </article>
         <article className="metric-card">
           <span>MAX DRAWDOWN</span>
@@ -214,7 +228,7 @@ function DashboardView({ data }: { data: DashboardPayload }) {
         <article className="metric-card">
           <span>WIN RATE</span>
           <strong>{plainPct(metrics.winRate, 0)}</strong>
-          <small>positive non-zero weeks</small>
+          <small>positive non-zero trading days</small>
         </article>
         <article className="metric-card proof-card">
           <span>FROZEN HOLDOUT CAGR</span>
@@ -227,7 +241,7 @@ function DashboardView({ data }: { data: DashboardPayload }) {
         <article className="panel calendar-panel">
           <div className="panel-head calendar-head">
             <div>
-              <span className="section-kicker">WEEKLY P&amp;L CALENDAR</span>
+              <span className="section-kicker">DAILY P&amp;L CALENDAR</span>
               <h2>{monthNames[month]} {year}</h2>
             </div>
             <div className="calendar-controls">
@@ -236,12 +250,12 @@ function DashboardView({ data }: { data: DashboardPayload }) {
                 {monthNames.map((name, index) => <option key={name} value={index}>{name}</option>)}
               </select>
               <select value={year} onChange={(event) => setCalendarDate(new Date(Number(event.target.value), month, 1))} aria-label="Year">
-                {Array.from(new Set(data.records.map((row) => parseDate(row.date).getFullYear()))).reverse().map((item) => <option key={item}>{item}</option>)}
+                {Array.from(new Set(data.dailyRecords.map((row) => parseDate(row.date).getFullYear()))).reverse().map((item) => <option key={item}>{item}</option>)}
               </select>
               <button onClick={() => moveMonth(1)} aria-label="Next month"><ChevronRight size={18} /></button>
             </div>
           </div>
-          <div className="calendar-legend"><span><i className="legend-dot green" /> gain</span><span><i className="legend-dot red" /> loss</span><span><i className="rebalance-mark" /> holdings changed</span></div>
+          <div className="calendar-legend"><span><i className="legend-dot green" /> daily gain</span><span><i className="legend-dot red" /> daily loss</span><span><i className="legend-dot bone" /> holdings changed</span></div>
           <div className="calendar-grid weekdays">{["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"].map((day) => <span key={day}>{day}</span>)}</div>
           <div className="calendar-grid days">
             {calendarCells.map((cell, index) => cell ? (
@@ -249,10 +263,10 @@ function DashboardView({ data }: { data: DashboardPayload }) {
                 key={cell.key}
                 disabled={!cell.record}
                 onClick={() => cell.record && setSelectedDate(cell.key)}
-                className={`day-cell ${cell.record ? (cell.record.netReturn ?? 0) >= 0 ? "positive" : "negative" : "empty"} ${selectedDate === cell.key ? "selected" : ""}`}
+                className={`day-cell ${cell.record ? cell.record.rebalance ? "rebalance" : (cell.record.netReturn ?? 0) >= 0 ? "positive" : "negative" : "empty"} ${selectedDate === cell.key ? "selected" : ""}`}
               >
                 <span>{cell.day}</span>
-                {cell.record && <strong>{pct(cell.record.netReturn ?? 0, 2)}</strong>}
+                {cell.record && <strong className={(cell.record.netReturn ?? 0) >= 0 ? "positive-return" : "negative-return"}>{pct(cell.record.netReturn ?? 0, 2)}</strong>}
                 {cell.record?.rebalance && <i className="rebalance-mark" title="Holdings changed" />}
               </button>
             ) : <span className="day-cell spacer" key={`blank-${index}`} />)}
@@ -261,26 +275,26 @@ function DashboardView({ data }: { data: DashboardPayload }) {
           <div className="date-inspector">
             <div className="inspector-title">
               <div><span className="section-kicker">SELECTED STRATEGY DATE</span><h3>{formatDate(selected.date)}</h3></div>
-              <div className="selected-pnl"><span>FOLLOWING WEEK P&amp;L</span><strong className={(selected.netReturn ?? 0) >= 0 ? "gain" : "loss"}>{money.format(selectedValue * (selected.netReturn ?? 0))}</strong><small>{pct(selected.netReturn ?? 0)}</small></div>
+              <div className="selected-pnl"><span>DAILY P&amp;L</span><strong className={(selected.netReturn ?? 0) >= 0 ? "gain" : "loss"}>{money.format(selectedValue * (selected.netReturn ?? 0))}</strong><small>{pct(selected.netReturn ?? 0)}</small></div>
             </div>
             <div className="holdings-table">
               <div className="table-row table-head"><span>HOLDING</span><span>WEIGHT</span><span>CHANGE</span><span>SIMULATED VALUE</span></div>
-              {selected.holdings.filter((holding) => (holding.weight ?? 0) > 1e-8).map((holding) => (
+              {selectedAllocation.holdings.filter((holding) => (holding.weight ?? 0) > 1e-8).map((holding) => (
                 <div className="table-row" key={holding.symbol}>
                   <span><b>{holding.symbol.replace("cash::", "")}</b><small>{classification(holding.symbol)}</small></span>
                   <span>{plainPct(holding.weight ?? 0)}</span>
-                  <span className={(holding.change ?? 0) >= 0 ? "gain" : "loss"}>{Math.abs(holding.change ?? 0) < 1e-8 ? "—" : pct(holding.change ?? 0, 1)}</span>
+                  <span className={(holding.change ?? 0) >= 0 ? "gain weight-transition" : "loss weight-transition"}>{!allocationChangedToday || Math.abs(holding.change ?? 0) < 1e-8 ? "—" : <>{plainPct((holding.weight ?? 0) - (holding.change ?? 0))} <i>→</i> <b>{plainPct(holding.weight ?? 0)}</b></>}</span>
                   <span>{money.format(selectedValue * (holding.weight ?? 0))}</span>
                 </div>
               ))}
             </div>
             <div className="trade-log">
               <span className="section-kicker">HOLDINGS CHANGE LOG</span>
-              {selected.rebalance ? changedHoldings.map((holding) => (
+              {allocationChangedToday ? changedHoldings.map((holding) => (
                 <div className="trade-row" key={holding.symbol}>
                   <span className={`trade-badge ${changeLabel(holding).toLowerCase()}`}>{changeLabel(holding)}</span>
                   <b>{holding.symbol.replace("cash::", "")}</b>
-                  <span>{pct(holding.change ?? 0, 1)} weight</span>
+                  <span className="trade-transition">{plainPct((holding.weight ?? 0) - (holding.change ?? 0))} <i>→</i> <b>{plainPct(holding.weight ?? 0)}</b></span>
                   <strong>{money.format(Math.abs(selectedValue * (holding.change ?? 0)))}</strong>
                 </div>
               )) : <p>No holdings changed on this strategy date.</p>}
@@ -291,7 +305,7 @@ function DashboardView({ data }: { data: DashboardPayload }) {
         <div className="right-stack">
           <article className="panel chart-panel">
             <div className="panel-head">
-              <div><span className="section-kicker">SIMULATED EQUITY CURVE</span><h2>Portfolio Value</h2><p>{startDate} — {latest.date}</p></div>
+              <div><span className="section-kicker">SIMULATED EQUITY CURVE</span><h2>Portfolio Value</h2><p>{startDate} — {latestDay.date}</p></div>
               <strong className={metrics.totalReturn >= 0 ? "gain" : "loss"}>{pct(metrics.totalReturn)}</strong>
             </div>
             <div className="chart-wrap">
@@ -306,7 +320,7 @@ function DashboardView({ data }: { data: DashboardPayload }) {
                 </AreaChart>
               </ResponsiveContainer>
             </div>
-            <div className="chart-stats"><span><small>START</small>{money.format(capital)}</span><span><small>PROFIT</small><b className={metrics.profit >= 0 ? "gain" : "loss"}>{money.format(metrics.profit)}</b></span><span><small>WEEKS</small>{simulationRecords.length}</span></div>
+            <div className="chart-stats"><span><small>START</small>{money.format(capital)}</span><span><small>PROFIT</small><b className={metrics.profit >= 0 ? "gain" : "loss"}>{money.format(metrics.profit)}</b></span><span><small>TRADING DAYS</small>{simulationRecords.length}</span></div>
           </article>
 
           <article className="panel allocation-panel">
@@ -343,7 +357,7 @@ function DashboardView({ data }: { data: DashboardPayload }) {
       </section>
 
       <footer>
-        <span>Data through {data.strategy.asOf} · weekly research simulation</span>
+          <span>Data through {latestDay.date} · daily P&amp;L from weekly strategy decisions</span>
         <span>Past simulated performance does not guarantee future returns.</span>
       </footer>
 
@@ -354,7 +368,7 @@ function DashboardView({ data }: { data: DashboardPayload }) {
           <h2>Replay the strategy</h2>
           <p>Change only the hypothetical starting amount and time window. The strategy rules, weekly returns, and 50-bps cost model remain frozen.</p>
           <label>Starting capital<input type="number" min="100" step="100" value={capital} onChange={(event) => setCapital(Math.max(100, Number(event.target.value) || 100))} /></label>
-          <label>Start date<input type="date" min={data.records[0].date} max={latest.date} value={startDate} onChange={(event) => setStartDate(event.target.value)} /></label>
+          <label>Start date<input type="date" min={data.dailyRecords[0].date} max={latestDay.date} value={startDate} onChange={(event) => setStartDate(event.target.value)} /></label>
           <div className="quick-ranges"><span>QUICK RANGE</span>{[1, 2, 3, 5].map((item) => <button key={item} onClick={() => setQuickRange(item)}>{item}Y</button>)}<button onClick={() => setQuickRange("max")}>MAX</button></div>
           <div className="scenario-result"><span>SIMULATED END VALUE</span><strong>{money.format(metrics.endValue)}</strong><small>{compactMoney.format(capital)} became {compactMoney.format(metrics.endValue)} · {pct(metrics.totalReturn)}</small></div>
           <button className="apply-button" onClick={() => setSettingsOpen(false)}>Apply scenario</button>

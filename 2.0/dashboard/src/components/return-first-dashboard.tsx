@@ -34,16 +34,20 @@ type DashboardPayload = {
   strategy: {
     id: string;
     name: string;
+    shortName: string;
     subtitle: string;
+    badge: string;
     asOf: string;
     retrospectiveHoldout: { cagr: number; sharpe: number; maxDrawdown: number; start: string };
     fullHistory: { cagr: number; maxDrawdown: number; start: string };
-    forward: { status: string; observedWeeks: number; requiredWeeks: number; firstDecision: string; firstRealization: string };
+    featuredMetric: { label: string; value: number; note: string };
+    forward: { status: string; observedWeeks: number; requiredWeeks: number; firstDecision: string; firstRealization: string; note: string };
     disclosures: { researchOnly: boolean; liveTradingEnabled: boolean; costBps: number; returnConvention: string };
   };
   records: StrategyRecord[];
   dailyRecords: DailyRecord[];
 };
+type DashboardBundle = { strategies: DashboardPayload[] };
 
 const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 2 });
 const compactMoney = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", notation: "compact", maximumFractionDigits: 1 });
@@ -98,6 +102,9 @@ function portfolioMetrics(records: DailyRecord[], capital: number) {
 }
 
 function classification(symbol: string) {
+  if (["MU", "VICR", "PLTR", "RDDT"].includes(symbol)) return "Fundamental growth stock";
+  if (symbol === "BKV") return "Fundamental energy stock";
+  if (symbol === "MMAT") return "Unpriced historical selection";
   if (symbol === "cash::USD" || symbol === "BIL" || symbol === "SHY") return "Cash / defensive";
   if (["XLK", "QQQ", "VUG"].includes(symbol)) return "Technology / growth";
   if (["XLE", "USO", "PDBC", "GLD", "IAU", "SLV", "DBA"].includes(symbol)) return "Energy / commodities";
@@ -116,25 +123,27 @@ function changeLabel(holding: Holding) {
 }
 
 export function ReturnFirstDashboard() {
-  const [data, setData] = useState<DashboardPayload | null>(null);
+  const [bundle, setBundle] = useState<DashboardBundle | null>(null);
+  const [activeStrategy, setActiveStrategy] = useState("candidate-return-first-60-40-forward-v1");
   const [error, setError] = useState(false);
 
   useEffect(() => {
     fetch("/return-first-dashboard.json")
       .then((response) => {
         if (!response.ok) throw new Error("Dashboard snapshot is unavailable");
-        return response.json() as Promise<DashboardPayload>;
+        return response.json() as Promise<DashboardBundle>;
       })
-      .then(setData)
+      .then(setBundle)
       .catch(() => setError(true));
   }, []);
 
   if (error) return <main className="loading-state"><span>PORTFOLIO OPTIMIZER</span><h1>Research snapshot unavailable</h1><p>Rebuild the dashboard snapshot and refresh this page.</p></main>;
-  if (!data) return <main className="loading-state"><span>PORTFOLIO OPTIMIZER</span><h1>Loading the research book…</h1></main>;
-  return <DashboardView data={data} />;
+  if (!bundle) return <main className="loading-state"><span>PORTFOLIO OPTIMIZER</span><h1>Loading the research book…</h1></main>;
+  const data = bundle.strategies.find((item) => item.strategy.id === activeStrategy) ?? bundle.strategies[0];
+  return <DashboardView key={data.strategy.id} data={data} strategies={bundle.strategies} onStrategyChange={setActiveStrategy} />;
 }
 
-function DashboardView({ data }: { data: DashboardPayload }) {
+function DashboardView({ data, strategies, onStrategyChange }: { data: DashboardPayload; strategies: DashboardPayload[]; onStrategyChange: (id: string) => void }) {
   const latest = data.records.at(-1)!;
   const latestDay = data.dailyRecords.at(-1)!;
   const firstHoldoutRecord = data.dailyRecords.find((row) => row.date > data.strategy.retrospectiveHoldout.start)?.date ?? data.strategy.retrospectiveHoldout.start;
@@ -194,9 +203,16 @@ function DashboardView({ data }: { data: DashboardPayload }) {
           <div className="eyebrow"><span className="status-dot" /> PORTFOLIO OPTIMIZER — RESEARCH BOOK</div>
           <h1>Return-First Control Room</h1>
           <div className="strategy-line">
-            <span>{data.strategy.name}</span>
+            <label className="strategy-picker">
+              <span>DISPLAY STRATEGY</span>
+              <select value={data.strategy.id} onChange={(event) => onStrategyChange(event.target.value)}>
+                {strategies.map((item) => <option key={item.strategy.id} value={item.strategy.id}>{item.strategy.shortName}</option>)}
+              </select>
+            </label>
+            <span className="strategy-name">{data.strategy.name}</span>
             <span className="pill research"><FlaskConical size={13} /> Retrospective research</span>
             <span className="pill">50 bps costs</span>
+            <span className="pill strategy-badge">{data.strategy.badge}</span>
           </div>
         </div>
         <div className="portfolio-headline">
@@ -231,9 +247,9 @@ function DashboardView({ data }: { data: DashboardPayload }) {
           <small>positive non-zero trading days</small>
         </article>
         <article className="metric-card proof-card">
-          <span>FROZEN HOLDOUT CAGR</span>
-          <strong className="gain">{pct(data.strategy.retrospectiveHoldout.cagr, 2)}</strong>
-          <small>selected after observing this period</small>
+          <span>{data.strategy.featuredMetric.label}</span>
+          <strong className="gain">{pct(data.strategy.featuredMetric.value, 2)}</strong>
+          <small>{data.strategy.featuredMetric.note}</small>
         </article>
       </section>
 
@@ -348,7 +364,7 @@ function DashboardView({ data }: { data: DashboardPayload }) {
         <article className="panel compact-panel protocol-panel">
           <span className="section-kicker">FORWARD VALIDATION CLOCK</span><h2>{data.strategy.forward.observedWeeks} / {data.strategy.forward.requiredWeeks} weeks observed</h2>
           <div className="progress-track"><i style={{ width: `${(data.strategy.forward.observedWeeks / data.strategy.forward.requiredWeeks) * 100}%` }} /></div>
-          <p>First eligible realization: <b>{data.strategy.forward.firstRealization}</b>. Until independent weeks accumulate, the 41.66% holdout result is evidence—not an expectation.</p>
+          <p>First eligible realization: <b>{data.strategy.forward.firstRealization}</b>. {data.strategy.forward.note}</p>
         </article>
         <article className="panel compact-panel guardrail-panel">
           <span className="section-kicker">STATUS &amp; GUARDRAILS</span><h2>Simulation only</h2>

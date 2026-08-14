@@ -355,7 +355,7 @@ function DashboardView({ data, strategies, onStrategyChange }: { data: Dashboard
           </article>
 
           <article className="panel allocation-panel">
-            <div className="panel-head"><div><span className="section-kicker">LATEST DECISION</span><h2>Current Allocation</h2></div><span className="as-of">As of {latest.date}</span></div>
+            <div className="panel-head"><div><span className="section-kicker">LATEST DECISION</span><h2>Current Allocation</h2></div><span className="as-of">Prices through {data.strategy.asOf}</span></div>
             <div className="allocation-body">
               <div className="donut" style={{ background: `conic-gradient(${currentHoldings.map((holding, index) => `${holdingColors[index % holdingColors.length]} ${currentHoldings.slice(0, index).reduce((sum, item) => sum + (item.weight ?? 0), 0) * 100}% ${(currentHoldings.slice(0, index + 1).reduce((sum, item) => sum + (item.weight ?? 0), 0)) * 100}%`).join(",")})` }}>
                 <div><small>HOLDINGS</small><strong>{currentHoldings.length}</strong></div>

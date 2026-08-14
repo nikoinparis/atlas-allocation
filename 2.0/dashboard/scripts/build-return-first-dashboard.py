@@ -15,6 +15,7 @@ V2 = APP.parent
 WEIGHTS = V2 / "evidence/forward_return_first_60_40_blend_v1/frozen_weights.csv"
 PRICES = V2 / "data/ggg_vintages/ggg_causal_v2_027530550388432a/data/01_data_hub/weekly_prices.csv"
 DAILY_PRICES = V2 / "data/vintages/20260812T035702Z-0c1bf62d74413e2a/payload/prices.csv"
+LATEST_ETF_PRICES = APP / "data/latest-etf-snapshot/prices.csv"
 INCUMBENT_RESULT = V2 / "evidence/forward_return_first_60_40_blend_v1/result.json"
 INCUMBENT_STATUS = V2 / "evidence/forward_return_first_60_40_blend_v1/status.json"
 INCUMBENT_CONFIG = V2 / "config/forward/return_first_60_40_blend_v1.json"
@@ -116,9 +117,11 @@ def daily_records_from_weights(
         level = (invested + cash_weight).fillna(1.0)
         raw = level.pct_change()
         raw.iloc[0] = float(level.iloc[0] - 1.0)
-        desired = 1.0 + float(weekly_net.get(decision, 0.0))
-        prior = float((1.0 + raw.iloc[:-1]).prod()) if len(raw) > 1 else 1.0
-        raw.iloc[-1] = desired / prior - 1.0
+        terminal_extension = terminal_date is not None and index == len(weights.index) - 1 and decision == weights.index[-1]
+        if not terminal_extension:
+            desired = 1.0 + float(weekly_net.get(decision, 0.0))
+            prior = float((1.0 + raw.iloc[:-1]).prod()) if len(raw) > 1 else 1.0
+            raw.iloc[-1] = desired / prior - 1.0
         for day, daily_return in raw.items():
             date_string = day.strftime("%Y-%m-%d")
             output.append({
@@ -150,11 +153,14 @@ def incumbent_payload() -> dict[str, object]:
     records = records_from_weights(weights, gross, net, turnover, cost, wealth, drawdown)
 
     source = pd.read_csv(DAILY_PRICES, usecols=["observation_date", "ticker", "adjusted_close"])
+    if LATEST_ETF_PRICES.exists():
+        latest_source = pd.read_csv(LATEST_ETF_PRICES, usecols=["observation_date", "ticker", "adjusted_close"])
+        source = pd.concat([source, latest_source], ignore_index=True).drop_duplicates(["observation_date", "ticker"], keep="last")
     source["observation_date"] = pd.to_datetime(source["observation_date"], errors="coerce")
     source["adjusted_close"] = pd.to_numeric(source["adjusted_close"], errors="coerce")
     daily = source.pivot_table(index="observation_date", columns="ticker", values="adjusted_close", aggfunc="last").sort_index()
     daily = daily.reindex(columns=[column for column in weights.columns if column != "cash::USD"])
-    daily_records = daily_records_from_weights(weights, daily, net, records)
+    daily_records = daily_records_from_weights(weights, daily, net, records, terminal_date=daily.index.max())
 
     result = json.loads(INCUMBENT_RESULT.read_text())
     status = json.loads(INCUMBENT_STATUS.read_text())
@@ -169,7 +175,7 @@ def incumbent_payload() -> dict[str, object]:
             "asOf": daily_records[-1]["date"],
             "retrospectiveHoldout": {"cagr": result["holdout_50bps_cagr"], "sharpe": result["holdout_50bps_sharpe"], "maxDrawdown": result["holdout_50bps_drawdown"], "start": "2023-08-04"},
             "fullHistory": {"cagr": result["full_50bps_cagr"], "maxDrawdown": result["full_50bps_drawdown"], "start": records[0]["date"]},
-            "featuredMetric": {"label": "FROZEN HOLDOUT CAGR", "value": result["holdout_50bps_cagr"], "note": "selected after observing this period"},
+            "featuredMetric": {"label": "OFFICIAL RESEARCH CAGR", "value": result["holdout_50bps_cagr"], "note": "Holdout window · selected after observing this period"},
             "forward": {"status": status["status"], "observedWeeks": status["observed_weeks"], "requiredWeeks": status["required_weeks"], "firstDecision": config["first_eligible_decision_date"], "firstRealization": config["first_eligible_realization_date"], "note": "The 41.66% holdout result is evidence—not an expectation."},
             "disclosures": {"researchOnly": result["retrospective_research_only"], "liveTradingEnabled": result["live_trading_enabled"], "costBps": 50, "returnConvention": "Weekly decision returns, expanded to daily calendar observations."},
         },
@@ -248,7 +254,7 @@ def growth_payload() -> dict[str, object]:
             "asOf": daily_records[-1]["date"],
             "retrospectiveHoldout": {"cagr": recent["cagr"], "sharpe": recent["sharpe_zero_rf"], "maxDrawdown": recent["max_drawdown"], "start": str(recent["start"])},
             "fullHistory": {"cagr": full["cagr"], "maxDrawdown": full["max_drawdown"], "start": str(full["start"])},
-            "featuredMetric": {"label": "TRAILING 1Y CAGR", "value": recent["cagr"], "note": "Micron supplied 67.63% of the latest period's positive return"},
+            "featuredMetric": {"label": "OFFICIAL RESEARCH CAGR", "value": recent["cagr"], "note": "Trailing 1Y · Micron supplied 67.63% of positive return"},
             "forward": {"status": status["status"], "observedWeeks": status["observed_weeks"], "requiredWeeks": status["required_weeks"], "firstDecision": "2026-08-14", "firstRealization": status["next_realization"], "note": "The 142.22% result is a historical simulation, not an expected annual return."},
             "disclosures": {"researchOnly": True, "liveTradingEnabled": False, "costBps": 50, "returnConvention": "Quarterly SEC selections with weekly mark-to-market; missing MMAT weight held in cash in the displayed base case."},
         },

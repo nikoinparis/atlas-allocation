@@ -1,0 +1,28 @@
+{
+  "candidate": "sec_growth_confidence_sizing_candidate_v1",
+  "formula": "Allocate 10% to the frozen SEC growth sleeve normally and 40% when its prior 26-week return is positive and exceeds the frozen ETF incumbent's prior 26-week return.",
+  "retrospective_primary_50bps": {
+    "trailing_1y_cagr": 0.925615,
+    "trailing_1y_sharpe_zero_rf": 2.435094,
+    "trailing_1y_max_drawdown": -0.134937,
+    "ytd_cagr": 0.887176,
+    "holdout_cagr": 0.411427,
+    "holdout_sharpe_zero_rf": 1.587128,
+    "holdout_max_drawdown": -0.172311
+  },
+  "fixed_20_control_50bps": {
+    "trailing_1y_cagr": 0.828289,
+    "ytd_cagr": 0.710881,
+    "holdout_cagr": 0.419047
+  },
+  "cost_stress_trailing_1y_cagr": {"100bps": 0.891547, "200bps": 0.825098},
+  "known_limitations": [
+    "Selected after observing the historical comparison",
+    "Recent gain remains exposed to the Micron-led growth sleeve",
+    "Full holdout CAGR and Sharpe trail the fixed 20% control",
+    "At 200 bps, full holdout performance deteriorates materially"
+  ],
+  "status": "provisional forward challenger",
+  "research_only": true,
+  "live_trading_enabled": false
+}

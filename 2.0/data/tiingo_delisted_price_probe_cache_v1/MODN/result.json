@@ -1,0 +1,20 @@
+{
+  "cik10": "0001118417",
+  "covers_first_eligible_decision": true,
+  "first_eligible_decision": "2015-01-01 00:00:00+00:00",
+  "first_price_date": "2015-01-02",
+  "issuer_name_match": true,
+  "issuer_name_score": 1.0,
+  "last_eligible_decision": "2025-07-01 00:00:00+00:00",
+  "last_price_date": "2024-06-27",
+  "price_file": "/workspace/2.0/data/tiingo_delisted_price_probe_cache_v1/MODN/prices.csv.gz",
+  "price_rows": 2387,
+  "provider_end_date": "2024-06-27",
+  "provider_exchange": "NYSE",
+  "provider_name": "Model N Inc",
+  "provider_start_date": "2013-03-20",
+  "sec_company_name": "MODEL N, INC.",
+  "status": "identity_and_start_validated",
+  "terminal": true,
+  "tiingo_symbol": "MODN"
+}

@@ -1,0 +1,23 @@
+{
+  "baseline_bundle_id": "ggg_causal_v2_027530550388432a",
+  "baseline_recent_3y_50bps_cagr": 0.12313150740436418,
+  "baseline_recent_3y_50bps_sharpe": 1.4800760914513293,
+  "batch": 60,
+  "best_adjusted_pvalue": 0.049439011219775605,
+  "best_implementation": "blend::candidate-052f66f29b9fafbe::0.3",
+  "best_recent_3y_50bps_cagr": 0.14893636459247728,
+  "best_recent_3y_50bps_cagr_improvement": 0.025804857188113095,
+  "best_recent_3y_50bps_sharpe": 1.5527765154272164,
+  "blend_trial_count": 24,
+  "candidate_count": 8,
+  "decision": "save_provisional_challenger_for_deeper_validation",
+  "deterministic": true,
+  "forward_clock_started": false,
+  "generated_at_utc": "2026-08-12T22:34:54.868182+00:00",
+  "live_trading_enabled": false,
+  "maximum_prefix_weight_difference": 0.0,
+  "prefix_invariance_pass": true,
+  "promoted_candidate_count": 3,
+  "provisional_challenger": "blend::candidate-052f66f29b9fafbe::0.3",
+  "retrospective_selection_only": true
+}

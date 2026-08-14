@@ -1,0 +1,26 @@
+{
+  "all_validation_checks_passed": true,
+  "best_candidate": "sales_only__top10__floor25m__sector60__cohort1__w0.40__50bps",
+  "best_full_cagr": 0.4196258540268616,
+  "best_full_drawdown": -0.27063539146463034,
+  "best_recent_cagr": 1.1120849711819831,
+  "best_recent_drawdown": -0.15282913445812063,
+  "best_recent_sharpe": 2.332867517610213,
+  "candidates_beating_control_both": 50,
+  "created_at_utc": "2026-08-14T22:30:06.313523+00:00",
+  "experiment": "sec_diversified_valuation_ensemble_search_v1",
+  "live_trading_enabled": false,
+  "severe_200bps_recent_cagr": 1.0978659126539996,
+  "strategy_replacement_authorized": false,
+  "tested_paths": 12960,
+  "tested_sleeves": 360,
+  "validation_checks": {
+    "all_breadths_reported": true,
+    "all_cohorts_reported": true,
+    "all_costs_reported": true,
+    "all_family_sets_reported": true,
+    "all_sector_caps_reported": true,
+    "results_finite": true,
+    "weights_bounded": true
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "artifacts": {
+    "fallback_prefix_invariance.csv": {
+      "bytes": 212,
+      "sha256": "cf5682d7aa31ff756b08ec438d83331f30ca05e21d85b5ffd1984dfd70bfb12c"
+    },
+    "ggg_performance_comparison.csv": {
+      "bytes": 2133,
+      "sha256": "07882a37c781bc70d1f5f7bb149b870115130fc7a32f75b4f7a613c893176b50"
+    },
+    "sleeve_performance_comparison.csv": {
+      "bytes": 2037,
+      "sha256": "3de9bf3662f6f88d3ecfc1d190c57e66c60e9a0cd3bf6af0779968489e2c81cd"
+    },
+    "source_mode_comparison.csv": {
+      "bytes": 209,
+      "sha256": "73d2196d5f219afe1dcbba850ec81730512cc81c17866346c852c24397dd0f2b"
+    }
+  },
+  "current_layer2b_changed_rows": 979,
+  "current_layer2b_first_changed_date": "2005-02-25",
+  "current_layer2b_last_changed_date": "2026-04-10",
+  "current_layer2b_maximum_position_difference": 0.5625,
+  "current_layer2b_promoted": false,
+  "decision": "freeze_recovered_fallback_lineage_keep_current_layer2b_as_diagnostic_only",
+  "fallback_gates": {
+    "causal_allocator_current_row_excluded": true,
+    "deterministic_rerun_pass": true,
+    "exact_saved_position_reconstruction": true,
+    "exact_saved_return_path_reconstruction": true,
+    "three_prefix_tests_pass": true
+  },
+  "fallback_lineage_qualified": true,
+  "generated_at_utc": "2026-08-12T00:07:30.263618+00:00",
+  "live_trading_enabled": false,
+  "maximum_deterministic_difference": 0.0,
+  "maximum_prefix_difference": 0.0,
+  "maximum_saved_position_difference": 0.0,
+  "maximum_saved_return_path_difference": 1.3322676295501878e-15,
+  "program": "regime_conditioned_lineage_audit_v1",
+  "program_sha256": "db4c5f417b26d8102c28e34539907f29e64f8fadd6171e71ed0249755123c3c4",
+  "recovered_source_mode": "layer1_regime_features_fallback",
+  "target": "composite_regime_conditioned",
+  "version_1_modified": false
+}

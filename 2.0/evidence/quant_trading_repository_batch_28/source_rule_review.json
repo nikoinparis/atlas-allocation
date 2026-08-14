@@ -1,0 +1,31 @@
+{
+  "repository": "je-suis-tm/quant-trading",
+  "commit": "611b73f2c3f577ac5b28aaa19ac8c43d3236c7a5",
+  "source_directory": "Monte Carlo project",
+  "source_files_sha256": {
+    "Monte Carlo backtest.py": "638199202210099aab72b7c0c5474d32048ddba5a6b5cff5f71699e3cf0e5b6d",
+    "README.md": "9ab5d3312275e7c7968f0193671dfa75aaab375cd60d77bdd2d2870120c5e5fc"
+  },
+  "source_method": {
+    "split": "chronological train/test split with test size 0.5 by default",
+    "returns": "training log returns",
+    "drift": "mean log return minus half log-return variance",
+    "paths": "geometric Brownian motion with independent standard-normal shocks",
+    "selection": "choose the simulated path with the smallest price-level standard deviation from the actual training history",
+    "evaluation": "compare the selected path's test-horizon direction with the actual direction and vary simulation count"
+  },
+  "useful_lessons": [
+    "Simulation count does not cure a misspecified return distribution.",
+    "Monte Carlo is more defensible for conditional risk ranges than for selecting one supposedly predictive path.",
+    "Past empirical distributions cannot represent genuinely unseen events without explicit stress assumptions."
+  ],
+  "defects_and_limitations": [
+    "Independent Gaussian shocks omit empirical skew, excess kurtosis, volatility clustering, and serial dependence.",
+    "Selecting the random path that most closely fits training prices is multiple-comparison overfitting and does not create forecast information.",
+    "The path starts at the beginning of training and attempts to re-simulate the already observed price history rather than conditioning from the latest price.",
+    "The source tests direction at only one split, supplies no uncertainty interval for accuracy, and reverses both direction differences in its sign calculation.",
+    "Price-level fit is scale- and trend-dominated; no transaction costs, portfolio rebalancing, drawdown distribution, calibration coverage, or model comparison is provided.",
+    "The source itself warns that empirical simulation cannot imagine crises absent from its historical input."
+  ],
+  "independent_treatment": "Retain the source Gaussian GBM and best-fit selection as explicit diagnostics, but do not use either for allocation. Add empirical IID, circular 13-week block, positive-mean haircut, and forced-worst-block simulations for the frozen portfolio. Validate the primary block model with expanding, strictly past-only annual forecast origins and report loss, drawdown, tail, recovery, and interval-calibration probabilities."
+}

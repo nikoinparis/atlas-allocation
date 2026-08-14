@@ -1,0 +1,27 @@
+{
+  "actual_commit": "345d7c6a8ce31d547c14e6eede8cd1f6f8673673",
+  "container_exit_code": 0,
+  "container_image": "docker.io/alpine/git:2.49.1",
+  "dependency_manifests": [],
+  "elapsed_seconds": 2,
+  "entry_id": "ast-0011",
+  "error": "",
+  "expected_commit": "345d7c6a8ce31d547c14e6eede8cd1f6f8673673",
+  "file_count": 37,
+  "name": "FinClaw",
+  "planned_environment": "python_container",
+  "repository": "NeuZhou/finclaw",
+  "repository_kb": 564,
+  "started_at": "2026-08-09T00:48:42.467612+00:00",
+  "status": "passed",
+  "submodule_count": 0,
+  "test_indicators": [],
+  "top_level_entries": [
+    ".git",
+    "README.md",
+    "charts",
+    "paper-trading",
+    "signals"
+  ],
+  "tracked_file_count": 6
+}

@@ -1,0 +1,52 @@
+{
+  "program": "ggg_residual_momentum_source_v1",
+  "batch": 50,
+  "predeclared_at_utc": "2026-08-12T00:00:00Z",
+  "selection_budget": 6,
+  "candidates": {
+    "residual_momentum_raw_standalone": {"source": "raw", "blend_weight": 1.0, "kind": "standalone"},
+    "residual_momentum_vol_managed_standalone": {"source": "vol_managed", "blend_weight": 1.0, "kind": "standalone"},
+    "ggg_plus_residual_raw_10": {"source": "raw", "blend_weight": 0.10, "kind": "blend"},
+    "ggg_plus_residual_vol_05": {"source": "vol_managed", "blend_weight": 0.05, "kind": "blend"},
+    "ggg_plus_residual_vol_10": {"source": "vol_managed", "blend_weight": 0.10, "kind": "blend"},
+    "ggg_plus_residual_vol_15": {"source": "vol_managed", "blend_weight": 0.15, "kind": "blend"}
+  },
+  "formula": {
+    "beta": "52-week rolling covariance of ETF and SPY log returns divided by SPY variance, minimum 26 observations.",
+    "residual": "Return at t minus alpha and beta estimated through t-1 applied to SPY return at t.",
+    "momentum": "Sum residual log returns over 48 weeks after skipping the latest four weeks; cross-sectional winsorized rank to [-1,1], then lag one week.",
+    "portfolio": "Weekly equal weight top five positive tradable scores; remainder BIL.",
+    "vol_management": "SPY 13-week realized volatility: 100% exposure at <=18%, 80% at 18-25%, 60% above 25%; remainder BIL.",
+    "execution": "Signals and SPY volatility through close t determine weights earning t-to-t+1.",
+    "blend": "Fixed convex blend with causal GGG followed by the 35% risky ETF cap."
+  },
+  "cost_bps": [10, 50, 100],
+  "primary_window": "recent_3y",
+  "secondary_window_start": "2024-01-05",
+  "prefix_cutoffs": ["2023-12-29", "2024-12-27", "2025-12-26"],
+  "standalone_gates": {
+    "minimum_recent_3y_50bps_cagr": 0.08,
+    "minimum_full_100bps_cagr": 0.03,
+    "maximum_abs_full_correlation_to_ggg": 0.80,
+    "maximum_recent_3y_drawdown_magnitude": 0.30
+  },
+  "blend_gates": {
+    "minimum_recent_3y_50bps_cagr_improvement": 0.005,
+    "minimum_post_2024_50bps_cagr_improvement": 0.0,
+    "maximum_full_50bps_cagr_degradation": 0.002,
+    "maximum_recent_3y_drawdown_magnitude": 0.13
+  },
+  "common_gates": {
+    "maximum_signal_equivalence_error": 1e-10,
+    "maximum_prefix_absolute_difference": 1e-10,
+    "require_determinism": true,
+    "require_snapshot_hashes": true,
+    "blend_requires_parent_standalone_pass": true
+  },
+  "decision_rule": "Only independently reconstructed standalone sources passing every source gate may support a research-only blend shortlist.",
+  "scope_limits": [
+    "Exactly six candidates; no post-result tuning.",
+    "Saved Layer 1 signal values are audit comparators, never portfolio inputs.",
+    "Observed history is not untouched evidence; no production promotion or live trading."
+  ]
+}

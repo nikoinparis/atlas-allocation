@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "adapter_version": "ggg_layer1_portable_price_block_v1",
+  "status": "frozen_partial_adapter",
+  "frozen_at_utc": "2026-08-12T04:40:00Z",
+  "source_snapshot_id": "20260812T035702Z-0c1bf62d74413e2a",
+  "market_data_through": "2026-08-07",
+  "included_outputs": [
+    "xsmom_global",
+    "xsmom_raw_return_52_4w",
+    "multi_mom_invvol",
+    "residual_momentum",
+    "reversal_4w_global",
+    "quality_proxy",
+    "value_proxy",
+    "bab_proxy",
+    "carry_proxy"
+  ],
+  "historical_equivalence": {
+    "through": "2026-04-10",
+    "inputs_tested_including_regime_reference": 10,
+    "maximum_absolute_difference": 5.062616992290714e-14,
+    "maximum_prefix_difference": 0.0,
+    "deterministic": true
+  },
+  "current_coverage": {
+    "eight_complete_panels_assets": 35,
+    "carry_nonmissing_assets": 31,
+    "universe_assets": 35
+  },
+  "excluded_output": {
+    "name": "regime_features",
+    "reason": "No immutable post-April VIX term-structure, macro-series, or Google-fear vintages are present in the ETF snapshot."
+  },
+  "failure_policy": "A complete GGG Layer 1 request must fail closed until a separately pinned current regime bundle passes historical and timing audits.",
+  "mutation_policy": "Any formula, lag, input source, normalization, universe, or missing-data change creates a new adapter version.",
+  "pinned_sha256": {
+    "src/systematic_trader/ggg_layer1.py": "c9f9a02c5345b51c11b8ecf3fe9fd472b16fb9a07584bb2bf2d618d3d179343a",
+    "scripts/audit_ggg_layer1_portable_batch_54.py": "698f26894ebeec1728493c34b5df68c8ef76c8a88d0e6c1aa789b2f58964abe0",
+    "evidence/ggg_layer1_portable_batch_54/result.json": "d1e5994c72c1281e5a95327d848c26d6946309569624ee020801d3bbeefc9a72",
+    "data/vintages/20260812T035702Z-0c1bf62d74413e2a/manifest.json": "dd768f9ad35f5570fb6f7a0c5e7d4450976a319fc5f4badb71b9e116c16bb831"
+  },
+  "complete_layer1_bundle": false,
+  "forward_clock_started": false,
+  "approved_for_live_trading": false,
+  "live_trading_enabled": false
+}

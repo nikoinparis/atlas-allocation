@@ -1,0 +1,19 @@
+{
+  "relative_return": "Maximize portfolio return above benchmark with turnover, volatility, and safe-exposure penalties.",
+  "relative_info_ratio": "Maximize mean excess return divided by tracking error with penalties.",
+  "risk_constrained_relative": "Reward excess return while penalizing downside worse than the benchmark, CVaR proxy, turnover, and safe exposure.",
+  "offensive_exposure_constrained": "Strongly penalize hiding in safe assets in good states.",
+  "triple_barrier_aware": "Use MLX-13 path-aware labels as penalties: avoid risky exposure on danger labels and avoid safe hiding on positive labels.",
+  "hybrid_bce_relative": "Combine top-quintile BCE with benchmark-relative decision loss.",
+  "benchmarks": [
+    "production",
+    "phase4b"
+  ],
+  "wrappers": [
+    "raw_ml",
+    "bil_fallback_original",
+    "regime_gate_original",
+    "production_core_plus_10pct_model_sleeve",
+    "phase4b_core_plus_10pct_model_sleeve"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "dependency_exit_code": 0,
+  "dependency_log": "added 349 packages in 4s\n\nTrying to pull docker.io/library/node:20-bookworm...\nGetting image source signatures\nCopying blob sha256:8f963a2bbd539fdc5a73d8814f1591499cc227b0e3820139902d0765de08b8f0\nCopying blob sha256:599d07e8492bcee46202f5eae3e3010a470acc5139840e6d14556aefa3fc355f\nCopying blob sha256:5f77b2a79d553481e7f962631ac14425d8c654928f18cdc3d1f265ceb460486e\nCopying blob sha256:30de66f8fdafab67e88d876087f571a693a1a6c4cf0abc29efbf88ea878e0d29\nCopying blob sha256:444403cccfb414971ad1088f7f248aa3212e32d439ea9d3cc378d68b68d428f7\nCopying blob sha256:0bb7bd28fbdfe678a7f45878b7b1c07dbbc0fa7753b0312aa8fd049667a9e137\nCopying blob sha256:78dea6468cd9dbe89aa5b5c106facc34980444def541582c6f304f052318a3ae\nCopying blob sha256:6260d70103029c3f0c51afe7bc7fbc6b614ba45059facdbe7c8225a1e8b0528f\nCopying config sha256:197941e0d0b6415af3939acdf594cf7af7dfe2f6ca5e014dddde1461f0bb1d4d\nWriting manifest to image destination\nnpm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.\nnpm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me\nnpm notice\nnpm notice New major version of npm available! 10.8.2 -> 12.0.2\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.2\nnpm notice To update run: npm install -g npm@12.0.2\nnpm notice",
+  "dependency_network": "enabled",
+  "elapsed_seconds": 33,
+  "entry_id": "ast-0051",
+  "head_commit": "b3db2009de8f85bc3ccdaa9d9365f1d7ddff55f1",
+  "host_mounts": false,
+  "image": "docker.io/library/node:20-bookworm",
+  "lockfile_sha256": {
+    "package-lock.json": "786121a19530badc3bbc875e17fb0f301dcc878b827dde774162953c03a26e8e"
+  },
+  "repository": "jmargieh/tradingview-screener",
+  "status": "passed",
+  "test_network": "disabled",
+  "tests": {
+    "offline_integration_diagnostic": {
+      "exit_code": 0,
+      "log": "RUN  v1.6.1 /work/repository\n\n \u2713 tests/integration/cryptoScreener.test.ts  (6 tests) 5ms\n \u2713 tests/integration/otherScreeners.test.ts  (11 tests) 36ms\n \u2713 tests/integration/stockScreener.test.ts  (17 tests) 4041ms\n\n Test Files  3 passed (3)\n      Tests  34 passed (34)\n   Start at  19:47:06\n   Duration  6.42s (transform 3.87s, setup 0ms, collect 5.96s, tests 4.08s, environment 0ms, prepare 768ms)\n\n\nstderr | tests/integration/stockScreener.test.ts > StockScreener Integration > stream() > should handle stream errors gracefully\nStream error: Error: Network error\n    at /work/repository/tests/integration/stockScreener.test.ts:380:32\n    at file:///work/repository/node_modules/@vitest/runner/dist/index.js:135:14\n    at file:///work/repository/node_modules/@vitest/runner/dist/index.js:60:26\n    at runTest (file:///work/repository/node_modules/@vitest/runner/dist/index.js:781:17)\n    at runSuite (file:///work/repository/node_modules/@vitest/runner/dist/index.js:909:15)\n    at runSuite (file:///work/repository/node_modules/@vitest/runner/dist/index.js:909:15)\n    at runSuite (file:///work/repository/node_modules/@vitest/runner/dist/index.js:909:15)\n    at runFiles (file:///work/repository/node_modules/@vitest/runner/dist/index.js:958:5)\n    at startTests (file:///work/repository/node_modules/@vitest/runner/dist/index.js:967:3)\n    at file:///work/repository/node_modules/vitest/dist/chunks/runtime-runBaseTests.oAvMKtQC.js:116:7"
+    },
+    "offline_unit": {
+      "exit_code": 0,
+      "log": "RUN  v1.6.1 /work/repository\n\n \u2713 tests/unit/beautify.test.ts  (31 tests) 34ms\n \u2713 tests/unit/fields.test.ts  (21 tests) 6ms\n \u2713 tests/unit/columns.test.ts  (15 tests) 7ms\n \u2713 tests/unit/fieldConditions.test.ts  (12 tests) 3ms\n \u2713 tests/unit/exceptions.test.ts  (6 tests) 4ms\n \u2713 tests/unit/formatters.test.ts  (19 tests) 24ms\n \u2713 tests/unit/filters.test.ts  (4 tests) 2ms\n\n Test Files  7 passed (7)\n      Tests  108 passed (108)\n   Start at  19:47:04\n   Duration  1.67s (transform 457ms, setup 0ms, collect 702ms, tests 80ms, environment 1ms, prepare 1.86s)"
+    }
+  }
+}

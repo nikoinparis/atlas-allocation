@@ -1,0 +1,89 @@
+{
+  "program": "repository_shooting_star_program_v1",
+  "predeclared_before_results": true,
+  "catalog_source": {
+    "entries": ["ast-0079", "ast-0087"],
+    "repository": "je-suis-tm/quant-trading",
+    "commit": "611b73f2c3f577ac5b28aaa19ac8c43d3236c7a5",
+    "source_sha256": "11c362fa0ee0913ed9131d02d8a808b18c2e527352f36fb574edf1ef47df3c3e",
+    "integration": "independent fixed-rule rebuild; source code is not executed or copied"
+  },
+  "data": {
+    "snapshot_id": "20260809T002313Z-0d8632e2cf759918",
+    "assets": ["SPY", "QQQ", "IWM", "EFA", "VEA", "VWO", "EWJ", "VNQ", "HYG", "LQD", "GLD", "PDBC", "DBA", "TLT"],
+    "start_date": "2005-01-03",
+    "adjusted_ohlc": "raw OHLC multiplied by adjusted_close/raw_close",
+    "signal_time": "completed daily bar only",
+    "realization": "next adjusted close"
+  },
+  "source_parameters": {
+    "lower_wick_to_body_strict_upper_bound": 0.2,
+    "body_reference_multiplier_strict_upper_bound": 0.5,
+    "upper_wick_minimum_body_multiple": 2.0,
+    "close_stop_or_profit_fraction_strict": 0.05,
+    "maximum_holding_sessions_from_star": 7
+  },
+  "fixed_candidates": {
+    "source_causal_confirmed": {
+      "body_reference": "absolute value of expanding signed mean of open minus close, including the completed star bar",
+      "confirmation": "next high no greater than star high and next close no greater than star close",
+      "first_eligible_execution": "confirmation close to following close"
+    },
+    "normalized_confirmed": {
+      "body_reference": "expanding mean absolute body divided by close, including the completed star bar",
+      "confirmation": "next high no greater than star high and next close no greater than star close",
+      "first_eligible_execution": "confirmation close to following close"
+    },
+    "normalized_unconfirmed": {
+      "body_reference": "expanding mean absolute body divided by close, including the completed star bar",
+      "confirmation": "not required",
+      "first_eligible_execution": "star close to following close"
+    }
+  },
+  "position_rules": {
+    "direction": "short",
+    "overlap": "one position per asset; ignore new stars while already short",
+    "reference_price": "completed star close, matching the source",
+    "exit": "flat after a completed close moves strictly more than 5 percent from the star close or seven sessions have elapsed from the star",
+    "confirmation_stop_collision": "do not enter if the confirmation bar already triggers the source close stop"
+  },
+  "negative_controls": [
+    "one additional trading-day stale state",
+    "five additional trading-day stale state",
+    "inverted position direction",
+    "fixed deterministic asset-label permutation"
+  ],
+  "portfolio": {
+    "weighting": "equal magnitude among active assets",
+    "maximum_absolute_asset_weight": 0.2,
+    "maximum_gross_exposure": 1.0,
+    "residual": "zero-return cash/collateral",
+    "turnover": "full L1 change across traded assets from drifted holdings"
+  },
+  "frictions": {
+    "scenarios": [
+      {"name": "low_10bps_borrow3", "cost_bps": 10, "annual_short_borrow_fee": 0.03},
+      {"name": "primary_50bps_borrow3", "cost_bps": 50, "annual_short_borrow_fee": 0.03},
+      {"name": "stress_100bps_borrow8", "cost_bps": 100, "annual_short_borrow_fee": 0.08}
+    ]
+  },
+  "evaluation": {
+    "fixed_candidate_count": 3,
+    "minimum_entries": 20,
+    "paired_bootstrap_samples": 20000,
+    "block_weeks": 13,
+    "familywise_one_sided_alpha": 0.05,
+    "per_candidate_alpha": 0.016666666666666666,
+    "later_windows": ["2016-01-01/2020-12-31", "2021-01-01/present"]
+  },
+  "promotion_gates": {
+    "primary_performance": "positive annual return, Sharpe above 0.5, and drawdown no worse than -25 percent under the primary scenario",
+    "stress": "positive full-period and both later-window annual returns under the stress scenario",
+    "controls": "candidate Sharpe exceeds every stale, inverted, and permuted control under the primary scenario",
+    "dependence": "absolute correlation no greater than 0.80 to core and trend",
+    "blend": "80/20 core blend improves Sharpe with no worse drawdown and familywise paired lower Sharpe difference above zero",
+    "survivorship_safe_universe": true,
+    "untouched_forward_weeks": 52
+  },
+  "live_trading_approved": false
+}

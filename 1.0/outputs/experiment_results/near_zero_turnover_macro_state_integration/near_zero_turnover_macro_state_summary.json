@@ -1,0 +1,25 @@
+{
+  "sprint": "near_zero_turnover_macro_state_integration",
+  "date": "2026-06-07",
+  "production_pin": "improved_frontier_phase5_fragility_guard",
+  "overall_verdict": "RESEARCH-ONLY",
+  "baseline_sharpe": 0.954218,
+  "baseline_ann_return": 0.07179,
+  "baseline_max_dd": -0.116035,
+  "baseline_nm_dev_sharpe": 1.2824805978567901,
+  "baseline_nsl_dev_sharpe": 0.7645215757706234,
+  "baseline_holdout_sharpe": 2.047945,
+  "n_candidates": 68,
+  "promote_count": 0,
+  "research_only_count": 68,
+  "drop_count": 0,
+  "best_variant": "G4_smoothed|D_4wk|offense_budget|int10pct",
+  "best_sharpe_delta": 0.019398,
+  "best_g6_pass": false,
+  "best_turnover_increase": 0.120841,
+  "top3_candidates": [
+    "G4_smoothed|D_4wk|offense_budget|int10pct",
+    "G4_smoothed|E_4wk|offense_budget|int10pct",
+    "G4_smoothed|D_4wk|offense_budget|int7pct"
+  ]
+}

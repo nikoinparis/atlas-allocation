@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 551,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T02:16:57.872841+00:00",
+    "sha256": "8ae9b90df5dddbc46499b487368405714dbd4ba9cd74862b4396c556e9ce6f5a",
+    "url": "https://api.tiingo.com/tiingo/daily/NEX"
+  },
+  {
+    "bytes": 238293,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T02:16:59.475181+00:00",
+    "sha256": "860819b699c8b623ff900c52f27fefbcd70230aa0ae0a4fb0eb13c48659cf481",
+    "url": "https://api.tiingo.com/tiingo/daily/NEX/prices?startDate=2019-04-01&endDate=2024-10-11&resampleFreq=daily"
+  }
+]

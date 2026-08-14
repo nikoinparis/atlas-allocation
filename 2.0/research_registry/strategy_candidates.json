@@ -1,0 +1,1573 @@
+{
+  "candidate_count": 24,
+  "candidate_status_definitions": {
+    "provisional_fragile": "Failed at least one current robustness gate; retained for diagnosis.",
+    "provisional_new_family": "Leading configuration from a newly tested family; basic retrospective gates passed, deeper gates pending.",
+    "provisional_not_approved": "Saved for further testing only.",
+    "provisional_robust": "Passed the currently implemented retrospective robustness gates; still not final.",
+    "provisional_robust_new_family": "Passed Batch 05 retrospective gates; untouched validation still missing.",
+    "provisional_robust_research_only": "Passed statistical gates but has a source-data limitation that blocks stronger use.",
+    "provisional_ggg_improvement": "Improved the clean GGG benchmark in a retrospective screened blend; deeper robustness and untouched forward evidence remain required.",
+    "provisional_ggg_return_leader": "Return-first GGG challenger that passed its retrospective improvement route but accepts higher historical drawdown and still lacks untouched evidence.",
+    "provisional_aggressive_return_ceiling": "Highest unlevered recent-return point estimate retained for confirmation after failing a declared statistical breadth or multiplicity gate."
+  },
+  "candidates": [
+    {
+      "approved_for_live_trading": false,
+      "candidate_id": "candidate-3aa6e07c0cd53e52",
+      "configuration": {
+        "cost_bps": 10.0,
+        "minimum_signal": 0.05,
+        "portfolio_method": "score_inverse_volatility",
+        "rebalance_frequency": "monthly",
+        "signals": [
+          "distribution_yield"
+        ],
+        "smoothing_weeks": 2,
+        "top_n": 6
+      },
+      "evidence": {
+        "development_annual_return": 0.06262342425176559,
+        "development_max_drawdown": -0.27065824396546945,
+        "development_selection_score": 0.7837377753559226,
+        "development_sharpe": 0.7258941426124146,
+        "experiment_id": "exp-3aa6e07c0cd53e52",
+        "family": "carry_proxy",
+        "full_annual_return": 0.060045319025388455,
+        "full_annual_turnover": 0.7931582654136415,
+        "full_max_drawdown": -0.27065824396546934,
+        "full_return_correlation_to_frozen_v4": 0.5811311541674359,
+        "full_sharpe": 0.6516827389700346,
+        "oos_2016_2020_annual_return": 0.08145778673588233,
+        "oos_2016_2020_max_drawdown": -0.2483496501722653,
+        "oos_2016_2020_sharpe": 0.6759066903715001,
+        "oos_2021_present_annual_return": 0.04283447521535755,
+        "oos_2021_present_max_drawdown": -0.1731756973623908,
+        "oos_2021_present_sharpe": 0.5423552915380897,
+        "overall_development_rank": 59,
+        "portfolio_method": "score_inverse_volatility",
+        "rebalance_frequency": "monthly",
+        "recipe_name": "distribution_yield",
+        "smoothing_weeks": 2,
+        "stress_50bps_annual_return": 0.056690490637279156,
+        "stress_50bps_sharpe": 0.6188543737314871,
+        "top_n": 6,
+        "unpriced_exposure_events": 0
+      },
+      "experiment_id": "exp-3aa6e07c0cd53e52",
+      "family": "carry_proxy",
+      "final": false,
+      "missing_gates": [
+        "multiple_testing_adjustment_across_batch_04",
+        "multi_family_ensemble_interaction",
+        "52_week_untouched_forward_record",
+        "survivorship_safe_historical_universe",
+        "archived_point_in_time_distribution_history"
+      ],
+      "new_family_robustness_batch_05": {
+        "candidate_id": "candidate-3aa6e07c0cd53e52",
+        "cost_100bps_pass": true,
+        "experiment_id": "exp-3aa6e07c0cd53e52",
+        "family": "carry_proxy",
+        "multiple_testing_576_pass": false,
+        "neighborhood_pass": true,
+        "regime_pass": true,
+        "robustness_pass": false
+      },
+      "passed_gates": [
+        "point_in_time_formula_ordering",
+        "one_week_signal_lag",
+        "next_week_return_realization",
+        "10bps_turnover_cost",
+        "50bps_cost_diagnostic",
+        "accounting_reconciliation",
+        "parameter_neighborhood_stability",
+        "100bps_cost_stress",
+        "point_in_time_market_regime_stability"
+      ],
+      "recipe_name": "distribution_yield",
+      "selection_reasons": [
+        "highest_development_selection_score_in_new_strategy_family"
+      ],
+      "source_batch": "new_families_batch_04",
+      "status": "provisional_fragile"
+    },
+    {
+      "approved_for_live_trading": false,
+      "candidate_id": "candidate-8a27cb8ba5a612a7",
+      "configuration": {
+        "cost_bps": 10.0,
+        "minimum_signal": 0.05,
+        "portfolio_method": "equal_weight",
+        "rebalance_frequency": "monthly",
+        "signals": [
+          "defensive_quality_gated"
+        ],
+        "smoothing_weeks": 2,
+        "top_n": 6
+      },
+      "evidence": {
+        "development_annual_return": 0.07063923771964542,
+        "development_max_drawdown": -0.12067845577010872,
+        "development_selection_score": 1.1459519271489431,
+        "development_sharpe": 0.9996142124573238,
+        "experiment_id": "exp-8a27cb8ba5a612a7",
+        "family": "defensive",
+        "full_annual_return": 0.07092472400156824,
+        "full_annual_turnover": 3.255772646536412,
+        "full_max_drawdown": -0.2278818022191912,
+        "full_return_correlation_to_frozen_v4": 0.7191828817380427,
+        "full_sharpe": 0.8794378860884586,
+        "oos_2016_2020_annual_return": 0.059141684619207435,
+        "oos_2016_2020_max_drawdown": -0.22788180221919108,
+        "oos_2016_2020_sharpe": 0.596723895678967,
+        "oos_2021_present_annual_return": 0.08844523873901111,
+        "oos_2021_present_max_drawdown": -0.0824049145140503,
+        "oos_2021_present_sharpe": 1.0793968595610628,
+        "overall_development_rank": 1,
+        "portfolio_method": "equal_weight",
+        "rebalance_frequency": "monthly",
+        "recipe_name": "defensive_quality_gated",
+        "smoothing_weeks": 2,
+        "stress_50bps_annual_return": 0.05707739325431005,
+        "stress_50bps_sharpe": 0.7195870502604655,
+        "top_n": 6,
+        "unpriced_exposure_events": 0
+      },
+      "experiment_id": "exp-8a27cb8ba5a612a7",
+      "family": "defensive",
+      "final": false,
+      "missing_gates": [
+        "52_week_untouched_forward_record",
+        "survivorship_safe_historical_universe"
+      ],
+      "new_family_robustness_batch_05": {
+        "candidate_id": "candidate-8a27cb8ba5a612a7",
+        "cost_100bps_pass": true,
+        "experiment_id": "exp-8a27cb8ba5a612a7",
+        "family": "defensive",
+        "multiple_testing_576_pass": true,
+        "neighborhood_pass": true,
+        "regime_pass": true,
+        "robustness_pass": true
+      },
+      "passed_gates": [
+        "point_in_time_formula_ordering",
+        "one_week_signal_lag",
+        "next_week_return_realization",
+        "10bps_turnover_cost",
+        "50bps_cost_diagnostic",
+        "accounting_reconciliation",
+        "parameter_neighborhood_stability",
+        "100bps_cost_stress",
+        "point_in_time_market_regime_stability",
+        "multiple_testing_adjustment_across_batch_04",
+        "multi_family_ensemble_interaction_evaluated"
+      ],
+      "recipe_name": "defensive_quality_gated",
+      "selection_reasons": [
+        "highest_development_selection_score_in_new_strategy_family"
+      ],
+      "source_batch": "new_families_batch_04",
+      "status": "provisional_robust_new_family"
+    },
+    {
+      "approved_for_live_trading": false,
+      "candidate_id": "candidate-81ffdbdf4dcdab3c",
+      "configuration": {
+        "cost_bps": 10.0,
+        "minimum_signal": 0.05,
+        "portfolio_method": "equal_weight",
+        "rebalance_frequency": "weekly",
+        "signals": [
+          "reversal_4w"
+        ],
+        "smoothing_weeks": 4,
+        "top_n": 4
+      },
+      "evidence": {
+        "development_annual_return": 0.08137511490972993,
+        "development_max_drawdown": -0.4534291306758965,
+        "development_selection_score": 0.5786778964513601,
+        "development_sharpe": 0.5338113950487984,
+        "experiment_id": "exp-81ffdbdf4dcdab3c",
+        "family": "mean_reversion",
+        "full_annual_return": 0.0879505377321077,
+        "full_annual_turnover": 12.203374777975133,
+        "full_max_drawdown": -0.4534291306758965,
+        "full_return_correlation_to_frozen_v4": 0.628207238869822,
+        "full_sharpe": 0.6192258989678437,
+        "oos_2016_2020_annual_return": 0.06484732445424624,
+        "oos_2016_2020_max_drawdown": -0.2780751991201553,
+        "oos_2016_2020_sharpe": 0.4881667082806107,
+        "oos_2021_present_annual_return": 0.10233471068093025,
+        "oos_2021_present_max_drawdown": -0.18148062202373294,
+        "oos_2021_present_sharpe": 0.8166946730727507,
+        "overall_development_rank": 128,
+        "portfolio_method": "equal_weight",
+        "rebalance_frequency": "weekly",
+        "recipe_name": "reversal_4w",
+        "smoothing_weeks": 4,
+        "stress_50bps_annual_return": 0.03613191679361516,
+        "stress_50bps_sharpe": 0.30582065763453,
+        "top_n": 4,
+        "unpriced_exposure_events": 0
+      },
+      "experiment_id": "exp-81ffdbdf4dcdab3c",
+      "family": "mean_reversion",
+      "final": false,
+      "missing_gates": [
+        "100bps_cost_stress",
+        "multiple_testing_adjustment_across_batch_04",
+        "multi_family_ensemble_interaction",
+        "52_week_untouched_forward_record",
+        "survivorship_safe_historical_universe"
+      ],
+      "new_family_robustness_batch_05": {
+        "candidate_id": "candidate-81ffdbdf4dcdab3c",
+        "cost_100bps_pass": false,
+        "experiment_id": "exp-81ffdbdf4dcdab3c",
+        "family": "mean_reversion",
+        "multiple_testing_576_pass": false,
+        "neighborhood_pass": true,
+        "regime_pass": true,
+        "robustness_pass": false
+      },
+      "passed_gates": [
+        "point_in_time_formula_ordering",
+        "one_week_signal_lag",
+        "next_week_return_realization",
+        "10bps_turnover_cost",
+        "50bps_cost_diagnostic",
+        "accounting_reconciliation",
+        "parameter_neighborhood_stability",
+        "point_in_time_market_regime_stability"
+      ],
+      "recipe_name": "reversal_4w",
+      "selection_reasons": [
+        "highest_development_selection_score_in_new_strategy_family"
+      ],
+      "source_batch": "new_families_batch_04",
+      "status": "provisional_fragile"
+    },
+    {
+      "approved_for_live_trading": false,
+      "candidate_id": "candidate-052f66f29b9fafbe",
+      "configuration": {
+        "cost_bps": 10.0,
+        "minimum_signal": 0.05,
+        "portfolio_method": "score_inverse_volatility",
+        "signals": [
+          "xsmom_global"
+        ],
+        "smoothing_weeks": 1,
+        "top_n": 6
+      },
+      "ensemble_dependence_batch_03": {
+        "average_holdings_overlap": 0.7301817320470337,
+        "average_peer_correlation": 0.9395858572671446,
+        "correlation_cluster": 1,
+        "maximum_peer_correlation": 0.9813691630694034,
+        "multiple_testing_gate_pass": true,
+        "sharpe_contribution_to_equal_candidate_ensemble": -0.007408143853289806
+      },
+      "evidence": {
+        "development_annual_return": 0.08994483778525564,
+        "development_rank": 20,
+        "development_sharpe": 0.7620625194796581,
+        "full_annual_return": 0.08880465546635019,
+        "full_max_drawdown": -0.24000829728042694,
+        "full_sharpe": 0.7453705178759978,
+        "retrospective_2016_2020_annual_return": 0.048279320007791116,
+        "retrospective_2016_2020_sharpe": 0.4051101933889144,
+        "retrospective_2021_present_annual_return": 0.14089881821130223,
+        "retrospective_2021_present_sharpe": 1.135812086621594
+      },
+      "experiment_id": "exp-052f66f29b9fafbe",
+      "final": false,
+      "missing_gates": [
+        "52_week_untouched_forward_record",
+        "survivorship_safe_historical_universe"
+      ],
+      "passed_gates": [
+        "point_in_time_signal_lag",
+        "next_week_return_realization",
+        "10bps_turnover_cost",
+        "accounting_reconciliation",
+        "two_retrospective_period_thresholds",
+        "parameter_neighborhood_stability",
+        "25_50_100bps_cost_stress",
+        "point_in_time_market_regime_stability",
+        "strategy_ensemble_interaction_evaluated",
+        "multiple_testing_adjustment",
+        "multiple_testing_adjustment"
+      ],
+      "recipe_name": "xsmom_only",
+      "robustness_batch_02": {
+        "candidate_id": "candidate-052f66f29b9fafbe",
+        "cost_stress_pass": true,
+        "experiment_id": "exp-052f66f29b9fafbe",
+        "neighborhood_pass": true,
+        "regime_pass": true,
+        "robustness_pass": true
+      },
+      "selection_reasons": [
+        "best_qualifying_configuration_for_signal_recipe"
+      ],
+      "status": "provisional_robust"
+    },
+    {
+      "approved_for_live_trading": false,
+      "candidate_id": "candidate-ggg-buffer-band-025-v1",
+      "configuration": {
+        "benchmark": "causal_ggg_target_vol_12",
+        "cost_bps": 50.0,
+        "no_trade_turnover": 0.025,
+        "rule": "subtract a 2.5% one-way no-trade band from each proposed portfolio transition"
+      },
+      "evidence": {
+        "full_cagr_improvement": 0.001886,
+        "post_2024_cagr_improvement": 0.003379,
+        "recent_3y_100bps_cagr_improvement": 0.006091,
+        "recent_3y_annual_one_way_turnover": 2.910287,
+        "recent_3y_cagr": 0.13135807116928389,
+        "recent_3y_cagr_improvement": 0.00248454782967779,
+        "recent_3y_max_drawdown": -0.074743,
+        "recent_3y_sharpe_zero_rf": 1.576187
+      },
+      "final": false,
+      "missing_gates": [
+        "minimum_0.50_percentage_point_recent_3y_cagr_improvement",
+        "complete_post_april_causal_ggg_upstream_engine",
+        "52_week_untouched_forward_record",
+        "survivorship_safe_historical_universe"
+      ],
+      "passed_gates": [
+        "frozen_source_hash_verification",
+        "future_shock_prefix_invariance",
+        "deterministic_rebuild",
+        "post_2024_return_improvement",
+        "full_history_return_guard",
+        "recent_100bps_cost_stress_improvement",
+        "recent_drawdown_guard"
+      ],
+      "selection_reasons": [
+        "highest_recent_3y_50bps_cagr_among_batch_52_candidates",
+        "material_turnover_reduction",
+        "retained_for_reference_despite_failing_the_primary_return_gate"
+      ],
+      "source_batch": "ggg_return_ceiling_batch_52",
+      "status": "provisional_not_approved"
+    },
+    {
+      "approved_for_live_trading": false,
+      "candidate_id": "candidate-ggg-asymmetric-execution-v1",
+      "configuration": {
+        "benchmark": "causal_ggg_unbuffered",
+        "cost_bps": 50.0,
+        "risk_entry_band": 0.05,
+        "risk_exit_band": 0.01,
+        "rule": "apply a wider no-trade band when BIL falls and a smaller band when BIL rises"
+      },
+      "evidence": {
+        "full_cagr_improvement": 0.001651,
+        "post_2024_cagr_improvement": 0.003678,
+        "recent_3y_100bps_cagr_improvement": 0.007115,
+        "recent_3y_annual_one_way_turnover": 2.810844,
+        "recent_3y_cagr": 0.13183696302838355,
+        "recent_3y_cagr_improvement": 0.00296343968877745,
+        "recent_3y_max_drawdown": -0.0739,
+        "recent_3y_sharpe_zero_rf": 1.596312
+      },
+      "final": false,
+      "missing_gates": [
+        "minimum_0.50_percentage_point_recent_3y_cagr_improvement",
+        "complete_post_april_causal_ggg_upstream_engine",
+        "52_week_untouched_forward_record",
+        "survivorship_safe_historical_universe"
+      ],
+      "passed_gates": [
+        "frozen_source_hash_verification",
+        "future_shock_prefix_invariance",
+        "deterministic_rebuild",
+        "post_2024_return_improvement",
+        "full_history_return_guard",
+        "recent_100bps_cost_stress_improvement",
+        "recent_drawdown_guard"
+      ],
+      "selection_reasons": [
+        "highest_recent_3y_50bps_cagr_among_batch_53_candidates",
+        "outperformed_batch52_symmetric_buffer_audit_comparator",
+        "retained_for_reference_despite_failing_the_primary_return_gate"
+      ],
+      "source_batch": "ggg_execution_aware_batch_53",
+      "status": "provisional_not_approved"
+    },
+    {
+      "approved_for_live_trading": false,
+      "candidate_id": "candidate-0788c02844e389fa",
+      "configuration": {
+        "cost_bps": 10.0,
+        "minimum_signal": 0.05,
+        "portfolio_method": "score_inverse_volatility",
+        "signals": [
+          "trend_clarity_momentum"
+        ],
+        "smoothing_weeks": 1,
+        "top_n": 6
+      },
+      "ensemble_dependence_batch_03": {
+        "average_holdings_overlap": 0.7364793833818685,
+        "average_peer_correlation": 0.9395168298165196,
+        "correlation_cluster": 1,
+        "maximum_peer_correlation": 0.9813691630694034,
+        "multiple_testing_gate_pass": true,
+        "sharpe_contribution_to_equal_candidate_ensemble": -0.007021306013743844
+      },
+      "evidence": {
+        "development_annual_return": 0.08190647204056889,
+        "development_rank": 37,
+        "development_sharpe": 0.7222763390616531,
+        "full_annual_return": 0.08490186542336442,
+        "full_max_drawdown": -0.2231072252105114,
+        "full_sharpe": 0.7439734145479057,
+        "retrospective_2016_2020_annual_return": 0.05234720045579144,
+        "retrospective_2016_2020_sharpe": 0.45456477248976024,
+        "retrospective_2021_present_annual_return": 0.1362450553379715,
+        "retrospective_2021_present_sharpe": 1.1358124813172799
+      },
+      "experiment_id": "exp-0788c02844e389fa",
+      "final": false,
+      "missing_gates": [
+        "52_week_untouched_forward_record",
+        "survivorship_safe_historical_universe"
+      ],
+      "passed_gates": [
+        "point_in_time_signal_lag",
+        "next_week_return_realization",
+        "10bps_turnover_cost",
+        "accounting_reconciliation",
+        "two_retrospective_period_thresholds",
+        "parameter_neighborhood_stability",
+        "25_50_100bps_cost_stress",
+        "point_in_time_market_regime_stability",
+        "strategy_ensemble_interaction_evaluated",
+        "multiple_testing_adjustment",
+        "multiple_testing_adjustment"
+      ],
+      "recipe_name": "trend_clarity_only",
+      "robustness_batch_02": {
+        "candidate_id": "candidate-0788c02844e389fa",
+        "cost_stress_pass": true,
+        "experiment_id": "exp-0788c02844e389fa",
+        "neighborhood_pass": true,
+        "regime_pass": true,
+        "robustness_pass": true
+      },
+      "selection_reasons": [
+        "best_qualifying_configuration_for_signal_recipe"
+      ],
+      "status": "provisional_robust"
+    },
+    {
+      "approved_for_live_trading": false,
+      "candidate_id": "candidate-23e3beb2c30dbeb8",
+      "configuration": {
+        "cost_bps": 10.0,
+        "minimum_signal": 0.05,
+        "portfolio_method": "inverse_volatility",
+        "signals": [
+          "moving_average_distance"
+        ],
+        "smoothing_weeks": 8,
+        "top_n": 4
+      },
+      "ensemble_dependence_batch_03": {
+        "average_holdings_overlap": 0.6584676947091279,
+        "average_peer_correlation": 0.9200979642185894,
+        "correlation_cluster": 1,
+        "maximum_peer_correlation": 0.9644647495729367,
+        "multiple_testing_gate_pass": true,
+        "sharpe_contribution_to_equal_candidate_ensemble": 0.004394066347004566
+      },
+      "evidence": {
+        "development_annual_return": 0.1009442751939118,
+        "development_rank": 18,
+        "development_sharpe": 0.7597036420429412,
+        "full_annual_return": 0.1063808663559005,
+        "full_max_drawdown": -0.21649008745011766,
+        "full_sharpe": 0.8249677085402363,
+        "retrospective_2016_2020_annual_return": 0.0957313100296242,
+        "retrospective_2016_2020_sharpe": 0.7436516714621856,
+        "retrospective_2021_present_annual_return": 0.12897605514059518,
+        "retrospective_2021_present_sharpe": 0.9981906301467759
+      },
+      "experiment_id": "exp-23e3beb2c30dbeb8",
+      "final": false,
+      "missing_gates": [
+        "52_week_untouched_forward_record",
+        "survivorship_safe_historical_universe"
+      ],
+      "passed_gates": [
+        "point_in_time_signal_lag",
+        "next_week_return_realization",
+        "10bps_turnover_cost",
+        "accounting_reconciliation",
+        "two_retrospective_period_thresholds",
+        "parameter_neighborhood_stability",
+        "25_50_100bps_cost_stress",
+        "point_in_time_market_regime_stability",
+        "strategy_ensemble_interaction_evaluated",
+        "multiple_testing_adjustment",
+        "multiple_testing_adjustment"
+      ],
+      "recipe_name": "moving_average_only",
+      "robustness_batch_02": {
+        "candidate_id": "candidate-23e3beb2c30dbeb8",
+        "cost_stress_pass": true,
+        "experiment_id": "exp-23e3beb2c30dbeb8",
+        "neighborhood_pass": true,
+        "regime_pass": true,
+        "robustness_pass": true
+      },
+      "selection_reasons": [
+        "best_qualifying_configuration_for_signal_recipe"
+      ],
+      "status": "provisional_robust"
+    },
+    {
+      "approved_for_live_trading": false,
+      "candidate_id": "candidate-36a0f3d51675c16f",
+      "configuration": {
+        "cost_bps": 10.0,
+        "minimum_signal": 0.05,
+        "portfolio_method": "inverse_volatility",
+        "signals": [
+          "xsmom_global",
+          "multi_mom_invvol",
+          "tsmom_vol_scaled",
+          "trend_clarity_momentum",
+          "moving_average_distance"
+        ],
+        "smoothing_weeks": 4,
+        "top_n": 6
+      },
+      "ensemble_dependence_batch_03": {
+        "average_holdings_overlap": 0.6990121691834186,
+        "average_peer_correlation": 0.9268835262573533,
+        "correlation_cluster": 1,
+        "maximum_peer_correlation": 0.9752120022637063,
+        "multiple_testing_gate_pass": true,
+        "sharpe_contribution_to_equal_candidate_ensemble": 0.010174905059729511
+      },
+      "evidence": {
+        "development_annual_return": 0.08223269543994993,
+        "development_rank": 29,
+        "development_sharpe": 0.7563224660961274,
+        "full_annual_return": 0.0974587900193935,
+        "full_max_drawdown": -0.18483786430101834,
+        "full_sharpe": 0.8936568349256244,
+        "retrospective_2016_2020_annual_return": 0.09218770566520407,
+        "retrospective_2016_2020_sharpe": 0.8379352941130819,
+        "retrospective_2021_present_annual_return": 0.13301614955055063,
+        "retrospective_2021_present_sharpe": 1.1580203939060711
+      },
+      "experiment_id": "exp-36a0f3d51675c16f",
+      "final": false,
+      "missing_gates": [
+        "52_week_untouched_forward_record",
+        "survivorship_safe_historical_universe"
+      ],
+      "passed_gates": [
+        "point_in_time_signal_lag",
+        "next_week_return_realization",
+        "10bps_turnover_cost",
+        "accounting_reconciliation",
+        "two_retrospective_period_thresholds",
+        "parameter_neighborhood_stability",
+        "25_50_100bps_cost_stress",
+        "point_in_time_market_regime_stability",
+        "strategy_ensemble_interaction_evaluated",
+        "multiple_testing_adjustment",
+        "multiple_testing_adjustment"
+      ],
+      "recipe_name": "all_five_v4",
+      "robustness_batch_02": {
+        "candidate_id": "candidate-36a0f3d51675c16f",
+        "cost_stress_pass": true,
+        "experiment_id": "exp-36a0f3d51675c16f",
+        "neighborhood_pass": true,
+        "regime_pass": true,
+        "robustness_pass": true
+      },
+      "selection_reasons": [
+        "selected_using_training_window_2011-01-01_to_2020-12-31"
+      ],
+      "status": "provisional_robust"
+    },
+    {
+      "approved_for_live_trading": false,
+      "candidate_id": "candidate-3a187e9134eefe61",
+      "configuration": {
+        "cost_bps": 10.0,
+        "minimum_signal": 0.05,
+        "portfolio_method": "score_inverse_volatility",
+        "signals": [
+          "tsmom_vol_scaled"
+        ],
+        "smoothing_weeks": 1,
+        "top_n": 6
+      },
+      "ensemble_dependence_batch_03": {
+        "average_holdings_overlap": 0.6243653575301473,
+        "average_peer_correlation": 0.8871659323387358,
+        "correlation_cluster": 1,
+        "maximum_peer_correlation": 0.9348228899547966,
+        "multiple_testing_gate_pass": true,
+        "sharpe_contribution_to_equal_candidate_ensemble": 0.002451094500022788
+      },
+      "evidence": {
+        "development_annual_return": 0.0829361744452759,
+        "development_rank": 1,
+        "development_sharpe": 0.9005362650013615,
+        "full_annual_return": 0.07486961934156944,
+        "full_max_drawdown": -0.19266655919792464,
+        "full_sharpe": 0.7845183478083995,
+        "retrospective_2016_2020_annual_return": 0.05107740387726589,
+        "retrospective_2016_2020_sharpe": 0.4742226765358884,
+        "retrospective_2021_present_annual_return": 0.09571905637633127,
+        "retrospective_2021_present_sharpe": 1.0270705666480495
+      },
+      "experiment_id": "exp-3a187e9134eefe61",
+      "final": false,
+      "missing_gates": [
+        "52_week_untouched_forward_record",
+        "survivorship_safe_historical_universe"
+      ],
+      "passed_gates": [
+        "point_in_time_signal_lag",
+        "next_week_return_realization",
+        "10bps_turnover_cost",
+        "accounting_reconciliation",
+        "two_retrospective_period_thresholds",
+        "parameter_neighborhood_stability",
+        "25_50_100bps_cost_stress",
+        "point_in_time_market_regime_stability",
+        "strategy_ensemble_interaction_evaluated",
+        "multiple_testing_adjustment",
+        "multiple_testing_adjustment"
+      ],
+      "recipe_name": "time_series_momentum_only",
+      "robustness_batch_02": {
+        "candidate_id": "candidate-3a187e9134eefe61",
+        "cost_stress_pass": true,
+        "experiment_id": "exp-3a187e9134eefe61",
+        "neighborhood_pass": true,
+        "regime_pass": true,
+        "robustness_pass": true
+      },
+      "selection_reasons": [
+        "best_qualifying_configuration_for_signal_recipe",
+        "selected_using_training_window_2006-01-01_to_2015-12-31"
+      ],
+      "status": "provisional_robust"
+    },
+    {
+      "approved_for_live_trading": false,
+      "candidate_id": "candidate-4c75085a1dd85949",
+      "configuration": {
+        "cost_bps": 10.0,
+        "minimum_signal": 0.05,
+        "portfolio_method": "inverse_volatility",
+        "signals": [
+          "xsmom_global",
+          "multi_mom_invvol",
+          "tsmom_vol_scaled",
+          "trend_clarity_momentum",
+          "moving_average_distance"
+        ],
+        "smoothing_weeks": 1,
+        "top_n": 6
+      },
+      "ensemble_dependence_batch_03": {
+        "average_holdings_overlap": 0.7022453353707678,
+        "average_peer_correlation": 0.9284183467843954,
+        "correlation_cluster": 1,
+        "maximum_peer_correlation": 0.9752120022637063,
+        "multiple_testing_gate_pass": true,
+        "sharpe_contribution_to_equal_candidate_ensemble": 0.007197704958057716
+      },
+      "evidence": {
+        "development_annual_return": 0.09348836980201636,
+        "development_rank": 3,
+        "development_sharpe": 0.862570950479392,
+        "full_annual_return": 0.09724381752863986,
+        "full_max_drawdown": -0.23735660017110582,
+        "full_sharpe": 0.864216926095912,
+        "retrospective_2016_2020_annual_return": 0.07549404894845146,
+        "retrospective_2016_2020_sharpe": 0.620064068283768,
+        "retrospective_2021_present_annual_return": 0.13125655782819456,
+        "retrospective_2021_present_sharpe": 1.1294864255207302
+      },
+      "experiment_id": "exp-4c75085a1dd85949",
+      "final": false,
+      "missing_gates": [
+        "52_week_untouched_forward_record",
+        "survivorship_safe_historical_universe"
+      ],
+      "passed_gates": [
+        "point_in_time_signal_lag",
+        "next_week_return_realization",
+        "10bps_turnover_cost",
+        "accounting_reconciliation",
+        "two_retrospective_period_thresholds",
+        "parameter_neighborhood_stability",
+        "25_50_100bps_cost_stress",
+        "point_in_time_market_regime_stability",
+        "strategy_ensemble_interaction_evaluated",
+        "multiple_testing_adjustment",
+        "multiple_testing_adjustment"
+      ],
+      "recipe_name": "all_five_v4",
+      "robustness_batch_02": {
+        "candidate_id": "candidate-4c75085a1dd85949",
+        "cost_stress_pass": true,
+        "experiment_id": "exp-4c75085a1dd85949",
+        "neighborhood_pass": true,
+        "regime_pass": true,
+        "robustness_pass": true
+      },
+      "selection_reasons": [
+        "best_qualifying_configuration_for_signal_recipe"
+      ],
+      "status": "provisional_robust"
+    },
+    {
+      "approved_for_live_trading": false,
+      "candidate_id": "candidate-539eaf900f7b2b57",
+      "configuration": {
+        "cost_bps": 10.0,
+        "minimum_signal": 0.05,
+        "portfolio_method": "inverse_volatility",
+        "signals": [
+          "trend_clarity_momentum",
+          "moving_average_distance"
+        ],
+        "smoothing_weeks": 8,
+        "top_n": 4
+      },
+      "ensemble_dependence_batch_03": {
+        "average_holdings_overlap": 0.6790584801242591,
+        "average_peer_correlation": 0.9230043685926714,
+        "correlation_cluster": 1,
+        "maximum_peer_correlation": 0.9644647495729367,
+        "multiple_testing_gate_pass": true,
+        "sharpe_contribution_to_equal_candidate_ensemble": 0.0016911145035856112
+      },
+      "evidence": {
+        "development_annual_return": 0.10963067911476165,
+        "development_rank": 2,
+        "development_sharpe": 0.8385292838181647,
+        "full_annual_return": 0.10287590510308231,
+        "full_max_drawdown": -0.2298775499716178,
+        "full_sharpe": 0.8062708114391336,
+        "retrospective_2016_2020_annual_return": 0.06261938175716808,
+        "retrospective_2016_2020_sharpe": 0.5166841269179532,
+        "retrospective_2021_present_annual_return": 0.13029260030653722,
+        "retrospective_2021_present_sharpe": 0.9800304973466213
+      },
+      "experiment_id": "exp-539eaf900f7b2b57",
+      "final": false,
+      "missing_gates": [
+        "52_week_untouched_forward_record",
+        "survivorship_safe_historical_universe"
+      ],
+      "passed_gates": [
+        "point_in_time_signal_lag",
+        "next_week_return_realization",
+        "10bps_turnover_cost",
+        "accounting_reconciliation",
+        "two_retrospective_period_thresholds",
+        "parameter_neighborhood_stability",
+        "25_50_100bps_cost_stress",
+        "point_in_time_market_regime_stability",
+        "strategy_ensemble_interaction_evaluated",
+        "multiple_testing_adjustment",
+        "multiple_testing_adjustment"
+      ],
+      "recipe_name": "trend_confirmation",
+      "robustness_batch_02": {
+        "candidate_id": "candidate-539eaf900f7b2b57",
+        "cost_stress_pass": true,
+        "experiment_id": "exp-539eaf900f7b2b57",
+        "neighborhood_pass": true,
+        "regime_pass": true,
+        "robustness_pass": true
+      },
+      "selection_reasons": [
+        "best_qualifying_configuration_for_signal_recipe"
+      ],
+      "status": "provisional_robust"
+    },
+    {
+      "approved_for_live_trading": false,
+      "candidate_id": "candidate-8ca3faf38ba934cb",
+      "configuration": {
+        "cost_bps": 10.0,
+        "minimum_signal": 0.05,
+        "portfolio_method": "score_inverse_volatility",
+        "signals": [
+          "xsmom_global",
+          "multi_mom_invvol",
+          "tsmom_vol_scaled"
+        ],
+        "smoothing_weeks": 1,
+        "top_n": 6
+      },
+      "ensemble_dependence_batch_03": {
+        "average_holdings_overlap": 0.7410924170192722,
+        "average_peer_correlation": 0.9400566723878528,
+        "correlation_cluster": 1,
+        "maximum_peer_correlation": 0.9807065113831677,
+        "multiple_testing_gate_pass": true,
+        "sharpe_contribution_to_equal_candidate_ensemble": -0.0009508231276691426
+      },
+      "evidence": {
+        "development_annual_return": 0.0890881734237734,
+        "development_rank": 10,
+        "development_sharpe": 0.7969426278287346,
+        "full_annual_return": 0.09136726239647142,
+        "full_max_drawdown": -0.24081294796304276,
+        "full_sharpe": 0.7994025901513264,
+        "retrospective_2016_2020_annual_return": 0.058570147404600315,
+        "retrospective_2016_2020_sharpe": 0.5007038537655202,
+        "retrospective_2021_present_annual_return": 0.14287462388432615,
+        "retrospective_2021_present_sharpe": 1.1633594303452661
+      },
+      "experiment_id": "exp-8ca3faf38ba934cb",
+      "final": false,
+      "missing_gates": [
+        "52_week_untouched_forward_record",
+        "survivorship_safe_historical_universe"
+      ],
+      "passed_gates": [
+        "point_in_time_signal_lag",
+        "next_week_return_realization",
+        "10bps_turnover_cost",
+        "accounting_reconciliation",
+        "two_retrospective_period_thresholds",
+        "parameter_neighborhood_stability",
+        "25_50_100bps_cost_stress",
+        "point_in_time_market_regime_stability",
+        "strategy_ensemble_interaction_evaluated",
+        "multiple_testing_adjustment",
+        "multiple_testing_adjustment"
+      ],
+      "recipe_name": "momentum_core",
+      "robustness_batch_02": {
+        "candidate_id": "candidate-8ca3faf38ba934cb",
+        "cost_stress_pass": true,
+        "experiment_id": "exp-8ca3faf38ba934cb",
+        "neighborhood_pass": true,
+        "regime_pass": true,
+        "robustness_pass": true
+      },
+      "selection_reasons": [
+        "best_qualifying_configuration_for_signal_recipe"
+      ],
+      "status": "provisional_robust"
+    },
+    {
+      "approved_for_live_trading": false,
+      "candidate_id": "candidate-c1a595f584a5d469",
+      "configuration": {
+        "cost_bps": 10.0,
+        "minimum_signal": 0.05,
+        "portfolio_method": "score_inverse_volatility",
+        "signals": [
+          "multi_mom_invvol"
+        ],
+        "smoothing_weeks": 1,
+        "top_n": 6
+      },
+      "ensemble_dependence_batch_03": {
+        "average_holdings_overlap": 0.6568676184857163,
+        "average_peer_correlation": 0.8844355204478012,
+        "correlation_cluster": 1,
+        "maximum_peer_correlation": 0.9299542792025612,
+        "multiple_testing_gate_pass": true,
+        "sharpe_contribution_to_equal_candidate_ensemble": 0.0005875474899497135
+      },
+      "evidence": {
+        "development_annual_return": 0.07308477950603653,
+        "development_rank": 77,
+        "development_sharpe": 0.6791661967323392,
+        "full_annual_return": 0.08794228127583215,
+        "full_max_drawdown": -0.2603968003256516,
+        "full_sharpe": 0.7614460018049357,
+        "retrospective_2016_2020_annual_return": 0.08614363947598624,
+        "retrospective_2016_2020_sharpe": 0.6728585824646979,
+        "retrospective_2021_present_annual_return": 0.13301710939018818,
+        "retrospective_2021_present_sharpe": 1.0485957948051123
+      },
+      "experiment_id": "exp-c1a595f584a5d469",
+      "final": false,
+      "missing_gates": [
+        "52_week_untouched_forward_record",
+        "survivorship_safe_historical_universe"
+      ],
+      "passed_gates": [
+        "point_in_time_signal_lag",
+        "next_week_return_realization",
+        "10bps_turnover_cost",
+        "accounting_reconciliation",
+        "two_retrospective_period_thresholds",
+        "parameter_neighborhood_stability",
+        "25_50_100bps_cost_stress",
+        "point_in_time_market_regime_stability",
+        "strategy_ensemble_interaction_evaluated",
+        "multiple_testing_adjustment",
+        "multiple_testing_adjustment"
+      ],
+      "recipe_name": "multi_momentum_only",
+      "robustness_batch_02": {
+        "candidate_id": "candidate-c1a595f584a5d469",
+        "cost_stress_pass": true,
+        "experiment_id": "exp-c1a595f584a5d469",
+        "neighborhood_pass": true,
+        "regime_pass": true,
+        "robustness_pass": true
+      },
+      "selection_reasons": [
+        "best_qualifying_configuration_for_signal_recipe"
+      ],
+      "status": "provisional_robust"
+    },
+    {
+      "approved_for_live_trading": false,
+      "candidate_id": "candidate-fc7248702f02b421",
+      "configuration": {
+        "cost_bps": 10.0,
+        "minimum_signal": 0.05,
+        "portfolio_method": "equal_weight",
+        "signals": [
+          "xsmom_global",
+          "multi_mom_invvol",
+          "tsmom_vol_scaled",
+          "trend_clarity_momentum",
+          "moving_average_distance"
+        ],
+        "smoothing_weeks": 4,
+        "top_n": 4
+      },
+      "ensemble_dependence_batch_03": {
+        "average_holdings_overlap": 0.6796531648959441,
+        "average_peer_correlation": 0.9294879248288842,
+        "correlation_cluster": 1,
+        "maximum_peer_correlation": 0.9520499712235438,
+        "multiple_testing_gate_pass": true,
+        "sharpe_contribution_to_equal_candidate_ensemble": -0.006501856718586163
+      },
+      "evidence": {
+        "development_annual_return": 0.09199898924994221,
+        "development_rank": 90,
+        "development_sharpe": 0.6933168763494844,
+        "full_annual_return": 0.09906662555414081,
+        "full_max_drawdown": -0.26249212214398965,
+        "full_sharpe": 0.7537866497668546,
+        "retrospective_2016_2020_annual_return": 0.07668360318376322,
+        "retrospective_2016_2020_sharpe": 0.5776726904454929,
+        "retrospective_2021_present_annual_return": 0.13683997181773844,
+        "retrospective_2021_present_sharpe": 1.0298246524383257
+      },
+      "experiment_id": "exp-fc7248702f02b421",
+      "final": false,
+      "missing_gates": [
+        "52_week_untouched_forward_record",
+        "survivorship_safe_historical_universe"
+      ],
+      "passed_gates": [
+        "point_in_time_signal_lag",
+        "next_week_return_realization",
+        "10bps_turnover_cost",
+        "accounting_reconciliation",
+        "two_retrospective_period_thresholds",
+        "parameter_neighborhood_stability",
+        "25_50_100bps_cost_stress",
+        "point_in_time_market_regime_stability",
+        "strategy_ensemble_interaction_evaluated",
+        "multiple_testing_adjustment",
+        "multiple_testing_adjustment"
+      ],
+      "recipe_name": "all_five_v4",
+      "robustness_batch_02": {
+        "candidate_id": "candidate-fc7248702f02b421",
+        "cost_stress_pass": true,
+        "experiment_id": "exp-fc7248702f02b421",
+        "neighborhood_pass": true,
+        "regime_pass": true,
+        "robustness_pass": true
+      },
+      "selection_reasons": [
+        "exact_frozen_v4_benchmark"
+      ],
+      "status": "provisional_robust"
+    },
+    {
+      "approved_for_live_trading": false,
+      "candidate_id": "candidate-ggg-xsmom-30-v1",
+      "configuration": {
+        "baseline": "ggg_causal_v2_027530550388432a",
+        "baseline_weight": 0.7,
+        "challenger": "candidate-052f66f29b9fafbe",
+        "challenger_weight": 0.3,
+        "cost_bps": 50.0,
+        "rebalance_frequency": "monthly",
+        "rule": "static blend of corrected-causal GGG and the fixed cross-sectional momentum candidate"
+      },
+      "evidence": {
+        "adjusted_pvalue_24_trials": 0.049439011219775605,
+        "full_50bps_cagr": 0.06349621801867822,
+        "full_50bps_cagr_improvement": 0.008299593253082494,
+        "full_50bps_max_drawdown": -0.15372741395602096,
+        "recent_1y_50bps_cagr": 0.17861435119579183,
+        "recent_2y_50bps_cagr": 0.16106962762024812,
+        "recent_3y_50bps_cagr": 0.14893636459247728,
+        "recent_3y_50bps_cagr_improvement": 0.025804857188113095,
+        "recent_3y_50bps_max_drawdown": -0.08512032761260735,
+        "recent_3y_50bps_sharpe": 1.5527765154272164,
+        "recent_3y_100bps_cagr": 0.13095642757691728,
+        "recent_3y_100bps_sharpe": 1.3777465746948143
+      },
+      "final": false,
+      "missing_gates": [
+        "full_history_drawdown_guard",
+        "survivorship_safe_historical_universe",
+        "52_week_untouched_forward_record"
+      ],
+      "passed_gates": [
+        "fixed_saved_strategy_definition",
+        "one_week_signal_lag",
+        "calendar_final_monthly_rebalance",
+        "decision_prefix_invariance",
+        "deterministic_rebuild",
+        "10_50_100bps_cost_evaluation",
+        "minimum_recent_3y_cagr_improvement",
+        "recent_3y_sharpe_guard",
+        "recent_3y_drawdown_guard",
+        "full_history_cagr_guard",
+        "24_trial_adjusted_paired_block_bootstrap",
+        "five_weight_parameter_neighborhood",
+        "rolling_3y_cagr_majority",
+        "recent_calendar_year_majority",
+        "100bps_recent_advantage",
+        "five_subperiod_diagnostic"
+      ],
+      "selection_reasons": [
+        "highest_recent_3y_50bps_cagr_among_first-screen blends",
+        "passed_all_predeclared Batch 60 first-screen gates"
+      ],
+      "source_batch": "ggg_saved_strategy_improvement_batch_60",
+      "status": "provisional_ggg_improvement"
+    },
+    {
+      "approved_for_live_trading": false,
+      "candidate_id": "candidate-ggg-xsmom-exposure-boost-v2",
+      "configuration": {
+        "baseline": "ggg_causal_v2_027530550388432a",
+        "challenger": "candidate-052f66f29b9fafbe",
+        "challenger_weight_high_exposure": 0.4,
+        "challenger_weight_otherwise": 0.2,
+        "cost_bps": 50.0,
+        "high_exposure_threshold": 0.75,
+        "rule": "allocate 40% to cross-sectional momentum when its own non-cash exposure is at least 75%; otherwise allocate 20%"
+      },
+      "evidence": {
+        "adjusted_pvalue_6_trials": 0.01589920503974801,
+        "full_50bps_cagr": 0.06537044224842892,
+        "full_50bps_max_drawdown": -0.1660581476516415,
+        "mean_full_history_challenger_weight": 0.369,
+        "recent_1y_50bps_cagr": 0.1931485938623363,
+        "recent_2y_50bps_cagr": 0.17233798255678812,
+        "recent_3y_50bps_cagr": 0.1571660383875213,
+        "recent_3y_50bps_cagr_improvement_vs_static_30": 0.008229673795044024,
+        "recent_3y_50bps_max_drawdown": -0.08901024933646418,
+        "recent_3y_50bps_sharpe": 1.5576905038423328,
+        "recent_3y_100bps_cagr": 0.13951695977463996,
+        "recent_3y_100bps_sharpe": 1.3951011491959988
+      },
+      "final": false,
+      "missing_gates": [
+        "full_history_drawdown_guard",
+        "independent_new_vintage_confirmation",
+        "survivorship_safe_historical_universe",
+        "52_week_untouched_forward_record"
+      ],
+      "passed_gates": [
+        "causal_candidate_exposure_rule",
+        "deterministic_rebuild",
+        "return_route_recent_3y_cagr",
+        "return_route_recent_3y_sharpe",
+        "return_route_recent_drawdown_tolerance",
+        "return_route_full_cagr_guard",
+        "six_trial_adjusted_paired_block_bootstrap",
+        "100bps_recent_cost_stress"
+      ],
+      "selection_reasons": [
+        "highest_recent_return among six Batch 61 causal dynamic variants",
+        "only dynamic variant to pass the predeclared return route"
+      ],
+      "source_batch": "ggg_xsmom_deep_validation_batch_61",
+      "status": "provisional_ggg_return_leader"
+    },
+    {
+      "approved_for_live_trading": false,
+      "candidate_id": "candidate-global-xsmom-100-return-ceiling-v1",
+      "configuration": {
+        "allocation": 1.0,
+        "cost_bps": 50.0,
+        "leverage": 1.0,
+        "portfolio_method": "score_inverse_volatility",
+        "rebalance_frequency": "monthly",
+        "signal": "xsmom_global",
+        "signal_lag_weeks": 1,
+        "smoothing_weeks": 1,
+        "top_n": 6
+      },
+      "evidence": {
+        "adjusted_pvalue_35_trials": 0.11782940568647712,
+        "full_50bps_cagr": 0.07664141402285596,
+        "full_50bps_max_drawdown": -0.24139541504841766,
+        "raw_pvalue": 0.0033665544481850606,
+        "rolling_3y_median_cagr_improvement_vs_return_leader": 0.008066925877071474,
+        "rolling_3y_win_share_vs_return_leader": 0.6578947368421053,
+        "trailing_1y_50bps_cagr": 0.28175793182776077,
+        "trailing_2y_50bps_cagr": 0.23989188473499912,
+        "trailing_3y_50bps_cagr": 0.2054746059965855,
+        "trailing_3y_50bps_cagr_improvement_vs_return_leader": 0.04830856760906421,
+        "trailing_3y_50bps_max_drawdown": -0.11307852627843573,
+        "trailing_3y_50bps_sharpe": 1.512819938469553,
+        "trailing_3y_100bps_cagr": 0.1889362067062963
+      },
+      "failed_gates": [
+        "35_trial_adjusted_pvalue_at_or_below_0_10"
+      ],
+      "final": false,
+      "missing_gates": [
+        "independent_new_vintage_confirmation",
+        "survivorship_safe_historical_universe",
+        "52_week_untouched_forward_record",
+        "later_drawdown_engineering"
+      ],
+      "passed_gates": [
+        "one_week_signal_lag",
+        "calendar_final_monthly_rebalance",
+        "deterministic_rebuild",
+        "prefix_invariance",
+        "one_two_three_year_return_targets",
+        "100bps_cost_stress",
+        "lenient_recent_drawdown_budget",
+        "lenient_full_drawdown_budget",
+        "full_history_return_floor",
+        "rolling_3y_win_share_vs_prior_return_leader",
+        "no_leverage"
+      ],
+      "selection_reasons": [
+        "highest trailing-three-year 50-bps CAGR among 35 Batch 62 candidates",
+        "first unlevered research engine to exceed the 20% trailing-three-year CAGR target"
+      ],
+      "source_batch": "aggressive_return_discovery_batch_62",
+      "status": "provisional_aggressive_return_ceiling"
+    },
+    {
+      "approved_for_live_trading": false,
+      "candidate_id": "candidate-xsmom-trend-consistency-60-return-ceiling-v2",
+      "configuration": {
+        "aggressive_xsmom_ceiling_weight": 0.4,
+        "cost_bps": 50.0,
+        "leverage": 1.0,
+        "rebalance_frequency": "monthly",
+        "trend_consistency_source_weight": 0.6,
+        "trend_consistency_top_n": 3,
+        "trend_consistency_rule": "cross-sectional rank of 52-week skip-four-week momentum multiplied by the prior 26-week positive-return share; delayed one week"
+      },
+      "evidence": {
+        "full_50bps_cagr": 0.0839,
+        "full_50bps_max_drawdown": -0.3061,
+        "raw_pvalue_vs_aggressive_xsmom_ceiling": 0.1773940868637712,
+        "rolling_3y_win_share_vs_aggressive_xsmom_ceiling": 0.5526,
+        "trailing_1y_50bps_cagr": 0.3544630028876561,
+        "trailing_2y_50bps_cagr": 0.2871382916281191,
+        "trailing_3y_50bps_cagr": 0.2410225495464844,
+        "trailing_3y_50bps_max_drawdown": -0.1340,
+        "trailing_3y_50bps_sharpe": 1.475,
+        "trailing_3y_100bps_cagr": 0.2227
+      },
+      "failed_gates": [
+        "paired_block_bootstrap_advantage_vs_aggressive_xsmom_ceiling"
+      ],
+      "final": false,
+      "missing_gates": [
+        "independent_new_vintage_confirmation",
+        "survivorship_safe_historical_universe",
+        "52_week_untouched_forward_record",
+        "later_drawdown_engineering"
+      ],
+      "passed_gates": [
+        "qualified_standalone_parent_source",
+        "one_week_signal_lag",
+        "calendar_final_monthly_rebalance",
+        "deterministic_rebuild",
+        "prefix_invariance",
+        "one_two_three_year_return_guards",
+        "trailing_3y_return_improvement",
+        "100bps_cost_stress",
+        "lenient_recent_drawdown_budget",
+        "lenient_full_drawdown_budget",
+        "rolling_3y_win_share",
+        "no_leverage"
+      ],
+      "selection_reasons": [
+        "highest trailing-three-year 50-bps CAGR among 48 Batch 63 blends",
+        "first unlevered research blend to exceed 24% trailing-three-year CAGR"
+      ],
+      "source_batch": "independent_return_source_discovery_batch_63",
+      "status": "provisional_aggressive_return_ceiling"
+    },
+    {
+      "approved_for_live_trading": false,
+      "candidate_id": "candidate-breadth-confirmed-trend-return-ceiling-v3",
+      "configuration": {
+        "aggressive_xsmom_core_weight_when_not_confirmed": 0.6,
+        "breadth_assets": 30,
+        "breadth_lookback_weeks": 13,
+        "breadth_threshold": 0.65,
+        "cost_bps": 50.0,
+        "leverage": 1.0,
+        "rule": "allocate 100% to the top-three trend-consistency source when the prior-week share of assets with positive 13-week returns is at least 65%; otherwise allocate 40% to trend consistency and 60% to the aggressive xsmom core",
+        "signal_lag_weeks": 1
+      },
+      "evidence": {
+        "adversarial_confirmation_pass": false,
+        "adjusted_pvalue_12_trials": 0.6359872802543949,
+        "candidate_advantage_over_best_simple_benchmark": -0.03553603038511444,
+        "candidate_recent_3y_200bps_max_drawdown": -0.1836210682740772,
+        "ex_best_year_cagr_advantage_vs_24pct_ceiling": 0.01969196134834017,
+        "full_50bps_cagr": 0.0892916812056006,
+        "full_50bps_max_drawdown": -0.3113383643357932,
+        "multifactor_annual_alpha": 0.027195021489027454,
+        "neighborhood_win_share_vs_24pct_ceiling": 1.0,
+        "placebo_percentile": 0.95,
+        "raw_pvalue_vs_24pct_ceiling": 0.05299894002119958,
+        "rolling_selector_recent_3y_50bps_cagr": 0.16880375940738768,
+        "rolling_3y_median_cagr_difference_vs_24pct_ceiling": -0.002915167668172014,
+        "rolling_3y_win_share_vs_24pct_ceiling": 0.4342105263157895,
+        "trailing_1y_50bps_cagr": 0.46076250329401436,
+        "trailing_2y_50bps_cagr": 0.3591061805755298,
+        "trailing_3y_50bps_cagr": 0.28167634026579424,
+        "trailing_3y_50bps_max_drawdown": -0.15233979815658594,
+        "trailing_3y_50bps_sharpe": 1.4610364701429892,
+        "trailing_3y_100bps_cagr": 0.2551791863341626
+      },
+      "failed_gates": [
+        "rolling_3y_win_share_at_or_above_50_percent",
+        "12_trial_adjusted_pvalue_at_or_below_0_10",
+        "past_only_rolling_selector_advantage",
+        "recent_cagr_above_best_simple_sector_benchmark"
+      ],
+      "final": false,
+      "missing_gates": [
+        "independent_new_vintage_confirmation",
+        "survivorship_safe_historical_universe",
+        "52_week_untouched_forward_record",
+        "later_drawdown_engineering"
+      ],
+      "passed_gates": [
+        "one_week_cross_asset_feature_lag",
+        "calendar_final_monthly_decisions",
+        "deterministic_rebuild",
+        "prefix_invariance",
+        "one_two_three_year_return_guards",
+        "trailing_3y_return_improvement",
+        "100bps_recent_cost_stress",
+        "lenient_recent_drawdown_budget",
+        "lenient_full_50bps_drawdown_budget",
+        "30_configuration_parameter_neighborhood",
+        "additional_feature_delay_majority",
+        "excluded_strongest_recent_year_advantage",
+        "breadth_placebo_95th_percentile",
+        "positive_multifactor_annual_alpha",
+        "200bps_recent_drawdown_budget",
+        "forward_protocol_frozen_before_first_eligible_observation",
+        "no_leverage"
+      ],
+      "forward_protocol": {
+        "first_eligible_decision_date": "2026-08-14",
+        "first_eligible_realization_date": "2026-08-21",
+        "observed_weeks": 0,
+        "protocol": "config/forward/breadth_confirmed_trend_return_ceiling_v3.json",
+        "required_weeks": 52,
+        "status": "awaiting_first_eligible_realization"
+      },
+      "selection_reasons": [
+        "highest trailing-three-year 50-bps CAGR among 12 Batch 64 confirmation variants",
+        "first unlevered research engine to exceed 28% trailing-three-year CAGR"
+      ],
+      "source_batch": "return_confirmation_diversification_batch_64",
+      "status": "provisional_aggressive_return_ceiling"
+    },
+    {
+      "approved_for_live_trading": false,
+      "candidate_id": "candidate-embargoed-hgb-xlk-breadth-return-v1",
+      "configuration": {
+        "allocation_rule": "monthly sign of an expanding HistGradientBoosting prediction selects between XLK and the frozen breadth ceiling",
+        "cost_bps": 50.0,
+        "label_horizon_weeks": 4,
+        "minimum_training_months": 60,
+        "prediction_embargo": "every training label must end strictly before the new decision",
+        "signal_lag_weeks": 1
+      },
+      "evidence": {
+        "ex_best_year_advantage_over_breadth": 0.129745,
+        "familywise_adjusted_pvalue_30_trials": 1.0,
+        "full_50bps_cagr": 0.123454,
+        "full_50bps_max_drawdown": -0.50704,
+        "holdout_50bps_cagr": 0.3471005568516963,
+        "holdout_50bps_max_drawdown": -0.19773639892070316,
+        "holdout_50bps_sharpe": 1.432304197124073,
+        "holdout_100bps_cagr": 0.321352,
+        "holdout_200bps_cagr": 0.270995,
+        "holdout_advantage_over_breadth": 0.065424,
+        "holdout_advantage_over_xlk": 0.029888,
+        "raw_pvalue_vs_xlk": 0.347755,
+        "rolling_3y_win_share_over_xlk": 0.171053
+      },
+      "ensemble_followup_batch_67": {
+        "clean_grid_candidates": 246,
+        "pre_holdout_selected_ensemble": {
+          "embargoed_hgb_weight": 0.3,
+          "xlk_weight": 0.7
+        },
+        "ensemble_holdout_50bps_cagr": 0.32832222943121225,
+        "ensemble_holdout_50bps_drawdown": -0.22550844249883906,
+        "ensemble_holdout_50bps_sharpe": 1.361457129214936,
+        "ensemble_holdout_100bps_cagr": 0.32070049195502515,
+        "ensemble_holdout_200bps_cagr": 0.30555823402603766,
+        "ensemble_qualified_replacement": false,
+        "conclusion": "the frozen ensemble diluted the standalone HGB candidate's holdout return and did not broaden its historical advantage"
+      },
+      "failed_gates": [
+        "rolling_3y_win_share_over_xlk",
+        "familywise_adjusted_pvalue"
+      ],
+      "final": false,
+      "missing_gates": [
+        "independent_new_vintage_confirmation",
+        "survivorship_safe_historical_universe",
+        "52_week_untouched_forward_record"
+      ],
+      "passed_gates": [
+        "predeclared_model_family",
+        "strict_four_week_label_embargo",
+        "expanding_training_only",
+        "deterministic_rebuild",
+        "holdout_return_above_xlk_and_breadth",
+        "100_and_200bps_cost_stress",
+        "additional_delay_majority",
+        "excluded_strongest_year_advantage",
+        "no_leverage"
+      ],
+      "selection_reasons": [
+        "highest holdout CAGR among 30 candidates fixed without holdout outcomes in Batch 66"
+      ],
+      "source_batch": "exhaustive_return_first_discovery_batch_66",
+      "status": "provisional_aggressive_return_ceiling"
+    },
+    {
+      "approved_for_live_trading": false,
+      "candidate_id": "candidate-broad-risk-rank-consensus-top1-return-ceiling-v1",
+      "configuration": {
+        "breadth_threshold": 0.65,
+        "cost_bps": 50.0,
+        "non_broad_source_weight": 0.25,
+        "rule": "when prior-week 13-week breadth is at least 65%, hold the monthly top-one four-horizon rank-consensus asset; otherwise blend 25% of that asset with 75% XLK",
+        "signal_lag_weeks": 1,
+        "top_n": 1
+      },
+      "evidence": {
+        "adversarial_confirmation_pass": false,
+        "ex_best_year_advantage_over_breadth": 0.116373,
+        "ex_best_year_advantage_over_xlk": -0.054619,
+        "full_50bps_cagr": 0.08186966039898547,
+        "full_50bps_max_drawdown": -0.4106875808317032,
+        "holdout_50bps_cagr": 0.5234638210517288,
+        "holdout_50bps_max_drawdown": -0.24959640003613115,
+        "holdout_50bps_sharpe": 1.5867251087670333,
+        "holdout_100bps_cagr": 0.4674188472293086,
+        "holdout_200bps_cagr": 0.3607252305881661,
+        "holdout_300bps_cagr": 0.26089347569114674,
+        "multifactor_annual_alpha": -0.019727987381242793,
+        "neighborhood_share_beating_xlk": 0.7111111111111111,
+        "placebo_percentile": 0.985,
+        "rolling_3y_win_share_over_xlk": 0.23684210526315788
+      },
+      "failed_gates": [
+        "excluded_strongest_year_advantage_over_xlk",
+        "positive_multifactor_alpha",
+        "rolling_3y_win_share_over_xlk"
+      ],
+      "final": false,
+      "missing_gates": [
+        "independent_new_vintage_confirmation",
+        "survivorship_safe_historical_universe",
+        "52_week_untouched_forward_record"
+      ],
+      "passed_gates": [
+        "one_week_signal_lag",
+        "90_configuration_neighborhood",
+        "additional_delay_majority",
+        "98_5th_percentile_placebo_test",
+        "past_only_selector_advantage",
+        "50_100_200_300bps_cost_stress",
+        "full_history_return_and_drawdown_guards",
+        "no_leverage"
+      ],
+      "selection_reasons": [
+        "highest retrospective holdout CAGR among 805 Batch 66 candidates",
+        "retained only as a hindsight-selected research ceiling"
+      ],
+      "source_batch": "exhaustive_return_first_discovery_batch_66_phase_b",
+      "status": "provisional_aggressive_return_ceiling"
+    },
+    {
+      "approved_for_live_trading": false,
+      "candidate_id": "candidate-past-only-consensus-selector-return-v1",
+      "configuration": {
+        "candidate_grid_size": 90,
+        "cost_bps": 50.0,
+        "rule": "at the first eligible week of each year, select the rank-consensus breadth configuration with the highest strictly prior 260-week 50-bps CAGR; hold that rule for the calendar year",
+        "selection_training_weeks": 260,
+        "signal_lag_weeks": 1
+      },
+      "evidence": {
+        "adversarial_confirmation_pass": false,
+        "ex_best_year_advantage_over_breadth": 0.212435,
+        "ex_best_year_advantage_over_xlk": 0.041443,
+        "full_50bps_cagr": 0.10543556075907357,
+        "full_50bps_max_drawdown": -0.507039807511918,
+        "holdout_50bps_cagr": 0.4171592180958432,
+        "holdout_50bps_max_drawdown": -0.24959640003613093,
+        "holdout_50bps_sharpe": 1.3487658858000884,
+        "holdout_100bps_cagr": 0.3677555439572586,
+        "holdout_200bps_cagr": 0.2734251381373052,
+        "multifactor_annual_alpha": -0.026159049635979894,
+        "raw_pvalue_vs_xlk": 0.20222659244691843,
+        "rolling_3y_win_share_over_xlk": 0.039473684210526314
+      },
+      "failed_gates": [
+        "additional_delay_majority",
+        "full_history_drawdown_guard",
+        "positive_multifactor_alpha",
+        "raw_pvalue_at_or_below_0_10",
+        "rolling_3y_win_share_over_xlk"
+      ],
+      "final": false,
+      "forward_protocol": {
+        "first_eligible_decision_date": "2026-08-14",
+        "first_eligible_realization_date": "2026-08-21",
+        "observed_weeks": 0,
+        "protocol": "config/forward/past_only_consensus_selector_return_v1.json",
+        "required_weeks": 52,
+        "status": "awaiting_first_eligible_realization"
+      },
+      "missing_gates": [
+        "independent_new_vintage_confirmation",
+        "survivorship_safe_historical_universe",
+        "52_week_untouched_forward_record"
+      ],
+      "passed_gates": [
+        "strictly_past_only_annual_selection",
+        "holdout_return_above_xlk_and_breadth",
+        "100_and_200bps_cost_stress",
+        "excluded_strongest_year_advantage",
+        "full_history_return_floor",
+        "forward_protocol_frozen_before_first_eligible_observation",
+        "no_leverage"
+      ],
+      "selection_reasons": [
+        "highest recent-return candidate using strictly prior outcomes for every historical annual selection",
+        "selected as the single Batch 66 high-return candidate for untouched forward observation"
+      ],
+      "source_batch": "exhaustive_return_first_discovery_batch_66_phase_b",
+      "status": "provisional_aggressive_return_ceiling"
+    },
+    {
+      "approved_for_live_trading": false,
+      "candidate_id": "candidate-return-first-60-40-forward-v1",
+      "configuration": {
+        "base_component": "Batch 67 pre-2023-selected 70% XLK plus 30% embargoed HGB allocator",
+        "base_component_weight": 0.6,
+        "cost_bps": 50.0,
+        "hindsight_component": "candidate-broad-risk-rank-consensus-top1-return-ceiling-v1",
+        "hindsight_component_weight": 0.4,
+        "rule": "fixed 60/40 blend of the pre-holdout-selected ensemble and the hindsight-selected 52.35% ceiling"
+      },
+      "evidence": {
+        "full_50bps_cagr": 0.12597434243865036,
+        "full_50bps_max_drawdown": -0.4409750125585016,
+        "holdout_50bps_cagr": 0.416593220797705,
+        "holdout_50bps_max_drawdown": -0.15825384743697135,
+        "holdout_50bps_sharpe": 1.7096851524165346,
+        "weights_artifact_sha256": "a3f5e0256fa30db10c3836fc7adc39609ea1dcd83d7e29a069a7e1ff916e34c4"
+      },
+      "failed_gates": [
+        "independent_selection_of_hindsight_component",
+        "independent_selection_of_60_40_overlay_weight",
+        "untouched_forward_confirmation"
+      ],
+      "final": false,
+      "forward_protocol": {
+        "first_eligible_decision_date": "2026-08-14",
+        "first_eligible_realization_date": "2026-08-21",
+        "observed_weeks": 0,
+        "protocol": "config/forward/return_first_60_40_blend_v1.json",
+        "required_weeks": 52,
+        "status": "awaiting_first_eligible_realization"
+      },
+      "missing_gates": [
+        "52_week_untouched_forward_record",
+        "survivorship_safe_historical_universe",
+        "independent_new_vintage_confirmation"
+      ],
+      "passed_gates": [
+        "exact_source_artifact_hashes",
+        "deterministic_60_40_rebuild",
+        "weights_sum_to_one",
+        "no_leverage",
+        "forward_protocol_frozen_before_first_eligible_observation"
+      ],
+      "selection_reasons": [
+        "highest-Sharpe diagnostic overlay on the pre-holdout-selected Batch 67 base",
+        "requested for untouched forward observation without further historical tuning"
+      ],
+      "source_batch": "return_first_ensemble_batch_67",
+      "status": "provisional_aggressive_return_ceiling"
+    }
+  ],
+  "generated_at_utc": "2026-08-08T22:02:06.092716+00:00",
+  "last_updated_at_utc": "2026-08-13T01:45:00+00:00",
+  "latest_evidence_batch": "return_first_60_40_forward_freeze_v1",
+  "purpose": "Track promising strategies without representing any as final, production-ready, or expected to make money.",
+  "qualification_rules_fixed_before_robustness_batch_02": {
+    "additional_entries": "exact frozen v4 and each distinct walk-forward-selected configuration",
+    "diversity_rule": "highest development-selection score per signal recipe",
+    "each_retrospective_period_max_drawdown_floor": -0.3,
+    "fully_invested_required": true,
+    "retrospective_2016_2020_min_sharpe": 0.4,
+    "retrospective_2021_present_min_sharpe": 0.8,
+    "unpriced_exposure_events_required": 0
+  },
+  "registry_version": 2,
+  "source_batch": "research_lab_batch_01",
+  "source_snapshot_id": "20260808T212827Z-de103c2e063d6c4a"
+}

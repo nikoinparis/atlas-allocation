@@ -1,0 +1,21 @@
+{
+  "protocol": "sec_growth_confidence_sizing_challenger_v1",
+  "frozen_at_utc": "2026-08-14T09:45:00+00:00",
+  "first_eligible_decision": "2026-08-14",
+  "first_eligible_realization": "2026-08-21",
+  "required_observation_weeks": 52,
+  "challenger": {
+    "name": "relative_26w_10_40",
+    "low_growth_allocation": 0.10,
+    "high_growth_allocation": 0.40,
+    "high_condition": "Using only weekly returns labeled before the decision: trailing 26-week growth-sleeve return is positive and strictly exceeds trailing 26-week ETF-incumbent return.",
+    "current_signal_at_freeze": "high",
+    "current_growth_allocation": 0.40
+  },
+  "comparators": ["fixed_20", "frozen ETF incumbent", "strict-capped 20% growth sleeve"],
+  "primary_cost_bps": 50,
+  "stress_cost_bps": [100, 200],
+  "selection_policy": "Observe in parallel for 52 weeks. Historical recent-return leadership cannot promote the challenger.",
+  "research_only": true,
+  "live_trading_enabled": false
+}

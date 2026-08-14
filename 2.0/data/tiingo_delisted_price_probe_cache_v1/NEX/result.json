@@ -1,0 +1,20 @@
+{
+  "cik10": "0001688476",
+  "covers_first_eligible_decision": true,
+  "first_eligible_decision": "2019-04-01 00:00:00+00:00",
+  "first_price_date": "2019-04-01",
+  "issuer_name_match": true,
+  "issuer_name_score": 1.0,
+  "last_eligible_decision": "2024-10-01 00:00:00+00:00",
+  "last_price_date": "2023-08-31",
+  "price_file": "/workspace/2.0/data/tiingo_delisted_price_probe_cache_v1/NEX/prices.csv.gz",
+  "price_rows": 1114,
+  "provider_end_date": "2023-08-31",
+  "provider_exchange": "NYSE",
+  "provider_name": "NexTier Oilfield Solutions Inc",
+  "provider_start_date": "2017-01-20",
+  "sec_company_name": "NEXTIER OILFIELD SOLUTIONS INC.",
+  "status": "identity_and_start_validated",
+  "terminal": true,
+  "tiingo_symbol": "NEX"
+}

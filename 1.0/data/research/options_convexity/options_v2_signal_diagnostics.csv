@@ -1,0 +1,16 @@
+section,key,value_entered,value_not_entered,n_entered,n_not_entered
+feature_discrimination,surplus,0.037238621159308254,-0.028868286214339362,27,659.0
+feature_discrimination,expected_move,0.09481261417330931,0.028225253223345792,27,659.0
+feature_discrimination,breakeven_move,0.05757399301400104,0.05709353943768516,27,659.0
+feature_discrimination,accel_4w,0.026702932532404737,-0.0010844127400611591,27,659.0
+feature_discrimination,ma_slope,0.03129875203186108,0.0127039534350612,27,659.0
+feature_discrimination,vol_percentile,0.254985754985755,0.4009279794560523,27,659.0
+feature_discrimination,rv_vs_median,0.8073815149485978,0.9387669089633738,27,659.0
+feature_discrimination,dd_recovery,0.9896113438424232,0.8406341440742252,27,659.0
+feature_discrimination,risk_on_transition,0.4074074074074074,0.38391502276176026,27,659.0
+feature_discrimination,credit_improvement,1.0,0.4400606980273141,27,659.0
+ablation_funnel,L1_bullish_only,6.09009009009009,,130,
+ablation_funnel,L2_bullish_acceleration,4.216216216216216,,90,
+ablation_funnel,L3_bullish_acceleration_breakeven,1.6864864864864864,,36,
+ablation_funnel,L4_bullish_acceleration_breakeven_iv,1.545945945945946,,33,
+ablation_funnel,L5_bullish_acceleration_breakeven_iv_transition,1.2648648648648648,,27,

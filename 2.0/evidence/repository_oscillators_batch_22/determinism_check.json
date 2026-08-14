@@ -1,0 +1,28 @@
+{
+  "first_run_sha256": {
+    "blend_weekly_returns_50bps.csv": "4a76272628192444c011d51fc33725ea0a30c58f787624cf1e4663e61f157112",
+    "primary_daily_returns_50bps.csv": "1f84dd1f565a64204553390b714c0568d99a65c43f910e49e2d2569f1f0f3f37",
+    "primary_weekly_returns_50bps.csv": "8c13b05616595b4e556426d0d41867383aa0d55c433340f67d20c8aee380e6c1",
+    "report.md": "c2fdf81c4a9a41e174113ddd0cdc0b4b893a8cb7eae8bb28b0293f74a14bd901",
+    "scoreboard.csv": "bf0337dbd29038c4ed4a000b5d11347c1996606dac11513e8693d8dadddb0b55",
+    "signal_audit.csv": "65e9d8ead321b59579383bb57fa8b2fb1d85b1ecdacbdd49521766f19074ab41"
+  },
+  "identical": true,
+  "projection_files": [
+    "blend_weekly_returns_50bps.csv",
+    "primary_daily_returns_50bps.csv",
+    "primary_weekly_returns_50bps.csv",
+    "report.md",
+    "scoreboard.csv",
+    "signal_audit.csv"
+  ],
+  "python_hash_seed": 0,
+  "second_run_sha256": {
+    "blend_weekly_returns_50bps.csv": "4a76272628192444c011d51fc33725ea0a30c58f787624cf1e4663e61f157112",
+    "primary_daily_returns_50bps.csv": "1f84dd1f565a64204553390b714c0568d99a65c43f910e49e2d2569f1f0f3f37",
+    "primary_weekly_returns_50bps.csv": "8c13b05616595b4e556426d0d41867383aa0d55c433340f67d20c8aee380e6c1",
+    "report.md": "c2fdf81c4a9a41e174113ddd0cdc0b4b893a8cb7eae8bb28b0293f74a14bd901",
+    "scoreboard.csv": "bf0337dbd29038c4ed4a000b5d11347c1996606dac11513e8693d8dadddb0b55",
+    "signal_audit.csv": "65e9d8ead321b59579383bb57fa8b2fb1d85b1ecdacbdd49521766f19074ab41"
+  }
+}

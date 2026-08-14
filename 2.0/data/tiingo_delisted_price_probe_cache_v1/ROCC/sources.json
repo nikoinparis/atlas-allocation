@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 338,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T02:17:09.102548+00:00",
+    "sha256": "23c53c27caae4efc22d53fd92e93626dcd5d56f64c2f6fe275e7530d168dc3b2",
+    "url": "https://api.tiingo.com/tiingo/daily/ROCC"
+  },
+  {
+    "bytes": 412717,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T02:17:10.720766+00:00",
+    "sha256": "ab349699cb0a8673044c5dded95b444133d1e1d78e184ad16ba67d757f1e4607",
+    "url": "https://api.tiingo.com/tiingo/daily/ROCC/prices?startDate=2012-04-01&endDate=2024-07-11&resampleFreq=daily"
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "entry_id": "ast-0041",
+  "head_commit": "fa5206fe63836f3f8cd1ebd7168fbd19a5e2ff09",
+  "host_mounts": false,
+  "image": "docker.io/library/python:3.12-bookworm",
+  "install_exit_code": 1,
+  "install_log": "Obtaining file:///work/repository\n  Installing build dependencies: started\n  Installing build dependencies: finished with status 'done'\n  Checking if build backend supports build_editable: started\n  Checking if build backend supports build_editable: finished with status 'done'\n  Getting requirements to build editable: started\n  Getting requirements to build editable: finished with status 'done'\n  Installing backend dependencies: started\n  Installing backend dependencies: finished with status 'done'\n  Preparing editable metadata (pyproject.toml): started\n  Preparing editable metadata (pyproject.toml): finished with status 'done'\nCollecting deap>=1.4.2 (from vnpy==4.4.0)\n  Downloading deap-1.4.4-py3-none-any.whl.metadata (13 kB)\nCollecting loguru>=0.7.3 (from vnpy==4.4.0)\n  Downloading loguru-0.7.3-py3-none-any.whl.metadata (22 kB)\nCollecting nbformat>=5.10.4 (from vnpy==4.4.0)\n  Downloading nbformat-5.11.0-py3-none-any.whl.metadata (3.7 kB)\nCollecting numpy>=2.2.3 (from vnpy==4.4.0)\n  Downloading numpy-2.5.1-cp312-cp312-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl.metadata (6.6 kB)\nCollecting pandas>=2.2.3 (from vnpy==4.4.0)\n  Downloading pandas-3.0.5-cp312-cp312-manylinux_2_24_aarch64.manylinux_2_28_aarch64.whl.metadata (79 kB)\nCollecting plotly>=6.0.0 (from vnpy==4.4.0)\n  Downloading plotly-6.9.0-py3-none-any.whl.metadata (9.0 kB)\nCollecting pyqtgraph>=0.13.7 (from vnpy==4.4.0)\n  Downloading pyqtgraph-0.14.0-py3-none-any.whl.metadata (1.5 kB)\nINFO: pip is looking at multiple versions of vnpy to determine which version is compatible with other requirements. This could take a while.\n\nERROR: Could not find a version that satisfies the requirement pyside6==6.8.2.1 (from vnpy) (from versions: 6.6.0, 6.6.1, 6.6.2, 6.6.3, 6.6.3.1, 6.7.0, 6.7.1, 6.7.2, 6.7.3, 6.8.0, 6.8.0.1, 6.8.0.2)\nERROR: No matching distribution found for pyside6==6.8.2.1\nTraceback (most recent call last):\n  File \"<stdin>\", line 32, in <module>\n  File \"/usr/local/lib/python3.12/subprocess.py\", line 571, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command '['/work/venv/bin/pip', 'install', '--disable-pip-version-check', '--no-cache-dir', '-e', '.[dev,test,tests]']' returned non-zero exit status 1.",
+  "install_seconds": 10,
+  "name": "vnpy",
+  "repository": "vnpy/vnpy",
+  "started_at": "2026-08-08T18:57:06.069104+00:00",
+  "status": "install_failed",
+  "test_exit_code": -1,
+  "test_log": "",
+  "test_network": "disabled_during_tests",
+  "test_seconds": 0
+}

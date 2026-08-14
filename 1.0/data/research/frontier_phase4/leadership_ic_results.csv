@@ -1,0 +1,9 @@
+scope,market_state,spearman_ic,n
+full,ALL,-0.08940328232103789,1106
+dev,ALL,-0.09889940298800082,1106
+holdout,ALL,0.047188718871887185,1106
+full_by_state,calm_trend,-0.0644132548753314,295
+full_by_state,neutral_mixed,-0.16420123276724136,491
+full_by_state,recovery_confirmed,-0.26141125853946123,43
+full_by_state,recovery_fragile,-0.07959183673469387,49
+full_by_state,stressed_panic,0.03530942702812261,228

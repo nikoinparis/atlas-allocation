@@ -1,0 +1,20 @@
+{
+  "cik10": "0000808326",
+  "covers_first_eligible_decision": true,
+  "first_eligible_decision": "2012-04-01 00:00:00+00:00",
+  "first_price_date": "2012-04-02",
+  "issuer_name_match": true,
+  "issuer_name_score": 1.0,
+  "last_eligible_decision": "2025-10-01 00:00:00+00:00",
+  "last_price_date": "2025-02-28",
+  "price_file": "/project/data/tiingo_delisted_price_probe_cache_v1/EMKR/prices.csv.gz",
+  "price_rows": 3247,
+  "provider_end_date": "2025-02-28",
+  "provider_exchange": "NASDAQ",
+  "provider_name": "Emcore Corp",
+  "provider_start_date": "1997-03-07",
+  "sec_company_name": "EMCORE CORP",
+  "status": "identity_and_start_validated",
+  "terminal": true,
+  "tiingo_symbol": "EMKR"
+}

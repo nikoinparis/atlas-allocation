@@ -1,0 +1,17 @@
+{
+  "created_at_utc": "2026-08-13T09:57:32.236635+00:00",
+  "historical_mapping_complete": false,
+  "mapping_scope": "last non-amended eligible filing per former/unmapped CIK",
+  "parent_universe_vintage": "/project/data/sec_historical_universe_vintages/20260813T095119Z-sec-historical-filers-v1",
+  "price_testing_authorized": false,
+  "recovery_rate": 0.3502824858757062,
+  "status_counts": {
+    "accession_not_in_submissions": 1,
+    "no_explicit_symbol_tag": 459,
+    "xbrl_symbol_recovered": 248
+  },
+  "targets": 708,
+  "ticker_reuse_validated": false,
+  "vintage_id": "20260813T095732Z-sec-symbol-recovery-v1",
+  "xbrl_symbols_recovered": 248
+}

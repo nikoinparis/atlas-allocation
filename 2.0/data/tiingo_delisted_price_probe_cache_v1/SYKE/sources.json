@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 3273,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T05:56:55.720279+00:00",
+    "sha256": "9030a286f3be5003db1d2530288d2a0439ef5cd72813318513ca9f8b67aa59ae",
+    "url": "https://api.tiingo.com/tiingo/daily/SYKE"
+  },
+  {
+    "bytes": 517125,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T05:57:00.183321+00:00",
+    "sha256": "6b6a86f01cae08798b3b3d430037e4c7eda51d7259c362695399246a4c52b162",
+    "url": "https://api.tiingo.com/tiingo/daily/SYKE/prices?startDate=2012-04-01&endDate=2022-10-11&resampleFreq=daily"
+  }
+]

@@ -1,0 +1,91 @@
+{
+  "score_rank_average_all": {
+    "family": "rank_average",
+    "weights": {
+      "sequence_5c_rank": 1.0,
+      "transformer_rank": 1.0,
+      "mlp_rank": 1.0,
+      "tabular_rank": 1.0
+    },
+    "description": "Equal-weight rank average across available sequence, Transformer, MLP, and tabular scores."
+  },
+  "score_rank_average_no_tabular": {
+    "family": "rank_average",
+    "weights": {
+      "sequence_5c_rank": 1.0,
+      "transformer_rank": 1.0,
+      "mlp_rank": 1.0
+    },
+    "description": "Rank average of the stronger ML components, excluding tabular ML by default."
+  },
+  "score_sequence_dominant_70_20_10": {
+    "family": "sequence_dominant",
+    "weights": {
+      "sequence_5c_rank": 0.7,
+      "transformer_rank": 0.2,
+      "mlp_rank": 0.1
+    },
+    "description": "Sequence-dominant blend: 70% sequence, 20% Transformer, 10% MLP."
+  },
+  "score_sequence_transformer_80_20": {
+    "family": "sequence_dominant",
+    "weights": {
+      "sequence_5c_rank": 0.8,
+      "transformer_rank": 0.2
+    },
+    "description": "Sequence plus Transformer confirmation: 80% sequence, 20% Transformer."
+  },
+  "score_sequence_only": {
+    "family": "sequence_baseline",
+    "weights": {
+      "sequence_5c_rank": 1.0
+    },
+    "description": "Pure MLX-5C sequence signal baseline."
+  },
+  "score_agreement_2of3": {
+    "family": "agreement_filter",
+    "weights": {
+      "sequence_5c_rank": 1.0,
+      "transformer_rank": 1.0,
+      "mlp_rank": 1.0
+    },
+    "description": "Average score used only where at least two major models rank the ETF in the top quintile."
+  },
+  "component_availability_snapshot": {
+    "sequence_5c": {
+      "available": true,
+      "path": "data/research/ml_lab/sequence_models/multiseed_walkforward/sequence_multiseed_predictions.parquet",
+      "rows": 47336,
+      "selected_model": null,
+      "aggregate_all_models": true
+    },
+    "sequence_base": {
+      "available": true,
+      "path": "data/research/ml_lab/sequence_models/sequence_predictions.parquet",
+      "rows": 130950,
+      "selected_model": "lstm_classifier_top_quintile_forward_4w_seq26",
+      "aggregate_all_models": false
+    },
+    "transformer": {
+      "available": true,
+      "path": "data/research/ml_lab/transformers/transformer_predictions.parquet",
+      "rows": 130950,
+      "selected_model": "transformer_encoder_top_quintile_forward_4w_seq26_seed0",
+      "aggregate_all_models": false
+    },
+    "mlp": {
+      "available": true,
+      "path": "data/research/ml_lab/neural_networks/nn_predictions.parquet",
+      "rows": 133375,
+      "selected_model": "deep_dropout_mlp_classifier_top_quintile_forward_4w",
+      "aggregate_all_models": false
+    },
+    "tabular": {
+      "available": true,
+      "path": "data/research/ml_lab/tabular_ml/ml_tabular_predictions.parquet",
+      "rows": 133375,
+      "selected_model": "random_forest_classifier__top_quintile_forward_4w",
+      "aggregate_all_models": false
+    }
+  }
+}

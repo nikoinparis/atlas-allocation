@@ -1,0 +1,15 @@
+check,status,detail
+track_a_production_pin_preserved,PASS,current_production_pin=improved_frontier_phase5_fragility_guard
+required_files_exist,PASS,missing=[]
+manifest_track_c,PASS,track=track_c_new_alpha
+manifest_research_only,PASS,research_status=research_only
+manifest_production_candidate_matches_track_a,PASS,production_candidate=improved_frontier_phase5_fragility_guard
+track_a_returns_hash_preserved,PASS,Track A returns hash matches manifest.
+track_a_weights_hash_preserved,PASS,Track A weights hash matches manifest.
+standalone_candidate_count_is_six,PASS,"manifest_count=6, metrics_rows=6"
+all_candidate_names_are_track_c,PASS,All registry candidate names use track_c_ prefix.
+registry_research_only,PASS,All Track C registry rows are research_only.
+no_track_c_production_promotion,PASS,No Track C candidate is marked production.
+cost_sensitivity_1x_2x_3x_present,PASS,missing_cost_multipliers=[]
+ic_rows_present_for_all_standalone,PASS,ic_candidate_count=6
+blend_metrics_schema_ok,PASS,blend_rows=6

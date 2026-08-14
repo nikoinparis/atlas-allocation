@@ -1,0 +1,77 @@
+{
+  "program": "mlquant_factor_decay_and_turnover_v1",
+  "predeclared_before_results": true,
+  "repository_commit": "867e8dfe628b1d0ea2af987ec6f74c32c645f63e",
+  "input": {
+    "factor_panel": "evidence/mlquant_factor_portfolio_batch_31/qualified_factor_panel.csv",
+    "factor_panel_sha256": "18114e7781799021ebd91e1d762b243e2c8f3909ece826232c895b260b3f1c05",
+    "snapshot_id": "20260809T002313Z-0d8632e2cf759918",
+    "factors": ["best_002", "original_001"],
+    "combined_score": "equal mean of the two repository cross-sectional z-scores"
+  },
+  "decay_test": {
+    "forward_sessions": [1, 2, 5, 10, 20],
+    "metric": "daily cross-sectional Spearman rank IC of the combined score",
+    "minimum_assets_per_date": 5,
+    "periods": {
+      "development": ["2005-01-01", "2015-12-31"],
+      "validation": ["2016-01-01", "2020-12-31"],
+      "retrospective_test": ["2021-01-01", "2026-08-07"]
+    },
+    "development_selection": "highest development mean IC; ties choose the shorter horizon",
+    "bootstrap_replicates": 20000,
+    "bootstrap_block_sessions": 65,
+    "family_size": 5,
+    "familywise_one_sided_alpha": 0.05,
+    "per_horizon_one_sided_alpha": 0.01,
+    "seed": 2026083201,
+    "qualification": "selected horizon must have positive validation and test IC and a positive familywise combined validation-test bootstrap lower bound"
+  },
+  "portfolio": {
+    "top_n": 5,
+    "maximum_asset_weight": 0.30,
+    "volatility_lookback_sessions": 20,
+    "cash_return": 0.0,
+    "shorting": false,
+    "leverage": false,
+    "primary_signal_lag_weeks": 1,
+    "costs_bps": [10, 50, 100],
+    "primary_cost_bps": 50,
+    "turnover": "half L1 from drifted holdings including cash; no rebalance and zero turnover on hold weeks"
+  },
+  "fixed_candidates": {
+    "monthly_equal_top5": "replace the full top-five set only at the last weekly decision of each month; equal target weights",
+    "monthly_inverse_volatility_top5": "replace the full top-five set only at the last weekly decision of each month; inverse-volatility targets capped at 30 percent",
+    "buffered_equal_top5": "weekly review; maximum one replacement, incumbent minimum age four weeks, outsider score must exceed weakest replaceable incumbent by at least 0.5; rebalance only on membership change",
+    "buffered_inverse_volatility_top5": "same membership buffer; inverse-volatility targets refreshed only on membership change or the last weekly decision of a month"
+  },
+  "controls": {
+    "additional_stale_weeks": 1,
+    "inverted_ranking": true,
+    "fixed_asset_permutation": true,
+    "permutation_seed": 2026083202
+  },
+  "comparison": {
+    "core_portfolio": "covariance_minimum_variance_v1",
+    "blend_core_weight": 0.80,
+    "blend_candidate_weight": 0.20,
+    "top_level_rebalance_cost_bps": 50,
+    "paired_bootstrap_samples": 20000,
+    "paired_bootstrap_block_weeks": 13,
+    "family_size": 4,
+    "per_candidate_one_sided_alpha": 0.0125,
+    "seed": 2026083203
+  },
+  "promotion_gates": {
+    "primary": "50-bps annual return positive, Sharpe at least 0.50, and maximum drawdown no worse than -35 percent",
+    "stress": "100-bps annual return and Sharpe positive",
+    "later_windows": "50-bps annual returns positive in 2016-2020 and 2021-present",
+    "controls": "50-bps candidate Sharpe exceeds stale, inverted, and permutation controls",
+    "turnover_improvement": "annual turnover below the corresponding Batch 31 weekly construction",
+    "blend": "80/20 blend Sharpe exceeds core, drawdown no worse by more than two points, and familywise paired Sharpe lower bound positive",
+    "survivorship_safe_universe": false,
+    "untouched_forward_weeks": 52,
+    "all_requirements_must_pass": true
+  },
+  "live_trading_enabled": false
+}

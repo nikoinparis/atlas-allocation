@@ -1,0 +1,29 @@
+{
+  "all_return_gates_passed": false,
+  "all_validation_checks_passed": true,
+  "audited_candidates": 4,
+  "best_audited_candidate": "sales_only__top10__floor25m__sector60__cohort1__w0.40__50bps",
+  "created_at_utc": "2026-08-14T22:32:13.183470+00:00",
+  "experiment": "sec_diversified_valuation_ensemble_audit_v1",
+  "full_cagr": 0.4196258540268616,
+  "live_trading_enabled": false,
+  "one_week_delay_recent_cagr": 1.0265163604855365,
+  "passing_candidates": 0,
+  "recent_cagr": 1.1120849711819831,
+  "recent_drawdown": -0.15282913445812063,
+  "recent_sharpe": 2.332867517610213,
+  "rolling_26w_win_rate": 0.4049079754601227,
+  "severe_200bps_recent_cagr": 1.0978659126539996,
+  "strategy_replacement_authorized": false,
+  "two_week_delay_recent_cagr": 1.0421683900291456,
+  "validation_checks": {
+    "all_candidates_reported": true,
+    "all_costs_reported": true,
+    "all_delays_reported": true,
+    "leave_one_out_reported": true,
+    "results_finite": true
+  },
+  "worst_loo_company": "RACKSPACE TECHNOLOGY, INC.",
+  "worst_loo_full_cagr": 0.3748564043645255,
+  "worst_loo_recent_cagr": 0.8996412974439985
+}

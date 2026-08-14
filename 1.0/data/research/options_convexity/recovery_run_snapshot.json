@@ -1,0 +1,115 @@
+{
+  "experiment": "options_convexity_recovery_research",
+  "main_config": {
+    "structure": "outright_call",
+    "dte_bucket": "60-120",
+    "profit_taking": true,
+    "per_trade_risk": 0.005,
+    "underlyings": [
+      "SPY",
+      "QQQ"
+    ]
+  },
+  "cost_model": {
+    "iv_markup": 1.05,
+    "entry_slippage_frac": 0.05,
+    "exit_slippage_frac": 0.05,
+    "per_trade_risk": 0.005,
+    "max_concurrent_risk": 0.01,
+    "max_annual_risk": 0.02,
+    "exit_dte": 25,
+    "profit_target": 1.0,
+    "stop_loss_move": -0.08
+  },
+  "verdict": "RESEARCH-ONLY",
+  "gates": {
+    "sharpe_improves": {
+      "pass": false,
+      "detail": "options 0.958 vs baseline 0.948 (\u0394 +0.010, need +0.1)"
+    },
+    "drawdown_ok": {
+      "pass": true,
+      "detail": "options -0.116 vs baseline -0.116"
+    },
+    "cvar5_ok": {
+      "pass": true,
+      "detail": "options -0.0248 vs baseline -0.0249"
+    },
+    "cvar1_ok": {
+      "pass": true,
+      "detail": "options -0.0378 vs baseline -0.0381"
+    },
+    "not_one_trade": {
+      "pass": true,
+      "detail": "Sharpe ex-best 0.954 vs baseline 0.948"
+    },
+    "survive_top3_removal": {
+      "pass": false,
+      "detail": "Sharpe ex-top3 0.946 vs baseline 0.948"
+    },
+    "competitive_vs_tilt": {
+      "pass": true,
+      "detail": "options Sharpe 0.958 vs tactical-tilt 0.950"
+    },
+    "enough_trades": {
+      "pass": true,
+      "detail": "22 trades (need >= 10)"
+    },
+    "activation_rare": {
+      "pass": true,
+      "detail": "1.03 activations/yr (max 8.0)"
+    },
+    "annual_premium_ok": {
+      "pass": true,
+      "detail": "0.52% NAV/yr (cap 2.0%)"
+    },
+    "concurrent_ok": {
+      "pass": true,
+      "detail": "max concurrent 1.00% NAV (cap 1.0%)"
+    },
+    "train_holdout_ok": {
+      "pass": true,
+      "detail": "train 0.828/0.817; holdout 2.200/2.179"
+    },
+    "not_one_regime": {
+      "pass": true,
+      "detail": "trades present in 3/3 time-thirds"
+    },
+    "stress_not_harmful": {
+      "pass": true,
+      "detail": "mean options-vs-baseline weekly diff in panic = -0.00001"
+    },
+    "costs_conservative": {
+      "pass": true,
+      "detail": "entry+exit slippage 5% each on gross + IV markup x1.05; held to time-stop"
+    },
+    "no_lookahead": {
+      "pass": true,
+      "detail": "all signals lagged 1wk (verifier re-checks shift relationship)"
+    }
+  },
+  "main_summary": {
+    "n_trades": 22,
+    "activations_per_year": 1.0306306306306305,
+    "premium_at_risk_per_year": 0.005153153153153154,
+    "cash_premium_per_year": 0.005153153153153154,
+    "max_concurrent_risk": 0.01,
+    "full_baseline_sharpe": 0.9482556438408204,
+    "full_options_sharpe": 0.9581701459523431,
+    "full_tilt_sharpe": 0.949983452571985,
+    "sharpe_ex_best": 0.953880238493542,
+    "sharpe_ex_top3": 0.946199886620951
+  },
+  "variant_count": 12,
+  "mode": "historical_proxy_black_scholes",
+  "proxy_warning": "APPROXIMATE - no historical option-chain data, no real bid/ask, no IV skew, no term structure, no fill model.",
+  "outputs": {
+    "trades": "data/research/options_convexity/recovery_options_trades.csv",
+    "metrics": "data/research/options_convexity/recovery_options_metrics.csv",
+    "diagnostics": "data/research/options_convexity/recovery_signal_diagnostics.csv",
+    "structure_comparison": "data/research/options_convexity/recovery_structure_comparison.csv",
+    "equity": "data/research/options_convexity/recovery_baseline_vs_overlay_equity.csv",
+    "tactical_comparison": "data/research/options_convexity/recovery_tactical_etf_comparison.csv",
+    "report": "docs/research/options_convexity/options_convexity_recovery_report.md"
+  }
+}

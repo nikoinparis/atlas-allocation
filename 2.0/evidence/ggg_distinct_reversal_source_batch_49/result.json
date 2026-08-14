@@ -1,0 +1,43 @@
+{
+  "all_deterministic": true,
+  "artifacts": {
+    "blend_qualification.csv": {
+      "bytes": 1205,
+      "sha256": "5594e3d29309868e6edd42a5238fc2ffcba7c76141b788453b4f2c87bd78a2cf"
+    },
+    "correlations.csv": {
+      "bytes": 252,
+      "sha256": "5faf6b6486cc4152fd41ce0fe9d446b0c7f770fde46b7cd5d2698105d4949898"
+    },
+    "determinism.csv": {
+      "bytes": 1051,
+      "sha256": "91b191cda117153eed1523029f1732c90d03431f9a4d43247f6861769e94213a"
+    },
+    "performance.csv": {
+      "bytes": 10251,
+      "sha256": "1ff0e56e6d5f164b8573aa7597ccc29cff3a48a924f435cb74fc277dc5314654"
+    },
+    "prefix_invariance.csv": {
+      "bytes": 986,
+      "sha256": "40fe5b654004a69895aa1f2c6a9fa962540c66730c577a934c166e8c9c2635fd"
+    },
+    "source_qualification.csv": {
+      "bytes": 586,
+      "sha256": "239e4b0d1552e25daa92ae27be9e89e2fbd93c0328bc442c189a547f41153a6f"
+    }
+  },
+  "benchmark_recent_3y_50bps_cagr": 0.1288735233396061,
+  "candidates_evaluated": 6,
+  "decision": "distinct_reversal_source_rejected",
+  "generated_at_utc": "2026-08-12T02:49:51.856042+00:00",
+  "live_trading_enabled": false,
+  "manifest_sha256": "d9bb71774e8a6feae71c4192cc73a9102d2917ffe18770ee5b7146c63058dbd5",
+  "maximum_prefix_difference": 0.0,
+  "module_sha256": "78d565eabb63d70272f2729ea38ee0435976f47ec797b7a54bb8f2a47346c3fb",
+  "program": "ggg_distinct_reversal_source_v1",
+  "program_sha256": "6c4b7c57ec03cb964cfa53de04314fb5ab13a211c525e7a86e6298066144e3b0",
+  "promoted_to_production": false,
+  "research_blend_shortlist": [],
+  "snapshot_hashes_verified": true,
+  "standalone_sources_qualified": []
+}

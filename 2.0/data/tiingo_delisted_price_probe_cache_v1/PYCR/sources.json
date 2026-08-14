@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 836,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T20:24:22.824165+00:00",
+    "sha256": "d8a641804d233163f81a3a9eb1decc579bdce2591f421edb3a234aa5e6aca3ea",
+    "url": "https://api.tiingo.com/tiingo/daily/PYCR"
+  },
+  {
+    "bytes": 84524,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T20:24:24.290717+00:00",
+    "sha256": "2586ccdde4621e2bd4cfa9a4a9e5e434a07bf7366f220d0eb19429bb4036015c",
+    "url": "https://api.tiingo.com/tiingo/daily/PYCR/prices?startDate=2023-10-01&endDate=2026-04-11&resampleFreq=daily"
+  }
+]

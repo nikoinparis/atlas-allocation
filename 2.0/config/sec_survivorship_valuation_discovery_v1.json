@@ -1,0 +1,18 @@
+{
+  "experiment": "sec_survivorship_valuation_discovery_v1",
+  "start_decision": "2023-01-01",
+  "families": ["earnings_yield", "free_cash_flow_yield", "sales_yield", "composite_value", "quality_at_reasonable_price"],
+  "breadths": [10, 20, 30],
+  "minimum_companies_per_decision": 40,
+  "minimum_market_cap_coverage": 0.7,
+  "sector_neutral_ranking": true,
+  "cost_bps": [50, 100, 200],
+  "primary_cost_bps": 50,
+  "price_for_market_cap": "raw close strictly before each decision",
+  "shares_rule": "positive SEC shares outstanding available strictly before decision, split-carried from fact period end through price date",
+  "missing_company_base": "cash",
+  "missing_company_adverse_return": -1.0,
+  "promotion_requires": ["recent improvement", "full-period improvement", "adverse-case improvement", "leave-one-company-out survival", "delay survival"],
+  "strategy_promotion_authorized": false,
+  "live_trading_enabled": false
+}

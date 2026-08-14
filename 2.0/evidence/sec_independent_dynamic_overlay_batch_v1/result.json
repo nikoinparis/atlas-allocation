@@ -1,0 +1,26 @@
+{
+  "candidate_count": 53,
+  "control_trailing_1y_cagr": 0.9231041941304314,
+  "created_at_utc": "2026-08-14T12:38:57.755052+00:00",
+  "experiment": "sec_independent_dynamic_overlay_batch_v1",
+  "falsification": {
+    "all_passed": false,
+    "bootstrap_13w_lower_bound_positive": false,
+    "bootstrap_4w_lower_bound_positive": false,
+    "neighborhood_gate_passed": false,
+    "neighborhood_joint_improvement_share": 0.1,
+    "one_week_delay_beats_control_recent": true,
+    "rolling_26w_outperformance_share": 0.0851063829787234,
+    "screen_gates_passed": true
+  },
+  "live_trading_enabled": false,
+  "qualified_screen_candidates": 11,
+  "selected_200bps_trailing_1y_cagr": 0.8781732370703854,
+  "selected_candidate": "cash_rel_13w_05_30",
+  "selected_full_cagr": 0.38067002117993987,
+  "selected_trailing_1y_cagr": 0.9876185804449138,
+  "selected_trailing_1y_drawdown": -0.11157169754843788,
+  "selected_trailing_1y_sharpe": 2.6492883832093734,
+  "selected_ytd_cagr": 1.0160724453949879,
+  "strategy_replacement_authorized": false
+}

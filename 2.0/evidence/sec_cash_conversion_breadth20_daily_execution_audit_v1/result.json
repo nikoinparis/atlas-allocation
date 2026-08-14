@@ -1,0 +1,28 @@
+{
+  "all_validation_checks_passed": true,
+  "corporate_action_dividend_events": 622,
+  "corporate_action_split_events": 9,
+  "created_at_utc": "2026-08-14T21:42:36.568116+00:00",
+  "daily_200bps_trailing_1y_cagr": 0.8978943177907612,
+  "daily_delay_1_trailing_1y_cagr": 0.9470168463702735,
+  "daily_delay_2_trailing_1y_cagr": 0.9696462474502259,
+  "daily_minus_weekly_trailing_1y_cagr": -0.026124017609040706,
+  "daily_primary_trailing_1y_cagr": 1.0248841837019058,
+  "daily_primary_trailing_1y_drawdown": -0.17941471582306556,
+  "daily_primary_trailing_1y_sharpe": 2.2892137557267005,
+  "experiment": "sec_cash_conversion_breadth20_daily_execution_audit_v1",
+  "live_trading_enabled": false,
+  "max_weekly_reconciliation_return_difference": 0.018115151560516206,
+  "repair_sources_used": 18,
+  "strategy_replacement_authorized": false,
+  "trades_primary": 2220,
+  "validation_checks": {
+    "adjusted_price_actions_audited": true,
+    "all_costs_reported": true,
+    "all_execution_delays_reported": true,
+    "all_results_finite": true,
+    "daily_prices_loaded": true,
+    "trade_ledger_nonempty": true
+  },
+  "weekly_research_trailing_1y_cagr": 1.0510082013109465
+}

@@ -1,0 +1,13 @@
+period,macro_state,n,mean_4w,std_4w,sharpe_4w,return_type
+dev,expansion,191,0.00757,0.03293,0.23,spy
+dev,overheating,55,-0.00175,0.03236,-0.054,spy
+dev,slowdown,78,0.02112,0.02677,0.789,spy
+dev,stress,111,0.01615,0.04044,0.399,spy
+holdout,expansion,0,,,,spy
+holdout,overheating,0,,,,spy
+holdout,slowdown,56,0.00274,0.03618,0.076,spy
+holdout,stress,0,,,,spy
+dev,expansion,191,0.0052,0.01803,0.288,portfolio
+dev,overheating,55,0.00376,0.0159,0.236,portfolio
+dev,slowdown,78,0.00538,0.01473,0.365,portfolio
+dev,stress,111,0.00738,0.01685,0.438,portfolio

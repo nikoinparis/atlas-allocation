@@ -1,0 +1,20 @@
+{
+  "cik10": "0000077159",
+  "covers_first_eligible_decision": false,
+  "first_eligible_decision": "2012-04-01 00:00:00+00:00",
+  "first_price_date": "2016-11-15",
+  "issuer_name_match": true,
+  "issuer_name_score": 1.0,
+  "last_eligible_decision": "2024-07-01 00:00:00+00:00",
+  "last_price_date": "2023-06-20",
+  "price_file": "/workspace/2.0/data/tiingo_delisted_price_probe_cache_v1/ROCC/prices.csv.gz",
+  "price_rows": 1658,
+  "provider_end_date": "2023-06-20",
+  "provider_exchange": "NASDAQ",
+  "provider_name": "Ranger Oil Corp - Class A",
+  "provider_start_date": "2016-11-15",
+  "sec_company_name": "RANGER OIL CORP",
+  "status": "rejected_missing_start_of_eligibility",
+  "terminal": true,
+  "tiingo_symbol": "ROCC"
+}

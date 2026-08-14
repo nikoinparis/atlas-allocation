@@ -1,0 +1,58 @@
+{
+  "program": "ml_confidence_overlay_v1",
+  "source_model": "robust_cross_sectional_ml_v1",
+  "source_prediction_projection_sha256_before_diagnostics": "22ffd359aee292d1b1e5337d44bd9b102d8681eb2e60e902bb95e645a7032dfd",
+  "frozen_core": "covariance_minimum_variance_v1",
+  "confidence_definition": {
+    "selected_assets": 5,
+    "comparison_assets": "prediction ranks 6 through 10",
+    "separation": "mean selected prediction minus mean comparison prediction",
+    "agreement": "mean fraction of 15 family-seed members having the ensemble prediction sign among selected assets",
+    "disagreement": "mean member standard deviation plus mean family standard deviation among selected assets",
+    "denominator_floor": 0.01,
+    "raw_score": "separation times agreement divided by max(disagreement, denominator_floor)"
+  },
+  "causal_tiers": {
+    "minimum_prior_decisions": 24,
+    "threshold_source": "expanding distribution of raw confidence scores strictly before the current decision",
+    "below_prior_60th_percentile": 0.0,
+    "prior_60th_to_80th_percentile": 0.1,
+    "prior_80th_to_95th_percentile": 0.2,
+    "at_or_above_prior_95th_percentile": 0.3
+  },
+  "risk_guards": {
+    "information_available": "ML sleeve returns realized no later than the current decision",
+    "trailing_volatility_weeks": 13,
+    "annualized_volatility_limit": 0.18,
+    "weight_cap_when_volatility_exceeded": 0.1,
+    "trailing_drawdown_weeks": 26,
+    "drawdown_stop": -0.12,
+    "weight_when_drawdown_stop_hit": 0.0
+  },
+  "variants": {
+    "primary_for_promotion": "confidence_tiered_guarded",
+    "all_other_variants_are_diagnostic": true,
+    "constant_ml_weights": [0.1, 0.2, 0.3],
+    "confidence_tiered_unguarded": true,
+    "confidence_tiered_guarded": true,
+    "extreme_only": {"prior_percentile": 0.95, "ml_weight": 0.3}
+  },
+  "accounting": {
+    "rebalance": "monthly at the source model decision",
+    "cost_bps": [10, 50, 100],
+    "allocation_turnover": "absolute change in ML sleeve weight",
+    "sleeve_costs": "each underlying sleeve retains its own simulated trading costs; cross-sleeve netting is not assumed"
+  },
+  "promotion_gates": {
+    "annual_return_10bps": "greater than frozen core on the common period",
+    "sharpe_10bps": "greater than frozen core on the common period",
+    "maximum_drawdown_10bps": "no worse than frozen core on the common period",
+    "paired_bootstrap_sharpe_lower_bound": "greater than zero",
+    "later_windows_100bps": "2016-2020 and 2021-present annual returns both positive",
+    "confidence_calibration": "higher-confidence decisions have greater mean future rank IC than inactive decisions and positive mean future rank IC",
+    "survivorship_safe_universe": "required before final promotion",
+    "untouched_forward_weeks": 52
+  },
+  "maximum_ml_weight": 0.3,
+  "live_trading_approved": false
+}

@@ -1,0 +1,15 @@
+{
+  "created_at_utc": "2026-08-13T10:06:22.672067+00:00",
+  "delisting_returns_complete": false,
+  "provider": "Yahoo Finance via pinned yfinance container",
+  "python_version": "3.12.13",
+  "raw_symbol_history_rate": 0.21654501216545013,
+  "scope": "usable single symbols recovered from former/unmapped SEC CIKs",
+  "strategy_testing_authorized": false,
+  "symbols_failed": 322,
+  "symbols_requested": 411,
+  "symbols_with_history": 89,
+  "ticker_reuse_validated": false,
+  "vintage_id": "20260813T100449Z-recovered-yahoo-price-probe-v1",
+  "yfinance_version": "1.5.2"
+}

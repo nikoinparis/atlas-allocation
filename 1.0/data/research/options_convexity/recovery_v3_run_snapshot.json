@@ -1,0 +1,104 @@
+{
+  "experiment": "recovery_options_overlay_v3",
+  "main_config": {
+    "dte_bucket": "60-90",
+    "moneyness_bucket": "atm_5otm",
+    "profit_variant": "partial_runner",
+    "intended_risk": 0.0025,
+    "pilot_risk": 0.00125,
+    "addon_risk": 0.00125,
+    "underlyings": [
+      "SPY",
+      "QQQ"
+    ]
+  },
+  "cost_model": {
+    "iv_markup": 1.05,
+    "entry_slippage_frac": 0.05,
+    "exit_slippage_frac": 0.05,
+    "max_concurrent_risk": 0.0075,
+    "max_annual_risk": 0.015,
+    "exit_dte": 25,
+    "add_window_weeks": 6
+  },
+  "verdict": "REJECT",
+  "gates": {
+    "sharpe_vs_baseline": {
+      "pass": false,
+      "detail": "v3 0.951 vs baseline 0.948 (need +0.05)"
+    },
+    "sharpe_vs_tilt": {
+      "pass": false,
+      "detail": "v3 0.951 vs tactical tilt 0.949 (need +0.03)"
+    },
+    "cagr_vs_baseline": {
+      "pass": false,
+      "detail": "v3 0.0715 vs baseline 0.0713 (need +0.0025)"
+    },
+    "drawdown_ok": {
+      "pass": true,
+      "detail": "v3 -0.116 vs baseline -0.116"
+    },
+    "cvar5_ok": {
+      "pass": false,
+      "detail": "v3 -0.0250 vs baseline -0.0249"
+    },
+    "cvar1_ok": {
+      "pass": false,
+      "detail": "v3 -0.0381 vs baseline -0.0381"
+    },
+    "sharpe_ex_best_ok": {
+      "pass": true,
+      "detail": "ex-best 0.949 vs baseline 0.948"
+    },
+    "sharpe_ex_top3_ok": {
+      "pass": false,
+      "detail": "ex-top3 0.947 vs baseline 0.948"
+    },
+    "annual_premium_ok": {
+      "pass": true,
+      "detail": "0.11% NAV/yr (cap 1.50%)"
+    },
+    "concurrent_premium_ok": {
+      "pass": true,
+      "detail": "0.38% NAV concurrent (cap 0.75%)"
+    },
+    "enough_trades": {
+      "pass": true,
+      "detail": "12 trades (need >= 10)"
+    },
+    "not_one_subperiod": {
+      "pass": true,
+      "detail": "trades present in 3/3 time-thirds"
+    },
+    "costs_conservative": {
+      "pass": true,
+      "detail": "IV markup x1.05 plus 5% entry and exit slippage on gross option notional"
+    },
+    "no_lookahead": {
+      "pass": true,
+      "detail": "signals lagged one week; verifier re-checks representative feature lag"
+    },
+    "matches_or_beats_tilt": {
+      "pass": true,
+      "detail": "v3 Sharpe 0.951 vs tactical tilt 0.949"
+    }
+  },
+  "main_summary": {
+    "n_trades": 12,
+    "activations_per_year": 0.5621621621621622,
+    "premium_at_risk_per_year": 0.0011126126126126124,
+    "max_concurrent_risk": 0.00375,
+    "full_baseline_sharpe": 0.9482556438408204,
+    "full_v3_options_sharpe": 0.95067050607828,
+    "full_tactical_tilt_sharpe": 0.9485004952429477,
+    "sharpe_ex_best": 0.9485665618754157,
+    "sharpe_ex_top3": 0.9465688812187656,
+    "addon_success_rate": 0.5833333333333334,
+    "partial_trigger_rate": 0.0,
+    "late_entry_block_rate": 0.8979274611398964
+  },
+  "variant_count": 6,
+  "mode": "historical_proxy_black_scholes",
+  "proxy_warning": "APPROXIMATE - real historical option-chain data required before trusting any result."
+}

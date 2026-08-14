@@ -1,0 +1,33 @@
+{
+  "candidate": "sec_growth_confidence_universal_cap_candidate_v1",
+  "formula": "Use the causal 10%-or-40% growth-sleeve allocation and review every fundamental holding monthly against a 1.50x current equal-stock-weight cap; transfer excess to the frozen ETF incumbent.",
+  "ticker_specific_logic": false,
+  "retrospective_primary_50bps": {
+    "trailing_1y_cagr": 0.923104,
+    "trailing_1y_sharpe_zero_rf": 2.433138,
+    "trailing_1y_max_drawdown": -0.134419,
+    "trailing_1y_peak_single_stock_weight": 0.147835,
+    "ytd_cagr": 0.883113,
+    "holdout_cagr": 0.387137,
+    "holdout_sharpe_zero_rf": 1.478351,
+    "holdout_max_drawdown": -0.212416
+  },
+  "uncapped_comparison_50bps": {
+    "trailing_1y_cagr": 0.925688,
+    "trailing_1y_peak_single_stock_weight": 0.155934,
+    "ytd_cagr": 0.887306,
+    "holdout_cagr": 0.387881
+  },
+  "cost_stress_trailing_1y_cagr": {"100bps": 0.888918, "200bps": 0.822277},
+  "historical_cap_examples": ["NVDA", "MU"],
+  "known_limitations": [
+    "The candidate was selected after observing the historical comparison",
+    "Monthly review does not guarantee that a stock remains below the cap between reviews",
+    "The growth sleeve remains concentrated in five stocks",
+    "Full-holdout CAGR and Sharpe trail the fixed 20% capped control",
+    "At 200 bps the full-holdout drawdown reached approximately -27.65%"
+  ],
+  "status": "provisional forward challenger",
+  "research_only": true,
+  "live_trading_enabled": false
+}

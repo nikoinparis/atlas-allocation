@@ -1,0 +1,55 @@
+{
+  "artifacts": {
+    "current_regime_features.csv": {
+      "bytes": 213867,
+      "sha256": "f6879b954e4fbe6516b7b63cf8357be38a9bad2d9bfc401a76f7118e8b1260de"
+    },
+    "google_source_reconciliation.csv": {
+      "bytes": 256,
+      "sha256": "fe3ad4d65c3f86208b00a2297bfee8c2da5690ccbc74d51529f79c42f7e41206"
+    },
+    "normalized_cboe_weekly.csv": {
+      "bytes": 65998,
+      "sha256": "517f845d4c46dbff171756663272937d13ee5abff73bbff97e1edc8ca7776024"
+    },
+    "normalized_fred_weekly_supplemental.csv": {
+      "bytes": 65946,
+      "sha256": "0c01cf3b409082c7b85d411de436de0461820892cc6ee27147ab1900659221c0"
+    },
+    "normalized_google_weekly_candidate.csv": {
+      "bytes": 106725,
+      "sha256": "4194d364f955dce42b350c4c85ced0fa4a786c58bc51d72b98fcf58ff1d62e4d"
+    },
+    "source_status.csv": {
+      "bytes": 327,
+      "sha256": "47bd8c303566b8f2bd5d9ed8a89f96010d74f5edae37d748d1c4bbb3a1d1c0e7"
+    },
+    "vix_source_reconciliation.csv": {
+      "bytes": 269,
+      "sha256": "41a78ccd6517412410243d8e980693d79d6e2bf030f220db4b4032a52938d6c9"
+    }
+  },
+  "batch": 55,
+  "cboe_acquisition_complete": true,
+  "cboe_connected_by_frozen_history_splice": true,
+  "cboe_directly_equivalent_to_yahoo_history": false,
+  "complete_layer1_bundle_ready": true,
+  "current_completed_week": "2026-08-07",
+  "current_regime_block_ready": true,
+  "current_regime_blocker": null,
+  "decision": "freeze_complete_free_regime_bundle",
+  "forward_clock_started": false,
+  "fred_acquisition_status": "partial",
+  "fred_connected_to_frozen_formula": false,
+  "frozen_cutoff": "2026-04-10",
+  "generated_at_utc": "2026-08-12T09:11:34.693949+00:00",
+  "google_acquisition_status": "complete",
+  "google_continuity_pass": true,
+  "google_keywords_acquired": 4,
+  "historical_equivalence_pass": true,
+  "historical_missingness_differences": 0,
+  "live_trading_enabled": false,
+  "maximum_historical_difference": 5.062616992290714e-14,
+  "normalized_bundle": "data/regime_vintages/20260812T090851Z-5c6de663ac77/normalized_v2",
+  "regime_snapshot_id": "20260812T090851Z-5c6de663ac77"
+}

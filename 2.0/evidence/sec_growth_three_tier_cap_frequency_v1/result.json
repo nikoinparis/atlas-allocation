@@ -1,0 +1,19 @@
+{
+  "all_validation_checks_passed": true,
+  "created_at_utc": "2026-08-14T10:31:06.606687+00:00",
+  "exact_control_reproduction_max_cagr_difference": 5.551115123125783e-17,
+  "experiment": "sec_growth_three_tier_cap_frequency_v1",
+  "live_trading_enabled": false,
+  "selection_or_promotion_authorized": false,
+  "validation": {
+    "all_numeric_results_finite": true,
+    "all_predeclared_cap_schedules_reported": true,
+    "all_predeclared_variants_reported": true,
+    "base_and_adverse_reported": true,
+    "cost_monotonicity": true,
+    "exact_prior_control_reproduction": true,
+    "maximum_allocation_never_exceeds_60_percent": true,
+    "prefix_invariance": true,
+    "ticker_specific_cap_logic_absent": true
+  }
+}

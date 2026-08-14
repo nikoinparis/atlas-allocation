@@ -1,0 +1,31 @@
+{
+  "candidate_id": "sec-growth-survivorship-aware-v1",
+  "display_name": "SEC Growth Top-Five — 142% Recent Return Candidate",
+  "status": "frozen_research_candidate",
+  "formula_frozen": true,
+  "formula": {
+    "features": [
+      "year-over-year revenue growth",
+      "year-over-year net-income growth",
+      "year-over-year operating-cash-flow growth"
+    ],
+    "ranking": "sector-neutral cross-sectional ranking",
+    "selection": "top five",
+    "weighting": "equal 20% weights",
+    "schedule": "quarterly; first Friday strictly after the SEC decision date"
+  },
+  "memorized_result": {
+    "cost_bps": 50,
+    "window_end": "2026-08-07",
+    "trailing_one_year_cagr": 1.422238598137973,
+    "trailing_one_year_sharpe_zero_rf": 2.332188146239068,
+    "trailing_one_year_max_drawdown": -0.2343719779515867,
+    "full_recent_base_cagr": 0.3170286803541127,
+    "full_recent_adverse_cagr": 0.166853158518577,
+    "latest_period_micron_share_of_positive_arithmetic_return": 0.6763454442747666
+  },
+  "interpretation": "The 142.22% result is an exceptional historical simulation, not an expected return. Preserve the exact strategy for further testing; do not silently tune or discard it.",
+  "approved_for_live_trading": false,
+  "replacement_authorized": false,
+  "evidence": "evidence/sec_growth_survivorship_retest_v1"
+}

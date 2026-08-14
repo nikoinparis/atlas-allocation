@@ -1,0 +1,110 @@
+{
+  "artifacts": {
+    "candidate_summary.csv": {
+      "bytes": 388,
+      "sha256": "bd34ec32c233aae365711c8a0b01a0e5852a0567fd3d80348d0520de699127a4"
+    },
+    "cost_stress.csv": {
+      "bytes": 3567,
+      "sha256": "b33f1e69b65c29da7b3042a82e8e35939861bc77569adb75d719862456c7f67f"
+    },
+    "multiple_testing.csv": {
+      "bytes": 539,
+      "sha256": "d3bcc489d648d482dc30b082d94349de285018fddb3673bf7e9ad28f57bd098b"
+    },
+    "neighborhoods.csv": {
+      "bytes": 462,
+      "sha256": "0376d2ffd01cc6ab134ca439a7775698dd1dd00eca5a5f7a8fd8fc3e62c29b8a"
+    },
+    "regimes.csv": {
+      "bytes": 2848,
+      "sha256": "a1081a78ee1a6c2fe5fee6248039a7ca80f49a7d359b4a36761eb05855aa74ee"
+    },
+    "robust_ensemble_diagnostics.csv": {
+      "bytes": 1357,
+      "sha256": "bafbef9abecda3fde62e57feb3e5d0a981857a7bd6919b754df99aa7068fa8a5"
+    }
+  },
+  "batch": "new_family_robustness_batch_05",
+  "candidate_count": 3,
+  "candidate_summaries": [
+    {
+      "candidate_id": "candidate-3aa6e07c0cd53e52",
+      "cost_100bps_pass": true,
+      "experiment_id": "exp-3aa6e07c0cd53e52",
+      "family": "carry_proxy",
+      "multiple_testing_576_pass": false,
+      "neighborhood_pass": true,
+      "regime_pass": true,
+      "robustness_pass": false
+    },
+    {
+      "candidate_id": "candidate-8a27cb8ba5a612a7",
+      "cost_100bps_pass": true,
+      "experiment_id": "exp-8a27cb8ba5a612a7",
+      "family": "defensive",
+      "multiple_testing_576_pass": true,
+      "neighborhood_pass": true,
+      "regime_pass": true,
+      "robustness_pass": true
+    },
+    {
+      "candidate_id": "candidate-81ffdbdf4dcdab3c",
+      "cost_100bps_pass": false,
+      "experiment_id": "exp-81ffdbdf4dcdab3c",
+      "family": "mean_reversion",
+      "multiple_testing_576_pass": false,
+      "neighborhood_pass": true,
+      "regime_pass": true,
+      "robustness_pass": false
+    }
+  ],
+  "expected_best_zero_alpha_sharpe_across_576_trials": 0.6653649867367472,
+  "fragile_count": 2,
+  "generated_at_utc": "2026-08-08T23:27:13.029670+00:00",
+  "limitations": [
+    "All evidence is retrospective and no candidate has 52 untouched forward weeks.",
+    "Carry remains research-only even if statistical gates pass because its distribution history is not archived point-in-time data.",
+    "The ensemble is a diagnostic designed after viewing the history, not a frozen promotion candidate.",
+    "Bonferroni correction is conservative but does not repair survivorship bias or data revisions."
+  ],
+  "robust_count": 1,
+  "rules_fixed_before_results": {
+    "cost": {
+      "maximum_bps": 100.0,
+      "minimum_annual_return": 0.0,
+      "minimum_sharpe": 0.2
+    },
+    "multiple_testing": {
+      "block_weeks": 13,
+      "bootstrap_samples": 50000,
+      "maximum_adjusted_pvalue": 0.05,
+      "trials": 576
+    },
+    "neighborhood": {
+      "maximum_allowed_neighbor_drawdown": -0.4,
+      "minimum_median_2016_2020_sharpe": 0.25,
+      "minimum_median_2021_present_sharpe": 0.5,
+      "minimum_positive_return_neighbors_each_period": 7,
+      "same_recipe_method_and_frequency": true,
+      "smoothing_weeks": [
+        1,
+        2,
+        4
+      ],
+      "top_n": [
+        2,
+        4,
+        6
+      ]
+    },
+    "regime": {
+      "calm_risk_on": "positive trailing return and annualized volatility < 20%",
+      "high_vol_risk_on": "positive trailing return and annualized volatility >= 20%",
+      "minimum_annual_return": -0.02,
+      "minimum_observations": 52,
+      "risk_off": "trailing 26-week SPY return <= 0"
+    }
+  },
+  "source_snapshot_id": "20260808T212827Z-de103c2e063d6c4a"
+}

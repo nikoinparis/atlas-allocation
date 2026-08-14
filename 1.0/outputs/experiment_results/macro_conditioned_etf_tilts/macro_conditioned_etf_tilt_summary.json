@@ -1,0 +1,22 @@
+{
+  "sprint": "macro_conditioned_etf_tilt_sandbox",
+  "date": "2026-06-06",
+  "production_pin": "improved_frontier_phase5_fragility_guard",
+  "overall_verdict": "RESEARCH-ONLY",
+  "baseline_sharpe": 0.9542,
+  "baseline_ann_return": 0.0718,
+  "baseline_max_dd": -0.116,
+  "n_candidates": 32,
+  "promote_count": 0,
+  "research_only_count": 25,
+  "drop_count": 7,
+  "nm_improved_count": 25,
+  "best_variant": "familyB_tilt10pct_data",
+  "best_sharpe_delta": 0.0049,
+  "best_nm_sharpe": 1.3101,
+  "top3_candidates": [
+    "familyB_tilt10pct_data",
+    "familyB_tilt7pct_data",
+    "familyA_tilt10pct_data"
+  ]
+}

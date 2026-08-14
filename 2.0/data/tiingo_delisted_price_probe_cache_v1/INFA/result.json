@@ -1,0 +1,20 @@
+{
+  "cik10": "0001868778",
+  "covers_first_eligible_decision": true,
+  "first_eligible_decision": "2023-04-01 00:00:00+00:00",
+  "first_price_date": "2023-04-03",
+  "issuer_name_match": true,
+  "issuer_name_score": 1.0,
+  "last_eligible_decision": "2026-04-01 00:00:00+00:00",
+  "last_price_date": "2025-11-17",
+  "price_file": "/project/data/tiingo_delisted_price_probe_cache_v1/INFA/prices.csv.gz",
+  "price_rows": 660,
+  "provider_end_date": "2026-08-12",
+  "provider_exchange": "NYSE",
+  "provider_name": "Informatica Inc - Class A",
+  "provider_start_date": "2021-10-27",
+  "sec_company_name": "INFORMATICA INC.",
+  "status": "identity_and_start_validated",
+  "terminal": true,
+  "tiingo_symbol": "INFA"
+}

@@ -1,0 +1,236 @@
+{
+  "experiment": "focused_reversal_recovery_research",
+  "standalone_research": true,
+  "not_a_track": true,
+  "verdict": "RESEARCH-ONLY",
+  "feature_lag_weeks": 1,
+  "target_tickers": [
+    "SPY",
+    "QQQ"
+  ],
+  "focused_families": [
+    "short_horizon_reversal",
+    "drawdown_reversal",
+    "momentum_reversal_interaction"
+  ],
+  "candidates": [
+    "short_reversal_only",
+    "drawdown_recovery_only",
+    "pullback_in_uptrend",
+    "oversold_rebound_after_stress",
+    "momentum_reversal_interaction_score",
+    "focused_reversal_composite",
+    "classifier_logistic_reversal",
+    "classifier_ridge_reversal"
+  ],
+  "tilt_sizes": [
+    0.025,
+    0.05,
+    0.075
+  ],
+  "default_tilt_size": 0.05,
+  "credit_and_volatility_role": "filters_only_not_primary_alpha",
+  "previous_recovery_prediction_hashes_before": {
+    "data/research/recovery_prediction/recovery_feature_panel.csv": "1268f7f988a2f0aced1b710a151f90f4f70ad78207bb50d3238b1d1a71d17513",
+    "data/research/recovery_prediction/recovery_targets.csv": "ecbe0acc1f7de381f4c0448e94672813b0e3637100cb96899d570416b6841746",
+    "data/research/recovery_prediction/recovery_ic_by_feature.csv": "3bdd947a0ac3b52e5abe82eeb010a97a53fe9a98e36eafa58a7104c9b6667406",
+    "data/research/recovery_prediction/recovery_family_scores.csv": "5784ee32cc08b36b0811a5805d4b83afcf7bb0d9d0e6e2272723322cac7e4367",
+    "data/research/recovery_prediction/recovery_combination_backtests.csv": "12f4d63ee08711e7bba1a083eceb864dc78604e4e19927c1cf886525166817aa",
+    "data/research/recovery_prediction/recovery_classifier_metrics.csv": "5f72bc02d56542ce04a8047c10076d70ede81c6f5264109329ec23445471ccb3",
+    "data/research/recovery_prediction/baseline_vs_recovery_tilt_equity.csv": "17b7fdf372ccd33f83025ef0ad42e829976797ad9d77a80f54a942c45839fae2",
+    "data/research/recovery_prediction/options_readiness_diagnostics.csv": "851df215392fc5f149c9960a098733e7825e1f8a06e8501c366d970acc6b4ce2",
+    "data/research/recovery_prediction/recovery_run_snapshot.json": "255266eb4100330c88d3a4008938d25db0c1744d3f59e07624f5d7cc65dd8add"
+  },
+  "previous_recovery_prediction_hashes_after": {
+    "data/research/recovery_prediction/recovery_feature_panel.csv": "1268f7f988a2f0aced1b710a151f90f4f70ad78207bb50d3238b1d1a71d17513",
+    "data/research/recovery_prediction/recovery_targets.csv": "ecbe0acc1f7de381f4c0448e94672813b0e3637100cb96899d570416b6841746",
+    "data/research/recovery_prediction/recovery_ic_by_feature.csv": "3bdd947a0ac3b52e5abe82eeb010a97a53fe9a98e36eafa58a7104c9b6667406",
+    "data/research/recovery_prediction/recovery_family_scores.csv": "5784ee32cc08b36b0811a5805d4b83afcf7bb0d9d0e6e2272723322cac7e4367",
+    "data/research/recovery_prediction/recovery_combination_backtests.csv": "12f4d63ee08711e7bba1a083eceb864dc78604e4e19927c1cf886525166817aa",
+    "data/research/recovery_prediction/recovery_classifier_metrics.csv": "5f72bc02d56542ce04a8047c10076d70ede81c6f5264109329ec23445471ccb3",
+    "data/research/recovery_prediction/baseline_vs_recovery_tilt_equity.csv": "17b7fdf372ccd33f83025ef0ad42e829976797ad9d77a80f54a942c45839fae2",
+    "data/research/recovery_prediction/options_readiness_diagnostics.csv": "851df215392fc5f149c9960a098733e7825e1f8a06e8501c366d970acc6b4ce2",
+    "data/research/recovery_prediction/recovery_run_snapshot.json": "255266eb4100330c88d3a4008938d25db0c1744d3f59e07624f5d7cc65dd8add"
+  },
+  "previous_recovery_prediction_outputs_preserved": true,
+  "gates": [
+    {
+      "gate_number": 1,
+      "gate": "focused_signal_positive_ic_train_holdout",
+      "pass": true,
+      "detail": "stable positive families: ['drawdown_reversal', 'momentum_reversal_interaction', 'short_horizon_reversal']"
+    },
+    {
+      "gate_number": 2,
+      "gate": "focused_composite_improves_prior_broad_ic",
+      "pass": true,
+      "detail": "focused train rank IC 0.117, prior broad composite -0.020"
+    },
+    {
+      "gate_number": 3,
+      "gate": "precision_beats_base_rate",
+      "pass": true,
+      "detail": "best train precision 0.638, base 0.526"
+    },
+    {
+      "gate_number": 4,
+      "gate": "risk_off_false_positives_controlled",
+      "pass": true,
+      "detail": "best filtered crash rate 0.000, logistic holdout risk-off FPR 0.000"
+    },
+    {
+      "gate_number": 5,
+      "gate": "not_one_crisis_period",
+      "pass": true,
+      "detail": "best candidate classifier_ridge_reversal ex-top3 Sharpe 0.979"
+    },
+    {
+      "gate_number": 6,
+      "gate": "default_tilt_sharpe_improves_005",
+      "pass": false,
+      "detail": "classifier_ridge_reversal incremental Sharpe 0.042"
+    },
+    {
+      "gate_number": 7,
+      "gate": "default_tilt_cagr_improves_0025",
+      "pass": false,
+      "detail": "classifier_ridge_reversal incremental CAGR 0.0021"
+    },
+    {
+      "gate_number": 8,
+      "gate": "max_drawdown_not_worse_0025",
+      "pass": true,
+      "detail": "overlay -0.114, baseline -0.116"
+    },
+    {
+      "gate_number": 9,
+      "gate": "cvar5_not_worse",
+      "pass": true,
+      "detail": "overlay -0.0246, baseline -0.0249"
+    },
+    {
+      "gate_number": 10,
+      "gate": "cvar1_not_worse",
+      "pass": true,
+      "detail": "overlay -0.0374, baseline -0.0381"
+    },
+    {
+      "gate_number": 11,
+      "gate": "beats_random_placebo",
+      "pass": true,
+      "detail": "best 0.990, placebo 0.954"
+    },
+    {
+      "gate_number": 12,
+      "gate": "survives_best_signal_period",
+      "pass": true,
+      "detail": "ex-best 0.986"
+    },
+    {
+      "gate_number": 13,
+      "gate": "survives_top3_signal_periods",
+      "pass": true,
+      "detail": "ex-top3 0.979"
+    },
+    {
+      "gate_number": 14,
+      "gate": "holdout_performance_positive",
+      "pass": true,
+      "detail": "holdout Sharpe 2.260"
+    },
+    {
+      "gate_number": 15,
+      "gate": "turnover_reasonable",
+      "pass": true,
+      "detail": "avg weekly turnover 0.0147"
+    },
+    {
+      "gate_number": 16,
+      "gate": "not_one_subperiod",
+      "pass": true,
+      "detail": "positive subperiods 3/3"
+    },
+    {
+      "gate_number": 17,
+      "gate": "placebo_distribution_supports_signal",
+      "pass": false,
+      "detail": "random placebo beat focused composite 87.0% of runs"
+    },
+    {
+      "gate_number": 18,
+      "gate": "options_move_large_enough",
+      "pass": false,
+      "detail": "best surplus -0.0053, ex-top3 avg 0.0384"
+    },
+    {
+      "gate_number": 19,
+      "gate": "options_signal_frequency_reasonable",
+      "pass": false,
+      "detail": "signals/year 24.83"
+    },
+    {
+      "gate_number": 20,
+      "gate": "options_readiness_research_only_without_chains",
+      "pass": true,
+      "detail": "no real option-chain data tested"
+    }
+  ],
+  "best_default_candidate": {
+    "candidate": "classifier_ridge_reversal",
+    "variant": "classifier_ridge_reversal_tilt_500bp",
+    "tilt_size": 0.05,
+    "comparison_kind": "classifier_signal",
+    "is_default_tilt": true,
+    "overlay_cagr": 0.0734856043021197,
+    "overlay_ann_return": 0.07371522068979705,
+    "overlay_ann_vol": 0.07420708747408652,
+    "overlay_sharpe": 0.9902774358012801,
+    "overlay_sortino": 1.2325074629591306,
+    "overlay_max_drawdown": -0.11402160534060823,
+    "overlay_calmar": 0.6444884202656298,
+    "overlay_cvar_5": -0.024562443562842814,
+    "overlay_cvar_1": -0.03744098388979862,
+    "overlay_n_weeks": 1110,
+    "baseline_cagr": 0.07134169431933479,
+    "baseline_ann_return": 0.07179028923478895,
+    "baseline_ann_vol": 0.07523466354534096,
+    "baseline_sharpe": 0.9482556438408204,
+    "baseline_sortino": 1.1760208459590407,
+    "baseline_max_drawdown": -0.11603457885760937,
+    "baseline_calmar": 0.6148313289168827,
+    "baseline_cvar_5": -0.02494792885739992,
+    "baseline_cvar_1": -0.038067738974282665,
+    "baseline_n_weeks": 1110,
+    "incremental_sharpe": 0.04202179196045974,
+    "incremental_cagr": 0.0021439099827849084,
+    "overlay_upside_capture": 0.9960924887649488,
+    "overlay_downside_capture": 0.9823459005879136,
+    "turnover": 16.35,
+    "avg_weekly_turnover": 0.01472972972972973,
+    "activations_per_year": 7.776576576576576,
+    "average_activation_length": 2.71875,
+    "signal_hit_rate": 0.7631067961165049,
+    "avg_forward_return_after_signal": 0.03871172147235414,
+    "median_forward_return_after_signal": 0.052656582199932966,
+    "worst_signal_outcome": -0.3507790544904512,
+    "best_signal_outcome": 0.3090054282790242,
+    "strong_bounce_precision": 0.7096153846153846,
+    "failed_bounce_rate": 0.07692307692307693,
+    "crash_continuation_rate": 0.08653846153846154,
+    "n_signal_rows": 520.0,
+    "sharpe_ex_best_signal_period": 0.986254792572866,
+    "sharpe_ex_top3_signal_periods": 0.9791289415826304,
+    "train_sharpe": 0.8545868825382122,
+    "holdout_sharpe": 2.260316562636699,
+    "subperiod_1_sharpe": 0.9578880743736365,
+    "subperiod_2_sharpe": 0.695469903866391,
+    "subperiod_3_sharpe": 1.2720558459458198,
+    "positive_subperiod_count": 3.0,
+    "worst_subperiod_sharpe": 0.695469903866391,
+    "stress_period_incremental_return": 8.362342124955654e-05,
+    "strong_recovery_precision": NaN,
+    "stress_period_diff": NaN,
+    "source_variant": NaN
+  },
+  "proxy_note": "ETF re-risking research first; options-readiness is diagnostic only, no option-chain strategy tested."
+}

@@ -1,0 +1,410 @@
+{
+  "schema_version": 1,
+  "candidate_count": 6,
+  "status_definitions": {
+    "provisional_promising_high_drawdown": "Passed predictive, cost, control, fold-stability, and dependence gates but failed the maximum-drawdown requirement; saved for risk-control research only.",
+    "provisional_promising_confidence_overlay": "Improved point return and Sharpe without worsening full-period drawdown, but failed paired statistical evidence and remains sensitive to high costs.",
+    "provisional_strong_confidence_cost_sensitive": "Strong-only confidence improved point results and established a paired annual-return advantage at 10 bps, but failed Sharpe, calibration-uncertainty, and 100-bps advantage gates.",
+    "provisional_cost_aware_statistically_supported": "Persistent high-cost gating and buffered holdings passed paired 10-bps Sharpe/return and confidence-calibration evidence while reducing turnover, but narrowly failed the 100-bps Sharpe gate and lacks structural final-evidence requirements.",
+    "provisional_repository_factor_fragile": "Repository-derived factors retain statistically significant horizon IC and positive later-period returns after buffering, but fail primary risk, blend, and final-evidence gates.",
+    "provisional_repository_feature_augmentation": "Repository factors improve matched walk-forward portfolio point estimates across costs and later windows, but do not establish a paired or adjusted-IC advantage over the matched feature ablation.",
+    "historically_rejected_repository_feature_augmentation": "A promising restricted-universe result failed its predeclared full-universe confirmation: repository features reduced return, Sharpe, and rank IC versus the matched baseline, so the track is closed to further tuning on the same history."
+  },
+  "candidates": [
+    {
+      "candidate_id": "ml-cross-sectional-ensemble-v1",
+      "family": "cross_sectional_machine_learning",
+      "status": "provisional_promising_high_drawdown",
+      "final": false,
+      "approved_for_live_trading": false,
+      "source_batch": "robust_cross_sectional_ml_batch_17",
+      "training": {
+        "model_families": ["ridge", "elastic_net", "hist_gradient_boosting"],
+        "outer_folds": 15,
+        "inner_trial_rows": 690,
+        "model_fits_per_canonical_run": 2924,
+        "ensemble_seeds": 5,
+        "first_out_of_fold_decision": "2012-01-06"
+      },
+      "evidence_10bps": {
+        "annual_return": 0.12109561472161401,
+        "sharpe": 0.8548442351859857,
+        "maximum_drawdown": -0.32430412771280037,
+        "annual_turnover": 8.348528333101815,
+        "correlation_to_frozen_winner": 0.7232830149410757,
+        "mean_monthly_rank_ic": 0.06963809133343275,
+        "adjusted_rank_ic_lower_bound": 0.02244607296869296
+      },
+      "evidence_100bps": {
+        "annual_return": 0.0397955124004421,
+        "sharpe": 0.33812875479888665,
+        "maximum_drawdown": -0.4692045248042124,
+        "oos_2016_2020_annual_return": 0.012987322814148605,
+        "oos_2021_present_annual_return": 0.12326396314223342
+      },
+      "passed_gates": [
+        "outer_fold_label_embargo",
+        "multiple_testing_adjusted_rank_ic",
+        "positive_outer_fold_share",
+        "label_shuffle_negative_control",
+        "random_feature_negative_control",
+        "later_windows_positive_at_100bps",
+        "point_sharpe_above_common_period_fixed_factor_baseline",
+        "point_sharpe_above_common_period_frozen_winner",
+        "correlation_to_frozen_winner_at_or_below_0_75",
+        "deterministic_full_rerun"
+      ],
+      "failed_or_missing_gates": [
+        "maximum_drawdown_no_worse_than_frozen_winner",
+        "paired_bootstrap_sharpe_advantage_over_frozen_winner",
+        "paired_bootstrap_sharpe_advantage_over_fixed_factor",
+        "survivorship_safe_historical_universe",
+        "multi_vintage_stability",
+        "52_week_untouched_forward_record"
+      ],
+      "evidence_path": "evidence/robust_cross_sectional_ml_batch_17/result.json"
+    },
+    {
+      "candidate_id": "ml-confidence-overlay-v1",
+      "family": "capped_machine_learning_overlay",
+      "status": "provisional_promising_confidence_overlay",
+      "final": false,
+      "approved_for_live_trading": false,
+      "source_batch": "ml_confidence_overlay_batch_18",
+      "construction": {
+        "core": "covariance_minimum_variance_v1",
+        "primary_variant": "confidence_tiered_guarded",
+        "minimum_prior_confidence_decisions": 24,
+        "ml_weight_tiers": [0.0, 0.1, 0.2, 0.3],
+        "maximum_ml_weight": 0.3,
+        "mean_historical_ml_weight": 0.05913272010512484
+      },
+      "evidence_10bps": {
+        "annual_return": 0.0802655219653956,
+        "sharpe": 0.8781158965024009,
+        "maximum_drawdown": -0.23390268432554395,
+        "frozen_core_annual_return": 0.07643452438828069,
+        "frozen_core_sharpe": 0.8497543910595724,
+        "frozen_core_maximum_drawdown": -0.23390268432554406
+      },
+      "confidence_calibration": {
+        "eligible_months": 151,
+        "active_months": 74,
+        "active_mean_future_rank_ic": 0.08430225310929082,
+        "inactive_mean_future_rank_ic": 0.05976231700456042,
+        "twenty_percent_tier_mean_future_rank_ic": 0.14016394721159825,
+        "thirty_percent_tier_mean_future_rank_ic": 0.149819552377574
+      },
+      "passed_gates": [
+        "original_prediction_projection_unchanged",
+        "point_annual_return_above_frozen_core",
+        "point_sharpe_above_frozen_core",
+        "full_period_maximum_drawdown_no_worse_than_frozen_core",
+        "confidence_calibration",
+        "later_windows_positive_at_100bps"
+      ],
+      "failed_or_missing_gates": [
+        "paired_bootstrap_sharpe_advantage_over_frozen_core",
+        "paired_bootstrap_annual_return_advantage_over_frozen_core",
+        "full_period_advantage_at_100bps",
+        "survivorship_safe_historical_universe",
+        "52_week_untouched_forward_record"
+      ],
+      "evidence_path": "evidence/ml_confidence_overlay_batch_18/result.json"
+    },
+    {
+      "candidate_id": "ml-strong-confidence-overlay-v2",
+      "family": "capped_machine_learning_overlay",
+      "status": "provisional_strong_confidence_cost_sensitive",
+      "final": false,
+      "approved_for_live_trading": false,
+      "source_batch": "ml_strong_confidence_overlay_batch_19",
+      "hypothesis_is_retrospective_followup": true,
+      "construction": {
+        "core": "covariance_minimum_variance_v1",
+        "primary_variant": "strong_confidence_guarded",
+        "inactive_below_prior_percentile": 0.8,
+        "strong_tier_weight": 0.2,
+        "extreme_tier_weight": 0.3,
+        "mean_historical_ml_weight": 0.04349540078843627
+      },
+      "evidence_10bps": {
+        "annual_return": 0.08049435557778484,
+        "sharpe": 0.8822882144880894,
+        "maximum_drawdown": -0.23390268432554395,
+        "frozen_core_annual_return": 0.07643452438828069,
+        "frozen_core_sharpe": 0.8497543910595724,
+        "frozen_core_maximum_drawdown": -0.23390268432554406
+      },
+      "evidence_100bps": {
+        "annual_return": 0.04279807594926344,
+        "sharpe": 0.4977837843715319,
+        "maximum_drawdown": -0.24363072650374618,
+        "frozen_core_annual_return": 0.04644534842070813,
+        "frozen_core_sharpe": 0.5399543312172552
+      },
+      "confidence_calibration": {
+        "active_months": 41,
+        "inactive_months": 110,
+        "active_mean_future_rank_ic": 0.14322548055690765,
+        "inactive_mean_future_rank_ic": 0.04516200396914053,
+        "active_minus_inactive_rank_ic": 0.09806347658776712,
+        "bootstrap_lower_difference": -0.0010856909054500902
+      },
+      "passed_gates": [
+        "original_prediction_projection_unchanged",
+        "point_annual_return_above_frozen_core_10bps",
+        "point_sharpe_above_frozen_core_10bps",
+        "full_period_maximum_drawdown_no_worse_than_frozen_core_10bps",
+        "paired_bootstrap_annual_return_advantage_10bps",
+        "later_windows_positive_at_100bps",
+        "deterministic_rerun"
+      ],
+      "failed_or_missing_gates": [
+        "paired_bootstrap_sharpe_advantage_10bps",
+        "confidence_calibration_bootstrap_lower_bound",
+        "annual_return_advantage_100bps",
+        "sharpe_advantage_100bps",
+        "survivorship_safe_historical_universe",
+        "52_week_untouched_forward_record"
+      ],
+      "evidence_path": "evidence/ml_strong_confidence_overlay_batch_19/result.json"
+    },
+    {
+      "candidate_id": "ml-cost-aware-persistent-overlay-v1",
+      "family": "capped_machine_learning_overlay",
+      "status": "provisional_cost_aware_statistically_supported",
+      "final": false,
+      "approved_for_live_trading": false,
+      "source_batch": "ml_cost_aware_persistent_overlay_batch_20",
+      "hypothesis_is_retrospective_followup": true,
+      "construction": {
+        "core": "covariance_minimum_variance_v1",
+        "confidence_persistence_months": 2,
+        "high_cost_excess_lookback_weeks": 26,
+        "high_cost_assumption_bps": 100,
+        "membership_buffer_iqr_multiplier": 0.25,
+        "weight_turnover_hurdle": 0.1,
+        "mean_historical_ml_weight": 0.016031537450722732
+      },
+      "evidence_10bps": {
+        "annual_return": 0.07873247283610141,
+        "sharpe": 0.8678928405647641,
+        "maximum_drawdown": -0.23390268432554406,
+        "frozen_core_annual_return": 0.07643452438828069,
+        "frozen_core_sharpe": 0.8497543910595724,
+        "paired_sharpe_lower_difference": 0.002619924414575925,
+        "paired_annual_return_lower_difference": 0.0005444886259919901
+      },
+      "evidence_100bps": {
+        "annual_return": 0.04652618182072388,
+        "sharpe": 0.5386685357794566,
+        "frozen_core_annual_return": 0.04644534842070813,
+        "frozen_core_sharpe": 0.5399543312172552
+      },
+      "turnover": {
+        "original_ml_annual": 8.348528333101815,
+        "buffered_ml_annual": 7.052921107823192,
+        "batch19_allocation_annual": 0.6149802890932983,
+        "primary_allocation_annual": 0.16399474375821288
+      },
+      "confidence_calibration": {
+        "active_months": 13,
+        "inactive_months": 138,
+        "active_mean_future_rank_ic": 0.18870668459615245,
+        "inactive_mean_future_rank_ic": 0.06077447999774413,
+        "bootstrap_lower_difference": 0.0015398618118459967
+      },
+      "passed_gates": [
+        "original_prediction_projection_unchanged",
+        "point_return_and_sharpe_above_core_10bps",
+        "maximum_drawdown_no_worse_than_core_10bps",
+        "paired_bootstrap_sharpe_advantage_10bps",
+        "paired_bootstrap_annual_return_advantage_10bps",
+        "annual_return_above_core_100bps",
+        "later_windows_positive_100bps",
+        "ml_turnover_reduced",
+        "allocation_turnover_reduced",
+        "confidence_calibration_bootstrap",
+        "deterministic_rerun"
+      ],
+      "failed_or_missing_gates": [
+        "sharpe_above_core_100bps",
+        "survivorship_safe_historical_universe",
+        "52_week_untouched_forward_record"
+      ],
+      "evidence_path": "evidence/ml_cost_aware_persistent_overlay_batch_20/result.json"
+    },
+    {
+      "candidate_id": "mlquant-buffered-equal-factor-v1",
+      "family": "repository_cross_sectional_factors",
+      "status": "provisional_repository_factor_fragile",
+      "final": false,
+      "approved_for_live_trading": false,
+      "source_batch": "mlquant_factor_decay_turnover_batch_32",
+      "repository": {
+        "name": "initial-d/ml-quant-trading",
+        "commit": "867e8dfe628b1d0ea2af987ec6f74c32c645f63e",
+        "factors": ["best_002", "original_001"]
+      },
+      "construction": {
+        "candidate": "buffered_equal_top5",
+        "assets": 5,
+        "minimum_holding_weeks": 4,
+        "maximum_replacements_per_week": 1,
+        "entry_score_buffer": 0.5,
+        "signal_lag_weeks": 1,
+        "cost_bps": 50
+      },
+      "factor_decay": {
+        "development_selected_horizon_sessions": 20,
+        "development_mean_rank_ic": 0.05427975780088456,
+        "validation_mean_rank_ic": 0.06942682309429445,
+        "retrospective_test_mean_rank_ic": 0.025443725949141113,
+        "familywise_bootstrap_lower": 0.008415940932335386
+      },
+      "evidence_50bps": {
+        "annual_return": 0.05940592482678708,
+        "sharpe": 0.45820231590817007,
+        "maximum_drawdown": -0.44058222291064375,
+        "annual_turnover": 7.44043329843459,
+        "validation_annual_return": 0.048108651940586666,
+        "retrospective_test_annual_return": 0.10177902718933152
+      },
+      "evidence_100bps": {
+        "annual_return": 0.02069625723626789,
+        "sharpe": 0.21147475822513545
+      },
+      "passed_gates": [
+        "twenty_session_factor_decay_qualification",
+        "positive_100bps_return_and_sharpe",
+        "positive_validation_and_retrospective_test_returns",
+        "stale_inverted_and_permutation_controls",
+        "turnover_reduction",
+        "accounting_reconciliation",
+        "deterministic_rerun"
+      ],
+      "failed_or_missing_gates": [
+        "primary_sharpe_at_least_0_50",
+        "maximum_drawdown_no_worse_than_minus_35_percent",
+        "blend_sharpe_above_frozen_core",
+        "familywise_paired_blend_advantage",
+        "survivorship_safe_historical_universe",
+        "52_week_untouched_forward_record"
+      ],
+      "evidence_path": "evidence/mlquant_factor_decay_turnover_batch_32/result.json",
+      "conditional_overlay_batch_33": {
+        "status": "rejected",
+        "caps_tested": [0.05, 0.10, 0.15],
+        "active_week_share": 0.29396092362344584,
+        "best_cap": 0.05,
+        "best_overlay_annual_return_50bps": 0.05966919318834574,
+        "best_overlay_sharpe_50bps": 0.7014363305828,
+        "matching_core_annual_return_50bps": 0.06582856277257898,
+        "matching_core_sharpe_50bps": 0.7688190479607444,
+        "paired_lower_sharpe_difference": -0.09033791211360598,
+        "evidence_path": "evidence/mlquant_conditional_overlay_batch_33/result.json"
+      }
+    },
+    {
+      "candidate_id": "mlquant-walk-forward-feature-augmentation-v1",
+      "family": "cross_sectional_machine_learning",
+      "status": "historically_rejected_repository_feature_augmentation",
+      "final": false,
+      "approved_for_live_trading": false,
+      "source_batch": "mlquant_walk_forward_feature_batch_34",
+      "repository": {
+        "name": "initial-d/ml-quant-trading",
+        "commit": "867e8dfe628b1d0ea2af987ec6f74c32c645f63e",
+        "added_features": ["best_002", "original_001"]
+      },
+      "training": {
+        "matched_asset_month_rows": 3252,
+        "outer_folds": 15,
+        "model_fits_per_engine": 2924,
+        "engines_compared": 2,
+        "first_out_of_fold_decision": "2012-01-06",
+        "feature_counts": {"matched_baseline": 11, "augmented": 13}
+      },
+      "matched_baseline_10bps": {
+        "annual_return": 0.08756480356359009,
+        "sharpe": 0.7489119819410912,
+        "maximum_drawdown": -0.2438148573386829,
+        "annual_turnover": 6.553158345471185,
+        "mean_rank_ic": 0.03974102513712158
+      },
+      "augmented_10bps": {
+        "annual_return": 0.09445953794575335,
+        "sharpe": 0.7957601032416474,
+        "maximum_drawdown": -0.2421448374103271,
+        "annual_turnover": 6.37874006963665,
+        "mean_rank_ic": 0.03740194605843125,
+        "adjusted_rank_ic_lower_bound": -0.004061756474613404
+      },
+      "augmented_50bps": {
+        "annual_return": 0.06693609285494184,
+        "sharpe": 0.5889435038409503,
+        "maximum_drawdown": -0.263176264553726
+      },
+      "augmented_100bps": {
+        "annual_return": 0.0334121427545897,
+        "sharpe": 0.3284239999549501,
+        "validation_annual_return": 0.029045749772475205,
+        "retrospective_test_annual_return": 0.05312228782579109
+      },
+      "ablation_uncertainty": {
+        "paired_10bps_mean_sharpe_difference": 0.04561457660013728,
+        "paired_10bps_lower_sharpe_difference": -0.07328409216911647,
+        "paired_50bps_mean_sharpe_difference": 0.054196388174250536,
+        "paired_50bps_lower_sharpe_difference": -0.064244085186002
+      },
+      "full_universe_confirmation": {
+        "source_batch": "mlquant_full_universe_walk_forward_batch_35",
+        "matched_asset_month_rows": 8324,
+        "matched_assets": 35,
+        "dropped_rows": 0,
+        "timing_violations": 0,
+        "baseline_mean_rank_ic": 0.06963809133343275,
+        "augmented_mean_rank_ic": 0.0652681148600087,
+        "augmented_adjusted_rank_ic_lower_bound": 0.029089220749842163,
+        "baseline_10bps_annual_return": 0.12109561472161401,
+        "baseline_10bps_sharpe": 0.8548442351859857,
+        "baseline_10bps_maximum_drawdown": -0.32430412771280037,
+        "augmented_10bps_annual_return": 0.1135611317879035,
+        "augmented_10bps_sharpe": 0.8254043122538581,
+        "augmented_10bps_maximum_drawdown": -0.2883117405694906,
+        "paired_10bps_mean_sharpe_difference": -0.035321586753419544,
+        "paired_10bps_lower_sharpe_difference": -0.1992209996996459,
+        "baseline_50bps_sharpe": 0.6251643162564431,
+        "augmented_50bps_sharpe": 0.5983475222567014,
+        "baseline_100bps_sharpe": 0.33812875479888665,
+        "augmented_100bps_sharpe": 0.3142418001652468,
+        "decision": "close_as_historically_promising_but_unproven_without_further_same-history_tuning",
+        "deterministic_evaluation_rerun": true,
+        "evidence_path": "evidence/mlquant_full_universe_walk_forward_batch_35/result.json"
+      },
+      "passed_gates": [
+        "all_outer_fold_embargoes",
+        "point_sharpe_above_matched_baseline_10bps",
+        "point_sharpe_above_matched_baseline_50bps",
+        "drawdown_no_worse_than_matched_baseline",
+        "100bps_later_windows_positive_and_full_sharpe_above_baseline",
+        "label_shuffle_and_random_feature_controls",
+        "positive_outer_fold_share",
+        "deterministic_evaluation_rerun"
+      ],
+      "failed_or_missing_gates": [
+        "adjusted_rank_ic_lower_bound_positive",
+        "mean_rank_ic_above_matched_baseline",
+        "paired_10bps_sharpe_advantage",
+        "paired_50bps_sharpe_advantage",
+        "full_universe_confirmation_return_and_sharpe_advantage",
+        "full_universe_confirmation_stress_advantage",
+        "survivorship_safe_historical_universe",
+        "52_week_untouched_forward_record"
+      ],
+      "evidence_path": "evidence/mlquant_walk_forward_feature_batch_34/result.json",
+      "track_closed_after_evidence_path": "evidence/mlquant_full_universe_walk_forward_batch_35/result.json"
+    }
+  ]
+}

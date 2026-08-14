@@ -1,0 +1,36 @@
+{
+  "batch": "66B",
+  "frozen_candidate": "regime::broad_risk_on::rank_consensus__top1__score_invvol",
+  "frozen_on": "2026-08-12",
+  "breadth_lookback_weeks": 13,
+  "feature_lag_weeks": 1,
+  "breadth_threshold": 0.65,
+  "source_weight_when_broad": 1.0,
+  "source_weight_otherwise": 0.25,
+  "neighborhood": {
+    "breadth_thresholds": [0.55, 0.6, 0.65, 0.7, 0.75],
+    "otherwise_source_weights": [0.0, 0.25, 0.5],
+    "top_n": [1, 2, 3],
+    "methods": ["equal", "score_invvol"]
+  },
+  "additional_execution_delays_weeks": [1, 2, 4],
+  "placebo_permutations": 200,
+  "placebo_seed": 660012,
+  "past_only_selector_training_weeks": 260,
+  "past_only_selector_first_year": 2015,
+  "cost_bps": [50, 100, 200, 300],
+  "adversarial_gates": {
+    "minimum_neighborhood_share_beating_xlk": 0.6,
+    "minimum_delay_share_beating_xlk": 0.6666666666666666,
+    "minimum_placebo_percentile": 0.95,
+    "minimum_past_only_selector_advantage_over_xlk": 0.0,
+    "minimum_ex_best_year_advantage_over_xlk": 0.0,
+    "minimum_rolling_3y_win_share_over_xlk": 0.5,
+    "minimum_multifactor_annual_alpha": 0.0,
+    "minimum_full_50bps_cagr": 0.04,
+    "maximum_full_50bps_drawdown_magnitude": 0.5,
+    "minimum_holdout_200bps_cagr": 0.2
+  },
+  "leverage_allowed": false,
+  "live_trading_enabled": false
+}

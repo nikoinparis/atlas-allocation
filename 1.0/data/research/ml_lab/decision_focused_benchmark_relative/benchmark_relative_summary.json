@@ -1,0 +1,244 @@
+{
+  "phase": "benchmark_relative_decision_focused_learning",
+  "production_valid": false,
+  "research_only": true,
+  "selection_bias_warning": true,
+  "data_mining_warning": true,
+  "overfitting_warning": true,
+  "purpose": "experimental ML sandbox only",
+  "torch": {
+    "available": true,
+    "version": "2.8.0",
+    "device": "cpu",
+    "cuda_available": false,
+    "mps_available": true
+  },
+  "device": "cpu",
+  "models_run": [
+    "relative_return_production_seed0",
+    "relative_return_production_seed1",
+    "relative_return_phase4b_seed0",
+    "relative_return_phase4b_seed1",
+    "relative_info_ratio_production_seed0",
+    "relative_info_ratio_phase4b_seed0",
+    "risk_constrained_relative_production_seed0",
+    "risk_constrained_relative_production_seed1",
+    "risk_constrained_relative_phase4b_seed0",
+    "risk_constrained_relative_phase4b_seed1",
+    "offensive_exposure_constrained_production_seed0",
+    "offensive_exposure_constrained_phase4b_seed0",
+    "triple_barrier_aware_production_seed0",
+    "triple_barrier_aware_phase4b_seed0",
+    "hybrid_bce_relative_production_seed0",
+    "hybrid_bce_relative_production_seed1",
+    "hybrid_bce_relative_phase4b_seed0",
+    "hybrid_bce_relative_phase4b_seed1"
+  ],
+  "objectives_run": [
+    "relative_return",
+    "relative_info_ratio",
+    "risk_constrained_relative",
+    "offensive_exposure_constrained",
+    "triple_barrier_aware",
+    "hybrid_bce_relative"
+  ],
+  "benchmarks_run": [
+    "production",
+    "phase4b"
+  ],
+  "seeds_run": [
+    0,
+    1
+  ],
+  "universe_size": 97,
+  "input_tensor_shape": [
+    1375,
+    97,
+    74
+  ],
+  "model_architecture": {
+    "model": "per-ETF MLP scorer with learned ETF embedding",
+    "input_projection": "Linear(74 -> 64)",
+    "hidden_dim": 64,
+    "dropout": 0.15,
+    "output": "one score per ETF per date",
+    "allocation_training": "masked softmax long-only ETF portfolio",
+    "temperature": 0.5
+  },
+  "strategy_sources": {
+    "production": "data/05_layer3_portfolio_construction/portfolio_version_returns_improved_phase2b_regime_confidence_boost.csv",
+    "official_shadow": "data/05_layer3_portfolio_construction/portfolio_version_returns_improved_phase2b_combo_abc.csv",
+    "phase4b": "data/05_layer3_portfolio_construction/portfolio_version_returns_improved_phase4b_sector_phase3_hybrid.csv",
+    "phase6": "data/05_layer3_portfolio_construction/portfolio_version_returns_improved_phase6_recovery_quality_rerisk.csv",
+    "phase7": "data/05_layer3_portfolio_construction/portfolio_version_returns_improved_phase7_expression_boost.csv"
+  },
+  "candidate_definitions": {
+    "relative_return": "Maximize portfolio return above benchmark with turnover, volatility, and safe-exposure penalties.",
+    "relative_info_ratio": "Maximize mean excess return divided by tracking error with penalties.",
+    "risk_constrained_relative": "Reward excess return while penalizing downside worse than the benchmark, CVaR proxy, turnover, and safe exposure.",
+    "offensive_exposure_constrained": "Strongly penalize hiding in safe assets in good states.",
+    "triple_barrier_aware": "Use MLX-13 path-aware labels as penalties: avoid risky exposure on danger labels and avoid safe hiding on positive labels.",
+    "hybrid_bce_relative": "Combine top-quintile BCE with benchmark-relative decision loss.",
+    "benchmarks": [
+      "production",
+      "phase4b"
+    ],
+    "wrappers": [
+      "raw_ml",
+      "bil_fallback_original",
+      "regime_gate_original",
+      "production_core_plus_10pct_model_sleeve",
+      "phase4b_core_plus_10pct_model_sleeve"
+    ]
+  },
+  "skipped_runs": [
+    {
+      "variant": "absolute_sharpe_objective",
+      "reason": "intentionally excluded to avoid MLX-12 BIL/bond collapse"
+    },
+    {
+      "variant": "seed_2",
+      "reason": "skipped to keep first benchmark-relative run bounded on CPU"
+    },
+    {
+      "variant": "differentiable_top_k",
+      "reason": "deferred; first version uses masked softmax training and top-N evaluation"
+    },
+    {
+      "variant": "full_walk_forward_retraining",
+      "reason": "deferred; selected predictions are evaluated by window without retraining per fold"
+    },
+    {
+      "variant": "cvxpylayers_mean_variance_layer",
+      "reason": "deferred; no optional optimizer-layer dependency added"
+    },
+    {
+      "variant": "relative_info_ratio_seed1",
+      "reason": "skipped after an initial full-grid attempt proved too slow for a bounded CPU first version"
+    },
+    {
+      "variant": "offensive_exposure_constrained_seed1",
+      "reason": "skipped after an initial full-grid attempt proved too slow for a bounded CPU first version"
+    },
+    {
+      "variant": "triple_barrier_aware_seed1",
+      "reason": "skipped after an initial full-grid attempt proved too slow for a bounded CPU first version"
+    }
+  ],
+  "best_validation_model": {
+    "annual_return": 0.07708979075892786,
+    "annual_volatility": 0.09730879073403786,
+    "sharpe": 0.7922181560104666,
+    "max_drawdown": -0.08193273799549117,
+    "calmar": 0.9408911827549347,
+    "cvar_5": -0.03655703373493785,
+    "average_turnover": 0.586920900853901,
+    "annual_cost_drag": 0.03051988684440285,
+    "average_bil_exposure": 0.0,
+    "average_safe_exposure": 0.4735906070415715,
+    "average_risky_exposure": 0.5264093929584284,
+    "average_benchmark_excess_return": 0.04431561361417238,
+    "tracking_error": 0.07899746490874444,
+    "information_ratio": 0.5609751359156206,
+    "average_top3_weight": 0.6178229379349589,
+    "active_weeks": 104,
+    "strategy_name": "relative_info_ratio_phase4b_seed0__top15_inverse_vol__raw_ml",
+    "model_name": "relative_info_ratio_phase4b_seed0",
+    "loss_kind": "relative_info_ratio",
+    "objective_benchmark": "phase4b",
+    "seed": 0,
+    "allocation_method": "top15_inverse_vol",
+    "wrapper": "raw_ml",
+    "split": "validation",
+    "cost_bps": 10.0,
+    "rank_ic": 0.06436897444658073
+  },
+  "validation_selected_holdout": {
+    "annual_return": 0.006856491730334868,
+    "annual_volatility": 0.17112639436148563,
+    "sharpe": 0.040066827539481056,
+    "max_drawdown": -0.36411509686302734,
+    "calmar": 0.018830561515866342,
+    "cvar_5": -0.05838332023610156,
+    "average_turnover": 0.5266363813512543,
+    "annual_cost_drag": 0.027385091830265232,
+    "average_bil_exposure": 0.011980018729049703,
+    "average_safe_exposure": 0.3044187677544446,
+    "average_risky_exposure": 0.6955812322455555,
+    "average_benchmark_excess_return": -0.07315706697753942,
+    "tracking_error": 0.1279016006727406,
+    "information_ratio": -0.5719792918364253,
+    "average_top3_weight": 0.5128828152955335,
+    "active_weeks": 332,
+    "strategy_name": "relative_info_ratio_phase4b_seed0__top15_inverse_vol__raw_ml",
+    "model_name": "relative_info_ratio_phase4b_seed0",
+    "loss_kind": "relative_info_ratio",
+    "objective_benchmark": "phase4b",
+    "seed": 0,
+    "allocation_method": "top15_inverse_vol",
+    "wrapper": "raw_ml",
+    "split": "holdout",
+    "cost_bps": 10.0,
+    "rank_ic": 0.05464475594861606
+  },
+  "best_holdout_diagnostic_model": {
+    "annual_return": 0.0971988559263055,
+    "annual_volatility": 0.08979130658740604,
+    "sharpe": 1.08249740003158,
+    "max_drawdown": -0.11995109217444344,
+    "calmar": 0.8103207245912389,
+    "cvar_5": -0.027174717471610862,
+    "average_turnover": 0.030722891566265068,
+    "annual_cost_drag": 0.0015975903614457833,
+    "average_bil_exposure": 0.021686746987951807,
+    "average_safe_exposure": 0.021686746987951807,
+    "average_risky_exposure": 0.07861445783132529,
+    "average_benchmark_excess_return": 0.01650243501141751,
+    "tracking_error": 0.025045549065902156,
+    "information_ratio": 0.6588969148967261,
+    "average_top3_weight": 0.02379518072289157,
+    "active_weeks": 332,
+    "strategy_name": "triple_barrier_aware_production_seed0__top10_equal_weight__phase4b_core_plus_10pct_model_sleeve",
+    "model_name": "triple_barrier_aware_production_seed0",
+    "loss_kind": "triple_barrier_aware",
+    "objective_benchmark": "production",
+    "seed": 0,
+    "allocation_method": "top10_equal_weight",
+    "wrapper": "phase4b_core_plus_10pct_model_sleeve",
+    "split": "holdout",
+    "cost_bps": 10.0,
+    "rank_ic": 0.09724407321432775
+  },
+  "validation_selected_beats_mlx12_annual_return": false,
+  "validation_selected_beats_mlx12_sharpe": false,
+  "validation_selected_beats_mlx13_sharpe": false,
+  "validation_selected_beats_production_sharpe": false,
+  "validation_selected_beats_phase4b_sharpe": false,
+  "validation_selected_beats_mlx9_sharpe": false,
+  "bil_bond_collapse_fixed": true,
+  "final_recommendation": "REJECT",
+  "warnings": [
+    "Experimental research-only Phase MLX output; not production-valid.",
+    "Benchmark-relative objectives still use yfinance/expanded ETF research data and remain high overfitting risk.",
+    "No benchmark-relative decision-focused model is promoted automatically."
+  ],
+  "no_production_pins_changed": true,
+  "no_dashboard_changes": true,
+  "no_production_strategy_logic_changed": true,
+  "outputs": {
+    "predictions": "data/research/ml_lab/decision_focused_benchmark_relative/benchmark_relative_predictions.parquet",
+    "weights": "data/research/ml_lab/decision_focused_benchmark_relative/benchmark_relative_weights.parquet",
+    "returns": "data/research/ml_lab/decision_focused_benchmark_relative/benchmark_relative_returns.csv",
+    "summary": "data/research/ml_lab/decision_focused_benchmark_relative/benchmark_relative_summary.csv",
+    "training_curves": "data/research/ml_lab/decision_focused_benchmark_relative/benchmark_relative_training_curves.csv",
+    "strategy_comparison": "data/research/ml_lab/decision_focused_benchmark_relative/benchmark_relative_strategy_comparison.csv",
+    "state_by_state": "data/research/ml_lab/decision_focused_benchmark_relative/benchmark_relative_state_by_state.csv",
+    "exposure_audit": "data/research/ml_lab/decision_focused_benchmark_relative/benchmark_relative_exposure_audit.csv",
+    "walkforward": "data/research/ml_lab/decision_focused_benchmark_relative/benchmark_relative_walkforward_summary.csv",
+    "preprocessing_metadata": "data/research/ml_lab/decision_focused_benchmark_relative/benchmark_relative_preprocessing_metadata.json",
+    "candidate_definitions": "data/research/ml_lab/decision_focused_benchmark_relative/benchmark_relative_candidate_definitions.json",
+    "skipped_runs": "data/research/ml_lab/decision_focused_benchmark_relative/benchmark_relative_skipped_runs.json",
+    "summary_json": "data/research/ml_lab/decision_focused_benchmark_relative/benchmark_relative_summary.json",
+    "notes": "docs/research/ml_lab/phase_mlx_12b_benchmark_relative_decision_focused_learning_notes.md"
+  }
+}

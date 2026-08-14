@@ -1,0 +1,18 @@
+{
+  "bundle_id": "20260812T035702Z_20260812T090851Z_causalmeta_adc08ddb4c57",
+  "complete": true,
+  "files": {
+    "market_state_history.csv": "fe00a4850743bae8a5d108c702baabb008a1254d0e7f88d278f3c24877db2f54",
+    "phase2b_meta_predictions_causal.csv": "976e08ff8e76c32996c5da84d889d5b75cda3d79f51e32522d99bd6ace998c00",
+    "regime_score.csv": "91b8071f19314799bd7dda264054344f45223da50fe3e8473ff362c8ab734a20",
+    "regime_states.csv": "7f71b717442d35fedbbb1bb2dca86e56b7018fb6caa50bbe7b602e596062fd63"
+  },
+  "frozen_history_cutoff": "2026-04-10",
+  "market_data_through": "2026-08-07",
+  "meta_prediction_version": "causal_embargo_v1",
+  "module_sha256": "adc08ddb4c57f7de5165b7eacff62f7ffa2e8d179490c9042122786163d03b47",
+  "price_snapshot_id": "20260812T035702Z-0c1bf62d74413e2a",
+  "regime_snapshot_id": "20260812T090851Z-5c6de663ac77",
+  "saved_meta_predictions_promoted": false,
+  "state_history_equivalent": true
+}

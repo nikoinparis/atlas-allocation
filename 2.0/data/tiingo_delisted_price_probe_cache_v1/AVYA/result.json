@@ -1,0 +1,20 @@
+{
+  "cik10": "0001418100",
+  "covers_first_eligible_decision": false,
+  "first_eligible_decision": "2020-01-01 00:00:00+00:00",
+  "first_price_date": null,
+  "issuer_name_match": true,
+  "issuer_name_score": 1.0,
+  "last_eligible_decision": "2024-10-01 00:00:00+00:00",
+  "last_price_date": null,
+  "price_file": null,
+  "price_rows": 0,
+  "provider_end_date": "2023-05-01",
+  "provider_exchange": "NYSE",
+  "provider_name": "Avaya Holdings Corp",
+  "provider_start_date": "2017-12-19",
+  "sec_company_name": "AVAYA HOLDINGS CORP.",
+  "status": "rejected_missing_start_of_eligibility",
+  "terminal": true,
+  "tiingo_symbol": "AVYA"
+}

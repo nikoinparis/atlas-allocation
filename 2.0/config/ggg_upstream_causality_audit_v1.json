@@ -1,0 +1,29 @@
+{
+  "program": "ggg_upstream_causality_audit_v1",
+  "batch": 45,
+  "predeclared_at_utc": "2026-08-11T00:00:00Z",
+  "sleeves": [
+    "dual_momentum_topn",
+    "cta_trend_long_only",
+    "composite_selective_signals",
+    "taa_10m_sma",
+    "composite_regime_conditioned"
+  ],
+  "prefix_cutoffs": ["2023-12-29", "2024-12-27", "2025-12-26"],
+  "gates": {
+    "maximum_position_absolute_difference": 1e-10,
+    "maximum_prefix_absolute_difference": 1e-10,
+    "maximum_return_identity_absolute_difference": 1e-10,
+    "require_exact_index_and_columns": true,
+    "require_three_prefix_tests": true,
+    "require_declared_one_week_signal_lag": true,
+    "require_next_week_return_label_documented": true
+  },
+  "qualification_rule": "Freeze only sleeves passing native position equivalence, all truncated-history prefix tests, signal-lag evidence, return identity, and deterministic rerun. A sleeve may not be qualified from performance alone.",
+  "scope_limits": [
+    "No claim that the fixed ETF universe is survivorship-bias-free.",
+    "No claim that historical data are vintage point-in-time vendor snapshots.",
+    "No removal of historical strategy-selection contamination.",
+    "No live trading or capital deployment."
+  ]
+}

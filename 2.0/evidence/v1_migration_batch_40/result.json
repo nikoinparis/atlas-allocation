@@ -1,0 +1,61 @@
+{
+  "artifacts": {
+    "recent_metrics.csv": {
+      "bytes": 1583,
+      "sha256": "692088c47cbba2fc98064659322c1db079867f29d48589d1203cc8675e687da1"
+    },
+    "source_inventory.csv": {
+      "bytes": 2652,
+      "sha256": "a6d10b2588705bd28c292fd303e95861c029f9b435f47504cd695312d1de7791"
+    }
+  },
+  "generated_at_utc": "2026-08-11T06:08:03.654086+00:00",
+  "live_trading_enabled": false,
+  "metric_warning": "V1 canonical Sharpe is CAGR divided by annualized sample volatility; V2 reports arithmetic mean weekly return divided by weekly volatility. The recent_metrics artifact uses the V2 arithmetic convention for comparisons.",
+  "migration_complete": false,
+  "next_required_phase": "native_v2_reconstruction_and_causal_feature_lineage",
+  "phase": "phase_0_read_only_inventory_and_accounting",
+  "phase_0_gates": {
+    "all_required_files_present_and_hashed": true,
+    "existing_v1_internal_reproduction_passed": true,
+    "metric_conventions_explicitly_separated": true,
+    "saved_10bps_net_returns_reconstruct_from_gross_and_turnover": true,
+    "saved_weights_finite_nonnegative_and_sum_to_one": true
+  },
+  "phase_0_passed": true,
+  "program": "v1_to_v2_equivalence_audit_v1",
+  "program_sha256": "1a1e4776977272f25af683d8ec0ef78092a171d46b22934d3d619f34b37d1081",
+  "runner_sha256": "e5b52bc6aa647468fda5e3d845c7ee8eaefdba4e5b3859598d33192ce38bcbd3",
+  "saved_10bps_accounting_maximum_absolute_error": 4.336808689942018e-19,
+  "saved_weight_checks": {
+    "assets": 35,
+    "finite": true,
+    "maximum": 1.0,
+    "maximum_sum_deviation": 2.220446049250313e-16,
+    "minimum": 0.0,
+    "rows": 1110
+  },
+  "source_candidate": "improved_frontier_phase5_fragility_guard",
+  "source_dates": {
+    "first": "2005-01-07",
+    "last": "2026-04-10",
+    "weeks": 1110
+  },
+  "v1_internal_reproduction": {
+    "exact_reproduction_passed": 1,
+    "net_return_corr_vs_saved": 0.9999999999999997,
+    "path_column_max_abs_errors": {
+      "cost": 9.985502008591496e-17,
+      "drawdown": 9.93129189996722e-17,
+      "gross_return": 9.974659986866641e-17,
+      "net_return": 9.963817965141786e-17,
+      "turnover": 9.974659986866641e-17,
+      "wealth": 4.440892098500626e-16
+    },
+    "path_max_abs_error": 4.440892098500626e-16,
+    "registry_verified": 1,
+    "weeks_compared": 1110,
+    "weights_max_abs_error": 9.93129189996722e-17
+  },
+  "version_1_modified": false
+}

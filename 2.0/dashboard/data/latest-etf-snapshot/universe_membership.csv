@@ -1,0 +1,4 @@
+security_id,ticker,universe,effective_from,effective_to,knowledge_at_utc,source_revision,point_in_time_membership
+yahoo-ticker:USO,USO,portfolio_optimizer_free_current_etfs,,,2026-08-14T09:09:16.523675+00:00,yfinance-1.5.2:2026-08-14T09:09:16.523675+00:00,false
+yahoo-ticker:XLE,XLE,portfolio_optimizer_free_current_etfs,,,2026-08-14T09:09:16.866327+00:00,yfinance-1.5.2:2026-08-14T09:09:16.866327+00:00,false
+yahoo-ticker:XLK,XLK,portfolio_optimizer_free_current_etfs,,,2026-08-14T09:09:17.262039+00:00,yfinance-1.5.2:2026-08-14T09:09:17.262039+00:00,false

@@ -1,0 +1,22 @@
+{
+  "repository": "je-suis-tm/quant-trading",
+  "commit": "611b73f2c3f577ac5b28aaa19ac8c43d3236c7a5",
+  "source_file": "RSI Pattern Recognition backtest.py",
+  "source_sha256": "862376c2dfd9598b0d351c265ff566d68f29e2f61d8ae25ffb04293dbcc40dac",
+  "source_rules": {
+    "rsi": "14-period SMMA initialized from the first up/down price change",
+    "executed_strategy": "daily long below RSI30, short above RSI70, flat otherwise",
+    "unused_pattern": "25-observation seven-node head-and-shoulders short, delta 0.2, exit after RSI rises 4 or counter exceeds 5"
+  },
+  "timing_review": "RSI and all pattern nodes use only completed current or earlier observations. Batch 26 separately applies state to the next close.",
+  "defects_and_ambiguities": [
+    "The function described as pattern recognition directly on RSI actually searches every node and maximum on Close.",
+    "The main function never calls the pattern-recognition function, so the repository presents two disconnected strategies.",
+    "The literal threshold strategy enters and exits exposure every day rather than holding until a neutral crossing, increasing turnover.",
+    "SMMA initialization uses the first change rather than Wilder's initial 14-period simple average, making early RSI path-dependent.",
+    "The pattern's absolute price delta 0.2 is instrument-scale-specific if the literal Close implementation is retained.",
+    "The short exit triggers when RSI rises four points, adverse to the short, or only after the counter exceeds five; execution timing is not audited.",
+    "Deprecated data dependencies, chained indexing, division-by-zero warnings, no costs, no borrow, and no performance or uncertainty evidence prevent reuse."
+  ],
+  "independent_treatment": "Test the executed literal threshold rule, a safer long-only threshold version, the unused literal Close-pattern function, and a corrected RSI-pattern interpretation. Preserve fixed source thresholds and timing, add short borrow, controls, coverage, and portfolio gates."
+}

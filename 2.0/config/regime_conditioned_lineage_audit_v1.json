@@ -1,0 +1,25 @@
+{
+  "program": "regime_conditioned_lineage_audit_v1",
+  "batch": 46,
+  "formalized_at_utc": "2026-08-11T00:00:00Z",
+  "target": "composite_regime_conditioned",
+  "discovered_historical_source_mode": "layer1_regime_features_fallback_when_layer2b_regime_states_are_absent",
+  "prefix_cutoffs": ["2023-12-29", "2024-12-27", "2025-12-26"],
+  "gates": {
+    "maximum_position_absolute_difference": 1e-10,
+    "maximum_return_absolute_difference": 1e-10,
+    "maximum_prefix_absolute_difference": 1e-10,
+    "require_deterministic_rerun": true,
+    "require_exact_index_and_columns": true,
+    "require_three_prefix_tests": true,
+    "require_allocator_current_row_excluded": true
+  },
+  "decision_rule": "Freeze the historical fallback lineage only if it exactly reconstructs the saved sleeve and passes all causal and deterministic gates. Evaluate the current Layer 2B path as a diagnostic replacement, but do not promote it from this post-discovery comparison.",
+  "cost_bps": [10, 50, 100],
+  "primary_recent_window_years": 3,
+  "scope_limits": [
+    "Implementation causality does not remove universe, vintage, or historical selection bias.",
+    "A row-t sleeve return is a t-to-t+1 outcome and cannot enter date-t allocator training.",
+    "No live trading or capital deployment."
+  ]
+}

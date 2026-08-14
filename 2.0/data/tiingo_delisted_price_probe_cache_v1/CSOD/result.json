@@ -1,0 +1,20 @@
+{
+  "cik10": "0001401680",
+  "covers_first_eligible_decision": true,
+  "first_eligible_decision": "2013-04-01 00:00:00+00:00",
+  "first_price_date": "2013-04-01",
+  "issuer_name_match": true,
+  "issuer_name_score": 1.0,
+  "last_eligible_decision": "2022-10-01 00:00:00+00:00",
+  "last_price_date": "2021-10-15",
+  "price_file": "/workspace/2.0/data/tiingo_delisted_price_probe_cache_v1/CSOD/prices.csv.gz",
+  "price_rows": 2154,
+  "provider_end_date": "2021-10-15",
+  "provider_exchange": "NASDAQ",
+  "provider_name": "Cornerstone OnDemand Inc",
+  "provider_start_date": "2011-03-17",
+  "sec_company_name": "CORNERSTONE ONDEMAND INC",
+  "status": "identity_and_start_validated",
+  "terminal": true,
+  "tiingo_symbol": "CSOD"
+}

@@ -1,0 +1,21 @@
+{
+  "candidate": "candidate-past-only-consensus-selector-return-v1",
+  "first_eligible_decision_date": "2026-08-14",
+  "first_eligible_realization_date": "2026-08-21",
+  "frozen_on": "2026-08-12",
+  "live_trading_enabled": false,
+  "protocol_id": "past_only_consensus_selector_return_v1_forward",
+  "required_weeks": 52,
+  "rule": {
+    "candidate_grid_size": 90,
+    "candidate_grid": "rank-consensus top 1/2/3, equal or score-inverse-volatility, breadth thresholds 55/60/65/70/75%, and non-broad source weights 0/25/50%",
+    "feature_lag_weeks": 1,
+    "monthly_portfolio_rebalance": true,
+    "selection_frequency": "first eligible week of each calendar year",
+    "selection_metric": "highest trailing 260-week CAGR after 50-bps turnover costs",
+    "selection_training_weeks": 260
+  },
+  "manual_selection_changes_forbidden": true,
+  "source_bundle": "ggg_causal_v2_027530550388432a",
+  "weights_artifact_sha256": "799ec4fa0757b0b98a4daf666565096fb6e5c6f422f96710f5b98c64fd08be11"
+}

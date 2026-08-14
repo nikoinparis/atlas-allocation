@@ -1,0 +1,13 @@
+{
+  "prediction_bce": "Predict-then-optimize baseline trained on top_quintile_forward_4w BCE.",
+  "decision_return": "Decision-focused loss = negative mean weekly net portfolio return plus small turnover penalty.",
+  "decision_sharpe": "Decision-focused loss = negative differentiable Sharpe-like objective plus turnover penalty.",
+  "decision_risk_aware": "Decision-focused loss with return, volatility, downside, and turnover terms.",
+  "hybrid_bce_sharpe": "Hybrid supervised BCE plus decision-focused Sharpe-like loss.",
+  "allocation": "Training uses masked softmax long-only weights over all available ETFs; evaluation also tests top10/top15 equal and inverse-vol portfolios.",
+  "overlays": [
+    "raw_ml",
+    "bil_fallback_original",
+    "vol_target_10pct"
+  ]
+}

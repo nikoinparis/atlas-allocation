@@ -1,0 +1,41 @@
+{
+  "program": "ggg_execution_aware_program_v1",
+  "batch": 53,
+  "predeclared_at_utc": "2026-08-12T04:30:00Z",
+  "benchmark": "causal_ggg_unbuffered",
+  "audit_comparator": "batch52_buffer_band_025",
+  "selection_budget": 10,
+  "cost_bps": [10, 50, 100],
+  "secondary_window_start": "2024-01-05",
+  "prefix_cutoffs": ["2023-12-29", "2024-12-27", "2025-12-26"],
+  "candidates": {
+    "execute_biweekly": {"kind": "scheduled", "cadence_weeks": 2},
+    "execute_monthly": {"kind": "monthly"},
+    "execute_monthly_emergency": {"kind": "monthly_emergency", "emergency_turnover": 0.15, "emergency_cash_change": 0.10},
+    "asset_deadband_005": {"kind": "asset_deadband", "asset_change_threshold": 0.005},
+    "asset_deadband_010": {"kind": "asset_deadband", "asset_change_threshold": 0.010},
+    "asymmetric_entry025_exit005": {"kind": "asymmetric_band", "risk_entry_band": 0.025, "risk_exit_band": 0.005},
+    "asymmetric_entry050_exit010": {"kind": "asymmetric_band", "risk_entry_band": 0.050, "risk_exit_band": 0.010},
+    "adaptive_calm025_stress005": {"kind": "volatility_adaptive_band", "calm_band": 0.025, "stress_band": 0.005, "spy_volatility_threshold": 0.20, "lookback_weeks": 13},
+    "biweekly_then_band010": {"kind": "scheduled_then_band", "cadence_weeks": 2, "band": 0.010},
+    "monthly_emergency_then_band010": {"kind": "monthly_emergency_then_band", "emergency_turnover": 0.15, "emergency_cash_change": 0.10, "band": 0.010}
+  },
+  "execution_timing": "All rules transform a date-t target using only targets and prices observed through date t; the resulting position earns the t-to-t+1 return.",
+  "qualification_gates": {
+    "minimum_recent_3y_50bps_cagr_improvement": 0.005,
+    "minimum_post_2024_50bps_cagr_improvement": 0.0,
+    "maximum_full_50bps_cagr_degradation": 0.0025,
+    "maximum_recent_3y_drawdown_magnitude": 0.18,
+    "minimum_recent_3y_100bps_cagr_improvement": 0.0,
+    "maximum_prefix_absolute_difference": 1e-10,
+    "require_deterministic_hash": true,
+    "require_frozen_source_hashes": true
+  },
+  "selection_rule": "Select only among candidates passing every gate; rank by recent-three-year 50-bps CAGR, then recent-three-year 100-bps CAGR, then candidate name.",
+  "scope_limits": [
+    "The Batch 52 2.5% symmetric buffer is an audit comparator and is not counted again as a new selection trial.",
+    "No execution parameters may be added or changed after results are observed.",
+    "No broker, real orders, leverage, shorting, or live trading.",
+    "A retrospective pass creates only a forward research challenger."
+  ]
+}

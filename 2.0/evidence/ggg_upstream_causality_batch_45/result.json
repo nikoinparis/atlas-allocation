@@ -1,0 +1,76 @@
+{
+  "all_sleeves_qualified": false,
+  "artifacts": {
+    "deterministic_rerun.csv": {
+      "bytes": 291,
+      "sha256": "26f3cbc3ec1c7caa4171461816f4574a06f3853662f3659b49733c08d4501b65"
+    },
+    "native_position_equivalence.csv": {
+      "bytes": 1170,
+      "sha256": "c14027c446d103a3b1a2f3e7f38b0441feede5ac89a7dd1a705c758825c09cdf"
+    },
+    "prefix_invariance.csv": {
+      "bytes": 1043,
+      "sha256": "d8b2297bf5816f7ff2ee4bee9cdb6947903e14bc9cad5a258b5595af356f81ed"
+    },
+    "return_label_identity.csv": {
+      "bytes": 892,
+      "sha256": "573f05f39735e51d98ec5c830c75ceadda97e1048b86a20e0aa46aeb25b7b84f"
+    },
+    "signal_lag_evidence.json": {
+      "bytes": 261,
+      "sha256": "4026f5708cf419f8eb8875ff75cd667c5e2f4e301824cebae33396a4a6e7cac7"
+    },
+    "sleeve_qualification.csv": {
+      "bytes": 634,
+      "sha256": "4501c402d074a59fdcd1d0b6406a26397dc98bec51576147bd2a73885da2f004"
+    },
+    "static_negative_shift_findings.json": {
+      "bytes": 591,
+      "sha256": "553423c1e564e6a1d4d5db9b3fdbfafbe5929e088b111718b08fe321cab5b148"
+    }
+  },
+  "generated_at_utc": "2026-08-11T23:40:36.717829+00:00",
+  "interpretation": "Sleeve positions may be causal while their row-t realized returns remain future outcomes. The causal GGG allocator must exclude row t from date-t training.",
+  "live_trading_enabled": false,
+  "maximum_native_position_difference": 0.5625,
+  "maximum_next_week_return_identity_error": 1.0408340855860843e-16,
+  "maximum_prefix_difference": 0.0,
+  "negative_shift_findings": [
+    {
+      "affects_audited_decision": false,
+      "cell": 4,
+      "classification": "known_calendar_month_end_mask_not_market_data",
+      "expression": "month_key.shift(-1)",
+      "line": 144
+    },
+    {
+      "affects_audited_decision": false,
+      "cell": 5,
+      "classification": "forward_ic_research_target_not_used_by_audited_sleeves",
+      "expression": "gross.shift(-step)",
+      "line": 310
+    },
+    {
+      "affects_audited_decision": false,
+      "cell": 6,
+      "classification": "realized_outcome_label_not_position_input",
+      "expression": "weekly_simple_returns.shift(-1)",
+      "line": 17
+    }
+  ],
+  "notebook_sha256": "a6839dc1c8e15703b689850d6455dad8020d1dc268e753f7abc30389a23b8f01",
+  "program": "ggg_upstream_causality_audit_v1",
+  "program_sha256": "270dbfcfb0a622444f2552b609a171958431f86e10bf654e5f1c5630b860c2c1",
+  "qualified_sleeves": [
+    "dual_momentum_topn",
+    "cta_trend_long_only",
+    "composite_selective_signals",
+    "taa_10m_sma"
+  ],
+  "sleeves_tested": 5,
+  "unresolved_sleeves": [
+    "composite_regime_conditioned"
+  ],
+  "version_1_modified": false
+}

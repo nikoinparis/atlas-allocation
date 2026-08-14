@@ -1,0 +1,29 @@
+{
+  "catalog_entry": "ast-0079",
+  "duplicate_catalog_entry": "ast-0087",
+  "repository": "https://github.com/je-suis-tm/quant-trading",
+  "commit": "611b73f2c3f577ac5b28aaa19ac8c43d3236c7a5",
+  "commit_date": "2024-04-14T23:06:59+10:00",
+  "license": "Apache-2.0",
+  "tracked_source_review": {
+    "tracked_file_count": 177,
+    "package_manifest_present": false,
+    "requirements_lock_present": false,
+    "automated_test_suite_present": false,
+    "documented_projects": 17
+  },
+  "source_hashes": {
+    "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "README.md": "16510c4fe4c925f452fe56261fd6faa6eb95cca31b8d1e66cc9279bfcce17d0d",
+    "Pair trading backtest.py": "d3088cbee0bc494513075d8f79ec4a9e940e17f432b9e2a86977f639a1e9d471"
+  },
+  "source_execution": false,
+  "source_isolation": "cloned at exact commit in a rootless Podman container with no host mount; source was inspected but not executed",
+  "pair_trading_findings": [
+    "The source describes an Engle-Granger residual mean-reversion concept and explicitly warns that cointegration can break.",
+    "The sample sizes shares using the maximum price over the complete backtest, which is future information and is rejected.",
+    "The sample assigns each z-score upper threshold as that same z-score plus a positive standard deviation, making its documented positive entry comparison unreachable as written.",
+    "The sample has no spread, borrow-fee, short-availability, turnover, nested-selection, or multiple-testing controls."
+  ],
+  "integration_decision": "independent_reimplementation_only"
+}

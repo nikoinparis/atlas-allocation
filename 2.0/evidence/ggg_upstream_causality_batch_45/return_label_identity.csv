@@ -1,0 +1,6 @@
+sleeve,observations,maximum_next_week_return_identity_error,maximum_same_week_identity_error,next_week_return_identity_passed,label_semantics
+dual_momentum_topn,1110,1.0408340855860843e-16,0.13444425910642865,True,position dated t earns price return t_to_t_plus_1; outcome unavailable at t
+cta_trend_long_only,1110,1.0408340855860843e-16,0.20230000411377747,True,position dated t earns price return t_to_t_plus_1; outcome unavailable at t
+composite_selective_signals,1110,9.974659986866641e-17,0.21389846022790654,True,position dated t earns price return t_to_t_plus_1; outcome unavailable at t
+taa_10m_sma,1110,9.996344030316351e-17,0.20869227142405455,True,position dated t earns price return t_to_t_plus_1; outcome unavailable at t
+composite_regime_conditioned,1110,1.0061396160665481e-16,0.0982727344121179,True,position dated t earns price return t_to_t_plus_1; outcome unavailable at t

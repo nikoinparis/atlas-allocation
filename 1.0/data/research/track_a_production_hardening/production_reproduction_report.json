@@ -1,0 +1,155 @@
+{
+  "production_candidate": "improved_frontier_phase5_fragility_guard",
+  "registry": {
+    "current_production_pin": "improved_frontier_phase5_fragility_guard",
+    "rollback_pin": "improved_phase2b_regime_confidence_boost",
+    "official_shadow_pin": "improved_phase2b_combo_abc",
+    "production_candidate": "improved_frontier_phase5_fragility_guard",
+    "candidate_status": "PROMOTED_TO_PRODUCTION",
+    "promotion_phase": "Frontier Phase 10A",
+    "promotion_report": "docs/research/frontier_phase10_final_evaluation_report.md",
+    "latest_research_status": "PHASE10A_PRODUCTION_PIN_UPDATED_WITH_HUMAN_AUTHORIZATION",
+    "do_not_auto_promote": 0,
+    "rollback_available": 1,
+    "dashboard_status_label": "Current production: Frontier Phase5 Fragility Guard",
+    "production_label": "Current production",
+    "shadow_label": "Official shadow",
+    "candidate_label": "Current production: Frontier Phase5 Fragility Guard",
+    "generated_at": "2026-05-23T06:13:10.643081+00:00",
+    "headline_metric_comparison": {
+      "vs_prior_production_pin": {
+        "comparator": "improved_phase2b_regime_confidence_boost",
+        "annual_return": {
+          "production": 0.0713416943193356,
+          "comparator": 0.0689233974459284,
+          "delta": 0.002418296873407194
+        },
+        "sharpe": {
+          "production": 0.9482556438408292,
+          "comparator": 0.884416286013895,
+          "delta": 0.06383935782693417
+        },
+        "max_drawdown": {
+          "production": -0.1160345788576096,
+          "comparator": -0.139754039463866,
+          "delta": 0.023719460606256404
+        },
+        "cvar_5": {
+          "production": -0.0249479288573999,
+          "comparator": -0.0261810418470039,
+          "delta": 0.001233112989604001
+        },
+        "holdout_sharpe": {
+          "production": 2.1785851785849784,
+          "comparator": 2.0995843347674885,
+          "delta": 0.07900084381748984
+        },
+        "avg_BIL": {
+          "production": 0.276060319177734,
+          "comparator": 0.2839178772422698,
+          "delta": -0.007857558064535808
+        },
+        "avg_SPY": {
+          "production": 0.0591204571328415,
+          "comparator": 0.0708116714213488,
+          "delta": -0.011691214288507293
+        },
+        "avg_turnover": {
+          "production": 0.0673878026565274,
+          "comparator": 0.0562292228319653,
+          "delta": 0.011158579824562101
+        }
+      },
+      "vs_official_shadow": {
+        "comparator": "improved_phase2b_combo_abc",
+        "annual_return": {
+          "production": 0.0713416943193356,
+          "comparator": 0.0685838385312824,
+          "delta": 0.0027578557880531956
+        },
+        "sharpe": {
+          "production": 0.9482556438408292,
+          "comparator": 0.883624666565531,
+          "delta": 0.06463097727529821
+        },
+        "max_drawdown": {
+          "production": -0.1160345788576096,
+          "comparator": -0.1367412154152335,
+          "delta": 0.02070663655762392
+        },
+        "cvar_5": {
+          "production": -0.0249479288573999,
+          "comparator": -0.0260850480361771,
+          "delta": 0.0011371191787772003
+        },
+        "holdout_sharpe": {
+          "production": 2.1785851785849784,
+          "comparator": 2.113010447204791,
+          "delta": 0.06557473138018732
+        },
+        "avg_BIL": {
+          "production": 0.276060319177734,
+          "comparator": 0.2855524975472375,
+          "delta": -0.009492178369503501
+        },
+        "avg_SPY": {
+          "production": 0.0591204571328415,
+          "comparator": 0.0707565085039652,
+          "delta": -0.011636051371123696
+        },
+        "avg_turnover": {
+          "production": 0.0673878026565274,
+          "comparator": 0.0565714797533369,
+          "delta": 0.010816322903190498
+        }
+      }
+    },
+    "promotion_reason_summary": [
+      "Phase 10A verdict PROMOTE",
+      "human authorization received for production pin update",
+      "named artifact reproduced Phase 10A metrics at machine precision",
+      "dashboard exposure and smoke tests passed",
+      "higher Sharpe than prior production pin and official shadow",
+      "better max drawdown and CVaR than prior production pin",
+      "holdout Sharpe improvement versus prior production pin",
+      "stressed_panic offense unchanged versus GGG baseline"
+    ],
+    "known_caveats": [
+      "sleeve-weight artifact is a review proxy derived from GGG sleeve weights because the strategy is a wrapper modifier",
+      "prior production pin retained as rollback",
+      "future research should compare against the new production pin and preserve Phase2B as rollback reference"
+    ],
+    "next_manual_steps": [
+      "Review final production promotion report.",
+      "Commit the production-pin update with the suggested commit message.",
+      "Deploy/review the dashboard build.",
+      "Monitor future research against the new production baseline."
+    ],
+    "prior_production_candidate": "improved_phaseggg_confirmed_only_robust_offense",
+    "prior_production_pin": "improved_phase2b_regime_confidence_boost"
+  },
+  "status": {
+    "registry_verified": 1,
+    "weights_max_abs_error": 9.93129189996722e-17,
+    "path_max_abs_error": 4.440892098500626e-16,
+    "net_return_corr_vs_saved": 0.9999999999999997,
+    "exact_reproduction_passed": 1,
+    "path_column_max_abs_errors": {
+      "gross_return": 9.974659986866641e-17,
+      "net_return": 9.963817965141786e-17,
+      "turnover": 9.974659986866641e-17,
+      "cost": 9.985502008591496e-17,
+      "wealth": 4.440892098500626e-16,
+      "drawdown": 9.93129189996722e-17
+    },
+    "weeks_compared": 1110
+  },
+  "metric_convention": {
+    "ann_return": "CAGR/geometric annual return",
+    "ann_vol": "sample annualized weekly volatility, ddof=1",
+    "sharpe": "CAGR / sample annualized volatility",
+    "var_cvar": "weekly 5% VaR/CVaR on the evaluated return window",
+    "turnover": "one-way turnover = 0.5 * L1 weight change",
+    "cost": "one-way turnover * bps / 10000"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "program": "mlquant_etf_factor_ic_v1",
+  "predeclared_before_results": true,
+  "catalog_entry": "ast-0076",
+  "repository": {
+    "name": "initial-d/ml-quant-trading",
+    "url": "https://github.com/initial-d/ml-quant-trading",
+    "commit": "867e8dfe628b1d0ea2af987ec6f74c32c645f63e",
+    "version": "0.2.6",
+    "license": "MIT"
+  },
+  "source_snapshot": {
+    "snapshot_id": "20260809T002313Z-0d8632e2cf759918",
+    "prices": "data/vintages/20260809T002313Z-0d8632e2cf759918/payload/prices.csv",
+    "immutable_input_required": true
+  },
+  "universe": [
+    "SPY", "QQQ", "IWM", "EFA", "VEA", "VWO", "EWJ",
+    "VNQ", "HYG", "LQD", "GLD", "PDBC", "DBA", "TLT"
+  ],
+  "price_construction": {
+    "close": "adjusted_close",
+    "open_high_low": "raw field multiplied by adjusted_close divided by raw close on the same row",
+    "vwap": "split-adjusted typical-price proxy: (adjusted high + adjusted low + adjusted close) / 3",
+    "volume": "source volume without a split-volume reconstruction",
+    "tradable_mask": "finite positive adjusted OHLC, finite nonnegative volume, and internally consistent high/low",
+    "warning": "The public snapshot has no true VWAP or point-in-time constituent history; this is retrospective ETF factor research."
+  },
+  "source_preselected_factors": [
+    "best_001", "best_002", "original_001", "stock_001", "add_015", "old_042"
+  ],
+  "factor_treatment": {
+    "implementation": "execute the pinned repository implementation inside the qualified Podman image",
+    "neutralization": "repository cross-sectional z-score",
+    "joint_mask": "repository intersection of the six selected factor masks",
+    "all_213_factor_use": "coverage, finiteness, and runtime audit only; no performance-based selection",
+    "direction_selection": "choose +1 or -1 solely from the sign of development-period mean rank IC"
+  },
+  "target": {
+    "label": "one-session forward adjusted-close return",
+    "metric": "daily cross-sectional Spearman rank information coefficient",
+    "minimum_assets_per_date": 5,
+    "interpretation": "signal-quality diagnostic only; close-to-next-close IC is not an executable close-price backtest"
+  },
+  "periods": {
+    "development": ["2005-01-01", "2015-12-31"],
+    "validation": ["2016-01-01", "2020-12-31"],
+    "retrospective_test": ["2021-01-01", "2026-08-07"]
+  },
+  "controls": {
+    "stale_sessions": [1, 5],
+    "sign_inversion": true,
+    "fixed_asset_permutation": true,
+    "fixed_forward_return_permutation": true,
+    "permutation_seed": 2026082901
+  },
+  "uncertainty": {
+    "bootstrap": "fixed-length circular moving blocks over daily IC observations",
+    "block_sessions": 65,
+    "replicates": 20000,
+    "seed": 2026082902,
+    "family_size": 6,
+    "familywise_one_sided_alpha": 0.05,
+    "per_factor_one_sided_alpha": 0.008333333333333333
+  },
+  "qualification_gate": {
+    "minimum_ic_dates_each_period": 250,
+    "minimum_absolute_development_mean_ic": 0.02,
+    "validation_signed_mean_ic_strictly_positive": true,
+    "retrospective_test_signed_mean_ic_strictly_positive": true,
+    "combined_validation_test_familywise_bootstrap_lower_strictly_positive": true,
+    "combined_mean_must_exceed_stale_5_session_control": true,
+    "combined_mean_must_exceed_asset_and_return_permutation_controls": true,
+    "all_requirements_must_pass": true
+  },
+  "next_stage": {
+    "portfolio_backtest": "Only factors passing this fixed gate may enter a separately predeclared causal portfolio experiment.",
+    "execution_enabled": false,
+    "live_trading_effect": "none"
+  }
+}

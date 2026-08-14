@@ -1,0 +1,434 @@
+{
+  "artifacts": {
+    "experiments.jsonl": {
+      "bytes": 925132,
+      "sha256": "40e6b8f1020fd3040cf1980c9606718ffaa7ec6703a970861ec36340efe93162"
+    },
+    "family_pairwise_correlation.csv": {
+      "bytes": 306,
+      "sha256": "c5f84c8aeae5ed1f29b0d19b434c5965377bfdd40cf6e3b7a0a695230bc7e7ab"
+    },
+    "leaderboard.csv": {
+      "bytes": 125632,
+      "sha256": "13daf1648a49b12748f7ded5746cc4bd94c9dc1c15c180d8e9809b67eb3b3b11"
+    },
+    "multi_family_ensemble_diagnostics.csv": {
+      "bytes": 3371,
+      "sha256": "3ac636b5be5280d5198ecf68ac49320b25d7802293495fb36d043bcdc666b901"
+    }
+  },
+  "batch": "new_families_batch_04",
+  "design": {
+    "cost_bps": 10.0,
+    "portfolio_methods": [
+      "equal_weight",
+      "score_weighted",
+      "inverse_volatility",
+      "score_inverse_volatility"
+    ],
+    "recipes": {
+      "defensive_quality_gated": {
+        "family": "defensive",
+        "frequency": "monthly",
+        "signals": [
+          "defensive_quality_gated"
+        ]
+      },
+      "distribution_yield": {
+        "family": "carry_proxy",
+        "frequency": "monthly",
+        "signals": [
+          "distribution_yield"
+        ]
+      },
+      "drawdown_resilience": {
+        "family": "defensive",
+        "frequency": "monthly",
+        "signals": [
+          "drawdown_resilience"
+        ]
+      },
+      "low_volatility": {
+        "family": "defensive",
+        "frequency": "monthly",
+        "signals": [
+          "low_volatility"
+        ]
+      },
+      "ma_reversal": {
+        "family": "mean_reversion",
+        "frequency": "weekly",
+        "signals": [
+          "ma_reversal"
+        ]
+      },
+      "mean_reversion_composite": {
+        "family": "mean_reversion",
+        "frequency": "weekly",
+        "signals": [
+          "reversal_4w",
+          "ma_reversal",
+          "rsi_reversal"
+        ]
+      },
+      "reversal_4w": {
+        "family": "mean_reversion",
+        "frequency": "weekly",
+        "signals": [
+          "reversal_4w"
+        ]
+      },
+      "rsi_reversal": {
+        "family": "mean_reversion",
+        "frequency": "weekly",
+        "signals": [
+          "rsi_reversal"
+        ]
+      }
+    },
+    "smoothing_weeks": [
+      1,
+      2,
+      4
+    ],
+    "top_n": [
+      2,
+      4,
+      6
+    ]
+  },
+  "experiment_count": 288,
+  "family_count": 3,
+  "family_leaders": [
+    {
+      "development_annual_return": 0.06262342425176559,
+      "development_max_drawdown": -0.27065824396546945,
+      "development_selection_score": 0.7837377753559226,
+      "development_sharpe": 0.7258941426124146,
+      "experiment_id": "exp-3aa6e07c0cd53e52",
+      "family": "carry_proxy",
+      "full_annual_return": 0.060045319025388455,
+      "full_annual_turnover": 0.7931582654136415,
+      "full_max_drawdown": -0.27065824396546934,
+      "full_return_correlation_to_frozen_v4": 0.5811311541674359,
+      "full_sharpe": 0.6516827389700346,
+      "fully_invested_pass": true,
+      "oos_2016_2020_annual_return": 0.08145778673588233,
+      "oos_2016_2020_max_drawdown": -0.2483496501722653,
+      "oos_2016_2020_sharpe": 0.6759066903715001,
+      "oos_2021_present_annual_return": 0.04283447521535755,
+      "oos_2021_present_max_drawdown": -0.1731756973623908,
+      "oos_2021_present_sharpe": 0.5423552915380897,
+      "overall_development_rank": 59,
+      "portfolio_method": "score_inverse_volatility",
+      "rebalance_frequency": "monthly",
+      "recipe_name": "distribution_yield",
+      "saved_candidate_status": "provisional_new_family",
+      "signals": "distribution_yield",
+      "smoothing_weeks": 2,
+      "stress_50bps_annual_return": 0.056690490637279156,
+      "stress_50bps_sharpe": 0.6188543737314871,
+      "top_n": 6,
+      "unpriced_exposure_events": 0,
+      "untouched_holdout": false
+    },
+    {
+      "development_annual_return": 0.07063923771964542,
+      "development_max_drawdown": -0.12067845577010872,
+      "development_selection_score": 1.1459519271489431,
+      "development_sharpe": 0.9996142124573238,
+      "experiment_id": "exp-8a27cb8ba5a612a7",
+      "family": "defensive",
+      "full_annual_return": 0.07092472400156824,
+      "full_annual_turnover": 3.255772646536412,
+      "full_max_drawdown": -0.2278818022191912,
+      "full_return_correlation_to_frozen_v4": 0.7191828817380427,
+      "full_sharpe": 0.8794378860884586,
+      "fully_invested_pass": true,
+      "oos_2016_2020_annual_return": 0.059141684619207435,
+      "oos_2016_2020_max_drawdown": -0.22788180221919108,
+      "oos_2016_2020_sharpe": 0.596723895678967,
+      "oos_2021_present_annual_return": 0.08844523873901111,
+      "oos_2021_present_max_drawdown": -0.0824049145140503,
+      "oos_2021_present_sharpe": 1.0793968595610628,
+      "overall_development_rank": 1,
+      "portfolio_method": "equal_weight",
+      "rebalance_frequency": "monthly",
+      "recipe_name": "defensive_quality_gated",
+      "saved_candidate_status": "provisional_new_family",
+      "signals": "defensive_quality_gated",
+      "smoothing_weeks": 2,
+      "stress_50bps_annual_return": 0.05707739325431005,
+      "stress_50bps_sharpe": 0.7195870502604655,
+      "top_n": 6,
+      "unpriced_exposure_events": 0,
+      "untouched_holdout": false
+    },
+    {
+      "development_annual_return": 0.08137511490972993,
+      "development_max_drawdown": -0.4534291306758965,
+      "development_selection_score": 0.5786778964513601,
+      "development_sharpe": 0.5338113950487984,
+      "experiment_id": "exp-81ffdbdf4dcdab3c",
+      "family": "mean_reversion",
+      "full_annual_return": 0.0879505377321077,
+      "full_annual_turnover": 12.203374777975133,
+      "full_max_drawdown": -0.4534291306758965,
+      "full_return_correlation_to_frozen_v4": 0.628207238869822,
+      "full_sharpe": 0.6192258989678437,
+      "fully_invested_pass": true,
+      "oos_2016_2020_annual_return": 0.06484732445424624,
+      "oos_2016_2020_max_drawdown": -0.2780751991201553,
+      "oos_2016_2020_sharpe": 0.4881667082806107,
+      "oos_2021_present_annual_return": 0.10233471068093025,
+      "oos_2021_present_max_drawdown": -0.18148062202373294,
+      "oos_2021_present_sharpe": 0.8166946730727507,
+      "overall_development_rank": 128,
+      "portfolio_method": "equal_weight",
+      "rebalance_frequency": "weekly",
+      "recipe_name": "reversal_4w",
+      "saved_candidate_status": "provisional_fragile",
+      "signals": "reversal_4w",
+      "smoothing_weeks": 4,
+      "stress_50bps_annual_return": 0.03613191679361516,
+      "stress_50bps_sharpe": 0.30582065763453,
+      "top_n": 4,
+      "unpriced_exposure_events": 0,
+      "untouched_holdout": false
+    }
+  ],
+  "family_pairwise_correlation": [
+    {
+      "family_left": "trend_v4",
+      "family_right": "defensive",
+      "full_return_correlation": 0.7191828817380427
+    },
+    {
+      "family_left": "trend_v4",
+      "family_right": "carry_proxy",
+      "full_return_correlation": 0.5811311541674359
+    },
+    {
+      "family_left": "trend_v4",
+      "family_right": "mean_reversion",
+      "full_return_correlation": 0.628207238869822
+    },
+    {
+      "family_left": "defensive",
+      "family_right": "carry_proxy",
+      "full_return_correlation": 0.557834592555689
+    },
+    {
+      "family_left": "defensive",
+      "family_right": "mean_reversion",
+      "full_return_correlation": 0.4125251783684987
+    },
+    {
+      "family_left": "carry_proxy",
+      "family_right": "mean_reversion",
+      "full_return_correlation": 0.7432620212530497
+    }
+  ],
+  "generated_at_utc": "2026-08-08T22:31:54.174530+00:00",
+  "limitations": [
+    "All results are retrospective and the 2026 design can see the complete historical sample.",
+    "The current ETF universe is not survivorship-safe.",
+    "Cash-distribution events are ordered by event date but came from one current vintage, not archived historical vintages.",
+    "Weekly mean reversion has materially higher turnover and must survive cost stress before promotion.",
+    "Selecting family leaders from 288 new configurations creates a new multiple-testing obligation."
+  ],
+  "market_data_through": "2026-08-07",
+  "multi_family_ensemble_diagnostics": [
+    {
+      "coefficients": "{\"trend_v4\": 1.0}",
+      "ensemble_name": "trend_v4",
+      "full_annual_return": 0.09906662555414081,
+      "full_annual_volatility": 0.13814791356749975,
+      "full_average_annual_turnover": 1.9280639431616342,
+      "full_best_week": 0.10727205468812079,
+      "full_calmar": 0.37740799512374684,
+      "full_cvar_5_weekly": -0.04558092869113451,
+      "full_max_drawdown": -0.26249212214398965,
+      "full_max_drawdown_duration_weeks": 123,
+      "full_observations": 1126,
+      "full_positive_week_share": 0.5710479573712256,
+      "full_sharpe_zero_rf": 0.7537866497668546,
+      "full_sortino_zero_target": 1.0868784491599002,
+      "full_total_cost": 0.04175,
+      "full_total_return": 6.732640542764974,
+      "full_worst_week": -0.10315990044333487,
+      "full_years": 21.653846153846153,
+      "fully_invested_pass": true,
+      "recent_annual_return": 0.13683997181773844,
+      "recent_annual_volatility": 0.13327225853911753,
+      "recent_average_annual_turnover": 1.9522184300341299,
+      "recent_best_week": 0.06341154321915549,
+      "recent_calmar": 1.0265789238516183,
+      "recent_cvar_5_weekly": -0.03641543367756187,
+      "recent_max_drawdown": -0.13329707890780473,
+      "recent_max_drawdown_duration_weeks": 86,
+      "recent_observations": 293,
+      "recent_positive_week_share": 0.5733788395904437,
+      "recent_sharpe_zero_rf": 1.0298246524383257,
+      "recent_sortino_zero_target": 1.620512783933239,
+      "recent_total_cost": 0.011,
+      "recent_total_return": 1.0598914308065415,
+      "recent_worst_week": -0.06035900243843781,
+      "recent_years": 5.634615384615385,
+      "unpriced_exposure_events": 0,
+      "untouched_holdout": false
+    },
+    {
+      "coefficients": "{\"defensive\": 0.5, \"trend_v4\": 0.5}",
+      "ensemble_name": "trend_plus_defensive",
+      "full_annual_return": 0.08635543035627169,
+      "full_annual_volatility": 0.10250908903912789,
+      "full_average_annual_turnover": 2.447602131438721,
+      "full_best_week": 0.10521449842640342,
+      "full_calmar": 0.3554810296010536,
+      "full_cvar_5_weekly": -0.03365303475248127,
+      "full_max_drawdown": -0.24292556610738403,
+      "full_max_drawdown_duration_weeks": 109,
+      "full_observations": 1126,
+      "full_positive_week_share": 0.5737122557726465,
+      "full_sharpe_zero_rf": 0.8602162382164154,
+      "full_sortino_zero_target": 1.229063323304612,
+      "full_total_cost": 0.053,
+      "full_total_return": 5.010780185514377,
+      "full_worst_week": -0.10803684685289174,
+      "full_years": 21.653846153846153,
+      "fully_invested_pass": true,
+      "recent_annual_return": 0.11359568800472153,
+      "recent_annual_volatility": 0.1014739706518275,
+      "recent_average_annual_turnover": 2.8469852104664395,
+      "recent_best_week": 0.04707928750234556,
+      "recent_calmar": 1.1460019523857397,
+      "recent_cvar_5_weekly": -0.029334553989386274,
+      "recent_max_drawdown": -0.09912346813043271,
+      "recent_max_drawdown_duration_weeks": 66,
+      "recent_observations": 293,
+      "recent_positive_week_share": 0.5802047781569966,
+      "recent_sharpe_zero_rf": 1.1120047932375585,
+      "recent_sortino_zero_target": 1.7228610340125985,
+      "recent_total_cost": 0.016041666666666666,
+      "recent_total_return": 0.8335456169085169,
+      "recent_worst_week": -0.05903084149747921,
+      "recent_years": 5.634615384615385,
+      "unpriced_exposure_events": 0,
+      "untouched_holdout": false
+    },
+    {
+      "coefficients": "{\"carry_proxy\": 0.3333333333333333, \"defensive\": 0.3333333333333333, \"trend_v4\": 0.3333333333333333}",
+      "ensemble_name": "trend_defensive_carry",
+      "full_annual_return": 0.07852164459724209,
+      "full_annual_volatility": 0.09174450544236136,
+      "full_average_annual_turnover": 1.8179932606591913,
+      "full_best_week": 0.10942145474999194,
+      "full_calmar": 0.3212234104019916,
+      "full_cvar_5_weekly": -0.028977149620489723,
+      "full_max_drawdown": -0.2444455853917279,
+      "full_max_drawdown_duration_weeks": 86,
+      "full_observations": 1126,
+      "full_positive_week_share": 0.5976909413854352,
+      "full_sharpe_zero_rf": 0.870677413351504,
+      "full_sortino_zero_target": 1.2447382791859647,
+      "full_total_cost": 0.039366546375043256,
+      "full_total_return": 4.138912205799755,
+      "full_worst_week": -0.11737476678013772,
+      "full_years": 21.653846153846153,
+      "fully_invested_pass": true,
+      "recent_annual_return": 0.09043328774243231,
+      "recent_annual_volatility": 0.08736456375006742,
+      "recent_average_annual_turnover": 2.0616900863441705,
+      "recent_best_week": 0.035729335380125314,
+      "recent_calmar": 0.811619502915603,
+      "recent_cvar_5_weekly": -0.02409006146129343,
+      "recent_max_drawdown": -0.11142325611640225,
+      "recent_max_drawdown_duration_weeks": 86,
+      "recent_observations": 293,
+      "recent_positive_week_share": 0.5733788395904437,
+      "recent_sharpe_zero_rf": 1.0353288444979738,
+      "recent_sortino_zero_target": 1.5972131144658228,
+      "recent_total_cost": 0.011616830678823884,
+      "recent_total_return": 0.6287576616888315,
+      "recent_worst_week": -0.044189075175876044,
+      "recent_years": 5.634615384615385,
+      "unpriced_exposure_events": 0,
+      "untouched_holdout": false
+    },
+    {
+      "coefficients": "{\"carry_proxy\": 0.25, \"defensive\": 0.25, \"mean_reversion\": 0.25, \"trend_v4\": 0.25}",
+      "ensemble_name": "all_four_families",
+      "full_annual_return": 0.08237860660279983,
+      "full_annual_volatility": 0.1000326163424114,
+      "full_average_annual_turnover": 4.2183321434908905,
+      "full_best_week": 0.11149278884714114,
+      "full_calmar": 0.3259008803717852,
+      "full_cvar_5_weekly": -0.03183852768839176,
+      "full_max_drawdown": -0.2527719670742311,
+      "full_max_drawdown_duration_weeks": 74,
+      "full_observations": 1126,
+      "full_positive_week_share": 0.5994671403197158,
+      "full_sharpe_zero_rf": 0.8422240754568091,
+      "full_sortino_zero_target": 1.2125644835097298,
+      "full_total_cost": 0.09134311526097581,
+      "full_total_return": 4.551903421501131,
+      "full_worst_week": -0.11349863663383204,
+      "full_years": 21.653846153846153,
+      "fully_invested_pass": true,
+      "recent_annual_return": 0.09451445263350955,
+      "recent_annual_volatility": 0.0910631695635209,
+      "recent_average_annual_turnover": 4.5694222476645905,
+      "recent_best_week": 0.04422525626616545,
+      "recent_calmar": 0.8286311760231279,
+      "recent_cvar_5_weekly": -0.025035462555500442,
+      "recent_max_drawdown": -0.11406094215174878,
+      "recent_max_drawdown_duration_weeks": 51,
+      "recent_observations": 293,
+      "recent_positive_week_share": 0.5836177474402731,
+      "recent_sharpe_zero_rf": 1.0379732959381212,
+      "recent_sortino_zero_target": 1.6063642630499844,
+      "recent_total_cost": 0.025746936895494715,
+      "recent_total_return": 0.6634052614806663,
+      "recent_worst_week": -0.05175975404566494,
+      "recent_years": 5.634615384615385,
+      "unpriced_exposure_events": 0,
+      "untouched_holdout": false
+    }
+  ],
+  "preparation": {
+    "completed_weeks": 1127,
+    "friday_label_uses_last_available_observation": true,
+    "missing_cells": 1365,
+    "source_daily_rows_selected": 38080,
+    "symbols": 35,
+    "weekly_end": "2026-08-07",
+    "weekly_start": "2005-01-07"
+  },
+  "reference_patterns": [
+    {
+      "code_copied": false,
+      "pattern_used": "treat RSI, pair, and other mean-reversion rules as hypotheses requiring common backtest controls",
+      "project": "quant-trading",
+      "url": "https://github.com/je-suis-tm/quant-trading"
+    },
+    {
+      "code_copied": false,
+      "pattern_used": "expose technical signals such as RSI through a repeatable parameter-testing interface",
+      "project": "PythonTradingFramework",
+      "url": "https://github.com/JustinGuese/python_tradingbot_framework"
+    },
+    {
+      "code_copied": false,
+      "pattern_used": "keep forecast logic, position sizing, and portfolio aggregation separate",
+      "project": "pysystemtrade",
+      "url": "https://github.com/robcarver17/pysystemtrade"
+    }
+  ],
+  "signal_audit": {
+    "distribution_events_used": 3793,
+    "distribution_history_knowledge_limitation": "event dates are used causally, but the free Yahoo action history was acquired as one current vintage and is not a historically archived point-in-time feed",
+    "signal_lag_weeks": 1
+  },
+  "source_snapshot_id": "20260808T212827Z-de103c2e063d6c4a"
+}

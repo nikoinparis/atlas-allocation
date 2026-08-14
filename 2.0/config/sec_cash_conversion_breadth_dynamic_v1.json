@@ -1,0 +1,11 @@
+{
+  "experiment": "sec_cash_conversion_breadth_dynamic_v1",
+  "breadths": [10, 15, 20, 30],
+  "cap_multiples": [1.0, 1.5, null],
+  "lookbacks": [11, 13],
+  "active_allocations": [0.4, 0.5],
+  "cost_bps": [50, 100, 200],
+  "scenarios": ["base", "adverse"],
+  "research_only": true,
+  "live_trading_enabled": false
+}

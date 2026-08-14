@@ -1,0 +1,24 @@
+Sprint 0.5 — Equivalence Verification Report
+======================================================================
+
+[PASS] prices_file_exists: 1110 rows, 35 cols
+[PASS] date_index_weekly_fridays: all 1110 dates are Fridays
+[PASS] date_index_start: first date: 2005-01-07, expected 2005-01-07
+[PASS] date_index_end: last date: 2026-04-10
+[PASS] return_calculation_no_nan: NaN count after pct_change: 0
+[PASS] return_calculation_range_plausible: max |weekly return|: 0.3895 (ETF: USO)
+[PASS] holdout_dev_end: last dev date: 2024-04-12, expected 2024-04-12
+[PASS] holdout_start: first holdout date: 2024-04-19, expected 2024-04-19
+[PASS] holdout_weeks: holdout weeks: 104, expected ~104
+[PASS] regime_score_exists: 1110 rows
+[PASS] regime_score_columns: all required cols present
+[PASS] market_state_history_exists: 1110 rows
+[PASS] market_state_values: 5 production states confirmed
+[PASS] v3_macro_states_exists: 1110 rows
+[PASS] v3_macro_states_columns: required cols present; fc_benign derived from financial_conditions_proxy < 0
+[PASS] v3_fc_benign_derivable: fc_benign = (financial_conditions_proxy < 0); 661 benign weeks
+[PASS] execution_delay_forward_shift: last row of forward returns is NaN as expected (shift(-1) correct)
+[PASS] cost_convention_10bps: cost_per_unit_turnover: 0.001, expected 0.001
+
+TOTAL: 18 PASS / 0 FAIL / 18 checks
+STATUS: ALL PASSED

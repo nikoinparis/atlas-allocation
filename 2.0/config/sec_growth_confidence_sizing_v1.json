@@ -1,0 +1,21 @@
+{
+  "experiment": "sec_growth_confidence_sizing_v1",
+  "incumbent": "frozen return_first_60_40_blend_v1 monthly weights",
+  "growth_sleeve": "frozen sec_growth_survivorship_retest_v1 base and adverse paths",
+  "variants": [
+    {"name": "fixed_20", "lookback_weeks": 26, "low_allocation": 0.20, "high_allocation": 0.20, "dual_confirmation": false},
+    {"name": "relative_13w_10_30", "lookback_weeks": 13, "low_allocation": 0.10, "high_allocation": 0.30, "dual_confirmation": false},
+    {"name": "relative_13w_10_40", "lookback_weeks": 13, "low_allocation": 0.10, "high_allocation": 0.40, "dual_confirmation": false},
+    {"name": "relative_26w_10_40", "lookback_weeks": 26, "low_allocation": 0.10, "high_allocation": 0.40, "dual_confirmation": false},
+    {"name": "dual_13_26w_20_40", "lookback_weeks": 26, "low_allocation": 0.20, "high_allocation": 0.40, "dual_confirmation": true},
+    {"name": "dual_13_26w_20_50", "lookback_weeks": 26, "low_allocation": 0.20, "high_allocation": 0.50, "dual_confirmation": true}
+  ],
+  "signal": "At date t, use only returns labeled before t. High allocation requires positive growth-sleeve momentum and outperformance versus the ETF incumbent over the configured lookback; dual variants require both 13- and 26-week confirmation.",
+  "cost_bps": [50, 100, 200],
+  "primary_cost_bps": 50,
+  "missing_company_scenarios": ["base", "adverse"],
+  "minimum_history_weeks": 26,
+  "selection_rule": "Report every predeclared variant and preserve the fixed 20% control. Observed results cannot authorize promotion.",
+  "research_only": true,
+  "live_trading_enabled": false
+}

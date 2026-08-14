@@ -1,0 +1,83 @@
+{
+  "config": {
+    "dte_bucket": "45-75",
+    "structure": "spread_3_7_10_20",
+    "ablation_level": 5,
+    "premium_budget": 0.01,
+    "underlyings": [
+      "SPY",
+      "QQQ",
+      "IWM",
+      "TLT",
+      "GLD"
+    ]
+  },
+  "cost_model": {
+    "iv_markup": 1.05,
+    "entry_slippage_pct": 0.05,
+    "half_spread_proxy": 0.05,
+    "hard_cap_total_premium": 0.03
+  },
+  "verdict": "REJECT",
+  "gates": {
+    "sharpe_improves": {
+      "pass": false,
+      "detail": "overlay 0.830 vs baseline 0.948"
+    },
+    "drawdown_ok": {
+      "pass": false,
+      "detail": "overlay -0.189 vs baseline -0.116 (\u0394 -0.0726)"
+    },
+    "cvar_ok": {
+      "pass": false,
+      "detail": "overlay -0.0295 vs baseline -0.0249 (\u0394 -0.0045)"
+    },
+    "not_one_trade": {
+      "pass": false,
+      "detail": "Sharpe ex-best 0.776 vs baseline 0.948"
+    },
+    "sharpe_ex_best_acceptable": {
+      "pass": true,
+      "detail": "Sharpe ex-best 0.776 vs full overlay 0.830 (>=80% retained)"
+    },
+    "activation_reasonable": {
+      "pass": true,
+      "detail": "1.26 activations/yr (want 0.3-12.0)"
+    },
+    "walk_forward_ok": {
+      "pass": false,
+      "detail": "train 0.692/0.817; holdout 2.322/2.179"
+    },
+    "costs_included": {
+      "pass": true,
+      "detail": "entry slippage 5% + half-spread proxy 5% + IV markup x1.05"
+    },
+    "no_lookahead": {
+      "pass": true,
+      "detail": "all signals lagged 1wk (verifier re-checks shift relationship)"
+    },
+    "proxy_documented": {
+      "pass": true,
+      "detail": "PROXY mode labelled approximate in report and outputs"
+    },
+    "not_overfit_selection": {
+      "pass": true,
+      "detail": "MAIN config pre-registered (not chosen by maximizing the sweep)"
+    }
+  },
+  "main_summary": {
+    "n_trades": 27,
+    "activations_per_year": 1.2648648648648648,
+    "premium_spent_per_year": 0.012648648648648649,
+    "avg_dte": 60.0,
+    "avg_moneyness": 0.050000000000000044,
+    "full_sharpe": 0.8295072828692138,
+    "sharpe_ex_best": 0.776386057396712
+  },
+  "baseline_full_sharpe": 0.9482556438408204,
+  "v1_full_sharpe": 0.5767680847480668,
+  "best_dte": null,
+  "best_structure": null,
+  "mode": "historical_proxy_black_scholes",
+  "proxy_warning": "APPROXIMATE - not production-grade; no real option-chain data."
+}

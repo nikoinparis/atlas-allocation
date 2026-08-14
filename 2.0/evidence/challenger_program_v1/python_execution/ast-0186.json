@@ -1,0 +1,17 @@
+{
+  "entry_id": "ast-0186",
+  "head_commit": "384e18acc17c982ac5a4362187b348bdbdb07b98",
+  "host_mounts": false,
+  "image": "docker.io/library/python:3.12-bookworm",
+  "install_exit_code": 137,
+  "install_log": "Obtaining file:///work/repository\n  Installing build dependencies: started\n  Installing build dependencies: finished with status 'done'\n  Checking if build backend supports build_editable: started\n  Checking if build backend supports build_editable: finished with status 'done'\n  Getting requirements to build editable: started",
+  "install_seconds": 26,
+  "name": "Deepdow",
+  "repository": "jankrepl/deepdow",
+  "started_at": "2026-08-09T01:49:08.294273+00:00",
+  "status": "install_failed",
+  "test_exit_code": -1,
+  "test_log": "",
+  "test_network": "disabled_during_tests",
+  "test_seconds": 0
+}

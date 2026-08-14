@@ -1,0 +1,27 @@
+{
+  "all_validation_checks_passed": true,
+  "best_candidate": "candidate_negative_relative__lb26__w0.5__50bps",
+  "best_candidate_beats_control_full_and_recent": false,
+  "best_full_50bps_cagr": 0.4028930046472714,
+  "best_trailing_1y_50bps_cagr": 1.0510082013109483,
+  "best_trailing_1y_50bps_drawdown": -0.10076752452473337,
+  "best_trailing_1y_50bps_sharpe": 2.691874564272,
+  "control_full_cagr": 0.4093476771616662,
+  "control_trailing_1y_cagr": 1.0510082013109483,
+  "created_at_utc": "2026-08-14T21:41:43.779826+00:00",
+  "decision": "do_not_add_to_current_leader",
+  "experiment": "sec_split_normalized_valuation_overlay_v1",
+  "full_cagr_delta": -0.006454672514394799,
+  "live_trading_enabled": false,
+  "recent_cagr_delta": 0.0,
+  "strategy_replacement_authorized": false,
+  "survivor_pilot_warning": true,
+  "tested_paths": 320,
+  "validation_checks": {
+    "all_results_finite": true,
+    "control_recomputed_from_frozen_path": true,
+    "cost_stress_included": true,
+    "signal_shifted_before_application": true,
+    "weights_bounded": true
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "data_semantics": "Yahoo-derived daily adjusted close snapshot inherited read-only from Portfolio Optimizer 1.0",
+  "first_date": "2006-01-03",
+  "fixture": "evidence/historical_validation/fixtures/equity_daily_adjusted_close.csv",
+  "fixture_sha256": "d9a0a0a7f18985e035c4db81c6a5ac61f572cb14578896ec1d2fb87c2cabce27",
+  "generated_at": "2026-08-08T19:24:25.425469+00:00",
+  "known_limits": [
+    "Adjusted close has no open/high/low or quote information and cannot validate intraday execution.",
+    "The present-day three-ETF selection is not point-in-time universe membership and is subject to selection/survivorship bias.",
+    "The upstream vendor snapshot can be revised; hashes pin exactly what this run used."
+  ],
+  "last_date": "2026-04-14",
+  "metadata_source": "1.0/data/01_data_hub/yahoo_metadata_snapshot.csv",
+  "metadata_source_sha256": "4c160a7d18855e79144f57c95b2e148361ba645d2a392707a1cd473ce134f655",
+  "rows": 5101,
+  "source": "1.0/data/01_data_hub/daily_prices.csv",
+  "source_metadata": {
+    "GLD": {
+      "asset_class": "Commodities",
+      "currency": "USD",
+      "description": "Gold",
+      "long_name": "SPDR Gold Shares",
+      "pull_timestamp_utc": "2026-04-15T08:19:39.896358+00:00"
+    },
+    "SPY": {
+      "asset_class": "Equities",
+      "currency": "USD",
+      "description": "US Large Cap (S&P 500)",
+      "long_name": "State Street SPDR S&P 500 ETF Trust",
+      "pull_timestamp_utc": "2026-04-15T08:19:22.939776+00:00"
+    },
+    "TLT": {
+      "asset_class": "Bonds",
+      "currency": "USD",
+      "description": "US 20+ Year Treasuries",
+      "long_name": "iShares 20+ Year Treasury Bond ETF",
+      "pull_timestamp_utc": "2026-04-15T08:19:32.717573+00:00"
+    }
+  },
+  "source_sha256": "3488ec36bdb7c2b7953923954d269a71bb638cb99a13c040ef45b6f7d36ec877",
+  "symbols": [
+    "SPY",
+    "TLT",
+    "GLD"
+  ]
+}

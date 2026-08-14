@@ -1,0 +1,42 @@
+{
+  "catalog_entry": "ast-0076",
+  "repository": "initial-d/ml-quant-trading",
+  "url": "https://github.com/initial-d/ml-quant-trading",
+  "commit": "867e8dfe628b1d0ea2af987ec6f74c32c645f63e",
+  "commit_date": "2026-08-10T16:40:40+08:00",
+  "version": "0.2.6",
+  "license": "MIT",
+  "source_files_sha256": {
+    "LICENSE": "f76b917ed4eae0892273e108ac96f51766764ef14ee5fbf4a8b6869c3b910435",
+    "README.md": "f5e3cb152642908638b1a3c4412e3cbd1d029e38aecd9e926ddb471b9de929c5",
+    "docs/reality_check.md": "9dacc61d517e5b558aab9623f6679038d6790769677ccd142d85b4ba91b8a05e",
+    "docs/backtest_assumptions.md": "562570141f94e066ee99d13358758f6eb64ae1a73d1d7d75681d805254327a23",
+    "docs/article_en_six_pipeline_invariants.md": "1de54fa2a25e5803cde77858e80394cb71d6dd2a014dca9b7e90f3c056bb7b8e",
+    "scripts/etf_factor_ic.py": "1cce2d3a4153b9493e25b49148a76f0d112f32853362bc684944ec4355eb8885"
+  },
+  "capabilities": {
+    "mask_aware_factors": 213,
+    "factor_families": ["best", "stock", "extra", "add", "change", "original", "old", "better", "market", "alpha101"],
+    "models": "PyTorch cross-sectional prediction pipeline with baseline training support",
+    "portfolio": "vectorized portfolio construction and backtesting",
+    "data_paths": ["yfinance", "AkShare", "Baostock", "synthetic", "user supplied panel"]
+  },
+  "useful_components": [
+    "mask-aware factor primitives and explicit tradability plumbing",
+    "a broad registered factor catalog that can be evaluated without copying formulas",
+    "lagged weights and explicit transaction-cost accounting",
+    "public ETF rank-IC reproduction with six source-preselected factors",
+    "documented research limitations and reproducibility checks"
+  ],
+  "limitations": [
+    "The repository explicitly says it is research infrastructure, not a production-ready live trading system.",
+    "The full paper-style A-share evidence relies on restricted Wind or Tushare data that is unavailable here.",
+    "Its synthetic demonstration is not evidence of alpha and produced negative performance in our smoke run.",
+    "Public ETF validation uses a small survivor universe and does not model delistings or point-in-time membership.",
+    "Several factors depend on VWAP or amount; our free snapshot supplies neither true field.",
+    "Cross-sectional testing over hundreds of factors creates severe multiple-testing risk unless the candidate family is fixed before results."
+  ],
+  "decision": "qualified_for_sandbox_component_research",
+  "decision_scope": "Use the pinned implementation in an isolated container. First test only the six factors preselected by the repository's public ETF script; audit all 213 mechanically but do not mine them for winners.",
+  "profitability_status": "unproven"
+}

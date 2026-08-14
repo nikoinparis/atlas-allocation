@@ -1,0 +1,208 @@
+{
+  "catalog_repository": "https://github.com/wangzhe3224/awesome-systematic-trading",
+  "source_revision": "b4d8ec3d47813de0e87ab9151c23cb0192b9e26d",
+  "generated_at_utc": "2026-08-08T18:03:39.308797+00:00",
+  "entry_count": 344,
+  "unique_primary_url_count": 327,
+  "duplicate_listing_count": 17,
+  "github_primary_entry_count": 286,
+  "entries_by_file": {
+    "Readme.md": 315,
+    "crypto_focus.md": 29
+  },
+  "entries_by_type": {
+    "analytics_or_portfolio_library": 17,
+    "book": 9,
+    "broker_or_venue_adapter": 8,
+    "course": 1,
+    "data_or_storage": 63,
+    "industry_resource": 15,
+    "infrastructure": 21,
+    "library_platform_or_resource": 63,
+    "research_resource": 2,
+    "strategy_or_signal": 25,
+    "trading_or_backtest_system": 107,
+    "tutorial": 2,
+    "visualization": 11
+  },
+  "entries_by_review_batch": {
+    "01_backtest_execution_and_simulation": 41,
+    "02_data_and_storage": 42,
+    "03_portfolio_risk_and_analytics": 17,
+    "04_signals_and_strategies": 22,
+    "05_broker_and_venue_interfaces": 8,
+    "06_ai_ml_and_automation": 28,
+    "07_crypto_defi_and_prediction_markets": 69,
+    "08_infrastructure_libraries_and_visualization": 88,
+    "09_education_research_and_industry_resources": 29
+  },
+  "entries_by_category": {
+    "Awesome Systematic Trading > AI Powered Systematic Trading Systems": 18,
+    "Awesome Systematic Trading > Alpha Collections > Arbitrage (Crypto)": 3,
+    "Awesome Systematic Trading > Alpha Collections > Expression based alpha": 6,
+    "Awesome Systematic Trading > Alpha Collections > General Alpha": 11,
+    "Awesome Systematic Trading > Alpha Collections > General Alpha > ThetaGang": 1,
+    "Awesome Systematic Trading > Alpha Collections > Orderbook": 1,
+    "Awesome Systematic Trading > Alpha Collections > Stock picking": 3,
+    "Awesome Systematic Trading > Analytic tools > Indicators": 9,
+    "Awesome Systematic Trading > Analytic tools > Indicators > TA-Lib": 3,
+    "Awesome Systematic Trading > Analytic tools > Metrics computation": 5,
+    "Awesome Systematic Trading > Analytic tools > Optimization": 7,
+    "Awesome Systematic Trading > Analytic tools > Pricing": 4,
+    "Awesome Systematic Trading > Analytic tools > Pricing > Quantlib": 2,
+    "Awesome Systematic Trading > Analytic tools > Risk": 4,
+    "Awesome Systematic Trading > Analytic tools > TimeSeries Analysis": 4,
+    "Awesome Systematic Trading > Backtest + live trading > Crypto currency focus": 16,
+    "Awesome Systematic Trading > Backtest + live trading > General purpose": 41,
+    "Awesome Systematic Trading > Backtest + live trading > Machine Learning / Reinforcement Learning Focused": 3,
+    "Awesome Systematic Trading > Basic Components > Alternative libraries > Numpy Alternatives": 2,
+    "Awesome Systematic Trading > Basic Components > Alternative libraries > Pandas Alternatives": 4,
+    "Awesome Systematic Trading > Basic Components > Computation": 13,
+    "Awesome Systematic Trading > Basic Components > Fundamental libraries": 4,
+    "Awesome Systematic Trading > Basic Components > Fundamental libraries > DAG": 2,
+    "Awesome Systematic Trading > Basic Components > Fundamental libraries > DataFrame": 3,
+    "Awesome Systematic Trading > Basic Components > Fundamental libraries > Machine Learning": 7,
+    "Awesome Systematic Trading > Basic Components > Fundamental libraries > Modelling": 4,
+    "Awesome Systematic Trading > Basic Components > Python Performance Booster": 10,
+    "Awesome Systematic Trading > Basic Components > Python Profilers": 3,
+    "Awesome Systematic Trading > Broker APIs": 8,
+    "Awesome Systematic Trading > Data Source": 3,
+    "Awesome Systematic Trading > Data Source > Alternative": 7,
+    "Awesome Systematic Trading > Data Source > Crypto": 15,
+    "Awesome Systematic Trading > Data Source > Prediction Markets": 6,
+    "Awesome Systematic Trading > Data Source > Stocks and General": 23,
+    "Awesome Systematic Trading > Databases": 9,
+    "Awesome Systematic Trading > Message Queues": 3,
+    "Awesome Systematic Trading > Quant Shops Code and Blog > DE Show": 1,
+    "Awesome Systematic Trading > Quant Shops Code and Blog > Hudson River Trading - HRT": 1,
+    "Awesome Systematic Trading > Quant Shops Code and Blog > JaneStreet": 4,
+    "Awesome Systematic Trading > Quant Shops Code and Blog > Man AHL": 3,
+    "Awesome Systematic Trading > Quant Shops Code and Blog > Two Sigma": 2,
+    "Awesome Systematic Trading > Relevant Projects": 8,
+    "Awesome Systematic Trading > Resources > Blogs": 4,
+    "Awesome Systematic Trading > Resources > Books": 8,
+    "Awesome Systematic Trading > Resources > Books > Building Low Latency Applications with C++": 1,
+    "Awesome Systematic Trading > Resources > Courses": 1,
+    "Awesome Systematic Trading > Resources > Research": 2,
+    "Awesome Systematic Trading > Resources > Tutorials": 2,
+    "Awesome Systematic Trading > Visualization": 11,
+    "Awesome Systematic Trading for Crypto + DeFi": 29
+  },
+  "top_hosts": {
+    "github.com": 286,
+    "polyminds.netlify.app": 3,
+    "congressionalstockbrain.com": 2,
+    "microversesystems.com": 2,
+    "man.com": 2,
+    "invictrade.com": 1,
+    "stockkit.net": 1,
+    "godzilla.dev": 1,
+    "reddit.com": 1,
+    "fireducks-dev.github.io": 1,
+    "ta-lib.org": 1,
+    "chartscout.io": 1,
+    "quantlib.org": 1,
+    "agents.systemr.ai": 1,
+    "quantdojo.ai": 1,
+    "klinepic.com": 1,
+    "altdataatlas.com": 1,
+    "huggingface.co": 1,
+    "financialdata.net": 1,
+    "stockainsights.com": 1
+  },
+  "flag_counts": {
+    "catalog_marks_no_activity": 5,
+    "claims_live_trading": 19,
+    "description_unclear": 1,
+    "duplicate_listing": 17,
+    "mentions_ftx": 3,
+    "performance_claim_requires_verification": 3
+  },
+  "source_files": {
+    "Readme.md": {
+      "sha256": "25dde9e57d13a49bdbcd323f09c4dacf11b317ed0cda356ca5a333afa5250ae9",
+      "snapshot": "source_snapshots/b4d8ec3d47813de0e87ab9151c23cb0192b9e26d/Readme.md"
+    },
+    "crypto_focus.md": {
+      "sha256": "cc75aec473fcebb6ab82f14d78fcf8daf9f398069fd952d5deb7f7ccacc2faf7",
+      "snapshot": "source_snapshots/b4d8ec3d47813de0e87ab9151c23cb0192b9e26d/crypto_focus.md"
+    }
+  },
+  "coverage_audit": {
+    "Readme.md": {
+      "scoped_bullet_count": 330,
+      "linked_bullet_count": 315,
+      "supplemental_link_count": 20,
+      "unlinked_bullet_count": 15,
+      "unlinked_bullets": [
+        {
+          "source_line": 243,
+          "text": "Modelling"
+        },
+        {
+          "source_line": 248,
+          "text": "DataFrame"
+        },
+        {
+          "source_line": 252,
+          "text": "Machine Learning"
+        },
+        {
+          "source_line": 260,
+          "text": "DAG"
+        },
+        {
+          "source_line": 482,
+          "text": "More is coming... (PR welcome)"
+        },
+        {
+          "source_line": 486,
+          "text": "**JaneStreet**"
+        },
+        {
+          "source_line": 491,
+          "text": "Tech stack: Ocaml, C, F#"
+        },
+        {
+          "source_line": 492,
+          "text": "**Man AHL**"
+        },
+        {
+          "source_line": 496,
+          "text": "Tech stack: Python, JavaScript, Java, C, Go"
+        },
+        {
+          "source_line": 497,
+          "text": "**DE Show**"
+        },
+        {
+          "source_line": 499,
+          "text": "Tech stack: Python, TypeScript, JavaScript, Rust, Nix"
+        },
+        {
+          "source_line": 500,
+          "text": "**Two Sigma**"
+        },
+        {
+          "source_line": 503,
+          "text": "Tech stack: Python, Java, C, Clojure, Rust"
+        },
+        {
+          "source_line": 504,
+          "text": "**Hudson River Trading - HRT**"
+        },
+        {
+          "source_line": 541,
+          "text": "More is coming... (PR welcome)"
+        }
+      ]
+    },
+    "crypto_focus.md": {
+      "scoped_bullet_count": 29,
+      "linked_bullet_count": 29,
+      "supplemental_link_count": 1,
+      "unlinked_bullet_count": 0,
+      "unlinked_bullets": []
+    }
+  }
+}

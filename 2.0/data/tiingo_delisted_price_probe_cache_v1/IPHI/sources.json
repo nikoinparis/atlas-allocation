@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 737,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T05:58:04.159571+00:00",
+    "sha256": "fa552877b828c8e74e7be0af3577ea2827738f656de4f4009055ad1d702484d7",
+    "url": "https://api.tiingo.com/tiingo/daily/IPHI"
+  },
+  {
+    "bytes": 498452,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T05:58:06.524926+00:00",
+    "sha256": "9651f1933404758080a9033fb0794a5205e89370ca3062ef14eabc19adb55dc4",
+    "url": "https://api.tiingo.com/tiingo/daily/IPHI/prices?startDate=2012-04-01&endDate=2022-04-11&resampleFreq=daily"
+  }
+]

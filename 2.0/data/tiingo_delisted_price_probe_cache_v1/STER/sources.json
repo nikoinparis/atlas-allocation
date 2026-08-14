@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 165,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T00:59:55.506606+00:00",
+    "sha256": "87a720093c4d783d6009e7107d60dde791afe84db34383bf00bc68c9c589768d",
+    "url": "https://api.tiingo.com/tiingo/daily/STER"
+  },
+  {
+    "bytes": 87208,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T00:59:56.992664+00:00",
+    "sha256": "564169b0ecb85d92e79d2e2bb0951c820b9345ac0747dec59ca67ab88903bec8",
+    "url": "https://api.tiingo.com/tiingo/daily/STER/prices?startDate=2023-04-01&endDate=2025-10-11&resampleFreq=daily"
+  }
+]

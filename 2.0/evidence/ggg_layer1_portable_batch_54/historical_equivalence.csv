@@ -1,0 +1,11 @@
+input,expected_file,expected_column,maximum_absolute_difference,missingness_differences,tolerance,equivalence_pass
+xsmom_global,signal_xsmom.csv,xsmom_score_tradable,1.1102230246251565e-16,0,1e-10,True
+xsmom_raw_return_52_4w,signal_xsmom.csv,xsmom_raw_return_52_4w,7.494005416219807e-16,0,1e-10,True
+multi_mom_invvol,signal_multi_horizon_mom.csv,multi_mom_invvol_score_tradable,1.1102230246251565e-16,0,1e-10,True
+residual_momentum,signal_residual_momentum.csv,residual_mom_score_tradable,1.1102230246251565e-16,0,1e-10,True
+reversal_4w_global,signal_reversal.csv,reversal_4w_score_tradable,1.1102230246251565e-16,0,1e-10,True
+quality_proxy,signal_quality.csv,quality_score_tradable,1.1102230246251565e-16,0,1e-10,True
+value_proxy,signal_value.csv,value_score_tradable,1.1102230246251565e-16,0,1e-10,True
+bab_proxy,signal_bab.csv,bab_score_tradable,1.1102230246251565e-16,0,1e-10,True
+carry_proxy,signal_carry.csv,carry_score_tradable,1.1102230246251565e-16,0,1e-10,True
+regime_features,regime_features.csv,all_common_columns,5.062616992290714e-14,0,1e-10,True

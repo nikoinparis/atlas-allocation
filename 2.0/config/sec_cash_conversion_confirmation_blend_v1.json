@@ -1,0 +1,12 @@
+{
+  "experiment": "sec_cash_conversion_confirmation_blend_v1",
+  "frozen_family": "cash_conversion",
+  "leave_one_out_treatment": "replace every occurrence of excluded company with cash without redistributing its intended weight",
+  "leader": "confidence_10_40__cap_1.50x",
+  "independent_sleeve_weights": [0.0, 0.05, 0.10, 0.15, 0.20],
+  "capital_reset": "quarterly on SEC fundamental effective dates",
+  "cost_bps": [50, 100, 200],
+  "scenarios": ["base", "adverse"],
+  "research_only": true,
+  "live_trading_enabled": false
+}

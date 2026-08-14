@@ -1,0 +1,36 @@
+{
+  "first_run_sha256": {
+    "report.md": "27fe3c2e9a3444676d9634857aa6301be8911c469600314fd5593966fed10422",
+    "scale_normalized_blend_50bps.csv": "3796713373edea5597f00fbcf0fd0846da9eb282110e0776075547b11532581b",
+    "scale_normalized_daily_50bps.csv": "33fd40dd3bf358c83923cb28b751fb520360b57237332aad203468cfc24f73b7",
+    "scale_normalized_weekly_50bps.csv": "3eaffde061ea67265e0a26548810f4dee86dd18eb897f5d1c408d33285c12baf",
+    "scoreboard.csv": "3c50b85fdb400b15e77b4af1cb2b5bb1bea5cfc98f75fc7419e89bfa2c654511",
+    "signal_audit.csv": "2d34d7cb5b249393922cff16320732404e6b85269f6fadaeb9ba76cdd398ae9f",
+    "source_literal_fx_units_blend_50bps.csv": "3796713373edea5597f00fbcf0fd0846da9eb282110e0776075547b11532581b",
+    "source_literal_fx_units_daily_50bps.csv": "af9e4f830ec075f5879d4cc72f58d393c9a78b6bf833ac6f67e8c9b4cad8f8c2",
+    "source_literal_fx_units_weekly_50bps.csv": "3eaffde061ea67265e0a26548810f4dee86dd18eb897f5d1c408d33285c12baf"
+  },
+  "identical": true,
+  "projection_files": [
+    "report.md",
+    "scale_normalized_blend_50bps.csv",
+    "scale_normalized_daily_50bps.csv",
+    "scale_normalized_weekly_50bps.csv",
+    "scoreboard.csv",
+    "signal_audit.csv",
+    "source_literal_fx_units_blend_50bps.csv",
+    "source_literal_fx_units_daily_50bps.csv",
+    "source_literal_fx_units_weekly_50bps.csv"
+  ],
+  "second_run_sha256": {
+    "report.md": "27fe3c2e9a3444676d9634857aa6301be8911c469600314fd5593966fed10422",
+    "scale_normalized_blend_50bps.csv": "3796713373edea5597f00fbcf0fd0846da9eb282110e0776075547b11532581b",
+    "scale_normalized_daily_50bps.csv": "33fd40dd3bf358c83923cb28b751fb520360b57237332aad203468cfc24f73b7",
+    "scale_normalized_weekly_50bps.csv": "3eaffde061ea67265e0a26548810f4dee86dd18eb897f5d1c408d33285c12baf",
+    "scoreboard.csv": "3c50b85fdb400b15e77b4af1cb2b5bb1bea5cfc98f75fc7419e89bfa2c654511",
+    "signal_audit.csv": "2d34d7cb5b249393922cff16320732404e6b85269f6fadaeb9ba76cdd398ae9f",
+    "source_literal_fx_units_blend_50bps.csv": "3796713373edea5597f00fbcf0fd0846da9eb282110e0776075547b11532581b",
+    "source_literal_fx_units_daily_50bps.csv": "af9e4f830ec075f5879d4cc72f58d393c9a78b6bf833ac6f67e8c9b4cad8f8c2",
+    "source_literal_fx_units_weekly_50bps.csv": "3eaffde061ea67265e0a26548810f4dee86dd18eb897f5d1c408d33285c12baf"
+  }
+}

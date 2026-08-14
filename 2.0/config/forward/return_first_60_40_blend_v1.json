@@ -1,0 +1,30 @@
+{
+  "candidate": "candidate-return-first-60-40-forward-v1",
+  "first_eligible_decision_date": "2026-08-14",
+  "first_eligible_realization_date": "2026-08-21",
+  "frozen_on": "2026-08-12",
+  "live_trading_enabled": false,
+  "protocol_id": "return_first_60_40_blend_v1_forward",
+  "required_weeks": 52,
+  "rule": {
+    "base_component": "Batch 67 pre-2023-selected 70% XLK plus 30% embargoed HGB allocator",
+    "base_component_weight": 0.6,
+    "hindsight_component": "Batch 66 broad-risk-on rank-consensus top-one 52.35% research ceiling",
+    "hindsight_component_weight": 0.4,
+    "rebalance_rule": "combine the two source weight histories at fixed 60/40 proportions; no manual changes",
+    "selection_changes_forbidden": true
+  },
+  "source_artifacts": {
+    "base": {
+      "path": "evidence/return_first_ensemble_batch_67/selected_ensemble_weights.csv",
+      "sha256": "2a59b8cc63bcad8f74b2d63188d82510b6d9b65b34d074c859237a4af1a374ae"
+    },
+    "hindsight_ceiling": {
+      "path": "evidence/exhaustive_return_first_discovery_batch_66/retrospective_ceiling_weights.csv",
+      "sha256": "e5cefaf46e8aa37adb29334150361d71630f5ef510d8fda9dc9feaea8f3ac5f9"
+    }
+  },
+  "source_bundle": "ggg_causal_v2_027530550388432a",
+  "weights_artifact": "evidence/forward_return_first_60_40_blend_v1/frozen_weights.csv",
+  "weights_artifact_sha256": "a3f5e0256fa30db10c3836fc7adc39609ea1dcd83d7e29a069a7e1ff916e34c4"
+}

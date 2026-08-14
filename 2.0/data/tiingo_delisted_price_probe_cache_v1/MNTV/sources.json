@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 173,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T02:17:14.857017+00:00",
+    "sha256": "112bb3a803d621d63c2ed19ffc44508fd3f815d5b3cee480b4987923e0e1cecf",
+    "url": "https://api.tiingo.com/tiingo/daily/MNTV"
+  },
+  {
+    "bytes": 173384,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T02:17:16.380849+00:00",
+    "sha256": "3336ae3fcc4a1c48a4323cbe524cfa39a90da541191e8e1f45a75ff13f688b7b",
+    "url": "https://api.tiingo.com/tiingo/daily/MNTV/prices?startDate=2020-04-01&endDate=2024-07-11&resampleFreq=daily"
+  }
+]

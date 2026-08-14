@@ -1,0 +1,55 @@
+{
+  "activation_status": "waiting_for_next_scheduled_rebalance",
+  "broker_connection": null,
+  "decision_is_monthly_rebalance": false,
+  "execution_enabled": false,
+  "historical_target_was_not_live_known_on_rebalance_date": true,
+  "known_at_utc": "2026-08-08T21:28:27.021963+00:00",
+  "last_reconstructed_rebalance_date": "2026-07-31",
+  "market_data_through": "2026-08-07",
+  "next_rebalance_note": "calendar-derived last Friday; exchange-holiday service not yet connected",
+  "next_scheduled_rebalance_date": "2026-08-28",
+  "purpose": "display and future paper-broker input only",
+  "source_snapshot_id": "20260808T212827Z-de103c2e063d6c4a",
+  "strategy_version": "composite_trend_quality_refined_free_snapshot_v4",
+  "target_weights": {
+    "EWJ": 0.25,
+    "IWM": 0.25,
+    "PDBC": 0.25,
+    "QQQ": 0.25
+  },
+  "top_current_scores": [
+    {
+      "asset": "IWM",
+      "score": 0.7808823529411765
+    },
+    {
+      "asset": "EWJ",
+      "score": 0.6176470588235293
+    },
+    {
+      "asset": "QQQ",
+      "score": 0.6029411764705882
+    },
+    {
+      "asset": "VEA",
+      "score": 0.5970588235294118
+    },
+    {
+      "asset": "PDBC",
+      "score": 0.45588235294117646
+    },
+    {
+      "asset": "SPY",
+      "score": 0.2735294117647059
+    },
+    {
+      "asset": "VWO",
+      "score": 0.1941176470588236
+    },
+    {
+      "asset": "EFA",
+      "score": 0.18235294117647063
+    }
+  ]
+}

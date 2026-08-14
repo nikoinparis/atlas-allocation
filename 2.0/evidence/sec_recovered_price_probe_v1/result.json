@@ -1,0 +1,19 @@
+{
+  "blocker": "free Yahoo coverage of recovered former/delisted symbols is insufficient and delisting returns are absent",
+  "created_at_utc": "2026-08-13T10:07:25.777463+00:00",
+  "histories_overlapping_issuer_eligible_period": 56,
+  "interpretation": "upper bound assumes every current SEC symbol has valid historical prices; those symbols have not yet been probed",
+  "issuer_period_overlap_rate": 0.1346153846153846,
+  "latest_optimistic_coverage": 0.9222222222222223,
+  "price_vintage": "/project/data/sec_recovered_price_probe_vintages/20260813T100449Z-recovered-yahoo-price-probe-v1",
+  "raw_histories_returned": 89,
+  "raw_history_rate": 0.21394230769230768,
+  "recent_optimistic_coverage_min": 0.7524752475247525,
+  "recovered_symbols_requested": 416,
+  "status_counts": {
+    "history_outside_eligible_period_possible_ticker_reuse": 33,
+    "history_overlaps_eligible_period": 56,
+    "no_free_history": 327
+  },
+  "strategy_testing_authorized": false
+}

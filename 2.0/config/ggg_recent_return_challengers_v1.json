@@ -1,0 +1,40 @@
+{
+  "program": "ggg_recent_return_challengers_v1",
+  "batch": 47,
+  "predeclared_at_utc": "2026-08-12T00:00:00Z",
+  "benchmark": "causal_ggg_saved_fallback",
+  "selection_budget": 6,
+  "challengers": {
+    "momentum_tilt_15": {"momentum_strength": 0.15, "cash_redeploy_fraction": 0.0},
+    "momentum_tilt_30": {"momentum_strength": 0.30, "cash_redeploy_fraction": 0.0},
+    "cash_redeploy_50": {"momentum_strength": 0.0, "cash_redeploy_fraction": 0.50},
+    "cash_redeploy_100": {"momentum_strength": 0.0, "cash_redeploy_fraction": 1.0},
+    "combined_mild": {"momentum_strength": 0.15, "cash_redeploy_fraction": 0.50},
+    "combined_assertive": {"momentum_strength": 0.30, "cash_redeploy_fraction": 1.0}
+  },
+  "formulas": {
+    "momentum": "26-week trailing price return, cross-sectionally z-scored and clipped to [-2, 2]; multiply held risky ETF weights by exp(strength * score)",
+    "cash_redeployment": "Redeploy the configured fraction of BIL equally to SPY and QQQ only when both have positive 26-week momentum and close above their 43-week SMA",
+    "execution": "Signals use prices through decision row t; resulting weights earn t-to-t+1 returns",
+    "risk_constraint": "Reapply the frozen 35% risky-ETF cap and fund residual weight with BIL"
+  },
+  "cost_bps": [10, 50, 100],
+  "primary_window": "recent_3y",
+  "secondary_window_start": "2024-01-05",
+  "prefix_cutoffs": ["2023-12-29", "2024-12-27", "2025-12-26"],
+  "qualification_gates": {
+    "minimum_recent_3y_50bps_cagr_improvement": 0.005,
+    "minimum_post_2024_50bps_cagr_improvement": 0.0,
+    "maximum_full_50bps_cagr_degradation": 0.002,
+    "maximum_recent_3y_drawdown_magnitude": 0.13,
+    "maximum_prefix_absolute_difference": 1e-10,
+    "require_deterministic_hash": true,
+    "require_frozen_source_hashes": true
+  },
+  "decision_rule": "A passing candidate enters the research shortlist only. No candidate is promoted to production from these already-seen windows.",
+  "scope_limits": [
+    "This is a six-candidate bounded search, not an optimizer over overlay parameters.",
+    "The post-2024 window is validation-like but was already observed before this test.",
+    "No live trading or capital deployment."
+  ]
+}

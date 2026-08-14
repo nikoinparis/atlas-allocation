@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 528,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T01:00:57.742662+00:00",
+    "sha256": "aec57d5aa606f3643d9c3539e66255f29a3b44497a228f29763a8f60411bc358",
+    "url": "https://api.tiingo.com/tiingo/daily/ATVI"
+  },
+  {
+    "bytes": 731845,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T01:00:59.517693+00:00",
+    "sha256": "f81a3de092c892980d83db465bcfe2fc470f6f3e839aba6ad261b66b9561fa49",
+    "url": "https://api.tiingo.com/tiingo/daily/ATVI/prices?startDate=2012-04-01&endDate=2024-10-11&resampleFreq=daily"
+  }
+]

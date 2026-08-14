@@ -1,0 +1,32 @@
+{
+  "artifacts": {
+    "benchmark_risk_metrics.csv": {
+      "bytes": 3736,
+      "sha256": "e12986c731fabe3507742aa79654bcdbc45f7cadfffa290a6470a5580ba622d0"
+    },
+    "calendar_year_metrics.csv": {
+      "bytes": 3337,
+      "sha256": "a0bbbf79680dbf94b5164db546ba7bd8ee1a5414dd3b7b9b9b7a0582ecf30e58"
+    },
+    "causal_ggg_cost_sensitivity.csv": {
+      "bytes": 4358,
+      "sha256": "35ef0503c98159d5f4a52af3d7f4607aabd9685556d302814d95482a4d4b1578"
+    },
+    "trailing_scorecard_50bps.csv": {
+      "bytes": 12171,
+      "sha256": "85cfe0bd4719bfc339d7476ec781be93abb7db702adb09596add89aa6be87f6f"
+    }
+  },
+  "comparison_status": {
+    "ggg_plus_residual_raw_10_rejected": "failed predeclared Batch 50 gates",
+    "legacy_ggg_lookahead_warning": "known one-week allocator lookahead",
+    "spy_buy_hold": "benchmark",
+    "v1_frontier_legacy_unqualified": "selection-contaminated and incomplete causal lineage"
+  },
+  "current_main": "causal_ggg_current_main",
+  "data_end": "2026-04-10",
+  "generated_at_utc": "2026-08-12T03:46:05.479075+00:00",
+  "live_trading_enabled": false,
+  "primary_cost_bps": 50,
+  "v1_weights_sha256": "cfcabd30fe6bf6f8281162dc4228973d4f965a897532d2069be091a6470c1e75"
+}

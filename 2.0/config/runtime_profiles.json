@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "common_isolation": {
+    "rootless": true,
+    "host_mounts": false,
+    "host_secrets": false,
+    "test_network": "disabled",
+    "read_only_container_root": true,
+    "drop_all_capabilities": true,
+    "no_new_privileges": true
+  },
+  "profiles": {
+    "rust_1_85": {
+      "image": "localhost/po2-rust-native:1.85-bookworm-v1",
+      "dependency_phase_network": "enabled",
+      "test_phase_network": "disabled",
+      "dependency_command": ["cargo", "fetch"],
+      "test_command_prefix": ["cargo", "test", "--offline"]
+    },
+    "rust_1_55_legacy": {
+      "image": "localhost/po2-rust-native:1.55-bullseye-v1",
+      "dependency_phase_network": "enabled",
+      "test_phase_network": "disabled",
+      "dependency_command": ["cargo", "fetch", "--locked"],
+      "test_command_prefix": ["cargo", "test", "--locked", "--offline"],
+      "source_basis": "The pinned QUANTAXIS docker/qa-rust-base/Dockerfile declares RUST_VERSION=1.55.0."
+    },
+    "rust_1_91": {
+      "image": "localhost/po2-rust-native:1.91.1-bookworm-v1",
+      "dependency_phase_network": "enabled",
+      "test_phase_network": "disabled",
+      "dependency_command": ["cargo", "fetch"],
+      "test_command_prefix": ["cargo", "test", "--offline"],
+      "source_basis": "The pinned hftbacktest core manifest declares rust-version=1.91.1."
+    },
+    "node_20": {
+      "image": "docker.io/library/node:20-bookworm",
+      "dependency_phase_network": "enabled",
+      "test_phase_network": "disabled",
+      "dependency_command": ["npm", "ci", "--ignore-scripts", "--no-audit", "--no-fund"],
+      "test_command": ["npm", "test", "--", "--run"]
+    },
+    "dotnet_8": {
+      "image": "mcr.microsoft.com/dotnet/sdk:8.0-bookworm-slim",
+      "dependency_phase_network": "enabled",
+      "test_phase_network": "disabled",
+      "dependency_command_prefix": ["dotnet", "restore"],
+      "test_command_prefix": ["dotnet", "test", "--no-restore"]
+    },
+    "dotnet_10": {
+      "image": "mcr.microsoft.com/dotnet/sdk:10.0-bookworm-slim",
+      "dependency_phase_network": "enabled",
+      "test_phase_network": "disabled",
+      "dependency_command_prefix": ["dotnet", "restore"],
+      "test_command_prefix": ["dotnet", "test", "--no-restore"]
+    },
+    "native_python_3_11": {
+      "image": "docker.io/library/python:3.11-bookworm",
+      "dependency_phase_network": "enabled",
+      "test_phase_network": "disabled",
+      "status": "requires_project_specific_system_dependency_recipe"
+    }
+  },
+  "candidates": {
+    "ast-0019": {
+      "profile": "dotnet_8",
+      "scope": "sdk/dotnet/The0.csproj",
+      "reason": "The full repository is polyglot; first test the net8 SDK in isolation."
+    },
+    "ast-0020": {
+      "profile": "native_python_3_11",
+      "scope": "Python package plus optional aat/cpp extension",
+      "status": "recipe_review_required",
+      "reason": "C++ toolchain and Python build dependencies must be pinned before execution."
+    },
+    "ast-0021": {
+      "profile": "rust_1_91",
+      "scope": "cargo test --workspace --offline",
+      "status": "lockfile_capture_required",
+      "lockfile_origin": "generated_by_execution_gate",
+      "reason": "The pinned commit has no Cargo.lock, so resolved dependencies must be captured as evidence."
+    },
+    "ast-0030": {
+      "profile": "native_python_3_11",
+      "scope": "xmake core and project tests",
+      "status": "recipe_review_required",
+      "reason": "The build requires xmake and native libraries; its feedback option must be disabled."
+    },
+    "ast-0035": {
+      "profile": "dotnet_10",
+      "scope": "Tests/QuantConnect.Tests.csproj",
+      "status": "high_resource_separate_run",
+      "reason": "The pinned test project targets net10.0 and has a large dependency/test surface."
+    },
+    "ast-0036": {
+      "profile": "rust_1_55_legacy",
+      "scope": "cargo test -p qapro --locked --offline",
+      "reason": "The Rust workspace has a checked-in Cargo.lock; Python/DB services remain a separate evaluation."
+    },
+    "ast-0046": {
+      "profile": "rust_1_91",
+      "scope": "cargo test -p hftbacktest --offline",
+      "status": "lockfile_capture_required",
+      "lockfile_origin": "generated_by_execution_gate",
+      "reason": "Start with the core engine and capture resolution because the pinned commit has no Cargo.lock."
+    },
+    "ast-0051": {
+      "profile": "node_20",
+      "scope": "npm test -- --run",
+      "reason": "The pinned commit has package-lock.json; integration tests may still require live TradingView access and must be separated from offline unit tests."
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "track": "track_c_new_alpha",
+  "research_status": "research_only",
+  "created_at_utc": "2026-06-13T20:05:16.087004+00:00",
+  "production_candidate": "improved_frontier_phase5_fragility_guard",
+  "registry_pin_verified": "improved_frontier_phase5_fragility_guard",
+  "track_a_returns_sha256": "38075f2064ed4e558ee7f2ba7d21eee1bdaf0c296b98c28ba5a9cb107f639ce2",
+  "track_a_weights_sha256": "cfcabd30fe6bf6f8281162dc4228973d4f965a897532d2069be091a6470c1e75",
+  "standalone_candidate_count": 6,
+  "blend_candidate_count": 6,
+  "final_verdict": "Track C found diversifying sleeves, but not enough evidence for return improvement.",
+  "output_files": {
+    "standalone_returns": "data/research/track_c_new_alpha/track_c_standalone_sleeve_returns.csv",
+    "standalone_weights": "data/research/track_c_new_alpha/track_c_standalone_sleeve_weights.csv",
+    "standalone_metrics": "data/research/track_c_new_alpha/track_c_standalone_sleeve_metrics.csv",
+    "blend_returns": "data/research/track_c_new_alpha/track_c_blend_returns.csv",
+    "blend_weights": "data/research/track_c_new_alpha/track_c_blend_weights.csv",
+    "blend_metrics": "data/research/track_c_new_alpha/track_c_blend_metrics.csv",
+    "experiment_registry": "data/research/track_c_new_alpha/track_c_experiment_registry.csv",
+    "report": "docs/research/track_c_new_alpha/track_c_new_alpha_research_report.md"
+  }
+}

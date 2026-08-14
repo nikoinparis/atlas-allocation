@@ -1,0 +1,19 @@
+# Macro Regime Classifier: V1 vs V2 vs V3 Comparison
+
+| Metric | V1 | V2 | V3 |
+| --- | --- | --- | --- |
+| nfci_or_proxy | NFCI (live) | No NFCI (PC2 broken) | FC proxy (VIX+HYG+DD+corr) |
+| n_features | 10 | 10 | 11 |
+| growth_factor_interpretable | YES | YES | YES |
+| fc_factor_interpretable | YES (NFCI) | NO (NFCI missing) | True |
+| stress_sanity_2008 | N/A | N/A | True |
+| stress_sanity_2020 | N/A | N/A | True |
+| stress_sanity_2022 | N/A | N/A | True |
+| dev_spread | 0.01408 | 0.02416 | 0.0081 |
+| nm_spread | 0.01225 | 0.03779 | 0.02287 |
+| holdout_rank_consistent | False | False | False |
+| best_conf_sharpe | 0.368 (macro-only dev) | 0.599 (macro+credit dev) | 0.606 |
+| verdict | RESEARCH-ONLY | RESEARCH-ONLY | EXPERIMENTAL CANDIDATE |
+
+---
+*Research artifact — no production code modified.*

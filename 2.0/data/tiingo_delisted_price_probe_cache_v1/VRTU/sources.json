@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 1231,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T05:58:07.930812+00:00",
+    "sha256": "3297aa84fea5632a752c5b45468104b65a3d58800b8596a20f1541ea204687c2",
+    "url": "https://api.tiingo.com/tiingo/daily/VRTU"
+  },
+  {
+    "bytes": 486608,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T05:58:16.910091+00:00",
+    "sha256": "742cf902a52db3dbf3dbfe33abb1b2907b38512e9990bfb223b2a2ef51cccdd0",
+    "url": "https://api.tiingo.com/tiingo/daily/VRTU/prices?startDate=2012-04-01&endDate=2022-04-11&resampleFreq=daily"
+  }
+]

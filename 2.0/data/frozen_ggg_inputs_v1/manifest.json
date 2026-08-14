@@ -1,0 +1,22 @@
+{
+  "snapshot": "frozen_ggg_inputs_v1",
+  "purpose": "Materialized V2 runtime snapshot for the frozen causal GGG benchmark",
+  "source": "Version 1 preserved worktree; all sleeve hashes match config/ggg_causal_upstream_freeze_v1.json",
+  "files": {
+    "data/01_data_hub/weekly_prices.csv": "22f5f570950e6b18fa77e1c058d5882c562bfac6413dc558a6bdb95372584bf3",
+    "data/03_layer2a_strategy_logic/strategy_positions_composite_regime_conditioned.csv": "8180aeefda664f4cb7f27144fc50042f91b27693fb58568d159983b630d224df",
+    "data/03_layer2a_strategy_logic/strategy_positions_composite_selective_signals.csv": "7e73d6fc7a72c997dffe7b20ba274c60da771a98c8fdd42a7fecd63d506c2cbc",
+    "data/03_layer2a_strategy_logic/strategy_positions_cta_trend_long_only.csv": "c1097d6234ba3b678567a3d5174a926ee7a13b9d2b7100b05ac667679f570b55",
+    "data/03_layer2a_strategy_logic/strategy_positions_dual_momentum_topn.csv": "13a78141f088e05d848e58a77fc943dc6483ec0bbe6da3ac36b2f4c238473ce2",
+    "data/03_layer2a_strategy_logic/strategy_positions_taa_10m_sma.csv": "09dc22be95a18a91ae1e191280ada79372aeaeee98b088827a1ade173d99617e",
+    "data/03_layer2a_strategy_logic/strategy_returns_composite_regime_conditioned.csv": "f3224e041a03fd491461dac4c7e17ad878840dcf91378ae0ae91c2ed1cfb5f92",
+    "data/03_layer2a_strategy_logic/strategy_returns_composite_selective_signals.csv": "00d7ca240e0a3cce8ed2ac56e82f913f5a97fee0c2802f06ea3e060c9a0feddd",
+    "data/03_layer2a_strategy_logic/strategy_returns_cta_trend_long_only.csv": "6dd79ef9a89151fa403b16fce4031a2706af2c87d106a08fa24b4f8cf8a9be88",
+    "data/03_layer2a_strategy_logic/strategy_returns_dual_momentum_topn.csv": "ce5a057aa501fe5eb098e900dc404fa5c21111447b087f19c444509fd28defce",
+    "data/03_layer2a_strategy_logic/strategy_returns_taa_10m_sma.csv": "429421d4d20a7ae003a9256af21fc9cfb2e759253eaa627da69e9c6c7954e28f",
+    "data/04_layer2b_risk_regime_engine/market_state_history.csv": "a7f49dd552890d65fc173ae5b32948a313bd6cfc73a45c1f9cc40cb52da80e4c",
+    "data/04_layer2b_risk_regime_engine/phase2b_meta_predictions.csv": "1b462591b5f92d1ae1471558e2dc77e95394786b6cf3e6632b7d24fec527989d",
+    "data/04_layer2b_risk_regime_engine/regime_states.csv": "042f24063b5954e455364a21f904095a07941557b1d00c7d4170c05ff8bcdd8f"
+  },
+  "live_trading_enabled": false
+}

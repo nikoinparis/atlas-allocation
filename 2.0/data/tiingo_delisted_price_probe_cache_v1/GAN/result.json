@@ -1,0 +1,19 @@
+{
+  "cik10": "0001799332",
+  "first_eligible_decision": "2023-07-01 00:00:00+00:00",
+  "first_price_date": "2026-02-06",
+  "issuer_name_match": true,
+  "issuer_name_score": 0.75,
+  "last_eligible_decision": "2026-04-01 00:00:00+00:00",
+  "last_price_date": "2026-04-10",
+  "price_file": "/project/data/tiingo_delisted_price_probe_cache_v1/GAN/prices.csv.gz",
+  "price_rows": 42,
+  "provider_end_date": "2026-08-12",
+  "provider_exchange": "NASDAQ",
+  "provider_name": "GARAN INC",
+  "provider_start_date": "2026-02-06",
+  "sec_company_name": "GAN LTD",
+  "status": "validated_candidate",
+  "terminal": true,
+  "tiingo_symbol": "GAN"
+}

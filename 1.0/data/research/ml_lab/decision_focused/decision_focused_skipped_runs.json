@@ -1,0 +1,22 @@
+[
+  {
+    "variant": "differentiable_top_k",
+    "reason": "deferred; first version uses masked softmax and separate top-N evaluation"
+  },
+  {
+    "variant": "cvxpylayers_or_spo_loss",
+    "reason": "deferred; optional package/deeper optimizer integration not required for first CPU-safe sprint"
+  },
+  {
+    "variant": "full_walk_forward_retraining",
+    "reason": "deferred; selected predictions are evaluated by window without retraining per fold"
+  },
+  {
+    "variant": "seed_2",
+    "reason": "skipped to keep first decision-focused run bounded on CPU"
+  },
+  {
+    "variant": "true_drawdown_gradient_penalty",
+    "reason": "simplified to volatility/downside/turnover penalties for stability"
+  }
+]

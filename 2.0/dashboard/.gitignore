@@ -1,5 +1,8 @@
 .next/
+.next.stale/
 node_modules/
+node_modules.stale/
+.icloud-placeholders/
 out/
 dist/
 .vercel/

@@ -1,0 +1,14 @@
+{
+  "protocol": "sec_cash_conversion_breadth20_challenger_v1",
+  "frozen_at_utc": "2026-08-14T13:00:00Z",
+  "first_eligible_week_ending": "2026-08-21",
+  "observation_weeks": 52,
+  "candidate_registry": "research_registry/sec_cash_conversion_breadth20_candidate_v1.json",
+  "control": "confidence_10_40__cap_1.50x",
+  "candidate": "breadth20 cash conversion, shifted 11-week relative-return gate, 0% or 50% allocation",
+  "cost_scenarios_bps": [50, 100, 200],
+  "report_every_week": true,
+  "formula_changes_allowed": false,
+  "live_orders_allowed": false,
+  "status": "awaiting_first_eligible_realization"
+}

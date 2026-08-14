@@ -1,0 +1,15 @@
+{
+  "experiment": "sec_split_normalized_valuation_overlay_v1",
+  "control": "sec_cash_conversion_breadth20_candidate_v1",
+  "sleeve": "split-normalized sales-yield pilot",
+  "allocations": [0.1, 0.2, 0.3, 0.4, 0.5],
+  "lookbacks_weeks": [4, 8, 13, 26],
+  "gates": ["static", "relative", "relative_and_positive", "candidate_negative_relative"],
+  "outer_cost_bps": [0, 50, 100, 200],
+  "signal_shift_weeks": 1,
+  "primary_objective": "trailing_1y_cagr",
+  "must_beat_control_full_and_recent": true,
+  "survivor_pilot_warning": true,
+  "strategy_promotion_authorized": false,
+  "live_trading_enabled": false
+}

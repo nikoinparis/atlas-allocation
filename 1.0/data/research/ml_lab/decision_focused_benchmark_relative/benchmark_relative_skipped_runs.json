@@ -1,0 +1,34 @@
+[
+  {
+    "variant": "absolute_sharpe_objective",
+    "reason": "intentionally excluded to avoid MLX-12 BIL/bond collapse"
+  },
+  {
+    "variant": "seed_2",
+    "reason": "skipped to keep first benchmark-relative run bounded on CPU"
+  },
+  {
+    "variant": "differentiable_top_k",
+    "reason": "deferred; first version uses masked softmax training and top-N evaluation"
+  },
+  {
+    "variant": "full_walk_forward_retraining",
+    "reason": "deferred; selected predictions are evaluated by window without retraining per fold"
+  },
+  {
+    "variant": "cvxpylayers_mean_variance_layer",
+    "reason": "deferred; no optional optimizer-layer dependency added"
+  },
+  {
+    "variant": "relative_info_ratio_seed1",
+    "reason": "skipped after an initial full-grid attempt proved too slow for a bounded CPU first version"
+  },
+  {
+    "variant": "offensive_exposure_constrained_seed1",
+    "reason": "skipped after an initial full-grid attempt proved too slow for a bounded CPU first version"
+  },
+  {
+    "variant": "triple_barrier_aware_seed1",
+    "reason": "skipped after an initial full-grid attempt proved too slow for a bounded CPU first version"
+  }
+]

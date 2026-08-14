@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 734,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T05:57:10.068443+00:00",
+    "sha256": "a38ebbe128e7a4c5ac9f1ad4e3ffed6f5ff58833a2f6389502c2a58c3e85a47e",
+    "url": "https://api.tiingo.com/tiingo/daily/PFPT"
+  },
+  {
+    "bytes": 415258,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T05:57:14.148350+00:00",
+    "sha256": "cc8e919157a9a4af96779b7e50aea69e132d8a32d4a51b7360d4ac1c804575ee",
+    "url": "https://api.tiingo.com/tiingo/daily/PFPT/prices?startDate=2014-04-01&endDate=2022-10-11&resampleFreq=daily"
+  }
+]

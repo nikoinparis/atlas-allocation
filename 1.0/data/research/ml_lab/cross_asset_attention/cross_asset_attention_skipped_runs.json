@@ -1,0 +1,22 @@
+[
+  {
+    "variant": "pairwise_ranking_loss",
+    "reason": "deferred in first CPU-bounded version; BCE top-quintile loss used first"
+  },
+  {
+    "variant": "listwise_ranking_loss",
+    "reason": "deferred in first CPU-bounded version; explicit date-grouped ranking loss is next upgrade"
+  },
+  {
+    "variant": "seed_2",
+    "reason": "skipped to keep first cross-asset attention run bounded on CPU"
+  },
+  {
+    "variant": "attention_weight_extraction",
+    "reason": "PyTorch TransformerEncoder does not expose attention maps directly in this simple implementation"
+  },
+  {
+    "variant": "full_walk_forward_retraining",
+    "reason": "deferred; selected predictions are evaluated by window without retraining per fold"
+  }
+]

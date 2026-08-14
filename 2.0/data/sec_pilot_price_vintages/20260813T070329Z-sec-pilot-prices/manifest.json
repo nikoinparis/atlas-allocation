@@ -1,0 +1,66 @@
+{
+  "claims": {
+    "delisting_complete": false,
+    "point_in_time_universe": false,
+    "revision_complete": false
+  },
+  "created_at_utc": "2026-08-13T07:03:48.254709+00:00",
+  "files": {
+    "acquisition_metadata.json": {
+      "bytes": 5185,
+      "sha256": "cafdbc873c37b2b5c4a60ed799c4adad6caff3ca897807929a0dc5c5f14a64ed"
+    },
+    "corporate_actions.csv": {
+      "bytes": 381095,
+      "sha256": "ebf4e35c812552c22f07ad5147a7fba0c4384eaa9fd9e28eb8a024772d00d8b1"
+    },
+    "delistings.csv": {
+      "bytes": 92,
+      "sha256": "8d610a1c9521fe3e3ac1a0ae4fcf8736fff21fc10e78ca5ab861dedb48283873"
+    },
+    "prices.csv": {
+      "bytes": 44747751,
+      "sha256": "c96c5627c851986f2b111045f1a5bb57d78d32968b5636a495b0f1d7d6b9d51f"
+    },
+    "security_master.csv": {
+      "bytes": 2701,
+      "sha256": "e079e6f8bcfd0af5404f071cee835421e1d8867daf2192ae85e7355b116e5f6f"
+    },
+    "universe_membership.csv": {
+      "bytes": 3556,
+      "sha256": "5fdc55dd7e135edef3343d7009c82bdeec047dedb99b8921534a0801c2ec45a8"
+    }
+  },
+  "live_trading_enabled": false,
+  "observed_at_utc": "2026-08-13T07:03:45.456300+00:00",
+  "price_rows": 214947,
+  "provider": "Yahoo Finance via pinned yfinance 1.5.2 container",
+  "purpose": "non-promotable SEC fundamental pilot diagnostic",
+  "symbol_count": 23,
+  "symbols": [
+    "AAPL",
+    "AMD",
+    "AVGO",
+    "COP",
+    "CRM",
+    "CSCO",
+    "CVX",
+    "EOG",
+    "IBM",
+    "KMI",
+    "MPC",
+    "MSFT",
+    "NVDA",
+    "ORCL",
+    "OXY",
+    "PSX",
+    "QCOM",
+    "SLB",
+    "SPY",
+    "WMB",
+    "XLE",
+    "XLK",
+    "XOM"
+  ],
+  "vintage_id": "20260813T070329Z-sec-pilot-prices"
+}

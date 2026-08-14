@@ -1,0 +1,25 @@
+{
+  "anchor_decision_date": "2026-08-07",
+  "forward_protocol_sha256": "7a55cea00f0e33aeef353b26e3c79d24791f89574cd4249a24d941235d743ca2",
+  "portfolio_version": "covariance_minimum_variance_v1",
+  "purpose": "pre-freeze turnover anchor only; never counted as untouched evidence",
+  "schema_version": 1,
+  "sleeve_coefficients": {
+    "defensive": 0.8,
+    "trend_v4": 0.19999999999999996
+  },
+  "source_snapshot_id": "20260808T212827Z-de103c2e063d6c4a",
+  "source_snapshot_observed_at_utc": "2026-08-08T21:28:27.021963+00:00",
+  "target_weights": {
+    "DBA": 0.13333333333333333,
+    "EFA": 0.13333333333333333,
+    "EWJ": 0.04999999999999999,
+    "HYG": 0.13333333333333333,
+    "IWM": 0.18333333333333332,
+    "PDBC": 0.04999999999999999,
+    "QQQ": 0.04999999999999999,
+    "SPY": 0.13333333333333333,
+    "VNQ": 0.13333333333333333
+  },
+  "target_weights_sha256": "aecf3cccbd299257d78a6319f1fa7fba9743cbe7d95f77d0b9e00b14f44f86a8"
+}

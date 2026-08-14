@@ -1,0 +1,15 @@
+{
+  "experiment": "sec_growth_stock_drift_cap_v1",
+  "growth_allocations": [0.10, 0.20, 0.30],
+  "single_stock_cap_multiples_of_initial_equal_weight": [1.0, 1.25, 1.5],
+  "include_uncapped_control": true,
+  "cap_review_frequency": "first available Friday of each calendar month",
+  "cap_destination": "frozen ETF incumbent synthetic sleeve",
+  "quarterly_growth_rule": "unchanged frozen SEC growth top-five equal-weight selections",
+  "cost_bps": [50, 100, 200],
+  "primary_cost_bps": 50,
+  "missing_company_scenarios": ["base", "adverse"],
+  "selection_rule": "Report every predeclared cap. Do not promote a cap using already-observed results.",
+  "research_only": true,
+  "live_trading_enabled": false
+}

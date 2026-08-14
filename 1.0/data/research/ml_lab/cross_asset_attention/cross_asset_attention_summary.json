@@ -1,0 +1,170 @@
+{
+  "phase": "cross_asset_attention_ranker",
+  "production_valid": false,
+  "research_only": true,
+  "selection_bias_warning": true,
+  "data_mining_warning": true,
+  "overfitting_warning": true,
+  "purpose": "experimental ML sandbox only",
+  "torch": {
+    "available": true,
+    "version": "2.8.0",
+    "device": "cpu",
+    "cuda_available": false,
+    "mps_available": true
+  },
+  "device": "cpu",
+  "models_run": [
+    "cross_asset_attention_ranker_seed0",
+    "cross_asset_attention_ranker_seed1"
+  ],
+  "seeds_run": [
+    0,
+    1
+  ],
+  "model_architecture": {
+    "input_projection": "Linear(74 -> 32)",
+    "etf_embedding": true,
+    "attention_axis": "asset/cross-section dimension at one date",
+    "d_model": 32,
+    "nhead": 4,
+    "num_layers": 1,
+    "dim_feedforward": 64,
+    "dropout": 0.2,
+    "output": "one logit score per ETF per date"
+  },
+  "input_tensor_shape": [
+    1375,
+    97,
+    74
+  ],
+  "etf_universe_size": 97,
+  "loss_function": "BCEWithLogitsLoss for top_quintile_forward_4w",
+  "skipped_runs": [
+    {
+      "variant": "pairwise_ranking_loss",
+      "reason": "deferred in first CPU-bounded version; BCE top-quintile loss used first"
+    },
+    {
+      "variant": "listwise_ranking_loss",
+      "reason": "deferred in first CPU-bounded version; explicit date-grouped ranking loss is next upgrade"
+    },
+    {
+      "variant": "seed_2",
+      "reason": "skipped to keep first cross-asset attention run bounded on CPU"
+    },
+    {
+      "variant": "attention_weight_extraction",
+      "reason": "PyTorch TransformerEncoder does not expose attention maps directly in this simple implementation"
+    },
+    {
+      "variant": "full_walk_forward_retraining",
+      "reason": "deferred; selected predictions are evaluated by window without retraining per fold"
+    }
+  ],
+  "best_validation_model": {
+    "annual_return": 0.019892405212613484,
+    "annual_volatility": 0.06886327492019072,
+    "sharpe": 0.2888681265256095,
+    "max_drawdown": -0.09774032660832277,
+    "calmar": 0.20352300736960716,
+    "cvar_5": -0.022129309218977978,
+    "average_turnover": 0.24423076923076928,
+    "annual_cost_drag": 0.012700000000000001,
+    "average_bil_exposure": 0.5048076923076923,
+    "average_ml_exposure": 0.49519230769230776,
+    "average_number_of_etfs_held": 11.0,
+    "top_quintile_hit_rate": 0.3211538461538461,
+    "active_weeks": 104,
+    "strategy_name": "cross_asset_attention_ranker_seed1__top10__equal_weight__defensive_first",
+    "model_name": "cross_asset_attention_ranker_seed1",
+    "seed": 1,
+    "target": "top_quintile_forward_4w",
+    "loss_function": "BCEWithLogitsLoss",
+    "top_n": 10,
+    "weighting": "equal_weight",
+    "wrapper": "defensive_first",
+    "split": "validation",
+    "cost_bps": 10.0,
+    "rank_ic": -0.03507456642518493
+  },
+  "validation_selected_holdout": {
+    "annual_return": 0.037758591843667366,
+    "annual_volatility": 0.10446342639033253,
+    "sharpe": 0.36145274138893935,
+    "max_drawdown": -0.1545846096885991,
+    "calmar": 0.2442584156322525,
+    "cvar_5": -0.03473333839670895,
+    "average_turnover": 0.3234638554216868,
+    "annual_cost_drag": 0.016820120481927714,
+    "average_bil_exposure": 0.41024096385542164,
+    "average_ml_exposure": 0.591566265060241,
+    "average_number_of_etfs_held": 10.96987951807229,
+    "top_quintile_hit_rate": 0.336280487804878,
+    "active_weeks": 332,
+    "strategy_name": "cross_asset_attention_ranker_seed1__top10__equal_weight__defensive_first",
+    "model_name": "cross_asset_attention_ranker_seed1",
+    "seed": 1,
+    "target": "top_quintile_forward_4w",
+    "loss_function": "BCEWithLogitsLoss",
+    "top_n": 10,
+    "weighting": "equal_weight",
+    "wrapper": "defensive_first",
+    "split": "holdout",
+    "cost_bps": 10.0,
+    "rank_ic": 0.009174093852030241
+  },
+  "best_holdout_model": {
+    "annual_return": 0.05676374973708476,
+    "annual_volatility": 0.12660063632602123,
+    "sharpe": 0.4483685973813518,
+    "max_drawdown": -0.21485645111257534,
+    "calmar": 0.26419383473546737,
+    "cvar_5": -0.042434263133052534,
+    "average_turnover": 0.45246644882941145,
+    "annual_cost_drag": 0.023528255339129396,
+    "average_bil_exposure": 0.2545180722891566,
+    "average_ml_exposure": 0.7484939759036144,
+    "average_number_of_etfs_held": 10.551204819277109,
+    "top_quintile_hit_rate": 0.336280487804878,
+    "active_weeks": 332,
+    "strategy_name": "cross_asset_attention_ranker_seed1__top10__inverse_vol__bil_fallback_original",
+    "model_name": "cross_asset_attention_ranker_seed1",
+    "seed": 1,
+    "target": "top_quintile_forward_4w",
+    "loss_function": "BCEWithLogitsLoss",
+    "top_n": 10,
+    "weighting": "inverse_vol",
+    "wrapper": "bil_fallback_original",
+    "split": "holdout",
+    "cost_bps": 10.0,
+    "rank_ic": 0.009174093852030241
+  },
+  "validation_selected_beats_mlx5c_sharpe": false,
+  "validation_selected_beats_mlx6_sharpe": false,
+  "validation_selected_beats_mlx9_sharpe": false,
+  "validation_selected_beats_production_sharpe": false,
+  "validation_selected_beats_phase4b_sharpe": false,
+  "final_recommendation": "KEEP AS RESEARCH ONLY",
+  "warnings": [
+    "Experimental research-only Phase MLX output; not production-valid.",
+    "Expanded ETF/yfinance research data can introduce selection bias and data-mining risk.",
+    "No cross-asset attention model is promoted automatically."
+  ],
+  "no_production_pins_changed": true,
+  "no_dashboard_changes": true,
+  "no_production_strategy_logic_changed": true,
+  "outputs": {
+    "predictions": "data/research/ml_lab/cross_asset_attention/cross_asset_attention_predictions.parquet",
+    "backtest_returns": "data/research/ml_lab/cross_asset_attention/cross_asset_attention_backtest_returns.csv",
+    "summary": "data/research/ml_lab/cross_asset_attention/cross_asset_attention_summary.csv",
+    "training_curves": "data/research/ml_lab/cross_asset_attention/cross_asset_attention_training_curves.csv",
+    "strategy_comparison": "data/research/ml_lab/cross_asset_attention/cross_asset_attention_strategy_comparison.csv",
+    "state_by_state": "data/research/ml_lab/cross_asset_attention/cross_asset_attention_state_by_state.csv",
+    "exposure_audit": "data/research/ml_lab/cross_asset_attention/cross_asset_attention_exposure_audit.csv",
+    "preprocessing_metadata": "data/research/ml_lab/cross_asset_attention/cross_asset_attention_preprocessing_metadata.json",
+    "skipped_runs": "data/research/ml_lab/cross_asset_attention/cross_asset_attention_skipped_runs.json",
+    "summary_json": "data/research/ml_lab/cross_asset_attention/cross_asset_attention_summary.json",
+    "notes": "docs/research/ml_lab/phase_mlx_cross_asset_attention_ranker_notes.md"
+  }
+}

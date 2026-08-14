@@ -1,0 +1,11 @@
+entry_id,name,repository,expected_commit,actual_commit,planned_environment,status,elapsed_seconds,file_count,tracked_file_count,repository_kb,submodule_count,dependency_manifest_count,test_indicator_count,container_image,error
+ast-0006,QLib (Microsoft),microsoft/qlib,79633dd9506ea689e5400dea0197717b5b3d74b7,79633dd9506ea689e5400dea0197717b5b3d74b7,python_container,passed,7,644,619,14480,0,7,59,docker.io/alpine/git:2.49.1,
+ast-0011,FinClaw,NeuZhou/finclaw,345d7c6a8ce31d547c14e6eede8cd1f6f8673673,345d7c6a8ce31d547c14e6eede8cd1f6f8673673,python_container,passed,2,37,6,564,0,0,0,docker.io/alpine/git:2.49.1,
+ast-0054,pysystemtrade,robcarver17/pysystemtrade,b4a25e6e1e33a54a3ecfb45c0f6db5e2b60b84f8,b4a25e6e1e33a54a3ecfb45c0f6db5e2b60b84f8,python_container,passed,112,1583,1558,897576,0,3,52,docker.io/alpine/git:2.49.1,
+ast-0056,vectorbt,polakowo/vectorbt,34b6d5935e3ea3eccd549e2592bc0f455b8045f5,34b6d5935e3ea3eccd549e2592bc0f455b8045f5,python_container,passed,16,322,297,190396,0,8,30,docker.io/alpine/git:2.49.1,
+ast-0076,ml-quant-trading,initial-d/ml-quant-trading,f157cc8203b8a9b14d0469813c297aa32e7fe107,f157cc8203b8a9b14d0469813c297aa32e7fe107,python_container,passed,3,317,292,6204,0,6,23,docker.io/alpine/git:2.49.1,
+ast-0183,cvxportfolio,cvxgrp/cvxportfolio,351c782b9b8b395c1a5f886b77e0d55f1bc9396e,351c782b9b8b395c1a5f886b77e0d55f1bc9396e,python_container,passed,9,207,182,86996,0,2,19,docker.io/alpine/git:2.49.1,
+ast-0184,skfolio,skfolio/skfolio,c06db8406385cf4bce83577d0f0710ee5a27e67e,c06db8406385cf4bce83577d0f0710ee5a27e67e,python_container,passed,22,427,402,7524,0,5,92,docker.io/alpine/git:2.49.1,
+ast-0185,Riskfolio-Lib,dcajasn/Riskfolio-Lib,632a9e48fbaf2b9f8e83864a492332364b6ed32c,632a9e48fbaf2b9f8e83864a492332364b6ed32c,python_container,passed,47,2126,2101,149240,2,9,13,docker.io/alpine/git:2.49.1,
+ast-0186,Deepdow,jankrepl/deepdow,384e18acc17c982ac5a4362187b348bdbdb07b98,384e18acc17c982ac5a4362187b348bdbdb07b98,python_container,passed,3,109,84,8148,0,3,16,docker.io/alpine/git:2.49.1,
+ast-0187,PyPortfolioOpt,robertmartin8/PyPortfolioOpt,a6638d2e06dae6f444fd022cfd4b3c528902a85b,a6638d2e06dae6f444fd022cfd4b3c528902a85b,python_container,passed,7,125,100,20676,0,4,26,docker.io/alpine/git:2.49.1,

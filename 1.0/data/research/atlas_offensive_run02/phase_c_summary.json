@@ -1,0 +1,23 @@
+{
+  "best_variant": "pbi_native_B55_S7",
+  "offense_base": 0.55,
+  "actual_no_stop_delta_cagr": 0.0025645550673669693,
+  "null_mean_delta_cagr": 0.0010327761343724674,
+  "null_90th_pct_value": 0.005359182820856434,
+  "actual_percentile": 0.665,
+  "null_bar_pass": false,
+  "inverted_n_fires": 101,
+  "inverted_delta_cagr": 0.0020332004579108887,
+  "inverted_hurts": false,
+  "inverted_below_actual": true,
+  "capture_mean_pp": 2.169146942106296,
+  "capture_ci_lo": -2.033374440897421,
+  "capture_ci_hi": 6.048912294246887,
+  "two_x_delta_cagr": 0.002535304960787,
+  "two_x_delta_logg": 0.0023590735518695,
+  "two_x_pass": true,
+  "n_nulls": 200,
+  "n_boot": 10000,
+  "seed": 20260721,
+  "runtime_s": 6.2
+}

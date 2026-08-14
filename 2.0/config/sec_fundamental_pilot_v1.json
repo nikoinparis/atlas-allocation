@@ -1,0 +1,44 @@
+{
+  "program": "sec_point_in_time_fundamental_pilot_v1",
+  "frozen_on": "2026-08-12",
+  "source_endpoints": {
+    "ticker_mapping": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "submissions": "https://data.sec.gov/submissions/CIK{cik10}.json",
+    "companyfacts": "https://data.sec.gov/api/xbrl/companyfacts/CIK{cik10}.json"
+  },
+  "pilot_universe": {
+    "technology": ["AAPL", "MSFT", "NVDA", "AVGO", "ORCL", "CRM", "AMD", "CSCO", "IBM", "QCOM"],
+    "energy": ["XOM", "CVX", "COP", "EOG", "SLB", "MPC", "PSX", "OXY", "WMB", "KMI"]
+  },
+  "universe_warning": "Current ticker engineering pilot only. It is not point-in-time, delisting-complete, or survivorship-safe and cannot support promotion claims.",
+  "accepted_forms": ["10-Q", "10-Q/A", "10-K", "10-K/A", "8-K", "8-K/A"],
+  "canonical_metrics": {
+    "revenue": ["RevenueFromContractWithCustomerExcludingAssessedTax", "Revenues", "SalesRevenueNet"],
+    "gross_profit": ["GrossProfit"],
+    "operating_income": ["OperatingIncomeLoss"],
+    "net_income": ["NetIncomeLoss", "ProfitLoss"],
+    "operating_cash_flow": ["NetCashProvidedByUsedInOperatingActivities"],
+    "capital_expenditure": ["PaymentsToAcquirePropertyPlantAndEquipment"],
+    "assets": ["Assets"],
+    "liabilities": ["Liabilities"],
+    "equity": ["StockholdersEquity", "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest"],
+    "cash": ["CashAndCashEquivalentsAtCarryingValue", "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"],
+    "debt_current": ["ShortTermBorrowings", "LongTermDebtCurrent"],
+    "debt_noncurrent": ["LongTermDebtNoncurrent"],
+    "shares_outstanding": ["EntityCommonStockSharesOutstanding", "CommonStockSharesOutstanding"],
+    "diluted_shares": ["WeightedAverageNumberOfDilutedSharesOutstanding", "WeightedAverageNumberOfSharesOutstandingBasic"],
+    "share_repurchases": ["PaymentsForRepurchaseOfCommonStock"],
+    "stock_compensation": ["ShareBasedCompensation"]
+  },
+  "unit_preferences": {
+    "shares_outstanding": ["shares"],
+    "diluted_shares": ["shares"],
+    "default": ["USD"]
+  },
+  "minimum_seconds_between_requests": 0.25,
+  "request_timeout_seconds": 60,
+  "network_requires_environment_variable": "SEC_USER_AGENT",
+  "availability_rule": "Use EDGAR acceptanceDateTime joined by accession number; if absent, conservatively use 23:59:59 UTC on filingDate.",
+  "amendment_rule": "Never overwrite history. Store every accession and let an amendment affect only decisions strictly after its later acceptance time.",
+  "live_trading_enabled": false
+}

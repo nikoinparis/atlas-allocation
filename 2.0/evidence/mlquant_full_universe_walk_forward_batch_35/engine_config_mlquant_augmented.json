@@ -1,0 +1,119 @@
+{
+  "program": "mlquant_full_universe_walk_forward_confirmation_v1_mlquant_augmented",
+  "input_dataset": "evidence/mlquant_full_universe_walk_forward_batch_35/matched_augmented_factor_dataset.csv",
+  "input_dataset_sha256": "GENERATED_AT_RUN_TIME_AND_RECORDED_IN_EVIDENCE",
+  "frozen_winner_must_remain_unchanged": "covariance_minimum_variance_v1",
+  "prediction_target": "cross-sectional rank of four-week relative return",
+  "outer_walk_forward": {
+    "first_test_year": 2012,
+    "test_block": "calendar_year",
+    "training": "expanding history strictly before test year",
+    "embargo": "training labels must end before test-year start"
+  },
+  "inner_selection": {
+    "validation_years_per_outer_fold": 3,
+    "score": "mean monthly rank IC minus 0.01 times top-five turnover proxy",
+    "selection_scope": "best configuration independently within each model family"
+  },
+  "model_families": {
+    "ridge": {
+      "alpha": [
+        0.01,
+        0.1,
+        1.0,
+        10.0,
+        100.0
+      ]
+    },
+    "elastic_net": {
+      "alpha": [
+        0.0001,
+        0.001,
+        0.01
+      ],
+      "l1_ratio": [
+        0.1,
+        0.5,
+        0.9
+      ]
+    },
+    "hist_gradient_boosting": {
+      "learning_rate": [
+        0.03,
+        0.08
+      ],
+      "max_iter": [
+        100,
+        200
+      ],
+      "max_leaf_nodes": [
+        7,
+        15
+      ],
+      "l2_regularization": [
+        1.0,
+        10.0
+      ],
+      "min_samples_leaf": [
+        20,
+        50
+      ]
+    }
+  },
+  "ensemble": {
+    "members": "best inner-selected configuration from each family",
+    "seeds": [
+      101,
+      211,
+      307,
+      401,
+      503
+    ],
+    "family_weighting": "positive inner score, equal fallback",
+    "maximum_family_weight": 0.6
+  },
+  "negative_controls": [
+    "labels shuffled within each training decision month",
+    "features shuffled within each decision month",
+    "one-month stale test features",
+    "three-month stale test features"
+  ],
+  "portfolio": {
+    "top_n": 5,
+    "weighting": "capped inverse volatility",
+    "maximum_asset_weight": 0.35,
+    "rebalance": "monthly",
+    "cost_bps": [
+      10,
+      50,
+      100
+    ]
+  },
+  "promotion_gates": {
+    "multiple_testing_adjusted_rank_ic_lower_bound": "greater than zero",
+    "sharpe_10bps": "greater than fixed factor baseline and frozen winner on common period",
+    "maximum_drawdown_10bps": "no worse than frozen winner on common period",
+    "later_windows_100bps": "both positive",
+    "correlation_to_frozen_winner": "absolute value no greater than 0.75",
+    "controls": "real predictions beat shuffled-label and random-feature controls",
+    "minimum_positive_outer_fold_rank_ic_share": 0.6,
+    "survivorship_safe_universe": "required before final promotion",
+    "untouched_forward_weeks": 52
+  },
+  "live_trading_approved": false,
+  "features": [
+    "momentum_4w",
+    "momentum_13w",
+    "momentum_26w",
+    "momentum_52w_skip_4w",
+    "moving_average_distance_13w",
+    "moving_average_distance_26w",
+    "volatility_13w",
+    "volatility_26w",
+    "downside_volatility_26w",
+    "drawdown_26w",
+    "positive_week_share_26w",
+    "mlquant_best_002",
+    "mlquant_original_001"
+  ]
+}

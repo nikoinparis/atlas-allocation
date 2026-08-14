@@ -1,0 +1,15 @@
+{
+  "files": {
+    "weekly_log_returns.csv": {
+      "bytes": 819856,
+      "sha256": "f75537e3b9458959ce0c773945723a2906c6d507e7e30feb37b37f9bde162741"
+    },
+    "weekly_prices.csv": {
+      "bytes": 707802,
+      "sha256": "040c02ad71468e8a744ebab16f43276f9c3e7aba6992d5a9989628d8c9facf45"
+    }
+  },
+  "source_snapshot_id": "20260808T212827Z-de103c2e063d6c4a",
+  "source_snapshot_observed_at_utc": "2026-08-08T21:28:27.021963+00:00",
+  "transformation": "last available daily adjusted close labeled to completed W-FRI; log return from consecutive weekly rows"
+}

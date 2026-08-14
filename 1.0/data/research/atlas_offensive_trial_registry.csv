@@ -1,0 +1,62 @@
+run_id,date,variant,params,primary_metric,value,verdict,notes
+R00,2026-07-21,governance_artifacts,holdout_start=2026-01-01;old_holdout_2024-04-19=descriptive_only,artifacts_written,4.0,COMPLETE,Holdout declaration + trial registry + preregistration template + cost library v1 written; no experiments executed
+R01,2026-07-21,run_level_status,universe=SP500_PIT;source=norgate,unbiased_calm_trend_breadth_lift_pct_per_4w,,BLOCKED_PREREQUISITE,Norgate Data not installed: data/stock_breadth/raw/ contains only *_TEMPLATE.csv placeholders; norgatedata python package absent; no substitute universe scraped per run card. Zero experimental variants evaluated. Pre-registration filed before block: docs/research/atlas_offensive/run01_preregistration.md
+R02,2026-07-22,pbi_native_B25_S3,B=0.25;S=0.03;costs=per_instrument_1x,delta_net_cagr_vs_base_dev,-0.000495,DROP,capture -0.08pp (bar +5); containment FAIL; worst ep -0.0088; stops 2
+R02,2026-07-22,pbi_native_B25_S3_2xcost,B=0.25;S=0.03;costs=per_instrument_2x,delta_net_cagr_vs_base_dev_2x,-0.0005,DROP,2x per-instrument cost stress arm of the same variant
+R02,2026-07-22,pbi_native_B25_S5,B=0.25;S=0.05;costs=per_instrument_1x,delta_net_cagr_vs_base_dev,0.000294,DROP,capture +0.25pp (bar +5); containment FAIL; worst ep -0.0088; stops 1
+R02,2026-07-22,pbi_native_B25_S5_2xcost,B=0.25;S=0.05;costs=per_instrument_2x,delta_net_cagr_vs_base_dev_2x,0.000288,DROP,2x per-instrument cost stress arm of the same variant
+R02,2026-07-22,pbi_native_B25_S7,B=0.25;S=0.07;costs=per_instrument_1x,delta_net_cagr_vs_base_dev,0.000417,DROP,capture +0.28pp (bar +5); containment FAIL; worst ep -0.0088; stops 0
+R02,2026-07-22,pbi_native_B25_S7_2xcost,B=0.25;S=0.07;costs=per_instrument_2x,delta_net_cagr_vs_base_dev_2x,0.00041,DROP,2x per-instrument cost stress arm of the same variant
+R02,2026-07-22,pbi_native_B40_S3,B=0.4;S=0.03;costs=per_instrument_1x,delta_net_cagr_vs_base_dev,-0.000652,DROP,capture +0.36pp (bar +5); containment FAIL; worst ep -0.0180; stops 2
+R02,2026-07-22,pbi_native_B40_S3_2xcost,B=0.4;S=0.03;costs=per_instrument_2x,delta_net_cagr_vs_base_dev_2x,-0.000665,DROP,2x per-instrument cost stress arm of the same variant
+R02,2026-07-22,pbi_native_B40_S5,B=0.4;S=0.05;costs=per_instrument_1x,delta_net_cagr_vs_base_dev,-0.000208,DROP,capture +0.47pp (bar +5); containment FAIL; worst ep -0.0180; stops 2
+R02,2026-07-22,pbi_native_B40_S5_2xcost,B=0.4;S=0.05;costs=per_instrument_2x,delta_net_cagr_vs_base_dev_2x,-0.000223,DROP,2x per-instrument cost stress arm of the same variant
+R02,2026-07-22,pbi_native_B40_S7,B=0.4;S=0.07;costs=per_instrument_1x,delta_net_cagr_vs_base_dev,0.001497,DROP,capture +1.20pp (bar +5); containment FAIL; worst ep -0.0170; stops 0
+R02,2026-07-22,pbi_native_B40_S7_2xcost,B=0.4;S=0.07;costs=per_instrument_2x,delta_net_cagr_vs_base_dev_2x,0.001479,DROP,2x per-instrument cost stress arm of the same variant
+R02,2026-07-22,pbi_native_B55_S3,B=0.55;S=0.03;costs=per_instrument_1x,delta_net_cagr_vs_base_dev,-0.000816,DROP,capture +0.85pp (bar +5); containment FAIL; worst ep -0.0273; stops 2
+R02,2026-07-22,pbi_native_B55_S3_2xcost,B=0.55;S=0.03;costs=per_instrument_2x,delta_net_cagr_vs_base_dev_2x,-0.000836,DROP,2x per-instrument cost stress arm of the same variant
+R02,2026-07-22,pbi_native_B55_S5,B=0.55;S=0.05;costs=per_instrument_1x,delta_net_cagr_vs_base_dev,0.000217,DROP,capture +1.12pp (bar +5); containment FAIL; worst ep -0.0273; stops 1
+R02,2026-07-22,pbi_native_B55_S5_2xcost,B=0.55;S=0.05;costs=per_instrument_2x,delta_net_cagr_vs_base_dev_2x,0.000191,DROP,2x per-instrument cost stress arm of the same variant
+R02,2026-07-22,pbi_native_B55_S7,B=0.55;S=0.07;costs=per_instrument_1x,delta_net_cagr_vs_base_dev,0.002565,DROP,capture +2.17pp (bar +5); containment FAIL; worst ep -0.0252; stops 0
+R02,2026-07-22,pbi_native_B55_S7_2xcost,B=0.55;S=0.07;costs=per_instrument_2x,delta_net_cagr_vs_base_dev_2x,0.002535,DROP,2x per-instrument cost stress arm of the same variant
+R02,2026-07-22,pbi_native_B70_S3,B=0.7;S=0.03;costs=per_instrument_1x,delta_net_cagr_vs_base_dev,0.00031,DROP,capture +1.94pp (bar +5); containment FAIL; worst ep -0.0333; stops 2
+R02,2026-07-22,pbi_native_B70_S3_2xcost,B=0.7;S=0.03;costs=per_instrument_2x,delta_net_cagr_vs_base_dev_2x,0.000283,DROP,2x per-instrument cost stress arm of the same variant
+R02,2026-07-22,pbi_native_B70_S5,B=0.7;S=0.05;costs=per_instrument_1x,delta_net_cagr_vs_base_dev,0.000418,DROP,capture +1.75pp (bar +5); containment FAIL; worst ep -0.0366; stops 1
+R02,2026-07-22,pbi_native_B70_S5_2xcost,B=0.7;S=0.05;costs=per_instrument_2x,delta_net_cagr_vs_base_dev_2x,0.000381,DROP,2x per-instrument cost stress arm of the same variant
+R02,2026-07-22,pbi_native_B70_S7,B=0.7;S=0.07;costs=per_instrument_1x,delta_net_cagr_vs_base_dev,0.000418,DROP,capture +1.75pp (bar +5); containment FAIL; worst ep -0.0366; stops 1
+R02,2026-07-22,pbi_native_B70_S7_2xcost,B=0.7;S=0.07;costs=per_instrument_2x,delta_net_cagr_vs_base_dev_2x,0.000381,DROP,2x per-instrument cost stress arm of the same variant
+R02,2026-07-22,placement_null_batch,n=200;domain=dev_SP_weeks;no_stop;B=0.55;seed=20260721,actual_percentile_vs_nulls,0.665,CONTROL_FAILED_BAR,bar >=0.90; null mean dCAGR +0.1033% — random SP offense boosts also gain
+R02,2026-07-22,inverted_confirmation_control,fires=101;B=0.55;no_stop,delta_net_cagr_vs_base_dev,0.002033,CONTROL_FAILED_BAR,"inverted signal HELPS (+0.20%) — lift is panic beta, not confirmation timing"
+R02,2026-07-22,episode_blocked_bootstrap,n=10000;blocks=9_episodes,mean_capture_pp_95ci,2.169,CONTROL,"95% CI [-2.03, +6.05]pp — straddles zero"
+R02,2026-07-22,phase_b_production_5state,common_expanding_action_rule;K=5,delta_net_cagr_vs_base_dev,0.00198,BENCHMARK-ONLY,trans/yr 9.8; median spell 3w; production labels win decision value
+R02,2026-07-22,phase_b_jump_lambda1,common_expanding_action_rule;K=5,delta_net_cagr_vs_base_dev,0.001082,BENCHMARK-ONLY,trans/yr 7.4; median spell 5w; production labels win decision value
+R02,2026-07-22,phase_b_jump_lambda2,common_expanding_action_rule;K=5,delta_net_cagr_vs_base_dev,0.001555,BENCHMARK-ONLY,trans/yr 7.7; median spell 5w; production labels win decision value
+R02,2026-07-22,phase_b_jump_lambda4,common_expanding_action_rule;K=5,delta_net_cagr_vs_base_dev,0.00123,BENCHMARK-ONLY,trans/yr 6.1; median spell 6w; production labels win decision value
+R02,2026-07-22,phase_b_hmm_5state,common_expanding_action_rule;K=5,delta_net_cagr_vs_base_dev,0.001171,BENCHMARK-ONLY,trans/yr 9.0; median spell 3w; production labels win decision value
+R2B,2026-07-23,armA_baseP_alpha0.08,alpha=0.08;costs=per_instrument_1x(2x recorded),dev_log_growth,0.07131,REFERENCE,CAGR 7.3914%; 2x CAGR 7.3719%; cost drag 0.0182%; Sharpe 0.996 (recorded)
+R2B,2026-07-23,armA_baseP_alpha0.16,alpha=0.16;costs=per_instrument_1x(2x recorded),dev_log_growth,0.071369,DROP,CAGR 7.3978%; 2x CAGR 7.3771%; cost drag 0.0193%; Sharpe 1.009 (recorded)
+R2B,2026-07-23,armA_baseP_alpha0.24,alpha=0.24;costs=per_instrument_1x(2x recorded),dev_log_growth,0.071236,DROP,CAGR 7.3835%; 2x CAGR 7.3614%; cost drag 0.0206%; Sharpe 1.019 (recorded)
+R2B,2026-07-23,armA_baseP_alpha0.32,alpha=0.32;costs=per_instrument_1x(2x recorded),dev_log_growth,0.07117,DROP,CAGR 7.3764%; 2x CAGR 7.3530%; cost drag 0.0219%; Sharpe 1.029 (recorded)
+R2B,2026-07-23,armA_baseP_alpha0.40,alpha=0.4;costs=per_instrument_1x(2x recorded),dev_log_growth,0.07112,DROP,CAGR 7.3710%; 2x CAGR 7.3463%; cost drag 0.0231%; Sharpe 1.039 (recorded)
+R2B,2026-07-23,armA_baseP_alpha0.48,alpha=0.48;costs=per_instrument_1x(2x recorded),dev_log_growth,0.070993,DROP,CAGR 7.3574%; 2x CAGR 7.3312%; cost drag 0.0244%; Sharpe 1.046 (recorded)
+R2B,2026-07-23,armA_baseP_alpha0.64,alpha=0.64;costs=per_instrument_1x(2x recorded),dev_log_growth,0.070674,DROP,CAGR 7.3231%; 2x CAGR 7.2943%; cost drag 0.0269%; Sharpe 1.057 (recorded)
+R2B,2026-07-23,armA_baseP_alpha0.80,alpha=0.8;costs=per_instrument_1x(2x recorded),dev_log_growth,0.070262,DROP,CAGR 7.2790%; 2x CAGR 7.2476%; cost drag 0.0293%; Sharpe 1.063 (recorded)
+R2B,2026-07-23,armB_baseO_alpha0.00,alpha=0.0;costs=per_instrument_1x(2x recorded),dev_log_growth,0.103811,REFERENCE,CAGR 10.9391%; 2x CAGR 10.9237%; cost drag 0.0139%; Sharpe 0.872 (recorded)
+R2B,2026-07-23,armB_baseO_alpha0.08,alpha=0.08;costs=per_instrument_1x(2x recorded),dev_log_growth,0.102558,DROP,CAGR 10.8002%; 2x CAGR 10.7825%; cost drag 0.0160%; Sharpe 0.881 (recorded)
+R2B,2026-07-23,armB_baseO_alpha0.16,alpha=0.16;costs=per_instrument_1x(2x recorded),dev_log_growth,0.10127,DROP,CAGR 10.6575%; 2x CAGR 10.6373%; cost drag 0.0183%; Sharpe 0.889 (recorded)
+R2B,2026-07-23,armB_baseO_alpha0.24,alpha=0.24;costs=per_instrument_1x(2x recorded),dev_log_growth,0.099946,DROP,CAGR 10.5111%; 2x CAGR 10.4881%; cost drag 0.0208%; Sharpe 0.897 (recorded)
+R2B,2026-07-23,armB_baseO_alpha0.32,alpha=0.32;costs=per_instrument_1x(2x recorded),dev_log_growth,0.09855,DROP,CAGR 10.3570%; 2x CAGR 10.3312%; cost drag 0.0234%; Sharpe 0.903 (recorded)
+R2B,2026-07-23,armB_baseO_alpha0.40,alpha=0.4;costs=per_instrument_1x(2x recorded),dev_log_growth,0.097031,DROP,CAGR 10.1895%; 2x CAGR 10.1610%; cost drag 0.0259%; Sharpe 0.907 (recorded)
+R2B,2026-07-23,armB_baseO_alpha0.48,alpha=0.48;costs=per_instrument_1x(2x recorded),dev_log_growth,0.095375,DROP,CAGR 10.0071%; 2x CAGR 9.9759%; cost drag 0.0284%; Sharpe 0.909 (recorded)
+R2B,2026-07-23,armB_baseO_alpha0.64,alpha=0.64;costs=per_instrument_1x(2x recorded),dev_log_growth,0.093065,DROP,CAGR 9.7533%; 2x CAGR 9.7216%; cost drag 0.0289%; Sharpe 0.900 (recorded)
+R2B,2026-07-23,armB_baseO_alpha0.80,alpha=0.8;costs=per_instrument_1x(2x recorded),dev_log_growth,0.091753,DROP,CAGR 9.6094%; 2x CAGR 9.5779%; cost drag 0.0288%; Sharpe 0.894 (recorded)
+R2B,2026-07-23,armA_walkforward_selection,expanding;26w checkpoints;log_growth objective;splice costs charged,chosen_alpha_mode,0.08,HONESTY-CHECK,"chose 0.08 at 28/35 checkpoints, 0.16 at 7/35 — production amplitude already growth-optimal"
+R2B,2026-07-23,armC_P_floor_none,floor=0.0;domain=SP&latched;no_confirmations;labeled_BETA,delta_net_cagr_vs_own_base,0.0,REFERENCE,dLogG +0.0000; dBeta +0.000 (beta-labeled OK); 2008 window delta +0.00% breaches 2yr bar; 2011 delta positive; MaxDD -11.60%
+R2B,2026-07-23,armC_P_floor_20,floor=0.2;domain=SP&latched;no_confirmations;labeled_BETA,delta_net_cagr_vs_own_base,0.001934,RESEARCH-ONLY,dLogG +0.0018; dBeta +0.024 (beta-labeled OK); 2008 window delta -0.89% breaches 2yr bar; 2011 delta positive; MaxDD -11.60%
+R2B,2026-07-23,armC_P_floor_30,floor=0.3;domain=SP&latched;no_confirmations;labeled_BETA,delta_net_cagr_vs_own_base,0.003573,RESEARCH-ONLY,dLogG +0.0033; dBeta +0.049 (beta-labeled OK); 2008 window delta -2.46% breaches 2yr bar; 2011 delta positive; MaxDD -12.85%
+R2B,2026-07-23,armC_P_floor_40,floor=0.4;domain=SP&latched;no_confirmations;labeled_BETA,delta_net_cagr_vs_own_base,0.004565,RESEARCH-ONLY,dLogG +0.0042; dBeta +0.078 (beta-labeled OK); 2008 window delta -4.08% breaches 2yr bar; 2011 delta positive; MaxDD -15.65%
+R2B,2026-07-23,armC_O_floor_20_none,floor=0.2;domain=SP&latched;no_confirmations;labeled_BETA,delta_net_cagr_vs_own_base,0.0,REFERENCE,dLogG +0.0000; dBeta +0.000 (beta-labeled OK); 2008 window delta +0.00% breaches 2yr bar; 2011 delta positive; MaxDD -26.00%
+R2B,2026-07-23,armC_O_floor_35,floor=0.35;domain=SP&latched;no_confirmations;labeled_BETA,delta_net_cagr_vs_own_base,0.003284,RESEARCH-ONLY,dLogG +0.0030; dBeta +0.067 (beta-labeled OK); 2008 window delta -2.30% breaches 2yr bar; 2011 delta positive; MaxDD -30.39%
+R2B,2026-07-23,armC_O_floor_50,floor=0.5;domain=SP&latched;no_confirmations;labeled_BETA,delta_net_cagr_vs_own_base,0.006225,RESEARCH-ONLY,dLogG +0.0056; dBeta +0.135 (beta-labeled OK); 2008 window delta -4.77% breaches 2yr bar; 2011 delta positive; MaxDD -34.71%
+R2B,2026-07-23,shuffled_r2a_null_batch_baseP,n=50;alpha=0.16;seed=20260723;dev_positions_only,actual_percentile_vs_nulls,0.86,CONTROL_FAILED_BAR,"actual gain +0.0001 logG; null mean gain -0.0011 (nulls hurt — timing direction real, amplitude gain too small)"
+R2B,2026-07-23,shuffled_r2a_null_batch_baseO,n=50;alpha=0.08;seed=20260723;dev_positions_only,actual_percentile_vs_nulls,0.72,CONTROL_FAILED_BAR,"actual gain -0.0013 logG; null mean gain -0.0022 (nulls hurt — timing direction real, amplitude gain too small)"

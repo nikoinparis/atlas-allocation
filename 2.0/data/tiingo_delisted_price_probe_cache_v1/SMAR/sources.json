@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 149,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T20:23:46.719071+00:00",
+    "sha256": "fdcec232b13542d066cf40f4b5392406918647ce5b699910a76ab8dea558379f",
+    "url": "https://api.tiingo.com/tiingo/daily/SMAR"
+  },
+  {
+    "bytes": 252162,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T20:23:48.413662+00:00",
+    "sha256": "b13a39f9a83435e8bc5e3a0730bd3304e0f6884a96eea028d638346792a8d1f7",
+    "url": "https://api.tiingo.com/tiingo/daily/SMAR/prices?startDate=2020-07-01&endDate=2026-01-11&resampleFreq=daily"
+  }
+]

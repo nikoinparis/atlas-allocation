@@ -1,0 +1,20 @@
+{
+  "cik10": "0000101778",
+  "covers_first_eligible_decision": true,
+  "first_eligible_decision": "2012-04-01 00:00:00+00:00",
+  "first_price_date": "2012-04-02",
+  "issuer_name_match": true,
+  "issuer_name_score": 1.0,
+  "last_eligible_decision": "2026-01-01 00:00:00+00:00",
+  "last_price_date": "2024-11-22",
+  "price_file": "/project/data/tiingo_delisted_price_probe_cache_v1/MRO/prices.csv.gz",
+  "price_rows": 3183,
+  "provider_end_date": "2024-11-22",
+  "provider_exchange": "NYSE",
+  "provider_name": "Marathon Oil Corporation",
+  "provider_start_date": "1970-01-02",
+  "sec_company_name": "MARATHON OIL CORP",
+  "status": "identity_and_start_validated",
+  "terminal": true,
+  "tiingo_symbol": "MRO"
+}

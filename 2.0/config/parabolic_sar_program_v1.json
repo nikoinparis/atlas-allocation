@@ -1,0 +1,62 @@
+{
+  "program": "repository_parabolic_sar_program_v1",
+  "predeclared_before_results": true,
+  "catalog_source": {
+    "entries": ["ast-0079", "ast-0087"],
+    "repository": "je-suis-tm/quant-trading",
+    "commit": "611b73f2c3f577ac5b28aaa19ac8c43d3236c7a5",
+    "source_sha256": "e088853dfcc3b5181aaf44a6fd33f42b06f4e5cd44e81573fae454ca8f466e47",
+    "integration": "independent fixed-rule reimplementation; repository code is not executed or copied"
+  },
+  "data": {
+    "snapshot_id": "20260809T002313Z-0d8632e2cf759918",
+    "assets": ["SPY", "QQQ", "IWM", "EFA", "VEA", "VWO", "EWJ", "VNQ", "HYG", "LQD", "GLD", "PDBC", "DBA", "TLT"],
+    "start_date": "2005-01-03",
+    "adjusted_ohlc": "raw OHLC multiplied by adjusted_close/raw_close",
+    "signal_time": "completed daily bar",
+    "realization": "next adjusted close",
+    "minimum_rows": 3
+  },
+  "fixed_candidates": {
+    "source_default": {"initial_af": 0.02, "step_af": 0.02, "maximum_af": 0.2},
+    "source_equity_step": {"initial_af": 0.01, "step_af": 0.01, "maximum_af": 0.2}
+  },
+  "source_state": {
+    "initial_trend": "up if second close exceeds first close, otherwise down",
+    "initial_sar": "first high for up and first low for down, preserving the repository's unusual convention",
+    "position": "long when repository real_sar is below completed close, otherwise cash",
+    "first_tradable_signal": "second completed bar; ignore zero-initialized first row"
+  },
+  "negative_controls": [
+    "one additional trading-day stale position",
+    "five additional trading-day stale position",
+    "inverted long/cash position",
+    "fixed deterministic asset-label permutation preserving signal persistence"
+  ],
+  "portfolio": {
+    "weighting": "equal among active assets",
+    "maximum_asset_weight": 0.2,
+    "residual": "zero-return cash",
+    "leverage": false,
+    "turnover": "half L1 change including cash from drifted holdings"
+  },
+  "frictions": {"costs_bps": [10, 50, 100], "primary_cost_bps": 50},
+  "evaluation": {
+    "fixed_candidate_count": 2,
+    "paired_bootstrap_samples": 20000,
+    "block_weeks": 13,
+    "familywise_one_sided_alpha": 0.05,
+    "per_candidate_alpha": 0.025,
+    "later_windows": ["2016-01-01/2020-12-31", "2021-01-01/present"]
+  },
+  "promotion_gates": {
+    "primary_performance": "positive annual return, Sharpe above 0.5, and drawdown no worse than -25 percent at 50 bps",
+    "stress": "positive full-period and both later-window annual returns at 100 bps",
+    "controls": "candidate Sharpe exceeds inverted, stale, and permuted controls at 50 bps",
+    "dependence": "absolute correlation no greater than 0.80 to core and trend",
+    "blend": "80/20 core blend improves Sharpe with no worse drawdown and familywise paired lower Sharpe difference above zero",
+    "survivorship_safe_universe": true,
+    "untouched_forward_weeks": 52
+  },
+  "live_trading_approved": false
+}

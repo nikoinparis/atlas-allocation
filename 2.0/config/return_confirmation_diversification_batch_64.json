@@ -1,0 +1,40 @@
+{
+  "batch": 64,
+  "comparison_ceiling": "candidate-xsmom-trend-consistency-60-return-ceiling-v2",
+  "aggressive_xsmom_core": "candidate-global-xsmom-100-return-ceiling-v1",
+  "trend_source": "trend_consistency_top3",
+  "cross_asset_variants": {
+    "breadth_boost": {"favorable": 1.0, "otherwise": 0.4, "breadth_threshold": 0.65},
+    "risk_on_confirmation": {"favorable": 1.0, "otherwise": 0.3, "volatility_ceiling": 0.25},
+    "commodity_confirmation": {"favorable": 1.0, "otherwise": 0.4},
+    "equity_leadership": {"favorable": 0.9, "otherwise": 0.4},
+    "confirmation_count": {"high": 1.0, "middle": 0.6, "low": 0.2, "high_count": 4, "middle_count": 2},
+    "dual_breadth_risk": {"favorable": 1.0, "otherwise": 0.4, "breadth_threshold": 0.65}
+  },
+  "ml_variants": [
+    {"name": "ridge_0p1_balanced", "penalty": 0.1, "low": 0.2, "middle": 0.6, "high": 1.0, "quantile": 0.75},
+    {"name": "ridge_1_balanced", "penalty": 1.0, "low": 0.2, "middle": 0.6, "high": 1.0, "quantile": 0.75},
+    {"name": "ridge_10_balanced", "penalty": 10.0, "low": 0.2, "middle": 0.6, "high": 1.0, "quantile": 0.75},
+    {"name": "ridge_0p1_aggressive", "penalty": 0.1, "low": 0.4, "middle": 0.7, "high": 1.0, "quantile": 0.65},
+    {"name": "ridge_1_aggressive", "penalty": 1.0, "low": 0.4, "middle": 0.7, "high": 1.0, "quantile": 0.65},
+    {"name": "ridge_10_aggressive", "penalty": 10.0, "low": 0.4, "middle": 0.7, "high": 1.0, "quantile": 0.65}
+  ],
+  "ml_label_horizon_weeks": 4,
+  "ml_minimum_training_months": 60,
+  "cost_bps": [50, 100],
+  "bootstrap_samples": 50000,
+  "bootstrap_block_weeks": 13,
+  "multiple_testing_trials": 12,
+  "qualification_gates": {
+    "minimum_trailing_3y_cagr_improvement": 0.005,
+    "maximum_trailing_1y_cagr_sacrifice": 0.01,
+    "maximum_trailing_2y_cagr_sacrifice": 0.01,
+    "minimum_trailing_3y_100bps_improvement": 0.0,
+    "minimum_rolling_3y_win_share": 0.5,
+    "maximum_recent_drawdown_magnitude": 0.25,
+    "maximum_full_drawdown_magnitude": 0.4,
+    "maximum_adjusted_pvalue": 0.1
+  },
+  "leverage_allowed": false,
+  "live_trading_enabled": false
+}

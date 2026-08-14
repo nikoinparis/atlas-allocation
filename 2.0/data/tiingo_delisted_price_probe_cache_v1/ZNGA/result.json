@@ -1,0 +1,20 @@
+{
+  "cik10": "0001439404",
+  "covers_first_eligible_decision": true,
+  "first_eligible_decision": "2013-04-01 00:00:00+00:00",
+  "first_price_date": "2013-04-01",
+  "issuer_name_match": true,
+  "issuer_name_score": 1.0,
+  "last_eligible_decision": "2023-07-01 00:00:00+00:00",
+  "last_price_date": "2022-09-08",
+  "price_file": "/workspace/2.0/data/tiingo_delisted_price_probe_cache_v1/ZNGA/prices.csv.gz",
+  "price_rows": 2329,
+  "provider_end_date": "2022-09-08",
+  "provider_exchange": "NASDAQ",
+  "provider_name": "Zynga Inc - Class A",
+  "provider_start_date": "2011-12-16",
+  "sec_company_name": "ZYNGA INC",
+  "status": "identity_and_start_validated",
+  "terminal": true,
+  "tiingo_symbol": "ZNGA"
+}

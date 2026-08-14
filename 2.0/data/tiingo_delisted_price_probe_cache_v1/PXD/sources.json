@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 305,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T01:00:05.910910+00:00",
+    "sha256": "fc2173f381faa7abe8d87d5a4a4a07db9649c3d39a5e172a108401e6c2448938",
+    "url": "https://api.tiingo.com/tiingo/daily/PXD"
+  },
+  {
+    "bytes": 786337,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T01:00:07.688007+00:00",
+    "sha256": "9e9ca59ed1101f807911f91a861899e2e0c5e636b7ada94a1db84fb6a13b538a",
+    "url": "https://api.tiingo.com/tiingo/daily/PXD/prices?startDate=2012-04-01&endDate=2025-07-11&resampleFreq=daily"
+  }
+]

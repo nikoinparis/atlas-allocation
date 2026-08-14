@@ -1,0 +1,57 @@
+{
+  "config": {
+    "underlyings": [
+      "SPY",
+      "QQQ",
+      "IWM",
+      "TLT",
+      "GLD"
+    ],
+    "premium_budget": 0.02,
+    "hard_cap_total_premium": 0.03,
+    "horizon_weeks": 13,
+    "entry_slippage_pct": 0.05,
+    "iv_markup": 1.05,
+    "risk_free_rate": 0.02,
+    "mode": "historical_proxy_black_scholes",
+    "proxy_warning": "APPROXIMATE - not production-grade. IV is proxied by realized volatility; no real option-chain data used."
+  },
+  "verdict": "REJECT",
+  "gates": {
+    "sharpe_improves": {
+      "pass": false,
+      "detail": "overlay 0.577 vs baseline 0.948"
+    },
+    "drawdown_ok": {
+      "pass": false,
+      "detail": "overlay -0.275 vs baseline -0.116 (\u0394 -0.1591)"
+    },
+    "cvar_ok": {
+      "pass": false,
+      "detail": "overlay -0.0395 vs baseline -0.0249 (\u0394 -0.0146)"
+    },
+    "activation_rare": {
+      "pass": true,
+      "detail": "1.50 activations/yr (cap 12.0)"
+    },
+    "not_one_trade": {
+      "pass": false,
+      "detail": "Sharpe ex-best-trade 0.424 vs baseline 0.948"
+    },
+    "walk_forward_ok": {
+      "pass": false,
+      "detail": "train Sharpe 0.488/0.817; holdout 1.464/2.179"
+    },
+    "costs_included": {
+      "pass": true,
+      "detail": "entry slippage (5%) + IV markup (x1.05) applied; baseline net of costs"
+    },
+    "proxy_documented": {
+      "pass": true,
+      "detail": "PROXY mode clearly labelled approximate in report and outputs"
+    }
+  },
+  "activations_per_year": 1.499099099099099,
+  "premium_spent_per_year": 0.029981981981981983,
+  "n_trades": 32
+}

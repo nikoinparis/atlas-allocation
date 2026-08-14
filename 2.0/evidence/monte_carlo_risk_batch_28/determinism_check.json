@@ -1,0 +1,30 @@
+{
+  "first_run_sha256": {
+    "frozen_weekly_returns_50bps.csv": "bf347772e70f82620166f99fca071d2656f3cb34058967ca6065cdcc00f466ff",
+    "path_risk_summary.csv": "e079fa98d8f6833f6b9bc08c81417942ed861d815772fd20b595f17d31d2fc2c",
+    "post_result_methodological_amendment.json": "42e827cc71f87ee60fa1f3892bdf9b3aaeb79254488143d03a67716457f8d8f2",
+    "report.md": "d35401f4c040b8a2e7e703fcea23c488ba0d823ecd9b142932fe43d1f61598e8",
+    "rolling_calibration.csv": "6f4b43459b4bf636a48cad77afa99b28ab5560dea388ed23cee552be8867b48d",
+    "source_best_fit_direction.csv": "c5186046c81bfaf6d71e4e9b0a4938f844850f3c3107ab8536185459bb4bd6a1",
+    "source_best_fit_summary.csv": "a56ebf4fafa8092c2eb0e48b003d601dc1723396b6d85abca2a0658d1864716c"
+  },
+  "identical": true,
+  "projection_files": [
+    "frozen_weekly_returns_50bps.csv",
+    "path_risk_summary.csv",
+    "post_result_methodological_amendment.json",
+    "report.md",
+    "rolling_calibration.csv",
+    "source_best_fit_direction.csv",
+    "source_best_fit_summary.csv"
+  ],
+  "second_run_sha256": {
+    "frozen_weekly_returns_50bps.csv": "bf347772e70f82620166f99fca071d2656f3cb34058967ca6065cdcc00f466ff",
+    "path_risk_summary.csv": "e079fa98d8f6833f6b9bc08c81417942ed861d815772fd20b595f17d31d2fc2c",
+    "post_result_methodological_amendment.json": "42e827cc71f87ee60fa1f3892bdf9b3aaeb79254488143d03a67716457f8d8f2",
+    "report.md": "d35401f4c040b8a2e7e703fcea23c488ba0d823ecd9b142932fe43d1f61598e8",
+    "rolling_calibration.csv": "6f4b43459b4bf636a48cad77afa99b28ab5560dea388ed23cee552be8867b48d",
+    "source_best_fit_direction.csv": "c5186046c81bfaf6d71e4e9b0a4938f844850f3c3107ab8536185459bb4bd6a1",
+    "source_best_fit_summary.csv": "a56ebf4fafa8092c2eb0e48b003d601dc1723396b6d85abca2a0658d1864716c"
+  }
+}

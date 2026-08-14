@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 378,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T05:58:00.198878+00:00",
+    "sha256": "3936475625810dd428175a5a139c8a6c683e35c933ea6612a544e929fa3f58bc",
+    "url": "https://api.tiingo.com/tiingo/daily/QEP"
+  },
+  {
+    "bytes": 555126,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T05:58:02.693218+00:00",
+    "sha256": "64f8e600b92e31ad95c18e2726be28ac4fa1728e251577d4c9cfb72c5cde0fcb",
+    "url": "https://api.tiingo.com/tiingo/daily/QEP/prices?startDate=2012-04-01&endDate=2022-04-11&resampleFreq=daily"
+  }
+]

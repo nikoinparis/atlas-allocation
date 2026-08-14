@@ -1,0 +1,4 @@
+FROM localhost/po2-yfinance:1.5.2-v1
+RUN python -m pip install --no-cache-dir pytrends==4.9.2
+COPY containers/regime_collector.py /opt/regime_collector.py
+ENTRYPOINT ["python", "/opt/regime_collector.py"]

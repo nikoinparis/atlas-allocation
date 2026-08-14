@@ -1,0 +1,9 @@
+name,command,returncode,passed,started_at,ended_at
+canonical_metrics_cost_tests,/Users/nicholasturangan/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 scripts/test_production_metrics_costs.py,0,True,2026-06-13T20:06:03.853780+00:00,2026-06-13T20:06:05.026945+00:00
+wrapper_equivalence_tests,/Users/nicholasturangan/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 scripts/test_production_pipeline_equivalence.py,0,True,2026-06-13T20:06:05.027042+00:00,2026-06-13T20:06:07.073478+00:00
+production_reproduction,/Users/nicholasturangan/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 scripts/reproduce_production_candidate.py,0,True,2026-06-13T20:06:07.073590+00:00,2026-06-13T20:06:09.139372+00:00
+validation_governance,/Users/nicholasturangan/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 scripts/run_track_a_validation_governance.py,0,True,2026-06-13T20:06:09.139456+00:00,2026-06-13T20:06:10.298126+00:00
+dashboard_bundle_build,/Users/nicholasturangan/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 scripts/build_production_candidate_dashboard_bundle.py,0,True,2026-06-13T20:06:10.298256+00:00,2026-06-13T20:06:12.181276+00:00
+dashboard_packaging_verify,/Users/nicholasturangan/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 scripts/verify_dashboard_packaging.py,0,True,2026-06-13T20:06:12.181391+00:00,2026-06-13T20:06:13.470960+00:00
+typescript_typecheck,npm run typecheck,0,True,2026-06-13T20:06:13.471080+00:00,2026-06-13T20:06:21.132996+00:00
+next_production_build,npm run build,0,True,2026-06-13T20:06:21.136321+00:00,2026-06-13T20:07:18.721305+00:00

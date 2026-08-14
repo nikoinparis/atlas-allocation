@@ -1,0 +1,108 @@
+{
+  "production_candidate": "improved_frontier_phase5_fragility_guard",
+  "checks": [
+    {
+      "check": "exists:data/05_layer3_portfolio_construction/production_candidate_summary.csv",
+      "status": "PASS",
+      "hard": 1,
+      "detail": "path=data/05_layer3_portfolio_construction/production_candidate_summary.csv"
+    },
+    {
+      "check": "exists:data/05_layer3_portfolio_construction/production_candidate_state_summary.csv",
+      "status": "PASS",
+      "hard": 1,
+      "detail": "path=data/05_layer3_portfolio_construction/production_candidate_state_summary.csv"
+    },
+    {
+      "check": "exists:data/05_layer3_portfolio_construction/production_candidate_exposure_summary.csv",
+      "status": "PASS",
+      "hard": 1,
+      "detail": "path=data/05_layer3_portfolio_construction/production_candidate_exposure_summary.csv"
+    },
+    {
+      "check": "exists:data/05_layer3_portfolio_construction/portfolio_version_returns_improved_frontier_phase5_fragility_guard.csv",
+      "status": "PASS",
+      "hard": 1,
+      "detail": "path=data/05_layer3_portfolio_construction/portfolio_version_returns_improved_frontier_phase5_fragility_guard.csv"
+    },
+    {
+      "check": "exists:data/05_layer3_portfolio_construction/portfolio_version_weights_improved_frontier_phase5_fragility_guard.csv",
+      "status": "PASS",
+      "hard": 1,
+      "detail": "path=data/05_layer3_portfolio_construction/portfolio_version_weights_improved_frontier_phase5_fragility_guard.csv"
+    },
+    {
+      "check": "exists:data/05_layer3_portfolio_construction/portfolio_version_sleeve_weights_improved_frontier_phase5_fragility_guard.csv",
+      "status": "PASS",
+      "hard": 1,
+      "detail": "path=data/05_layer3_portfolio_construction/portfolio_version_sleeve_weights_improved_frontier_phase5_fragility_guard.csv"
+    },
+    {
+      "check": "exists:public/production-candidate-dashboard-bundle.json",
+      "status": "PASS",
+      "hard": 1,
+      "detail": "path=public/production-candidate-dashboard-bundle.json"
+    },
+    {
+      "check": "exists:public/dashboard-summary.json",
+      "status": "PASS",
+      "hard": 1,
+      "detail": "path=public/dashboard-summary.json"
+    },
+    {
+      "check": "exists:public/dashboard-timeseries.json",
+      "status": "PASS",
+      "hard": 1,
+      "detail": "path=public/dashboard-timeseries.json"
+    },
+    {
+      "check": "exists:public/dashboard-state-summary.json",
+      "status": "PASS",
+      "hard": 1,
+      "detail": "path=public/dashboard-state-summary.json"
+    },
+    {
+      "check": "exists:public/dashboard-exposures.json",
+      "status": "PASS",
+      "hard": 1,
+      "detail": "path=public/dashboard-exposures.json"
+    },
+    {
+      "check": "bundle_registry_current_pin",
+      "status": "PASS",
+      "hard": 1,
+      "detail": "bundle=improved_frontier_phase5_fragility_guard"
+    },
+    {
+      "check": "bundle_candidate_matches_registry",
+      "status": "PASS",
+      "hard": 1,
+      "detail": "bundle=improved_frontier_phase5_fragility_guard, registry=improved_frontier_phase5_fragility_guard"
+    },
+    {
+      "check": "bundle_required_versions",
+      "status": "PASS",
+      "hard": 1,
+      "detail": "versions=['improved_frontier_phase5_fragility_guard', 'improved_phase2b_combo_abc', 'improved_phase2b_regime_confidence_boost']"
+    },
+    {
+      "check": "dashboard_bundle_fresh",
+      "status": "PASS",
+      "hard": 1,
+      "detail": "oldest_bundle_mtime=1781381171.723054, newest_source_mtime=1779516790.645321"
+    },
+    {
+      "check": "summary_metrics_match_canonical",
+      "status": "PASS",
+      "hard": 1,
+      "detail": "max_diff=8.771e-15"
+    },
+    {
+      "check": "no_active_dashboard_data_json_dependency",
+      "status": "PASS",
+      "hard": 1,
+      "detail": "none"
+    }
+  ],
+  "passed": 1
+}

@@ -1,0 +1,37 @@
+{
+  "sequence_5c": {
+    "available": true,
+    "path": "data/research/ml_lab/sequence_models/multiseed_walkforward/sequence_multiseed_predictions.parquet",
+    "rows": 47336,
+    "selected_model": null,
+    "aggregate_all_models": true
+  },
+  "sequence_base": {
+    "available": true,
+    "path": "data/research/ml_lab/sequence_models/sequence_predictions.parquet",
+    "rows": 130950,
+    "selected_model": "lstm_classifier_top_quintile_forward_4w_seq26",
+    "aggregate_all_models": false
+  },
+  "transformer": {
+    "available": true,
+    "path": "data/research/ml_lab/transformers/transformer_predictions.parquet",
+    "rows": 130950,
+    "selected_model": "transformer_encoder_top_quintile_forward_4w_seq26_seed0",
+    "aggregate_all_models": false
+  },
+  "mlp": {
+    "available": true,
+    "path": "data/research/ml_lab/neural_networks/nn_predictions.parquet",
+    "rows": 133375,
+    "selected_model": "deep_dropout_mlp_classifier_top_quintile_forward_4w",
+    "aggregate_all_models": false
+  },
+  "tabular": {
+    "available": true,
+    "path": "data/research/ml_lab/tabular_ml/ml_tabular_predictions.parquet",
+    "rows": 133375,
+    "selected_model": "random_forest_classifier__top_quintile_forward_4w",
+    "aggregate_all_models": false
+  }
+}

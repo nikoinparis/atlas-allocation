@@ -1,0 +1,20 @@
+{
+  "cik10": "0001756497",
+  "covers_first_eligible_decision": true,
+  "first_eligible_decision": "2021-07-01 00:00:00+00:00",
+  "first_price_date": "2021-07-01",
+  "issuer_name_match": true,
+  "issuer_name_score": 1.0,
+  "last_eligible_decision": "2023-10-01 00:00:00+00:00",
+  "last_price_date": "2022-10-03",
+  "price_file": "/workspace/2.0/data/tiingo_delisted_price_probe_cache_v1/CHNG/prices.csv.gz",
+  "price_rows": 317,
+  "provider_end_date": "2022-10-03",
+  "provider_exchange": "NASDAQ",
+  "provider_name": "Change Healthcare Inc",
+  "provider_start_date": "2019-06-27",
+  "sec_company_name": "CHANGE HEALTHCARE INC.",
+  "status": "identity_and_start_validated",
+  "terminal": true,
+  "tiingo_symbol": "CHNG"
+}

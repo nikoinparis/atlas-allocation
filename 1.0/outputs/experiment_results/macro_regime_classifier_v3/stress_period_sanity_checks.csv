@@ -1,0 +1,4 @@
+period,n_weeks,dominant_state,pct_stress_overheating,mean_growth_factor,mean_fc_proxy,mean_inflation_policy,sanity_pass
+2008_crisis,30,stress,1.0,-8.253,2.515,-0.248,True
+covid_crash_2020,15,stress,0.867,-5.251,1.524,-0.031,True
+rate_shock_2022,22,overheating,0.909,0.425,0.462,0.831,True

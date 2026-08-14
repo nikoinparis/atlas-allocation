@@ -1,0 +1,77 @@
+{
+  "claims": {
+    "corporate_actions": false,
+    "delistings": false,
+    "permanent_security_ids": false,
+    "point_in_time_prices": false,
+    "point_in_time_universe": false,
+    "vintage_revisions": false
+  },
+  "content_digest": "5c0effb962d04b1e6266a51108c0e586185cb5e84d8fc6b4b861e6614e5b509e",
+  "coverage": {
+    "etf_count": 35,
+    "weekly_end": "2026-04-10",
+    "weekly_start": "2005-01-07"
+  },
+  "dataset_kind": "legacy_etf_research_bundle",
+  "files": {
+    "corporate_actions.csv": {
+      "bytes": 538912,
+      "sha256": "e56d07f2dc043b8f261476aa09a3b8e2e4caf57f3f6167720800cae840b25871"
+    },
+    "delistings.csv": {
+      "bytes": 92,
+      "sha256": "8d610a1c9521fe3e3ac1a0ae4fcf8736fff21fc10e78ca5ab861dedb48283873"
+    },
+    "legacy_distribution_history.csv": {
+      "bytes": 273251,
+      "sha256": "97c2742e2fcbbb8d5698c92dee20b22dea763a6fcf5870d65811f96fff3fa64d"
+    },
+    "legacy_universe.json": {
+      "bytes": 4535,
+      "sha256": "937f981a2f5a091a08a4b715e6083358642a8b013da978a18773a55696b4f112"
+    },
+    "legacy_universe_metadata.csv": {
+      "bytes": 3220,
+      "sha256": "a72f8b0f07e40d0b846d11ae75ed618c0e46009d1e02258b8b9705759012dca2"
+    },
+    "legacy_weekly_prices.csv": {
+      "bytes": 695896,
+      "sha256": "22f5f570950e6b18fa77e1c058d5882c562bfac6413dc558a6bdb95372584bf3"
+    },
+    "legacy_weekly_returns.csv": {
+      "bytes": 805725,
+      "sha256": "f0256bb65a9c554ab4be068b7dd37c7888c2749d168def3c9769b2dc45d0eb48"
+    },
+    "legacy_yahoo_metadata_snapshot.csv": {
+      "bytes": 10142,
+      "sha256": "4c160a7d18855e79144f57c95b2e148361ba645d2a392707a1cd473ce134f655"
+    },
+    "security_master.csv": {
+      "bytes": 5632,
+      "sha256": "9684b422091aed719bd873b9f6bdfdebb80534fe14aba5434126cde7c5bb05c7"
+    },
+    "universe_membership.csv": {
+      "bytes": 6224,
+      "sha256": "19149c5ef3293bab0161fcf50d98a003535391bcab1a99210acb47469db8506f"
+    }
+  },
+  "historical_simulation_grade": "research_only",
+  "notes": [
+    "The historical rows were learned in 2026 and cannot pass strict as-of gates for earlier simulations.",
+    "Ticker-derived IDs are not permanent security identifiers.",
+    "The universe is a current researched ETF list backfilled through history.",
+    "Distribution events are cached, but split and delisting coverage is not proven."
+  ],
+  "observed_at_basis": "conservative maximum pull_timestamp_utc in companion Yahoo metadata snapshot",
+  "observed_at_utc": "2026-04-15T08:19:54.115905+00:00",
+  "provider": "legacy_yahoo_via_yfinance",
+  "publication_lag_policy": "unknown; strict store availability begins only at observed_at_utc",
+  "registered_at_utc": "2026-08-08T21:18:24.716670+00:00",
+  "revision_policy": "unknown; adjusted history may be revised retroactively",
+  "schema_version": 1,
+  "snapshot_id": "20260415T081954Z-5c0effb962d04b1e",
+  "source_license": "Yahoo Finance/yfinance research cache; provider terms apply; not a licensed point-in-time feed",
+  "source_uri": "legacy://1.0/data/01_data_hub",
+  "supersedes_snapshot_id": null
+}

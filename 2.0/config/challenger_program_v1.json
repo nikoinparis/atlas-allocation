@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "program_id": "challenger_program_v1",
+  "created_at_utc": "2026-08-09T00:00:00Z",
+  "purpose": "Evaluate six independent improvement tracks without modifying the frozen covariance_minimum_variance_v1 portfolio.",
+  "frozen_baseline": "config/portfolios/covariance_minimum_variance_v1.json",
+  "claims_policy": {
+    "profitability_claim_allowed": false,
+    "live_trading_approval": false,
+    "failed_and_blocked_trials_must_be_retained": true,
+    "all_attempted_configurations_count_toward_multiple_testing": true
+  },
+  "resource_policy": {
+    "runtime": "rootless_podman",
+    "host_mounts": false,
+    "repository_code_network": "disabled",
+    "maximum_parallel_large_installs": 1,
+    "maximum_container_memory": "2g",
+    "remove_disposable_volume_after_each_test": true,
+    "reason": "The host has limited free disk; large ML stacks must be tested sequentially."
+  },
+  "common_gates": [
+    "pinned_source_and_hash",
+    "license_and_maintenance_review",
+    "isolated_install_and_upstream_tests",
+    "minimal_behavioral_capability_probe",
+    "causal_signal_timing_and_next_period_realization",
+    "10_25_50_100_bps_cost_sensitivity",
+    "rolling_subperiod_and_regime_stability",
+    "block_bootstrap_uncertainty",
+    "parameter_and_input_perturbation",
+    "multiple_testing_ledger",
+    "untouched_forward_observation_before_promotion"
+  ],
+  "tracks": [
+    {
+      "batch": 8,
+      "track_id": "trade_buffering",
+      "objective": "Reduce turnover using causal no-trade bands and buffered target transitions.",
+      "repositories": ["ast-0054"],
+      "integration_rule": "Reimplement the documented concept independently; do not copy GPL source.",
+      "required_comparisons": ["unbuffered_baseline", "symmetric_band", "asymmetric_band", "cost_aware_band"]
+    },
+    {
+      "batch": 9,
+      "track_id": "fragility_guard",
+      "objective": "Reconstruct the 1.0 fragility guard as a fully causal challenger.",
+      "repositories": [],
+      "integration_rule": "New module and manifest only; frozen baseline files remain unchanged.",
+      "required_comparisons": ["baseline", "guard_only", "guard_plus_buffer"]
+    },
+    {
+      "batch": 10,
+      "track_id": "independent_strategy_sleeves",
+      "objective": "Develop a third sleeve whose return source is not another trend variation.",
+      "repositories": [],
+      "integration_rule": "Predeclare families and retain every attempted specification.",
+      "required_families": ["cross_sectional_value", "carry_or_roll_proxy", "short_term_reversal", "defensive_macro_regime"]
+    },
+    {
+      "batch": 11,
+      "track_id": "portfolio_libraries",
+      "objective": "Compare external portfolio construction implementations on identical point-in-time inputs.",
+      "repositories": ["ast-0183", "ast-0184", "ast-0185", "ast-0187"],
+      "integration_rule": "Compare numerical outputs and constraints; licensing controls incorporation.",
+      "required_methods": ["minimum_variance", "hrp", "risk_parity", "mean_variance_with_shrinkage"]
+    },
+    {
+      "batch": 12,
+      "track_id": "machine_learning_sandbox",
+      "objective": "Test ML research systems under nested walk-forward validation without letting training see test periods.",
+      "repositories": ["ast-0006", "ast-0011", "ast-0076", "ast-0186"],
+      "integration_rule": "No result is comparable unless all preprocessing, selection, and fitting occur inside each training window.",
+      "required_controls": ["simple_linear_or_tree_baseline", "label_shuffle", "feature_lag_audit", "nested_hyperparameter_selection", "embargo_or_purge_when_labels_overlap"]
+    },
+    {
+      "batch": 13,
+      "track_id": "vectorbt_equivalence",
+      "objective": "Measure research speed and numerical equivalence; do not treat speed as alpha.",
+      "repositories": ["ast-0056"],
+      "integration_rule": "Sandbox research only because the license restricts commercial use.",
+      "required_comparisons": ["signal_alignment", "fees_and_turnover", "missing_prices", "rebalance_dates", "runtime_and_memory"]
+    }
+  ],
+  "promotion_rule": {
+    "baseline_files_may_be_modified": false,
+    "minimum_forward_weeks": 52,
+    "must_improve_after_cost_risk_adjusted_evidence": true,
+    "must_not_depend_on_single_period_or_single_parameter": true,
+    "status_before_all_gates": "challenger_not_final"
+  }
+}

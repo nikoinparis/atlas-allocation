@@ -1,0 +1,50 @@
+{
+  "batch": 61,
+  "baseline_bundle_id": "ggg_causal_v2_027530550388432a",
+  "challenger_candidate_id": "candidate-052f66f29b9fafbe",
+  "favored_static_weight": 0.3,
+  "alpha_neighborhood": [0.2, 0.25, 0.3, 0.35, 0.4],
+  "primary_cost_bps": 50,
+  "stress_cost_bps": 100,
+  "rolling_window_weeks": 156,
+  "rolling_step_weeks": 13,
+  "recent_start": "2023-08-11",
+  "subperiods": {
+    "pre_gfc": ["2005-01-07", "2007-12-28"],
+    "gfc_recovery": ["2008-01-04", "2012-12-28"],
+    "mid_cycle": ["2013-01-04", "2019-12-27"],
+    "pandemic_inflation": ["2020-01-03", "2022-12-30"],
+    "recent": ["2023-01-06", "2026-08-07"]
+  },
+  "dynamic_variants": {
+    "state_guard_30_15": {"neutral": 0.3, "favorable": 0.3, "adverse": 0.15},
+    "state_boost_40_15": {"neutral": 0.3, "favorable": 0.4, "adverse": 0.15},
+    "state_boost_40_10": {"neutral": 0.3, "favorable": 0.4, "adverse": 0.1},
+    "tail_guard_30_15": {"normal": 0.3, "tail_risk": 0.15, "tail_threshold": 0.6},
+    "exposure_boost_40_20": {"normal": 0.2, "high_candidate_exposure": 0.4, "exposure_threshold": 0.75},
+    "state_exposure_combo": {"neutral": 0.3, "favorable_high_exposure": 0.4, "adverse": 0.1, "exposure_threshold": 0.75}
+  },
+  "favorable_states": ["calm_trend", "recovery_confirmed"],
+  "adverse_states": ["stressed_panic", "recovery_fragile"],
+  "bootstrap_samples": 20000,
+  "bootstrap_block_weeks": 13,
+  "static_validation_gates": {
+    "minimum_rolling_3y_cagr_win_share": 0.5,
+    "minimum_recent_year_win_share": 0.6,
+    "all_nearby_weights_must_improve_recent_3y_cagr": true,
+    "must_improve_recent_3y_at_100bps": true
+  },
+  "variant_return_route": {
+    "minimum_recent_3y_cagr_improvement_over_static": 0.005,
+    "minimum_recent_3y_sharpe_improvement_over_static": 0.0,
+    "maximum_recent_drawdown_deterioration": 0.02,
+    "maximum_full_cagr_sacrifice": 0.005,
+    "maximum_adjusted_pvalue": 0.05
+  },
+  "variant_drawdown_route": {
+    "maximum_recent_3y_cagr_sacrifice": 0.0025,
+    "minimum_full_drawdown_improvement": 0.015,
+    "minimum_recent_3y_sharpe_improvement": 0.0
+  },
+  "live_trading_enabled": false
+}

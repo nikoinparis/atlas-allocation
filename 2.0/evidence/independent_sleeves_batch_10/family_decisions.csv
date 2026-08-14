@@ -1,0 +1,5 @@
+family,test_status,configurations_tested,decision,reason
+cross_sectional_value,blocked_data_gate,0,retain_in_backlog,A genuine point-in-time value test requires historical fundamentals or valuation data; current free ETF prices cannot measure value without inventing a mislabeled proxy.
+carry_or_roll_proxy,completed_failed_promotion,36,research_only,"Positive and cost-robust, but failed the 576-trial multiple-testing gate and current distributions are not archived point-in-time vintages."
+short_term_reversal,completed_failed_promotion,144,do_not_add_to_portfolio,The selected reversal family failed the 100 bps cost and 576-trial multiple-testing gates and had excessive turnover.
+defensive_macro_regime,completed_not_independent,108,already_represented,"The defensive family passed robustness, but it is already the second frozen sleeve and therefore cannot honestly be counted as an independent third sleeve."

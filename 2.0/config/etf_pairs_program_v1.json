@@ -1,0 +1,74 @@
+{
+  "program": "etf_pairs_program_v1",
+  "catalog_source": {
+    "entry": "ast-0079",
+    "duplicate_entry": "ast-0087",
+    "repository": "je-suis-tm/quant-trading",
+    "commit": "611b73f2c3f577ac5b28aaa19ac8c43d3236c7a5",
+    "integration": "independent reimplementation of the Engle-Granger idea; repository code is not executed or copied"
+  },
+  "data": {
+    "snapshot_id": "20260809T002313Z-0d8632e2cf759918",
+    "universe": "config/free_etf_universe.json",
+    "price": "adjusted_close",
+    "signal_time": "daily close",
+    "return_realization": "next adjusted close",
+    "minimum_pair_training_days": 504
+  },
+  "formation": {
+    "frequency": "first available trading close of each calendar quarter",
+    "lookback_days": 504,
+    "pair_direction": "alphabetically first ticker is x and second is y",
+    "engle_granger_trend": "constant",
+    "engle_granger_autolag": "BIC",
+    "raw_p_value_maximum": 0.01,
+    "benjamini_hochberg_fdr": 0.05,
+    "minimum_daily_return_correlation": 0.5,
+    "hedge_beta_range": [0.1, 10.0],
+    "residual_half_life_days": [2.0, 60.0],
+    "maximum_pairs": 3,
+    "pairs_must_be_disjoint": true,
+    "selection_order": "lowest cointegration p-value then shortest half-life then ticker identity"
+  },
+  "trading": {
+    "entry_absolute_z": 2.0,
+    "exit_absolute_z": 0.5,
+    "break_stop_absolute_z": 4.0,
+    "break_stop_behavior": "exit and disable pair until next quarterly formation",
+    "weights": "50 percent long cheap leg and 50 percent short expensive leg",
+    "portfolio": "equal gross risk across active pairs with total gross exposure at most 1 and net exposure 0",
+    "monthly_cointegration_guard_p_value": 0.1,
+    "guard_lookback_days": 504
+  },
+  "frictions": {
+    "traded_notional_cost_bps": [10, 50, 100],
+    "primary_annual_short_borrow_fee": 0.03,
+    "stress_annual_short_borrow_fee": 0.08,
+    "turnover": "sum absolute change in long and short asset weights",
+    "short_availability": "assumed available; explicit limitation"
+  },
+  "negative_controls": [
+    "inverted spread direction on the same selected pairs",
+    "deterministic random disjoint pairs matched to selected pair count",
+    "five-trading-day stale z-score signal"
+  ],
+  "portfolio_comparison": {
+    "primary_pair_sleeve": "real pair strategy at 50 bps and 3 percent annual borrow",
+    "diagnostic_core_blend": "80 percent frozen core and 20 percent pair sleeve",
+    "no_leverage": true
+  },
+  "promotion_gates": {
+    "pair_annual_return": "greater than zero at 50 bps and 3 percent borrow",
+    "pair_sharpe": "greater than 0.5 at 50 bps and 3 percent borrow",
+    "pair_maximum_drawdown": "no worse than -20 percent",
+    "pair_bootstrap_annual_return_lower_bound": "greater than zero",
+    "later_windows": "2016-2020 and 2021-present both positive at primary costs",
+    "stress": "positive annual return at 100 bps and 8 percent borrow",
+    "controls": "real Sharpe greater than inverted random-pair and stale controls",
+    "dependence": "absolute weekly correlation to frozen core no greater than 0.3",
+    "blend": "20 percent blend point Sharpe above core with no worse drawdown and paired Sharpe lower bound greater than zero",
+    "survivorship_safe_universe": true,
+    "untouched_forward_weeks": 52
+  },
+  "live_trading_approved": false
+}

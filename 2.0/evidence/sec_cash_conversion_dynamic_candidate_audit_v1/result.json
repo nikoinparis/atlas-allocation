@@ -1,0 +1,18 @@
+{
+  "baseline_trailing_1y_cagr": 1.0753269915239274,
+  "cash_path_reproduction_max_return_error": 9.93129189996722e-17,
+  "created_at_utc": "2026-08-14T12:42:35.402379+00:00",
+  "experiment": "sec_cash_conversion_dynamic_candidate_audit_v1",
+  "live_trading_enabled": false,
+  "local_configurations": 42,
+  "local_recent_and_full_improvement_share": 0.047619047619047616,
+  "local_recent_improvement_share": 0.7857142857142857,
+  "local_screen_gate_share": 0.5714285714285714,
+  "recent_companies_tested": 26,
+  "strategy_replacement_authorized": false,
+  "validation_passed": true,
+  "worst_recent_exclusion_cagr": 0.9120638605479301,
+  "worst_recent_exclusion_change": -0.16326313097599732,
+  "worst_recent_exclusion_company": "PALO ALTO NETWORKS INC",
+  "worst_recent_exclusion_still_beats_control": false
+}

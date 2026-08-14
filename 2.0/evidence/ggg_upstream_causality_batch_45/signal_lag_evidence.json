@@ -1,0 +1,8 @@
+{
+  "cta_uses_tradable_score": true,
+  "dual_absolute_momentum_additional_price_lag": true,
+  "global_signal_lag_one_week": true,
+  "regime_state_uses_dated_regime_file": true,
+  "selective_inputs_use_tradable_fields": true,
+  "taa_price_filter_lagged": true
+}

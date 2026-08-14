@@ -1,0 +1,42 @@
+{
+  "task_1_production_triple_barrier": {
+    "base_strategy": "production",
+    "compare_strategy": null,
+    "label_type": "absolute",
+    "description": "Production path-aware risk/return label",
+    "positive_meaning": "production hit profit barrier first",
+    "negative_meaning": "production hit loss barrier first"
+  },
+  "task_2_phase4b_triple_barrier": {
+    "base_strategy": "phase4b",
+    "compare_strategy": null,
+    "label_type": "absolute",
+    "description": "Phase 4B path-aware risk/return label",
+    "positive_meaning": "Phase 4B hit profit barrier first",
+    "negative_meaning": "Phase 4B hit loss barrier first"
+  },
+  "task_3_phase4b_vs_production_switch": {
+    "base_strategy": "phase4b",
+    "compare_strategy": "production",
+    "label_type": "relative",
+    "description": "Phase 4B versus production relative path label",
+    "positive_meaning": "Phase 4B outperformed production by upper barrier first",
+    "negative_meaning": "Phase 4B underperformed production by lower barrier first"
+  },
+  "task_4_mlx9_sleeve_vs_production": {
+    "base_strategy": "mlx9_ensemble",
+    "compare_strategy": "production",
+    "label_type": "relative",
+    "description": "MLX-9 ensemble versus production path label",
+    "positive_meaning": "MLX-9 outperformed production by upper barrier first",
+    "negative_meaning": "MLX-9 underperformed production by lower barrier first"
+  },
+  "task_5_mlx5_offensive_sleeve_danger": {
+    "base_strategy": "mlx5_sequence",
+    "compare_strategy": null,
+    "label_type": "absolute",
+    "description": "MLX-5 offensive sleeve path danger label",
+    "positive_meaning": "MLX-5 sleeve hit profit barrier first",
+    "negative_meaning": "MLX-5 sleeve hit loss barrier first"
+  }
+}

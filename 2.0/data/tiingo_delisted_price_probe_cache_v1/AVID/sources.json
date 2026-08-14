@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 1084,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T01:00:39.289306+00:00",
+    "sha256": "13cb9eec06ab9c69c9ca26f89cb6a5fd618dbe0255a0b6d9226a4ed5d849c8b8",
+    "url": "https://api.tiingo.com/tiingo/daily/AVID"
+  },
+  {
+    "bytes": 622417,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T01:00:41.161983+00:00",
+    "sha256": "454a2a8f76f09d22e8b14dbfa1fd5559b3dc4d3abeadf917ddf6d7de8d790150",
+    "url": "https://api.tiingo.com/tiingo/daily/AVID/prices?startDate=2012-04-01&endDate=2025-01-11&resampleFreq=daily"
+  }
+]

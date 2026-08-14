@@ -1,0 +1,29 @@
+{
+  "batch": 60,
+  "baseline_bundle_id": "ggg_causal_v2_027530550388432a",
+  "candidate_ids": [
+    "candidate-052f66f29b9fafbe",
+    "candidate-0788c02844e389fa",
+    "candidate-23e3beb2c30dbeb8",
+    "candidate-36a0f3d51675c16f",
+    "candidate-3a187e9134eefe61",
+    "candidate-539eaf900f7b2b57",
+    "candidate-8ca3faf38ba934cb",
+    "candidate-c1a595f584a5d469"
+  ],
+  "candidate_allocation_weights": [0.1, 0.2, 0.3],
+  "primary_cost_bps": 50,
+  "stress_cost_bps": [10, 100],
+  "primary_window": "trailing_3y",
+  "reporting_windows": ["trailing_1y", "trailing_2y", "trailing_3y", "post_2024", "full"],
+  "minimum_primary_cagr_improvement": 0.005,
+  "minimum_primary_sharpe_improvement": 0.0,
+  "maximum_drawdown_deterioration": 0.03,
+  "maximum_full_history_cagr_sacrifice": 0.01,
+  "bootstrap_samples": 50000,
+  "bootstrap_block_weeks": 13,
+  "multiple_testing_trials": 24,
+  "maximum_adjusted_pvalue": 0.05,
+  "selection_status": "retrospective_research_only",
+  "live_trading_enabled": false
+}

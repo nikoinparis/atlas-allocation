@@ -1,0 +1,75 @@
+{
+  "artifacts": {
+    "ensemble_scoreboard.csv": {
+      "bytes": 4731,
+      "sha256": "47e932442c410485650429a9886bddad556d6093e5d94f5ee20f54658e9a6a24"
+    },
+    "full_return_correlation.csv": {
+      "bytes": 2308,
+      "sha256": "804e8f9be5fa90126b79a6aa251b0a51b266fe7e15ea8a979467c3f77caa07cd"
+    },
+    "marginal_contribution.csv": {
+      "bytes": 2119,
+      "sha256": "65dfb76bb46e2a3b3323af8d1a290097cbdb8aacfa49fbb8726b289407772a39"
+    },
+    "multiple_testing.csv": {
+      "bytes": 1432,
+      "sha256": "e23e3350c6b4a15924f4ff7a968a03cc00e2d94675003ef041b2db1bd04cb1a4"
+    },
+    "pairwise_dependence.csv": {
+      "bytes": 5132,
+      "sha256": "bd5eba1e8bd7e456a6c53e00615d8a6ea0aa18c4b815d536747023473eeea557"
+    },
+    "recent_return_correlation.csv": {
+      "bytes": 2304,
+      "sha256": "0c21e4b500a8037b83391ba67be464f736194dae40278434a57b3c27204a1839"
+    }
+  },
+  "average_holdings_overlap": 0.6907423352747556,
+  "batch": "ensemble_dependence_batch_03",
+  "candidate_count": 10,
+  "correlation_cluster_threshold": 0.9,
+  "correlation_clusters": [
+    [
+      "candidate-052f66f29b9fafbe",
+      "candidate-0788c02844e389fa",
+      "candidate-23e3beb2c30dbeb8",
+      "candidate-36a0f3d51675c16f",
+      "candidate-3a187e9134eefe61",
+      "candidate-4c75085a1dd85949",
+      "candidate-539eaf900f7b2b57",
+      "candidate-8ca3faf38ba934cb",
+      "candidate-c1a595f584a5d469",
+      "candidate-fc7248702f02b421"
+    ]
+  ],
+  "effective_independent_strategy_count": 1.1548800131252461,
+  "full_correlation_range": {
+    "maximum": 0.9813691630694034,
+    "median": 0.9308573612480359,
+    "minimum": 0.8378929283862588
+  },
+  "generated_at_utc": "2026-08-08T22:16:01.545684+00:00",
+  "greedy_four_members": [
+    "candidate-fc7248702f02b421",
+    "candidate-3a187e9134eefe61",
+    "candidate-c1a595f584a5d469",
+    "candidate-539eaf900f7b2b57"
+  ],
+  "limitations": [
+    "Ensembles were designed after viewing the same history and are retrospective research only.",
+    "The sleeve-level candidates share data, assets, and signal ancestry; correlation estimates can change.",
+    "Bonferroni correction treats 288 tests conservatively; block bootstrap p-values have finite-sample resolution.",
+    "Netted portfolio turnover is modeled, but tax, capacity, and market-impact effects are not.",
+    "No result satisfies the 52-week untouched-forward gate."
+  ],
+  "multiple_testing": {
+    "block_weeks": 13,
+    "bootstrap_samples": 25000,
+    "candidate_pass_count": 10,
+    "expected_best_zero_alpha_sharpe": 0.6197489487163563,
+    "original_experiment_search_count": 288
+  },
+  "pair_count": 45,
+  "source_snapshot_id": "20260808T212827Z-de103c2e063d6c4a"
+}

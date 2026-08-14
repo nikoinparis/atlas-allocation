@@ -1,0 +1,39 @@
+{
+  "all_deterministic": true,
+  "artifacts": {
+    "determinism.csv": {
+      "bytes": 1029,
+      "sha256": "d113134187ed888d1a1cdff7962b1c1c27cbf6eb15c182c35ddc2f507baa74de"
+    },
+    "performance.csv": {
+      "bytes": 10018,
+      "sha256": "9bd8dc0804b668b0d8552775c743bedc749f6656e2bf36011ff74dbb26ae4f07"
+    },
+    "prefix_invariance.csv": {
+      "bytes": 920,
+      "sha256": "e4d669777f75532ff6931fdf28ab593e85c10b5853b46c3b047129177e381ad5"
+    },
+    "qualification.csv": {
+      "bytes": 1545,
+      "sha256": "72aed1f6dee9338b01476b5480e790e636cf5e15661d77c0fa39b3d2e4a6b94b"
+    }
+  },
+  "benchmark_recent_3y_50bps": {
+    "cagr": 0.1288735233396061,
+    "max_drawdown": -0.07364740799161307,
+    "sharpe_zero_rf": 1.5437861979843626
+  },
+  "candidates_evaluated": 6,
+  "decision": "no_challenger_qualified",
+  "generated_at_utc": "2026-08-12T02:20:50.192868+00:00",
+  "live_trading_enabled": false,
+  "manifest_sha256": "d9bb71774e8a6feae71c4192cc73a9102d2917ffe18770ee5b7146c63058dbd5",
+  "maximum_prefix_difference": 0.0,
+  "module_sha256": "0d8ee3542395c8aa5d7e3338ea5aff624fa4079980e97d2d5c74d331cccd5db1",
+  "program": "ggg_sleeve_allocation_challengers_v1",
+  "program_sha256": "84d47314b59862a06815d8d3cef7a6b282750af8c5e08267e18c235a4822adbb",
+  "promoted_to_production": false,
+  "research_shortlist": [],
+  "selection_budget": 6,
+  "snapshot_hashes_verified": true
+}

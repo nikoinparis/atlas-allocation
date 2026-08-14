@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "protocol_version": "covariance_minimum_variance_v1_forward_v1",
+  "portfolio_version": "covariance_minimum_variance_v1",
+  "portfolio_manifest": "config/portfolios/covariance_minimum_variance_v1.json",
+  "portfolio_manifest_sha256": "84cef0e27bf3c224f67e4932815091bd335578db4226cd525c1247f5bda7812b",
+  "first_eligible_decision_date": "2026-08-14",
+  "first_eligible_realization_date": "2026-08-21",
+  "required_untouched_weeks": 52,
+  "cost_bps_per_unit_turnover": 50.0,
+  "decision_snapshot_window": "observed at or after 21:00 UTC on the decision Friday and before 21:00 UTC the following Friday",
+  "realization_snapshot_window": "observed at or after 21:00 UTC on the realization Friday and before 21:00 UTC the following Friday",
+  "missed_snapshot_policy": "a missed weekly decision or realization window cannot be backfilled from a later vintage",
+  "mutation_policy": "any change creates a new protocol version and restarts its forward clock",
+  "log_policy": "hash-chained append-only JSON Lines; duplicate, out-of-order, pre-freeze, or changed records are rejected",
+  "constituent_specs": {
+    "trend_v4": {
+      "candidate_id": "candidate-fc7248702f02b421",
+      "cost_bps": 10.0,
+      "minimum_signal": 0.05,
+      "portfolio_method": "equal_weight",
+      "signals": [
+        "xsmom_global",
+        "multi_mom_invvol",
+        "tsmom_vol_scaled",
+        "trend_clarity_momentum",
+        "moving_average_distance"
+      ],
+      "smoothing_weeks": 4,
+      "top_n": 4,
+      "rebalance_frequency": "monthly"
+    },
+    "defensive": {
+      "candidate_id": "candidate-8a27cb8ba5a612a7",
+      "cost_bps": 10.0,
+      "minimum_signal": 0.05,
+      "portfolio_method": "equal_weight",
+      "signals": ["defensive_quality_gated"],
+      "smoothing_weeks": 2,
+      "top_n": 6,
+      "rebalance_frequency": "monthly"
+    }
+  },
+  "portfolio_rules": {
+    "method": "minimum_variance",
+    "decision_frequency": "monthly",
+    "covariance_lookback_weeks": 104,
+    "minimum_observations": 52,
+    "diagonal_shrinkage": 0.25,
+    "maximum_sleeve_weight": 0.8,
+    "maximum_underlying_asset_weight": 0.35,
+    "maximum_leverage": 1.0,
+    "invalid_covariance_fallback": "equal_weight"
+  },
+  "pinned_files_sha256": {
+    "config/free_etf_universe.json": "b0d0941e8c784de4116d34b8c4eb64f4842283426b62aa1988b098b1ae0ab6ed",
+    "scripts/record_forward_portfolio_evidence.py": "43d776e9f682eafa8488fb6e93d346b4826690e59e36caff551e798aa1ba13a7",
+    "scripts/run_covariance_portfolios_batch_06.py": "14b96336421acd3eb37894f5d89ecdd502ed54dad4edc0fb432174c22d47839e",
+    "src/systematic_trader/forward_evidence.py": "05f7f416348e7aa6157af511f487a0b55f884225a707ef738d3b1aea8c4450fb",
+    "src/systematic_trader/non_momentum_signals.py": "c21f0c8593a4dedbc053e3143e3868355845eef86c9a04889fc2307c9dddb98f",
+    "src/systematic_trader/point_in_time.py": "875afb545fab382bb4cb022f1b9fd2c0eda957364bf6fd46f429ed7c6005912a",
+    "src/systematic_trader/portfolio_construction.py": "865d2fa52a7378b056ab23eb5b6a2c676df68f7f72300234a89af18221ce0b03",
+    "src/systematic_trader/raw_signals.py": "1ff06169b82aae9432bd58d7e505429efc62c06fa53f5e6064d728ad150db261",
+    "src/systematic_trader/research_lab.py": "881b5dccec7b48c569d46b7da81187d6f0de6aa9b4595dba4b0eeb93d2e401d9",
+    "src/systematic_trader/strategy_allocation.py": "8d47d1914054a723d2cf8147b1c7b99d21d0cf2f0a828ed3df4030d276d2a316",
+    "src/systematic_trader/weekly_data.py": "25f01b38f02bf1eca2f3bb5ca5d96c2bec50af0e77784fda395c6cfa8d184bea"
+  },
+  "execution_enabled": false,
+  "approved_for_live_trading": false
+}

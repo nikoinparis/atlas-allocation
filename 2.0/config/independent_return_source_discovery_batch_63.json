@@ -1,0 +1,46 @@
+{
+  "batch": 63,
+  "aggressive_ceiling": "candidate-global-xsmom-100-return-ceiling-v1",
+  "source_families": [
+    "breakout_52w",
+    "momentum_acceleration",
+    "downside_adjusted_momentum",
+    "trend_consistency",
+    "reversal_4w",
+    "risk_adjusted_13w",
+    "multi_horizon_strength",
+    "residual_momentum"
+  ],
+  "top_n": [3, 6],
+  "source_method": "score_inverse_volatility",
+  "blend_weights": [0.2, 0.4, 0.6],
+  "discovery_assets": [
+    "SPY", "QQQ", "IWM", "EFA", "VEA", "VWO", "EWJ", "VNQ",
+    "HYG", "LQD", "GLD", "PDBC", "DBA", "TLT", "IEF", "TIP",
+    "VTV", "VUG", "XLB", "XLE", "XLF", "XLI", "XLK", "XLP",
+    "XLU", "XLV", "XLY", "SLV", "USO", "UUP"
+  ],
+  "cost_bps": [50, 100],
+  "bootstrap_samples": 30000,
+  "bootstrap_block_weeks": 13,
+  "multiple_testing_trials": 64,
+  "standalone_gates": {
+    "minimum_trailing_3y_50bps_cagr": 0.10,
+    "minimum_trailing_3y_100bps_cagr": 0.08,
+    "minimum_full_50bps_cagr": 0.02,
+    "maximum_full_correlation_to_ceiling": 0.9,
+    "maximum_recent_drawdown_magnitude": 0.4
+  },
+  "blend_gates": {
+    "minimum_trailing_3y_cagr_improvement": 0.005,
+    "maximum_trailing_1y_cagr_sacrifice": 0.01,
+    "maximum_trailing_2y_cagr_sacrifice": 0.01,
+    "minimum_trailing_3y_100bps_improvement": 0.0,
+    "maximum_recent_drawdown_magnitude": 0.25,
+    "maximum_full_drawdown_magnitude": 0.35,
+    "minimum_rolling_3y_win_share": 0.45,
+    "maximum_adjusted_pvalue": 0.10
+  },
+  "leverage_allowed": false,
+  "live_trading_enabled": false
+}

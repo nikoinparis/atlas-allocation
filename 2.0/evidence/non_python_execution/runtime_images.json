@@ -1,0 +1,19 @@
+{
+  "generated_at": "2026-08-08",
+  "images": {
+    "localhost/po2-rust-native:1.55-bullseye-v1": {
+      "image_id": "75be3c66f05a77c65fdde70bc86bf13958cfbfe3a9d283785ed17a33f2371975",
+      "digest": "sha256:57f50ab4d0f02b08604963337dc7089434a8c5c57ad87f528b9992ef96b8c9ef",
+      "recipe": "config/images/rust-native-1.55.Containerfile"
+    },
+    "localhost/po2-rust-native:1.91.1-bookworm-v1": {
+      "image_id": "3b9eefc9c3347cdabce856f44f77c8561c16a3876f9a29b267e546572df8de0a",
+      "digest": "sha256:047b31d9c3578604619edef15ac6ede562485fccfc15767bdfe96d2d09e5949d",
+      "recipe": "config/images/rust-native-1.91.Containerfile"
+    },
+    "docker.io/library/node:20-bookworm": {
+      "image_id": "197941e0d0b6415af3939acdf594cf7af7dfe2f6ca5e014dddde1461f0bb1d4d",
+      "digest": "sha256:f5b23dfa20dc91f65416e7d8dbee9f7a728a5677a53f711a1047f0eaac77d8f0"
+    }
+  }
+}

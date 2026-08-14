@@ -1,0 +1,26 @@
+{
+  "batch": 58,
+  "causal_meta_current_available": true,
+  "complete_layer2b_bundle_ready": true,
+  "current_market_state": "calm_trend",
+  "current_predictions": {
+    "p_regime_confidence": 0.5216525574933846,
+    "p_tail_risk": 0.25103092714170044,
+    "p_transition_quality": 0.15584415584415567
+  },
+  "current_risk_state": "calm",
+  "decision": "freeze_states_with_corrected_causal_meta_version",
+  "deterministic_rerun": true,
+  "forward_clock_started": false,
+  "generated_at_utc": "2026-08-12T10:15:05.434829+00:00",
+  "layer2b_bundle_id": "20260812T035702Z_20260812T090851Z_causalmeta_adc08ddb4c57",
+  "live_trading_enabled": false,
+  "maximum_prefix_difference": 0.0,
+  "maximum_state_historical_difference": 6.252776074688882e-13,
+  "next_step": "end-to-end GGG allocator comparison using causal meta, then resume new strategy repository experiments",
+  "prefix_invariance_pass": true,
+  "saved_meta_predictions_have_label_availability_embargo": false,
+  "saved_meta_predictions_promoted": false,
+  "saved_transition_probabilities_prefix_invariant": false,
+  "state_historical_equivalence_pass": true
+}

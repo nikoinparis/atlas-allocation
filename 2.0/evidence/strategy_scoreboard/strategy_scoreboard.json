@@ -1,0 +1,3333 @@
+{
+  "strategies": {
+    "baseline_60_40_proxy": {
+      "audit": {
+        "cost_reconciliation_pass": true,
+        "matched_periods": 1109,
+        "max_cost_reconciliation_error": 0.0,
+        "max_return_reconstruction_error": 1.0408340855860843e-16,
+        "maximum_gross_exposure": 1.0,
+        "mean_return_reconstruction_error": 3.181238836129695e-17,
+        "negative_exposure_weeks": 0,
+        "return_reconstruction_pass": true,
+        "static_multi_asset_zero_turnover": true,
+        "unpriced_exposure_events": 0,
+        "unpriced_exposure_weeks": 0
+      },
+      "bias_flags": [
+        "research_and_selection_used_this_history_not_an_untouched_holdout",
+        "multiple_testing_across_33_saved_strategies",
+        "current_etf_universe_can_create_survivorship_selection_bias",
+        "fixed_multi_asset_weights_record_zero_turnover_and_can_imply_free_rebalancing",
+        "lag_is_declared_but_signal_generation_was_not_independently_reexecuted"
+      ],
+      "evidence_grade": "C",
+      "manifest": {
+        "caveats": "Convenient benchmark rather than a claim that 60/40 is universally appropriate.",
+        "description": "Simple 60/40 proxy using the explicit market and duration proxies.",
+        "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+        "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+        "output_files": [
+          "strategy_positions_baseline_60_40_proxy.csv",
+          "strategy_returns_baseline_60_40_proxy.csv"
+        ],
+        "rebalance_frequency": "monthly",
+        "required_inputs": [
+          "weekly_returns.csv",
+          "proxy_mapping.json"
+        ],
+        "strategy_name": "baseline_60_40_proxy",
+        "type": "baseline"
+      },
+      "metrics": {
+        "benchmark": {
+          "annual_alpha_zero_rf": 0.01727058730409423,
+          "annual_tracking_error": 0.07982219191364687,
+          "beta_to_spy": 0.5690153369570102,
+          "information_ratio": -0.4096326733358019
+        },
+        "block_bootstrap_95pct": {
+          "annual_return_ci_high": 0.12359530959317634,
+          "annual_return_ci_low": 0.04134087593504974,
+          "bootstrap_block_weeks": 13,
+          "bootstrap_samples": 500,
+          "sharpe_ci_high": 1.2960829541397505,
+          "sharpe_ci_low": 0.42874647956942896
+        },
+        "cost_stress": {
+          "annual_return_10bps": 0.08094733206620863,
+          "annual_return_25bps": 0.08094733206620863,
+          "annual_return_50bps": 0.08094733206620863,
+          "average_weekly_turnover": 0.0,
+          "sharpe_10bps": 0.8072093570032862,
+          "sharpe_25bps": 0.8072093570032862,
+          "sharpe_50bps": 0.8072093570032862
+        },
+        "full_10bps": {
+          "annual_return": 0.08094733206620863,
+          "annual_volatility": 0.10312346995621677,
+          "best_week": 0.08608339903296287,
+          "calmar": 0.25792860571904686,
+          "cvar_5_weekly": -0.032731417160364304,
+          "max_drawdown": -0.3138361944792657,
+          "max_drawdown_duration_weeks": 153,
+          "observations": 1109,
+          "positive_week_share": 0.5888187556357078,
+          "sharpe_zero_rf": 0.8072093570032862,
+          "sortino_zero_target": 1.1701564775868094,
+          "total_return": 4.259527079266976,
+          "worst_week": -0.12958999396235504,
+          "years": 21.326923076923077
+        },
+        "recent_since_2021_10bps": {
+          "annual_return": 0.07647392734906,
+          "annual_volatility": 0.10384886345327386,
+          "best_week": 0.04611910263617519,
+          "calmar": 0.36841997533507953,
+          "cvar_5_weekly": -0.0292947950844098,
+          "max_drawdown": -0.20757269548022372,
+          "max_drawdown_duration_weeks": 109,
+          "observations": 276,
+          "positive_week_share": 0.5579710144927537,
+          "sharpe_zero_rf": 0.7617746630166089,
+          "sortino_zero_target": 1.1692270873622899,
+          "total_return": 0.47864804358197355,
+          "worst_week": -0.046917730631323644,
+          "years": 5.3076923076923075
+        },
+        "rolling": {
+          "positive_3y_sharpe_share": 0.9664570230607966,
+          "rolling_windows": 954,
+          "spy_win_3y_share": 0.20440251572327045,
+          "worst_3y_sharpe": -0.40501812170053714
+        }
+      }
+    },
+    "baseline_equal_weight_risk_assets": {
+      "audit": {
+        "cost_reconciliation_pass": true,
+        "matched_periods": 1109,
+        "max_cost_reconciliation_error": 0.0,
+        "max_return_reconstruction_error": 6.938893903907228e-17,
+        "maximum_gross_exposure": 0.9999999999999997,
+        "mean_return_reconstruction_error": 2.2867573028590164e-17,
+        "negative_exposure_weeks": 0,
+        "return_reconstruction_pass": true,
+        "static_multi_asset_zero_turnover": true,
+        "unpriced_exposure_events": 877,
+        "unpriced_exposure_weeks": 513
+      },
+      "bias_flags": [
+        "research_and_selection_used_this_history_not_an_untouched_holdout",
+        "multiple_testing_across_33_saved_strategies",
+        "current_etf_universe_can_create_survivorship_selection_bias",
+        "nonzero_positions_exist_when_the_asset_return_is_missing",
+        "fixed_multi_asset_weights_record_zero_turnover_and_can_imply_free_rebalancing",
+        "lag_is_declared_but_signal_generation_was_not_independently_reexecuted"
+      ],
+      "evidence_grade": "C",
+      "manifest": {
+        "caveats": "Simple baseline, not signal-driven.",
+        "description": "Equal-weight risky ETF basket baseline.",
+        "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+        "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+        "output_files": [
+          "strategy_positions_baseline_equal_weight_risk_assets.csv",
+          "strategy_returns_baseline_equal_weight_risk_assets.csv"
+        ],
+        "rebalance_frequency": "monthly",
+        "required_inputs": [
+          "weekly_prices.csv",
+          "weekly_returns.csv"
+        ],
+        "strategy_name": "baseline_equal_weight_risk_assets",
+        "type": "baseline"
+      },
+      "metrics": {
+        "benchmark": {
+          "annual_alpha_zero_rf": 0.005122738931244981,
+          "annual_tracking_error": 0.08113507621857895,
+          "beta_to_spy": 0.6260212619731456,
+          "information_ratio": -0.4712679229798256
+        },
+        "block_bootstrap_95pct": {
+          "annual_return_ci_high": 0.12235834922693392,
+          "annual_return_ci_low": 0.01833916289014518,
+          "bootstrap_block_weeks": 13,
+          "bootstrap_samples": 500,
+          "sharpe_ci_high": 1.1122081844898577,
+          "sharpe_ci_low": 0.21045770906066685
+        },
+        "cost_stress": {
+          "annual_return_10bps": 0.07296172481092467,
+          "annual_return_25bps": 0.07296172481092467,
+          "annual_return_50bps": 0.07296172481092467,
+          "average_weekly_turnover": 0.0,
+          "sharpe_10bps": 0.6482770049957277,
+          "sharpe_25bps": 0.6482770049957277,
+          "sharpe_50bps": 0.6482770049957277
+        },
+        "full_10bps": {
+          "annual_return": 0.07296172481092467,
+          "annual_volatility": 0.11986180026636697,
+          "best_week": 0.09586992685377262,
+          "calmar": 0.19151022587302502,
+          "cvar_5_weekly": -0.03904260163371848,
+          "max_drawdown": -0.38098083002262084,
+          "max_drawdown_duration_weeks": 122,
+          "observations": 1109,
+          "positive_week_share": 0.5752930568079351,
+          "sharpe_zero_rf": 0.6482770049957277,
+          "sortino_zero_target": 0.9190359858885938,
+          "total_return": 3.490218947881017,
+          "worst_week": -0.12675679003168255,
+          "years": 21.326923076923077
+        },
+        "recent_since_2021_10bps": {
+          "annual_return": 0.09056439892254486,
+          "annual_volatility": 0.10764709149121367,
+          "best_week": 0.04701444169984742,
+          "calmar": 0.43104704198553584,
+          "cvar_5_weekly": -0.029712940218349054,
+          "max_drawdown": -0.21010328363553377,
+          "max_drawdown_duration_weeks": 119,
+          "observations": 276,
+          "positive_week_share": 0.5543478260869565,
+          "sharpe_zero_rf": 0.859696155457187,
+          "sortino_zero_target": 1.3001798697623799,
+          "total_return": 0.5843152455360547,
+          "worst_week": -0.05491740782139553,
+          "years": 5.3076923076923075
+        },
+        "rolling": {
+          "positive_3y_sharpe_share": 0.9612159329140462,
+          "rolling_windows": 954,
+          "spy_win_3y_share": 0.21593291404612158,
+          "worst_3y_sharpe": -0.47466883413530836
+        }
+      }
+    },
+    "baseline_market_proxy_buy_hold": {
+      "audit": {
+        "cost_reconciliation_pass": true,
+        "matched_periods": 1109,
+        "max_cost_reconciliation_error": 0.0,
+        "max_return_reconstruction_error": 1.1102230246251565e-16,
+        "maximum_gross_exposure": 1.0,
+        "mean_return_reconstruction_error": 4.890346935937128e-17,
+        "negative_exposure_weeks": 0,
+        "return_reconstruction_pass": true,
+        "static_multi_asset_zero_turnover": false,
+        "unpriced_exposure_events": 0,
+        "unpriced_exposure_weeks": 0
+      },
+      "bias_flags": [
+        "research_and_selection_used_this_history_not_an_untouched_holdout",
+        "multiple_testing_across_33_saved_strategies",
+        "current_etf_universe_can_create_survivorship_selection_bias",
+        "lag_is_declared_but_signal_generation_was_not_independently_reexecuted"
+      ],
+      "evidence_grade": "B",
+      "manifest": {
+        "caveats": "Uses SPY as the market benchmark.",
+        "description": "Buy-and-hold market proxy baseline.",
+        "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+        "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+        "output_files": [
+          "strategy_positions_baseline_market_proxy_buy_hold.csv",
+          "strategy_returns_baseline_market_proxy_buy_hold.csv"
+        ],
+        "rebalance_frequency": "weekly",
+        "required_inputs": [
+          "weekly_returns.csv",
+          "market_proxy_weekly.csv"
+        ],
+        "strategy_name": "baseline_market_proxy_buy_hold",
+        "type": "baseline"
+      },
+      "metrics": {
+        "benchmark": {
+          "annual_alpha_zero_rf": 0.0,
+          "annual_tracking_error": 0.0,
+          "beta_to_spy": 1.0,
+          "information_ratio": 0.0
+        },
+        "block_bootstrap_95pct": {
+          "annual_return_ci_high": 0.17703667307923154,
+          "annual_return_ci_low": 0.029109542025549086,
+          "bootstrap_block_weeks": 13,
+          "bootstrap_samples": 500,
+          "sharpe_ci_high": 1.1125270464308108,
+          "sharpe_ci_low": 0.24521099222333273
+        },
+        "cost_stress": {
+          "annual_return_10bps": 0.10543072625663252,
+          "annual_return_25bps": 0.10543072625663252,
+          "annual_return_50bps": 0.10543072625663252,
+          "average_weekly_turnover": 0.0,
+          "sharpe_10bps": 0.6597360263144503,
+          "sharpe_25bps": 0.6597360263144503,
+          "sharpe_50bps": 0.6597360263144503
+        },
+        "full_10bps": {
+          "annual_return": 0.10543072625663252,
+          "annual_volatility": 0.17573696617434,
+          "best_week": 0.1329225835284513,
+          "calmar": 0.1930505350567591,
+          "cvar_5_weekly": -0.0580042680963308,
+          "max_drawdown": -0.5461301944883741,
+          "max_drawdown_duration_weeks": 252,
+          "observations": 1109,
+          "positive_week_share": 0.569882777276826,
+          "sharpe_zero_rf": 0.6597360263144503,
+          "sortino_zero_target": 0.939295320259662,
+          "total_return": 7.479956671927333,
+          "worst_week": -0.19793350420686306,
+          "years": 21.326923076923077
+        },
+        "recent_since_2021_10bps": {
+          "annual_return": 0.13712794427447372,
+          "annual_volatility": 0.16023418807945564,
+          "best_week": 0.06620030338598448,
+          "calmar": 0.5731051975945914,
+          "cvar_5_weekly": -0.04577155879170386,
+          "max_drawdown": -0.23927185593503653,
+          "max_drawdown_duration_weeks": 101,
+          "observations": 276,
+          "positive_week_share": 0.5543478260869565,
+          "sharpe_zero_rf": 0.8828075230470244,
+          "sortino_zero_target": 1.354131581181557,
+          "total_return": 0.9779657320332689,
+          "worst_week": -0.09066696975241956,
+          "years": 5.3076923076923075
+        },
+        "rolling": {
+          "positive_3y_sharpe_share": 0.8825995807127882,
+          "rolling_windows": 954,
+          "spy_win_3y_share": 0.0,
+          "worst_3y_sharpe": -0.6524126295708635
+        }
+      }
+    },
+    "composite_anti_chop_clarity": {
+      "audit": {
+        "cost_reconciliation_pass": true,
+        "matched_periods": 1108,
+        "max_cost_reconciliation_error": 1.0842021724855044e-19,
+        "max_return_reconstruction_error": 9.020562075079397e-17,
+        "maximum_gross_exposure": 1.0000000000000002,
+        "mean_return_reconstruction_error": 3.021471102375209e-17,
+        "negative_exposure_weeks": 0,
+        "return_reconstruction_pass": true,
+        "static_multi_asset_zero_turnover": false,
+        "unpriced_exposure_events": 75,
+        "unpriced_exposure_weeks": 75
+      },
+      "bias_flags": [
+        "research_and_selection_used_this_history_not_an_untouched_holdout",
+        "multiple_testing_across_33_saved_strategies",
+        "current_etf_universe_can_create_survivorship_selection_bias",
+        "nonzero_positions_exist_when_the_asset_return_is_missing",
+        "no_primary_layer2_manifest_entry"
+      ],
+      "evidence_grade": "C",
+      "manifest": null,
+      "metrics": {
+        "benchmark": {
+          "annual_alpha_zero_rf": 0.06463431335103004,
+          "annual_tracking_error": 0.17907341079092087,
+          "beta_to_spy": 0.13514781542973403,
+          "information_ratio": -0.1998938179933837
+        },
+        "block_bootstrap_95pct": {
+          "annual_return_ci_high": 0.11757920906764144,
+          "annual_return_ci_low": 0.04482768003794088,
+          "bootstrap_block_weeks": 13,
+          "bootstrap_samples": 500,
+          "sharpe_ci_high": 1.1976028670762418,
+          "sharpe_ci_low": 0.5037427791438186
+        },
+        "cost_stress": {
+          "annual_return_10bps": 0.07844115035223953,
+          "annual_return_25bps": 0.06860107799809678,
+          "annual_return_50bps": 0.052389886384561324,
+          "average_weekly_turnover": 0.11758675639920306,
+          "sharpe_10bps": 0.8236453274380959,
+          "sharpe_25bps": 0.7291422522937012,
+          "sharpe_50bps": 0.5715384977250141
+        },
+        "full_10bps": {
+          "annual_return": 0.07844115035223953,
+          "annual_volatility": 0.09752765879686151,
+          "best_week": 0.07738579280775346,
+          "calmar": 0.4355464659184401,
+          "cvar_5_weekly": -0.030580523859171354,
+          "max_drawdown": -0.18009823633129496,
+          "max_drawdown_duration_weeks": 121,
+          "observations": 1108,
+          "positive_week_share": 0.575812274368231,
+          "sharpe_zero_rf": 0.8236453274380959,
+          "sortino_zero_target": 1.225156958008198,
+          "total_return": 3.998235174968353,
+          "worst_week": -0.08461968461132516,
+          "years": 21.307692307692307
+        },
+        "recent_since_2021_10bps": {
+          "annual_return": 0.06776623567797047,
+          "annual_volatility": 0.0963915611583025,
+          "best_week": 0.04063957270299157,
+          "calmar": 0.3762737329271396,
+          "cvar_5_weekly": -0.026134128179609827,
+          "max_drawdown": -0.18009823633129474,
+          "max_drawdown_duration_weeks": 121,
+          "observations": 276,
+          "positive_week_share": 0.5434782608695652,
+          "sharpe_zero_rf": 0.7286451664452418,
+          "sortino_zero_target": 1.116947745253723,
+          "total_return": 0.416259451779994,
+          "worst_week": -0.04199048557563284,
+          "years": 5.3076923076923075
+        },
+        "rolling": {
+          "positive_3y_sharpe_share": 0.9643231899265478,
+          "rolling_windows": 953,
+          "spy_win_3y_share": 0.2193074501573977,
+          "worst_3y_sharpe": -0.2851585489742025
+        }
+      }
+    },
+    "composite_breadth_filtered": {
+      "audit": {
+        "cost_reconciliation_pass": true,
+        "matched_periods": 1109,
+        "max_cost_reconciliation_error": 1.0842021724855044e-19,
+        "max_return_reconstruction_error": 9.280770596475918e-17,
+        "maximum_gross_exposure": 1.0,
+        "mean_return_reconstruction_error": 2.7525805899138015e-17,
+        "negative_exposure_weeks": 0,
+        "return_reconstruction_pass": true,
+        "static_multi_asset_zero_turnover": false,
+        "unpriced_exposure_events": 62,
+        "unpriced_exposure_weeks": 62
+      },
+      "bias_flags": [
+        "research_and_selection_used_this_history_not_an_untouched_holdout",
+        "multiple_testing_across_33_saved_strategies",
+        "current_etf_universe_can_create_survivorship_selection_bias",
+        "nonzero_positions_exist_when_the_asset_return_is_missing",
+        "lag_is_declared_but_signal_generation_was_not_independently_reexecuted"
+      ],
+      "evidence_grade": "C",
+      "manifest": {
+        "caveats": "Breadth filters are useful because they are simple and interpretable, but they can become overly defensive in whipsaw recoveries.",
+        "description": "Breadth / canary filtered version of the equal-weight composite, inspired by defensive asset-allocation ideas.",
+        "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+        "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+        "output_files": [
+          "strategy_positions_composite_breadth_filtered.csv",
+          "strategy_returns_composite_breadth_filtered.csv"
+        ],
+        "overlay_on": "composite_equal_weight",
+        "rebalance_frequency": "monthly",
+        "required_inputs": [
+          "signal_xsmom.csv",
+          "weekly_prices.csv",
+          "proxy_mapping.json"
+        ],
+        "strategy_name": "composite_breadth_filtered",
+        "type": "overlay"
+      },
+      "metrics": {
+        "benchmark": {
+          "annual_alpha_zero_rf": 0.021909736923359496,
+          "annual_tracking_error": 0.15216940361933962,
+          "beta_to_spy": 0.2518656095494834,
+          "information_ratio": -0.426031571093741
+        },
+        "block_bootstrap_95pct": {
+          "annual_return_ci_high": 0.08322934822917559,
+          "annual_return_ci_low": 0.015390879894799758,
+          "bootstrap_block_weeks": 13,
+          "bootstrap_samples": 500,
+          "sharpe_ci_high": 1.0522398643966822,
+          "sharpe_ci_low": 0.19711222663759104
+        },
+        "cost_stress": {
+          "annual_return_10bps": 0.04826679946861123,
+          "annual_return_25bps": 0.04158883677940528,
+          "annual_return_50bps": 0.030543717757887556,
+          "average_weekly_turnover": 0.08201082055906223,
+          "sharpe_10bps": 0.5776449786646347,
+          "sharpe_25bps": 0.5054252528154994,
+          "sharpe_50bps": 0.3846386473576334
+        },
+        "full_10bps": {
+          "annual_return": 0.04826679946861123,
+          "annual_volatility": 0.08848174836077802,
+          "best_week": 0.09755598172041469,
+          "calmar": 0.20945369268010158,
+          "cvar_5_weekly": -0.02974222956070059,
+          "max_drawdown": -0.23044138707226836,
+          "max_drawdown_duration_weeks": 313,
+          "observations": 1109,
+          "positive_week_share": 0.5743913435527502,
+          "sharpe_zero_rf": 0.5776449786646347,
+          "sortino_zero_target": 0.8027286052362573,
+          "total_return": 1.7327579560641047,
+          "worst_week": -0.12142876844634765,
+          "years": 21.326923076923077
+        },
+        "recent_since_2021_10bps": {
+          "annual_return": 0.09481259410809928,
+          "annual_volatility": 0.08048702979671543,
+          "best_week": 0.04557739910497791,
+          "calmar": 1.198203990907552,
+          "cvar_5_weekly": -0.023582464098039792,
+          "max_drawdown": -0.0791289253145332,
+          "max_drawdown_duration_weeks": 90,
+          "observations": 276,
+          "positive_week_share": 0.5942028985507246,
+          "sharpe_zero_rf": 1.1664429487539478,
+          "sortino_zero_target": 1.8639825272259463,
+          "total_return": 0.6173479870727208,
+          "worst_week": -0.034619427766274254,
+          "years": 5.3076923076923075
+        },
+        "rolling": {
+          "positive_3y_sharpe_share": 0.8647798742138365,
+          "rolling_windows": 954,
+          "spy_win_3y_share": 0.1949685534591195,
+          "worst_3y_sharpe": -0.3566138868434867
+        }
+      }
+    },
+    "composite_calm_carry_sleeve": {
+      "audit": {
+        "cost_reconciliation_pass": true,
+        "matched_periods": 1108,
+        "max_cost_reconciliation_error": 0.0,
+        "max_return_reconstruction_error": 0.061945569300314,
+        "maximum_gross_exposure": 1.0,
+        "mean_return_reconstruction_error": 0.002502717538803025,
+        "negative_exposure_weeks": 0,
+        "return_reconstruction_pass": false,
+        "static_multi_asset_zero_turnover": false,
+        "unpriced_exposure_events": 102,
+        "unpriced_exposure_weeks": 102
+      },
+      "bias_flags": [
+        "research_and_selection_used_this_history_not_an_untouched_holdout",
+        "multiple_testing_across_33_saved_strategies",
+        "current_etf_universe_can_create_survivorship_selection_bias",
+        "saved_returns_do_not_reconcile_to_dated_positions_and_next_week_returns"
+      ],
+      "evidence_grade": "D",
+      "manifest": null,
+      "metrics": {
+        "benchmark": {
+          "annual_alpha_zero_rf": 0.009173592336136512,
+          "annual_tracking_error": 0.1794748650723741,
+          "beta_to_spy": -0.007686854895447449,
+          "information_ratio": -0.6008802580439508
+        },
+        "block_bootstrap_95pct": {
+          "annual_return_ci_high": 0.01759833457039758,
+          "annual_return_ci_low": -0.004296096995743098,
+          "bootstrap_block_weeks": 13,
+          "bootstrap_samples": 500,
+          "sharpe_ci_high": 0.6993608305665726,
+          "sharpe_ci_low": -0.1370123308779787
+        },
+        "cost_stress": {
+          "annual_return_10bps": 0.00789708829389646,
+          "annual_return_25bps": -0.005248914552034578,
+          "annual_return_50bps": -0.026858294479475298,
+          "average_weekly_turnover": 0.16787003610108303,
+          "sharpe_10bps": 0.28824371979064833,
+          "sharpe_25bps": -0.1608648306508054,
+          "sharpe_50bps": -0.782636302812339
+        },
+        "full_10bps": {
+          "annual_return": 0.00789708829389646,
+          "annual_volatility": 0.02872903880448716,
+          "best_week": 0.02445966470115442,
+          "calmar": 0.071063008492949,
+          "cvar_5_weekly": -0.011410484978835133,
+          "max_drawdown": -0.11112797588185452,
+          "max_drawdown_duration_weeks": 675,
+          "observations": 1108,
+          "positive_week_share": 0.5045126353790613,
+          "sharpe_zero_rf": 0.28824371979064833,
+          "sortino_zero_target": 0.3780855871766666,
+          "total_return": 0.18247274013310144,
+          "worst_week": -0.0443684828327506,
+          "years": 21.307692307692307
+        },
+        "recent_since_2021_10bps": {
+          "annual_return": 0.020739864820568554,
+          "annual_volatility": 0.03430909948567816,
+          "best_week": 0.02445966470115442,
+          "calmar": 0.3174222207172788,
+          "cvar_5_weekly": -0.013146403573362345,
+          "max_drawdown": -0.0653384151043449,
+          "max_drawdown_duration_weeks": 69,
+          "observations": 276,
+          "positive_week_share": 0.7065217391304348,
+          "sharpe_zero_rf": 0.6155270709035058,
+          "sortino_zero_target": 0.880558517321398,
+          "total_return": 0.11511198210803131,
+          "worst_week": -0.020176030503071343,
+          "years": 5.3076923076923075
+        },
+        "rolling": {
+          "positive_3y_sharpe_share": 0.689401888772298,
+          "rolling_windows": 953,
+          "spy_win_3y_share": 0.13431269674711438,
+          "worst_3y_sharpe": -0.7657134467363286
+        }
+      }
+    },
+    "composite_calm_trend_participation": {
+      "audit": {
+        "cost_reconciliation_pass": true,
+        "matched_periods": 1108,
+        "max_cost_reconciliation_error": 1.0842021724855044e-19,
+        "max_return_reconstruction_error": 8.847089727481716e-17,
+        "maximum_gross_exposure": 1.0000000000000002,
+        "mean_return_reconstruction_error": 2.7750236555968603e-17,
+        "negative_exposure_weeks": 0,
+        "return_reconstruction_pass": true,
+        "static_multi_asset_zero_turnover": false,
+        "unpriced_exposure_events": 96,
+        "unpriced_exposure_weeks": 96
+      },
+      "bias_flags": [
+        "research_and_selection_used_this_history_not_an_untouched_holdout",
+        "multiple_testing_across_33_saved_strategies",
+        "current_etf_universe_can_create_survivorship_selection_bias",
+        "nonzero_positions_exist_when_the_asset_return_is_missing",
+        "no_primary_layer2_manifest_entry"
+      ],
+      "evidence_grade": "C",
+      "manifest": null,
+      "metrics": {
+        "benchmark": {
+          "annual_alpha_zero_rf": 0.03870561594687512,
+          "annual_tracking_error": 0.14804123291772447,
+          "beta_to_spy": 0.3031711383888491,
+          "information_ratio": -0.2851424980619863
+        },
+        "block_bootstrap_95pct": {
+          "annual_return_ci_high": 0.10705871505560974,
+          "annual_return_ci_low": 0.03313738890264066,
+          "bootstrap_block_weeks": 13,
+          "bootstrap_samples": 500,
+          "sharpe_ci_high": 1.1036981141000899,
+          "sharpe_ci_low": 0.36641703980706825
+        },
+        "cost_stress": {
+          "annual_return_10bps": 0.07141135201022242,
+          "annual_return_25bps": 0.06146636890226986,
+          "annual_return_50bps": 0.045085058716587856,
+          "average_weekly_turnover": 0.11964993945561717,
+          "sharpe_10bps": 0.7486032774607124,
+          "sharpe_25bps": 0.6538423116699968,
+          "sharpe_50bps": 0.4957107939497429
+        },
+        "full_10bps": {
+          "annual_return": 0.07141135201022242,
+          "annual_volatility": 0.09873189645719829,
+          "best_week": 0.07730373720319916,
+          "calmar": 0.37977172759764644,
+          "cvar_5_weekly": -0.03203935464461221,
+          "max_drawdown": -0.18803756788836057,
+          "max_drawdown_duration_weeks": 154,
+          "observations": 1108,
+          "positive_week_share": 0.5740072202166066,
+          "sharpe_zero_rf": 0.7486032774607124,
+          "sortino_zero_target": 1.0832496054635967,
+          "total_return": 3.348088958354939,
+          "worst_week": -0.09775329685308205,
+          "years": 21.307692307692307
+        },
+        "recent_since_2021_10bps": {
+          "annual_return": 0.07724164196714889,
+          "annual_volatility": 0.11124534295603747,
+          "best_week": 0.04286808622224445,
+          "calmar": 0.41077771231867743,
+          "cvar_5_weekly": -0.03180007374150117,
+          "max_drawdown": -0.1880375678883609,
+          "max_drawdown_duration_weeks": 108,
+          "observations": 276,
+          "positive_week_share": 0.572463768115942,
+          "sharpe_zero_rf": 0.7247806189520861,
+          "sortino_zero_target": 1.0752506357699458,
+          "total_return": 0.4842537966701619,
+          "worst_week": -0.05281540856627798,
+          "years": 5.3076923076923075
+        },
+        "rolling": {
+          "positive_3y_sharpe_share": 1.0,
+          "rolling_windows": 953,
+          "spy_win_3y_share": 0.19832109129066108,
+          "worst_3y_sharpe": 0.001518467422270303
+        }
+      }
+    },
+    "composite_calm_trend_specialist": {
+      "audit": {
+        "cost_reconciliation_pass": true,
+        "matched_periods": 1108,
+        "max_cost_reconciliation_error": 1.0842021724855044e-19,
+        "max_return_reconstruction_error": 9.80118763926896e-17,
+        "maximum_gross_exposure": 1.0000000000000002,
+        "mean_return_reconstruction_error": 3.050270222581855e-17,
+        "negative_exposure_weeks": 0,
+        "return_reconstruction_pass": true,
+        "static_multi_asset_zero_turnover": false,
+        "unpriced_exposure_events": 102,
+        "unpriced_exposure_weeks": 102
+      },
+      "bias_flags": [
+        "research_and_selection_used_this_history_not_an_untouched_holdout",
+        "multiple_testing_across_33_saved_strategies",
+        "current_etf_universe_can_create_survivorship_selection_bias",
+        "nonzero_positions_exist_when_the_asset_return_is_missing",
+        "no_primary_layer2_manifest_entry"
+      ],
+      "evidence_grade": "C",
+      "manifest": null,
+      "metrics": {
+        "benchmark": {
+          "annual_alpha_zero_rf": 0.03867805839044084,
+          "annual_tracking_error": 0.14433715142422718,
+          "beta_to_spy": 0.2822052477127082,
+          "information_ratio": -0.3095186818676002
+        },
+        "block_bootstrap_95pct": {
+          "annual_return_ci_high": 0.104712120018284,
+          "annual_return_ci_low": 0.03614908063863529,
+          "bootstrap_block_weeks": 13,
+          "bootstrap_samples": 500,
+          "sharpe_ci_high": 1.2830505285350422,
+          "sharpe_ci_low": 0.4477152602925244
+        },
+        "cost_stress": {
+          "annual_return_10bps": 0.07005414315470238,
+          "annual_return_25bps": 0.059029778597787574,
+          "annual_return_50bps": 0.04089424853743284,
+          "average_weekly_turnover": 0.13284371209403933,
+          "sharpe_10bps": 0.8323290910626534,
+          "sharpe_25bps": 0.7110418027877832,
+          "sharpe_50bps": 0.5087658827796413
+        },
+        "full_10bps": {
+          "annual_return": 0.07005414315470238,
+          "annual_volatility": 0.08584203551450466,
+          "best_week": 0.08332353725879721,
+          "calmar": 0.38632256325982994,
+          "cvar_5_weekly": -0.027622206005517905,
+          "max_drawdown": -0.18133588305994408,
+          "max_drawdown_duration_weeks": 108,
+          "observations": 1108,
+          "positive_week_share": 0.5785198555956679,
+          "sharpe_zero_rf": 0.8323290910626534,
+          "sortino_zero_target": 1.2072150163536373,
+          "total_return": 3.2322248691705573,
+          "worst_week": -0.08742318600234444,
+          "years": 21.307692307692307
+        },
+        "recent_since_2021_10bps": {
+          "annual_return": 0.07744713779893386,
+          "annual_volatility": 0.08670289743672141,
+          "best_week": 0.03325511599587106,
+          "calmar": 0.6316499275549954,
+          "cvar_5_weekly": -0.023166677729150036,
+          "max_drawdown": -0.12261085519113091,
+          "max_drawdown_duration_weeks": 108,
+          "observations": 276,
+          "positive_week_share": 0.5434782608695652,
+          "sharpe_zero_rf": 0.9041079916584631,
+          "sortino_zero_target": 1.425562518261333,
+          "total_return": 0.4857572232720042,
+          "worst_week": -0.036545235330237756,
+          "years": 5.3076923076923075
+        },
+        "rolling": {
+          "positive_3y_sharpe_share": 1.0,
+          "rolling_windows": 953,
+          "spy_win_3y_share": 0.1888772298006296,
+          "worst_3y_sharpe": 0.20123092731563133
+        }
+      }
+    },
+    "composite_confirmation_aware_momentum": {
+      "audit": {
+        "cost_reconciliation_pass": true,
+        "matched_periods": 1109,
+        "max_cost_reconciliation_error": 0.0,
+        "max_return_reconstruction_error": 8.673617379884035e-17,
+        "maximum_gross_exposure": 1.0,
+        "mean_return_reconstruction_error": 3.092239426957271e-17,
+        "negative_exposure_weeks": 0,
+        "return_reconstruction_pass": true,
+        "static_multi_asset_zero_turnover": false,
+        "unpriced_exposure_events": 29,
+        "unpriced_exposure_weeks": 29
+      },
+      "bias_flags": [
+        "research_and_selection_used_this_history_not_an_untouched_holdout",
+        "multiple_testing_across_33_saved_strategies",
+        "current_etf_universe_can_create_survivorship_selection_bias",
+        "nonzero_positions_exist_when_the_asset_return_is_missing",
+        "lag_is_declared_but_signal_generation_was_not_independently_reexecuted"
+      ],
+      "evidence_grade": "C",
+      "manifest": {
+        "caveats": "Phase B confirmation-aware sleeve: intended to express safer improving-state offense when momentum has broader confirmation. It is not a crash canary and should only survive if it adds distinct participation quality.",
+        "description": "Top-N long-only sleeve that combines momentum with breadth-confirmed momentum so offensive deployment is strongest when cross-asset participation confirms the setup.",
+        "lag_convention": "Consumes Layer 1 tradable signals only; breadth confirmation is lagged and used as an activation-quality input inside the sleeve rather than as a top-level overlay.",
+        "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+        "output_files": [
+          "strategy_positions_composite_confirmation_aware_momentum.csv",
+          "strategy_returns_composite_confirmation_aware_momentum.csv"
+        ],
+        "rebalance_frequency": "monthly",
+        "required_inputs": [
+          "signal_xsmom.csv",
+          "signal_multi_horizon_mom.csv",
+          "signal_breadth_confirmation.csv"
+        ],
+        "strategy_name": "composite_confirmation_aware_momentum",
+        "type": "strategy_logic"
+      },
+      "metrics": {
+        "benchmark": {
+          "annual_alpha_zero_rf": 0.017579755123394148,
+          "annual_tracking_error": 0.11698011378332748,
+          "beta_to_spy": 0.6422934593604475,
+          "information_ratio": -0.20424620214857678
+        },
+        "block_bootstrap_95pct": {
+          "annual_return_ci_high": 0.13731436337298136,
+          "annual_return_ci_low": 0.028474349506504078,
+          "bootstrap_block_weeks": 13,
+          "bootstrap_samples": 500,
+          "sharpe_ci_high": 0.9868387799970303,
+          "sharpe_ci_low": 0.25757884240977524
+        },
+        "cost_stress": {
+          "annual_return_10bps": 0.0840208625721488,
+          "annual_return_25bps": 0.0800262054071772,
+          "annual_return_50bps": 0.07339591104266541,
+          "average_weekly_turnover": 0.04733994589720469,
+          "sharpe_10bps": 0.6140117301588444,
+          "sharpe_25bps": 0.5892786925552576,
+          "sharpe_50bps": 0.547972276298902
+        },
+        "full_10bps": {
+          "annual_return": 0.0840208625721488,
+          "annual_volatility": 0.14991124640151499,
+          "best_week": 0.11967636746587025,
+          "calmar": 0.21928500912943721,
+          "cvar_5_weekly": -0.05046653175164021,
+          "max_drawdown": -0.3831582601369429,
+          "max_drawdown_duration_weeks": 111,
+          "observations": 1109,
+          "positive_week_share": 0.5536519386834986,
+          "sharpe_zero_rf": 0.6140117301588444,
+          "sortino_zero_target": 0.870897730923011,
+          "total_return": 4.587854177505756,
+          "worst_week": -0.12737985429837687,
+          "years": 21.326923076923077
+        },
+        "recent_since_2021_10bps": {
+          "annual_return": 0.13092596708208593,
+          "annual_volatility": 0.13366966428679974,
+          "best_week": 0.05449621952811179,
+          "calmar": 0.934539665488792,
+          "cvar_5_weekly": -0.03591296208148172,
+          "max_drawdown": -0.14009674700496288,
+          "max_drawdown_duration_weeks": 91,
+          "observations": 276,
+          "positive_week_share": 0.5652173913043478,
+          "sharpe_zero_rf": 0.9880094410194737,
+          "sortino_zero_target": 1.5564505449605521,
+          "total_return": 0.9213751293207,
+          "worst_week": -0.054270436608616926,
+          "years": 5.3076923076923075
+        },
+        "rolling": {
+          "positive_3y_sharpe_share": 0.9989517819706499,
+          "rolling_windows": 954,
+          "spy_win_3y_share": 0.20230607966457023,
+          "worst_3y_sharpe": -0.030798257591790466
+        }
+      }
+    },
+    "composite_equal_weight": {
+      "audit": {
+        "cost_reconciliation_pass": true,
+        "matched_periods": 1109,
+        "max_cost_reconciliation_error": 0.0,
+        "max_return_reconstruction_error": 8.153200337090993e-17,
+        "maximum_gross_exposure": 1.0,
+        "mean_return_reconstruction_error": 2.7673844955917654e-17,
+        "negative_exposure_weeks": 0,
+        "return_reconstruction_pass": true,
+        "static_multi_asset_zero_turnover": false,
+        "unpriced_exposure_events": 20,
+        "unpriced_exposure_weeks": 20
+      },
+      "bias_flags": [
+        "research_and_selection_used_this_history_not_an_untouched_holdout",
+        "multiple_testing_across_33_saved_strategies",
+        "current_etf_universe_can_create_survivorship_selection_bias",
+        "nonzero_positions_exist_when_the_asset_return_is_missing",
+        "lag_is_declared_but_signal_generation_was_not_independently_reexecuted"
+      ],
+      "evidence_grade": "C",
+      "manifest": {
+        "caveats": "Strong baseline because it avoids unstable dynamic weights, but it may still contain redundant signals.",
+        "description": "Top-N long-only strategy driven by an equal-weight composite of Layer 1 signals.",
+        "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+        "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+        "output_files": [
+          "strategy_positions_composite_equal_weight.csv",
+          "strategy_returns_composite_equal_weight.csv"
+        ],
+        "rebalance_frequency": "monthly",
+        "required_inputs": [
+          "signal_xsmom.csv",
+          "signal_multi_horizon_mom.csv",
+          "signal_residual_momentum.csv",
+          "signal_quality.csv",
+          "signal_value.csv",
+          "signal_bab.csv",
+          "signal_carry.csv"
+        ],
+        "strategy_name": "composite_equal_weight",
+        "type": "strategy_logic"
+      },
+      "metrics": {
+        "benchmark": {
+          "annual_alpha_zero_rf": 0.02901856962254995,
+          "annual_tracking_error": 0.14106927059769783,
+          "beta_to_spy": 0.3666040019592852,
+          "information_ratio": -0.31486210359525263
+        },
+        "block_bootstrap_95pct": {
+          "annual_return_ci_high": 0.10410497918853034,
+          "annual_return_ci_low": 0.02729355697183594,
+          "bootstrap_block_weeks": 13,
+          "bootstrap_samples": 500,
+          "sharpe_ci_high": 1.072749865780072,
+          "sharpe_ci_low": 0.2836066097725634
+        },
+        "cost_stress": {
+          "annual_return_10bps": 0.06780967736643517,
+          "annual_return_25bps": 0.0625523004816011,
+          "annual_return_50bps": 0.05383980934057342,
+          "average_weekly_turnover": 0.0633453561767358,
+          "sharpe_10bps": 0.662329765634477,
+          "sharpe_25bps": 0.6165597796819197,
+          "sharpe_50bps": 0.539992294809863
+        },
+        "full_10bps": {
+          "annual_return": 0.06780967736643517,
+          "annual_volatility": 0.10798645049398023,
+          "best_week": 0.09755598172041469,
+          "calmar": 0.26909654912699843,
+          "cvar_5_weekly": -0.035153706548108836,
+          "max_drawdown": -0.25199014103459505,
+          "max_drawdown_duration_weeks": 94,
+          "observations": 1109,
+          "positive_week_share": 0.5798016230838593,
+          "sharpe_zero_rf": 0.662329765634477,
+          "sortino_zero_target": 0.9349499407186527,
+          "total_return": 3.0521564044868867,
+          "worst_week": -0.12142876844634765,
+          "years": 21.326923076923077
+        },
+        "recent_since_2021_10bps": {
+          "annual_return": 0.09255787373235647,
+          "annual_volatility": 0.09454101095050502,
+          "best_week": 0.04557739910497791,
+          "calmar": 0.5826860425805517,
+          "cvar_5_weekly": -0.026630979105142512,
+          "max_drawdown": -0.15884690376732524,
+          "max_drawdown_duration_weeks": 94,
+          "observations": 276,
+          "positive_week_share": 0.5905797101449275,
+          "sharpe_zero_rf": 0.9841814171077319,
+          "sortino_zero_target": 1.5194467299534407,
+          "total_return": 0.5997470498106798,
+          "worst_week": -0.03661436620383477,
+          "years": 5.3076923076923075
+        },
+        "rolling": {
+          "positive_3y_sharpe_share": 0.9968553459119497,
+          "rolling_windows": 954,
+          "spy_win_3y_share": 0.19916142557651992,
+          "worst_3y_sharpe": -0.04590371120195787
+        }
+      }
+    },
+    "composite_healthier_recovery_specialist": {
+      "audit": {
+        "cost_reconciliation_pass": true,
+        "matched_periods": 1108,
+        "max_cost_reconciliation_error": 1.0842021724855044e-19,
+        "max_return_reconstruction_error": 8.673617379884035e-17,
+        "maximum_gross_exposure": 1.0000000000000002,
+        "mean_return_reconstruction_error": 2.7866368748282044e-17,
+        "negative_exposure_weeks": 0,
+        "return_reconstruction_pass": true,
+        "static_multi_asset_zero_turnover": false,
+        "unpriced_exposure_events": 165,
+        "unpriced_exposure_weeks": 118
+      },
+      "bias_flags": [
+        "research_and_selection_used_this_history_not_an_untouched_holdout",
+        "multiple_testing_across_33_saved_strategies",
+        "current_etf_universe_can_create_survivorship_selection_bias",
+        "nonzero_positions_exist_when_the_asset_return_is_missing",
+        "no_primary_layer2_manifest_entry"
+      ],
+      "evidence_grade": "C",
+      "manifest": null,
+      "metrics": {
+        "benchmark": {
+          "annual_alpha_zero_rf": 0.028119126478354198,
+          "annual_tracking_error": 0.14257982619729712,
+          "beta_to_spy": 0.3192585977958874,
+          "information_ratio": -0.3572118144663096
+        },
+        "block_bootstrap_95pct": {
+          "annual_return_ci_high": 0.09998742203416278,
+          "annual_return_ci_low": 0.028892262763070733,
+          "bootstrap_block_weeks": 13,
+          "bootstrap_samples": 500,
+          "sharpe_ci_high": 1.110150885776506,
+          "sharpe_ci_low": 0.3362174481314558
+        },
+        "cost_stress": {
+          "annual_return_10bps": 0.06243512320678146,
+          "annual_return_25bps": 0.04987054212085318,
+          "annual_return_50bps": 0.029241517156954666,
+          "average_weekly_turnover": 0.15270680714163945,
+          "sharpe_10bps": 0.6813364689789948,
+          "sharpe_25bps": 0.557038945142462,
+          "sharpe_50bps": 0.34927574784998294
+        },
+        "full_10bps": {
+          "annual_return": 0.06243512320678146,
+          "annual_volatility": 0.09568351731351248,
+          "best_week": 0.08258762729460194,
+          "calmar": 0.2714315168092613,
+          "cvar_5_weekly": -0.03230065023823161,
+          "max_drawdown": -0.23002164207281606,
+          "max_drawdown_duration_weeks": 136,
+          "observations": 1108,
+          "positive_week_share": 0.5712996389891697,
+          "sharpe_zero_rf": 0.6813364689789948,
+          "sortino_zero_target": 0.970426888951877,
+          "total_return": 2.634493238683451,
+          "worst_week": -0.071415945722172,
+          "years": 21.307692307692307
+        },
+        "recent_since_2021_10bps": {
+          "annual_return": 0.037753820181512854,
+          "annual_volatility": 0.10412581240509369,
+          "best_week": 0.034937123036357404,
+          "calmar": 0.16413160014552608,
+          "cvar_5_weekly": -0.031658572059358146,
+          "max_drawdown": -0.2300216420728166,
+          "max_drawdown_duration_weeks": 136,
+          "observations": 276,
+          "positive_week_share": 0.5398550724637681,
+          "sharpe_zero_rf": 0.4080567886668456,
+          "sortino_zero_target": 0.5762034282837711,
+          "total_return": 0.21737340197538835,
+          "worst_week": -0.04856444200353097,
+          "years": 5.3076923076923075
+        },
+        "rolling": {
+          "positive_3y_sharpe_share": 0.9947534102833159,
+          "rolling_windows": 953,
+          "spy_win_3y_share": 0.1993704092339979,
+          "worst_3y_sharpe": -0.06392115431977516
+        }
+      }
+    },
+    "composite_ic_weighted": {
+      "audit": {
+        "cost_reconciliation_pass": true,
+        "matched_periods": 1109,
+        "max_cost_reconciliation_error": 0.0,
+        "max_return_reconstruction_error": 8.673617379884035e-17,
+        "maximum_gross_exposure": 1.0,
+        "mean_return_reconstruction_error": 2.908628958053301e-17,
+        "negative_exposure_weeks": 0,
+        "return_reconstruction_pass": true,
+        "static_multi_asset_zero_turnover": false,
+        "unpriced_exposure_events": 41,
+        "unpriced_exposure_weeks": 41
+      },
+      "bias_flags": [
+        "research_and_selection_used_this_history_not_an_untouched_holdout",
+        "multiple_testing_across_33_saved_strategies",
+        "current_etf_universe_can_create_survivorship_selection_bias",
+        "nonzero_positions_exist_when_the_asset_return_is_missing",
+        "lag_is_declared_but_signal_generation_was_not_independently_reexecuted"
+      ],
+      "evidence_grade": "C",
+      "manifest": {
+        "caveats": "Rolling IC estimates are noisy; shrinkage is included because unconstrained IC weighting is too unstable for a baseline. Current IC weights target a tactical 4-week forward-return horizon.",
+        "description": "Top-N long-only strategy using rolling historical IC estimates with shrinkage toward equal signal weights.",
+        "ic_weight_horizon_weeks": 4,
+        "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+        "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+        "output_files": [
+          "strategy_positions_composite_ic_weighted.csv",
+          "strategy_returns_composite_ic_weighted.csv"
+        ],
+        "rebalance_frequency": "monthly",
+        "required_inputs": [
+          "signal_xsmom.csv",
+          "signal_multi_horizon_mom.csv",
+          "signal_summary_table.csv"
+        ],
+        "strategy_name": "composite_ic_weighted",
+        "type": "strategy_logic"
+      },
+      "metrics": {
+        "benchmark": {
+          "annual_alpha_zero_rf": 0.033033143013393294,
+          "annual_tracking_error": 0.13283747481432476,
+          "beta_to_spy": 0.47426892725510433,
+          "information_ratio": -0.2101825683531913
+        },
+        "block_bootstrap_95pct": {
+          "annual_return_ci_high": 0.133512051152693,
+          "annual_return_ci_low": 0.03613299484821664,
+          "bootstrap_block_weeks": 13,
+          "bootstrap_samples": 500,
+          "sharpe_ci_high": 1.0899080286413483,
+          "sharpe_ci_low": 0.32620947690395785
+        },
+        "cost_stress": {
+          "annual_return_10bps": 0.08316048845331414,
+          "annual_return_25bps": 0.07723704611412052,
+          "annual_return_50bps": 0.0674266778415078,
+          "average_weekly_turnover": 0.0703336339044184,
+          "sharpe_10bps": 0.6946336860462139,
+          "sharpe_25bps": 0.651151764715413,
+          "sharpe_50bps": 0.5784516046632159
+        },
+        "full_10bps": {
+          "annual_return": 0.08316048845331414,
+          "annual_volatility": 0.12671410540336644,
+          "best_week": 0.08539714173158389,
+          "calmar": 0.30272950969261125,
+          "cvar_5_weekly": -0.04245611385402699,
+          "max_drawdown": -0.2747022863339439,
+          "max_drawdown_duration_weeks": 108,
+          "observations": 1109,
+          "positive_week_share": 0.569882777276826,
+          "sharpe_zero_rf": 0.6946336860462139,
+          "sortino_zero_target": 0.9823453965775357,
+          "total_return": 4.494028120904076,
+          "worst_week": -0.10330967362353861,
+          "years": 21.326923076923077
+        },
+        "recent_since_2021_10bps": {
+          "annual_return": 0.1238790788057813,
+          "annual_volatility": 0.1313554226601553,
+          "best_week": 0.06929629461359449,
+          "calmar": 0.7541846278719692,
+          "cvar_5_weekly": -0.037193116523457144,
+          "max_drawdown": -0.16425564010144622,
+          "max_drawdown_duration_weeks": 97,
+          "observations": 276,
+          "positive_week_share": 0.5760869565217391,
+          "sharpe_zero_rf": 0.9554534371603535,
+          "sortino_zero_target": 1.477267497576815,
+          "total_return": 0.8586771541112674,
+          "worst_week": -0.059384826631210336,
+          "years": 5.3076923076923075
+        },
+        "rolling": {
+          "positive_3y_sharpe_share": 1.0,
+          "rolling_windows": 954,
+          "spy_win_3y_share": 0.2190775681341719,
+          "worst_3y_sharpe": 0.10823617409368248
+        }
+      }
+    },
+    "composite_macro_trend_diversifier_sleeve": {
+      "audit": {
+        "cost_reconciliation_pass": true,
+        "matched_periods": 1108,
+        "max_cost_reconciliation_error": 1.0842021724855044e-19,
+        "max_return_reconstruction_error": 0.06648426756064146,
+        "maximum_gross_exposure": 1.0000000000000002,
+        "mean_return_reconstruction_error": 0.010236979835808947,
+        "negative_exposure_weeks": 0,
+        "return_reconstruction_pass": false,
+        "static_multi_asset_zero_turnover": false,
+        "unpriced_exposure_events": 124,
+        "unpriced_exposure_weeks": 124
+      },
+      "bias_flags": [
+        "research_and_selection_used_this_history_not_an_untouched_holdout",
+        "multiple_testing_across_33_saved_strategies",
+        "current_etf_universe_can_create_survivorship_selection_bias",
+        "saved_returns_do_not_reconcile_to_dated_positions_and_next_week_returns"
+      ],
+      "evidence_grade": "D",
+      "manifest": null,
+      "metrics": {
+        "benchmark": {
+          "annual_alpha_zero_rf": 0.029245033477593288,
+          "annual_tracking_error": 0.1916577461031555,
+          "beta_to_spy": -0.013387777138503545,
+          "information_ratio": -0.4614135198662027
+        },
+        "block_bootstrap_95pct": {
+          "annual_return_ci_high": 0.05198621206926246,
+          "annual_return_ci_low": 0.002165059288009869,
+          "bootstrap_block_weeks": 13,
+          "bootstrap_samples": 500,
+          "sharpe_ci_high": 0.7735515964134745,
+          "sharpe_ci_low": 0.06617931585359203
+        },
+        "cost_stress": {
+          "annual_return_10bps": 0.02549893805067116,
+          "annual_return_25bps": 0.015205586536477966,
+          "annual_return_50bps": -0.0017364062916314094,
+          "average_weekly_turnover": 0.12921138068785265,
+          "sharpe_10bps": 0.3918214176910867,
+          "sharpe_25bps": 0.24857049196667155,
+          "sharpe_50bps": 0.011420776256011757
+        },
+        "full_10bps": {
+          "annual_return": 0.02549893805067116,
+          "annual_volatility": 0.07067095303824837,
+          "best_week": 0.046568695111047,
+          "calmar": 0.141593236254858,
+          "cvar_5_weekly": -0.02474635428641127,
+          "max_drawdown": -0.1800858482023452,
+          "max_drawdown_duration_weeks": 493,
+          "observations": 1108,
+          "positive_week_share": 0.5361010830324909,
+          "sharpe_zero_rf": 0.3918214176910867,
+          "sortino_zero_target": 0.5390463734992724,
+          "total_return": 0.7100318366355076,
+          "worst_week": -0.05113479188387688,
+          "years": 21.307692307692307
+        },
+        "recent_since_2021_10bps": {
+          "annual_return": 0.06223058802715076,
+          "annual_volatility": 0.0716636156066667,
+          "best_week": 0.04179887210417491,
+          "calmar": 0.8487913612597097,
+          "cvar_5_weekly": -0.020888501372508302,
+          "max_drawdown": -0.07331670757675124,
+          "max_drawdown_duration_weeks": 90,
+          "observations": 276,
+          "positive_week_share": 0.5905797101449275,
+          "sharpe_zero_rf": 0.878560567548794,
+          "sortino_zero_target": 1.3631058942335714,
+          "total_return": 0.37772119654667224,
+          "worst_week": -0.03182419847741809,
+          "years": 5.3076923076923075
+        },
+        "rolling": {
+          "positive_3y_sharpe_share": 0.8247639034627492,
+          "rolling_windows": 953,
+          "spy_win_3y_share": 0.14375655823714587,
+          "worst_3y_sharpe": -0.6113732674935112
+        }
+      }
+    },
+    "composite_recovery_confirmed_offense_sleeve": {
+      "audit": {
+        "cost_reconciliation_pass": true,
+        "matched_periods": 1108,
+        "max_cost_reconciliation_error": 1.0842021724855044e-19,
+        "max_return_reconstruction_error": 0.10387061075213315,
+        "maximum_gross_exposure": 1.0,
+        "mean_return_reconstruction_error": 0.001998421381521579,
+        "negative_exposure_weeks": 0,
+        "return_reconstruction_pass": false,
+        "static_multi_asset_zero_turnover": false,
+        "unpriced_exposure_events": 124,
+        "unpriced_exposure_weeks": 124
+      },
+      "bias_flags": [
+        "research_and_selection_used_this_history_not_an_untouched_holdout",
+        "multiple_testing_across_33_saved_strategies",
+        "current_etf_universe_can_create_survivorship_selection_bias",
+        "saved_returns_do_not_reconcile_to_dated_positions_and_next_week_returns"
+      ],
+      "evidence_grade": "D",
+      "manifest": null,
+      "metrics": {
+        "benchmark": {
+          "annual_alpha_zero_rf": 0.008206118875036292,
+          "annual_tracking_error": 0.1809387663277179,
+          "beta_to_spy": -0.013064729145184377,
+          "information_ratio": -0.6048171902576894
+        },
+        "block_bootstrap_95pct": {
+          "annual_return_ci_high": 0.017745445789630644,
+          "annual_return_ci_low": -0.005993815646870837,
+          "bootstrap_block_weeks": 13,
+          "bootstrap_samples": 500,
+          "sharpe_ci_high": 0.5645706281923677,
+          "sharpe_ci_low": -0.16294182957661402
+        },
+        "cost_stress": {
+          "annual_return_10bps": 0.006199383961198679,
+          "annual_return_25bps": -0.004606764350888581,
+          "annual_return_50bps": -0.02242572827396383,
+          "average_weekly_turnover": 0.13823706377858003,
+          "sharpe_10bps": 0.20938911034089475,
+          "sharpe_25bps": -0.12646656591267355,
+          "sharpe_50bps": -0.6324103513587204
+        },
+        "full_10bps": {
+          "annual_return": 0.006199383961198679,
+          "annual_volatility": 0.03194527154823728,
+          "best_week": 0.06067302120914289,
+          "calmar": 0.04134316169420939,
+          "cvar_5_weekly": -0.009822468595956374,
+          "max_drawdown": -0.14994944041899383,
+          "max_drawdown_duration_weeks": 842,
+          "observations": 1108,
+          "positive_week_share": 0.47382671480144406,
+          "sharpe_zero_rf": 0.20938911034089475,
+          "sortino_zero_target": 0.3021997303718913,
+          "total_return": 0.1407509776875504,
+          "worst_week": -0.03931647447715064,
+          "years": 21.307692307692307
+        },
+        "recent_since_2021_10bps": {
+          "annual_return": 0.03800907219770577,
+          "annual_volatility": 0.03443677152956483,
+          "best_week": 0.03365843257486916,
+          "calmar": 0.6554495291120687,
+          "cvar_5_weekly": -0.008642330709451142,
+          "max_drawdown": -0.05798931955782516,
+          "max_drawdown_duration_weeks": 75,
+          "observations": 276,
+          "positive_week_share": 0.7246376811594203,
+          "sharpe_zero_rf": 1.1007534551857743,
+          "sortino_zero_target": 1.828294636068535,
+          "total_return": 0.21896353869464202,
+          "worst_week": -0.0318828789826059,
+          "years": 5.3076923076923075
+        },
+        "rolling": {
+          "positive_3y_sharpe_share": 0.4837355718782791,
+          "rolling_windows": 953,
+          "spy_win_3y_share": 0.1248688352570829,
+          "worst_3y_sharpe": -1.1101645702110077
+        }
+      }
+    },
+    "composite_recovery_transition": {
+      "audit": {
+        "cost_reconciliation_pass": true,
+        "matched_periods": 1108,
+        "max_cost_reconciliation_error": 1.0842021724855044e-19,
+        "max_return_reconstruction_error": 9.71445146547012e-17,
+        "maximum_gross_exposure": 1.0000000000000002,
+        "mean_return_reconstruction_error": 2.757845705111316e-17,
+        "negative_exposure_weeks": 0,
+        "return_reconstruction_pass": true,
+        "static_multi_asset_zero_turnover": false,
+        "unpriced_exposure_events": 229,
+        "unpriced_exposure_weeks": 118
+      },
+      "bias_flags": [
+        "research_and_selection_used_this_history_not_an_untouched_holdout",
+        "multiple_testing_across_33_saved_strategies",
+        "current_etf_universe_can_create_survivorship_selection_bias",
+        "nonzero_positions_exist_when_the_asset_return_is_missing",
+        "no_primary_layer2_manifest_entry"
+      ],
+      "evidence_grade": "C",
+      "manifest": null,
+      "metrics": {
+        "benchmark": {
+          "annual_alpha_zero_rf": 0.019691723349254196,
+          "annual_tracking_error": 0.1377269173807743,
+          "beta_to_spy": 0.33886322682787895,
+          "information_ratio": -0.4144580977932482
+        },
+        "block_bootstrap_95pct": {
+          "annual_return_ci_high": 0.09174804835937365,
+          "annual_return_ci_low": 0.022809419592817307,
+          "bootstrap_block_weeks": 13,
+          "bootstrap_samples": 500,
+          "sharpe_ci_high": 1.008237813969557,
+          "sharpe_ci_low": 0.2735051819480946
+        },
+        "cost_stress": {
+          "annual_return_10bps": 0.056009027665448574,
+          "annual_return_25bps": 0.04332378221483202,
+          "annual_return_50bps": 0.022501122715693267,
+          "average_weekly_turnover": 0.15508927754875226,
+          "sharpe_10bps": 0.6221131031193684,
+          "sharpe_25bps": 0.49473682084438647,
+          "sharpe_50bps": 0.2819775867928842
+        },
+        "full_10bps": {
+          "annual_return": 0.056009027665448574,
+          "annual_volatility": 0.09490530220228204,
+          "best_week": 0.08782804871447251,
+          "calmar": 0.22232038212808533,
+          "cvar_5_weekly": -0.03236078694070958,
+          "max_drawdown": -0.2519293423721273,
+          "max_drawdown_duration_weeks": 215,
+          "observations": 1108,
+          "positive_week_share": 0.5776173285198556,
+          "sharpe_zero_rf": 0.6221131031193684,
+          "sortino_zero_target": 0.8818742543532415,
+          "total_return": 2.1937623552550707,
+          "worst_week": -0.07407516987679127,
+          "years": 21.307692307692307
+        },
+        "recent_since_2021_10bps": {
+          "annual_return": 0.02738016981133562,
+          "annual_volatility": 0.10200171938133182,
+          "best_week": 0.03307331888433338,
+          "calmar": 0.1086819405533637,
+          "cvar_5_weekly": -0.03166700586348486,
+          "max_drawdown": -0.25192934237212794,
+          "max_drawdown_duration_weeks": 215,
+          "observations": 276,
+          "positive_week_share": 0.5543478260869565,
+          "sharpe_zero_rf": 0.3158446865305189,
+          "sortino_zero_target": 0.4423436780789932,
+          "total_return": 0.15415858866108234,
+          "worst_week": -0.046695319655866235,
+          "years": 5.3076923076923075
+        },
+        "rolling": {
+          "positive_3y_sharpe_share": 0.9517313746065058,
+          "rolling_windows": 953,
+          "spy_win_3y_share": 0.19412381951731375,
+          "worst_3y_sharpe": -0.12537160501408165
+        }
+      }
+    },
+    "composite_regime_conditioned": {
+      "audit": {
+        "cost_reconciliation_pass": true,
+        "matched_periods": 1109,
+        "max_cost_reconciliation_error": 1.0842021724855044e-19,
+        "max_return_reconstruction_error": 9.107298248878237e-17,
+        "maximum_gross_exposure": 1.0,
+        "mean_return_reconstruction_error": 2.624599028915279e-17,
+        "negative_exposure_weeks": 0,
+        "return_reconstruction_pass": true,
+        "static_multi_asset_zero_turnover": false,
+        "unpriced_exposure_events": 91,
+        "unpriced_exposure_weeks": 91
+      },
+      "bias_flags": [
+        "research_and_selection_used_this_history_not_an_untouched_holdout",
+        "multiple_testing_across_33_saved_strategies",
+        "current_etf_universe_can_create_survivorship_selection_bias",
+        "nonzero_positions_exist_when_the_asset_return_is_missing",
+        "lag_is_declared_but_signal_generation_was_not_independently_reexecuted"
+      ],
+      "evidence_grade": "C",
+      "manifest": {
+        "caveats": "Transparent regime maps are useful; aggressively optimized state-dependent weights are not.",
+        "description": "Top-N long-only composite whose signal mix and total risk budget shift with the macro / stress regime.",
+        "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+        "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+        "output_files": [
+          "strategy_positions_composite_regime_conditioned.csv",
+          "strategy_returns_composite_regime_conditioned.csv"
+        ],
+        "rebalance_frequency": "monthly",
+        "required_inputs": [
+          "signal_xsmom.csv",
+          "signal_multi_horizon_mom.csv",
+          "regime_features.csv"
+        ],
+        "strategy_name": "composite_regime_conditioned",
+        "type": "strategy_logic"
+      },
+      "metrics": {
+        "benchmark": {
+          "annual_alpha_zero_rf": 0.04446109395872455,
+          "annual_tracking_error": 0.14910491686730226,
+          "beta_to_spy": 0.24468889570010469,
+          "information_ratio": -0.2891231370900632
+        },
+        "block_bootstrap_95pct": {
+          "annual_return_ci_high": 0.10292910579798867,
+          "annual_return_ci_low": 0.041856238746269106,
+          "bootstrap_block_weeks": 13,
+          "bootstrap_samples": 500,
+          "sharpe_ci_high": 1.2928757289475423,
+          "sharpe_ci_low": 0.5419181376409429
+        },
+        "cost_stress": {
+          "annual_return_10bps": 0.07202227791712223,
+          "annual_return_25bps": 0.06589244132499106,
+          "annual_return_50bps": 0.05574426335790705,
+          "average_weekly_turnover": 0.07353471596032461,
+          "sharpe_10bps": 0.9059672293690006,
+          "sharpe_25bps": 0.8339137954132894,
+          "sharpe_50bps": 0.7132557211430118
+        },
+        "full_10bps": {
+          "annual_return": 0.07202227791712223,
+          "annual_volatility": 0.08038958149834438,
+          "best_week": 0.045830065208408745,
+          "calmar": 0.5909709561109937,
+          "cvar_5_weekly": -0.026767689903000484,
+          "max_drawdown": -0.12187109564754195,
+          "max_drawdown_duration_weeks": 87,
+          "observations": 1109,
+          "positive_week_share": 0.5843101893597836,
+          "sharpe_zero_rf": 0.9059672293690006,
+          "sortino_zero_target": 1.322052064016347,
+          "total_return": 3.4071146183137158,
+          "worst_week": -0.0590364120580425,
+          "years": 21.326923076923077
+        },
+        "recent_since_2021_10bps": {
+          "annual_return": 0.08862236333591711,
+          "annual_volatility": 0.0791469912993352,
+          "best_week": 0.033883090987123006,
+          "calmar": 0.8974491962798654,
+          "cvar_5_weekly": -0.02433202604317322,
+          "max_drawdown": -0.09874917009595341,
+          "max_drawdown_duration_weeks": 87,
+          "observations": 276,
+          "positive_week_share": 0.5797101449275363,
+          "sharpe_zero_rf": 1.1131902824007616,
+          "sortino_zero_target": 1.688044481967619,
+          "total_return": 0.5693980372571916,
+          "worst_week": -0.03238314384289415,
+          "years": 5.3076923076923075
+        },
+        "rolling": {
+          "positive_3y_sharpe_share": 0.9979035639412998,
+          "rolling_windows": 954,
+          "spy_win_3y_share": 0.20964360587002095,
+          "worst_3y_sharpe": -0.0519485807778508
+        }
+      }
+    },
+    "composite_selective_concentrated": {
+      "audit": {
+        "cost_reconciliation_pass": true,
+        "matched_periods": 1109,
+        "max_cost_reconciliation_error": 0.0,
+        "max_return_reconstruction_error": 9.280770596475918e-17,
+        "maximum_gross_exposure": 1.0,
+        "mean_return_reconstruction_error": 3.1130460389824494e-17,
+        "negative_exposure_weeks": 0,
+        "return_reconstruction_pass": true,
+        "static_multi_asset_zero_turnover": false,
+        "unpriced_exposure_events": 16,
+        "unpriced_exposure_weeks": 16
+      },
+      "bias_flags": [
+        "research_and_selection_used_this_history_not_an_untouched_holdout",
+        "multiple_testing_across_33_saved_strategies",
+        "current_etf_universe_can_create_survivorship_selection_bias",
+        "nonzero_positions_exist_when_the_asset_return_is_missing",
+        "lag_is_declared_but_signal_generation_was_not_independently_reexecuted"
+      ],
+      "evidence_grade": "C",
+      "manifest": {
+        "caveats": "This is a more selective offensive sleeve for upside-capture testing. It is only promoted if better upside participation survives the drawdown and turnover checks.",
+        "description": "A more concentrated top-3 version of the selective signal sleeve, used as a disciplined upside-capture test rather than a new default.",
+        "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+        "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+        "output_files": [
+          "strategy_positions_composite_selective_concentrated.csv",
+          "strategy_returns_composite_selective_concentrated.csv"
+        ],
+        "rebalance_frequency": "monthly",
+        "required_inputs": [
+          "signal_xsmom.csv",
+          "signal_multi_horizon_mom.csv",
+          "signal_quality.csv",
+          "signal_value.csv",
+          "signal_bab.csv",
+          "signal_carry.csv"
+        ],
+        "strategy_name": "composite_selective_concentrated",
+        "type": "strategy_logic"
+      },
+      "metrics": {
+        "benchmark": {
+          "annual_alpha_zero_rf": 0.043032978126206316,
+          "annual_tracking_error": 0.15806700229702808,
+          "beta_to_spy": 0.2637421838570996,
+          "information_ratio": -0.2677899761570871
+        },
+        "block_bootstrap_95pct": {
+          "annual_return_ci_high": 0.11326617267349591,
+          "annual_return_ci_low": 0.033534255939766264,
+          "bootstrap_block_weeks": 13,
+          "bootstrap_samples": 500,
+          "sharpe_ci_high": 1.1986024526334749,
+          "sharpe_ci_low": 0.35750372645748896
+        },
+        "cost_stress": {
+          "annual_return_10bps": 0.07076439603730367,
+          "annual_return_25bps": 0.06765306839894247,
+          "annual_return_50bps": 0.0624835953178815,
+          "average_weekly_turnover": 0.037270814547640516,
+          "sharpe_10bps": 0.7220867956724939,
+          "sharpe_25bps": 0.693150550943667,
+          "sharpe_50bps": 0.644791789050731
+        },
+        "full_10bps": {
+          "annual_return": 0.07076439603730367,
+          "annual_volatility": 0.10194238338829759,
+          "best_week": 0.11700462643295556,
+          "calmar": 0.38010655054159326,
+          "cvar_5_weekly": -0.03269888047708548,
+          "max_drawdown": -0.1861698935113728,
+          "max_drawdown_duration_weeks": 84,
+          "observations": 1109,
+          "positive_week_share": 0.5788999098286745,
+          "sharpe_zero_rf": 0.7220867956724939,
+          "sortino_zero_target": 1.056757718659039,
+          "total_return": 3.2981343969364447,
+          "worst_week": -0.09444740285448577,
+          "years": 21.326923076923077
+        },
+        "recent_since_2021_10bps": {
+          "annual_return": 0.09307836311223272,
+          "annual_volatility": 0.08917778091253986,
+          "best_week": 0.052110042565726225,
+          "calmar": 0.71578024561887,
+          "cvar_5_weekly": -0.023058685649291335,
+          "max_drawdown": -0.13003762493019955,
+          "max_drawdown_duration_weeks": 84,
+          "observations": 276,
+          "positive_week_share": 0.5688405797101449,
+          "sharpe_zero_rf": 1.043118489230516,
+          "sortino_zero_target": 1.68662208394945,
+          "total_return": 0.6037962579850185,
+          "worst_week": -0.031112435559367588,
+          "years": 5.3076923076923075
+        },
+        "rolling": {
+          "positive_3y_sharpe_share": 0.9989517819706499,
+          "rolling_windows": 954,
+          "spy_win_3y_share": 0.21174004192872117,
+          "worst_3y_sharpe": -0.0031991253541619174
+        }
+      }
+    },
+    "composite_selective_signals": {
+      "audit": {
+        "cost_reconciliation_pass": true,
+        "matched_periods": 1109,
+        "max_cost_reconciliation_error": 0.0,
+        "max_return_reconstruction_error": 9.71445146547012e-17,
+        "maximum_gross_exposure": 1.0,
+        "mean_return_reconstruction_error": 2.864644958287636e-17,
+        "negative_exposure_weeks": 0,
+        "return_reconstruction_pass": true,
+        "static_multi_asset_zero_turnover": false,
+        "unpriced_exposure_events": 16,
+        "unpriced_exposure_weeks": 16
+      },
+      "bias_flags": [
+        "research_and_selection_used_this_history_not_an_untouched_holdout",
+        "multiple_testing_across_33_saved_strategies",
+        "current_etf_universe_can_create_survivorship_selection_bias",
+        "nonzero_positions_exist_when_the_asset_return_is_missing",
+        "lag_is_declared_but_signal_generation_was_not_independently_reexecuted"
+      ],
+      "evidence_grade": "C",
+      "manifest": {
+        "caveats": "Selective composite keeps the signals that improved the long-only ETF sleeve most cleanly in the incremental study; it is still a practical top-N proxy rather than a fully optimized ensemble.",
+        "description": "Top-N long-only strategy using the selective signal blend that retained trend, quality/value, BAB, and carry while excluding weaker add-ons.",
+        "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+        "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+        "output_files": [
+          "strategy_positions_composite_selective_signals.csv",
+          "strategy_returns_composite_selective_signals.csv"
+        ],
+        "rebalance_frequency": "monthly",
+        "required_inputs": [
+          "signal_xsmom.csv",
+          "signal_multi_horizon_mom.csv",
+          "signal_quality.csv",
+          "signal_value.csv",
+          "signal_bab.csv",
+          "signal_carry.csv"
+        ],
+        "strategy_name": "composite_selective_signals",
+        "type": "strategy_logic"
+      },
+      "metrics": {
+        "benchmark": {
+          "annual_alpha_zero_rf": 0.04558045352058857,
+          "annual_tracking_error": 0.15207463087255685,
+          "beta_to_spy": 0.2783508116287279,
+          "information_ratio": -0.2504530752204173
+        },
+        "block_bootstrap_95pct": {
+          "annual_return_ci_high": 0.1121259699905256,
+          "annual_return_ci_low": 0.0405246309893295,
+          "bootstrap_block_weeks": 13,
+          "bootstrap_samples": 500,
+          "sharpe_ci_high": 1.265425836241271,
+          "sharpe_ci_low": 0.4168911781748984
+        },
+        "cost_stress": {
+          "annual_return_10bps": 0.07582538576644593,
+          "annual_return_25bps": 0.07346662888774547,
+          "annual_return_50bps": 0.0695446494448273,
+          "average_weekly_turnover": 0.0281785392245266,
+          "sharpe_10bps": 0.8014493789816194,
+          "sharpe_25bps": 0.7788292720997733,
+          "sharpe_50bps": 0.7409821205052578
+        },
+        "full_10bps": {
+          "annual_return": 0.07582538576644593,
+          "annual_volatility": 0.09713957090377864,
+          "best_week": 0.11769917197170149,
+          "calmar": 0.3442031599818132,
+          "cvar_5_weekly": -0.029671501042229653,
+          "max_drawdown": -0.22029253238248114,
+          "max_drawdown_duration_weeks": 112,
+          "observations": 1109,
+          "positive_week_share": 0.5861136158701533,
+          "sharpe_zero_rf": 0.8014493789816194,
+          "sortino_zero_target": 1.1810369549321251,
+          "total_return": 3.7528561403078937,
+          "worst_week": -0.09852410123489004,
+          "years": 21.326923076923077
+        },
+        "recent_since_2021_10bps": {
+          "annual_return": 0.07424858962817305,
+          "annual_volatility": 0.08748780897139201,
+          "best_week": 0.04017097412733918,
+          "calmar": 0.5424614683499313,
+          "cvar_5_weekly": -0.023290287944957928,
+          "max_drawdown": -0.1368734812705199,
+          "max_drawdown_duration_weeks": 88,
+          "observations": 276,
+          "positive_week_share": 0.5760869565217391,
+          "sharpe_zero_rf": 0.8627194427089309,
+          "sortino_zero_target": 1.3446238419364307,
+          "total_return": 0.46249593002243783,
+          "worst_week": -0.029420945526620754,
+          "years": 5.3076923076923075
+        },
+        "rolling": {
+          "positive_3y_sharpe_share": 0.9664570230607966,
+          "rolling_windows": 954,
+          "spy_win_3y_share": 0.21069182389937108,
+          "worst_3y_sharpe": -0.15241094855544182
+        }
+      }
+    },
+    "composite_selective_strength_weighted": {
+      "audit": {
+        "cost_reconciliation_pass": true,
+        "matched_periods": 1109,
+        "max_cost_reconciliation_error": 1.0842021724855044e-19,
+        "max_return_reconstruction_error": 9.020562075079397e-17,
+        "maximum_gross_exposure": 1.0000000000000002,
+        "mean_return_reconstruction_error": 2.991224828695716e-17,
+        "negative_exposure_weeks": 0,
+        "return_reconstruction_pass": true,
+        "static_multi_asset_zero_turnover": false,
+        "unpriced_exposure_events": 0,
+        "unpriced_exposure_weeks": 0
+      },
+      "bias_flags": [
+        "research_and_selection_used_this_history_not_an_untouched_holdout",
+        "multiple_testing_across_33_saved_strategies",
+        "current_etf_universe_can_create_survivorship_selection_bias",
+        "lag_is_declared_but_signal_generation_was_not_independently_reexecuted"
+      ],
+      "evidence_grade": "B",
+      "manifest": {
+        "caveats": "This keeps the same selective signal blend and top-N universe as the incumbent sleeve, but weights selected ETFs by normalized signal strength so strong setups can express more than merely weak-positive ones.",
+        "description": "Top-N long-only sleeve that uses the selective signal blend while scaling chosen ETF weights by normalized composite signal strength rather than equal slots.",
+        "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+        "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+        "output_files": [
+          "strategy_positions_composite_selective_strength_weighted.csv",
+          "strategy_returns_composite_selective_strength_weighted.csv"
+        ],
+        "rebalance_frequency": "monthly",
+        "required_inputs": [
+          "signal_xsmom.csv",
+          "signal_multi_horizon_mom.csv",
+          "signal_quality.csv",
+          "signal_value.csv",
+          "signal_bab.csv",
+          "signal_carry.csv"
+        ],
+        "strategy_name": "composite_selective_strength_weighted",
+        "type": "strategy_logic"
+      },
+      "metrics": {
+        "benchmark": {
+          "annual_alpha_zero_rf": 0.04210959012697282,
+          "annual_tracking_error": 0.1556736422445404,
+          "beta_to_spy": 0.2651054068560406,
+          "information_ratio": -0.2768233213354978
+        },
+        "block_bootstrap_95pct": {
+          "annual_return_ci_high": 0.10529999886405825,
+          "annual_return_ci_low": 0.03547289271956042,
+          "bootstrap_block_weeks": 13,
+          "bootstrap_samples": 500,
+          "sharpe_ci_high": 1.1353639292105666,
+          "sharpe_ci_low": 0.39606815551313784
+        },
+        "cost_stress": {
+          "annual_return_10bps": 0.07029509097470354,
+          "annual_return_25bps": 0.06707421253295465,
+          "annual_return_50bps": 0.06172501872798031,
+          "average_weekly_turnover": 0.038651455114547,
+          "sharpe_10bps": 0.7386657145567637,
+          "sharpe_25bps": 0.7078990555286543,
+          "sharpe_50bps": 0.6565211623114934
+        },
+        "full_10bps": {
+          "annual_return": 0.07029509097470354,
+          "annual_volatility": 0.09861824044940207,
+          "best_week": 0.11351104876223429,
+          "calmar": 0.3486971584668441,
+          "cvar_5_weekly": -0.03153381301801757,
+          "max_drawdown": -0.20159352970863842,
+          "max_drawdown_duration_weeks": 151,
+          "observations": 1109,
+          "positive_week_share": 0.5897204688908927,
+          "sharpe_zero_rf": 0.7386657145567637,
+          "sortino_zero_target": 1.0746736880916983,
+          "total_return": 3.2581365989666597,
+          "worst_week": -0.0929197463641458,
+          "years": 21.326923076923077
+        },
+        "recent_since_2021_10bps": {
+          "annual_return": 0.07960071908360078,
+          "annual_volatility": 0.08762151894494939,
+          "best_week": 0.04823546202077728,
+          "calmar": 0.5856327892359776,
+          "cvar_5_weekly": -0.023180054066185164,
+          "max_drawdown": -0.13592257904044047,
+          "max_drawdown_duration_weeks": 86,
+          "observations": 276,
+          "positive_week_share": 0.5760869565217391,
+          "sharpe_zero_rf": 0.9182618915271774,
+          "sortino_zero_target": 1.4680965555062826,
+          "total_return": 0.5015875051049377,
+          "worst_week": -0.03082753192082107,
+          "years": 5.3076923076923075
+        },
+        "rolling": {
+          "positive_3y_sharpe_share": 0.9916142557651991,
+          "rolling_windows": 954,
+          "spy_win_3y_share": 0.21069182389937108,
+          "worst_3y_sharpe": -0.0760298286933655
+        }
+      }
+    },
+    "composite_selective_trend_ensemble": {
+      "audit": {
+        "cost_reconciliation_pass": true,
+        "matched_periods": 1109,
+        "max_cost_reconciliation_error": 0.0,
+        "max_return_reconstruction_error": 9.71445146547012e-17,
+        "maximum_gross_exposure": 1.0,
+        "mean_return_reconstruction_error": 2.864644958287636e-17,
+        "negative_exposure_weeks": 0,
+        "return_reconstruction_pass": true,
+        "static_multi_asset_zero_turnover": false,
+        "unpriced_exposure_events": 16,
+        "unpriced_exposure_weeks": 16
+      },
+      "bias_flags": [
+        "research_and_selection_used_this_history_not_an_untouched_holdout",
+        "multiple_testing_across_33_saved_strategies",
+        "current_etf_universe_can_create_survivorship_selection_bias",
+        "nonzero_positions_exist_when_the_asset_return_is_missing",
+        "lag_is_declared_but_signal_generation_was_not_independently_reexecuted"
+      ],
+      "evidence_grade": "C",
+      "manifest": {
+        "caveats": "Minimal conditional test only. This adds a simple fast/slow trend ensemble to the incumbent selective sleeve rather than redesigning Layer 1 from scratch, and it should only survive if it adds value beyond the existing momentum complex.",
+        "description": "Top-N long-only sleeve that augments the incumbent selective blend with a simple multi-horizon trend ensemble (cross-sectional momentum, multi-horizon momentum, and time-series momentum).",
+        "lag_convention": "Consumes Layer 1 tradable signals; multi-horizon trend signals remain lagged and are combined with the same monthly rebalance schedule as the incumbent selective sleeve.",
+        "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+        "output_files": [
+          "strategy_positions_composite_selective_trend_ensemble.csv",
+          "strategy_returns_composite_selective_trend_ensemble.csv"
+        ],
+        "rebalance_frequency": "monthly",
+        "required_inputs": [
+          "signal_xsmom.csv",
+          "signal_tsmom.csv",
+          "signal_multi_horizon_mom.csv",
+          "signal_quality.csv",
+          "signal_value.csv",
+          "signal_bab.csv",
+          "signal_carry.csv"
+        ],
+        "strategy_name": "composite_selective_trend_ensemble",
+        "type": "strategy_logic"
+      },
+      "metrics": {
+        "benchmark": {
+          "annual_alpha_zero_rf": 0.04558045352058857,
+          "annual_tracking_error": 0.15207463087255685,
+          "beta_to_spy": 0.2783508116287279,
+          "information_ratio": -0.2504530752204173
+        },
+        "block_bootstrap_95pct": {
+          "annual_return_ci_high": 0.1129762020729077,
+          "annual_return_ci_low": 0.04303643849779272,
+          "bootstrap_block_weeks": 13,
+          "bootstrap_samples": 500,
+          "sharpe_ci_high": 1.2656227674052514,
+          "sharpe_ci_low": 0.44412087813816525
+        },
+        "cost_stress": {
+          "annual_return_10bps": 0.07582538576644593,
+          "annual_return_25bps": 0.07346662888774547,
+          "annual_return_50bps": 0.0695446494448273,
+          "average_weekly_turnover": 0.0281785392245266,
+          "sharpe_10bps": 0.8014493789816194,
+          "sharpe_25bps": 0.7788292720997733,
+          "sharpe_50bps": 0.7409821205052578
+        },
+        "full_10bps": {
+          "annual_return": 0.07582538576644593,
+          "annual_volatility": 0.09713957090377864,
+          "best_week": 0.11769917197170149,
+          "calmar": 0.3442031599818132,
+          "cvar_5_weekly": -0.029671501042229653,
+          "max_drawdown": -0.22029253238248114,
+          "max_drawdown_duration_weeks": 112,
+          "observations": 1109,
+          "positive_week_share": 0.5861136158701533,
+          "sharpe_zero_rf": 0.8014493789816194,
+          "sortino_zero_target": 1.1810369549321251,
+          "total_return": 3.7528561403078937,
+          "worst_week": -0.09852410123489004,
+          "years": 21.326923076923077
+        },
+        "recent_since_2021_10bps": {
+          "annual_return": 0.07424858962817305,
+          "annual_volatility": 0.08748780897139201,
+          "best_week": 0.04017097412733918,
+          "calmar": 0.5424614683499313,
+          "cvar_5_weekly": -0.023290287944957928,
+          "max_drawdown": -0.1368734812705199,
+          "max_drawdown_duration_weeks": 88,
+          "observations": 276,
+          "positive_week_share": 0.5760869565217391,
+          "sharpe_zero_rf": 0.8627194427089309,
+          "sortino_zero_target": 1.3446238419364307,
+          "total_return": 0.46249593002243783,
+          "worst_week": -0.029420945526620754,
+          "years": 5.3076923076923075
+        },
+        "rolling": {
+          "positive_3y_sharpe_share": 0.9664570230607966,
+          "rolling_windows": 954,
+          "spy_win_3y_share": 0.21069182389937108,
+          "worst_3y_sharpe": -0.15241094855544182
+        }
+      }
+    },
+    "composite_structural_defense_sleeve": {
+      "audit": {
+        "cost_reconciliation_pass": true,
+        "matched_periods": 1108,
+        "max_cost_reconciliation_error": 2.168404344971009e-19,
+        "max_return_reconstruction_error": 0.07887030360200553,
+        "maximum_gross_exposure": 1.0000000000000002,
+        "mean_return_reconstruction_error": 0.003745429089843152,
+        "negative_exposure_weeks": 0,
+        "return_reconstruction_pass": false,
+        "static_multi_asset_zero_turnover": false,
+        "unpriced_exposure_events": 227,
+        "unpriced_exposure_weeks": 85
+      },
+      "bias_flags": [
+        "research_and_selection_used_this_history_not_an_untouched_holdout",
+        "multiple_testing_across_33_saved_strategies",
+        "current_etf_universe_can_create_survivorship_selection_bias",
+        "saved_returns_do_not_reconcile_to_dated_positions_and_next_week_returns"
+      ],
+      "evidence_grade": "D",
+      "manifest": null,
+      "metrics": {
+        "benchmark": {
+          "annual_alpha_zero_rf": 0.022033930373329614,
+          "annual_tracking_error": 0.17789415149810578,
+          "beta_to_spy": 0.007679676975545532,
+          "information_ratio": -0.5238966165701808
+        },
+        "block_bootstrap_95pct": {
+          "annual_return_ci_high": 0.04000156505965326,
+          "annual_return_ci_low": 0.0074939797520920505,
+          "bootstrap_block_weeks": 13,
+          "bootstrap_samples": 500,
+          "sharpe_ci_high": 1.1501951535736885,
+          "sharpe_ci_low": 0.23268320175254553
+        },
+        "cost_stress": {
+          "annual_return_10bps": 0.022569466620482315,
+          "annual_return_25bps": 0.019756746179122597,
+          "annual_return_50bps": 0.015082258721961894,
+          "average_weekly_turnover": 0.03531434979109722,
+          "sharpe_10bps": 0.6589487489435744,
+          "sharpe_25bps": 0.5793267914776693,
+          "sharpe_50bps": 0.4456491560401254
+        },
+        "full_10bps": {
+          "annual_return": 0.022569466620482315,
+          "annual_volatility": 0.03479136155487109,
+          "best_week": 0.04846609081538803,
+          "calmar": 0.20061619579438308,
+          "cvar_5_weekly": -0.010916281451589958,
+          "max_drawdown": -0.11250072074746331,
+          "max_drawdown_duration_weeks": 227,
+          "observations": 1108,
+          "positive_week_share": 0.5740072202166066,
+          "sharpe_zero_rf": 0.6589487489435744,
+          "sortino_zero_target": 1.042844260001675,
+          "total_return": 0.6089095992381823,
+          "worst_week": -0.03300052450637072,
+          "years": 21.307692307692307
+        },
+        "recent_since_2021_10bps": {
+          "annual_return": 0.028405740375925248,
+          "annual_volatility": 0.02921093580124025,
+          "best_week": 0.021267969795026865,
+          "calmar": 0.2580172301740643,
+          "cvar_5_weekly": -0.010012186982409106,
+          "max_drawdown": -0.11009241652878021,
+          "max_drawdown_duration_weeks": 164,
+          "observations": 276,
+          "positive_week_share": 0.6413043478260869,
+          "sharpe_zero_rf": 0.9736799794494202,
+          "sortino_zero_target": 1.4764190648305746,
+          "total_return": 0.160286879589441,
+          "worst_week": -0.0148657270937599,
+          "years": 5.3076923076923075
+        },
+        "rolling": {
+          "positive_3y_sharpe_share": 0.8488982161594963,
+          "rolling_windows": 953,
+          "spy_win_3y_share": 0.161594963273872,
+          "worst_3y_sharpe": -0.7541793720507912
+        }
+      }
+    },
+    "composite_trend_quality_module": {
+      "audit": {
+        "cost_reconciliation_pass": true,
+        "matched_periods": 1109,
+        "max_cost_reconciliation_error": 0.0,
+        "max_return_reconstruction_error": 9.020562075079397e-17,
+        "maximum_gross_exposure": 1.0,
+        "mean_return_reconstruction_error": 3.0119996674381114e-17,
+        "negative_exposure_weeks": 0,
+        "return_reconstruction_pass": true,
+        "static_multi_asset_zero_turnover": false,
+        "unpriced_exposure_events": 55,
+        "unpriced_exposure_weeks": 55
+      },
+      "bias_flags": [
+        "research_and_selection_used_this_history_not_an_untouched_holdout",
+        "multiple_testing_across_33_saved_strategies",
+        "current_etf_universe_can_create_survivorship_selection_bias",
+        "nonzero_positions_exist_when_the_asset_return_is_missing",
+        "lag_is_declared_but_signal_generation_was_not_independently_reexecuted"
+      ],
+      "evidence_grade": "C",
+      "manifest": {
+        "caveats": "Phase B trend-quality module: a cleaner offensive trend sleeve, not a wholesale regime overlay. It should only survive if calmer / confirmed trend participation improves without simply becoming a higher-beta rewrite of the existing selective sleeve.",
+        "description": "Top-N long-only trend-quality sleeve that combines cross-sectional momentum, multi-horizon momentum, time-series momentum, and trend-clarity to emphasize cleaner, less choppy trends.",
+        "lag_convention": "Consumes Layer 1 tradable signals only; trend-clarity score is computed from lagged prices and passed through the standard monthly rebalance schedule.",
+        "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+        "output_files": [
+          "strategy_positions_composite_trend_quality_module.csv",
+          "strategy_returns_composite_trend_quality_module.csv"
+        ],
+        "rebalance_frequency": "monthly",
+        "required_inputs": [
+          "signal_xsmom.csv",
+          "signal_multi_horizon_mom.csv",
+          "signal_tsmom.csv",
+          "signal_trend_quality.csv"
+        ],
+        "strategy_name": "composite_trend_quality_module",
+        "type": "strategy_logic"
+      },
+      "metrics": {
+        "benchmark": {
+          "annual_alpha_zero_rf": 0.0293473078239955,
+          "annual_tracking_error": 0.12635975367971825,
+          "beta_to_spy": 0.5547082191211201,
+          "information_ratio": -0.1763205771540023
+        },
+        "block_bootstrap_95pct": {
+          "annual_return_ci_high": 0.13881716671262856,
+          "annual_return_ci_low": 0.03639939042641668,
+          "bootstrap_block_weeks": 13,
+          "bootstrap_samples": 500,
+          "sharpe_ci_high": 1.0586964140888933,
+          "sharpe_ci_low": 0.318234010788773
+        },
+        "cost_stress": {
+          "annual_return_10bps": 0.08746497775900641,
+          "annual_return_25bps": 0.08428704362104389,
+          "annual_return_50bps": 0.07900757184539309,
+          "average_weekly_turnover": 0.03764652840396754,
+          "sharpe_10bps": 0.6733796624282378,
+          "sharpe_25bps": 0.652457841440354,
+          "sharpe_50bps": 0.6174674763108586
+        },
+        "full_10bps": {
+          "annual_return": 0.08746497775900641,
+          "annual_volatility": 0.1390897115972105,
+          "best_week": 0.11396368106273429,
+          "calmar": 0.29589175044455107,
+          "cvar_5_weekly": -0.046727249781753806,
+          "max_drawdown": -0.29559789222780986,
+          "max_drawdown_duration_weeks": 113,
+          "observations": 1109,
+          "positive_week_share": 0.5545536519386834,
+          "sharpe_zero_rf": 0.6733796624282378,
+          "sortino_zero_target": 0.955648334225696,
+          "total_return": 4.9789629038744945,
+          "worst_week": -0.13230258052475224,
+          "years": 21.326923076923077
+        },
+        "recent_since_2021_10bps": {
+          "annual_return": 0.1408658437273631,
+          "annual_volatility": 0.13516175460468532,
+          "best_week": 0.0634115951050312,
+          "calmar": 1.0567803371567335,
+          "cvar_5_weekly": -0.0372262898279922,
+          "max_drawdown": -0.13329718464138207,
+          "max_drawdown_duration_weeks": 86,
+          "observations": 276,
+          "positive_week_share": 0.5688405797101449,
+          "sharpe_zero_rf": 1.0434887995762383,
+          "sortino_zero_target": 1.6468738923238546,
+          "total_return": 1.0127207758232903,
+          "worst_week": -0.059384826631210336,
+          "years": 5.3076923076923075
+        },
+        "rolling": {
+          "positive_3y_sharpe_share": 1.0,
+          "rolling_windows": 954,
+          "spy_win_3y_share": 0.23060796645702306,
+          "worst_3y_sharpe": 0.015964656331176098
+        }
+      }
+    },
+    "composite_trend_quality_refined": {
+      "audit": {
+        "cost_reconciliation_pass": true,
+        "matched_periods": 1109,
+        "max_cost_reconciliation_error": 0.0,
+        "max_return_reconstruction_error": 8.673617379884035e-17,
+        "maximum_gross_exposure": 1.0,
+        "mean_return_reconstruction_error": 3.089722005321428e-17,
+        "negative_exposure_weeks": 0,
+        "return_reconstruction_pass": true,
+        "static_multi_asset_zero_turnover": false,
+        "unpriced_exposure_events": 33,
+        "unpriced_exposure_weeks": 33
+      },
+      "bias_flags": [
+        "research_and_selection_used_this_history_not_an_untouched_holdout",
+        "multiple_testing_across_33_saved_strategies",
+        "current_etf_universe_can_create_survivorship_selection_bias",
+        "nonzero_positions_exist_when_the_asset_return_is_missing",
+        "lag_is_declared_but_signal_generation_was_not_independently_reexecuted"
+      ],
+      "evidence_grade": "C",
+      "manifest": {
+        "caveats": "Phase B refinement-only sleeve: moving-average distance is only allowed to stay if it materially improves the simpler trend-quality module. Otherwise it is just a redundant feature.",
+        "description": "Refined trend-quality sleeve that augments the trend-quality module with moving-average distance as a setup-quality feature.",
+        "lag_convention": "Consumes Layer 1 tradable signals only; moving-average distance is treated as a refinement feature, not a separate overlay or timing layer.",
+        "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+        "output_files": [
+          "strategy_positions_composite_trend_quality_refined.csv",
+          "strategy_returns_composite_trend_quality_refined.csv"
+        ],
+        "rebalance_frequency": "monthly",
+        "required_inputs": [
+          "signal_xsmom.csv",
+          "signal_multi_horizon_mom.csv",
+          "signal_tsmom.csv",
+          "signal_trend_quality.csv",
+          "signal_moving_average_distance.csv"
+        ],
+        "strategy_name": "composite_trend_quality_refined",
+        "type": "strategy_logic"
+      },
+      "metrics": {
+        "benchmark": {
+          "annual_alpha_zero_rf": 0.04703679812544268,
+          "annual_tracking_error": 0.12724235442333978,
+          "beta_to_spy": 0.5454457931811271,
+          "information_ratio": -0.044515210027716565
+        },
+        "block_bootstrap_95pct": {
+          "annual_return_ci_high": 0.1561396926835708,
+          "annual_return_ci_low": 0.057905792392017624,
+          "bootstrap_block_weeks": 13,
+          "bootstrap_samples": 500,
+          "sharpe_ci_high": 1.166055142594959,
+          "sharpe_ci_low": 0.4624506741131338
+        },
+        "cost_stress": {
+          "annual_return_10bps": 0.10588166039896874,
+          "annual_return_25bps": 0.10282802760882603,
+          "annual_return_50bps": 0.09775389313138017,
+          "average_weekly_turnover": 0.035617673579801626,
+          "sharpe_10bps": 0.8000738049760051,
+          "sharpe_25bps": 0.7802580137167057,
+          "sharpe_50bps": 0.7470805355855522
+        },
+        "full_10bps": {
+          "annual_return": 0.10588166039896874,
+          "annual_volatility": 0.1378320186500134,
+          "best_week": 0.08561556365379398,
+          "calmar": 0.40337021965817604,
+          "cvar_5_weekly": -0.04514017312583628,
+          "max_drawdown": -0.2624925074753782,
+          "max_drawdown_duration_weeks": 114,
+          "observations": 1109,
+          "positive_week_share": 0.5689810640216412,
+          "sharpe_zero_rf": 0.8000738049760051,
+          "sortino_zero_target": 1.163764569080716,
+          "total_return": 7.554037355567896,
+          "worst_week": -0.1014030357876428,
+          "years": 21.326923076923077
+        },
+        "recent_since_2021_10bps": {
+          "annual_return": 0.14166660733921965,
+          "annual_volatility": 0.13580759892566616,
+          "best_week": 0.0634115951050312,
+          "calmar": 1.0627876929310576,
+          "cvar_5_weekly": -0.037242707995542676,
+          "max_drawdown": -0.13329718464138207,
+          "max_drawdown_duration_weeks": 66,
+          "observations": 276,
+          "positive_week_share": 0.5797101449275363,
+          "sharpe_zero_rf": 1.0443486780205085,
+          "sortino_zero_target": 1.6455999883437427,
+          "total_return": 1.020230354693636,
+          "worst_week": -0.059384826631210336,
+          "years": 5.3076923076923075
+        },
+        "rolling": {
+          "positive_3y_sharpe_share": 1.0,
+          "rolling_windows": 954,
+          "spy_win_3y_share": 0.2777777777777778,
+          "worst_3y_sharpe": 0.16344497965003685
+        }
+      }
+    },
+    "cross_sectional_reversal_combo_ls": {
+      "audit": {
+        "cost_reconciliation_pass": true,
+        "matched_periods": 1109,
+        "max_cost_reconciliation_error": 1.0842021724855044e-19,
+        "max_return_reconstruction_error": 6.678685382510707e-17,
+        "maximum_gross_exposure": 1.0000000000000002,
+        "mean_return_reconstruction_error": 1.6472491843779428e-17,
+        "negative_exposure_weeks": 1107,
+        "return_reconstruction_pass": true,
+        "static_multi_asset_zero_turnover": false,
+        "unpriced_exposure_events": 0,
+        "unpriced_exposure_weeks": 0
+      },
+      "bias_flags": [
+        "research_and_selection_used_this_history_not_an_untouched_holdout",
+        "multiple_testing_across_33_saved_strategies",
+        "current_etf_universe_can_create_survivorship_selection_bias",
+        "short_borrow_and_financing_costs_are_not_fully_modeled",
+        "lag_is_declared_but_signal_generation_was_not_independently_reexecuted"
+      ],
+      "evidence_grade": "C",
+      "manifest": {
+        "caveats": "High-turnover and regime-dependent; better treated as a tactical sleeve than a core allocation.",
+        "description": "Market-neutral ETF reversal sleeve using the average of 1-week and 4-week reversal signals.",
+        "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+        "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+        "output_files": [
+          "strategy_positions_cross_sectional_reversal_combo_ls.csv",
+          "strategy_returns_cross_sectional_reversal_combo_ls.csv"
+        ],
+        "rebalance_frequency": "weekly",
+        "required_inputs": [
+          "signal_reversal.csv",
+          "weekly_returns.csv"
+        ],
+        "strategy_name": "cross_sectional_reversal_combo_ls",
+        "type": "strategy_logic"
+      },
+      "metrics": {
+        "benchmark": {
+          "annual_alpha_zero_rf": -0.04418965456459949,
+          "annual_tracking_error": 0.1752529077942685,
+          "beta_to_spy": 0.12823261900236582,
+          "information_ratio": -0.828872817538826
+        },
+        "block_bootstrap_95pct": {
+          "annual_return_ci_high": -0.003694026622456415,
+          "annual_return_ci_low": -0.06008092376134422,
+          "bootstrap_block_weeks": 13,
+          "bootstrap_samples": 500,
+          "sharpe_ci_high": 0.003554246057706366,
+          "sharpe_ci_low": -0.6293053910421385
+        },
+        "cost_stress": {
+          "annual_return_10bps": -0.03266245324837702,
+          "annual_return_25bps": -0.07820254858742215,
+          "annual_return_50bps": -0.14947933813130165,
+          "average_weekly_turnover": 0.6174078964317918,
+          "sharpe_10bps": -0.3330659221717989,
+          "sharpe_25bps": -0.8792099664935702,
+          "sharpe_50bps": -1.7854005015418921
+        },
+        "full_10bps": {
+          "annual_return": -0.03266245324837702,
+          "annual_volatility": 0.08803771797994565,
+          "best_week": 0.07693086419131932,
+          "calmar": -0.06044139977812464,
+          "cvar_5_weekly": -0.028401182325572736,
+          "max_drawdown": -0.5403986897768446,
+          "max_drawdown_duration_weeks": 1107,
+          "observations": 1109,
+          "positive_week_share": 0.46077547339945896,
+          "sharpe_zero_rf": -0.3330659221717989,
+          "sortino_zero_target": -0.4603972467177867,
+          "total_return": -0.5074797674326132,
+          "worst_week": -0.06891674641281091,
+          "years": 21.326923076923077
+        },
+        "recent_since_2021_10bps": {
+          "annual_return": -0.0020722200735292517,
+          "annual_volatility": 0.07572059197639068,
+          "best_week": 0.04775037900975873,
+          "calmar": -0.015887901252570075,
+          "cvar_5_weekly": -0.020690120327549858,
+          "max_drawdown": -0.13042755242414683,
+          "max_drawdown_duration_weeks": 73,
+          "observations": 276,
+          "positive_week_share": 0.4782608695652174,
+          "sharpe_zero_rf": 0.010184763735954507,
+          "sortino_zero_target": 0.015257390693549469,
+          "total_return": -0.010949728665945901,
+          "worst_week": -0.027032913674403126,
+          "years": 5.3076923076923075
+        },
+        "rolling": {
+          "positive_3y_sharpe_share": 0.34067085953878407,
+          "rolling_windows": 954,
+          "spy_win_3y_share": 0.05870020964360587,
+          "worst_3y_sharpe": -1.872184795918827
+        }
+      }
+    },
+    "cta_trend_long_only": {
+      "audit": {
+        "cost_reconciliation_pass": true,
+        "matched_periods": 1109,
+        "max_cost_reconciliation_error": 1.0842021724855044e-19,
+        "max_return_reconstruction_error": 8.673617379884035e-17,
+        "maximum_gross_exposure": 1.0000000000000004,
+        "mean_return_reconstruction_error": 2.8574058435229145e-17,
+        "negative_exposure_weeks": 0,
+        "return_reconstruction_pass": true,
+        "static_multi_asset_zero_turnover": false,
+        "unpriced_exposure_events": 78,
+        "unpriced_exposure_weeks": 78
+      },
+      "bias_flags": [
+        "research_and_selection_used_this_history_not_an_untouched_holdout",
+        "multiple_testing_across_33_saved_strategies",
+        "current_etf_universe_can_create_survivorship_selection_bias",
+        "nonzero_positions_exist_when_the_asset_return_is_missing",
+        "lag_is_declared_but_signal_generation_was_not_independently_reexecuted"
+      ],
+      "evidence_grade": "C",
+      "manifest": {
+        "caveats": "ETF proxy only; not a full institutional futures trend program.",
+        "description": "Long/flat ETF CTA proxy using positive multi-horizon trend scores and inverse-vol sizing.",
+        "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+        "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+        "output_files": [
+          "strategy_positions_cta_trend_long_only.csv",
+          "strategy_returns_cta_trend_long_only.csv"
+        ],
+        "rebalance_frequency": "weekly",
+        "required_inputs": [
+          "signal_multi_horizon_mom.csv",
+          "weekly_returns.csv"
+        ],
+        "strategy_name": "cta_trend_long_only",
+        "type": "strategy_logic"
+      },
+      "metrics": {
+        "benchmark": {
+          "annual_alpha_zero_rf": 0.030558648967562777,
+          "annual_tracking_error": 0.13564149009762613,
+          "beta_to_spy": 0.4659892017704775,
+          "information_ratio": -0.23115764276894035
+        },
+        "block_bootstrap_95pct": {
+          "annual_return_ci_high": 0.1309639465776321,
+          "annual_return_ci_low": 0.03493668186284011,
+          "bootstrap_block_weeks": 13,
+          "bootstrap_samples": 500,
+          "sharpe_ci_high": 1.0816363840467622,
+          "sharpe_ci_low": 0.3226991139860349
+        },
+        "cost_stress": {
+          "annual_return_10bps": 0.07932712771070971,
+          "annual_return_25bps": 0.06762624108785076,
+          "annual_return_50bps": 0.04839747655019089,
+          "average_weekly_turnover": 0.13989389300571578,
+          "sharpe_10bps": 0.6625675920147905,
+          "sharpe_25bps": 0.5770518105456551,
+          "sharpe_50bps": 0.4344734593363537
+        },
+        "full_10bps": {
+          "annual_return": 0.07932712771070971,
+          "annual_volatility": 0.12766311188050689,
+          "best_week": 0.1001147322565608,
+          "calmar": 0.30860058613791314,
+          "cvar_5_weekly": -0.042362840112646065,
+          "max_drawdown": -0.2570543650077791,
+          "max_drawdown_duration_weeks": 129,
+          "observations": 1109,
+          "positive_week_share": 0.5401262398557258,
+          "sharpe_zero_rf": 0.6625675920147905,
+          "sortino_zero_target": 0.9438914080779274,
+          "total_return": 4.093935694047899,
+          "worst_week": -0.10932451261258794,
+          "years": 21.326923076923077
+        },
+        "recent_since_2021_10bps": {
+          "annual_return": 0.10278404293778443,
+          "annual_volatility": 0.13291964571673542,
+          "best_week": 0.07193365323558147,
+          "calmar": 0.49566321288372533,
+          "cvar_5_weekly": -0.03775774899566993,
+          "max_drawdown": -0.20736669630936666,
+          "max_drawdown_duration_weeks": 115,
+          "observations": 276,
+          "positive_week_share": 0.5833333333333334,
+          "sharpe_zero_rf": 0.8028957250361346,
+          "sortino_zero_target": 1.2247820281817972,
+          "total_return": 0.6808399370057729,
+          "worst_week": -0.049515382715158436,
+          "years": 5.3076923076923075
+        },
+        "rolling": {
+          "positive_3y_sharpe_share": 1.0,
+          "rolling_windows": 954,
+          "spy_win_3y_share": 0.21278825995807127,
+          "worst_3y_sharpe": 0.051195460791240266
+        }
+      }
+    },
+    "cta_trend_long_short_research": {
+      "audit": {
+        "cost_reconciliation_pass": true,
+        "matched_periods": 1109,
+        "max_cost_reconciliation_error": 1.0842021724855044e-19,
+        "max_return_reconstruction_error": 5.898059818321144e-17,
+        "maximum_gross_exposure": 1.0000000000000004,
+        "mean_return_reconstruction_error": 1.5003918493079467e-17,
+        "negative_exposure_weeks": 1031,
+        "return_reconstruction_pass": true,
+        "static_multi_asset_zero_turnover": false,
+        "unpriced_exposure_events": 0,
+        "unpriced_exposure_weeks": 0
+      },
+      "bias_flags": [
+        "research_and_selection_used_this_history_not_an_untouched_holdout",
+        "multiple_testing_across_33_saved_strategies",
+        "current_etf_universe_can_create_survivorship_selection_bias",
+        "short_borrow_and_financing_costs_are_not_fully_modeled",
+        "lag_is_declared_but_signal_generation_was_not_independently_reexecuted"
+      ],
+      "evidence_grade": "C",
+      "manifest": {
+        "caveats": "Research-only version; financing, shorting, borrow, and ETF implementation frictions are not modeled fully.",
+        "description": "Long/short ETF trend research sleeve using sign-based multi-horizon trend and inverse-vol sizing.",
+        "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+        "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+        "output_files": [
+          "strategy_positions_cta_trend_long_short_research.csv",
+          "strategy_returns_cta_trend_long_short_research.csv"
+        ],
+        "rebalance_frequency": "weekly",
+        "required_inputs": [
+          "signal_multi_horizon_mom.csv",
+          "weekly_returns.csv"
+        ],
+        "strategy_name": "cta_trend_long_short_research",
+        "type": "experimental"
+      },
+      "metrics": {
+        "benchmark": {
+          "annual_alpha_zero_rf": 0.02434814457515486,
+          "annual_tracking_error": 0.1950187148423784,
+          "beta_to_spy": -0.07158111395651381,
+          "information_ratio": -0.5122122671774487
+        },
+        "block_bootstrap_95pct": {
+          "annual_return_ci_high": 0.03472704473476737,
+          "annual_return_ci_low": -0.0030510164737246543,
+          "bootstrap_block_weeks": 13,
+          "bootstrap_samples": 500,
+          "sharpe_ci_high": 0.6797923687844531,
+          "sharpe_ci_low": -0.0328858704305745
+        },
+        "cost_stress": {
+          "annual_return_10bps": 0.014791494773845004,
+          "annual_return_25bps": 0.00681102788572141,
+          "annual_return_50bps": -0.006356149857885129,
+          "average_weekly_turnover": 0.10120008670064294,
+          "sharpe_10bps": 0.3073044143539742,
+          "sharpe_25bps": 0.15598683052105095,
+          "sharpe_50bps": -0.09536642539656398
+        },
+        "full_10bps": {
+          "annual_return": 0.014791494773845004,
+          "annual_volatility": 0.052225184277641626,
+          "best_week": 0.03185663269885687,
+          "calmar": 0.1320539473646089,
+          "cvar_5_weekly": -0.017320141600740063,
+          "max_drawdown": -0.11201100057240088,
+          "max_drawdown_duration_weeks": 217,
+          "observations": 1109,
+          "positive_week_share": 0.49594229035166815,
+          "sharpe_zero_rf": 0.3073044143539742,
+          "sortino_zero_target": 0.4390559463204595,
+          "total_return": 0.3677222764425976,
+          "worst_week": -0.03701459018144012,
+          "years": 21.326923076923077
+        },
+        "recent_since_2021_10bps": {
+          "annual_return": 0.02532205439004387,
+          "annual_volatility": 0.05226676319652928,
+          "best_week": 0.031203421958772206,
+          "calmar": 0.3107768803602776,
+          "cvar_5_weekly": -0.016820394919083628,
+          "max_drawdown": -0.08147985255752777,
+          "max_drawdown_duration_weeks": 182,
+          "observations": 276,
+          "positive_week_share": 0.5579710144927537,
+          "sharpe_zero_rf": 0.5046204124632123,
+          "sortino_zero_target": 0.7331054785369054,
+          "total_return": 0.14193957894637244,
+          "worst_week": -0.03139489881564491,
+          "years": 5.3076923076923075
+        },
+        "rolling": {
+          "positive_3y_sharpe_share": 0.8878406708595388,
+          "rolling_windows": 954,
+          "spy_win_3y_share": 0.15723270440251572,
+          "worst_3y_sharpe": -0.48145887426318706
+        }
+      }
+    },
+    "cta_trend_vol_managed": {
+      "audit": {
+        "cost_reconciliation_pass": true,
+        "matched_periods": 1109,
+        "max_cost_reconciliation_error": 1.0842021724855044e-19,
+        "max_return_reconstruction_error": 1.0408340855860843e-16,
+        "maximum_gross_exposure": 1.5000000000000004,
+        "mean_return_reconstruction_error": 2.7539630332271743e-17,
+        "negative_exposure_weeks": 0,
+        "return_reconstruction_pass": true,
+        "static_multi_asset_zero_turnover": false,
+        "unpriced_exposure_events": 101,
+        "unpriced_exposure_weeks": 101
+      },
+      "bias_flags": [
+        "research_and_selection_used_this_history_not_an_untouched_holdout",
+        "multiple_testing_across_33_saved_strategies",
+        "current_etf_universe_can_create_survivorship_selection_bias",
+        "nonzero_positions_exist_when_the_asset_return_is_missing",
+        "lag_is_declared_but_signal_generation_was_not_independently_reexecuted"
+      ],
+      "evidence_grade": "C",
+      "manifest": {
+        "caveats": "Vol management is intentionally simple and capped; it is an exposure rule, not a claim of optimal target-vol control.",
+        "description": "Volatility-managed version of the long-only CTA-style ETF trend sleeve.",
+        "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+        "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+        "output_files": [
+          "strategy_positions_cta_trend_vol_managed.csv",
+          "strategy_returns_cta_trend_vol_managed.csv"
+        ],
+        "overlay_on": "cta_trend_long_only",
+        "rebalance_frequency": "weekly",
+        "required_inputs": [
+          "signal_multi_horizon_mom.csv",
+          "weekly_returns.csv"
+        ],
+        "strategy_name": "cta_trend_vol_managed",
+        "type": "overlay"
+      },
+      "metrics": {
+        "benchmark": {
+          "annual_alpha_zero_rf": 0.027245816827918122,
+          "annual_tracking_error": 0.13945064349178712,
+          "beta_to_spy": 0.3782687727718868,
+          "information_ratio": -0.32153101159413716
+        },
+        "block_bootstrap_95pct": {
+          "annual_return_ci_high": 0.10573686337809875,
+          "annual_return_ci_low": 0.02403843285003815,
+          "bootstrap_block_weeks": 13,
+          "bootstrap_samples": 500,
+          "sharpe_ci_high": 1.008226964206715,
+          "sharpe_ci_low": 0.2746731475821964
+        },
+        "cost_stress": {
+          "annual_return_10bps": 0.06723049420207827,
+          "annual_return_25bps": 0.056087209446629815,
+          "annual_return_50bps": 0.03776519063057027,
+          "average_weekly_turnover": 0.13471317596519297,
+          "sharpe_10bps": 0.6510415298478485,
+          "sharpe_25bps": 0.554874954738654,
+          "sharpe_50bps": 0.3944683461130135
+        },
+        "full_10bps": {
+          "annual_return": 0.06723049420207827,
+          "annual_volatility": 0.10921315770387997,
+          "best_week": 0.06036312881599294,
+          "calmar": 0.3118086038578942,
+          "cvar_5_weekly": -0.0375172840853853,
+          "max_drawdown": -0.21561462182332325,
+          "max_drawdown_duration_weeks": 113,
+          "observations": 1109,
+          "positive_week_share": 0.5410279531109107,
+          "sharpe_zero_rf": 0.6510415298478485,
+          "sortino_zero_target": 0.9185794660608259,
+          "total_return": 3.005539426596906,
+          "worst_week": -0.09716297313951619,
+          "years": 21.326923076923077
+        },
+        "recent_since_2021_10bps": {
+          "annual_return": 0.08841662058615207,
+          "annual_volatility": 0.1063818087719215,
+          "best_week": 0.06036312881599294,
+          "calmar": 0.6699407905670028,
+          "cvar_5_weekly": -0.030344471740046775,
+          "max_drawdown": -0.1319767684414631,
+          "max_drawdown_duration_weeks": 94,
+          "observations": 276,
+          "positive_week_share": 0.5869565217391305,
+          "sharpe_zero_rf": 0.8500034648701982,
+          "sortino_zero_target": 1.2998767284616717,
+          "total_return": 0.5678243829046787,
+          "worst_week": -0.04866067238404051,
+          "years": 5.3076923076923075
+        },
+        "rolling": {
+          "positive_3y_sharpe_share": 1.0,
+          "rolling_windows": 954,
+          "spy_win_3y_share": 0.20859538784067086,
+          "worst_3y_sharpe": 0.08882424071295471
+        }
+      }
+    },
+    "dual_momentum_single_best": {
+      "audit": {
+        "cost_reconciliation_pass": true,
+        "matched_periods": 1109,
+        "max_cost_reconciliation_error": 0.0,
+        "max_return_reconstruction_error": 1.0408340855860843e-16,
+        "maximum_gross_exposure": 1.0,
+        "mean_return_reconstruction_error": 4.4717156045377853e-17,
+        "negative_exposure_weeks": 0,
+        "return_reconstruction_pass": true,
+        "static_multi_asset_zero_turnover": false,
+        "unpriced_exposure_events": 55,
+        "unpriced_exposure_weeks": 55
+      },
+      "bias_flags": [
+        "research_and_selection_used_this_history_not_an_untouched_holdout",
+        "multiple_testing_across_33_saved_strategies",
+        "current_etf_universe_can_create_survivorship_selection_bias",
+        "nonzero_positions_exist_when_the_asset_return_is_missing",
+        "lag_is_declared_but_signal_generation_was_not_independently_reexecuted"
+      ],
+      "evidence_grade": "C",
+      "manifest": {
+        "caveats": "Uses an ETF proxy universe rather than the original exact paper universe.",
+        "description": "Antonacci-style dual momentum using the strongest risky ETF with an absolute-momentum defensive filter.",
+        "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+        "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+        "output_files": [
+          "strategy_positions_dual_momentum_single_best.csv",
+          "strategy_returns_dual_momentum_single_best.csv"
+        ],
+        "rebalance_frequency": "monthly",
+        "required_inputs": [
+          "signal_xsmom.csv",
+          "weekly_prices.csv",
+          "proxy_mapping.json"
+        ],
+        "strategy_name": "dual_momentum_single_best",
+        "type": "strategy_logic"
+      },
+      "metrics": {
+        "benchmark": {
+          "annual_alpha_zero_rf": 0.04476806676932896,
+          "annual_tracking_error": 0.21766175708766689,
+          "beta_to_spy": 0.350475725436843,
+          "information_ratio": -0.14029925633106038
+        },
+        "block_bootstrap_95pct": {
+          "annual_return_ci_high": 0.1456495703923047,
+          "annual_return_ci_low": -0.0024679053808645043,
+          "bootstrap_block_weeks": 13,
+          "bootstrap_samples": 500,
+          "sharpe_ci_high": 0.791426566326231,
+          "sharpe_ci_low": 0.08335784053151901
+        },
+        "cost_stress": {
+          "annual_return_10bps": 0.06849932716864182,
+          "annual_return_25bps": 0.06259293863137017,
+          "annual_return_50bps": 0.05280196123756764,
+          "average_weekly_turnover": 0.07123534715960325,
+          "sharpe_10bps": 0.43729374057665704,
+          "sharpe_25bps": 0.40892836801620663,
+          "sharpe_50bps": 0.3614631220027823
+        },
+        "full_10bps": {
+          "annual_return": 0.06849932716864182,
+          "annual_volatility": 0.1952971587854996,
+          "best_week": 0.1554437161250017,
+          "calmar": 0.13947247112625263,
+          "cvar_5_weekly": -0.061140362065752275,
+          "max_drawdown": -0.49113152305615326,
+          "max_drawdown_duration_weeks": 530,
+          "observations": 1109,
+          "positive_week_share": 0.5302073940486925,
+          "sharpe_zero_rf": 0.43729374057665704,
+          "sortino_zero_target": 0.6293432344457092,
+          "total_return": 3.1083390815989285,
+          "worst_week": -0.1454576272510437,
+          "years": 21.326923076923077
+        },
+        "recent_since_2021_10bps": {
+          "annual_return": 0.21246138248580748,
+          "annual_volatility": 0.19926144616629787,
+          "best_week": 0.1554437161250017,
+          "calmar": 0.7508513850798967,
+          "cvar_5_weekly": -0.0502851583897862,
+          "max_drawdown": -0.28296063203399413,
+          "max_drawdown_duration_weeks": 121,
+          "observations": 276,
+          "positive_week_share": 0.5869565217391305,
+          "sharpe_zero_rf": 1.0668042648605254,
+          "sortino_zero_target": 1.7546063208763059,
+          "total_return": 1.7802480755713144,
+          "worst_week": -0.10298583419890525,
+          "years": 5.3076923076923075
+        },
+        "rolling": {
+          "positive_3y_sharpe_share": 0.6761006289308176,
+          "rolling_windows": 954,
+          "spy_win_3y_share": 0.38784067085953877,
+          "worst_3y_sharpe": -0.699019032808237
+        }
+      }
+    },
+    "dual_momentum_topn": {
+      "audit": {
+        "cost_reconciliation_pass": true,
+        "matched_periods": 1109,
+        "max_cost_reconciliation_error": 0.0,
+        "max_return_reconstruction_error": 9.280770596475918e-17,
+        "maximum_gross_exposure": 1.0,
+        "mean_return_reconstruction_error": 3.160324683762791e-17,
+        "negative_exposure_weeks": 0,
+        "return_reconstruction_pass": true,
+        "static_multi_asset_zero_turnover": false,
+        "unpriced_exposure_events": 55,
+        "unpriced_exposure_weeks": 55
+      },
+      "bias_flags": [
+        "research_and_selection_used_this_history_not_an_untouched_holdout",
+        "multiple_testing_across_33_saved_strategies",
+        "current_etf_universe_can_create_survivorship_selection_bias",
+        "nonzero_positions_exist_when_the_asset_return_is_missing",
+        "lag_is_declared_but_signal_generation_was_not_independently_reexecuted"
+      ],
+      "evidence_grade": "C",
+      "manifest": {
+        "caveats": "Top-N variant is more diversified but also less faithful to the concentrated original formulation.",
+        "description": "Top-N dual momentum basket with residual weight moved to the defensive asset when absolute momentum fails.",
+        "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+        "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+        "output_files": [
+          "strategy_positions_dual_momentum_topn.csv",
+          "strategy_returns_dual_momentum_topn.csv"
+        ],
+        "rebalance_frequency": "monthly",
+        "required_inputs": [
+          "signal_xsmom.csv",
+          "weekly_prices.csv",
+          "proxy_mapping.json"
+        ],
+        "strategy_name": "dual_momentum_topn",
+        "type": "strategy_logic"
+      },
+      "metrics": {
+        "benchmark": {
+          "annual_alpha_zero_rf": 0.046512972609374634,
+          "annual_tracking_error": 0.1504646748790835,
+          "beta_to_spy": 0.39171208733936735,
+          "information_ratio": -0.15958518311488806
+        },
+        "block_bootstrap_95pct": {
+          "annual_return_ci_high": 0.13189385850016738,
+          "annual_return_ci_low": 0.0448139680137986,
+          "bootstrap_block_weeks": 13,
+          "bootstrap_samples": 500,
+          "sharpe_ci_high": 1.0837862975719688,
+          "sharpe_ci_low": 0.3999501663301307
+        },
+        "cost_stress": {
+          "annual_return_10bps": 0.0874704706715661,
+          "annual_return_25bps": 0.08388591551691205,
+          "annual_return_50bps": 0.07793264788599252,
+          "average_weekly_turnover": 0.04238052299368801,
+          "sharpe_10bps": 0.7278705846706803,
+          "sharpe_25bps": 0.7016669326092881,
+          "sharpe_50bps": 0.6578174056113529
+        },
+        "full_10bps": {
+          "annual_return": 0.0874704706715661,
+          "annual_volatility": 0.12629728001593524,
+          "best_week": 0.0820414098756061,
+          "calmar": 0.48388683763990753,
+          "cvar_5_weekly": -0.042021375020712744,
+          "max_drawdown": -0.1807663773170427,
+          "max_drawdown_duration_weeks": 143,
+          "observations": 1109,
+          "positive_week_share": 0.5446348061316502,
+          "sharpe_zero_rf": 0.7278705846706803,
+          "sortino_zero_target": 1.0525558338854404,
+          "total_return": 4.979607019393936,
+          "worst_week": -0.08736917960887021,
+          "years": 21.326923076923077
+        },
+        "recent_since_2021_10bps": {
+          "annual_return": 0.12148008391875043,
+          "annual_volatility": 0.12402448211510693,
+          "best_week": 0.05381894401125836,
+          "calmar": 0.8634448408185305,
+          "cvar_5_weekly": -0.035843657723323485,
+          "max_drawdown": -0.14069235019528226,
+          "max_drawdown_duration_weeks": 97,
+          "observations": 276,
+          "positive_week_share": 0.5833333333333334,
+          "sharpe_zero_rf": 0.9872535381002878,
+          "sortino_zero_target": 1.5190341798416596,
+          "total_return": 0.837715629629634,
+          "worst_week": -0.05904286296578489,
+          "years": 5.3076923076923075
+        },
+        "rolling": {
+          "positive_3y_sharpe_share": 0.9979035639412998,
+          "rolling_windows": 954,
+          "spy_win_3y_share": 0.21593291404612158,
+          "worst_3y_sharpe": -0.10439780262866316
+        }
+      }
+    },
+    "pairs_stat_arb_research": {
+      "audit": {
+        "cost_reconciliation_pass": true,
+        "matched_periods": 1109,
+        "max_cost_reconciliation_error": 0.0,
+        "max_return_reconstruction_error": 0.0017467608200642279,
+        "maximum_gross_exposure": 1.0,
+        "mean_return_reconstruction_error": 6.333016785299534e-05,
+        "negative_exposure_weeks": 809,
+        "return_reconstruction_pass": false,
+        "static_multi_asset_zero_turnover": false,
+        "unpriced_exposure_events": 0,
+        "unpriced_exposure_weeks": 0
+      },
+      "bias_flags": [
+        "research_and_selection_used_this_history_not_an_untouched_holdout",
+        "multiple_testing_across_33_saved_strategies",
+        "current_etf_universe_can_create_survivorship_selection_bias",
+        "saved_returns_do_not_reconcile_to_dated_positions_and_next_week_returns"
+      ],
+      "evidence_grade": "D",
+      "manifest": {
+        "caveats": "Research-only sleeve; cointegration is not guaranteed and pair stability can drift through time.",
+        "description": "Reduced ETF pairs strategy using rolling relative-value z-scores on economically sensible pair candidates.",
+        "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+        "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+        "output_files": [
+          "strategy_positions_pairs_stat_arb_research.csv",
+          "strategy_returns_pairs_stat_arb_research.csv"
+        ],
+        "pair_candidates": [
+          [
+            "EFA",
+            "VEA"
+          ],
+          [
+            "GLD",
+            "IAU"
+          ],
+          [
+            "TLT",
+            "IEF"
+          ],
+          [
+            "VTV",
+            "VUG"
+          ]
+        ],
+        "rebalance_frequency": "weekly",
+        "required_inputs": [
+          "weekly_prices.csv",
+          "weekly_returns.csv"
+        ],
+        "strategy_name": "pairs_stat_arb_research",
+        "type": "experimental"
+      },
+      "metrics": {
+        "benchmark": {
+          "annual_alpha_zero_rf": -0.01030993832672143,
+          "annual_tracking_error": 0.173234481377422,
+          "beta_to_spy": 0.02676973191729279,
+          "information_ratio": -0.7108646163412567
+        },
+        "block_bootstrap_95pct": {
+          "annual_return_ci_high": 0.004152101089270616,
+          "annual_return_ci_low": -0.01806246249562741,
+          "bootstrap_block_weeks": 13,
+          "bootstrap_samples": 500,
+          "sharpe_ci_high": 0.1559673286785626,
+          "sharpe_ci_low": -0.634997581143754
+        },
+        "cost_stress": {
+          "annual_return_10bps": -0.0075674502107671016,
+          "annual_return_25bps": -0.016583014084273096,
+          "annual_return_50bps": -0.031442798125885796,
+          "average_weekly_turnover": 0.11684700931770364,
+          "sharpe_10bps": -0.2579940314007105,
+          "sharpe_25bps": -0.5772483945721925,
+          "sharpe_50bps": -1.0769969657133318
+        },
+        "full_10bps": {
+          "annual_return": -0.0075674502107671016,
+          "annual_volatility": 0.02793186866338411,
+          "best_week": 0.032386352142774716,
+          "calmar": -0.03233478647215734,
+          "cvar_5_weekly": -0.009612018056886218,
+          "max_drawdown": -0.23403433380589167,
+          "max_drawdown_duration_weeks": 883,
+          "observations": 1109,
+          "positive_week_share": 0.4337240757439134,
+          "sharpe_zero_rf": -0.2579940314007105,
+          "sortino_zero_target": -0.36127717547137705,
+          "total_return": -0.14956235360105297,
+          "worst_week": -0.02134582571591075,
+          "years": 21.326923076923077
+        },
+        "recent_since_2021_10bps": {
+          "annual_return": -0.001714176454182259,
+          "annual_volatility": 0.024676797853482844,
+          "best_week": 0.011081639360231908,
+          "calmar": -0.022992965471176147,
+          "cvar_5_weekly": -0.009222977475379033,
+          "max_drawdown": -0.07455221277704005,
+          "max_drawdown_duration_weeks": 214,
+          "observations": 276,
+          "positive_week_share": 0.5036231884057971,
+          "sharpe_zero_rf": -0.057200550541834524,
+          "sortino_zero_target": -0.07558947141772737,
+          "total_return": -0.009064792944838418,
+          "worst_week": -0.02134582571591075,
+          "years": 5.3076923076923075
+        },
+        "rolling": {
+          "positive_3y_sharpe_share": 0.27044025157232704,
+          "rolling_windows": 954,
+          "spy_win_3y_share": 0.13626834381551362,
+          "worst_3y_sharpe": -1.2283416002400012
+        }
+      }
+    },
+    "sector_factor_rotation": {
+      "audit": {
+        "cost_reconciliation_pass": true,
+        "matched_periods": 1109,
+        "max_cost_reconciliation_error": 0.0,
+        "max_return_reconstruction_error": 8.326672684688674e-17,
+        "maximum_gross_exposure": 1.0,
+        "mean_return_reconstruction_error": 3.536676774222683e-17,
+        "negative_exposure_weeks": 0,
+        "return_reconstruction_pass": true,
+        "static_multi_asset_zero_turnover": false,
+        "unpriced_exposure_events": 11,
+        "unpriced_exposure_weeks": 11
+      },
+      "bias_flags": [
+        "research_and_selection_used_this_history_not_an_untouched_holdout",
+        "multiple_testing_across_33_saved_strategies",
+        "current_etf_universe_can_create_survivorship_selection_bias",
+        "nonzero_positions_exist_when_the_asset_return_is_missing",
+        "lag_is_declared_but_signal_generation_was_not_independently_reexecuted"
+      ],
+      "evidence_grade": "C",
+      "manifest": {
+        "caveats": "Useful for ETF rotation research, but results depend on the breadth and composition of the equity-like universe.",
+        "description": "Top-N sector/factor ETF rotation using an equal-weight composite of Layer 1 signals.",
+        "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+        "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+        "output_files": [
+          "strategy_positions_sector_factor_rotation.csv",
+          "strategy_returns_sector_factor_rotation.csv"
+        ],
+        "rebalance_frequency": "monthly",
+        "required_inputs": [
+          "signal_xsmom.csv",
+          "signal_multi_horizon_mom.csv",
+          "signal_quality.csv",
+          "signal_value.csv",
+          "signal_bab.csv"
+        ],
+        "strategy_name": "sector_factor_rotation",
+        "type": "strategy_logic"
+      },
+      "metrics": {
+        "benchmark": {
+          "annual_alpha_zero_rf": 0.006422961201899723,
+          "annual_tracking_error": 0.08511047794743364,
+          "beta_to_spy": 0.7970328245877317,
+          "information_ratio": -0.20102172022833673
+        },
+        "block_bootstrap_95pct": {
+          "annual_return_ci_high": 0.1482636548979379,
+          "annual_return_ci_low": 0.031455839085318245,
+          "bootstrap_block_weeks": 13,
+          "bootstrap_samples": 500,
+          "sharpe_ci_high": 1.0154469060570177,
+          "sharpe_ci_low": 0.26220629312913746
+        },
+        "cost_stress": {
+          "annual_return_10bps": 0.08969114927063027,
+          "annual_return_25bps": 0.08204227107575557,
+          "annual_return_50bps": 0.06940006566223045,
+          "average_weekly_turnover": 0.09039675383228134,
+          "sharpe_10bps": 0.6178067861168409,
+          "sharpe_25bps": 0.573664836125596,
+          "sharpe_50bps": 0.49991806190190574
+        },
+        "full_10bps": {
+          "annual_return": 0.08969114927063027,
+          "annual_volatility": 0.1599706498453319,
+          "best_week": 0.1550929795089861,
+          "calmar": 0.2169215724624722,
+          "cvar_5_weekly": -0.053357989720331865,
+          "max_drawdown": -0.41347270468522435,
+          "max_drawdown_duration_weeks": 192,
+          "observations": 1109,
+          "positive_week_share": 0.5798016230838593,
+          "sharpe_zero_rf": 0.6178067861168409,
+          "sortino_zero_target": 0.8739350808994353,
+          "total_return": 5.245500433329278,
+          "worst_week": -0.12901602241238652,
+          "years": 21.326923076923077
+        },
+        "recent_since_2021_10bps": {
+          "annual_return": 0.1484617978254561,
+          "annual_volatility": 0.15132611154791156,
+          "best_week": 0.06342278519522825,
+          "calmar": 1.1416371861698427,
+          "cvar_5_weekly": -0.04545844417618577,
+          "max_drawdown": -0.13004288895278615,
+          "max_drawdown_duration_weeks": 23,
+          "observations": 276,
+          "positive_week_share": 0.5905797101449275,
+          "sharpe_zero_rf": 0.9917150800451906,
+          "sortino_zero_target": 1.463214754432561,
+          "total_return": 1.0848757050826956,
+          "worst_week": -0.08958682838882412,
+          "years": 5.3076923076923075
+        },
+        "rolling": {
+          "positive_3y_sharpe_share": 0.9192872117400419,
+          "rolling_windows": 954,
+          "spy_win_3y_share": 0.35429769392033544,
+          "worst_3y_sharpe": -0.3860084746010741
+        }
+      }
+    },
+    "sector_rotation_with_sma_filter": {
+      "audit": {
+        "cost_reconciliation_pass": true,
+        "matched_periods": 1109,
+        "max_cost_reconciliation_error": 0.0,
+        "max_return_reconstruction_error": 9.8879238130678e-17,
+        "maximum_gross_exposure": 1.0,
+        "mean_return_reconstruction_error": 3.611444196807227e-17,
+        "negative_exposure_weeks": 0,
+        "return_reconstruction_pass": true,
+        "static_multi_asset_zero_turnover": false,
+        "unpriced_exposure_events": 32,
+        "unpriced_exposure_weeks": 32
+      },
+      "bias_flags": [
+        "research_and_selection_used_this_history_not_an_untouched_holdout",
+        "multiple_testing_across_33_saved_strategies",
+        "current_etf_universe_can_create_survivorship_selection_bias",
+        "nonzero_positions_exist_when_the_asset_return_is_missing",
+        "lag_is_declared_but_signal_generation_was_not_independently_reexecuted"
+      ],
+      "evidence_grade": "C",
+      "manifest": {
+        "caveats": "Adds a broad-market filter to the underlying rotation sleeve; can improve drawdown control but may skip recoveries.",
+        "description": "Sector/factor rotation with a market-level 10-month SMA tactical filter.",
+        "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+        "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+        "output_files": [
+          "strategy_positions_sector_rotation_with_sma_filter.csv",
+          "strategy_returns_sector_rotation_with_sma_filter.csv"
+        ],
+        "overlay_on": "sector_factor_rotation",
+        "rebalance_frequency": "monthly",
+        "required_inputs": [
+          "weekly_prices.csv",
+          "signal_xsmom.csv",
+          "signal_multi_horizon_mom.csv"
+        ],
+        "strategy_name": "sector_rotation_with_sma_filter",
+        "type": "overlay"
+      },
+      "metrics": {
+        "benchmark": {
+          "annual_alpha_zero_rf": 0.032309782223416454,
+          "annual_tracking_error": 0.14646492678031434,
+          "beta_to_spy": 0.3473509032180369,
+          "information_ratio": -0.2960323680378031
+        },
+        "block_bootstrap_95pct": {
+          "annual_return_ci_high": 0.11073496165536878,
+          "annual_return_ci_low": 0.027822532644282146,
+          "bootstrap_block_weeks": 13,
+          "bootstrap_samples": 500,
+          "sharpe_ci_high": 1.046756045558762,
+          "sharpe_ci_low": 0.30022476940782694
+        },
+        "cost_stress": {
+          "annual_return_10bps": 0.06876252354083423,
+          "annual_return_25bps": 0.05839641405089169,
+          "annual_return_50bps": 0.041317483973661195,
+          "average_weekly_turnover": 0.1248872858431019,
+          "sharpe_10bps": 0.6619343511747398,
+          "sharpe_25bps": 0.5723691789807315,
+          "sharpe_50bps": 0.42290527072358675
+        },
+        "full_10bps": {
+          "annual_return": 0.06876252354083423,
+          "annual_volatility": 0.10965082640347183,
+          "best_week": 0.06960903513918917,
+          "calmar": 0.3541005116753608,
+          "cvar_5_weekly": -0.037158516898086476,
+          "max_drawdown": -0.19418928036985073,
+          "max_drawdown_duration_weeks": 166,
+          "observations": 1109,
+          "positive_week_share": 0.5617673579801623,
+          "sharpe_zero_rf": 0.6619343511747398,
+          "sortino_zero_target": 0.9357893685390677,
+          "total_return": 3.129975618461314,
+          "worst_week": -0.086169565010128,
+          "years": 21.326923076923077
+        },
+        "recent_since_2021_10bps": {
+          "annual_return": 0.10078733842983789,
+          "annual_volatility": 0.11380046341304931,
+          "best_week": 0.05971872028001381,
+          "calmar": 0.9071866897828795,
+          "cvar_5_weekly": -0.035850583357485366,
+          "max_drawdown": -0.11109878436814336,
+          "max_drawdown_duration_weeks": 73,
+          "observations": 276,
+          "positive_week_share": 0.6268115942028986,
+          "sharpe_zero_rf": 0.9014471911884828,
+          "sortino_zero_target": 1.322332584810386,
+          "total_return": 0.664749721647055,
+          "worst_week": -0.07093664221127821,
+          "years": 5.3076923076923075
+        },
+        "rolling": {
+          "positive_3y_sharpe_share": 0.9811320754716981,
+          "rolling_windows": 954,
+          "spy_win_3y_share": 0.2777777777777778,
+          "worst_3y_sharpe": -0.12328247787845613
+        }
+      }
+    },
+    "taa_10m_sma": {
+      "audit": {
+        "cost_reconciliation_pass": true,
+        "matched_periods": 1109,
+        "max_cost_reconciliation_error": 5.421010862427522e-20,
+        "max_return_reconstruction_error": 1.0408340855860843e-16,
+        "maximum_gross_exposure": 1.0,
+        "mean_return_reconstruction_error": 2.8878926138650455e-17,
+        "negative_exposure_weeks": 0,
+        "return_reconstruction_pass": true,
+        "static_multi_asset_zero_turnover": false,
+        "unpriced_exposure_events": 24,
+        "unpriced_exposure_weeks": 24
+      },
+      "bias_flags": [
+        "research_and_selection_used_this_history_not_an_untouched_holdout",
+        "multiple_testing_across_33_saved_strategies",
+        "current_etf_universe_can_create_survivorship_selection_bias",
+        "nonzero_positions_exist_when_the_asset_return_is_missing",
+        "lag_is_declared_but_signal_generation_was_not_independently_reexecuted"
+      ],
+      "evidence_grade": "C",
+      "manifest": {
+        "caveats": "This is a classic tactical overlay, not a forecast of short-horizon alpha.",
+        "description": "Classic 10-month SMA tactical asset allocation filter implemented with a 43-week moving average.",
+        "lag_convention": "Consumes Layer 1 tradable signals; new price filters are lagged 1 week; external features use tradable columns only.",
+        "notebook_origin": "03_layer2a_strategy_logic.ipynb",
+        "output_files": [
+          "strategy_positions_taa_10m_sma.csv",
+          "strategy_returns_taa_10m_sma.csv"
+        ],
+        "rebalance_frequency": "monthly",
+        "required_inputs": [
+          "weekly_prices.csv",
+          "proxy_mapping.json"
+        ],
+        "strategy_name": "taa_10m_sma",
+        "type": "strategy_logic"
+      },
+      "metrics": {
+        "benchmark": {
+          "annual_alpha_zero_rf": 0.029760086474227485,
+          "annual_tracking_error": 0.15251941910569208,
+          "beta_to_spy": 0.3764398143597697,
+          "information_ratio": -0.27888570861943857
+        },
+        "block_bootstrap_95pct": {
+          "annual_return_ci_high": 0.11869268453421107,
+          "annual_return_ci_low": 0.018556069699754374,
+          "bootstrap_block_weeks": 13,
+          "bootstrap_samples": 500,
+          "sharpe_ci_high": 0.9672196491250298,
+          "sharpe_ci_low": 0.2120847011771888
+        },
+        "cost_stress": {
+          "annual_return_10bps": 0.06771615167413225,
+          "annual_return_25bps": 0.06377909619081623,
+          "annual_return_50bps": 0.05724323117574093,
+          "average_weekly_turnover": 0.04747412941732149,
+          "sharpe_10bps": 0.5871378067769933,
+          "sharpe_25bps": 0.5576893185079839,
+          "sharpe_50bps": 0.5083912410956883
+        },
+        "full_10bps": {
+          "annual_return": 0.06771615167413225,
+          "annual_volatility": 0.12502094162159866,
+          "best_week": 0.10103373256009512,
+          "calmar": 0.17675086625311298,
+          "cvar_5_weekly": -0.042728157766807204,
+          "max_drawdown": -0.38311637792575526,
+          "max_drawdown_duration_weeks": 153,
+          "observations": 1109,
+          "positive_week_share": 0.5599639314697926,
+          "sharpe_zero_rf": 0.5871378067769933,
+          "sortino_zero_target": 0.8374593308561167,
+          "total_return": 3.044593912516338,
+          "worst_week": -0.10765853886395951,
+          "years": 21.326923076923077
+        },
+        "recent_since_2021_10bps": {
+          "annual_return": 0.10367691031847048,
+          "annual_volatility": 0.11602638623883102,
+          "best_week": 0.09758107500041618,
+          "calmar": 0.5201190780850267,
+          "cvar_5_weekly": -0.034345467785326156,
+          "max_drawdown": -0.1993330271602186,
+          "max_drawdown_duration_weeks": 122,
+          "observations": 276,
+          "positive_week_share": 0.6014492753623188,
+          "sharpe_zero_rf": 0.908501211213446,
+          "sortino_zero_target": 1.4196823369381646,
+          "total_return": 0.6880757268411286,
+          "worst_week": -0.05109419903551207,
+          "years": 5.3076923076923075
+        },
+        "rolling": {
+          "positive_3y_sharpe_share": 0.9696016771488469,
+          "rolling_windows": 954,
+          "spy_win_3y_share": 0.2148846960167715,
+          "worst_3y_sharpe": -0.3225489687653557
+        }
+      }
+    }
+  },
+  "summary": {
+    "cost_reconciliation_passed": 33,
+    "default_cost_bps_per_unit_turnover": 10.0,
+    "generated_at": "2026-08-08T20:49:01.732441+00:00",
+    "grades": {
+      "B": 2,
+      "C": 26,
+      "D": 5
+    },
+    "promoted": 0,
+    "recent_window_is_untouched_holdout": false,
+    "recent_window_start": "2021-01-01",
+    "return_reconstruction_passed": 28,
+    "sharpe_risk_free_rate": 0.0,
+    "strategy_count": 33,
+    "stress_cost_bps": [
+      10.0,
+      25.0,
+      50.0
+    ]
+  }
+}

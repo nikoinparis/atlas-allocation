@@ -1,0 +1,25 @@
+{
+  "batch": 15,
+  "decision": "build_data_foundation_but_do_not_report_value_returns_yet",
+  "generated_at_utc": "2026-08-09T02:40:41.172742+00:00",
+  "implemented_controls": [
+    "facts filtered by official filed date",
+    "two-calendar-day conservative execution lag",
+    "amended facts usable only after amendment filing date",
+    "CIK retained as the intended permanent company identifier"
+  ],
+  "live_trading_approved": false,
+  "missing_controls": [
+    "historical universe membership known on each decision date",
+    "complete delisting returns",
+    "historical security-to-company mapping across ticker changes",
+    "immutable raw SEC acquisition using a user-supplied declared User-Agent"
+  ],
+  "paid_data_required_now": false,
+  "performance_test_status": "blocked_before_backtest",
+  "reason": "Filing dates and accession numbers support causal fact selection, but SEC companyfacts alone does not provide historical investable-universe membership or delisting returns.",
+  "source": "SEC EDGAR submissions and companyfacts REST APIs",
+  "source_cost": "free; no API key",
+  "source_gate": "passed_for_fact_vintages",
+  "track": "point_in_time_value_sec"
+}

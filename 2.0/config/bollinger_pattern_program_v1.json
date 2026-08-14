@@ -1,0 +1,44 @@
+{
+  "program": "repository_bollinger_bottom_w_program_v1",
+  "predeclared_before_results": true,
+  "catalog_source": {
+    "entries": ["ast-0079", "ast-0087"],
+    "repository": "je-suis-tm/quant-trading",
+    "commit": "611b73f2c3f577ac5b28aaa19ac8c43d3236c7a5",
+    "source_sha256": "fc054f7456a41ccf3fb34046aa2d49179af37b4c46f882d3432f0c2dd7a16027",
+    "integration": "independent fixed-rule rebuild; repository code is not executed or copied"
+  },
+  "data": {
+    "snapshot_id": "20260809T002313Z-0d8632e2cf759918",
+    "assets": ["SPY", "QQQ", "IWM", "EFA", "VEA", "VWO", "EWJ", "VNQ", "HYG", "LQD", "GLD", "PDBC", "DBA", "TLT"],
+    "start_date": "2005-01-03",
+    "price": "adjusted close",
+    "signal_time": "completed daily close",
+    "realization": "next adjusted close"
+  },
+  "fixed_indicator": {"window_days": 20, "standard_deviation_ddof": 1, "band_standard_deviations": 2, "pattern_lookback_days": 75},
+  "fixed_candidates": {
+    "source_literal_fx_units": {"alpha": 0.0001, "beta": 0.0001, "scale": "absolute price units exactly as source"},
+    "scale_normalized": {"alpha": 0.0001, "beta": 0.0001, "scale": "fraction of contemporaneous comparison price or mid-band"}
+  },
+  "pattern": {
+    "entry": "repository five-node bottom-W backward search ending with current close above upper band",
+    "exit": "rolling price standard deviation below beta, with normalized candidate using std/mid below beta",
+    "position": "long/cash; ignore a same-bar contraction exit immediately after entry"
+  },
+  "negative_controls": ["one-day stale position", "five-day stale position", "inverted long/cash position", "fixed asset-label permutation preserving signal persistence"],
+  "portfolio": {"weighting": "equal among active assets", "maximum_asset_weight": 0.2, "residual": "zero-return cash", "leverage": false, "turnover": "half L1 including cash from drifted holdings"},
+  "frictions": {"costs_bps": [10, 50, 100], "primary_cost_bps": 50},
+  "evaluation": {"fixed_candidate_count": 2, "paired_bootstrap_samples": 20000, "block_weeks": 13, "familywise_one_sided_alpha": 0.05, "per_candidate_alpha": 0.025, "later_windows": ["2016-01-01/2020-12-31", "2021-01-01/present"]},
+  "promotion_gates": {
+    "signal_coverage": "at least 20 entries and exposure in both later windows",
+    "primary_performance": "positive annual return, Sharpe above 0.5, drawdown no worse than -25 percent at 50 bps",
+    "stress": "positive full and both later-window annual returns at 100 bps",
+    "controls": "candidate Sharpe exceeds all controls at 50 bps",
+    "dependence": "absolute correlation no greater than 0.80 to core and trend",
+    "blend": "80/20 blend improves Sharpe with no worse drawdown and familywise paired lower Sharpe difference above zero",
+    "survivorship_safe_universe": true,
+    "untouched_forward_weeks": 52
+  },
+  "live_trading_approved": false
+}

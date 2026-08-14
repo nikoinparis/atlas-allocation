@@ -1,0 +1,27 @@
+{
+  "captured_at_utc": "2026-08-08T20:02:00Z",
+  "endpoint": "https://scanner.tradingview.com/america/scan",
+  "request": {
+    "filter": [],
+    "options": {"lang": "en"},
+    "symbols": {
+      "tickers": ["NASDAQ:AAPL", "NASDAQ:MSFT", "AMEX:SPY"],
+      "query": {"types": []}
+    },
+    "range": [0, 3],
+    "columns": ["name", "close", "volume", "market_cap_basic", "update_mode"]
+  },
+  "response": {
+    "totalCount": 3,
+    "data": [
+      {"s": "NASDAQ:AAPL", "d": ["AAPL", 313.33, 34436935, 4572794125518, "delayed_streaming_900"]},
+      {"s": "NASDAQ:MSFT", "d": ["MSFT", 499.99, 28846231, 3712698377109, "delayed_streaming_900"]},
+      {"s": "AMEX:SPY", "d": ["SPY", 773.26, 43586333, null, "delayed_streaming_900"]}
+    ]
+  },
+  "provenance_notes": [
+    "Unauthenticated public scanner response captured once for deterministic schema testing.",
+    "Values are not independently verified and must not be treated as an authoritative price history.",
+    "The response contains no per-row market observation timestamp."
+  ]
+}

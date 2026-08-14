@@ -1,0 +1,34 @@
+{
+  "seed": 20260723,
+  "date": "2026-07-23",
+  "ggg_repro_err": 2.1163626406917047e-16,
+  "equivalence_err_alpha008": 4.336808689942018e-19,
+  "growth_optimal_alpha_P": 0.16,
+  "growth_optimal_alpha_O": 0.08,
+  "wf_selected_cagr": 0.07900254722068256,
+  "wf_selected_logg": 0.076037046996735,
+  "nulls": {
+    "P": {
+      "alpha": 0.16,
+      "actual_logg": 0.07136947512638853,
+      "null_mean_logg": 0.07019524257523056,
+      "pctile": 0.86,
+      "actual_gain_vs_base": 5.9574933801209706e-05,
+      "null_mean_gain_vs_base": -0.001114657617356754,
+      "pass_90pct": false,
+      "null_replicates_gain": false
+    },
+    "O": {
+      "alpha": 0.08,
+      "actual_logg": 0.10255844958090703,
+      "null_mean_logg": 0.10165282852210884,
+      "pctile": 0.72,
+      "actual_gain_vs_base": -0.0012530039266466092,
+      "null_mean_gain_vs_base": -0.002158624985444793,
+      "pass_90pct": false,
+      "null_replicates_gain": true
+    }
+  },
+  "runtime_s": 1.5,
+  "warnings": []
+}

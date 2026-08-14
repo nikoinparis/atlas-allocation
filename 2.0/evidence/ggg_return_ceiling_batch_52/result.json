@@ -1,0 +1,53 @@
+{
+  "all_deterministic": true,
+  "artifacts": {
+    "determinism.csv": {
+      "bytes": 1970,
+      "sha256": "b7869c47ddecf7b8274dd6690e3f9b8d6fbe509aa4162534c74fea43a0496253"
+    },
+    "performance.csv": {
+      "bytes": 25026,
+      "sha256": "75e2306a83a262d99dc0374d94608f8827240be520f9227e0e15dd722350406d"
+    },
+    "prefix_invariance.csv": {
+      "bytes": 1709,
+      "sha256": "1d1d7d9f6a208c125ec3d448a154607e0f237725309aa729db682c3ae11d85e9"
+    },
+    "qualification.csv": {
+      "bytes": 3244,
+      "sha256": "7ac7fead583a944bb29f06f3792549b1daca5ce319716b3639499a18c4e91bf9"
+    },
+    "return_ceiling_attribution.csv": {
+      "bytes": 6468,
+      "sha256": "14c9119b98e4c03eb8f3839cf39009ad42d9ababe47a14ae3a358644261d821d"
+    }
+  },
+  "batch": 52,
+  "candidates_evaluated": 12,
+  "decision": "no_candidate_qualified_no_forward_lock",
+  "diagnostics": {
+    "breadth_risk_on_share": 0.4873873873873874,
+    "breadth_risk_on_weeks": 541,
+    "mean_baseline_cash": 0.2693148530048212,
+    "mean_recent_3y_baseline_cash": 0.11271247397193408,
+    "mean_regime_multiplier": 0.833988308096848,
+    "mean_target_vol_multiplier": 0.9920632834011164
+  },
+  "forward_clock_blocker": "no candidate passed every predeclared gate",
+  "forward_clock_started": false,
+  "frozen_source_hashes_verified": true,
+  "generated_at_utc": "2026-08-12T04:04:36.004946+00:00",
+  "live_trading_enabled": false,
+  "manifest_sha256": "d9bb71774e8a6feae71c4192cc73a9102d2917ffe18770ee5b7146c63058dbd5",
+  "maximum_prefix_difference": 0.0,
+  "module_sha256": {
+    "src/systematic_trader/ggg_independent.py": "91081f496c9061049e3479bad14d73c9202472bade7254a7f5de2a881e9e5454",
+    "src/systematic_trader/ggg_return_expansion.py": "2caaffd11c35efcd6f59abe107046a97edcdd1743fed74bc78d1fad3d5be12bd"
+  },
+  "program": "ggg_return_ceiling_program_v1",
+  "program_sha256": "f94dacd8d5c4e15ede614582c4d68d49403245b2bb49995ac9829d17f157d8ce",
+  "promoted_to_production": false,
+  "research_shortlist": [],
+  "selected_forward_challenger": null,
+  "selection_budget": 12
+}

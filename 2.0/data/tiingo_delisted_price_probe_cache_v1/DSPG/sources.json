@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 744,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T04:02:58.822009+00:00",
+    "sha256": "debf3ec587ace7a53d475cd699545aea12158f803655dac68bc3e026c2893098",
+    "url": "https://api.tiingo.com/tiingo/daily/DSPG"
+  },
+  {
+    "bytes": 520102,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T04:03:01.304515+00:00",
+    "sha256": "fc0f5e634f3ae83d4cffa72dfa4c91cffce2ee7436ac55008725388bd90e258e",
+    "url": "https://api.tiingo.com/tiingo/daily/DSPG/prices?startDate=2012-04-01&endDate=2023-01-11&resampleFreq=daily"
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "runtime": "podman",
+  "rootless_required": true,
+  "host_mounts_allowed": false,
+  "host_secrets_allowed": false,
+  "default_network": "disabled",
+  "source_acquisition_network": "enabled",
+  "read_only_root_filesystem": true,
+  "drop_all_capabilities": true,
+  "no_new_privileges": true,
+  "limits": {
+    "cpus": 1,
+    "memory": "768m",
+    "pids": 256,
+    "timeout_seconds": 600,
+    "work_tmpfs": "1536m"
+  },
+  "source_inspection_image": "docker.io/alpine/git:2.49.1",
+  "python_test_image": "docker.io/library/python:3.12-bookworm",
+  "python_legacy_test_image": "docker.io/library/python:3.11-bookworm"
+}

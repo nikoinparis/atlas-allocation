@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 411,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T02:17:50.782072+00:00",
+    "sha256": "c483a15f258631a32db78719c3a165f4f7a08d1858ff2d16923676ad31a2a294",
+    "url": "https://api.tiingo.com/tiingo/daily/COUP"
+  },
+  {
+    "bytes": 277850,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T02:17:52.373121+00:00",
+    "sha256": "6904a11b8ddeb63c3416ce8252a02949db2d9a69baec3369b6eaa96c5ada6bc1",
+    "url": "https://api.tiingo.com/tiingo/daily/COUP/prices?startDate=2018-04-01&endDate=2024-01-11&resampleFreq=daily"
+  }
+]

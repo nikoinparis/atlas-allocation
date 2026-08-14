@@ -1,0 +1,18 @@
+{
+  "first_genuinely_untouched_week_end": "2026-08-14",
+  "interim_review_weeks": 26,
+  "locked_at": "2026-08-08T20:49:01.732441+00:00",
+  "minimum_untouched_weeks_before_promotion": 52,
+  "parameter_or_logic_change_creates_new_candidate_version": true,
+  "promotion_requirements": [
+    "point_in_time_universe_and_inputs",
+    "independently_reexecuted_signal_lags",
+    "return_and_cost_reconciliation",
+    "no_nonzero_unpriced_exposure",
+    "spread_slippage_and_turnover_stress",
+    "benchmark_and_regime_comparison",
+    "locked_untouched_forward_period"
+  ],
+  "protocol_version": 1,
+  "strategy_artifact_set_sha256": "07581eda6a73b80f77e91a87737cd60d9d07a88701263aee83b6f97880418690"
+}

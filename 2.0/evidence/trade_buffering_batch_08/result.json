@@ -1,0 +1,52 @@
+{
+  "batch": 8,
+  "configuration_count": 28,
+  "external_reference": {
+    "code_copied": false,
+    "entry_id": "ast-0054",
+    "license": "GPL-3.0",
+    "repository": "robcarver17/pysystemtrade",
+    "use": "high-level no-trade-band concept only"
+  },
+  "generated_at_utc": "2026-08-09T00:52:43.974008+00:00",
+  "limitations": [
+    "The historical ETF universe remains survivorship-prone.",
+    "Later periods are retrospective diagnostics, not untouched forward evidence.",
+    "The accounting model compares target weights and does not model intra-week drift before rebalance.",
+    "All tried rules remain in the multiple-testing ledger."
+  ],
+  "selected_at_10_bps": {
+    "annual_return": 0.0782613610745202,
+    "annual_volatility": 0.08802759527904735,
+    "average_annual_turnover": 2.902434833685173,
+    "best_week": 0.103979964669373,
+    "buffer_kind": "symmetric",
+    "calmar": 0.3345894096948312,
+    "configuration_id": "symmetric_0.000",
+    "cost_bps": 10.0,
+    "cvar_5_weekly": -0.028810557611691042,
+    "development_selection_score": 1.1316543075957795,
+    "development_sharpe": 0.9902491363392318,
+    "entry_band": 0.0,
+    "exit_band": 0.0,
+    "fully_invested_pass": true,
+    "max_drawdown": -0.23390268432554395,
+    "max_drawdown_duration_weeks": 97,
+    "observations": 1126,
+    "oos_2016_2020_sharpe": 0.6133760567842634,
+    "oos_2021_present_sharpe": 1.1015690223603842,
+    "positive_week_share": 0.5790408525754884,
+    "sharpe_zero_rf": 0.9009141452045025,
+    "sortino_zero_target": 1.282173652921629,
+    "total_cost": 0.06284887736018278,
+    "total_return": 4.112124096948339,
+    "unpriced_exposure_events": 0,
+    "worst_week": -0.11096301469862584,
+    "years": 21.653846153846153
+  },
+  "selection_window": "2006-01-01 through 2015-12-31",
+  "source_snapshot_id": "20260808T212827Z-de103c2e063d6c4a",
+  "status": "challenger_not_final",
+  "track": "trade_buffering",
+  "unique_buffer_rules": 10
+}

@@ -1,0 +1,294 @@
+{
+  "generated_at": "2026-06-13T19:35:54.475323+00:00",
+  "mandate": "Track B higher-return research-only ETF variants",
+  "production_registry_written": false,
+  "track_a_baseline": "improved_frontier_phase5_fragility_guard",
+  "candidate_count": 12,
+  "candidates": [
+    {
+      "name": "track_b_aggressive_cash_cap_20",
+      "hypothesis": "Lower idle cash in non-stress states may raise return without breaking defense.",
+      "parameters": {
+        "cash_caps": {
+          "calm_trend": 0.2,
+          "neutral_mixed": 0.2,
+          "recovery_confirmed": 0.2,
+          "recovery_fragile": 0.2
+        }
+      },
+      "expected_tradeoff": "Higher return and beta; slightly worse drawdown/CVaR.",
+      "success_criteria": "Return improves with drawdown above -22% and Sharpe >= 0.85.",
+      "kill_criteria": "Reject if return remains near Track A or stress drawdown deteriorates materially.",
+      "status": "research_only"
+    },
+    {
+      "name": "track_b_aggressive_cash_cap_15_good_20_neutral",
+      "hypothesis": "More targeted cash reduction in good states may improve return with less neutral-state risk.",
+      "parameters": {
+        "cash_caps": {
+          "calm_trend": 0.15,
+          "recovery_confirmed": 0.15,
+          "neutral_mixed": 0.2,
+          "recovery_fragile": 0.2
+        }
+      },
+      "expected_tradeoff": "Lower BIL with moderate drawdown increase.",
+      "success_criteria": "Return improves and 2x cost Sharpe remains >= 0.85.",
+      "kill_criteria": "Reject if neutral-state losses dominate the improvement.",
+      "status": "research_only"
+    },
+    {
+      "name": "track_b_aggressive_cash_cap_10_good_18_neutral",
+      "hypothesis": "A stronger cash cap tests whether 9% return is reachable without stress changes.",
+      "parameters": {
+        "cash_caps": {
+          "calm_trend": 0.1,
+          "recovery_confirmed": 0.1,
+          "neutral_mixed": 0.18,
+          "recovery_fragile": 0.18
+        }
+      },
+      "expected_tradeoff": "Higher beta and larger drawdown risk.",
+      "success_criteria": "CAGR approaches 9% with max drawdown above -22%.",
+      "kill_criteria": "Reject if drawdown or CVaR worsens faster than return improves.",
+      "status": "research_only"
+    },
+    {
+      "name": "track_b_aggressive_offense_boost_10",
+      "hypothesis": "Small offense scaling may lift return while retaining Track A state timing.",
+      "parameters": {
+        "offense_multipliers": {
+          "calm_trend": 1.1,
+          "recovery_confirmed": 1.1,
+          "neutral_mixed": 1.05,
+          "recovery_fragile": 1.05
+        }
+      },
+      "expected_tradeoff": "Higher offense and turnover; may be mostly beta.",
+      "success_criteria": "Return improves with Sharpe near Track A and stress unchanged.",
+      "kill_criteria": "Reject if beta explains nearly all incremental return.",
+      "status": "research_only"
+    },
+    {
+      "name": "track_b_aggressive_offense_boost_20",
+      "hypothesis": "Stronger offense scaling tests the mandate boundary.",
+      "parameters": {
+        "offense_multipliers": {
+          "calm_trend": 1.2,
+          "recovery_confirmed": 1.2,
+          "neutral_mixed": 1.1,
+          "recovery_fragile": 1.05
+        }
+      },
+      "expected_tradeoff": "Higher return potential; materially higher beta/drawdown.",
+      "success_criteria": "CAGR near 9% with max drawdown above -22%.",
+      "kill_criteria": "Reject if 2x costs or CVaR erase the case.",
+      "status": "research_only"
+    },
+    {
+      "name": "track_b_aggressive_cash10_offense10",
+      "hypothesis": "Combining cash reduction and mild offense boost may reach mandate with controlled stress behavior.",
+      "parameters": {
+        "cash_caps": {
+          "calm_trend": 0.1,
+          "recovery_confirmed": 0.1,
+          "neutral_mixed": 0.18,
+          "recovery_fragile": 0.18
+        },
+        "offense_multipliers": {
+          "calm_trend": 1.1,
+          "recovery_confirmed": 1.1,
+          "neutral_mixed": 1.05,
+          "recovery_fragile": 1.05
+        }
+      },
+      "expected_tradeoff": "Higher return; likely higher beta and CVaR.",
+      "success_criteria": "CAGR >= 9%, Sharpe >= 0.85, drawdown above -22%.",
+      "kill_criteria": "Reject if stress or neutral-state behavior collapses.",
+      "status": "research_only"
+    },
+    {
+      "name": "track_b_aggressive_cash10_offense20",
+      "hypothesis": "Strongest Track A-timed overlay tests upper edge of drawdown tolerance.",
+      "parameters": {
+        "cash_caps": {
+          "calm_trend": 0.1,
+          "recovery_confirmed": 0.1,
+          "neutral_mixed": 0.18,
+          "recovery_fragile": 0.18
+        },
+        "offense_multipliers": {
+          "calm_trend": 1.2,
+          "recovery_confirmed": 1.2,
+          "neutral_mixed": 1.1,
+          "recovery_fragile": 1.05
+        }
+      },
+      "expected_tradeoff": "Highest Track A-timed return attempt; may fail drawdown or beta attribution.",
+      "success_criteria": "CAGR >= 9% and 2x costs survive without drawdown below -22%.",
+      "kill_criteria": "Reject if it is just higher beta with no benchmark edge.",
+      "status": "research_only"
+    },
+    {
+      "name": "track_b_aggressive_rerisk_4w",
+      "hypothesis": "Faster re-risking after stress exits may reduce cash drag.",
+      "parameters": {
+        "rerisk_after_stress_weeks": 4,
+        "rerisk_cash_cap": 0.12,
+        "rerisk_offense_multiplier": 1.15
+      },
+      "expected_tradeoff": "May improve recoveries; can be path dependent.",
+      "success_criteria": "Improves recovery_confirmed/recovery_fragile metrics without stress damage.",
+      "kill_criteria": "Reject if benefit is narrow and not robust.",
+      "status": "research_only"
+    },
+    {
+      "name": "track_b_aggressive_vol_throttled",
+      "hypothesis": "Higher offense should be disabled during high realized SPY volatility.",
+      "parameters": {
+        "base": "cash10_offense20",
+        "spy_vol_13w_threshold": 0.25,
+        "high_vol_cash_cap": 0.2,
+        "high_vol_offense_multiplier": 1.0
+      },
+      "expected_tradeoff": "Lower drawdown/CVaR than strongest overlay, lower return.",
+      "success_criteria": "Retains much of aggressive return with better tail behavior.",
+      "kill_criteria": "Reject if it gives up return without meaningful risk control.",
+      "status": "research_only"
+    },
+    {
+      "name": "track_b_aggressive_turnover_banded",
+      "hypothesis": "Aggressive weights may survive costs if small weekly changes are ignored.",
+      "parameters": {
+        "base": "cash10_offense10",
+        "full_l1_rebalance_band": 0.05
+      },
+      "expected_tradeoff": "Lower turnover and cost; may lag re-risking.",
+      "success_criteria": "2x and 3x cost sensitivity improves versus unbanded overlay.",
+      "kill_criteria": "Reject if banding worsens timing more than it saves cost.",
+      "status": "research_only"
+    },
+    {
+      "name": "track_b_aggressive_blend_static_growth_30",
+      "hypothesis": "A simple explicit risk budget may explain return gain versus timing.",
+      "parameters": {
+        "track_a_weight": 0.7,
+        "static_growth_weight": 0.3,
+        "static_growth_mix": {
+          "SPY": 0.45,
+          "QQQ": 0.2,
+          "IWM": 0.1,
+          "EFA": 0.1,
+          "VWO": 0.05,
+          "GLD": 0.05,
+          "BIL": 0.05
+        }
+      },
+      "expected_tradeoff": "Higher beta, simple benchmark-like exposure.",
+      "success_criteria": "Improves return with acceptable drawdown and transparent beta attribution.",
+      "kill_criteria": "Reject if a simple benchmark dominates it.",
+      "status": "research_only"
+    },
+    {
+      "name": "track_b_aggressive_blend_static_growth_50",
+      "hypothesis": "A more aggressive static blend tests whether 9-10% is mainly beta.",
+      "parameters": {
+        "track_a_weight": 0.5,
+        "static_growth_weight": 0.5,
+        "static_growth_mix": {
+          "SPY": 0.45,
+          "QQQ": 0.2,
+          "IWM": 0.1,
+          "EFA": 0.1,
+          "VWO": 0.05,
+          "GLD": 0.05,
+          "BIL": 0.05
+        }
+      },
+      "expected_tradeoff": "Higher return potential; likely mostly beta and larger drawdown.",
+      "success_criteria": "CAGR >= 9%, drawdown above -22%, and not dominated by aggressive benchmarks.",
+      "kill_criteria": "Reject if return comes mostly from equity beta or drawdown exceeds mandate.",
+      "status": "research_only"
+    }
+  ],
+  "shortlist": [
+    {
+      "name": "track_b_aggressive_cash10_offense20",
+      "return_ge_9": false,
+      "return_improvement_ge_50bp": true,
+      "drawdown_ge_minus_22": true,
+      "sharpe_ge_085": true,
+      "calmar_ge_045": true,
+      "avg_bil_below_track_a": true,
+      "cost_2x_sharpe_ge_082": true,
+      "cost_2x_drawdown_ok": true,
+      "holdout_positive": true,
+      "stress_drawdown_ok": true,
+      "beats_best_aggressive_benchmark_return": false,
+      "gate_score": 9,
+      "mandate_9_10_met": false,
+      "track_b_shortlist": true,
+      "shortlist_reason": "research_only_shortlist"
+    },
+    {
+      "name": "track_b_aggressive_vol_throttled",
+      "return_ge_9": false,
+      "return_improvement_ge_50bp": true,
+      "drawdown_ge_minus_22": true,
+      "sharpe_ge_085": true,
+      "calmar_ge_045": true,
+      "avg_bil_below_track_a": true,
+      "cost_2x_sharpe_ge_082": true,
+      "cost_2x_drawdown_ok": true,
+      "holdout_positive": true,
+      "stress_drawdown_ok": true,
+      "beats_best_aggressive_benchmark_return": false,
+      "gate_score": 9,
+      "mandate_9_10_met": false,
+      "track_b_shortlist": true,
+      "shortlist_reason": "research_only_shortlist"
+    },
+    {
+      "name": "track_b_aggressive_turnover_banded",
+      "return_ge_9": false,
+      "return_improvement_ge_50bp": true,
+      "drawdown_ge_minus_22": true,
+      "sharpe_ge_085": true,
+      "calmar_ge_045": true,
+      "avg_bil_below_track_a": true,
+      "cost_2x_sharpe_ge_082": true,
+      "cost_2x_drawdown_ok": true,
+      "holdout_positive": true,
+      "stress_drawdown_ok": true,
+      "beats_best_aggressive_benchmark_return": false,
+      "gate_score": 9,
+      "mandate_9_10_met": false,
+      "track_b_shortlist": true,
+      "shortlist_reason": "research_only_shortlist"
+    },
+    {
+      "name": "track_b_aggressive_blend_static_growth_30",
+      "return_ge_9": false,
+      "return_improvement_ge_50bp": true,
+      "drawdown_ge_minus_22": true,
+      "sharpe_ge_085": true,
+      "calmar_ge_045": false,
+      "avg_bil_below_track_a": true,
+      "cost_2x_sharpe_ge_082": true,
+      "cost_2x_drawdown_ok": true,
+      "holdout_positive": true,
+      "stress_drawdown_ok": true,
+      "beats_best_aggressive_benchmark_return": false,
+      "gate_score": 8,
+      "mandate_9_10_met": false,
+      "track_b_shortlist": true,
+      "shortlist_reason": "research_only_shortlist"
+    }
+  ],
+  "output_files": {
+    "candidate_returns": "data/research/track_b_aggressive/track_b_candidate_returns.csv",
+    "candidate_weights": "data/research/track_b_aggressive/track_b_candidate_weights.csv",
+    "candidate_metrics": "data/research/track_b_aggressive/track_b_candidate_metrics.csv",
+    "experiment_registry": "data/research/track_b_aggressive/track_b_experiment_registry.csv"
+  }
+}

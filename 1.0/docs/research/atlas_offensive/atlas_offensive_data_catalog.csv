@@ -1,0 +1,21 @@
+dataset,category,provider_examples,cost_class,pit_survivorship_quality,historical_depth,publication_delay,predictive_value_estimate,decay_risk,feasibility_for_atlas,unlocks_runs
+pit_us_stock_prices_delistings,equity_prices,Norgate Platinum/Diamond (~$100-150/mo); Sharadar SEP+tickers (~$40-100/mo),low_paid,excellent (both survivorship-free; Norgate has PIT index constituents),25y+,none,high (unlocks entire cross-sectional program),low,IMMEDIATE - highest expected value per dollar,1 3 4 5 6 7 12 22-31
+pit_index_constituents,equity_reference,Norgate (S&P/Russell PIT membership),bundled,excellent,25y+,none,high (breadth signals; universe definition),low,bundled with Norgate,1 3
+fundamentals_pit,fundamentals,Sharadar SF1 (~$40/mo tier); later WRDS/Compustat,low_paid,good (Sharadar as-reported dimension = PIT),25y,filing lag respected,high (value/quality/PEAD),low,IMMEDIATE second purchase,6 12
+analyst_estimates_revisions,estimates,cheap: FMP/Finnhub partial; proper: IBES (institutional),med_paid_or_restricted,IBES PIT excellent; cheap sources dubious,20y+ IBES,daily,med-high (revision momentum),med,Start with cheap proxies; flag IBES as upgrade,12
+earnings_dates_surprises,events,Sharadar/FMP/EODHD,low_paid,decent,20y,none,med-high (PEAD),med,cheap,12
+options_eod_chains_iv_surfaces,options,ORATS (~$100/mo); ThetaData ($40-160/mo); CBOE DataShop ($500/mo or per-request),low-med_paid,good (ORATS 2007+),2007+,none,high for options program; med as equity signal,med,Purchase at Run 13,13 14 15 16
+vix_term_structure_futures,vol,CBOE free/cheap; already partial in stack,free,good,2004+,none,med (already exploited partly),low,have,13 14
+futures_continuous_series,futures,Norgate futures bundle; Databento CME (~$125-199/mo),low-med_paid,good (roll-aware),20y+,none,high (trend/carry program),low,Purchase at Run 8,8 10
+fred_fredmd_macro_vintages,macro,FRED/FRED-MD + ALFRED vintages (free),free,vintages = true PIT,60y+,1-2mo (must lag),med (quadrant conditioning),low,have partially; add vintages,9
+intraday_minute_bars_equities,equity_prices,Polygon ($199/mo); Databento (~$125/mo metered); QuantConnect bundled,med_paid,good,7-20y,none,med-high (overnight/intraday runs),med,Defer to Run 17-18,17 18 36
+quotes_trades_l1_l2,microstructure,Databento (metered $1-5/GB),med-high_paid,good,varies,none,med (execution research),med,Defer; execution phase only,46
+sec_edgar_filings_form4_13f,alt_data,SEC EDGAR (free); Quiver ($25-75/mo convenience),free,excellent (timestamped),20y+,2d insider / 45d congress / quarterly 13F,med (insider cluster buys),med,free pipeline build,19
+earnings_call_transcripts,alt_data,cheap APIs (FMP/API Ninjas); historical depth varies,low_paid,timestamp discipline required,10-15y,same-day,med (tone/uncertainty via LLM),med-high,Run 20,20
+news_headlines_pit,alt_data,free: GDELT/RSS archives; paid: Benzinga/Tiingo news (~$10-100/mo),low_paid,backfill bias risk - verify timestamps,10y+,minutes,med (LLM sentiment; fast decay),high,Run 20 with strict PIT audit,20
+google_trends,alt_data,free,free,revisions exist,2004+,days,low-med (already used as fear composite),med,have,n/a
+short_interest_borrow,alt_data,FINRA free biweekly; IBKR borrow rates live; S3/Ortex paid,free-med,biweekly lag,15y,2w lag,med (squeeze/crowding),med,free tier first,7 19
+credit_card_satellite_geolocation,alt_data,institutional (Consumer Edge; RS Metrics etc),institutional,varies,10y,days-weeks,med-high institutionally,med,Tier 6 - document only,gap register
+crypto_ohlcv_funding,crypto,exchange APIs/CoinGecko (free); Kaiko paid,free,good,2015+,none,med,high,free,21
+borrow_fees_financing_rates,reference,IBKR API,free w/ account,live only - history thin,short,none,essential for L/S cost realism,n/a,collect from day one of Run 5,5 7
+corporate_actions_dividends,reference,bundled Norgate/Sharadar,bundled,good,25y,none,essential hygiene,n/a,bundled,all equity runs

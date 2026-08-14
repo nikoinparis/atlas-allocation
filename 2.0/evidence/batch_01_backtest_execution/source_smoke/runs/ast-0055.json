@@ -1,0 +1,52 @@
+{
+  "actual_commit": "afeaef28f5c8b78e613e649ecf18a9653dbf41fd",
+  "container_exit_code": 0,
+  "container_image": "docker.io/alpine/git:2.49.1",
+  "dependency_manifests": [
+    "Makefile",
+    "pyproject.toml",
+    "uv.lock"
+  ],
+  "elapsed_seconds": 1,
+  "entry_id": "ast-0055",
+  "error": "",
+  "expected_commit": "afeaef28f5c8b78e613e649ecf18a9653dbf41fd",
+  "file_count": 136,
+  "name": "finmarketpy",
+  "planned_environment": "python_container",
+  "repository": "cuemacro/finmarketpy",
+  "repository_kb": 5680,
+  "started_at": "2026-08-08T18:49:32.640783+00:00",
+  "status": "passed",
+  "submodule_count": 0,
+  "test_indicators": [
+    ".github/actions/test",
+    "tests",
+    "tests/__init__.py",
+    "tests/test_backtestengine.py",
+    "tests/test_techindicator.py"
+  ],
+  "top_level_entries": [
+    ".editorconfig",
+    ".git",
+    ".gitattributes",
+    ".github",
+    ".gitignore",
+    ".pre-commit-config.yaml",
+    ".python-version",
+    ".rhiza",
+    "INSTALL.md",
+    "LICENCE",
+    "Makefile",
+    "PLANNED_FEATURES.md",
+    "README.md",
+    "finmarketpy_examples",
+    "finmarketpy_logo.png",
+    "install_extra_packages.bat",
+    "pyproject.toml",
+    "src",
+    "tests",
+    "uv.lock"
+  ],
+  "tracked_file_count": 111
+}

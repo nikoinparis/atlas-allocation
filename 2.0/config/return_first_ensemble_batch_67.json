@@ -1,0 +1,41 @@
+{
+  "batch": 67,
+  "frozen_on": "2026-08-12",
+  "training_end": "2023-08-04",
+  "components": {
+    "past_only_selector": "evidence/exhaustive_return_first_discovery_batch_66/retrospective_ceiling_adversarial/past_only_selector_weights.csv",
+    "embargoed_hgb": "evidence/exhaustive_return_first_discovery_batch_66/selected_or_best_weights.csv",
+    "xlk": "static::XLK",
+    "breadth_ceiling": "evidence/return_confirmation_diversification_batch_64/selected_or_best_weights.csv"
+  },
+  "diagnostic_only_component": {
+    "hindsight_52pct_ceiling": "evidence/exhaustive_return_first_discovery_batch_66/retrospective_ceiling_weights.csv"
+  },
+  "clean_grid": {
+    "increment": 0.1,
+    "maximum_single_component_weight": 0.7,
+    "minimum_nonzero_components": 2
+  },
+  "training_selection_score": "0.60 * trailing_5y_CAGR + 0.30 * trailing_3y_CAGR + 0.10 * trailing_5y_Sharpe",
+  "diagnostic_overlay_weights": [0.1, 0.2, 0.3, 0.4],
+  "cost_bps": [50, 100, 200],
+  "additional_execution_delays_weeks": [1, 2, 4],
+  "bootstrap_samples": 30000,
+  "bootstrap_block_weeks": 13,
+  "promotion_gates": {
+    "minimum_holdout_50bps_cagr": 0.35,
+    "minimum_advantage_over_xlk": 0.005,
+    "minimum_advantage_over_breadth": 0.005,
+    "minimum_holdout_100bps_cagr": 0.3,
+    "minimum_holdout_200bps_cagr": 0.25,
+    "maximum_holdout_drawdown_magnitude": 0.25,
+    "minimum_delay_share_beating_breadth": 0.6666666666666666,
+    "minimum_ex_best_year_advantage_over_xlk": 0.0,
+    "minimum_rolling_3y_win_share_over_xlk": 0.5,
+    "minimum_multifactor_annual_alpha": 0.0,
+    "maximum_adjusted_pvalue": 0.1
+  },
+  "selection_rule": "Select one clean-grid ensemble using only history through 2023-08-04. Evaluate the untouched later period once. Hindsight-52% overlays are diagnostic-only and cannot qualify.",
+  "leverage_allowed": false,
+  "live_trading_enabled": false
+}

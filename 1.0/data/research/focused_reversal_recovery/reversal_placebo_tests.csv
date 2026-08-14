@@ -1,0 +1,3 @@
+test,reference_candidate,n_iterations,reference_sharpe,reference_cagr,placebo_mean_sharpe,placebo_median_sharpe,placebo_p95_sharpe,placebo_mean_cagr,pct_placebo_beating_reference,same_signal_rows
+random_entry_same_frequency,focused_reversal_composite,200,0.9456973396754643,0.07117153076124239,0.9499583157294276,0.9500250181416232,0.9563393284158244,0.07141818825364944,0.87,19
+block_bootstrap_weekly_returns,focused_reversal_composite,200,0.9456973396754643,0.07117153076124239,0.9779424908795664,0.9788854642750723,1.3207607593904178,,0.54,19

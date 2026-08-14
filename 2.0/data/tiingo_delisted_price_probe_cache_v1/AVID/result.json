@@ -1,0 +1,20 @@
+{
+  "cik10": "0000896841",
+  "covers_first_eligible_decision": true,
+  "first_eligible_decision": "2012-04-01 00:00:00+00:00",
+  "first_price_date": "2012-04-02",
+  "issuer_name_match": true,
+  "issuer_name_score": 1.0,
+  "last_eligible_decision": "2025-01-01 00:00:00+00:00",
+  "last_price_date": "2023-11-07",
+  "price_file": "/workspace/2.0/data/tiingo_delisted_price_probe_cache_v1/AVID/prices.csv.gz",
+  "price_rows": 2920,
+  "provider_end_date": "2023-11-07",
+  "provider_exchange": "NASDAQ",
+  "provider_name": "Avid Technology Inc",
+  "provider_start_date": "1993-03-12",
+  "sec_company_name": "AVID TECHNOLOGY, INC.",
+  "status": "identity_and_start_validated",
+  "terminal": true,
+  "tiingo_symbol": "AVID"
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "name": "canonical_metrics_cost_tests",
+    "command": "/Users/nicholasturangan/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 scripts/test_production_metrics_costs.py",
+    "returncode": 0,
+    "passed": 1,
+    "started_at": "2026-06-13T20:06:03.853780+00:00",
+    "ended_at": "2026-06-13T20:06:05.026945+00:00",
+    "stdout_tail": "production metrics/cost tests passed\n",
+    "stderr_tail": ""
+  },
+  {
+    "name": "wrapper_equivalence_tests",
+    "command": "/Users/nicholasturangan/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 scripts/test_production_pipeline_equivalence.py",
+    "returncode": 0,
+    "passed": 1,
+    "started_at": "2026-06-13T20:06:05.027042+00:00",
+    "ended_at": "2026-06-13T20:06:07.073478+00:00",
+    "stdout_tail": "production pipeline equivalence tests passed\n",
+    "stderr_tail": ""
+  },
+  {
+    "name": "production_reproduction",
+    "command": "/Users/nicholasturangan/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 scripts/reproduce_production_candidate.py",
+    "returncode": 0,
+    "passed": 1,
+    "started_at": "2026-06-13T20:06:07.073590+00:00",
+    "ended_at": "2026-06-13T20:06:09.139372+00:00",
+    "stdout_tail": "production reproduction passed\nweights_max_abs_error=9.931e-17\npath_max_abs_error=4.441e-16\nwrote docs/research/track_a_production_reproduction_report.md\n",
+    "stderr_tail": ""
+  },
+  {
+    "name": "validation_governance",
+    "command": "/Users/nicholasturangan/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 scripts/run_track_a_validation_governance.py",
+    "returncode": 0,
+    "passed": 1,
+    "started_at": "2026-06-13T20:06:09.139456+00:00",
+    "ended_at": "2026-06-13T20:06:10.298126+00:00",
+    "stdout_tail": "validation governance report written\nsnapshot_rows=317\nwrote docs/research/track_a_validation_governance_report.md\n",
+    "stderr_tail": ""
+  },
+  {
+    "name": "dashboard_bundle_build",
+    "command": "/Users/nicholasturangan/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 scripts/build_production_candidate_dashboard_bundle.py",
+    "returncode": 0,
+    "passed": 1,
+    "started_at": "2026-06-13T20:06:10.298256+00:00",
+    "ended_at": "2026-06-13T20:06:12.181276+00:00",
+    "stdout_tail": "Production-candidate compact dashboard bundle\ncandidate: improved_frontier_phase5_fragility_guard\ncurrent_production_pin: improved_frontier_phase5_fragility_guard\nofficial_shadow_pin: improved_phase2b_combo_abc\nsummary_rows: 3\nstate_rows: 15\nreturns_versions: 3\nwrote: public/production-candidate-dashboard-bundle.json bytes=1041708\nwrote: public/dashboard-summary.json bytes=31980\nwrote: public/dashboard-timeseries.json bytes=932025\nwrote: public/dashboard-state-summary.json bytes=7237\nwrote: public/dashboard-exposures.json bytes=8955\n",
+    "stderr_tail": ""
+  },
+  {
+    "name": "dashboard_packaging_verify",
+    "command": "/Users/nicholasturangan/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 scripts/verify_dashboard_packaging.py",
+    "returncode": 0,
+    "passed": 1,
+    "started_at": "2026-06-13T20:06:12.181391+00:00",
+    "ended_at": "2026-06-13T20:06:13.470960+00:00",
+    "stdout_tail": "dashboard packaging verification passed\nwrote docs/research/track_a_dashboard_packaging_verification.md\n",
+    "stderr_tail": ""
+  },
+  {
+    "name": "typescript_typecheck",
+    "command": "npm run typecheck",
+    "returncode": 0,
+    "passed": 1,
+    "started_at": "2026-06-13T20:06:13.471080+00:00",
+    "ended_at": "2026-06-13T20:06:21.132996+00:00",
+    "stdout_tail": "\n> quant-portfolio-dashboard@0.1.0 typecheck\n> tsc --noEmit\n\n",
+    "stderr_tail": ""
+  },
+  {
+    "name": "next_production_build",
+    "command": "npm run build",
+    "returncode": 0,
+    "passed": 1,
+    "started_at": "2026-06-13T20:06:21.136321+00:00",
+    "ended_at": "2026-06-13T20:07:18.721305+00:00",
+    "stdout_tail": "\n> quant-portfolio-dashboard@0.1.0 build\n> next build\n\n   \u25b2 Next.js 15.5.15\n\n   Creating an optimized production build ...\n \u2713 Compiled successfully in 10.4s\n   Linting and checking validity of types ...\n   Collecting page data ...\n   Generating static pages (0/3) ...\n \u2713 Generating static pages (3/3)\n   Finalizing page optimization ...\n   Collecting build traces ...\n\nRoute (app)                                 Size  First Load JS\n\u250c \u0192 /                                     146 kB         248 kB\n\u2514 \u25cb /_not-found                            998 B         103 kB\n+ First Load JS shared by all             102 kB\n  \u251c chunks/255-4f212684648fcab9.js         46 kB\n  \u251c chunks/4bd1b696-c023c6e3521b1417.js  54.2 kB\n  \u2514 other shared chunks (total)          1.92 kB\n\n\n\u25cb  (Static)   prerendered as static content\n\u0192  (Dynamic)  server-rendered on demand\n\n",
+    "stderr_tail": ""
+  }
+]

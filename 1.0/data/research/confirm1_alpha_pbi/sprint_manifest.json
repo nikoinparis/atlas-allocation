@@ -1,0 +1,54 @@
+{
+  "sprint": "confirm1_alpha_pbi",
+  "date": "2026-07-07",
+  "seed": 20260708,
+  "locked_candidates": {
+    "A": {
+      "alpha": 0.24
+    },
+    "B": {
+      "alpha": 0.24,
+      "pbi": [
+        1.15,
+        1.3
+      ]
+    },
+    "C": {
+      "alpha": 0.16,
+      "pbi": [
+        1.15,
+        1.3
+      ]
+    }
+  },
+  "exact_ggg_reproduction": true,
+  "implementation_equivalence_err": 0.0,
+  "null_A_percentile": 0.96,
+  "null_B_percentile": 0.925,
+  "pbi_fire_weeks": 49,
+  "verdicts": {
+    "cand_A_alpha024": {
+      "verdict": "CONFIRMED-FOR-HUMAN-REVIEW",
+      "all_locked_gates": "PASS",
+      "fail_detail": "",
+      "null_ok": true,
+      "pbi_fragile_ok": true
+    },
+    "cand_B_alpha024_pbi": {
+      "verdict": "CONFIRMED-FOR-HUMAN-REVIEW",
+      "all_locked_gates": "PASS",
+      "fail_detail": "",
+      "null_ok": true,
+      "pbi_fragile_ok": true
+    },
+    "cand_C_alpha016_pbi": {
+      "verdict": "CONFIRMED-FOR-HUMAN-REVIEW",
+      "all_locked_gates": "PASS",
+      "fail_detail": "",
+      "null_ok": true,
+      "pbi_fragile_ok": true
+    }
+  },
+  "runtime_seconds": 27.7,
+  "warnings": []
+}

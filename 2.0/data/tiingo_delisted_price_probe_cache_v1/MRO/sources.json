@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 798,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T20:23:37.400099+00:00",
+    "sha256": "edc946367e8379d99f71c6acb0f7aa396ead065e94c60b3186f40fb5810def46",
+    "url": "https://api.tiingo.com/tiingo/daily/MRO"
+  },
+  {
+    "bytes": 804517,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T20:23:39.217207+00:00",
+    "sha256": "064017776ce3fee9626eaf81360c568415b508b1e9875637cd21040d62857e18",
+    "url": "https://api.tiingo.com/tiingo/daily/MRO/prices?startDate=2012-04-01&endDate=2026-01-11&resampleFreq=daily"
+  }
+]

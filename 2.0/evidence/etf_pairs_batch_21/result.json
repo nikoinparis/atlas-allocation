@@ -1,0 +1,182 @@
+{
+  "artifacts": {
+    "blend_weekly_returns.csv": {
+      "bytes": 96316,
+      "sha256": "0bdf704c30aeb42b21807065ddd4081c408359298647e6cc8d1e15e913ddd42d"
+    },
+    "daily_periods.csv": {
+      "bytes": 1460971,
+      "sha256": "6e43489744850e4c31e8c38ceef39b2002884f6a298996f6bdceb5a5bc3c9d3a"
+    },
+    "determinism_check.json": {
+      "bytes": 649,
+      "sha256": "74ce8da5f5f292e23acad1360c1818ffc2b335e875fc0facd3169be4bade5640"
+    },
+    "formation_audit.csv": {
+      "bytes": 3166,
+      "sha256": "09596bacd867b37d6eee2039e6d0d46d1b8f750f67f4e6cf91753af51ce86607"
+    },
+    "metadata.json": {
+      "bytes": 782,
+      "sha256": "a5b656ae1529c2c391a1113e75d9f67cff5a219cbbb899ab7f79137a2b38f1f3"
+    },
+    "primary_weekly_returns.csv": {
+      "bytes": 37587,
+      "sha256": "4bc102c87b6218223a9db4b64f7ac654d4c45e3c554f5c228c48ffd3d815be1c"
+    },
+    "report.md": {
+      "bytes": 690,
+      "sha256": "8679e6ec27eeaf354fc67ab27831abec2e7a5abd488396faa17d1f4a53031d73"
+    },
+    "scoreboard.csv": {
+      "bytes": 10972,
+      "sha256": "cf93df8e4d9edd0c04ef1c379e710caadb949554fec0a51e0f88e1e0dc1256a0"
+    },
+    "selected_pairs.csv": {
+      "bytes": 31284,
+      "sha256": "8e4ab622be46f17e18c39e607cb15d767964a001fd0364b8ac82d9dcf71eb6a3"
+    }
+  },
+  "batch": 21,
+  "blend_metrics_50bps": {
+    "annual_return": 0.04941289075891997,
+    "annual_turnover": 0.08008297305010052,
+    "annual_volatility": 0.07030136887468551,
+    "best_week": 0.0831071759428112,
+    "calmar": 0.25826361218423516,
+    "cvar_5_weekly": -0.023236523585894068,
+    "max_drawdown": -0.19132734317860756,
+    "max_drawdown_duration_weeks": 109,
+    "mean_short_exposure": 0.013676731793960924,
+    "observations": 1126,
+    "positive_week_share": 0.5754884547069272,
+    "sharpe_zero_rf": 0.7217141125495664,
+    "sortino_zero_target": 1.0109989519487848,
+    "total_return": 1.8416462179804038,
+    "worst_week": -0.0888678300307659,
+    "years": 21.653846153846153
+  },
+  "common_core_metrics_50bps": {
+    "annual_return": 0.06582856277216576,
+    "annual_volatility": 0.08805136475279825,
+    "best_week": 0.10397996466937298,
+    "calmar": 0.2801163900906374,
+    "cvar_5_weekly": -0.029043407142118446,
+    "max_drawdown": -0.2350043235630217,
+    "max_drawdown_duration_weeks": 103,
+    "observations": 1126,
+    "positive_week_share": 0.5701598579040853,
+    "sharpe_zero_rf": 0.7688190479561966,
+    "sortino_zero_target": 1.0811597241046211,
+    "total_return": 2.976836317533322,
+    "worst_week": -0.11096301469862585,
+    "years": 21.653846153846153
+  },
+  "engine_metadata": {
+    "daily_rows": 31736,
+    "engine": "causal_etf_pairs_v1",
+    "first_decision": "1995-01-26",
+    "formations": 126,
+    "last_realization": "2026-08-07",
+    "numpy": "2.5.2",
+    "pandas": "2.3.3",
+    "python": "3.12.13",
+    "scipy": "1.18.0",
+    "selected_pair_rows": 200,
+    "statsmodels": "0.14.6",
+    "symbols": [
+      "BIL",
+      "DBA",
+      "EEM",
+      "EFA",
+      "EWJ",
+      "GLD",
+      "HYG",
+      "IAU",
+      "IEF",
+      "IWM",
+      "LQD",
+      "MBB",
+      "PDBC",
+      "QQQ",
+      "SHY",
+      "SLV",
+      "SPY",
+      "TIP",
+      "TLT",
+      "USO",
+      "UUP",
+      "VEA",
+      "VNQ",
+      "VTV",
+      "VUG",
+      "VWO",
+      "XLB",
+      "XLE",
+      "XLF",
+      "XLI",
+      "XLK",
+      "XLP",
+      "XLU",
+      "XLV",
+      "XLY"
+    ],
+    "variants": [
+      "real",
+      "inverted",
+      "random_pairs",
+      "stale_5d"
+    ]
+  },
+  "generated_at_utc": "2026-08-09T23:22:15.284934+00:00",
+  "image": {
+    "image": "localhost/po2-etf-pairs:statsmodels-0.14.6-v1",
+    "image_id": "77fc91877aff45bbb7369a0c553b851c79c06330dea57bf56a22891a6dba2bc3",
+    "repo_digest": "sha256:68520943644b68f1e7580fa15560c66d0d20813b8daa1f2a830ef231b6baadf1"
+  },
+  "limitations": [
+    "The current ETF universe is survivorship-prone and is not historical membership data.",
+    "Historical short availability is unknown; borrow fees are modeled but forced buy-ins are not.",
+    "Adjusted-close data cannot reproduce intraday fills, spreads, or locate failures.",
+    "Repeated quarterly cointegration searches remain retrospective despite causal formation windows."
+  ],
+  "live_trading_approved": false,
+  "pair_bootstrap_primary": {
+    "block_weeks": 13,
+    "one_sided_95pct_lower_annual_return": -0.022234122483248853,
+    "pass": false,
+    "samples": 20000
+  },
+  "paired_blend_advantage_50bps": {
+    "annual_return_advantage_statistically_positive": false,
+    "block_weeks": 13,
+    "mean_annual_return_difference": -0.01651045198409642,
+    "mean_sharpe_difference": -0.04774926852751048,
+    "observations": 1126,
+    "one_sided_95pct_lower_annual_return_difference": -0.02276745785325951,
+    "one_sided_95pct_lower_sharpe_difference": -0.07118756474062404,
+    "samples": 20000,
+    "sharpe_advantage_statistically_positive": false
+  },
+  "program_sha256": "4d7c2ada2872750b9c2a338c8c8cd862b797019a0644c2ca864d0004d0a92a9a",
+  "promoted": false,
+  "promotion_gates": {
+    "all": false,
+    "blend_paired_sharpe": false,
+    "blend_point": false,
+    "controls": false,
+    "dependence": true,
+    "later_windows": false,
+    "pair_annual_return": false,
+    "pair_bootstrap_annual_return": false,
+    "pair_maximum_drawdown": false,
+    "pair_sharpe": false,
+    "stress": false,
+    "survivorship_safe": false,
+    "untouched_forward_52w": false
+  },
+  "source_snapshot_id": "20260809T002313Z-0d8632e2cf759918",
+  "source_snapshot_manifest_sha256": "1ea5da7bcd168391d75b61eb365229af80e1c2a5778f48f9bdf596c1be76f7bb",
+  "track": "quant_trading_repository_etf_pairs",
+  "weekly_correlation_to_frozen_core": -0.06521270437640536
+}

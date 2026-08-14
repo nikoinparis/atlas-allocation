@@ -1,0 +1,20 @@
+{
+  "cik10": "0000002178",
+  "covers_first_eligible_decision": true,
+  "first_eligible_decision": "2013-04-01 00:00:00+00:00",
+  "first_price_date": "2013-04-01",
+  "issuer_name_match": true,
+  "issuer_name_score": 1.0,
+  "last_eligible_decision": "2026-01-01 00:00:00+00:00",
+  "last_price_date": "2025-02-04",
+  "price_file": "/project/data/tiingo_delisted_price_probe_cache_v1/AE/prices.csv.gz",
+  "price_rows": 2982,
+  "provider_end_date": "2025-02-04",
+  "provider_exchange": "NYSE MKT",
+  "provider_name": "Adams Resources & Energy Inc",
+  "provider_start_date": "1984-09-07",
+  "sec_company_name": "ADAMS RESOURCES & ENERGY, INC.",
+  "status": "identity_and_start_validated",
+  "terminal": true,
+  "tiingo_symbol": "AE"
+}

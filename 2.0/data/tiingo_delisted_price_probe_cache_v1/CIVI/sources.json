@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 563,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T10:48:10.990120+00:00",
+    "sha256": "d21916038c27dcb832e701bf7bfab2df15c8261751523fef9de20d6f1a433858",
+    "url": "https://api.tiingo.com/tiingo/daily/CIVI"
+  },
+  {
+    "bytes": 811832,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T10:48:12.804895+00:00",
+    "sha256": "2b2fa1256bc58bbaad20cedfee8d6a11211d3ca3621e9f110f8c5cce7b9df2dd",
+    "url": "https://api.tiingo.com/tiingo/daily/CIVI/prices?startDate=2013-04-01&endDate=2026-04-11&resampleFreq=daily"
+  }
+]

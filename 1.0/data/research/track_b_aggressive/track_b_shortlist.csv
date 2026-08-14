@@ -1,0 +1,13 @@
+name,return_ge_9,return_improvement_ge_50bp,drawdown_ge_minus_22,sharpe_ge_085,calmar_ge_045,avg_bil_below_track_a,cost_2x_sharpe_ge_082,cost_2x_drawdown_ok,holdout_positive,stress_drawdown_ok,beats_best_aggressive_benchmark_return,gate_score,mandate_9_10_met,track_b_shortlist,shortlist_reason
+track_b_aggressive_cash_cap_20,False,False,True,True,True,True,True,True,True,True,False,8,False,False,reject_or_diagnostic
+track_b_aggressive_cash_cap_15_good_20_neutral,False,False,True,True,True,True,True,True,True,True,False,8,False,False,reject_or_diagnostic
+track_b_aggressive_cash_cap_10_good_18_neutral,False,False,True,True,True,True,True,True,True,True,False,8,False,False,reject_or_diagnostic
+track_b_aggressive_offense_boost_10,False,False,True,True,True,False,True,True,True,True,False,7,False,False,reject_or_diagnostic
+track_b_aggressive_offense_boost_20,False,False,True,True,True,False,True,True,True,True,False,7,False,False,reject_or_diagnostic
+track_b_aggressive_cash10_offense10,False,False,True,True,True,True,True,True,True,True,False,8,False,False,reject_or_diagnostic
+track_b_aggressive_cash10_offense20,False,True,True,True,True,True,True,True,True,True,False,9,False,True,research_only_shortlist
+track_b_aggressive_rerisk_4w,False,False,True,False,True,False,False,True,True,True,False,5,False,False,reject_or_diagnostic
+track_b_aggressive_vol_throttled,False,True,True,True,True,True,True,True,True,True,False,9,False,True,research_only_shortlist
+track_b_aggressive_turnover_banded,False,True,True,True,True,True,True,True,True,True,False,9,False,True,research_only_shortlist
+track_b_aggressive_blend_static_growth_30,False,True,True,True,False,True,True,True,True,True,False,8,False,True,research_only_shortlist
+track_b_aggressive_blend_static_growth_50,True,True,False,False,False,True,False,False,True,False,False,4,False,False,reject_or_diagnostic

@@ -1,0 +1,20 @@
+{
+  "cik10": "0001108320",
+  "covers_first_eligible_decision": true,
+  "first_eligible_decision": "2020-04-01 00:00:00+00:00",
+  "first_price_date": "2020-04-01",
+  "issuer_name_match": true,
+  "issuer_name_score": 1.0,
+  "last_eligible_decision": "2022-04-01 00:00:00+00:00",
+  "last_price_date": "2021-04-05",
+  "price_file": "/workspace/2.0/data/tiingo_delisted_price_probe_cache_v1/SMTX/prices.csv.gz",
+  "price_rows": 254,
+  "provider_end_date": "2021-04-05",
+  "provider_exchange": "NASDAQ",
+  "provider_name": "SMTC Corp",
+  "provider_start_date": "2000-07-21",
+  "sec_company_name": "SMTC CORP",
+  "status": "identity_and_start_validated",
+  "terminal": true,
+  "tiingo_symbol": "SMTX"
+}

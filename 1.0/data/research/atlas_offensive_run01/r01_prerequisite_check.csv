@@ -1,0 +1,12 @@
+check,required,status,details
+norgatedata_python_package,True,FAIL,norgatedata not installed; Norgate Data Updater is Windows-only — export must be produced elsewhere and copied in
+raw_input_index_membership,True,FAIL,only templates or nothing under data/stock_breadth/raw
+raw_input_stock_prices_daily,True,FAIL,only templates or nothing under data/stock_breadth/raw
+raw_input_security_master,True,FAIL,only templates or nothing under data/stock_breadth/raw
+raw_input_sector_classification,False,MISSING_OPTIONAL,only templates or nothing under data/stock_breadth/raw
+breadth_panel_scaffold_present,True,PASS,scripts/build_pit_stock_breadth_panel.py
+r00_artifact_holdout_declaration,True,PASS,docs/research/atlas_offensive/offensive_holdout_declaration.md
+r00_artifact_trial_registry,True,PASS,data/research/atlas_offensive_trial_registry.csv
+r00_artifact_preregistration_template,True,PASS,docs/research/atlas_offensive/preregistration_template.md
+r00_artifact_run01_preregistration,True,PASS,docs/research/atlas_offensive/run01_preregistration.md
+r00_artifact_cost_library,True,PASS,data/research/atlas_offensive_cost_library.csv

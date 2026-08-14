@@ -1,0 +1,39 @@
+{
+  "all_deterministic": true,
+  "artifacts": {
+    "determinism.csv": {
+      "bytes": 999,
+      "sha256": "85c572dda50b6afe266403afd7fff6a7fd88fb8481a1b8d45bf492e4dfcc33ed"
+    },
+    "performance.csv": {
+      "bytes": 9743,
+      "sha256": "002e00050e462fe98ad8c384cc6f62410a2fa2d0b177e1e09b4b6e2964a9ceef"
+    },
+    "prefix_invariance.csv": {
+      "bytes": 830,
+      "sha256": "0018d2ec8c31d7c05269852ec0d0569e0857d85c324b701b422f6c0b19312e94"
+    },
+    "qualification.csv": {
+      "bytes": 1452,
+      "sha256": "3f9a1eee2d7c5b49468f088f19658ffd67da5e359b174887819373f5bd6b04bb"
+    }
+  },
+  "benchmark_recent_3y_50bps": {
+    "cagr": 0.1288735233396061,
+    "max_drawdown": -0.07364740799161307,
+    "sharpe_zero_rf": 1.5437861979843626
+  },
+  "candidates_evaluated": 6,
+  "decision": "no_challenger_qualified",
+  "freeze_sha256": "ee0b9c8b3b8333aafee95a0338349c57ddbf45f05adce0d5136aa96fde7019cc",
+  "frozen_source_hashes_verified": true,
+  "generated_at_utc": "2026-08-12T01:09:12.164647+00:00",
+  "live_trading_enabled": false,
+  "maximum_prefix_difference": 0.0,
+  "module_sha256": "0b95331ad30dc454504a9ad6469e2cf208cb1aa353d67104f3fe7879e88d190e",
+  "program": "ggg_recent_return_challengers_v1",
+  "program_sha256": "454346e7e9f68bc467c45602057849c701fc1189fb39f9da57798fa1f0e8bb87",
+  "promoted_to_production": false,
+  "research_shortlist": [],
+  "selection_budget": 6
+}

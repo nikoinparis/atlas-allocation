@@ -1,0 +1,3 @@
+source,candidate,recent_3y_50bps_cagr,full_100bps_cagr,full_correlation_to_ggg,recent_3y_50bps_sharpe,recent_3y_50bps_max_drawdown,signal_equivalence_gate,recent_return_gate,full_100bps_gate,correlation_gate,drawdown_gate,prefix_gate,determinism_gate,manifest_gate,standalone_qualified
+raw,residual_momentum_raw_standalone,0.13286461078811307,0.0027776657201301624,0.6576004877276445,0.9361254123646653,-0.14366864025109882,True,True,False,True,True,True,True,True,False
+vol_managed,residual_momentum_vol_managed_standalone,0.11988704632377889,-0.0020895051692001454,0.6929696686691297,0.8648169325774946,-0.14366864025109893,True,True,False,True,True,True,True,True,False

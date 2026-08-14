@@ -1,0 +1,20 @@
+{
+  "cik10": "0000077877",
+  "covers_first_eligible_decision": true,
+  "first_eligible_decision": "2012-04-01 00:00:00+00:00",
+  "first_price_date": "2012-04-02",
+  "issuer_name_match": true,
+  "issuer_name_score": 1.0,
+  "last_eligible_decision": "2024-10-01 00:00:00+00:00",
+  "last_price_date": "2023-09-05",
+  "price_file": "/workspace/2.0/data/tiingo_delisted_price_probe_cache_v1/PDCE/prices.csv.gz",
+  "price_rows": 2875,
+  "provider_end_date": "2023-09-05",
+  "provider_exchange": "NASDAQ",
+  "provider_name": "PDC Energy Inc",
+  "provider_start_date": "1990-03-26",
+  "sec_company_name": "PDC ENERGY, INC.",
+  "status": "identity_and_start_validated",
+  "terminal": true,
+  "tiingo_symbol": "PDCE"
+}

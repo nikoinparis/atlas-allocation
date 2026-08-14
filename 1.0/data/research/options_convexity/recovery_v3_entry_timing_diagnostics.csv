@@ -1,0 +1,12 @@
+section,key,value,detail
+summary,candidate_rows,1930.0,
+summary,entered_rows,19.0,
+summary,late_entry_block_rate,0.8979274611398964,
+stage,stage1,0.006289308176100629,entry rate over 1908 candidates
+stage,stage2,0.3181818181818182,entry rate over 22 candidates
+late_entry_reason,surplus_compressed,1347.0,
+late_entry_reason,rebound_already_extended,481.0,
+late_entry_reason,vix_normalized_after_rebound,465.0,
+late_entry_reason,transition_too_old,194.0,
+late_entry_reason,price_too_extended_above_fast_ma,177.0,
+late_entry_reason,breakeven_too_large_vs_realized_vol,29.0,

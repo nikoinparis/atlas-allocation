@@ -1,0 +1,13 @@
+{
+  "program_sha256": "b0904b5f49832657c40551cf950d0b89f5947f85123d6cfb9f6620954bfe3294",
+  "base_dataset_sha256": "21724f0198eb592b1f0a7a935b7d70cba8c7237916f6850c16e99c719ffe169f",
+  "factor_panel_sha256": "18114e7781799021ebd91e1d762b243e2c8f3909ece826232c895b260b3f1c05",
+  "output_dataset_sha256": "3d818a25dadfb423ad6126240171e1a02fa46f08dd1ea0f6d554a741bad26dbb",
+  "base_rows": 8324,
+  "matched_rows": 3252,
+  "dropped_rows": 5072,
+  "timing_violations": 0,
+  "first_decision": "2006-01-06",
+  "last_decision": "2026-07-03",
+  "minimum_assets_per_decision": 9
+}

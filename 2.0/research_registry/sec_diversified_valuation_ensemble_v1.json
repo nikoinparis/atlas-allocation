@@ -1,0 +1,22 @@
+{
+  "candidate": "sales_only__top20__floor50m__sector50__cohort1__w0.30__50bps",
+  "classification": "diversified risk-adjusted challenger",
+  "status": "saved but not promoted",
+  "recent_cagr": 1.0769406323525845,
+  "recent_sharpe_zero_rf": 2.994049615167767,
+  "recent_max_drawdown": -0.08892325418577418,
+  "full_cagr": 0.4238985328053879,
+  "one_week_delay_recent_cagr": 1.027757772868405,
+  "two_week_delay_recent_cagr": 1.0116420242877222,
+  "severe_200bps_recent_cagr": 1.0681723260156164,
+  "worst_leave_one_issuer_out_company": "RACKSPACE TECHNOLOGY, INC.",
+  "worst_leave_one_issuer_out_recent_cagr": 1.007169476713417,
+  "worst_leave_one_issuer_out_full_cagr": 0.41311649802911155,
+  "rolling_26_week_win_rate_vs_control": 0.558282208588957,
+  "control_recent_cagr": 1.0510082013109465,
+  "promotion_failure": "Recent CAGR falls below the control under one-week delay and leave-one-issuer-out stress.",
+  "research_only": true,
+  "approved_for_live_trading": false,
+  "execution_enabled": false,
+  "evidence": "evidence/sec_diversified_valuation_ensemble_audit_v1"
+}

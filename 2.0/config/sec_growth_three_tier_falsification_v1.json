@@ -1,0 +1,26 @@
+{
+  "experiment": "sec_growth_three_tier_falsification_v1",
+  "frozen_leader": "breadth3_concentration60_vol_60 with weekly universal 1.50x cap",
+  "control": "binary 10/40 with monthly universal 1.50x cap",
+  "leave_one_out": "Every stock selected at least once; excluded capital is transferred to the ETF incumbent",
+  "signal_delays_weeks": [1, 2],
+  "selection_delays_weeks": [1],
+  "parameter_neighborhood": {
+    "relative_lookback_weeks": [20, 26, 32],
+    "exceptional_allocation": [0.50, 0.55, 0.60],
+    "minimum_positive_holdings": [3, 4],
+    "maximum_positive_contribution_share": [0.50, 0.60, 0.70],
+    "maximum_volatility_ratio": [1.25, 1.50, 1.75]
+  },
+  "extreme_cost_bps": [300, 500],
+  "promotion_gates": {
+    "minimum_trailing_1y_cagr": 0.90,
+    "minimum_holdout_cagr": 0.38,
+    "minimum_trailing_1y_sharpe": 2.20,
+    "maximum_fraction_of_improvement_destroyed_by_one_exclusion": 0.50,
+    "minimum_positive_parameter_neighborhood_share": 0.70,
+    "one_week_delay_must_retain_positive_recent_improvement": true
+  },
+  "research_only": true,
+  "live_trading_enabled": false
+}

@@ -1,0 +1,15 @@
+{
+  "created_at_utc": "2026-08-13T20:54:16.810861+00:00",
+  "histories_failed": 1,
+  "histories_returned": 486,
+  "point_in_time_membership_source": "/project/evidence/tiingo_delisted_coverage_probe_v1/membership_inventory_coverage.csv",
+  "provider": "Yahoo Finance via pinned yfinance container",
+  "python_version": "3.12.13",
+  "raw_history_rate": 0.997946611909651,
+  "requested_ciks": 487,
+  "start_date": "2022-12-01",
+  "strategy_testing_authorized": false,
+  "terminal_outcomes_complete": false,
+  "vintage_id": "20260813T205326Z-yahoo-recent-current-sec-v1",
+  "yfinance_version": "1.5.2"
+}

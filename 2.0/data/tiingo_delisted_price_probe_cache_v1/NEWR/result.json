@@ -1,0 +1,20 @@
+{
+  "cik10": "0001448056",
+  "covers_first_eligible_decision": true,
+  "first_eligible_decision": "2016-07-01 00:00:00+00:00",
+  "first_price_date": "2016-07-01",
+  "issuer_name_match": true,
+  "issuer_name_score": 1.0,
+  "last_eligible_decision": "2025-01-01 00:00:00+00:00",
+  "last_price_date": "2023-11-07",
+  "price_file": "/workspace/2.0/data/tiingo_delisted_price_probe_cache_v1/NEWR/prices.csv.gz",
+  "price_rows": 1851,
+  "provider_end_date": "2023-11-07",
+  "provider_exchange": "NYSE",
+  "provider_name": "New Relic Inc",
+  "provider_start_date": "2014-12-12",
+  "sec_company_name": "NEW RELIC, INC.",
+  "status": "identity_and_start_validated",
+  "terminal": true,
+  "tiingo_symbol": "NEWR"
+}

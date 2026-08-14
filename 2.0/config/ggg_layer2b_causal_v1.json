@@ -1,0 +1,17 @@
+{
+  "program": "ggg_layer2b_causal_v1",
+  "frozen_history_cutoff": "2026-04-10",
+  "state_engine_equivalence_tolerance": 1e-10,
+  "meta_models": {
+    "p_regime_confidence": {"horizon_weeks": 4, "training_embargo_weeks": 4},
+    "p_transition_quality": {"horizon_weeks": 8, "training_embargo_weeks": 8},
+    "p_tail_risk": {"horizon_weeks": 4, "training_embargo_weeks": 4}
+  },
+  "initial_training_weeks": 200,
+  "retraining_frequency_weeks": 26,
+  "saved_version_1_meta_predictions_promoted": false,
+  "saved_version_1_transition_probabilities_promoted": false,
+  "reason": "Version 1 training admitted labels whose forward horizons had not elapsed at the fitting date, and transition probabilities were placed using knowledge that a next state existed.",
+  "fail_closed": true,
+  "live_trading_enabled": false
+}

@@ -1,0 +1,51 @@
+model,class,financial_problem_fit,min_sample_guidance,overfit_risk,atlas_prior_use_and_verdict,offensive_fit,tier,proposed_run
+ols_ridge_lasso_elastic_net,statistical,Baseline return prediction; signal combination,any,low,ridge in moonshot baselines - ridge IC 0.038 vs kNN 0.090 vs hand rule 0.092,Mandatory baseline in every run,1,all runs
+logistic_regression,statistical,Classification targets (top-decile membership; rebound probability),any,low,recovery classifiers (0.986 Sharpe but placebo-level),Baseline classifier,1,all runs
+quantile_regression,statistical,Tail/distribution targets (CVaR contribution; MAE/MFE),med,low-med,never,Distributional targets for sizing,2,Run 23
+kalman_state_space,statistical,Time-varying hedge ratios; latent trend extraction,med,low-med,never,Pairs hedge ratios (Run 7); trend states,2,Run 7/25
+hmm_markov_switching,statistical,Regime detection with transition structure,med,med,never (composite z-score instead),Benchmark vs hand-built states; jump models preferred,2,Run 2
+statistical_jump_model,statistical,Stable regime labels via transition penalty,med,low-med,identified in breakthrough audit; never implemented,Reduce state whipsaw; free turnover budget,2,Run 2
+garch_har_vol,statistical,Volatility forecasting for sizing,any,low,GARCH in data hub,HAR upgrade + implied-vol blend,1,Run 13
+dcc_correlation,statistical,Dynamic correlation for allocation,med,med,Ledoit-Wolf static shrinkage,Dynamic correlation into sleeve allocation,3,Run 44
+copulas_evt,statistical,Tail dependence; crash co-movement,med,med,never,Tail-risk measurement in Run 45,3,Run 45
+pca_dynamic_factor,statistical,Factor extraction; residual construction,wide panel needed,low-med,PPP (null on 35 ETFs); macro PCA (research-only),Residualization on stock panel; FRED-MD factors,1,Run 5/9
+hawkes_point_process,statistical,Event clustering (volume/news bursts),high-freq data,med-high,never,Moonshot only; needs intraday data,4,Run 36
+extreme_value_theory,statistical,Tail quantile estimation,long history,med,never,Position-level stop calibration,3,Run 45
+random_forest_extratrees,ml,Nonlinear tabular prediction; feature screening,1k+ cross-sectional,med,never directly,Feature importance screening on stock panel,2,Run 22
+gradient_boosting_lgbm_xgb_catboost,ml,The workhorse for cross-sectional ranking (Gu-Kelly-Xiu),10k+ panel obs,med (controllable),GBM failed on ~1000 weekly allocator-level samples,THE priority model class once breadth exists; wide panel = millions of obs,1,Run 22
+learning_to_rank,ml,Directly optimize rank order of stocks,10k+,med,ml_lab notes only,Rank loss for top-k portfolios,2,Run 23
+svm_knn_naive_bayes,ml,Niche baselines,med,med,kNN analog engine (real signal; matched hand rule),Analog retrieval with richer features,3,Run 30
+symbolic_regression_gp,ml,Interpretable formula discovery,med,high,never,Guarded factor mining with FDR control,4,Run 34
+bayesian_optimization,ml,Hyperparameter search under budget,n/a,n/a (meta),never,Standard tooling; trial-counted,2,infra
+online_learning_bandits,ml,Adaptive strategy allocation,streaming,med,never,Sleeve allocation under nonstationarity,3,Run 44
+stacking_dynamic_ensembles,ml,Combine weak signals,med,med-high,ensemble dilution noted as constraint,IC-weighted dynamic combination on stock panel,2,Run 22
+mlp_baseline,dl,Nonlinear tabular baseline,100k+,med-high,never,Sanity baseline vs GBM,2,Run 22
+cnn_temporal_dilated,dl,Local temporal pattern extraction,100k+ sequences,high,never,Only after GBM ceiling established,3,Run 24
+lstm_gru,dl,Sequence memory,100k+,high,ml_lab notes only,Sequence models on daily stock panel,3,Run 25
+patchtst_itransformer_timesnet,dl,SOTA supervised TS forecasting,large,high,never,Benchmark vs GBM on panel; finance evidence mixed,3,Run 26
+s4_mamba_state_space,dl,Long-sequence efficiency,large,high,never,Frontier benchmark only,4,Run 26
+transformers_cross_asset_attention,dl,Cross-sectional attention over assets,wide panel,high,ml_lab notes only,Attention ranker vs GBM,3,Run 26
+graph_neural_networks,dl,Relational structure (supply chain; sector; correlation graphs),wide panel + links,high,never,GNN vs strong HAR/GBM baselines; evidence sensitive to baseline strength,4,Run 27
+autoencoder_representation,dl,Compression; regime embeddings,large,high,never,Conditional autoencoder (Gu-Kelly-Xiu CA) on panel,3,Run 28
+contrastive_ssl_masked_ts,dl,Label-efficient representations,large,high,never,Pretrain embeddings for analog retrieval,4,Run 28
+ts_foundation_models_timesfm_chronos,dl,Zero-shot forecasting,pretrained,med (misuse risk),never,Benchmark honestly: 2025 evidence shows near-parity with simple baselines on equities,4,Run 29
+analog_retrieval_vector_db,dl,Nearest historical market states,med,med,kNN analog engine (matched hand rule; features exhausted),Retrieval with enriched feature space (breadth/macro/options),3,Run 30
+gan_timegan_diffusion,generative,Synthetic path generation for stress testing,large,high,never,Scenario/stress generation NOT alpha training,4,Run 33
+llm_feature_extraction,llm,News/filings signal extraction,text corpora,med-high,never,Sentiment/uncertainty/guidance features with PIT discipline,3,Run 20
+llm_research_agents,llm,Hypothesis generation; code audit; literature review,n/a,n/a,this blueprint itself,Agentic sprints with trial registry to prevent overfit factories,2,Run 34
+rl_ppo_sac_offline,rl,Sequential sizing/execution policies,millions of steps,very high,ml_lab notes; explicitly skipped in moonshot (justified),Only execution-level RL after simulator exists; portfolio RL is Tier 4,4,Run 32
+decision_focused_spo_cvxpylayers,decision_aware,Train forecasts for decision quality not MSE,med,high,frontier P6 labels; ml_lab notes,End-to-end top-k allocation on stock panel; 2024-25 evidence supportive but turnover-inflation caveat,3,Run 31
+conformal_prediction_uncertainty,decision_aware,Calibrated uncertainty for sizing,med,low-med,never,Position sizing from calibrated intervals,2,Run 23
+bayesian_nn_evidential,decision_aware,Model uncertainty,large,high,never,Frontier only,4,Run 31
+kelly_bayesian_sizing,decision_aware,Growth-optimal sizing under uncertainty,med,med,never,Fractional Kelly with posterior shrinkage,2,Run 43
+control_mpc,math_transfer,Multi-period allocation with costs,med,med,never,MPC rebalancing with transaction costs (Boyd et al.),3,Run 35
+signal_processing_wavelets_emd,math_transfer,Multi-scale trend decomposition,med,med-high,never,Multi-horizon trend features; mind boundary leakage,4,Run 36
+transfer_entropy_information_flow,math_transfer,Directional information flow between assets,med,med-high,never,Lead-lag discovery on daily stock/sector data,4,Run 37
+optimal_transport_wasserstein,math_transfer,Distribution distance; DRO; regime comparison,med,med,never,Distributionally robust portfolio + regime distance,4,Run 38
+path_signatures_rough_paths,math_transfer,Path-dependent feature encoding,med,med-high,never,Signature features vs hand-built momentum/vol features; active 2024-25 finance lit,4,Run 38
+tda_persistent_homology,math_transfer,Topological crash precursors,med,high,never,Negative-control candidate; weak finance evidence,5,Run 38
+network_centrality_contagion,math_transfer,Systemic fragility from correlation networks,med,med,absorption ratio DROPPED (double-counted stress),Retest only on aggressive base,4,Run 39
+koopman_dmd_dynamical,math_transfer,Linear representation of nonlinear dynamics,med,high,never,Regime-transition early warning; moonshot,5,Run 40
+causal_discovery_dml,math_transfer,Cause vs correlation in signals; invariance across regimes,med,med,causal-lag discipline (informal),Invariant-prediction screens for signal robustness,3,Run 40
+agent_based_market_ecology,math_transfer,Crowding/strategy interaction simulation,n/a,high,never,Stress narratives; not alpha,5,Run 41
+evolutionary_search,math_transfer,Strategy space exploration,n/a,very high,never,Only with pre-registered fitness + holdout embargo + FDR,5,Run 34

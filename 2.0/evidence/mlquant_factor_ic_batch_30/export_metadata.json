@@ -1,0 +1,50 @@
+{
+  "program_sha256": "04fe68036dfb89684de1c5bb1998f841abc93d1d66f2014d2e7b62c033074119",
+  "prices_sha256": "e03695c8bddd5fcda5940065213dc85a7700a0587d190df6cd4b9e3d8298d5b5",
+  "panel_dates": 8438,
+  "panel_assets": 14,
+  "first_date": "1993-01-29",
+  "last_date": "2026-08-07",
+  "registered_factor_count": 213,
+  "selected_factors": [
+    "best_001",
+    "best_002",
+    "original_001",
+    "stock_001",
+    "add_015",
+    "old_042"
+  ],
+  "asset_permutation": [
+    7,
+    1,
+    4,
+    8,
+    13,
+    6,
+    3,
+    11,
+    9,
+    2,
+    0,
+    10,
+    5,
+    12
+  ],
+  "return_permutation": [
+    7,
+    0,
+    8,
+    3,
+    11,
+    10,
+    6,
+    5,
+    2,
+    1,
+    4,
+    13,
+    9,
+    12
+  ],
+  "torch_version": "2.13.0+cpu"
+}

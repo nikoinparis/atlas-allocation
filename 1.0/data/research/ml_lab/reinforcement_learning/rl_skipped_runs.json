@@ -1,0 +1,10 @@
+[
+  {
+    "algorithm": "SAC",
+    "reason": "skipped to keep bounded overnight CPU run focused on PPO"
+  },
+  {
+    "algorithm": "A2C",
+    "reason": "skipped to keep bounded overnight CPU run focused on PPO"
+  }
+]

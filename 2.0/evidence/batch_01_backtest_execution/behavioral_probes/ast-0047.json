@@ -1,0 +1,76 @@
+{
+  "elapsed_seconds": 12,
+  "entry_id": "ast-0047",
+  "error": "",
+  "head_commit": "e75838081d4e1adc3579fca834bdefe60fb25547",
+  "host_mounts": false,
+  "install_exit_code": 0,
+  "network_disabled_during_probe": true,
+  "probe": {
+    "adapter": "flashalpha_fill_simulator",
+    "capabilities": {
+      "cash_and_position_accounting": false,
+      "commissions_and_fees": false,
+      "order_rejection_lifecycle": false,
+      "partial_fills": false,
+      "quote_quality_filter": true,
+      "same_bar_lookahead_guard_in_loop_wrapper": true
+    },
+    "checks": [
+      {
+        "actual": 0.4,
+        "critical": true,
+        "expected": 0.4,
+        "name": "valid_cross_fills_at_posted_limit",
+        "passed": true
+      },
+      {
+        "actual": false,
+        "critical": true,
+        "expected": false,
+        "name": "non_cross_does_not_fill",
+        "passed": true
+      },
+      {
+        "actual": false,
+        "critical": true,
+        "expected": false,
+        "name": "wide_quote_is_rejected",
+        "passed": true
+      },
+      {
+        "actual": false,
+        "critical": true,
+        "expected": false,
+        "name": "crossed_quote_is_rejected",
+        "passed": true
+      },
+      {
+        "actual": true,
+        "critical": true,
+        "expected": false,
+        "name": "nonfinite_quote_is_rejected",
+        "passed": false
+      },
+      {
+        "actual": false,
+        "critical": true,
+        "expected": true,
+        "name": "fill_diagnostics_are_finite",
+        "passed": false
+      },
+      {
+        "actual": "2026-04-15 10:01:00",
+        "critical": true,
+        "expected": "2026-04-15 10:01:00",
+        "name": "default_wrapper_prevents_same_bar_fill",
+        "passed": true
+      }
+    ],
+    "critical_pass": false,
+    "decision": "conditional_component_candidate_with_platform_quote_gate"
+  },
+  "probe_exit_code": 0,
+  "repository": "FlashAlpha-lab/flashalpha-fill-simulator",
+  "status": "completed"
+}

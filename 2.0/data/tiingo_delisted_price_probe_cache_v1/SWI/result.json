@@ -1,0 +1,19 @@
+{
+  "cik10": "0001739942",
+  "first_eligible_decision": "2020-04-01 00:00:00+00:00",
+  "first_price_date": "2025-04-17",
+  "issuer_name_match": true,
+  "issuer_name_score": 1.0,
+  "last_eligible_decision": "2026-04-01 00:00:00+00:00",
+  "last_price_date": "2025-04-17",
+  "price_file": "/project/data/tiingo_delisted_price_probe_cache_v1/SWI/prices.csv.gz",
+  "price_rows": 1,
+  "provider_end_date": "2025-04-17",
+  "provider_exchange": null,
+  "provider_name": "SOLARWINDS INC.",
+  "provider_start_date": "2016-01-04",
+  "sec_company_name": "SOLARWINDS CORP",
+  "status": "validated_candidate",
+  "terminal": true,
+  "tiingo_symbol": "SWI"
+}

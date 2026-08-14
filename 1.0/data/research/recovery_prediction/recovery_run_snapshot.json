@@ -1,0 +1,185 @@
+{
+  "experiment": "recovery_prediction_research",
+  "verdict": "RESEARCH-ONLY",
+  "feature_lag_weeks": 1,
+  "target_tickers": [
+    "SPY",
+    "QQQ"
+  ],
+  "families": [
+    "drawdown_reversal",
+    "short_horizon_reversal",
+    "breadth_thrust",
+    "credit_improvement",
+    "volatility_normalization",
+    "momentum_reversal_interaction"
+  ],
+  "gates": [
+    {
+      "gate_number": 1,
+      "gate": "signal_family_positive_ic_train_holdout",
+      "pass": true,
+      "detail": "stable positive families: ['drawdown_reversal', 'momentum_reversal_interaction', 'short_horizon_reversal']"
+    },
+    {
+      "gate_number": 2,
+      "gate": "combined_signal_improves_ic",
+      "pass": false,
+      "detail": "equal-weight train rank IC -0.034, best family 0.021"
+    },
+    {
+      "gate_number": 3,
+      "gate": "not_one_crisis_period",
+      "pass": false,
+      "detail": "ex-top3 Sharpe 0.946 vs baseline 0.948"
+    },
+    {
+      "gate_number": 4,
+      "gate": "enough_activations",
+      "pass": true,
+      "detail": "87 signal rows"
+    },
+    {
+      "gate_number": 5,
+      "gate": "precision_better_than_base_rate",
+      "pass": true,
+      "detail": "best precision 0.439, base 0.403"
+    },
+    {
+      "gate_number": 6,
+      "gate": "risk_off_false_positives_controlled",
+      "pass": true,
+      "detail": "logistic holdout risk-off FPR 0.036"
+    },
+    {
+      "gate_number": 7,
+      "gate": "tilt_sharpe_improves_005",
+      "pass": false,
+      "detail": "incremental Sharpe 0.004"
+    },
+    {
+      "gate_number": 8,
+      "gate": "tilt_cagr_improves_0025",
+      "pass": false,
+      "detail": "incremental CAGR 0.0002"
+    },
+    {
+      "gate_number": 9,
+      "gate": "drawdown_not_worse_0025",
+      "pass": true,
+      "detail": "overlay -0.116, baseline -0.116"
+    },
+    {
+      "gate_number": 10,
+      "gate": "cvar5_not_worse",
+      "pass": true,
+      "detail": "overlay -0.0249, baseline -0.0249"
+    },
+    {
+      "gate_number": 11,
+      "gate": "cvar1_not_worse",
+      "pass": true,
+      "detail": "overlay -0.0380, baseline -0.0381"
+    },
+    {
+      "gate_number": 12,
+      "gate": "survives_best_signal_period",
+      "pass": true,
+      "detail": "ex-best 0.950"
+    },
+    {
+      "gate_number": 13,
+      "gate": "survives_top3_signal_periods",
+      "pass": false,
+      "detail": "ex-top3 0.946"
+    },
+    {
+      "gate_number": 14,
+      "gate": "holdout_performance_positive",
+      "pass": true,
+      "detail": "holdout Sharpe 2.192"
+    },
+    {
+      "gate_number": 15,
+      "gate": "beats_random_placebo",
+      "pass": false,
+      "detail": "signal 0.952, placebo 0.961"
+    },
+    {
+      "gate_number": 16,
+      "gate": "turnover_reasonable",
+      "pass": true,
+      "detail": "avg weekly turnover 0.0033"
+    },
+    {
+      "gate_number": 17,
+      "gate": "not_purely_2020_or_one_rebound",
+      "pass": true,
+      "detail": "activations/year 1.64, avg length 1.6"
+    },
+    {
+      "gate_number": 18,
+      "gate": "options_move_large_enough",
+      "pass": false,
+      "detail": "best avg 8w surplus -0.0028"
+    },
+    {
+      "gate_number": 19,
+      "gate": "options_signal_frequency_reasonable",
+      "pass": true,
+      "detail": "max signals/year 5.90"
+    },
+    {
+      "gate_number": 20,
+      "gate": "options_readiness_research_only",
+      "pass": true,
+      "detail": "proxy-only diagnostic; no option-chain conclusion"
+    }
+  ],
+  "main_variant": "regime_gated_composite",
+  "main_variant_summary": {
+    "variant": "regime_gated_composite",
+    "tilt_size": 0.05,
+    "overlay_cagr": 0.07151063272902425,
+    "overlay_ann_return": 0.07193724866955588,
+    "overlay_ann_vol": 0.07508903966976575,
+    "overlay_sharpe": 0.9523444838756896,
+    "overlay_sortino": 1.1803176357245015,
+    "overlay_max_drawdown": -0.11603457885760937,
+    "overlay_calmar": 0.6162872605137627,
+    "overlay_cvar_5": -0.024906237806905023,
+    "overlay_cvar_1": -0.03799707956163856,
+    "overlay_n_weeks": 1110,
+    "overlay_upside_capture": 0.9983033309999145,
+    "overlay_downside_capture": 0.996554583583153,
+    "baseline_cagr": 0.07134169431933479,
+    "baseline_ann_return": 0.07179028923478895,
+    "baseline_ann_vol": 0.07523466354534096,
+    "baseline_sharpe": 0.9482556438408204,
+    "baseline_sortino": 1.1760208459590407,
+    "baseline_max_drawdown": -0.11603457885760937,
+    "baseline_calmar": 0.6148313289168827,
+    "baseline_cvar_5": -0.02494792885739992,
+    "baseline_cvar_1": -0.038067738974282665,
+    "baseline_n_weeks": 1110,
+    "incremental_sharpe": 0.004088840034869201,
+    "incremental_cagr": 0.0001689384096894564,
+    "turnover": 3.7,
+    "avg_weekly_turnover": 0.0033333333333333335,
+    "activations_per_year": 1.6396396396396395,
+    "average_activation_length": 1.6363636363636365,
+    "signal_hit_rate": 0.6896551724137931,
+    "avg_forward_return_after_signal": 0.02429064148479684,
+    "median_forward_return_after_signal": 0.03293330318337362,
+    "worst_signal_outcome": -0.22640041669916278,
+    "best_signal_outcome": 0.14562018521120046,
+    "strong_recovery_precision": 0.4827586206896552,
+    "n_signal_rows": 87,
+    "sharpe_ex_best_signal_period": 0.9500899926275866,
+    "sharpe_ex_top3_signal_periods": 0.9458518520898141,
+    "train_sharpe": 0.8200636523851632,
+    "holdout_sharpe": 2.191793832910637,
+    "stress_period_diff": -0.0011859767967419702
+  },
+  "proxy_note": "ETF recovery prediction first; options-readiness is diagnostic only, no options strategy tested."
+}

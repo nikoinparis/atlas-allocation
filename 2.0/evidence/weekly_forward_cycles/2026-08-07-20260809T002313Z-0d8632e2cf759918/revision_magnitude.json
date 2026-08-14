@@ -1,0 +1,38 @@
+{
+  "common_rows": 209568,
+  "economically_material_adjusted_close_rows": 0,
+  "economically_material_relative_threshold": 0.0001,
+  "magnitude_by_field": {
+    "adjusted_close": {
+      "exact_change_count": 151125,
+      "exact_change_share": 0.7211263169949611,
+      "maximum_absolute_difference": 0.000244140625,
+      "maximum_relative_difference": 2.2644985432334774e-06,
+      "relative_change_counts": {
+        "over_0.0001": 0,
+        "over_0.001": 0,
+        "over_1e-05": 0,
+        "over_1e-06": 1267,
+        "over_1e-07": 114989,
+        "over_1e-08": 151125
+      }
+    },
+    "close": {
+      "exact_change_count": 0,
+      "exact_change_share": 0.0,
+      "maximum_absolute_difference": 0.0,
+      "maximum_relative_difference": 0.0,
+      "relative_change_counts": {
+        "over_0.0001": 0,
+        "over_0.001": 0,
+        "over_1e-05": 0,
+        "over_1e-06": 0,
+        "over_1e-07": 0,
+        "over_1e-08": 0
+      }
+    }
+  },
+  "new_snapshot_id": "20260809T002313Z-0d8632e2cf759918",
+  "old_snapshot_id": "20260808T212827Z-de103c2e063d6c4a",
+  "interpretation": "Large row count is numerical adjusted-close drift. No raw close changed and no adjusted-close change exceeded the predeclared 0.01% materiality threshold."
+}

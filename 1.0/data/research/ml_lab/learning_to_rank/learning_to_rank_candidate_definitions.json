@@ -1,0 +1,15 @@
+{
+  "lightgbm_lambdarank": "Date-grouped LambdaRank/NDCG ranker using 0/1/2/3 relevance labels from future date-wise ranks.",
+  "xgboost_rank_ndcg": "Date-grouped XGBoost rank:NDCG ranker using query IDs equal to weekly dates.",
+  "fallback_classifiers": "Random Forest and Gradient Boosting top-quintile classifiers converted to ranking scores.",
+  "fallback_regressors": "Ridge and ElasticNet forward-return regressors converted to ranking scores.",
+  "portfolio_tests": [
+    "top5/top10/top15 equal weight",
+    "top5/top10/top15 inverse volatility",
+    "raw ML",
+    "BIL fallback",
+    "regime gate",
+    "defensive first",
+    "production/Phase4B 10% ranker sleeve"
+  ]
+}

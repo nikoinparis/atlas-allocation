@@ -1,0 +1,7 @@
+finding,status,evidence
+saved_weights_and_returns,pass_mechanical,Independent CSV-only reconstruction uses date-t weights on next-week returns and reproduces the saved 10 bps path.
+allocator_checkpoints,pass_mechanical,Six saved allocator stages were inventoried; final_etf_weights matches the published weights with max difference 0.000e+00.
+phase_selection,selection_contaminated,"GGG selected one of 3 phase candidates using full-history return, Sharpe, drawdown, CVaR, turnover, and state deltas from the same history."
+research_multiplicity,not_adjusted,"The monolithic allocator catalog contains 230 named variants; GGG1 is position 173. No family-wise, false-discovery, or deflated-Sharpe correction qualifies the reported winner."
+post_selection_record,fail,"The GGG report is dated 2026-04-27, while saved strategy history ends 2026-04-10; post-selection weeks in the saved artifact: 0."
+universe_and_vintage,fail,The 35-ETF universe is fixed rather than point-in-time and weekly_prices.csv has no immutable source-vintage manifest.

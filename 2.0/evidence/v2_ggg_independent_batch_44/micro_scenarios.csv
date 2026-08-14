@@ -1,0 +1,6 @@
+scenario,passed,observed,expected
+recovery_dual_cap,True,0.030000000000000006,dual share <= 3% of offense bucket
+stress_derisk,True,0.6355785837651122,stressed offense below neutral offense
+recovery_component_filter,True,0.0,PDBC + DBA = 0
+layer3_identity,True,1.1102230246251565e-16,difference <= gate
+etf_cap_and_funding,True,0.35,risky cap <= 35% and sum = 1

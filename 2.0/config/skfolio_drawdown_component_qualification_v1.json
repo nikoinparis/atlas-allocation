@@ -1,0 +1,37 @@
+{
+  "program": "skfolio_drawdown_component_qualification_v1",
+  "predeclared_before_component_results": true,
+  "parent_repository_qualification": {
+    "program": "skfolio_repository_qualification_v1",
+    "status": "whole_library_not_qualified",
+    "known_failure_scope": "two entropy-pooling prior-view parser parameterizations reject a numerical value serialized with a zero imaginary component"
+  },
+  "repository": {
+    "name": "skfolio/skfolio",
+    "commit": "c06db8406385cf4bce83577d0f0710ee5a27e67e",
+    "version": "0.20.1",
+    "license": "BSD-3-Clause"
+  },
+  "allowed_component": {
+    "class": "skfolio.optimization.MeanRisk",
+    "objective": "MINIMIZE_RISK",
+    "risk_measures": ["CDAR", "MAX_DRAWDOWN", "EDAR", "ULCER_INDEX"],
+    "solver": "CLARABEL",
+    "prohibited_modules": ["EntropyPooling", "BlackLitterman", "opinion pooling", "expected-return views"]
+  },
+  "qualification_checks": {
+    "all_upstream_mean_risk_drawdown_parameterizations": "pass with -k 'cdar or max_drawdown or edar or ulcer'",
+    "seeded_synthetic_observations": 260,
+    "seeded_synthetic_assets": 8,
+    "long_only": true,
+    "maximum_asset_weight": 0.35,
+    "finite_weights": true,
+    "weights_sum_to_one_tolerance": 1e-8,
+    "repeat_maximum_weight_difference": 1e-8,
+    "future_perturbation_prior_weight_difference": 1e-8,
+    "network_during_tests": false,
+    "project_price_data_mounted": false
+  },
+  "qualification_rule": "Every component check must pass. Passing qualifies only this bounded drawdown optimizer, not skfolio as a whole and not profitability.",
+  "live_trading_enabled": false
+}

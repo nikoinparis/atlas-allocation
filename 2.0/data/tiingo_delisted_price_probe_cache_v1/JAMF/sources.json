@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 165,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T10:48:26.039825+00:00",
+    "sha256": "6f6580bce24012a6f346ea635056ef5f271e5dcad02ea98ec32c6679aa6cb1b1",
+    "url": "https://api.tiingo.com/tiingo/daily/JAMF"
+  },
+  {
+    "bytes": 210232,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T10:48:27.775449+00:00",
+    "sha256": "94d9613b3255381fd5f4954d127d57d8869e4c530e3981fa7fc2b2e75c257bb9",
+    "url": "https://api.tiingo.com/tiingo/daily/JAMF/prices?startDate=2022-04-01&endDate=2026-04-11&resampleFreq=daily"
+  }
+]

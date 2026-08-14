@@ -1,0 +1,65 @@
+{
+  "status": "frozen_research_benchmark",
+  "strategy_version": "composite_trend_quality_refined_free_snapshot_v4",
+  "frozen_at_utc": "2026-08-08T21:57:19Z",
+  "mutation_policy": "Any formula, universe, parameter, timing, data treatment, or cost-model change creates v5 or later and restarts its untouched-forward clock.",
+  "source_snapshot_id": "20260808T212827Z-de103c2e063d6c4a",
+  "data_known_at_utc": "2026-08-08T21:28:27.743329+00:00",
+  "market_data_through": "2026-08-07",
+  "universe": {
+    "risk_assets": [
+      "SPY", "QQQ", "IWM", "EFA", "VEA", "VWO", "EWJ", "VNQ",
+      "HYG", "LQD", "GLD", "PDBC", "DBA", "TLT"
+    ],
+    "defensive_asset": "BIL",
+    "cash_asset": "cash::USD"
+  },
+  "signals": [
+    "xsmom_global",
+    "multi_mom_invvol",
+    "tsmom_vol_scaled",
+    "trend_clarity_momentum",
+    "moving_average_distance"
+  ],
+  "parameters": {
+    "signal_lag_weeks": 1,
+    "composite_smoothing_weeks": 4,
+    "rebalance": "calendar_causal_month_end_weekly_observation",
+    "top_n": 4,
+    "minimum_signal": 0.05,
+    "portfolio_method": "equal_weight",
+    "missing_risk_slots": "defensive_asset_if_priced_else_cash",
+    "default_cost_bps_per_unit_turnover": 10.0,
+    "stress_cost_bps": [25.0, 50.0],
+    "return_realization": "next_week"
+  },
+  "frozen_benchmark_evidence": {
+    "experiment_id": "exp-fc7248702f02b421",
+    "annual_return": 0.09906662555414081,
+    "sharpe_zero_rf": 0.7537866497668546,
+    "max_drawdown": -0.26249212214398965,
+    "observations": 1126
+  },
+  "forward_validation": {
+    "first_locked_untouched_week_end": "2026-08-14",
+    "first_legitimate_monthly_paper_decision": "2026-08-28",
+    "untouched_returns_available_at_freeze": 0,
+    "minimum_required_weeks": 52
+  },
+  "sha256": {
+    "src/systematic_trader/raw_signals.py": "1ff06169b82aae9432bd58d7e505429efc62c06fa53f5e6064d728ad150db261",
+    "src/systematic_trader/point_in_time.py": "875afb545fab382bb4cb022f1b9fd2c0eda957364bf6fd46f429ed7c6005912a",
+    "src/systematic_trader/weekly_data.py": "25f01b38f02bf1eca2f3bb5ca5d96c2bec50af0e77784fda395c6cfa8d184bea",
+    "scripts/build_free_snapshot_research_pipeline.py": "442d0a2ced079d70057ac4d238a16e9cebd05d94ad4676bd4a3c273eda44506b",
+    "config/free_etf_universe.json": "b0d0941e8c784de4116d34b8c4eb64f4842283426b62aa1988b098b1ae0ab6ed",
+    "data/derived/20260808T212827Z-de103c2e063d6c4a/manifest.json": "f94f4a49de7880790c9bb55058b2b66f984cc87d64023f5a47dc67e4ae5c7f40",
+    "data/vintages/20260808T212827Z-de103c2e063d6c4a/manifest.json": "d4a83160b68cafb45aea6194f5f8258540bf06b63d062b4d6d58ab2c4a2678d6"
+  },
+  "claims": {
+    "profitable_in_historical_simulation": true,
+    "profitable_in_untouched_forward_test": false,
+    "survivorship_safe": false,
+    "production_approved": false,
+    "live_trading_enabled": false
+  }
+}

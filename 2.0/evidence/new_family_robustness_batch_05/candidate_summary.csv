@@ -1,0 +1,4 @@
+candidate_id,experiment_id,family,neighborhood_pass,cost_100bps_pass,regime_pass,multiple_testing_576_pass,robustness_pass
+candidate-3aa6e07c0cd53e52,exp-3aa6e07c0cd53e52,carry_proxy,True,True,True,False,False
+candidate-8a27cb8ba5a612a7,exp-8a27cb8ba5a612a7,defensive,True,True,True,True,True
+candidate-81ffdbdf4dcdab3c,exp-81ffdbdf4dcdab3c,mean_reversion,True,False,True,False,False

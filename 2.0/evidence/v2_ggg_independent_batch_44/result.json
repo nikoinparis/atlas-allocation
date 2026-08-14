@@ -1,0 +1,67 @@
+{
+  "artifacts": {
+    "micro_scenarios.csv": {
+      "bytes": 362,
+      "sha256": "93f0c71e2cf7d81eb1dec98cafc080895c4eef5070040ed8ef7380d7df7cd928"
+    },
+    "performance_comparison.csv": {
+      "bytes": 2040,
+      "sha256": "c63c460597fac2b6dbbb83a6a55418075b9258dd264dbfcad61148f6a187dfc1"
+    },
+    "prefix_invariance.csv": {
+      "bytes": 803,
+      "sha256": "2c67a19de6d35ba40b4633511649ea2df5860914cf9ab5cd2c20f88b2ff7fbe8"
+    },
+    "rebalance_audit_log.csv": {
+      "bytes": 20004,
+      "sha256": "d63685c7596ed7c6c634b85f3b5c32c174893895e2f499091caf9e2e9c6941a1"
+    },
+    "source_inventory.csv": {
+      "bytes": 1827,
+      "sha256": "717354e6fadd733a99989dae7920321d45187bbd3bb9e6f0cd5f27c4a975e64e"
+    },
+    "stage_equivalence.csv": {
+      "bytes": 1388,
+      "sha256": "9482d641f345f8a3cf8c4517ae25b6f1f6c74415f8af686bac4620f6fe752704"
+    },
+    "static_leakage_findings.json": {
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    }
+  },
+  "canonical_core_logic_sha256": "b23fd9424c4bf9f9d920c7247aa58d3786b13831a3941cbd8ecfbd151c250668",
+  "causal_correction_prefix_maximum_difference": 0.0,
+  "causal_correction_prefix_passed": true,
+  "decision": "reject_legacy_equivalent_port_for_one_week_allocator_lookahead_keep_causal_correction_as_shadow",
+  "generated_at_utc": "2026-08-11T06:56:29.936085+00:00",
+  "governance_gates": {
+    "canonical_core_logic_hash_recorded": true,
+    "micro_scenarios_all_pass": true,
+    "prefix_invariance_clean": false,
+    "source_inputs_hashed": true,
+    "static_negative_shift_scan_clean": true,
+    "structured_audit_log_complete": true
+  },
+  "governance_passed": false,
+  "historical_selection_contamination_removed": false,
+  "independent_port_qualified": false,
+  "legacy_prefix_maximum_difference": 0.23800550722976838,
+  "live_trading_enabled": false,
+  "lookahead_finding": "The historical allocator includes the date-t sleeve return when computing date-t HRP weights, but that sleeve return realizes prices from t to t+1.",
+  "maximum_return_path_absolute_difference": 5.861977570020827e-14,
+  "maximum_stage_absolute_difference": 1.9984014443252818e-15,
+  "module_sha256": "8ad207fcc9f323ed3b63aafe2f675902579c65fa8dbd809d4889c0d35730cb11",
+  "net_return_correlation": 0.9999999999999996,
+  "program": "v2_ggg_independent_port_v1",
+  "program_sha256": "f753408fa6253a79b0619c885c1266e32710ffb76b09788c3c042ab458ccff69",
+  "runtime_imports_from_version_1": false,
+  "stage_equivalence_gates": {
+    "all_stage_shapes_equal": true,
+    "all_stage_values_equal": true,
+    "net_return_correlation": true,
+    "return_path_equal": true,
+    "two_run_output_hashes_equal": true
+  },
+  "stage_equivalence_passed": true,
+  "version_1_modified": false
+}

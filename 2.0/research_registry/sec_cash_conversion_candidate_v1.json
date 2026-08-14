@@ -1,0 +1,38 @@
+{
+  "candidate": "sec_cash_conversion_candidate_v1",
+  "status": "validated_independent_sleeve_static_return_blend_rejected",
+  "frozen_definition": {
+    "positive_features": ["operating_cash_flow_margin", "free_cash_flow_margin", "cash_conversion_spread"],
+    "cash_conversion_spread": "(quarterly operating cash flow - quarterly net income) / quarterly revenue",
+    "minimum_features": 2,
+    "ranking": "sector-neutral percentile average",
+    "portfolio": "top 10, equal weight, quarterly",
+    "availability": "SEC facts accepted strictly before each decision"
+  },
+  "survivorship_aware_results_50bps": {
+    "full_recent_cagr": 0.237261,
+    "full_recent_sharpe": 0.969885,
+    "full_recent_max_drawdown": -0.330981,
+    "trailing_1y_cagr": 0.648267,
+    "trailing_1y_sharpe": 1.900833,
+    "trailing_1y_max_drawdown": -0.144251,
+    "ytd_cagr": 0.955407,
+    "correlation_to_sec_growth": 0.497515,
+    "correlation_to_spy": 0.593763,
+    "adverse_full_recent_cagr": 0.237261
+  },
+  "concentration_check": {
+    "largest_recent_leave_one_out_company": "PALO ALTO NETWORKS INC",
+    "largest_recent_leave_one_out_cagr_contribution": 0.140764,
+    "recent_companies_tested": 26
+  },
+  "static_blend_decision": {
+    "main_return_leader_trailing_1y_cagr": 0.923104,
+    "ten_percent_blend_trailing_1y_cagr": 0.896999,
+    "ten_percent_blend_sharpe": 2.533557,
+    "ten_percent_blend_max_drawdown": -0.119808,
+    "decision": "retain_as_optional_diversifier_but_do_not_replace_return_first_leader"
+  },
+  "research_only": true,
+  "live_trading_enabled": false
+}

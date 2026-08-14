@@ -1,0 +1,628 @@
+FFFFFFF                                                                  [100%]
+=================================== FAILURES ===================================
+______________________ test_classic_minrisk_optimization _______________________
+
+    def test_classic_minrisk_optimization():
+    
+        Y = get_data("stock_prices.csv")
+        Y = Y[assets].pct_change().dropna().iloc[-200:]
+    
+        port = rp.Portfolio(returns=Y)
+    
+        method_mu = "hist"
+        method_cov = "hist"
+    
+>       port.assets_stats(method_mu=method_mu, method_cov=method_cov, d=0.94)
+E       TypeError: Portfolio.assets_stats() got an unexpected keyword argument 'd'
+
+test_portfolio.py:37: TypeError
+_______________________ test_classic_sharpe_optimization _______________________
+
+    def test_classic_sharpe_optimization():
+    
+        Y = get_data("stock_prices.csv")
+        Y = Y[assets].pct_change().dropna().iloc[-200:]
+    
+        port = rp.Portfolio(returns=Y)
+    
+        method_mu = "hist"
+        method_cov = "hist"
+    
+>       port.assets_stats(method_mu=method_mu, method_cov=method_cov, d=0.94)
+E       TypeError: Portfolio.assets_stats() got an unexpected keyword argument 'd'
+
+test_portfolio.py:94: TypeError
+_____________________ test_classic_riskparity_optimization _____________________
+
+    def test_classic_riskparity_optimization():
+    
+        Y = get_data("stock_prices.csv")
+        Y = Y[assets].pct_change().dropna().iloc[-200:]
+    
+        port = rp.Portfolio(returns=Y)
+    
+        method_mu = "hist"
+        method_cov = "hist"
+    
+>       port.assets_stats(method_mu=method_mu, method_cov=method_cov, d=0.94)
+E       TypeError: Portfolio.assets_stats() got an unexpected keyword argument 'd'
+
+test_portfolio.py:151: TypeError
+_________________________ test_worst_case_optimization _________________________
+
+    def test_worst_case_optimization():
+    
+        Y = get_data("stock_prices.csv")
+        Y = Y[assets].pct_change().dropna().iloc[-200:]
+    
+        port = rp.Portfolio(returns=Y)
+    
+        method_mu = "hist"
+        method_cov = "hist"
+    
+>       port.assets_stats(method_mu=method_mu, method_cov=method_cov, d=0.94)
+E       TypeError: Portfolio.assets_stats() got an unexpected keyword argument 'd'
+
+test_portfolio.py:203: TypeError
+___________________________ test_hc_hrp_optimization ___________________________
+
+    def test_hc_hrp_optimization():
+    
+        Y = get_data("stock_prices.csv")
+        Y = Y[assets].pct_change().dropna().iloc[-200:]
+    
+        port = rp.HCPortfolio(returns=Y)
+    
+        model = "HRP"
+        codependence = "pearson"
+        rf = 0
+        linkage = "single"
+        max_k = 10
+        leaf_order = True
+    
+        rms = [
+            "vol",
+            "MV",
+            "MAD",
+            "GMD",
+            "MSV",
+            "FLPM",
+            "SLPM",
+            "VaR",
+            "CVaR",
+            "TG",
+            "EVaR",
+            "WR",
+            "RG",
+            "CVRG",
+            "TGRG",
+            "MDD",
+            "ADD",
+            "DaR",
+            "CDaR",
+            "EDaR",
+            "UCI",
+            "MDD_Rel",
+            "ADD_Rel",
+            "DaR_Rel",
+            "CDaR_Rel",
+            "EDaR_Rel",
+            "UCI_Rel",
+        ]
+    
+        w_1 = pd.DataFrame([])
+    
+        for i in rms:
+            w = port.optimization(
+                model=model,
+                codependence=codependence,
+                rm=i,
+                rf=rf,
+                linkage=linkage,
+                max_k=max_k,
+                leaf_order=leaf_order,
+            )
+    
+            w_1 = pd.concat([w_1, w], axis=1)
+    
+        w_1.columns = rms
+    
+        w_2 = get_data("HC_HRP.csv")
+    
+>       a = np.testing.assert_array_almost_equal(w_1.to_numpy(), w_2.to_numpy(), decimal=6)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: 
+E       Arrays are not almost equal to 6 decimals
+E       
+E       Mismatched elements: 270 / 270 (100%)
+E       First 5 mismatches are at indices:
+E        [0, 0]: 0.09096410704851333 (ACTUAL), 0.0891025555670116 (DESIRED)
+E        [0, 1]: 0.11219669778651181 (ACTUAL), 0.1102579449674883 (DESIRED)
+E        [0, 2]: 0.08308559723666435 (ACTUAL), 0.0890947542812452 (DESIRED)
+E        [0, 3]: 0.08542498761247046 (ACTUAL), 0.0896910834850018 (DESIRED)
+E        [0, 4]: 0.0783397538576389 (ACTUAL), 0.0830862581561142 (DESIRED)
+E       Max absolute difference among violations: 0.16547521
+E       Max relative difference among violations: 25.00061998
+E        ACTUAL: array([[0.090964, 0.112197, 0.083086, 0.085425, 0.07834 , 0.081036,
+E               0.07571 , 0.089487, 0.070705, 0.065926, 0.062983, 0.062211,
+E               0.107067, 0.088385, 0.090758, 0.05558 , 0.040854, 0.051724,...
+E        DESIRED: array([[0.089103, 0.110258, 0.089095, 0.089691, 0.083086, 0.087593,
+E               0.081309, 0.078719, 0.075049, 0.073354, 0.069608, 0.062611,
+E               0.080912, 0.087878, 0.086608, 0.118512, 0.139079, 0.123896,...
+
+test_portfolio.py:305: AssertionError
+__________________________ test_hc_herc_optimization ___________________________
+
+    def test_hc_herc_optimization():
+    
+        Y = get_data("stock_prices.csv")
+        Y = Y[assets].pct_change().dropna().iloc[-200:]
+    
+        port = rp.HCPortfolio(returns=Y)
+    
+        model = "HERC"
+        codependence = "pearson"
+        rf = 0
+        linkage = "ward"
+        max_k = 10
+        leaf_order = True
+    
+        rms = [
+            "vol",
+            "MV",
+            "MAD",
+            "GMD",
+            "MSV",
+            "FLPM",
+            "SLPM",
+            "VaR",
+            "CVaR",
+            "TG",
+            "EVaR",
+            "WR",
+            "RG",
+            "CVRG",
+            "TGRG",
+            "MDD",
+            "ADD",
+            "DaR",
+            "CDaR",
+            "EDaR",
+            "UCI",
+            "MDD_Rel",
+            "ADD_Rel",
+            "DaR_Rel",
+            "CDaR_Rel",
+            "EDaR_Rel",
+            "UCI_Rel",
+        ]
+    
+        w_1 = pd.DataFrame([])
+    
+        for i in rms:
+>           w = port.optimization(
+                model=model,
+                codependence=codependence,
+                rm=i,
+                rf=rf,
+                linkage=linkage,
+                max_k=max_k,
+                leaf_order=leaf_order,
+            )
+
+test_portfolio.py:357: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <riskfolio.src.HCPortfolio.HCPortfolio object at 0xffff62c47320>
+model = 'HERC', codependence = 'pearson', obj = 'MinRisk', rm = 'vol', rf = 0
+l = 2, method_mu = 'hist', method_cov = 'hist', custom_mu = None
+custom_cov = None, linkage = 'ward', opt_k_method = 'twodiff', k = None
+max_k = 10, bins_info = 'KN', alpha_tail = 0.05, gs_threshold = 0.5
+leaf_order = True, dict_mu = {}, dict_cov = {}
+
+    def optimization(
+        self,
+        model="HRP",
+        codependence="pearson",
+        obj="MinRisk",
+        rm="MV",
+        rf=0,
+        l=2,
+        method_mu="hist",
+        method_cov="hist",
+        custom_mu=None,
+        custom_cov=None,
+        linkage="single",
+        opt_k_method="twodiff",
+        k=None,
+        max_k=10,
+        bins_info="KN",
+        alpha_tail=0.05,
+        gs_threshold=0.5,
+        leaf_order=True,
+        dict_mu={},
+        dict_cov={},
+    ):
+        r"""
+        This method calculates the optimal portfolio according to the
+        optimization model selected by the user.
+    
+        Parameters
+        ----------
+        model : str, optional
+            The hierarchical cluster portfolio model used for optimize the
+            portfolio. The default is 'HRP'. Possible values are:
+    
+            - 'HRP': Hierarchical Risk Parity.
+            - 'HERC': Hierarchical Equal Risk Contribution.
+            - 'HERC2': HERC but splitting weights equally within clusters.
+            - 'NCO': Nested Clustered Optimization.
+    
+        codependence : str, optional
+            The codependence or similarity matrix used to build the distance
+            metric and clusters. The default is 'pearson'. Possible values are:
+    
+            - 'pearson': pearson correlation matrix. Distance formula: :math:`D_{i,j} = \sqrt{0.5(1-\rho^{pearson}_{i,j})}`.
+            - 'spearman': spearman correlation matrix. Distance formula: :math:`D_{i,j} = \sqrt{0.5(1-\rho^{spearman}_{i,j})}`.
+            - 'kendall': kendall correlation matrix. Distance formula: :math:`D_{i,j} = \sqrt{0.5(1-\rho^{kendall}_{i,j})}`.
+            - 'gerber1': Gerber statistic 1 correlation matrix. Distance formula: :math:`D_{i,j} = \sqrt{0.5(1-\rho^{gerber1}_{i,j})}`.
+            - 'gerber2': Gerber statistic 2 correlation matrix. Distance formula: :math:`D_{i,j} = \sqrt{0.5(1-\rho^{gerber2}_{i,j})}`.
+            - 'abs_pearson': absolute value pearson correlation matrix. Distance formula: :math:`D_{i,j} = \sqrt{(1-|\rho^{pearson}_{i,j}|)}`.
+            - 'abs_spearman': absolute value spearman correlation matrix. Distance formula: :math:`D_{i,j} = \sqrt{(1-|\rho^{spearman}_{i,j}|)}`.
+            - 'abs_kendall': absolute value kendall correlation matrix. Distance formula: :math:`D_{i,j} = \sqrt{(1-|\rho^{kendall}_{i,j}|)}`.
+            - 'distance': distance correlation matrix. Distance formula :math:`D_{i,j} = \sqrt{(1-\rho^{distance}_{i,j})}`.
+            - 'mutual_info': mutual information matrix. Distance used is variation information matrix.
+            - 'tail': lower tail dependence index matrix. Dissimilarity formula :math:`D_{i,j} = -\log{\lambda_{i,j}}`.
+            - 'custom_cov': use custom correlation matrix based on the custom_cov parameter. Distance formula: :math:`D_{i,j} = \sqrt{0.5(1-\rho^{pearson}_{i,j})}`.
+    
+        obj : str, optional
+            Objective function used by the NCO model.
+            The default is 'MinRisk'. Possible values are:
+    
+            - 'MinRisk': Minimize the selected risk measure.
+            - 'Utility': Maximize the Utility function :math:`\mu w - l \phi_{i}(w)`.
+            - 'Sharpe': Maximize the risk adjusted return ratio based on the selected risk measure.
+            - 'ERC': Equally risk contribution portfolio of the selected risk measure.
+    
+        rm : str, optional
+            The risk measure used to optimize the portfolio. If model is 'NCO',
+            the risk measures available depends on the objective function.
+            The default is 'MV'. Possible values are:
+    
+            - 'equal': Equally weighted.
+            - 'vol': Standard Deviation.
+            - 'MV': Variance.
+            - 'KT': Square Root Kurtosis.
+            - 'EM': p_em Root of Even Moment of Order 2 * p_em.
+            - 'MAD': Mean Absolute Deviation.
+            - 'MSV': Semi Standard Deviation.
+            - 'SKT': Square Root Semi Kurtosis.
+            - 'ESM': p_esm Root of Even Semi Moment of Order 2 * p_esm.
+            - 'FLPM': First Lower Partial Moment (Omega Ratio).
+            - 'SLPM': Second Lower Partial Moment (Sortino Ratio).
+            - 'VaR': Value at Risk.
+            - 'CVaR': Conditional Value at Risk.
+            - 'TG': Tail Gini.
+            - 'EVaR': Entropic Value at Risk.
+            - 'RLVaR': Relativistic Value at Risk. I recommend only use this function with MOSEK solver.
+            - 'WR': Worst Realization (Minimax).
+            - 'VRG' VaR range of returns.
+            - 'CVRG': CVaR range of returns.
+            - 'TGRG': Tail Gini range of returns.
+            - 'EVRG': EVaR range of returns.
+            - 'RVRG': RLVaR range of returns. I recommend only use this function with MOSEK solver.
+            - 'MDD': Maximum Drawdown of uncompounded cumulative returns (Calmar Ratio).
+            - 'ADD': Average Drawdown of uncompounded cumulative returns.
+            - 'DaR': Drawdown at Risk of uncompounded cumulative returns.
+            - 'CDaR': Conditional Drawdown at Risk of uncompounded cumulative returns.
+            - 'EDaR': Entropic Drawdown at Risk of uncompounded cumulative returns.
+            - 'RLDaR': Relativistic Drawdown at Risk of uncompounded cumulative returns. I recommend only use this function with MOSEK solver.
+            - 'UCI': Ulcer Index of uncompounded cumulative returns.
+            - 'MDD_Rel': Maximum Drawdown of compounded cumulative returns (Calmar Ratio).
+            - 'ADD_Rel': Average Drawdown of compounded cumulative returns.
+            - 'DaR_Rel': Drawdown at Risk of compounded cumulative returns.
+            - 'CDaR_Rel': Conditional Drawdown at Risk of compounded cumulative returns.
+            - 'EDaR_Rel': Entropic Drawdown at Risk of compounded cumulative returns.
+            - 'RLDaR_Rel': Relativistic Drawdown at Risk of compounded cumulative returns. I recommend only use this function with MOSEK solver.
+            - 'UCI_Rel': Ulcer Index of compounded cumulative returns.
+    
+        rf : float, optional
+            Risk free rate, must be in the same period of assets returns.
+            The default is 0.
+        l : scalar, optional
+            Risk aversion factor of the 'Utility' objective function.
+            The default is 2.
+        method_mu : str, optional
+            The method used to estimate the expected returns vector.
+            The default value is 'hist'. Possible values are:
+    
+            - 'hist': use historical estimator.
+            - 'ewma1': use ewma with adjust=True. For more information see `EWM <https://pandas.pydata.org/pandas-docs/stable/user_guide/window.html#exponentially-weighted-window>`_.
+            - 'ewma2': use ewma with adjust=False. For more information see `EWM <https://pandas.pydata.org/pandas-docs/stable/user_guide/window.html#exponentially-weighted-window>`_.
+            - 'JS': James-Stein estimator. For more information see :cite:`c-Meucci2005` and :cite:`c-Feng2016`.
+            - 'BS': Bayes-Stein estimator. For more information see :cite:`c-Jorion1986`.
+            - 'BOP': BOP estimator. For more information see :cite:`c-Bodnar2019`.
+            - 'custom_mu': use custom expected returns vector.
+    
+        method_cov : str, optional
+            The method used to estimate the covariance matrix:
+            The default is 'hist'. Possible values are:
+    
+            - 'hist': use historical estimates.
+            - 'ewma1': use ewma with adjust=True. For more information see `EWM <https://pandas.pydata.org/pandas-docs/stable/user_guide/window.html#exponentially-weighted-window>`_.
+            - 'ewma2': use ewma with adjust=False. For more information see `EWM <https://pandas.pydata.org/pandas-docs/stable/user_guide/window.html#exponentially-weighted-window>`_.
+            - 'ledoit': use the Ledoit and Wolf Shrinkage method.
+            - 'oas': use the Oracle Approximation Shrinkage method.
+            - 'shrunk': use the basic Shrunk Covariance method.
+            - 'gl': use the basic Graphical Lasso Covariance method.
+            - 'jlogo': use the j-LoGo Covariance method. For more information see: :cite:`c-jLogo`.
+            - 'fixed': denoise using fixed method. For more information see chapter 2 of :cite:`c-MLforAM`.
+            - 'spectral': denoise using spectral method. For more information see chapter 2 of :cite:`c-MLforAM`.
+            - 'shrink': denoise using shrink method. For more information see chapter 2 of :cite:`c-MLforAM`.
+            - 'gerber1': use the Gerber statistic 1. For more information see: :cite:`c-Gerber2021`.
+            - 'gerber2': use the Gerber statistic 2. For more information see: :cite:`c-Gerber2021`.
+            - 'custom_cov': use custom covariance matrix.
+    
+        custom_mu : DataFrame or None, optional
+            Custom mean vector when NCO objective is 'Utility' or 'Sharpe'.
+            The default is None.
+        custom_cov : DataFrame or None, optional
+            Custom covariance matrix, used when codependence or covariance
+            parameters have value 'custom_cov'. The default is None.
+        linkage : string, optional
+            Linkage method of hierarchical clustering. For more information see `linkage <https://docs.scipy.org/doc/scipy/reference/generated/scipy.cluster.hierarchy.linkage.html>`_.
+            The default is 'single'. Possible values are:
+    
+            - 'single'.
+            - 'complete'.
+            - 'average'.
+            - 'weighted'.
+            - 'centroid'.
+            - 'median'.
+            - 'ward'.
+            - 'DBHT': Direct Bubble Hierarchical Tree.
+    
+        opt_k_method : str
+            Method used to calculate the optimum number of clusters.
+            The default is 'twodiff'. Possible values are:
+    
+            - 'twodiff': two difference gap statistic.
+            - 'stdsil': standarized silhouette score.
+    
+        k : int, optional
+            Number of clusters. This value is took instead of the optimal number
+            of clusters calculated with the two difference gap statistic.
+            The default is None.
+        max_k : int, optional
+            Max number of clusters used by the two difference gap statistic
+            to find the optimal number of clusters. The default is 10.
+        bins_info: int or str
+            Number of bins used to calculate variation of information. The default
+            value is 'KN'. Possible values are:
+    
+            - 'KN': Knuth's choice method. See more in `knuth_bin_width <https://docs.astropy.org/en/stable/api/astropy.stats.knuth_bin_width.html>`_.
+            - 'FD': Freedman–Diaconis' choice method. See more in `freedman_bin_width <https://docs.astropy.org/en/stable/api/astropy.stats.freedman_bin_width.html>`_.
+            - 'SC': Scotts' choice method. See more in `scott_bin_width <https://docs.astropy.org/en/stable/api/astropy.stats.scott_bin_width.html>`_.
+            - 'HGR': Hacine-Gharbi and Ravier' choice method.
+            - int: integer value choice by user.
+    
+        alpha_tail : float, optional
+            Significance level for lower tail dependence index. The default is 0.05.
+        gs_threshold : float, optional
+            Gerber statistic threshold. The default is 0.5.
+        leaf_order : bool, optional
+            Indicates if the cluster are ordered so that the distance between
+            successive leaves is minimal. The default is True.
+        dict_mu : dict
+            Other variables related to the mean vector estimation method.
+        dict_cov : dict
+            Other variables related to the covariance estimation method.
+    
+        Returns
+        -------
+        w : DataFrame
+            The weights of optimal portfolio.
+    
+        See Also
+        --------
+        riskfolio.src.ParamsEstimation.mean_vector
+        riskfolio.src.ParamsEstimation.covar_matrix
+        """
+    
+        # Covariance matrix
+        if method_cov == "custom_cov":
+            if isinstance(custom_cov, pd.DataFrame) == True:
+                if custom_cov.shape[0] != custom_cov.shape[1]:
+                    raise NameError("custom_cov must be a square DataFrame")
+                else:
+                    self.cov = custom_cov.copy()
+        else:
+            self.cov = pe.covar_matrix(self.returns, method=method_cov, **dict_cov)
+    
+        # Mean vector
+        if method_mu == "custom_mu":
+            if isinstance(custom_mu, pd.Series) == True:
+                self.mu = custom_mu.to_frame().T
+            elif isinstance(custom_mu, pd.DataFrame) == True:
+                if custom_mu.shape[0] > 1 and custom_mu.shape[1] == 1:
+                    self.mu = custom_mu.copy()
+                elif custom_mu.shape[0] == 1 and custom_mu.shape[1] > 1:
+                    self.mu = custom_mu.copy()
+                else:
+                    raise NameError("custom_mu must be a column DataFrame")
+            else:
+                raise NameError("custom_mu must be a column DataFrame or Series")
+        else:
+            self.mu = pe.mean_vector(self.returns, method=method_mu, **dict_mu)
+        if rm == "KT":
+            self.kurt, self.skurt = True, False
+        elif rm == "SKT":
+            self.kurt, self.skurt = False, True
+        else:
+            self.kurt, self.skurt = False, False
+    
+        self.codependence = codependence
+        self.linkage = linkage
+        self.opt_k_method = opt_k_method
+        self.k = k
+        self.max_k = max_k
+        self.bins_info = bins_info
+        self.alpha_tail = alpha_tail
+        self.gs_threshold = gs_threshold
+        self.leaf_order = leaf_order
+    
+        # Codependence matrix
+        if self.codependence in {"pearson", "spearman", "kendall"}:
+            self.codep = self.returns.corr(method=self.codependence).astype(float)
+        elif self.codependence == "gerber1":
+            self.codep = gs.gerber_cov_stat1(self.returns, threshold=self.gs_threshold)
+            self.codep = af.cov2corr(self.codep).astype(float)
+        elif self.codependence == "gerber2":
+            self.codep = gs.gerber_cov_stat2(self.returns, threshold=self.gs_threshold)
+            self.codep = af.cov2corr(self.codep).astype(float)
+        elif self.codependence in {"abs_pearson", "abs_spearman", "abs_kendall"}:
+            self.codep = np.abs(self.returns.corr(method=self.codependence[4:])).astype(
+                float
+            )
+        elif self.codependence in {"distance"}:
+            self.codep = af.dcorr_matrix(self.returns).astype(float)
+        elif self.codependence in {"mutual_info"}:
+            self.codep = af.mutual_info_matrix(self.returns, self.bins_info).astype(
+                float
+            )
+        elif self.codependence in {"tail"}:
+            self.codep = af.ltdi_matrix(self.returns, alpha=self.alpha_tail).astype(
+                float
+            )
+        elif self.codependence in {"custom_cov"}:
+            self.codep = af.cov2corr(custom_cov).astype(float)
+    
+        # Step-1: Tree clustering
+        self.clustering, self.k = self._hierarchical_clustering(
+            model,
+            self.codependence,
+            self.linkage,
+            self.opt_k_method,
+            self.k,
+            self.max_k,
+            self.leaf_order,
+        )
+        if k is not None:
+            self.k = int(k)
+    
+        # Step-2: Seriation (Quasi-Diagnalization)
+        self.sort_order = self._seriation(self.clustering)
+        # asset_order = self.assetslist
+        asset_order = [self.assetslist[i] for i in self.sort_order]
+        self.asset_order = asset_order.copy()
+        self.codep_sorted = self.codep.reindex(
+            index=self.asset_order, columns=self.asset_order
+        )
+    
+        # Step-2.1: Bound creation
+        if self.w_max is None:
+            upper_bound = pd.Series(1.0, index=self.assetslist)
+        elif isinstance(self.w_max, int) or isinstance(self.w_max, float):
+            upper_bound = pd.Series(self.w_max, index=self.assetslist)
+            upper_bound = np.minimum(1.0, upper_bound).loc[self.assetslist]
+            if upper_bound.sum() < 1:
+                raise NameError("Sum of upper bounds must be higher equal than 1")
+        elif isinstance(self.w_max, pd.Series):
+            upper_bound = np.minimum(1.0, self.w_max).loc[self.assetslist]
+            if upper_bound.sum() < 1.0:
+                raise NameError("Sum of upper bounds must be higher equal than 1")
+    
+        if self.w_min is None:
+            lower_bound = pd.Series(0.0, index=self.assetslist)
+        elif isinstance(self.w_min, int) or isinstance(self.w_min, float):
+            lower_bound = pd.Series(self.w_min, index=self.assetslist)
+            lower_bound = np.maximum(0.0, lower_bound).loc[self.assetslist]
+        elif isinstance(self.w_min, pd.Series):
+            lower_bound = np.maximum(0.0, self.w_min).loc[self.assetslist]
+    
+        if (upper_bound >= lower_bound).all().item() is False:
+            raise NameError("All upper bounds must be higher than lower bounds")
+    
+        # Step-3: Recursive bisection
+        if model == "HRP":
+            # Recursive bisection
+            weights = self._recursive_bisection(
+                self.sort_order,
+                rm=rm,
+                rf=rf,
+                upper_bound=upper_bound,
+                lower_bound=lower_bound,
+            )
+        elif model in ["HERC", "HERC2"]:
+            # Cluster-based Recursive bisection
+>           weights = self._hierarchical_recursive_bisection(
+                self.clustering,
+                rm=rm,
+                rf=rf,
+                linkage=linkage,
+                model=model,
+                upper_bound=upper_bound,
+                lower_bound=lower_bound,
+E               TypeError: HCPortfolio._hierarchical_recursive_bisection() got an unexpected keyword argument 'linkage'
+
+/usr/local/lib/python3.12/site-packages/riskfolio/src/HCPortfolio.py:1095: TypeError
+___________________________ test_hc_nco_optimization ___________________________
+
+    def test_hc_nco_optimization():
+    
+        Y = get_data("stock_prices.csv")
+        Y = Y[assets].pct_change().dropna().iloc[-200:]
+    
+        port = rp.HCPortfolio(returns=Y)
+    
+        model = "NCO"
+        codependence = "pearson"
+        covariance = "hist"
+        obj = "MinRisk"
+        rf = 0
+        linkage = "ward"
+        max_k = 10
+        leaf_order = True
+    
+        rms = [
+            "MV",
+            "MAD",
+            "MSV",
+            "FLPM",
+            "SLPM",
+            "CVaR",
+            "EVaR",
+            "WR",
+            "MDD",
+            "ADD",
+            "CDaR",
+            "EDaR",
+            "UCI",
+        ]
+    
+        w_1 = pd.DataFrame([])
+    
+        for i in rms:
+>           w = port.optimization(
+                model=model,
+                codependence=codependence,
+                covariance=covariance,
+                obj=obj,
+                rm=i,
+                rf=rf,
+                linkage=linkage,
+                max_k=max_k,
+                leaf_order=leaf_order,
+            )
+E           TypeError: HCPortfolio.optimization() got an unexpected keyword argument 'covariance'
+
+test_portfolio.py:413: TypeError
+=========================== short test summary info ============================
+FAILED test_portfolio.py::test_classic_minrisk_optimization - TypeError: Port...
+FAILED test_portfolio.py::test_classic_sharpe_optimization - TypeError: Portf...
+FAILED test_portfolio.py::test_classic_riskparity_optimization - TypeError: P...
+FAILED test_portfolio.py::test_worst_case_optimization - TypeError: Portfolio...
+FAILED test_portfolio.py::test_hc_hrp_optimization - AssertionError: 
+FAILED test_portfolio.py::test_hc_herc_optimization - TypeError: HCPortfolio....
+FAILED test_portfolio.py::test_hc_nco_optimization - TypeError: HCPortfolio.o...
+7 failed in 3.57s

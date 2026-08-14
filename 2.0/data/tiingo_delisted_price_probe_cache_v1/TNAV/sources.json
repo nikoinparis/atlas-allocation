@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 418,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T05:58:30.603358+00:00",
+    "sha256": "a01b4fbad78abe561a6f3eca7492e40b9ed438ca299faf0642d42ed8c64b2f01",
+    "url": "https://api.tiingo.com/tiingo/daily/TNAV"
+  },
+  {
+    "bytes": 467257,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T05:58:38.248710+00:00",
+    "sha256": "ac04ba9c5202832eaeaec420149b6f57e8b25aed10c49c3eca2e609f03ff70a2",
+    "url": "https://api.tiingo.com/tiingo/daily/TNAV/prices?startDate=2012-04-01&endDate=2022-04-11&resampleFreq=daily"
+  }
+]

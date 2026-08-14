@@ -1,0 +1,85 @@
+{
+  "ast-0023": {
+    "repository": "byrnexu/betterquant",
+    "status": "not_found"
+  },
+  "ast-0027": {
+    "repository": "HFQR/FlashFunk",
+    "status": "not_found"
+  },
+  "ast-0028": {
+    "repository": "QuantFabric/QuantFabric",
+    "status": "retrieved",
+    "path": "LICENSE",
+    "api_spdx": "NOASSERTION",
+    "classified_spdx": "MIT",
+    "review": "manually_confirmed_permissive",
+    "snapshot": "license_snapshots/ast-0028_QuantFabric__QuantFabric.txt"
+  },
+  "ast-0034": {
+    "repository": "edtechre/pybroker",
+    "status": "retrieved",
+    "path": "LICENSE",
+    "api_spdx": "NOASSERTION",
+    "classified_spdx": "LicenseRef-Commons-Clause",
+    "review": "source_available_restricted_commercial_use",
+    "snapshot": "license_snapshots/ast-0034_edtechre__pybroker.txt"
+  },
+  "ast-0037": {
+    "repository": "ricequant/rqalpha",
+    "status": "retrieved",
+    "path": "LICENSE",
+    "api_spdx": "NOASSERTION",
+    "classified_spdx": "LicenseRef-RQAlpha-NonCommercial",
+    "review": "source_available_noncommercial_restriction",
+    "snapshot": "license_snapshots/ast-0037_ricequant__rqalpha.txt"
+  },
+  "ast-0040": {
+    "repository": "sreenivasdoosa/sdoosa-algo-trade-python",
+    "status": "not_found"
+  },
+  "ast-0045": {
+    "repository": "pegasusTrader/PandoraTrader",
+    "status": "not_found"
+  },
+  "ast-0052": {
+    "repository": "squidKid-deluxe/QTradeX-Algo-Trading-SDK",
+    "status": "retrieved",
+    "path": "LICENSE",
+    "api_spdx": "NOASSERTION",
+    "classified_spdx": "LicenseRef-WTFPL-Variant",
+    "review": "custom_license_manual_legal_review",
+    "snapshot": "license_snapshots/ast-0052_squidKid-deluxe__QTradeX-Algo-Trading-SDK.txt"
+  },
+  "ast-0053": {
+    "repository": "FinHackCN/finhack",
+    "status": "retrieved",
+    "path": "LICENSE.txt",
+    "api_spdx": "NOASSERTION",
+    "classified_spdx": "GPL-3.0",
+    "review": "manually_confirmed_copyleft_review_obligations",
+    "snapshot": "license_snapshots/ast-0053_FinHackCN__finhack.txt"
+  },
+  "ast-0056": {
+    "repository": "polakowo/vectorbt",
+    "status": "retrieved",
+    "path": "LICENSE.md",
+    "api_spdx": "NOASSERTION",
+    "classified_spdx": "LicenseRef-Commons-Clause",
+    "review": "source_available_restricted_commercial_use",
+    "snapshot": "license_snapshots/ast-0056_polakowo__vectorbt.txt"
+  },
+  "ast-0057": {
+    "repository": "SunshowerC/fund-strategy",
+    "status": "not_found"
+  },
+  "ast-0059": {
+    "repository": "manifoldbt/manifoldbt",
+    "status": "retrieved",
+    "path": "LICENSE",
+    "api_spdx": "NOASSERTION",
+    "classified_spdx": "LicenseRef-Commons-Clause",
+    "review": "source_available_restricted_commercial_use",
+    "snapshot": "license_snapshots/ast-0059_manifoldbt__manifoldbt.txt"
+  }
+}

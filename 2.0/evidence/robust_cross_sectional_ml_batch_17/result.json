@@ -1,0 +1,232 @@
+{
+  "artifacts": {
+    "determinism_check.json": {
+      "bytes": 520,
+      "sha256": "034cbbda29fa64b9b9c9f81a74851ac2e0eb756603dda0bbf64327afa065109f"
+    },
+    "holdings.csv": {
+      "bytes": 288172,
+      "sha256": "291756b625e56a63958d4f4319124acc647267e925fa041c2fb80d00eba3fe19"
+    },
+    "inner_search_trials.csv": {
+      "bytes": 148978,
+      "sha256": "f2300ea08eddc60fafffc091fa129451e837f49897c435460ea6a42aede35f96"
+    },
+    "metadata.json": {
+      "bytes": 827,
+      "sha256": "141fc96330ed47894fdc8ab2a4a8d8d34574b71e90fad9a11dd14a2427a4cbee"
+    },
+    "monthly_rank_ic.csv": {
+      "bytes": 40074,
+      "sha256": "04514bbcadf441a25e2e8c2c281639a714c12a98c5f7c9122204286615b17346"
+    },
+    "outer_folds.csv": {
+      "bytes": 5595,
+      "sha256": "c02ac27a9fb191992a89af53b1d0eefd572e6b53992bf6e1e54e34eb448d0b4d"
+    },
+    "portfolio_scoreboard.csv": {
+      "bytes": 15711,
+      "sha256": "f80e3fa18bb067db87e8274c5de9fc9b4ab04b31b52543c09d33016752bcf3b4"
+    },
+    "predictions.csv": {
+      "bytes": 1266557,
+      "sha256": "5226841ba21bb21a46050d2e7d22dd3dbac0705d38b327d74c9b47cb323391b9"
+    },
+    "real_returns_10bps.csv": {
+      "bytes": 65009,
+      "sha256": "7fe9609383dc3530fd650429bc5f54e1f6b4267805e17ffdb03f1298c54e50d0"
+    },
+    "report.md": {
+      "bytes": 973,
+      "sha256": "3237500c9a19fc1fa40bd568452f709dee360829cf153a21422747dbb72c4144"
+    }
+  },
+  "batch": 17,
+  "correlation_observations": 761,
+  "correlation_to_frozen_winner_10bps": 0.7232830149410757,
+  "engine_metadata": {
+    "engine": "robust_cross_sectional_ml_container_v1",
+    "features": [
+      "momentum_4w",
+      "momentum_13w",
+      "momentum_26w",
+      "momentum_52w_skip_4w",
+      "moving_average_distance_13w",
+      "moving_average_distance_26w",
+      "volatility_13w",
+      "volatility_26w",
+      "downside_volatility_26w",
+      "drawdown_26w",
+      "positive_week_share_26w"
+    ],
+    "inner_trial_rows": 690,
+    "model_fit_count": 2924,
+    "numpy": "2.5.2",
+    "outer_folds": 15,
+    "python": "3.12.13",
+    "real_diagnostic_member_count": 15,
+    "rows": 8324,
+    "scikit_learn": "1.9.0",
+    "scipy": "1.18.0",
+    "seeds": [
+      101,
+      211,
+      307,
+      401,
+      503
+    ],
+    "stale_feature_fallbacks": {
+      "one_month": 1,
+      "three_month": 3
+    },
+    "variants": [
+      "real",
+      "label_shuffle",
+      "random_features",
+      "stale_1m",
+      "stale_3m"
+    ]
+  },
+  "first_out_of_fold_decision": "2012-01-06",
+  "frozen_winner_common_period_metrics_10bps": {
+    "annual_return": 0.07622732025082879,
+    "annual_volatility": 0.09167324056420327,
+    "best_week": 0.10397996466937298,
+    "calmar": 0.32589331101791114,
+    "cvar_5_weekly": -0.029872126783026642,
+    "max_drawdown": -0.23390268432554395,
+    "max_drawdown_duration_weeks": 97,
+    "observations": 762,
+    "positive_week_share": 0.5997375328083989,
+    "sharpe_zero_rf": 0.8481234768352065,
+    "sortino_zero_target": 1.1877656434181625,
+    "total_return": 1.9343809255088824,
+    "worst_week": -0.11096301469862585,
+    "years": 14.653846153846153
+  },
+  "generated_at_utc": "2026-08-09T22:16:27.634270+00:00",
+  "image": {
+    "image": "localhost/po2-robust-ml:sklearn-1.9.0-v1",
+    "image_id": "88891f95de9aac9e7a233b831ea6ea8ee585fe115a5526bf1b01d812659a90d8",
+    "repo_digest": "sha256:c5e15ba2a7e6b532c1264d30398ff7bb0c75c539daab4f6f57281117d77986e6"
+  },
+  "implementation_sha256": {
+    "container_engine": "c0257963c846367526be5bc82381ce765e958deb27b8d57bd8764b52d71299cf",
+    "containerfile": "06d5e9eebcd9171a4879950a6e5ee0796e8492e9a799f925112f0568feb5598f",
+    "host_orchestrator": "9b00076167fc681ad7d824781e79f869c3e13c81d72340ad99ca5970bec143e5",
+    "promotion_protocol": "d1c27714bd69fe91cf8be075aa4f1919477d4d4221280279a79560f9d1724863",
+    "requirements_lock": "7ceb948b03ac4eb99d63ad5318c3a5ce17bbdecf7734bd4bb23e37b8a173a689"
+  },
+  "input_dataset_sha256": "21724f0198eb592b1f0a7a935b7d70cba8c7237916f6850c16e99c719ffe169f",
+  "limitations": [
+    "Outer predictions are chronological and embargoed but remain retrospective because the overall program was designed after the history existed.",
+    "The current ETF universe is survivorship-prone and not a historical membership database.",
+    "The free adjusted-price snapshot may contain pre-acquisition revisions.",
+    "Thousands of fits increase search power and therefore require the nested folds and adjusted uncertainty gate; computation alone is not evidence of alpha."
+  ],
+  "live_trading_approved": false,
+  "negative_controls_pass": true,
+  "paired_bootstrap_advantage_10bps": {
+    "versus_fixed_factor": {
+      "annual_return_advantage_statistically_positive": false,
+      "block_weeks": 13,
+      "mean_annual_return_difference": 0.03564514565619197,
+      "mean_sharpe_difference": 0.16151802639055157,
+      "observations": 761,
+      "one_sided_95pct_lower_annual_return_difference": -0.013786033780307516,
+      "one_sided_95pct_lower_sharpe_difference": -0.15174388948131878,
+      "samples": 20000,
+      "sharpe_advantage_statistically_positive": false
+    },
+    "versus_frozen_winner": {
+      "annual_return_advantage_statistically_positive": true,
+      "block_weeks": 13,
+      "mean_annual_return_difference": 0.04494986387807013,
+      "mean_sharpe_difference": -0.01191964225833067,
+      "observations": 761,
+      "one_sided_95pct_lower_annual_return_difference": 0.0031265679179866,
+      "one_sided_95pct_lower_sharpe_difference": -0.3034242626357009,
+      "samples": 20000,
+      "sharpe_advantage_statistically_positive": false
+    }
+  },
+  "positive_outer_fold_rank_ic_share": 0.8,
+  "program_sha256": "b121a370594966fad843176950ff8894499e45f66915d170c9931adfeda6a37e",
+  "promoted": false,
+  "promotion_gates": {
+    "all": false,
+    "beats_fixed": true,
+    "beats_winner": true,
+    "dependence": true,
+    "fold_stability": true,
+    "later_cost": true,
+    "maximum_drawdown": false,
+    "negative_controls": true,
+    "rank_ic": true,
+    "survivorship_safe": false,
+    "untouched_forward_52w": false
+  },
+  "rank_ic_evidence": {
+    "label_shuffle": {
+      "block_months": 3,
+      "bootstrap_samples": 20000,
+      "lower_mean_rank_ic": -0.042392980791238294,
+      "mean_rank_ic": -0.014059726693913501,
+      "months": 175,
+      "one_sided_alpha": 0.05,
+      "pass": false,
+      "positive_month_share": 0.4685714285714286
+    },
+    "random_features": {
+      "block_months": 3,
+      "bootstrap_samples": 20000,
+      "lower_mean_rank_ic": -0.038353846653058,
+      "mean_rank_ic": -0.01706903548452297,
+      "months": 175,
+      "one_sided_alpha": 0.05,
+      "pass": false,
+      "positive_month_share": 0.46285714285714286
+    },
+    "real": {
+      "block_months": 3,
+      "bootstrap_samples": 20000,
+      "lower_mean_rank_ic": 0.02244607296869296,
+      "mean_rank_ic": 0.06963809133343275,
+      "months": 175,
+      "one_sided_alpha": 0.016666666666666666,
+      "pass": true,
+      "positive_month_share": 0.6171428571428571
+    },
+    "stale_1m": {
+      "block_months": 3,
+      "bootstrap_samples": 20000,
+      "lower_mean_rank_ic": -0.01050497654537342,
+      "mean_rank_ic": 0.03039800802989788,
+      "months": 175,
+      "one_sided_alpha": 0.05,
+      "pass": false,
+      "positive_month_share": 0.5542857142857143
+    },
+    "stale_3m": {
+      "block_months": 3,
+      "bootstrap_samples": 20000,
+      "lower_mean_rank_ic": 0.018782344839784085,
+      "mean_rank_ic": 0.058023887174093035,
+      "months": 175,
+      "one_sided_alpha": 0.05,
+      "pass": true,
+      "positive_month_share": 0.5485714285714286
+    }
+  },
+  "source_snapshot_id": "20260809T002313Z-0d8632e2cf759918",
+  "track": "robust_cross_sectional_ml",
+  "weekly_data_audit": {
+    "completed_weeks": 1180,
+    "friday_label_uses_last_available_observation": true,
+    "missing_cells": 2041,
+    "source_daily_rows_selected": 39259,
+    "symbols": 35,
+    "weekly_end": "2026-08-07",
+    "weekly_start": "2004-01-02"
+  }
+}

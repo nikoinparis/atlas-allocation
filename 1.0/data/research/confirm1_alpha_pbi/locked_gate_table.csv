@@ -1,0 +1,5 @@
+variant,phase_d_vs_pin,rf_capture_delta,rf_gate,rerisk_exposure_delta,rerisk_gate,two_x_cost_pass,all_locked_gates,fail_detail
+cand_A_alpha024,PASS,-0.012834138567236142,True,-0.00045963434822193783,True,True,PASS,
+cand_B_alpha024_pbi,PASS,-0.012446213112768723,True,0.006606953874166044,True,True,PASS,
+cand_C_alpha016_pbi,PASS,-0.00394043850063297,True,0.006836771048277013,True,True,PASS,
+arm_vol_throttle,FAIL,-0.03508329198125382,True,-0.0001165532751932763,True,True,FAIL,rolling_win=0.500 (gate >= 0.55)

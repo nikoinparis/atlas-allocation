@@ -1,0 +1,14 @@
+{
+  "cboe_connected": true,
+  "complete_regime_ready": true,
+  "files": {
+    "fred_weekly_supplemental.csv": "0c01cf3b409082c7b85d411de436de0461820892cc6ee27147ab1900659221c0",
+    "google_trends_candidate.csv": "4194d364f955dce42b350c4c85ced0fa4a786c58bc51d72b98fcf58ff1d62e4d",
+    "regime_features.csv": "f6879b954e4fbe6516b7b63cf8357be38a9bad2d9bfc401a76f7118e8b1260de",
+    "vix_term_structure.csv": "be5a86c283fe384b0a4d26ad126796f02a79c66e62b2efa3cf22f7df785638d0"
+  },
+  "fred_connected": false,
+  "frozen_history_cutoff": "2026-04-10",
+  "google_connected": true,
+  "snapshot_id": "20260812T090851Z-5c6de663ac77"
+}

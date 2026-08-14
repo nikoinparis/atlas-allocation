@@ -1,0 +1,200 @@
+{
+  "action_rows": 2747,
+  "errors": [],
+  "observed_at_utc": "2026-08-13T07:03:45.456300+00:00",
+  "period": "max",
+  "price_rows": 214947,
+  "provider": "Yahoo Finance via yfinance",
+  "pulls": [
+    {
+      "completed_at_utc": "2026-08-13T07:03:31.178719+00:00",
+      "rows": 11508,
+      "started_at_utc": "2026-08-13T07:03:30.247995+00:00",
+      "status": "ok",
+      "ticker": "AAPL"
+    },
+    {
+      "completed_at_utc": "2026-08-13T07:03:31.748330+00:00",
+      "rows": 11696,
+      "started_at_utc": "2026-08-13T07:03:31.424137+00:00",
+      "status": "ok",
+      "ticker": "AMD"
+    },
+    {
+      "completed_at_utc": "2026-08-13T07:03:32.340165+00:00",
+      "rows": 4280,
+      "started_at_utc": "2026-08-13T07:03:31.994151+00:00",
+      "status": "ok",
+      "ticker": "AVGO"
+    },
+    {
+      "completed_at_utc": "2026-08-13T07:03:32.950255+00:00",
+      "rows": 11243,
+      "started_at_utc": "2026-08-13T07:03:32.431986+00:00",
+      "status": "ok",
+      "ticker": "COP"
+    },
+    {
+      "completed_at_utc": "2026-08-13T07:03:33.497475+00:00",
+      "rows": 5570,
+      "started_at_utc": "2026-08-13T07:03:33.187287+00:00",
+      "status": "ok",
+      "ticker": "CRM"
+    },
+    {
+      "completed_at_utc": "2026-08-13T07:03:34.005150+00:00",
+      "rows": 9187,
+      "started_at_utc": "2026-08-13T07:03:33.634261+00:00",
+      "status": "ok",
+      "ticker": "CSCO"
+    },
+    {
+      "completed_at_utc": "2026-08-13T07:03:34.893158+00:00",
+      "rows": 16261,
+      "started_at_utc": "2026-08-13T07:03:34.304731+00:00",
+      "status": "ok",
+      "ticker": "CVX"
+    },
+    {
+      "completed_at_utc": "2026-08-13T07:03:35.727805+00:00",
+      "rows": 9281,
+      "started_at_utc": "2026-08-13T07:03:35.245144+00:00",
+      "status": "ok",
+      "ticker": "EOG"
+    },
+    {
+      "completed_at_utc": "2026-08-13T07:03:36.566658+00:00",
+      "rows": 16261,
+      "started_at_utc": "2026-08-13T07:03:35.936939+00:00",
+      "status": "ok",
+      "ticker": "IBM"
+    },
+    {
+      "completed_at_utc": "2026-08-13T07:03:37.280675+00:00",
+      "rows": 3897,
+      "started_at_utc": "2026-08-13T07:03:36.934295+00:00",
+      "status": "ok",
+      "ticker": "KMI"
+    },
+    {
+      "completed_at_utc": "2026-08-13T07:03:37.644694+00:00",
+      "rows": 3805,
+      "started_at_utc": "2026-08-13T07:03:37.365608+00:00",
+      "status": "ok",
+      "ticker": "MPC"
+    },
+    {
+      "completed_at_utc": "2026-08-13T07:03:38.125838+00:00",
+      "rows": 10182,
+      "started_at_utc": "2026-08-13T07:03:37.728448+00:00",
+      "status": "ok",
+      "ticker": "MSFT"
+    },
+    {
+      "completed_at_utc": "2026-08-13T07:03:38.732137+00:00",
+      "rows": 6931,
+      "started_at_utc": "2026-08-13T07:03:38.343696+00:00",
+      "status": "ok",
+      "ticker": "NVDA"
+    },
+    {
+      "completed_at_utc": "2026-08-13T07:03:39.375239+00:00",
+      "rows": 10183,
+      "started_at_utc": "2026-08-13T07:03:38.899269+00:00",
+      "status": "ok",
+      "ticker": "ORCL"
+    },
+    {
+      "completed_at_utc": "2026-08-13T07:03:40.165159+00:00",
+      "rows": 11243,
+      "started_at_utc": "2026-08-13T07:03:39.600451+00:00",
+      "status": "ok",
+      "ticker": "OXY"
+    },
+    {
+      "completed_at_utc": "2026-08-13T07:03:40.668745+00:00",
+      "rows": 3603,
+      "started_at_utc": "2026-08-13T07:03:40.404340+00:00",
+      "status": "ok",
+      "ticker": "PSX"
+    },
+    {
+      "completed_at_utc": "2026-08-13T07:03:41.202989+00:00",
+      "rows": 8726,
+      "started_at_utc": "2026-08-13T07:03:40.748668+00:00",
+      "status": "ok",
+      "ticker": "QCOM"
+    },
+    {
+      "completed_at_utc": "2026-08-13T07:03:42.003486+00:00",
+      "rows": 11243,
+      "started_at_utc": "2026-08-13T07:03:41.399200+00:00",
+      "status": "ok",
+      "ticker": "SLB"
+    },
+    {
+      "completed_at_utc": "2026-08-13T07:03:42.688808+00:00",
+      "rows": 8441,
+      "started_at_utc": "2026-08-13T07:03:42.243981+00:00",
+      "status": "ok",
+      "ticker": "SPY"
+    },
+    {
+      "completed_at_utc": "2026-08-13T07:03:43.474509+00:00",
+      "rows": 11243,
+      "started_at_utc": "2026-08-13T07:03:42.856335+00:00",
+      "status": "ok",
+      "ticker": "WMB"
+    },
+    {
+      "completed_at_utc": "2026-08-13T07:03:44.102423+00:00",
+      "rows": 6951,
+      "started_at_utc": "2026-08-13T07:03:43.715918+00:00",
+      "status": "ok",
+      "ticker": "XLE"
+    },
+    {
+      "completed_at_utc": "2026-08-13T07:03:44.631380+00:00",
+      "rows": 6951,
+      "started_at_utc": "2026-08-13T07:03:44.265669+00:00",
+      "status": "ok",
+      "ticker": "XLK"
+    },
+    {
+      "completed_at_utc": "2026-08-13T07:03:45.456300+00:00",
+      "rows": 16261,
+      "started_at_utc": "2026-08-13T07:03:44.767397+00:00",
+      "status": "ok",
+      "ticker": "XOM"
+    }
+  ],
+  "python_version": "3.12.13",
+  "status": "complete",
+  "symbol_count": 23,
+  "symbols": [
+    "AAPL",
+    "AMD",
+    "AVGO",
+    "COP",
+    "CRM",
+    "CSCO",
+    "CVX",
+    "EOG",
+    "IBM",
+    "KMI",
+    "MPC",
+    "MSFT",
+    "NVDA",
+    "ORCL",
+    "OXY",
+    "PSX",
+    "QCOM",
+    "SLB",
+    "SPY",
+    "WMB",
+    "XLE",
+    "XLK",
+    "XOM"
+  ],
+  "yfinance_version": "1.5.2"
+}

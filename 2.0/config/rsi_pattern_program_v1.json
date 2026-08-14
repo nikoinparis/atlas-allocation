@@ -1,0 +1,20 @@
+{
+  "program": "repository_rsi_program_v1",
+  "predeclared_before_results": true,
+  "catalog_source": {"entries": ["ast-0079", "ast-0087"], "repository": "je-suis-tm/quant-trading", "commit": "611b73f2c3f577ac5b28aaa19ac8c43d3236c7a5", "source_sha256": "862376c2dfd9598b0d351c265ff566d68f29e2f61d8ae25ffb04293dbcc40dac", "integration": "independent fixed-rule rebuild; source code is not executed or copied"},
+  "data": {"snapshot_id": "20260809T002313Z-0d8632e2cf759918", "assets": ["SPY", "QQQ", "IWM", "EFA", "VEA", "VWO", "EWJ", "VNQ", "HYG", "LQD", "GLD", "PDBC", "DBA", "TLT"], "start_date": "2005-01-03", "price": "adjusted close", "signal_time": "completed daily close", "realization": "next adjusted close"},
+  "rsi": {"lag": 14, "average": "repository SMMA initialized from first price change", "oversold": 30, "overbought": 70},
+  "fixed_candidates": {
+    "threshold_long_short": "literal daily +1 below RSI30, -1 above RSI70, flat otherwise",
+    "threshold_long_only": "safety candidate: +1 below RSI30 and flat otherwise",
+    "head_shoulders_source_price": "literal unused source function: seven-node short pattern searched on adjusted close",
+    "head_shoulders_rsi_corrected": "fixed claimed intent: identical seven-node search applied to RSI"
+  },
+  "pattern": {"lookback_days": 25, "delta": 0.2, "head_multiplier": 1.1, "shoulder_multiplier": 1.1, "exit_rsi_increase": 4, "exit_after_counter_greater_than": 5},
+  "negative_controls": ["one-day stale state", "five-day stale state", "inverted signed state", "fixed asset-label permutation preserving persistence"],
+  "portfolio": {"maximum_gross_exposure": 1.0, "maximum_absolute_asset_weight": 0.2, "weighting": "equal absolute weight among active signed signals", "turnover": "sum absolute change in traded asset weights from drifted holdings", "cash": "explicit residual financing account", "leverage": false},
+  "frictions": {"primary": {"cost_bps": 50, "annual_short_borrow": 0.03}, "low": {"cost_bps": 10, "annual_short_borrow": 0.03}, "stress": {"cost_bps": 100, "annual_short_borrow": 0.08}},
+  "evaluation": {"fixed_candidate_count": 4, "paired_bootstrap_samples": 20000, "block_weeks": 13, "familywise_one_sided_alpha": 0.05, "per_candidate_alpha": 0.0125, "later_windows": ["2016-01-01/2020-12-31", "2021-01-01/present"]},
+  "promotion_gates": {"signal_coverage": "at least 20 entries and exposure in both later windows", "primary_performance": "positive annual return, Sharpe above 0.5, drawdown no worse than -25 percent", "stress": "positive full and both later windows under 100 bps and 8 percent borrow", "controls": "candidate Sharpe exceeds every control", "dependence": "absolute correlation no greater than 0.80 to core and trend", "blend": "80/20 blend improves Sharpe with no worse drawdown and familywise paired lower Sharpe difference above zero", "survivorship_safe_universe": true, "untouched_forward_weeks": 52},
+  "live_trading_approved": false
+}

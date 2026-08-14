@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 1526,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T05:57:15.621202+00:00",
+    "sha256": "b01710087f393d7417688f6711197967cf7fcdb9404915c831f3f1415ed92baf",
+    "url": "https://api.tiingo.com/tiingo/daily/CSOD"
+  },
+  {
+    "bytes": 471325,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T05:57:21.681881+00:00",
+    "sha256": "04893f9c1f7339b17bb0e3302fbef35d83059be4cc704dfc1340f81982e3cfea",
+    "url": "https://api.tiingo.com/tiingo/daily/CSOD/prices?startDate=2013-04-01&endDate=2022-10-11&resampleFreq=daily"
+  }
+]

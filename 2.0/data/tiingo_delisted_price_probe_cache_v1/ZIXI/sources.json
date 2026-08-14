@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 704,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T04:02:54.951479+00:00",
+    "sha256": "a42bc58a45373fb9bf01785e438092f380f9877514a8770a50222a39e2851923",
+    "url": "https://api.tiingo.com/tiingo/daily/ZIXI"
+  },
+  {
+    "bytes": 516519,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T04:02:57.374045+00:00",
+    "sha256": "bcb1bbafc8261d898eb09960f89dc712934a1b904409be03a6131d0a10864f62",
+    "url": "https://api.tiingo.com/tiingo/daily/ZIXI/prices?startDate=2012-04-01&endDate=2023-01-11&resampleFreq=daily"
+  }
+]

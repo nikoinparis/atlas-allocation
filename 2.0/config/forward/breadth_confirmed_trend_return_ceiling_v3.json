@@ -1,0 +1,19 @@
+{
+  "candidate": "candidate-breadth-confirmed-trend-return-ceiling-v3",
+  "first_eligible_decision_date": "2026-08-14",
+  "first_eligible_realization_date": "2026-08-21",
+  "frozen_on": "2026-08-12",
+  "live_trading_enabled": false,
+  "protocol_id": "breadth_confirmed_trend_return_ceiling_v3_forward",
+  "required_weeks": 52,
+  "rule": {
+    "breadth_lookback_weeks": 13,
+    "breadth_threshold": 0.65,
+    "feature_lag_weeks": 1,
+    "trend_weight_otherwise": 0.4,
+    "trend_weight_when_confirmed": 1.0
+  },
+  "selection_changes_forbidden": true,
+  "source_bundle": "ggg_causal_v2_027530550388432a",
+  "weights_artifact_sha256": "689be23ec2ccbd136a7c0f4bab450b8b128becf46a140bc2bd5f2273be498fd7"
+}

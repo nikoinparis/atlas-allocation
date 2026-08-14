@@ -1,0 +1,36 @@
+{
+  "protocol": "sec_growth_three_tier_challenger_v1",
+  "frozen_at_utc": "2026-08-14T10:30:00+00:00",
+  "first_eligible_decision": "2026-08-14",
+  "first_eligible_realization": "2026-08-21",
+  "required_observation_weeks": 52,
+  "allocation_rule": {
+    "normal_growth_allocation": 0.10,
+    "confirmed_growth_allocation": 0.40,
+    "exceptional_growth_allocations_tracked": [0.50, 0.60],
+    "confirmed_condition": "Prior 26-week gross growth-sleeve return is positive and exceeds the ETF incumbent",
+    "exceptional_conditions": [
+      "Confirmed condition is true",
+      "Prior 13-week gross growth-sleeve return is positive",
+      "At least three of the five current holdings have positive 13-week momentum",
+      "No one positive holding supplies more than 60% of the current holdings' summed positive 13-week returns",
+      "Prior 13-week growth-sleeve volatility is no more than 1.5 times prior 52-week volatility"
+    ],
+    "current_signal": "exceptional",
+    "current_allocations_tracked": [0.50, 0.60]
+  },
+  "universal_stock_cap": {
+    "multiple_of_current_equal_stock_weight": 1.5,
+    "review": "every weekly decision",
+    "scope": "all fundamental holdings without ticker-specific exceptions",
+    "current_total_portfolio_cap_at_50_percent_sleeve": 0.15,
+    "current_total_portfolio_cap_at_60_percent_sleeve": 0.18
+  },
+  "comparators": ["binary 10/40 monthly 1.5x cap", "three-tier 50% weekly 1.5x cap", "three-tier 60% monthly 1.5x cap", "frozen ETF incumbent"],
+  "primary_cost_bps": 50,
+  "stress_cost_bps": [100, 200],
+  "selection_policy": "Track 50% and 60% exceptional tiers in parallel for 52 weeks. Historical leadership cannot promote either.",
+  "retrospective_falsification_status": "failed single-stock exclusion and parameter-neighborhood gates; forward tracking is shadow observation only",
+  "research_only": true,
+  "live_trading_enabled": false
+}

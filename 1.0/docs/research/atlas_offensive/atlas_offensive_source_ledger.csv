@@ -1,0 +1,39 @@
+source_id,type,title_or_path,quality_rank,evidence_class,used_for
+S01,internal,docs/research/project_journey.md (5756 lines),primary,internal_record,Complete phase history
+S02,internal,docs/research/research_scoreboard.md,primary,internal_record,Curated verdicts
+S03,internal,docs/research/final_resume_ready_project_summary.md,primary,internal_record,Production metrics and architecture
+S04,internal,docs/research/2026-06-05_breakthrough_research_audit.md,primary,internal_record,Bottleneck analysis + 5 ranked candidates
+S05,internal,docs/research/2026-07-07_moonshot1_discovery_sprint_report.md,primary,internal_record,Episode map; alpha amplitude; PBI; ML negatives
+S06,internal,docs/research/2026-07-07_confirm1_alpha_pbi_report.md,primary,internal_record,Confirmed candidates A/B/C
+S07,internal,docs/research/2026-07-06_frontier2_risk_structure_overlay_sprint_report.md,primary,internal_record,Overlay verdicts; vol-throttle stop rule
+S08,internal,docs/research/track_b_aggressive/* (5 docs),primary,internal_record,Return-vs-beta decomposition lesson
+S09,internal,docs/research/track_c_new_alpha/* (2 docs),primary,internal_record,Long-only alpha sleeve failures
+S10,internal,docs/research/options_convexity/* (8 docs),primary,internal_record,Options verdicts on proxy data
+S11,internal,docs/research/recovery_prediction/* + focused_reversal_recovery/*,primary,internal_record,Reversal IC evidence
+S12,internal,docs/research/renaissance_* (5 docs),primary,internal_record,Signal factory results R1-R4
+S13,internal,docs/research/2026-05-07_external_research_* (7 docs),primary,internal_record,Prior external review + backlog
+S14,internal,docs/research/ml_lab/* (19 docs),primary,internal_record,ML study notes and governance warnings
+S15,internal,scripts/production_config.py + production allocator/costs/metrics,primary,internal_record,Constraint locations
+S16,academic,Moskowitz-Ooi-Pedersen 2012 Time Series Momentum,high,strong_replicated,trend evidence
+S17,academic,Jensen-Kelly-Pedersen 2023 Is There a Replication Crisis in Finance (JF),high,strong_replicated,factor replication
+S18,academic,Gu-Kelly-Xiu 2020 Empirical Asset Pricing via ML (RFS),high,strong_replicated,ML ranking evidence
+S19,academic,arxiv 2507.15876 CTA replication Bayesian 2025,med-high,moderate,trend horizon structure
+S20,academic,Greenwood-Sammon Disappearing Index Effect,high,strong,index effect decay
+S21,academic,Do-Faff pairs decline + UW 2025 stat-arb survey + arxiv 2406.10695,med-high,moderate,stat arb status
+S22,academic,Volmageddon FAJ 2021 + SSRN 5464595 shorting volatility,high,strong,VRP tail economics
+S23,academic,DeMiguel et al. 2024 JF Multifactor Vol-Managed + Cederburg et al. JFE,high,strong,vol-targeting OOS critique
+S24,academic,Oliveira et al. 2025 arxiv 2503.11499 TAA macro regimes; Shu-Yu-Mulvey 2024; Nguyen 2024 SJM,med-high,moderate,macro regime program
+S25,academic,Bailey-Lopez de Prado Deflated Sharpe; PBO framework,high,strong,validation governance
+S26,academic,Lazy Prices (Cohen-Malloy-Nguyen JF 2020); Cohen-Malloy-Pomorski insider decoding,high,strong,filings/insider signals
+S27,academic,UCLA Anderson 2025 PEAD review + Martineau 2022,med-high,contested,PEAD status
+S28,academic,arxiv 2606.27100 pretrained TSFM financial returns 2025 + ACM TSFM finance survey,med,preliminary,TSFM reality check
+S29,academic,arxiv 2409.09684 + 2605.01176 decision-focused learning portfolio 2024-25,med,preliminary,DFL program
+S30,academic,Rough paths/signatures: Cass-Salvi 2024 lecture notes; arxiv 2510.10728 neural RDE portfolios,med,preliminary,signature transfer
+S31,practitioner,Elm Wealth overnight drift; Alpha Architect overnight vs intraday momentum,med,moderate,overnight effects
+S32,practitioner,ReSolve trend replication; Man Group trend drawdown notes; HedgeNordic replication review,med,practitioner_claim,futures replication
+S33,practitioner,AB merger arb 2026 outlook; LPL 2025 merger arb; Accelerate AlphaRank,med,practitioner_claim,merger arb status
+S34,practitioner,BIS WP1087 crypto carry; BitMEX funding research,med-high,moderate,crypto carry
+S35,vendor,Norgate; Sharadar; ORATS; ThetaData; CBOE DataShop; Polygon; Databento; QuantConnect docs,med,vendor_info,data/infra costs
+S36,vendor,IBKR margin/portfolio-margin documentation,med,vendor_info,leverage access
+S37,practitioner,CAIA tail-risk comparison; AQR-vs-Universa debate coverage; arxiv 2607.00883 CVaR puts+trend,med,contested,tail hedge economics
+S38,practitioner,Quiver Quantitative / SEC EDGAR / Tracefour,med,vendor_info,alt-data access

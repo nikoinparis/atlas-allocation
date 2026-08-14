@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/workspace/scripts/run_exhaustive_return_first_discovery_batch_66.py", line 448, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/workspace/scripts/run_exhaustive_return_first_discovery_batch_66.py", line 273, in main
+    candidates, inventory = build_candidate_universe(prices, config)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scripts/run_exhaustive_return_first_discovery_batch_66.py", line 73, in build_candidate_universe
+    regimes = {name: monthly_alpha(alpha, prices.index) for name, alpha in regime_source_alphas(prices, config["discovery_assets"]).items()}
+                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/src/systematic_trader/return_first_search.py", line 109, in regime_source_alphas
+    dispersion_threshold = dispersion.expanding(104, min_periods=104).median().shift(1)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: NDFrame.expanding() got multiple values for argument 'min_periods'

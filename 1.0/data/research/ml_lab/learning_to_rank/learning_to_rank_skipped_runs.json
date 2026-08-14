@@ -1,0 +1,14 @@
+[
+  {
+    "variant": "full_walk_forward_retraining",
+    "reason": "deferred; selected predictions are evaluated by window without retraining per fold"
+  },
+  {
+    "variant": "pairwise_neural_ranking_loss",
+    "reason": "deferred; first version uses LightGBM/XGBoost rankers plus supervised fallbacks"
+  },
+  {
+    "variant": "triple_barrier_per_etf_relevance",
+    "reason": "MLX-13 labels are strategy/date-level labels, not ETF-level ranking labels"
+  }
+]

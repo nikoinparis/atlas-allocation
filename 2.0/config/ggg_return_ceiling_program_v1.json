@@ -1,0 +1,55 @@
+{
+  "program": "ggg_return_ceiling_program_v1",
+  "batch": 52,
+  "predeclared_at_utc": "2026-08-12T04:05:00Z",
+  "benchmark": "causal_ggg_target_vol_12",
+  "selection_budget": 12,
+  "cost_bps": [10, 50, 100],
+  "primary_window": "recent_3y",
+  "secondary_window_start": "2024-01-05",
+  "prefix_cutoffs": ["2023-12-29", "2024-12-27", "2025-12-26"],
+  "turnover_candidates": {
+    "buffer_band_010": {"kind": "turnover_band", "value": 0.01},
+    "buffer_band_025": {"kind": "turnover_band", "value": 0.025},
+    "minimum_change_025": {"kind": "minimum_total_change", "value": 0.025},
+    "stagger_50": {"kind": "stagger", "value": 0.50}
+  },
+  "breadth_candidates": {
+    "breadth_cash_50": {"kind": "breadth_cash", "breadth_threshold": 0.70, "cash_fraction": 0.50},
+    "breadth_cash_100": {"kind": "breadth_cash", "breadth_threshold": 0.70, "cash_fraction": 1.00},
+    "breadth_conditional_vol14": {"kind": "breadth_conditional_vol", "breadth_threshold": 0.70, "target_volatility": 0.14}
+  },
+  "volatility_candidates": {
+    "target_vol_14": {"kind": "target_volatility", "target_volatility": 0.14},
+    "target_vol_16": {"kind": "target_volatility", "target_volatility": 0.16}
+  },
+  "combination_candidates": {
+    "target_vol_14_buffer_010": {"kind": "target_volatility_then_turnover_band", "target_volatility": 0.14, "value": 0.01},
+    "breadth_cash_100_buffer_010": {"kind": "breadth_cash_then_turnover_band", "breadth_threshold": 0.70, "cash_fraction": 1.00, "value": 0.01},
+    "breadth_conditional_vol14_buffer_010": {"kind": "breadth_conditional_vol_then_turnover_band", "breadth_threshold": 0.70, "target_volatility": 0.14, "value": 0.01}
+  },
+  "breadth_formula": {
+    "universe": ["SPY", "QQQ", "IWM", "EFA", "VEA", "VWO", "EWJ", "VNQ", "PDBC", "DBA"],
+    "asset_pass": "date-t close is above its 43-week simple moving average and its date-t 26-week return is positive",
+    "risk_on": "SPY and QQQ both pass and at least the configured fraction of available breadth-universe ETFs pass",
+    "execution": "date-t information transforms weights that earn the t-to-t+1 return"
+  },
+  "qualification_gates": {
+    "minimum_recent_3y_50bps_cagr_improvement": 0.005,
+    "minimum_post_2024_50bps_cagr_improvement": 0.0,
+    "maximum_full_50bps_cagr_degradation": 0.0025,
+    "maximum_recent_3y_drawdown_magnitude": 0.18,
+    "minimum_recent_3y_100bps_cagr_improvement": 0.0,
+    "maximum_prefix_absolute_difference": 1e-10,
+    "require_deterministic_hash": true,
+    "require_frozen_source_hashes": true
+  },
+  "selection_rule": "Among candidates passing every gate, select the highest recent-three-year 50-bps CAGR; break ties by higher 100-bps CAGR, then lower name. Already-observed history can create only a frozen forward challenger, never a profitability claim.",
+  "forward_rule": "If and only if a candidate qualifies, write an immutable research manifest. Its untouched forward clock cannot start until its complete upstream GGG decision engine can produce post-freeze holdings from contemporaneous data.",
+  "scope_limits": [
+    "No real-money execution or broker connection.",
+    "No parameter sweep beyond these twelve named candidates.",
+    "The historical ETF universe and GGG lineage retain the limitations in the frozen upstream manifest.",
+    "The April 2026 GGG research data are not extended or overwritten by the August free-data vintage."
+  ]
+}

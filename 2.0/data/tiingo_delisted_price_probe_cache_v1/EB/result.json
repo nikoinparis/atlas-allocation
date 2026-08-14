@@ -1,0 +1,19 @@
+{
+  "cik10": "0001475115",
+  "first_eligible_decision": "2020-04-01 00:00:00+00:00",
+  "first_price_date": "2020-04-01",
+  "issuer_name_match": true,
+  "issuer_name_score": 1.0,
+  "last_eligible_decision": "2026-04-01 00:00:00+00:00",
+  "last_price_date": "2026-03-10",
+  "price_file": "/project/data/tiingo_delisted_price_probe_cache_v1/EB/prices.csv.gz",
+  "price_rows": 1492,
+  "provider_end_date": "2026-03-10",
+  "provider_exchange": "NYSE",
+  "provider_name": "Eventbrite Inc - Class A",
+  "provider_start_date": "2018-09-20",
+  "sec_company_name": "EVENTBRITE, INC.",
+  "status": "validated_candidate",
+  "terminal": true,
+  "tiingo_symbol": "EB"
+}

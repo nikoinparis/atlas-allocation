@@ -1,0 +1,24 @@
+section,key,value_entered,value_not_entered,n_entered,n_not_entered,detail
+feature_discrimination,surplus,0.018401305542066246,-0.029618624425927786,19,1911.0,
+feature_discrimination,breakeven_move,0.0361842105263158,0.04863683935112506,19,1911.0,
+feature_discrimination,recovery_from_8w_low,0.047026445964490717,0.052328377999221125,19,1911.0,
+feature_discrimination,transition_age_weeks,2.0,5.9523809523809526,19,1911.0,
+feature_discrimination,dist_fast_ma,0.025354026171557898,0.010813297326501964,19,1911.0,
+feature_discrimination,vix_percentile,0.3582995951417004,0.4827516805538783,19,1911.0,
+feature_discrimination,realized_vol_pct,0.1923076923076923,0.5053737471319889,19,1911.0,
+feature_discrimination,soft_score,4.894736842105263,3.1564625850340136,19,1911.0,
+validation_gate,sharpe_vs_baseline,0.0,,12,,v3 0.951 vs baseline 0.948 (need +0.05)
+validation_gate,sharpe_vs_tilt,0.0,,12,,v3 0.951 vs tactical tilt 0.949 (need +0.03)
+validation_gate,cagr_vs_baseline,0.0,,12,,v3 0.0715 vs baseline 0.0713 (need +0.0025)
+validation_gate,drawdown_ok,1.0,,12,,v3 -0.116 vs baseline -0.116
+validation_gate,cvar5_ok,0.0,,12,,v3 -0.0250 vs baseline -0.0249
+validation_gate,cvar1_ok,0.0,,12,,v3 -0.0381 vs baseline -0.0381
+validation_gate,sharpe_ex_best_ok,1.0,,12,,ex-best 0.949 vs baseline 0.948
+validation_gate,sharpe_ex_top3_ok,0.0,,12,,ex-top3 0.947 vs baseline 0.948
+validation_gate,annual_premium_ok,1.0,,12,,0.11% NAV/yr (cap 1.50%)
+validation_gate,concurrent_premium_ok,1.0,,12,,0.38% NAV concurrent (cap 0.75%)
+validation_gate,enough_trades,1.0,,12,,12 trades (need >= 10)
+validation_gate,not_one_subperiod,1.0,,12,,trades present in 3/3 time-thirds
+validation_gate,costs_conservative,1.0,,12,,IV markup x1.05 plus 5% entry and exit slippage on gross option notional
+validation_gate,no_lookahead,1.0,,12,,signals lagged one week; verifier re-checks representative feature lag
+validation_gate,matches_or_beats_tilt,1.0,,12,,v3 Sharpe 0.951 vs tactical tilt 0.949

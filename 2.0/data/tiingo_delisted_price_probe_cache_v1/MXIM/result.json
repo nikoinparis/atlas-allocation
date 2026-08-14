@@ -1,0 +1,20 @@
+{
+  "cik10": "0000743316",
+  "covers_first_eligible_decision": true,
+  "first_eligible_decision": "2012-04-01 00:00:00+00:00",
+  "first_price_date": "2012-04-02",
+  "issuer_name_match": true,
+  "issuer_name_score": 1.0,
+  "last_eligible_decision": "2022-10-01 00:00:00+00:00",
+  "last_price_date": "2021-09-01",
+  "price_file": "/workspace/2.0/data/tiingo_delisted_price_probe_cache_v1/MXIM/prices.csv.gz",
+  "price_rows": 2371,
+  "provider_end_date": "2021-09-01",
+  "provider_exchange": "NASDAQ",
+  "provider_name": "Maxim Integrated Products Inc",
+  "provider_start_date": "1990-03-26",
+  "sec_company_name": "MAXIM INTEGRATED PRODUCTS INC",
+  "status": "identity_and_start_validated",
+  "terminal": true,
+  "tiingo_symbol": "MXIM"
+}

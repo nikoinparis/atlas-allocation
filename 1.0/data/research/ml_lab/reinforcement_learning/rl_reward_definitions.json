@@ -1,0 +1,7 @@
+{
+  "transaction_cost_bps": 10.0,
+  "return_only": "reward = weekly net return after transaction cost",
+  "turnover_penalized": "reward = weekly net return - 0.0010 * turnover",
+  "risk_aware": "reward = weekly net return - 0.0010 * turnover - 0.05 * trailing weekly volatility - 0.02 * drawdown depth",
+  "defensive_regime_aware": "risk_aware plus extra risky-exposure penalty in stressed_panic and smaller penalty in neutral_mixed/recovery_fragile"
+}

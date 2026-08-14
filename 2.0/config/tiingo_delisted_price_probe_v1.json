@@ -1,0 +1,17 @@
+{
+  "experiment": "tiingo_delisted_price_probe_v1",
+  "supported_tickers_url": "https://apimedia.tiingo.com/docs/tiingo/daily/supported_tickers.zip",
+  "inventory_scope": {
+    "asset_type": "Stock",
+    "price_currency": "USD"
+  },
+  "symbol_rule": "Convert SEC periods to Tiingo hyphens; require inventory date overlap with the CIK's SEC eligibility interval.",
+  "credential_environment_variable": "TIINGO_API_TOKEN",
+  "token_persistence_allowed": false,
+  "strategy_testing_authorized": false,
+  "limitations": [
+    "The public inventory contains ticker/date coverage but not issuer names or permanent identifiers.",
+    "A date-overlapping inventory match is a price-probe candidate, not proof that a recycled ticker belongs to the SEC CIK.",
+    "Historical API observations and delisting-return treatment must pass audits before strategy testing."
+  ]
+}

@@ -1,0 +1,137 @@
+[
+  {
+    "check": "exists:data/research/track_b_aggressive/track_b_benchmark_returns.csv",
+    "passed": true,
+    "detail": "data/research/track_b_aggressive/track_b_benchmark_returns.csv"
+  },
+  {
+    "check": "exists:data/research/track_b_aggressive/track_b_benchmark_weights.csv",
+    "passed": true,
+    "detail": "data/research/track_b_aggressive/track_b_benchmark_weights.csv"
+  },
+  {
+    "check": "exists:data/research/track_b_aggressive/track_b_benchmark_metrics.csv",
+    "passed": true,
+    "detail": "data/research/track_b_aggressive/track_b_benchmark_metrics.csv"
+  },
+  {
+    "check": "exists:data/research/track_b_aggressive/track_b_candidate_returns.csv",
+    "passed": true,
+    "detail": "data/research/track_b_aggressive/track_b_candidate_returns.csv"
+  },
+  {
+    "check": "exists:data/research/track_b_aggressive/track_b_candidate_weights.csv",
+    "passed": true,
+    "detail": "data/research/track_b_aggressive/track_b_candidate_weights.csv"
+  },
+  {
+    "check": "exists:data/research/track_b_aggressive/track_b_candidate_metrics.csv",
+    "passed": true,
+    "detail": "data/research/track_b_aggressive/track_b_candidate_metrics.csv"
+  },
+  {
+    "check": "exists:data/research/track_b_aggressive/track_b_candidate_manifest.json",
+    "passed": true,
+    "detail": "data/research/track_b_aggressive/track_b_candidate_manifest.json"
+  },
+  {
+    "check": "exists:data/research/track_b_aggressive/track_b_experiment_registry.csv",
+    "passed": true,
+    "detail": "data/research/track_b_aggressive/track_b_experiment_registry.csv"
+  },
+  {
+    "check": "exists:data/research/track_b_aggressive/track_b_cost_sensitivity.csv",
+    "passed": true,
+    "detail": "data/research/track_b_aggressive/track_b_cost_sensitivity.csv"
+  },
+  {
+    "check": "exists:data/research/track_b_aggressive/track_b_state_metrics.csv",
+    "passed": true,
+    "detail": "data/research/track_b_aggressive/track_b_state_metrics.csv"
+  },
+  {
+    "check": "exists:data/research/track_b_aggressive/track_b_rolling_origin_metrics.csv",
+    "passed": true,
+    "detail": "data/research/track_b_aggressive/track_b_rolling_origin_metrics.csv"
+  },
+  {
+    "check": "exists:data/research/track_b_aggressive/track_b_return_attribution.csv",
+    "passed": true,
+    "detail": "data/research/track_b_aggressive/track_b_return_attribution.csv"
+  },
+  {
+    "check": "exists:data/research/track_b_aggressive/track_b_state_contribution.csv",
+    "passed": true,
+    "detail": "data/research/track_b_aggressive/track_b_state_contribution.csv"
+  },
+  {
+    "check": "exists:data/research/track_b_aggressive/track_b_shortlist.csv",
+    "passed": true,
+    "detail": "data/research/track_b_aggressive/track_b_shortlist.csv"
+  },
+  {
+    "check": "exists:docs/research/track_b_aggressive/track_b_predeclared_experiment_plan.md",
+    "passed": true,
+    "detail": "docs/research/track_b_aggressive/track_b_predeclared_experiment_plan.md"
+  },
+  {
+    "check": "exists:docs/research/track_b_aggressive/track_b_benchmark_comparison.md",
+    "passed": true,
+    "detail": "docs/research/track_b_aggressive/track_b_benchmark_comparison.md"
+  },
+  {
+    "check": "exists:docs/research/track_b_aggressive/track_b_return_attribution.md",
+    "passed": true,
+    "detail": "docs/research/track_b_aggressive/track_b_return_attribution.md"
+  },
+  {
+    "check": "exists:docs/research/track_b_aggressive/track_b_higher_return_research_report.md",
+    "passed": true,
+    "detail": "docs/research/track_b_aggressive/track_b_higher_return_research_report.md"
+  },
+  {
+    "check": "candidate_count_12",
+    "passed": true,
+    "detail": "12"
+  },
+  {
+    "check": "benchmark_count_7",
+    "passed": true,
+    "detail": "7"
+  },
+  {
+    "check": "all_candidates_prefixed",
+    "passed": true,
+    "detail": ""
+  },
+  {
+    "check": "registry_research_only",
+    "passed": true,
+    "detail": ""
+  },
+  {
+    "check": "registry_not_promoted",
+    "passed": true,
+    "detail": ""
+  },
+  {
+    "check": "manifest_no_production_write",
+    "passed": true,
+    "detail": "False"
+  },
+  {
+    "check": "track_a_baseline_present",
+    "passed": true,
+    "detail": ""
+  },
+  {
+    "check": "production_pin_unchanged",
+    "passed": true,
+    "detail": "improved_frontier_phase5_fragility_guard"
+  },
+  {
+    "check": "no_track_b_mandate_promotion",
+    "passed": true,
+    "detail": "mandate hits are research observations only"
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 171,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T02:17:06.435680+00:00",
+    "sha256": "45bf12156e38a603ffc38ec893787b7c95e405863f47f310f275d0658cb75348",
+    "url": "https://api.tiingo.com/tiingo/daily/FORG"
+  },
+  {
+    "bytes": 21857,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T02:17:07.842103+00:00",
+    "sha256": "29cbabb6a6d67875e5eca8a79d450080fd0c6aafd9024e43188910a8e86feae6",
+    "url": "https://api.tiingo.com/tiingo/daily/FORG/prices?startDate=2023-04-01&endDate=2024-10-11&resampleFreq=daily"
+  }
+]

@@ -1,0 +1,54 @@
+{
+  "benchmark": "ggg_causal_upstream_freeze_v1",
+  "created_from_batch": 45,
+  "status": "complete_upstream_implementation_freeze_research_only",
+  "decision_timestamp_rule": "A position row dated t is a decision for the t-to-t+1 holding interval.",
+  "allocator_training_rule": "At decision date t, allocator training may use sleeve returns only through t-1. The sleeve return labeled t is unavailable because it realizes t-to-t+1.",
+  "qualified_sleeves": {
+    "dual_momentum_topn": {
+      "positions_sha256": "13a78141f088e05d848e58a77fc943dc6483ec0bbe6da3ac36b2f4c238473ce2",
+      "returns_sha256": "ce5a057aa501fe5eb098e900dc404fa5c21111447b087f19c444509fd28defce"
+    },
+    "cta_trend_long_only": {
+      "positions_sha256": "c1097d6234ba3b678567a3d5174a926ee7a13b9d2b7100b05ac667679f570b55",
+      "returns_sha256": "6dd79ef9a89151fa403b16fce4031a2706af2c87d106a08fa24b4f8cf8a9be88"
+    },
+    "composite_selective_signals": {
+      "positions_sha256": "7e73d6fc7a72c997dffe7b20ba274c60da771a98c8fdd42a7fecd63d506c2cbc",
+      "returns_sha256": "00d7ca240e0a3cce8ed2ac56e82f913f5a97fee0c2802f06ea3e060c9a0feddd"
+    },
+    "taa_10m_sma": {
+      "positions_sha256": "09dc22be95a18a91ae1e191280ada79372aeaeee98b088827a1ade173d99617e",
+      "returns_sha256": "429421d4d20a7ae003a9256af21fc9cfb2e759253eaa627da69e9c6c7954e28f"
+    },
+    "composite_regime_conditioned": {
+      "positions_sha256": "8180aeefda664f4cb7f27144fc50042f91b27693fb58568d159983b630d224df",
+      "returns_sha256": "f3224e041a03fd491461dac4c7e17ad878840dcf91378ae0ae91c2ed1cfb5f92",
+      "historical_source_mode": "layer1_regime_features_fallback_when_layer2b_regime_states_are_absent",
+      "lineage_evidence": "evidence/regime_conditioned_lineage_batch_46/result.json"
+    }
+  },
+  "excluded_replacements": {
+    "composite_regime_conditioned_current_layer2b": {
+      "reason": "Post-discovery diagnostic only; does not reproduce the frozen lineage and underperforms it in the recent three-year causal GGG comparison at 50 bps.",
+      "maximum_absolute_position_difference": 0.5625,
+      "changed_rows": 979,
+      "recent_3y_50bps_ggg_cagr": 0.12250777886373965,
+      "frozen_lineage_recent_3y_50bps_ggg_cagr": 0.1288735233396061,
+      "promoted": false
+    }
+  },
+  "audit_evidence": [
+    "evidence/ggg_upstream_causality_batch_45/result.json",
+    "evidence/regime_conditioned_lineage_batch_46/result.json"
+  ],
+  "materialized_runtime_snapshot": "data/frozen_ggg_inputs_v1/manifest.json",
+  "limitations": [
+    "This is an implementation-causality freeze, not an untouched profitability validation.",
+    "The fixed ETF universe can contain survivorship and selection bias.",
+    "The source data are not proven vintage point-in-time vendor snapshots.",
+    "Historical strategy-selection contamination remains.",
+    "All five upstream implementations are reproducible and causal, but the resulting GGG history remains selected on already-seen data.",
+    "No live trading or capital deployment is authorized."
+  ]
+}

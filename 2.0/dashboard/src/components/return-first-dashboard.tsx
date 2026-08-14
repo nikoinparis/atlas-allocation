@@ -30,6 +30,7 @@ type DailyRecord = {
   rebalance: boolean;
   tradingDay: boolean;
 };
+type AssetPrice = { date: string; price: number };
 type DashboardPayload = {
   strategy: {
     id: string;
@@ -46,6 +47,7 @@ type DashboardPayload = {
   };
   records: StrategyRecord[];
   dailyRecords: DailyRecord[];
+  assetPrices: Record<string, AssetPrice[]>;
 };
 type DashboardBundle = { strategies: DashboardPayload[] };
 
@@ -152,6 +154,7 @@ function DashboardView({ data, strategies, onStrategyChange }: { data: Dashboard
   const [selectedDate, setSelectedDate] = useState(latestDay.date);
   const [calendarDate, setCalendarDate] = useState(parseDate(latestDay.date));
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [stockChart, setStockChart] = useState<{ symbol: string; endDate: string; source: "calendar" | "current" } | null>(null);
 
   const recordMap = useMemo(() => new Map(data.dailyRecords.map((row) => [row.date, row])), [data.dailyRecords]);
   const selected = recordMap.get(selectedDate) ?? latestDay;
@@ -164,6 +167,13 @@ function DashboardView({ data, strategies, onStrategyChange }: { data: Dashboard
   const selectedIndex = simulationRecords.findIndex((row) => row.date === selected.date);
   const selectedValue = selectedIndex >= 0 ? metrics.path[selectedIndex]?.value ?? capital : capital;
   const allocationChangedToday = selected.rebalance && selectedAllocation.date === selected.date;
+  const stockChartSeries = useMemo(
+    () => stockChart ? (data.assetPrices[stockChart.symbol] ?? []).filter((row) => row.date <= stockChart.endDate) : [],
+    [data.assetPrices, stockChart],
+  );
+  const stockStart = stockChartSeries[0];
+  const stockEnd = stockChartSeries.at(-1);
+  const stockChange = stockStart && stockEnd ? stockEnd.price / stockStart.price - 1 : 0;
 
   const currentHoldings = latest.holdings.filter((holding) => (holding.weight ?? 0) > 1e-8);
   const changedHoldings = selectedAllocation.holdings.filter((holding) => Math.abs(holding.change ?? 0) > 1e-8);
@@ -194,6 +204,11 @@ function DashboardView({ data, strategies, onStrategyChange }: { data: Dashboard
 
   function moveMonth(delta: number) {
     setCalendarDate(new Date(year, month + delta, 1));
+  }
+
+  function openStockChart(symbol: string, endDate: string, source: "calendar" | "current") {
+    if (!data.assetPrices[symbol]?.length) return;
+    setStockChart({ symbol, endDate, source });
   }
 
   return (
@@ -297,7 +312,7 @@ function DashboardView({ data, strategies, onStrategyChange }: { data: Dashboard
               <div className="table-row table-head"><span>HOLDING</span><span>WEIGHT</span><span>CHANGE</span><span>SIMULATED VALUE</span></div>
               {selectedAllocation.holdings.filter((holding) => (holding.weight ?? 0) > 1e-8).map((holding) => (
                 <div className="table-row" key={holding.symbol}>
-                  <span><b>{holding.symbol.replace("cash::", "")}</b><small>{classification(holding.symbol)}</small></span>
+                  <span><button className="holding-link" disabled={!data.assetPrices[holding.symbol]?.length} onClick={() => openStockChart(holding.symbol, selected.date, "calendar")}><b>{holding.symbol.replace("cash::", "")}</b><small>{classification(holding.symbol)}</small></button></span>
                   <span>{plainPct(holding.weight ?? 0)}</span>
                   <span className={(holding.change ?? 0) >= 0 ? "gain weight-transition" : "loss weight-transition"}>{!allocationChangedToday || Math.abs(holding.change ?? 0) < 1e-8 ? "—" : <>{plainPct((holding.weight ?? 0) - (holding.change ?? 0))} <i>→</i> <b>{plainPct(holding.weight ?? 0)}</b></>}</span>
                   <span>{money.format(selectedValue * (holding.weight ?? 0))}</span>
@@ -309,7 +324,7 @@ function DashboardView({ data, strategies, onStrategyChange }: { data: Dashboard
               {allocationChangedToday ? changedHoldings.map((holding) => (
                 <div className="trade-row" key={holding.symbol}>
                   <span className={`trade-badge ${changeLabel(holding).toLowerCase()}`}>{changeLabel(holding)}</span>
-                  <b>{holding.symbol.replace("cash::", "")}</b>
+                  <button className="trade-symbol" disabled={!data.assetPrices[holding.symbol]?.length} onClick={() => openStockChart(holding.symbol, selected.date, "calendar")}>{holding.symbol.replace("cash::", "")}</button>
                   <span className="trade-transition">{plainPct((holding.weight ?? 0) - (holding.change ?? 0))} <i>→</i> <b>{plainPct(holding.weight ?? 0)}</b></span>
                   <strong>{money.format(Math.abs(selectedValue * (holding.change ?? 0)))}</strong>
                 </div>
@@ -346,7 +361,7 @@ function DashboardView({ data, strategies, onStrategyChange }: { data: Dashboard
                 <div><small>HOLDINGS</small><strong>{currentHoldings.length}</strong></div>
               </div>
               <div className="allocation-list">
-                {currentHoldings.map((holding, index) => <div key={holding.symbol}><i style={{ background: holdingColors[index % holdingColors.length] }} /><b>{holding.symbol.replace("cash::", "")}</b><span>{plainPct(holding.weight ?? 0)}</span><small>{classification(holding.symbol)}</small></div>)}
+                {currentHoldings.map((holding, index) => <button key={holding.symbol} disabled={!data.assetPrices[holding.symbol]?.length} onClick={() => openStockChart(holding.symbol, latestDay.date, "current")}><i style={{ background: holdingColors[index % holdingColors.length] }} /><b>{holding.symbol.replace("cash::", "")}</b><span>{plainPct(holding.weight ?? 0)}</span><small>{classification(holding.symbol)}</small></button>)}
               </div>
             </div>
           </article>
@@ -388,6 +403,34 @@ function DashboardView({ data, strategies, onStrategyChange }: { data: Dashboard
           <div className="quick-ranges"><span>QUICK RANGE</span>{[1, 2, 3, 5].map((item) => <button key={item} onClick={() => setQuickRange(item)}>{item}Y</button>)}<button onClick={() => setQuickRange("max")}>MAX</button></div>
           <div className="scenario-result"><span>SIMULATED END VALUE</span><strong>{money.format(metrics.endValue)}</strong><small>{compactMoney.format(capital)} became {compactMoney.format(metrics.endValue)} · {pct(metrics.totalReturn)}</small></div>
           <button className="apply-button" onClick={() => setSettingsOpen(false)}>Apply scenario</button>
+        </aside>
+      </div>}
+
+      {stockChart && <div className="modal-backdrop stock-modal-backdrop" onMouseDown={(event) => event.target === event.currentTarget && setStockChart(null)}>
+        <aside className="settings-drawer stock-drawer" aria-label={`${stockChart.symbol} historical price chart`}>
+          <button className="close-button" onClick={() => setStockChart(null)}><X size={18} /></button>
+          <span className="section-kicker">HISTORICAL ADJUSTED PRICE</span>
+          <h2>{stockChart.symbol}</h2>
+          <p>{stockChart.source === "calendar" ? `Calendar cutoff: ${stockChart.endDate}` : `Latest strategy data: ${stockChart.endDate}`}. Prices after this cutoff are intentionally hidden.</p>
+          {stockEnd ? <>
+            <div className="stock-price-headline">
+              <div><span>LAST PRICE THROUGH CUTOFF</span><strong>{money.format(stockEnd.price)}</strong><small>{stockEnd.date}</small></div>
+              <div><span>AVAILABLE-HISTORY CHANGE</span><strong className={stockChange >= 0 ? "gain" : "loss"}>{pct(stockChange)}</strong><small>from {stockStart?.date}</small></div>
+            </div>
+            <div className="stock-chart-wrap">
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={stockChartSeries} margin={{ top: 12, right: 8, left: 4, bottom: 0 }}>
+                  <defs><linearGradient id="stockPriceFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#39d997" stopOpacity={0.32} /><stop offset="100%" stopColor="#39d997" stopOpacity={0} /></linearGradient></defs>
+                  <CartesianGrid vertical={false} stroke="#1b2723" />
+                  <XAxis dataKey="date" hide />
+                  <YAxis domain={["dataMin", "dataMax"]} hide />
+                  <Tooltip contentStyle={{ background: "#0a100f", border: "1px solid #26332f", borderRadius: 10 }} formatter={(value) => [money.format(Number(value)), "Adjusted price"]} labelStyle={{ color: "#789087" }} />
+                  <Area type="monotone" dataKey="price" stroke="#39d997" strokeWidth={2.2} fill="url(#stockPriceFill)" isAnimationActive={false} />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
+            <div className="stock-chart-footer"><span><small>FIRST AVAILABLE</small>{stockStart?.date}</span><span><small>CUTOFF</small>{stockChart.endDate}</span><span><small>OBSERVATIONS</small>{stockChartSeries.length}</span></div>
+          </> : <div className="stock-unavailable"><strong>No validated price history</strong><p>This holding is shown in the strategy record, but no trusted price series is available for this cutoff.</p></div>}
         </aside>
       </div>}
     </main>

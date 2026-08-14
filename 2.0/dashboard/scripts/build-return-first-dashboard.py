@@ -36,6 +36,19 @@ def clean(value: float | int | None) -> float | int | None:
     return float(value)
 
 
+def asset_price_payload(prices: pd.DataFrame) -> dict[str, list[dict[str, object]]]:
+    payload: dict[str, list[dict[str, object]]] = {}
+    for symbol in prices.columns:
+        series = pd.to_numeric(prices[symbol], errors="coerce").dropna()
+        if series.empty:
+            continue
+        payload[str(symbol)] = [
+            {"date": date.strftime("%Y-%m-%d"), "price": float(value)}
+            for date, value in series.items()
+        ]
+    return payload
+
+
 def records_from_weights(
     weights: pd.DataFrame,
     gross: pd.Series,
@@ -162,6 +175,7 @@ def incumbent_payload() -> dict[str, object]:
         },
         "records": records,
         "dailyRecords": daily_records,
+        "assetPrices": asset_price_payload(daily),
     }
 
 
@@ -240,6 +254,7 @@ def growth_payload() -> dict[str, object]:
         },
         "records": records,
         "dailyRecords": daily_records,
+        "assetPrices": asset_price_payload(daily),
     }
 
 

@@ -1,0 +1,40 @@
+{
+  "action_rows": 0,
+  "errors": [],
+  "observed_at_utc": "2026-08-14T09:09:17.262039+00:00",
+  "period": "5d",
+  "price_rows": 15,
+  "provider": "Yahoo Finance via yfinance",
+  "pulls": [
+    {
+      "completed_at_utc": "2026-08-14T09:09:16.523675+00:00",
+      "rows": 5,
+      "started_at_utc": "2026-08-14T09:09:15.459614+00:00",
+      "status": "ok",
+      "ticker": "USO"
+    },
+    {
+      "completed_at_utc": "2026-08-14T09:09:16.866327+00:00",
+      "rows": 5,
+      "started_at_utc": "2026-08-14T09:09:16.527985+00:00",
+      "status": "ok",
+      "ticker": "XLE"
+    },
+    {
+      "completed_at_utc": "2026-08-14T09:09:17.262039+00:00",
+      "rows": 5,
+      "started_at_utc": "2026-08-14T09:09:16.871701+00:00",
+      "status": "ok",
+      "ticker": "XLK"
+    }
+  ],
+  "python_version": "3.12.13",
+  "status": "complete",
+  "symbol_count": 3,
+  "symbols": [
+    "USO",
+    "XLE",
+    "XLK"
+  ],
+  "yfinance_version": "1.5.2"
+}

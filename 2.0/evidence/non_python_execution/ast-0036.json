@@ -1,0 +1,18 @@
+{
+  "dependency_exit_code": 101,
+  "dependency_log": "warning: resolver for the non root package will be ignored, specify resolver at the workspace root:\npackage:   /work/repository/qapro-rs/Cargo.toml\nworkspace: /work/repository/Cargo.toml\n    Updating crates.io index\n    Updating git repository `https://github.com/bertiqwerty/exmex.git`\n    Updating git repository `https://github.com/yutiansut/polars`\nerror: failed to select a version for the requirement `polars = \"=0.19.1\"`\ncandidate versions found which didn't match: 0.0.1\nlocation searched: Git repository https://github.com/yutiansut/polars?rev=1ceffe980c970794c4a299d20ca94cffe8e8ff1c#1ceffe98\nrequired by package `qapro-rs v0.1.1 (/work/repository/qapro-rs)`",
+  "dependency_network": "enabled",
+  "elapsed_seconds": 475,
+  "entry_id": "ast-0036",
+  "head_commit": "a69e978a2e38d045a64c380cc3b5c9fa08fa4903",
+  "host_mounts": false,
+  "image": "localhost/po2-rust-native:1.55-bullseye-v1",
+  "lockfile_sha256": {
+    "Cargo.lock": "71a4654986a3a6794c4c625483924b259666f01935bb063c6cf2820014dcbc70",
+    "qapro-rs/Cargo.lock": "f755b51403c37dac90dadb96a7a01559e34501a63388afc085f1e4765d598c91"
+  },
+  "repository": "yutiansut/QUANTAXIS",
+  "status": "dependency_failed",
+  "test_network": "disabled",
+  "tests": {}
+}

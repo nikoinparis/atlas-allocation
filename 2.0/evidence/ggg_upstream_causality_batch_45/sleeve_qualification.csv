@@ -1,0 +1,6 @@
+sleeve,native_equivalence_passed,prefix_invariance_passed,return_identity_passed,deterministic_rerun_passed,declared_lag_evidence_passed,unexpected_negative_shift_clean,qualified_for_frozen_causal_benchmark,decision
+dual_momentum_topn,True,True,True,True,True,True,True,freeze_as_causal_input
+cta_trend_long_only,True,True,True,True,True,True,True,freeze_as_causal_input
+composite_selective_signals,True,True,True,True,True,True,True,freeze_as_causal_input
+taa_10m_sma,True,True,True,True,True,True,True,freeze_as_causal_input
+composite_regime_conditioned,False,True,True,True,True,True,False,retain_as_unresolved_upstream_dependency

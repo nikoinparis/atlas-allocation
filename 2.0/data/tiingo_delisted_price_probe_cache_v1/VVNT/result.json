@@ -1,0 +1,20 @@
+{
+  "cik10": "0001713952",
+  "covers_first_eligible_decision": true,
+  "first_eligible_decision": "2021-01-01 00:00:00+00:00",
+  "first_price_date": "2021-01-04",
+  "issuer_name_match": true,
+  "issuer_name_score": 1.0,
+  "last_eligible_decision": "2023-01-01 00:00:00+00:00",
+  "last_price_date": "2023-01-11",
+  "price_file": "/workspace/2.0/data/tiingo_delisted_price_probe_cache_v1/VVNT/prices.csv.gz",
+  "price_rows": 510,
+  "provider_end_date": "2023-03-09",
+  "provider_exchange": "NYSE",
+  "provider_name": "Vivint Smart Home Inc - Class A",
+  "provider_start_date": "2020-01-21",
+  "sec_company_name": "VIVINT SMART HOME, INC.",
+  "status": "identity_and_start_validated",
+  "terminal": true,
+  "tiingo_symbol": "VVNT"
+}

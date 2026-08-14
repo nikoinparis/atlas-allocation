@@ -1,0 +1,79 @@
+{
+  "program": "frozen_portfolio_monte_carlo_risk_v1",
+  "predeclared_before_results": true,
+  "catalog_source": {
+    "entries": ["ast-0079", "ast-0087"],
+    "repository": "je-suis-tm/quant-trading",
+    "commit": "611b73f2c3f577ac5b28aaa19ac8c43d3236c7a5",
+    "source_files": {
+      "Monte Carlo project/Monte Carlo backtest.py": "638199202210099aab72b7c0c5474d32048ddba5a6b5cff5f71699e3cf0e5b6d",
+      "Monte Carlo project/README.md": "9ab5d3312275e7c7968f0193671dfa75aaab375cd60d77bdd2d2870120c5e5fc"
+    },
+    "integration": "independent risk-validation implementation; repository code is not executed or copied"
+  },
+  "target": {
+    "portfolio_version": "covariance_minimum_variance_v1",
+    "portfolio_manifest": "config/portfolios/covariance_minimum_variance_v1.json",
+    "forward_protocol": "config/forward/covariance_minimum_variance_v1.json",
+    "return_frequency": "weekly",
+    "cost_bps": 50,
+    "return_source": "causal reconstruction from the portfolio's frozen source snapshot and rules"
+  },
+  "production_simulation": {
+    "paths_per_method_horizon": 30000,
+    "horizons_weeks": [52, 156, 260],
+    "seed": 2026082801,
+    "methods": {
+      "source_gaussian_gbm": "repository drift equals mean log return minus half log-return variance; independent Gaussian innovations",
+      "iid_empirical": "weekly simple returns sampled independently with replacement",
+      "moving_block_13w": "circular 13-week historical blocks sampled with replacement",
+      "moving_block_13w_mean_haircut": "13-week blocks with 50 percent of a positive historical weekly arithmetic mean subtracted from every sampled week",
+      "forced_worst_13w_then_blocks": "five-year paths begin with the historically worst compounded 13-week block, followed by circular 13-week block sampling"
+    }
+  },
+  "rolling_calibration": {
+    "method": "moving_block_13w",
+    "minimum_training_weeks": 260,
+    "forecast_weeks": 52,
+    "step_weeks": 52,
+    "paths_per_origin": 5000,
+    "central_interval": 0.90,
+    "seed": 2026082802
+  },
+  "source_best_fit_diagnostic": {
+    "simulation_counts": [100, 500, 1000],
+    "primary_simulation_count": 1000,
+    "minimum_training_weeks": 260,
+    "forecast_weeks": 52,
+    "step_weeks": 52,
+    "seed": 2026082803,
+    "edge_claim_requires_accuracy": 0.55,
+    "edge_claim_requires_wilson_lower_bound": 0.50
+  },
+  "risk_thresholds": {
+    "moving_block_5y": {
+      "maximum_probability_terminal_loss": 0.25,
+      "maximum_probability_drawdown_30pct": 0.25,
+      "minimum_terminal_return_5pct": -0.35
+    },
+    "mean_haircut_5y": {
+      "maximum_probability_terminal_loss": 0.40,
+      "maximum_probability_drawdown_40pct": 0.25,
+      "minimum_terminal_return_5pct": -0.50
+    },
+    "forced_crash_5y": {
+      "minimum_probability_recover_initial_wealth": 0.60,
+      "maximum_probability_terminal_loss": 0.45
+    },
+    "calibration": {
+      "minimum_terminal_90pct_coverage": 0.75,
+      "minimum_drawdown_90pct_coverage": 0.75
+    }
+  },
+  "interpretation": {
+    "purpose": "risk estimation and model falsification, not price prediction or alpha generation",
+    "source_best_fit_path": "diagnostic only and never used for allocation",
+    "promotion_effect": "cannot approve live trading or complete the untouched forward clock",
+    "execution_enabled": false
+  }
+}

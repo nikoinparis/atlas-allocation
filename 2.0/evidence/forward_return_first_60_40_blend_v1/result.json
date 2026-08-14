@@ -1,0 +1,14 @@
+{
+  "base_weight": 0.6,
+  "candidate": "candidate-return-first-60-40-forward-v1",
+  "deterministic": true,
+  "full_50bps_cagr": 0.12597434243865036,
+  "full_50bps_drawdown": -0.4409750125585016,
+  "hindsight_ceiling_weight": 0.4,
+  "holdout_50bps_cagr": 0.416593220797705,
+  "holdout_50bps_drawdown": -0.15825384743697135,
+  "holdout_50bps_sharpe": 1.7096851524165346,
+  "live_trading_enabled": false,
+  "retrospective_research_only": true,
+  "weights_sum_to_one": true
+}

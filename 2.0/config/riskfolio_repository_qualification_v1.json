@@ -1,0 +1,34 @@
+{
+  "program": "riskfolio_repository_qualification_v1",
+  "predeclared_before_runtime_results": true,
+  "catalog_entry": "ast-0185",
+  "repository": {
+    "name": "dcajasn/Riskfolio-Lib",
+    "url": "https://github.com/dcajasn/Riskfolio-Lib",
+    "commit": "632a9e48fbaf2b9f8e83864a492332364b6ed32c",
+    "git_tree": "e75aad11c4483558d1dadd64481aea00af2768c2",
+    "declared_version": "7.3.0",
+    "license": "BSD-3-Clause",
+    "license_sha256": "7f7a68d261604e432e818993f92b74b636c632e31f207730dd189267044aa5e6"
+  },
+  "isolation": {
+    "runtime": "Podman",
+    "base_image": "python:3.12-bookworm",
+    "network_during_tests": false,
+    "project_data_mounted": false,
+    "credentials_mounted": false,
+    "live_trading_enabled": false
+  },
+  "qualification_checks": {
+    "install_from_pinned_source": true,
+    "import_and_version": true,
+    "all_seven_upstream_tests": true,
+    "free_solver_availability": ["CLARABEL", "SCS"],
+    "drawdown_risk_measures": ["MDD", "CDaR", "EDaR", "UCI"],
+    "long_only_weights_finite_nonnegative_and_sum_to_one": true,
+    "same_input_repeat_deterministic_within_1e-8": true,
+    "future_return_perturbation_does_not_change_prior_weights": true
+  },
+  "qualification_rule": "All checks must pass before Riskfolio-Lib may be used in a separately predeclared portfolio-performance experiment.",
+  "profitability_claimed_by_qualification": false
+}

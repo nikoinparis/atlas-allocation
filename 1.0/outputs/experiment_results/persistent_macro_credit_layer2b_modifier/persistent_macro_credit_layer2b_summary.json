@@ -1,0 +1,24 @@
+{
+  "sprint": "persistent_macro_credit_layer2b_modifier",
+  "date": "2026-06-06",
+  "production_pin": "improved_frontier_phase5_fragility_guard",
+  "overall_verdict": "RESEARCH-ONLY",
+  "baseline_sharpe": 0.9542,
+  "baseline_ann_return": 0.0718,
+  "baseline_max_dd": -0.116,
+  "baseline_nm_sharpe": 1.2825,
+  "baseline_nm_slow_sharpe": 2.0069,
+  "n_candidates": 10,
+  "promote_count": 0,
+  "research_only_count": 10,
+  "drop_count": 0,
+  "nm_improved_count": 10,
+  "best_variant": "D_nm_slow_fc|act2_deact2_hold2|offense_budget|int10pct",
+  "best_sharpe_delta": 0.0145,
+  "best_nm_slow_sharpe": 2.0131,
+  "top3_candidates": [
+    "D_nm_slow_fc|act2_deact2_hold2|offense_budget|int10pct",
+    "D_nm_slow_fc|act2_deact2_hold4|offense_budget|int10pct",
+    "E_nm_slow_credit_fc|act2_deact2_hold4|offense_budget|int10pct"
+  ]
+}

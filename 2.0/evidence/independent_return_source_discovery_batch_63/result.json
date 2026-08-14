@@ -1,0 +1,23 @@
+{
+  "batch": 63,
+  "best_point_blend": "blend::trend_consistency_top3::0.6",
+  "best_point_trailing_1y_cagr": 0.3544630028876561,
+  "best_point_trailing_2y_cagr": 0.2871382916281191,
+  "best_point_trailing_3y_cagr": 0.2410225495464844,
+  "blend_trials": 48,
+  "ceiling_trailing_3y_50bps_cagr": 0.2054746059965853,
+  "decision": "save_unqualified_independent_return_ceiling_for_confirmation",
+  "deterministic": true,
+  "forward_clock_started": false,
+  "generated_at_utc": "2026-08-12T23:29:15.051680+00:00",
+  "leverage_used": false,
+  "live_trading_enabled": false,
+  "maximum_prefix_weight_difference": 0.0,
+  "prefix_invariance_pass": true,
+  "qualified_blends": 0,
+  "qualified_standalone_sources": 6,
+  "research_ceiling_blend": "blend::trend_consistency_top3::0.6",
+  "retrospective_research_only": true,
+  "selected_blend": null,
+  "standalone_sources": 16
+}

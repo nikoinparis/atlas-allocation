@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 215,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T04:01:41.362333+00:00",
+    "sha256": "e3d42f63c309253012195551ec23e9fac7f83890f14f0b1e08116b4b3c44e778",
+    "url": "https://api.tiingo.com/tiingo/daily/TWTR"
+  },
+  {
+    "bytes": 424663,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T04:01:43.652764+00:00",
+    "sha256": "b26efe0e5a62dd0c8929c035d3bd35d5b66e527ee35775271ca22187dd596eac",
+    "url": "https://api.tiingo.com/tiingo/daily/TWTR/prices?startDate=2015-04-01&endDate=2023-10-11&resampleFreq=daily"
+  }
+]

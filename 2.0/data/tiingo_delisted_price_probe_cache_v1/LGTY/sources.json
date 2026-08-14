@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 911,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T10:47:30.742963+00:00",
+    "sha256": "90e4fcdf0b6fb9c86f5c2f46b000bfd7fa03bcc82820d3c4ae222dc8824d6907",
+    "url": "https://api.tiingo.com/tiingo/daily/LGTY"
+  },
+  {
+    "bytes": 805457,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T10:47:32.575932+00:00",
+    "sha256": "6b26a31b2376351b1d8447e73be9a9db19adbd9767ce43847416b5e75e3121f2",
+    "url": "https://api.tiingo.com/tiingo/daily/LGTY/prices?startDate=2012-04-01&endDate=2026-04-11&resampleFreq=daily"
+  }
+]

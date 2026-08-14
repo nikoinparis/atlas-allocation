@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 199,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T02:17:20.346319+00:00",
+    "sha256": "199f89e662a9a933d97184851df3e2543f13d21f25c93c2113751e972a3c16ee",
+    "url": "https://api.tiingo.com/tiingo/daily/XM"
+  },
+  {
+    "bytes": 13249,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T02:17:21.638979+00:00",
+    "sha256": "1c358a5560e1268a8b74c0570fa52ff23858236ab09afff697cf283a0953da01",
+    "url": "https://api.tiingo.com/tiingo/daily/XM/prices?startDate=2023-04-01&endDate=2024-07-11&resampleFreq=daily"
+  }
+]

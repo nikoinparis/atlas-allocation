@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 353,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T10:48:23.152078+00:00",
+    "sha256": "a30a8cd2b8d13390f9d695ea3b463c0547789b18b10dfbba023c6d507790558d",
+    "url": "https://api.tiingo.com/tiingo/daily/BRY"
+  },
+  {
+    "bytes": 211265,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T10:48:24.774296+00:00",
+    "sha256": "e9df415c12a250f1fb50d61570b17126543308b29ca38329f0557ea506612b20",
+    "url": "https://api.tiingo.com/tiingo/daily/BRY/prices?startDate=2022-07-01&endDate=2026-04-11&resampleFreq=daily"
+  }
+]

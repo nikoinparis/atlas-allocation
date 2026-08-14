@@ -1,0 +1,20 @@
+{
+  "cik10": "0001764925",
+  "covers_first_eligible_decision": false,
+  "first_eligible_decision": "2021-04-01 00:00:00+00:00",
+  "first_price_date": "2021-07-22",
+  "issuer_name_match": false,
+  "issuer_name_score": 0.2702702702702703,
+  "last_eligible_decision": "2022-07-01 00:00:00+00:00",
+  "last_price_date": "2021-07-27",
+  "price_file": "/workspace/2.0/data/tiingo_delisted_price_probe_cache_v1/WORK/prices.csv.gz",
+  "price_rows": 4,
+  "provider_end_date": "2021-07-27",
+  "provider_exchange": null,
+  "provider_name": "WORKFLOW MANAGEMENT INC",
+  "provider_start_date": "2021-07-22",
+  "sec_company_name": "SLACK TECHNOLOGIES, INC.",
+  "status": "rejected_name_mismatch_or_ticker_reuse",
+  "terminal": true,
+  "tiingo_symbol": "WORK"
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 407,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T10:47:33.886489+00:00",
+    "sha256": "a2fde90789d8ae7330d0faeb28ca5747236f405e061b7d013aff215ba7bd4bd2",
+    "url": "https://api.tiingo.com/tiingo/daily/CTRA"
+  },
+  {
+    "bytes": 890311,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T10:47:35.712776+00:00",
+    "sha256": "fc20c797893d22a982c9324abe0cb7c109c7335ca45b643e487d689710bedc2f",
+    "url": "https://api.tiingo.com/tiingo/daily/CTRA/prices?startDate=2012-04-01&endDate=2026-04-11&resampleFreq=daily"
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 678,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T04:01:56.946371+00:00",
+    "sha256": "bf204029d088c95e2a495d0bc0bedfa00ecdbc911076f543012375284bb68e7d",
+    "url": "https://api.tiingo.com/tiingo/daily/IIN"
+  },
+  {
+    "bytes": 172696,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T04:01:58.563130+00:00",
+    "sha256": "4ec7053da491a84c5f1d67237455b7e9f5fb2f107bc7780659eb8be21a2eebc9",
+    "url": "https://api.tiingo.com/tiingo/daily/IIN/prices?startDate=2019-04-01&endDate=2023-07-11&resampleFreq=daily"
+  }
+]

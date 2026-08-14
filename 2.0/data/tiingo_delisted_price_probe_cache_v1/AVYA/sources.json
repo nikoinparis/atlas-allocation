@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 182,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T02:16:55.349606+00:00",
+    "sha256": "204888c5c4762e9c7f1392f657598a75c124c18b3112234bd614add9ec92a4b0",
+    "url": "https://api.tiingo.com/tiingo/daily/AVYA"
+  },
+  {
+    "bytes": 2,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T02:16:56.607263+00:00",
+    "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "url": "https://api.tiingo.com/tiingo/daily/AVYA/prices?startDate=2020-01-01&endDate=2024-10-11&resampleFreq=daily"
+  }
+]

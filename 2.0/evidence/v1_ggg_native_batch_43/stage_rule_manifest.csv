@@ -1,0 +1,7 @@
+stage,role,rule
+raw_hrp_sleeve_weights,Monthly HRP allocation across six active sleeves,156-week trailing sleeve-return window; sample covariance; long-only HRP
+post_state_tilt_sleeve_weights,State-conditioned sleeve risk budget,phase_ddd_confirmed_near_exclude_dual
+post_layer3_expression_sleeve_weights,Optional Layer 3 expression,none; exact identity for GGG
+post_overlay_pre_lookthrough_sleeve_weights,"Risk, regime, smoothing, and cash overlay",good_state_fragile_expression; sleeve speed 0.40; rerisk 0.80; conservative hybrid overlay; target-vol ceiling 1.00; regime-confidence boost
+final_sleeve_weights,Weekly held sleeve allocation,Carry the most recent rebalance allocation; exact identity from post-overlay for GGG
+final_etf_weights,Look through sleeve holdings to 35 ETFs,Broad offense except recovery_confirmed drops PDBC and DBA; aggregate sleeves and residual cash in BIL

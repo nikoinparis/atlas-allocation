@@ -1,0 +1,4 @@
+source,acquisition_status,latest_observation,role,connected
+Cboe VIX/VIX3M/VIX6M,complete,2026-08-11,exact lineage continuation after frozen cutoff,True
+FRED,partial,2026-08-11,supplemental research only; frozen formula had no macro columns,False
+Google Trends via pytrends,complete,,required exact-lineage fear component,True

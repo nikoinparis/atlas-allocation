@@ -1,0 +1,20 @@
+{
+  "cik10": "0001212458",
+  "covers_first_eligible_decision": true,
+  "first_eligible_decision": "2014-04-01 00:00:00+00:00",
+  "first_price_date": "2014-04-01",
+  "issuer_name_match": true,
+  "issuer_name_score": 1.0,
+  "last_eligible_decision": "2022-10-01 00:00:00+00:00",
+  "last_price_date": "2021-08-31",
+  "price_file": "/workspace/2.0/data/tiingo_delisted_price_probe_cache_v1/PFPT/prices.csv.gz",
+  "price_rows": 1869,
+  "provider_end_date": "2021-08-31",
+  "provider_exchange": "NASDAQ",
+  "provider_name": "Proofpoint Inc",
+  "provider_start_date": "2012-04-20",
+  "sec_company_name": "PROOFPOINT INC",
+  "status": "identity_and_start_validated",
+  "terminal": true,
+  "tiingo_symbol": "PFPT"
+}

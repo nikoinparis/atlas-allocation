@@ -1,0 +1,37 @@
+{
+  "program": "v1_to_v2_equivalence_audit_v1",
+  "predeclared_before_migration_audit_results": true,
+  "source": {
+    "directory": "../1.0",
+    "candidate": "improved_frontier_phase5_fragility_guard",
+    "base_candidate": "improved_phaseggg_confirmed_only_robust_offense",
+    "read_only": true
+  },
+  "purpose": "Reproduce and audit the Version 1 production pin inside Version 2 before attempting any improvement.",
+  "reporting_priority": {
+    "primary_metric": "trailing_3_year_annual_return",
+    "primary_cost_bps_per_one_way_turnover": 50.0,
+    "recent_windows_years": [1, 2, 3, 5],
+    "cost_sensitivity_bps": [10.0, 50.0, 100.0],
+    "full_history_role": "secondary_context"
+  },
+  "phase_0_read_only_gates": {
+    "all_required_files_present_and_hashed": true,
+    "saved_weights_finite_nonnegative_and_sum_to_one": true,
+    "saved_10bps_net_returns_reconstruct_from_gross_and_turnover": true,
+    "existing_v1_internal_reproduction_passed": true,
+    "metric_conventions_explicitly_separated": true
+  },
+  "later_equivalence_gates": {
+    "v2_native_weekly_weights_max_abs_difference": 1e-10,
+    "v2_native_weekly_net_returns_max_abs_difference": 1e-10,
+    "causal_feature_lineage_complete": true,
+    "same_date_features_only_fund_next_week_returns": true,
+    "all_parameter_selection_dates_documented": true,
+    "survivorship_and_data_revision_limitations_documented": true,
+    "update_through_latest_frozen_v2_snapshot_only_after_equivalence": true
+  },
+  "promotion_rule": "Phase 0 cannot promote anything. Version 1 becomes the Version 2 incumbent only after exact native equivalence and the causal lineage audit pass.",
+  "version_1_files_may_be_modified": false,
+  "live_trading_enabled": false
+}

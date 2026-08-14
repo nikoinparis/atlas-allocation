@@ -1,0 +1,73 @@
+{
+  "artifacts": {
+    "allocation_history.csv": {
+      "bytes": 265674,
+      "sha256": "dd52965a5c2b0cf33f1dd82a1a823f1d94250c22e1efeaf3d30331597eda9e6d"
+    },
+    "estimation_sensitivity.csv": {
+      "bytes": 20401,
+      "sha256": "789034ca44c9d3fa7af3cbd0a408888e706dead3edd80be00019d8c5af92b64a"
+    },
+    "method_return_correlations.csv": {
+      "bytes": 2023,
+      "sha256": "4044ddb4fb41a9414d61a2af0a4650f10873447baf6b3466e3d87d4d4ec20be4"
+    },
+    "method_scoreboard.csv": {
+      "bytes": 5816,
+      "sha256": "4d0ca9d289a0b023f16005333ec9a4fbe30449832dcc6b6505308ff82d2b6c86"
+    }
+  },
+  "batch": "covariance_portfolios_batch_06",
+  "development_selected_candidate_id": "portfolio-54d99427e079f726",
+  "development_selected_method": "minimum_variance",
+  "duplicate_primary_method_pairs": [
+    {
+      "correlation": 1.0,
+      "left": "inverse_volatility",
+      "right": "maximum_diversification"
+    }
+  ],
+  "generated_at_utc": "2026-08-08T23:44:27.917809+00:00",
+  "limitations": [
+    "All results are retrospective; no Batch 06 method has an untouched 52-week forward record.",
+    "Only two robust strategy families are available, so HRP cannot form a meaningful hierarchy.",
+    "The free ETF universe is not survivorship-safe.",
+    "Covariance shrinkage and lookbacks reduce but cannot eliminate estimation error.",
+    "Volatility targeting is unlevered and holds residual exposure in explicit cash."
+  ],
+  "methods_tested": [
+    "equal_weight",
+    "inverse_volatility",
+    "minimum_variance",
+    "maximum_diversification",
+    "hrp_two_sleeve",
+    "equal_weight_vol_target_10"
+  ],
+  "primary_method_count": 6,
+  "rules_fixed_before_results": {
+    "costs_bps": [
+      10.0,
+      50.0
+    ],
+    "covariance_lookback_weeks": 104,
+    "decision_frequency": "monthly",
+    "diagonal_shrinkage": 0.25,
+    "maximum_leverage": 1.0,
+    "maximum_sleeve_weight": 0.8,
+    "maximum_underlying_asset_weight": 0.35,
+    "minimum_observations": 52,
+    "sensitivity_lookbacks": [
+      52,
+      104,
+      156
+    ],
+    "sensitivity_shrinkage": [
+      0.0,
+      0.25,
+      0.5
+    ],
+    "volatility_target": 0.1
+  },
+  "sensitivity_configuration_count": 45,
+  "source_snapshot_id": "20260808T212827Z-de103c2e063d6c4a"
+}

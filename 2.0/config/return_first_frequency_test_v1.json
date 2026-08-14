@@ -1,0 +1,33 @@
+{
+  "program": "return_first_frequency_test_v1",
+  "training_end": "2023-08-04",
+  "data_bundle": "ggg_causal_v2_027530550388432a",
+  "monthly_incumbent": "evidence/forward_return_first_60_40_blend_v1/frozen_weights.csv",
+  "breadth_component": "evidence/return_confirmation_diversification_batch_64/selected_or_best_weights.csv",
+  "formula": {
+    "base_weight": 0.6,
+    "base_xlk_weight": 0.7,
+    "base_hgb_weight": 0.3,
+    "rank_consensus_weight": 0.4,
+    "rank_top_n": 1,
+    "rank_minimum_score": 0.0,
+    "rank_method": "score_inverse_volatility",
+    "hgb_minimum_weekly_training_rows": 240,
+    "hgb_label_horizon_weeks": 4,
+    "hgb_seed": 20260815
+  },
+  "versions": {
+    "monthly_incumbent": "exact frozen 60/40 artifact; no formula changes",
+    "weekly_full_refresh": "weekly causal HGB retraining and weekly broad-risk-on rank-consensus refresh",
+    "weekly_buffered": "weekly_full_refresh through a fixed 5% portfolio one-way no-trade band",
+    "monthly_emergency": "weekly targets executed at calendar month-end or when target one-way turnover reaches 15% or BIL changes 10%"
+  },
+  "buffer_one_way_turnover": 0.05,
+  "emergency_one_way_turnover": 0.15,
+  "emergency_bil_change": 0.1,
+  "cost_bps": [0, 50, 100, 200],
+  "additional_execution_delays_weeks": [1, 2],
+  "prefix_cutoffs": ["2026-04-10", "2026-07-31"],
+  "research_only": true,
+  "live_trading_enabled": false
+}

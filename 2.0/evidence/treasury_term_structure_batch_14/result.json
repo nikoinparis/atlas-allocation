@@ -1,0 +1,63 @@
+{
+  "artifacts": {
+    "scoreboard.csv": {
+      "bytes": 11167,
+      "sha256": "e7fe6122bfdc59ac4d8213181e131a16524451624b584b1371e176fd8b13bba9"
+    },
+    "selected_returns_100bps.csv": {
+      "bytes": 142633,
+      "sha256": "c39828f530e9a24b1b13c5b988e71f2af18c076e00a269319156bcc751df9c8e"
+    },
+    "selected_returns_10bps.csv": {
+      "bytes": 141425,
+      "sha256": "d07d71280d12b12def31c6b501d8fc4e14c039eef673d6342b0bde7c05d60316"
+    }
+  },
+  "batch": 14,
+  "both_later_windows_positive_at_100bps": false,
+  "correlation_observations": 1126,
+  "correlation_to_frozen_winner_10bps": 0.0164635722501828,
+  "costs_bps": [
+    10.0,
+    50.0,
+    100.0
+  ],
+  "curve_snapshot_id": "20260809T023724Z-40d06905b5bc9b05",
+  "development_selected_method": "slope_regime",
+  "etf_snapshot_id": "20260809T002313Z-0d8632e2cf759918",
+  "forward_clock_started": false,
+  "generated_at_utc": "2026-08-09T02:39:20.119507+00:00",
+  "limitations": [
+    "ETF adjusted-price history comes from a current free snapshot and may contain later revisions.",
+    "Treasury observations are publication-date lagged, but the official feed does not expose pre-acquisition revision vintages.",
+    "The three ETFs were chosen with hindsight and do not constitute a survivorship-safe universe.",
+    "A yield-plus-roll proxy is not a futures contract term-structure backtest.",
+    "No result is approved for live trading or guaranteed to make money."
+  ],
+  "methods_tested": [
+    "equal_weight",
+    "carry_roll",
+    "slope_regime"
+  ],
+  "multiple_testing_adjusted_oos_bootstrap_at_100bps": {
+    "annual_return_lower_bound": -0.06371805987324031,
+    "block_weeks": 13,
+    "challenger_count": 2,
+    "familywise_confidence": 0.95,
+    "pass": false,
+    "samples": 10000
+  },
+  "program_sha256": "b0f2e0282d7c52c42416ba081f1792b5a7025a6fdfd1a0d5253ae130b546161e",
+  "selection_rule": "highest 2003-2015 Sharpe at 10 bps among the two predeclared challengers",
+  "third_sleeve_promoted": false,
+  "track": "official_treasury_term_structure",
+  "weekly_price_audit": {
+    "completed_weeks": 1232,
+    "friday_label_uses_last_available_observation": true,
+    "missing_cells": 0,
+    "source_daily_rows_selected": 3696,
+    "symbols": 3,
+    "weekly_end": "2026-08-07",
+    "weekly_start": "2003-01-03"
+  }
+}

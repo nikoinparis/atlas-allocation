@@ -1,0 +1,81 @@
+{
+  "cboe": {
+    "latest": "2026-08-11",
+    "rows": 18178,
+    "series": 3,
+    "status": "complete"
+  },
+  "collector": "free_regime_collector_v1",
+  "files": {
+    "cboe_observations.csv": {
+      "bytes": 2324338,
+      "sha256": "cee079c56c5938f7f996832abdd299ccc843d4fcfafaf213c01b4e8b9cd5c9b6"
+    },
+    "fred_observations.csv": {
+      "bytes": 3862938,
+      "sha256": "480454449c981bf5c14d4df1b0c4f7b2ef2539b83a8e743c21dcde62b02d16c3"
+    },
+    "google_trends_raw.csv": {
+      "bytes": 5778,
+      "sha256": "ecdbb216848dd4d6534f317093e9d0bd01380cd6b4bfdcbea9ab08fc372400ed"
+    },
+    "raw_cboe_VIX.csv": {
+      "bytes": 471391,
+      "sha256": "a34aabce269632f30904cf482986dd50b6d4cf51f2203dc51a0a9f460f3c90b2"
+    },
+    "raw_cboe_VIX3M.csv": {
+      "bytes": 216724,
+      "sha256": "594d774564e55e072dc9a24e528a42412b8a0861d6eb2cb23a3c3a27fed6390f"
+    },
+    "raw_cboe_VIX6M.csv": {
+      "bytes": 238756,
+      "sha256": "e690f7ebe327fdc6af6f79ba82756a6564d30645331ac36b608c76d240b06ce9"
+    },
+    "raw_fred_BAMLH0A0HYM2.csv": {
+      "bytes": 12686,
+      "sha256": "b6d00874d2187ec4c3c46dbe7de1bf86e17209a9d7b62e51a139ac9c2c5a3b49"
+    },
+    "raw_fred_DGS3MO.csv": {
+      "bytes": 186039,
+      "sha256": "fc310262b97c5a7115329ca9e6a13e88c7e08c116834d754c2b0afd5a5a52da6"
+    },
+    "raw_fred_DTWEXBGS.csv": {
+      "bytes": 103745,
+      "sha256": "9d497df04e71631f5e205a9b5144dad62c7dcd2904c4d7139864574cc42e1798"
+    },
+    "raw_fred_FEDFUNDS.csv": {
+      "bytes": 13927,
+      "sha256": "8c320a5e17fc8f0b41a42b537309f261371f7926563f829411af4a9358a4db44"
+    },
+    "raw_fred_NFCI.csv": {
+      "bytes": 51371,
+      "sha256": "ddecf5b174c818092c92067554857b001bd56d221933d5bf5e683a921f4b036d"
+    },
+    "raw_fred_T10Y2Y.csv": {
+      "bytes": 209405,
+      "sha256": "b083a32a100d100f1819117b6603e3b6baefe30ddab9dc3f458bdce96eaa83e6"
+    }
+  },
+  "fred": {
+    "errors": [
+      {
+        "error": "404 Client Error: Not Found for url: https://fred.stlouisfed.org/graph/fredgraph.csv?id=NAPM",
+        "series_id": "NAPM"
+      }
+    ],
+    "latest": "2026-08-11",
+    "rows": 33493,
+    "series": 6,
+    "status": "partial"
+  },
+  "google": {
+    "errors": [],
+    "keywords": 4,
+    "knowledge_at_utc": "2026-08-12T09:08:51.370005+00:00",
+    "rows": 260,
+    "scaling_warning": "unofficial pytrends 0-100 values are request-window scaled and can revise when the full window is re-requested",
+    "status": "complete"
+  },
+  "observed_at_utc": "2026-08-12T09:08:51.370005+00:00",
+  "status": "complete"
+}

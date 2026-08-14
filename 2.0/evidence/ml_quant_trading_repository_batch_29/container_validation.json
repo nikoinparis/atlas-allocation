@@ -1,0 +1,48 @@
+{
+  "repository_commit": "867e8dfe628b1d0ea2af987ec6f74c32c645f63e",
+  "container_engine": "Podman 6.0.2",
+  "image": "localhost/po2-mlquant-batch29:latest",
+  "image_id": "2a2a9ec02cb8dd23f6eeeee89840dfbd4a455a52990933ea74d500623c8a7d6d",
+  "image_size_bytes": 1975473942,
+  "platform": "linux/arm64",
+  "runtime": {
+    "python": "3.11.15",
+    "pytorch": "2.13.0+cpu"
+  },
+  "upstream_tests": {
+    "passed": 97,
+    "failed": 0,
+    "duration_seconds": 40.41
+  },
+  "technical_pipeline_audit": {
+    "status": "pass",
+    "synthetic_shape": [180, 40, 213],
+    "factor_count": 213,
+    "factor_runtime_milliseconds": 4224.545,
+    "checks": [
+      "factor catalog shape and finite output",
+      "seeded synthetic-data determinism",
+      "mask isolation with 1e9 poison across five primitives",
+      "forward-label terminal boundary",
+      "lagged execution uses weights[t-1] times returns[t]",
+      "10-bps to 1-bps cost ratio equals 10"
+    ]
+  },
+  "synthetic_demo": {
+    "dates": 500,
+    "assets": 200,
+    "factors": 213,
+    "training_epochs": 8,
+    "annual_return": -0.0834,
+    "annual_volatility": 0.1719,
+    "sharpe": -0.4205,
+    "sortino": -0.6565,
+    "calmar": -0.3022,
+    "max_drawdown_magnitude": 0.2758,
+    "mean_turnover": 0.6303,
+    "cumulative_cost_drag": 0.3145,
+    "interpretation": "Engineering smoke test only. Synthetic negative performance neither proves nor disproves real-market alpha."
+  },
+  "qualification": "passed_for_isolated_research",
+  "live_trading_approved": false
+}

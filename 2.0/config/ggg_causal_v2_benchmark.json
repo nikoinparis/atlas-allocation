@@ -1,0 +1,11 @@
+{
+  "benchmark": "ggg_causal_v2",
+  "allocator_training": "exclude current row return",
+  "monthly_rebalance": "calendar-final Friday only",
+  "layer2b_transition_features": "completed transitions strictly before decision",
+  "meta_training": "full label-horizon embargo",
+  "transaction_cost_grid_bps": [10, 50, 100],
+  "primary_reporting_windows": ["trailing_1y", "trailing_2y", "trailing_3y", "post_2024", "full"],
+  "fail_closed": true,
+  "live_trading_enabled": false
+}

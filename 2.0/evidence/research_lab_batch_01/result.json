@@ -1,0 +1,357 @@
+{
+  "artifacts": {
+    "experiments.jsonl": {
+      "bytes": 951476,
+      "sha256": "fa0cc2b1db6a938829f2ceb49c9b72d937ecc17a5107e1cb41071c92ad6ac8fd"
+    },
+    "leaderboard.csv": {
+      "bytes": 246460,
+      "sha256": "088b4e18997809c27007140257e99906c4cbba3829dfaef94a1c162be72a1a5a"
+    },
+    "walk_forward_returns.csv": {
+      "bytes": 65321,
+      "sha256": "43a65eee9c92a33bfde1c62bcb077ba722983b11769a196a7838ee563a8d64bc"
+    }
+  },
+  "batch": "research_lab_batch_01",
+  "best_by_development_only": {
+    "annual_alpha_zero_rf": 0.03982794416089679,
+    "annual_tracking_error": 0.14613944420366298,
+    "beta_to_spy": 0.3094227609929374,
+    "cost_bps": 10.0,
+    "development_annual_return": 0.0829361744452759,
+    "development_annual_volatility": 0.09338987908894872,
+    "development_average_annual_turnover": 2.956035261255548,
+    "development_calmar": 0.6194592324585955,
+    "development_max_drawdown": -0.13388479838472556,
+    "development_observations": 521,
+    "development_rank": 1,
+    "development_selection_score": 1.0554010731160104,
+    "development_sharpe_zero_rf": 0.9005362650013615,
+    "development_sortino_zero_target": 1.3354171406853068,
+    "development_total_cost": 0.0296171994445027,
+    "experiment_id": "exp-3a187e9134eefe61",
+    "full_annual_return": 0.07486961934156944,
+    "full_annual_volatility": 0.09826658867756385,
+    "full_average_annual_turnover": 2.852883418530516,
+    "full_calmar": 0.3885968569390215,
+    "full_max_drawdown": -0.19266655919792464,
+    "full_observations": 1126,
+    "full_sharpe_zero_rf": 0.7845183478083995,
+    "full_sortino_zero_target": 1.1360284170888841,
+    "full_total_cost": 0.061775898639718475,
+    "fully_invested_pass": true,
+    "information_ratio": -0.2965575225432174,
+    "oos_2016_2020_annual_return": 0.05107740387726589,
+    "oos_2016_2020_annual_volatility": 0.12052916115263228,
+    "oos_2016_2020_average_annual_turnover": 3.0410352308142246,
+    "oos_2016_2020_calmar": 0.2651077804570874,
+    "oos_2016_2020_max_drawdown": -0.19266655919792486,
+    "oos_2016_2020_observations": 261,
+    "oos_2016_2020_sharpe_zero_rf": 0.4742226765358884,
+    "oos_2016_2020_sortino_zero_target": 0.6267684573131678,
+    "oos_2016_2020_total_cost": 0.01526365760081755,
+    "oos_2021_present_annual_return": 0.09571905637633127,
+    "oos_2021_present_annual_volatility": 0.09327954544967412,
+    "oos_2021_present_average_annual_turnover": 2.998437416070675,
+    "oos_2021_present_calmar": 0.7047812588942902,
+    "oos_2021_present_max_drawdown": -0.13581385028101056,
+    "oos_2021_present_observations": 293,
+    "oos_2021_present_sharpe_zero_rf": 1.0270705666480495,
+    "oos_2021_present_sortino_zero_target": 1.6839216102045047,
+    "oos_2021_present_total_cost": 0.016895041594398225,
+    "portfolio_method": "score_inverse_volatility",
+    "recipe_name": "time_series_momentum_only",
+    "signals": "tsmom_vol_scaled",
+    "smoothing_weeks": 1,
+    "top_n": 6,
+    "unpriced_exposure_events": 0,
+    "untouched_holdout": false
+  },
+  "design": {
+    "cost_bps": 10.0,
+    "decision_timing": "signals are lagged one week; monthly decisions; realization begins next week",
+    "portfolio_methods": [
+      "equal_weight",
+      "score_weighted",
+      "inverse_volatility",
+      "score_inverse_volatility"
+    ],
+    "signal_recipes": {
+      "all_five_v4": [
+        "xsmom_global",
+        "multi_mom_invvol",
+        "tsmom_vol_scaled",
+        "trend_clarity_momentum",
+        "moving_average_distance"
+      ],
+      "momentum_core": [
+        "xsmom_global",
+        "multi_mom_invvol",
+        "tsmom_vol_scaled"
+      ],
+      "moving_average_only": [
+        "moving_average_distance"
+      ],
+      "multi_momentum_only": [
+        "multi_mom_invvol"
+      ],
+      "time_series_momentum_only": [
+        "tsmom_vol_scaled"
+      ],
+      "trend_clarity_only": [
+        "trend_clarity_momentum"
+      ],
+      "trend_confirmation": [
+        "trend_clarity_momentum",
+        "moving_average_distance"
+      ],
+      "xsmom_only": [
+        "xsmom_global"
+      ]
+    },
+    "smoothing_weeks": [
+      1,
+      4,
+      8
+    ],
+    "top_n": [
+      2,
+      4,
+      6
+    ]
+  },
+  "experiment_count": 288,
+  "generated_at_utc": "2026-08-08T21:55:40.578635+00:00",
+  "limitations": [
+    "All history through 2026-08-07 was visible when this batch was designed; no result is an untouched holdout.",
+    "The current ETF list is not survivorship-safe historical membership.",
+    "Testing 288 variants creates multiple-testing risk; rankings are hypotheses, not proof of future profitability.",
+    "The walk-forward result uses chronological selection but remains retrospective research.",
+    "Only weekly liquid-ETF long-only strategies and four allocation methods are covered in this first batch."
+  ],
+  "market_data_through": "2026-08-07",
+  "preparation": {
+    "completed_weeks": 1127,
+    "friday_label_uses_last_available_observation": true,
+    "missing_cells": 1365,
+    "source_daily_rows_selected": 38080,
+    "symbols": 35,
+    "weekly_end": "2026-08-07",
+    "weekly_start": "2005-01-07"
+  },
+  "reference_patterns": [
+    {
+      "code_copied": false,
+      "pattern_used": "evaluate many parameter combinations through one consistent vector-style research path",
+      "project": "vectorbt",
+      "url": "https://github.com/polakowo/vectorbt"
+    },
+    {
+      "code_copied": false,
+      "pattern_used": "separate forecasting rules from position sizing and portfolio construction",
+      "project": "pysystemtrade",
+      "url": "https://github.com/robcarver17/pysystemtrade"
+    },
+    {
+      "code_copied": false,
+      "pattern_used": "treat portfolio optimization like model selection with chronological evaluation",
+      "project": "skfolio",
+      "url": "https://github.com/skfolio/skfolio"
+    },
+    {
+      "code_copied": false,
+      "pattern_used": "compare multiple risk-aware allocation objectives rather than assuming one weighting rule",
+      "project": "Riskfolio-Lib",
+      "url": "https://github.com/dcajasn/Riskfolio-Lib"
+    },
+    {
+      "code_copied": false,
+      "pattern_used": "make costs, look-ahead control, walk-forward testing, and parameter sweeps first-class evidence",
+      "project": "Manifold-BT",
+      "url": "https://github.com/manifoldbt/manifoldbt"
+    }
+  ],
+  "retrospective_walk_forward": {
+    "folds": [
+      {
+        "evaluation_end": "2020-12-31",
+        "evaluation_metrics": {
+          "annual_return": 0.05107740387726589,
+          "annual_volatility": 0.12052916115263228,
+          "average_annual_turnover": 3.0410352308142246,
+          "best_week": 0.09336328223730235,
+          "calmar": 0.2651077804570874,
+          "cvar_5_weekly": -0.04586613406743521,
+          "max_drawdown": -0.19266655919792486,
+          "max_drawdown_duration_weeks": 78,
+          "observations": 261,
+          "positive_week_share": 0.6168582375478927,
+          "sharpe_zero_rf": 0.4742226765358884,
+          "sortino_zero_target": 0.6267684573131678,
+          "total_cost": 0.01526365760081755,
+          "total_return": 0.284072515661832,
+          "worst_week": -0.09965563398503934,
+          "years": 5.019230769230769
+        },
+        "evaluation_start": "2016-01-01",
+        "selected_experiment_id": "exp-3a187e9134eefe61",
+        "selection_score": 1.0554010731160104,
+        "train_end": "2015-12-31",
+        "train_start": "2006-01-01",
+        "training_metrics": {
+          "annual_return": 0.0829361744452759,
+          "annual_volatility": 0.09338987908894872,
+          "average_annual_turnover": 2.956035261255548,
+          "best_week": 0.046911932297316945,
+          "calmar": 0.6194592324585955,
+          "cvar_5_weekly": -0.029199029707055294,
+          "max_drawdown": -0.13388479838472556,
+          "max_drawdown_duration_weeks": 45,
+          "observations": 521,
+          "positive_week_share": 0.5738963531669866,
+          "sharpe_zero_rf": 0.9005362650013615,
+          "sortino_zero_target": 1.3354171406853068,
+          "total_cost": 0.0296171994445027,
+          "total_return": 1.221744179628283,
+          "worst_week": -0.06428665378548734,
+          "years": 10.01923076923077
+        }
+      },
+      {
+        "evaluation_end": "9999-12-31",
+        "evaluation_metrics": {
+          "annual_return": 0.13301614955055063,
+          "annual_volatility": 0.11351639677920047,
+          "average_annual_turnover": 2.1466624383658646,
+          "best_week": 0.053345084865683914,
+          "calmar": 1.2251266890607249,
+          "cvar_5_weekly": -0.0326279574155031,
+          "max_drawdown": -0.10857338325763755,
+          "max_drawdown_duration_weeks": 60,
+          "observations": 293,
+          "positive_week_share": 0.6006825938566553,
+          "sharpe_zero_rf": 1.1580203939060711,
+          "sortino_zero_target": 1.8105724665685707,
+          "total_cost": 0.012095617200792276,
+          "total_return": 1.021154739665136,
+          "worst_week": -0.06062755322300115,
+          "years": 5.634615384615385
+        },
+        "evaluation_start": "2021-01-01",
+        "selected_experiment_id": "exp-36a0f3d51675c16f",
+        "selection_score": 0.852821116353436,
+        "train_end": "2020-12-31",
+        "train_start": "2011-01-01",
+        "training_metrics": {
+          "annual_return": 0.07640123773263285,
+          "annual_volatility": 0.10580146168879792,
+          "average_annual_turnover": 2.2092933767809626,
+          "best_week": 0.07820776245805444,
+          "calmar": 0.4133419200743921,
+          "cvar_5_weekly": -0.03668243912589751,
+          "max_drawdown": -0.18483786430101834,
+          "max_drawdown_duration_weeks": 101,
+          "observations": 521,
+          "positive_week_share": 0.6314779270633397,
+          "sharpe_zero_rf": 0.749485636334838,
+          "sortino_zero_target": 1.0424011452310435,
+          "total_cost": 0.02213542017890157,
+          "total_return": 1.0910131933420009,
+          "worst_week": -0.07599279764971793,
+          "years": 10.01923076923077
+        }
+      }
+    ],
+    "metrics": {
+      "annual_return": 0.0936464728152393,
+      "annual_volatility": 0.11687963555694002,
+      "average_annual_turnover": 2.568018573436301,
+      "best_week": 0.09336328223730235,
+      "calmar": 0.48605462829196533,
+      "cvar_5_weekly": -0.03952631458713712,
+      "max_drawdown": -0.19266655919792486,
+      "max_drawdown_duration_weeks": 78,
+      "observations": 554,
+      "positive_week_share": 0.6083032490974729,
+      "sharpe_zero_rf": 0.8252227418912915,
+      "sortino_zero_target": 1.1778271065815547,
+      "total_cost": 0.027359274801609827,
+      "total_return": 1.5953092511036462,
+      "worst_week": -0.09965563398503934,
+      "years": 10.653846153846153
+    }
+  },
+  "source_snapshot_id": "20260808T212827Z-de103c2e063d6c4a",
+  "source_snapshot_observed_at_utc": "2026-08-08T21:28:27.021963+00:00",
+  "spy_2016_present": {
+    "annual_return": 0.15064899959058908,
+    "annual_volatility": 0.16890344102493363,
+    "best_week": 0.12091529015768443,
+    "calmar": 0.47330762212302274,
+    "cvar_5_weekly": -0.054852655452745945,
+    "max_drawdown": -0.3182898236771522,
+    "max_drawdown_duration_weeks": 101,
+    "observations": 554,
+    "positive_week_share": 0.5866425992779783,
+    "sharpe_zero_rf": 0.9169422506282134,
+    "sortino_zero_target": 1.3376596900306887,
+    "total_return": 3.459394557723164,
+    "worst_week": -0.1454576227592711,
+    "years": 10.653846153846153
+  },
+  "v4_benchmark": {
+    "annual_alpha_zero_rf": 0.03798993912458879,
+    "annual_tracking_error": 0.12673755483453733,
+    "beta_to_spy": 0.5492297021312073,
+    "cost_bps": 10.0,
+    "development_annual_return": 0.09199898924994221,
+    "development_annual_volatility": 0.14153265395061498,
+    "development_average_annual_turnover": 1.796545105566219,
+    "development_calmar": 0.3504828582987963,
+    "development_max_drawdown": -0.26249212214398954,
+    "development_observations": 521,
+    "development_rank": 90,
+    "development_selection_score": 0.7809375909241835,
+    "development_sharpe_zero_rf": 0.6933168763494844,
+    "development_sortino_zero_target": 1.003393455437577,
+    "development_total_cost": 0.018000000000000002,
+    "experiment_id": "exp-fc7248702f02b421",
+    "full_annual_return": 0.09906662555414081,
+    "full_annual_volatility": 0.13814791356749975,
+    "full_average_annual_turnover": 1.9280639431616342,
+    "full_calmar": 0.37740799512374684,
+    "full_max_drawdown": -0.26249212214398965,
+    "full_observations": 1126,
+    "full_sharpe_zero_rf": 0.7537866497668546,
+    "full_sortino_zero_target": 1.0868784491599002,
+    "full_total_cost": 0.04175,
+    "fully_invested_pass": true,
+    "information_ratio": -0.12858572499619783,
+    "oos_2016_2020_annual_return": 0.07668360318376322,
+    "oos_2016_2020_annual_volatility": 0.14684478757811198,
+    "oos_2016_2020_average_annual_turnover": 2.1417624521072796,
+    "oos_2016_2020_calmar": 0.2972932515531897,
+    "oos_2016_2020_max_drawdown": -0.2579392663073736,
+    "oos_2016_2020_observations": 261,
+    "oos_2016_2020_sharpe_zero_rf": 0.5776726904454929,
+    "oos_2016_2020_sortino_zero_target": 0.7744280742725682,
+    "oos_2016_2020_total_cost": 0.010750000000000001,
+    "oos_2021_present_annual_return": 0.13683997181773844,
+    "oos_2021_present_annual_volatility": 0.13327225853911753,
+    "oos_2021_present_average_annual_turnover": 1.9522184300341299,
+    "oos_2021_present_calmar": 1.0265789238516183,
+    "oos_2021_present_max_drawdown": -0.13329707890780473,
+    "oos_2021_present_observations": 293,
+    "oos_2021_present_sharpe_zero_rf": 1.0298246524383257,
+    "oos_2021_present_sortino_zero_target": 1.620512783933239,
+    "oos_2021_present_total_cost": 0.011,
+    "portfolio_method": "equal_weight",
+    "recipe_name": "all_five_v4",
+    "signals": "xsmom_global+multi_mom_invvol+tsmom_vol_scaled+trend_clarity_momentum+moving_average_distance",
+    "smoothing_weeks": 4,
+    "top_n": 4,
+    "unpriced_exposure_events": 0,
+    "untouched_holdout": false
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "program": "ggg_layer2a_portable_v1",
+  "sleeves": [
+    "dual_momentum_topn",
+    "cta_trend_long_only",
+    "composite_selective_signals",
+    "taa_10m_sma",
+    "composite_regime_conditioned"
+  ],
+  "frozen_history_cutoff": "2026-04-10",
+  "current_monthly_schedule": "calendar final Friday only",
+  "historical_terminal_row_policy": "reproduce legacy end-of-sample row only inside frozen history",
+  "position_timing": "date-t position earns t-to-t+1 return",
+  "maximum_equivalence_difference": 1e-10,
+  "fail_closed": true,
+  "live_trading_enabled": false
+}

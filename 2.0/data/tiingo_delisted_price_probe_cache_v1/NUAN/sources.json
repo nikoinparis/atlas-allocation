@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 767,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T04:02:37.979064+00:00",
+    "sha256": "a01abab11f0e9cae29458588a6c7f8af68fae2b54c4608f405f7d691433f316c",
+    "url": "https://api.tiingo.com/tiingo/daily/NUAN"
+  },
+  {
+    "bytes": 611072,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T04:02:40.438572+00:00",
+    "sha256": "4f9fd27f207ce0a5ba2d1564d814a87d80e9367a1475112f6c6bc8c470d654b1",
+    "url": "https://api.tiingo.com/tiingo/daily/NUAN/prices?startDate=2012-04-01&endDate=2023-04-11&resampleFreq=daily"
+  }
+]

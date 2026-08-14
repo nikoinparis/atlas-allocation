@@ -1,0 +1,33 @@
+{
+  "best_benchmark": "benchmark::XLK",
+  "best_benchmark_holdout_50bps_cagr": 0.31696325328868546,
+  "best_factor": "growth",
+  "best_factor_full_50bps_cagr": 0.17507431569985155,
+  "best_factor_full_50bps_drawdown": -0.4539053136064817,
+  "best_factor_holdout_50bps_cagr": 0.3613542214847836,
+  "best_factor_holdout_50bps_drawdown": -0.2448388454946726,
+  "best_factor_holdout_50bps_sharpe": 1.5124897175366194,
+  "decision": "retain_factor_family_for_survivorship_safe_retest",
+  "diagnostic_factor_beats_best_benchmark": true,
+  "experiment": "sec_fundamental_factor_diagnostic_v1",
+  "factor_families": [
+    "growth",
+    "profitability",
+    "balance_sheet_quality",
+    "shareholder_discipline",
+    "composite"
+  ],
+  "generated_at_utc": "2026-08-13T07:05:55.204281+00:00",
+  "live_trading_enabled": false,
+  "portfolio_choice_rows": 1450,
+  "price_vintage": "20260813T070329Z-sec-pilot-prices",
+  "promotion_blockers": [
+    "current-membership universe",
+    "missing historical delisted constituents",
+    "free adjusted price history is revision-prone",
+    "pilot factors and universe selected before only a diagnostic, not an untouched confirmation"
+  ],
+  "quarterly_score_rows": 5380,
+  "sec_vintage": "20260813T065239Z-sec-pit-v1",
+  "strategy_promotion_authorized": false
+}

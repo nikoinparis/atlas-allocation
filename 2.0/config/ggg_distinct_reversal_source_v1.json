@@ -1,0 +1,53 @@
+{
+  "program": "ggg_distinct_reversal_source_v1",
+  "batch": 49,
+  "predeclared_at_utc": "2026-08-12T00:00:00Z",
+  "selection_budget": 6,
+  "source_variants": {
+    "trend_reversal_4w": {"reversal_lookback": 4, "medium_trend_lookback": 26, "sma_lookback": 43, "top_n": 4},
+    "trend_reversal_8w": {"reversal_lookback": 8, "medium_trend_lookback": 26, "sma_lookback": 43, "top_n": 4}
+  },
+  "candidates": {
+    "trend_reversal_4w_standalone": {"source": "trend_reversal_4w", "blend_weight": 1.0, "kind": "standalone"},
+    "trend_reversal_8w_standalone": {"source": "trend_reversal_8w", "blend_weight": 1.0, "kind": "standalone"},
+    "ggg_plus_reversal_4w_05": {"source": "trend_reversal_4w", "blend_weight": 0.05, "kind": "blend"},
+    "ggg_plus_reversal_4w_10": {"source": "trend_reversal_4w", "blend_weight": 0.10, "kind": "blend"},
+    "ggg_plus_reversal_4w_15": {"source": "trend_reversal_4w", "blend_weight": 0.15, "kind": "blend"},
+    "ggg_plus_reversal_8w_10": {"source": "trend_reversal_8w", "blend_weight": 0.10, "kind": "blend"}
+  },
+  "formula": {
+    "universe": ["SPY", "QQQ", "IWM", "EFA", "VEA", "VWO", "EWJ", "VNQ", "HYG", "LQD", "GLD", "PDBC", "DBA", "TLT"],
+    "eligibility": "At month-end t, require positive 26-week return and close above the 43-week SMA.",
+    "selection": "Among eligible assets, select up to four with the lowest 4- or 8-week return and equal weight them; otherwise hold BIL.",
+    "execution": "Date-t close signals determine weights that earn t-to-t+1 returns.",
+    "blend": "Fixed convex combination with causal GGG, followed by the frozen 35% risky-ETF cap."
+  },
+  "cost_bps": [10, 50, 100],
+  "primary_window": "recent_3y",
+  "secondary_window_start": "2024-01-05",
+  "prefix_cutoffs": ["2023-12-29", "2024-12-27", "2025-12-26"],
+  "standalone_gates": {
+    "minimum_recent_3y_50bps_cagr": 0.06,
+    "minimum_full_100bps_cagr": 0.02,
+    "maximum_abs_correlation_to_ggg": 0.75,
+    "maximum_recent_3y_drawdown_magnitude": 0.35
+  },
+  "blend_gates": {
+    "minimum_recent_3y_50bps_cagr_improvement": 0.005,
+    "minimum_post_2024_50bps_cagr_improvement": 0.0,
+    "maximum_full_50bps_cagr_degradation": 0.002,
+    "maximum_recent_3y_drawdown_magnitude": 0.13
+  },
+  "common_gates": {
+    "maximum_prefix_absolute_difference": 1e-10,
+    "require_determinism": true,
+    "require_snapshot_hashes": true,
+    "blend_requires_parent_standalone_pass": true
+  },
+  "decision_rule": "Only a standalone source passing all source gates may support a qualified blend. Passing remains research-only pending locked forward data.",
+  "scope_limits": [
+    "The family and all blend weights are fixed before results; no follow-up parameter sweep is allowed in this batch.",
+    "Already-observed windows are not untouched evidence.",
+    "No shorting, leverage, live trading, or capital deployment."
+  ]
+}

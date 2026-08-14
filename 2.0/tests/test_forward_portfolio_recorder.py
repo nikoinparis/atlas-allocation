@@ -1,0 +1,39 @@
+import hashlib
+import json
+import unittest
+from pathlib import Path
+
+
+class ForwardPortfolioRecorderTests(unittest.TestCase):
+    def test_current_state_is_initialized_but_has_no_post_freeze_evidence(self):
+        root = Path(__file__).resolve().parents[1]
+        output = root / "evidence/forward_covariance_minimum_variance_v1"
+        status = json.loads((output / "status.json").read_text())
+        anchor = json.loads((output / "anchor.json").read_text())
+        self.assertEqual("2026-08-07", anchor["anchor_decision_date"])
+        self.assertEqual(0, status["saved_decisions"])
+        self.assertEqual(0, status["observed_weeks"])
+        self.assertEqual(52, status["remaining_weeks"])
+        self.assertFalse(status["clock_complete"])
+        self.assertFalse(status["execution_enabled"])
+
+    def test_protocol_and_registry_preserve_non_final_status(self):
+        root = Path(__file__).resolve().parents[1]
+        protocol_path = root / "config/forward/covariance_minimum_variance_v1.json"
+        protocol = json.loads(protocol_path.read_text())
+        self.assertEqual("2026-08-14", protocol["first_eligible_decision_date"])
+        self.assertEqual("2026-08-21", protocol["first_eligible_realization_date"])
+        manifest_path = root / protocol["portfolio_manifest"]
+        self.assertEqual(
+            protocol["portfolio_manifest_sha256"],
+            hashlib.sha256(manifest_path.read_bytes()).hexdigest(),
+        )
+        registry = json.loads((root / "research_registry/portfolio_candidates.json").read_text())
+        candidate = registry["candidates"][0]
+        self.assertEqual(0, candidate["forward_clock"]["observed_weeks"])
+        self.assertFalse(candidate["final"])
+        self.assertFalse(candidate["approved_for_live_trading"])
+
+
+if __name__ == "__main__":
+    unittest.main()

@@ -1,0 +1,5 @@
+from_stage,to_stage,maximum_absolute_change,changed_rows,unchanged_rows
+raw_hrp_sleeve_weights,post_state_tilt_sleeve_weights,0.2997516967037305,577,533
+post_state_tilt_sleeve_weights,post_layer3_expression_sleeve_weights,1.1102230246251565e-16,0,1110
+post_layer3_expression_sleeve_weights,post_overlay_pre_lookthrough_sleeve_weights,0.6000000000000001,1033,77
+post_overlay_pre_lookthrough_sleeve_weights,final_sleeve_weights,0.0,0,1110

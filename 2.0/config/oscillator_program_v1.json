@@ -1,0 +1,60 @@
+{
+  "program": "repository_oscillator_program_v1",
+  "predeclared_before_results": true,
+  "catalog_source": {
+    "entry": "ast-0079",
+    "duplicate_entry": "ast-0087",
+    "repository": "je-suis-tm/quant-trading",
+    "commit": "611b73f2c3f577ac5b28aaa19ac8c43d3236c7a5",
+    "macd_source_sha256": "f99d3ea86d53590c13932bbb82a5dd6bf9897f6d915c7119b3062f2f18e7bcaa",
+    "awesome_source_sha256": "20c20276d0c2f3bc35fd287f8d1e32ee3ab54c3c4639e82a8adc949c267b3587",
+    "integration": "independent fixed-rule reimplementation; repository code is not executed or copied"
+  },
+  "data": {
+    "snapshot_id": "20260809T002313Z-0d8632e2cf759918",
+    "assets": ["SPY", "QQQ", "IWM", "EFA", "VEA", "VWO", "EWJ", "VNQ", "HYG", "LQD", "GLD", "PDBC", "DBA", "TLT"],
+    "start_date": "2005-01-03",
+    "adjusted_ohlc": "multiply raw open high low close by adjusted_close divided by raw close",
+    "signal_time": "daily close",
+    "execution_and_return": "signal from t controls adjusted-close return t to t+1",
+    "minimum_history_days": 34
+  },
+  "fixed_variants": {
+    "macd_ewm_5_34": "long when adjust-true EWM5 adjusted close is at least EWM34; repository comparison control",
+    "awesome_zero_line": "long when SMA5 adjusted median price is above SMA34 adjusted median price; primary challenger",
+    "awesome_source_saucer_overlay": "diagnostic-only repair that lets the source's otherwise overwritten saucer transitions override the zero-line state for one decision",
+    "macd_sma_10_21": "diagnostic-only standalone source/README variant",
+    "awesome_inverted": "negative control: long where primary Awesome is off",
+    "awesome_stale_1d": "negative control: primary signal delayed one additional trading day",
+    "awesome_stale_5d": "negative control: primary signal delayed five additional trading days",
+    "awesome_random_matched": "negative control: deterministic random active set with the same number of active assets per day"
+  },
+  "portfolio": {
+    "weighting": "equal weight among active eligible assets",
+    "maximum_asset_weight": 0.2,
+    "residual": "cash at zero return",
+    "leverage": false,
+    "rebalance": "daily",
+    "turnover": "half L1 change including the cash weight"
+  },
+  "frictions": {"traded_notional_cost_bps": [10, 50, 100], "primary_cost_bps": 50},
+  "evaluation": {
+    "weekly_alignment": "compound daily returns inside each frozen-core decision/realization week",
+    "later_windows": ["2016-01-01/2020-12-31", "2021-01-01/present"],
+    "paired_bootstrap_samples": 20000,
+    "paired_bootstrap_block_weeks": 13,
+    "primary_comparison": "awesome_zero_line versus macd_ewm_5_34 at 50 bps",
+    "diagnostics_do_not_select_or_promote": true
+  },
+  "promotion_gates": {
+    "awesome_beats_macd_point_estimate": "higher annual return and Sharpe with no worse maximum drawdown at 50 bps",
+    "awesome_beats_macd_uncertainty": "one-sided 95 percent paired-bootstrap lower Sharpe difference greater than zero",
+    "stress": "positive full-period return and both later windows positive at 100 bps",
+    "negative_controls": "primary Sharpe exceeds all inverted stale and matched-random controls at 50 bps",
+    "dependence": "absolute correlation no greater than 0.80 to both frozen trend v4 and frozen core",
+    "core_blend": "80/20 blend has higher Sharpe and no worse drawdown than common-period core at 50 bps, with positive paired Sharpe lower bound",
+    "survivorship_safe_universe": true,
+    "untouched_forward_weeks": 52
+  },
+  "live_trading_approved": false
+}

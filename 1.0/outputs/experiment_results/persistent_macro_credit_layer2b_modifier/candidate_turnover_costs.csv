@@ -1,0 +1,11 @@
+variant,signal,modifier,intensity,avg_weekly_turnover,ann_turnover,baseline_ann_turnover,turnover_increase_ann,ann_cost_drag
+D_nm_slow_fc|act2_deact2_hold4|offense_budget|int10pct,D_nm_slow_fc,offense_budget,0.1,0.069655,3.622042,3.504166,0.117876,0.003622
+E_nm_slow_credit_fc|act2_deact2_hold4|offense_budget|int10pct,E_nm_slow_credit_fc,offense_budget,0.1,0.069832,3.631283,3.504166,0.127117,0.003631
+D_nm_slow_fc|act2_deact2_hold2|offense_budget|int10pct,D_nm_slow_fc,offense_budget,0.1,0.069788,3.62895,3.504166,0.124784,0.003629
+D_nm_slow_fc|act2_deact2_hold4|offense_budget|int5pct,D_nm_slow_fc,offense_budget,0.05,0.069202,3.598497,3.504166,0.094331,0.003598
+D_nm_slow_fc|act2_deact2_hold4|offense_budget|int7pct,D_nm_slow_fc,offense_budget,0.075,0.069469,3.6124,3.504166,0.108234,0.003612
+D_nm_slow_fc|act2_deact2_hold2|offense_budget|int5pct,D_nm_slow_fc,offense_budget,0.05,0.069285,3.60282,3.504166,0.098654,0.003603
+E_nm_slow_credit_fc|act2_deact2_hold4|offense_budget|int7pct,E_nm_slow_credit_fc,offense_budget,0.075,0.069604,3.619389,3.504166,0.115224,0.003619
+E_nm_slow_credit_fc|act2_deact2_hold4|offense_budget|int5pct,E_nm_slow_credit_fc,offense_budget,0.05,0.069308,3.603993,3.504166,0.099827,0.003604
+D_nm_slow_fc|act2_deact2_hold2|offense_budget|int7pct,D_nm_slow_fc,offense_budget,0.075,0.069586,3.618496,3.504166,0.114331,0.003618
+D_nm_slow_fc|act2_deact2_hold4|offense_budget|int2pct,D_nm_slow_fc,offense_budget,0.025,0.069005,3.588257,3.504166,0.084091,0.003588

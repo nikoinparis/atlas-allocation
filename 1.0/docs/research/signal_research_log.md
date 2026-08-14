@@ -1,0 +1,37 @@
+# Signal Research Log
+
+Research-only inventory initialized during Renaissance R1. Existing signals are logged from the manifest, summary table, IC-by-horizon file, redundancy matrix, and incremental contribution file where available.
+
+No production pins, production portfolio artifacts, dashboard files, or live trading logic were modified.
+
+| signal_name | category | source_file | description | avg_mean_ic | avg_nw_tstat | validation_score | avg_abs_redundancy | recommendation | decay_classification | half_life_weeks | incremental_contribution | research_status |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| bab_proxy | low_beta_proxy | signal_bab.csv | ETF-level low-beta proxy using an explicit market benchmark. | -0.1177 | -4.7236 | -4.7181 | 0.1534 | weak | slow decay | inf | delta_ann_return_vs_base=0.0001; delta_sharpe_vs_base=0.1513; delta_max_drawdown_vs_base=0.0694; delta_cvar_5_vs_base=0.0108; delta_turnover_vs_base=-0.0068 | existing_signal_research_log_entry |
+| bab_proxy_asset_class_neutral | low_beta_proxy | signal_bab.csv | ETF-level low-beta proxy ranked within asset class rather than globally. | -0.0293 | -1.9376 | -1.8256 | 0.0807 | weak | slow decay | inf |  | existing_signal_research_log_entry |
+| breadth_confirmed_momentum | cross_asset_confirmation | signal_breadth_confirmation.csv | 26-4 week momentum strengthened or weakened by asset-class breadth confirmation. | 0.0344 | 1.8051 | 2.4590 | 0.3466 | strong | slow decay | inf |  | existing_signal_research_log_entry |
+| carry_proxy | carry_proxy | signal_carry.csv | Trailing 52-week ETF distribution-yield proxy ranked cross-sectionally. | -0.0200 | -1.2733 | -1.0996 | 0.1174 | weak | slow decay | inf | delta_ann_return_vs_base=-0.0082; delta_sharpe_vs_base=0.0111; delta_max_drawdown_vs_base=-0.0269; delta_cvar_5_vs_base=0.0064; delta_turnover_vs_base=-0.0165 | existing_signal_research_log_entry |
+| carry_proxy_asset_class_neutral | carry_proxy | signal_carry.csv | Trailing 52-week ETF carry proxy ranked within asset class when enough peers exist. | -0.0144 | -0.9926 | -0.8726 | 0.1188 | mixed | slow decay | inf |  | existing_signal_research_log_entry |
+| contained_recovery_quality | recovery_quality | signal_contained_recovery.csv | 13-week recovery strength scaled by 13-week volatility and penalized by distance from 26-week highs. | 0.0087 | 0.6223 | 1.1850 | 0.2800 | robust | medium decay | 3.1669 |  | existing_signal_research_log_entry |
+| google_fear_regime | conditioning_feature | regime_features.csv | Lagged Google Trends fear / sentiment feature when upstream support exists. |  |  |  |  | not_in_summary | unclear |  |  | existing_signal_research_log_entry |
+| macro_risk_score | conditioning_feature | regime_features.csv | Composite macro risk-off score mixing price and lagged external regime features. |  |  |  |  | not_in_summary | unclear |  |  | existing_signal_research_log_entry |
+| moving_average_distance | trend_quality | signal_moving_average_distance.csv | 13-week versus 52-week moving-average distance as a trend setup-quality signal. | 0.0540 | 2.7467 | 3.4896 | 0.4184 | strong | slow decay | inf |  | existing_signal_research_log_entry |
+| multi_mom_equal | price_momentum | signal_multi_horizon_mom.csv | Equal-weight blend of 13, 26, 39, and 52 week 4-skip momentum windows. | 0.0550 | 2.8977 | 3.6554 | 0.4228 | strong | slow decay | inf |  | existing_signal_research_log_entry |
+| multi_mom_invvol | price_momentum | signal_multi_horizon_mom.csv | Inverse-volatility weighted blend of 13, 26, 39, and 52 week 4-skip momentum windows. | 0.0510 | 2.6679 | 3.3919 | 0.4164 | strong | slow decay | inf |  | existing_signal_research_log_entry |
+| quality_proxy | quality_proxy | signal_quality.csv | ETF quality proxy built from inverse vol, downside semivol, drawdown frequency, and drawdown severity. | -0.0528 | -2.5575 | -2.4838 | 0.1944 | weak | slow decay | inf |  | existing_signal_research_log_entry |
+| quality_proxy_asset_class_neutral | quality_proxy | signal_quality.csv | ETF quality proxy ranked within asset class using the composite return-path stability score. | -0.0007 | -0.0693 | 0.1608 | 0.2215 | mixed | slow decay | 7.7558 |  | existing_signal_research_log_entry |
+| residual_momentum | price_momentum | signal_residual_momentum.csv | 52-4 week momentum on residual log returns after removing rolling market beta. | 0.0058 | 0.4888 | 1.1385 | 0.2151 | robust | slow decay | 7.4507 | delta_ann_return_vs_base=0.0006; delta_sharpe_vs_base=-0.0252; delta_max_drawdown_vs_base=-0.1098; delta_cvar_5_vs_base=-0.0023; delta_turnover_vs_base=-0.0029 | existing_signal_research_log_entry |
+| reversal_1w_asset_class_neutral | price_reversal | signal_reversal.csv | 1-week ETF reversal ranked within asset class. | -0.0031 | -0.4167 | -0.6107 | 0.0994 | mixed | slow decay | 256.0640 |  | existing_signal_research_log_entry |
+| reversal_1w_global | price_reversal | signal_reversal.csv | 1-week ETF reversal ranked across the whole universe. | -0.0026 | -0.2475 | -0.2474 | 0.1134 | mixed | slow decay | 27.8434 |  | existing_signal_research_log_entry |
+| reversal_4w_asset_class_neutral | price_reversal | signal_reversal.csv | 4-week ETF reversal ranked within asset class. | 0.0011 | 0.0993 | 0.4762 | 0.1227 | robust | slow decay | inf |  | existing_signal_research_log_entry |
+| reversal_4w_global | price_reversal | signal_reversal.csv | 4-week ETF reversal ranked across the whole universe. | -0.0001 | 0.0323 | 0.4753 | 0.1471 | mixed | slow decay | inf | delta_ann_return_vs_base=-0.0114; delta_sharpe_vs_base=-0.0855; delta_max_drawdown_vs_base=-0.0728; delta_cvar_5_vs_base=0.0022; delta_turnover_vs_base=0.0462 | existing_signal_research_log_entry |
+| trend_clarity_momentum | trend_quality | signal_trend_quality.csv | 52-4 week momentum weighted by 52-week trend-regression R-squared as a path-clarity proxy. | 0.0438 | 2.3298 | 3.0570 | 0.4166 | strong | slow decay | inf |  | existing_signal_research_log_entry |
+| tsmom_vol_scaled | price_momentum | signal_tsmom.csv | 52-4 week own-price momentum scaled by 26-week realized volatility. | 0.0161 | 1.0253 | 1.7271 | 0.3769 | robust | slow decay | 8.8732 |  | existing_signal_research_log_entry |
+| value_proxy | value_proxy | signal_value.csv | ETF value proxy based on 5-year moving-average gap and long-horizon price z-score. | -0.0576 | -3.1550 | -3.1546 | 0.3840 | weak | slow decay | inf |  | existing_signal_research_log_entry |
+| value_proxy_asset_class_neutral | value_proxy | signal_value.csv | ETF value proxy ranked within asset class using the composite own-history value score. | -0.0318 | -2.4371 | -2.4412 | 0.3250 | weak | slow decay | inf |  | existing_signal_research_log_entry |
+| vix_term_structure_regime | conditioning_feature | regime_features.csv | VIX level and term-structure slope regime features. |  |  |  |  | not_in_summary | unclear |  |  | existing_signal_research_log_entry |
+| xsmom_asset_class_neutral | price_momentum | signal_xsmom.csv | 52-4 week ETF momentum ranked within asset class when group size permits. | 0.0187 | 1.5066 | 2.2237 | 0.3328 | robust | slow decay | 11.6294 |  | existing_signal_research_log_entry |
+| xsmom_global | price_momentum | signal_xsmom.csv | Global 52-4 week cross-sectional ETF momentum score. | 0.0536 | 2.8324 | 3.5948 | 0.4138 | strong | slow decay | 1930.4671 |  | existing_signal_research_log_entry |
+
+## Warnings
+
+- None.

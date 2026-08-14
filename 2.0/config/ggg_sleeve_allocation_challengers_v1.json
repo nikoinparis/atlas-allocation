@@ -1,0 +1,44 @@
+{
+  "program": "ggg_sleeve_allocation_challengers_v1",
+  "batch": 48,
+  "predeclared_at_utc": "2026-08-12T00:00:00Z",
+  "benchmark": "frozen_causal_ggg",
+  "selection_budget": 6,
+  "challengers": {
+    "sleeve_momentum_26_mild": {"lookback": 26, "momentum_strength": 0.25, "sharpe_strength": 0.0, "inverse_vol_strength": 0.0},
+    "sleeve_momentum_26_assertive": {"lookback": 26, "momentum_strength": 0.50, "sharpe_strength": 0.0, "inverse_vol_strength": 0.0},
+    "sleeve_momentum_52": {"lookback": 52, "momentum_strength": 0.35, "sharpe_strength": 0.0, "inverse_vol_strength": 0.0},
+    "sleeve_sharpe_26": {"lookback": 26, "momentum_strength": 0.0, "sharpe_strength": 0.25, "inverse_vol_strength": 0.0},
+    "sleeve_sharpe_52": {"lookback": 52, "momentum_strength": 0.0, "sharpe_strength": 0.35, "inverse_vol_strength": 0.0},
+    "sleeve_momentum_lowvol_26": {"lookback": 26, "momentum_strength": 0.25, "sharpe_strength": 0.0, "inverse_vol_strength": 0.20}
+  },
+  "formula": {
+    "availability": "At decision date t, use sleeve returns only through row t-1 because row t realizes t-to-t+1.",
+    "rebalance": "Recompute cross-sleeve scores at month-end decision rows and hold the score multiplier until the next month-end.",
+    "momentum": "Compounded trailing sleeve return, cross-sectionally z-scored and clipped to [-2,2].",
+    "sharpe": "Trailing arithmetic mean divided by sample volatility, cross-sectionally z-scored and clipped to [-2,2].",
+    "inverse_vol": "Negative trailing volatility, cross-sectionally z-scored and clipped to [-2,2].",
+    "tilt": "Multiply frozen causal GGG sleeve weights by exp(weighted score), then renormalize to the unchanged risky-sleeve budget.",
+    "lookthrough": "Use frozen sleeve holdings, retain GGG state-conditional offense projection, preserve cash, and reapply the 35% ETF cap."
+  },
+  "cost_bps": [10, 50, 100],
+  "primary_window": "recent_3y",
+  "secondary_window_start": "2024-01-05",
+  "prefix_cutoffs": ["2023-12-29", "2024-12-27", "2025-12-26"],
+  "qualification_gates": {
+    "minimum_recent_3y_50bps_cagr_improvement": 0.005,
+    "minimum_post_2024_50bps_cagr_improvement": 0.0,
+    "maximum_full_50bps_cagr_degradation": 0.002,
+    "maximum_recent_3y_drawdown_magnitude": 0.13,
+    "maximum_prefix_absolute_difference": 1e-10,
+    "require_recent_sharpe_not_lower": true,
+    "require_determinism": true,
+    "require_snapshot_hashes": true
+  },
+  "decision_rule": "Passing candidates enter a research-only locked-forward shortlist. No production promotion from already-observed data.",
+  "scope_limits": [
+    "Exactly six formulas are tested; no strengths or lookbacks are optimized after seeing results.",
+    "The evaluation windows are already observed and therefore are not untouched evidence.",
+    "No live trading or capital deployment."
+  ]
+}

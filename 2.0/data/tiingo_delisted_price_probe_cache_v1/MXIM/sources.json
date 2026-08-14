@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 776,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T05:56:50.458389+00:00",
+    "sha256": "9e75523bb602cade0d38ea61ff365028244503d892954fa90b584ea5151e7b3f",
+    "url": "https://api.tiingo.com/tiingo/daily/MXIM"
+  },
+  {
+    "bytes": 590425,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T05:56:53.981327+00:00",
+    "sha256": "d24918bbbc3f5a0ab645261393645dc359fcda314cf0a282c81561f781d9f137",
+    "url": "https://api.tiingo.com/tiingo/daily/MXIM/prices?startDate=2012-04-01&endDate=2022-10-11&resampleFreq=daily"
+  }
+]

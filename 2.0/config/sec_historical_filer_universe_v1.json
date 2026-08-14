@@ -1,0 +1,42 @@
+{
+  "experiment": "sec_historical_filer_universe_v1",
+  "archive_start": "2012Q1",
+  "archive_end": "2026Q1",
+  "archive_url_template": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/{year}q{quarter}.zip",
+  "current_ticker_mapping_url": "https://www.sec.gov/files/company_tickers_exchange.json",
+  "accepted_forms": ["10-K", "10-Q", "10-K/A", "10-Q/A"],
+  "accepted_filer_statuses": ["1-LAF", "2-ACC"],
+  "membership_staleness_days": 450,
+  "decision_frequency": "quarter_end",
+  "download_workers": 3,
+  "request_timeout_seconds": 180,
+  "sic_groups": {
+    "technology": [
+      [3570, 3579],
+      [3651, 3652],
+      [3660, 3669],
+      [3670, 3679],
+      [3812, 3812],
+      [3820, 3829],
+      [3861, 3861],
+      [5045, 5045],
+      [5734, 5734],
+      [7370, 7379]
+    ],
+    "energy": [
+      [1200, 1299],
+      [1311, 1321],
+      [1381, 1389],
+      [2911, 2911],
+      [4612, 4619],
+      [5171, 5172]
+    ]
+  },
+  "universe_definition": "At each quarter end, use the latest accepted 10-K/10-Q submission strictly before the decision time. Include a CIK only when that filing's as-filed SIC belongs to a declared technology/energy group, its as-filed SEC status is Large Accelerated or Accelerated, and the filing is no more than 450 days old.",
+  "limitations": [
+    "SEC SIC ranges are a transparent sector approximation, not historical GICS classifications.",
+    "Filer status is an investability proxy, not a point-in-time market-cap or liquidity screen.",
+    "A current SEC ticker match does not establish the ticker that traded historically.",
+    "A delisting-aware return series is required before this universe can authorize strategy claims."
+  ]
+}

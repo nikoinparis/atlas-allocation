@@ -1,0 +1,17 @@
+{
+  "experiment": "sec_split_normalized_valuation_pilot_v1",
+  "sec_vintage": "20260813T065239Z-sec-pit-v1",
+  "price_vintage": "20260813T070329Z-sec-pilot-prices",
+  "training_end": "2023-08-04",
+  "top_n": 5,
+  "minimum_companies": 10,
+  "cost_bps": [50, 100, 200],
+  "families": ["earnings_yield", "free_cash_flow_yield", "sales_yield", "composite_value", "quality_at_reasonable_price"],
+  "price_for_market_cap": "raw close strictly before decision time",
+  "shares_rule": "latest point-in-time SEC shares fact, carried from fact period end to the price date only by split events on or before that price date",
+  "signal_lag": "first weekly date strictly after decision time",
+  "sector_neutral": true,
+  "current_survivor_pilot_only": true,
+  "strategy_promotion_authorized": false,
+  "live_trading_enabled": false
+}

@@ -1,0 +1,88 @@
+{
+  "artifacts": {
+    "cost_aware_decisions.csv": {
+      "bytes": 52620,
+      "sha256": "173ed11d54550e2dffaee596216d7c9f70af8b60d92ca40e700e22f2ad3ffa89"
+    },
+    "determinism_check.json": {
+      "bytes": 615,
+      "sha256": "3e1e94723d9109ee39d9d5f93906fc4a0ee900e7d3d0b14d9d58ea11f9e6bd2b"
+    },
+    "holding_buffer_audit.csv": {
+      "bytes": 75522,
+      "sha256": "93458990c542e5d2074377c5e7877492b00c64ad278366ea688e1a2d85a5978d"
+    },
+    "portfolio_scoreboard.csv": {
+      "bytes": 9690,
+      "sha256": "075d923e6004d8195f9fdae126a681465eee530e0cb7ef5dcfcc9dfa5bfc0313"
+    },
+    "primary_returns_10bps.csv": {
+      "bytes": 86307,
+      "sha256": "7aaf905fd82c01aa11d3ed274a4fbe06daf8f7ee80278e34d5630f836d8b31db"
+    },
+    "report.md": {
+      "bytes": 593,
+      "sha256": "4e0dd5828cdff6fb138e30d405dad494192f5b657397947cd9ba4a700a175016"
+    }
+  },
+  "batch": 20,
+  "confidence_calibration": {
+    "active_mean_future_rank_ic": 0.18870668459615245,
+    "active_minus_inactive_rank_ic": 0.12793220459840832,
+    "active_months": 13,
+    "block_months": 3,
+    "bootstrap_samples": 19998,
+    "eligible_months": 151,
+    "inactive_mean_future_rank_ic": 0.06077447999774413,
+    "inactive_months": 138,
+    "one_sided_95pct_lower_difference": 0.0015398618118459967,
+    "pass": true
+  },
+  "generated_at_utc": "2026-08-09T22:54:38.673083+00:00",
+  "hypothesis_is_retrospective_followup": true,
+  "limitations": [
+    "Cost-aware persistence was designed after inspecting Batch 19 and is retrospective.",
+    "Trailing realized excess is a noisy estimate of future net benefit.",
+    "The ETF universe remains survivorship-prone.",
+    "Final promotion requires untouched forward evidence under a newly frozen version."
+  ],
+  "live_trading_approved": false,
+  "paired_bootstrap_10bps": {
+    "annual_return_advantage_statistically_positive": true,
+    "block_weeks": 13,
+    "mean_annual_return_difference": 0.002295015848973786,
+    "mean_sharpe_difference": 0.017625204519131535,
+    "observations": 761,
+    "one_sided_95pct_lower_annual_return_difference": 0.0005444886259919901,
+    "one_sided_95pct_lower_sharpe_difference": 0.002619924414575925,
+    "samples": 20000,
+    "sharpe_advantage_statistically_positive": true
+  },
+  "prediction_projection_unchanged": true,
+  "program_sha256": "e837d32d445a077cce2b8a95536e85924a0bd0c4baae58c16babbbdcb3cddf44",
+  "promoted": false,
+  "promotion_gates": {
+    "all": false,
+    "allocation_turnover_not_increased": true,
+    "annual_return_100bps": true,
+    "annual_return_10bps": true,
+    "confidence_calibration_bootstrap": true,
+    "later_windows_100bps": true,
+    "maximum_drawdown_10bps": true,
+    "ml_turnover_reduced": true,
+    "paired_annual_return_10bps": true,
+    "paired_sharpe_10bps": true,
+    "sharpe_100bps": false,
+    "sharpe_10bps": true,
+    "survivorship_safe": false,
+    "untouched_forward_52w": false
+  },
+  "source_prediction_projection_sha256": "22ffd359aee292d1b1e5337d44bd9b102d8681eb2e60e902bb95e645a7032dfd",
+  "track": "cost_aware_persistent_ml_overlay",
+  "turnover_evidence": {
+    "batch19_allocation": 0.6149802890932983,
+    "buffered_ml": 7.052921107823192,
+    "original_ml": 8.348528333101815,
+    "primary_allocation": 0.16399474375821288
+  }
+}

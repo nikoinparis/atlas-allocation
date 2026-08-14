@@ -1,0 +1,20 @@
+{
+  "cik10": "0001057083",
+  "covers_first_eligible_decision": true,
+  "first_eligible_decision": "2012-04-01 00:00:00+00:00",
+  "first_price_date": "2012-04-02",
+  "issuer_name_match": false,
+  "issuer_name_score": 0.9090909090909091,
+  "last_eligible_decision": "2025-01-01 00:00:00+00:00",
+  "last_price_date": "2023-12-15",
+  "price_file": "/workspace/2.0/data/tiingo_delisted_price_probe_cache_v1/PCTI/prices.csv.gz",
+  "price_rows": 2947,
+  "provider_end_date": "2023-12-15",
+  "provider_exchange": "NASDAQ",
+  "provider_name": "PCTEL Inc",
+  "provider_start_date": "1999-08-10",
+  "sec_company_name": "PC TEL INC",
+  "status": "rejected_name_mismatch_or_ticker_reuse",
+  "terminal": true,
+  "tiingo_symbol": "PCTI"
+}

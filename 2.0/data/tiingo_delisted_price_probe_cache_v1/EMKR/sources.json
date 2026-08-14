@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 750,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T20:24:16.418790+00:00",
+    "sha256": "d4864848c2409467ce0ec08a8b7f2835636cdb1b61e90bf373daf2c9c75b9274",
+    "url": "https://api.tiingo.com/tiingo/daily/EMKR"
+  },
+  {
+    "bytes": 717995,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T20:24:18.328030+00:00",
+    "sha256": "56e719bfe6bcda8941f3298d45fd399dff8cc4d2210d41e5d814a8c1a2fc5c36",
+    "url": "https://api.tiingo.com/tiingo/daily/EMKR/prices?startDate=2012-04-01&endDate=2025-10-11&resampleFreq=daily"
+  }
+]

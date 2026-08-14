@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 728,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T07:07:26.428585+00:00",
+    "sha256": "6886d5380cc0def0b26ecc30d5e82b0076777926817296ef5af353b4d13582d8",
+    "url": "https://api.tiingo.com/tiingo/daily/AZPN"
+  },
+  {
+    "bytes": 629497,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T07:07:31.038966+00:00",
+    "sha256": "65bd7443eab8de7485e7423c93f932cdd8608faf15876a1aa387ca7779f983d3",
+    "url": "https://api.tiingo.com/tiingo/daily/AZPN/prices?startDate=2012-04-01&endDate=2023-07-11&resampleFreq=daily"
+  }
+]

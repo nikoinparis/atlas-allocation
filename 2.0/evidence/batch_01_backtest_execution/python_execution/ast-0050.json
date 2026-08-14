@@ -1,0 +1,17 @@
+{
+  "entry_id": "ast-0050",
+  "head_commit": "643f1a59fc0beb69fa8032be49e543b23c74c67d",
+  "host_mounts": false,
+  "image": "docker.io/library/python:3.12-bookworm",
+  "install_exit_code": 1,
+  "install_log": "Obtaining file:///work/repository\n  Installing build dependencies: started\n  Installing build dependencies: finished with status 'done'\n  Checking if build backend supports build_editable: started\n  Checking if build backend supports build_editable: finished with status 'done'\n  Getting requirements to build editable: started\n  Getting requirements to build editable: finished with status 'error'\n\n  error: subprocess-exited-with-error\n  \n  \u00d7 Getting requirements to build editable did not run successfully.\n  \u2502 exit code: 1\n  \u2570\u2500> [14 lines of output]\n      error: Multiple top-level packages discovered in a flat-layout: ['data', 'helm', 'tradingbot', 'exploration', 'kronos_space'].\n      \n      To avoid accidental inclusion of unwanted files or directories,\n      setuptools will not proceed with this build.\n      \n      If you are trying to create a single distribution with multiple packages\n      on purpose, you should not rely on automatic discovery.\n      Instead, consider the following options:\n      \n      1. set up custom discovery (`find` directive with `include` or `exclude`)\n      2. use a `src-layout`\n      3. explicitly set `py_modules` or `packages` with a list of names\n      \n      To find more information, look for \"package discovery\" on setuptools docs.\n      [end of output]\n  \n  note: This error originates from a subprocess, and is likely not a problem with pip.\nerror: subprocess-exited-with-error\n\n\u00d7 Getting requirements to build editable did not run successfully.\n\u2502 exit code: 1\n\u2570\u2500> See above for output.\n\nnote: This error originates from a subprocess, and is likely not a problem with pip.\nTraceback (most recent call last):\n  File \"<stdin>\", line 32, in <module>\n  File \"/usr/local/lib/python3.12/subprocess.py\", line 571, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command '['/work/venv/bin/pip', 'install', '--disable-pip-version-check', '--no-cache-dir', '-e', '.[dev,test,tests]']' returned non-zero exit status 1.",
+  "install_seconds": 5,
+  "name": "PythonTradingFramework",
+  "repository": "JustinGuese/python_tradingbot_framework",
+  "started_at": "2026-08-08T18:58:14.624900+00:00",
+  "status": "install_failed",
+  "test_exit_code": -1,
+  "test_log": "",
+  "test_network": "disabled_during_tests",
+  "test_seconds": 0
+}

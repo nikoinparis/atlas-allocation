@@ -1,0 +1,41 @@
+{
+  "program": "skfolio_repository_qualification_v1",
+  "program_sha256": "0e07aaf468e51d094afbb44472b83b263ceeb18a265fc22f3b1c3f64c2aa4f2d",
+  "catalog_entry": "ast-0184",
+  "repository": {
+    "name": "skfolio/skfolio",
+    "commit": "c06db8406385cf4bce83577d0f0710ee5a27e67e",
+    "git_tree": "a36d73aafdc4ee19e27fe5361190f9f2934c3b06",
+    "version": "0.20.1",
+    "license": "BSD-3-Clause"
+  },
+  "container": {
+    "image": "localhost/po2-skfolio:0.20.1-amd64-batch37",
+    "id": "ef0820886536527f2c62c53af776ba312f619393eb626a2bf8828c918a156a3e",
+    "size_bytes": 1662201614,
+    "network_during_tests": false,
+    "project_data_mounted": false,
+    "credentials_mounted": false
+  },
+  "upstream_tests": {
+    "entire_suite_completed": false,
+    "reason_completion_stopped": "A confirmed upstream failure already made the all-tests gate false; the remaining emulated x86 suite was stopped rather than spending additional compute that could not change the decision.",
+    "dataset_tests": {"passed": 20, "failed": 0},
+    "entropy_pooling_module_native": {"passed": 92, "failed": 2},
+    "entropy_pooling_failure_reproduced_on_x86": true,
+    "whole_suite_x86_passes_before_stop": 464,
+    "failure_scope": "Two entropy-pooling prior-view parser parameterizations reject a numeric value serialized with a zero imaginary component."
+  },
+  "qualification_gates": {
+    "pinned_source_installs": true,
+    "import_and_version": true,
+    "permissive_license": true,
+    "free_solver_available": true,
+    "all_upstream_tests_pass": false
+  },
+  "qualified": false,
+  "decision": "whole_library_not_qualified",
+  "rationale": "The predeclared whole-repository rule required every upstream test to pass. A real failure was reproduced on both native ARM and x86, so unrestricted use fails closed. A separately predeclared bounded component may be assessed independently.",
+  "profitability_tested": false,
+  "live_trading_enabled": false
+}

@@ -1,0 +1,18 @@
+number,project,source_artifact,status,reason,next_action
+1,MACD oscillator,MACD Oscillator backtest.py,tested_batch_22_control,Fixed EWM5/34 primary control and SMA10/21 diagnostic completed,Retain as benchmark evidence; not promoted
+2,Pair trading,Pair trading backtest.py,tested_rejected_batch_21,Independent causal implementation failed return cost stress and blend gates,Retain rejection evidence; do not promote
+3,Heikin-Ashi candlestick,Heikin-Ashi backtest.py,tested_batch_23,Literal and direction-corrected fixed rules tested with causal OHLC costs controls and blends,Follow Batch 23 gate decision
+4,London Breakout,London Breakout backtest.py,blocked_intraday_fx,Requires reliable timezone-correct intraday FX quotes not in current snapshot,Seek free immutable intraday source
+5,Awesome oscillator,Awesome Oscillator backtest.py,tested_batch_22,Zero-line rule and repaired source-saucer diagnostic completed with causal costs and controls,Follow Batch 22 promotion-gate decision
+6,Oil Money,Oil Money project/,deferred_new_free_data,Requires oil and petrocurrency histories outside current universe,Acquire official or immutable free sources
+7,Dual Thrust,Dual Thrust backtest.py,blocked_intraday,Daily bars cannot reproduce intraday threshold execution without ambiguity,Seek intraday source
+8,Parabolic SAR,Parabolic SAR backtest.py,tested_batch_24,Default and equity acceleration variants tested causally with costs controls and blends,Follow Batch 24 gate decision
+9,Bollinger Bands Pattern Recognition,Bollinger Bands Pattern Recognition backtest.py,tested_batch_25,Literal FX-unit and dimensionless bottom-W rules tested causally with coverage costs controls and blends,Follow Batch 25 gate decision
+10,RSI Pattern Recognition,RSI Pattern Recognition backtest.py,tested_batch_26,Threshold and literal/corrected head-shoulders RSI families tested with causal costs borrow controls and blends,Follow Batch 26 gate decision
+11,Monte Carlo project,Monte Carlo project/,tested_batch_28,Source Gaussian and best-fit diagnostics plus empirical block haircut forced-crash and rolling calibration risk tests completed,Use as risk evidence only; never as an alpha or live-trading approval
+12,Options Straddle,Options Straddle backtest.py,blocked_historical_options,Requires historical option chains and executable bid-ask quotes,Defer until a trustworthy free source exists
+13,Portfolio Optimization,external graph-theory repository,separate_repository,Not implemented in this repository and portfolio methods are already under a separate track,Review at its own catalog entry
+14,Smart Farmers,Smart Farmers project/,deferred_alternative_data,Requires agricultural supply demand and price-impact datasets,Review free official agriculture sources
+15,VIX Calculator,VIX Calculator.py,blocked_historical_options,Requires timestamped option surfaces,Defer until trustworthy data exists
+16,Wisdom of Crowds,external machine-learning repository,blocked_analyst_history,Requires point-in-time analyst forecasts and is external to this source,Review external repository and data rights separately
+17,Shooting Star,Shooting Star backtest.py,tested_batch_27,Literal-causal and normalized confirmed/unconfirmed Shooting Star variants tested with costs borrow controls and blends,Follow Batch 27 gate decision

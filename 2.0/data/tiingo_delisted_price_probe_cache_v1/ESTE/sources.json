@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 403,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T01:00:30.130232+00:00",
+    "sha256": "b1ee23717e5d57ecea428553ac334cbf35ccb455212a879bce77dd043c862eb6",
+    "url": "https://api.tiingo.com/tiingo/daily/ESTE"
+  },
+  {
+    "bytes": 470109,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T01:00:31.795619+00:00",
+    "sha256": "69387b126afc909af96490d32a4400e71550f2e4f7f8305e368c9ceb5b14e868",
+    "url": "https://api.tiingo.com/tiingo/daily/ESTE/prices?startDate=2016-04-01&endDate=2025-01-11&resampleFreq=daily"
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 708,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T04:01:37.687159+00:00",
+    "sha256": "880cb0ee55a0a49bef13432d9fe8614bd89180c1c4cc3f821daa92147a2d699a",
+    "url": "https://api.tiingo.com/tiingo/daily/MNDT"
+  },
+  {
+    "bytes": 414802,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T04:01:39.985408+00:00",
+    "sha256": "b1418ff03e30f804865fdc8f7192cf48ce432551d7bf53d16738252aa24b07fa",
+    "url": "https://api.tiingo.com/tiingo/daily/MNDT/prices?startDate=2015-04-01&endDate=2023-10-11&resampleFreq=daily"
+  }
+]

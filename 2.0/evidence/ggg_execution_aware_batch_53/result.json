@@ -1,0 +1,49 @@
+{
+  "all_deterministic": true,
+  "artifacts": {
+    "best_unqualified_candidate_weights.csv": {
+      "bytes": 413736,
+      "sha256": "a053d5c267c4864360c2e8d7b5547b9ea415a61e3deadedf8df71729dc608220"
+    },
+    "determinism.csv": {
+      "bytes": 1686,
+      "sha256": "717e1847bc2b0a199d8492fda9c833ec6fec33ae105085c32c3e8f3d324ba554"
+    },
+    "performance.csv": {
+      "bytes": 23576,
+      "sha256": "19b841f82cedbf8e53fc465696502900a3846aea8e3f6265123ef273b8a13c3d"
+    },
+    "prefix_invariance.csv": {
+      "bytes": 1535,
+      "sha256": "ac2a29d7d5627c0b50dbbe51e8236fc2c8b2a3cfb902172ab7e190b651a0f0c6"
+    },
+    "qualification.csv": {
+      "bytes": 3025,
+      "sha256": "afe58f50763c5df5bda104efc0e09b2425eb22da62b806a328e34320b4c80120"
+    }
+  },
+  "audit_comparator_recent_3y_50bps": {
+    "annual_one_way_turnover": 2.910286794545328,
+    "cagr": 0.13135807116928389,
+    "max_drawdown": -0.07474342981977533,
+    "sharpe_zero_rf": 1.57618685467098
+  },
+  "batch": 53,
+  "best_candidate": "asymmetric_entry050_exit010",
+  "candidates_evaluated": 10,
+  "decision": "no_candidate_qualified_no_forward_lock",
+  "forward_clock_blocker": "no candidate passed every predeclared gate",
+  "forward_clock_started": false,
+  "frozen_source_hashes_verified": true,
+  "generated_at_utc": "2026-08-12T04:26:24.366237+00:00",
+  "live_trading_enabled": false,
+  "manifest_sha256": "d9bb71774e8a6feae71c4192cc73a9102d2917ffe18770ee5b7146c63058dbd5",
+  "maximum_prefix_difference": 0.0,
+  "module_sha256": "67a24ddbfb0e043084d8db93878eb7347a81433847d96afc0786eab33fb58d2f",
+  "program": "ggg_execution_aware_program_v1",
+  "program_sha256": "8a373a7333f8b78dd2ab2ea837624638fb11ea595b1414020a9fa6aa5d061a54",
+  "promoted_to_production": false,
+  "research_shortlist": [],
+  "selected_forward_challenger": null,
+  "selection_budget": 10
+}

@@ -1,0 +1,75 @@
+{
+  "artifacts": {
+    "factor_dataset.csv": {
+      "bytes": 2485355,
+      "sha256": "21724f0198eb592b1f0a7a935b7d70cba8c7237916f6850c16e99c719ffe169f"
+    },
+    "holdings.csv": {
+      "bytes": 65832,
+      "sha256": "18f303d1c462834799cfad5d356c502587e4e15049f585fece31b68b61cc8ab1"
+    },
+    "monthly_rank_ic.csv": {
+      "bytes": 11400,
+      "sha256": "6a2a536df9bb6b4b021ae8131bb62e8efde67b6364eb1c2c94121d1799d6ea96"
+    },
+    "returns_10bps.csv": {
+      "bytes": 92666,
+      "sha256": "56146f325abddc7a73c2b13727dd1669c11728404090e3b3713b610014ba234c"
+    },
+    "scoreboard.csv": {
+      "bytes": 4818,
+      "sha256": "295764295e4c4bf352736b6867185fe8097bf9d2aca0e701175ff528164a72b2"
+    }
+  },
+  "batch": 16,
+  "both_later_windows_positive_at_100bps": true,
+  "correlation_observations": 1074,
+  "correlation_to_frozen_winner_10bps": 0.8172662069737585,
+  "eligible_as_ml_common_baseline": true,
+  "factor_dataset_audit": {
+    "assets_configured": 35,
+    "feature_information_lag_weeks": 1,
+    "feature_timing_violations": 0,
+    "label_horizon_weeks": 4,
+    "maximum_assets_per_decision": 35,
+    "maximum_feature_asof_date": "2026-06-26",
+    "minimum_assets_per_decision": 24,
+    "monthly_decisions": 247,
+    "rows": 8324
+  },
+  "generated_at_utc": "2026-08-09T21:01:38.931359+00:00",
+  "limitations": [
+    "The configured ETF universe was selected with hindsight and excludes dead or replaced funds.",
+    "Adjusted price history comes from a current free snapshot and can contain later revisions.",
+    "The fixed recipe was designed after seeing the broad history, so later subperiods are retrospective diagnostics rather than untouched evidence.",
+    "Factor rank IC measures cross-sectional ordering, not guaranteed portfolio profit."
+  ],
+  "live_trading_approved": false,
+  "program_sha256": "fb6d4aa55b7ec8bdf39fc0a5603423a54fdd94fafb816d5e921c1e7f3f4eddef",
+  "promoted_to_frozen_portfolio": false,
+  "rank_ic_evidence": {
+    "block_months": 3,
+    "bootstrap_samples": 10000,
+    "mean_rank_ic": 0.030890280364746912,
+    "months": 247,
+    "one_sided_95pct_lower_mean_rank_ic": -0.008756026640058326,
+    "pass": false,
+    "positive_month_share": 0.5384615384615384
+  },
+  "reason_not_promoted": "This establishes the common factor baseline for ML; the current-ETF universe is survivorship-prone and there is no untouched forward record.",
+  "source_repositories": [
+    "microsoft/qlib",
+    "initial-d/ml-quant-trading"
+  ],
+  "source_snapshot_id": "20260809T002313Z-0d8632e2cf759918",
+  "track": "cross_sectional_factor_fixed_baseline",
+  "weekly_data_audit": {
+    "completed_weeks": 1180,
+    "friday_label_uses_last_available_observation": true,
+    "missing_cells": 2041,
+    "source_daily_rows_selected": 39259,
+    "symbols": 35,
+    "weekly_end": "2026-08-07",
+    "weekly_start": "2004-01-02"
+  }
+}

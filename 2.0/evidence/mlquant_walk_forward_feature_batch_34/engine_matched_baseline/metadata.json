@@ -1,0 +1,43 @@
+{
+  "engine": "robust_cross_sectional_ml_container_v1",
+  "features": [
+    "momentum_4w",
+    "momentum_13w",
+    "momentum_26w",
+    "momentum_52w_skip_4w",
+    "moving_average_distance_13w",
+    "moving_average_distance_26w",
+    "volatility_13w",
+    "volatility_26w",
+    "downside_volatility_26w",
+    "drawdown_26w",
+    "positive_week_share_26w"
+  ],
+  "inner_trial_rows": 690,
+  "model_fit_count": 2924,
+  "numpy": "2.5.2",
+  "outer_folds": 15,
+  "python": "3.12.13",
+  "real_diagnostic_member_count": 15,
+  "rows": 3252,
+  "scikit_learn": "1.9.0",
+  "scipy": "1.18.0",
+  "seeds": [
+    101,
+    211,
+    307,
+    401,
+    503
+  ],
+  "stale_feature_fallbacks": {
+    "one_month": 1,
+    "three_month": 3
+  },
+  "variants": [
+    "real",
+    "label_shuffle",
+    "random_features",
+    "stale_1m",
+    "stale_3m"
+  ]
+}

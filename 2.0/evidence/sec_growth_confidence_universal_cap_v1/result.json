@@ -1,0 +1,19 @@
+{
+  "all_validation_checks_passed": true,
+  "created_at_utc": "2026-08-14T09:50:28.097059+00:00",
+  "experiment": "sec_growth_confidence_universal_cap_v1",
+  "live_trading_enabled": false,
+  "selection_or_promotion_authorized": false,
+  "ticker_specific_logic": false,
+  "universal_cap": true,
+  "validation": {
+    "all_numeric_results_finite": true,
+    "all_predeclared_caps_reported": true,
+    "base_and_adverse_reported": true,
+    "cap_never_increases_peak_weight": true,
+    "cost_monotonicity": true,
+    "prefix_invariance": true,
+    "signal_is_cost_invariant": true,
+    "ticker_specific_cap_logic_absent": true
+  }
+}

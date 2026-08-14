@@ -1,0 +1,23 @@
+{
+  "all_validation_checks_passed": true,
+  "best_200bps_recent_cagr": 1.1169436864213576,
+  "best_candidate": "sales_yield__top10__floor25m__exclude_split_affected__static__lb13__w0.50__50bps",
+  "best_full_50bps_cagr": 0.4381348791617814,
+  "best_recent_50bps_cagr": 1.1169436864213576,
+  "best_recent_50bps_drawdown": -0.1623429237250137,
+  "best_recent_50bps_sharpe": 2.137853578511202,
+  "candidates_beating_control_recent_and_full": 322,
+  "created_at_utc": "2026-08-14T22:00:41.861910+00:00",
+  "experiment": "sec_survivorship_valuation_overlay_search_v1",
+  "full_cagr_delta": 0.028787202000116974,
+  "live_trading_enabled": false,
+  "recent_cagr_delta": 0.06593548511041103,
+  "strategy_replacement_authorized": false,
+  "tested_paths": 3675,
+  "validation_checks": {
+    "all_allocations_bounded": true,
+    "all_costs_reported": true,
+    "all_results_finite": true,
+    "signals_shifted": true
+  }
+}

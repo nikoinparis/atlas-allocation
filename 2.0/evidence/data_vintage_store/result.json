@@ -1,0 +1,32 @@
+{
+  "claims": {
+    "corporate_actions": false,
+    "delistings": false,
+    "permanent_security_ids": false,
+    "point_in_time_prices": false,
+    "point_in_time_universe": false,
+    "vintage_revisions": false
+  },
+  "generated_at_utc": "2026-08-08T21:18:24.722537+00:00",
+  "historical_lookahead_rejection_pass": true,
+  "historical_simulation_grade": "research_only",
+  "next_required_bundle": [
+    "licensed or otherwise verified permanent security identifiers",
+    "point-in-time universe membership with knowledge timestamps",
+    "prices for active and delisted securities",
+    "split, distribution, merger, and delisting events with revision identifiers",
+    "multiple retained vintages so revisions can be detected"
+  ],
+  "production_claim_rejection_pass": true,
+  "snapshot_id": "20260415T081954Z-5c0effb962d04b1e",
+  "snapshot_integrity_pass": true,
+  "snapshot_manifest": "/Users/nicholasturangan/Documents/Portfolio Optimizer/2.0/data/vintages/20260415T081954Z-5c0effb962d04b1e/manifest.json",
+  "source_hashes": {
+    "etf_distribution_history.csv": "97c2742e2fcbbb8d5698c92dee20b22dea763a6fcf5870d65811f96fff3fa64d",
+    "universe.json": "937f981a2f5a091a08a4b715e6083358642a8b013da978a18773a55696b4f112",
+    "universe_metadata.csv": "a72f8b0f07e40d0b846d11ae75ed618c0e46009d1e02258b8b9705759012dca2",
+    "weekly_prices.csv": "22f5f570950e6b18fa77e1c058d5882c562bfac6413dc558a6bdb95372584bf3",
+    "weekly_returns.csv": "f0256bb65a9c554ab4be068b7dd37c7888c2749d168def3c9769b2dc45d0eb48",
+    "yahoo_metadata_snapshot.csv": "4c160a7d18855e79144f57c95b2e148361ba645d2a392707a1cd473ce134f655"
+  }
+}

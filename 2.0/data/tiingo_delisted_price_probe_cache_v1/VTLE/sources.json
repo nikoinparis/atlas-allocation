@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 1031,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T10:48:14.133915+00:00",
+    "sha256": "20db5f411fba8357f8f503f503367a1ef113928d7e08c8da5bab19252bc9763f",
+    "url": "https://api.tiingo.com/tiingo/daily/VTLE"
+  },
+  {
+    "bytes": 696945,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T10:48:15.941566+00:00",
+    "sha256": "4a8edb7cee6dd21ae568c6c609c4f3e0418189f911b0193c82eb41c468be7227",
+    "url": "https://api.tiingo.com/tiingo/daily/VTLE/prices?startDate=2013-04-01&endDate=2026-04-11&resampleFreq=daily"
+  }
+]

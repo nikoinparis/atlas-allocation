@@ -1,0 +1,28 @@
+{
+  "all_validation_checks_passed": true,
+  "beats_control_recent_and_full": true,
+  "chosen_allocation": 0.5,
+  "concentration_gate_passed": false,
+  "created_at_utc": "2026-08-14T22:02:23.801066+00:00",
+  "experiment": "sec_survivorship_valuation_overlay_audit_v1",
+  "full_cagr": 0.43813487916178007,
+  "full_drawdown": -0.288013507638192,
+  "live_trading_enabled": false,
+  "one_week_delay_recent_cagr": 0.9969266826626044,
+  "recent_cagr": 1.1169436864213562,
+  "recent_drawdown": -0.1623429237250139,
+  "recent_sharpe": 2.137853578511202,
+  "robust_allocations": [],
+  "severe_200bps_recent_cagr": 1.0965277290740274,
+  "strategy_replacement_authorized": false,
+  "two_week_delay_recent_cagr": 1.0460299340589967,
+  "validation_checks": {
+    "all_costs_reported": true,
+    "leave_one_out_reported": true,
+    "results_finite": true,
+    "three_allocations_reported": true,
+    "three_delays_reported": true
+  },
+  "worst_leave_one_out_company": "RACKSPACE TECHNOLOGY, INC.",
+  "worst_leave_one_out_recent_cagr": 0.8669103496224304
+}

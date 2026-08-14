@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 171,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T01:00:15.171644+00:00",
+    "sha256": "f849b03a78ae4501a4456f9eb5b962cd7f89e66fa04ec7fc33570383ebcdb6eb",
+    "url": "https://api.tiingo.com/tiingo/daily/SNPO"
+  },
+  {
+    "bytes": 64944,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T01:00:16.745546+00:00",
+    "sha256": "2abd2386f21dfa8a812db16370ecb385a5d2fb3a9ffb2b88f76c99130d0a31a2",
+    "url": "https://api.tiingo.com/tiingo/daily/SNPO/prices?startDate=2023-04-01&endDate=2025-07-11&resampleFreq=daily"
+  }
+]

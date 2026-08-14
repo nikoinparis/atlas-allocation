@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 155,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T01:00:51.871769+00:00",
+    "sha256": "0b42e3c5e5b8d06e33a30aca704892b8efdc90351d78c88e2f828791c7311cc7",
+    "url": "https://api.tiingo.com/tiingo/daily/ESMT"
+  },
+  {
+    "bytes": 44918,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T01:00:53.293626+00:00",
+    "sha256": "4733ff6ddb61443fad17448bee44ad7ff4a2649adbac9fd19869995761411127",
+    "url": "https://api.tiingo.com/tiingo/daily/ESMT/prices?startDate=2023-04-01&endDate=2025-01-11&resampleFreq=daily"
+  }
+]

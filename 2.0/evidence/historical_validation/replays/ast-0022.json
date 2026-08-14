@@ -1,0 +1,130 @@
+{
+  "elapsed_seconds": 51,
+  "entry_id": "ast-0022",
+  "error": "",
+  "head_commit": "bd5650ad213760907ec38311c5c9468819084196",
+  "host_mounts": false,
+  "network_disabled_during_replay": true,
+  "replay": {
+    "adapter": "bt",
+    "benchmark": {
+      "final_normalized_index": 796.1703045886633,
+      "periods": {
+        "development_2006_2015": {
+          "max_drawdown": -0.5518943620914529,
+          "observations": 2517,
+          "total_return": 0.9755448442340664
+        },
+        "holdout_2021_2026": {
+          "max_drawdown": -0.24496406344077715,
+          "observations": 1325,
+          "total_return": 1.0227828187693717
+        },
+        "validation_2016_2020": {
+          "max_drawdown": -0.3371727951256843,
+          "observations": 1259,
+          "total_return": 1.0485040909369308
+        }
+      },
+      "specification": "SPY adjusted-close buy and hold, normalized to 100"
+    },
+    "checks": [
+      {
+        "critical": true,
+        "name": "all_reported_equity_is_finite",
+        "passed": true
+      },
+      {
+        "critical": true,
+        "name": "higher_commissions_do_not_improve_final_equity",
+        "passed": true
+      },
+      {
+        "critical": true,
+        "name": "signal_is_lagged_one_observation",
+        "passed": true
+      }
+    ],
+    "critical_pass": true,
+    "fixture_first_date": "2006-01-03",
+    "fixture_last_date": "2026-04-14",
+    "fixture_rows": 5101,
+    "interpretation_limit": "component robustness only; adjusted-close data does not validate executable fills or profitability",
+    "scenarios": {
+      "base": {
+        "commission_usd_per_share_assumption": 0.005,
+        "final_normalized_index": 666.600480531127,
+        "periods": {
+          "development_2006_2015": {
+            "max_drawdown": -0.16686417431816947,
+            "observations": 2518,
+            "total_return": 1.7828327590116118
+          },
+          "holdout_2021_2026": {
+            "max_drawdown": -0.26844293249079676,
+            "observations": 1325,
+            "total_return": 0.6388279319213146
+          },
+          "validation_2016_2020": {
+            "max_drawdown": -0.21024077003705666,
+            "observations": 1259,
+            "total_return": 0.5029140485171364
+          }
+        },
+        "transaction_rows": 435
+      },
+      "stress": {
+        "commission_usd_per_share_assumption": 0.02,
+        "final_normalized_index": 660.2873700020854,
+        "periods": {
+          "development_2006_2015": {
+            "max_drawdown": -0.16719337960455505,
+            "observations": 2518,
+            "total_return": 1.7676759245831488
+          },
+          "holdout_2021_2026": {
+            "max_drawdown": -0.26895954052866755,
+            "observations": 1325,
+            "total_return": 0.6357877664277618
+          },
+          "validation_2016_2020": {
+            "max_drawdown": -0.2103369055814328,
+            "observations": 1259,
+            "total_return": 0.4998427200946505
+          }
+        },
+        "transaction_rows": 433
+      },
+      "zero": {
+        "commission_usd_per_share_assumption": 0.0,
+        "final_normalized_index": 668.7181938877484,
+        "periods": {
+          "development_2006_2015": {
+            "max_drawdown": -0.16675441257345736,
+            "observations": 2518,
+            "total_return": 1.7879033424588608
+          },
+          "holdout_2021_2026": {
+            "max_drawdown": -0.268270654424834,
+            "observations": 1325,
+            "total_return": 0.6398425710708366
+          },
+          "validation_2016_2020": {
+            "max_drawdown": -0.21020872228215692,
+            "observations": 1259,
+            "total_return": 0.5039391985217845
+          }
+        },
+        "transaction_rows": 420
+      }
+    },
+    "strategy_specification": "monthly equal weight among ETFs with positive 252-day momentum and price above 200-day mean; signal shifted one observation",
+    "symbols": [
+      "SPY",
+      "TLT",
+      "GLD"
+    ]
+  },
+  "repository": "pmorissette/bt",
+  "status": "completed"
+}

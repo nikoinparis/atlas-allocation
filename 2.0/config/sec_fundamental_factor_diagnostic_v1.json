@@ -1,0 +1,45 @@
+{
+  "experiment": "sec_fundamental_factor_diagnostic_v1",
+  "frozen_on": "2026-08-13",
+  "sec_vintage": "20260813T065239Z-sec-pit-v1",
+  "price_vintage": "20260813T070329Z-sec-pilot-prices",
+  "training_end": "2023-08-04",
+  "families": {
+    "growth": {
+      "positive": ["revenue__yoy_growth", "net_income__yoy_growth", "operating_cash_flow__yoy_growth"]
+    },
+    "profitability": {
+      "positive": ["operating_margin", "net_margin", "operating_cash_flow_margin", "free_cash_flow_margin"]
+    },
+    "balance_sheet_quality": {
+      "positive": ["cash_to_assets", "equity_to_assets"],
+      "negative": ["debt_to_assets", "liabilities_to_assets"]
+    },
+    "shareholder_discipline": {
+      "positive": ["repurchases_to_revenue"],
+      "negative": ["diluted_shares__yoy_growth", "stock_compensation_to_revenue"]
+    },
+    "composite": {
+      "family_average": ["growth", "profitability", "balance_sheet_quality", "shareholder_discipline"]
+    }
+  },
+  "minimum_feature_coverage": 0.7,
+  "minimum_available_features_per_family": 2,
+  "minimum_companies_per_decision": 10,
+  "sector_neutral_ranking": true,
+  "top_n": 5,
+  "portfolio_weighting": "equal",
+  "rebalance_frequency": "quarterly at first Friday strictly after factor decision",
+  "signal_application": "weights decided from facts with available_at strictly before the factor decision and applied only to the following weekly return",
+  "cost_bps": [50, 100, 200],
+  "benchmarks": ["SPY", "XLK", "XLE", "equal_all_20", "equal_XLK_XLE"],
+  "primary_metric": "holdout CAGR at 50 bps",
+  "strategy_promotion_authorized": false,
+  "promotion_blockers": [
+    "current-membership universe",
+    "missing historical delisted constituents",
+    "free adjusted price history is revision-prone",
+    "pilot factors and universe selected before only a diagnostic, not an untouched confirmation"
+  ],
+  "live_trading_enabled": false
+}

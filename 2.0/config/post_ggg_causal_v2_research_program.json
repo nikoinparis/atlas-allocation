@@ -1,0 +1,60 @@
+{
+  "program": "post_ggg_causal_v2_research",
+  "status": "open",
+  "baseline_bundle_id": "ggg_causal_v2_027530550388432a",
+  "baseline_evidence": "evidence/ggg_end_to_end_batch_59",
+  "primary_objective": "improve recent net returns without accepting hidden timing bias or a result that exists only at low transaction costs",
+  "primary_cost_bps": 50,
+  "stress_cost_bps": [10, 100],
+  "primary_windows": ["trailing_1y", "trailing_2y", "trailing_3y", "post_2024"],
+  "comparison_requirements": [
+    "same immutable input vintage",
+    "decision-time prefix invariance",
+    "full label-horizon embargo for learned models",
+    "turnover and transaction costs charged",
+    "untuned baseline and ablation comparison",
+    "parameter-neighborhood and subperiod checks",
+    "multiple-testing accounting",
+    "deterministic rerun"
+  ],
+  "ordered_tracks": [
+    {
+      "priority": 1,
+      "track": "underused_saved_candidates",
+      "work": "retest the strongest genuinely distinct provisional strategies and portfolio constructors as sleeves or conditional complements to causal GGG",
+      "sources": [
+        "research_registry/strategy_candidates.json",
+        "research_registry/portfolio_candidates.json"
+      ]
+    },
+    {
+      "priority": 2,
+      "track": "repository_signal_expansion",
+      "work": "extract additional economically distinct signal families from the awesome-systematic-trading inventory and test each standalone before allowing a blend",
+      "sources": [
+        "research_registry/inventory.json",
+        "research_registry/inventory_summary.json"
+      ]
+    },
+    {
+      "priority": 3,
+      "track": "cost_aware_ml_confidence",
+      "work": "retrain the saved ML and confidence-overlay ideas on corrected causal features, with embargoed nested walk-forward evaluation and an explicit no-ML ablation",
+      "sources": [
+        "research_registry/ml_candidates.json"
+      ]
+    },
+    {
+      "priority": 4,
+      "track": "allocator_and_execution_interactions",
+      "work": "test robust sleeve allocation, turnover buffering, and calendar-aware execution only after each input sleeve passes standalone gates",
+      "sources": [
+        "evidence/covariance_portfolios_batch_06",
+        "evidence/trade_buffering_batch_08",
+        "evidence/ggg_execution_aware_batch_53"
+      ]
+    }
+  ],
+  "promotion_rule": "A challenger remains provisional unless it improves the declared recent-window objective after 50 bps, survives 100 bps and robustness gates, and has no causal audit failure.",
+  "live_trading_enabled": false
+}

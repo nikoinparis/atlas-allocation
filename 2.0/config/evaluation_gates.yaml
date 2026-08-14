@@ -1,0 +1,46 @@
+version: 1
+
+required_checks:
+  source_review:
+    - identity_and_provenance
+    - maintenance_status
+    - license_review
+    - dependency_and_security_review
+    - claimed_capabilities_recorded
+  data_integrity:
+    - point_in_time_availability
+    - corporate_actions
+    - survivorship_bias
+    - missing_and_stale_data
+    - timezone_and_market_calendar
+  simulation:
+    - no_lookahead
+    - cash_and_position_reconciliation
+    - fees_spread_and_slippage
+    - delayed_and_partial_fills
+    - rejected_and_duplicate_orders
+  validation:
+    - simple_benchmark_comparison
+    - untouched_holdout
+    - rolling_walk_forward
+    - parameter_sensitivity
+    - adverse_cost_stress
+    - regime_stability
+    - drawdown_and_tail_risk
+  paper_trading:
+    - immutable_strategy_version
+    - live_market_timestamps
+    - continuous_reconciliation
+    - divergence_monitoring
+
+allowed_decisions:
+  - inventory
+  - review
+  - sandbox
+  - historical_test
+  - live_paper_test
+  - approved_component
+  - approved_idea
+  - rejected_for_now
+  - blocked_external_dependency
+

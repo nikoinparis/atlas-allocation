@@ -1,0 +1,234 @@
+{
+  "accounting": {
+    "cost_identity_pass": true,
+    "fully_invested_pass": true,
+    "max_cost_identity_error": 0.0,
+    "max_weight_sum_error": 0.0,
+    "periods": 1126,
+    "unpriced_exposure_events": 0,
+    "unpriced_exposure_pass": true
+  },
+  "cost_stress": {
+    "10bps": {
+      "annual_return": 0.09906662555414081,
+      "annual_volatility": 0.13814791356749975,
+      "best_week": 0.10727205468812079,
+      "calmar": 0.37740799512374684,
+      "cvar_5_weekly": -0.04558092869113451,
+      "max_drawdown": -0.26249212214398965,
+      "max_drawdown_duration_weeks": 123,
+      "observations": 1126,
+      "positive_week_share": 0.5710479573712256,
+      "sharpe_zero_rf": 0.7537866497668546,
+      "sortino_zero_target": 1.0868784491599002,
+      "total_return": 6.732640542764974,
+      "worst_week": -0.10315990044333487,
+      "years": 21.653846153846153
+    },
+    "25bps": {
+      "annual_return": 0.09590417176852917,
+      "annual_volatility": 0.1381052838350555,
+      "best_week": 0.10727205468812079,
+      "calmar": 0.3641950389480958,
+      "cvar_5_weekly": -0.04563356027008188,
+      "max_drawdown": -0.2633319005265121,
+      "max_drawdown_duration_weeks": 129,
+      "observations": 1126,
+      "positive_week_share": 0.5692717584369449,
+      "sharpe_zero_rf": 0.7330780851694377,
+      "sortino_zero_target": 1.0549677478730932,
+      "total_return": 6.2648948348071665,
+      "worst_week": -0.10315990044333487,
+      "years": 21.653846153846153
+    },
+    "50bps": {
+      "annual_return": 0.0906500439582627,
+      "annual_volatility": 0.1380555749916593,
+      "best_week": 0.10727205468812079,
+      "calmar": 0.34242437524277514,
+      "cvar_5_weekly": -0.04572127956832749,
+      "max_drawdown": -0.2647301141865056,
+      "max_drawdown_duration_weeks": 133,
+      "observations": 1126,
+      "positive_week_share": 0.566607460035524,
+      "sharpe_zero_rf": 0.6984274063072462,
+      "sortino_zero_target": 1.0018563413670343,
+      "total_return": 5.546878979790893,
+      "worst_week": -0.10315990044333487,
+      "years": 21.653846153846153
+    }
+  },
+  "derived_manifest": "/Users/nicholasturangan/Documents/Portfolio Optimizer/2.0/data/derived/20260808T212827Z-de103c2e063d6c4a/manifest.json",
+  "forward_validation": {
+    "first_locked_untouched_week_end": "2026-08-14",
+    "minimum_required_weeks": 52,
+    "untouched_returns_available": 0
+  },
+  "generated_at_utc": "2026-08-08T21:40:15.921839+00:00",
+  "historical_simulation_grade": "research_only_free_current_universe",
+  "legacy_price_revision_audit": {
+    "changed_share": 0.8494331065759637,
+    "expected_reason": "Yahoo adjusted history and corrections can change between acquisition vintages",
+    "maximum_relative_difference": 0.8335180693632561,
+    "missingness_mismatches": 0,
+    "numeric_comparisons": 37485,
+    "rows_changed_over_1e_8_relative": 31841
+  },
+  "limitations": [
+    "The free current ETF universe is not survivorship-safe historical membership.",
+    "Yahoo adjusted history can be revised; the revision audit records differences from the earlier pull.",
+    "The April-August extension was observable when this version was frozen and is not an untouched holdout.",
+    "The paper target cannot submit orders and has no broker connection."
+  ],
+  "metrics": {
+    "benchmark": {
+      "annual_alpha_zero_rf": 0.03798993912458879,
+      "annual_tracking_error": 0.12673755483453733,
+      "beta_to_spy": 0.5492297021312073,
+      "information_ratio": -0.12858572499619783
+    },
+    "bootstrap_95pct": {
+      "annual_return_ci_high": 0.15197711173612133,
+      "annual_return_ci_low": 0.04766115092867723,
+      "bootstrap_block_weeks": 13,
+      "bootstrap_samples": 500,
+      "sharpe_ci_high": 1.1646971717360168,
+      "sharpe_ci_low": 0.3936516044141831
+    },
+    "full": {
+      "annual_return": 0.09906662555414081,
+      "annual_volatility": 0.13814791356749975,
+      "best_week": 0.10727205468812079,
+      "calmar": 0.37740799512374684,
+      "cvar_5_weekly": -0.04558092869113451,
+      "max_drawdown": -0.26249212214398965,
+      "max_drawdown_duration_weeks": 123,
+      "observations": 1126,
+      "positive_week_share": 0.5710479573712256,
+      "sharpe_zero_rf": 0.7537866497668546,
+      "sortino_zero_target": 1.0868784491599002,
+      "total_return": 6.732640542764974,
+      "worst_week": -0.10315990044333487,
+      "years": 21.653846153846153
+    },
+    "recent_benchmark": {
+      "annual_alpha_zero_rf": 0.042663565211715875,
+      "annual_tracking_error": 0.11240563717298839,
+      "beta_to_spy": 0.6015493125196357,
+      "information_ratio": -0.17780327773853008
+    },
+    "recent_since_2021": {
+      "annual_return": 0.13683997181773844,
+      "annual_volatility": 0.13327225853911753,
+      "best_week": 0.06341154321915549,
+      "calmar": 1.0265789238516183,
+      "cvar_5_weekly": -0.03641543367756187,
+      "max_drawdown": -0.13329707890780473,
+      "max_drawdown_duration_weeks": 86,
+      "observations": 293,
+      "positive_week_share": 0.5733788395904437,
+      "sharpe_zero_rf": 1.0298246524383257,
+      "sortino_zero_target": 1.620512783933239,
+      "total_return": 1.0598914308065415,
+      "worst_week": -0.06035900243843781,
+      "years": 5.634615384615385
+    },
+    "retrospective_extension": {
+      "annual_return": 0.06150305115381105,
+      "annual_volatility": 0.11881260769992454,
+      "best_week": 0.031705518189130866,
+      "calmar": 1.1771911899765188,
+      "cvar_5_weekly": -0.031399047150600934,
+      "max_drawdown": -0.052245592455578804,
+      "max_drawdown_duration_weeks": 13,
+      "observations": 17,
+      "positive_week_share": 0.5882352941176471,
+      "sharpe_zero_rf": 0.5585367558259843,
+      "sortino_zero_target": 0.8451085795029544,
+      "total_return": 0.019704307240379748,
+      "worst_week": -0.031399047150600934,
+      "years": 0.3269230769230769
+    },
+    "retrospective_extension_is_untouched_holdout": false,
+    "retrospective_extension_start": "2026-04-17",
+    "rolling_3y": {
+      "positive_3y_sharpe_share": 1.0,
+      "rolling_windows": 971,
+      "spy_win_3y_share": 0.223480947476828,
+      "worst_3y_sharpe": 0.13085549642852456
+    }
+  },
+  "paper_target": {
+    "activation_status": "waiting_for_next_scheduled_rebalance",
+    "broker_connection": null,
+    "decision_is_monthly_rebalance": false,
+    "execution_enabled": false,
+    "historical_target_was_not_live_known_on_rebalance_date": true,
+    "known_at_utc": "2026-08-08T21:28:27.021963+00:00",
+    "last_reconstructed_rebalance_date": "2026-07-31",
+    "market_data_through": "2026-08-07",
+    "next_rebalance_note": "calendar-derived last Friday; exchange-holiday service not yet connected",
+    "next_scheduled_rebalance_date": "2026-08-28",
+    "purpose": "display and future paper-broker input only",
+    "source_snapshot_id": "20260808T212827Z-de103c2e063d6c4a",
+    "strategy_version": "composite_trend_quality_refined_free_snapshot_v4",
+    "target_weights": {
+      "EWJ": 0.25,
+      "IWM": 0.25,
+      "PDBC": 0.25,
+      "QQQ": 0.25
+    },
+    "top_current_scores": [
+      {
+        "asset": "IWM",
+        "score": 0.7808823529411765
+      },
+      {
+        "asset": "EWJ",
+        "score": 0.6176470588235293
+      },
+      {
+        "asset": "QQQ",
+        "score": 0.6029411764705882
+      },
+      {
+        "asset": "VEA",
+        "score": 0.5970588235294118
+      },
+      {
+        "asset": "PDBC",
+        "score": 0.45588235294117646
+      },
+      {
+        "asset": "SPY",
+        "score": 0.2735294117647059
+      },
+      {
+        "asset": "VWO",
+        "score": 0.1941176470588236
+      },
+      {
+        "asset": "EFA",
+        "score": 0.18235294117647063
+      }
+    ]
+  },
+  "preparation": {
+    "completed_weeks": 1127,
+    "friday_label_uses_last_available_observation": true,
+    "missing_cells": 1365,
+    "source_daily_rows_selected": 38080,
+    "symbols": 35,
+    "weekly_end": "2026-08-07",
+    "weekly_start": "2005-01-07"
+  },
+  "prior_candidate_return_audit": {
+    "changed_periods_over_1e_10": 1080,
+    "common_periods": 1109,
+    "maximum_absolute_return_difference": 8.409803154141304e-07
+  },
+  "rebalance_dates": 260,
+  "source_snapshot_id": "20260808T212827Z-de103c2e063d6c4a",
+  "source_snapshot_observed_at_utc": "2026-08-08T21:28:27.021963+00:00",
+  "strategy_version": "composite_trend_quality_refined_free_snapshot_v4"
+}

@@ -1,0 +1,45 @@
+{
+  "first_run_sha256": {
+    "normalized_confirmed_blend_primary.csv": "ea2f17284ec5b266354c9f109ef6832d40eeb3c988ca5dca967bd6729c5206d2",
+    "normalized_confirmed_daily_primary.csv": "e613dd87a678e65a44a7ba0873968bcb2bfcfe0e5c1cb334adfe01e4d3c29940",
+    "normalized_confirmed_weekly_primary.csv": "0c409b00e9af2436fe82a05979c8b040b97d0a40fcc11b882605d9135f26e006",
+    "normalized_unconfirmed_blend_primary.csv": "4893e7e1c7c27480547da4119320d5b0773270eab912d2abbc00455d82541313",
+    "normalized_unconfirmed_daily_primary.csv": "781abc7f1cdfc81d13aa92ddb24cb787020c47f3f61343657538142530df7075",
+    "normalized_unconfirmed_weekly_primary.csv": "b2d32fefdfd887661fc44d6e2d52e550d02f7d77a0a3fc9e97264f1adc10c3f4",
+    "report.md": "ec4b1b011bd42655b0569ee0c0869f22c00eec075f7a6a56a4b383d14e1d77ff",
+    "scoreboard.csv": "7e87905480a24f9a730551e8bd9f90b279bfc5a5dce6b5ed196a47d553261d81",
+    "signal_audit.csv": "10baccae0303b65f19bfd7ffeaff2a83d9f51af22d1edad70474c6b4bd5df43e",
+    "source_causal_confirmed_blend_primary.csv": "22d1c7c978b4e1021a434dec8a444eb2f3ed1e9b9d6b4431e739fa4e8b239d23",
+    "source_causal_confirmed_daily_primary.csv": "900a109a841b02b0ae2068c4da052467151693c244130a5653c62e075b34572f",
+    "source_causal_confirmed_weekly_primary.csv": "93344280a7a3368b8df25fbcf5f2407aad3f00d821b11855e076c41222b50aef"
+  },
+  "identical": true,
+  "projection_files": [
+    "normalized_confirmed_blend_primary.csv",
+    "normalized_confirmed_daily_primary.csv",
+    "normalized_confirmed_weekly_primary.csv",
+    "normalized_unconfirmed_blend_primary.csv",
+    "normalized_unconfirmed_daily_primary.csv",
+    "normalized_unconfirmed_weekly_primary.csv",
+    "report.md",
+    "scoreboard.csv",
+    "signal_audit.csv",
+    "source_causal_confirmed_blend_primary.csv",
+    "source_causal_confirmed_daily_primary.csv",
+    "source_causal_confirmed_weekly_primary.csv"
+  ],
+  "second_run_sha256": {
+    "normalized_confirmed_blend_primary.csv": "ea2f17284ec5b266354c9f109ef6832d40eeb3c988ca5dca967bd6729c5206d2",
+    "normalized_confirmed_daily_primary.csv": "e613dd87a678e65a44a7ba0873968bcb2bfcfe0e5c1cb334adfe01e4d3c29940",
+    "normalized_confirmed_weekly_primary.csv": "0c409b00e9af2436fe82a05979c8b040b97d0a40fcc11b882605d9135f26e006",
+    "normalized_unconfirmed_blend_primary.csv": "4893e7e1c7c27480547da4119320d5b0773270eab912d2abbc00455d82541313",
+    "normalized_unconfirmed_daily_primary.csv": "781abc7f1cdfc81d13aa92ddb24cb787020c47f3f61343657538142530df7075",
+    "normalized_unconfirmed_weekly_primary.csv": "b2d32fefdfd887661fc44d6e2d52e550d02f7d77a0a3fc9e97264f1adc10c3f4",
+    "report.md": "ec4b1b011bd42655b0569ee0c0869f22c00eec075f7a6a56a4b383d14e1d77ff",
+    "scoreboard.csv": "7e87905480a24f9a730551e8bd9f90b279bfc5a5dce6b5ed196a47d553261d81",
+    "signal_audit.csv": "10baccae0303b65f19bfd7ffeaff2a83d9f51af22d1edad70474c6b4bd5df43e",
+    "source_causal_confirmed_blend_primary.csv": "22d1c7c978b4e1021a434dec8a444eb2f3ed1e9b9d6b4431e739fa4e8b239d23",
+    "source_causal_confirmed_daily_primary.csv": "900a109a841b02b0ae2068c4da052467151693c244130a5653c62e075b34572f",
+    "source_causal_confirmed_weekly_primary.csv": "93344280a7a3368b8df25fbcf5f2407aad3f00d821b11855e076c41222b50aef"
+  }
+}

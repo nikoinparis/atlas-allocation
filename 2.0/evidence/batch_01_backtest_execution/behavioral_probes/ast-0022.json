@@ -1,0 +1,64 @@
+{
+  "elapsed_seconds": 49,
+  "entry_id": "ast-0022",
+  "error": "",
+  "head_commit": "bd5650ad213760907ec38311c5c9468819084196",
+  "host_mounts": false,
+  "install_exit_code": 0,
+  "network_disabled_during_probe": true,
+  "probe": {
+    "adapter": "bt",
+    "capabilities": {
+      "automatic_next_bar_execution": false,
+      "cash_and_position_accounting": true,
+      "commission_hook": true,
+      "order_rejection_lifecycle": false,
+      "partial_fills": false,
+      "portfolio_rebalancing": true
+    },
+    "checks": [
+      {
+        "actual": true,
+        "critical": true,
+        "expected": true,
+        "name": "commission_hook_reduces_value",
+        "passed": true
+      },
+      {
+        "actual": true,
+        "critical": true,
+        "expected": true,
+        "name": "rebalance_preserves_nonnegative_cash",
+        "passed": true
+      },
+      {
+        "actual": true,
+        "critical": true,
+        "expected": true,
+        "name": "portfolio_position_is_recorded",
+        "passed": true
+      },
+      {
+        "actual": true,
+        "critical": true,
+        "expected": false,
+        "name": "current_close_signal_cannot_execute_same_bar",
+        "observed_trade_price": 110.0,
+        "observed_trade_time": "2024-02-02 00:00:00",
+        "passed": false
+      }
+    ],
+    "critical_pass": false,
+    "decision": "conditional_research_adapter_requires_shifted_signals_and_platform_execution",
+    "observations": {
+      "final_cash_with_cost": 0.0,
+      "final_position": 9.99,
+      "final_value_with_cost": 999.0,
+      "final_value_without_cost": 1000.0,
+      "transaction_count": 1
+    }
+  },
+  "probe_exit_code": 0,
+  "repository": "pmorissette/bt",
+  "status": "completed"
+}

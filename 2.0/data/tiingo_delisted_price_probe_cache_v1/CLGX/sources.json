@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 1041,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T05:57:35.828886+00:00",
+    "sha256": "264105c1131ed9ad3e7568810d7e916f15608ad4d280e85e9eaac7c4384daf13",
+    "url": "https://api.tiingo.com/tiingo/daily/CLGX"
+  },
+  {
+    "bytes": 576729,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T05:57:38.470006+00:00",
+    "sha256": "ecdf51de023240f419b3f83c450aeb7745296afc31eae7429653f70f56645162",
+    "url": "https://api.tiingo.com/tiingo/daily/CLGX/prices?startDate=2012-04-01&endDate=2022-07-11&resampleFreq=daily"
+  }
+]

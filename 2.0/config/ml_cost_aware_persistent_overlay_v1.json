@@ -1,0 +1,63 @@
+{
+  "program": "ml_cost_aware_persistent_overlay_v1",
+  "source_hypothesis": "Batch 19 strong-confidence overlay",
+  "hypothesis_origin": "Batch 19 passed paired annual-return evidence at 10 bps but failed high-cost advantage and Sharpe uncertainty",
+  "interpretation": "retrospective cost-repair experiment; not final evidence",
+  "frozen_core": "covariance_minimum_variance_v1",
+  "source_prediction_projection_sha256": "22ffd359aee292d1b1e5337d44bd9b102d8681eb2e60e902bb95e645a7032dfd",
+  "confidence_activation": {
+    "current_month": "at or above expanding prior 80th confidence percentile",
+    "persistence": "current and immediately prior monthly decisions must both be strong",
+    "activated_weight": "minimum of current and prior strong-tier weights",
+    "risk_exit": "immediate; persistence never delays a volatility cap or drawdown stop"
+  },
+  "cost_hurdle": {
+    "lookback_weeks": 26,
+    "minimum_observations": 26,
+    "input": "buffered ML minus frozen-core weekly net return, each simulated at 100 bps",
+    "availability": "realization date no later than current decision",
+    "activation_requirement": "trailing mean excess return greater than zero"
+  },
+  "holding_buffer": {
+    "portfolio_size": 5,
+    "membership_replacement_hurdle": "challenger prediction must exceed the weakest incumbent by 0.25 times the current cross-sectional prediction IQR",
+    "prediction_iqr_multiplier": 0.25,
+    "weighting": "capped inverse 26-week volatility",
+    "maximum_asset_weight": 0.35,
+    "weight_rebalance_hurdle_one_way_turnover": 0.1,
+    "information": "current out-of-fold prediction and lagged volatility only"
+  },
+  "risk_guards": {
+    "trailing_volatility_weeks": 13,
+    "annualized_volatility_limit": 0.18,
+    "weight_cap_when_exceeded": 0.1,
+    "trailing_drawdown_weeks": 26,
+    "drawdown_stop": -0.12
+  },
+  "primary_variant": "persistent_cost_aware_buffered_guarded",
+  "diagnostic_variants": [
+    "core_only",
+    "batch19_strong_guarded",
+    "buffered_strong_guarded",
+    "persistent_unbuffered_guarded"
+  ],
+  "cost_bps": [10, 50, 100],
+  "floating_point_comparison_tolerance": 1e-12,
+  "promotion_gates": {
+    "point_10bps": "annual return and Sharpe greater than frozen core with no worse maximum drawdown",
+    "paired_10bps": "one-sided 95 percent lower Sharpe and annual-return differences both greater than zero",
+    "point_100bps": "annual return and Sharpe greater than frozen core",
+    "later_windows_100bps": "2016-2020 and 2021-present annual returns positive",
+    "turnover": "buffered ML annual turnover lower than original ML and primary allocation turnover no greater than Batch 19",
+    "calibration": "active-minus-inactive future rank IC serial-block-bootstrap lower bound greater than zero",
+    "survivorship_safe_universe": true,
+    "untouched_forward_weeks": 52
+  },
+  "bootstrap": {
+    "samples": 20000,
+    "confidence_block_months": 3,
+    "return_block_weeks": 13,
+    "one_sided_alpha": 0.05
+  },
+  "live_trading_approved": false
+}

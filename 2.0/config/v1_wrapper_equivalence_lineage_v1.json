@@ -1,0 +1,36 @@
+{
+  "program": "v1_wrapper_equivalence_lineage_v1",
+  "predeclared_before_independent_reconstruction_results": true,
+  "source_candidate": "improved_frontier_phase5_fragility_guard",
+  "source_base": "improved_phaseggg_confirmed_only_robust_offense",
+  "independent_reconstruction": {
+    "import_v1_python_modules": false,
+    "read_v1_csv_inputs_only": true,
+    "offense_scale": "1 + 0.08 * clip(r2a, -1, 1) outside stressed_panic",
+    "fragility_guard": "when leadership_quality_composite > 0.50, cap offense scale at 1.0",
+    "stressed_panic_scale": 1.0,
+    "offense_assets": ["SPY", "QQQ", "IWM", "EFA", "EEM", "VWO", "VEA", "EWJ", "VNQ", "HYG", "XLY", "XLK", "XLF", "XLI", "XLB", "XLE", "VTV", "VUG"],
+    "residual_cash_asset": "BIL",
+    "return_timing": "Friday decision weights times next Friday close-to-close returns",
+    "turnover": "0.5 * L1 weekly weight change",
+    "cost_bps": 10.0
+  },
+  "equivalence_gates": {
+    "maximum_weight_absolute_difference": 1e-10,
+    "maximum_path_absolute_difference": 1e-10,
+    "minimum_net_return_correlation": 0.9999999999
+  },
+  "lineage_gates": {
+    "phase1_raw_components_lagged_one_week": true,
+    "phase1_and_phase4_normalization_expanding_only": true,
+    "phase4_price_components_lagged_one_week": true,
+    "final_weights_fund_next_week_not_same_week": true,
+    "base_ggg_native_lineage_complete": true,
+    "holdout_untouched_by_variant_selection": true,
+    "point_in_time_universe": true,
+    "source_price_vintage_known": true
+  },
+  "decision_rule": "Exact reconstruction establishes mechanical equivalence only. The candidate cannot become the Version 2 incumbent unless every lineage gate passes; failed structural gates cannot be repaired by favorable retrospective returns.",
+  "version_1_files_may_be_modified": false,
+  "live_trading_enabled": false
+}

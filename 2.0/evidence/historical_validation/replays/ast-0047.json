@@ -1,0 +1,262 @@
+{
+  "elapsed_seconds": 13,
+  "entry_id": "ast-0047",
+  "error": "",
+  "head_commit": "e75838081d4e1adc3579fca834bdefe60fb25547",
+  "host_mounts": false,
+  "network_disabled_during_replay": true,
+  "replay": {
+    "adapter": "flashalpha_fill_simulator",
+    "bars": 29,
+    "base": {
+      "configuration": {
+        "assumed_two_leg_entry_fee_usd_per_spread": 1.3,
+        "fill_epsilon": 0.02,
+        "fill_max_rel_spread": 0.5,
+        "min_edge_floor": -0.05,
+        "start_offset_bars": 1
+      },
+      "filled": 7,
+      "records": [
+        {
+          "bars_waited": 8,
+          "edge_captured": -0.04500000000000004,
+          "fill_ts": "2024-06-03 10:08:00",
+          "filled": true,
+          "limit_credit": 0.88,
+          "near_misses": 1,
+          "net_entry_credit_usd_after_assumed_fee": 86.7
+        },
+        {
+          "bars_waited": 15,
+          "edge_captured": -0.029999999999999916,
+          "fill_ts": "2024-06-03 10:15:00",
+          "filled": true,
+          "limit_credit": 0.9,
+          "near_misses": 1,
+          "net_entry_credit_usd_after_assumed_fee": 88.7
+        },
+        {
+          "bars_waited": 3,
+          "edge_captured": -0.04500000000000004,
+          "fill_ts": "2024-06-03 10:03:00",
+          "filled": true,
+          "limit_credit": 0.92,
+          "near_misses": 0,
+          "net_entry_credit_usd_after_assumed_fee": 90.7
+        },
+        {
+          "bars_waited": 9,
+          "edge_captured": -0.03500000000000014,
+          "fill_ts": "2024-06-03 10:09:00",
+          "filled": true,
+          "limit_credit": 0.94,
+          "near_misses": 2,
+          "net_entry_credit_usd_after_assumed_fee": 92.7
+        },
+        {
+          "bars_waited": 2,
+          "edge_captured": -0.04499999999999993,
+          "fill_ts": "2024-06-03 10:02:00",
+          "filled": true,
+          "limit_credit": 0.96,
+          "near_misses": 0,
+          "net_entry_credit_usd_after_assumed_fee": 94.7
+        },
+        {
+          "bars_waited": 11,
+          "edge_captured": -0.029999999999999805,
+          "fill_ts": "2024-06-03 10:11:00",
+          "filled": true,
+          "limit_credit": 0.98,
+          "near_misses": 2,
+          "net_entry_credit_usd_after_assumed_fee": 96.7
+        },
+        {
+          "bars_waited": 13,
+          "edge_captured": -0.03500000000000014,
+          "fill_ts": "2024-06-03 10:13:00",
+          "filled": true,
+          "limit_credit": 1.0,
+          "near_misses": 1,
+          "net_entry_credit_usd_after_assumed_fee": 98.7
+        },
+        {
+          "bars_waited": 28,
+          "edge_captured": null,
+          "fill_ts": null,
+          "filled": false,
+          "limit_credit": 1.02,
+          "near_misses": 2,
+          "net_entry_credit_usd_after_assumed_fee": null
+        },
+        {
+          "bars_waited": 28,
+          "edge_captured": null,
+          "fill_ts": null,
+          "filled": false,
+          "limit_credit": 1.03,
+          "near_misses": 1,
+          "net_entry_credit_usd_after_assumed_fee": null
+        },
+        {
+          "bars_waited": 28,
+          "edge_captured": null,
+          "fill_ts": null,
+          "filled": false,
+          "limit_credit": 1.05,
+          "near_misses": 0,
+          "net_entry_credit_usd_after_assumed_fee": null
+        },
+        {
+          "bars_waited": 28,
+          "edge_captured": null,
+          "fill_ts": null,
+          "filled": false,
+          "limit_credit": 1.1,
+          "near_misses": 0,
+          "net_entry_credit_usd_after_assumed_fee": null
+        }
+      ],
+      "tested": 11
+    },
+    "checks": [
+      {
+        "critical": true,
+        "name": "stricter_execution_assumptions_do_not_increase_fill_count",
+        "passed": true
+      },
+      {
+        "critical": true,
+        "name": "higher_assumed_fee_does_not_increase_net_entry_credit",
+        "passed": true
+      },
+      {
+        "critical": true,
+        "name": "default_next_bar_guard_is_active",
+        "passed": true
+      }
+    ],
+    "critical_pass": true,
+    "fixture": "/work/repository/tests/fixtures/real_data/spy_2024_06_03.json",
+    "fixture_sha256": "f15e7cf7fee442c772040c2a212cff2565810f689af392ff348eb5e644280597",
+    "fixture_source_claim": "repository fixture says historical.flashalpha.com",
+    "interpretation_limit": "one 30-minute chain sample tests fill behavior, not strategy P&L or generalization",
+    "stress": {
+      "configuration": {
+        "assumed_two_leg_entry_fee_usd_per_spread": 3.0,
+        "fill_epsilon": 0.05,
+        "fill_max_rel_spread": 0.25,
+        "min_edge_floor": 0.0,
+        "start_offset_bars": 1
+      },
+      "filled": 0,
+      "records": [
+        {
+          "bars_waited": 28,
+          "edge_captured": null,
+          "fill_ts": null,
+          "filled": false,
+          "limit_credit": 0.88,
+          "near_misses": 9,
+          "net_entry_credit_usd_after_assumed_fee": null
+        },
+        {
+          "bars_waited": 28,
+          "edge_captured": null,
+          "fill_ts": null,
+          "filled": false,
+          "limit_credit": 0.9,
+          "near_misses": 11,
+          "net_entry_credit_usd_after_assumed_fee": null
+        },
+        {
+          "bars_waited": 28,
+          "edge_captured": null,
+          "fill_ts": null,
+          "filled": false,
+          "limit_credit": 0.92,
+          "near_misses": 13,
+          "net_entry_credit_usd_after_assumed_fee": null
+        },
+        {
+          "bars_waited": 28,
+          "edge_captured": null,
+          "fill_ts": null,
+          "filled": false,
+          "limit_credit": 0.94,
+          "near_misses": 12,
+          "net_entry_credit_usd_after_assumed_fee": null
+        },
+        {
+          "bars_waited": 28,
+          "edge_captured": null,
+          "fill_ts": null,
+          "filled": false,
+          "limit_credit": 0.96,
+          "near_misses": 7,
+          "net_entry_credit_usd_after_assumed_fee": null
+        },
+        {
+          "bars_waited": 28,
+          "edge_captured": null,
+          "fill_ts": null,
+          "filled": false,
+          "limit_credit": 0.98,
+          "near_misses": 5,
+          "net_entry_credit_usd_after_assumed_fee": null
+        },
+        {
+          "bars_waited": 28,
+          "edge_captured": null,
+          "fill_ts": null,
+          "filled": false,
+          "limit_credit": 1.0,
+          "near_misses": 3,
+          "net_entry_credit_usd_after_assumed_fee": null
+        },
+        {
+          "bars_waited": 28,
+          "edge_captured": null,
+          "fill_ts": null,
+          "filled": false,
+          "limit_credit": 1.02,
+          "near_misses": 2,
+          "net_entry_credit_usd_after_assumed_fee": null
+        },
+        {
+          "bars_waited": 28,
+          "edge_captured": null,
+          "fill_ts": null,
+          "filled": false,
+          "limit_credit": 1.03,
+          "near_misses": 1,
+          "net_entry_credit_usd_after_assumed_fee": null
+        },
+        {
+          "bars_waited": 28,
+          "edge_captured": null,
+          "fill_ts": null,
+          "filled": false,
+          "limit_credit": 1.05,
+          "near_misses": 0,
+          "net_entry_credit_usd_after_assumed_fee": null
+        },
+        {
+          "bars_waited": 28,
+          "edge_captured": null,
+          "fill_ts": null,
+          "filled": false,
+          "limit_credit": 1.1,
+          "near_misses": 0,
+          "net_entry_credit_usd_after_assumed_fee": null
+        }
+      ],
+      "tested": 11
+    },
+    "symbol": "SPY",
+    "trade_date": "2024-06-03"
+  },
+  "repository": "FlashAlpha-lab/flashalpha-fill-simulator",
+  "status": "completed"
+}

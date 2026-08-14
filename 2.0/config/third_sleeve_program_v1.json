@@ -1,0 +1,35 @@
+{
+  "program": "third_sleeve_program_v1",
+  "frozen_winner_must_remain_unchanged": "covariance_minimum_variance_v1",
+  "tracks": {
+    "point_in_time_value_sec": {
+      "source": "SEC EDGAR submissions and companyfacts APIs",
+      "status": "source_accepted_research_design_blocked_on_historical_universe",
+      "required_controls": [
+        "join every fact by filed date, never fiscal period end",
+        "retain amendments and restatements as later vintages",
+        "use permanent CIK identifiers",
+        "apply a conservative post-filing execution lag",
+        "supply historical universe membership and delisting returns before performance claims"
+      ]
+    },
+    "term_structure_treasury": {
+      "source": "U.S. Treasury Daily Treasury Par Yield Curve Rates",
+      "status": "approved_for_research_challenger",
+      "predeclared_methods": ["equal_weight", "carry_roll", "slope_regime"],
+      "assets": ["SHY", "IEF", "TLT"],
+      "signal_lag_calendar_days": 7,
+      "rebalance": "monthly",
+      "cost_bps": [10, 50, 100],
+      "selection_window": "2003-01-01 through 2015-12-31",
+      "later_windows": ["2016-01-01 through 2020-12-31", "2021-01-01 onward"],
+      "promotion_requires": [
+        "positive after-cost evidence in both later windows",
+        "lower multiple-testing-adjusted-bound greater than zero",
+        "acceptable correlation to the frozen winner",
+        "52 untouched forward weeks under a separately frozen version"
+      ]
+    }
+  },
+  "live_trading_approved": false
+}

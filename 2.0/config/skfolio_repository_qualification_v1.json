@@ -1,0 +1,34 @@
+{
+  "program": "skfolio_repository_qualification_v1",
+  "predeclared_before_runtime_results": true,
+  "catalog_entry": "ast-0184",
+  "repository": {
+    "name": "skfolio/skfolio",
+    "url": "https://github.com/skfolio/skfolio",
+    "commit": "c06db8406385cf4bce83577d0f0710ee5a27e67e",
+    "git_tree": "a36d73aafdc4ee19e27fe5361190f9f2934c3b06",
+    "declared_version": "0.20.1",
+    "license": "BSD-3-Clause",
+    "license_sha256": "07b8dfceb7b319e5145e7b1594d2cdaf94d924d78166d28951d4b360a4dc5844"
+  },
+  "isolation": {
+    "runtime": "Podman",
+    "base_image": "python:3.12-bookworm",
+    "network_during_tests": false,
+    "project_data_mounted": false,
+    "credentials_mounted": false,
+    "live_trading_enabled": false
+  },
+  "qualification_checks": {
+    "install_from_pinned_source_with_declared_dev_dependencies": true,
+    "import_and_version": true,
+    "entire_bundled_upstream_test_suite": true,
+    "free_solver_available": "CLARABEL",
+    "drawdown_objectives": ["MAX_DRAWDOWN", "CDAR", "EDAR", "ULCER_INDEX"],
+    "long_only_weights_finite_nonnegative_and_sum_to_one": true,
+    "same_input_repeat_deterministic_within_1e-8": true,
+    "future_return_perturbation_does_not_change_prior_weights": true
+  },
+  "qualification_rule": "All checks must pass before skfolio may be used in a separately predeclared portfolio-performance experiment.",
+  "profitability_claimed_by_qualification": false
+}

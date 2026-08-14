@@ -1,0 +1,30 @@
+{
+  "all_validation_checks_passed": true,
+  "best_adverse_full_cagr": 0.22206182797223528,
+  "best_correlation_growth": 0.6326486615456862,
+  "best_trailing_1y_cagr": 0.7265442449499591,
+  "best_trailing_1y_drawdown": -0.19985261057226678,
+  "best_trailing_1y_family": "balance_sheet_quality",
+  "best_trailing_1y_sharpe": 1.7513246878298934,
+  "created_at_utc": "2026-08-14T12:36:10.165344+00:00",
+  "decisions": 14,
+  "experiment": "sec_independent_fundamental_discovery_v1",
+  "families": [
+    "profitability",
+    "balance_sheet_quality",
+    "shareholder_discipline",
+    "cash_conversion",
+    "quality_acceleration"
+  ],
+  "input_ciks": 598,
+  "live_trading_enabled": false,
+  "selected_unique_ciks": 200,
+  "strategy_replacement_authorized": false,
+  "validation_checks": {
+    "all_reported_choices_have_fixed_top_n": true,
+    "availability_strictly_before_decision": true,
+    "base_and_adverse_run": true,
+    "deterministic_choices": true,
+    "weights_sum_to_one": true
+  }
+}

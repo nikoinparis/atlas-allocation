@@ -1,0 +1,69 @@
+{
+  "allocator_failure_pass": true,
+  "artifacts": {
+    "allocator_failures.csv": {
+      "bytes": 281,
+      "sha256": "94198d4984bd3cb4a7be4289f115e3c7792e5ffb112f827427a0039e6d51d951"
+    },
+    "bootstrap_uncertainty.csv": {
+      "bytes": 357,
+      "sha256": "cc240a515a558025e2859e2d4d662d450e42bb0697ff4623f2ea5f64b8d5e77c"
+    },
+    "input_stress.csv": {
+      "bytes": 2564,
+      "sha256": "00e8e2731337a65470d65514976b1037173b6701213e148ff63330a5f6c41def"
+    },
+    "rolling_windows.csv": {
+      "bytes": 6012,
+      "sha256": "a107b2ca95c3e692366ae7a11ced1147301e1341056ff6f3591b0e88c8ae4180"
+    }
+  },
+  "batch": "portfolio_robustness_batch_07",
+  "bootstrap_uncertainty_pass": true,
+  "frozen_manifest": "config/portfolios/covariance_minimum_variance_v1.json",
+  "generated_at_utc": "2026-08-08T23:55:03.422865+00:00",
+  "input_stress_pass": true,
+  "limitations": [
+    "The frozen clock starts only after all data used in design; it currently has zero untouched observations.",
+    "Synthetic revisions are stress tests, not substitutes for a second real immutable data vintage.",
+    "The ETF universe remains survivorship-prone.",
+    "Bootstrap intervals describe historical sampling uncertainty, not guaranteed future bounds."
+  ],
+  "portfolio_candidate_id": "portfolio-54d99427e079f726",
+  "robustness_pass": true,
+  "rolling_windows_pass": true,
+  "rules_fixed_before_results": {
+    "allocator_fallback": "equal weight on malformed or non-finite covariance",
+    "bootstrap": {
+      "block_weeks": 13,
+      "confidence": 0.95,
+      "maximum_drawdown_lower_bound": -0.4,
+      "minimum_return_lower_bound": 0.0,
+      "minimum_sharpe_lower_bound": 0.0,
+      "samples": 20000
+    },
+    "cost_bps": 50.0,
+    "input_stress": {
+      "delays_weeks": [
+        1,
+        4,
+        13
+      ],
+      "maximum_allowed_drawdown": -0.3,
+      "minimum_annual_return": 0.0,
+      "minimum_sharpe": 0.5,
+      "missing_every_nth_observation": 10,
+      "rounded_decimal_places": 4,
+      "synthetic_revision_bps": 5.0
+    },
+    "rolling_windows": {
+      "maximum_allowed_drawdown": -0.35,
+      "minimum_median_sharpe": 0.4,
+      "minimum_positive_return_fraction": 0.8,
+      "minimum_positive_sharpe_fraction": 0.75,
+      "step_weeks": 52,
+      "window_weeks": 156
+    }
+  },
+  "source_snapshot_id": "20260808T212827Z-de103c2e063d6c4a"
+}

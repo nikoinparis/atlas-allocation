@@ -1,0 +1,23 @@
+{
+  "repository": "je-suis-tm/quant-trading",
+  "commit": "611b73f2c3f577ac5b28aaa19ac8c43d3236c7a5",
+  "source_file": "Shooting Star backtest.py",
+  "source_sha256": "11c362fa0ee0913ed9131d02d8a808b18c2e527352f36fb574edf1ef47df3c3e",
+  "source_rules": {
+    "shape": "red candle; lower wick strictly below 0.2 times body; body strictly below 0.5 times the absolute full-sample signed mean body; upper wick at least twice body",
+    "trend": "star close no lower than prior close and prior close no lower than the close two bars earlier",
+    "confirmation": "following candle high no higher than star high and following candle close no higher than star close",
+    "position": "short at the star row, exit when a later close moves strictly beyond plus or minus 5 percent from star close or after seven workdays",
+    "parameters": "lower_bound 0.2, body_size 0.5, stop_threshold 0.05, holding_period 7"
+  },
+  "defects_and_ambiguities": [
+    "Conditions seven and eight read the following candle with a negative shift, but the source records the short signal on the earlier star row; this is direct lookahead.",
+    "The small-body threshold uses the signed mean of open minus close over the entire dataset, allowing future observations to alter every historical signal.",
+    "Taking the absolute value after averaging signed bodies permits bullish and bearish bodies to cancel, which is not a stable measure of typical body size.",
+    "The source enters at the star close even though confirmation is unknowable until the following close; a causal confirmed trade cannot earn the confirmation-bar return.",
+    "Overlapping stars accumulate positions without a gross-exposure limit, while independently scheduled exits can create unintended residual long or short positions.",
+    "The exit loop can run beyond the available frame for late signals and chained assignment can fail silently in modern pandas.",
+    "Raw OHLC is split-sensitive, while no spreads, turnover costs, borrow fees, uncertainty, controls, or out-of-sample windows are included."
+  ],
+  "independent_treatment": "Do not report the biased source return. Replace its full-sample body statistic with a causal expanding statistic, delay confirmed entry until confirmation is complete, cap each asset and total gross exposure, prevent overlapping same-asset positions, and test both source-faithful signed-body and scale-normalized absolute-body interpretations. Also test the scale-normalized star without next-bar confirmation as a distinct predeclared candidate."
+}

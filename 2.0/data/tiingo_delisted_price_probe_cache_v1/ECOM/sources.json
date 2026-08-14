@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 756,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T02:17:47.918208+00:00",
+    "sha256": "bc51b556c4bf2c74e663b627394625f0aacc65d053b40821c133ce3e9abd98bc",
+    "url": "https://api.tiingo.com/tiingo/daily/ECOM"
+  },
+  {
+    "bytes": 413695,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T02:17:49.530560+00:00",
+    "sha256": "aa95818ad78cdb41afb4ed7a21963756e2e85faabfb624333d73cbd784949365",
+    "url": "https://api.tiingo.com/tiingo/daily/ECOM/prices?startDate=2015-04-01&endDate=2024-01-11&resampleFreq=daily"
+  }
+]

@@ -1,0 +1,18 @@
+market,data_availability,historical_depth,liquidity,min_practical_capital,leverage_access,shorting_access,cost_level,broker_access,capacity_for_solo,regulatory_notes,implementation_difficulty,fit_verdict
+us_large_mid_cap_equities,excellent (Norgate/Sharadar survivorship-free),25y+ PIT,excellent,$5k+,Reg-T 2x / portfolio margin 4x+ at $110k,easy (HTB fees for some),very low (1-3bps spreads; $0 commissions),IBKR/any,effectively unlimited,PDT rule under $25k for day trading,low-med,CORE - the main expansion target
+us_small_micro_cap_equities,good (same vendors),25y+,moderate-poor tails,$10k+,limited,hard/expensive borrow,med-high (spreads 10-50bps),IBKR,limited but fine for solo,same,med,Strong for PEAD/insider/reversal edges; model costs honestly
+international_equities_adrs,good via ADRs; harder direct,20y+,good (ADRs),$10k+,yes,ADRs yes,low-med,IBKR global,high,PFIC/tax complexity direct,med,ADRs first; direct later
+equity_index_futures_micros,excellent (CME via Databento/Norgate futures),MES since 2019; ES 1997+,excellent,$5-15k,embedded (~10-20x notional available; use 1-2x),native,very low,IBKR/NinjaTrader/Tradovate,unlimited,futures taxed 60/40 US,med,CORE for trend/macro/overlay
+treasury_rate_futures_micros,excellent,ZN/ZB decades; micro yield 2023+,excellent,$5-15k,embedded,native,very low,IBKR,unlimited,60/40,med,Core macro/carry leg
+commodity_futures_micros,good (micro crude/gold/silver; minis for ags),decades (full-size),good majors,$10-25k,embedded,native,low majors,IBKR,high,60/40,med,Trend/carry cross-section; micro universe ~10-15 markets
+fx_futures_spot,excellent,decades,excellent majors,$5-15k (micro FX futures),embedded / 20-50x spot (avoid),native,very low majors,IBKR,unlimited,spot FX taxed ordinary,med,Carry+momentum+value sleeve
+listed_options_index_etf,good (ORATS $100/mo; ThetaData $40-160/mo; CBOE $500/mo EOD),ORATS 2007+,excellent SPY/QQQ/SPX,$10-25k,defined-risk embedded,puts native,med (spreads matter),IBKR (needs options approval tiers),high,assignment/exercise mechanics,med-high,Primary engine candidate (Runs 13-16)
+listed_options_single_name,same vendors,2007+,good top-200 names,$25k+,same,same,med-high,IBKR,med,same,high,Phase 2 after index options
+vix_futures_etps,excellent (CBOE),2004+,good,$10k+,embedded,native,med,IBKR,med,ETP termination risk (XIV precedent),med-high,Vol carry/term structure with strict tail control
+corporate_bond_etfs,already in stack,20y+,good,any,limited,yes,low,any,high,none,low,Keep as macro/credit sleeve inputs
+crypto_spot_regulated,good (exchange APIs free),BTC 2010+,good BTC/ETH,$1k+,limited US spot,via derivatives (US-constrained),med (30-60bps round trip),Coinbase/Kraken/IBKR,high,evolving US regulation; perps offshore,low-med,Small trend/carry sleeve (5-10% risk budget max)
+crypto_perps_offshore,good,2019+,excellent,n/a for US persons,20x+,native,low fees + funding,offshore only,n/a,US persons generally excluded - treat as infeasible,n/a,Tier 6 for US-based solo researcher
+prediction_markets,improving (Kalshi/Polymarket),short,thin,small,none,implicit,high spreads,direct,very limited,CFTC-regulated Kalshi OK; capacity tiny,med,Tier 5 curiosity; event-hedging niche
+closed_end_funds_discounts,moderate (CEF Connect; manual),20y+,thin,$10k+,Reg-T,hard borrow,med-high,IBKR,limited,none,med,Tier 3 niche mean reversion; capacity-limited but retail-sized edge
+preferreds_reits_convertible_proxies,ETF-level good; single-name moderate,15y+,moderate,$10k+,Reg-T,limited,med,IBKR,med,rate-sensitive,med,Carry/relative-value satellites later
+treasury_direct_cash_mgmt,n/a,n/a,n/a,any,n/a,n/a,zero,any,n/a,n/a,low,Collateral yield floor for futures/options strategies

@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 941,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T20:23:43.503027+00:00",
+    "sha256": "4326ad290c5e0c7d94033b303acaac452c2be35b001e98ab729bb0412c051116",
+    "url": "https://api.tiingo.com/tiingo/daily/BCOV"
+  },
+  {
+    "bytes": 577316,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T20:23:45.394087+00:00",
+    "sha256": "15565f31235ee6defab61776a94d961162a0391e92186dcdc8866ec1bd184437",
+    "url": "https://api.tiingo.com/tiingo/daily/BCOV/prices?startDate=2014-04-01&endDate=2026-01-11&resampleFreq=daily"
+  }
+]

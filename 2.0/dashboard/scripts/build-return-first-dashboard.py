@@ -21,6 +21,10 @@ INCUMBENT_STATUS = V2 / "evidence/forward_return_first_60_40_blend_v1/status.jso
 INCUMBENT_CONFIG = V2 / "config/forward/return_first_60_40_blend_v1.json"
 GROWTH = V2 / "evidence/sec_growth_survivorship_retest_v1"
 GROWTH_STATUS = V2 / "evidence/sec_growth_stock_drift_cap_v1/forward_status.json"
+BREADTH_AUDIT = V2 / "evidence/sec_cash_conversion_breadth20_daily_execution_audit_v1"
+BREADTH_WEEKLY = V2 / "evidence/sec_cash_conversion_breadth20_candidate_audit_v1"
+BREADTH_FORWARD = V2 / "config/forward/sec_cash_conversion_breadth20_challenger_v1.json"
+PRICE_REPAIRS = V2 / "data/daily_audit_price_source_repairs_v1/manifest.csv"
 OUTPUT = APP / "public/return-first-dashboard.json"
 
 
@@ -154,7 +158,10 @@ def incumbent_payload() -> dict[str, object]:
 
     source = pd.read_csv(DAILY_PRICES, usecols=["observation_date", "ticker", "adjusted_close"])
     if LATEST_ETF_PRICES.exists():
-        latest_source = pd.read_csv(LATEST_ETF_PRICES, usecols=["observation_date", "ticker", "adjusted_close"])
+        try:
+            latest_source = pd.read_csv(LATEST_ETF_PRICES, usecols=["observation_date", "ticker", "adjusted_close"])
+        except OSError:
+            latest_source = pd.DataFrame(columns=["observation_date", "ticker", "adjusted_close"])
         source = pd.concat([source, latest_source], ignore_index=True).drop_duplicates(["observation_date", "ticker"], keep="last")
     source["observation_date"] = pd.to_datetime(source["observation_date"], errors="coerce")
     source["adjusted_close"] = pd.to_numeric(source["adjusted_close"], errors="coerce")
@@ -187,6 +194,10 @@ def incumbent_payload() -> dict[str, object]:
 
 def growth_sources() -> tuple[dict[str, str], dict[str, pd.Series]]:
     rows = pd.read_csv(GROWTH / "selected_price_sources.csv", dtype={"cik10": str})
+    repairs = {}
+    if PRICE_REPAIRS.exists():
+        repair_frame = pd.read_csv(PRICE_REPAIRS, dtype={"cik10": str})
+        repairs = {str(row.cik10).zfill(10): V2 / str(row.price_file) for row in repair_frame.itertuples(index=False)}
     symbol_by_cik: dict[str, str] = {"0001431959": "MMAT"}
     prices: dict[str, pd.Series] = {}
     for row in rows.itertuples(index=False):
@@ -197,7 +208,11 @@ def growth_sources() -> tuple[dict[str, str], dict[str, pd.Series]]:
         path = V2 / relative
         symbol = path.name.split(".", 1)[0]
         symbol_by_cik[cik] = symbol
-        frame = pd.read_csv(path)
+        try:
+            frame = pd.read_csv(path)
+        except OSError:
+            path = repairs.get(cik, path)
+            frame = pd.read_csv(path)
         if "Date" in frame:
             dates = pd.to_datetime(frame["Date"], errors="coerce")
             values = pd.to_numeric(frame["Adj Close"], errors="coerce")
@@ -239,10 +254,19 @@ def growth_payload() -> dict[str, object]:
     terminal = daily.index.max()
     daily_records = daily_records_from_weights(weights, daily, net, records, terminal_date=terminal)
 
-    performance = pd.read_csv(GROWTH / "performance.csv")
-    def metric(window: str) -> pd.Series:
-        return performance[(performance["candidate"] == "growth") & (performance["scenario"] == "base") & (performance["cost_bps"] == 50) & (performance["window"] == window)].iloc[0]
-    full, recent = metric("full_recent"), metric("trailing_1y")
+    def weekly_metric(sample: pd.DataFrame) -> dict[str, object]:
+        returns = sample["net_return"].dropna()
+        years = len(returns) / 52.0
+        curve = (1.0 + returns).cumprod()
+        volatility = returns.std(ddof=1)
+        return {
+            "cagr": float(curve.iloc[-1] ** (1.0 / years) - 1.0),
+            "sharpe_zero_rf": float(returns.mean() / volatility * np.sqrt(52)) if volatility else 0.0,
+            "max_drawdown": float((curve / curve.cummax() - 1.0).min()),
+            "start": returns.index.min().strftime("%Y-%m-%d"),
+        }
+    full = weekly_metric(path)
+    recent = weekly_metric(path.loc[path.index >= path.index.max() - pd.DateOffset(years=1)])
     status = json.loads(GROWTH_STATUS.read_text())
     return {
         "strategy": {
@@ -264,9 +288,140 @@ def growth_payload() -> dict[str, object]:
     }
 
 
+def latest_selection(choices: pd.DataFrame, date: pd.Timestamp) -> list[str]:
+    eligible = choices[choices["decision_at"] < date]
+    if eligible.empty:
+        return []
+    latest = eligible["decision_at"].max()
+    return eligible.loc[eligible["decision_at"].eq(latest), "cik10"].astype(str).str.zfill(10).tolist()
+
+
+def breadth_price_sources() -> tuple[dict[str, str], pd.DataFrame]:
+    source_rows = []
+    for source_file in [GROWTH / "selected_price_sources.csv", V2 / "evidence/sec_independent_fundamental_discovery_v1/selected_price_sources.csv"]:
+        frame = pd.read_csv(source_file, dtype={"cik10": str})
+        source_rows.append(frame[["cik10", "price_source", "price_file"]])
+    if PRICE_REPAIRS.exists():
+        repairs = pd.read_csv(PRICE_REPAIRS, dtype={"cik10": str}).rename(columns={"source": "price_source"})
+        repairs["price_file"] = repairs["price_file"].map(lambda value: str(V2 / str(value)))
+        source_rows.append(repairs[["cik10", "price_source", "price_file"]])
+    sources = pd.concat(source_rows, ignore_index=True).dropna(subset=["price_file"]).drop_duplicates("cik10", keep="last")
+    symbol_by_cik: dict[str, str] = {}
+    series_by_symbol: dict[str, pd.Series] = {}
+    for row in sources.itertuples(index=False):
+        cik = str(row.cik10).zfill(10)
+        raw_path = str(row.price_file)
+        relative = raw_path.split("/2.0/", 1)[-1]
+        source_path = V2 / relative if not Path(raw_path).is_absolute() or "/2.0/" in raw_path else Path(raw_path)
+        if not source_path.exists():
+            continue
+        symbol = source_path.parent.name if source_path.name == "prices.csv.gz" else source_path.name.split(".", 1)[0]
+        try:
+            frame = pd.read_csv(source_path)
+        except OSError:
+            continue
+        if "Date" in frame:
+            dates = pd.to_datetime(frame["Date"], errors="coerce")
+            values = pd.to_numeric(frame["Adj Close"], errors="coerce")
+        else:
+            dates = pd.to_datetime(frame["date"], utc=True, errors="coerce").dt.tz_localize(None)
+            values = pd.to_numeric(frame["adjClose"], errors="coerce")
+        symbol_by_cik[cik] = symbol
+        series_by_symbol[symbol] = pd.Series(values.to_numpy(), index=dates).dropna().sort_index()
+    return symbol_by_cik, pd.DataFrame(series_by_symbol).sort_index()
+
+
+def breadth20_payload() -> dict[str, object]:
+    daily_path = load_frame(BREADTH_AUDIT / "daily_path_primary.csv")
+    performance = pd.read_csv(BREADTH_AUDIT / "performance.csv")
+    result = json.loads((BREADTH_AUDIT / "result.json").read_text())
+    forward = json.loads(BREADTH_FORWARD.read_text())
+    trades = pd.read_csv(BREADTH_AUDIT / "trade_ledger_10000.csv", parse_dates=["Date"])
+    rebalance_dates = set(trades.Date.dt.strftime("%Y-%m-%d"))
+
+    incumbent_weights = load_frame(WEIGHTS).apply(pd.to_numeric, errors="coerce").fillna(0.0)
+    growth_choices = pd.read_csv(GROWTH / "portfolio_choices.csv", dtype={"cik10": str})
+    cash_choices = pd.read_csv(BREADTH_WEEKLY / "portfolio_choices.csv", dtype={"cik10": str})
+    for choices in [growth_choices, cash_choices]:
+        choices["decision_at"] = pd.to_datetime(choices["decision_at"], utc=True).dt.tz_localize(None)
+    growth_alloc = load_frame(V2 / "evidence/sec_growth_confidence_universal_cap_v1/path__base__confidence_10_40__cap_1.50x__50bps.csv")["target_growth_allocation"]
+    outer_alloc = load_frame(BREADTH_WEEKLY / "target_weights.csv")["cash_conversion"]
+    symbol_by_cik, stock_prices = breadth_price_sources()
+
+    etf_source = pd.read_csv(DAILY_PRICES, usecols=["observation_date", "ticker", "adjusted_close"])
+    etf_source["observation_date"] = pd.to_datetime(etf_source["observation_date"])
+    etf_prices = etf_source.pivot_table(index="observation_date", columns="ticker", values="adjusted_close", aggfunc="last").sort_index()
+    asset_prices = pd.concat([etf_prices, stock_prices], axis=1).loc[:daily_path.index.max()]
+
+    weekly_dates = outer_alloc.index.intersection(daily_path.index)
+    columns = sorted(set(incumbent_weights.columns) | set(symbol_by_cik.values()) | {"cash::USD"})
+    targets = pd.DataFrame(0.0, index=weekly_dates, columns=columns)
+    for date in weekly_dates:
+        base_row = incumbent_weights.reindex([date], method="ffill").iloc[0]
+        growth_weight = float(growth_alloc.reindex([date], method="ffill").iloc[0])
+        cash_weight = float(outer_alloc.loc[date])
+        leader_weight = 1.0 - cash_weight
+        for asset, weight in base_row.items():
+            targets.at[date, asset] += leader_weight * (1.0 - growth_weight) * float(weight)
+        selected_growth = latest_selection(growth_choices, date)
+        if selected_growth:
+            per_name = leader_weight * growth_weight / len(selected_growth)
+            for cik in selected_growth:
+                targets.at[date, symbol_by_cik.get(cik, "cash::USD")] += per_name
+        selected_cash = latest_selection(cash_choices, date)
+        if selected_cash:
+            per_name = cash_weight / len(selected_cash)
+            for cik in selected_cash:
+                targets.at[date, symbol_by_cik.get(cik, "cash::USD")] += per_name
+        targets.loc[date] = targets.loc[date] / targets.loc[date].sum()
+
+    weekly_returns = (1.0 + daily_path["net_return"]).resample("W-FRI").prod() - 1.0
+    weekly_wealth = (1.0 + weekly_returns).cumprod()
+    weekly_drawdown = weekly_wealth / weekly_wealth.cummax() - 1.0
+    weekly_turnover = 0.5 * targets.diff().abs().sum(axis=1).fillna(0.0)
+    records = records_from_weights(
+        targets,
+        weekly_returns.reindex(targets.index).fillna(0.0),
+        weekly_returns.reindex(targets.index).fillna(0.0),
+        weekly_turnover,
+        pd.Series(0.0, index=targets.index),
+        weekly_wealth.reindex(targets.index).ffill().fillna(1.0),
+        weekly_drawdown.reindex(targets.index).ffill().fillna(0.0),
+    )
+    daily_records = [
+        {"date": date.strftime("%Y-%m-%d"), "netReturn": clean(row.net_return), "rebalance": date.strftime("%Y-%m-%d") in rebalance_dates, "tradingDay": True}
+        for date, row in daily_path.iterrows()
+    ]
+
+    def metric(window: str) -> pd.Series:
+        return performance[(performance.execution_delay_sessions == 0) & (performance.cost_bps == 50) & (performance.window == window)].iloc[0]
+
+    full, recent = metric("full_recent"), metric("trailing_1y")
+    return {
+        "strategy": {
+            "id": "sec-cash-conversion-breadth20-dynamic-v1",
+            "name": "Dynamic Breadth-20 — Return Leader",
+            "shortName": "102% Daily-Audited",
+            "subtitle": "ETF incumbent + growth sleeve + conditional cash-conversion breadth · 50 bps",
+            "badge": "102.49% trailing 1Y CAGR",
+            "asOf": daily_records[-1]["date"],
+            "retrospectiveHoldout": {"cagr": recent.cagr, "sharpe": recent.sharpe_zero_rf, "maxDrawdown": recent.max_drawdown, "start": recent.start},
+            "fullHistory": {"cagr": full.cagr, "maxDrawdown": full.max_drawdown, "start": full.start},
+            "featuredMetric": {"label": "DAILY-AUDITED TRAILING 1Y", "value": recent.cagr, "note": "Daily adjusted closes · 50 bps costs · no leverage or shorting"},
+            "forward": {"status": forward["status"], "observedWeeks": 0, "requiredWeeks": int(forward["observation_weeks"]), "firstDecision": forward["first_eligible_week_ending"], "firstRealization": forward["first_eligible_week_ending"], "note": "Research leader only; forward evidence has not started."},
+            "disclosures": {"researchOnly": True, "liveTradingEnabled": False, "costBps": 50, "returnConvention": "Daily adjusted-close accounting; signal-date close with separate one- and two-session delay stress tests."},
+        },
+        "records": records,
+        "dailyRecords": daily_records,
+        "assetPrices": asset_price_payload(asset_prices),
+    }
+
+
 def main() -> int:
-    payload = {"strategies": [incumbent_payload(), growth_payload()]}
-    OUTPUT.write_text(json.dumps(payload, separators=(",", ":")) + "\n")
+    payload = {"strategies": [incumbent_payload(), growth_payload(), breadth20_payload()]}
+    temporary = OUTPUT.with_suffix(".json.tmp")
+    temporary.write_text(json.dumps(payload, separators=(",", ":")) + "\n")
+    temporary.replace(OUTPUT)
     print(f"wrote {OUTPUT} ({OUTPUT.stat().st_size:,} bytes, {len(payload['strategies'])} strategies)")
     return 0
 

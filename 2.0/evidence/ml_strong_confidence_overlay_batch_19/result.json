@@ -1,0 +1,77 @@
+{
+  "artifacts": {
+    "determinism_check.json": {
+      "bytes": 522,
+      "sha256": "1448e134d5019bbbd7db6c24c3d7c0581dde825f765a411e18bf2ba190596453"
+    },
+    "portfolio_scoreboard.csv": {
+      "bytes": 12585,
+      "sha256": "ece86025bea6ecb0779b43e5922ba801015d995d6c45a06e7a51f83307685f20"
+    },
+    "primary_returns_10bps.csv": {
+      "bytes": 76803,
+      "sha256": "7a658ca9920aff2c2158f77ce73561d35c02da0ba4d987dc3b5b7e79d2838691"
+    },
+    "report.md": {
+      "bytes": 628,
+      "sha256": "c333dc3bafcfbcd406577207ba7fc2e5442cc61d92e51b560a36f2f7180469cc"
+    },
+    "strong_confidence_decisions.csv": {
+      "bytes": 36816,
+      "sha256": "d917c5e490a1225058e76b905bfb3ad680c27f30d7b2dd4c10cf6968450c971e"
+    }
+  },
+  "batch": 19,
+  "confidence_calibration": {
+    "active_mean_future_rank_ic": 0.14322548055690765,
+    "active_minus_inactive_rank_ic": 0.09806347658776712,
+    "active_months": 41,
+    "block_months": 3,
+    "bootstrap_samples": 20000,
+    "eligible_months": 151,
+    "extreme_mean_future_rank_ic": 0.149819552377574,
+    "inactive_mean_future_rank_ic": 0.04516200396914053,
+    "inactive_months": 110,
+    "one_sided_95pct_lower_difference": -0.0010856909054500902,
+    "pass": false
+  },
+  "generated_at_utc": "2026-08-09T22:41:39.145758+00:00",
+  "hypothesis_is_retrospective_followup": true,
+  "limitations": [
+    "The strong-only hypothesis was motivated by Batch 18 and therefore reuses history already inspected.",
+    "The ETF universe remains survivorship-prone.",
+    "Consensus can be confidently wrong and is not a probability of profit.",
+    "Final promotion requires 52 untouched forward weeks under a new frozen version."
+  ],
+  "live_trading_approved": false,
+  "paired_bootstrap_10bps": {
+    "annual_return_advantage_statistically_positive": true,
+    "block_weeks": 13,
+    "mean_annual_return_difference": 0.004049009537061374,
+    "mean_sharpe_difference": 0.031866081120961794,
+    "observations": 761,
+    "one_sided_95pct_lower_annual_return_difference": 0.00013474852752870525,
+    "one_sided_95pct_lower_sharpe_difference": -0.00675185306012227,
+    "samples": 20000,
+    "sharpe_advantage_statistically_positive": false
+  },
+  "prediction_projection_unchanged": true,
+  "program_sha256": "6730e021d0af8f1fc954f14461e7333ebbb506eeb70a667f2dd88e9aa8d879bf",
+  "promoted": false,
+  "promotion_gates": {
+    "all": false,
+    "annual_return_100bps": false,
+    "annual_return_10bps": true,
+    "confidence_calibration_bootstrap": false,
+    "later_windows_100bps": true,
+    "maximum_drawdown_10bps": true,
+    "paired_annual_return_10bps": true,
+    "paired_sharpe_10bps": false,
+    "sharpe_100bps": false,
+    "sharpe_10bps": true,
+    "survivorship_safe": false,
+    "untouched_forward_52w": false
+  },
+  "source_prediction_projection_sha256": "22ffd359aee292d1b1e5337d44bd9b102d8681eb2e60e902bb95e645a7032dfd",
+  "track": "strong_confidence_only_ml_overlay"
+}

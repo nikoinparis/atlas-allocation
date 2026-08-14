@@ -1,0 +1,30 @@
+{
+  "provider": "replace_with_vendor",
+  "dataset_kind": "point_in_time_market_bundle",
+  "observed_at_utc": "2026-08-08T20:00:00+00:00",
+  "observed_at_basis": "vendor export completion timestamp",
+  "source_uri": "vendor://account/export-id",
+  "source_license": "record the applicable license and redistribution limits",
+  "revision_policy": "new snapshot for every pull; never overwrite prior vintages",
+  "publication_lag_policy": "use row knowledge_at_utc; apply a conservative extra lag when announcement timing is unknown",
+  "coverage": {
+    "start": "YYYY-MM-DD",
+    "end": "YYYY-MM-DD"
+  },
+  "claims": {
+    "point_in_time_prices": true,
+    "point_in_time_universe": true,
+    "permanent_security_ids": true,
+    "corporate_actions": true,
+    "delistings": true,
+    "vintage_revisions": true
+  },
+  "files": {
+    "prices.csv": "prices.csv",
+    "universe_membership.csv": "universe_membership.csv",
+    "security_master.csv": "security_master.csv",
+    "corporate_actions.csv": "corporate_actions.csv",
+    "delistings.csv": "delistings.csv"
+  },
+  "notes": []
+}

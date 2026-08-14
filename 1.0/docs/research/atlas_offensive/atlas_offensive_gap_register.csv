@@ -1,0 +1,16 @@
+gap_id,area,gap_description,why_unresolved,what_would_close_it,priority
+G01,options_data,All four options verdicts rest on Black-Scholes proxy pricing; real skew/term/fill behavior never observed,No historical chain data purchased,ORATS or ThetaData subscription (Run 13),high
+G02,estimates_data,No point-in-time analyst estimate database at retail price with IBES-grade quality,IBES/Refinitiv institutional licensing,Cheap-proxy validation first; WRDS access if project scales,medium
+G03,literature_scale,~30 external searches vs mandate's implied thousands of papers; conference proceedings (NeurIPS/ICML/ICLR) not systematically enumerated,Single-session budget,Dedicated literature-review runs embedded in each research run's phase 0,medium
+G04,institutional_methods,Actual current methods of RenTech/Citadel/Jane Street unknowable from public sources,Private by nature,Never claimable; rely on academic + disclosed practitioner evidence only,accepted_permanent
+G05,microstructure,Sub-minute strategies (queue dynamics; market making; ETF arb) unassessable without L2/L3 data and colocation,Institutional infrastructure,Documented as Tier 6; revisit only if project scales beyond solo,accepted
+G06,intraday_backtests,No intraday backtest engine exists in repo; overnight/intraday runs need event-driven simulation,Infrastructure not built,LEAN local or custom engine (Run 17 prerequisite),high
+G07,borrow_history,Historical borrow fees for shorting backtests unavailable retail; L/S backtests will understate costs for hard-to-borrow names,Vendors institutional,Restrict shorts to easy-to-borrow large caps + collect live IBKR borrow data from day one,high
+G08,capital_unknown,Deployable capital not specified by owner; leverage/futures/portfolio-margin feasibility depends on it,Owner decision,Owner declares capital band before Run 8 (futures) and Run 43 (leverage),high
+G09,taxes,Tax drag of high-turnover strategies in taxable account unmodeled,Account structure unknown,Owner specifies account type; add tax-aware net metrics if taxable,medium
+G10,crypto_access,US-person access to perp funding strategies constrained; regulated-venue basis capacity unclear,Regulatory,Assess Coinbase/Kraken/IBKR product set at Run 21,low
+G11,generative_alpha,Direct alpha training on synthetic data unassessed beyond stress-testing use,Weak evidence base,Tier 5 negative-control experiment if capacity allows,low
+G12,fixed_income_single_name,Single-bond credit strategies infeasible retail (no TRACE-grade execution access),Market structure,ETF/futures proxies only; documented,accepted
+G13,event_data,Corporate event calendars (splits/spinoffs/lockups) not yet sourced at PIT quality,Not yet purchased,Sharadar events + EDGAR parsing at Run 11,medium
+G14,live_degradation_priors,No internal live-vs-backtest degradation history exists (nothing ever deployed beyond paper),Nothing deployed yet,Paper-trading program (Run 47) builds this prior,high
+G15,regime_shift_2024plus,Macro classifier holdout inversion (stress quadrant positive 2024-26) unexplained,Ambiguous cause (regime shift vs PCA artifact),Vintage-data re-run with full series + 2m lag (Run 9),medium

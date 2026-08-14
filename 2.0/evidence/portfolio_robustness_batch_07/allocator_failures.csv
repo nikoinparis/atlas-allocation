@@ -1,0 +1,5 @@
+case,trend_v4_weight,defensive_weight,fallback_reason,expected_fallback,pass
+non_finite,0.5,0.5,non-finite covariance,True,True
+negative_variance,0.5,0.5,negative variance,True,True
+missing_sleeve,0.5,0.5,covariance sleeve mismatch,True,True
+zero_variance,0.5,0.5,,False,True

@@ -1,0 +1,46 @@
+{
+  "actual_commit": "fa5206fe63836f3f8cd1ebd7168fbd19a5e2ff09",
+  "container_exit_code": 0,
+  "container_image": "docker.io/alpine/git:2.49.1",
+  "dependency_manifests": [
+    "pyproject.toml"
+  ],
+  "elapsed_seconds": 3,
+  "entry_id": "ast-0041",
+  "error": "",
+  "expected_commit": "fa5206fe63836f3f8cd1ebd7168fbd19a5e2ff09",
+  "file_count": 221,
+  "name": "vnpy",
+  "planned_environment": "python_container",
+  "repository": "vnpy/vnpy",
+  "repository_kb": 56484,
+  "started_at": "2026-08-08T18:49:11.810395+00:00",
+  "status": "passed",
+  "submodule_count": 0,
+  "test_indicators": [
+    "examples/simple_rpc/test_client.py",
+    "examples/simple_rpc/test_server.py",
+    "tests",
+    "tests/alpha",
+    "tests/alpha/test_dataproxy.py",
+    "tests/test_alpha101.py"
+  ],
+  "top_level_entries": [
+    ".git",
+    ".github",
+    ".gitignore",
+    "CHANGELOG.md",
+    "LICENSE",
+    "README.md",
+    "README_ENG.md",
+    "docs",
+    "examples",
+    "install.bat",
+    "install.sh",
+    "install_osx.sh",
+    "pyproject.toml",
+    "tests",
+    "vnpy"
+  ],
+  "tracked_file_count": 196
+}

@@ -1,0 +1,11 @@
+{
+  "stage": "after the first Batch 28 production run and before finalization",
+  "scope": "source best-fit direction diagnostic and deterministic simulation boundary",
+  "observed_issue": "The predeclared absolute accuracy gate can label a forecast as an edge without comparing it with the unconditional majority direction. In the first run, the 1000-path result was correct in 12 of 16 origins, exactly matching an always-positive forecast because 12 of 16 realized annual returns were positive.",
+  "non_discretionary_correction": "A direction forecast can be called an edge only if it passes the original absolute accuracy and Wilson-lower-bound requirements and strictly exceeds the realized majority-direction benchmark accuracy.",
+  "effect_on_risk_gates": "none; source direction forecasts are diagnostic only and are not used by any Monte Carlo safety gate or portfolio allocation",
+  "reproducibility_issue": "Independent process runs reconstructed economically identical weekly returns with floating-point differences around 1e-16, which changed downstream byte hashes.",
+  "reproducibility_correction": "Round reconstructed weekly simple returns to 12 decimal places before simulation and evidence serialization. This is at least eight orders of magnitude smaller than a basis point and does not select or tune a result.",
+  "parameter_tuning": false,
+  "candidate_selection": false
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 707,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T02:17:53.641050+00:00",
+    "sha256": "e14e6e48be8bc52a90c92038fc162e66947b97149a7243590a63564a3fa6bbce",
+    "url": "https://api.tiingo.com/tiingo/daily/ZEN"
+  },
+  {
+    "bytes": 370959,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T02:17:55.248185+00:00",
+    "sha256": "067e35fe73be8bf35b985f5bd3abee4ac5dee039c8a9bd22c192219762786a95",
+    "url": "https://api.tiingo.com/tiingo/daily/ZEN/prices?startDate=2016-04-01&endDate=2024-01-11&resampleFreq=daily"
+  }
+]

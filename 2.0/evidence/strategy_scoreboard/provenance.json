@@ -1,0 +1,277 @@
+{
+  "files": {
+    "01_data_hub/weekly_returns.csv": {
+      "bytes": 805725,
+      "sha256": "f0256bb65a9c554ab4be068b7dd37c7888c2749d168def3c9769b2dc45d0eb48"
+    },
+    "03_layer2a_strategy_logic/layer2_manifest.json": {
+      "bytes": 21692,
+      "sha256": "1493f0a64eb82da06ba5cdd7c3fcce86d656a7657f0db909712ec59ca891740f"
+    },
+    "03_layer2a_strategy_logic/strategy_positions_baseline_60_40_proxy.csv": {
+      "bytes": 167756,
+      "sha256": "aae7150f5a31fbbf386740a1bf9ca1508f8e6ccf9ab87477d75e23414260cb15"
+    },
+    "03_layer2a_strategy_logic/strategy_positions_baseline_equal_weight_risk_assets.csv": {
+      "bytes": 416396,
+      "sha256": "912c7d493d87464ac80cc83b4a7937b5bba479eb16dc69cfa3b7761c52cc7412"
+    },
+    "03_layer2a_strategy_logic/strategy_positions_baseline_market_proxy_buy_hold.csv": {
+      "bytes": 167756,
+      "sha256": "5a4d9308e00b0666681dd1a72024aeb49750756b87a8a83b8b9d10fefcf8f91a"
+    },
+    "03_layer2a_strategy_logic/strategy_positions_composite_anti_chop_clarity.csv": {
+      "bytes": 95618,
+      "sha256": "6cccb3eb1e11a24d8cf557d26e7d6872a3be195f2e5334a620d75bfdce5cf42d"
+    },
+    "03_layer2a_strategy_logic/strategy_positions_composite_breadth_filtered.csv": {
+      "bytes": 83288,
+      "sha256": "2bcb288d07664950df302bf1d6143c8565653bf716295545632296dc0d91d29a"
+    },
+    "03_layer2a_strategy_logic/strategy_positions_composite_calm_carry_sleeve.csv": {
+      "bytes": 61095,
+      "sha256": "a87a101cae42cc2b446bfbe9c2bae5b51a538fc6fdc91df686891627ce1a196b"
+    },
+    "03_layer2a_strategy_logic/strategy_positions_composite_calm_trend_participation.csv": {
+      "bytes": 126294,
+      "sha256": "057dde85334e159b321960a71f8b2958cd7993ec1986b4ff1f2c93f84178ac05"
+    },
+    "03_layer2a_strategy_logic/strategy_positions_composite_calm_trend_specialist.csv": {
+      "bytes": 97125,
+      "sha256": "34ed50ed344d2898224f6f2d8a24794f2d2dd0097ab704522912007b56ded18b"
+    },
+    "03_layer2a_strategy_logic/strategy_positions_composite_confirmation_aware_momentum.csv": {
+      "bytes": 83200,
+      "sha256": "c68582619788c74da3c9651933ec0df225911593fb437b5bd396dc495af1e3b5"
+    },
+    "03_layer2a_strategy_logic/strategy_positions_composite_equal_weight.csv": {
+      "bytes": 83288,
+      "sha256": "a71f7d677ceaae4172bfd3a3dd16a9b0f9a55ac095b2a70eb41fa5b2dbf5c69c"
+    },
+    "03_layer2a_strategy_logic/strategy_positions_composite_healthier_recovery_specialist.csv": {
+      "bytes": 113441,
+      "sha256": "a071c8af18eaa12d0565f1e408d8759f08162ba214b95514e9bc45232ca6ecd5"
+    },
+    "03_layer2a_strategy_logic/strategy_positions_composite_ic_weighted.csv": {
+      "bytes": 83180,
+      "sha256": "07a615c02c1aab0ebc0d02f3f02ecbe23806472a9b50c826d371c71ad4b31413"
+    },
+    "03_layer2a_strategy_logic/strategy_positions_composite_macro_trend_diversifier_sleeve.csv": {
+      "bytes": 125055,
+      "sha256": "18365a5dee0dbec68e473094c64d3cba50aea36ac65a5285343e41f80b6ce8d6"
+    },
+    "03_layer2a_strategy_logic/strategy_positions_composite_recovery_confirmed_offense_sleeve.csv": {
+      "bytes": 52646,
+      "sha256": "99a7ead1b2994e562e31a839c202775044f5c4f010cf0dafd5366ccf7b8122f6"
+    },
+    "03_layer2a_strategy_logic/strategy_positions_composite_recovery_transition.csv": {
+      "bytes": 111038,
+      "sha256": "456a36758cab183faa272e35fce04d59121980a66b308e1d8c825e5d5897625d"
+    },
+    "03_layer2a_strategy_logic/strategy_positions_composite_regime_conditioned.csv": {
+      "bytes": 90412,
+      "sha256": "8180aeefda664f4cb7f27144fc50042f91b27693fb58568d159983b630d224df"
+    },
+    "03_layer2a_strategy_logic/strategy_positions_composite_selective_concentrated.csv": {
+      "bytes": 128520,
+      "sha256": "8165d8ecad52833e61125cd3657d441775749b0f32fc677b8f0273787b4d58af"
+    },
+    "03_layer2a_strategy_logic/strategy_positions_composite_selective_signals.csv": {
+      "bytes": 83270,
+      "sha256": "7e73d6fc7a72c997dffe7b20ba274c60da771a98c8fdd42a7fecd63d506c2cbc"
+    },
+    "03_layer2a_strategy_logic/strategy_positions_composite_selective_strength_weighted.csv": {
+      "bytes": 142525,
+      "sha256": "d0bb709be61e1d884a68ccb8ba879bd2438ed438d0a2eb422336d872d2bfc889"
+    },
+    "03_layer2a_strategy_logic/strategy_positions_composite_selective_trend_ensemble.csv": {
+      "bytes": 83270,
+      "sha256": "7e73d6fc7a72c997dffe7b20ba274c60da771a98c8fdd42a7fecd63d506c2cbc"
+    },
+    "03_layer2a_strategy_logic/strategy_positions_composite_structural_defense_sleeve.csv": {
+      "bytes": 139867,
+      "sha256": "29e5a8975dac09684da3f1ca8547498c06734ef5c5857cf7474d9a2236dc13f7"
+    },
+    "03_layer2a_strategy_logic/strategy_positions_composite_trend_quality_module.csv": {
+      "bytes": 83096,
+      "sha256": "31053de794d68d904c7748ede319fcb78eb7abbd065cdfb82e792de4f2c76850"
+    },
+    "03_layer2a_strategy_logic/strategy_positions_composite_trend_quality_refined.csv": {
+      "bytes": 83200,
+      "sha256": "781d25eb28ba98ad5f3d7c961ef7dd17e6f15001a88ab4dcf4cb15b130794b64"
+    },
+    "03_layer2a_strategy_logic/strategy_positions_cross_sectional_reversal_combo_ls.csv": {
+      "bytes": 335974,
+      "sha256": "8bcf935632681ed38f1579eb67f7f7771a1806e0c418ecf6125d29bd90cb10eb"
+    },
+    "03_layer2a_strategy_logic/strategy_positions_cta_trend_long_only.csv": {
+      "bytes": 182487,
+      "sha256": "c1097d6234ba3b678567a3d5174a926ee7a13b9d2b7100b05ac667679f570b55"
+    },
+    "03_layer2a_strategy_logic/strategy_positions_cta_trend_long_short_research.csv": {
+      "bytes": 294722,
+      "sha256": "4209ad7953ebb82311e31502554cd565bc4f2976c7ad28462715478aab29e8ef"
+    },
+    "03_layer2a_strategy_logic/strategy_positions_cta_trend_vol_managed.csv": {
+      "bytes": 194531,
+      "sha256": "27e014138b3c4cf67170de2c1f642660d04be54b9c969c69f0e8eed513319e14"
+    },
+    "03_layer2a_strategy_logic/strategy_positions_dual_momentum_single_best.csv": {
+      "bytes": 56656,
+      "sha256": "dea682ac9927f0bfa92115acb83d484c62628f6dc248676476f605f606e2b715"
+    },
+    "03_layer2a_strategy_logic/strategy_positions_dual_momentum_topn.csv": {
+      "bytes": 103047,
+      "sha256": "13a78141f088e05d848e58a77fc943dc6483ec0bbe6da3ac36b2f4c238473ce2"
+    },
+    "03_layer2a_strategy_logic/strategy_positions_pairs_stat_arb_research.csv": {
+      "bytes": 179705,
+      "sha256": "cc612353dc241de614b970409d9bf3802caeee753b435dad5d5c9f51446935e7"
+    },
+    "03_layer2a_strategy_logic/strategy_positions_sector_factor_rotation.csv": {
+      "bytes": 105463,
+      "sha256": "2f594f8b8b6517b70aed030d03aa4913a5fb3b463e271bf760ffc4b7a4d21532"
+    },
+    "03_layer2a_strategy_logic/strategy_positions_sector_rotation_with_sma_filter.csv": {
+      "bytes": 104523,
+      "sha256": "bb4a82621dc0d87a72e6a85e6eb9b5460f37e5984e141dfbb19745346c82d908"
+    },
+    "03_layer2a_strategy_logic/strategy_positions_taa_10m_sma.csv": {
+      "bytes": 224191,
+      "sha256": "09dc22be95a18a91ae1e191280ada79372aeaeee98b088827a1ade173d99617e"
+    },
+    "03_layer2a_strategy_logic/strategy_returns_baseline_60_40_proxy.csv": {
+      "bytes": 108018,
+      "sha256": "9e175a529471d419778cabba75225c12fb772b901146e27860876b5c6d4c3f83"
+    },
+    "03_layer2a_strategy_logic/strategy_returns_baseline_equal_weight_risk_assets.csv": {
+      "bytes": 109114,
+      "sha256": "9e82f8e8015f23db0220af73862e03507a2b64bf2f7f2b16af0e10699df8aff4"
+    },
+    "03_layer2a_strategy_logic/strategy_returns_baseline_market_proxy_buy_hold.csv": {
+      "bytes": 108150,
+      "sha256": "9ab050519942c760337d7bc55429773f8f78bd625bca4e76a4bba48f4c0b2d36"
+    },
+    "03_layer2a_strategy_logic/strategy_returns_composite_anti_chop_clarity.csv": {
+      "bytes": 142801,
+      "sha256": "f29e7bd7b77bfbb3c160cd1bbf26520a866f883ec84a17d601053eeff55a762e"
+    },
+    "03_layer2a_strategy_logic/strategy_returns_composite_breadth_filtered.csv": {
+      "bytes": 112301,
+      "sha256": "d3404b1ddcc30fedf1dbbd1347a9bba29e56297b5904b75795ca55504f9f3f5e"
+    },
+    "03_layer2a_strategy_logic/strategy_returns_composite_calm_carry_sleeve.csv": {
+      "bytes": 98489,
+      "sha256": "e0508711fb644e14485b781ad1f7060bf8b5311e50f500df2eae29c48bdb8fdd"
+    },
+    "03_layer2a_strategy_logic/strategy_returns_composite_calm_trend_participation.csv": {
+      "bytes": 138406,
+      "sha256": "85e9d692cf6d6f375cd266d2475dee351553451f8e2013d082911e6c444075d0"
+    },
+    "03_layer2a_strategy_logic/strategy_returns_composite_calm_trend_specialist.csv": {
+      "bytes": 137551,
+      "sha256": "ddbb523a4d9eb1420781d3542c23f54e72a39323bdeb19067763ff2f651c4703"
+    },
+    "03_layer2a_strategy_logic/strategy_returns_composite_confirmation_aware_momentum.csv": {
+      "bytes": 108495,
+      "sha256": "232029edef64ae9dc6f83ae13cbcb9a5e9e68e65a3959b60bac471b035081b41"
+    },
+    "03_layer2a_strategy_logic/strategy_returns_composite_equal_weight.csv": {
+      "bytes": 110405,
+      "sha256": "9708f6856109ef89ebeba02832551d99177dff1ef2a36a103ccf0b1c478f1002"
+    },
+    "03_layer2a_strategy_logic/strategy_returns_composite_healthier_recovery_specialist.csv": {
+      "bytes": 136254,
+      "sha256": "8a17df36ba132e54b56687f8014b81787fb6922394938958660e7d5c7f598c72"
+    },
+    "03_layer2a_strategy_logic/strategy_returns_composite_ic_weighted.csv": {
+      "bytes": 108421,
+      "sha256": "e56cc8048b0e59be6fe6cae40715ef5cb9f7ba874287f4ba901fb0f8d19ff7bf"
+    },
+    "03_layer2a_strategy_logic/strategy_returns_composite_macro_trend_diversifier_sleeve.csv": {
+      "bytes": 144537,
+      "sha256": "8ee2bf8c253c5a48dd8504c4a4933d5344a0271938c65eb607ff9376e1582279"
+    },
+    "03_layer2a_strategy_logic/strategy_returns_composite_recovery_confirmed_offense_sleeve.csv": {
+      "bytes": 93749,
+      "sha256": "aa10858cd6167619c92d07bc892304018766c5870fff0563c422098cb5b6c993"
+    },
+    "03_layer2a_strategy_logic/strategy_returns_composite_recovery_transition.csv": {
+      "bytes": 135217,
+      "sha256": "d8529891c7da4fe44137b23c494dc1036d514c3b2cdb2f41e4062e2fb9a0de96"
+    },
+    "03_layer2a_strategy_logic/strategy_returns_composite_regime_conditioned.csv": {
+      "bytes": 111381,
+      "sha256": "f3224e041a03fd491461dac4c7e17ad878840dcf91378ae0ae91c2ed1cfb5f92"
+    },
+    "03_layer2a_strategy_logic/strategy_returns_composite_selective_concentrated.csv": {
+      "bytes": 113283,
+      "sha256": "0af740113a704a09be2d1f2afc5f471b63a4dca22eaac0b686542a8efec5d22c"
+    },
+    "03_layer2a_strategy_logic/strategy_returns_composite_selective_signals.csv": {
+      "bytes": 109578,
+      "sha256": "00d7ca240e0a3cce8ed2ac56e82f913f5a97fee0c2802f06ea3e060c9a0feddd"
+    },
+    "03_layer2a_strategy_logic/strategy_returns_composite_selective_strength_weighted.csv": {
+      "bytes": 118037,
+      "sha256": "d77d6e38d447744827f03e170d0f0fb8db1e6323c82517c6b5b8e38519aa8b8b"
+    },
+    "03_layer2a_strategy_logic/strategy_returns_composite_selective_trend_ensemble.csv": {
+      "bytes": 109578,
+      "sha256": "00d7ca240e0a3cce8ed2ac56e82f913f5a97fee0c2802f06ea3e060c9a0feddd"
+    },
+    "03_layer2a_strategy_logic/strategy_returns_composite_structural_defense_sleeve.csv": {
+      "bytes": 132192,
+      "sha256": "950673f8bca2c36f46d3068436ffdbbac73140cede5bf12bca05bb94acf9c22c"
+    },
+    "03_layer2a_strategy_logic/strategy_returns_composite_trend_quality_module.csv": {
+      "bytes": 106778,
+      "sha256": "ba161ec51ef1d5992df529345f023aafee86aeac03b06f6b089a245a9d3d95a1"
+    },
+    "03_layer2a_strategy_logic/strategy_returns_composite_trend_quality_refined.csv": {
+      "bytes": 107758,
+      "sha256": "c142f77c3e2a52da82e776d68fe666a20a8811788e694458a31c72d9825a41fb"
+    },
+    "03_layer2a_strategy_logic/strategy_returns_cross_sectional_reversal_combo_ls.csv": {
+      "bytes": 148123,
+      "sha256": "86d2ea409267110e4b0b0279f2a6456b8a428f163d42994d1b4abbd30be3c72e"
+    },
+    "03_layer2a_strategy_logic/strategy_returns_cta_trend_long_only.csv": {
+      "bytes": 140032,
+      "sha256": "6dd79ef9a89151fa403b16fce4031a2706af2c87d106a08fa24b4f8cf8a9be88"
+    },
+    "03_layer2a_strategy_logic/strategy_returns_cta_trend_long_short_research.csv": {
+      "bytes": 143560,
+      "sha256": "6839282b08fbf498a03559e389a9c1d134b03675e42344c8297e5ec1eb7a3e48"
+    },
+    "03_layer2a_strategy_logic/strategy_returns_cta_trend_vol_managed.csv": {
+      "bytes": 140462,
+      "sha256": "79b0ddfbed68c59d0b38bbe70a5a9a190f608aaab56059a71bd307cde89daaac"
+    },
+    "03_layer2a_strategy_logic/strategy_returns_dual_momentum_single_best.csv": {
+      "bytes": 106887,
+      "sha256": "759760778aa69bd03ce29df35c3a0db706bf996af307f7f62f052286ec609007"
+    },
+    "03_layer2a_strategy_logic/strategy_returns_dual_momentum_topn.csv": {
+      "bytes": 110047,
+      "sha256": "ce5a057aa501fe5eb098e900dc404fa5c21111447b087f19c444509fd28defce"
+    },
+    "03_layer2a_strategy_logic/strategy_returns_pairs_stat_arb_research.csv": {
+      "bytes": 112058,
+      "sha256": "d40025b00c9f67d2a4a8719ebf3683fcf30e6f062894950e65b2a032d5f47350"
+    },
+    "03_layer2a_strategy_logic/strategy_returns_sector_factor_rotation.csv": {
+      "bytes": 109423,
+      "sha256": "b0f5cf854365d893a773f42214f52864efe1436184899f3d613d81882e90277e"
+    },
+    "03_layer2a_strategy_logic/strategy_returns_sector_rotation_with_sma_filter.csv": {
+      "bytes": 108327,
+      "sha256": "6bd846b534150aa0355cbcb3718c1f7877ac5e1e0a60b5c7dd6df4989809f75c"
+    },
+    "03_layer2a_strategy_logic/strategy_returns_taa_10m_sma.csv": {
+      "bytes": 112646,
+      "sha256": "429421d4d20a7ae003a9256af21fc9cfb2e759253eaa627da69e9c6c7954e28f"
+    }
+  },
+  "source_root": "/Users/nicholasturangan/Documents/Portfolio Optimizer/1.0/data"
+}

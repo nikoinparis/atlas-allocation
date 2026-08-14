@@ -1,0 +1,21 @@
+{
+  "experiment": "sec_growth_confidence_universal_cap_v1",
+  "confidence_rule": {
+    "lookback_weeks": 26,
+    "low_growth_allocation": 0.10,
+    "high_growth_allocation": 0.40,
+    "condition": "Prior 26-week gross growth-sleeve return is positive and exceeds the prior 26-week gross ETF-incumbent return"
+  },
+  "universal_stock_cap_multiples_of_current_equal_weight": [1.0, 1.5, 2.0],
+  "include_uncapped_control": true,
+  "fixed_20_strict_cap_control": true,
+  "cap_review_frequency": "first available Friday of each calendar month",
+  "cap_scope": "every available fundamental stock; never ticker-specific",
+  "cap_destination": "frozen ETF incumbent synthetic sleeve",
+  "cost_bps": [50, 100, 200],
+  "primary_cost_bps": 50,
+  "missing_company_scenarios": ["base", "adverse"],
+  "selection_rule": "Report every predeclared universal cap. Historical results cannot authorize promotion.",
+  "research_only": true,
+  "live_trading_enabled": false
+}

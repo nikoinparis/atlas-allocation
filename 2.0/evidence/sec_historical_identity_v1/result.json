@@ -1,0 +1,30 @@
+{
+  "ciks_with_any_candidate_symbol": 1013,
+  "ciks_with_usable_single_symbol": 947,
+  "created_at_utc": "2026-08-13T10:04:35.021468+00:00",
+  "full_min_usable_coverage": 0.648062015503876,
+  "historical_ciks": 1281,
+  "latest_members": 540,
+  "latest_usable_coverage": 0.9296296296296296,
+  "legacy_symbol_vintage": "/project/data/sec_historical_identity_vintages/20260813T100124Z-sec-legacy-symbol-recovery-v1",
+  "multi_symbol_ciks": 42,
+  "overlapping_collision_pairs": 12,
+  "price_probe_authorized": true,
+  "recent_min_usable_coverage": 0.9233644859813084,
+  "source_counts": {
+    "current_sec_mapping": 573,
+    "last_filing_inline_xbrl": 247,
+    "last_filing_instance_xbrl": 193,
+    "unresolved": 268
+  },
+  "strategy_blockers": [
+    "candidate symbols represent the last eligible filing and do not yet capture every historical ticker change",
+    "ticker reuse must be validated against the returned price history and issuer identity",
+    "free prices must include delisting outcomes or apply a declared conservative failure return",
+    "unresolved and ambiguous companies must never be silently removed"
+  ],
+  "strategy_testing_authorized": false,
+  "tagged_symbol_vintage": "/project/data/sec_historical_identity_vintages/20260813T095732Z-sec-symbol-recovery-v1",
+  "universe_vintage": "/project/data/sec_historical_universe_vintages/20260813T095119Z-sec-historical-filers-v1",
+  "unresolved_ciks": 268
+}

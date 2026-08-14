@@ -1,0 +1,20 @@
+{
+  "cik10": "0001889956",
+  "covers_first_eligible_decision": true,
+  "first_eligible_decision": "2026-04-01 00:00:00+00:00",
+  "first_price_date": "2026-04-01",
+  "issuer_name_match": true,
+  "issuer_name_score": 1.0,
+  "last_eligible_decision": "2026-04-01 00:00:00+00:00",
+  "last_price_date": "2026-04-10",
+  "price_file": "/workspace/2.0/data/tiingo_delisted_price_probe_cache_v1/OS/prices.csv.gz",
+  "price_rows": 7,
+  "provider_end_date": "2026-08-13",
+  "provider_exchange": "NASDAQ",
+  "provider_name": "OneStream Inc - Class A",
+  "provider_start_date": "2024-07-24",
+  "sec_company_name": "ONESTREAM, INC.",
+  "status": "identity_and_start_validated",
+  "terminal": true,
+  "tiingo_symbol": "OS"
+}

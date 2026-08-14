@@ -1,0 +1,15 @@
+{
+  "protocol": "sec_growth_mu_cap_amendment_v1",
+  "frozen_at_utc": "2026-08-14T09:45:00+00:00",
+  "first_eligible_decision": "2026-08-14",
+  "first_eligible_realization": "2026-08-21",
+  "required_observation_weeks": 52,
+  "growth_allocation": 0.20,
+  "other_stock_cap_multiple": 1.0,
+  "parallel_micron_cap_multiples": [1.0, 1.5, 2.0],
+  "uncapped_micron_comparator": true,
+  "primary_cost_bps": 50,
+  "selection_policy": "Track all Micron caps in parallel. Do not select 2.00x because it plateaued retrospectively.",
+  "research_only": true,
+  "live_trading_enabled": false
+}

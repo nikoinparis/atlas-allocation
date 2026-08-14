@@ -1,0 +1,48 @@
+{
+  "all_deterministic": true,
+  "artifacts": {
+    "blend_qualification.csv": {
+      "bytes": 1172,
+      "sha256": "b3f209b451fc07eb4b6cc2e77591cdbfd83b4ef97ffc5144ec67865ba172c252"
+    },
+    "correlations.csv": {
+      "bytes": 248,
+      "sha256": "4a65cb85052cff32055ff8b075209df64a34ca3bebea0c143bb761dcc379e4e9"
+    },
+    "determinism.csv": {
+      "bytes": 1071,
+      "sha256": "44aca314027edde545ed159a1004d583c6d918fff57ad46256fa5e1ffca41316"
+    },
+    "performance.csv": {
+      "bytes": 10397,
+      "sha256": "6c778d57b68ef2df779b97da486d5677f87a4dd9e033f85c394300dc8d6dfd67"
+    },
+    "prefix_invariance.csv": {
+      "bytes": 1046,
+      "sha256": "ece1829e1473853a34a3a09e1d031186f642c84e9b13a414c36544d10fa5250f"
+    },
+    "signal_equivalence.csv": {
+      "bytes": 81,
+      "sha256": "1b8e4c5ae6d9c7191b1ab445f59dc0f64f679962538c88b15d38facb07f70d7d"
+    },
+    "source_qualification.csv": {
+      "bytes": 673,
+      "sha256": "8f05256ffb0975de1224e6675051c601734b1770cf77a951316fadb73b888459"
+    }
+  },
+  "benchmark_recent_3y_50bps_cagr": 0.1288735233396061,
+  "decision": "residual_momentum_source_rejected",
+  "generated_at_utc": "2026-08-12T03:29:42.742816+00:00",
+  "live_trading_enabled": false,
+  "manifest_sha256": "d9bb71774e8a6feae71c4192cc73a9102d2917ffe18770ee5b7146c63058dbd5",
+  "maximum_prefix_difference": 0.0,
+  "module_sha256": "0c06c99a52b88c329b84bd39b32dccb69eb67836a87fd5ab8f1126d170296e3b",
+  "program": "ggg_residual_momentum_source_v1",
+  "program_sha256": "52020fd814fb2578551be9c39a9f13d12c81ed24f4ec2bf8fad57ca824f31d88",
+  "promoted_to_production": false,
+  "research_blend_shortlist": [],
+  "signal_maximum_difference": 1.1102230246251565e-16,
+  "signal_missingness_mismatches": 0,
+  "snapshot_hashes_verified": true,
+  "standalone_sources_qualified": []
+}

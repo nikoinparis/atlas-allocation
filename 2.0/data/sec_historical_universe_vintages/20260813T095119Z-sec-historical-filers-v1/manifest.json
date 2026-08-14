@@ -1,0 +1,26 @@
+{
+  "archive_end": "2026Q1",
+  "archive_start": "2012Q1",
+  "archives": 57,
+  "config": "/project/config/sec_historical_filer_universe_v1.json",
+  "created_at_utc": "2026-08-13T09:51:20.535031+00:00",
+  "decisions": 57,
+  "delisting_returns_complete": false,
+  "historical_cik_current_ticker_coverage": 0.44730679156908665,
+  "historical_ciks_without_current_ticker": 708,
+  "historical_ticker_mapping_complete": false,
+  "latest_members": 540,
+  "limitations": [
+    "SEC SIC ranges are a transparent sector approximation, not historical GICS classifications.",
+    "Filer status is an investability proxy, not a point-in-time market-cap or liquidity screen.",
+    "A current SEC ticker match does not establish the ticker that traded historically.",
+    "A delisting-aware return series is required before this universe can authorize strategy claims."
+  ],
+  "membership_rows": 35493,
+  "qualifying_submission_rows": 32338,
+  "source_zip_bytes": 5381638661,
+  "strategy_testing_authorized": false,
+  "strict_point_in_time_membership": true,
+  "unique_historical_ciks": 1283,
+  "vintage_id": "20260813T095119Z-sec-historical-filers-v1"
+}

@@ -1,0 +1,79 @@
+{
+  "program": "mlquant_walk_forward_feature_ablation_v1",
+  "predeclared_before_results": true,
+  "source": {
+    "repository": "initial-d/ml-quant-trading",
+    "commit": "867e8dfe628b1d0ea2af987ec6f74c32c645f63e",
+    "qualified_factors": ["best_002", "original_001"],
+    "factor_panel": "evidence/mlquant_factor_portfolio_batch_31/qualified_factor_panel.csv",
+    "factor_panel_sha256": "18114e7781799021ebd91e1d762b243e2c8f3909ece826232c895b260b3f1c05",
+    "base_dataset": "evidence/cross_sectional_factor_baseline_batch_16/factor_dataset.csv",
+    "base_dataset_sha256": "21724f0198eb592b1f0a7a935b7d70cba8c7237916f6850c16e99c719ffe169f"
+  },
+  "matched_dataset": {
+    "join": "each asset-month receives the latest jointly valid repository factor values on or before feature_asof_date",
+    "timing": "repository factors use the same one-completed-week lag as every base feature",
+    "rows_missing_either_repository_factor": "drop from both baseline and augmented variants",
+    "target": "unchanged cross-sectional rank of four-week relative return"
+  },
+  "feature_sets": {
+    "matched_baseline": [
+      "momentum_4w", "momentum_13w", "momentum_26w", "momentum_52w_skip_4w",
+      "moving_average_distance_13w", "moving_average_distance_26w",
+      "volatility_13w", "volatility_26w", "downside_volatility_26w",
+      "drawdown_26w", "positive_week_share_26w"
+    ],
+    "mlquant_augmented": [
+      "momentum_4w", "momentum_13w", "momentum_26w", "momentum_52w_skip_4w",
+      "moving_average_distance_13w", "moving_average_distance_26w",
+      "volatility_13w", "volatility_26w", "downside_volatility_26w",
+      "drawdown_26w", "positive_week_share_26w", "mlquant_best_002", "mlquant_original_001"
+    ]
+  },
+  "walk_forward": {
+    "first_test_year": 2012,
+    "outer_test_block": "calendar year",
+    "training": "expanding and strictly before each test year",
+    "label_embargo": "training label_end_date strictly before test-year start",
+    "inner_validation_years": 3
+  },
+  "models": {
+    "families": ["ridge", "elastic_net", "hist_gradient_boosting"],
+    "hyperparameter_grid": "identical to robust_cross_sectional_ml_v1",
+    "ensemble_seeds": [101, 211, 307, 401, 503],
+    "family_weighting": "positive inner IC-minus-turnover score with equal fallback",
+    "maximum_family_weight": 0.6
+  },
+  "negative_controls": ["within-month shuffled training labels", "within-month shuffled features", "one-month stale features", "three-month stale features"],
+  "portfolio": {
+    "top_n": 5,
+    "weighting": "capped inverse volatility",
+    "maximum_asset_weight": 0.35,
+    "rebalance": "monthly",
+    "cost_bps": [10, 50, 100]
+  },
+  "evaluation": {
+    "primary_cost_bps": 10,
+    "secondary_cost_bps": 50,
+    "stress_cost_bps": 100,
+    "rank_ic_bootstrap_samples": 20000,
+    "rank_ic_block_months": 3,
+    "paired_bootstrap_samples": 20000,
+    "paired_bootstrap_block_weeks": 13,
+    "one_sided_alpha": 0.05
+  },
+  "promotion_gates": {
+    "embargo": "every outer fold passes",
+    "rank_ic": "augmented adjusted lower bound positive and mean IC exceeds matched baseline",
+    "portfolio_10bps": "augmented Sharpe exceeds matched baseline with paired lower difference positive",
+    "portfolio_50bps": "augmented Sharpe exceeds matched baseline",
+    "drawdown": "augmented 10-bps drawdown no worse than matched baseline by more than two percentage points",
+    "stress": "augmented 100-bps later-window returns positive and full Sharpe no worse than matched baseline",
+    "controls": "augmented real IC and Sharpe exceed label-shuffle and random-feature controls",
+    "fold_stability": "at least 60 percent of augmented outer folds have positive mean rank IC",
+    "survivorship_safe_universe": false,
+    "untouched_forward_weeks": 52,
+    "all_requirements_must_pass": true
+  },
+  "live_trading_enabled": false
+}

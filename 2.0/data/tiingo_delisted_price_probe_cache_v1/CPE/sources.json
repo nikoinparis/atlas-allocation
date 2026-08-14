@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 2900,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T01:00:18.046268+00:00",
+    "sha256": "3187a80567facaa98d970ad8d0518c36285084d4310234074dcfa62b2c4bbc56",
+    "url": "https://api.tiingo.com/tiingo/daily/CPE"
+  },
+  {
+    "bytes": 653594,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T01:00:19.792634+00:00",
+    "sha256": "94a65b8abb140382868bdd520cea9bc3a20396cc82a9a029168e677fc5aa2c31",
+    "url": "https://api.tiingo.com/tiingo/daily/CPE/prices?startDate=2012-04-01&endDate=2025-04-11&resampleFreq=daily"
+  }
+]

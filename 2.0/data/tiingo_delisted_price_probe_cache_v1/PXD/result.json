@@ -1,0 +1,20 @@
+{
+  "cik10": "0001038357",
+  "covers_first_eligible_decision": true,
+  "first_eligible_decision": "2012-04-01 00:00:00+00:00",
+  "first_price_date": "2012-04-02",
+  "issuer_name_match": true,
+  "issuer_name_score": 1.0,
+  "last_eligible_decision": "2025-07-01 00:00:00+00:00",
+  "last_price_date": "2024-05-03",
+  "price_file": "/workspace/2.0/data/tiingo_delisted_price_probe_cache_v1/PXD/prices.csv.gz",
+  "price_rows": 3042,
+  "provider_end_date": "2024-05-03",
+  "provider_exchange": "NYSE",
+  "provider_name": "Pioneer Natural Resources Company",
+  "provider_start_date": "1997-08-08",
+  "sec_company_name": "PIONEER NATURAL RESOURCES CO",
+  "status": "identity_and_start_validated",
+  "terminal": true,
+  "tiingo_symbol": "PXD"
+}

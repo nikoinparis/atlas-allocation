@@ -1,0 +1,213 @@
+{
+  "program": "mlquant_etf_factor_ic_v1",
+  "repository_commit": "867e8dfe628b1d0ea2af987ec6f74c32c645f63e",
+  "source_snapshot_id": "20260809T002313Z-0d8632e2cf759918",
+  "input_metadata": {
+    "program_sha256": "04fe68036dfb89684de1c5bb1998f841abc93d1d66f2014d2e7b62c033074119",
+    "prices_sha256": "e03695c8bddd5fcda5940065213dc85a7700a0587d190df6cd4b9e3d8298d5b5",
+    "panel_dates": 8438,
+    "panel_assets": 14,
+    "first_date": "1993-01-29",
+    "last_date": "2026-08-07",
+    "registered_factor_count": 213,
+    "selected_factors": [
+      "best_001",
+      "best_002",
+      "original_001",
+      "stock_001",
+      "add_015",
+      "old_042"
+    ],
+    "asset_permutation": [
+      7,
+      1,
+      4,
+      8,
+      13,
+      6,
+      3,
+      11,
+      9,
+      2,
+      0,
+      10,
+      5,
+      12
+    ],
+    "return_permutation": [
+      7,
+      0,
+      8,
+      3,
+      11,
+      10,
+      6,
+      5,
+      2,
+      1,
+      4,
+      13,
+      9,
+      12
+    ],
+    "torch_version": "2.13.0+cpu"
+  },
+  "all_factor_audit": {
+    "registered": 213,
+    "passed_finite": 213,
+    "failed": 0
+  },
+  "factor_results": [
+    {
+      "factor": "best_001",
+      "development_direction": 1,
+      "development_mean_ic_raw": 0.04082190756892237,
+      "validation_signed_mean_ic": 0.024135431741709953,
+      "retrospective_test_signed_mean_ic": -0.005615611618779879,
+      "combined_validation_test_signed_mean_ic": 0.008471099020880404,
+      "familywise_bootstrap_lower": -0.010233160439462053,
+      "control_signed_means": {
+        "stale_5": 0.005387161835239751,
+        "asset_permutation": -0.0012498053554554633,
+        "return_permutation": 0.004797705053974473
+      },
+      "checks": {
+        "minimum_ic_dates_each_period": true,
+        "minimum_absolute_development_mean_ic": true,
+        "validation_signed_mean_ic_strictly_positive": true,
+        "retrospective_test_signed_mean_ic_strictly_positive": false,
+        "combined_validation_test_familywise_bootstrap_lower_strictly_positive": false,
+        "combined_mean_must_exceed_stale_5_session_control": true,
+        "combined_mean_must_exceed_asset_and_return_permutation_controls": true
+      },
+      "qualified": false
+    },
+    {
+      "factor": "best_002",
+      "development_direction": 1,
+      "development_mean_ic_raw": 0.04656586111112333,
+      "validation_signed_mean_ic": 0.032819873964352375,
+      "retrospective_test_signed_mean_ic": 0.011518623658879758,
+      "combined_validation_test_signed_mean_ic": 0.021589323671868877,
+      "familywise_bootstrap_lower": 0.003610399174525495,
+      "control_signed_means": {
+        "stale_5": 0.0057357844541557805,
+        "asset_permutation": -0.002692692796229773,
+        "return_permutation": 0.0038358256563711373
+      },
+      "checks": {
+        "minimum_ic_dates_each_period": true,
+        "minimum_absolute_development_mean_ic": true,
+        "validation_signed_mean_ic_strictly_positive": true,
+        "retrospective_test_signed_mean_ic_strictly_positive": true,
+        "combined_validation_test_familywise_bootstrap_lower_strictly_positive": true,
+        "combined_mean_must_exceed_stale_5_session_control": true,
+        "combined_mean_must_exceed_asset_and_return_permutation_controls": true
+      },
+      "qualified": true
+    },
+    {
+      "factor": "original_001",
+      "development_direction": 1,
+      "development_mean_ic_raw": 0.025758367243455857,
+      "validation_signed_mean_ic": 0.037667502067685946,
+      "retrospective_test_signed_mean_ic": 0.019918446739588456,
+      "combined_validation_test_signed_mean_ic": 0.028309757538715282,
+      "familywise_bootstrap_lower": 0.013788425180001696,
+      "control_signed_means": {
+        "stale_5": 0.025523376800349672,
+        "asset_permutation": 0.0060627179145578665,
+        "return_permutation": -0.014184755575097616
+      },
+      "checks": {
+        "minimum_ic_dates_each_period": true,
+        "minimum_absolute_development_mean_ic": true,
+        "validation_signed_mean_ic_strictly_positive": true,
+        "retrospective_test_signed_mean_ic_strictly_positive": true,
+        "combined_validation_test_familywise_bootstrap_lower_strictly_positive": true,
+        "combined_mean_must_exceed_stale_5_session_control": true,
+        "combined_mean_must_exceed_asset_and_return_permutation_controls": true
+      },
+      "qualified": true
+    },
+    {
+      "factor": "stock_001",
+      "development_direction": -1,
+      "development_mean_ic_raw": -0.011347903746027382,
+      "validation_signed_mean_ic": 0.003603541712005421,
+      "retrospective_test_signed_mean_ic": -0.00042630195475952705,
+      "combined_validation_test_signed_mean_ic": 0.001478907649617893,
+      "familywise_bootstrap_lower": -0.012942979851337175,
+      "control_signed_means": {
+        "stale_5": 0.009292418103535658,
+        "asset_permutation": -0.004692381050595606,
+        "return_permutation": 0.0029323626429976304
+      },
+      "checks": {
+        "minimum_ic_dates_each_period": true,
+        "minimum_absolute_development_mean_ic": false,
+        "validation_signed_mean_ic_strictly_positive": true,
+        "retrospective_test_signed_mean_ic_strictly_positive": false,
+        "combined_validation_test_familywise_bootstrap_lower_strictly_positive": false,
+        "combined_mean_must_exceed_stale_5_session_control": false,
+        "combined_mean_must_exceed_asset_and_return_permutation_controls": false
+      },
+      "qualified": false
+    },
+    {
+      "factor": "add_015",
+      "development_direction": -1,
+      "development_mean_ic_raw": -0.012411631917212401,
+      "validation_signed_mean_ic": 0.01754608843349653,
+      "retrospective_test_signed_mean_ic": 0.009138367866097083,
+      "combined_validation_test_signed_mean_ic": 0.013113328509865728,
+      "familywise_bootstrap_lower": -0.0038315394168133253,
+      "control_signed_means": {
+        "stale_5": -0.012494410118150443,
+        "asset_permutation": -0.003774672498639942,
+        "return_permutation": 0.004657279247137972
+      },
+      "checks": {
+        "minimum_ic_dates_each_period": true,
+        "minimum_absolute_development_mean_ic": false,
+        "validation_signed_mean_ic_strictly_positive": true,
+        "retrospective_test_signed_mean_ic_strictly_positive": true,
+        "combined_validation_test_familywise_bootstrap_lower_strictly_positive": false,
+        "combined_mean_must_exceed_stale_5_session_control": true,
+        "combined_mean_must_exceed_asset_and_return_permutation_controls": true
+      },
+      "qualified": false
+    },
+    {
+      "factor": "old_042",
+      "development_direction": 1,
+      "development_mean_ic_raw": 0.02716022493386085,
+      "validation_signed_mean_ic": 0.00478089236427173,
+      "retrospective_test_signed_mean_ic": 0.018397285766652727,
+      "combined_validation_test_signed_mean_ic": 0.011959794481035877,
+      "familywise_bootstrap_lower": -0.004326680099395158,
+      "control_signed_means": {
+        "stale_5": 0.0022614356615783615,
+        "asset_permutation": -0.01429449224838622,
+        "return_permutation": -0.014020457750313088
+      },
+      "checks": {
+        "minimum_ic_dates_each_period": true,
+        "minimum_absolute_development_mean_ic": true,
+        "validation_signed_mean_ic_strictly_positive": true,
+        "retrospective_test_signed_mean_ic_strictly_positive": true,
+        "combined_validation_test_familywise_bootstrap_lower_strictly_positive": false,
+        "combined_mean_must_exceed_stale_5_session_control": true,
+        "combined_mean_must_exceed_asset_and_return_permutation_controls": false
+      },
+      "qualified": false
+    }
+  ],
+  "qualified_factors": [
+    "best_002",
+    "original_001"
+  ],
+  "portfolio_backtest_authorized": true,
+  "live_trading_enabled": false,
+  "interpretation": "Retrospective factor-quality evidence only; not an executable strategy return or profit claim."
+}

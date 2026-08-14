@@ -1,0 +1,157 @@
+# Path B — Promotion Gate Definitions
+# Sprint 0 — 2026-06-07
+# These gates apply to PROMOTE_TO_PHASE_D_TEST (production promotion).
+# All gates must pass AND human authorization must be given. No automated promotion.
+
+# ─── Sprint Gate Reference ────────────────────────────────────────────────────
+# Sprint 5 gates (full-period vs holdout, basic metrics)
+# Sprint 6 gates (robustness, state-level, sensitivity checks)
+# All gates evaluated vs production pin: improved_frontier_phase5_fragility_guard
+
+# ─── Sprint 5: Basic Performance Gates ───────────────────────────────────────
+sprint_5_gates:
+
+  G1_full_sharpe_improvement:
+    description: "Full-history Sharpe improves by at least +0.01 vs production pin"
+    threshold: 0.01
+    direction: "increase"
+    comparison: "shadow_sharpe_full - production_sharpe_full >= 0.01"
+    hard_stop_if_failed: false   # failure triggers RESEARCH-ONLY, not hard stop
+
+  G2_holdout_sharpe:
+    description: "Holdout Sharpe not worse than production by more than -0.02"
+    threshold: -0.02
+    direction: "not_worse"
+    comparison: "shadow_sharpe_holdout - production_sharpe_holdout >= -0.02"
+    window: "2024-04-19 to 2026-04-10"
+    hard_stop_if_failed: false
+
+  G3_annual_return:
+    description: "Annual return improves or remains neutral (no meaningful degradation)"
+    threshold: 0.0
+    direction: "not_worse"
+    comparison: "shadow_annual_return >= production_annual_return * 0.99"
+    hard_stop_if_failed: false
+
+  G4_max_drawdown:
+    description: "Max drawdown worsens by no more than 1 percentage point"
+    threshold: 0.01
+    direction: "not_much_worse"
+    comparison: "shadow_max_drawdown <= production_max_drawdown - 0.01"
+    note: "max_drawdown is negative; shadow_max_drawdown must not be more negative by >0.01"
+    hard_stop_if_failed: false
+
+  G5_cvar:
+    description: "CVaR 5% does not materially worsen"
+    threshold: 0.005
+    direction: "not_worse"
+    comparison: "shadow_cvar_5pct vs production_cvar_5pct within tolerance"
+    hard_stop_if_failed: false
+
+  G6_turnover:
+    description: "Annual turnover increase ≤ 0.03 vs production pin"
+    threshold: 0.03
+    direction: "not_much_higher"
+    comparison: "shadow_annual_turnover - production_annual_turnover <= 0.03"
+    note: "This gate closed all three overlay paths (Step 2, 2B, 2C). Path B must clear it."
+    hard_stop_if_failed: false
+
+# ─── Sprint 6: Robustness Gates ──────────────────────────────────────────────
+sprint_6_gates:
+
+  G7_2x_cost_sensitivity:
+    description: "2x transaction cost scenario does not erase improvement"
+    comparison: "shadow_net_return_2xcost still better than production at 1x cost"
+    hard_stop_if_failed: false
+
+  G8_stressed_panic_preservation:
+    description: "stressed_panic protection preserved (Sharpe not worse in stress period)"
+    comparison: "shadow_stressed_panic_sharpe >= production_stressed_panic_sharpe - 0.02"
+    hard_stop_if_failed: true   # any weakening of stress protection is a hard stop
+
+  G9_recovery_fragile:
+    description: "recovery_fragile not materially harmed"
+    comparison: "shadow_recovery_fragile_sharpe >= production_recovery_fragile_sharpe - 0.02"
+    hard_stop_if_failed: false
+
+  G10_min_state_observations:
+    description: "No state used for weight calibration has fewer than 30 dev observations"
+    threshold: 30
+    direction: "min"
+    comparison: "all(state.dev_obs >= 30 for state in active_states)"
+    hard_stop_if_failed: true
+
+  G11_not_driven_by_extreme_years:
+    description: "Improvement not driven entirely by 2020 COVID or 2024-2025 AI rally"
+    comparison: "remove_2020_period: G1 still passes; remove_2024_2025: G1 still passes"
+    hard_stop_if_failed: false   # flags overfit; triggers additional analysis
+
+  G12_rolling_win_rate:
+    description: "Rolling 104-week Sharpe win rate ≥ 55% if available"
+    threshold: 0.55
+    direction: "min"
+    comparison: "mean(shadow_rolling_sharpe > production_rolling_sharpe) >= 0.55"
+    hard_stop_if_failed: false
+
+  G13_bootstrap_robustness:
+    description: "Block bootstrap / robustness checks pass for finalist candidates"
+    method: "block_bootstrap"
+    block_size: 52
+    n_draws: 1000
+    comparison: "P(shadow_sharpe > production_sharpe | bootstrap) >= 0.70"
+    hard_stop_if_failed: false
+
+# ─── Hard Stop Conditions ────────────────────────────────────────────────────
+# Any of these triggers IMMEDIATE HALT — no further promotion, fix required first.
+hard_stops:
+
+  HS1_lookahead_bias:
+    description: "Lookahead bias discovered in feature pipeline"
+    trigger: "any feature uses information unavailable at close of signal date"
+    action: "HALT — fix causal lag before any backtest interpretation"
+
+  HS2_hidden_leverage:
+    description: "Sum of weights exceeds 1.0 or any weight is negative"
+    trigger: "any(weights < 0) or sum(weights) > 1.001"
+    action: "HALT — fix portfolio construction constraint"
+
+  HS3_holdout_contamination:
+    description: "State boundaries, risk parameters, or IC estimates use holdout data"
+    trigger: "any parameter estimated using data after 2024-04-12"
+    action: "HALT — re-derive all parameters from dev period only"
+
+  HS4_cost_sensitivity_destroy:
+    description: "Improvement disappears at 2x transaction costs"
+    trigger: "G7 fails AND G1 improvement was marginal (< +0.02)"
+    action: "HARD_STOP — not robust to realistic cost uncertainty"
+
+  HS5_driven_by_single_episode:
+    description: "Result driven entirely by 2020 COVID shock or 2024-2025 AI rally"
+    trigger: "G11 fails for both exclusion tests"
+    action: "HARD_STOP — overfit to extreme regime; not generalizable"
+
+  HS6_undocumented_difference:
+    description: "Undocumented difference from production found that is not in Section H of equivalence map"
+    trigger: "Sprint 0.5 finds any MATCH component that does not match"
+    action: "HALT — correct to MATCH or document explicitly before Sprint 1"
+
+  HS7_convention_change:
+    description: "Cost convention, lag rules, or date index changed without documentation"
+    trigger: "any of: cost_per_unit_turnover != 0.001, lag != 1 week, dates differ"
+    action: "HALT — convention changes contaminate all comparisons"
+
+  HS8_stress_protection_weakened:
+    description: "Any weakening of stressed_panic protection"
+    trigger: "G8 fails (shadow stressed_panic Sharpe worse by > 0.02)"
+    action: "HARD_STOP — stress protection is a non-negotiable constraint"
+
+  HS9_insufficient_state_obs:
+    description: "A state with fewer than 30 dev observations is used for calibration"
+    trigger: "G10 fails (any active state has < 30 dev period observations)"
+    action: "HALT — merge or remove state before calibration"
+
+# ─── Human Authorization ─────────────────────────────────────────────────────
+promotion_requires_human_auth: true
+authorized_by: null   # must be filled before any promotion
+authorization_date: null
+sprint_authorized_for: "Sprint 6 PROMOTE_TO_PHASE_D_TEST"

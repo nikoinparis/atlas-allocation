@@ -1,0 +1,20 @@
+{
+  "cik10": "0000708818",
+  "covers_first_eligible_decision": true,
+  "first_eligible_decision": "2012-04-01 00:00:00+00:00",
+  "first_price_date": "2012-04-02",
+  "issuer_name_match": true,
+  "issuer_name_score": 1.0,
+  "last_eligible_decision": "2025-01-01 00:00:00+00:00",
+  "last_price_date": "2023-11-09",
+  "price_file": "/workspace/2.0/data/tiingo_delisted_price_probe_cache_v1/NXGN/prices.csv.gz",
+  "price_rows": 2922,
+  "provider_end_date": "2023-11-09",
+  "provider_exchange": "NASDAQ",
+  "provider_name": "NextGen Healthcare Inc",
+  "provider_start_date": "2001-01-02",
+  "sec_company_name": "NEXTGEN HEALTHCARE, INC.",
+  "status": "identity_and_start_validated",
+  "terminal": true,
+  "tiingo_symbol": "NXGN"
+}

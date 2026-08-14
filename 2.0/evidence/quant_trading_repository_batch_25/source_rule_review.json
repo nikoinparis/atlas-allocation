@@ -1,0 +1,23 @@
+{
+  "repository": "je-suis-tm/quant-trading",
+  "commit": "611b73f2c3f577ac5b28aaa19ac8c43d3236c7a5",
+  "source_file": "Bollinger Bands Pattern Recognition backtest.py",
+  "source_sha256": "fc054f7456a41ccf3fb34046aa2d49179af37b4c46f882d3432f0c2dd7a16027",
+  "source_rules": {
+    "bands": "20-observation simple mean plus/minus two sample standard deviations",
+    "lookback": "75 observations",
+    "entry": "five-node bottom-W arithmetic search, confirmed by current price above the current upper band",
+    "exit": "clear the long when 20-observation price standard deviation is below 0.0001",
+    "tolerances": "alpha and beta both fixed to 0.0001 absolute GBP/USD price units"
+  },
+  "lookahead_review": "All node searches run backward from the current completed observation. No future index is read, but the source does not delay the resulting order to a separately auditable next period.",
+  "defects_and_ambiguities": [
+    "Absolute 0.0001 thresholds are instrument-scale-specific and not portable from GBP/USD to ETFs.",
+    "The second condition compares a historical middle band with the current upper band, an unusual cross-time equality that may be intentional but is undocumented.",
+    "The contraction exit can be effectively unreachable on instruments whose nominal price or volatility scale differs from GBP/USD.",
+    "The hard-coded local drive, external CSV schema, and plotting-only workflow are not reproducible.",
+    "There is no performance accounting, transaction cost, uncertainty analysis, negative control, or portfolio test.",
+    "Repeated cumulative-sum mutation and label-style integer indexing are fragile across pandas versions."
+  ],
+  "independent_treatment": "Test the literal absolute-unit rule and one predeclared dimensionless interpretation without tuning. Preserve the exact backward node ordering, require next-close realization, and add coverage, cost, control, and portfolio gates."
+}

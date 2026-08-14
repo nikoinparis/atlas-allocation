@@ -1,0 +1,61 @@
+{
+  "artifacts": {
+    "lineage_findings.csv": {
+      "bytes": 1157,
+      "sha256": "c4cf3101122b73bc78e8124abb984f95e8f16c9c30de1fddbd107539136fb713"
+    },
+    "scale_history.csv": {
+      "bytes": 79581,
+      "sha256": "5fca5b4e8354887514d59f84d68331ccfb209aba081beec52d73224109a78f75"
+    }
+  },
+  "assets": 35,
+  "causal_lineage_passed": false,
+  "decision": "mechanically_equivalent_but_not_qualified_as_v2_incumbent",
+  "equivalence_gates": {
+    "correlation": true,
+    "path": true,
+    "weights": true
+  },
+  "generated_at_utc": "2026-08-11T06:15:58.652120+00:00",
+  "independent_of_v1_python_modules": true,
+  "lineage_gates": {
+    "base_ggg_native_lineage_complete": false,
+    "final_weights_fund_next_week_not_same_week": true,
+    "holdout_untouched_by_variant_selection": false,
+    "phase1_and_phase4_normalization_expanding_only": true,
+    "phase1_raw_components_lagged_one_week": true,
+    "phase4_price_components_lagged_one_week": true,
+    "point_in_time_universe": false,
+    "source_price_vintage_known": false
+  },
+  "live_trading_enabled": false,
+  "maximum_path_absolute_difference": 2.6645352591003757e-15,
+  "maximum_weight_absolute_difference": 9.93129189996722e-17,
+  "mechanical_equivalence_passed": true,
+  "net_return_correlation": 0.9999999999999997,
+  "path_column_maximum_absolute_differences": {
+    "cost": 9.985502008591496e-17,
+    "drawdown": 4.649058915617843e-16,
+    "gross_return": 2.0816681711721685e-16,
+    "net_return": 2.2898349882893854e-16,
+    "turnover": 9.974659986866641e-17,
+    "wealth": 2.6645352591003757e-15
+  },
+  "path_weeks_compared": 1110,
+  "post_selection_weeks_in_saved_history": 0,
+  "program": "v1_wrapper_equivalence_lineage_v1",
+  "program_sha256": "644efae284ba57a4522e2209615d81c5d1b35dde9db14ff9e66f699c09dcfe8d",
+  "runner_sha256": "b3c17ab72f8b89c424f28c8ae7378d73643e9bdb90f393ba4dd65d88c2ae50f9",
+  "runtime": {
+    "container_image": "localhost/po2-skfolio:0.20.1-native-core-batch37",
+    "container_id": "92027e01782da34b066cc1c07ca97e1649a2d8d906eda9ec3ed9c5d35cbcfe1d",
+    "network_during_run": false,
+    "version_1_mount": "read_only"
+  },
+  "recent_performance_claim": "selection_contaminated_retrospective",
+  "saved_history_last_date": "2026-04-10",
+  "selection_record_date": "2026-05-21",
+  "version_1_modified": false,
+  "weight_rows": 1110
+}

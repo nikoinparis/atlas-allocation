@@ -436,3 +436,4 @@ function DashboardView({ data, strategies, onStrategyChange }: { data: Dashboard
     </main>
   );
 }
+

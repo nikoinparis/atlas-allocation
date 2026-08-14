@@ -1,0 +1,15 @@
+{
+  "created_at_utc": "2026-08-13T10:01:24.293688+00:00",
+  "historical_mapping_complete": false,
+  "instance_symbols_recovered": 193,
+  "parent_symbol_vintage": "/project/data/sec_historical_identity_vintages/20260813T095732Z-sec-symbol-recovery-v1",
+  "price_testing_authorized": false,
+  "recovery_rate": 0.420479302832244,
+  "status_counts": {
+    "instance_has_no_explicit_symbol": 266,
+    "instance_symbol_recovered": 193
+  },
+  "targets": 459,
+  "ticker_reuse_validated": false,
+  "vintage_id": "20260813T100124Z-sec-legacy-symbol-recovery-v1"
+}

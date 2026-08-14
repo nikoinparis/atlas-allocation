@@ -1,0 +1,84 @@
+{
+  "actual_stage_count": 6,
+  "artifacts": {
+    "checkpoint_equivalence.csv": {
+      "bytes": 1384,
+      "sha256": "f8a1a723a947b52bd1e3715d66eeb17a154d98a45f9847e36a17aedfd643f111"
+    },
+    "published_artifact_equivalence.csv": {
+      "bytes": 737,
+      "sha256": "71ae70d8c80e6cb72d14ad935e908e713a9494cafb8ee34401764394ec7ee6f4"
+    },
+    "stage_rule_manifest.csv": {
+      "bytes": 888,
+      "sha256": "cfae55f3891a12d7f5201aae97c8f0565257fe2837ae4ac64c26564b2d3a51ce"
+    },
+    "stage_transition_summary.csv": {
+      "bytes": 437,
+      "sha256": "97c1a8c4dbfe5de7f341f280a60c58fbad1a757e091b5bcef6d777502f1c3469"
+    }
+  },
+  "candidate": "improved_phaseggg_confirmed_only_robust_offense",
+  "decision": "native_source_reproducible_continue_to_independent_v2_extraction",
+  "equivalence_gates": {
+    "all_expected_stages_present": true,
+    "checkpoint_values": true,
+    "published_net_return_correlation": true,
+    "published_path": true,
+    "published_weights": true
+  },
+  "expected_stage_count": 6,
+  "generated_at_utc": "2026-08-11T06:37:12.641409+00:00",
+  "independent_v2_rewrite": false,
+  "live_trading_enabled": false,
+  "maximum_checkpoint_absolute_difference": 0.0,
+  "native_builder_sha256": "2a3a96115578ee6551d05fb7ac254252671422973505f07d18bc49a976522e1a",
+  "native_reconstruction_passed": true,
+  "program": "v1_ggg_native_reconstruction_v1",
+  "program_sha256": "011f958713c0a1a94a467c8ef8edb1ddaf3de117375fca98e56bda350437e30d",
+  "published_artifacts": {
+    "published_returns": {
+      "actual_columns": 6,
+      "actual_rows": 1110,
+      "actual_sha256": "2514fcff4665630389fac9b5ba2c3afc4db5ad66b2a26e7baae5fdded194ccb1",
+      "columns_equal": true,
+      "common_columns": 6,
+      "common_rows": 1110,
+      "expected_columns": 6,
+      "expected_rows": 1110,
+      "expected_sha256": "2514fcff4665630389fac9b5ba2c3afc4db5ad66b2a26e7baae5fdded194ccb1",
+      "index_equal": true,
+      "maximum_absolute_difference": 0.0
+    },
+    "published_sleeve_weights": {
+      "actual_columns": 7,
+      "actual_rows": 1110,
+      "actual_sha256": "46cb45e7da99ddb9b0e8ca743a3d874de99f73cb6b049b6330ade55439d692ea",
+      "columns_equal": true,
+      "common_columns": 7,
+      "common_rows": 1110,
+      "expected_columns": 7,
+      "expected_rows": 1110,
+      "expected_sha256": "46cb45e7da99ddb9b0e8ca743a3d874de99f73cb6b049b6330ade55439d692ea",
+      "index_equal": true,
+      "maximum_absolute_difference": 0.0
+    },
+    "published_weights": {
+      "actual_columns": 35,
+      "actual_rows": 1110,
+      "actual_sha256": "c500d47af62dc1e265166c58cc1ad2d292bbc00a0304fefde8c9e6c56349b04a",
+      "columns_equal": true,
+      "common_columns": 35,
+      "common_rows": 1110,
+      "expected_columns": 35,
+      "expected_rows": 1110,
+      "expected_sha256": "c500d47af62dc1e265166c58cc1ad2d292bbc00a0304fefde8c9e6c56349b04a",
+      "index_equal": true,
+      "maximum_absolute_difference": 0.0
+    }
+  },
+  "published_net_return_correlation": 0.9999999999999999,
+  "selection_contamination_removed": false,
+  "source_version_1_mounted_read_only": true,
+  "version_1_modified": false
+}

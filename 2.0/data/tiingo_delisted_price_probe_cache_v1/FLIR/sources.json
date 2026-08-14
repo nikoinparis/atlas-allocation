@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 499,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T05:57:39.938944+00:00",
+    "sha256": "a2e33b7044d1cb2b4f731b23605e95eeffeb520c6c89cd7df75eb04be21396bb",
+    "url": "https://api.tiingo.com/tiingo/daily/FLIR"
+  },
+  {
+    "bytes": 574719,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T05:57:42.579184+00:00",
+    "sha256": "ccb810be44437d570165773bd19a02e3763a5e4df80504096f352ba3ae66442b",
+    "url": "https://api.tiingo.com/tiingo/daily/FLIR/prices?startDate=2012-04-01&endDate=2022-07-11&resampleFreq=daily"
+  }
+]

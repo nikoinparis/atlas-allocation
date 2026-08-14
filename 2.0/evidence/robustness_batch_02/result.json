@@ -1,0 +1,146 @@
+{
+  "artifacts": {
+    "candidate_summary.csv": {
+      "bytes": 781,
+      "sha256": "0f2ee27528e32fe88a97fe2a8cc613b9b9ffcb4091401dbe4cc9815f3f3f2987"
+    },
+    "cost_stress.csv": {
+      "bytes": 11337,
+      "sha256": "1aece903787df4b2913db4b7984ae53aa8172c066a6ade12855a0bd83e0db960"
+    },
+    "neighborhoods.csv": {
+      "bytes": 1160,
+      "sha256": "9d417dc702119e0e9bcdaf76df5460f149226b1ef65fb7eb85af986540877b4d"
+    },
+    "regimes.csv": {
+      "bytes": 8905,
+      "sha256": "3759fd30acc8dc4e6822b1d586c511d610ad75bd3409997e3d39f9d60be9c2a4"
+    }
+  },
+  "batch": "robustness_batch_02",
+  "candidate_count": 10,
+  "candidate_summaries": [
+    {
+      "candidate_id": "candidate-3a187e9134eefe61",
+      "cost_stress_pass": true,
+      "experiment_id": "exp-3a187e9134eefe61",
+      "neighborhood_pass": true,
+      "regime_pass": true,
+      "robustness_pass": true
+    },
+    {
+      "candidate_id": "candidate-539eaf900f7b2b57",
+      "cost_stress_pass": true,
+      "experiment_id": "exp-539eaf900f7b2b57",
+      "neighborhood_pass": true,
+      "regime_pass": true,
+      "robustness_pass": true
+    },
+    {
+      "candidate_id": "candidate-4c75085a1dd85949",
+      "cost_stress_pass": true,
+      "experiment_id": "exp-4c75085a1dd85949",
+      "neighborhood_pass": true,
+      "regime_pass": true,
+      "robustness_pass": true
+    },
+    {
+      "candidate_id": "candidate-8ca3faf38ba934cb",
+      "cost_stress_pass": true,
+      "experiment_id": "exp-8ca3faf38ba934cb",
+      "neighborhood_pass": true,
+      "regime_pass": true,
+      "robustness_pass": true
+    },
+    {
+      "candidate_id": "candidate-23e3beb2c30dbeb8",
+      "cost_stress_pass": true,
+      "experiment_id": "exp-23e3beb2c30dbeb8",
+      "neighborhood_pass": true,
+      "regime_pass": true,
+      "robustness_pass": true
+    },
+    {
+      "candidate_id": "candidate-052f66f29b9fafbe",
+      "cost_stress_pass": true,
+      "experiment_id": "exp-052f66f29b9fafbe",
+      "neighborhood_pass": true,
+      "regime_pass": true,
+      "robustness_pass": true
+    },
+    {
+      "candidate_id": "candidate-36a0f3d51675c16f",
+      "cost_stress_pass": true,
+      "experiment_id": "exp-36a0f3d51675c16f",
+      "neighborhood_pass": true,
+      "regime_pass": true,
+      "robustness_pass": true
+    },
+    {
+      "candidate_id": "candidate-0788c02844e389fa",
+      "cost_stress_pass": true,
+      "experiment_id": "exp-0788c02844e389fa",
+      "neighborhood_pass": true,
+      "regime_pass": true,
+      "robustness_pass": true
+    },
+    {
+      "candidate_id": "candidate-c1a595f584a5d469",
+      "cost_stress_pass": true,
+      "experiment_id": "exp-c1a595f584a5d469",
+      "neighborhood_pass": true,
+      "regime_pass": true,
+      "robustness_pass": true
+    },
+    {
+      "candidate_id": "candidate-fc7248702f02b421",
+      "cost_stress_pass": true,
+      "experiment_id": "exp-fc7248702f02b421",
+      "neighborhood_pass": true,
+      "regime_pass": true,
+      "robustness_pass": true
+    }
+  ],
+  "fragile_count": 0,
+  "generated_at_utc": "2026-08-08T22:04:04.746648+00:00",
+  "limitations": [
+    "All robustness results are retrospective and share the visible Batch 01 history.",
+    "Parameter neighborhoods reduce single-point sensitivity but do not remove multiple-testing bias.",
+    "The three SPY-defined regimes are simple fixed diagnostics, not an optimized regime model.",
+    "Survivorship-safe historical membership and 52 untouched weeks remain unavailable."
+  ],
+  "robust_count": 10,
+  "rules_fixed_before_results": {
+    "cost_stress": {
+      "maximum_cost_bps": 100.0,
+      "minimum_annual_return_at_maximum_cost": 0.0,
+      "minimum_sharpe_at_maximum_cost": 0.25
+    },
+    "neighborhood": {
+      "maximum_allowed_neighbor_drawdown": -0.35,
+      "minimum_median_2016_2020_sharpe": 0.35,
+      "minimum_median_2021_present_sharpe": 0.75,
+      "minimum_positive_return_neighbors_each_period": 7,
+      "same_signal_recipe_and_portfolio_method": true,
+      "smoothing_weeks": [
+        1,
+        4,
+        8
+      ],
+      "top_n": [
+        2,
+        4,
+        6
+      ]
+    },
+    "regime": {
+      "calm_risk_on": "trailing SPY return > 0 and annualized volatility < 20%",
+      "definition": "point-in-time trailing 26-week SPY return and volatility at decision date",
+      "high_vol_risk_on": "trailing SPY return > 0 and annualized volatility >= 20%",
+      "minimum_annual_return_per_scored_regime": -0.02,
+      "minimum_observations_per_scored_regime": 52,
+      "risk_off": "trailing SPY return <= 0"
+    }
+  },
+  "source_snapshot_id": "20260808T212827Z-de103c2e063d6c4a"
+}

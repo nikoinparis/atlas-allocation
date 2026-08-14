@@ -1,0 +1,28 @@
+{
+  "accepted_forms": [
+    "10-Q",
+    "10-Q/A",
+    "10-K",
+    "10-K/A",
+    "8-K",
+    "8-K/A"
+  ],
+  "amendment_asof_test_pass": true,
+  "canonical_metrics": 16,
+  "data_source": "SEC EDGAR Submissions and Company Facts APIs",
+  "declared_pilot_companies": 20,
+  "implementation_complete": true,
+  "live_download_blocker": null,
+  "live_sec_data_downloaded": true,
+  "lookahead_test_pass": true,
+  "network_guard_test_pass": true,
+  "point_in_time_availability": "EDGAR acceptanceDateTime by accession; conservative filing-day end fallback",
+  "quarterly_factor_input_builder_complete": true,
+  "live_vintage_id": "20260813T065239Z-sec-pit-v1",
+  "live_vintage_structural_audit_pass": true,
+  "pilot_factor_diagnostic_authorized": true,
+  "strategy_testing_authorized": false,
+  "synthetic_tests_passed": 5,
+  "universe_survivorship_safe": false,
+  "unit_duplicate_period_audit_complete": true
+}

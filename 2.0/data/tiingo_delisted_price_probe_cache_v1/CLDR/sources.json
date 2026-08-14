@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 845,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T05:57:23.159173+00:00",
+    "sha256": "f29c8dd16a797c48565dc039ac90c92c5c920c3bced79d60dbb90077403aa6ee",
+    "url": "https://api.tiingo.com/tiingo/daily/CLDR"
+  },
+  {
+    "bytes": 139581,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T05:57:25.337229+00:00",
+    "sha256": "9fb15930eeb41fcfaa0a22ab0ac19902ed09ddd88afab9d115c0ebaac9eee85f",
+    "url": "https://api.tiingo.com/tiingo/daily/CLDR/prices?startDate=2019-04-01&endDate=2022-10-11&resampleFreq=daily"
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 1134,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T20:23:31.635074+00:00",
+    "sha256": "6aaf821df741a957552b9a886d03883e4fd12a52f0e419668444e4ec68070373",
+    "url": "https://api.tiingo.com/tiingo/daily/INFA"
+  },
+  {
+    "bytes": 145159,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T20:23:33.149625+00:00",
+    "sha256": "20f19193ef48baa61951914201dde1388dca776fc1030f055e5db2e938a0c0cf",
+    "url": "https://api.tiingo.com/tiingo/daily/INFA/prices?startDate=2023-04-01&endDate=2026-04-11&resampleFreq=daily"
+  }
+]

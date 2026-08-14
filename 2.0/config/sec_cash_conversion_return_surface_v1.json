@@ -1,0 +1,34 @@
+{
+  "experiment": "sec_cash_conversion_return_surface_v1",
+  "frozen_control": "confidence_10_40__cap_1.50x",
+  "signal_source": "50bps base paths, shifted one week before every rolling calculation",
+  "families": ["profitability", "balance_sheet_quality", "shareholder_discipline", "cash_conversion", "quality_acceleration"],
+  "cash_conversion_lookbacks": [8, 10, 11, 12, 13, 14, 15, 16, 18, 20, 22, 26, 39],
+  "cash_conversion_weight_pairs": [[0.0, 0.1], [0.0, 0.2], [0.0, 0.3], [0.0, 0.4], [0.0, 0.5], [0.05, 0.2], [0.05, 0.3], [0.05, 0.4], [0.05, 0.5], [0.1, 0.2], [0.1, 0.3], [0.1, 0.4], [0.1, 0.5]],
+  "rotation_lookbacks": [8, 13, 26, 39],
+  "rotation_high_weights": [0.1, 0.2, 0.3, 0.4],
+  "top_two_lookbacks": [13, 26, 39],
+  "top_two_high_weights": [0.1, 0.2, 0.3, 0.4],
+  "cost_bps": [50, 100, 200],
+  "scenarios": ["base", "adverse"],
+  "additional_rebalance_cost": "one-way turnover times scenario cost bps",
+  "promotion_gates": {
+    "minimum_trailing_1y_cagr_improvement": 0.01,
+    "minimum_ytd_cagr_improvement": 0.0,
+    "minimum_recent_sharpe_ratio_to_control": 0.9,
+    "maximum_recent_drawdown_ratio_to_control": 1.25,
+    "maximum_full_cagr_sacrifice": 0.03,
+    "maximum_full_drawdown_ratio_to_control": 1.35,
+    "must_beat_control_at_200bps_recent": true
+  },
+  "falsification": {
+    "signal_delays_weeks": [1, 2],
+    "rolling_comparison_weeks": 26,
+    "bootstrap_blocks_weeks": [4, 13],
+    "bootstrap_draws": 4000,
+    "bootstrap_seed": 20260814,
+    "minimum_neighborhood_joint_improvement_share": 0.5
+  },
+  "research_only": true,
+  "live_trading_enabled": false
+}

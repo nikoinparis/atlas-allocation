@@ -1,0 +1,27 @@
+{
+  "allocator_module_sha256": "69e329134fbed8328ae0802759ce492b9dd123c05e68c0401e53001db1805253",
+  "bundle_id": "ggg_causal_v2_027530550388432a",
+  "engine_version": "ggg_causal_v2",
+  "files": {
+    "data/01_data_hub/weekly_prices.csv": "22ad91d0efe56fbbc1b95ec530e55bbcd27986217d6036c10eed2dcbdcec27d4",
+    "data/03_layer2a_strategy_logic/strategy_positions_composite_regime_conditioned.csv": "494c673ee8c14b829689ccede17be2c9989549a6baa3dd93b6ff2736d5d3ba71",
+    "data/03_layer2a_strategy_logic/strategy_positions_composite_selective_signals.csv": "323835032b6767822fc9cfa0ec6aa94c59f74504aa02db8f315680aafba45b3a",
+    "data/03_layer2a_strategy_logic/strategy_positions_cta_trend_long_only.csv": "18d552d92ceacc8409e5e06419e7e9251ddf7794219bac81d7de7474d8ece2f0",
+    "data/03_layer2a_strategy_logic/strategy_positions_dual_momentum_topn.csv": "6a3eab1b4832f5335674249779194a6876628ed86452e5d11b46afe535871a36",
+    "data/03_layer2a_strategy_logic/strategy_positions_taa_10m_sma.csv": "3a1c2b5e7e82abee792e7f5b0884c385f0a5671a9e084ece305ed509b055f894",
+    "data/03_layer2a_strategy_logic/strategy_returns_composite_regime_conditioned.csv": "e7d035903ef29e2b5dc988b30e72ce606e47f3a68e3eb0fc7f3445e23baaf07a",
+    "data/03_layer2a_strategy_logic/strategy_returns_composite_selective_signals.csv": "4f578dca1e18ce72c30639bf652de8fc07b4047343615f5c8348b125f4d8aa55",
+    "data/03_layer2a_strategy_logic/strategy_returns_cta_trend_long_only.csv": "964fa506f418e3159564dba810007d63fd12536bd464e97205039b5f48dc0ced",
+    "data/03_layer2a_strategy_logic/strategy_returns_dual_momentum_topn.csv": "ba106cda65e46c99725a0dbdb97e60a933a9e9387220f9a470118c92a7dddcfe",
+    "data/03_layer2a_strategy_logic/strategy_returns_taa_10m_sma.csv": "6a2366fe08250d8e29bf71b2dfdf2ece1b985770232480aa809f1448e360d11a",
+    "data/04_layer2b_risk_regime_engine/market_state_history.csv": "98a7dbfada6fd1c9408e12f35df45d12713124014908b82777be270eeb10ab2d",
+    "data/04_layer2b_risk_regime_engine/phase2b_meta_predictions.csv": "068fd83fc8a470d8b9939321c16f3bf916090c76dbe2e30086fe67a054aa21b3",
+    "data/04_layer2b_risk_regime_engine/regime_states.csv": "ff32ba649d9d23b0adfccb329718cd324cbcfd44a6c9108317ee05cfc0d38236"
+  },
+  "layer2a_bundle_id": "20260812T035702Z_20260812T090851Z_23415b848f82",
+  "layer2b_bundle_id": "20260812T035702Z_20260812T090851Z_causalmeta_adc08ddb4c57",
+  "legacy_terminal_rebalance": false,
+  "market_data_through": "2026-08-07",
+  "price_snapshot_id": "20260812T035702Z-0c1bf62d74413e2a",
+  "regime_snapshot_id": "20260812T090851Z-5c6de663ac77"
+}

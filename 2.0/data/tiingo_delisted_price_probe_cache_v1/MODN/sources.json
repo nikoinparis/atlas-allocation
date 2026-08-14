@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 816,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T01:00:08.983542+00:00",
+    "sha256": "babd7541ea723a517f2c1b053f022eb3a58b6133f96fe92663d1dff59e1da652",
+    "url": "https://api.tiingo.com/tiingo/daily/MODN"
+  },
+  {
+    "bytes": 518416,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T01:00:10.829311+00:00",
+    "sha256": "1f47445d8dffecbc127682e4e5d284ae358411227feb1b5dba7a3902b388e938",
+    "url": "https://api.tiingo.com/tiingo/daily/MODN/prices?startDate=2015-01-01&endDate=2025-07-11&resampleFreq=daily"
+  }
+]

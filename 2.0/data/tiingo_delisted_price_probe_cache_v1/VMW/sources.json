@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 532,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T02:16:52.419347+00:00",
+    "sha256": "6d9109b97664067d945def26a9ffa6fbb35a9cfe1b12d573d513ce9da984a091",
+    "url": "https://api.tiingo.com/tiingo/daily/VMW"
+  },
+  {
+    "bytes": 733040,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T02:16:54.086673+00:00",
+    "sha256": "f0f834c592f68e536c399d24bb069ffaec832e540c5924dba4bc9abc3e119aea",
+    "url": "https://api.tiingo.com/tiingo/daily/VMW/prices?startDate=2012-04-01&endDate=2024-10-11&resampleFreq=daily"
+  }
+]

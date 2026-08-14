@@ -1,0 +1,25 @@
+{
+  "batch": 61,
+  "candidate": "candidate-ggg-xsmom-30-v1",
+  "decision": "adopt_dynamic_variant_for_further_validation",
+  "deterministic": true,
+  "dynamic_variants_tested": 6,
+  "forward_clock_started": false,
+  "generated_at_utc": "2026-08-12T22:53:25.221154+00:00",
+  "live_trading_enabled": false,
+  "qualified_dynamic_variants": 1,
+  "recent_year_win_share": 0.8333333333333334,
+  "retrospective_research_only": true,
+  "rolling_3y_cagr_win_share": 0.8552631578947368,
+  "rolling_3y_median_cagr_improvement": 0.006189482156426562,
+  "rolling_3y_windows": 76,
+  "rolling_3y_worst_cagr_improvement": -0.00929242456951096,
+  "selected_dynamic_variant": "exposure_boost_40_20",
+  "static_deep_validation_pass": true,
+  "static_validation_gates": {
+    "alpha_neighborhood_recent_3y": true,
+    "recent_3y_100bps": true,
+    "recent_year_win_share": true,
+    "rolling_3y_cagr_win_share": true
+  }
+}

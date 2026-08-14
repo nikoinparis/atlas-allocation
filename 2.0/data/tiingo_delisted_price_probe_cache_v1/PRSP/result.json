@@ -1,0 +1,20 @@
+{
+  "cik10": "0001724670",
+  "covers_first_eligible_decision": true,
+  "first_eligible_decision": "2020-07-01 00:00:00+00:00",
+  "first_price_date": "2020-07-01",
+  "issuer_name_match": true,
+  "issuer_name_score": 1.0,
+  "last_eligible_decision": "2022-04-01 00:00:00+00:00",
+  "last_price_date": "2021-05-06",
+  "price_file": "/workspace/2.0/data/tiingo_delisted_price_probe_cache_v1/PRSP/prices.csv.gz",
+  "price_rows": 214,
+  "provider_end_date": "2021-05-06",
+  "provider_exchange": "NYSE",
+  "provider_name": "Perspecta Inc",
+  "provider_start_date": "2018-06-01",
+  "sec_company_name": "PERSPECTA INC.",
+  "status": "identity_and_start_validated",
+  "terminal": true,
+  "tiingo_symbol": "PRSP"
+}

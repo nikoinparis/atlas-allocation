@@ -1,0 +1,7 @@
+finding,status,evidence
+wrapper_return_timing,pass,"V1 production_costs.py constructs pct_change().shift(-1), so date-t weights fund the next weekly close-to-close return."
+phase1_feature_timing,pass_implementation,Phase 1 raw components are shifted one week and standardized with expanding statistics before R2A construction.
+phase4_feature_timing,pass_implementation,All five Phase 4 price components are shifted one week and standardized with expanding statistics.
+holdout_independence,fail,"The 2026-05-21 Phase 5 report evaluated seven non-baseline variants on the 2024-04-19 holdout, used holdout Sharpe in its selection score, and selected the final fragility-guard family. The saved return history ends 2026-04-10, so it contains zero post-selection weeks."
+base_weight_lineage,incomplete,The wrapper begins from saved GGG final weights produced after a long multi-phase candidate search; their complete native causal reconstruction has not yet been established in Version 2.
+universe_and_vintage,fail,The 35-ETF universe is fixed using currently available symbols and the source weekly-price artifact has no immutable observation-vintage manifest.

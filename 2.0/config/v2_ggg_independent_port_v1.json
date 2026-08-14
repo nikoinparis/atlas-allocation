@@ -1,0 +1,67 @@
+{
+  "program": "v2_ggg_independent_port_v1",
+  "batch": 44,
+  "predeclared_before_independent_port_results": true,
+  "source_candidate": "improved_phaseggg_confirmed_only_robust_offense",
+  "implementation_owner": "Version 2",
+  "runtime_imports_from_version_1": false,
+  "core_logic": {
+    "rebalance_frequency": "monthly on the final available Friday of each month",
+    "train_window_weeks": 156,
+    "minimum_train_observations": 78,
+    "allocator": "long-only HRP using sample covariance and single linkage",
+    "maximum_sleeve_weight": 0.45,
+    "state_tilt": "phase_ddd_confirmed_near_exclude_dual",
+    "layer3_expression": "none",
+    "overlay_variant": "good_state_fragile_expression",
+    "sleeve_reallocation_speed": 0.40,
+    "rerisk_speed": 0.80,
+    "overlay_penalty": "phasexx_conservative_hybrid_overlay",
+    "target_annual_volatility": 0.12,
+    "target_volatility_floor": 0.35,
+    "target_volatility_ceiling": 1.00,
+    "phase2b_mode": "regime_confidence_boost",
+    "maximum_etf_weight": 0.35,
+    "cash_proxy": "BIL",
+    "default_offense_assets": ["SPY", "QQQ", "IWM", "EFA", "VEA", "VWO", "EWJ", "VNQ", "PDBC", "DBA"],
+    "recovery_confirmed_offense_assets": ["SPY", "QQQ", "IWM", "EFA", "VEA", "VWO", "EWJ", "VNQ"],
+    "defense_assets": ["HYG", "LQD", "GLD", "TLT"],
+    "return_timing": "date-t weights fund the following weekly close-to-close return",
+    "transaction_cost_bps": 10.0
+  },
+  "expected_stages": [
+    "raw_hrp_sleeve_weights",
+    "post_state_tilt_sleeve_weights",
+    "post_layer3_expression_sleeve_weights",
+    "post_overlay_pre_lookthrough_sleeve_weights",
+    "final_sleeve_weights",
+    "final_etf_weights"
+  ],
+  "equivalence_gates": {
+    "maximum_stage_absolute_difference": 1e-10,
+    "maximum_return_path_absolute_difference": 1e-10,
+    "minimum_net_return_correlation": 0.9999999999,
+    "two_run_output_hashes_equal": true
+  },
+  "governance_gates": {
+    "canonical_core_logic_hash_recorded": true,
+    "static_negative_shift_scan_clean": true,
+    "prefix_invariance_clean": true,
+    "micro_scenarios_all_pass": true,
+    "structured_audit_log_complete": true,
+    "source_inputs_hashed": true
+  },
+  "sys_trade_bench_adaptations": {
+    "paper": "SysTradeBench arXiv:2604.04812v1",
+    "frozen_semantics": true,
+    "determinism_hash_gate": true,
+    "static_and_runtime_anti_leakage": true,
+    "behavioral_micro_scenarios": true,
+    "stage_trace_equivalence": true,
+    "future_patch_budget_changed_lines": 50,
+    "note": "These controls govern implementation fidelity; they do not constitute a profitability claim. Paper-inspired alpha or optimization changes require a separate predeclared experiment."
+  },
+  "qualification_rule": "The independent port qualifies as the V2 GGG benchmark implementation only if every equivalence and governance gate passes. Historical selection contamination remains attached to performance claims even after a perfect port.",
+  "version_1_files_may_be_modified": false,
+  "live_trading_enabled": false
+}

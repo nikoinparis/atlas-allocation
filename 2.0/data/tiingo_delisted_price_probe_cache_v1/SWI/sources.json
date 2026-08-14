@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 164,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T10:48:31.962605+00:00",
+    "sha256": "097c44ab56691e7ce6cd3a50986a85a2c13410efd5277622fc219367d6c17f67",
+    "url": "https://api.tiingo.com/tiingo/daily/SWI"
+  },
+  {
+    "bytes": 210,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T10:48:33.289424+00:00",
+    "sha256": "14efbbbbe3152adcafedde60817394fa24e68df6f68671d368394c76c14a7c26",
+    "url": "https://api.tiingo.com/tiingo/daily/SWI/prices?startDate=2020-04-01&endDate=2026-04-11&resampleFreq=daily"
+  }
+]

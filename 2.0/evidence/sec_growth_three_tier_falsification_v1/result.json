@@ -1,0 +1,27 @@
+{
+  "all_promotion_gates_passed": false,
+  "all_validation_checks_passed": true,
+  "balanced_50_trailing_1y_cagr": 1.0135201438562706,
+  "balanced_50_worst_leave_one_out_improvement": -0.2156968083823323,
+  "baseline_trailing_1y_cagr_improvement": 0.18177328545182192,
+  "created_at_utc": "2026-08-14T12:05:16.114633+00:00",
+  "experiment": "sec_growth_three_tier_falsification_v1",
+  "parameter_neighborhood_positive_share": 0.3333333333333333,
+  "promotion_gates": {
+    "holdout_cagr": true,
+    "one_week_delay_positive_recent_improvement": true,
+    "parameter_neighborhood": false,
+    "single_exclusion_does_not_destroy_half_improvement": false,
+    "trailing_1y_cagr": true,
+    "trailing_1y_sharpe": true
+  },
+  "selection_or_live_trading_authorized": false,
+  "validation": {
+    "all_outputs_finite": true,
+    "all_selected_stocks_excluded_once_per_tier": true,
+    "complete_parameter_grid": true,
+    "control_reproduced": true,
+    "frozen_leader_reproduced": true
+  },
+  "worst_leave_one_out_trailing_1y_improvement": -0.1708518058822841
+}

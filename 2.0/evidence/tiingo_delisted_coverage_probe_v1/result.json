@@ -1,0 +1,17 @@
+{
+  "api_token_required_for_price_validation": true,
+  "created_at_utc": "2026-08-13T10:21:44.579297+00:00",
+  "identities_with_interval_overlapping_tiingo_symbol": 877,
+  "identity_candidate_rate": 0.9260823653643083,
+  "inventory_rows": 108290,
+  "inventory_vintage": "/project/data/tiingo_symbol_inventory_vintages/20260813T102139Z-tiingo-supported-symbols-v1",
+  "latest_inventory_coverage": 0.8833333333333333,
+  "next_gate": "fetch Tiingo metadata and adjusted histories for recovered/Yahoo-failed candidates; verify issuer name and date overlap",
+  "recent_min_inventory_coverage": 0.8317757009345794,
+  "strategy_testing_authorized": false,
+  "usable_sec_identities": 947,
+  "usd_stock_inventory_rows": 42475,
+  "yahoo_failed_identities": 327,
+  "yahoo_failed_identities_with_tiingo_candidate": 284,
+  "yahoo_failure_rescue_candidate_rate": 0.8685015290519877
+}

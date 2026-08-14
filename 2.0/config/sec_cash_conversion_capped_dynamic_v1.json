@@ -1,0 +1,12 @@
+{
+  "experiment": "sec_cash_conversion_capped_dynamic_v1",
+  "cash_sleeve_cap_multiples": [1.0, 1.25, 1.5, 2.0, null],
+  "cap_review": "first weekly observation of each calendar month",
+  "lookbacks": [11, 13],
+  "active_allocations": [0.3, 0.4, 0.5],
+  "inactive_allocation": 0.0,
+  "cost_bps": [50, 100, 200],
+  "scenarios": ["base", "adverse"],
+  "research_only": true,
+  "live_trading_enabled": false
+}

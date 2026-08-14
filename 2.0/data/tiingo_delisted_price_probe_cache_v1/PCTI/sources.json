@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 1133,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T01:00:42.434518+00:00",
+    "sha256": "38fdee2800c5da3fb177be7926619c574d5417eba6f8a7e6d73bbb0f77a03f6c",
+    "url": "https://api.tiingo.com/tiingo/daily/PCTI"
+  },
+  {
+    "bytes": 706192,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T01:00:44.240165+00:00",
+    "sha256": "e70fd0f8b2a107291a280dab1ba259ffa787b289b12b5f00c9ffc99135695a69",
+    "url": "https://api.tiingo.com/tiingo/daily/PCTI/prices?startDate=2012-04-01&endDate=2025-01-11&resampleFreq=daily"
+  }
+]

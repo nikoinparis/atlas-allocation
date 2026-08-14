@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 1122,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T04:02:41.844041+00:00",
+    "sha256": "f32ee5d13a05865767dfce44866a432f7c4e9535d70c78754d71a2eae234151d",
+    "url": "https://api.tiingo.com/tiingo/daily/VCRA"
+  },
+  {
+    "bytes": 433281,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T04:02:44.112766+00:00",
+    "sha256": "4ab197a521cb767a13ef1b8abd2b65f8f55ae8b5cb786d40811b94a69116d009",
+    "url": "https://api.tiingo.com/tiingo/daily/VCRA/prices?startDate=2014-04-01&endDate=2023-04-11&resampleFreq=daily"
+  }
+]

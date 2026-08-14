@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 832,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T04:01:45.035514+00:00",
+    "sha256": "9e397aeaf94bd45fcfa6099ddff1382587651a271b5629b968fc181fc32d6985",
+    "url": "https://api.tiingo.com/tiingo/daily/SRLP"
+  },
+  {
+    "bytes": 473197,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T04:01:46.889834+00:00",
+    "sha256": "8de8239463edda312a04d3e60f048b685a123f4e745464669f1d2577091a0de8",
+    "url": "https://api.tiingo.com/tiingo/daily/SRLP/prices?startDate=2015-04-01&endDate=2023-10-11&resampleFreq=daily"
+  }
+]

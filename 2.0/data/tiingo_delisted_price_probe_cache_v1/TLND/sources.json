@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 890,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T05:57:30.987889+00:00",
+    "sha256": "5af7225aa7d342b0b5f3db5b4027658b01a8276284aba592cd01b4939c194e2d",
+    "url": "https://api.tiingo.com/tiingo/daily/TLND"
+  },
+  {
+    "bytes": 129867,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T05:57:34.367789+00:00",
+    "sha256": "af57afd4645f48731c1f9b5fe87e3308bceb5a1e4ab8febca23c9f6ecd576be0",
+    "url": "https://api.tiingo.com/tiingo/daily/TLND/prices?startDate=2019-04-01&endDate=2022-10-11&resampleFreq=daily"
+  }
+]

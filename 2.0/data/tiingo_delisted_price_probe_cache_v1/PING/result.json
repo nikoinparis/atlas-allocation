@@ -1,0 +1,20 @@
+{
+  "cik10": "0001679826",
+  "covers_first_eligible_decision": true,
+  "first_eligible_decision": "2021-04-01 00:00:00+00:00",
+  "first_price_date": "2021-04-01",
+  "issuer_name_match": true,
+  "issuer_name_score": 1.0,
+  "last_eligible_decision": "2023-10-01 00:00:00+00:00",
+  "last_price_date": "2022-10-17",
+  "price_file": "/workspace/2.0/data/tiingo_delisted_price_probe_cache_v1/PING/prices.csv.gz",
+  "price_rows": 390,
+  "provider_end_date": "2022-10-17",
+  "provider_exchange": "NYSE",
+  "provider_name": "Ping Identity Holding Corp",
+  "provider_start_date": "2019-09-19",
+  "sec_company_name": "PING IDENTITY HOLDING CORP.",
+  "status": "identity_and_start_validated",
+  "terminal": true,
+  "tiingo_symbol": "PING"
+}

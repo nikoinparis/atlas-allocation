@@ -1,0 +1,52 @@
+{
+  "program": "cross_sectional_factor_program_v1",
+  "inspiration": [
+    "microsoft/qlib factor and rank-IC workflow",
+    "initial-d/ml-quant-trading mask-aware cross-sectional factor workflow"
+  ],
+  "frozen_winner_must_remain_unchanged": "covariance_minimum_variance_v1",
+  "decision_frequency": "monthly_first_completed_friday",
+  "feature_information_lag_weeks": 1,
+  "label_horizon_weeks": 4,
+  "features": [
+    "momentum_4w",
+    "momentum_13w",
+    "momentum_26w",
+    "momentum_52w_skip_4w",
+    "moving_average_distance_13w",
+    "moving_average_distance_26w",
+    "volatility_13w",
+    "volatility_26w",
+    "downside_volatility_26w",
+    "drawdown_26w",
+    "positive_week_share_26w"
+  ],
+  "fixed_baseline": {
+    "cross_sectional_rank_before_combination": true,
+    "weights": {
+      "momentum_13w": 0.15,
+      "momentum_26w": 0.2,
+      "momentum_52w_skip_4w": 0.25,
+      "positive_week_share_26w": 0.15,
+      "volatility_26w": -0.15,
+      "drawdown_26w": 0.1
+    },
+    "top_n": 5,
+    "portfolio_weighting": "inverse_volatility_26w",
+    "maximum_asset_weight": 0.35
+  },
+  "cost_bps": [10, 50, 100],
+  "evaluation_windows": {
+    "development": ["2006-01-01", "2015-12-31"],
+    "later_1": ["2016-01-01", "2020-12-31"],
+    "later_2": ["2021-01-01", "9999-12-31"]
+  },
+  "promotion_requires": [
+    "positive rank IC with serially robust uncertainty",
+    "positive after-cost return in both later windows at 100 bps",
+    "beat the fixed factor baseline under identical nested folds before any ML claim",
+    "survivorship-safe universe before final promotion",
+    "52 untouched forward weeks after freezing a candidate"
+  ],
+  "live_trading_approved": false
+}

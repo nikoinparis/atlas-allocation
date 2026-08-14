@@ -1,0 +1,1282 @@
+cik10,company_name_as_filed,sector,current_tickers,current_exchanges,has_current_sec_ticker,identity_status
+0000023194,COMSTOCK RESOURCES INC,energy,CRK,NYSE,True,current_ticker_available
+0000033213,EQT CORP,energy,EQT,NYSE,True,current_ticker_available
+0000045012,HALLIBURTON CO,energy,HAL,NYSE,True,current_ticker_available
+0000046765,"HELMERICH & PAYNE, INC.",energy,HP,NYSE,True,current_ticker_available
+0000049938,IMPERIAL OIL LTD,energy,IMO,NYSE,True,current_ticker_available
+0000073756,OCEANEERING INTERNATIONAL INC,energy,OII,NYSE,True,current_ticker_available
+0000087347,SLB LIMITED/NV,energy,SLB,NYSE,True,current_ticker_available
+0000093410,CHEVRON CORP,energy,CVX,NYSE,True,current_ticker_available
+0000101594,US ENERGY CORP,energy,BSIN,Nasdaq,True,current_ticker_available
+0000314808,VALARIS LTD,energy,VAL|VAL-WT,NYSE,True,current_ticker_available
+0000315852,RANGE RESOURCES CORP,energy,RRC,NYSE,True,current_ticker_available
+0000717423,MURPHY OIL CORP,energy,MUR,NYSE,True,current_ticker_available
+0000742278,RPC INC,energy,RES,NYSE,True,current_ticker_available
+0000788965,HALLADOR ENERGY CO,energy,HNRG,Nasdaq,True,current_ticker_available
+0000789460,WORLD KINECT CORP,energy,WKC,NYSE,True,current_ticker_available
+0000789933,NACCO INDUSTRIES INC,energy,NC,NYSE,True,current_ticker_available
+0000797468,OCCIDENTAL PETROLEUM CORP /DE/,energy,OXY|OXY-WT,NYSE,True,current_ticker_available
+0000799165,DAWSON GEOPHYSICAL CO,energy,DWSN,Nasdaq,True,current_ticker_available
+0000813762,ICAHN ENTERPRISES L.P.,energy,IEP,Nasdaq,True,current_ticker_available
+0000821189,EOG RESOURCES INC,energy,EOG,NYSE,True,current_ticker_available
+0000821483,"PAR PACIFIC HOLDINGS, INC.",energy,PARR,NYSE,True,current_ticker_available
+0000844965,TETRA TECHNOLOGIES INC,energy,TTI,NYSE,True,current_ticker_available
+0000866829,HELIX ENERGY SOLUTIONS GROUP INC,energy,HLX,NYSE,True,current_ticker_available
+0000874499,GULFPORT ENERGY CORP,energy,GPOR,NYSE,True,current_ticker_available
+0000889900,PATTERSON UTI ENERGY INC,energy,PTEN,Nasdaq,True,current_ticker_available
+0000893538,SM ENERGY CO,energy,SM,NYSE,True,current_ticker_available
+0000894627,VAALCO ENERGY INC /DE/,energy,EGY,NYSE,True,current_ticker_available
+0000895126,EXPAND ENERGY CORP,energy,EXE,Nasdaq,True,current_ticker_available
+0001001614,"RILEY EXPLORATION PERMIAN, INC.",energy,REPX,NYSE,True,current_ticker_available
+0001006655,EVOLUTION PETROLEUM CORP,energy,EPM,NYSE,True,current_ticker_available
+0001022321,GENESIS ENERGY LP,energy,GEL,NYSE,True,current_ticker_available
+0001035002,VALERO ENERGY CORP/TX,energy,VLO,NYSE,True,current_ticker_available
+0001064728,PEABODY ENERGY CORP,energy,BTU,NYSE,True,current_ticker_available
+0001070412,CNX RESOURCES CORP,energy,CNX,NYSE,True,current_ticker_available
+0001084991,NATURAL GAS SERVICES GROUP INC,energy,NGS,NYSE,True,current_ticker_available
+0001086600,ALLIANCE RESOURCE PARTNERS LP,energy,ARLP,Nasdaq,True,current_ticker_available
+0001090012,DEVON ENERGY CORP/DE,energy,DVN,NYSE,True,current_ticker_available
+0001103795,SAVE THE WORLD AIR INC,energy,QSEP,OTC,True,current_ticker_available
+0001104485,"NORTHERN OIL & GAS, INC.",energy,NOG,NYSE,True,current_ticker_available
+0001131312,ZION OIL & GAS INC,energy,ZNOG|ZNOGW,OTC,True,current_ticker_available
+0001156041,HOUSTON AMERICAN ENERGY CORP,energy,AGIG,NYSE,True,current_ticker_available
+0001163165,CONOCOPHILLIPS,energy,COP,NYSE,True,current_ticker_available
+0001163739,NABORS INDUSTRIES LTD,energy,NBR,NYSE,True,current_ticker_available
+0001171486,NATURAL RESOURCE PARTNERS LP,energy,NRP,NYSE,True,current_ticker_available
+0001172358,"DORCHESTER MINERALS, L.P.",energy,DMLP,Nasdaq,True,current_ticker_available
+0001176334,MARTIN MIDSTREAM PARTNERS L.P.,energy,MMLP,Nasdaq,True,current_ticker_available
+0001273441,GRAN TIERRA ENERGY INC.,energy,GTE,NYSE,True,current_ticker_available
+0001282648,HALCON RESOURCES CORP,energy,BATL,NYSE,True,current_ticker_available
+0001288403,W&T OFFSHORE INC,energy,WTI,NYSE,True,current_ticker_available
+0001323468,GLOBAL PARTNERS LP,energy,GLP|GLP-PB,NYSE,True,current_ticker_available
+0001349436,SANDRIDGE ENERGY INC,energy,SD,NYSE,True,current_ticker_available
+0001376139,CVR ENERGY INC,energy,CVI,NYSE,True,current_ticker_available
+0001384195,"RING ENERGY, INC.",energy,REI,NYSE,True,current_ticker_available
+0001433270,ANTERO RESOURCES CORP,energy,AR,NYSE,True,current_ticker_available
+0001451505,TRANSOCEAN LTD.,energy,RIG,NYSE,True,current_ticker_available
+0001486159,CHORD ENERGY CORP,energy,CHRD,Nasdaq,True,current_ticker_available
+0001504461,NGL ENERGY PARTNERS LP,energy,NGL|NGL-PB|NGL-PC,NYSE,True,current_ticker_available
+0001509991,KOSMOS ENERGY LTD.,energy,KOS,NYSE,True,current_ticker_available
+0001510295,MARATHON PETROLEUM CORP,energy,MPC,NYSE,True,current_ticker_available
+0001520006,MATADOR RESOURCES CO,energy,MTDR,NYSE,True,current_ticker_available
+0001532286,"NINE ENERGY SERVICE, INC.",energy,NINE,NYSE,True,current_ticker_available
+0001533924,AMPLIFY ENERGY CORP.,energy,AMPY,NYSE,True,current_ticker_available
+0001534504,PBF ENERGY INC.,energy,PBF,NYSE,True,current_ticker_available
+0001534701,PHILLIPS 66,energy,PSX,NYSE,True,current_ticker_available
+0001538849,CROSSAMERICA PARTNERS LP,energy,CAPL,NYSE,True,current_ticker_available
+0001539838,"DIAMONDBACK ENERGY, INC.",energy,FANG,Nasdaq,True,current_ticker_available
+0001552275,SUNOCO LP,energy,SUN,NYSE,True,current_ticker_available
+0001559432,"TXO PARTNERS, L.P.",energy,TXO,NYSE,True,current_ticker_available
+0001609253,CALIFORNIA RESOURCES CORP,energy,CRC,NYSE,True,current_ticker_available
+0001621434,"BLACK STONE MINERALS, L.P.",energy,BSM,NYSE,True,current_ticker_available
+0001657788,"KIMBELL ROYALTY PARTNERS, LP",energy,KRP,NYSE,True,current_ticker_available
+0001658566,PERMIAN RESOURCES CORP,energy,PR,NYSE,True,current_ticker_available
+0001679268,"MAMMOTH ENERGY SERVICES, INC.",energy,TUSK,Nasdaq,True,current_ticker_available
+0001680247,PROPETRO HOLDING CORP.,energy,PUMP,NYSE,True,current_ticker_available
+0001687187,"RAMACO RESOURCES, INC.",energy,METC|METCB|METCI|METCZ,Nasdaq,True,current_ticker_available
+0001691303,"WARRIOR MET COAL, INC.",energy,HCC,NYSE,True,current_ticker_available
+0001692427,"NCS MULTISTAGE HOLDINGS, INC.",energy,NCSM,Nasdaq,True,current_ticker_available
+0001693256,"SELECT WATER SOLUTIONS, INC.",energy,WTTR,NYSE,True,current_ticker_available
+0001694028,LIBERTY ENERGY INC.,energy,LBRT,NYSE,True,current_ticker_available
+0001694426,"DELEK US HOLDINGS, INC.",energy,DK,NYSE,True,current_ticker_available
+0001698514,NATIONAL ENERGY SERVICES REUNITED CORP.,energy,NESR,Nasdaq,True,current_ticker_available
+0001698990,MAGNOLIA OIL & GAS CORP,energy,MGY,NYSE,True,current_ticker_available
+0001699039,"RANGER ENERGY SERVICES, INC.",energy,RNGR,NYSE,True,current_ticker_available
+0001704715,"ALPHA METALLURGICAL RESOURCES, INC.",energy,AMR,NYSE,True,current_ticker_available
+0001710366,"CORE NATURAL RESOURCES, INC.",energy,CNR,NYSE,True,current_ticker_available
+0001724965,TALOS ENERGY INC.,energy,TALO,NYSE,True,current_ticker_available
+0001737706,SEADRILL LTD,energy,SDRL,NYSE,True,current_ticker_available
+0001738827,"KLX ENERGY SERVICES HOLDINGS, INC.",energy,KLXE,Nasdaq,True,current_ticker_available
+0001770561,CORONADO GLOBAL RESOURCES INC.,energy,CODQL,OTC,True,current_ticker_available
+0001789832,HESS MIDSTREAM LP,energy,HESM,NYSE,True,current_ticker_available
+0001792580,OVINTIV INC.,energy,OVV,NYSE,True,current_ticker_available
+0001792849,"HIGHPEAK ENERGY, INC.",energy,HPK,Nasdaq,True,current_ticker_available
+0001831481,SABLE OFFSHORE CORP.,energy,SOC,NYSE,True,current_ticker_available
+0001838406,BKV CORP,energy,BKV,NYSE,True,current_ticker_available
+0001841666,APA CORP,energy,APA,Nasdaq,True,current_ticker_available
+0001866175,CRESCENT ENERGY CO,energy,CRGY,NYSE,True,current_ticker_available
+0001881487,PROFRAC HOLDING CORP.,energy,ACDC,Nasdaq,True,current_ticker_available
+0001895262,NOBLE CORP PLC,energy,NE|NE-WT|NE-WTA,NYSE,True,current_ticker_available
+0001899883,FTAI INFRASTRUCTURE INC.,energy,FIP,Nasdaq,True,current_ticker_available
+0001922446,DIVERSIFIED ENERGY CO,energy,DEC,NYSE,True,current_ticker_available
+0001928446,"GRANITE RIDGE RESOURCES, INC.",energy,GRNT,NYSE,True,current_ticker_available
+0001944558,"VITESSE ENERGY, INC.",energy,VTS,NYSE,True,current_ticker_available
+0001958086,CORE LABORATORIES INC. /DE/,energy,CLB,NYSE,True,current_ticker_available
+0001980088,MACH NATURAL RESOURCES LP,energy,MNR,NYSE,True,current_ticker_available
+0001984060,ATLAS ENERGY SOLUTIONS INC.,energy,AESI,NYSE,True,current_ticker_available
+0002013745,"CALUMET, INC. /DE",energy,CLMT,Nasdaq,True,current_ticker_available
+0002074176,"VIPER ENERGY, INC.",energy,VNOM,Nasdaq,True,current_ticker_available
+0000002488,ADVANCED MICRO DEVICES INC,technology,AMD,Nasdaq,True,current_ticker_available
+0000004127,SKYWORKS SOLUTIONS INC,technology,SWKS,Nasdaq,True,current_ticker_available
+0000006281,ANALOG DEVICES INC,technology,ADI,Nasdaq,True,current_ticker_available
+0000006951,APPLIED MATERIALS INC /DE,technology,AMAT,Nasdaq,True,current_ticker_available
+0000008146,"ASTRONOVA, INC.",technology,ALOT,Nasdaq,True,current_ticker_available
+0000008670,AUTOMATIC DATA PROCESSING INC,technology,ADP,Nasdaq,True,current_ticker_available
+0000009092,BADGER METER INC,technology,BMI,NYSE,True,current_ticker_available
+0000012208,"BIO-RAD LABORATORIES, INC.",technology,BIO|BIO-B,NYSE,True,current_ticker_available
+0000016058,CACI INTERNATIONAL INC /DE/,technology,CACI,NYSE,True,current_ticker_available
+0000021535,COHU INC,technology,COHU,Nasdaq,True,current_ticker_available
+0000022701,COMMUNICATIONS SYSTEMS INC,technology,SUNE,Nasdaq,True,current_ticker_available
+0000023197,COMTECH TELECOMMUNICATIONS CORP /DE/,technology,CMTL,Nasdaq,True,current_ticker_available
+0000026058,CTS CORP,technology,CTS,NYSE,True,current_ticker_available
+0000028823,"DIEBOLD NIXDORF, INC",technology,DBD,NYSE,True,current_ticker_available
+0000029002,DIODES INC /DEL/,technology,DIOD,Nasdaq,True,current_ticker_available
+0000031235,EASTMAN KODAK CO,technology,KODK,NYSE,True,current_ticker_available
+0000031791,"REVVITY, INC.",technology,RVTY,NYSE,True,current_ticker_available
+0000046129,ALLIENT INC,technology,ALNT,Nasdaq,True,current_ticker_available
+0000047217,HP INC,technology,HPQ,NYSE,True,current_ticker_available
+0000048898,HUBBELL INC,technology,HUBB,NYSE,True,current_ticker_available
+0000050471,PARK CITY GROUP INC,technology,TRAK,NYSE,True,current_ticker_available
+0000050863,INTEL CORP,technology,INTC,Nasdaq,True,current_ticker_available
+0000051143,INTERNATIONAL BUSINESS MACHINES CORP,technology,IBM,NYSE,True,current_ticker_available
+0000056978,KULICKE & SOFFA INDUSTRIES INC,technology,KLIC,Nasdaq,True,current_ticker_available
+0000065270,METHODE ELECTRONICS INC,technology,MEI,NYSE,True,current_ticker_available
+0000065770,"MICROVISION, INC.",technology,MVIS,Nasdaq,True,current_ticker_available
+0000068505,"MOTOROLA SOLUTIONS, INC.",technology,MSI,NYSE,True,current_ticker_available
+0000069633,"NAPCO SECURITY TECHNOLOGIES, INC",technology,NSSC,Nasdaq,True,current_ticker_available
+0000070866,NCR VOYIX CORP,technology,NCRRP|VYX,NYSE|OTC,True,current_ticker_available
+0000076267,PARK AEROSPACE CORP,technology,PKE,NYSE,True,current_ticker_available
+0000078749,AGILYSYS INC,technology,AGYS,Nasdaq,True,current_ticker_available
+0000078814,PITNEY BOWES INC /DE/,technology,PBI|PBI-PB,NYSE,True,current_ticker_available
+0000087050,"NEONODE, INC",technology,NEON,Nasdaq,True,current_ticker_available
+0000088941,SEMTECH CORP,technology,SMTC,Nasdaq,True,current_ticker_available
+0000097210,"TERADYNE, INC",technology,TER,Nasdaq,True,current_ticker_available
+0000097476,TEXAS INSTRUMENTS INC,technology,TXN,Nasdaq,True,current_ticker_available
+0000097745,THERMO FISHER SCIENTIFIC INC.,technology,TMO,NYSE,True,current_ticker_available
+0000099302,TRANSCAT INC,technology,TRNS,Nasdaq,True,current_ticker_available
+0000101984,UNIVERSAL ELECTRONICS INC,technology,UEIC,Nasdaq,True,current_ticker_available
+0000103730,VISHAY INTERTECHNOLOGY INC,technology,VSH,NYSE,True,current_ticker_available
+0000106040,WESTERN DIGITAL CORP,technology,WDC,Nasdaq,True,current_ticker_available
+0000202058,"L3HARRIS TECHNOLOGIES, INC. /DE/",technology,LHX,NYSE,True,current_ticker_available
+0000275880,PARSONS CORP,technology,PSN,NYSE,True,current_ticker_available
+0000313616,DANAHER CORP /DE/,technology,DHR,NYSE,True,current_ticker_available
+0000315374,HURCO COMPANIES INC,technology,HURC,Nasdaq,True,current_ticker_available
+0000319201,KLA CORP,technology,KLAC,Nasdaq,True,current_ticker_available
+0000320121,TELOS CORP,technology,TLS,Nasdaq,True,current_ticker_available
+0000320193,APPLE INC,technology,AAPL,Nasdaq,True,current_ticker_available
+0000704532,ONTO INNOVATION INC.,technology,ONTO,NYSE,True,current_ticker_available
+0000708821,PAR TECHNOLOGY CORP,technology,PAR,NYSE,True,current_ticker_available
+0000709283,QUANTUM CORP /DE/,technology,QMCO,Nasdaq,True,current_ticker_available
+0000712515,ELECTRONIC ARTS INC.,technology,EA,Nasdaq,True,current_ticker_available
+0000719733,KEY TRONIC CORP,technology,KTCC,Nasdaq,True,current_ticker_available
+0000722572,FRANKLIN WIRELESS CORP,technology,FKWL,Nasdaq,True,current_ticker_available
+0000723125,MICRON TECHNOLOGY INC,technology,MU,Nasdaq,True,current_ticker_available
+0000724004,MESA LABORATORIES INC /CO/,technology,MLAB,Nasdaq,True,current_ticker_available
+0000724910,NVE CORP /NEW/,technology,NVEC,Nasdaq,True,current_ticker_available
+0000729580,BEL FUSE INC /NJ,technology,BELFA|BELFB,Nasdaq,True,current_ticker_available
+0000733269,"LIVERAMP HOLDINGS, INC.",technology,RAMP,NYSE,True,current_ticker_available
+0000746838,UNISYS CORP,technology,UIS,NYSE,True,current_ticker_available
+0000750004,"LIGHT & WONDER, INC.",technology,LAWIL|LNWO,OTC,True,current_ticker_available
+0000751978,VICOR CORP,technology,VICR,Nasdaq,True,current_ticker_available
+0000769397,"AUTODESK, INC.",technology,ADSK,Nasdaq,True,current_ticker_available
+0000771266,KOPIN CORP,technology,KOPN,Nasdaq,True,current_ticker_available
+0000772406,"CIRRUS LOGIC, INC.",technology,CRUS,Nasdaq,True,current_ticker_available
+0000779152,JACK HENRY & ASSOCIATES INC,technology,JKHY,Nasdaq,True,current_ticker_available
+0000780571,"ITRON, INC.",technology,ITRI,Nasdaq,True,current_ticker_available
+0000785786,PLEXUS CORP,technology,PLXS,Nasdaq,True,current_ticker_available
+0000789019,MICROSOFT CORP,technology,MSFT,Nasdaq,True,current_ticker_available
+0000796343,ADOBE INC.,technology,ADBE,Nasdaq,True,current_ticker_available
+0000796505,"CLEARFIELD, INC.",technology,CLFD,Nasdaq,True,current_ticker_available
+0000797721,VIASAT INC,technology,VSAT,Nasdaq,True,current_ticker_available
+0000798354,FISERV INC,technology,FISV,Nasdaq,True,current_ticker_available
+0000804328,QUALCOMM INC/DE,technology,QCOM,Nasdaq,True,current_ticker_available
+0000807863,MITEK SYSTEMS INC,technology,MITK,Nasdaq,True,current_ticker_available
+0000810136,PHOTRONICS INC,technology,PLAB,Nasdaq,True,current_ticker_available
+0000813672,CADENCE DESIGN SYSTEMS INC,technology,CDNS,Nasdaq,True,current_ticker_available
+0000816761,TERADATA CORP /DE/,technology,TDC,NYSE,True,current_ticker_available
+0000817720,SYNAPTICS INC,technology,SYNA,Nasdaq,True,current_ticker_available
+0000820313,AMPHENOL CORP /DE/,technology,APH,NYSE,True,current_ticker_available
+0000820318,COHERENT CORP.,technology,COHR,NYSE,True,current_ticker_available
+0000827054,MICROCHIP TECHNOLOGY INC,technology,MCHP|MCHPP,Nasdaq,True,current_ticker_available
+0000827876,"CLEANSPARK, INC.",technology,CLSK|CLSKW,Nasdaq,True,current_ticker_available
+0000833640,POWER INTEGRATIONS INC,technology,POWI,Nasdaq,True,current_ticker_available
+0000836690,INNOVATIVE SOLUTIONS & SUPPORT INC,technology,ISSC,Nasdaq,True,current_ticker_available
+0000840715,CLEARONE INC,technology,CLRO,Nasdaq,True,current_ticker_available
+0000849399,GEN DIGITAL INC.,technology,GEN|GENVR,Nasdaq,True,current_ticker_available
+0000851205,COGNEX CORP,technology,CGNX,Nasdaq,True,current_ticker_available
+0000851310,HARMONIC INC.,technology,HLIT,Nasdaq,True,current_ticker_available
+0000854775,DIGI INTERNATIONAL INC,technology,DGII,Nasdaq,True,current_ticker_available
+0000855658,LATTICE SEMICONDUCTOR CORP,technology,LSCC,Nasdaq,True,current_ticker_available
+0000857005,PTC INC.,technology,PTC,Nasdaq,True,current_ticker_available
+0000858877,"CISCO SYSTEMS, INC.",technology,CSCO,Nasdaq,True,current_ticker_available
+0000860731,TYLER TECHNOLOGIES INC,technology,TYL,NYSE,True,current_ticker_available
+0000863436,BENCHMARK ELECTRONICS INC,technology,BHE,NYSE,True,current_ticker_available
+0000864749,TRIMBLE INC.,technology,TRMB,Nasdaq,True,current_ticker_available
+0000866291,"ALLEGRO MICROSYSTEMS, INC.",technology,ALGM,Nasdaq,True,current_ticker_available
+0000866374,FLEX LTD.,technology,FLEX,Nasdaq,True,current_ticker_available
+0000866706,ESCO TECHNOLOGIES INC,technology,ESE,NYSE,True,current_ticker_available
+0000876167,PROGRESS SOFTWARE CORP /MA,technology,PRGS,Nasdaq,True,current_ticker_available
+0000882508,QUICKLOGIC CORP,technology,QUIK,Nasdaq,True,current_ticker_available
+0000882835,ROPER TECHNOLOGIES INC,technology,ROP,Nasdaq,True,current_ticker_available
+0000883241,SYNOPSYS INC,technology,SNPS,Nasdaq,True,current_ticker_available
+0000884144,ASURE SOFTWARE INC,technology,ASUR,Nasdaq,True,current_ticker_available
+0000890394,"MOSYS, INC.",technology,PRSO,Nasdaq,True,current_ticker_available
+0000891103,"MATCH GROUP, INC.",technology,MTCH,Nasdaq,True,current_ticker_available
+0000895419,"WOLFSPEED, INC.",technology,WOLF,NYSE,True,current_ticker_available
+0000896878,INTUIT INC.,technology,INTU,Nasdaq,True,current_ticker_available
+0000897723,SANMINA CORP,technology,SANM,Nasdaq,True,current_ticker_available
+0000898293,JABIL INC,technology,JBL,NYSE,True,current_ticker_available
+0000903651,INNODATA INC,technology,INOD,Nasdaq,True,current_ticker_available
+0000909494,TUCOWS INC /PA/,technology,TCX,Nasdaq,True,current_ticker_available
+0000910638,3D SYSTEMS CORP,technology,DDD,NYSE,True,current_ticker_available
+0000912093,VIAVI SOLUTIONS INC.,technology,VIAV,Nasdaq,True,current_ticker_available
+0000914139,PARKERVISION INC,technology,PRKR,OTC,True,current_ticker_available
+0000917273,RAMBUS INC,technology,RMBS,Nasdaq,True,current_ticker_available
+0000917520,INTEGRA LIFESCIENCES HOLDINGS CORP,technology,IART,Nasdaq,True,current_ticker_available
+0000918965,"SCANSOURCE, INC.",technology,SCSC,Nasdaq,True,current_ticker_available
+0000921582,IMAX CORP,technology,IMAX,NYSE,True,current_ticker_available
+0000924383,LRAD CORP,technology,GNSS,Nasdaq,True,current_ticker_available
+0000926282,"ADTRAN HOLDINGS, INC.",technology,ADTN,Nasdaq,True,current_ticker_available
+0000926326,"OMNICELL, INC.",technology,OMCL,Nasdaq,True,current_ticker_available
+0000927003,ADVANCED ENERGY INDUSTRIES INC,technology,AEIS,Nasdaq,True,current_ticker_available
+0000935036,"ACI WORLDWIDE, INC.",technology,ACIW,Nasdaq,True,current_ticker_available
+0000936395,CIENA CORP,technology,CIEN,NYSE,True,current_ticker_available
+0000945983,"CLIMB GLOBAL SOLUTIONS, INC.",technology,CLMB,Nasdaq,True,current_ticker_available
+0000946581,TAKE TWO INTERACTIVE SOFTWARE INC,technology,TTWO,Nasdaq,True,current_ticker_available
+0000948708,"SMITH MICRO SOFTWARE, INC.",technology,SMSI,Nasdaq,True,current_ticker_available
+0001000697,WATERS CORP /DE/,technology,WAT,NYSE,True,current_ticker_available
+0001001115,GEOSPACE TECHNOLOGIES CORP,technology,GEOS,Nasdaq,True,current_ticker_available
+0001002047,"NETAPP, INC.",technology,NTAP,Nasdaq,True,current_ticker_available
+0001002638,OPEN TEXT CORP,technology,OTEX,Nasdaq,True,current_ticker_available
+0001005284,UNIVERSAL DISPLAY CORP PA,technology,OLED,Nasdaq,True,current_ticker_available
+0001007587,KVH INDUSTRIES INC DE,technology,KVHI,Nasdaq,True,current_ticker_available
+0001013237,FACTSET RESEARCH SYSTEMS INC,technology,FDS,NYSE,True,current_ticker_available
+0001013857,PEGASYSTEMS INC,technology,PEGA,Nasdaq,True,current_ticker_available
+0001014473,VERISIGN INC/CA,technology,VRSN,Nasdaq,True,current_ticker_available
+0001015739,AWARE INC /MA/,technology,AWRE,Nasdaq,True,current_ticker_available
+0001017303,TRANSACT TECHNOLOGIES INC,technology,TACT,Nasdaq,True,current_ticker_available
+0001022408,EPLUS INC,technology,PLUS,Nasdaq,True,current_ticker_available
+0001022652,INSEEGO CORP.,technology,INSG,Nasdaq,True,current_ticker_available
+0001023459,"SIMULATIONS PLUS, INC.",technology,SLP,Nasdaq,True,current_ticker_available
+0001023731,8X8 INC /DE/,technology,EGHT,Nasdaq,True,current_ticker_available
+0001024478,"ROCKWELL AUTOMATION, INC",technology,ROK,NYSE,True,current_ticker_available
+0001030894,CELESTICA INC,technology,CLS,NYSE,True,current_ticker_available
+0001031308,BENTLEY SYSTEMS INC,technology,BSY,Nasdaq,True,current_ticker_available
+0001032975,LOGITECH INTERNATIONAL S.A.,technology,LOGI,Nasdaq,True,current_ticker_available
+0001034760,WIDEPOINT CORP,technology,WYY,NYSE,True,current_ticker_available
+0001036044,"IDENTIV, INC.",technology,INVE,Nasdaq,True,current_ticker_available
+0001036262,INTEST CORP,technology,INTT,NYSE,True,current_ticker_available
+0001037646,METTLER TOLEDO INTERNATIONAL INC/,technology,MTD,NYSE,True,current_ticker_available
+0001037868,AMETEK INC/,technology,AME,NYSE,True,current_ticker_available
+0001038074,SILICON LABORATORIES INC.,technology,SLAB,Nasdaq,True,current_ticker_available
+0001039065,OSI SYSTEMS INC,technology,OSIS,Nasdaq,True,current_ticker_available
+0001039399,FORMFACTOR INC,technology,FORM,Nasdaq,True,current_ticker_available
+0001040161,"PIXELWORKS, INC",technology,PXLW,Nasdaq,True,current_ticker_available
+0001043961,TRANSGENOMIC INC,technology,PRPO,Nasdaq,True,current_ticker_available
+0001044777,ONESPAN INC.,technology,OSPN,Nasdaq,True,current_ticker_available
+0001045810,NVIDIA CORP,technology,NVDA,Nasdaq,True,current_ticker_available
+0001047127,"AMKOR TECHNOLOGY, INC.",technology,AMKR,Nasdaq,True,current_ticker_available
+0001048695,"F5, INC.",technology,FFIV,Nasdaq,True,current_ticker_available
+0001049502,MKS INC,technology,MKSI,Nasdaq,True,current_ticker_available
+0001049521,MERCURY SYSTEMS INC,technology,MRCY,Nasdaq,True,current_ticker_available
+0001050377,PC CONNECTION INC,technology,CNXN,Nasdaq,True,current_ticker_available
+0001050446,MICROSTRATEGY INC,technology,MSTR|STRC|STRD|STRF|STRK,Nasdaq,True,current_ticker_available
+0001051627,AXT INC,technology,AXTI,Nasdaq,True,current_ticker_available
+0001056696,MANHATTAN ASSOCIATES INC,technology,MANH,Nasdaq,True,current_ticker_available
+0001058290,COGNIZANT TECHNOLOGY SOLUTIONS CORP,technology,CTSH,Nasdaq,True,current_ticker_available
+0001058811,IMMERSION CORP,technology,IMMR,Nasdaq,True,current_ticker_available
+0001066194,EGAIN CORP,technology,EGAN,Nasdaq,True,current_ticker_available
+0001070235,BLACKBERRY LTD,technology,BB,NYSE,True,current_ticker_available
+0001078075,NETSCOUT SYSTEMS INC,technology,NTCT,Nasdaq,True,current_ticker_available
+0001078271,EXTREME NETWORKS INC,technology,EXTR,Nasdaq,True,current_ticker_available
+0001081745,"INTELLINETICS, INC.",technology,INLX,NYSE,True,current_ticker_available
+0001090872,"AGILENT TECHNOLOGIES, INC.",technology,A,NYSE,True,current_ticker_available
+0001092699,SPS COMMERCE INC,technology,SPSC,Nasdaq,True,current_ticker_available
+0001094285,TELEDYNE TECHNOLOGIES INC,technology,TDY,NYSE,True,current_ticker_available
+0001095565,HEALTHSTREAM INC,technology,HSTM,Nasdaq,True,current_ticker_available
+0001097864,ON SEMICONDUCTOR CORP,technology,ON,Nasdaq,True,current_ticker_available
+0001102993,LIVEPERSON INC,technology,LPSN,Nasdaq,True,current_ticker_available
+0001107843,"QUALYS, INC.",technology,QLYS,Nasdaq,True,current_ticker_available
+0001108524,"SALESFORCE, INC.",technology,CRM,NYSE,True,current_ticker_available
+0001109354,BRUKER CORP,technology,BRKR|BRKRP,Nasdaq,True,current_ticker_available
+0001110803,"ILLUMINA, INC.",technology,ILMN,Nasdaq,True,current_ticker_available
+0001111928,IPG PHOTONICS CORP,technology,IPGP,Nasdaq,True,current_ticker_available
+0001114925,LANTRONIX INC,technology,LTRX,Nasdaq,True,current_ticker_available
+0001114995,IMPINJ INC,technology,PI,Nasdaq,True,current_ticker_available
+0001116942,TTM TECHNOLOGIES INC,technology,TTMI,Nasdaq,True,current_ticker_available
+0001120914,PDF SOLUTIONS INC,technology,PDFS,Nasdaq,True,current_ticker_available
+0001121788,GARMIN LTD,technology,GRMN,NYSE,True,current_ticker_available
+0001122904,"NETGEAR, INC.",technology,NTGR,Nasdaq,True,current_ticker_available
+0001123494,HARVARD BIOSCIENCE INC,technology,HBIO,Nasdaq,True,current_ticker_available
+0001124796,"NLIGHT, INC.",technology,LASR,Nasdaq,True,current_ticker_available
+0001126741,GSI TECHNOLOGY INC,technology,GSIT,Nasdaq,True,current_ticker_available
+0001133311,TRAVELZOO,technology,TZOO,Nasdaq,True,current_ticker_available
+0001133421,NORTHROP GRUMMAN CORP /DE/,technology,NOC,NYSE,True,current_ticker_available
+0001137789,SEAGATE TECHNOLOGY HOLDINGS PLC,technology,STX,Nasdaq,True,current_ticker_available
+0001144879,APPLIED DIGITAL CORP.,technology,APLD,Nasdaq,True,current_ticker_available
+0001158114,"APPLIED OPTOELECTRONICS, INC.",technology,AAOI,Nasdaq,True,current_ticker_available
+0001158324,"COGENT COMMUNICATIONS HOLDINGS, INC.",technology,CCOI,Nasdaq,True,current_ticker_available
+0001162194,STANDARD BIOTOOLS INC.,technology,LAB,Nasdaq,True,current_ticker_available
+0001167419,"RIOT BLOCKCHAIN, INC.",technology,RIOT,Nasdaq,True,current_ticker_available
+0001169561,COMMVAULT SYSTEMS INC,technology,CVLT,Nasdaq,True,current_ticker_available
+0001173489,CEVA INC,technology,CEVA,Nasdaq,True,current_ticker_available
+0001177394,TD SYNNEX CORP,technology,SNX,NYSE,True,current_ticker_available
+0001210677,FIRST ADVANTAGE CORP,technology,FA,Nasdaq,True,current_ticker_available
+0001261333,"DOCUSIGN, INC.",technology,DOCU,Nasdaq,True,current_ticker_available
+0001262039,"FORTINET, INC.",technology,FTNT,Nasdaq,True,current_ticker_available
+0001272842,AIRGAIN INC,technology,AIRG,Nasdaq,True,current_ticker_available
+0001274494,"FIRST SOLAR, INC.",technology,FSLR,Nasdaq,True,current_ticker_available
+0001275014,"ULTRA CLEAN HOLDINGS, INC.",technology,UCTT,Nasdaq,True,current_ticker_available
+0001280058,BLACKBAUD INC,technology,BLKB,Nasdaq,True,current_ticker_available
+0001280263,AMBARELLA INC,technology,AMBA,Nasdaq,True,current_ticker_available
+0001280452,MONOLITHIC POWER SYSTEMS INC,technology,MPWR,Nasdaq,True,current_ticker_available
+0001282631,NETLIST INC,technology,NLST,OTC,True,current_ticker_available
+0001286139,"LEGALZOOM.COM, INC.",technology,LZ,Nasdaq,True,current_ticker_available
+0001288469,"MAXLINEAR, INC",technology,MXL,Nasdaq,True,current_ticker_available
+0001288847,"FIVE9, INC.",technology,FIVN,Nasdaq,True,current_ticker_available
+0001299130,"PACIFIC BIOSCIENCES OF CALIFORNIA, INC.",technology,PACB,Nasdaq,True,current_ticker_available
+0001308547,"DOLBY LABORATORIES, INC.",technology,DLB,NYSE,True,current_ticker_available
+0001314102,"EYEPOINT PHARMACEUTICALS, INC.",technology,EYPT,Nasdaq,True,current_ticker_available
+0001314727,SONOS INC,technology,SONO,Nasdaq,True,current_ticker_available
+0001315098,ROBLOX CORP,technology,RBLX,NYSE,True,current_ticker_available
+0001321655,PALANTIR TECHNOLOGIES INC.,technology,PLTR,Nasdaq,True,current_ticker_available
+0001325702,MAGNACHIP SEMICONDUCTOR CORP,technology,MX,NYSE,True,current_ticker_available
+0001326380,GAMESTOP CORP.,technology,GME|GME-WT,NYSE,True,current_ticker_available
+0001326801,"META PLATFORMS, INC.",technology,META,Nasdaq,True,current_ticker_available
+0001327567,PALO ALTO NETWORKS INC,technology,PANW,Nasdaq,True,current_ticker_available
+0001327688,OOMA INC,technology,OOMA,NYSE,True,current_ticker_available
+0001327811,"WORKDAY, INC.",technology,WDAY,Nasdaq,True,current_ticker_available
+0001336920,"LEIDOS HOLDINGS, INC.",technology,LDOS,NYSE,True,current_ticker_available
+0001340476,DIRTT ENVIRONMENTAL SOLUTIONS LTD,technology,DRTTF,OTC,True,current_ticker_available
+0001341439,ORACLE CORP,technology,ORCL|ORCL-PD,NYSE,True,current_ticker_available
+0001351636,"SHOTSPOTTER, INC",technology,SSTI,Nasdaq,True,current_ticker_available
+0001352010,"EPAM SYSTEMS, INC.",technology,EPAM,NYSE,True,current_ticker_available
+0001361113,VARONIS SYSTEMS INC,technology,VRNS,Nasdaq,True,current_ticker_available
+0001372612,BOX INC,technology,BOX|BXCAP,NYSE|OTC,True,current_ticker_available
+0001373715,"SERVICENOW, INC.",technology,NOW,NYSE,True,current_ticker_available
+0001375365,"SUPER MICRO COMPUTER, INC.",technology,SMCI|SMCIP,Nasdaq,True,current_ticker_available
+0001377149,CAREVIEW COMMUNICATIONS INC,technology,CRVW,OTC,True,current_ticker_available
+0001377789,"AVIAT NETWORKS, INC.",technology,AVNW,Nasdaq,True,current_ticker_available
+0001384905,"RINGCENTRAL, INC.",technology,RNG,NYSE,True,current_ticker_available
+0001387467,ALPHA & OMEGA SEMICONDUCTOR LTD,technology,AOSL,Nasdaq,True,current_ticker_available
+0001393052,VEEVA SYSTEMS INC,technology,VEEV,NYSE,True,current_ticker_available
+0001402436,SS&C TECHNOLOGIES HOLDINGS INC,technology,SSNC,Nasdaq,True,current_ticker_available
+0001404655,HUBSPOT INC,technology,HUBS,NYSE,True,current_ticker_available
+0001408710,FABRINET,technology,FN,NYSE,True,current_ticker_available
+0001410384,"Q2 HOLDINGS, INC.",technology,QTWO,NYSE,True,current_ticker_available
+0001411690,"BIONANO GENOMICS, INC.",technology,BNGO,Nasdaq,True,current_ticker_available
+0001413447,NXP SEMICONDUCTORS N.V.,technology,NXPI,Nasdaq,True,current_ticker_available
+0001415404,ECHOSTAR CORP,technology,ECHO,Nasdaq,True,current_ticker_available
+0001418819,IRIDIUM COMMUNICATIONS INC.,technology,IRDM,Nasdaq,True,current_ticker_available
+0001419612,"SOLAREDGE TECHNOLOGIES, INC.",technology,SEDG,Nasdaq,True,current_ticker_available
+0001420520,ATOMERA INC,technology,ATOM,Nasdaq,True,current_ticker_available
+0001422930,"PUBMATIC, INC.",technology,PUBM,Nasdaq,True,current_ticker_available
+0001432133,KALTURA INC,technology,KLTR,Nasdaq,True,current_ticker_available
+0001433195,APPFOLIO INC,technology,APPF,Nasdaq,True,current_ticker_available
+0001437283,"VIRTUAL PIGGY, INC.",technology,RPMT,OTC,True,current_ticker_available
+0001438423,EVERSPIN TECHNOLOGIES INC,technology,MRAM,Nasdaq,True,current_ticker_available
+0001441683,APPIAN CORP,technology,APPN,Nasdaq,True,current_ticker_available
+0001441816,"MONGODB, INC.",technology,MDB,Nasdaq,True,current_ticker_available
+0001442145,"VERISK ANALYTICS, INC.",technology,VRSK,Nasdaq,True,current_ticker_available
+0001445305,WORKIVA INC,technology,WK,NYSE,True,current_ticker_available
+0001447669,TWILIO INC,technology,TWLO,NYSE,True,current_ticker_available
+0001451809,SITIME CORP,technology,SITM,Nasdaq,True,current_ticker_available
+0001454938,TEADS HOLDING CO.,technology,TEAD,Nasdaq,True,current_ticker_available
+0001459200,"ALARM.COM HOLDINGS, INC.",technology,ALRM,Nasdaq,True,current_ticker_available
+0001462056,"BACKBLAZE, INC.",technology,BLZE,Nasdaq,True,current_ticker_available
+0001463101,"ENPHASE ENERGY, INC.",technology,ENPH,Nasdaq,True,current_ticker_available
+0001463972,VUZIX CORP,technology,VUZI,Nasdaq,True,current_ticker_available
+0001466258,TRANE TECHNOLOGIES PLC,technology,TT,NYSE,True,current_ticker_available
+0001467623,"DROPBOX, INC.",technology,DBX,Nasdaq,True,current_ticker_available
+0001474432,"EVERPURE, INC.",technology,P,NYSE,True,current_ticker_available
+0001476840,"EXPENSIFY, INC.",technology,EXFY,Nasdaq,True,current_ticker_available
+0001477294,SENSATA TECHNOLOGIES HOLDING PLC,technology,ST,NYSE,True,current_ticker_available
+0001477333,"CLOUDFLARE, INC.",technology,NET,NYSE,True,current_ticker_available
+0001477720,"ASANA, INC.",technology,ASAN,NYSE,True,current_ticker_available
+0001487952,"VISHAY PRECISION GROUP, INC.",technology,VPG,NYSE,True,current_ticker_available
+0001493594,"MACOM TECHNOLOGY SOLUTIONS HOLDINGS, INC.",technology,MTSI,Nasdaq,True,current_ticker_available
+0001493761,TURTLE BEACH CORP,technology,TBCH,Nasdaq,True,current_ticker_available
+0001494259,"CARGURUS, INC.",technology,CARG,Nasdaq,True,current_ticker_available
+0001500435,"GOPRO, INC.",technology,GPRO,Nasdaq,True,current_ticker_available
+0001503274,QUANTERIX CORP,technology,QTRX,Nasdaq,True,current_ticker_available
+0001505155,"UPLAND SOFTWARE, INC.",technology,UPLD,Nasdaq,True,current_ticker_available
+0001505952,"DOMO, INC.",technology,DOMO,Nasdaq,True,current_ticker_available
+0001506293,"PINTEREST, INC.",technology,PINS,NYSE,True,current_ticker_available
+0001507605,"MARATHON DIGITAL HOLDINGS, INC.",technology,MARA,Nasdaq,True,current_ticker_available
+0001511737,UBIQUITI INC.,technology,UI,NYSE,True,current_ticker_available
+0001512673,"BLOCK, INC.",technology,BSQKZ|XYZ,NYSE|OTC,True,current_ticker_available
+0001514416,BANDWIDTH INC.,technology,BAND,Nasdaq,True,current_ticker_available
+0001516513,"DOXIMITY, INC.",technology,DOCS,NYSE,True,current_ticker_available
+0001517228,"VISTANCE NETWORKS, INC.",technology,VISN,Nasdaq,True,current_ticker_available
+0001517375,"SPROUT SOCIAL, INC.",technology,SPT,Nasdaq,True,current_ticker_available
+0001517413,"FASTLY, INC.",technology,FSLY,Nasdaq,True,current_ticker_available
+0001522540,"MARQETA, INC.",technology,MQ,Nasdaq,True,current_ticker_available
+0001522767,MARIMED INC.,technology,MRMD,OTC,True,current_ticker_available
+0001526520,"TRIPADVISOR, INC.",technology,TRIP,Nasdaq,True,current_ticker_available
+0001528396,"GUIDEWIRE SOFTWARE, INC.",technology,GWRE,NYSE,True,current_ticker_available
+0001529274,"ALKAMI TECHNOLOGY, INC.",technology,ALKT,Nasdaq,True,current_ticker_available
+0001535527,"CROWDSTRIKE HOLDINGS, INC.",technology,CRWD,Nasdaq,True,current_ticker_available
+0001544522,FRESHWORKS INC.,technology,FRSH,Nasdaq,True,current_ticker_available
+0001549346,"SHUTTERSTOCK, INC.",technology,SSTK,NYSE,True,current_ticker_available
+0001559865,"EVERTEC, INC.",technology,EVTC,NYSE,True,current_ticker_available
+0001560327,"RAPID7, INC.",technology,RPD,Nasdaq,True,current_ticker_available
+0001561550,"DATADOG, INC.",technology,DDOG,Nasdaq,True,current_ticker_available
+0001562088,"DUOLINGO, INC.",technology,DUOL,Nasdaq,True,current_ticker_available
+0001563190,"COMPASS, INC.",technology,COMP,NYSE,True,current_ticker_available
+0001564408,SNAP INC,technology,SNAP,NYSE,True,current_ticker_available
+0001565687,"INTAPP, INC.",technology,INTA,Nasdaq,True,current_ticker_available
+0001568100,"PAGERDUTY, INC.",technology,PD,NYSE,True,current_ticker_available
+0001569345,"SPRINKLR, INC.",technology,CXM,NYSE,True,current_ticker_available
+0001571123,SCIENCE APPLICATIONS INTERNATIONAL CORP,technology,SAIC,Nasdaq,True,current_ticker_available
+0001571996,DELL TECHNOLOGIES INC.,technology,DELL,NYSE,True,current_ticker_available
+0001575793,ENERGOUS CORP,technology,WATT,Nasdaq,True,current_ticker_available
+0001577526,"C3.AI, INC.",technology,AI,NYSE,True,current_ticker_available
+0001580808,"A10 NETWORKS, INC.",technology,ATEN,NYSE,True,current_ticker_available
+0001581760,"LIFE360, INC.",technology,LIF|LIFX,Nasdaq|OTC,True,current_ticker_available
+0001582961,"DIGITALOCEAN HOLDINGS, INC.",technology,DOCN,NYSE,True,current_ticker_available
+0001582982,"CARECLOUD, INC.",technology,CCLD,Nasdaq,True,current_ticker_available
+0001583708,"SENTINELONE, INC.",technology,S,NYSE,True,current_ticker_available
+0001585521,"ZOOM COMMUNICATIONS, INC.",technology,ZM,Nasdaq,True,current_ticker_available
+0001587523,KNOWLES CORP,technology,KN,NYSE,True,current_ticker_available
+0001590955,"PAYCOM SOFTWARE, INC.",technology,PAYC,NYSE,True,current_ticker_available
+0001591698,PAYLOCITY HOLDING CORP,technology,PCTY,Nasdaq,True,current_ticker_available
+0001594805,SHOPIFY INC.,technology,SHOP,Nasdaq,True,current_ticker_available
+0001595974,"MAGNITE, INC.",technology,MGNI,Nasdaq,True,current_ticker_available
+0001596532,"ARISTA NETWORKS, INC.",technology,ANET,NYSE,True,current_ticker_available
+0001596961,"RIDENOW GROUP, INC.",technology,RDNW,Nasdaq,True,current_ticker_available
+0001597033,SABRE CORP,technology,SABR,Nasdaq,True,current_ticker_available
+0001597846,GREENPRO CAPITAL CORP.,technology,GRNQ,Nasdaq,True,current_ticker_available
+0001601046,"KEYSIGHT TECHNOLOGIES, INC.",technology,KEYS,NYSE,True,current_ticker_available
+0001604778,"QORVO, INC.",technology,QRVO,Nasdaq,True,current_ticker_available
+0001606757,"KIMBALL ELECTRONICS, INC.",technology,KE,Nasdaq,True,current_ticker_available
+0001609151,"WEAVE COMMUNICATIONS, INC.",technology,WEAV,NYSE,True,current_ticker_available
+0001609711,GODADDY INC.,technology,GDDY,NYSE,True,current_ticker_available
+0001611052,"PROCORE TECHNOLOGIES, INC.",technology,PCOR,NYSE,True,current_ticker_available
+0001614178,"YEXT, INC.",technology,YEXT,NYSE,True,current_ticker_available
+0001615063,"INSPIRED ENTERTAINMENT, INC.",technology,INSE,Nasdaq,True,current_ticker_available
+0001615165,"VERITONE, INC.",technology,VERI,Nasdaq,True,current_ticker_available
+0001616533,"PENGUIN SOLUTIONS, INC.",technology,PENG,Nasdaq,True,current_ticker_available
+0001616543,"SENSEONICS HOLDINGS, INC.",technology,SENS,Nasdaq,True,current_ticker_available
+0001617553,"ZIPRECRUITER, INC.",technology,ZIP,NYSE,True,current_ticker_available
+0001618732,"NUTANIX, INC.",technology,NTNX,Nasdaq,True,current_ticker_available
+0001625278,"NERDWALLET, INC.",technology,NRDS,Nasdaq,True,current_ticker_available
+0001625641,"CS DISCO, INC.",technology,LAW,NYSE,True,current_ticker_available
+0001626450,"COMMERCE.COM, INC.",technology,CMRC,Nasdaq,True,current_ticker_available
+0001627475,"UPWORK, INC",technology,UPWK,Nasdaq,True,current_ticker_available
+0001633978,LUMENTUM HOLDINGS INC.,technology,LITE,Nasdaq,True,current_ticker_available
+0001635327,FLUTTER ENTERTAINMENT PLC,technology,FLUT,NYSE,True,current_ticker_available
+0001636422,"HEALTH CATALYST, INC.",technology,HCAT,Nasdaq,True,current_ticker_available
+0001638826,"SERVICETITAN, INC.",technology,TTAN,Nasdaq,True,current_ticker_available
+0001640147,SNOWFLAKE INC.,technology,SNOW,NYSE,True,current_ticker_available
+0001640428,"EVERQUOTE, INC.",technology,EVER,Nasdaq,True,current_ticker_available
+0001642896,SAMSARA INC.,technology,IOT,NYSE,True,current_ticker_available
+0001645590,HEWLETT PACKARD ENTERPRISE CO,technology,HPE|HPE-PC,NYSE,True,current_ticker_available
+0001646188,ONDAS HOLDINGS INC.,technology,ONDS,Nasdaq,True,current_ticker_available
+0001650164,"TOAST, INC.",technology,TOST,NYSE,True,current_ticker_available
+0001650372,ATLASSIAN CORP,technology,TEAM,Nasdaq,True,current_ticker_available
+0001651562,"COURSERA, INC.",technology,COUR,NYSE,True,current_ticker_available
+0001652044,ALPHABET INC.,technology,GOOG|GOOGL|GOOGM|GOOGN,Nasdaq,True,current_ticker_available
+0001652535,"ICHOR HOLDINGS, LTD.",technology,ICHR,Nasdaq,True,current_ticker_available
+0001653482,GITLAB INC.,technology,GTLB,Nasdaq,True,current_ticker_available
+0001659166,FORTIVE CORP,technology,FTV,NYSE,True,current_ticker_available
+0001660134,"OKTA, INC.",technology,OKTA,Nasdaq,True,current_ticker_available
+0001660280,"TENABLE HOLDINGS, INC.",technology,TENB,Nasdaq,True,current_ticker_available
+0001666071,"CARDLYTICS, INC.",technology,CDLX,Nasdaq,True,current_ticker_available
+0001666134,"BLACKLINE, INC.",technology,BL,Nasdaq,True,current_ticker_available
+0001671933,"TRADE DESK, INC.",technology,TTD,Nasdaq,True,current_ticker_available
+0001674101,VERTIV HOLDINGS CO,technology,VRT,NYSE,True,current_ticker_available
+0001676238,"BRAZE, INC.",technology,BRZE,Nasdaq,True,current_ticker_available
+0001681622,VAREX IMAGING CORP,technology,VREX,Nasdaq,True,current_ticker_available
+0001683606,CARS.COM INC.,technology,CARS,NYSE,True,current_ticker_available
+0001688568,DXC TECHNOLOGY CO,technology,DXC,NYSE,True,current_ticker_available
+0001707753,ELASTIC N.V.,technology,ESTC,NYSE,True,current_ticker_available
+0001708055,RIBBON COMMUNICATIONS INC.,technology,RBBN,Nasdaq,True,current_ticker_available
+0001713445,"REDDIT, INC.",technology,RDDT,NYSE,True,current_ticker_available
+0001713683,"ZSCALER, INC.",technology,ZS,Nasdaq,True,current_ticker_available
+0001717115,"TEMPUS AI, INC.",technology,TEM,Nasdaq,True,current_ticker_available
+0001720420,IBEX LTD,technology,IBEX,Nasdaq,True,current_ticker_available
+0001722482,"AVANTOR, INC.",technology,AVTR,NYSE,True,current_ticker_available
+0001726445,"SEER, INC.",technology,SEER,Nasdaq,True,current_ticker_available
+0001730168,BROADCOM INC.,technology,AVGO,Nasdaq,True,current_ticker_available
+0001734722,"UIPATH, INC.",technology,PATH,NYSE,True,current_ticker_available
+0001736297,"ASTERA LABS, INC.",technology,ALAB,Nasdaq,True,current_ticker_available
+0001736946,"ARLO TECHNOLOGIES, INC.",technology,ARLO,NYSE,True,current_ticker_available
+0001738177,CAMBIUM NETWORKS CORP,technology,CMBMF,OTC,True,current_ticker_available
+0001738758,GLORY STAR NEW MEDIA GROUP HOLDINGS LTD,technology,CHR,Nasdaq,True,current_ticker_available
+0001743725,"GRID DYNAMICS HOLDINGS, INC.",technology,GDYN,Nasdaq,True,current_ticker_available
+0001743759,"CORSAIR GAMING, INC.",technology,CRSR,Nasdaq,True,current_ticker_available
+0001751008,APPLOVIN CORP,technology,APP,Nasdaq,True,current_ticker_available
+0001758009,QUANTUM COMPUTING INC.,technology,QUBT,Nasdaq,True,current_ticker_available
+0001764046,CLARIVATE PLC,technology,CLVT,NYSE,True,current_ticker_available
+0001768267,CERENCE INC.,technology,CRNC,Nasdaq,True,current_ticker_available
+0001770450,XEROX HOLDINGS CORP,technology,XRX|XRXDW,Nasdaq,True,current_ticker_available
+0001770787,"10X GENOMICS, INC.",technology,TXG,Nasdaq,True,current_ticker_available
+0001773383,"DYNATRACE, INC.",technology,DT,NYSE,True,current_ticker_available
+0001774170,"POWERFLEET, INC.",technology,AIOT,Nasdaq,True,current_ticker_available
+0001774675,SKILLSOFT CORP.,technology,SKIL,NYSE,True,current_ticker_available
+0001777921,"AVEPOINT, INC.",technology,AVPT,Nasdaq,True,current_ticker_available
+0001779474,"WM TECHNOLOGY, INC.",technology,MAPS,OTC,True,current_ticker_available
+0001784535,"PORCH GROUP, INC.",technology,PRCH,Nasdaq,True,current_ticker_available
+0001786352,"BILL HOLDINGS, INC.",technology,BILL,NYSE,True,current_ticker_available
+0001786842,VONTIER CORP,technology,VNT,NYSE,True,current_ticker_available
+0001788999,XPERI INC.,technology,XPER,NYSE,True,current_ticker_available
+0001794515,ZOOMINFO TECHNOLOGIES INC.,technology,GTM,Nasdaq,True,current_ticker_available
+0001800227,IAC INC.,technology,PPLI,Nasdaq,True,current_ticker_available
+0001800667,JFROG LTD,technology,FROG,Nasdaq,True,current_ticker_available
+0001801661,SKILLZ INC.,technology,FIRY,NYSE,True,current_ticker_available
+0001803696,ADEIA INC.,technology,ADEA,Nasdaq,True,current_ticker_available
+0001805385,"EVOLV TECHNOLOGIES HOLDINGS, INC.",technology,EVLV,Nasdaq,True,current_ticker_available
+0001805651,"MARKETWISE, INC.",technology,MKTW,Nasdaq,True,current_ticker_available
+0001805833,"SYSTEM1, INC.",technology,SST|SSTPW,NYSE|OTC,True,current_ticker_available
+0001806837,"VERTEX, INC.",technology,VERX,Nasdaq,True,current_ticker_available
+0001807794,CREDO TECHNOLOGY GROUP HOLDING LTD,technology,CRDO,Nasdaq,True,current_ticker_available
+0001809519,"GOODRX HOLDINGS, INC.",technology,GDRX,Nasdaq,True,current_ticker_available
+0001809987,"MIRION TECHNOLOGIES, INC.",technology,MIR,NYSE,True,current_ticker_available
+0001810019,"RACKSPACE TECHNOLOGY, INC.",technology,RXT,Nasdaq,True,current_ticker_available
+0001810806,UNITY SOFTWARE INC.,technology,U,NYSE,True,current_ticker_available
+0001816431,QUANTUM-SI INC,technology,QSI,Nasdaq,True,current_ticker_available
+0001818201,CCC INTELLIGENT SOLUTIONS HOLDINGS INC.,technology,CCC,Nasdaq,True,current_ticker_available
+0001819928,"DOUBLEVERIFY HOLDINGS, INC.",technology,DV,NYSE,True,current_ticker_available
+0001819974,"SKYWATER TECHNOLOGY, INC",technology,SKYT,Nasdaq,True,current_ticker_available
+0001820144,GRINDR INC.,technology,GRND,NYSE,True,current_ticker_available
+0001821769,NAVITAS SEMICONDUCTOR CORP,technology,NVTS,Nasdaq,True,current_ticker_available
+0001823593,TUSIMPLE HOLDINGS INC.,technology,TSPH,OTC,True,current_ticker_available
+0001823878,"PLAYSTUDIOS, INC.",technology,MYPS,Nasdaq,True,current_ticker_available
+0001824920,"IONQ, INC.",technology,IONQ|IONQ-WT,NYSE,True,current_ticker_available
+0001827090,"CERTARA, INC.",technology,CERT,Nasdaq,True,current_ticker_available
+0001828016,PLAYTIKA HOLDING CORP.,technology,PLTK,Nasdaq,True,current_ticker_available
+0001828108,"AURORA INNOVATION, INC.",technology,AUR|AUROW,Nasdaq,True,current_ticker_available
+0001828161,"FTC SOLAR, INC.",technology,FTCI,Nasdaq,True,current_ticker_available
+0001828791,VIANT TECHNOLOGY INC.,technology,DSP,Nasdaq,True,current_ticker_available
+0001829864,"TASKUS, INC.",technology,TASK,Nasdaq,True,current_ticker_available
+0001830043,BUMBLE INC.,technology,BMBL,Nasdaq,True,current_ticker_available
+0001831651,"SHOALS TECHNOLOGIES GROUP, INC.",technology,SHLS,Nasdaq,True,current_ticker_available
+0001831915,"CYTEK BIOSCIENCES, INC.",technology,CTKB,Nasdaq,True,current_ticker_available
+0001833756,"LEONARDO DRS, INC.",technology,DRS,Nasdaq,True,current_ticker_available
+0001834488,"N-ABLE, INC.",technology,NABL,NYSE,True,current_ticker_available
+0001835632,"MARVELL TECHNOLOGY, INC.",technology,MRVL,Nasdaq,True,current_ticker_available
+0001835830,"KLAVIYO, INC.",technology,KVYO,NYSE,True,current_ticker_available
+0001836833,PLANET LABS PBC,technology,PL,NYSE,True,current_ticker_available
+0001836981,"BIGBEAR.AI HOLDINGS, INC.",technology,BBAI|BBAI-WT,NYSE,True,current_ticker_available
+0001837014,"SMARTRENT, INC.",technology,SMRT,NYSE,True,current_ticker_available
+0001840502,TABOOLA.COM LTD.,technology,TBLA,Nasdaq,True,current_ticker_available
+0001840856,"SOUNDHOUND AI, INC.",technology,SOUN|SOUNW,Nasdaq,True,current_ticker_available
+0001841925,"INDIE SEMICONDUCTOR, INC.",technology,INDI,Nasdaq,True,current_ticker_available
+0001846069,"NEXTDOOR HOLDINGS, INC.",technology,NXDR,NYSE,True,current_ticker_available
+0001849635,TRUMP MEDIA & TECHNOLOGY GROUP CORP.,technology,DJT|DJTWW,Nasdaq,True,current_ticker_available
+0001851003,ZETA GLOBAL HOLDINGS CORP.,technology,ZETA,NYSE,True,current_ticker_available
+0001852131,NEXTPOWER INC.,technology,NXT,Nasdaq,True,current_ticker_available
+0001853138,"KODIAK AI, INC.",technology,KDK|KDKRW,Nasdaq,True,current_ticker_available
+0001853145,EVERCOMMERCE INC.,technology,EVCM,Nasdaq,True,current_ticker_available
+0001855747,"BLEND LABS, INC.",technology,BLND,NYSE,True,current_ticker_available
+0001856314,"CLEAR SECURE, INC.",technology,YOU,NYSE,True,current_ticker_available
+0001861795,DEFINITIVE HEALTHCARE CORP.,technology,DH,Nasdaq,True,current_ticker_available
+0001866633,"CONSENSUS CLOUD SOLUTIONS, INC.",technology,CCSI,Nasdaq,True,current_ticker_available
+0001866692,"AMPLITUDE, INC.",technology,AMPL,Nasdaq,True,current_ticker_available
+0001867072,"KYNDRYL HOLDINGS, INC.",technology,KD,NYSE,True,current_ticker_available
+0001897762,INGRAM MICRO HOLDING CORP,technology,INGM,NYSE,True,current_ticker_available
+0001902733,"NCINO, INC.",technology,NCNO,Nasdaq,True,current_ticker_available
+0001910139,MOBILEYE GLOBAL INC.,technology,MBLY,Nasdaq,True,current_ticker_available
+0001943896,"RUBRIK, INC.",technology,RBRK,NYSE,True,current_ticker_available
+0001967680,VERALTO CORP,technology,VLTO,NYSE,True,current_ticker_available
+0001974138,NCR ATLEOS CORP,technology,NATL,NYSE,True,current_ticker_available
+0001990354,WAYSTAR HOLDING CORP.,technology,WAY,Nasdaq,True,current_ticker_available
+0001992243,"FREYR BATTERY, INC. /DE/",technology,TE,NYSE,True,current_ticker_available
+0000002178,"ADAMS RESOURCES & ENERGY, INC.",energy,,,False,former_or_unmapped
+0000004447,HESS CORP,energy,,,False,former_or_unmapped
+0000006769,APACHE CORP,energy,,,False,former_or_unmapped
+0000007039,TRECORA RESOURCES,energy,,,False,former_or_unmapped
+0000007332,SOUTHWESTERN ENERGY CO,energy,,,False,former_or_unmapped
+0000008411,ATWOOD OCEANICS INC,energy,,,False,former_or_unmapped
+0000010254,EARTHSTONE ENERGY INC,energy,,,False,former_or_unmapped
+0000029834,DOUBLE EAGLE PETROLEUM CO,energy,,,False,former_or_unmapped
+0000034088,EXXON MOBIL CORP,energy,,,False,former_or_unmapped
+0000038079,SABINE OIL & GAS CORP,energy,,,False,former_or_unmapped
+0000041023,GEORESOURCES INC,energy,,,False,former_or_unmapped
+0000048039,HOLLYFRONTIER CORP,energy,,,False,former_or_unmapped
+0000050104,ANDEAVOR,energy,,,False,former_or_unmapped
+0000061398,TELLURIAN INC. /DE/,energy,,,False,former_or_unmapped
+0000064279,MCMORAN EXPLORATION CO /DE/,energy,,,False,former_or_unmapped
+0000072207,NOBLE ENERGY INC,energy,,,False,former_or_unmapped
+0000076321,PARKER DRILLING CO /DE/,energy,,,False,former_or_unmapped
+0000077159,RANGER OIL CORP,energy,,,False,former_or_unmapped
+0000077877,"PDC ENERGY, INC.",energy,,,False,former_or_unmapped
+0000085408,ROWAN COMPANIES PLC,energy,,,False,former_or_unmapped
+0000095304,SUNOCO INC,energy,,,False,former_or_unmapped
+0000101778,MARATHON OIL CORP,energy,,,False,former_or_unmapped
+0000106455,WESTMORELAND COAL CO,energy,,,False,former_or_unmapped
+0000277595,ENERGEN CORP,energy,,,False,former_or_unmapped
+0000277924,CREDO PETROLEUM CORP,energy,,,False,former_or_unmapped
+0000311471,APCO OIL & GAS INTERNATIONAL INC,energy,,,False,former_or_unmapped
+0000314606,GEOKINETICS INC,energy,,,False,former_or_unmapped
+0000315131,PHX MINERALS INC.,energy,,,False,former_or_unmapped
+0000316300,EXCO RESOURCES INC,energy,,,False,former_or_unmapped
+0000318996,KEY ENERGY SERVICES INC,energy,,,False,former_or_unmapped
+0000320575,PIONEER ENERGY SERVICES CORP,energy,,,False,former_or_unmapped
+0000351231,DAWSON GEOPHYSICAL CO,energy,,,False,former_or_unmapped
+0000351817,"SILVERBOW RESOURCES, INC.",energy,,,False,former_or_unmapped
+0000709804,STEEL EXCEL INC.,energy,,,False,former_or_unmapped
+0000719209,ISRAMCO INC,energy,,,False,former_or_unmapped
+0000732834,"CONTINENTAL RESOURCES, INC",energy,,,False,former_or_unmapped
+0000750199,"EPL OIL & GAS, INC.",energy,,,False,former_or_unmapped
+0000773910,ANADARKO PETROLEUM CORP,energy,,,False,former_or_unmapped
+0000778438,BERRY PETROLEUM CO,energy,,,False,former_or_unmapped
+0000785968,"MILLER ENERGY RESOURCES, INC.",energy,,,False,former_or_unmapped
+0000798949,UNIT CORP,energy,,,False,former_or_unmapped
+0000799235,ERHC ENERGY INC,energy,,,False,former_or_unmapped
+0000813779,CRIMSON EXPLORATION INC.,energy,,,False,former_or_unmapped
+0000837173,"WALTER ENERGY, INC.",energy,,,False,former_or_unmapped
+0000845289,"HARVEST NATURAL RESOURCES, INC.",energy,,,False,former_or_unmapped
+0000858470,COTERRA ENERGY INC.,energy,,,False,former_or_unmapped
+0000866609,ION GEOPHYSICAL CORP,energy,,,False,former_or_unmapped
+0000867665,ABRAXAS PETROLEUM CORP,energy,,,False,former_or_unmapped
+0000872248,PETROQUEST ENERGY INC,energy,,,False,former_or_unmapped
+0000880115,CLAYTON WILLIAMS ENERGY INC /DE,energy,,,False,former_or_unmapped
+0000886835,SUPERIOR ENERGY SERVICES INC,energy,,,False,former_or_unmapped
+0000890447,VERTEX ENERGY INC.,energy,,,False,former_or_unmapped
+0000891456,PLAINS EXPLORATION & PRODUCTION CO,energy,,,False,former_or_unmapped
+0000892986,WARREN RESOURCES INC,energy,,,False,former_or_unmapped
+0000904080,STONE ENERGY CORP,energy,,,False,former_or_unmapped
+0000907649,FX ENERGY INC,energy,,,False,former_or_unmapped
+0000912750,NEWFIELD EXPLORATION CO /DE/,energy,,,False,former_or_unmapped
+0000928022,CALLON PETROLEUM CO,energy,,,False,former_or_unmapped
+0000937136,HYPERDYNAMICS CORP,energy,,,False,former_or_unmapped
+0000943861,GOODRICH PETROLEUM CORP,energy,,,False,former_or_unmapped
+0000945764,DENBURY INC,energy,,,False,former_or_unmapped
+0000949039,"DIAMOND OFFSHORE DRILLING, INC.",energy,,,False,former_or_unmapped
+0001000229,CORE LABORATORIES N V,energy,,,False,former_or_unmapped
+0001022646,ULTRA PETROLEUM CORP,energy,,,False,former_or_unmapped
+0001023734,"BPZ RESOURCES, INC.",energy,,,False,former_or_unmapped
+0001029023,SYNTROLEUM CORP,energy,,,False,former_or_unmapped
+0001034563,ICAHN ENTERPRISES HOLDINGS L.P.,energy,,,False,former_or_unmapped
+0001037676,"ARCH RESOURCES, INC.",energy,,,False,former_or_unmapped
+0001038357,PIONEER NATURAL RESOURCES CO,energy,,,False,former_or_unmapped
+0001040593,CARRIZO OIL & GAS INC,energy,,,False,former_or_unmapped
+0001059324,PETROHAWK ENERGY CORP,energy,,,False,former_or_unmapped
+0001060990,QUICKSILVER RESOURCES INC,energy,,,False,former_or_unmapped
+0001071993,CONTANGO OIL & GAS CO,energy,,,False,former_or_unmapped
+0001092289,TRANSATLANTIC PETROLEUM LTD.,energy,,,False,former_or_unmapped
+0001096339,SARATOGA RESOURCES INC /TX,energy,,,False,former_or_unmapped
+0001102392,"ROYAL ENERGY RESOURCES, INC.",energy,,,False,former_or_unmapped
+0001108827,"QEP RESOURCES, INC.",energy,,,False,former_or_unmapped
+0001109189,"BASIC ENERGY SERVICES, INC.",energy,,,False,former_or_unmapped
+0001111817,LONGWEI PETROLEUM INVESTMENT HOLDING LTD,energy,,,False,former_or_unmapped
+0001112412,ENDEAVOUR INTERNATIONAL CORP,energy,,,False,former_or_unmapped
+0001123647,ATP OIL & GAS CORP,energy,,,False,former_or_unmapped
+0001124024,FAR EAST ENERGY CORP,energy,,,False,former_or_unmapped
+0001127342,GMX RESOURCES INC,energy,,,False,former_or_unmapped
+0001133260,UNION DRILLING INC,energy,,,False,former_or_unmapped
+0001137083,"L & L ENERGY, INC.",energy,,,False,former_or_unmapped
+0001144945,PENN VIRGINIA RESOURCE PARTNERS L P,energy,,,False,former_or_unmapped
+0001157806,ENCANA CORP,energy,,,False,former_or_unmapped
+0001166036,MARKWEST ENERGY PARTNERS L P,energy,,,False,former_or_unmapped
+0001168054,CIMAREX ENERGY CO,energy,,,False,former_or_unmapped
+0001170154,GASTAR EXPLORATION LTD,energy,,,False,former_or_unmapped
+0001172139,BILL BARRETT CORP,energy,,,False,former_or_unmapped
+0001173911,ENBRIDGE ENERGY MANAGEMENT L L C,energy,,,False,former_or_unmapped
+0001179060,CROSSTEX ENERGY LP,energy,,,False,former_or_unmapped
+0001209821,CROSSTEX ENERGY INC,energy,,,False,former_or_unmapped
+0001255474,WHITING PETROLEUM CORP,energy,,,False,former_or_unmapped
+0001281922,TRIANGLE PETROLEUM CORP,energy,,,False,former_or_unmapped
+0001283843,"EMERALD OIL, INC.",energy,,,False,former_or_unmapped
+0001289790,MACQUARIE INFRASTRUCTURE CORP,energy,,,False,former_or_unmapped
+0001297720,JAMES RIVER COAL CO,energy,,,False,former_or_unmapped
+0001301063,"ALPHA NATURAL RESOURCES, INC.",energy,,,False,former_or_unmapped
+0001311486,GLOBAL GEOPHYSICAL SERVICES INC,energy,,,False,former_or_unmapped
+0001313024,"VENOCO, INC.",energy,,,False,former_or_unmapped
+0001322866,KODIAK OIL & GAS CORP,energy,,,False,former_or_unmapped
+0001325955,"ALON USA ENERGY, INC.",energy,,,False,former_or_unmapped
+0001326089,SUNDANCE ENERGY INC.,energy,,,False,former_or_unmapped
+0001326428,"LINN ENERGY, INC.",energy,,,False,former_or_unmapped
+0001330849,"HERCULES OFFSHORE, INC.",energy,,,False,former_or_unmapped
+0001335190,MAGNUM HUNTER RESOURCES CORP,energy,,,False,former_or_unmapped
+0001338613,REGENCY ENERGY PARTNERS LP,energy,,,False,former_or_unmapped
+0001339048,"WESTERN REFINING, INC.",energy,,,False,former_or_unmapped
+0001340122,"CALUMET SPECIALTY PRODUCTS PARTNERS, L.P.",energy,,,False,former_or_unmapped
+0001340282,ROSETTA RESOURCES INC.,energy,,,False,former_or_unmapped
+0001341726,"GULFSLOPE ENERGY, INC.",energy,,,False,former_or_unmapped
+0001343719,ENERGY XXI LTD,energy,,,False,former_or_unmapped
+0001344980,"ALLIANCE HOLDINGS GP, L.P.",energy,,,False,former_or_unmapped
+0001346980,"CHAPARRAL ENERGY, INC.",energy,,,False,former_or_unmapped
+0001349976,AMERICAN STANDARD ENERGY CORP.,energy,,,False,former_or_unmapped
+0001351541,"DELEK US HOLDINGS, INC.",energy,,,False,former_or_unmapped
+0001357371,BREITBURN ENERGY PARTNERS LP,energy,,,False,former_or_unmapped
+0001358071,CONCHO RESOURCES INC,energy,,,False,former_or_unmapped
+0001358831,LEGACY RESERVES LP,energy,,,False,former_or_unmapped
+0001361937,"EV ENERGY PARTNERS, LP",energy,,,False,former_or_unmapped
+0001362705,SANCHEZ MIDSTREAM PARTNERS LP,energy,,,False,former_or_unmapped
+0001364100,"CAL DIVE INTERNATIONAL, INC.",energy,,,False,former_or_unmapped
+0001364541,EAGLE ROCK ENERGY PARTNERS L P,energy,,,False,former_or_unmapped
+0001367311,"DAKOTA PLAINS HOLDINGS, INC.",energy,,,False,former_or_unmapped
+0001376812,PATRIOT COAL CORP,energy,,,False,former_or_unmapped
+0001382231,FORTEM RESOURCES INC.,energy,,,False,former_or_unmapped
+0001384072,"VANGUARD NATURAL RESOURCES, INC.",energy,,,False,former_or_unmapped
+0001397516,REX ENERGY CORP,energy,,,False,former_or_unmapped
+0001402281,ERIN ENERGY CORP.,energy,,,False,former_or_unmapped
+0001403853,"NUVERRA ENVIRONMENTAL SOLUTIONS, INC.",energy,,,False,former_or_unmapped
+0001404079,SAMSON OIL & GAS LTD,energy,,,False,former_or_unmapped
+0001404636,NIMIN ENERGY CORP.,energy,,,False,former_or_unmapped
+0001404973,"ENERGY XXI GULF COAST, INC.",energy,,,False,former_or_unmapped
+0001405073,APPROACH RESOURCES INC,energy,,,False,former_or_unmapped
+0001407463,PIONEER SOUTHWEST ENERGY PARTNERS L.P.,energy,,,False,former_or_unmapped
+0001412347,OXFORD RESOURCE PARTNERS LP,energy,,,False,former_or_unmapped
+0001413507,SRC ENERGY INC.,energy,,,False,former_or_unmapped
+0001419428,VANTAGE DRILLING CO,energy,,,False,former_or_unmapped
+0001419583,"EOS PETRO, INC.",energy,,,False,former_or_unmapped
+0001431372,GASTAR EXPLORATION INC.,energy,,,False,former_or_unmapped
+0001437557,"LILIS ENERGY, INC.",energy,,,False,former_or_unmapped
+0001441849,CLOUD PEAK ENERGY INC.,energy,,,False,former_or_unmapped
+0001449488,CSI COMPRESSCO LP,energy,,,False,former_or_unmapped
+0001449732,"WILLBROS GROUP, INC.NEW",energy,,,False,former_or_unmapped
+0001453090,WEATHERFORD INTERNATIONAL LTD./SWITZERLAND,energy,,,False,former_or_unmapped
+0001458891,NOBLE CORP,energy,,,False,former_or_unmapped
+0001469510,RESOLUTE ENERGY CORP,energy,,,False,former_or_unmapped
+0001471261,"COBALT INTERNATIONAL ENERGY, INC.",energy,,,False,former_or_unmapped
+0001478535,ABBY INC.,energy,,,False,former_or_unmapped
+0001483496,"RED MOUNTAIN RESOURCES, INC.",energy,,,False,former_or_unmapped
+0001489136,SEMGROUP CORP,energy,,,False,former_or_unmapped
+0001490630,RHINO RESOURCE PARTNERS LP,energy,,,False,former_or_unmapped
+0001492832,EQUAL ENERGY LTD.,energy,,,False,former_or_unmapped
+0001493144,CLOUD PEAK ENERGY RESOURCES LLC,energy,,,False,former_or_unmapped
+0001502012,"QR ENERGY, LP",energy,,,False,former_or_unmapped
+0001506932,LONE PINE RESOURCES INC.,energy,,,False,former_or_unmapped
+0001509273,"C&J ENERGY SERVICES, INC.",energy,,,False,former_or_unmapped
+0001509589,"CIVITAS RESOURCES, INC.",energy,,,False,former_or_unmapped
+0001517342,PACIFIC DRILLING S.A.,energy,,,False,former_or_unmapped
+0001518832,"WPX ENERGY, INC.",energy,,,False,former_or_unmapped
+0001519632,"LRR ENERGY, L.P.",energy,,,False,former_or_unmapped
+0001521847,AMPLIFY ENERGY CORP,energy,,,False,former_or_unmapped
+0001523404,JP ENERGY PARTNERS LP,energy,,,False,former_or_unmapped
+0001525287,SPRAGUE RESOURCES LP,energy,,,False,former_or_unmapped
+0001527709,"MID-CON ENERGY PARTNERS, LP",energy,,,False,former_or_unmapped
+0001528129,"VITAL ENERGY, INC.",energy,,,False,former_or_unmapped
+0001528837,SANCHEZ ENERGY CORP,energy,,,False,former_or_unmapped
+0001529463,"FTS INTERNATIONAL, INC.",energy,,,False,former_or_unmapped
+0001532750,"TITAN ENERGY, LLC",energy,,,False,former_or_unmapped
+0001532930,SEVENTY SEVEN ENERGY INC.,energy,,,False,former_or_unmapped
+0001533454,NORTHERN TIER ENERGY LP,energy,,,False,former_or_unmapped
+0001537028,"INDEPENDENCE CONTRACT DRILLING, INC.",energy,,,False,former_or_unmapped
+0001540729,FORESIGHT ENERGY LP,energy,,,False,former_or_unmapped
+0001549756,"LINNCO, LLC",energy,,,False,former_or_unmapped
+0001555177,EMERGE ENERGY SERVICES LP,energy,,,False,former_or_unmapped
+0001556766,"ALON USA PARTNERS, LP",energy,,,False,former_or_unmapped
+0001558785,"CVR REFINING, LP",energy,,,False,former_or_unmapped
+0001560443,NEW SOURCE ENERGY PARTNERS L.P.,energy,,,False,former_or_unmapped
+0001573166,"JONES ENERGY, INC.",energy,,,False,former_or_unmapped
+0001574963,"WORLD POINT TERMINALS, LP",energy,,,False,former_or_unmapped
+0001575828,EXPRO GROUP HOLDINGS N.V.,energy,,,False,former_or_unmapped
+0001583744,ARC LOGISTICS PARTNERS LP,energy,,,False,former_or_unmapped
+0001584952,EP ENERGY CORP,energy,,,False,former_or_unmapped
+0001588216,"RSP PERMIAN, INC.",energy,,,False,former_or_unmapped
+0001588238,RICE ENERGY INC.,energy,,,False,former_or_unmapped
+0001594466,"PARSLEY ENERGY, INC.",energy,,,False,former_or_unmapped
+0001594590,PARAGON OFFSHORE PLC,energy,,,False,former_or_unmapped
+0001597131,GLORI ENERGY INC.,energy,,,False,former_or_unmapped
+0001599222,MEMORIAL RESOURCE DEVELOPMENT CORP.,energy,,,False,former_or_unmapped
+0001600470,MONTAGE RESOURCES CORP,energy,,,False,former_or_unmapped
+0001602065,"VIPER ENERGY, INC.",energy,,,False,former_or_unmapped
+0001607250,TRANSOCEAN PARTNERS LLC,energy,,,False,former_or_unmapped
+0001615817,"C&J ENERGY SERVICES, INC.",energy,,,False,former_or_unmapped
+0001619739,HESS MIDSTREAM PARTNERS LP,energy,,,False,former_or_unmapped
+0001623595,"ATLAS ENERGY GROUP, LLC",energy,,,False,former_or_unmapped
+0001637558,CONSOL COAL RESOURCES LP,energy,,,False,former_or_unmapped
+0001652133,OASIS MIDSTREAM PARTNERS LP,energy,,,False,former_or_unmapped
+0001655020,"EXTRACTION OIL & GAS, INC.",energy,,,False,former_or_unmapped
+0001661920,LONESTAR RESOURCES US INC.,energy,,,False,former_or_unmapped
+0001670349,"U.S. WELL SERVICES, INC.",energy,,,False,former_or_unmapped
+0001681714,WILDHORSE RESOURCE DEVELOPMENT CORP,energy,,,False,former_or_unmapped
+0001685715,JAGGED PEAK ENERGY INC.,energy,,,False,former_or_unmapped
+0001688476,NEXTIER OILFIELD SOLUTIONS INC.,energy,,,False,former_or_unmapped
+0001690769,"ALTA MESA RESOURCES, INC. /DE",energy,,,False,former_or_unmapped
+0001703785,SITIO ROYALTIES CORP.,energy,,,False,former_or_unmapped
+0001705873,BERRY CORP (BRY),energy,,,False,former_or_unmapped
+0001725526,HIGHPOINT RESOURCES CORP,energy,,,False,former_or_unmapped
+0001735828,LEGACY RESERVES INC.,energy,,,False,former_or_unmapped
+0001737204,"RIVIERA RESOURCES, INC.",energy,,,False,former_or_unmapped
+0001745797,"BRIGHAM MINERALS, INC.",energy,,,False,former_or_unmapped
+0001845290,"MACQUARIE INFRASTRUCTURE HOLDINGS, LLC",energy,,,False,former_or_unmapped
+0001865187,"ARIS WATER SOLUTIONS, INC.",energy,,,False,former_or_unmapped
+0001949543,SITIO ROYALTIES CORP.,energy,,,False,former_or_unmapped
+0000002491,"BALLY TECHNOLOGIES, INC.",technology,,,False,former_or_unmapped
+0000006284,ANALOGIC CORP,technology,,,False,former_or_unmapped
+0000006314,ANAREN INC,technology,,,False,former_or_unmapped
+0000021510,COHERENT INC,technology,,,False,former_or_unmapped
+0000023082,COMPUTER SCIENCES CORP,technology,,,False,former_or_unmapped
+0000023111,COMPUTER TASK GROUP INC,technology,,,False,former_or_unmapped
+0000026076,CUBIC CORP /DE/,technology,,,False,former_or_unmapped
+0000030822,DYNAMICS RESEARCH CORP,technology,,,False,former_or_unmapped
+0000031347,ECHELON CORP,technology,,,False,former_or_unmapped
+0000033619,ESTERLINE TECHNOLOGIES CORP,technology,,,False,former_or_unmapped
+0000036047,"CORELOGIC, INC.",technology,,,False,former_or_unmapped
+0000055772,KIMBALL INTERNATIONAL INC,technology,,,False,former_or_unmapped
+0000067279,MOCON INC,technology,,,False,former_or_unmapped
+0000067472,MOLEX INC,technology,,,False,former_or_unmapped
+0000068709,MTS SYSTEMS CORP,technology,,,False,former_or_unmapped
+0000082628,SYMMETRICOM INC,technology,,,False,former_or_unmapped
+0000088790,INTRICON CORP,technology,,,False,former_or_unmapped
+0000089270,SL INDUSTRIES INC,technology,,,False,former_or_unmapped
+0000092679,SPARTON CORP,technology,,,False,former_or_unmapped
+0000093384,STANDARD MICROSYSTEMS CORP,technology,,,False,former_or_unmapped
+0000096763,PULSE ELECTRONICS CORP,technology,,,False,former_or_unmapped
+0000108772,XEROX CORP,technology,,,False,former_or_unmapped
+0000215419,CHECKPOINT SYSTEMS INC,technology,,,False,former_or_unmapped
+0000225263,NEWPORT CORP,technology,,,False,former_or_unmapped
+0000310568,MICROSEMI CORP,technology,,,False,former_or_unmapped
+0000315449,UQM TECHNOLOGIES INC,technology,,,False,former_or_unmapped
+0000316793,INTERNATIONAL RECTIFIER CORP /DE/,technology,,,False,former_or_unmapped
+0000317771,TELLABS INC,technology,,,False,former_or_unmapped
+0000319240,IRIS INTERNATIONAL INC,technology,,,False,former_or_unmapped
+0000320340,INTELLIGENT SYSTEMS CORP,technology,,,False,former_or_unmapped
+0000320345,MICROS SYSTEMS INC,technology,,,False,former_or_unmapped
+0000350868,"ITERIS, INC.",technology,,,False,former_or_unmapped
+0000350917,EMULEX CORP /DE/,technology,,,False,former_or_unmapped
+0000354908,FLIR SYSTEMS INC,technology,,,False,former_or_unmapped
+0000355777,LOJACK CORP,technology,,,False,former_or_unmapped
+0000356028,"CA, INC.",technology,,,False,former_or_unmapped
+0000357020,XCERRA CORP,technology,,,False,former_or_unmapped
+0000701811,MENTOR GRAPHICS CORP,technology,,,False,former_or_unmapped
+0000703360,LSI CORP,technology,,,False,former_or_unmapped
+0000703361,INTEGRATED DEVICE TECHNOLOGY INC,technology,,,False,former_or_unmapped
+0000708818,"NEXTGEN HEALTHCARE, INC.",technology,,,False,former_or_unmapped
+0000711065,APPLIED MICRO CIRCUITS CORP,technology,,,False,former_or_unmapped
+0000713425,"LOGILITY SUPPLY CHAIN SOLUTIONS, INC",technology,,,False,former_or_unmapped
+0000714603,DST SYSTEMS INC,technology,,,False,former_or_unmapped
+0000718877,"ACTIVISION BLIZZARD, INC.",technology,,,False,former_or_unmapped
+0000727207,"ACCELERATE DIAGNOSTICS, INC",technology,,,False,former_or_unmapped
+0000730000,SUPERTEX INC,technology,,,False,former_or_unmapped
+0000730255,CALAMP CORP.,technology,,,False,former_or_unmapped
+0000730716,ZYGO CORP,technology,,,False,former_or_unmapped
+0000743316,MAXIM INTEGRATED PRODUCTS INC,technology,,,False,former_or_unmapped
+0000743988,XILINX INC,technology,,,False,former_or_unmapped
+0000752431,NETWORK EQUIPMENT TECHNOLOGIES INC,technology,,,False,former_or_unmapped
+0000753568,EXAR CORP,technology,,,False,former_or_unmapped
+0000767920,PMC SIERRA INC,technology,,,False,former_or_unmapped
+0000768251,ALTERA CORP,technology,,,False,former_or_unmapped
+0000768411,CYBEROPTICS CORP,technology,,,False,former_or_unmapped
+0000772897,HUTCHINSON TECHNOLOGY INC,technology,,,False,former_or_unmapped
+0000778734,MEASUREMENT SPECIALTIES INC,technology,,,False,former_or_unmapped
+0000790070,EMC CORP,technology,,,False,former_or_unmapped
+0000790703,TECH DATA CORP,technology,,,False,former_or_unmapped
+0000790715,SIGMA DESIGNS INC,technology,,,False,former_or_unmapped
+0000790818,X RITE INC,technology,,,False,former_or_unmapped
+0000791907,LINEAR TECHNOLOGY CORP /CA/,technology,,,False,former_or_unmapped
+0000791915,CYPRESS SEMICONDUCTOR CORP /DE/,technology,,,False,former_or_unmapped
+0000792130,DATAWATCH CORP,technology,,,False,former_or_unmapped
+0000800459,HARMAN INTERNATIONAL INDUSTRIES INC /DE/,technology,,,False,former_or_unmapped
+0000803014,COMVERSE TECHNOLOGY INC/NY/,technology,,,False,former_or_unmapped
+0000804753,CERNER CORP,technology,,,False,former_or_unmapped
+0000808326,EMCORE CORP,technology,,,False,former_or_unmapped
+0000814549,EBIX INC,technology,,,False,former_or_unmapped
+0000820736,ORBITAL SCIENCES CORP /DE/,technology,,,False,former_or_unmapped
+0000825410,LANDAUER INC,technology,,,False,former_or_unmapped
+0000826083,DELL INC,technology,,,False,former_or_unmapped
+0000830916,MULTI FINELINE ELECTRONIX INC,technology,,,False,former_or_unmapped
+0000835729,BMC SOFTWARE INC,technology,,,False,former_or_unmapped
+0000849502,RAMTRON INTERNATIONAL CORP,technology,,,False,former_or_unmapped
+0000849547,BLACK BOX CORP,technology,,,False,former_or_unmapped
+0000850579,PLX TECHNOLOGY INC,technology,,,False,former_or_unmapped
+0000854701,INTEGRATED SILICON SOLUTION INC,technology,,,False,former_or_unmapped
+0000855612,ZIX CORP,technology,,,False,former_or_unmapped
+0000859014,COMPUWARE CORP,technology,,,False,former_or_unmapped
+0000859163,AVX CORP,technology,,,False,former_or_unmapped
+0000864559,CASCADE MICROTECH INC,technology,,,False,former_or_unmapped
+0000865570,THQ INC,technology,,,False,former_or_unmapped
+0000867374,ELECTRONICS FOR IMAGING INC,technology,,,False,former_or_unmapped
+0000867773,SUNPOWER CORP,technology,,,False,former_or_unmapped
+0000870753,NUMEREX CORP /PA/,technology,,,False,former_or_unmapped
+0000872448,ATMEL CORP,technology,,,False,former_or_unmapped
+0000873044,RADISYS CORP,technology,,,False,former_or_unmapped
+0000877890,CITRIX SYSTEMS INC,technology,,,False,former_or_unmapped
+0000880177,PEREGRINE SEMICONDUCTOR CORP,technology,,,False,former_or_unmapped
+0000880432,MISONIX INC,technology,,,False,former_or_unmapped
+0000880446,VITESSE SEMICONDUCTOR CORP,technology,,,False,former_or_unmapped
+0000881890,ABAXIS INC,technology,,,False,former_or_unmapped
+0000887226,PERCEPTRON INC/MI,technology,,,False,former_or_unmapped
+0000887730,KEMET CORP,technology,,,False,former_or_unmapped
+0000887969,MRV COMMUNICATIONS INC,technology,,,False,former_or_unmapped
+0000889423,SATCON TECHNOLOGY CORP,technology,,,False,former_or_unmapped
+0000890264,EXA CORP,technology,,,False,former_or_unmapped
+0000892482,QUMU CORP,technology,,,False,former_or_unmapped
+0000894738,EASYLINK SERVICES INTERNATIONAL CORP,technology,,,False,former_or_unmapped
+0000896429,"CANTALOUPE, INC.",technology,,,False,former_or_unmapped
+0000896841,"AVID TECHNOLOGY, INC.",technology,,,False,former_or_unmapped
+0000911160,RF MICRO DEVICES INC,technology,,,False,former_or_unmapped
+0000911650,"SPEED COMMERCE, INC.",technology,,,False,former_or_unmapped
+0000913077,AFFYMETRIX INC,technology,,,False,former_or_unmapped
+0000913885,TRIQUINT SEMICONDUCTOR INC,technology,,,False,former_or_unmapped
+0000914025,PLANTRONICS INC /CA/,technology,,,False,former_or_unmapped
+0000914329,FEI CO,technology,,,False,former_or_unmapped
+0000915324,TELULAR CORP,technology,,,False,former_or_unmapped
+0000915735,STRATASYS INC,technology,,,False,former_or_unmapped
+0000915778,DSP GROUP INC /DE/,technology,,,False,former_or_unmapped
+0000917491,FARO TECHNOLOGIES INC,technology,,,False,former_or_unmapped
+0000918386,QLOGIC CORP,technology,,,False,former_or_unmapped
+0000918581,CIBER INC,technology,,,False,former_or_unmapped
+0000919013,WAVE SYSTEMS CORP,technology,,,False,former_or_unmapped
+0000922521,FALCONSTOR SOFTWARE INC,technology,,,False,former_or_unmapped
+0000929940,ASPEN TECHNOLOGY INC /DE/,technology,,,False,former_or_unmapped
+0000932111,MICREL INC,technology,,,False,former_or_unmapped
+0000935494,NATIONAL INSTRUMENTS CORP,technology,,,False,former_or_unmapped
+0000940332,ANADIGICS INC,technology,,,False,former_or_unmapped
+0000941685,IMAGEWARE SYSTEMS INC,technology,,,False,former_or_unmapped
+0000943580,LECROY CORP,technology,,,False,former_or_unmapped
+0000944739,TRANSWITCH CORP /DE,technology,,,False,former_or_unmapped
+0000944765,MERGE HEALTHCARE INC,technology,,,False,former_or_unmapped
+0000945436,"SUNEDISON, INC.",technology,,,False,former_or_unmapped
+0000945699,IXYS CORP /DE/,technology,,,False,former_or_unmapped
+0000946454,"BALLANTYNE STRONG, INC.",technology,,,False,former_or_unmapped
+0000949158,CRAY INC,technology,,,False,former_or_unmapped
+0001000180,SANDISK CORP,technology,,,False,former_or_unmapped
+0001001288,LEXMARK INTERNATIONAL INC /KY/,technology,,,False,former_or_unmapped
+0001001426,PERICOM SEMICONDUCTOR CORP,technology,,,False,former_or_unmapped
+0001002135,WESTELL TECHNOLOGIES INC,technology,,,False,former_or_unmapped
+0001002225,ADVENT SOFTWARE INC /DE/,technology,,,False,former_or_unmapped
+0001002388,"ACCELRYS, INC.",technology,,,False,former_or_unmapped
+0001002517,"NUANCE COMMUNICATIONS, INC.",technology,,,False,former_or_unmapped
+0001003214,SILICON IMAGE INC,technology,,,False,former_or_unmapped
+0001005757,CSG SYSTEMS INTERNATIONAL INC,technology,,,False,former_or_unmapped
+0001006269,LORAL SPACE & COMMUNICATIONS INC.,technology,,,False,former_or_unmapped
+0001006892,JDA SOFTWARE GROUP INC,technology,,,False,former_or_unmapped
+0001008586,STREAMLINE HEALTH SOLUTIONS INC.,technology,,,False,former_or_unmapped
+0001008817,SAPIENT CORP,technology,,,False,former_or_unmapped
+0001009626,BROCADE COMMUNICATIONS SYSTEMS INC,technology,,,False,former_or_unmapped
+0001010552,POLYCOM INC,technology,,,False,former_or_unmapped
+0001010612,SYKES ENTERPRISES INC,technology,,,False,former_or_unmapped
+0001011006,YAHOO INC,technology,,,False,former_or_unmapped
+0001011452,"MEDICAL INFORMATION TECHNOLOGY, INC.",technology,,,False,former_or_unmapped
+0001013462,ANSYS INC,technology,,,False,former_or_unmapped
+0001016125,ULTIMATE SOFTWARE GROUP INC,technology,,,False,former_or_unmapped
+0001017968,EDGEWATER TECHNOLOGY INC/DE/,technology,,,False,former_or_unmapped
+0001018003,INGRAM MICRO INC,technology,,,False,former_or_unmapped
+0001019671,SEACHANGE INTERNATIONAL INC,technology,,,False,former_or_unmapped
+0001022225,OPLINK COMMUNICATIONS INC,technology,,,False,former_or_unmapped
+0001023362,POWERWAVE TECHNOLOGIES INC,technology,,,False,former_or_unmapped
+0001023364,"AUTOWEB, INC.",technology,,,False,former_or_unmapped
+0001024732,IGATE CORP,technology,,,False,former_or_unmapped
+0001027207,EPIQ SYSTEMS INC,technology,,,False,former_or_unmapped
+0001029299,"DELTEK, INC",technology,,,False,former_or_unmapped
+0001031028,GLOBECOMM SYSTEMS INC,technology,,,False,former_or_unmapped
+0001035748,CALLIDUS SOFTWARE INC,technology,,,False,former_or_unmapped
+0001036188,QAD INC,technology,,,False,former_or_unmapped
+0001036960,FAIRCHILD SEMICONDUCTOR INTERNATIONAL INC,technology,,,False,former_or_unmapped
+0001037760,CEPHEID,technology,,,False,former_or_unmapped
+0001039101,"L3 TECHNOLOGIES, INC.",technology,,,False,former_or_unmapped
+0001040426,SYNTEL INC,technology,,,False,former_or_unmapped
+0001042783,DOT HILL SYSTEMS CORP,technology,,,False,former_or_unmapped
+0001042825,POWER ONE INC,technology,,,False,former_or_unmapped
+0001043604,JUNIPER NETWORKS INC,technology,,,False,former_or_unmapped
+0001044590,"INTERMEC, INC.",technology,,,False,former_or_unmapped
+0001045150,"OFFICIAL PAYMENTS HOLDINGS, INC.",technology,,,False,former_or_unmapped
+0001046327,REALNETWORKS INC,technology,,,False,former_or_unmapped
+0001046995,EMAGIN CORP,technology,,,False,former_or_unmapped
+0001047122,RAYTHEON CO/,technology,,,False,former_or_unmapped
+0001050550,VOLTERRA SEMICONDUCTOR CORP,technology,,,False,former_or_unmapped
+0001053374,IPASS INC,technology,,,False,former_or_unmapped
+0001054374,BROADCOM CORP,technology,,,False,former_or_unmapped
+0001056239,L 3 COMMUNICATIONS HOLDINGS INC,technology,,,False,former_or_unmapped
+0001056386,INTERNAP CORP,technology,,,False,former_or_unmapped
+0001056923,DATALINK CORP,technology,,,False,former_or_unmapped
+0001057083,PC TEL INC,technology,,,False,former_or_unmapped
+0001058057,MARVELL TECHNOLOGY GROUP LTD,technology,,,False,former_or_unmapped
+0001059786,MIPS TECHNOLOGIES INC,technology,,,False,former_or_unmapped
+0001062047,CONVERGYS CORP,technology,,,False,former_or_unmapped
+0001062478,ACTUATE CORP,technology,,,False,former_or_unmapped
+0001062530,DIGITAL RIVER INC /DE,technology,,,False,former_or_unmapped
+0001066026,CONCUR TECHNOLOGIES INC,technology,,,False,former_or_unmapped
+0001068874,IMPLANT SCIENCES CORP,technology,,,False,former_or_unmapped
+0001068875,"BLUCORA, INC.",technology,,,False,former_or_unmapped
+0001070380,SABA SOFTWARE INC,technology,,,False,former_or_unmapped
+0001073349,BOTTOMLINE TECHNOLOGIES INC,technology,,,False,former_or_unmapped
+0001076481,SEQUENOM INC,technology,,,False,former_or_unmapped
+0001076682,MAJESCO ENTERTAINMENT CO,technology,,,False,former_or_unmapped
+0001080099,INFORMATICA CORP,technology,,,False,former_or_unmapped
+0001080747,GREENWAY MEDICAL TECHNOLOGIES INC,technology,,,False,former_or_unmapped
+0001081078,API TECHNOLOGIES CORP.,technology,,,False,former_or_unmapped
+0001082506,"GREAT ELM CAPITAL GROUP, INC.",technology,,,False,former_or_unmapped
+0001082526,SCIQUEST INC,technology,,,False,former_or_unmapped
+0001084384,PARETEUM CORP,technology,,,False,former_or_unmapped
+0001084755,ARIBA INC,technology,,,False,former_or_unmapped
+0001084817,RESPONSYS INC,technology,,,False,former_or_unmapped
+0001085280,TIBCO SOFTWARE INC,technology,,,False,former_or_unmapped
+0001085621,ACTUA CORP,technology,,,False,former_or_unmapped
+0001085869,PERFICIENT INC,technology,,,False,former_or_unmapped
+0001086909,"BROADSOFT, INC.",technology,,,False,former_or_unmapped
+0001087423,RED HAT INC,technology,,,False,former_or_unmapped
+0001087934,"INCONTACT, INC.",technology,,,False,former_or_unmapped
+0001088033,QUEST SOFTWARE INC,technology,,,False,former_or_unmapped
+0001092367,SYCAMORE NETWORKS INC,technology,,,False,former_or_unmapped
+0001094348,MATTERSIGHT CORP,technology,,,False,former_or_unmapped
+0001094392,RUDOLPH TECHNOLOGIES INC,technology,,,False,former_or_unmapped
+0001094739,FINISAR CORP,technology,,,False,former_or_unmapped
+0001095277,INTERSECTIONS INC,technology,,,False,former_or_unmapped
+0001095291,"WEB.COM GROUP, INC.",technology,,,False,former_or_unmapped
+0001096325,INTERSIL CORP/DE,technology,,,False,former_or_unmapped
+0001096738,EPOCRATES INC,technology,,,False,former_or_unmapped
+0001100969,"ASIAINFO-LINKAGE, INC",technology,,,False,former_or_unmapped
+0001101169,VIASYSTEMS GROUP INC,technology,,,False,former_or_unmapped
+0001101680,DZS INC.,technology,,,False,former_or_unmapped
+0001102541,EARTHLINK HOLDINGS CORP.,technology,,,False,former_or_unmapped
+0001102741,"STEC, INC.",technology,,,False,former_or_unmapped
+0001102934,"CMC MATERIALS, INC.",technology,,,False,former_or_unmapped
+0001104042,ADVANCED ANALOGIC TECHNOLOGIES INC,technology,,,False,former_or_unmapped
+0001104188,SOHU COM INC,technology,,,False,former_or_unmapped
+0001104252,DDI CORP,technology,,,False,former_or_unmapped
+0001104855,"SUPPORT.COM, INC.",technology,,,False,former_or_unmapped
+0001105472,SONUS NETWORKS INC,technology,,,False,former_or_unmapped
+0001106851,OMNIVISION TECHNOLOGIES INC,technology,,,False,former_or_unmapped
+0001107694,"RACKSPACE HOSTING, INC.",technology,,,False,former_or_unmapped
+0001108320,SMTC CORP,technology,,,False,former_or_unmapped
+0001108924,OPNET TECHNOLOGIES INC,technology,,,False,former_or_unmapped
+0001110611,ON24 INC.,technology,,,False,former_or_unmapped
+0001110647,"OCLARO, INC.",technology,,,False,former_or_unmapped
+0001110903,NETWORK ENGINES INC,technology,,,False,former_or_unmapped
+0001111665,TELECOMMUNICATION SYSTEMS INC /FA/,technology,,,False,former_or_unmapped
+0001112920,GLOBALSCAPE INC,technology,,,False,former_or_unmapped
+0001114714,KENEXA CORP,technology,,,False,former_or_unmapped
+0001117106,NETSUITE INC,technology,,,False,former_or_unmapped
+0001118417,"MODEL N, INC.",technology,,,False,former_or_unmapped
+0001120295,IXIA,technology,,,False,former_or_unmapped
+0001121142,MAXAR TECHNOLOGIES INC.,technology,,,False,former_or_unmapped
+0001122342,ALLIANCE FIBER OPTIC PRODUCTS INC,technology,,,False,former_or_unmapped
+0001122388,ELLIE MAE INC,technology,,,False,former_or_unmapped
+0001122897,CVENT INC,technology,,,False,former_or_unmapped
+0001124610,"VMWARE, INC.",technology,,,False,former_or_unmapped
+0001124804,VERADIGM INC.,technology,,,False,former_or_unmapped
+0001129260,"VOCERA COMMUNICATIONS, INC.",technology,,,False,former_or_unmapped
+0001130258,ACME PACKET INC,technology,,,False,former_or_unmapped
+0001130866,HITTITE MICROWAVE CORP,technology,,,False,former_or_unmapped
+0001131554,SYNCHRONOSS TECHNOLOGIES INC,technology,,,False,former_or_unmapped
+0001134203,TALEO CORP,technology,,,False,former_or_unmapped
+0001135711,NETLOGIC MICROSYSTEMS INC,technology,,,False,former_or_unmapped
+0001137204,"HIPCRICKET, INC.",technology,,,False,former_or_unmapped
+0001138639,INFINERA CORP,technology,,,False,former_or_unmapped
+0001138830,AUTHENTEC INC,technology,,,False,former_or_unmapped
+0001141107,ARRIS GROUP INC,technology,,,False,former_or_unmapped
+0001141982,COOPER INDUSTRIES PLC,technology,,,False,former_or_unmapped
+0001142701,UNITED ONLINE INC,technology,,,False,former_or_unmapped
+0001145057,"FORESCOUT TECHNOLOGIES, INC",technology,,,False,former_or_unmapped
+0001157780,OPNEXT INC,technology,,,False,former_or_unmapped
+0001160951,"DUCK CREEK TECHNOLOGIES, INC.",technology,,,False,former_or_unmapped
+0001160958,INPHI CORP,technology,,,False,former_or_unmapped
+0001163932,ACTIVE NETWORK INC,technology,,,False,former_or_unmapped
+0001165231,"PROCERA NETWORKS, INC.",technology,,,False,former_or_unmapped
+0001166388,VERINT SYSTEMS INC,technology,,,False,former_or_unmapped
+0001167294,MERU NETWORKS INC,technology,,,False,former_or_unmapped
+0001168195,SOURCEFIRE INC,technology,,,False,former_or_unmapped
+0001169445,"TRUBRIDGE, INC.",technology,,,False,former_or_unmapped
+0001169652,CHANNELADVISOR CORP,technology,,,False,former_or_unmapped
+0001169987,"HTG MOLECULAR DIAGNOSTICS, INC",technology,,,False,former_or_unmapped
+0001170534,MITEL NETWORKS CORP,technology,,,False,former_or_unmapped
+0001171012,UNI-PIXEL,technology,,,False,former_or_unmapped
+0001173752,"ARUBA NETWORKS, INC.",technology,,,False,former_or_unmapped
+0001175609,"CAVIUM, INC.",technology,,,False,former_or_unmapped
+0001180079,SILVER SPRING NETWORKS INC,technology,,,False,former_or_unmapped
+0001182325,TANGOE INC,technology,,,False,former_or_unmapped
+0001201663,AUDIENCE INC,technology,,,False,former_or_unmapped
+0001207074,VIRTUSA CORP,technology,,,False,former_or_unmapped
+0001210618,"SPI ENERGY CO., LTD.",technology,,,False,former_or_unmapped
+0001211759,CONNECTURE INC,technology,,,False,former_or_unmapped
+0001212458,PROOFPOINT INC,technology,,,False,former_or_unmapped
+0001223862,INFOBLOX INC,technology,,,False,former_or_unmapped
+0001224370,"MINDSPEED TECHNOLOGIES, INC",technology,,,False,former_or_unmapped
+0001226308,"DTS, INC.",technology,,,False,former_or_unmapped
+0001227025,NEOPHOTONICS CORP,technology,,,False,former_or_unmapped
+0001227930,ENTROPIC COMMUNICATIONS INC,technology,,,False,former_or_unmapped
+0001237746,"ENDURANCE INTERNATIONAL GROUP HOLDINGS, INC.",technology,,,False,former_or_unmapped
+0001244937,ENERNOC INC,technology,,,False,former_or_unmapped
+0001254419,MEDASSETS INC,technology,,,False,former_or_unmapped
+0001259515,CONTROL4 CORP,technology,,,False,former_or_unmapped
+0001261694,TESSERA TECHNOLOGIES INC,technology,,,False,former_or_unmapped
+0001271024,LINKEDIN CORP,technology,,,False,former_or_unmapped
+0001286225,"REALPAGE, INC.",technology,,,False,former_or_unmapped
+0001288776,GOOGLE INC.,technology,,,False,former_or_unmapped
+0001294016,RUCKUS WIRELESS INC,technology,,,False,former_or_unmapped
+0001294924,INVENSENSE INC,technology,,,False,former_or_unmapped
+0001301031,DEMANDWARE INC,technology,,,False,former_or_unmapped
+0001301843,QUANTUM SOLAR POWER CORP.,technology,,,False,former_or_unmapped
+0001303652,TABLEAU SOFTWARE INC,technology,,,False,former_or_unmapped
+0001305294,QLIK TECHNOLOGIES INC,technology,,,False,former_or_unmapped
+0001311241,INTERMOLECULAR INC,technology,,,False,former_or_unmapped
+0001312073,"VERIFONE SYSTEMS, INC.",technology,,,False,former_or_unmapped
+0001313275,BRIGHTCOVE INC,technology,,,False,former_or_unmapped
+0001313911,RALLY SOFTWARE DEVELOPMENT CORP,technology,,,False,former_or_unmapped
+0001314223,"AMBER ROAD, INC.",technology,,,False,former_or_unmapped
+0001316016,AQUANTIA CORP,technology,,,False,former_or_unmapped
+0001316360,IHS INC.,technology,,,False,former_or_unmapped
+0001316625,SILICON GRAPHICS INTERNATIONAL CORP,technology,,,False,former_or_unmapped
+0001322554,XACTLY CORP,technology,,,False,former_or_unmapped
+0001322705,SPANSION INC.,technology,,,False,former_or_unmapped
+0001324245,"SOLERA HOLDINGS, INC",technology,,,False,former_or_unmapped
+0001324772,APIGEE CORP,technology,,,False,former_or_unmapped
+0001327318,"TRUECAR, INC.",technology,,,False,former_or_unmapped
+0001327471,REALD INC.,technology,,,False,former_or_unmapped
+0001328015,IMPRIVATA INC,technology,,,False,former_or_unmapped
+0001329919,"VOCUS, INC.",technology,,,False,former_or_unmapped
+0001330421,BAZAARVOICE INC,technology,,,False,former_or_unmapped
+0001333513,"DEALERTRACK TECHNOLOGIES, INC",technology,,,False,former_or_unmapped
+0001333835,CASA SYSTEMS INC,technology,,,False,former_or_unmapped
+0001334478,"NCI, INC.",technology,,,False,former_or_unmapped
+0001340127,CARBONITE INC,technology,,,False,former_or_unmapped
+0001348036,"AVALARA, INC.",technology,,,False,former_or_unmapped
+0001348334,BARRACUDA NETWORKS INC,technology,,,False,former_or_unmapped
+0001349454,"TRULIA, INC.",technology,,,False,former_or_unmapped
+0001350684,"CHINA INFORMATION TECHNOLOGY, INC.",technology,,,False,former_or_unmapped
+0001351285,ROSETTA STONE INC,technology,,,False,former_or_unmapped
+0001353283,SPLUNK INC,technology,,,False,former_or_unmapped
+0001355128,OCZ TECHNOLOGY GROUP INC,technology,,,False,former_or_unmapped
+0001355754,INSTRUCTURE INC,technology,,,False,former_or_unmapped
+0001356104,"MELLANOX TECHNOLOGIES, LTD.",technology,,,False,former_or_unmapped
+0001357326,"RIVERBED TECHNOLOGY, INC.",technology,,,False,former_or_unmapped
+0001358483,"EVERYDAY HEALTH, INC.",technology,,,False,former_or_unmapped
+0001364962,IMPERVA INC,technology,,,False,former_or_unmapped
+0001365038,LEAF GROUP LTD.,technology,,,False,former_or_unmapped
+0001366246,GLU MOBILE INC,technology,,,False,former_or_unmapped
+0001366561,SMARTSHEET INC,technology,,,False,former_or_unmapped
+0001366684,HOMEAWAY INC,technology,,,False,former_or_unmapped
+0001370702,QUANTENNA COMMUNICATIONS INC,technology,,,False,former_or_unmapped
+0001370880,"MANDIANT, INC.",technology,,,False,former_or_unmapped
+0001372414,"AEROHIVE NETWORKS, INC",technology,,,False,former_or_unmapped
+0001372664,"COMVERGE, INC.",technology,,,False,former_or_unmapped
+0001375557,"GUIDANCE SOFTWARE, INC.",technology,,,False,former_or_unmapped
+0001378125,TOGA LTD,technology,,,False,former_or_unmapped
+0001383729,"FUSION-IO, INC.",technology,,,False,former_or_unmapped
+0001383871,"LIFELOCK, INC.",technology,,,False,former_or_unmapped
+0001385292,MONOTYPE IMAGING HOLDINGS INC.,technology,,,False,former_or_unmapped
+0001385867,COUPA SOFTWARE INC,technology,,,False,former_or_unmapped
+0001388133,SHORETEL INC,technology,,,False,former_or_unmapped
+0001389002,MARIN SOFTWARE INC,technology,,,False,former_or_unmapped
+0001392522,"FREESCALE SEMICONDUCTOR, LTD.",technology,,,False,former_or_unmapped
+0001392972,"PROS HOLDINGS, INC.",technology,,,False,former_or_unmapped
+0001394954,GT ADVANCED TECHNOLOGIES INC.,technology,,,False,former_or_unmapped
+0001395848,ADESTO TECHNOLOGIES CORP,technology,,,False,former_or_unmapped
+0001400400,"DEMANDTEC, INC.",technology,,,False,former_or_unmapped
+0001401680,CORNERSTONE ONDEMAND INC,technology,,,False,former_or_unmapped
+0001402305,"SUCCESSFACTORS, INC.",technology,,,False,former_or_unmapped
+0001407190,VIOLIN MEMORY INC,technology,,,False,former_or_unmapped
+0001407450,"CONVIO, INC.",technology,,,False,former_or_unmapped
+0001408278,"SYNACOR, INC.",technology,,,False,former_or_unmapped
+0001410172,"RUBICON TECHNOLOGY, INC.",technology,,,False,former_or_unmapped
+0001410240,"HUGHES TELEMATICS, INC.",technology,,,False,former_or_unmapped
+0001412043,"OPOWER, INC.",technology,,,False,former_or_unmapped
+0001418091,"TWITTER, INC.",technology,,,False,former_or_unmapped
+0001418100,AVAYA HOLDINGS CORP.,technology,,,False,former_or_unmapped
+0001419625,APPTIO INC,technology,,,False,former_or_unmapped
+0001420302,"LOGMEIN, INC.",technology,,,False,former_or_unmapped
+0001423542,"SKULLCANDY, INC.",technology,,,False,former_or_unmapped
+0001423774,ZUORA INC,technology,,,False,former_or_unmapped
+0001428669,"SOLARWINDS, INC.",technology,,,False,former_or_unmapped
+0001431959,META MATERIALS INC.,technology,,,False,former_or_unmapped
+0001433269,DILIGENT CORP,technology,,,False,former_or_unmapped
+0001433714,"CASTLIGHT HEALTH, INC.",technology,,,False,former_or_unmapped
+0001434388,"WONHE HIGH-TECH INTERNATIONAL, INC.",technology,,,False,former_or_unmapped
+0001437352,"EVERBRIDGE, INC.",technology,,,False,former_or_unmapped
+0001438231,DIGIMARC CORP,technology,,,False,former_or_unmapped
+0001439404,ZYNGA INC,technology,,,False,former_or_unmapped
+0001441634,AVAGO TECHNOLOGIES LTD,technology,,,False,former_or_unmapped
+0001447599,"FITBIT, INC.",technology,,,False,former_or_unmapped
+0001448056,"NEW RELIC, INC.",technology,,,False,former_or_unmapped
+0001449278,TUBEMOGUL INC,technology,,,False,former_or_unmapped
+0001452751,NIMBLE STORAGE INC,technology,,,False,former_or_unmapped
+0001453814,"MEDIDATA SOLUTIONS, INC.",technology,,,False,former_or_unmapped
+0001456455,"PFO GLOBAL, INC.",technology,,,False,former_or_unmapped
+0001458962,"MINDBODY, INC.",technology,,,False,former_or_unmapped
+0001459417,"2U, INC.",technology,,,False,former_or_unmapped
+0001462047,PRIME GLOBAL CAPITAL GROUP INC,technology,,,False,former_or_unmapped
+0001462633,"JIVE SOFTWARE, INC.",technology,,,False,former_or_unmapped
+0001463172,"ZENDESK, INC.",technology,,,False,former_or_unmapped
+0001468516,AOL INC.,technology,,,False,former_or_unmapped
+0001468666,SECUREWORKS CORP,technology,,,False,former_or_unmapped
+0001469433,ANCESTRY.COM INC.,technology,,,False,former_or_unmapped
+0001470099,"MOBILEIRON, INC.",technology,,,False,former_or_unmapped
+0001474439,"TELENAV, INC.",technology,,,False,former_or_unmapped
+0001475115,"EVENTBRITE, INC.",technology,,,False,former_or_unmapped
+0001477200,ROCKET FUEL INC.,technology,,,False,former_or_unmapped
+0001484504,GIGAMON INC.,technology,,,False,former_or_unmapped
+0001487101,KEYW HOLDING CORP,technology,,,False,former_or_unmapped
+0001487990,AEROFLEX HOLDING CORP.,technology,,,False,former_or_unmapped
+0001488075,"INTRALINKS HOLDINGS, INC.",technology,,,False,former_or_unmapped
+0001490660,"MARKETO, INC.",technology,,,False,former_or_unmapped
+0001495569,"MOTOROLA MOBILITY HOLDINGS, INC",technology,,,False,former_or_unmapped
+0001496963,"SQUARESPACE, INC.",technology,,,False,former_or_unmapped
+0001506439,"SHARPSPRING, INC.",technology,,,False,former_or_unmapped
+0001517650,"INTERACTIVE INTELLIGENCE GROUP, INC.",technology,,,False,former_or_unmapped
+0001518222,"BANKRATE, INC.",technology,,,False,former_or_unmapped
+0001524471,EXELIS INC.,technology,,,False,former_or_unmapped
+0001526160,FLEETMATICS GROUP PLC,technology,,,False,former_or_unmapped
+0001535379,"CLOUDERA, INC.",technology,,,False,former_or_unmapped
+0001540184,"MEDALLIA, INC.",technology,,,False,former_or_unmapped
+0001540400,E2OPEN INC,technology,,,False,former_or_unmapped
+0001540755,"ANAPLAN, INC.",technology,,,False,former_or_unmapped
+0001543916,"FORGEROCK, INC.",technology,,,False,former_or_unmapped
+0001556898,"TECHPOINT, INC.",technology,,,False,former_or_unmapped
+0001563699,COVISINT CORP,technology,,,False,former_or_unmapped
+0001565337,TEXTURA CORP,technology,,,False,former_or_unmapped
+0001566469,"NANTHEALTH, INC.",technology,,,False,former_or_unmapped
+0001575189,"MATCH GROUP, INC.",technology,,,False,former_or_unmapped
+0001576169,"BENEFITFOCUS, INC.",technology,,,False,former_or_unmapped
+0001576914,MIX TELEMATICS LTD,technology,,,False,former_or_unmapped
+0001579910,RESONANT INC,technology,,,False,former_or_unmapped
+0001584754,"AKOUSTIS TECHNOLOGIES, INC.",technology,,,False,former_or_unmapped
+0001585854,SUNEDISON SEMICONDUCTOR LTD,technology,,,False,former_or_unmapped
+0001595262,"IMS HEALTH HOLDINGS, INC.",technology,,,False,former_or_unmapped
+0001598014,IHS MARKIT LTD.,technology,,,False,former_or_unmapped
+0001606745,"LIBERTY TRIPADVISOR HOLDINGS, INC.",technology,,,False,former_or_unmapped
+0001610532,"HORTONWORKS, INC.",technology,,,False,former_or_unmapped
+0001619954,"INOVALON HOLDINGS, INC.",technology,,,False,former_or_unmapped
+0001626853,MAJESCO,technology,,,False,former_or_unmapped
+0001627014,"BLACK KNIGHT, INC.",technology,,,False,former_or_unmapped
+0001627857,"SAILPOINT TECHNOLOGIES HOLDINGS, INC.",technology,,,False,former_or_unmapped
+0001628945,CUE HEALTH INC.,technology,,,False,former_or_unmapped
+0001631825,"PRESIDIO, INC.",technology,,,False,former_or_unmapped
+0001643269,"SUMO LOGIC, INC.",technology,,,False,former_or_unmapped
+0001644675,MIMECAST LTD,technology,,,False,former_or_unmapped
+0001645070,STERLING CHECK CORP.,technology,,,False,former_or_unmapped
+0001645494,ARRIS INTERNATIONAL PLC,technology,,,False,former_or_unmapped
+0001646383,CSRA INC.,technology,,,False,former_or_unmapped
+0001649338,BROADCOM LTD,technology,,,False,former_or_unmapped
+0001651235,"ACACIA COMMUNICATIONS, INC.",technology,,,False,former_or_unmapped
+0001665658,"COMMERCEHUB, INC.",technology,,,False,former_or_unmapped
+0001668105,TALEND S.A.,technology,,,False,former_or_unmapped
+0001679826,PING IDENTITY HOLDING CORP.,technology,,,False,former_or_unmapped
+0001682325,GTY TECHNOLOGY HOLDINGS INC.,technology,,,False,former_or_unmapped
+0001689657,"BERKELEY LIGHTS, INC.",technology,,,False,former_or_unmapped
+0001689923,"ALTERYX, INC.",technology,,,False,former_or_unmapped
+0001690666,XPERI CORP,technology,,,False,former_or_unmapped
+0001699838,"CONFLUENT, INC.",technology,,,False,former_or_unmapped
+0001701040,CISION LTD.,technology,,,False,former_or_unmapped
+0001701732,ALTAIR ENGINEERING INC.,technology,,,False,former_or_unmapped
+0001710583,"SWITCH, INC.",technology,,,False,former_or_unmapped
+0001713952,"VIVINT SMART HOME, INC.",technology,,,False,former_or_unmapped
+0001719489,"KALEYRA, INC.",technology,,,False,former_or_unmapped
+0001720671,"HASHICORP, INC.",technology,,,False,former_or_unmapped
+0001721947,JAMF HOLDING CORP.,technology,,,False,former_or_unmapped
+0001723648,"LIVEVOX HOLDINGS, INC.",technology,,,False,former_or_unmapped
+0001724570,DATTO HOLDING CORP.,technology,,,False,former_or_unmapped
+0001724670,PERSPECTA INC.,technology,,,False,former_or_unmapped
+0001725057,"DAYFORCE, INC.",technology,,,False,former_or_unmapped
+0001725579,"PLURALSIGHT, INC.",technology,,,False,former_or_unmapped
+0001735858,FAR POINT ACQUISITION CORP,technology,,,False,former_or_unmapped
+0001739936,MOMENTIVE GLOBAL INC.,technology,,,False,former_or_unmapped
+0001739942,SOLARWINDS CORP,technology,,,False,former_or_unmapped
+0001747748,QUALTRICS INTERNATIONAL INC.,technology,,,False,former_or_unmapped
+0001756497,CHANGE HEALTHCARE INC.,technology,,,False,former_or_unmapped
+0001760717,SCIPLAY CORP,technology,,,False,former_or_unmapped
+0001764925,"SLACK TECHNOLOGIES, INC.",technology,,,False,former_or_unmapped
+0001774155,BTRS HOLDINGS INC.,technology,,,False,former_or_unmapped
+0001783317,MCAFEE CORP.,technology,,,False,former_or_unmapped
+0001794905,"CYXTERA TECHNOLOGIES, INC.",technology,,,False,former_or_unmapped
+0001799332,GAN LTD,technology,,,False,former_or_unmapped
+0001800347,"E2OPEN PARENT HOLDINGS, INC.",technology,,,False,former_or_unmapped
+0001819394,"MATTERPORT, INC./DE",technology,,,False,former_or_unmapped
+0001823882,AIRSPAN NETWORKS HOLDINGS INC.,technology,,,False,former_or_unmapped
+0001827075,CVENT HOLDING CORP.,technology,,,False,former_or_unmapped
+0001831840,"SEMRUSH HOLDINGS, INC.",technology,,,False,former_or_unmapped
+0001834494,"MERIDIANLINK, INC.",technology,,,False,former_or_unmapped
+0001835378,INNOVID CORP.,technology,,,False,former_or_unmapped
+0001835591,VIZIO HOLDING CORP.,technology,,,False,former_or_unmapped
+0001835681,"POWERSCHOOL HOLDINGS, INC.",technology,,,False,former_or_unmapped
+0001837686,"VIMEO, INC.",technology,,,False,former_or_unmapped
+0001838672,"ADTHEORENT HOLDING COMPANY, INC.",technology,,,False,former_or_unmapped
+0001839439,"PAYCOR HCM, INC.",technology,,,False,former_or_unmapped
+0001841804,"INSTRUCTURE HOLDINGS, INC.",technology,,,False,former_or_unmapped
+0001842718,INTEGRAL AD SCIENCE HOLDING CORP.,technology,,,False,former_or_unmapped
+0001845022,"COUCHBASE, INC.",technology,,,False,former_or_unmapped
+0001856430,SNAP ONE HOLDINGS CORP.,technology,,,False,former_or_unmapped
+0001858257,"AVIDXCHANGE HOLDINGS, INC.",technology,,,False,former_or_unmapped
+0001863105,"ENGAGESMART, INC.",technology,,,False,former_or_unmapped
+0001866368,"CLEARWATER ANALYTICS HOLDINGS, INC.",technology,,,False,former_or_unmapped
+0001866550,"THOUGHTWORKS HOLDING, INC.",technology,,,False,former_or_unmapped
+0001868778,INFORMATICA INC.,technology,,,False,former_or_unmapped
+0001868912,"ENFUSION, INC.",technology,,,False,former_or_unmapped
+0001889956,"ONESTREAM, INC.",technology,,,False,former_or_unmapped
+0001897982,"ASPEN TECHNOLOGY, INC.",technology,,,False,former_or_unmapped

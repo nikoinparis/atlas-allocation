@@ -1,0 +1,8 @@
+{
+  "canonical_full_runs_compared": 2,
+  "prediction_sha256_first_run": "c479293b67437738c86313aad8cc9d4a67d5c5278458754dbab488512624caaa",
+  "prediction_sha256_protocol_complete_rerun": "c479293b67437738c86313aad8cc9d4a67d5c5278458754dbab488512624caaa",
+  "prediction_files_identical": true,
+  "fold_metrics_identical": true,
+  "note": "The complete 2,924-fit canonical search was repeated after the explicitly promised drawdown gate was added to the protocol. Training and predictions were byte-for-byte unchanged."
+}

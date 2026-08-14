@@ -1,0 +1,37 @@
+{
+  "program": "v1_ggg_lineage_audit_v1",
+  "predeclared_before_batch_42_results": true,
+  "source_candidate": "improved_phaseggg_confirmed_only_robust_offense",
+  "audit_scope": {
+    "independent_return_path_reconstruction": true,
+    "allocator_checkpoint_consistency": true,
+    "candidate_multiplicity_inventory": true,
+    "selection_independence_assessment": true,
+    "import_v1_python_modules": false,
+    "read_v1_artifacts_only": true
+  },
+  "return_path": {
+    "decision_weights_fund": "next weekly close-to-close return",
+    "turnover": "0.5 * L1 weekly weight change",
+    "cost_scenarios_bps": [10.0, 50.0, 100.0],
+    "primary_recent_cost_bps": 50.0,
+    "recent_years": 3
+  },
+  "equivalence_gates": {
+    "maximum_final_checkpoint_weight_difference": 1e-12,
+    "maximum_saved_path_absolute_difference_at_10bps": 1e-10,
+    "minimum_net_return_correlation_at_10bps": 0.9999999999
+  },
+  "qualification_gates": {
+    "mechanical_equivalence": true,
+    "underlying_allocator_native_lineage_complete": true,
+    "candidate_selection_uses_untouched_holdout": true,
+    "post_selection_observations_exist": true,
+    "point_in_time_universe": true,
+    "source_price_vintage_known": true,
+    "multiplicity_adjusted_evidence": true
+  },
+  "decision_rule": "Retain GGG as a benchmark if mechanical equivalence passes. Do not call its historical performance independently validated, or promote it as a Version 2 winner, unless every qualification gate passes.",
+  "version_1_files_may_be_modified": false,
+  "live_trading_enabled": false
+}

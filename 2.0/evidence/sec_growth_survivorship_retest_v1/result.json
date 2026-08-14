@@ -1,0 +1,29 @@
+{
+  "adverse_full_recent_50bps_cagr": 0.16685315851857707,
+  "adverse_full_recent_50bps_drawdown": -0.4559983093676969,
+  "adverse_full_recent_50bps_sharpe": 0.5972800476272023,
+  "all_validation_checks_passed": true,
+  "base_full_recent_50bps_cagr": 0.3170286803541127,
+  "base_full_recent_50bps_drawdown": -0.36497109721663035,
+  "base_full_recent_50bps_sharpe": 0.9481996522893604,
+  "base_since_pilot_start_50bps_cagr": 0.3724477799499737,
+  "created_at_utc": "2026-08-14T08:14:02.637712+00:00",
+  "decisions": 14,
+  "experiment": "sec_growth_survivorship_retest_v1",
+  "factor_input_ciks": 597,
+  "live_trading_enabled": false,
+  "old_survivor_pilot_since_start_50bps_cagr": 0.3613542214847836,
+  "selected_missing_rebalances": 2,
+  "selected_unique_ciks": 42,
+  "spy_full_recent_50bps_cagr": 0.22317926529651877,
+  "strategy_replacement_authorized": false,
+  "validation_checks": {
+    "all_decisions_have_top_n": true,
+    "availability_strictly_before_decision": true,
+    "base_and_adverse_paths_run": true,
+    "cost_monotonic": true,
+    "deterministic_choices": true,
+    "intended_weights_sum_to_one": true,
+    "prefix_invariance": true
+  }
+}

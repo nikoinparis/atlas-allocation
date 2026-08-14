@@ -1,0 +1,21 @@
+{
+  "repository": "je-suis-tm/quant-trading",
+  "commit": "611b73f2c3f577ac5b28aaa19ac8c43d3236c7a5",
+  "source_file": "Parabolic SAR backtest.py",
+  "source_sha256": "e088853dfcc3b5181aaf44a6fd33f42b06f4e5cd44e81573fae454ca8f466e47",
+  "source_rules": {
+    "default_acceleration": "initial 0.02, increment 0.02, cap 0.20",
+    "equity_comment": "the source says the acceleration step could be 0.01 for equities",
+    "position": "long/cash based on real SAR below/above current close",
+    "reversal": "signed trend duration changes sign when current high/low crosses the constrained recursive SAR; real SAR uses prior extreme point on reversal"
+  },
+  "defects_and_ambiguities": [
+    "Uptrend initialization uses the prior high and downtrend initialization the prior low, opposite the usual below/above-price SAR placement described by the source.",
+    "The zero-initialized first real-SAR row creates a synthetic initial long position before enough recursive state exists.",
+    "The equity comment does not explicitly say whether 0.01 changes only the increment or also the initial factor; Batch 24 predeclares both as 0.01 and retains the 0.20 cap.",
+    "Current high and low are used to identify a reversal, but the source does not distinguish completed-bar signal observation from an executable next-period order.",
+    "Raw unadjusted OHLC makes the recursive path vulnerable to splits and other scale discontinuities.",
+    "Chained indexing, deprecated data dependencies, no tests, no costs, and no performance or uncertainty calculation prevent direct reuse."
+  ],
+  "independent_treatment": "Preserve the source recursion and real-SAR convention after split-safe OHLC transformation. Ignore the invalid first-row position, apply signals next close, and test fixed default and equity acceleration variants with controls and portfolio gates."
+}

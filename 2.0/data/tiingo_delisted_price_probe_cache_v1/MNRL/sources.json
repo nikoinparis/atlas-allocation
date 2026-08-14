@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 183,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T02:18:02.312237+00:00",
+    "sha256": "f8dcecb43cb87fac5fa4ff41c0fe69703cb06e7c6783a5ca19b8113fc919429c",
+    "url": "https://api.tiingo.com/tiingo/daily/MNRL"
+  },
+  {
+    "bytes": 109325,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T02:18:03.830446+00:00",
+    "sha256": "6c0e4c72b4e35b4418af7ae31249aa0ab249419e14ff3f17cfae78cf434532ff",
+    "url": "https://api.tiingo.com/tiingo/daily/MNRL/prices?startDate=2021-04-01&endDate=2024-01-11&resampleFreq=daily"
+  }
+]

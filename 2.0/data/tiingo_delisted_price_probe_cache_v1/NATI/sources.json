@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 455,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T02:16:49.467655+00:00",
+    "sha256": "e2d93939ff98297cb548b95e5c445bb7fccd4a93ed63e01febf7d36765866a8a",
+    "url": "https://api.tiingo.com/tiingo/daily/NATI"
+  },
+  {
+    "bytes": 725427,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T02:16:51.166431+00:00",
+    "sha256": "c3abd517d03d1906173c6d2f849770f7cfbc7ed44c0b78f0346b7ad101b821d5",
+    "url": "https://api.tiingo.com/tiingo/daily/NATI/prices?startDate=2012-04-01&endDate=2024-10-11&resampleFreq=daily"
+  }
+]

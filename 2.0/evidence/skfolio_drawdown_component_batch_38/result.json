@@ -1,0 +1,35 @@
+{
+  "program": "skfolio_drawdown_component_qualification_v1",
+  "program_sha256": "cbd49fc509136589eb68b22fdce0664be29c6ede279037be1135e3d13776c1ad",
+  "repository": {
+    "name": "skfolio/skfolio",
+    "commit": "c06db8406385cf4bce83577d0f0710ee5a27e67e",
+    "version": "0.20.1",
+    "license": "BSD-3-Clause"
+  },
+  "scope": {
+    "class": "skfolio.optimization.MeanRisk",
+    "objective": "MINIMIZE_RISK",
+    "risk_measures": ["CDAR", "MAX_DRAWDOWN", "EDAR", "ULCER_INDEX"],
+    "solver": "CLARABEL",
+    "excluded": ["EntropyPooling", "BlackLitterman", "opinion pooling", "expected-return views"]
+  },
+  "upstream_targeted_tests": {"passed": 274, "failed": 0, "deselected": 877},
+  "custom_probe": {
+    "all_four_measures_pass": true,
+    "finite_long_only_sum_to_one_and_35_percent_cap": true,
+    "repeat_maximum_absolute_weight_difference": 0.0,
+    "future_perturbation_prior_maximum_absolute_weight_difference": 0.0
+  },
+  "container": {
+    "image": "localhost/po2-skfolio:0.20.1-amd64-batch37",
+    "id": "ef0820886536527f2c62c53af776ba312f619393eb626a2bf8828c918a156a3e",
+    "network_during_tests": false,
+    "project_data_mounted": false
+  },
+  "qualified": true,
+  "decision": "qualified_bounded_drawdown_component",
+  "rationale": "All predeclared tests for the narrowly bounded drawdown optimizer passed. Qualification covers implementation behavior only; it does not cover the rest of skfolio and does not establish profitability.",
+  "profitability_tested": false,
+  "live_trading_enabled": false
+}

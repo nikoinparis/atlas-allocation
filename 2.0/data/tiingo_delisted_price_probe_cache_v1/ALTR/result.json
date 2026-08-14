@@ -1,0 +1,19 @@
+{
+  "cik10": "0001701732",
+  "first_eligible_decision": "2019-04-01 00:00:00+00:00",
+  "first_price_date": "2019-04-01",
+  "issuer_name_match": true,
+  "issuer_name_score": 1.0,
+  "last_eligible_decision": "2026-04-01 00:00:00+00:00",
+  "last_price_date": "2025-03-26",
+  "price_file": "/project/data/tiingo_delisted_price_probe_cache_v1/ALTR/prices.csv.gz",
+  "price_rows": 1506,
+  "provider_end_date": "2025-03-26",
+  "provider_exchange": "NASDAQ",
+  "provider_name": "Altair Engineering Inc - Class A",
+  "provider_start_date": "2017-11-01",
+  "sec_company_name": "ALTAIR ENGINEERING INC.",
+  "status": "validated_candidate",
+  "terminal": true,
+  "tiingo_symbol": "ALTR"
+}

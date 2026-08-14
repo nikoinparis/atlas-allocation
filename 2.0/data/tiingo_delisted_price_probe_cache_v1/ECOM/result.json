@@ -1,0 +1,20 @@
+{
+  "cik10": "0001169652",
+  "covers_first_eligible_decision": true,
+  "first_eligible_decision": "2015-04-01 00:00:00+00:00",
+  "first_price_date": "2015-04-01",
+  "issuer_name_match": true,
+  "issuer_name_score": 1.0,
+  "last_eligible_decision": "2024-01-01 00:00:00+00:00",
+  "last_price_date": "2022-11-15",
+  "price_file": "/workspace/2.0/data/tiingo_delisted_price_probe_cache_v1/ECOM/prices.csv.gz",
+  "price_rows": 1922,
+  "provider_end_date": "2022-11-15",
+  "provider_exchange": "NYSE",
+  "provider_name": "ChannelAdvisor Corp",
+  "provider_start_date": "2013-05-23",
+  "sec_company_name": "CHANNELADVISOR CORP",
+  "status": "identity_and_start_validated",
+  "terminal": true,
+  "tiingo_symbol": "ECOM"
+}

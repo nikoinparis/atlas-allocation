@@ -1,0 +1,13 @@
+selection_year,selection_date,top1,top2,top3,top1_training_score
+2015,2015-01-02,regime::tech_leadership::volatility_breakout__top1__score_invvol,regime::tech_leadership::volatility_breakout__top1__equal,xlk_blend::volatility_breakout__top1__score_invvol::75,0.3216917210168102
+2016,2016-01-01,regime::tech_leadership::volatility_breakout__top1__score_invvol,regime::tech_leadership::volatility_breakout__top1__equal,benchmark::QQQ,0.2773792031723169
+2017,2017-01-06,regime::low_volatility_risk_on::gain_to_pain_26__top2__equal,regime::low_volatility_risk_on::gain_to_pain_26__top3__equal,regime::low_volatility_risk_on::gain_to_pain_26__top3__score_invvol,0.2960870715443996
+2018,2018-01-05,regime::low_volatility_risk_on::gain_to_pain_26__top2__equal,regime::low_volatility_risk_on::gain_to_pain_26__top3__equal,regime::low_volatility_risk_on::low_vol_momentum_26__top2__equal,0.3905837736918991
+2019,2019-01-04,regime::low_volatility_risk_on::gain_to_pain_26__top3__score_invvol,regime::low_volatility_risk_on::gain_to_pain_26__top3__equal,regime::low_volatility_risk_on::gain_to_pain_26__top2__equal,0.2885981972239435
+2020,2020-01-03,benchmark::XLK,benchmark_portfolio::XLK75_QQQ25,xlk_blend::low_vol_momentum_26__top2__score_invvol::25,0.31108450420001643
+2021,2021-01-01,benchmark::XLK,benchmark_portfolio::XLK75_QQQ25,benchmark::QQQ,0.3683209401411377
+2022,2022-01-07,benchmark::XLK,benchmark_portfolio::XLK75_QQQ25,benchmark::QQQ,0.42929092198297525
+2023,2023-01-06,regime::low_volatility_risk_on::leadership_persistence__top1__score_invvol,regime::low_volatility_risk_on::leadership_persistence__top1__equal,regime::tech_leadership::leadership_persistence__top1__score_invvol,0.27465327087353625
+2024,2024-01-05,regime::low_volatility_risk_on::leadership_persistence__top1__score_invvol,regime::low_volatility_risk_on::leadership_persistence__top1__equal,xlk_blend::leadership_persistence__top1__score_invvol::50,0.3361771857157845
+2025,2025-01-03,regime::low_volatility_risk_on::leadership_persistence__top1__score_invvol,regime::low_volatility_risk_on::leadership_persistence__top1__equal,xlk_blend::leadership_persistence__top1__score_invvol::75,0.32922988869637954
+2026,2026-01-02,regime::high_dispersion::trend_quality_52__top2__equal,xlk_blend::leadership_persistence__top1__score_invvol::75,xlk_blend::leadership_persistence__top1__equal::75,0.3545923292343676

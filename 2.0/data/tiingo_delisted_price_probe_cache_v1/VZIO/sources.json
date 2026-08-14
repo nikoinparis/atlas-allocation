@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 181,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T20:24:02.007868+00:00",
+    "sha256": "c8e63a3da7b46fb40a40601cbd1bfc9af0e6fea4b76f3c18b10abf9734bd8366",
+    "url": "https://api.tiingo.com/tiingo/daily/VZIO"
+  },
+  {
+    "bytes": 90836,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T20:24:03.462251+00:00",
+    "sha256": "993fa58f7e9ae34c26f76b56bd5691ad54f5e0eaf345a2030e71c4d11f75e047",
+    "url": "https://api.tiingo.com/tiingo/daily/VZIO/prices?startDate=2023-04-01&endDate=2026-01-11&resampleFreq=daily"
+  }
+]

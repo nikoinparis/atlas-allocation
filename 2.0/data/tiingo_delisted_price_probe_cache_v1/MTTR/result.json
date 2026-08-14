@@ -1,0 +1,20 @@
+{
+  "cik10": "0001819394",
+  "covers_first_eligible_decision": true,
+  "first_eligible_decision": "2023-04-01 00:00:00+00:00",
+  "first_price_date": "2023-04-03",
+  "issuer_name_match": true,
+  "issuer_name_score": 1.0,
+  "last_eligible_decision": "2026-04-01 00:00:00+00:00",
+  "last_price_date": "2025-02-28",
+  "price_file": "/project/data/tiingo_delisted_price_probe_cache_v1/MTTR/prices.csv.gz",
+  "price_rows": 479,
+  "provider_end_date": "2025-02-28",
+  "provider_exchange": "NASDAQ",
+  "provider_name": "Matterport Inc - Class A",
+  "provider_start_date": "2021-02-02",
+  "sec_company_name": "MATTERPORT, INC./DE",
+  "status": "identity_and_start_validated",
+  "terminal": true,
+  "tiingo_symbol": "MTTR"
+}

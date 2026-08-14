@@ -1,0 +1,96 @@
+{
+  "allocator_catalog_variant_count": 230,
+  "artifacts": {
+    "allocator_candidate_catalog.csv": {
+      "bytes": 10611,
+      "sha256": "2b909633e901849dd1f374738e203982b8aadb2ab28600ffac82db571e513ea4"
+    },
+    "checkpoint_inventory.csv": {
+      "bytes": 940,
+      "sha256": "0fc05a3c9ac102f83fa1f63a12043349009df0f57eef80c79fd12cded03c237e"
+    },
+    "lineage_findings.csv": {
+      "bytes": 1042,
+      "sha256": "6aaebb865abac7246f5f96c72336fc7dcf4ca9d0638ca7f1a6c79fdb1d259029"
+    },
+    "performance_cost_sensitivity.csv": {
+      "bytes": 1225,
+      "sha256": "127e76b7b6531915e87c4886ea60ee96494fee8f411c62edccb8e55d1c01f526"
+    },
+    "phase_ggg_candidates.csv": {
+      "bytes": 1768,
+      "sha256": "df8185ccac455e36333c1d7c76c3a706900a26e8511c87e5c7289405c5782613"
+    }
+  },
+  "assets": 35,
+  "checkpoint_count": 6,
+  "decision": "retain_as_selection_contaminated_benchmark_not_v2_winner",
+  "equivalence_gates": {
+    "final_checkpoint_weights": true,
+    "net_return_correlation": true,
+    "saved_path": true
+  },
+  "generated_at_utc": "2026-08-11T06:22:44.450961+00:00",
+  "ggg_catalog_position_one_based": 173,
+  "ggg_selection_report_date": "2026-04-27",
+  "independent_of_v1_python_modules": true,
+  "independent_validation_passed": false,
+  "live_trading_enabled": false,
+  "maximum_final_checkpoint_weight_difference": 0.0,
+  "maximum_path_absolute_difference_at_10bps": 6.572520305780927e-14,
+  "mechanical_equivalence_passed": true,
+  "net_return_correlation_at_10bps": 0.9999999999999999,
+  "path_column_maximum_absolute_differences": {
+    "cost": 9.985502008591496e-17,
+    "drawdown": 2.3245294578089215e-15,
+    "gross_return": 2.3245294578089215e-16,
+    "net_return": 2.445960101127298e-16,
+    "turnover": 2.42861286636753e-16,
+    "wealth": 6.572520305780927e-14
+  },
+  "path_weeks_compared": 1110,
+  "phase_ggg_candidate_count": 3,
+  "post_selection_weeks_in_saved_history": 0,
+  "program": "v1_ggg_lineage_audit_v1",
+  "program_sha256": "14f2bc26f7372178ab840a6e2b3b939d0b6e3ec32812fdc692d50df8bba94c8d",
+  "qualification_gates": {
+    "candidate_selection_uses_untouched_holdout": false,
+    "mechanical_equivalence": true,
+    "multiplicity_adjusted_evidence": false,
+    "point_in_time_universe": false,
+    "post_selection_observations_exist": false,
+    "source_price_vintage_known": false,
+    "underlying_allocator_native_lineage_complete": false
+  },
+  "saved_history_last_date": "2026-04-10",
+  "selected_candidate": "improved_phaseggg_confirmed_only_robust_offense",
+  "source_candidate": "improved_phaseggg_confirmed_only_robust_offense",
+  "source_inputs": {
+    "allocator_builder": {
+      "path": "scripts/build_improvement_artifacts.py",
+      "sha256": "2a3a96115578ee6551d05fb7ac254252671422973505f07d18bc49a976522e1a"
+    },
+    "phase_runner": {
+      "path": "scripts/phase_ggg_state_conditional_composite_offense.py",
+      "sha256": "ac7cf17c77f06259db67afa4e42f9ea336ea632b89d9df510a2aafff7d4de680"
+    },
+    "phase_selection": {
+      "path": "data/05_layer3_portfolio_construction/phase_ggg_selection_table.csv",
+      "sha256": "ab7e71c853046d3a25e6755bf92b678f0c2cf65650622e295c1a831089b3c5d3"
+    },
+    "published_returns": {
+      "path": "data/05_layer3_portfolio_construction/portfolio_version_returns_improved_phaseggg_confirmed_only_robust_offense.csv",
+      "sha256": "2514fcff4665630389fac9b5ba2c3afc4db5ad66b2a26e7baae5fdded194ccb1"
+    },
+    "published_weights": {
+      "path": "data/05_layer3_portfolio_construction/portfolio_version_weights_improved_phaseggg_confirmed_only_robust_offense.csv",
+      "sha256": "c500d47af62dc1e265166c58cc1ad2d292bbc00a0304fefde8c9e6c56349b04a"
+    },
+    "weekly_prices": {
+      "path": "data/01_data_hub/weekly_prices.csv",
+      "sha256": "22f5f570950e6b18fa77e1c058d5882c562bfac6413dc558a6bdb95372584bf3"
+    }
+  },
+  "version_1_modified": false,
+  "weight_rows": 1110
+}

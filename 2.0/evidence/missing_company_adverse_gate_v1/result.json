@@ -1,0 +1,18 @@
+{
+  "adverse_selected_missing_company_return": -1.0,
+  "authorization_scope": "research backtests only, with both base and adverse missing-company scenarios required",
+  "base_treatment": "hold_intended_weight_in_cash_for_holding_period",
+  "coverage_gate_passed": true,
+  "created_at_utc": "2026-08-14T07:22:28.134879+00:00",
+  "live_trading_enabled": false,
+  "minimum_observed_coverage": 0.9505703422053232,
+  "minimum_observed_coverage_required": 0.95,
+  "missing_company_decision_rows_tagged": 230,
+  "missing_company_policy_gate_passed": true,
+  "priority_resolution_gate_passed": true,
+  "recent_priority_ciks_remaining": 0,
+  "renormalize_missing_weight_into_survivors": false,
+  "strategy_testing_authorized": true,
+  "terminal_outcome_gate_passed": true,
+  "unresolved_terminal_outcomes": 0
+}

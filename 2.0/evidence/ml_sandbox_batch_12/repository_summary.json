@@ -1,0 +1,117 @@
+{
+  "common_nested_bar": {
+    "hyperparameter_fits_including_shuffle": 102,
+    "ml_beats_baseline": false,
+    "outer_folds": 17,
+    "shuffle_control_pass": true,
+    "test_observations": 866
+  },
+  "external_repository_alpha_accepted": false,
+  "finclaw": {
+    "decision": "do_not_execute_or_incorporate_until_packaging_tests_and_license_exist",
+    "dependency_manifests": 0,
+    "entry_id": "ast-0011",
+    "license": "MISSING",
+    "status": "blocked_source_quality_gate",
+    "test_indicators": 0,
+    "tracked_files": 6
+  },
+  "generated_at_utc": "2026-08-09T02:19:47.626608+00:00",
+  "latest_attempt_by_repository": {
+    "ast-0006": {
+      "entry_id": "ast-0006",
+      "evidence_file": "evidence/challenger_program_v1/python_execution/ast-0006-attempt-2.json",
+      "install_exit_code": 0,
+      "install_seconds": 465,
+      "started_at": "2026-08-09T01:58:26.495468+00:00",
+      "status": "tests_failed",
+      "test_exit_code": 1,
+      "test_seconds": 27
+    },
+    "ast-0076": {
+      "entry_id": "ast-0076",
+      "evidence_file": "evidence/challenger_program_v1/python_execution/ast-0076-attempt-2.json",
+      "install_exit_code": 124,
+      "install_seconds": 618,
+      "started_at": "2026-08-09T02:08:58.999956+00:00",
+      "status": "install_timed_out",
+      "test_exit_code": -1,
+      "test_seconds": 0
+    },
+    "ast-0186": {
+      "entry_id": "ast-0186",
+      "evidence_file": "evidence/challenger_program_v1/python_execution/ast-0186-attempt-2.json",
+      "install_exit_code": 124,
+      "install_seconds": 610,
+      "started_at": "2026-08-09T02:19:20.191886+00:00",
+      "status": "install_timed_out",
+      "test_exit_code": -1,
+      "test_seconds": 0
+    }
+  },
+  "reason": "Framework installation or upstream tests cannot substitute for beating the same causal nested walk-forward portfolio baseline.",
+  "repository_attempts": [
+    {
+      "entry_id": "ast-0006",
+      "evidence_file": "evidence/challenger_program_v1/python_execution/ast-0006-attempt-2.json",
+      "install_exit_code": 0,
+      "install_seconds": 465,
+      "started_at": "2026-08-09T01:58:26.495468+00:00",
+      "status": "tests_failed",
+      "test_exit_code": 1,
+      "test_seconds": 27
+    },
+    {
+      "entry_id": "ast-0006",
+      "evidence_file": "evidence/challenger_program_v1/python_execution/ast-0006.json",
+      "install_exit_code": 1,
+      "install_seconds": 70,
+      "started_at": "2026-08-09T01:41:34.336368+00:00",
+      "status": "install_failed",
+      "test_exit_code": -1,
+      "test_seconds": 0
+    },
+    {
+      "entry_id": "ast-0076",
+      "evidence_file": "evidence/challenger_program_v1/python_execution/ast-0076-attempt-2.json",
+      "install_exit_code": 124,
+      "install_seconds": 618,
+      "started_at": "2026-08-09T02:08:58.999956+00:00",
+      "status": "install_timed_out",
+      "test_exit_code": -1,
+      "test_seconds": 0
+    },
+    {
+      "entry_id": "ast-0076",
+      "evidence_file": "evidence/challenger_program_v1/python_execution/ast-0076.json",
+      "install_exit_code": 137,
+      "install_seconds": 424,
+      "started_at": "2026-08-09T01:48:39.127578+00:00",
+      "status": "install_failed",
+      "test_exit_code": -1,
+      "test_seconds": 0
+    },
+    {
+      "entry_id": "ast-0186",
+      "evidence_file": "evidence/challenger_program_v1/python_execution/ast-0186-attempt-2.json",
+      "install_exit_code": 124,
+      "install_seconds": 610,
+      "started_at": "2026-08-09T02:19:20.191886+00:00",
+      "status": "install_timed_out",
+      "test_exit_code": -1,
+      "test_seconds": 0
+    },
+    {
+      "entry_id": "ast-0186",
+      "evidence_file": "evidence/challenger_program_v1/python_execution/ast-0186.json",
+      "install_exit_code": 137,
+      "install_seconds": 26,
+      "started_at": "2026-08-09T01:49:08.294273+00:00",
+      "status": "install_failed",
+      "test_exit_code": -1,
+      "test_seconds": 0
+    }
+  ],
+  "status": "repository_capability_review_complete_no_ml_promotion",
+  "track": "machine_learning_sandbox"
+}

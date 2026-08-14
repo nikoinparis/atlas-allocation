@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 152,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T05:58:40.640745+00:00",
+    "sha256": "a4c5d7a382d757034fb65bcfff3333ee44332a25e34c8cc17bbef5da95ab2135",
+    "url": "https://api.tiingo.com/tiingo/daily/ACIA"
+  },
+  {
+    "bytes": 160759,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T05:58:43.050425+00:00",
+    "sha256": "fd9a6dd4721e866ccd8a4b28b7f2b4b7a8859ceb535c2c9c8a8858908e211e2f",
+    "url": "https://api.tiingo.com/tiingo/daily/ACIA/prices?startDate=2018-04-01&endDate=2022-04-11&resampleFreq=daily"
+  }
+]

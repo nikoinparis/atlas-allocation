@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "status": "research_only",
+  "repositories": ["ast-0183", "ast-0184", "ast-0185", "ast-0187"],
+  "identical_input_rule": "Every library receives the same return matrix ending at the decision date; no future row is available.",
+  "constraints": {
+    "long_only": true,
+    "fully_invested": true,
+    "maximum_asset_weight": 0.35,
+    "maximum_leverage": 1.0
+  },
+  "methods": ["minimum_variance", "hierarchical_risk_parity", "risk_parity", "shrunk_mean_variance"],
+  "comparisons": [
+    "weight_sum_and_bounds",
+    "objective_or_risk_value",
+    "determinism",
+    "causal_rolling_backtest",
+    "runtime_and_peak_memory",
+    "failure_fallback"
+  ],
+  "incorporation_rule": "Library code is optional; platform-owned numerical fallbacks and frozen v1 remain unchanged."
+}

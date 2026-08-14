@@ -1,0 +1,49 @@
+{
+  "batch": 62,
+  "baseline_bundle_id": "ggg_causal_v2_027530550388432a",
+  "current_return_leader": "candidate-ggg-xsmom-exposure-boost-v2",
+  "global_xsmom_source": "candidate-052f66f29b9fafbe",
+  "global_xsmom_weights": [0.45, 0.5, 0.6, 0.7, 0.8, 1.0],
+  "concentrated_global_specs": [
+    {"name": "global_top2_equal", "top_n": 2, "method": "equal_weight"},
+    {"name": "global_top2_score_invvol", "top_n": 2, "method": "score_inverse_volatility"},
+    {"name": "global_top4_equal", "top_n": 4, "method": "equal_weight"},
+    {"name": "global_top4_score_invvol", "top_n": 4, "method": "score_inverse_volatility"}
+  ],
+  "concentrated_blend_weights": [0.4, 0.6],
+  "sector_specs": [
+    {"name": "sector_top2_equal", "top_n": 2, "method": "equal_weight"},
+    {"name": "sector_top2_score_invvol", "top_n": 2, "method": "score_inverse_volatility"},
+    {"name": "sector_top3_equal", "top_n": 3, "method": "equal_weight"},
+    {"name": "sector_top3_score_invvol", "top_n": 3, "method": "score_inverse_volatility"},
+    {"name": "sector_top4_score_invvol", "top_n": 4, "method": "score_inverse_volatility"}
+  ],
+  "sector_blend_weights": [0.2, 0.3, 0.4],
+  "three_way_sector_source": "sector_top3_score_invvol",
+  "three_way_weights": [
+    {"ggg": 0.5, "global_xsmom": 0.4, "sector_xsmom": 0.1},
+    {"ggg": 0.4, "global_xsmom": 0.4, "sector_xsmom": 0.2},
+    {"ggg": 0.3, "global_xsmom": 0.4, "sector_xsmom": 0.3}
+  ],
+  "residual_blend_weights": [0.1, 0.2, 0.3],
+  "risk_assets": ["SPY", "QQQ", "IWM", "EFA", "VEA", "VWO", "EWJ", "VNQ", "HYG", "LQD", "GLD", "PDBC", "DBA", "TLT"],
+  "sector_assets": ["XLB", "XLE", "XLF", "XLI", "XLK", "XLP", "XLU", "XLV", "XLY"],
+  "cost_bps": [50, 100],
+  "primary_window": "trailing_3y",
+  "bootstrap_samples": 30000,
+  "bootstrap_block_weeks": 13,
+  "qualification_gates": {
+    "minimum_trailing_1y_cagr": 0.18,
+    "minimum_trailing_2y_cagr": 0.16,
+    "minimum_trailing_3y_cagr": 0.17,
+    "minimum_trailing_3y_100bps_cagr": 0.12,
+    "maximum_recent_3y_drawdown_magnitude": 0.20,
+    "maximum_full_drawdown_magnitude": 0.30,
+    "minimum_full_cagr": 0.04,
+    "minimum_rolling_3y_win_share_vs_current_leader": 0.45,
+    "maximum_adjusted_pvalue_vs_current_leader": 0.10
+  },
+  "selection_rule": "highest trailing-3y CAGR at 50 bps among candidates passing every gate; otherwise retain the best point estimate as unqualified research",
+  "leverage_allowed": false,
+  "live_trading_enabled": false
+}

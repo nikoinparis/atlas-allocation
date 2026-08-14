@@ -1,0 +1,73 @@
+{
+  "program": "mlquant_conditional_factor_overlay_v1",
+  "predeclared_before_results": true,
+  "source_candidate": {
+    "candidate_id": "mlquant-buffered-equal-factor-v1",
+    "periods": "evidence/mlquant_factor_decay_turnover_batch_32/buffered_equal_top5_primary_periods.csv",
+    "periods_sha256": "786b261fb258fde45ce48f1e731a8033586a588ac4d0dee999663d34e4d9e119",
+    "factor_panel": "evidence/mlquant_factor_portfolio_batch_31/qualified_factor_panel.csv",
+    "factor_panel_sha256": "18114e7781799021ebd91e1d762b243e2c8f3909ece826232c895b260b3f1c05"
+  },
+  "fixed_candidates": {
+    "conditional_5pct": 0.05,
+    "conditional_10pct": 0.10,
+    "conditional_15pct": 0.15
+  },
+  "confidence_gate": {
+    "strength": "mean combined z-score of the five highest combined-score ETFs",
+    "threshold": "strictly above the expanding prior-week 60th percentile",
+    "minimum_prior_weeks": 52,
+    "factor_agreement": "at least three of the selected five ETFs have positive z-scores for both best_002 and original_001",
+    "minimum_agreeing_assets": 3
+  },
+  "risk_gate": {
+    "trend": "SPY adjusted close strictly above its trailing 200-session mean at the factor observation date",
+    "volatility": "SPY trailing-20-session volatility no greater than the expanding prior-week 80th percentile",
+    "minimum_prior_volatility_weeks": 52
+  },
+  "timing": {
+    "factor_observation": "latest completed market session on or before the prior weekly decision",
+    "allocation_decision": "current weekly close",
+    "return_realization": "following weekly close",
+    "cash_or_inactive_destination": "frozen core portfolio"
+  },
+  "costs": {
+    "basis_points": [10, 50, 100],
+    "primary_basis_points": 50,
+    "underlying_sleeves": "matching-cost core and buffered-factor net returns",
+    "top_level_allocation_turnover": "absolute change from drifted factor-sleeve weight",
+    "top_level_cost_bps": "same as scenario"
+  },
+  "controls": {
+    "always_on": "constant maximum allocation",
+    "shuffled_confidence": "fixed permutation of confidence states combined with the original risk gate",
+    "inverted_risk": "original confidence gate combined with the complement of the risk gate",
+    "seed": 2026083301
+  },
+  "evaluation": {
+    "paired_bootstrap_samples": 20000,
+    "block_weeks": 13,
+    "family_size": 3,
+    "familywise_one_sided_alpha": 0.05,
+    "per_candidate_one_sided_alpha": 0.016666666666666666,
+    "seed": 2026083302,
+    "minimum_active_week_share": 0.05,
+    "maximum_active_week_share": 0.60,
+    "later_windows": {
+      "validation": ["2016-01-01", "2020-12-31"],
+      "retrospective_test": ["2021-01-01", "2026-08-07"]
+    }
+  },
+  "promotion_gates": {
+    "primary": "50-bps annual return and Sharpe strictly exceed matching core and drawdown is no worse",
+    "stress": "100-bps annual return and Sharpe are no worse than matching core",
+    "later_windows": "50-bps excess annual return over matching core is positive in both later windows",
+    "controls": "50-bps Sharpe strictly exceeds always-on, shuffled-confidence, and inverted-risk controls",
+    "uncertainty": "familywise paired Sharpe lower bound versus core is positive",
+    "activation": "active-week share remains within the predeclared range",
+    "survivorship_safe_universe": false,
+    "untouched_forward_weeks": 52,
+    "all_requirements_must_pass": true
+  },
+  "live_trading_enabled": false
+}

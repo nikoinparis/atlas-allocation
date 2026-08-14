@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 154,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T20:23:22.941067+00:00",
+    "sha256": "21e24f73cca01cd2379093840d10c53f5a264ff5a516b600da320e54bc322e79",
+    "url": "https://api.tiingo.com/tiingo/daily/VMEO"
+  },
+  {
+    "bytes": 141452,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T20:23:24.680103+00:00",
+    "sha256": "432fd1c059a365440efe7d7f016acdcf1d4f783155aa679c01c4a3a5cc109154",
+    "url": "https://api.tiingo.com/tiingo/daily/VMEO/prices?startDate=2023-04-01&endDate=2026-04-11&resampleFreq=daily"
+  }
+]

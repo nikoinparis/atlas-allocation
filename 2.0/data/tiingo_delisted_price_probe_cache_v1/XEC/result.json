@@ -1,0 +1,20 @@
+{
+  "cik10": "0001168054",
+  "covers_first_eligible_decision": true,
+  "first_eligible_decision": "2012-04-01 00:00:00+00:00",
+  "first_price_date": "2012-04-02",
+  "issuer_name_match": true,
+  "issuer_name_score": 1.0,
+  "last_eligible_decision": "2022-10-01 00:00:00+00:00",
+  "last_price_date": "2021-10-04",
+  "price_file": "/workspace/2.0/data/tiingo_delisted_price_probe_cache_v1/XEC/prices.csv.gz",
+  "price_rows": 2393,
+  "provider_end_date": "2021-10-04",
+  "provider_exchange": "NYSE",
+  "provider_name": "Cimarex Energy Company",
+  "provider_start_date": "2002-09-25",
+  "sec_company_name": "CIMAREX ENERGY CO",
+  "status": "identity_and_start_validated",
+  "terminal": true,
+  "tiingo_symbol": "XEC"
+}

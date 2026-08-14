@@ -1,0 +1,220 @@
+# Path B — Machine-Readable Equivalence Requirements
+# Sprint 0.5 verifier (script 00) reads this file.
+# Each entry specifies what must be verified before Sprint 1 proceeds.
+# Statuses: REUSE_EXISTING | REIMPLEMENT_IDENTICAL | INTENTIONAL_DIFF | MATCH | NEEDS_TEST
+
+# ─── Status Key ──────────────────────────────────────────────────────────────
+# REUSE_EXISTING:       shadow reads production artifact directly — no re-implementation
+# REIMPLEMENT_IDENTICAL: shadow reimplements; script 00 verifies to tolerance
+# INTENTIONAL_DIFF:     documented deviation — the research variable being tested
+# MATCH:                verified identical by constant or config
+# NEEDS_TEST:           Sprint 0.5 must verify before Sprint 1
+
+# ─── A. Data / Universe ──────────────────────────────────────────────────────
+data_universe:
+
+  etf_universe:
+    status: REUSE_EXISTING
+    source: "data/01_data_hub/weekly_prices.csv"
+    check: "assert shadow_prices.columns.tolist() == production_prices.columns.tolist()"
+
+  date_index:
+    status: NEEDS_TEST
+    tolerance: exact
+    check: "assert (shadow_dates == production_dates).all()"
+    fail_action: "HALT — date misalignment corrupts all return calculations"
+
+  return_calculation:
+    status: REIMPLEMENT_IDENTICAL
+    tolerance: 1.0e-10
+    check: "assert max(abs(shadow_returns - production_returns)) < 1e-10"
+    fail_action: "HALT — return convention difference compounds over 21 years"
+
+  holdout_split:
+    status: NEEDS_TEST
+    dev_end: "2024-04-12"
+    holdout_start: "2024-04-19"
+    check: "assert shadow_holdout_start == Timestamp('2024-04-19')"
+    fail_action: "HALT — holdout contamination if split differs by even 1 week"
+
+  missing_data_handling:
+    status: REIMPLEMENT_IDENTICAL
+    method: "forward_fill"
+    check: "assert shadow_prices.isna().sum().sum() == production_prices.isna().sum().sum()"
+
+# ─── B. Timing / Causality ───────────────────────────────────────────────────
+timing:
+
+  execution_delay:
+    status: REIMPLEMENT_IDENTICAL
+    convention: "gross[t] = w[t] @ etf_returns[t+1]"
+    check: "assert shadow_gross_returns verified on production weights"
+    fail_action: "HALT — any deviation creates lookahead bias"
+
+  signal_lag:
+    status: REIMPLEMENT_IDENTICAL
+    lag_weeks: 1
+    check: "all signals use shift(1) before use"
+    fail_action: "HALT — lag error creates phantom alpha"
+
+  forward_return_convention:
+    status: REIMPLEMENT_IDENTICAL
+    check: "assert shadow_fwd_returns == production_fwd_returns to 1e-10"
+
+# ─── C. Layer 1 Signals ──────────────────────────────────────────────────────
+layer1_signals:
+
+  core_signals:
+    status: REUSE_EXISTING
+    files:
+      - "data/02_layer1_signals/signal_xsmom.csv"
+      - "data/02_layer1_signals/signal_tsmom.csv"
+      - "data/02_layer1_signals/signal_multi_horizon_mom.csv"
+      - "data/02_layer1_signals/signal_reversal.csv"
+      - "data/02_layer1_signals/signal_quality.csv"
+      - "data/02_layer1_signals/signal_carry.csv"
+      - "data/02_layer1_signals/signal_value.csv"
+      - "data/02_layer1_signals/signal_trend_quality.csv"
+      - "data/02_layer1_signals/signal_breadth_confirmation.csv"
+      - "data/02_layer1_signals/signal_r2_credit_spread.csv"
+      - "data/02_layer1_signals/signal_r2_vix_term_structure.csv"
+      - "data/02_layer1_signals/signal_r2_financial_conditions.csv"
+      - "data/02_layer1_signals/signal_state_conditional_ic.csv"
+
+  signal_normalization:
+    status: NEEDS_TEST
+    check: "assert shadow_signal_norm_convention == production_norm_convention"
+
+  signal_winsorization:
+    status: NEEDS_TEST
+    clip_sigma: 3.0
+    check: "assert shadow_signal_clips align with production"
+
+  signal_E_4wk:
+    status: INTENTIONAL_DIFF
+    description: "NM+slowdown+FC_benign+credit_improving 4-week rolling — new research feature"
+    allowed: true
+
+# ─── D. Layer 2A Sleeves ─────────────────────────────────────────────────────
+layer2a_sleeves:
+
+  sleeve_definitions:
+    status: REUSE_EXISTING
+    sleeves:
+      - "dual_momentum_topn"
+      - "cta_trend_long_only"
+      - "composite_selective_signals"
+      - "composite_regime_offense_component"
+      - "composite_regime_defense_component"
+      - "taa_10m_sma"
+    check: "shadow uses same sleeve CSV files without modification"
+
+  sleeve_cost:
+    status: MATCH
+    cost_per_unit_turnover: 0.001
+
+# ─── E. Layer 2B Regime Engine ───────────────────────────────────────────────
+layer2b_regime:
+
+  production_states_preserved:
+    status: INTENTIONAL_DIFF
+    description: "Shadow adds NM sub-states — production 5-state taxonomy is superseded"
+    requirement: "stressed_panic, calm_trend definitions must not weaken"
+
+  calm_trend_definition:
+    status: MATCH
+    check: "shadow calm_trend definition identical to production"
+    fail_action: "HALT — calm_trend change is out of scope"
+
+  stressed_panic_definition:
+    status: MATCH
+    check: "shadow stressed_panic definition identical or stronger than production"
+    fail_action: "HARD_STOP — any weakening is a non-negotiable constraint"
+
+  fragility_guard:
+    status: MATCH
+    check: "Phase 5 fragility cap behavior preserved or strengthened"
+    fail_action: "HARD_STOP — weakening fragility guard is prohibited"
+
+  native_regime_engine:
+    status: INTENTIONAL_DIFF
+    description: "NM sub-states, macro/credit features, state persistence — primary research variable"
+
+# ─── F. Layer 3 Portfolio Construction ───────────────────────────────────────
+layer3_construction:
+
+  allocator_type:
+    status: REUSE_EXISTING
+    description: "Sleeve-based HRP/inverse-vol — not the target of this rebuild"
+
+  volatility_targeting:
+    status: MATCH
+    window_weeks: 52
+
+  max_position_cap:
+    status: MATCH
+    max_weight: 0.35
+
+  long_only:
+    status: MATCH
+    check: "all(weights >= 0)"
+
+  no_leverage:
+    status: MATCH
+    check: "sum(weights) == 1.0 within tolerance"
+
+  transaction_costs:
+    status: MATCH
+    cost_per_unit_turnover: 0.001
+    check: "shadow uses identical cost constant"
+    fail_action: "HALT — cost change invalidates all gate comparisons"
+
+  turnover_convention:
+    status: REIMPLEMENT_IDENTICAL
+    formula: "sum(|w[t] - drift(w[t-1])|) / 2"
+    check: "shadow turnover == production turnover on same weights to 1e-10"
+
+  bil_floor:
+    status: INTENTIONAL_DIFF
+    description: "State-specific BIL floor in native rebuild — controlled difference"
+
+# ─── G. Validation / Metrics ─────────────────────────────────────────────────
+metrics:
+
+  annualization:
+    status: MATCH
+    sharpe_factor: 7.2111   # sqrt(52)
+    return_factor: 52
+    vol_factor: 7.2111
+
+  sharpe_formula:
+    status: REIMPLEMENT_IDENTICAL
+    formula: "mean(net_return) / std(net_return) * sqrt(52)"
+    check: "shadow_sharpe == production_sharpe on same net returns to 1e-6"
+
+  max_drawdown:
+    status: REIMPLEMENT_IDENTICAL
+    formula: "min(wealth / cummax(wealth) - 1)"
+
+  cvar:
+    status: REIMPLEMENT_IDENTICAL
+    formula: "mean of returns below 5th percentile"
+
+  holdout_window:
+    status: MATCH
+    start: "2024-04-19"
+    end: "2026-04-10"
+    weeks: 104
+
+# ─── Sprint 0.5 Verification Protocol ────────────────────────────────────────
+sprint_0_5_protocol:
+  script: "research_native_rebuild/scripts/00_compare_production_shadow_contract.py"
+  must_resolve_before_sprint_1:
+    - date_index
+    - return_calculation
+    - holdout_split
+    - signal_normalization
+    - signal_winsorization
+    - execution_delay
+  pass_condition: "all NEEDS_TEST items resolve to MATCH or REIMPLEMENT_IDENTICAL (verified)"
+  output: "research_native_rebuild/outputs/comparison/sprint_0_5_equivalence_report.txt"

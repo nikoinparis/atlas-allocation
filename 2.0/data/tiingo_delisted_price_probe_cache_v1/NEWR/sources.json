@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 1165,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T01:00:48.840891+00:00",
+    "sha256": "e3c63b4e3fbb88459ae9b1bf99b1c3cc518856bed0f42163f64c673a9ea7b20a",
+    "url": "https://api.tiingo.com/tiingo/daily/NEWR"
+  },
+  {
+    "bytes": 406694,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T01:00:50.602810+00:00",
+    "sha256": "67d9a2570b517b38493203e1e5fd32fef987d376fc3c2d4bb6d472d6d45bee88",
+    "url": "https://api.tiingo.com/tiingo/daily/NEWR/prices?startDate=2016-07-01&endDate=2025-01-11&resampleFreq=daily"
+  }
+]

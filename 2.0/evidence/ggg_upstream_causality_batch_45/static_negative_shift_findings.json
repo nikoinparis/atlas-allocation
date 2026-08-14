@@ -1,0 +1,23 @@
+[
+  {
+    "cell": 4,
+    "line": 144,
+    "expression": "month_key.shift(-1)",
+    "classification": "known_calendar_month_end_mask_not_market_data",
+    "affects_audited_decision": false
+  },
+  {
+    "cell": 5,
+    "line": 310,
+    "expression": "gross.shift(-step)",
+    "classification": "forward_ic_research_target_not_used_by_audited_sleeves",
+    "affects_audited_decision": false
+  },
+  {
+    "cell": 6,
+    "line": 17,
+    "expression": "weekly_simple_returns.shift(-1)",
+    "classification": "realized_outcome_label_not_position_input",
+    "affects_audited_decision": false
+  }
+]

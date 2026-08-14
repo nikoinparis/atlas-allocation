@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 682,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T01:00:12.126108+00:00",
+    "sha256": "b82c528ae455be8bb4f7940a5f9f26a2362ff85f4288bba6db15c955ef7a94fe",
+    "url": "https://api.tiingo.com/tiingo/daily/EVBG"
+  },
+  {
+    "bytes": 334981,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T01:00:13.826326+00:00",
+    "sha256": "88834f11b046274227d880f4419e4cd065c92e89d37094c36ee3df3665c347e5",
+    "url": "https://api.tiingo.com/tiingo/daily/EVBG/prices?startDate=2018-07-01&endDate=2025-07-11&resampleFreq=daily"
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "repository": "je-suis-tm/quant-trading",
+  "commit": "611b73f2c3f577ac5b28aaa19ac8c43d3236c7a5",
+  "source_file": "Heikin-Ashi backtest.py",
+  "source_sha256": "bb50360b83a8c1c3256e2d1a162b1b375af4882d1d32934db32d8e64fcf76f66",
+  "source_rules": {
+    "transform": "standard recursive Heikin-Ashi transform, initialized from first raw open",
+    "claimed_long": "two bearish candles; current no-upper-wick candle has a larger body",
+    "claimed_exit": "two bullish candles; current candle has no lower wick",
+    "position_limit": "at most three accumulated 100-share entries; an exit clears all"
+  },
+  "defects_and_ambiguities": [
+    "The claimed long condition is bearish and the exit condition bullish, reversing the stated momentum intent.",
+    "Exact floating-point equality is used for no-wick detection.",
+    "The cumulative-state column is mutated through chained indexing and can be temporarily stale after a clear-all reassignment.",
+    "Fixed 100-share entries and 10000 capital make exposure depend on the asset's nominal price and can create leverage.",
+    "The plotted portfolio is sliced to the final 50 observations while statistics mix the sliced portfolio with the unsliced signal history.",
+    "Its benchmark Sharpe, Omega, Sortino, CAGR labels, and degrees-of-freedom treatment are nonstandard or dimensionally inconsistent.",
+    "No costs, uncertainty analysis, negative controls, universe test, or explicit next-period execution audit are provided."
+  ],
+  "independent_treatment": "Test both the literal source direction and a predeclared direction-corrected interpretation. Preserve the three-unit state concept with safe capped unit-proportional weights, causal next-close returns, realistic costs, controls, and portfolio gates."
+}

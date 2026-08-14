@@ -1,0 +1,41 @@
+{
+  "all_deterministic": true,
+  "all_historical_equivalence_passed": true,
+  "all_prefix_invariant": true,
+  "artifacts": {
+    "current_price_signal_snapshot.csv": {
+      "bytes": 6230,
+      "sha256": "fd2f1c8bfeb6169f22d42fb2adcc4b5b5bb630152360e47b45048f4d3c07e07d"
+    },
+    "current_readiness.csv": {
+      "bytes": 455,
+      "sha256": "719048935860fd4f3f91b8bcfc9e5b9522866873ed307ca1f03c6d251983930e"
+    },
+    "determinism.csv": {
+      "bytes": 1603,
+      "sha256": "34f11648fdca799bd9cb1d42db444e78c3b01834943166f520a67f1bfd663177"
+    },
+    "historical_equivalence.csv": {
+      "bytes": 1061,
+      "sha256": "20b9a7a3ae0681fc102e80e244d783897f6efab05380eb70e9bf787b9d7900db"
+    },
+    "prefix_invariance.csv": {
+      "bytes": 1035,
+      "sha256": "30aaa31b10fab996f751c90c38390b542ccf02d918697836ae0679e04986c39f"
+    }
+  },
+  "batch": 54,
+  "complete_layer1_bundle_frozen": false,
+  "current_price_and_carry_block_ready": true,
+  "current_regime_block_ready": false,
+  "current_regime_blocker": "immutable post-April VIX term structure, macro series, and Google fear vintages are absent",
+  "decision": "freeze_partial_price_signal_adapter_fail_closed_on_regime_block",
+  "forward_clock_started": false,
+  "generated_at_utc": "2026-08-12T04:38:45.791051+00:00",
+  "historical_signal_inputs_tested": 10,
+  "live_trading_enabled": false,
+  "maximum_historical_difference": 5.062616992290714e-14,
+  "maximum_prefix_difference": 0.0,
+  "module_sha256": "c9f9a02c5345b51c11b8ecf3fe9fd472b16fb9a07584bb2bf2d618d3d179343a",
+  "source_snapshot_id": "20260812T035702Z-0c1bf62d74413e2a"
+}

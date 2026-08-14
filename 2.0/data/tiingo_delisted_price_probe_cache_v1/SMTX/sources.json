@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 1127,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T05:57:56.718485+00:00",
+    "sha256": "532437aaec54ce82f1e5e9697363f4d2fd1c10c02e8f2c73a7f993820290cbd7",
+    "url": "https://api.tiingo.com/tiingo/daily/SMTX"
+  },
+  {
+    "bytes": 53225,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T05:57:58.634548+00:00",
+    "sha256": "bfa1ca83d36ba2effcdb1be22000f5759b3f7e95b832a9c5e1ddf33f22516baa",
+    "url": "https://api.tiingo.com/tiingo/daily/SMTX/prices?startDate=2020-04-01&endDate=2022-04-11&resampleFreq=daily"
+  }
+]

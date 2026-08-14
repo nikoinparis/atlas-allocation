@@ -1,0 +1,46 @@
+{
+  "audit_version": 1,
+  "audit_time_utc": "2026-08-08T18:44:20.746921+00:00",
+  "batch": "01_backtest_execution_and_simulation",
+  "repository_count": 41,
+  "actions": {
+    "isolated_smoke_test_candidate": 18,
+    "manual_review_before_sandbox": 15,
+    "reference_only_for_now": 8
+  },
+  "health_bands": {
+    "caution": 6,
+    "high_risk_or_insufficient_evidence": 5,
+    "promising_screening_signals": 9,
+    "strong_screening_signals": 21
+  },
+  "maintenance": {
+    "active_0_180_days": 26,
+    "archived": 1,
+    "maintained_181_365_days": 5,
+    "quiet_366_730_days": 2,
+    "stale_over_730_days": 7
+  },
+  "license_review": {
+    "custom_license_manual_legal_review": 1,
+    "manually_confirmed_copyleft_review_obligations": 1,
+    "manually_confirmed_permissive": 1,
+    "no_top_level_license_detected": 5,
+    "recognized_copyleft_review_obligations": 6,
+    "recognized_permissive": 23,
+    "source_available_noncommercial_restriction": 1,
+    "source_available_restricted_commercial_use": 3
+  },
+  "installation_complexity": {
+    "low": 20,
+    "medium": 12,
+    "medium_high": 9
+  },
+  "limitations": [
+    "screening_not_code_audit",
+    "screening_not_security_certification",
+    "screening_not_strategy_validation",
+    "screening_not_profitability_evidence",
+    "top_level_test_detection_can_underestimate_tests"
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "program": "mlquant_qualified_factor_portfolio_v1",
+  "predeclared_before_results": true,
+  "repository": {
+    "name": "initial-d/ml-quant-trading",
+    "commit": "867e8dfe628b1d0ea2af987ec6f74c32c645f63e",
+    "qualified_factor_evidence": "evidence/mlquant_factor_ic_batch_30/result.json"
+  },
+  "data": {
+    "snapshot_id": "20260809T002313Z-0d8632e2cf759918",
+    "assets": ["SPY", "QQQ", "IWM", "EFA", "VEA", "VWO", "EWJ", "VNQ", "HYG", "LQD", "GLD", "PDBC", "DBA", "TLT"],
+    "start_date": "2005-01-01",
+    "end_date": "2026-08-07",
+    "price_rules": "identical to config/mlquant_etf_factor_ic_program_v1.json"
+  },
+  "factors": {
+    "names": ["best_002", "original_001"],
+    "directions": {"best_002": 1, "original_001": 1},
+    "combined_score": "equal mean of the repository cross-sectional z-scores",
+    "selection": "five highest combined scores among jointly valid assets",
+    "minimum_selected_assets": 5
+  },
+  "fixed_candidates": {
+    "equal_weight_top5": "20 percent target weight for each of the five selected assets",
+    "inverse_volatility_top5": "inverse trailing-20-session adjusted-close volatility among the five selected assets, normalized and capped at 30 percent"
+  },
+  "execution": {
+    "frequency": "weekly on the frozen core portfolio decision calendar",
+    "signal_observation": "latest completed market session on or before the weekly decision date",
+    "trade_timing": "target learned at one weekly decision is first entered at the following weekly close and earns returns only after that close",
+    "primary_lag_weeks": 1,
+    "cash_return": 0.0,
+    "shorting": false,
+    "leverage": false,
+    "maximum_asset_weight": 0.30,
+    "turnover": "half L1 change from drifted pre-trade holdings, including cash",
+    "costs_bps": [10, 50, 100],
+    "primary_cost_bps": 50
+  },
+  "controls": {
+    "additional_stale_weeks": [1, 5],
+    "inverted_ranking": "select the five lowest combined scores",
+    "fixed_asset_permutation": true,
+    "permutation_seed": 2026083101
+  },
+  "comparison": {
+    "core_portfolio": "covariance_minimum_variance_v1",
+    "blend": {"core_weight": 0.80, "candidate_weight": 0.20},
+    "top_level_rebalance_cost_bps": 50,
+    "paired_bootstrap_samples": 20000,
+    "paired_bootstrap_block_weeks": 13,
+    "family_size": 2,
+    "familywise_one_sided_alpha": 0.05,
+    "per_candidate_one_sided_alpha": 0.025,
+    "later_windows": {
+      "validation": ["2016-01-01", "2020-12-31"],
+      "retrospective_test": ["2021-01-01", "2026-08-07"]
+    }
+  },
+  "promotion_gates": {
+    "primary_performance": "50-bps annual return positive, Sharpe at least 0.50, and maximum drawdown no worse than -35 percent",
+    "stress": "100-bps annual return and Sharpe positive",
+    "later_windows": "50-bps annual return positive in validation and retrospective-test windows",
+    "controls": "50-bps candidate Sharpe strictly exceeds stale-1, stale-5, inverted, and asset-permutation controls",
+    "blend": "80/20 blend Sharpe exceeds common-period core, drawdown is no worse by more than two percentage points, and familywise paired Sharpe lower bound is positive",
+    "survivorship_safe_universe": false,
+    "untouched_forward_weeks": 52,
+    "all_requirements_must_pass": true
+  },
+  "interpretation": {
+    "portfolio_status_if_historical_gates_pass": "research challenger only until a new untouched 52-week forward record completes",
+    "live_trading_enabled": false
+  }
+}

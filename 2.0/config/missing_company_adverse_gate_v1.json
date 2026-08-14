@@ -1,0 +1,10 @@
+{
+  "minimum_observed_coverage_every_decision": 0.95,
+  "require_all_recent_priority_ciks_resolved": true,
+  "require_all_terminal_outcomes_resolved": true,
+  "base_selected_missing_company_treatment": "hold_intended_weight_in_cash_for_holding_period",
+  "adverse_selected_missing_company_return": -1.0,
+  "renormalize_missing_weight_into_survivors": false,
+  "research_strategy_testing_only": true,
+  "live_trading_enabled": false
+}

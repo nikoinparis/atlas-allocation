@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 855,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T05:58:23.850044+00:00",
+    "sha256": "ed10482869cb75fcb65492ec09671a46b9b78598a73ccffb966be54a33629ad6",
+    "url": "https://api.tiingo.com/tiingo/daily/GLUU"
+  },
+  {
+    "bytes": 486645,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T05:58:29.132401+00:00",
+    "sha256": "adc1aa92380c055465656b5dd09ccf58ec5c7a96070cc0ad7e66448a5b7e6f15",
+    "url": "https://api.tiingo.com/tiingo/daily/GLUU/prices?startDate=2012-04-01&endDate=2022-04-11&resampleFreq=daily"
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 722,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T04:01:59.897707+00:00",
+    "sha256": "ac0d9c021cf4bd8fceaa1e11d6e252bbe09f3ef08cb67744992da7df63b092a2",
+    "url": "https://api.tiingo.com/tiingo/daily/CERN"
+  },
+  {
+    "bytes": 648749,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T04:02:01.703716+00:00",
+    "sha256": "0bbaa5b687a43d06b65c0fa3ee67423602a88cc6162768398349bf822f7a10c8",
+    "url": "https://api.tiingo.com/tiingo/daily/CERN/prices?startDate=2012-04-01&endDate=2023-07-11&resampleFreq=daily"
+  }
+]

@@ -1,0 +1,23 @@
+{
+  "generated_at_utc": "2026-08-14T01:22:34.042606+00:00",
+  "incumbent_replaced": false,
+  "live_trading_enabled": false,
+  "monthly_incumbent_holdout_50bps_cagr": 0.416593220797705,
+  "point_leader": "monthly_incumbent",
+  "point_leader_holdout_50bps_cagr": 0.416593220797705,
+  "program": "return_first_frequency_test_v1",
+  "research_only": true,
+  "validation": {
+    "all_fully_invested": true,
+    "all_long_only": true,
+    "deterministic": true,
+    "ml_embargo_pass": true,
+    "prefix_invariance_pass": true
+  },
+  "versions_tested": [
+    "monthly_incumbent",
+    "weekly_full_refresh",
+    "weekly_buffered",
+    "monthly_emergency"
+  ]
+}

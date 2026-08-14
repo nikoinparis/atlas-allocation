@@ -1,0 +1,28 @@
+{
+  "protocol": "sec_growth_confidence_universal_cap_challenger_v1",
+  "frozen_at_utc": "2026-08-14T09:50:00+00:00",
+  "first_eligible_decision": "2026-08-14",
+  "first_eligible_realization": "2026-08-21",
+  "required_observation_weeks": 52,
+  "confidence_sizing": {
+    "low_growth_allocation": 0.10,
+    "high_growth_allocation": 0.40,
+    "lookback_weeks": 26,
+    "high_condition": "Prior gross growth-sleeve return is positive and exceeds the prior gross ETF-incumbent return",
+    "current_signal": "high",
+    "current_growth_allocation": 0.40
+  },
+  "universal_stock_cap": {
+    "multiple_of_current_equal_stock_weight": 1.5,
+    "review": "first available Friday of each calendar month",
+    "scope": "all fundamental holdings without ticker-specific exceptions",
+    "excess_destination": "frozen ETF incumbent synthetic sleeve",
+    "current_total_portfolio_cap_at_review": 0.12
+  },
+  "comparators": ["confidence_10_40 uncapped", "confidence_10_40 universal 1.00x cap", "fixed_20 universal 1.00x cap", "frozen ETF incumbent"],
+  "primary_cost_bps": 50,
+  "stress_cost_bps": [100, 200],
+  "selection_policy": "Observe every comparator in parallel. Retrospective return preservation cannot authorize promotion.",
+  "research_only": true,
+  "live_trading_enabled": false
+}

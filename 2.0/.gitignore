@@ -1,0 +1,25 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+.DS_Store
+.env
+.env.*
+!.env.example
+
+# Third-party source smoke-test output is evidence; raw cloned sources never
+# leave their disposable containers.
+evidence/batch_01_backtest_execution/source_smoke/runs/*.stderr
+
+# Disposable third-party clones used for repository compatibility tests.
+evidence/**/source/
+
+# Temporary macro/regime acquisition workspaces. Immutable accepted snapshots
+# are stored under data/evidence instead.
+regime-snapshot.*/
+
+# Local datasets and generated experiment artifacts will receive explicit
+# versioning rules when their contracts are introduced.

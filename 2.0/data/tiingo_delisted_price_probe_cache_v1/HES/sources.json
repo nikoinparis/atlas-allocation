@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 1020,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T10:47:27.749238+00:00",
+    "sha256": "e7434bfd66da94eb84dee85f4e18424f5b6336c843cfd2d7a5a91a7e85d8ce36",
+    "url": "https://api.tiingo.com/tiingo/daily/HES"
+  },
+  {
+    "bytes": 849306,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T10:47:29.427378+00:00",
+    "sha256": "2c583b58b587950b5c6c121d869bb32df8e71426b7d750576af1e51d191564d6",
+    "url": "https://api.tiingo.com/tiingo/daily/HES/prices?startDate=2012-04-01&endDate=2026-04-11&resampleFreq=daily"
+  }
+]

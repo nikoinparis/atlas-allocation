@@ -1,0 +1,46 @@
+{
+  "approved_for_live_trading": false,
+  "code_sha256": {
+    "batch_06_runner.py": "14b96336421acd3eb37894f5d89ecdd502ed54dad4edc0fb432174c22d47839e",
+    "batch_07_runner.py": "05e3980c9fc91940609740d38e6af9cb0fcfcda8eda5ef3425bb6f8ef31e412b",
+    "strategy_allocation.py": "8d47d1914054a723d2cf8147b1c7b99d21d0cf2f0a828ed3df4030d276d2a316"
+  },
+  "configuration": {
+    "costs_bps": [
+      10.0,
+      50.0
+    ],
+    "covariance_lookback_weeks": 104,
+    "decision_frequency": "monthly",
+    "diagonal_shrinkage": 0.25,
+    "maximum_leverage": 1.0,
+    "maximum_sleeve_weight": 0.8,
+    "maximum_underlying_asset_weight": 0.35,
+    "minimum_observations": 52,
+    "sensitivity_lookbacks": [
+      52,
+      104,
+      156
+    ],
+    "sensitivity_shrinkage": [
+      0.0,
+      0.25,
+      0.5
+    ],
+    "volatility_target": 0.1
+  },
+  "constituent_candidates": [
+    "candidate-fc7248702f02b421",
+    "candidate-8a27cb8ba5a612a7"
+  ],
+  "final": false,
+  "first_eligible_untouched_decision_date": "2026-08-14",
+  "frozen_at_utc": "2026-08-08T23:55:03.381587+00:00",
+  "method": "minimum_variance",
+  "portfolio_version": "covariance_minimum_variance_v1",
+  "required_untouched_weeks": 52,
+  "schema_version": 1,
+  "source_data_through": "2026-08-07",
+  "source_snapshot_id": "20260808T212827Z-de103c2e063d6c4a",
+  "status": "frozen_forward_candidate"
+}

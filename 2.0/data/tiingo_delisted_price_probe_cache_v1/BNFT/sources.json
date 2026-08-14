@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 687,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T02:17:56.522886+00:00",
+    "sha256": "7cdb36ebfaa8a1a12447278ee37d0b60ddbcdae6f1fff70147e66a1d44d087d5",
+    "url": "https://api.tiingo.com/tiingo/daily/BNFT"
+  },
+  {
+    "bytes": 427029,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T02:17:58.216000+00:00",
+    "sha256": "835467b8c7bd11bace71883c44b45ffc734e811bcec1e562518b86909a919683",
+    "url": "https://api.tiingo.com/tiingo/daily/BNFT/prices?startDate=2015-04-01&endDate=2024-01-11&resampleFreq=daily"
+  }
+]

@@ -1,0 +1,23 @@
+{
+  "bundle_id": "20260812T035702Z_20260812T090851Z_23415b848f82",
+  "complete": true,
+  "frozen_history_cutoff": "2026-04-10",
+  "market_data_through": "2026-08-07",
+  "module_sha256": "23415b848f82deb40c6eba7eb6b79162ca195459c18c2113b05fe08802fcfdd4",
+  "paths": {
+    "composite_regime_conditioned": "a18fb1b6db1d9de3564cc05fba2807788b386d8758d880cf74e066c75786dedd",
+    "composite_selective_signals": "79f15d104d2d1f79219f0b54b91b0a50a2fa343c20d31f6f64329df1624d3499",
+    "cta_trend_long_only": "dff6d45892a6f8b08b3ed8098fccfba8a85ebfabf1ad9c94372e14a8679466c9",
+    "dual_momentum_topn": "160e2ba65c278e720bd13051acf429457de3c236240a95efce872aed367e5871",
+    "taa_10m_sma": "aa2fe5b225dae14970d5be6a5b68c9bd005f656e0f4887cbfd67cf59ca105153"
+  },
+  "positions": {
+    "composite_regime_conditioned": "67f62ebbcfa5306e41ae1db20d9430b65378d7ca4c2bb0608cc8352f09f4ec20",
+    "composite_selective_signals": "b6fce9b132ddd72b1dac61feacbb376588d0acb457f42cdc823af77f7f914440",
+    "cta_trend_long_only": "e8c28c483a6de6d027d56969ab670192e2072439b4bb9d2c5f98c49dff0cd9ea",
+    "dual_momentum_topn": "1bc3731027dee1af641d6b2dad48299c4f9a735df21e7e94dea1cb774156a5f5",
+    "taa_10m_sma": "ed4b427d15ab597c8d567d4b7df910cdac9ed2715617f75e2d5286c8d8965c6f"
+  },
+  "price_snapshot_id": "20260812T035702Z-0c1bf62d74413e2a",
+  "regime_snapshot_id": "20260812T090851Z-5c6de663ac77"
+}

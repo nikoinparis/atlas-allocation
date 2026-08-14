@@ -1,0 +1,57 @@
+{
+  "program": "ml_strong_confidence_overlay_v2",
+  "source_experiment": "ml_confidence_overlay_batch_18",
+  "hypothesis_origin": "Batch 18 observed that the 10 percent tier was weak while the 20 and 30 percent tiers had materially stronger future rank IC",
+  "interpretation": "retrospective follow-up hypothesis; cannot become final without untouched forward evidence",
+  "frozen_core": "covariance_minimum_variance_v1",
+  "source_prediction_projection_sha256": "22ffd359aee292d1b1e5337d44bd9b102d8681eb2e60e902bb95e645a7032dfd",
+  "primary_rule": {
+    "name": "strong_confidence_guarded",
+    "minimum_prior_decisions": 24,
+    "thresholds": "expanding percentiles of raw confidence strictly before each decision",
+    "below_prior_80th_percentile": 0.0,
+    "prior_80th_to_95th_percentile": 0.2,
+    "at_or_above_prior_95th_percentile": 0.3,
+    "maximum_ml_weight": 0.3
+  },
+  "risk_guards": {
+    "information_available": "ML returns realized no later than the current decision",
+    "trailing_volatility_weeks": 13,
+    "annualized_volatility_limit": 0.18,
+    "weight_cap_when_volatility_exceeded": 0.1,
+    "trailing_drawdown_weeks": 26,
+    "drawdown_stop": -0.12,
+    "weight_when_drawdown_stop_hit": 0.0
+  },
+  "diagnostic_variants": [
+    "core_only",
+    "constant_20",
+    "constant_30",
+    "batch18_confidence_guarded",
+    "strong_confidence_unguarded",
+    "extreme_only"
+  ],
+  "accounting": {
+    "cost_bps": [10, 50, 100],
+    "allocation_turnover": "absolute change in ML sleeve weight",
+    "cross_sleeve_trade_netting": false
+  },
+  "promotion_gates": {
+    "annual_return_10bps": "greater than frozen core",
+    "sharpe_10bps": "greater than frozen core",
+    "maximum_drawdown_10bps": "no worse than frozen core",
+    "paired_bootstrap_10bps": "one-sided 95 percent lower bounds for both Sharpe and annual-return differences greater than zero",
+    "full_period_100bps": "annual return and Sharpe both greater than frozen core",
+    "later_windows_100bps": "2016-2020 and 2021-present annual returns both positive",
+    "confidence_calibration": "active-minus-inactive future rank IC point estimate and serial-block-bootstrap lower bound both greater than zero",
+    "survivorship_safe_universe": true,
+    "untouched_forward_weeks": 52
+  },
+  "bootstrap": {
+    "samples": 20000,
+    "confidence_block_months": 3,
+    "return_block_weeks": 13,
+    "one_sided_alpha": 0.05
+  },
+  "live_trading_approved": false
+}

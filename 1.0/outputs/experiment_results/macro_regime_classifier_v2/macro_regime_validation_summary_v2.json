@@ -1,0 +1,229 @@
+{
+  "sprint": "macro_regime_classifier_v2",
+  "date": "2026-06-05",
+  "verdict": "RESEARCH-ONLY",
+  "criteria": {
+    "n_series_used": 10,
+    "crit_series_met": false,
+    "crit_interpretable_met": true,
+    "dev_4w_spread": 0.02416,
+    "dev_4w_spread_met": true,
+    "nm_spread": 0.03779,
+    "nm_spread_met": true,
+    "holdout_rank_consistent": false,
+    "holdout_improved_vs_v1": true,
+    "holdout_quads_populated": 3,
+    "confirmation_better": true
+  },
+  "coverage": {
+    "weekly_obs_total": 1110,
+    "weekly_obs_with_quadrant": 1109,
+    "coverage_pct": 99.9,
+    "dev_end": "2024-04-12",
+    "holdout_start": "2024-04-19"
+  },
+  "quadrant_distribution_weekly": {
+    "expansion": 287,
+    "overheating": 264,
+    "slowdown": 188,
+    "stress": 370
+  },
+  "dev_quadrant_fwd_returns": {
+    "expansion": {
+      "n": 270,
+      "mean_4w": 0.00565,
+      "std_4w": 0.04519,
+      "sharpe_4w": 0.125
+    },
+    "overheating": {
+      "n": 248,
+      "mean_4w": 0.00965,
+      "std_4w": 0.0379,
+      "sharpe_4w": 0.255
+    },
+    "slowdown": {
+      "n": 117,
+      "mean_4w": -0.00907,
+      "std_4w": 0.06863,
+      "sharpe_4w": -0.132
+    },
+    "stress": {
+      "n": 370,
+      "mean_4w": 0.01509,
+      "std_4w": 0.04098,
+      "sharpe_4w": 0.368
+    }
+  },
+  "holdout_quadrant_fwd_returns": {
+    "expansion": {
+      "n": 17,
+      "mean_4w": 0.0014,
+      "std_4w": 0.03811,
+      "sharpe_4w": 0.037
+    },
+    "overheating": {
+      "n": 16,
+      "mean_4w": 0.02238,
+      "std_4w": 0.03103,
+      "sharpe_4w": 0.721
+    },
+    "slowdown": {
+      "n": 67,
+      "mean_4w": 0.01189,
+      "std_4w": 0.03888,
+      "sharpe_4w": 0.306
+    }
+  },
+  "neutral_mixed_quadrant_distribution": {
+    "stress": 205,
+    "expansion": 111,
+    "overheating": 110,
+    "slowdown": 64
+  },
+  "neutral_mixed_dev_fwd_returns": {
+    "expansion": {
+      "n": 101,
+      "mean_4w": 0.01096,
+      "std_4w": 0.03262,
+      "sharpe_4w": 0.336
+    },
+    "overheating": {
+      "n": 107,
+      "mean_4w": 0.00908,
+      "std_4w": 0.03558,
+      "sharpe_4w": 0.255
+    },
+    "slowdown": {
+      "n": 21,
+      "mean_4w": -0.02235,
+      "std_4w": 0.04419,
+      "sharpe_4w": -0.506
+    },
+    "stress": {
+      "n": 205,
+      "mean_4w": 0.01544,
+      "std_4w": 0.03226,
+      "sharpe_4w": 0.479
+    }
+  },
+  "neutral_mixed_holdout_fwd_returns": {
+    "expansion": {
+      "n": 10,
+      "mean_4w": -0.01548,
+      "std_4w": 0.04211,
+      "sharpe_4w": -0.367
+    },
+    "overheating": {
+      "n": 3,
+      "mean_4w": 0.05623,
+      "std_4w": 0.01385,
+      "sharpe_4w": 4.059
+    },
+    "slowdown": {
+      "n": 43,
+      "mean_4w": 0.00325,
+      "std_4w": 0.03227,
+      "sharpe_4w": 0.101
+    }
+  },
+  "fred_series_used": [
+    "BAMLH0A0HYM2",
+    "UMCSENT",
+    "FEDFUNDS",
+    "UNRATE",
+    "CPIAUCSL",
+    "INDPRO",
+    "PAYEMS",
+    "RSAFS",
+    "HOUST",
+    "ICSA"
+  ],
+  "fred_series_missing": [
+    "T10Y2Y",
+    "NFCI",
+    "DGS3MO",
+    "DTWEXBGS"
+  ],
+  "fred_fetch_log": [
+    {
+      "series": "T10Y2Y",
+      "source": "FAILED",
+      "n_obs": 0,
+      "error": "HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Read timed out. (read timeout=15)"
+    },
+    {
+      "series": "BAMLH0A0HYM2",
+      "source": "LIVE",
+      "n_obs": 795
+    },
+    {
+      "series": "NFCI",
+      "source": "FAILED",
+      "n_obs": 0,
+      "error": "HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Read timed out. (read timeout=15)"
+    },
+    {
+      "series": "DGS3MO",
+      "source": "FAILED",
+      "n_obs": 0,
+      "error": "HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Read timed out. (read timeout=15)"
+    },
+    {
+      "series": "UMCSENT",
+      "source": "LIVE",
+      "n_obs": 882
+    },
+    {
+      "series": "FEDFUNDS",
+      "source": "LIVE",
+      "n_obs": 863
+    },
+    {
+      "series": "DTWEXBGS",
+      "source": "FAILED",
+      "n_obs": 0,
+      "error": "HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Read timed out. (read timeout=15)"
+    },
+    {
+      "series": "UNRATE",
+      "source": "LIVE",
+      "n_obs": 941
+    },
+    {
+      "series": "CPIAUCSL",
+      "source": "LIVE",
+      "n_obs": 952
+    },
+    {
+      "series": "INDPRO",
+      "source": "LIVE",
+      "n_obs": 1288
+    },
+    {
+      "series": "PAYEMS",
+      "source": "LIVE",
+      "n_obs": 1049
+    },
+    {
+      "series": "RSAFS",
+      "source": "LIVE",
+      "n_obs": 412
+    },
+    {
+      "series": "HOUST",
+      "source": "LIVE",
+      "n_obs": 808
+    },
+    {
+      "series": "ICSA",
+      "source": "CACHED",
+      "n_obs": 3100
+    }
+  ],
+  "pc_variance_explained": {
+    "PC1_pct": 39.3,
+    "PC2_pct": 18.4,
+    "PC3_pct": 15.4
+  },
+  "warnings": []
+}

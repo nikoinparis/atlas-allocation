@@ -1,0 +1,23 @@
+{
+  "all_current_outputs_available": true,
+  "all_deterministic": true,
+  "batch": 56,
+  "complete_layer1_bundle_ready": true,
+  "current_macro_regime_label": "risk_on",
+  "current_macro_risk_score": -0.5547083351850979,
+  "decision": "freeze_complete_layer1_bundle",
+  "forward_clock_started": false,
+  "generated_at_utc": "2026-08-12T09:13:46.234398+00:00",
+  "layer1_source_status": {
+    "daily_beta": "complete",
+    "distribution_carry": "complete",
+    "price_signals": "complete",
+    "regime_features": "complete"
+  },
+  "live_trading_enabled": false,
+  "market_data_through": "2026-08-07",
+  "price_snapshot_id": "20260812T035702Z-0c1bf62d74413e2a",
+  "regime_snapshot_id": "20260812T090851Z-5c6de663ac77",
+  "stored_regime_labels_equal": true,
+  "stored_regime_rebuild_maximum_difference": 5.329070518200751e-15
+}

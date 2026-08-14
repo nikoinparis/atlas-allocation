@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 20726,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T01:00:45.647169+00:00",
+    "sha256": "245662acaec05fb8c297f2555d95cec5f566a684b3ffae2c7d1b60f56e2a3778",
+    "url": "https://api.tiingo.com/tiingo/daily/SPLK"
+  },
+  {
+    "bytes": 554909,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T01:00:47.531184+00:00",
+    "sha256": "ec5f32a137d1254b6dd9c91c97c69265b511a095fbf06244b9f714937cbb41e0",
+    "url": "https://api.tiingo.com/tiingo/daily/SPLK/prices?startDate=2014-07-01&endDate=2025-01-11&resampleFreq=daily"
+  }
+]

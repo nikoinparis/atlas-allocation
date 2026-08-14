@@ -1,0 +1,20 @@
+{
+  "cik10": "0001760717",
+  "covers_first_eligible_decision": true,
+  "first_eligible_decision": "2021-04-01 00:00:00+00:00",
+  "first_price_date": "2021-04-01",
+  "issuer_name_match": true,
+  "issuer_name_score": 1.0,
+  "last_eligible_decision": "2024-10-01 00:00:00+00:00",
+  "last_price_date": "2023-10-23",
+  "price_file": "/workspace/2.0/data/tiingo_delisted_price_probe_cache_v1/SCPL/prices.csv.gz",
+  "price_rows": 645,
+  "provider_end_date": "2023-10-23",
+  "provider_exchange": "NASDAQ",
+  "provider_name": "Sciplay Corp - Class A",
+  "provider_start_date": "2019-05-03",
+  "sec_company_name": "SCIPLAY CORP",
+  "status": "identity_and_start_validated",
+  "terminal": true,
+  "tiingo_symbol": "SCPL"
+}

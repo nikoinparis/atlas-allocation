@@ -1,0 +1,180 @@
+# Path B — Native Rebuild Global Configuration
+# Sprint 0 — 2026-06-07
+# SCAFFOLD ONLY. No production files are modified by any script in this project.
+
+# ─── Identity ────────────────────────────────────────────────────────────────
+project_name: "path_b_native_rebuild"
+sprint: 0
+status: "scaffold_only"
+created: "2026-06-07"
+
+# ─── Production Pin (benchmark — READ ONLY) ───────────────────────────────────
+production_pin:
+  name: "improved_frontier_phase5_fragility_guard"
+  sharpe_full: 0.9542
+  sharpe_holdout: 2.0479
+  annual_return: 0.0718
+  max_drawdown: -0.1160
+  annual_turnover: null  # to be confirmed in Sprint 0.5
+
+# ─── Data Paths (absolute from repo root) ────────────────────────────────────
+# All paths below are READ-ONLY for the shadow rebuild.
+# Shadow writes ONLY to research_native_rebuild/outputs/.
+data_paths:
+  # Layer 0 — data hub
+  weekly_prices:          "data/01_data_hub/weekly_prices.csv"
+  macro_weekly:           "data/01_data_hub/macro_weekly.csv"
+  vix_term_structure:     "data/01_data_hub/vix_term_structure.csv"
+  google_trends:          "data/01_data_hub/google_trends.csv"
+  benchmark_returns:      "data/01_data_hub/benchmark_returns_weekly.csv"
+
+  # Layer 2B — production regime engine artifacts
+  market_state_history:   "data/04_layer2b_risk_regime_engine/market_state_history.csv"
+  regime_score:           "data/04_layer2b_risk_regime_engine/regime_score.csv"
+
+  # Layer 3 — production portfolio artifacts (for equivalence comparison)
+  production_portfolio:   "data/05_layer3_portfolio_construction/"
+
+  # Layer 1 — alpha signals (all REUSE_EXISTING in shadow)
+  signals_dir:            "data/02_layer1_signals/"
+
+  # V3 macro states
+  macro_states_v3:        "outputs/experiment_results/macro_regime_classifier_v3/macro_states_weekly_v3.csv"
+
+# ─── Shadow Output Paths ──────────────────────────────────────────────────────
+# Shadow scripts write ONLY to these directories. Never to data/ or outputs/experiment_results/.
+output_paths:
+  root:               "research_native_rebuild/outputs/"
+  feature_panel:      "research_native_rebuild/outputs/feature_panel/"
+  regime_engine:      "research_native_rebuild/outputs/regime_engine/"
+  signal_weighting:   "research_native_rebuild/outputs/signal_weighting/"
+  risk_budgets:       "research_native_rebuild/outputs/risk_budgets/"
+  portfolio_backtest: "research_native_rebuild/outputs/portfolio_backtest/"
+  comparison:         "research_native_rebuild/outputs/comparison/"
+
+# ─── ETF Universe ────────────────────────────────────────────────────────────
+etf_universe:
+  count: 35
+  tickers:
+    - BIL   # cash proxy
+    - DBA
+    - EEM
+    - EFA
+    - EWJ
+    - GLD
+    - HYG
+    - IAU
+    - IEF
+    - IWM
+    - QQQ
+    - SPY
+    - TLT
+    - SHY
+    - TIP
+    - VEA
+    - VNQ
+    - VTV
+    - VWO
+    - XLB
+    - XLC
+    - XLE
+    - XLF
+    - XLI
+    - XLK
+    - XLP
+    - XLRE
+    - XLU
+    - XLV
+    - XLY
+    - PDBC
+    - IYR
+    - EWZ
+    - AGG   # confirm vs production
+    - LQD   # confirm vs production
+
+# ─── Date Constants ───────────────────────────────────────────────────────────
+dates:
+  data_start: "2005-01-07"
+  data_end:   "2026-04-10"
+  total_weeks: 1110
+  dev_end:     "2024-04-12"       # last dev Friday
+  holdout_start: "2024-04-19"     # first holdout Friday
+  holdout_weeks: 104              # ~2 years
+
+# ─── Return Convention ───────────────────────────────────────────────────────
+returns:
+  convention: "gross[t] = w[t] @ etf_rets[t+1]"
+  calculation: "pct_change"
+  frequency: "weekly"
+  execution_delay_weeks: 1
+  annualization_factor: 52
+  sharpe_annualization: 7.2111  # sqrt(52)
+
+# ─── Transaction Cost Model ──────────────────────────────────────────────────
+costs:
+  cost_per_unit_turnover: 0.001   # 10 bps per half-round-trip
+  turnover_convention: "sum(abs(w[t] - drift)) / 2 per week"
+  net_return: "gross[t] - turnover[t] * 0.001"
+
+# ─── Benchmark Configuration ─────────────────────────────────────────────────
+benchmarks:
+  primary: "SPY"
+  secondary: "AGG"
+  blend_6040: true
+
+# ─── Regime States ───────────────────────────────────────────────────────────
+# Production states (must be preserved or superseded by native states)
+production_states:
+  - "neutral_mixed"        # 493 weeks, 44.4%
+  - "calm_trend"           # 295 weeks, 26.6%
+  - "stressed_panic"       # 229 weeks, 20.6%
+  - "recovery_fragile"     #  49 weeks,  4.4%
+  - "recovery_confirmed"   #  44 weeks,  4.0%
+
+# Native NM sub-states (Path B additions — subject to Sprint 2 observation check)
+native_nm_substates:
+  - "neutral_soft_landing"  # NM + slowdown + FC_benign
+  - "neutral_macro_stress"  # NM + macro_stress or FC_tight
+  - "neutral_overheating"   # NM + overheating or elevated inflation
+  - "neutral_chop"          # NM + expansion or unclear macro
+
+# ─── Observation Minimums ────────────────────────────────────────────────────
+min_observations:
+  per_state_dev: 30         # states with fewer obs must be merged
+  ic_window_weeks: 52       # minimum IC estimation window
+  ic_fallback: "cross_state_average"  # fallback when obs < 30
+
+# ─── Hysteresis Parameters (to be formalized in Sprint 2) ────────────────────
+hysteresis:
+  min_activation_weeks: 2   # minimum consecutive weeks before state activation
+  min_deactivation_weeks: 2 # minimum consecutive weeks before state deactivation
+  confidence_threshold: 0.6 # minimum confidence to trigger transition
+
+# ─── Risk Budget Hard Constraints ────────────────────────────────────────────
+risk_constraints:
+  stressed_panic:
+    max_offense_budget: 0.30
+    min_defense_floor: 0.40
+  recovery_fragile:
+    max_re_risk_speed_per_week: 0.05
+  all_states:
+    max_single_etf_weight: 0.35
+    min_weight: 0.0
+    sum_weights: 1.0
+    no_leverage: true
+    long_only: true
+
+# ─── Shrinkage ────────────────────────────────────────────────────────────────
+ic_shrinkage:
+  method: "toward_equal_weight"
+  shrinkage_factor: 0.5  # to be tuned in Sprint 3 (dev period only)
+
+# ─── Gate Thresholds (also in validation_gates.yaml) ─────────────────────────
+promotion_gates:
+  G1_dsharpe_min: 0.01
+  G2_holdout_dsharpe_min: -0.02
+  G6_dturnover_max: 0.03
+  G7_nm_sharpe_min_delta: 0.0
+  G8_sp_sharpe_min_delta: -0.02
+  G9_rf_sharpe_min_delta: -0.02
+  max_drawdown_worsening: 0.01   # 1 percentage point

@@ -1,0 +1,93 @@
+{
+  "sprint": "macro_regime_classifier_v3",
+  "date": "2026-06-05",
+  "verdict": "EXPERIMENTAL CANDIDATE",
+  "n_features": 11,
+  "fc_interpretable": true,
+  "best_conf_sharpe": 0.606,
+  "sanity_2008": true,
+  "sanity_2020": true,
+  "sanity_2022": true,
+  "dev_spread": 0.0081,
+  "nm_spread": 0.02287,
+  "holdout_consistent": false,
+  "holdout_quads_populated": 2,
+  "nm_rank_consistent": true,
+  "criteria": {
+    "sanity_checks_pass": true,
+    "fc_interpretable_met": true,
+    "dev_4w_spread": 0.0081,
+    "dev_4w_spread_met": false,
+    "nm_spread": 0.02287,
+    "nm_spread_met": true,
+    "holdout_not_broken": true,
+    "holdout_rank_consistent": false,
+    "holdout_quads_populated": 2,
+    "confirmation_better_met": true,
+    "no_sparse_quadrants_met": true,
+    "fc_proxy_quality": "PROXY_USED"
+  },
+  "coverage": {
+    "weekly_obs": 1110,
+    "obs_with_state": 1110,
+    "dev_end": "2024-04-12",
+    "holdout_start": "2024-04-19"
+  },
+  "state_distribution_weekly": {
+    "expansion": 421,
+    "overheating": 124,
+    "slowdown": 280,
+    "stress": 285
+  },
+  "dev_fwd_returns": {
+    "expansion": {
+      "n": 421,
+      "mean_4w": 0.00469,
+      "sharpe_4w": 0.125
+    },
+    "overheating": {
+      "n": 124,
+      "mean_4w": 0.00849,
+      "sharpe_4w": 0.162
+    },
+    "slowdown": {
+      "n": 180,
+      "mean_4w": 0.01019,
+      "sharpe_4w": 0.269
+    },
+    "stress": {
+      "n": 281,
+      "mean_4w": 0.01279,
+      "sharpe_4w": 0.223
+    }
+  },
+  "holdout_fwd_returns": {
+    "slowdown": {
+      "n": 97,
+      "mean_4w": 0.0097,
+      "sharpe_4w": 0.271
+    }
+  },
+  "neutral_mixed_dev_fwd_returns": {
+    "expansion": {
+      "n": 191,
+      "mean_4w": 0.00757,
+      "sharpe_4w": 0.23
+    },
+    "overheating": {
+      "n": 55,
+      "mean_4w": -0.00175,
+      "sharpe_4w": -0.054
+    },
+    "slowdown": {
+      "n": 78,
+      "mean_4w": 0.02112,
+      "sharpe_4w": 0.789
+    },
+    "stress": {
+      "n": 111,
+      "mean_4w": 0.01615,
+      "sharpe_4w": 0.399
+    }
+  }
+}

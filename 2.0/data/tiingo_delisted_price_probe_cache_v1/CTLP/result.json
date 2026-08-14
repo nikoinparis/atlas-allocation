@@ -1,0 +1,19 @@
+{
+  "cik10": "0000896429",
+  "first_eligible_decision": "2017-01-01 00:00:00+00:00",
+  "first_price_date": "2017-01-03",
+  "issuer_name_match": true,
+  "issuer_name_score": 1.0,
+  "last_eligible_decision": "2026-04-01 00:00:00+00:00",
+  "last_price_date": "2026-04-10",
+  "price_file": "/project/data/tiingo_delisted_price_probe_cache_v1/CTLP/prices.csv.gz",
+  "price_rows": 2330,
+  "provider_end_date": "2026-05-08",
+  "provider_exchange": "NASDAQ",
+  "provider_name": "Cantaloupe Inc",
+  "provider_start_date": "1999-06-07",
+  "sec_company_name": "CANTALOUPE, INC.",
+  "status": "validated_candidate",
+  "terminal": true,
+  "tiingo_symbol": "CTLP"
+}

@@ -1,0 +1,34 @@
+{
+  "program": "v1_ggg_native_reconstruction_v1",
+  "batch": 43,
+  "predeclared_before_native_rerun_results": true,
+  "candidate": "improved_phaseggg_confirmed_only_robust_offense",
+  "execution": {
+    "container_image": "localhost/po2-riskfolio:7.3.0-batch36",
+    "image_selection_note": "The initially predeclared lean skfolio image lacked matplotlib, which the native V1 builder imports at startup. The already installed riskfolio image supplies the same scientific stack plus matplotlib; no strategy rule or gate changed.",
+    "version_1_mount": "read_only",
+    "native_builder": "scripts/build_improvement_artifacts.py",
+    "build_version_names": ["improved_phaseggg_confirmed_only_robust_offense"],
+    "save_allocator_checkpoints": true,
+    "ephemeral_writable_copy": true,
+    "compatibility_shim": "In the ephemeral copy only, materialize writable NumPy copies for the covariance-floor and correlation-diagonal assignments, then rebuild their DataFrames. Pandas 3 exposes these arrays read-only; the shims change mutability but not either equation. Exact checkpoint gates remain unchanged.",
+    "live_trading_enabled": false
+  },
+  "expected_stages": [
+    "raw_hrp_sleeve_weights",
+    "post_state_tilt_sleeve_weights",
+    "post_layer3_expression_sleeve_weights",
+    "post_overlay_pre_lookthrough_sleeve_weights",
+    "final_sleeve_weights",
+    "final_etf_weights"
+  ],
+  "equivalence_gates": {
+    "all_expected_stages_present": true,
+    "maximum_checkpoint_absolute_difference": 1e-10,
+    "maximum_published_weight_absolute_difference": 1e-10,
+    "maximum_published_path_absolute_difference": 1e-10,
+    "minimum_published_net_return_correlation": 0.9999999999
+  },
+  "interpretation": "Passing proves deterministic source-native regeneration of the GGG allocator stages from pinned artifacts. It does not remove historical selection contamination, create post-selection observations, or establish an independently rewritten Version 2 implementation.",
+  "version_1_files_may_be_modified": false
+}

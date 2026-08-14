@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 155,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T02:17:25.602795+00:00",
+    "sha256": "6a862fc17165b9c02ba343f1bd00d7c9f9e6158d9789c8ad1b308611198daf90",
+    "url": "https://api.tiingo.com/tiingo/daily/SUMO"
+  },
+  {
+    "bytes": 60284,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T02:17:27.086480+00:00",
+    "sha256": "b971eb4011e4ce09f303e2a9666375395dcb59e96152c211ebd4c2b2617de736",
+    "url": "https://api.tiingo.com/tiingo/daily/SUMO/prices?startDate=2022-04-01&endDate=2024-04-11&resampleFreq=daily"
+  }
+]

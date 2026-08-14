@@ -1,0 +1,28 @@
+{
+  "protocol": "sec_growth_capped_sleeve_ladder_v1",
+  "frozen_at_utc": "2026-08-14T08:42:42.527236+00:00",
+  "first_eligible_decision": "2026-08-14",
+  "first_eligible_realization": "2026-08-21",
+  "required_observation_weeks": 52,
+  "parallel_growth_allocations": [0.10, 0.20, 0.30],
+  "risk_wrapper": {
+    "review": "first available Friday of each calendar month",
+    "single_stock_cap": "1.00 times the sleeve's initial equal stock weight",
+    "total_portfolio_caps_at_review": {
+      "10_percent_growth_sleeve": 0.02,
+      "20_percent_growth_sleeve": 0.04,
+      "30_percent_growth_sleeve": 0.06
+    },
+    "excess_destination": "frozen ETF incumbent synthetic sleeve"
+  },
+  "uncapped_comparators_retained": true,
+  "primary_cost_bps": 50,
+  "selection_policy": "Track all capped allocations and their uncapped comparators in parallel. Do not select a winner from retrospective outcomes.",
+  "input_hashes_sha256": {
+    "cap_config": "0db0361aa280bcdc60edc3afb58c670a5c9530a74c0c24dbb311b03d1e53a052",
+    "cap_runner": "6bd7f833540bb629d2528b1d05eaeef9da5b52a49ae5401630356c62cceb683f",
+    "retrospective_performance": "cd2c5b8c52b981d9ab3c6de26c1b939e9da60180476e4254b97d1deba61d237c"
+  },
+  "research_only": true,
+  "live_trading_enabled": false
+}

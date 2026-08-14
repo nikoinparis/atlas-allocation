@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 155,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T10:48:34.584957+00:00",
+    "sha256": "c98d0ef6ce6a6affa4610f2c68cc3b71b29880f10b6bb8c220023e047465c4b8",
+    "url": "https://api.tiingo.com/tiingo/daily/GAN"
+  },
+  {
+    "bytes": 8443,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T10:48:35.912292+00:00",
+    "sha256": "85c8139117e970a2417a5479938658782a58507d3143e633e8f29d28a513a1ea",
+    "url": "https://api.tiingo.com/tiingo/daily/GAN/prices?startDate=2023-07-01&endDate=2026-04-11&resampleFreq=daily"
+  }
+]

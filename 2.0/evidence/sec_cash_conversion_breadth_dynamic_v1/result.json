@@ -1,0 +1,20 @@
+{
+  "best_200bps_trailing_1y_cagr": 0.9548443284536201,
+  "best_candidate": "breadth10__uncapped__13w__50",
+  "best_full_cagr": 0.3917737974966429,
+  "best_peak_target_stock_weight": 0.09416734820861572,
+  "best_trailing_1y_cagr": 1.0753269915239274,
+  "best_trailing_1y_drawdown": -0.10669251571766492,
+  "best_trailing_1y_sharpe": 2.7088730394231972,
+  "best_ytd_cagr": 1.1363445654211493,
+  "candidate_count": 48,
+  "created_at_utc": "2026-08-14T12:51:18.793162+00:00",
+  "current_cash_conversion_allocation": 0.5,
+  "current_leader_allocation": 0.5,
+  "experiment": "sec_cash_conversion_breadth_dynamic_v1",
+  "live_trading_enabled": false,
+  "strategy_replacement_authorized": false,
+  "worst_recent_exclusion_beats_control": false,
+  "worst_recent_exclusion_cagr": 0.9120638605479303,
+  "worst_recent_exclusion_company": "PALO ALTO NETWORKS INC"
+}

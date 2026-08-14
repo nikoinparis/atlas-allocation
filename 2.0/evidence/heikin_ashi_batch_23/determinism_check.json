@@ -1,0 +1,36 @@
+{
+  "first_run_sha256": {
+    "direction_corrected_blend_50bps.csv": "36ba79ea422b61dbb5dae5bcdb6f6382a983851fa3a6b5ca3c395bd4bd588886",
+    "direction_corrected_daily_50bps.csv": "091dfcb042a1da86b6139ac29d097e747c4a77b8b4fb7d4d1c77e85d69ba22cb",
+    "direction_corrected_weekly_50bps.csv": "2b73f7e3a6c2a5efd8994f87915f9741d8d513901f294a12697a526b52255504",
+    "report.md": "8ecf55e927ac6e67953e23fe20fad6c0e3656af7acda95c816184c90000e4ce8",
+    "scoreboard.csv": "88d0fc7d68275438c7758bb6cf66aa68df069c88ec5b8fb31086794e6f9959c9",
+    "signal_audit.csv": "4e4d390855f2fab4cd4f4669fb29aa1876ae8e751cd27baf164b94eb3be76475",
+    "source_exact_blend_50bps.csv": "b6bb18f8d758c94f890a33a354bb765f614a64f96fffef3eb5391fbef0340864",
+    "source_exact_daily_50bps.csv": "8d4aaa018141ab61163be4cd3ff74d45fe5701238874f098714a0a59815cbe60",
+    "source_exact_weekly_50bps.csv": "a40b90d3b51cba6c56fd65949b166ee10f88cb7e56ae07a3f13c6d24d6703867"
+  },
+  "identical": true,
+  "projection_files": [
+    "direction_corrected_blend_50bps.csv",
+    "direction_corrected_daily_50bps.csv",
+    "direction_corrected_weekly_50bps.csv",
+    "report.md",
+    "scoreboard.csv",
+    "signal_audit.csv",
+    "source_exact_blend_50bps.csv",
+    "source_exact_daily_50bps.csv",
+    "source_exact_weekly_50bps.csv"
+  ],
+  "second_run_sha256": {
+    "direction_corrected_blend_50bps.csv": "36ba79ea422b61dbb5dae5bcdb6f6382a983851fa3a6b5ca3c395bd4bd588886",
+    "direction_corrected_daily_50bps.csv": "091dfcb042a1da86b6139ac29d097e747c4a77b8b4fb7d4d1c77e85d69ba22cb",
+    "direction_corrected_weekly_50bps.csv": "2b73f7e3a6c2a5efd8994f87915f9741d8d513901f294a12697a526b52255504",
+    "report.md": "8ecf55e927ac6e67953e23fe20fad6c0e3656af7acda95c816184c90000e4ce8",
+    "scoreboard.csv": "88d0fc7d68275438c7758bb6cf66aa68df069c88ec5b8fb31086794e6f9959c9",
+    "signal_audit.csv": "4e4d390855f2fab4cd4f4669fb29aa1876ae8e751cd27baf164b94eb3be76475",
+    "source_exact_blend_50bps.csv": "b6bb18f8d758c94f890a33a354bb765f614a64f96fffef3eb5391fbef0340864",
+    "source_exact_daily_50bps.csv": "8d4aaa018141ab61163be4cd3ff74d45fe5701238874f098714a0a59815cbe60",
+    "source_exact_weekly_50bps.csv": "a40b90d3b51cba6c56fd65949b166ee10f88cb7e56ae07a3f13c6d24d6703867"
+  }
+}

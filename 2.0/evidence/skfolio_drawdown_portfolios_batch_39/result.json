@@ -1,0 +1,120 @@
+{
+  "artifacts": {
+    "allocation_history.csv": {
+      "bytes": 156409,
+      "sha256": "1e26c03382a743f76c71587a654c38dea3e2f03c80dc690222a379d53f3f6975"
+    },
+    "paired_bootstrap.csv": {
+      "bytes": 435,
+      "sha256": "1ec8af41885fc97ab4787bbf5c96354cfc2b58122d039207e1272e3bbcfe00dd"
+    },
+    "portfolio_scoreboard.csv": {
+      "bytes": 6558,
+      "sha256": "6ad6ef205935a9c43670952a1125a585de8ded80895d31b7fcde01e669d9d9f7"
+    },
+    "weekly_returns.csv": {
+      "bytes": 2232681,
+      "sha256": "0a1c01dd5f4e837e56978351fe65312fa96732b21859c5def044a497d097f177"
+    }
+  },
+  "benchmark_reconstruction_maximum_differences": {
+    "10": 0.0,
+    "50": 0.0
+  },
+  "decision": "not_promoted",
+  "diagnostics": {
+    "CDAR": {
+      "optimizer_failures": 0,
+      "repeat_maximum_absolute_weight_difference": 0.0
+    },
+    "EDAR": {
+      "optimizer_failures": 1,
+      "repeat_maximum_absolute_weight_difference": 0.0
+    },
+    "MAX_DRAWDOWN": {
+      "optimizer_failures": 0,
+      "repeat_maximum_absolute_weight_difference": 0.0
+    },
+    "ULCER_INDEX": {
+      "optimizer_failures": 0,
+      "repeat_maximum_absolute_weight_difference": 0.0
+    }
+  },
+  "frozen_winner_overwritten": false,
+  "frozen_files": {
+    "files_checked": 12,
+    "intact": true,
+    "mismatches": []
+  },
+  "generated_at_utc": "2026-08-11T04:56:29.169746+00:00",
+  "limitations": [
+    "retrospective research",
+    "survivorship-prone free ETF universe",
+    "only two qualified strategy sleeves",
+    "no untouched 52-week forward record"
+  ],
+  "live_trading_enabled": false,
+  "paired_familywise_bootstrap": {
+    "CDAR": {
+      "block_weeks": 13,
+      "mean_sharpe_difference": 0.0017151682359774032,
+      "observations": 1126,
+      "one_sided_alpha": 0.0125,
+      "one_sided_lower_sharpe_difference": -0.03892235965405155,
+      "pass": false,
+      "samples": 20000
+    },
+    "EDAR": {
+      "block_weeks": 13,
+      "mean_sharpe_difference": 0.007870936473676052,
+      "observations": 1126,
+      "one_sided_alpha": 0.0125,
+      "one_sided_lower_sharpe_difference": -0.0490450775064013,
+      "pass": false,
+      "samples": 20000
+    },
+    "MAX_DRAWDOWN": {
+      "block_weeks": 13,
+      "mean_sharpe_difference": -0.010177604419801744,
+      "observations": 1126,
+      "one_sided_alpha": 0.0125,
+      "one_sided_lower_sharpe_difference": -0.06873831831578359,
+      "pass": false,
+      "samples": 20000
+    },
+    "ULCER_INDEX": {
+      "block_weeks": 13,
+      "mean_sharpe_difference": -0.016606681538727085,
+      "observations": 1126,
+      "one_sided_alpha": 0.0125,
+      "one_sided_lower_sharpe_difference": -0.0892406123586017,
+      "pass": false,
+      "samples": 20000
+    }
+  },
+  "program": "skfolio_drawdown_portfolio_experiment_v1",
+  "program_sha256": "f6c370840671d5e8a06a46a77f95b15cb43863782cc60c28ffe8e4e60b9fa4b2",
+  "runner_sha256": "d9244f429cbf840f89ec1b1f2c65c2fe1a9642014c60e6597f75a2e7b38cad3c",
+  "promoted": false,
+  "runtime": {
+    "container_id": "92027e01782da34b066cc1c07ca97e1649a2d8d906eda9ec3ed9c5d35cbcfe1d",
+    "container_image": "localhost/po2-skfolio:0.20.1-native-core-batch37",
+    "container_size_bytes": 1560664897,
+    "network_during_run": false
+  },
+  "promotion_gates": {
+    "all_decisions_causal": true,
+    "deterministic_repeat": true,
+    "primary_100bps_2016_2020_return": true,
+    "primary_100bps_2021_present_return": true,
+    "primary_100bps_full_return": true,
+    "primary_10bps_drawdown_improvement": false,
+    "primary_10bps_sharpe": true,
+    "primary_50bps_sharpe": true,
+    "primary_familywise_paired_sharpe": false,
+    "primary_turnover": true,
+    "survivorship_safe": false,
+    "untouched_forward_52_weeks": false
+  },
+  "source_snapshot_id": "20260808T212827Z-de103c2e063d6c4a"
+}

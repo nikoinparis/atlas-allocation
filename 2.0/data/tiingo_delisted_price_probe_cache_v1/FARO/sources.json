@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 955,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T10:47:40.175455+00:00",
+    "sha256": "afd794b5f6a182e3c7131b14bb81c8879d90bbd51eb69062a973601529afcf6a",
+    "url": "https://api.tiingo.com/tiingo/daily/FARO"
+  },
+  {
+    "bytes": 726839,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T10:47:41.942157+00:00",
+    "sha256": "67b2e90a0d89f124a15a89b289cfcba9f9ee644f347bdedbe200d571cc916713",
+    "url": "https://api.tiingo.com/tiingo/daily/FARO/prices?startDate=2012-04-01&endDate=2026-04-11&resampleFreq=daily"
+  }
+]

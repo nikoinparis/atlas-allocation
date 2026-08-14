@@ -1,0 +1,36 @@
+{
+  "first_run_sha256": {
+    "report.md": "da739f66c2b826372bb887c8df848e7970cda530ef193038676758a6691dabaa",
+    "scoreboard.csv": "7ee44e59e3a11a63ea6d1205530a52e53f0ad3828f95498c11077e46aee183fd",
+    "signal_audit.csv": "55cdb821a9083b6c8b9f07baa75c00dd4d8d049d0b3845eb911b5c5deed9a4c5",
+    "source_default_blend_50bps.csv": "c418989d6086292a174907f16e2e2d7918964bdc50f398a42b587d88f89c5bce",
+    "source_default_daily_50bps.csv": "6f6d37520818a17a6755a1a5775c9d0c736bba1ead2b72f109ab818a3f67e287",
+    "source_default_weekly_50bps.csv": "d95bb8a35135bb1810bf4c074b2ef9453175aa8a3c07a7c72e6a6221b8782cdf",
+    "source_equity_step_blend_50bps.csv": "2dc2096356941a233700c49da8e4f49c0cf86bd9a865ec3c2322758e7b211ba9",
+    "source_equity_step_daily_50bps.csv": "fa937ccc543849214bd77d7c7e628bae86a5a4b0074d7295d760df83122794b6",
+    "source_equity_step_weekly_50bps.csv": "adc2bceb457780903dad0f62f7edcb6a9e6ecd16100aec17b1cddadde6fc045c"
+  },
+  "identical": true,
+  "projection_files": [
+    "report.md",
+    "scoreboard.csv",
+    "signal_audit.csv",
+    "source_default_blend_50bps.csv",
+    "source_default_daily_50bps.csv",
+    "source_default_weekly_50bps.csv",
+    "source_equity_step_blend_50bps.csv",
+    "source_equity_step_daily_50bps.csv",
+    "source_equity_step_weekly_50bps.csv"
+  ],
+  "second_run_sha256": {
+    "report.md": "da739f66c2b826372bb887c8df848e7970cda530ef193038676758a6691dabaa",
+    "scoreboard.csv": "7ee44e59e3a11a63ea6d1205530a52e53f0ad3828f95498c11077e46aee183fd",
+    "signal_audit.csv": "55cdb821a9083b6c8b9f07baa75c00dd4d8d049d0b3845eb911b5c5deed9a4c5",
+    "source_default_blend_50bps.csv": "c418989d6086292a174907f16e2e2d7918964bdc50f398a42b587d88f89c5bce",
+    "source_default_daily_50bps.csv": "6f6d37520818a17a6755a1a5775c9d0c736bba1ead2b72f109ab818a3f67e287",
+    "source_default_weekly_50bps.csv": "d95bb8a35135bb1810bf4c074b2ef9453175aa8a3c07a7c72e6a6221b8782cdf",
+    "source_equity_step_blend_50bps.csv": "2dc2096356941a233700c49da8e4f49c0cf86bd9a865ec3c2322758e7b211ba9",
+    "source_equity_step_daily_50bps.csv": "fa937ccc543849214bd77d7c7e628bae86a5a4b0074d7295d760df83122794b6",
+    "source_equity_step_weekly_50bps.csv": "adc2bceb457780903dad0f62f7edcb6a9e6ecd16100aec17b1cddadde6fc045c"
+  }
+}

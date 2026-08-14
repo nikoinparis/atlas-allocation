@@ -1,0 +1,20 @@
+{
+  "protocol": "sec_growth_incumbent_sleeve_ladder_v1",
+  "frozen_at_utc": "2026-08-14T08:35:41.421459+00:00",
+  "first_eligible_decision": "2026-08-14",
+  "first_eligible_realization": "2026-08-21",
+  "required_observation_weeks": 52,
+  "parallel_growth_allocations": [0.10, 0.20, 0.30],
+  "capital_management": "quarterly target reset on the SEC growth sleeve's effective rebalance dates",
+  "primary_cost_bps": 50,
+  "missing_company_policy": "report base cash treatment and adverse total-loss treatment whenever applicable",
+  "selection_policy": "Track all three allocations in parallel; retrospective outcomes cannot select a winner.",
+  "input_hashes_sha256": {
+    "incumbent_frozen_weights": "a3f5e0256fa30db10c3836fc7adc39609ea1dcd83d7e29a069a7e1ff916e34c4",
+    "growth_strategy_config": "b0640b4ed8f2501e80685ff7b8c8b2ae5b740ee6168b8ea4df93c2cd609364a2",
+    "historical_growth_choices": "e4fe07f40a09ca458e9fd8eb9c1d10bdcd0ff9272cc5f6861864b92da191fb98",
+    "blend_test_config": "34985b1640d8c50acdb67c731b7af92aee84e5b8699910f3d615e312224d15aa"
+  },
+  "research_only": true,
+  "live_trading_enabled": false
+}

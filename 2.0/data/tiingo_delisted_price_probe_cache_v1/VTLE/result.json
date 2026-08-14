@@ -1,0 +1,19 @@
+{
+  "cik10": "0001528129",
+  "first_eligible_decision": "2013-04-01 00:00:00+00:00",
+  "first_price_date": "2013-04-01",
+  "issuer_name_match": true,
+  "issuer_name_score": 1.0,
+  "last_eligible_decision": "2026-04-01 00:00:00+00:00",
+  "last_price_date": "2025-12-12",
+  "price_file": "/project/data/tiingo_delisted_price_probe_cache_v1/VTLE/prices.csv.gz",
+  "price_rows": 3198,
+  "provider_end_date": "2025-12-12",
+  "provider_exchange": "NYSE",
+  "provider_name": "Vital Energy Inc",
+  "provider_start_date": "2011-12-15",
+  "sec_company_name": "VITAL ENERGY, INC.",
+  "status": "validated_candidate",
+  "terminal": true,
+  "tiingo_symbol": "VTLE"
+}

@@ -1,0 +1,297 @@
+{
+  "program_sha256": "c6652e43b9030ef3e8037e4a4999a07f03f53c9d35350e939b05a86ef81627c8",
+  "prices_sha256": "e03695c8bddd5fcda5940065213dc85a7700a0587d190df6cd4b9e3d8298d5b5",
+  "universe_sha256": "b0d0941e8c784de4116d34b8c4eb64f4842283426b62aa1988b098b1ae0ab6ed",
+  "factor_panel_sha256": "99c96abd6a708b97baafce42a8d26f871dbeb1651211d406750028d88ae27a2f",
+  "panel_dates": 8438,
+  "panel_assets": 35,
+  "universe": [
+    "BIL",
+    "DBA",
+    "EEM",
+    "EFA",
+    "EWJ",
+    "GLD",
+    "HYG",
+    "IAU",
+    "IEF",
+    "IWM",
+    "LQD",
+    "MBB",
+    "PDBC",
+    "QQQ",
+    "SHY",
+    "SLV",
+    "SPY",
+    "TIP",
+    "TLT",
+    "USO",
+    "UUP",
+    "VEA",
+    "VNQ",
+    "VTV",
+    "VUG",
+    "VWO",
+    "XLB",
+    "XLE",
+    "XLF",
+    "XLI",
+    "XLK",
+    "XLP",
+    "XLU",
+    "XLV",
+    "XLY"
+  ],
+  "selected_factors": [
+    "best_002",
+    "original_001"
+  ],
+  "joint_valid_cells": 204045,
+  "coverage": [
+    {
+      "ticker": "BIL",
+      "observations": 4829,
+      "first_date": "2007-05-30",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.5722920123251956
+    },
+    {
+      "ticker": "DBA",
+      "observations": 4925,
+      "first_date": "2007-01-05",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.5836691159042428
+    },
+    {
+      "ticker": "EEM",
+      "observations": 5851,
+      "first_date": "2003-04-14",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.6934107608438018
+    },
+    {
+      "ticker": "EFA",
+      "observations": 6246,
+      "first_date": "2001-08-27",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.7402228016117564
+    },
+    {
+      "ticker": "EWJ",
+      "observations": 7597,
+      "first_date": "1996-03-18",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.9003318321877222
+    },
+    {
+      "ticker": "GLD",
+      "observations": 5463,
+      "first_date": "2004-11-18",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.6474283005451529
+    },
+    {
+      "ticker": "HYG",
+      "observations": 4837,
+      "first_date": "2007-04-11",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.5732401042901162
+    },
+    {
+      "ticker": "IAU",
+      "observations": 5415,
+      "first_date": "2005-01-28",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.6417397487556293
+    },
+    {
+      "ticker": "IEF",
+      "observations": 6030,
+      "first_date": "2002-07-30",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.7146243185589002
+    },
+    {
+      "ticker": "IWM",
+      "observations": 6586,
+      "first_date": "2000-05-26",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.7805167101208818
+    },
+    {
+      "ticker": "LQD",
+      "observations": 6028,
+      "first_date": "2002-07-30",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.7143872955676701
+    },
+    {
+      "ticker": "MBB",
+      "observations": 4856,
+      "first_date": "2007-03-16",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.5754918227068025
+    },
+    {
+      "ticker": "PDBC",
+      "observations": 2938,
+      "first_date": "2014-11-07",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.34818677411708937
+    },
+    {
+      "ticker": "QQQ",
+      "observations": 6896,
+      "first_date": "1999-03-10",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.8172552737615548
+    },
+    {
+      "ticker": "SHY",
+      "observations": 6022,
+      "first_date": "2002-07-30",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.7136762265939797
+    },
+    {
+      "ticker": "SLV",
+      "observations": 5101,
+      "first_date": "2006-04-28",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.6045271391324959
+    },
+    {
+      "ticker": "SPY",
+      "observations": 8409,
+      "first_date": "1993-01-29",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.9965631666271628
+    },
+    {
+      "ticker": "TIP",
+      "observations": 5684,
+      "first_date": "2003-12-05",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.6736193410760843
+    },
+    {
+      "ticker": "TLT",
+      "observations": 6032,
+      "first_date": "2002-07-30",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.7148613415501304
+    },
+    {
+      "ticker": "USO",
+      "observations": 5114,
+      "first_date": "2006-04-10",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.6060677885754918
+    },
+    {
+      "ticker": "UUP",
+      "observations": 4891,
+      "first_date": "2007-03-01",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.5796397250533302
+    },
+    {
+      "ticker": "VEA",
+      "observations": 4765,
+      "first_date": "2007-07-26",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.5647072766058308
+    },
+    {
+      "ticker": "VNQ",
+      "observations": 5485,
+      "first_date": "2004-09-29",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.6500355534486846
+    },
+    {
+      "ticker": "VTV",
+      "observations": 5635,
+      "first_date": "2004-01-30",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.6678122777909458
+    },
+    {
+      "ticker": "VUG",
+      "observations": 5658,
+      "first_date": "2004-01-30",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.6705380421900924
+    },
+    {
+      "ticker": "VWO",
+      "observations": 5371,
+      "first_date": "2005-03-10",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.636525242948566
+    },
+    {
+      "ticker": "XLB",
+      "observations": 6906,
+      "first_date": "1998-12-23",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.8184403887177056
+    },
+    {
+      "ticker": "XLE",
+      "observations": 6912,
+      "first_date": "1998-12-22",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.8191514576913961
+    },
+    {
+      "ticker": "XLF",
+      "observations": 6926,
+      "first_date": "1998-12-22",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.8208106186300071
+    },
+    {
+      "ticker": "XLI",
+      "observations": 6924,
+      "first_date": "1998-12-22",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.820573595638777
+    },
+    {
+      "ticker": "XLK",
+      "observations": 6942,
+      "first_date": "1998-12-22",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.8227068025598483
+    },
+    {
+      "ticker": "XLP",
+      "observations": 6884,
+      "first_date": "1998-12-22",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.8158331358141739
+    },
+    {
+      "ticker": "XLU",
+      "observations": 6937,
+      "first_date": "1998-12-22",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.8221142450817729
+    },
+    {
+      "ticker": "XLV",
+      "observations": 6944,
+      "first_date": "1998-12-22",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.8229438255510785
+    },
+    {
+      "ticker": "XLY",
+      "observations": 6942,
+      "first_date": "1998-12-22",
+      "last_date": "2026-08-07",
+      "panel_date_coverage": 0.8227068025598483
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "cik10": "0001129260",
+  "covers_first_eligible_decision": true,
+  "first_eligible_decision": "2014-04-01 00:00:00+00:00",
+  "first_price_date": "2014-04-01",
+  "issuer_name_match": true,
+  "issuer_name_score": 0.975609756097561,
+  "last_eligible_decision": "2023-04-01 00:00:00+00:00",
+  "last_price_date": "2022-02-23",
+  "price_file": "/workspace/2.0/data/tiingo_delisted_price_probe_cache_v1/VCRA/prices.csv.gz",
+  "price_rows": 1990,
+  "provider_end_date": "2022-02-23",
+  "provider_exchange": "NYSE",
+  "provider_name": "Vocera Communication Inc",
+  "provider_start_date": "2012-03-28",
+  "sec_company_name": "VOCERA COMMUNICATIONS, INC.",
+  "status": "identity_and_start_validated",
+  "terminal": true,
+  "tiingo_symbol": "VCRA"
+}

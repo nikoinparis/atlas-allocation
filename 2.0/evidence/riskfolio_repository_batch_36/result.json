@@ -1,0 +1,53 @@
+{
+  "program": "riskfolio_repository_qualification_v1",
+  "program_sha256": "3b350da7aa560e0d9912c939097727baff38264c1ddc31dd29053a3c4cca2903",
+  "catalog_entry": "ast-0185",
+  "repository": {
+    "name": "dcajasn/Riskfolio-Lib",
+    "commit": "632a9e48fbaf2b9f8e83864a492332364b6ed32c",
+    "git_tree": "e75aad11c4483558d1dadd64481aea00af2768c2",
+    "version": "7.3.0",
+    "license": "BSD-3-Clause"
+  },
+  "container": {
+    "image": "localhost/po2-riskfolio:7.3.0-batch36",
+    "id": "c7833699c2f5741dfd10e51bf85d7ffb2f851a8dd562a612591da68233afcf05",
+    "size_bytes": 2467635789,
+    "network_during_tests": false,
+    "project_data_mounted": false,
+    "credentials_mounted": false
+  },
+  "runtime": {
+    "riskfolio": "7.3.0",
+    "cvxpy": "1.9.2",
+    "free_solvers_available": ["CLARABEL", "SCS", "ECOS", "SCIPY", "HIGHS", "ECOS_BB", "OSQP"]
+  },
+  "upstream_tests": {
+    "test_file_sha256": "0087e7b9572c4adb2cca54db1ab2c47adf24d8a91cbe6e410b6c5e1b3f907b7e",
+    "tests_collected": 7,
+    "passed": 0,
+    "failed": 7,
+    "output_sha256": "872f9ee6b40ae47e759b2f979110a3c02c3c38b78f40efd67f5d6c9385603927",
+    "failure_classes": {
+      "stale_assets_stats_d_argument": 4,
+      "expected_hrp_weights_mismatch": 1,
+      "internal_herc_removed_linkage_argument": 1,
+      "stale_nco_covariance_argument": 1
+    }
+  },
+  "qualification_gates": {
+    "pinned_source_installs": true,
+    "import_and_version": true,
+    "permissive_license": true,
+    "free_solvers_available": true,
+    "all_upstream_tests_pass": false,
+    "drawdown_weight_invariants": false,
+    "deterministic_repeat": false,
+    "future_perturbation_causality": false
+  },
+  "qualified": false,
+  "decision": "disqualified_current_commit_before_market_performance_testing",
+  "rationale": "The predeclared rule required every upstream test to pass. The pinned current commit fails all seven, including API drift within its tests and an internal HERC call incompatible with its own method signature. Unrun downstream checks fail closed.",
+  "profitability_tested": false,
+  "live_trading_enabled": false
+}

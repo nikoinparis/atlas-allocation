@@ -1,0 +1,231 @@
+decision_at,cik10,company_name_as_filed,sector,candidate_symbols,base_treatment,base_period_return,adverse_treatment,adverse_period_return,renormalize_into_survivors
+2023-01-01 00:00:00+00:00,0000077159,RANGER OIL CORP,energy,ROCC,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-01-01 00:00:00+00:00,0000351817,"SILVERBOW RESOURCES, INC.",energy,SBOW,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-01-01 00:00:00+00:00,0000732834,"CONTINENTAL RESOURCES, INC",energy,CLR,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-01-01 00:00:00+00:00,0000890447,VERTEX ENERGY INC.,energy,VTNR,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-01-01 00:00:00+00:00,0001037676,"ARCH RESOURCES, INC.",energy,ARCH,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-01-01 00:00:00+00:00,0000028823,"DIEBOLD NIXDORF, INC",technology,DBD,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-01-01 00:00:00+00:00,0000730255,CALAMP CORP.,technology,CAMP,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-01-01 00:00:00+00:00,0000814549,EBIX INC,technology,EBIX,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-01-01 00:00:00+00:00,0000895419,"WOLFSPEED, INC.",technology,WOLF,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-01-01 00:00:00+00:00,0001057083,PC TEL INC,technology,PCTI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-01-01 00:00:00+00:00,0001101680,DZS INC.,technology,DZSI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-01-01 00:00:00+00:00,0001166388,VERINT SYSTEMS INC,technology,VRNT,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-01-01 00:00:00+00:00,0001169445,COMPUTER PROGRAMS & SYSTEMS INC,technology,TBRG,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-01-01 00:00:00+00:00,0001210618,"SPI ENERGY CO., LTD.",technology,SPI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-01-01 00:00:00+00:00,0001333835,CASA SYSTEMS INC,technology,CASA,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-01-01 00:00:00+00:00,0001418100,AVAYA HOLDINGS CORP.,technology,AVYA,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-01-01 00:00:00+00:00,0001431959,META MATERIALS INC.,technology,MMAT,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-01-01 00:00:00+00:00,0001459417,"2U, INC.",technology,TWOU,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-01-01 00:00:00+00:00,0001689657,"BERKELEY LIGHTS, INC.",technology,BLI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-01-01 00:00:00+00:00,0001739942,SOLARWINDS CORP,technology,SWI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-01-01 00:00:00+00:00,0001823882,AIRSPAN NETWORKS HOLDINGS INC.,technology,MIMO,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-04-01 00:00:00+00:00,0000077159,RANGER OIL CORP,energy,ROCC,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-04-01 00:00:00+00:00,0000351817,"SILVERBOW RESOURCES, INC.",energy,SBOW,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-04-01 00:00:00+00:00,0000732834,"CONTINENTAL RESOURCES, INC",energy,CLR,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-04-01 00:00:00+00:00,0000890447,VERTEX ENERGY INC.,energy,VTNR,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-04-01 00:00:00+00:00,0000949039,"DIAMOND OFFSHORE DRILLING, INC.",energy,DO,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-04-01 00:00:00+00:00,0001037676,"ARCH RESOURCES, INC.",energy,ARCH,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-04-01 00:00:00+00:00,0000028823,"DIEBOLD NIXDORF, INC",technology,DBD,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-04-01 00:00:00+00:00,0000730255,CALAMP CORP.,technology,CAMP,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-04-01 00:00:00+00:00,0000814549,EBIX INC,technology,EBIX,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-04-01 00:00:00+00:00,0000895419,"WOLFSPEED, INC.",technology,WOLF,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-04-01 00:00:00+00:00,0001057083,PC TEL INC,technology,PCTI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-04-01 00:00:00+00:00,0001101680,DZS INC.,technology,DZSI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-04-01 00:00:00+00:00,0001166388,VERINT SYSTEMS INC,technology,VRNT,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-04-01 00:00:00+00:00,0001169445,COMPUTER PROGRAMS & SYSTEMS INC,technology,TBRG,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-04-01 00:00:00+00:00,0001210618,"SPI ENERGY CO., LTD.",technology,SPI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-04-01 00:00:00+00:00,0001333835,CASA SYSTEMS INC,technology,CASA,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-04-01 00:00:00+00:00,0001418100,AVAYA HOLDINGS CORP.,technology,AVYA,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-04-01 00:00:00+00:00,0001431959,META MATERIALS INC.,technology,MMAT,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-04-01 00:00:00+00:00,0001459417,"2U, INC.",technology,TWOU,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-04-01 00:00:00+00:00,0001628945,CUE HEALTH INC.,technology,HLTH,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-04-01 00:00:00+00:00,0001689657,"BERKELEY LIGHTS, INC.",technology,BLI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-04-01 00:00:00+00:00,0001739942,SOLARWINDS CORP,technology,SWI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-04-01 00:00:00+00:00,0001794905,"CYXTERA TECHNOLOGIES, INC.",technology,CYXT,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-04-01 00:00:00+00:00,0001823882,AIRSPAN NETWORKS HOLDINGS INC.,technology,MIMO,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-04-01 00:00:00+00:00,0001842718,INTEGRAL AD SCIENCE HOLDING CORP.,technology,IAS,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-04-01 00:00:00+00:00,0001866368,"CLEARWATER ANALYTICS HOLDINGS, INC.",technology,CWAN,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-07-01 00:00:00+00:00,0000351817,"SILVERBOW RESOURCES, INC.",energy,SBOW,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-07-01 00:00:00+00:00,0000732834,"CONTINENTAL RESOURCES, INC",energy,CLR,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-07-01 00:00:00+00:00,0000890447,VERTEX ENERGY INC.,energy,VTNR,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-07-01 00:00:00+00:00,0000949039,"DIAMOND OFFSHORE DRILLING, INC.",energy,DO,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-07-01 00:00:00+00:00,0001037676,"ARCH RESOURCES, INC.",energy,ARCH,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-07-01 00:00:00+00:00,0000028823,"DIEBOLD NIXDORF, INC",technology,DBD,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-07-01 00:00:00+00:00,0000730255,CALAMP CORP.,technology,CAMP,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-07-01 00:00:00+00:00,0000814549,EBIX INC,technology,EBIX,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-07-01 00:00:00+00:00,0000895419,"WOLFSPEED, INC.",technology,WOLF,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-07-01 00:00:00+00:00,0001057083,PC TEL INC,technology,PCTI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-07-01 00:00:00+00:00,0001101680,DZS INC.,technology,DZSI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-07-01 00:00:00+00:00,0001166388,VERINT SYSTEMS INC,technology,VRNT,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-07-01 00:00:00+00:00,0001169445,COMPUTER PROGRAMS & SYSTEMS INC,technology,TBRG,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-07-01 00:00:00+00:00,0001210618,"SPI ENERGY CO., LTD.",technology,SPI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-07-01 00:00:00+00:00,0001333835,CASA SYSTEMS INC,technology,CASA,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-07-01 00:00:00+00:00,0001418100,AVAYA HOLDINGS CORP.,technology,AVYA,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-07-01 00:00:00+00:00,0001431959,META MATERIALS INC.,technology,MMAT,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-07-01 00:00:00+00:00,0001459417,"2U, INC.",technology,TWOU,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-07-01 00:00:00+00:00,0001628945,CUE HEALTH INC.,technology,HLTH,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-07-01 00:00:00+00:00,0001689657,"BERKELEY LIGHTS, INC.",technology,BLI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-07-01 00:00:00+00:00,0001739942,SOLARWINDS CORP,technology,SWI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-07-01 00:00:00+00:00,0001794905,"CYXTERA TECHNOLOGIES, INC.",technology,CYXT,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-07-01 00:00:00+00:00,0001799332,GAN LTD,technology,GAN,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-07-01 00:00:00+00:00,0001823882,AIRSPAN NETWORKS HOLDINGS INC.,technology,MIMO,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-07-01 00:00:00+00:00,0001842718,INTEGRAL AD SCIENCE HOLDING CORP.,technology,IAS,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-07-01 00:00:00+00:00,0001866368,"CLEARWATER ANALYTICS HOLDINGS, INC.",technology,CWAN,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-10-01 00:00:00+00:00,0000351817,"SILVERBOW RESOURCES, INC.",energy,SBOW,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-10-01 00:00:00+00:00,0000732834,"CONTINENTAL RESOURCES, INC",energy,CLR,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-10-01 00:00:00+00:00,0000890447,VERTEX ENERGY INC.,energy,VTNR,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-10-01 00:00:00+00:00,0000949039,"DIAMOND OFFSHORE DRILLING, INC.",energy,DO,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-10-01 00:00:00+00:00,0001037676,"ARCH RESOURCES, INC.",energy,ARCH,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-10-01 00:00:00+00:00,0000730255,CALAMP CORP.,technology,CAMP,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-10-01 00:00:00+00:00,0000814549,EBIX INC,technology,EBIX,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-10-01 00:00:00+00:00,0000895419,"WOLFSPEED, INC.",technology,WOLF,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-10-01 00:00:00+00:00,0001057083,PC TEL INC,technology,PCTI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-10-01 00:00:00+00:00,0001101680,DZS INC.,technology,DZSI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-10-01 00:00:00+00:00,0001166388,VERINT SYSTEMS INC,technology,VRNT,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-10-01 00:00:00+00:00,0001169445,COMPUTER PROGRAMS & SYSTEMS INC,technology,TBRG,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-10-01 00:00:00+00:00,0001210618,"SPI ENERGY CO., LTD.",technology,SPI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-10-01 00:00:00+00:00,0001333835,CASA SYSTEMS INC,technology,CASA,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-10-01 00:00:00+00:00,0001418100,AVAYA HOLDINGS CORP.,technology,AVYA,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-10-01 00:00:00+00:00,0001431959,META MATERIALS INC.,technology,MMAT,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-10-01 00:00:00+00:00,0001459417,"2U, INC.",technology,TWOU,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-10-01 00:00:00+00:00,0001628945,CUE HEALTH INC.,technology,HLTH,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-10-01 00:00:00+00:00,0001689657,"BERKELEY LIGHTS, INC.",technology,BLI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-10-01 00:00:00+00:00,0001739942,SOLARWINDS CORP,technology,SWI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-10-01 00:00:00+00:00,0001794905,"CYXTERA TECHNOLOGIES, INC.",technology,CYXT,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-10-01 00:00:00+00:00,0001799332,GAN LTD,technology,GAN,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-10-01 00:00:00+00:00,0001823882,AIRSPAN NETWORKS HOLDINGS INC.,technology,MIMO,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-10-01 00:00:00+00:00,0001842718,INTEGRAL AD SCIENCE HOLDING CORP.,technology,IAS,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2023-10-01 00:00:00+00:00,0001866368,"CLEARWATER ANALYTICS HOLDINGS, INC.",technology,CWAN,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-01-01 00:00:00+00:00,0000351817,"SILVERBOW RESOURCES, INC.",energy,SBOW,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-01-01 00:00:00+00:00,0000732834,"CONTINENTAL RESOURCES, INC",energy,CLR,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-01-01 00:00:00+00:00,0000890447,VERTEX ENERGY INC.,energy,VTNR,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-01-01 00:00:00+00:00,0000949039,"DIAMOND OFFSHORE DRILLING, INC.",energy,DO,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-01-01 00:00:00+00:00,0001037676,"ARCH RESOURCES, INC.",energy,ARCH,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-01-01 00:00:00+00:00,0000730255,CALAMP CORP.,technology,CAMP,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-01-01 00:00:00+00:00,0000814549,EBIX INC,technology,EBIX,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-01-01 00:00:00+00:00,0000895419,"WOLFSPEED, INC.",technology,WOLF,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-01-01 00:00:00+00:00,0001101680,DZS INC.,technology,DZSI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-01-01 00:00:00+00:00,0001166388,VERINT SYSTEMS INC,technology,VRNT,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-01-01 00:00:00+00:00,0001169445,COMPUTER PROGRAMS & SYSTEMS INC,technology,TBRG,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-01-01 00:00:00+00:00,0001210618,"SPI ENERGY CO., LTD.",technology,SPI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-01-01 00:00:00+00:00,0001333835,CASA SYSTEMS INC,technology,CASA,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-01-01 00:00:00+00:00,0001418100,AVAYA HOLDINGS CORP.,technology,AVYA,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-01-01 00:00:00+00:00,0001431959,META MATERIALS INC.,technology,MMAT,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-01-01 00:00:00+00:00,0001459417,"2U, INC.",technology,TWOU,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-01-01 00:00:00+00:00,0001628945,CUE HEALTH INC.,technology,HLTH,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-01-01 00:00:00+00:00,0001739942,SOLARWINDS CORP,technology,SWI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-01-01 00:00:00+00:00,0001794905,"CYXTERA TECHNOLOGIES, INC.",technology,CYXT,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-01-01 00:00:00+00:00,0001799332,GAN LTD,technology,GAN,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-01-01 00:00:00+00:00,0001823882,AIRSPAN NETWORKS HOLDINGS INC.,technology,MIMO,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-01-01 00:00:00+00:00,0001842718,INTEGRAL AD SCIENCE HOLDING CORP.,technology,IAS,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-01-01 00:00:00+00:00,0001866368,"CLEARWATER ANALYTICS HOLDINGS, INC.",technology,CWAN,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-04-01 00:00:00+00:00,0000351817,"SILVERBOW RESOURCES, INC.",energy,SBOW,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-04-01 00:00:00+00:00,0000890447,VERTEX ENERGY INC.,energy,VTNR,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-04-01 00:00:00+00:00,0000949039,"DIAMOND OFFSHORE DRILLING, INC.",energy,DO,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-04-01 00:00:00+00:00,0001037676,"ARCH RESOURCES, INC.",energy,ARCH,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-04-01 00:00:00+00:00,0001532286,"NINE ENERGY SERVICE, INC.",energy,NINE,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-04-01 00:00:00+00:00,0000730255,CALAMP CORP.,technology,CAMP,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-04-01 00:00:00+00:00,0000814549,EBIX INC,technology,EBIX,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-04-01 00:00:00+00:00,0000895419,"WOLFSPEED, INC.",technology,WOLF,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-04-01 00:00:00+00:00,0001101680,DZS INC.,technology,DZSI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-04-01 00:00:00+00:00,0001166388,VERINT SYSTEMS INC,technology,VRNT,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-04-01 00:00:00+00:00,0001169445,"TRUBRIDGE, INC.",technology,TBRG,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-04-01 00:00:00+00:00,0001333835,CASA SYSTEMS INC,technology,CASA,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-04-01 00:00:00+00:00,0001418100,AVAYA HOLDINGS CORP.,technology,AVYA,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-04-01 00:00:00+00:00,0001459417,"2U, INC.",technology,TWOU,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-04-01 00:00:00+00:00,0001628945,CUE HEALTH INC.,technology,HLTH,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-04-01 00:00:00+00:00,0001739942,SOLARWINDS CORP,technology,SWI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-04-01 00:00:00+00:00,0001794905,"CYXTERA TECHNOLOGIES, INC.",technology,CYXT,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-04-01 00:00:00+00:00,0001799332,GAN LTD,technology,GAN,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-04-01 00:00:00+00:00,0001823882,AIRSPAN NETWORKS HOLDINGS INC.,technology,MIMO,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-04-01 00:00:00+00:00,0001842718,INTEGRAL AD SCIENCE HOLDING CORP.,technology,IAS,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-04-01 00:00:00+00:00,0001866368,"CLEARWATER ANALYTICS HOLDINGS, INC.",technology,CWAN,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-07-01 00:00:00+00:00,0000351817,"SILVERBOW RESOURCES, INC.",energy,SBOW,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-07-01 00:00:00+00:00,0000890447,VERTEX ENERGY INC.,energy,VTNR,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-07-01 00:00:00+00:00,0000949039,"DIAMOND OFFSHORE DRILLING, INC.",energy,DO,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-07-01 00:00:00+00:00,0001037676,"ARCH RESOURCES, INC.",energy,ARCH,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-07-01 00:00:00+00:00,0001532286,"NINE ENERGY SERVICE, INC.",energy,NINE,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-07-01 00:00:00+00:00,0000730255,CALAMP CORP.,technology,CAMP,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-07-01 00:00:00+00:00,0000814549,EBIX INC,technology,EBIX,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-07-01 00:00:00+00:00,0000895419,"WOLFSPEED, INC.",technology,WOLF,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-07-01 00:00:00+00:00,0001101680,DZS INC.,technology,DZSI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-07-01 00:00:00+00:00,0001166388,VERINT SYSTEMS INC,technology,VRNT,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-07-01 00:00:00+00:00,0001169445,"TRUBRIDGE, INC.",technology,TBRG,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-07-01 00:00:00+00:00,0001333835,CASA SYSTEMS INC,technology,CASA,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-07-01 00:00:00+00:00,0001418100,AVAYA HOLDINGS CORP.,technology,AVYA,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-07-01 00:00:00+00:00,0001459417,"2U, INC.",technology,TWOU,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-07-01 00:00:00+00:00,0001628945,CUE HEALTH INC.,technology,HLTH,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-07-01 00:00:00+00:00,0001739942,SOLARWINDS CORP,technology,SWI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-07-01 00:00:00+00:00,0001794905,"CYXTERA TECHNOLOGIES, INC.",technology,CYXT,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-07-01 00:00:00+00:00,0001799332,GAN LTD,technology,GAN,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-07-01 00:00:00+00:00,0001823882,AIRSPAN NETWORKS HOLDINGS INC.,technology,MIMO,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-07-01 00:00:00+00:00,0001842718,INTEGRAL AD SCIENCE HOLDING CORP.,technology,IAS,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-07-01 00:00:00+00:00,0001866368,"CLEARWATER ANALYTICS HOLDINGS, INC.",technology,CWAN,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-10-01 00:00:00+00:00,0000890447,VERTEX ENERGY INC.,energy,VTNR,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-10-01 00:00:00+00:00,0001037676,"ARCH RESOURCES, INC.",energy,ARCH,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-10-01 00:00:00+00:00,0001532286,"NINE ENERGY SERVICE, INC.",energy,NINE,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-10-01 00:00:00+00:00,0000814549,EBIX INC,technology,EBIX,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-10-01 00:00:00+00:00,0000895419,"WOLFSPEED, INC.",technology,WOLF,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-10-01 00:00:00+00:00,0001101680,DZS INC.,technology,DZSI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-10-01 00:00:00+00:00,0001166388,VERINT SYSTEMS INC,technology,VRNT,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-10-01 00:00:00+00:00,0001169445,"TRUBRIDGE, INC.",technology,TBRG,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-10-01 00:00:00+00:00,0001333835,CASA SYSTEMS INC,technology,CASA,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-10-01 00:00:00+00:00,0001418100,AVAYA HOLDINGS CORP.,technology,AVYA,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-10-01 00:00:00+00:00,0001459417,"2U, INC.",technology,TWOU,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-10-01 00:00:00+00:00,0001628945,CUE HEALTH INC.,technology,HLTH,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-10-01 00:00:00+00:00,0001739942,SOLARWINDS CORP,technology,SWI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-10-01 00:00:00+00:00,0001799332,GAN LTD,technology,GAN,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-10-01 00:00:00+00:00,0001823882,AIRSPAN NETWORKS HOLDINGS INC.,technology,MIMO,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-10-01 00:00:00+00:00,0001842718,INTEGRAL AD SCIENCE HOLDING CORP.,technology,IAS,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2024-10-01 00:00:00+00:00,0001866368,"CLEARWATER ANALYTICS HOLDINGS, INC.",technology,CWAN,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-01-01 00:00:00+00:00,0000890447,VERTEX ENERGY INC.,energy,VTNR,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-01-01 00:00:00+00:00,0001037676,"ARCH RESOURCES, INC.",energy,ARCH,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-01-01 00:00:00+00:00,0001532286,"NINE ENERGY SERVICE, INC.",energy,NINE,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-01-01 00:00:00+00:00,0000814549,EBIX INC,technology,EBIX,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-01-01 00:00:00+00:00,0000895419,"WOLFSPEED, INC.",technology,WOLF,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-01-01 00:00:00+00:00,0001101680,DZS INC.,technology,DZSI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-01-01 00:00:00+00:00,0001166388,VERINT SYSTEMS INC,technology,VRNT,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-01-01 00:00:00+00:00,0001169445,"TRUBRIDGE, INC.",technology,TBRG,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-01-01 00:00:00+00:00,0001333835,CASA SYSTEMS INC,technology,CASA,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-01-01 00:00:00+00:00,0001459417,"2U, INC.",technology,TWOU,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-01-01 00:00:00+00:00,0001628945,CUE HEALTH INC.,technology,HLTH,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-01-01 00:00:00+00:00,0001739942,SOLARWINDS CORP,technology,SWI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-01-01 00:00:00+00:00,0001799332,GAN LTD,technology,GAN,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-01-01 00:00:00+00:00,0001823882,AIRSPAN NETWORKS HOLDINGS INC.,technology,MIMO,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-01-01 00:00:00+00:00,0001842718,INTEGRAL AD SCIENCE HOLDING CORP.,technology,IAS,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-01-01 00:00:00+00:00,0001866368,"CLEARWATER ANALYTICS HOLDINGS, INC.",technology,CWAN,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-04-01 00:00:00+00:00,0000890447,VERTEX ENERGY INC.,energy,VTNR,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-04-01 00:00:00+00:00,0001532286,"NINE ENERGY SERVICE, INC.",energy,NINE,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-04-01 00:00:00+00:00,0000895419,"WOLFSPEED, INC.",technology,WOLF,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-04-01 00:00:00+00:00,0001101680,DZS INC.,technology,DZSI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-04-01 00:00:00+00:00,0001166388,VERINT SYSTEMS INC,technology,VRNT,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-04-01 00:00:00+00:00,0001169445,"TRUBRIDGE, INC.",technology,TBRG,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-04-01 00:00:00+00:00,0001459417,"2U, INC.",technology,TWOU,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-04-01 00:00:00+00:00,0001739942,SOLARWINDS CORP,technology,SWI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-04-01 00:00:00+00:00,0001799332,GAN LTD,technology,GAN,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-04-01 00:00:00+00:00,0001842718,INTEGRAL AD SCIENCE HOLDING CORP.,technology,IAS,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-04-01 00:00:00+00:00,0001866368,"CLEARWATER ANALYTICS HOLDINGS, INC.",technology,CWAN,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-07-01 00:00:00+00:00,0000890447,VERTEX ENERGY INC.,energy,VTNR,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-07-01 00:00:00+00:00,0001532286,"NINE ENERGY SERVICE, INC.",energy,NINE,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-07-01 00:00:00+00:00,0000895419,"WOLFSPEED, INC.",technology,WOLF,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-07-01 00:00:00+00:00,0001101680,DZS INC.,technology,DZSI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-07-01 00:00:00+00:00,0001166388,VERINT SYSTEMS INC,technology,VRNT,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-07-01 00:00:00+00:00,0001169445,"TRUBRIDGE, INC.",technology,TBRG,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-07-01 00:00:00+00:00,0001459417,"2U, INC.",technology,TWOU,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-07-01 00:00:00+00:00,0001842718,INTEGRAL AD SCIENCE HOLDING CORP.,technology,IAS,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-07-01 00:00:00+00:00,0001866368,"CLEARWATER ANALYTICS HOLDINGS, INC.",technology,CWAN,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-10-01 00:00:00+00:00,0000890447,VERTEX ENERGY INC.,energy,VTNR,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-10-01 00:00:00+00:00,0001532286,"NINE ENERGY SERVICE, INC.",energy,NINE,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-10-01 00:00:00+00:00,0001101680,DZS INC.,technology,DZSI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-10-01 00:00:00+00:00,0001166388,VERINT SYSTEMS INC,technology,VRNT,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-10-01 00:00:00+00:00,0001169445,"TRUBRIDGE, INC.",technology,TBRG,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-10-01 00:00:00+00:00,0001459417,"2U, INC.",technology,TWOU,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-10-01 00:00:00+00:00,0001842718,INTEGRAL AD SCIENCE HOLDING CORP.,technology,IAS,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2025-10-01 00:00:00+00:00,0001866368,"CLEARWATER ANALYTICS HOLDINGS, INC.",technology,CWAN,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2026-01-01 00:00:00+00:00,0001532286,"NINE ENERGY SERVICE, INC.",energy,NINE,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2026-01-01 00:00:00+00:00,0001101680,DZS INC.,technology,DZSI,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2026-01-01 00:00:00+00:00,0001169445,"TRUBRIDGE, INC.",technology,TBRG,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2026-01-01 00:00:00+00:00,0001866368,"CLEARWATER ANALYTICS HOLDINGS, INC.",technology,CWAN,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2026-04-01 00:00:00+00:00,0001169445,"TRUBRIDGE, INC.",technology,TBRG,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False
+2026-04-01 00:00:00+00:00,0001866368,"CLEARWATER ANALYTICS HOLDINGS, INC.",technology,CWAN,hold_intended_weight_in_cash_for_holding_period,0.0,apply_minus_100_percent_to_intended_weight_for_holding_period,-1.0,False

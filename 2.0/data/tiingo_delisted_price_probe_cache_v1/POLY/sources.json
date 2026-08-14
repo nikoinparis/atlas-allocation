@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 196,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T02:18:10.708227+00:00",
+    "sha256": "ed17afe436203bb4029be4acea9666fa85613dadccff6ed5b4893f27af2ab811",
+    "url": "https://api.tiingo.com/tiingo/daily/POLY"
+  },
+  {
+    "bytes": 210,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-14T02:18:12.016794+00:00",
+    "sha256": "8a31ff0525afce99fbb5da00d2b5ab477d8011243c7a4add8f3f7a3ec57693d9",
+    "url": "https://api.tiingo.com/tiingo/daily/POLY/prices?startDate=2012-04-01&endDate=2023-10-11&resampleFreq=daily"
+  }
+]

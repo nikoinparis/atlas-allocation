@@ -1,0 +1,6302 @@
+{
+  "data": {
+    "repo_001": {
+      "nameWithOwner": "alexanderwanyoike/the0",
+      "url": "https://github.com/alexanderwanyoike/the0",
+      "description": "Open Source Algorithmic Trading Engine",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2025-08-04T18:04:55Z",
+      "updatedAt": "2026-08-08T15:12:39Z",
+      "pushedAt": "2026-07-20T11:18:45Z",
+      "stargazerCount": 360,
+      "forkCount": 46,
+      "diskUsage": 5981,
+      "defaultBranchRef": {
+        "name": "dev",
+        "target": {
+          "oid": "1013c764173fd2d285356d99f07e5bc793588a69",
+          "committedDate": "2026-07-20T11:15:30Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "Apache-2.0",
+        "name": "Apache License 2.0"
+      },
+      "primaryLanguage": {
+        "name": "TypeScript"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "TypeScript"
+          },
+          {
+            "name": "Go"
+          },
+          {
+            "name": "HTML"
+          },
+          {
+            "name": "C++"
+          },
+          {
+            "name": "Rust"
+          },
+          {
+            "name": "Haskell"
+          },
+          {
+            "name": "Python"
+          },
+          {
+            "name": "C#"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": [
+          {
+            "tagName": "the0-0.1.0",
+            "publishedAt": "2026-02-08T15:24:51Z"
+          }
+        ]
+      },
+      "issues": {
+        "totalCount": 11
+      },
+      "pullRequests": {
+        "totalCount": 0
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".coderabbit.yaml",
+            "type": "blob"
+          },
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": "CODE_OF_CONDUCT.md",
+            "type": "blob"
+          },
+          {
+            "name": "CONTRIBUTING.md",
+            "type": "blob"
+          },
+          {
+            "name": "LICENSE",
+            "type": "blob"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "ROADMAP.md",
+            "type": "blob"
+          },
+          {
+            "name": "api",
+            "type": "tree"
+          },
+          {
+            "name": "artifacthub-repo.yml",
+            "type": "blob"
+          },
+          {
+            "name": "assets",
+            "type": "tree"
+          },
+          {
+            "name": "cli",
+            "type": "tree"
+          },
+          {
+            "name": "docs",
+            "type": "tree"
+          },
+          {
+            "name": "example-bots",
+            "type": "tree"
+          },
+          {
+            "name": "frontend",
+            "type": "tree"
+          },
+          {
+            "name": "k8s",
+            "type": "tree"
+          },
+          {
+            "name": "runtime",
+            "type": "tree"
+          },
+          {
+            "name": "scripts",
+            "type": "tree"
+          },
+          {
+            "name": "sdk",
+            "type": "tree"
+          },
+          {
+            "name": "services",
+            "type": "tree"
+          }
+        ]
+      },
+      "workflows": {
+        "entries": [
+          {
+            "name": "api.yml",
+            "type": "blob"
+          },
+          {
+            "name": "cli.yml",
+            "type": "blob"
+          },
+          {
+            "name": "docs.yml",
+            "type": "blob"
+          },
+          {
+            "name": "frontend.yml",
+            "type": "blob"
+          },
+          {
+            "name": "release-chart.yml",
+            "type": "blob"
+          },
+          {
+            "name": "release-cli.yml",
+            "type": "blob"
+          },
+          {
+            "name": "runtime.yml",
+            "type": "blob"
+          },
+          {
+            "name": "sdk-cpp.yml",
+            "type": "blob"
+          },
+          {
+            "name": "sdk-dotnet.yml",
+            "type": "blob"
+          },
+          {
+            "name": "sdk-haskell.yml",
+            "type": "blob"
+          },
+          {
+            "name": "sdk-nodejs.yml",
+            "type": "blob"
+          },
+          {
+            "name": "sdk-python.yml",
+            "type": "blob"
+          },
+          {
+            "name": "sdk-rust.yml",
+            "type": "blob"
+          },
+          {
+            "name": "sdk-scala.yml",
+            "type": "blob"
+          },
+          {
+            "name": "security.yml",
+            "type": "blob"
+          }
+        ]
+      }
+    },
+    "repo_002": {
+      "nameWithOwner": "AsyncAlgoTrading/aat",
+      "url": "https://github.com/AsyncAlgoTrading/aat",
+      "description": "Asynchronous, event-driven algorithmic trading in Python and C++",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2019-05-20T20:54:54Z",
+      "updatedAt": "2026-08-07T04:37:36Z",
+      "pushedAt": "2026-07-27T02:34:06Z",
+      "stargazerCount": 829,
+      "forkCount": 149,
+      "diskUsage": 4531,
+      "defaultBranchRef": {
+        "name": "main",
+        "target": {
+          "oid": "c4a07d4102a811c779957033aa26a598c1795cdb",
+          "committedDate": "2026-07-27T02:34:03Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "Apache-2.0",
+        "name": "Apache License 2.0"
+      },
+      "primaryLanguage": {
+        "name": "C++"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "C++"
+          },
+          {
+            "name": "Python"
+          },
+          {
+            "name": "CMake"
+          },
+          {
+            "name": "Makefile"
+          },
+          {
+            "name": "C"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": []
+      },
+      "issues": {
+        "totalCount": 0
+      },
+      "pullRequests": {
+        "totalCount": 1
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".clang-format",
+            "type": "blob"
+          },
+          {
+            "name": ".gitattributes",
+            "type": "blob"
+          },
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": "CONTRIBUTING.md",
+            "type": "blob"
+          },
+          {
+            "name": "GETTING_STARTED.md",
+            "type": "blob"
+          },
+          {
+            "name": "LICENSE",
+            "type": "blob"
+          },
+          {
+            "name": "MANIFEST.in",
+            "type": "blob"
+          },
+          {
+            "name": "Makefile",
+            "type": "blob"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "aat",
+            "type": "tree"
+          },
+          {
+            "name": "config",
+            "type": "tree"
+          },
+          {
+            "name": "cpplint.cfg",
+            "type": "blob"
+          },
+          {
+            "name": "docs",
+            "type": "tree"
+          },
+          {
+            "name": "pyproject.toml",
+            "type": "blob"
+          },
+          {
+            "name": "setup.cfg",
+            "type": "blob"
+          },
+          {
+            "name": "setup.py",
+            "type": "blob"
+          }
+        ]
+      },
+      "workflows": {
+        "entries": [
+          {
+            "name": "build.yml",
+            "type": "blob"
+          }
+        ]
+      }
+    },
+    "repo_003": {
+      "nameWithOwner": "barter-rs/barter-rs",
+      "url": "https://github.com/barter-rs/barter-rs",
+      "description": "Open-source Rust framework for building event-driven live-trading & backtesting systems",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2022-10-09T16:39:34Z",
+      "updatedAt": "2026-08-08T13:29:37Z",
+      "pushedAt": "2026-06-06T10:36:50Z",
+      "stargazerCount": 2219,
+      "forkCount": 359,
+      "diskUsage": 2543,
+      "defaultBranchRef": {
+        "name": "main",
+        "target": {
+          "oid": "33e56188e2095781331f85aa3d7f88e251eec65a",
+          "committedDate": "2026-05-09T15:00:29Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "MIT",
+        "name": "MIT License"
+      },
+      "primaryLanguage": {
+        "name": "Rust"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "Rust"
+          },
+          {
+            "name": "RenderScript"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": [
+          {
+            "tagName": "barter-data-v0.11.0",
+            "publishedAt": "2026-03-05T10:02:40Z"
+          }
+        ]
+      },
+      "issues": {
+        "totalCount": 52
+      },
+      "pullRequests": {
+        "totalCount": 34
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": "Cargo.toml",
+            "type": "blob"
+          },
+          {
+            "name": "LICENSE",
+            "type": "blob"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "barter-data",
+            "type": "tree"
+          },
+          {
+            "name": "barter-execution",
+            "type": "tree"
+          },
+          {
+            "name": "barter-instrument",
+            "type": "tree"
+          },
+          {
+            "name": "barter-integration",
+            "type": "tree"
+          },
+          {
+            "name": "barter-macro",
+            "type": "tree"
+          },
+          {
+            "name": "barter",
+            "type": "tree"
+          },
+          {
+            "name": "release-plz.toml",
+            "type": "blob"
+          },
+          {
+            "name": "rust-toolchain.toml",
+            "type": "blob"
+          },
+          {
+            "name": "rustfmt.toml",
+            "type": "blob"
+          }
+        ]
+      },
+      "workflows": {
+        "entries": [
+          {
+            "name": "ci.yml",
+            "type": "blob"
+          },
+          {
+            "name": "release-plz.yml",
+            "type": "blob"
+          }
+        ]
+      }
+    },
+    "repo_004": {
+      "nameWithOwner": "pmorissette/bt",
+      "url": "https://github.com/pmorissette/bt",
+      "description": "bt - flexible backtesting for Python",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2014-06-19T16:06:28Z",
+      "updatedAt": "2026-08-07T03:39:09Z",
+      "pushedAt": "2026-08-07T03:38:56Z",
+      "stargazerCount": 2959,
+      "forkCount": 491,
+      "diskUsage": 18298,
+      "defaultBranchRef": {
+        "name": "master",
+        "target": {
+          "oid": "bd5650ad213760907ec38311c5c9468819084196",
+          "committedDate": "2026-08-07T03:38:56Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "MIT",
+        "name": "MIT License"
+      },
+      "primaryLanguage": {
+        "name": "Python"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "Python"
+          },
+          {
+            "name": "Makefile"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": [
+          {
+            "tagName": "v0.2.8",
+            "publishedAt": "2021-02-01T04:51:55Z"
+          }
+        ]
+      },
+      "issues": {
+        "totalCount": 80
+      },
+      "pullRequests": {
+        "totalCount": 4
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": "LICENSE",
+            "type": "blob"
+          },
+          {
+            "name": "Makefile",
+            "type": "blob"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "benchmarks",
+            "type": "tree"
+          },
+          {
+            "name": "bt",
+            "type": "tree"
+          },
+          {
+            "name": "docs",
+            "type": "tree"
+          },
+          {
+            "name": "examples",
+            "type": "tree"
+          },
+          {
+            "name": "pyproject.toml",
+            "type": "blob"
+          },
+          {
+            "name": "tests",
+            "type": "tree"
+          }
+        ]
+      },
+      "workflows": {
+        "entries": [
+          {
+            "name": "build.yaml",
+            "type": "blob"
+          },
+          {
+            "name": "deploy.yaml",
+            "type": "blob"
+          },
+          {
+            "name": "regression.yaml",
+            "type": "blob"
+          }
+        ]
+      }
+    },
+    "repo_005": {
+      "nameWithOwner": "byrnexu/betterquant",
+      "url": "https://github.com/byrnexu/betterquant",
+      "description": "📈 Better Quant",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2022-09-14T12:13:33Z",
+      "updatedAt": "2026-07-03T19:31:31Z",
+      "pushedAt": "2024-06-06T15:34:44Z",
+      "stargazerCount": 229,
+      "forkCount": 68,
+      "diskUsage": 2038,
+      "defaultBranchRef": {
+        "name": "master",
+        "target": {
+          "oid": "8a8c03f3d677c0571daffbf05926d54f2a20d56f",
+          "committedDate": "2024-06-06T15:34:44Z"
+        }
+      },
+      "licenseInfo": null,
+      "primaryLanguage": {
+        "name": "C++"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "C++"
+          },
+          {
+            "name": "CMake"
+          },
+          {
+            "name": "Shell"
+          },
+          {
+            "name": "Python"
+          },
+          {
+            "name": "GDB"
+          },
+          {
+            "name": "Dockerfile"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": [
+          {
+            "tagName": "v1.0.0-alpha.1",
+            "publishedAt": "2022-11-14T12:01:08Z"
+          }
+        ]
+      },
+      "issues": {
+        "totalCount": 1
+      },
+      "pullRequests": {
+        "totalCount": 0
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".clang-format",
+            "type": "blob"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "README_cn.md",
+            "type": "blob"
+          },
+          {
+            "name": "assets",
+            "type": "tree"
+          },
+          {
+            "name": "bqassetsmgr",
+            "type": "tree"
+          },
+          {
+            "name": "bqdb",
+            "type": "tree"
+          },
+          {
+            "name": "bqipc",
+            "type": "tree"
+          },
+          {
+            "name": "bqmd",
+            "type": "tree"
+          },
+          {
+            "name": "bqordmgr",
+            "type": "tree"
+          },
+          {
+            "name": "bqposmgr",
+            "type": "tree"
+          },
+          {
+            "name": "bqpub",
+            "type": "tree"
+          },
+          {
+            "name": "bqriskmgr",
+            "type": "tree"
+          },
+          {
+            "name": "bqstg",
+            "type": "tree"
+          },
+          {
+            "name": "bqtd",
+            "type": "tree"
+          },
+          {
+            "name": "bqweb-srv",
+            "type": "tree"
+          },
+          {
+            "name": "bqweb",
+            "type": "tree"
+          },
+          {
+            "name": "build-sln-all.sh",
+            "type": "blob"
+          },
+          {
+            "name": "build-sln.sh",
+            "type": "blob"
+          },
+          {
+            "name": "compile-vim-with-gdb.sh",
+            "type": "blob"
+          },
+          {
+            "name": "cppclean.sh",
+            "type": "blob"
+          },
+          {
+            "name": "deploy.sh",
+            "type": "blob"
+          },
+          {
+            "name": "deploy_stgeng.sh",
+            "type": "blob"
+          },
+          {
+            "name": "doc",
+            "type": "tree"
+          },
+          {
+            "name": "docker",
+            "type": "tree"
+          },
+          {
+            "name": "init-sys.sh",
+            "type": "blob"
+          },
+          {
+            "name": "pub",
+            "type": "tree"
+          },
+          {
+            "name": "rebuild-sln-all.sh",
+            "type": "blob"
+          },
+          {
+            "name": "rebuild-sln.sh",
+            "type": "blob"
+          },
+          {
+            "name": "rebuild_stg.sh",
+            "type": "blob"
+          },
+          {
+            "name": "rsync-inc-of-stgeng.sh",
+            "type": "blob"
+          },
+          {
+            "name": "setting.sh",
+            "type": "blob"
+          },
+          {
+            "name": "stop.sh",
+            "type": "blob"
+          },
+          {
+            "name": "topbybq.sh",
+            "type": "blob"
+          }
+        ]
+      },
+      "workflows": null
+    },
+    "repo_006": {
+      "nameWithOwner": "featherenvy/botvana",
+      "url": "https://github.com/featherenvy/botvana",
+      "description": "Botvana is high-performance and event-driven trading system built using Rust (in early development).",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2021-12-17T20:49:32Z",
+      "updatedAt": "2026-07-07T02:07:50Z",
+      "pushedAt": "2022-05-12T08:13:44Z",
+      "stargazerCount": 250,
+      "forkCount": 47,
+      "diskUsage": 4303,
+      "defaultBranchRef": {
+        "name": "main",
+        "target": {
+          "oid": "4069735aff2cc28d3091030dcb39887bc801c74b",
+          "committedDate": "2022-05-12T08:13:34Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "AGPL-3.0",
+        "name": "GNU Affero General Public License v3.0"
+      },
+      "primaryLanguage": {
+        "name": "Rust"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "Rust"
+          },
+          {
+            "name": "JavaScript"
+          },
+          {
+            "name": "HCL"
+          },
+          {
+            "name": "HTML"
+          },
+          {
+            "name": "Shell"
+          },
+          {
+            "name": "Dockerfile"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": []
+      },
+      "issues": {
+        "totalCount": 9
+      },
+      "pullRequests": {
+        "totalCount": 0
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".cargo",
+            "type": "tree"
+          },
+          {
+            "name": ".dockerignore",
+            "type": "blob"
+          },
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": "Cargo.lock",
+            "type": "blob"
+          },
+          {
+            "name": "Cargo.toml",
+            "type": "blob"
+          },
+          {
+            "name": "LICENSE",
+            "type": "blob"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "bootstrap",
+            "type": "tree"
+          },
+          {
+            "name": "botnode",
+            "type": "tree"
+          },
+          {
+            "name": "botvana-server",
+            "type": "tree"
+          },
+          {
+            "name": "botvana",
+            "type": "tree"
+          },
+          {
+            "name": "cfg",
+            "type": "tree"
+          },
+          {
+            "name": "docker-compose.yml",
+            "type": "blob"
+          },
+          {
+            "name": "docs",
+            "type": "tree"
+          },
+          {
+            "name": "research",
+            "type": "tree"
+          },
+          {
+            "name": "server-test",
+            "type": "tree"
+          },
+          {
+            "name": "station-egui",
+            "type": "tree"
+          },
+          {
+            "name": "terraform",
+            "type": "tree"
+          }
+        ]
+      },
+      "workflows": {
+        "entries": [
+          {
+            "name": "rust.yml",
+            "type": "blob"
+          }
+        ]
+      }
+    },
+    "repo_007": {
+      "nameWithOwner": "mementum/backtrader",
+      "url": "https://github.com/mementum/backtrader",
+      "description": "Python Backtesting library for trading strategies",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2015-01-10T07:14:52Z",
+      "updatedAt": "2026-08-08T17:53:55Z",
+      "pushedAt": "2024-08-19T17:47:36Z",
+      "stargazerCount": 22770,
+      "forkCount": 5230,
+      "diskUsage": 22460,
+      "defaultBranchRef": {
+        "name": "master",
+        "target": {
+          "oid": "b853d7c90b6721476eb5a5ea3135224e33db1f14",
+          "committedDate": "2023-04-19T14:13:08Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "GPL-3.0",
+        "name": "GNU General Public License v3.0"
+      },
+      "primaryLanguage": {
+        "name": "Python"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "Python"
+          },
+          {
+            "name": "Shell"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": []
+      },
+      "issues": {
+        "totalCount": 0
+      },
+      "pullRequests": {
+        "totalCount": 63
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": ".travis.yml",
+            "type": "blob"
+          },
+          {
+            "name": "LICENSE",
+            "type": "blob"
+          },
+          {
+            "name": "README.rst",
+            "type": "blob"
+          },
+          {
+            "name": "backtrader",
+            "type": "tree"
+          },
+          {
+            "name": "changelog.txt",
+            "type": "blob"
+          },
+          {
+            "name": "contrib",
+            "type": "tree"
+          },
+          {
+            "name": "datas",
+            "type": "tree"
+          },
+          {
+            "name": "pypi.sh",
+            "type": "blob"
+          },
+          {
+            "name": "samples",
+            "type": "tree"
+          },
+          {
+            "name": "setup.py",
+            "type": "blob"
+          },
+          {
+            "name": "tests",
+            "type": "tree"
+          },
+          {
+            "name": "tools",
+            "type": "tree"
+          }
+        ]
+      },
+      "workflows": null
+    },
+    "repo_008": {
+      "nameWithOwner": "kernc/backtesting.py",
+      "url": "https://github.com/kernc/backtesting.py",
+      "description": "🔎 📈 🐍 💰  Backtest trading strategies in Python.",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2019-01-02T03:11:32Z",
+      "updatedAt": "2026-08-08T16:41:29Z",
+      "pushedAt": "2026-08-05T12:39:16Z",
+      "stargazerCount": 8767,
+      "forkCount": 1505,
+      "diskUsage": 17483,
+      "defaultBranchRef": {
+        "name": "master",
+        "target": {
+          "oid": "ca2e2611621e472542ba90f7243a1fa06a7d7108",
+          "committedDate": "2026-08-05T12:39:16Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "AGPL-3.0",
+        "name": "GNU Affero General Public License v3.0"
+      },
+      "primaryLanguage": {
+        "name": "Python"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "Python"
+          },
+          {
+            "name": "JavaScript"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": []
+      },
+      "issues": {
+        "totalCount": 45
+      },
+      "pullRequests": {
+        "totalCount": 18
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".codecov.yml",
+            "type": "blob"
+          },
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": "CHANGELOG.md",
+            "type": "blob"
+          },
+          {
+            "name": "CONTRIBUTING.md",
+            "type": "blob"
+          },
+          {
+            "name": "LICENSE.md",
+            "type": "blob"
+          },
+          {
+            "name": "MANIFEST.in",
+            "type": "blob"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "backtesting",
+            "type": "tree"
+          },
+          {
+            "name": "doc",
+            "type": "tree"
+          },
+          {
+            "name": "pyproject.toml",
+            "type": "blob"
+          },
+          {
+            "name": "requirements.txt",
+            "type": "blob"
+          },
+          {
+            "name": "setup.cfg",
+            "type": "blob"
+          },
+          {
+            "name": "setup.py",
+            "type": "blob"
+          }
+        ]
+      },
+      "workflows": {
+        "entries": [
+          {
+            "name": "ci.yml",
+            "type": "blob"
+          },
+          {
+            "name": "deploy-docs.yml",
+            "type": "blob"
+          }
+        ]
+      }
+    },
+    "repo_009": {
+      "nameWithOwner": "HFQR/FlashFunk",
+      "url": "https://github.com/HFQR/FlashFunk",
+      "description": "High Performance Runtime in Rust",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2020-09-18T13:14:37Z",
+      "updatedAt": "2026-07-16T07:28:01Z",
+      "pushedAt": "2025-03-16T03:23:14Z",
+      "stargazerCount": 142,
+      "forkCount": 42,
+      "diskUsage": 58359,
+      "defaultBranchRef": {
+        "name": "master",
+        "target": {
+          "oid": "46b03a2ea2f552d4d95100486459fd943dce2131",
+          "committedDate": "2025-03-16T03:23:09Z"
+        }
+      },
+      "licenseInfo": null,
+      "primaryLanguage": {
+        "name": "Rust"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "Rust"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": [
+          {
+            "tagName": "0.1",
+            "publishedAt": "2020-11-01T09:06:33Z"
+          }
+        ]
+      },
+      "issues": {
+        "totalCount": 0
+      },
+      "pullRequests": {
+        "totalCount": 1
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": "Cargo.toml",
+            "type": "blob"
+          },
+          {
+            "name": "core",
+            "type": "tree"
+          },
+          {
+            "name": "examples",
+            "type": "tree"
+          },
+          {
+            "name": "log",
+            "type": "tree"
+          },
+          {
+            "name": "readme.md",
+            "type": "blob"
+          }
+        ]
+      },
+      "workflows": {
+        "entries": [
+          {
+            "name": "rust.yml",
+            "type": "blob"
+          }
+        ]
+      }
+    },
+    "repo_010": {
+      "nameWithOwner": "QuantFabric/QuantFabric",
+      "url": "https://github.com/QuantFabric/QuantFabric",
+      "description": "QuantFabric主项目",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2022-12-03T14:02:20Z",
+      "updatedAt": "2026-08-07T05:58:06Z",
+      "pushedAt": "2026-08-07T05:57:59Z",
+      "stargazerCount": 258,
+      "forkCount": 81,
+      "diskUsage": 6193,
+      "defaultBranchRef": {
+        "name": "master",
+        "target": {
+          "oid": "9f5f50c71aca45f80a0e370a739202d6cfb11019",
+          "committedDate": "2026-08-07T05:57:20Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "NOASSERTION",
+        "name": "Other"
+      },
+      "primaryLanguage": {
+        "name": "CMake"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "CMake"
+          },
+          {
+            "name": "Shell"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": []
+      },
+      "issues": {
+        "totalCount": 0
+      },
+      "pullRequests": {
+        "totalCount": 0
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": ".gitmodules",
+            "type": "blob"
+          },
+          {
+            "name": "CMakeLists.txt",
+            "type": "blob"
+          },
+          {
+            "name": "LICENSE",
+            "type": "blob"
+          },
+          {
+            "name": "QuantFabric-Development.pdf",
+            "type": "blob"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "SHMServer",
+            "type": "commit"
+          },
+          {
+            "name": "Utils",
+            "type": "commit"
+          },
+          {
+            "name": "XAPI",
+            "type": "commit"
+          },
+          {
+            "name": "XDataPlayer",
+            "type": "commit"
+          },
+          {
+            "name": "XMarketCenter",
+            "type": "commit"
+          },
+          {
+            "name": "XMonitor",
+            "type": "commit"
+          },
+          {
+            "name": "XQuant",
+            "type": "commit"
+          },
+          {
+            "name": "XRiskJudge",
+            "type": "commit"
+          },
+          {
+            "name": "XServer",
+            "type": "commit"
+          },
+          {
+            "name": "XTrader",
+            "type": "commit"
+          },
+          {
+            "name": "XWatcher",
+            "type": "commit"
+          },
+          {
+            "name": "book.toml",
+            "type": "blob"
+          },
+          {
+            "name": "build_clear.sh",
+            "type": "blob"
+          },
+          {
+            "name": "build_release.sh",
+            "type": "blob"
+          },
+          {
+            "name": "doc",
+            "type": "tree"
+          },
+          {
+            "name": "images",
+            "type": "tree"
+          }
+        ]
+      },
+      "workflows": {
+        "entries": [
+          {
+            "name": "mdbook.yml",
+            "type": "blob"
+          }
+        ]
+      }
+    },
+    "repo_011": {
+      "nameWithOwner": "gobacktest/gobacktest",
+      "url": "https://github.com/gobacktest/gobacktest",
+      "description": "event-driven backtesting framework written in golang",
+      "isArchived": true,
+      "isFork": false,
+      "createdAt": "2017-07-26T05:54:17Z",
+      "updatedAt": "2026-08-07T07:31:53Z",
+      "pushedAt": "2023-10-11T12:34:18Z",
+      "stargazerCount": 241,
+      "forkCount": 62,
+      "diskUsage": 1076,
+      "defaultBranchRef": {
+        "name": "main",
+        "target": {
+          "oid": "719cff68de8ad45c45be4c68df6e6f31e5e64305",
+          "committedDate": "2023-10-11T12:34:18Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "MIT",
+        "name": "MIT License"
+      },
+      "primaryLanguage": {
+        "name": "Go"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "Go"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": []
+      },
+      "issues": {
+        "totalCount": 0
+      },
+      "pullRequests": {
+        "totalCount": 0
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".codeclimate.yml",
+            "type": "blob"
+          },
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": ".travis.yml",
+            "type": "blob"
+          },
+          {
+            "name": "CHANGELOG.md",
+            "type": "blob"
+          },
+          {
+            "name": "LICENSE",
+            "type": "blob"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "algo.go",
+            "type": "blob"
+          },
+          {
+            "name": "algo",
+            "type": "tree"
+          },
+          {
+            "name": "algo_test.go",
+            "type": "blob"
+          },
+          {
+            "name": "asset.go",
+            "type": "blob"
+          },
+          {
+            "name": "asset_test.go",
+            "type": "blob"
+          },
+          {
+            "name": "backtest.go",
+            "type": "blob"
+          },
+          {
+            "name": "backtest_test.go",
+            "type": "blob"
+          },
+          {
+            "name": "commission.go",
+            "type": "blob"
+          },
+          {
+            "name": "commission_test.go",
+            "type": "blob"
+          },
+          {
+            "name": "data.go",
+            "type": "blob"
+          },
+          {
+            "name": "data",
+            "type": "tree"
+          },
+          {
+            "name": "data_test.go",
+            "type": "blob"
+          },
+          {
+            "name": "doc.go",
+            "type": "blob"
+          },
+          {
+            "name": "docs",
+            "type": "tree"
+          },
+          {
+            "name": "event.go",
+            "type": "blob"
+          },
+          {
+            "name": "event_test.go",
+            "type": "blob"
+          },
+          {
+            "name": "examples",
+            "type": "tree"
+          },
+          {
+            "name": "exchangefee.go",
+            "type": "blob"
+          },
+          {
+            "name": "exchangefee_test.go",
+            "type": "blob"
+          },
+          {
+            "name": "execution.go",
+            "type": "blob"
+          },
+          {
+            "name": "execution_test.go",
+            "type": "blob"
+          },
+          {
+            "name": "fill.go",
+            "type": "blob"
+          },
+          {
+            "name": "fill_test.go",
+            "type": "blob"
+          },
+          {
+            "name": "go.mod",
+            "type": "blob"
+          },
+          {
+            "name": "metric.go",
+            "type": "blob"
+          },
+          {
+            "name": "metric_test.go",
+            "type": "blob"
+          },
+          {
+            "name": "order.go",
+            "type": "blob"
+          },
+          {
+            "name": "orderbook.go",
+            "type": "blob"
+          },
+          {
+            "name": "orderbook_test.go",
+            "type": "blob"
+          },
+          {
+            "name": "portfolio.go",
+            "type": "blob"
+          },
+          {
+            "name": "portfolio_test.go",
+            "type": "blob"
+          },
+          {
+            "name": "position.go",
+            "type": "blob"
+          },
+          {
+            "name": "position_test.go",
+            "type": "blob"
+          },
+          {
+            "name": "risk.go",
+            "type": "blob"
+          },
+          {
+            "name": "risk_test.go",
+            "type": "blob"
+          },
+          {
+            "name": "signal.go",
+            "type": "blob"
+          },
+          {
+            "name": "signal_test.go",
+            "type": "blob"
+          },
+          {
+            "name": "size.go",
+            "type": "blob"
+          },
+          {
+            "name": "size_test.go",
+            "type": "blob"
+          },
+          {
+            "name": "statistic.go",
+            "type": "blob"
+          },
+          {
+            "name": "statistic_test.go",
+            "type": "blob"
+          },
+          {
+            "name": "strategy.go",
+            "type": "blob"
+          },
+          {
+            "name": "strategy",
+            "type": "tree"
+          },
+          {
+            "name": "strategy_test.go",
+            "type": "blob"
+          },
+          {
+            "name": "ta",
+            "type": "tree"
+          },
+          {
+            "name": "tree.go",
+            "type": "blob"
+          },
+          {
+            "name": "tree_test.go",
+            "type": "blob"
+          }
+        ]
+      },
+      "workflows": null
+    },
+    "repo_012": {
+      "nameWithOwner": "fasiondog/hikyuu",
+      "url": "https://github.com/fasiondog/hikyuu",
+      "description": "Hikyuu Quant Framework 基于C++/Python的超高速开源量化交易研究框架，同时可基于策略部件进行资产重用，快速累积策略资产。",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2012-07-18T23:21:42Z",
+      "updatedAt": "2026-08-08T14:43:30Z",
+      "pushedAt": "2026-08-05T15:24:30Z",
+      "stargazerCount": 3424,
+      "forkCount": 816,
+      "diskUsage": 220040,
+      "defaultBranchRef": {
+        "name": "master",
+        "target": {
+          "oid": "7e1a61d98cf4efa5dbac5a4feab749e28dbe5b95",
+          "committedDate": "2026-08-05T15:24:18Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "Apache-2.0",
+        "name": "Apache License 2.0"
+      },
+      "primaryLanguage": {
+        "name": "C++"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "C++"
+          },
+          {
+            "name": "Python"
+          },
+          {
+            "name": "Xmake"
+          },
+          {
+            "name": "C"
+          },
+          {
+            "name": "Lua"
+          },
+          {
+            "name": "Shell"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": [
+          {
+            "tagName": "1.0.9",
+            "publishedAt": "2018-11-15T18:16:52Z"
+          }
+        ]
+      },
+      "issues": {
+        "totalCount": 5
+      },
+      "pullRequests": {
+        "totalCount": 0
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".clang-format",
+            "type": "blob"
+          },
+          {
+            "name": ".flake8",
+            "type": "blob"
+          },
+          {
+            "name": ".gitattributes",
+            "type": "blob"
+          },
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": ".gitmodules",
+            "type": "blob"
+          },
+          {
+            "name": ".lua-format",
+            "type": "blob"
+          },
+          {
+            "name": "LICENSE",
+            "type": "blob"
+          },
+          {
+            "name": "asan.sup",
+            "type": "blob"
+          },
+          {
+            "name": "config.h.in",
+            "type": "blob"
+          },
+          {
+            "name": "config_utils.h.in",
+            "type": "blob"
+          },
+          {
+            "name": "copy_dependents.lua",
+            "type": "blob"
+          },
+          {
+            "name": "cppcheck.cppcheck",
+            "type": "blob"
+          },
+          {
+            "name": "docker",
+            "type": "tree"
+          },
+          {
+            "name": "docs",
+            "type": "tree"
+          },
+          {
+            "name": "doxyfile",
+            "type": "blob"
+          },
+          {
+            "name": "hikyuu",
+            "type": "tree"
+          },
+          {
+            "name": "hikyuu_cpp",
+            "type": "tree"
+          },
+          {
+            "name": "hikyuu_pywrap",
+            "type": "tree"
+          },
+          {
+            "name": "i18n",
+            "type": "tree"
+          },
+          {
+            "name": "readme.md",
+            "type": "blob"
+          },
+          {
+            "name": "requirements.txt",
+            "type": "blob"
+          },
+          {
+            "name": "setup.py",
+            "type": "blob"
+          },
+          {
+            "name": "sub_setup.py",
+            "type": "blob"
+          },
+          {
+            "name": "test_data",
+            "type": "tree"
+          },
+          {
+            "name": "version.h.in",
+            "type": "blob"
+          },
+          {
+            "name": "xmake.lua",
+            "type": "blob"
+          }
+        ]
+      },
+      "workflows": {
+        "entries": [
+          {
+            "name": "fedora.yml.disable",
+            "type": "blob"
+          },
+          {
+            "name": "macosx.yml",
+            "type": "blob"
+          },
+          {
+            "name": "ubuntu.yml",
+            "type": "blob"
+          },
+          {
+            "name": "windows.yml",
+            "type": "blob"
+          }
+        ]
+      }
+    },
+    "repo_013": {
+      "nameWithOwner": "coding-kitties/investing-algorithm-framework",
+      "url": "https://github.com/coding-kitties/investing-algorithm-framework",
+      "description": "Framework for quantitative trading. Complete framework for development, backtesting, and deploying automated trading algorithms and trading bots.",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2019-12-18T11:20:36Z",
+      "updatedAt": "2026-08-07T17:04:39Z",
+      "pushedAt": "2026-08-07T11:56:02Z",
+      "stargazerCount": 1639,
+      "forkCount": 242,
+      "diskUsage": 59018,
+      "defaultBranchRef": {
+        "name": "main",
+        "target": {
+          "oid": "b14ad175e178391fa42831958bf1dcd42cbb3227",
+          "committedDate": "2026-08-07T11:56:00Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "Apache-2.0",
+        "name": "Apache License 2.0"
+      },
+      "primaryLanguage": {
+        "name": "Python"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "Python"
+          },
+          {
+            "name": "HTML"
+          },
+          {
+            "name": "JavaScript"
+          },
+          {
+            "name": "CSS"
+          },
+          {
+            "name": "Jinja"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": [
+          {
+            "tagName": "v0.1",
+            "publishedAt": "2020-06-25T15:43:42Z"
+          }
+        ]
+      },
+      "issues": {
+        "totalCount": 45
+      },
+      "pullRequests": {
+        "totalCount": 25
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".flake8",
+            "type": "blob"
+          },
+          {
+            "name": ".gitattributes",
+            "type": "blob"
+          },
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": "AUTHORS.md",
+            "type": "blob"
+          },
+          {
+            "name": "CHANGELOG.md",
+            "type": "blob"
+          },
+          {
+            "name": "LICENSE",
+            "type": "blob"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "__init__.py",
+            "type": "blob"
+          },
+          {
+            "name": "docs",
+            "type": "tree"
+          },
+          {
+            "name": "docusaurus",
+            "type": "tree"
+          },
+          {
+            "name": "examples",
+            "type": "tree"
+          },
+          {
+            "name": "investing_algorithm_framework",
+            "type": "tree"
+          },
+          {
+            "name": "poetry.lock",
+            "type": "blob"
+          },
+          {
+            "name": "pyproject.toml",
+            "type": "blob"
+          },
+          {
+            "name": "scripts",
+            "type": "tree"
+          },
+          {
+            "name": "static",
+            "type": "tree"
+          },
+          {
+            "name": "tests",
+            "type": "tree"
+          }
+        ]
+      },
+      "workflows": {
+        "entries": [
+          {
+            "name": "deploy-docs.yml",
+            "type": "blob"
+          },
+          {
+            "name": "publish.yml",
+            "type": "blob"
+          },
+          {
+            "name": "test.yml",
+            "type": "blob"
+          }
+        ]
+      }
+    },
+    "repo_014": {
+      "nameWithOwner": "Lumiwealth/lumibot",
+      "url": "https://github.com/Lumiwealth/lumibot",
+      "description": "Backtestable AI trading agents and Python algorithmic trading strategies for stocks, options, crypto, futures, forex, SEC filings, FRED macro data, and real brokers.",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2020-09-10T10:00:16Z",
+      "updatedAt": "2026-08-08T05:47:22Z",
+      "pushedAt": "2026-08-07T00:34:05Z",
+      "stargazerCount": 1895,
+      "forkCount": 363,
+      "diskUsage": 172583,
+      "defaultBranchRef": {
+        "name": "dev",
+        "target": {
+          "oid": "07b2514700f473c84258865e5ed11144db38090f",
+          "committedDate": "2026-08-05T05:48:22Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "GPL-3.0",
+        "name": "GNU General Public License v3.0"
+      },
+      "primaryLanguage": {
+        "name": "Python"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "Python"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": [
+          {
+            "tagName": "v4.4.25",
+            "publishedAt": "2026-01-05T03:23:08Z"
+          }
+        ]
+      },
+      "issues": {
+        "totalCount": 65
+      },
+      "pullRequests": {
+        "totalCount": 22
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".coderabbit.yaml",
+            "type": "blob"
+          },
+          {
+            "name": ".env.local.example",
+            "type": "blob"
+          },
+          {
+            "name": ".gitattributes",
+            "type": "blob"
+          },
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": ".mailmap",
+            "type": "blob"
+          },
+          {
+            "name": ".secrets",
+            "type": "tree"
+          },
+          {
+            "name": "AGENTS.md",
+            "type": "blob"
+          },
+          {
+            "name": "CHANGELOG.md",
+            "type": "blob"
+          },
+          {
+            "name": "CLAUDE.md",
+            "type": "blob"
+          },
+          {
+            "name": "LICENSE",
+            "type": "blob"
+          },
+          {
+            "name": "MANIFEST.in",
+            "type": "blob"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "SECURITY.md",
+            "type": "blob"
+          },
+          {
+            "name": "context7.json",
+            "type": "blob"
+          },
+          {
+            "name": "coverage.svg",
+            "type": "blob"
+          },
+          {
+            "name": "data",
+            "type": "tree"
+          },
+          {
+            "name": "docs",
+            "type": "tree"
+          },
+          {
+            "name": "docsrc",
+            "type": "tree"
+          },
+          {
+            "name": "examples",
+            "type": "tree"
+          },
+          {
+            "name": "funding.json",
+            "type": "blob"
+          },
+          {
+            "name": "llms-full.txt",
+            "type": "blob"
+          },
+          {
+            "name": "llms.txt",
+            "type": "blob"
+          },
+          {
+            "name": "lumibot",
+            "type": "tree"
+          },
+          {
+            "name": "pylintrc",
+            "type": "blob"
+          },
+          {
+            "name": "pyproject.toml",
+            "type": "blob"
+          },
+          {
+            "name": "reports",
+            "type": "tree"
+          },
+          {
+            "name": "requirements.txt",
+            "type": "blob"
+          },
+          {
+            "name": "requirements_dev.txt",
+            "type": "blob"
+          },
+          {
+            "name": "run_cache_validation.sh",
+            "type": "blob"
+          },
+          {
+            "name": "scripts",
+            "type": "tree"
+          },
+          {
+            "name": "setup.cfg",
+            "type": "blob"
+          },
+          {
+            "name": "setup.py",
+            "type": "blob"
+          },
+          {
+            "name": "tests",
+            "type": "tree"
+          },
+          {
+            "name": "uv.lock",
+            "type": "blob"
+          },
+          {
+            "name": "workers",
+            "type": "tree"
+          }
+        ]
+      },
+      "workflows": {
+        "entries": [
+          {
+            "name": "cicd.yaml",
+            "type": "blob"
+          },
+          {
+            "name": "docs.yml",
+            "type": "blob"
+          },
+          {
+            "name": "public-hygiene.yml",
+            "type": "blob"
+          },
+          {
+            "name": "release.yml",
+            "type": "blob"
+          },
+          {
+            "name": "star-history-health.yml",
+            "type": "blob"
+          }
+        ]
+      }
+    },
+    "repo_015": {
+      "nameWithOwner": "nautechsystems/nautilus_trader",
+      "url": "https://github.com/nautechsystems/nautilus_trader",
+      "description": "Production-grade Rust-native trading engine with deterministic event-driven architecture",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2018-06-25T06:26:16Z",
+      "updatedAt": "2026-08-08T17:48:04Z",
+      "pushedAt": "2026-08-08T14:20:10Z",
+      "stargazerCount": 25364,
+      "forkCount": 3315,
+      "diskUsage": 254235,
+      "defaultBranchRef": {
+        "name": "develop",
+        "target": {
+          "oid": "9ca072e2d98ae623f14ecaa5b336398f5d25de34",
+          "committedDate": "2026-08-08T14:18:34Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "LGPL-3.0",
+        "name": "GNU Lesser General Public License v3.0"
+      },
+      "primaryLanguage": {
+        "name": "Rust"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "Rust"
+          },
+          {
+            "name": "Python"
+          },
+          {
+            "name": "Shell"
+          },
+          {
+            "name": "Makefile"
+          },
+          {
+            "name": "Cap'n Proto"
+          },
+          {
+            "name": "PLpgSQL"
+          },
+          {
+            "name": "Dockerfile"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": [
+          {
+            "tagName": "v1.101.0",
+            "publishedAt": "2021-02-08T01:42:11Z"
+          }
+        ]
+      },
+      "issues": {
+        "totalCount": 77
+      },
+      "pullRequests": {
+        "totalCount": 12
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".cargo",
+            "type": "tree"
+          },
+          {
+            "name": ".codecov.yml",
+            "type": "blob"
+          },
+          {
+            "name": ".codespellrc",
+            "type": "blob"
+          },
+          {
+            "name": ".config",
+            "type": "tree"
+          },
+          {
+            "name": ".docker",
+            "type": "tree"
+          },
+          {
+            "name": ".dockerignore",
+            "type": "blob"
+          },
+          {
+            "name": ".env.example",
+            "type": "blob"
+          },
+          {
+            "name": ".gitattributes",
+            "type": "blob"
+          },
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": ".lycheeignore",
+            "type": "blob"
+          },
+          {
+            "name": ".markdownlint.jsonc",
+            "type": "blob"
+          },
+          {
+            "name": ".pre-commit-config.yaml",
+            "type": "blob"
+          },
+          {
+            "name": ".pre-commit-hooks",
+            "type": "tree"
+          },
+          {
+            "name": ".supply-chain",
+            "type": "tree"
+          },
+          {
+            "name": ".taplo.toml",
+            "type": "blob"
+          },
+          {
+            "name": ".typos.toml",
+            "type": "blob"
+          },
+          {
+            "name": ".yamlfmt",
+            "type": "blob"
+          },
+          {
+            "name": ".yamllint.yaml",
+            "type": "blob"
+          },
+          {
+            "name": ".zizmor.yml",
+            "type": "blob"
+          },
+          {
+            "name": "ADAPTERS.md",
+            "type": "blob"
+          },
+          {
+            "name": "BENCHMARKING.md",
+            "type": "blob"
+          },
+          {
+            "name": "CLA.md",
+            "type": "blob"
+          },
+          {
+            "name": "CODE_OF_CONDUCT.md",
+            "type": "blob"
+          },
+          {
+            "name": "CONTRIBUTING.md",
+            "type": "blob"
+          },
+          {
+            "name": "Cargo.lock",
+            "type": "blob"
+          },
+          {
+            "name": "Cargo.toml",
+            "type": "blob"
+          },
+          {
+            "name": "LICENSE",
+            "type": "blob"
+          },
+          {
+            "name": "MIGRATION_V2.md",
+            "type": "blob"
+          },
+          {
+            "name": "Makefile",
+            "type": "blob"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "RELEASES.md",
+            "type": "blob"
+          },
+          {
+            "name": "ROADMAP.md",
+            "type": "blob"
+          },
+          {
+            "name": "SECURITY.md",
+            "type": "blob"
+          },
+          {
+            "name": "TRADEMARK.md",
+            "type": "blob"
+          },
+          {
+            "name": "assets",
+            "type": "tree"
+          },
+          {
+            "name": "clippy.toml",
+            "type": "blob"
+          },
+          {
+            "name": "crates",
+            "type": "tree"
+          },
+          {
+            "name": "deny.toml",
+            "type": "blob"
+          },
+          {
+            "name": "docs",
+            "type": "tree"
+          },
+          {
+            "name": "examples",
+            "type": "tree"
+          },
+          {
+            "name": "hawk.toml",
+            "type": "blob"
+          },
+          {
+            "name": "osv-scanner.toml",
+            "type": "blob"
+          },
+          {
+            "name": "patches",
+            "type": "tree"
+          },
+          {
+            "name": "python",
+            "type": "tree"
+          },
+          {
+            "name": "rust-toolchain.toml",
+            "type": "blob"
+          },
+          {
+            "name": "rustfmt.toml",
+            "type": "blob"
+          },
+          {
+            "name": "schema",
+            "type": "tree"
+          },
+          {
+            "name": "scripts",
+            "type": "tree"
+          },
+          {
+            "name": "test_data",
+            "type": "tree"
+          },
+          {
+            "name": "tools.toml",
+            "type": "blob"
+          },
+          {
+            "name": "version.json",
+            "type": "blob"
+          }
+        ]
+      },
+      "workflows": {
+        "entries": [
+          {
+            "name": "build-docs.yml",
+            "type": "blob"
+          },
+          {
+            "name": "build.yml",
+            "type": "blob"
+          },
+          {
+            "name": "cli-binaries.yml",
+            "type": "blob"
+          },
+          {
+            "name": "codeql-analysis.yml",
+            "type": "blob"
+          },
+          {
+            "name": "docker.yml",
+            "type": "blob"
+          },
+          {
+            "name": "dst.yml",
+            "type": "blob"
+          },
+          {
+            "name": "nightly-docs-features-check.yml",
+            "type": "blob"
+          },
+          {
+            "name": "nightly-merge.yml",
+            "type": "blob"
+          },
+          {
+            "name": "nightly-miri.yml",
+            "type": "blob"
+          },
+          {
+            "name": "nightly-tests.yml",
+            "type": "blob"
+          },
+          {
+            "name": "openssf-scorecard.yml",
+            "type": "blob"
+          },
+          {
+            "name": "performance.yml",
+            "type": "blob"
+          },
+          {
+            "name": "security-audit.yml",
+            "type": "blob"
+          }
+        ]
+      }
+    },
+    "repo_016": {
+      "nameWithOwner": "edtechre/pybroker",
+      "url": "https://github.com/edtechre/pybroker",
+      "description": "Algorithmic Trading in Python with Machine Learning",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2023-01-16T01:11:52Z",
+      "updatedAt": "2026-08-08T15:56:34Z",
+      "pushedAt": "2026-08-08T11:32:47Z",
+      "stargazerCount": 3471,
+      "forkCount": 445,
+      "diskUsage": 8081,
+      "defaultBranchRef": {
+        "name": "master",
+        "target": {
+          "oid": "e0e7b08886343274efb05b96f7399ca3de280aa5",
+          "committedDate": "2026-08-03T20:55:42Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "NOASSERTION",
+        "name": "Other"
+      },
+      "primaryLanguage": {
+        "name": "Python"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "Python"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": [
+          {
+            "tagName": "v1.0.17",
+            "publishedAt": "2023-02-15T18:23:30Z"
+          }
+        ]
+      },
+      "issues": {
+        "totalCount": 1
+      },
+      "pullRequests": {
+        "totalCount": 0
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".claude",
+            "type": "tree"
+          },
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": ".readthedocs.yml",
+            "type": "blob"
+          },
+          {
+            "name": "LICENSE",
+            "type": "blob"
+          },
+          {
+            "name": "MANIFEST.in",
+            "type": "blob"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "asv.conf.json",
+            "type": "blob"
+          },
+          {
+            "name": "benchmarks",
+            "type": "tree"
+          },
+          {
+            "name": "docs",
+            "type": "tree"
+          },
+          {
+            "name": "pyproject.toml",
+            "type": "blob"
+          },
+          {
+            "name": "requirements.txt",
+            "type": "blob"
+          },
+          {
+            "name": "setup.cfg",
+            "type": "blob"
+          },
+          {
+            "name": "skills",
+            "type": "tree"
+          },
+          {
+            "name": "src",
+            "type": "tree"
+          },
+          {
+            "name": "tests",
+            "type": "tree"
+          }
+        ]
+      },
+      "workflows": {
+        "entries": [
+          {
+            "name": "asv-nightly.yml",
+            "type": "blob"
+          },
+          {
+            "name": "asv-pr.yml",
+            "type": "blob"
+          },
+          {
+            "name": "main.yml",
+            "type": "blob"
+          },
+          {
+            "name": "schedule.yml",
+            "type": "blob"
+          }
+        ]
+      }
+    },
+    "repo_017": {
+      "nameWithOwner": "QuantConnect/Lean",
+      "url": "https://github.com/QuantConnect/Lean",
+      "description": "Lean Algorithmic Trading Engine by QuantConnect (Python, C#)",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2014-11-28T04:20:19Z",
+      "updatedAt": "2026-08-08T15:40:20Z",
+      "pushedAt": "2026-08-07T21:38:34Z",
+      "stargazerCount": 21122,
+      "forkCount": 5148,
+      "diskUsage": 586103,
+      "defaultBranchRef": {
+        "name": "master",
+        "target": {
+          "oid": "c6cc3b743ed7b65d5e0b9fa2bfc18b7d3ac2aea0",
+          "committedDate": "2026-08-07T13:47:20Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "Apache-2.0",
+        "name": "Apache License 2.0"
+      },
+      "primaryLanguage": {
+        "name": "C#"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "C#"
+          },
+          {
+            "name": "Python"
+          },
+          {
+            "name": "Jupyter Notebook"
+          },
+          {
+            "name": "HTML"
+          },
+          {
+            "name": "CSS"
+          },
+          {
+            "name": "Shell"
+          },
+          {
+            "name": "Dockerfile"
+          },
+          {
+            "name": "Batchfile"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": [
+          {
+            "tagName": "v2.1.1",
+            "publishedAt": "2015-01-12T18:36:17Z"
+          }
+        ]
+      },
+      "issues": {
+        "totalCount": 231
+      },
+      "pullRequests": {
+        "totalCount": 12
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".devcontainer",
+            "type": "tree"
+          },
+          {
+            "name": ".dockerignore",
+            "type": "blob"
+          },
+          {
+            "name": ".editorconfig",
+            "type": "blob"
+          },
+          {
+            "name": ".gitattributes",
+            "type": "blob"
+          },
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": ".nuget",
+            "type": "tree"
+          },
+          {
+            "name": ".travis.yml",
+            "type": "blob"
+          },
+          {
+            "name": ".vs",
+            "type": "tree"
+          },
+          {
+            "name": ".vscode",
+            "type": "tree"
+          },
+          {
+            "name": "Algorithm.CSharp",
+            "type": "tree"
+          },
+          {
+            "name": "Algorithm.Framework",
+            "type": "tree"
+          },
+          {
+            "name": "Algorithm.Python",
+            "type": "tree"
+          },
+          {
+            "name": "Algorithm",
+            "type": "tree"
+          },
+          {
+            "name": "AlgorithmFactory",
+            "type": "tree"
+          },
+          {
+            "name": "Api",
+            "type": "tree"
+          },
+          {
+            "name": "Brokerages",
+            "type": "tree"
+          },
+          {
+            "name": "CONTRIBUTING.md",
+            "type": "blob"
+          },
+          {
+            "name": "Common",
+            "type": "tree"
+          },
+          {
+            "name": "Compression",
+            "type": "tree"
+          },
+          {
+            "name": "Configuration",
+            "type": "tree"
+          },
+          {
+            "name": "Data",
+            "type": "tree"
+          },
+          {
+            "name": "Dockerfile",
+            "type": "blob"
+          },
+          {
+            "name": "DockerfileJupyter",
+            "type": "blob"
+          },
+          {
+            "name": "DockerfileLeanFoundation",
+            "type": "blob"
+          },
+          {
+            "name": "DockerfileLeanFoundationARM",
+            "type": "blob"
+          },
+          {
+            "name": "Documentation",
+            "type": "tree"
+          },
+          {
+            "name": "DownloaderDataProvider",
+            "type": "tree"
+          },
+          {
+            "name": "Engine",
+            "type": "tree"
+          },
+          {
+            "name": "Indicators",
+            "type": "tree"
+          },
+          {
+            "name": "LICENSE",
+            "type": "blob"
+          },
+          {
+            "name": "Launcher",
+            "type": "tree"
+          },
+          {
+            "name": "LocalPackages",
+            "type": "tree"
+          },
+          {
+            "name": "Logging",
+            "type": "tree"
+          },
+          {
+            "name": "Messaging",
+            "type": "tree"
+          },
+          {
+            "name": "Optimizer.Launcher",
+            "type": "tree"
+          },
+          {
+            "name": "Optimizer",
+            "type": "tree"
+          },
+          {
+            "name": "QuantConnect.Lean.sln",
+            "type": "blob"
+          },
+          {
+            "name": "QuantConnect.Lean.sln.DotSettings",
+            "type": "blob"
+          },
+          {
+            "name": "Queues",
+            "type": "tree"
+          },
+          {
+            "name": "Report",
+            "type": "tree"
+          },
+          {
+            "name": "Research",
+            "type": "tree"
+          },
+          {
+            "name": "Tests",
+            "type": "tree"
+          },
+          {
+            "name": "ToolBox",
+            "type": "tree"
+          },
+          {
+            "name": "ci_build_stubs.sh",
+            "type": "blob"
+          },
+          {
+            "name": "compare_benchmarks.py",
+            "type": "blob"
+          },
+          {
+            "name": "find_datasource_repos.py",
+            "type": "blob"
+          },
+          {
+            "name": "google9161359af9633398.html",
+            "type": "blob"
+          },
+          {
+            "name": "lean.ico",
+            "type": "blob"
+          },
+          {
+            "name": "mypy.ini",
+            "type": "blob"
+          },
+          {
+            "name": "readme.md",
+            "type": "blob"
+          },
+          {
+            "name": "rebase_organization_branches.sh",
+            "type": "blob"
+          },
+          {
+            "name": "run_benchmarks.py",
+            "type": "blob"
+          },
+          {
+            "name": "run_syntax_check.py",
+            "type": "blob"
+          }
+        ]
+      },
+      "workflows": {
+        "entries": [
+          {
+            "name": "api-tests.yml",
+            "type": "blob"
+          },
+          {
+            "name": "benchmarks.yml",
+            "type": "blob"
+          },
+          {
+            "name": "gh-actions.yml",
+            "type": "blob"
+          },
+          {
+            "name": "rebase-org-branches.yml",
+            "type": "blob"
+          },
+          {
+            "name": "regression-tests.yml",
+            "type": "blob"
+          },
+          {
+            "name": "report-generator.yml",
+            "type": "blob"
+          },
+          {
+            "name": "research-regression-tests.yml",
+            "type": "blob"
+          },
+          {
+            "name": "syntax-tests.yml",
+            "type": "blob"
+          },
+          {
+            "name": "virtual-environments.yml",
+            "type": "blob"
+          }
+        ]
+      }
+    },
+    "repo_018": {
+      "nameWithOwner": "yutiansut/QUANTAXIS",
+      "url": "https://github.com/yutiansut/QUANTAXIS",
+      "description": "QUANTAXIS 支持任务调度 分布式部署的 股票/期货/期权  数据/回测/模拟/交易/可视化/多账户 纯本地量化解决方案",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2016-03-29T12:11:19Z",
+      "updatedAt": "2026-08-08T17:54:34Z",
+      "pushedAt": "2026-02-28T02:59:12Z",
+      "stargazerCount": 10988,
+      "forkCount": 3428,
+      "diskUsage": 136487,
+      "defaultBranchRef": {
+        "name": "master",
+        "target": {
+          "oid": "a69e978a2e38d045a64c380cc3b5c9fa08fa4903",
+          "committedDate": "2026-02-28T02:59:12Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "MIT",
+        "name": "MIT License"
+      },
+      "primaryLanguage": {
+        "name": "Python"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "Python"
+          },
+          {
+            "name": "Rust"
+          },
+          {
+            "name": "TeX"
+          },
+          {
+            "name": "Shell"
+          },
+          {
+            "name": "Dockerfile"
+          },
+          {
+            "name": "Cython"
+          },
+          {
+            "name": "JavaScript"
+          },
+          {
+            "name": "Batchfile"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": [
+          {
+            "tagName": "0.0.0",
+            "publishedAt": "2016-06-01T06:34:37Z"
+          }
+        ]
+      },
+      "issues": {
+        "totalCount": 225
+      },
+      "pullRequests": {
+        "totalCount": 14
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": ".pylintrc",
+            "type": "blob"
+          },
+          {
+            "name": ".style.yapf",
+            "type": "blob"
+          },
+          {
+            "name": "Cargo.lock",
+            "type": "blob"
+          },
+          {
+            "name": "Cargo.toml",
+            "type": "blob"
+          },
+          {
+            "name": "LICENSE",
+            "type": "blob"
+          },
+          {
+            "name": "PULL_REQUEST_TEMPLATE.md",
+            "type": "blob"
+          },
+          {
+            "name": "QUANTAXIS",
+            "type": "tree"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "STU",
+            "type": "tree"
+          },
+          {
+            "name": "UPGRADE_PLAN.md",
+            "type": "blob"
+          },
+          {
+            "name": "_config.yml",
+            "type": "blob"
+          },
+          {
+            "name": "book.toml",
+            "type": "blob"
+          },
+          {
+            "name": "config",
+            "type": "tree"
+          },
+          {
+            "name": "dev",
+            "type": "tree"
+          },
+          {
+            "name": "doc",
+            "type": "tree"
+          },
+          {
+            "name": "docker",
+            "type": "tree"
+          },
+          {
+            "name": "examples",
+            "type": "tree"
+          },
+          {
+            "name": "install_afterrequirements.txt",
+            "type": "blob"
+          },
+          {
+            "name": "qabook",
+            "type": "tree"
+          },
+          {
+            "name": "qalogo.png",
+            "type": "blob"
+          },
+          {
+            "name": "qapro-rs",
+            "type": "tree"
+          },
+          {
+            "name": "requirements.txt",
+            "type": "blob"
+          },
+          {
+            "name": "scripts",
+            "type": "tree"
+          },
+          {
+            "name": "setup.py",
+            "type": "blob"
+          }
+        ]
+      },
+      "workflows": {
+        "entries": [
+          {
+            "name": "docker-publish.yml",
+            "type": "blob"
+          },
+          {
+            "name": "mdbook-deploy.yml",
+            "type": "blob"
+          },
+          {
+            "name": "pythonapp.yml",
+            "type": "blob"
+          },
+          {
+            "name": "pythonpackage.yml",
+            "type": "blob"
+          },
+          {
+            "name": "qabase_docker.yml",
+            "type": "blob"
+          },
+          {
+            "name": "qabook-build.yml",
+            "type": "blob"
+          },
+          {
+            "name": "qabook.yml",
+            "type": "blob"
+          },
+          {
+            "name": "qaeventmq_docker.yml",
+            "type": "blob"
+          },
+          {
+            "name": "qajupyter_docker.yml",
+            "type": "blob"
+          }
+        ]
+      }
+    },
+    "repo_019": {
+      "nameWithOwner": "ricequant/rqalpha",
+      "url": "https://github.com/ricequant/rqalpha",
+      "description": "A extendable, replaceable Python algorithmic backtest && trading framework supporting multiple securities",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2016-07-20T10:38:57Z",
+      "updatedAt": "2026-08-08T16:10:33Z",
+      "pushedAt": "2026-07-23T03:51:09Z",
+      "stargazerCount": 6652,
+      "forkCount": 1772,
+      "diskUsage": 38721,
+      "defaultBranchRef": {
+        "name": "master",
+        "target": {
+          "oid": "3503ab57932540cd36bf8375134e52c6923bf0d2",
+          "committedDate": "2026-07-23T03:50:31Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "NOASSERTION",
+        "name": "Other"
+      },
+      "primaryLanguage": {
+        "name": "Python"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "Python"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": [
+          {
+            "tagName": "release/4.4.2",
+            "publishedAt": "2021-05-18T07:45:12Z"
+          }
+        ]
+      },
+      "issues": {
+        "totalCount": 26
+      },
+      "pullRequests": {
+        "totalCount": 3
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".coveragerc",
+            "type": "blob"
+          },
+          {
+            "name": ".gitattributes",
+            "type": "blob"
+          },
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": ".readthedocs.yml",
+            "type": "blob"
+          },
+          {
+            "name": ".travis.yml",
+            "type": "blob"
+          },
+          {
+            "name": "CHANGELOG.rst",
+            "type": "blob"
+          },
+          {
+            "name": "CLAUDE.md",
+            "type": "blob"
+          },
+          {
+            "name": "LICENSE",
+            "type": "blob"
+          },
+          {
+            "name": "MANIFEST.in",
+            "type": "blob"
+          },
+          {
+            "name": "README.rst",
+            "type": "blob"
+          },
+          {
+            "name": "babel.cfg",
+            "type": "blob"
+          },
+          {
+            "name": "docs",
+            "type": "tree"
+          },
+          {
+            "name": "messages.pot",
+            "type": "blob"
+          },
+          {
+            "name": "performance",
+            "type": "tree"
+          },
+          {
+            "name": "pyproject.toml",
+            "type": "blob"
+          },
+          {
+            "name": "rqalpha",
+            "type": "tree"
+          },
+          {
+            "name": "setup.py",
+            "type": "blob"
+          },
+          {
+            "name": "tests",
+            "type": "tree"
+          }
+        ]
+      },
+      "workflows": {
+        "entries": [
+          {
+            "name": "release.yml",
+            "type": "blob"
+          },
+          {
+            "name": "test.yml",
+            "type": "blob"
+          }
+        ]
+      }
+    },
+    "repo_020": {
+      "nameWithOwner": "letianzj/quanttrader",
+      "url": "https://github.com/letianzj/quanttrader",
+      "description": "Backtest and live trading in Python",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2020-07-27T22:08:29Z",
+      "updatedAt": "2026-08-07T17:27:38Z",
+      "pushedAt": "2024-06-20T13:57:28Z",
+      "stargazerCount": 756,
+      "forkCount": 137,
+      "diskUsage": 6704,
+      "defaultBranchRef": {
+        "name": "master",
+        "target": {
+          "oid": "224341d57e146aeaa143516049d2f37ff102dbf0",
+          "committedDate": "2024-06-20T13:57:26Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "Apache-2.0",
+        "name": "Apache License 2.0"
+      },
+      "primaryLanguage": {
+        "name": "HTML"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "HTML"
+          },
+          {
+            "name": "Python"
+          },
+          {
+            "name": "JavaScript"
+          },
+          {
+            "name": "CSS"
+          },
+          {
+            "name": "Batchfile"
+          },
+          {
+            "name": "Makefile"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": []
+      },
+      "issues": {
+        "totalCount": 0
+      },
+      "pullRequests": {
+        "totalCount": 1
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": ".travis.yml",
+            "type": "blob"
+          },
+          {
+            "name": ".vscode",
+            "type": "tree"
+          },
+          {
+            "name": "LICENSE",
+            "type": "blob"
+          },
+          {
+            "name": "MANIFEST.in",
+            "type": "blob"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "changelog.md",
+            "type": "blob"
+          },
+          {
+            "name": "docs",
+            "type": "tree"
+          },
+          {
+            "name": "examples",
+            "type": "tree"
+          },
+          {
+            "name": "mypy.ini",
+            "type": "blob"
+          },
+          {
+            "name": "poetry.lock",
+            "type": "blob"
+          },
+          {
+            "name": "pyproject.toml",
+            "type": "blob"
+          },
+          {
+            "name": "quanttrader",
+            "type": "tree"
+          },
+          {
+            "name": "sphinx",
+            "type": "tree"
+          },
+          {
+            "name": "tests",
+            "type": "tree"
+          },
+          {
+            "name": "tick",
+            "type": "tree"
+          }
+        ]
+      },
+      "workflows": {
+        "entries": [
+          {
+            "name": "main.yml",
+            "type": "blob"
+          },
+          {
+            "name": "publish.yml",
+            "type": "blob"
+          }
+        ]
+      }
+    },
+    "repo_021": {
+      "nameWithOwner": "quarkfin/qf-lib",
+      "url": "https://github.com/quarkfin/qf-lib",
+      "description": "Modular Python library that provides an advanced event driven backtester and a set of high quality tools for quantitative finance. Integrated with various data vendors and brokers, supports Crypto, Stocks and Futures.",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2019-08-16T09:10:20Z",
+      "updatedAt": "2026-08-05T15:25:18Z",
+      "pushedAt": "2026-08-05T15:22:55Z",
+      "stargazerCount": 953,
+      "forkCount": 136,
+      "diskUsage": 136456,
+      "defaultBranchRef": {
+        "name": "master",
+        "target": {
+          "oid": "6dd04a433e0a2a51766a79ab301a1ecc4ffeeb42",
+          "committedDate": "2026-08-05T15:22:53Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "Apache-2.0",
+        "name": "Apache License 2.0"
+      },
+      "primaryLanguage": {
+        "name": "Python"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "Python"
+          },
+          {
+            "name": "HTML"
+          },
+          {
+            "name": "CSS"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": [
+          {
+            "tagName": "v1.0.0-alpha",
+            "publishedAt": "2021-07-02T07:32:32Z"
+          }
+        ]
+      },
+      "issues": {
+        "totalCount": 5
+      },
+      "pullRequests": {
+        "totalCount": 6
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".coverargerc",
+            "type": "blob"
+          },
+          {
+            "name": ".gitattributes",
+            "type": "blob"
+          },
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": ".readthedocs.yaml",
+            "type": "blob"
+          },
+          {
+            "name": "CODE_OF_CONDUCT.md",
+            "type": "blob"
+          },
+          {
+            "name": "LICENSE",
+            "type": "blob"
+          },
+          {
+            "name": "MANIFEST.in",
+            "type": "blob"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "codecov.yml",
+            "type": "blob"
+          },
+          {
+            "name": "demo_scripts",
+            "type": "tree"
+          },
+          {
+            "name": "docs",
+            "type": "tree"
+          },
+          {
+            "name": "input",
+            "type": "tree"
+          },
+          {
+            "name": "qf_lib",
+            "type": "tree"
+          },
+          {
+            "name": "readme_example_files",
+            "type": "tree"
+          },
+          {
+            "name": "requirements.txt",
+            "type": "blob"
+          },
+          {
+            "name": "setup.cfg",
+            "type": "blob"
+          },
+          {
+            "name": "setup.py",
+            "type": "blob"
+          },
+          {
+            "name": "versioneer.py",
+            "type": "blob"
+          }
+        ]
+      },
+      "workflows": {
+        "entries": [
+          {
+            "name": "publish-to-pypi.yml",
+            "type": "blob"
+          },
+          {
+            "name": "tests.yml",
+            "type": "blob"
+          }
+        ]
+      }
+    },
+    "repo_022": {
+      "nameWithOwner": "sreenivasdoosa/sdoosa-algo-trade-python",
+      "url": "https://github.com/sreenivasdoosa/sdoosa-algo-trade-python",
+      "description": "Algo trade project in python",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2020-08-21T19:32:58Z",
+      "updatedAt": "2026-08-07T04:38:08Z",
+      "pushedAt": "2023-09-19T23:43:45Z",
+      "stargazerCount": 648,
+      "forkCount": 329,
+      "diskUsage": 48,
+      "defaultBranchRef": {
+        "name": "master",
+        "target": {
+          "oid": "fd119b12b7f5176d4d5274120edaad2c59b2b5b8",
+          "committedDate": "2022-07-15T05:55:05Z"
+        }
+      },
+      "licenseInfo": null,
+      "primaryLanguage": {
+        "name": "Python"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "Python"
+          },
+          {
+            "name": "HTML"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": []
+      },
+      "issues": {
+        "totalCount": 23
+      },
+      "pullRequests": {
+        "totalCount": 1
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "config",
+            "type": "tree"
+          },
+          {
+            "name": "src",
+            "type": "tree"
+          }
+        ]
+      },
+      "workflows": null
+    },
+    "repo_023": {
+      "nameWithOwner": "vnpy/vnpy",
+      "url": "https://github.com/vnpy/vnpy",
+      "description": "基于Python的开源量化交易平台开发框架",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2015-03-02T03:36:58Z",
+      "updatedAt": "2026-08-08T18:00:59Z",
+      "pushedAt": "2026-08-06T14:30:23Z",
+      "stargazerCount": 44339,
+      "forkCount": 12332,
+      "diskUsage": 313924,
+      "defaultBranchRef": {
+        "name": "master",
+        "target": {
+          "oid": "fa5206fe63836f3f8cd1ebd7168fbd19a5e2ff09",
+          "committedDate": "2026-08-06T14:30:12Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "MIT",
+        "name": "MIT License"
+      },
+      "primaryLanguage": {
+        "name": "Python"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "Python"
+          },
+          {
+            "name": "Shell"
+          },
+          {
+            "name": "Batchfile"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": [
+          {
+            "tagName": "v1.0",
+            "publishedAt": "2016-07-29T03:08:22Z"
+          }
+        ]
+      },
+      "issues": {
+        "totalCount": 15
+      },
+      "pullRequests": {
+        "totalCount": 14
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": "CHANGELOG.md",
+            "type": "blob"
+          },
+          {
+            "name": "LICENSE",
+            "type": "blob"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "README_ENG.md",
+            "type": "blob"
+          },
+          {
+            "name": "docs",
+            "type": "tree"
+          },
+          {
+            "name": "examples",
+            "type": "tree"
+          },
+          {
+            "name": "install.bat",
+            "type": "blob"
+          },
+          {
+            "name": "install.sh",
+            "type": "blob"
+          },
+          {
+            "name": "install_osx.sh",
+            "type": "blob"
+          },
+          {
+            "name": "pyproject.toml",
+            "type": "blob"
+          },
+          {
+            "name": "tests",
+            "type": "tree"
+          },
+          {
+            "name": "vnpy",
+            "type": "tree"
+          }
+        ]
+      },
+      "workflows": {
+        "entries": [
+          {
+            "name": "pythonapp.yml",
+            "type": "blob"
+          }
+        ]
+      }
+    },
+    "repo_024": {
+      "nameWithOwner": "wondertrader/wondertrader",
+      "url": "https://github.com/wondertrader/wondertrader",
+      "description": "WonderTrader——量化研发交易一站式框架",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2020-03-30T05:43:52Z",
+      "updatedAt": "2026-08-08T16:14:51Z",
+      "pushedAt": "2025-09-30T03:53:19Z",
+      "stargazerCount": 6255,
+      "forkCount": 1174,
+      "diskUsage": 290605,
+      "defaultBranchRef": {
+        "name": "master",
+        "target": {
+          "oid": "70feef13ef7cbc6d4c3333a6158a92b919311d48",
+          "committedDate": "2024-11-01T12:55:58Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "MIT",
+        "name": "MIT License"
+      },
+      "primaryLanguage": {
+        "name": "C++"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "C++"
+          },
+          {
+            "name": "C"
+          },
+          {
+            "name": "CMake"
+          },
+          {
+            "name": "Batchfile"
+          },
+          {
+            "name": "Python"
+          },
+          {
+            "name": "Dockerfile"
+          },
+          {
+            "name": "Shell"
+          },
+          {
+            "name": "Roff"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": []
+      },
+      "issues": {
+        "totalCount": 15
+      },
+      "pullRequests": {
+        "totalCount": 7
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": "LICENSE",
+            "type": "blob"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "copy_bins_linux.sh",
+            "type": "blob"
+          },
+          {
+            "name": "copy_bins_win.bat",
+            "type": "blob"
+          },
+          {
+            "name": "dist",
+            "type": "tree"
+          },
+          {
+            "name": "docker",
+            "type": "tree"
+          },
+          {
+            "name": "docs",
+            "type": "tree"
+          },
+          {
+            "name": "images",
+            "type": "tree"
+          },
+          {
+            "name": "scripts",
+            "type": "tree"
+          },
+          {
+            "name": "src",
+            "type": "tree"
+          },
+          {
+            "name": "updatelog.md",
+            "type": "blob"
+          }
+        ]
+      },
+      "workflows": null
+    },
+    "repo_025": {
+      "nameWithOwner": "zvtvz/zvt",
+      "url": "https://github.com/zvtvz/zvt",
+      "description": "modular quant framework.",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2019-04-04T08:06:57Z",
+      "updatedAt": "2026-08-08T16:19:29Z",
+      "pushedAt": "2026-07-01T09:42:05Z",
+      "stargazerCount": 4259,
+      "forkCount": 1004,
+      "diskUsage": 44870,
+      "defaultBranchRef": {
+        "name": "master",
+        "target": {
+          "oid": "8509990e6608750d0c08fa748682cc997d2813cc",
+          "committedDate": "2026-07-01T09:42:04Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "MIT",
+        "name": "MIT License"
+      },
+      "primaryLanguage": {
+        "name": "Python"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "Python"
+          },
+          {
+            "name": "CSS"
+          },
+          {
+            "name": "Shell"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": [
+          {
+            "tagName": "0.0.1",
+            "publishedAt": "2019-06-27T02:42:53Z"
+          }
+        ]
+      },
+      "issues": {
+        "totalCount": 14
+      },
+      "pullRequests": {
+        "totalCount": 9
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".coveragerc",
+            "type": "blob"
+          },
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": ".pre-commit-config.yaml",
+            "type": "blob"
+          },
+          {
+            "name": ".readthedocs.yaml",
+            "type": "blob"
+          },
+          {
+            "name": "LICENSE",
+            "type": "blob"
+          },
+          {
+            "name": "MANIFEST.in",
+            "type": "blob"
+          },
+          {
+            "name": "README-cn.md",
+            "type": "blob"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "api-tests",
+            "type": "tree"
+          },
+          {
+            "name": "build.sh",
+            "type": "blob"
+          },
+          {
+            "name": "code_of_conduct.md",
+            "type": "blob"
+          },
+          {
+            "name": "docs",
+            "type": "tree"
+          },
+          {
+            "name": "examples",
+            "type": "tree"
+          },
+          {
+            "name": "init_env.sh",
+            "type": "blob"
+          },
+          {
+            "name": "pyproject.toml",
+            "type": "blob"
+          },
+          {
+            "name": "requirements.txt",
+            "type": "blob"
+          },
+          {
+            "name": "requirements",
+            "type": "tree"
+          },
+          {
+            "name": "setup.py",
+            "type": "blob"
+          },
+          {
+            "name": "sql",
+            "type": "tree"
+          },
+          {
+            "name": "src",
+            "type": "tree"
+          },
+          {
+            "name": "tests",
+            "type": "tree"
+          }
+        ]
+      },
+      "workflows": {
+        "entries": [
+          {
+            "name": "build.yaml",
+            "type": "blob"
+          },
+          {
+            "name": "package.yaml",
+            "type": "blob"
+          }
+        ]
+      }
+    },
+    "repo_026": {
+      "nameWithOwner": "quantopian/zipline",
+      "url": "https://github.com/quantopian/zipline",
+      "description": "Zipline, a Pythonic Algorithmic Trading Library",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2012-10-19T15:50:29Z",
+      "updatedAt": "2026-08-08T05:33:22Z",
+      "pushedAt": "2024-02-13T08:02:51Z",
+      "stargazerCount": 20031,
+      "forkCount": 5027,
+      "diskUsage": 170757,
+      "defaultBranchRef": {
+        "name": "master",
+        "target": {
+          "oid": "014f1fc339dc8b7671d29be2d85ce57d3daec343",
+          "committedDate": "2020-10-14T16:36:49Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "Apache-2.0",
+        "name": "Apache License 2.0"
+      },
+      "primaryLanguage": {
+        "name": "Python"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "Python"
+          },
+          {
+            "name": "Jupyter Notebook"
+          },
+          {
+            "name": "Shell"
+          },
+          {
+            "name": "Batchfile"
+          },
+          {
+            "name": "PowerShell"
+          },
+          {
+            "name": "Dockerfile"
+          },
+          {
+            "name": "Emacs Lisp"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": [
+          {
+            "tagName": "v0.8.0",
+            "publishedAt": "2015-11-06T20:10:17Z"
+          }
+        ]
+      },
+      "issues": {
+        "totalCount": 333
+      },
+      "pullRequests": {
+        "totalCount": 36
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".appveyor.yml",
+            "type": "blob"
+          },
+          {
+            "name": ".coveragerc",
+            "type": "blob"
+          },
+          {
+            "name": ".dir-locals.el",
+            "type": "blob"
+          },
+          {
+            "name": ".dockerignore",
+            "type": "blob"
+          },
+          {
+            "name": ".gitattributes",
+            "type": "blob"
+          },
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": ".pre-commit-config.yaml",
+            "type": "blob"
+          },
+          {
+            "name": ".travis.yml",
+            "type": "blob"
+          },
+          {
+            "name": "AUTHORS",
+            "type": "blob"
+          },
+          {
+            "name": "CONTRIBUTING.rst",
+            "type": "blob"
+          },
+          {
+            "name": "Dockerfile",
+            "type": "blob"
+          },
+          {
+            "name": "Dockerfile-dev",
+            "type": "blob"
+          },
+          {
+            "name": "LICENSE",
+            "type": "blob"
+          },
+          {
+            "name": "MANIFEST.in",
+            "type": "blob"
+          },
+          {
+            "name": "README.rst",
+            "type": "blob"
+          },
+          {
+            "name": "Vagrantfile",
+            "type": "blob"
+          },
+          {
+            "name": "ci",
+            "type": "tree"
+          },
+          {
+            "name": "conda",
+            "type": "tree"
+          },
+          {
+            "name": "docs",
+            "type": "tree"
+          },
+          {
+            "name": "etc",
+            "type": "tree"
+          },
+          {
+            "name": "setup.cfg",
+            "type": "blob"
+          },
+          {
+            "name": "setup.py",
+            "type": "blob"
+          },
+          {
+            "name": "tests",
+            "type": "tree"
+          },
+          {
+            "name": "vagrant_init.sh",
+            "type": "blob"
+          },
+          {
+            "name": "versioneer.py",
+            "type": "blob"
+          },
+          {
+            "name": "zipline",
+            "type": "tree"
+          }
+        ]
+      },
+      "workflows": {
+        "entries": [
+          {
+            "name": "ci.yaml",
+            "type": "blob"
+          },
+          {
+            "name": "windows_ci.yml",
+            "type": "blob"
+          }
+        ]
+      }
+    },
+    "repo_027": {
+      "nameWithOwner": "pegasusTrader/PandoraTrader",
+      "url": "https://github.com/pegasusTrader/PandoraTrader",
+      "description": "高频量化交易平台 C++ Trade Platform for quant developer 【浮生着甚苦奔忙，量化之路阻且长。 行行代码凝心血，十年辛苦不寻常】",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2019-01-03T06:39:56Z",
+      "updatedAt": "2026-08-08T04:06:03Z",
+      "pushedAt": "2025-10-18T08:29:29Z",
+      "stargazerCount": 1454,
+      "forkCount": 414,
+      "diskUsage": 1063850,
+      "defaultBranchRef": {
+        "name": "master",
+        "target": {
+          "oid": "517f1aa41e57806797a88dff39eb568126da131d",
+          "committedDate": "2025-07-29T15:25:28Z"
+        }
+      },
+      "licenseInfo": null,
+      "primaryLanguage": {
+        "name": "C++"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "C++"
+          },
+          {
+            "name": "C"
+          },
+          {
+            "name": "CMake"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": []
+      },
+      "issues": {
+        "totalCount": 7
+      },
+      "pullRequests": {
+        "totalCount": 0
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": "CMakeLists.txt",
+            "type": "blob"
+          },
+          {
+            "name": "Interface",
+            "type": "tree"
+          },
+          {
+            "name": "PandoraSimulator",
+            "type": "tree"
+          },
+          {
+            "name": "PandoraStrategy",
+            "type": "tree"
+          },
+          {
+            "name": "PandoraTrade",
+            "type": "tree"
+          },
+          {
+            "name": "PandoraTrader.sln",
+            "type": "blob"
+          },
+          {
+            "name": "PandoraTrader_Linux.sln",
+            "type": "blob"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "Tools",
+            "type": "tree"
+          },
+          {
+            "name": "doc",
+            "type": "tree"
+          },
+          {
+            "name": "pic",
+            "type": "tree"
+          }
+        ]
+      },
+      "workflows": null
+    },
+    "repo_028": {
+      "nameWithOwner": "nkaz001/hftbacktest",
+      "url": "https://github.com/nkaz001/hftbacktest",
+      "description": "Free, open source, a high frequency trading and market making backtesting and trading bot, which accounts for limit orders, queue positions, and latencies, utilizing full tick data for trades and order books(Level-2 and Level-3), with real-world crypto trading examples for Binance and Bybit",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2022-08-25T14:56:36Z",
+      "updatedAt": "2026-08-08T12:29:07Z",
+      "pushedAt": "2025-12-23T15:57:58Z",
+      "stargazerCount": 4346,
+      "forkCount": 850,
+      "diskUsage": 155215,
+      "defaultBranchRef": {
+        "name": "master",
+        "target": {
+          "oid": "5f3ec40b2afb764e0fea112f941ed85523ef4e88",
+          "committedDate": "2025-12-23T15:31:05Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "MIT",
+        "name": "MIT License"
+      },
+      "primaryLanguage": {
+        "name": "Rust"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "Rust"
+          },
+          {
+            "name": "Python"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": [
+          {
+            "tagName": "v1.2.1",
+            "publishedAt": "2023-02-23T14:53:51Z"
+          }
+        ]
+      },
+      "issues": {
+        "totalCount": 7
+      },
+      "pullRequests": {
+        "totalCount": 9
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".cargo",
+            "type": "tree"
+          },
+          {
+            "name": ".gitattributes",
+            "type": "blob"
+          },
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": ".readthedocs.yml",
+            "type": "blob"
+          },
+          {
+            "name": "CODE_OF_CONDUCT.md",
+            "type": "blob"
+          },
+          {
+            "name": "Cargo.toml",
+            "type": "blob"
+          },
+          {
+            "name": "LICENSE",
+            "type": "blob"
+          },
+          {
+            "name": "README.rst",
+            "type": "blob"
+          },
+          {
+            "name": "ROADMAP.md",
+            "type": "blob"
+          },
+          {
+            "name": "collector",
+            "type": "tree"
+          },
+          {
+            "name": "connector",
+            "type": "tree"
+          },
+          {
+            "name": "docs",
+            "type": "tree"
+          },
+          {
+            "name": "examples",
+            "type": "tree"
+          },
+          {
+            "name": "hftbacktest-derive",
+            "type": "tree"
+          },
+          {
+            "name": "hftbacktest",
+            "type": "tree"
+          },
+          {
+            "name": "py-hftbacktest",
+            "type": "tree"
+          },
+          {
+            "name": "rustfmt.toml",
+            "type": "blob"
+          }
+        ]
+      },
+      "workflows": {
+        "entries": [
+          {
+            "name": "codeql.yml",
+            "type": "blob"
+          },
+          {
+            "name": "release-python.yml",
+            "type": "blob"
+          },
+          {
+            "name": "stale.yml",
+            "type": "blob"
+          }
+        ]
+      }
+    },
+    "repo_029": {
+      "nameWithOwner": "FlashAlpha-lab/flashalpha-fill-simulator",
+      "url": "https://github.com/FlashAlpha-lab/flashalpha-fill-simulator",
+      "description": "Realistic limit-order fill simulator for options credit/debit spreads. Engine-agnostic, data-source-agnostic.",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2026-05-06T09:54:15Z",
+      "updatedAt": "2026-07-06T08:03:19Z",
+      "pushedAt": "2026-06-16T19:16:37Z",
+      "stargazerCount": 3,
+      "forkCount": 1,
+      "diskUsage": 196,
+      "defaultBranchRef": {
+        "name": "master",
+        "target": {
+          "oid": "e75838081d4e1adc3579fca834bdefe60fb25547",
+          "committedDate": "2026-06-16T19:16:37Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "MIT",
+        "name": "MIT License"
+      },
+      "primaryLanguage": {
+        "name": "Python"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "Python"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": []
+      },
+      "issues": {
+        "totalCount": 0
+      },
+      "pullRequests": {
+        "totalCount": 0
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": "CHANGELOG.md",
+            "type": "blob"
+          },
+          {
+            "name": "CONTRIBUTING.md",
+            "type": "blob"
+          },
+          {
+            "name": "LICENSE",
+            "type": "blob"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "docs",
+            "type": "tree"
+          },
+          {
+            "name": "pyproject.toml",
+            "type": "blob"
+          },
+          {
+            "name": "scripts",
+            "type": "tree"
+          },
+          {
+            "name": "src",
+            "type": "tree"
+          },
+          {
+            "name": "tests",
+            "type": "tree"
+          }
+        ]
+      },
+      "workflows": {
+        "entries": [
+          {
+            "name": "ci.yml",
+            "type": "blob"
+          }
+        ]
+      }
+    },
+    "repo_030": {
+      "nameWithOwner": "nanvel/cipher-bt",
+      "url": "https://github.com/nanvel/cipher-bt",
+      "description": "Trading strategy backtesting framework supporting multiple concurrent sessions, complex exit strategies, and multi-exchange data sources with simple Python implementation",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2023-01-01T06:15:53Z",
+      "updatedAt": "2026-06-10T21:26:06Z",
+      "pushedAt": "2025-08-17T13:18:53Z",
+      "stargazerCount": 19,
+      "forkCount": 1,
+      "diskUsage": 6160,
+      "defaultBranchRef": {
+        "name": "master",
+        "target": {
+          "oid": "d4616add46bf1c89f97ac164578dc27b4291f792",
+          "committedDate": "2025-08-17T13:18:45Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "MIT",
+        "name": "MIT License"
+      },
+      "primaryLanguage": {
+        "name": "Python"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "Python"
+          },
+          {
+            "name": "Jinja"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": []
+      },
+      "issues": {
+        "totalCount": 0
+      },
+      "pullRequests": {
+        "totalCount": 0
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": "LICENSE",
+            "type": "blob"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "cipher",
+            "type": "tree"
+          },
+          {
+            "name": "docs",
+            "type": "tree"
+          },
+          {
+            "name": "mkdocs.yml",
+            "type": "blob"
+          },
+          {
+            "name": "pyproject.toml",
+            "type": "blob"
+          },
+          {
+            "name": "tests",
+            "type": "tree"
+          },
+          {
+            "name": "uv.lock",
+            "type": "blob"
+          }
+        ]
+      },
+      "workflows": {
+        "entries": [
+          {
+            "name": "docs.yaml",
+            "type": "blob"
+          },
+          {
+            "name": "tests.yaml",
+            "type": "blob"
+          }
+        ]
+      }
+    },
+    "repo_031": {
+      "nameWithOwner": "GuntharDeNiro/gunbot-quant",
+      "url": "https://github.com/GuntharDeNiro/gunbot-quant",
+      "description": "An open-source toolkit for quantitative analysis of crypto & stock markets, featuring an advanced market screener, portfolio backtester, and companion tools for the Gunbot trading bot.",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2025-07-30T12:09:14Z",
+      "updatedAt": "2026-07-30T02:38:16Z",
+      "pushedAt": "2025-08-19T08:43:40Z",
+      "stargazerCount": 54,
+      "forkCount": 19,
+      "diskUsage": 946,
+      "defaultBranchRef": {
+        "name": "main",
+        "target": {
+          "oid": "ba076dc5d724549ae4b67799ac8cd2d7760c6f2c",
+          "committedDate": "2025-08-19T08:43:38Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "MIT",
+        "name": "MIT License"
+      },
+      "primaryLanguage": {
+        "name": "JavaScript"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "JavaScript"
+          },
+          {
+            "name": "Python"
+          },
+          {
+            "name": "CSS"
+          },
+          {
+            "name": "HTML"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": []
+      },
+      "issues": {
+        "totalCount": 1
+      },
+      "pullRequests": {
+        "totalCount": 1
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": "LICENSE",
+            "type": "blob"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "combined_code_for_llms.md",
+            "type": "blob"
+          },
+          {
+            "name": "gunbot_quant",
+            "type": "tree"
+          },
+          {
+            "name": "package.json",
+            "type": "blob"
+          },
+          {
+            "name": "poetry.lock",
+            "type": "blob"
+          },
+          {
+            "name": "pyproject.toml",
+            "type": "blob"
+          },
+          {
+            "name": "run.py",
+            "type": "blob"
+          },
+          {
+            "name": "screenshot.png",
+            "type": "blob"
+          }
+        ]
+      },
+      "workflows": null
+    },
+    "repo_032": {
+      "nameWithOwner": "JustinGuese/python_tradingbot_framework",
+      "url": "https://github.com/JustinGuese/python_tradingbot_framework",
+      "description": "Python algorithmic trading bot framework for Kubernetes: backtesting, hyperparameter optimization, 150+ technical analysis indicators (RSI, MACD, Bollinger Bands, ADX), portfolio management, PostgreSQL integration, Helm deployment, CronJob scheduling. Minimal overhead, production-ready, Yahoo Finance data.",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2026-01-09T10:10:55Z",
+      "updatedAt": "2026-07-06T08:39:25Z",
+      "pushedAt": "2026-05-06T09:07:12Z",
+      "stargazerCount": 34,
+      "forkCount": 14,
+      "diskUsage": 5276,
+      "defaultBranchRef": {
+        "name": "main",
+        "target": {
+          "oid": "643f1a59fc0beb69fa8032be49e543b23c74c67d",
+          "committedDate": "2026-05-06T09:07:01Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "MIT",
+        "name": "MIT License"
+      },
+      "primaryLanguage": {
+        "name": "Jupyter Notebook"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "Jupyter Notebook"
+          },
+          {
+            "name": "Python"
+          },
+          {
+            "name": "Dockerfile"
+          },
+          {
+            "name": "Shell"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": []
+      },
+      "issues": {
+        "totalCount": 0
+      },
+      "pullRequests": {
+        "totalCount": 0
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".claude",
+            "type": "tree"
+          },
+          {
+            "name": ".env.example",
+            "type": "blob"
+          },
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": ".gitlab-ci.yml",
+            "type": "blob"
+          },
+          {
+            "name": ".mkdocs-setup.md",
+            "type": "blob"
+          },
+          {
+            "name": ".python-version",
+            "type": "blob"
+          },
+          {
+            "name": ".vscode",
+            "type": "tree"
+          },
+          {
+            "name": "AGENTS.md",
+            "type": "blob"
+          },
+          {
+            "name": "Dockerfile",
+            "type": "blob"
+          },
+          {
+            "name": "KRONOS_INTEGRATION.md",
+            "type": "blob"
+          },
+          {
+            "name": "LICENSE",
+            "type": "blob"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "data",
+            "type": "tree"
+          },
+          {
+            "name": "docs",
+            "type": "tree"
+          },
+          {
+            "name": "exploration",
+            "type": "tree"
+          },
+          {
+            "name": "helm",
+            "type": "tree"
+          },
+          {
+            "name": "kronos_space",
+            "type": "tree"
+          },
+          {
+            "name": "mkdocs.yml",
+            "type": "blob"
+          },
+          {
+            "name": "pyproject.toml",
+            "type": "blob"
+          },
+          {
+            "name": "scripts",
+            "type": "tree"
+          },
+          {
+            "name": "syncToGithub.sh",
+            "type": "blob"
+          },
+          {
+            "name": "tests",
+            "type": "tree"
+          },
+          {
+            "name": "tradingbot",
+            "type": "tree"
+          },
+          {
+            "name": "uv.lock",
+            "type": "blob"
+          }
+        ]
+      },
+      "workflows": {
+        "entries": [
+          {
+            "name": "docs.yml",
+            "type": "blob"
+          }
+        ]
+      }
+    },
+    "repo_033": {
+      "nameWithOwner": "jmargieh/tradingview-screener",
+      "url": "https://github.com/jmargieh/tradingview-screener",
+      "description": "TypeScript library for querying TradingView screener data with a fluent, type-safe interface",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2026-02-09T14:34:18Z",
+      "updatedAt": "2026-07-07T22:25:51Z",
+      "pushedAt": "2026-04-02T09:45:11Z",
+      "stargazerCount": 14,
+      "forkCount": 2,
+      "diskUsage": 10737,
+      "defaultBranchRef": {
+        "name": "main",
+        "target": {
+          "oid": "b3db2009de8f85bc3ccdaa9d9365f1d7ddff55f1",
+          "committedDate": "2026-04-02T09:45:11Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "MIT",
+        "name": "MIT License"
+      },
+      "primaryLanguage": {
+        "name": "TypeScript"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "TypeScript"
+          },
+          {
+            "name": "Shell"
+          },
+          {
+            "name": "JavaScript"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": [
+          {
+            "tagName": "v2.2.0",
+            "publishedAt": "2026-02-10T17:27:15Z"
+          }
+        ]
+      },
+      "issues": {
+        "totalCount": 0
+      },
+      "pullRequests": {
+        "totalCount": 0
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": "CHANGELOG.md",
+            "type": "blob"
+          },
+          {
+            "name": "LICENSE",
+            "type": "blob"
+          },
+          {
+            "name": "PUBLISHING_GUIDE.md",
+            "type": "blob"
+          },
+          {
+            "name": "QUICKSTART_MCP.md",
+            "type": "blob"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "bin",
+            "type": "tree"
+          },
+          {
+            "name": "docs",
+            "type": "tree"
+          },
+          {
+            "name": "examples",
+            "type": "tree"
+          },
+          {
+            "name": "package-lock.json",
+            "type": "blob"
+          },
+          {
+            "name": "package.json",
+            "type": "blob"
+          },
+          {
+            "name": "scripts",
+            "type": "tree"
+          },
+          {
+            "name": "src",
+            "type": "tree"
+          },
+          {
+            "name": "tests",
+            "type": "tree"
+          },
+          {
+            "name": "tsconfig.json",
+            "type": "blob"
+          },
+          {
+            "name": "tsup.config.ts",
+            "type": "blob"
+          },
+          {
+            "name": "vitest.config.ts",
+            "type": "blob"
+          }
+        ]
+      },
+      "workflows": {
+        "entries": [
+          {
+            "name": "ci.yml",
+            "type": "blob"
+          },
+          {
+            "name": "deploy-docs.yml",
+            "type": "blob"
+          },
+          {
+            "name": "release.yml",
+            "type": "blob"
+          }
+        ]
+      }
+    },
+    "repo_034": {
+      "nameWithOwner": "squidKid-deluxe/QTradeX-Algo-Trading-SDK",
+      "url": "https://github.com/squidKid-deluxe/QTradeX-Algo-Trading-SDK",
+      "description": "AI-powered SDK featuring algorithmic trading, backtesting, deployment on 100+ exchanges, and multiple optimization engines.",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2025-03-27T20:14:55Z",
+      "updatedAt": "2026-08-06T09:49:41Z",
+      "pushedAt": "2026-07-30T17:43:33Z",
+      "stargazerCount": 83,
+      "forkCount": 19,
+      "diskUsage": 5343,
+      "defaultBranchRef": {
+        "name": "master",
+        "target": {
+          "oid": "447d65cfb45f92614c155e091dc95c178e4f3651",
+          "committedDate": "2026-07-30T17:43:33Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "NOASSERTION",
+        "name": "Other"
+      },
+      "primaryLanguage": {
+        "name": "Python"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "Python"
+          },
+          {
+            "name": "Cython"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": [
+          {
+            "tagName": "1.2.0",
+            "publishedAt": "2025-10-26T20:14:59Z"
+          }
+        ]
+      },
+      "issues": {
+        "totalCount": 5
+      },
+      "pullRequests": {
+        "totalCount": 0
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": "AGENTS.md",
+            "type": "blob"
+          },
+          {
+            "name": "LICENSE",
+            "type": "blob"
+          },
+          {
+            "name": "MANIFEST.in",
+            "type": "blob"
+          },
+          {
+            "name": "QUICKSTART.md",
+            "type": "blob"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "demos",
+            "type": "tree"
+          },
+          {
+            "name": "pyproject.toml",
+            "type": "blob"
+          },
+          {
+            "name": "qtradex",
+            "type": "tree"
+          },
+          {
+            "name": "screenshots.md",
+            "type": "blob"
+          },
+          {
+            "name": "screenshots",
+            "type": "tree"
+          },
+          {
+            "name": "tests",
+            "type": "tree"
+          }
+        ]
+      },
+      "workflows": {
+        "entries": [
+          {
+            "name": "publish.yml",
+            "type": "blob"
+          }
+        ]
+      }
+    },
+    "repo_035": {
+      "nameWithOwner": "FinHackCN/finhack",
+      "url": "https://github.com/FinHackCN/finhack",
+      "description": "FinHack®，一个易于拓展的量化金融框架，它在当前版本中集成了数据采集、因子计算、因子挖掘、因子分析、机器学习、策略编写、量化回测、实盘接入等全流程的量化投研工作。",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2022-11-21T01:18:20Z",
+      "updatedAt": "2026-08-08T05:25:50Z",
+      "pushedAt": "2026-08-06T19:12:09Z",
+      "stargazerCount": 1101,
+      "forkCount": 220,
+      "diskUsage": 24709,
+      "defaultBranchRef": {
+        "name": "main",
+        "target": {
+          "oid": "dedbbd0b7accfed035ba05f07d76726d8754bbf7",
+          "committedDate": "2026-07-13T18:37:22Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "NOASSERTION",
+        "name": "Other"
+      },
+      "primaryLanguage": {
+        "name": "Python"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "Python"
+          },
+          {
+            "name": "Shell"
+          },
+          {
+            "name": "HTML"
+          },
+          {
+            "name": "Dockerfile"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": []
+      },
+      "issues": {
+        "totalCount": 24
+      },
+      "pullRequests": {
+        "totalCount": 1
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".DS_Store",
+            "type": "blob"
+          },
+          {
+            "name": ".dockerignore",
+            "type": "blob"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": "COMMERCIAL_LICENSE.txt",
+            "type": "blob"
+          },
+          {
+            "name": "Dockerfile",
+            "type": "blob"
+          },
+          {
+            "name": "LICENSE.txt",
+            "type": "blob"
+          },
+          {
+            "name": "MANIFEST.in",
+            "type": "blob"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "database",
+            "type": "tree"
+          },
+          {
+            "name": "examples",
+            "type": "tree"
+          },
+          {
+            "name": "finhack",
+            "type": "tree"
+          },
+          {
+            "name": "requirements.in",
+            "type": "blob"
+          },
+          {
+            "name": "requirements.sh",
+            "type": "blob"
+          },
+          {
+            "name": "requirements.txt",
+            "type": "blob"
+          },
+          {
+            "name": "script",
+            "type": "tree"
+          },
+          {
+            "name": "setup.py",
+            "type": "blob"
+          },
+          {
+            "name": "upgrade_packages.py",
+            "type": "blob"
+          }
+        ]
+      },
+      "workflows": null
+    },
+    "repo_036": {
+      "nameWithOwner": "pst-group/pysystemtrade",
+      "url": "https://github.com/pst-group/pysystemtrade",
+      "description": "Systematic Trading in python",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2015-11-27T10:49:08Z",
+      "updatedAt": "2026-08-08T07:18:57Z",
+      "pushedAt": "2026-07-18T13:30:24Z",
+      "stargazerCount": 3426,
+      "forkCount": 1050,
+      "diskUsage": 947350,
+      "defaultBranchRef": {
+        "name": "develop",
+        "target": {
+          "oid": "b4a25e6e1e33a54a3ecfb45c0f6db5e2b60b84f8",
+          "committedDate": "2026-07-18T13:30:23Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "GPL-3.0",
+        "name": "GNU General Public License v3.0"
+      },
+      "primaryLanguage": {
+        "name": "Python"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "Python"
+          },
+          {
+            "name": "Jupyter Notebook"
+          },
+          {
+            "name": "JavaScript"
+          },
+          {
+            "name": "HTML"
+          },
+          {
+            "name": "Shell"
+          },
+          {
+            "name": "CSS"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": [
+          {
+            "tagName": "1.0",
+            "publishedAt": "2021-05-11T16:39:56Z"
+          }
+        ]
+      },
+      "issues": {
+        "totalCount": 26
+      },
+      "pullRequests": {
+        "totalCount": 5
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".coveragerc",
+            "type": "blob"
+          },
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": ".pre-commit-config.yaml",
+            "type": "blob"
+          },
+          {
+            "name": ".travis.yml",
+            "type": "blob"
+          },
+          {
+            "name": "CHANGELOG.md",
+            "type": "blob"
+          },
+          {
+            "name": "CONTRIBUTING.md",
+            "type": "blob"
+          },
+          {
+            "name": "LICENSE",
+            "type": "blob"
+          },
+          {
+            "name": "MANIFEST.in",
+            "type": "blob"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "dashboard",
+            "type": "tree"
+          },
+          {
+            "name": "data",
+            "type": "tree"
+          },
+          {
+            "name": "docs",
+            "type": "tree"
+          },
+          {
+            "name": "examples",
+            "type": "tree"
+          },
+          {
+            "name": "private",
+            "type": "tree"
+          },
+          {
+            "name": "pyproject.toml",
+            "type": "blob"
+          },
+          {
+            "name": "requirements.txt",
+            "type": "blob"
+          },
+          {
+            "name": "setup.py",
+            "type": "blob"
+          },
+          {
+            "name": "sysbrokers",
+            "type": "tree"
+          },
+          {
+            "name": "syscontrol",
+            "type": "tree"
+          },
+          {
+            "name": "syscore",
+            "type": "tree"
+          },
+          {
+            "name": "sysdata",
+            "type": "tree"
+          },
+          {
+            "name": "sysexecution",
+            "type": "tree"
+          },
+          {
+            "name": "sysinit",
+            "type": "tree"
+          },
+          {
+            "name": "syslogdiag",
+            "type": "tree"
+          },
+          {
+            "name": "syslogging",
+            "type": "tree"
+          },
+          {
+            "name": "sysobjects",
+            "type": "tree"
+          },
+          {
+            "name": "sysproduction",
+            "type": "tree"
+          },
+          {
+            "name": "sysquant",
+            "type": "tree"
+          },
+          {
+            "name": "systems",
+            "type": "tree"
+          },
+          {
+            "name": "tests",
+            "type": "tree"
+          },
+          {
+            "name": "tox.ini",
+            "type": "blob"
+          }
+        ]
+      },
+      "workflows": {
+        "entries": [
+          {
+            "name": "action.yml",
+            "type": "blob"
+          },
+          {
+            "name": "lint.yml",
+            "type": "blob"
+          },
+          {
+            "name": "mlc_config.json",
+            "type": "blob"
+          },
+          {
+            "name": "os-test.yml",
+            "type": "blob"
+          },
+          {
+            "name": "quick-test.yml",
+            "type": "blob"
+          },
+          {
+            "name": "slow-test.yml",
+            "type": "blob"
+          }
+        ]
+      }
+    },
+    "repo_037": {
+      "nameWithOwner": "cuemacro/finmarketpy",
+      "url": "https://github.com/cuemacro/finmarketpy",
+      "description": "Python library for backtesting trading strategies & analyzing financial markets (formerly pythalesians)",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2015-02-19T23:32:03Z",
+      "updatedAt": "2026-08-06T23:42:38Z",
+      "pushedAt": "2026-04-16T09:29:35Z",
+      "stargazerCount": 3800,
+      "forkCount": 523,
+      "diskUsage": 8003,
+      "defaultBranchRef": {
+        "name": "master",
+        "target": {
+          "oid": "afeaef28f5c8b78e613e649ecf18a9653dbf41fd",
+          "committedDate": "2026-04-16T09:29:35Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "Apache-2.0",
+        "name": "Apache License 2.0"
+      },
+      "primaryLanguage": {
+        "name": "Python"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "Python"
+          },
+          {
+            "name": "Makefile"
+          },
+          {
+            "name": "Shell"
+          },
+          {
+            "name": "Batchfile"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": [
+          {
+            "tagName": "v0.11_finmarketpy",
+            "publishedAt": "2016-09-15T15:34:11Z"
+          }
+        ]
+      },
+      "issues": {
+        "totalCount": 35
+      },
+      "pullRequests": {
+        "totalCount": 3
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".editorconfig",
+            "type": "blob"
+          },
+          {
+            "name": ".gitattributes",
+            "type": "blob"
+          },
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": ".pre-commit-config.yaml",
+            "type": "blob"
+          },
+          {
+            "name": ".python-version",
+            "type": "blob"
+          },
+          {
+            "name": ".rhiza",
+            "type": "tree"
+          },
+          {
+            "name": "INSTALL.md",
+            "type": "blob"
+          },
+          {
+            "name": "LICENCE",
+            "type": "blob"
+          },
+          {
+            "name": "Makefile",
+            "type": "blob"
+          },
+          {
+            "name": "PLANNED_FEATURES.md",
+            "type": "blob"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "finmarketpy_examples",
+            "type": "tree"
+          },
+          {
+            "name": "finmarketpy_logo.png",
+            "type": "blob"
+          },
+          {
+            "name": "install_extra_packages.bat",
+            "type": "blob"
+          },
+          {
+            "name": "pyproject.toml",
+            "type": "blob"
+          },
+          {
+            "name": "src",
+            "type": "tree"
+          },
+          {
+            "name": "tests",
+            "type": "tree"
+          },
+          {
+            "name": "uv.lock",
+            "type": "blob"
+          }
+        ]
+      },
+      "workflows": {
+        "entries": [
+          {
+            "name": "test.yml",
+            "type": "blob"
+          }
+        ]
+      }
+    },
+    "repo_038": {
+      "nameWithOwner": "polakowo/vectorbt",
+      "url": "https://github.com/polakowo/vectorbt",
+      "description": "The backtesting engine that gives you an unfair advantage. Run thousands of trading ideas before others finish one.",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2017-11-14T11:56:32Z",
+      "updatedAt": "2026-08-08T16:41:52Z",
+      "pushedAt": "2026-08-02T09:14:10Z",
+      "stargazerCount": 8611,
+      "forkCount": 1109,
+      "diskUsage": 715705,
+      "defaultBranchRef": {
+        "name": "master",
+        "target": {
+          "oid": "34b6d5935e3ea3eccd549e2592bc0f455b8045f5",
+          "committedDate": "2026-08-02T09:14:09Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "NOASSERTION",
+        "name": "Other"
+      },
+      "primaryLanguage": {
+        "name": "Python"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "Python"
+          },
+          {
+            "name": "Rust"
+          },
+          {
+            "name": "CSS"
+          },
+          {
+            "name": "Dockerfile"
+          },
+          {
+            "name": "Procfile"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": [
+          {
+            "tagName": "v0.28.4",
+            "publishedAt": "2026-01-26T17:10:16Z"
+          }
+        ]
+      },
+      "issues": {
+        "totalCount": 121
+      },
+      "pullRequests": {
+        "totalCount": 15
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".coveragerc",
+            "type": "blob"
+          },
+          {
+            "name": ".gitattributes",
+            "type": "blob"
+          },
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": "Dockerfile",
+            "type": "blob"
+          },
+          {
+            "name": "LICENSE.md",
+            "type": "blob"
+          },
+          {
+            "name": "MANIFEST.in",
+            "type": "blob"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "apps",
+            "type": "tree"
+          },
+          {
+            "name": "benchmarks",
+            "type": "tree"
+          },
+          {
+            "name": "conftest.py",
+            "type": "blob"
+          },
+          {
+            "name": "docs",
+            "type": "tree"
+          },
+          {
+            "name": "examples",
+            "type": "tree"
+          },
+          {
+            "name": "mypy.ini",
+            "type": "blob"
+          },
+          {
+            "name": "pyproject.toml",
+            "type": "blob"
+          },
+          {
+            "name": "rust",
+            "type": "tree"
+          },
+          {
+            "name": "setup.py",
+            "type": "blob"
+          },
+          {
+            "name": "tests",
+            "type": "tree"
+          },
+          {
+            "name": "vectorbt",
+            "type": "tree"
+          }
+        ]
+      },
+      "workflows": {
+        "entries": [
+          {
+            "name": "docker.yml",
+            "type": "blob"
+          },
+          {
+            "name": "docs.yml",
+            "type": "blob"
+          },
+          {
+            "name": "pypi.yml",
+            "type": "blob"
+          },
+          {
+            "name": "tests.yml",
+            "type": "blob"
+          }
+        ]
+      }
+    },
+    "repo_039": {
+      "nameWithOwner": "SunshowerC/fund-strategy",
+      "url": "https://github.com/SunshowerC/fund-strategy",
+      "description": "基金投资策略分析，基金回测工具",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2019-12-12T14:00:04Z",
+      "updatedAt": "2026-08-07T13:03:38Z",
+      "pushedAt": "2023-01-26T23:43:12Z",
+      "stargazerCount": 934,
+      "forkCount": 179,
+      "diskUsage": 2756,
+      "defaultBranchRef": {
+        "name": "master",
+        "target": {
+          "oid": "72a51fd6928ca17857d73c6e64a709c840844e00",
+          "committedDate": "2021-07-02T10:47:04Z"
+        }
+      },
+      "licenseInfo": null,
+      "primaryLanguage": {
+        "name": "TypeScript"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "TypeScript"
+          },
+          {
+            "name": "CSS"
+          },
+          {
+            "name": "EJS"
+          },
+          {
+            "name": "Dockerfile"
+          },
+          {
+            "name": "Shell"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": []
+      },
+      "issues": {
+        "totalCount": 4
+      },
+      "pullRequests": {
+        "totalCount": 15
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".editorconfig",
+            "type": "blob"
+          },
+          {
+            "name": ".env",
+            "type": "blob"
+          },
+          {
+            "name": ".eslintrc",
+            "type": "blob"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": ".prettierignore",
+            "type": "blob"
+          },
+          {
+            "name": ".prettierrc",
+            "type": "blob"
+          },
+          {
+            "name": ".umirc.ts",
+            "type": "blob"
+          },
+          {
+            "name": ".vscode",
+            "type": "tree"
+          },
+          {
+            "name": "Dockerfile",
+            "type": "blob"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "mock",
+            "type": "tree"
+          },
+          {
+            "name": "package-lock.json",
+            "type": "blob"
+          },
+          {
+            "name": "package.json",
+            "type": "blob"
+          },
+          {
+            "name": "src",
+            "type": "tree"
+          },
+          {
+            "name": "tools",
+            "type": "tree"
+          },
+          {
+            "name": "tsconfig.json",
+            "type": "blob"
+          },
+          {
+            "name": "tslint.yml",
+            "type": "blob"
+          },
+          {
+            "name": "typings.d.ts",
+            "type": "blob"
+          }
+        ]
+      },
+      "workflows": null
+    },
+    "repo_040": {
+      "nameWithOwner": "enzoampil/fastquant",
+      "url": "https://github.com/enzoampil/fastquant",
+      "description": "fastquant — Backtest and optimize your ML trading strategies with only 3 lines of code!",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2019-06-26T14:36:43Z",
+      "updatedAt": "2026-07-29T12:01:24Z",
+      "pushedAt": "2023-09-15T10:23:58Z",
+      "stargazerCount": 1753,
+      "forkCount": 259,
+      "diskUsage": 49663,
+      "defaultBranchRef": {
+        "name": "master",
+        "target": {
+          "oid": "805c4440bf96ba04cfd43aaf4926e4b45f3c3f33",
+          "committedDate": "2023-09-15T10:23:58Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "MIT",
+        "name": "MIT License"
+      },
+      "primaryLanguage": {
+        "name": "Jupyter Notebook"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "Jupyter Notebook"
+          },
+          {
+            "name": "Python"
+          },
+          {
+            "name": "Shell"
+          },
+          {
+            "name": "Dockerfile"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": []
+      },
+      "issues": {
+        "totalCount": 77
+      },
+      "pullRequests": {
+        "totalCount": 5
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".flake8",
+            "type": "blob"
+          },
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": ".pre-commit-config.yaml",
+            "type": "blob"
+          },
+          {
+            "name": "API.md",
+            "type": "blob"
+          },
+          {
+            "name": "CONTRIBUTING.md",
+            "type": "blob"
+          },
+          {
+            "name": "Dockerfile",
+            "type": "blob"
+          },
+          {
+            "name": "LICENSE",
+            "type": "blob"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "ROADMAP.md",
+            "type": "blob"
+          },
+          {
+            "name": "docs",
+            "type": "tree"
+          },
+          {
+            "name": "examples",
+            "type": "tree"
+          },
+          {
+            "name": "lessons",
+            "type": "tree"
+          },
+          {
+            "name": "python",
+            "type": "tree"
+          },
+          {
+            "name": "setup.py",
+            "type": "blob"
+          }
+        ]
+      },
+      "workflows": {
+        "entries": [
+          {
+            "name": "py-cli.yml",
+            "type": "blob"
+          }
+        ]
+      }
+    },
+    "repo_041": {
+      "nameWithOwner": "manifoldbt/manifoldbt",
+      "url": "https://github.com/manifoldbt/manifoldbt",
+      "description": "Rust-powered backtesting engine for quantitative research",
+      "isArchived": false,
+      "isFork": false,
+      "createdAt": "2026-03-17T15:13:42Z",
+      "updatedAt": "2026-08-05T18:11:32Z",
+      "pushedAt": "2026-07-23T11:41:06Z",
+      "stargazerCount": 25,
+      "forkCount": 0,
+      "diskUsage": 472,
+      "defaultBranchRef": {
+        "name": "master",
+        "target": {
+          "oid": "1bc5fe303858f2a0a477d6447d4f02626eb8ab66",
+          "committedDate": "2026-07-23T11:41:05Z"
+        }
+      },
+      "licenseInfo": {
+        "spdxId": "NOASSERTION",
+        "name": "Other"
+      },
+      "primaryLanguage": {
+        "name": "Python"
+      },
+      "languages": {
+        "nodes": [
+          {
+            "name": "Python"
+          }
+        ]
+      },
+      "releases": {
+        "nodes": [
+          {
+            "tagName": "v0.1.0",
+            "publishedAt": "2026-03-17T15:27:58Z"
+          }
+        ]
+      },
+      "issues": {
+        "totalCount": 0
+      },
+      "pullRequests": {
+        "totalCount": 0
+      },
+      "root": {
+        "entries": [
+          {
+            "name": ".github",
+            "type": "tree"
+          },
+          {
+            "name": ".gitignore",
+            "type": "blob"
+          },
+          {
+            "name": "LICENSE",
+            "type": "blob"
+          },
+          {
+            "name": "README.md",
+            "type": "blob"
+          },
+          {
+            "name": "assets",
+            "type": "tree"
+          },
+          {
+            "name": "benchmarks",
+            "type": "tree"
+          },
+          {
+            "name": "docs",
+            "type": "tree"
+          },
+          {
+            "name": "examples",
+            "type": "tree"
+          },
+          {
+            "name": "pyproject.toml",
+            "type": "blob"
+          },
+          {
+            "name": "python",
+            "type": "tree"
+          },
+          {
+            "name": "tests",
+            "type": "tree"
+          }
+        ]
+      },
+      "workflows": {
+        "entries": [
+          {
+            "name": "ci.yml",
+            "type": "blob"
+          }
+        ]
+      }
+    }
+  }
+}

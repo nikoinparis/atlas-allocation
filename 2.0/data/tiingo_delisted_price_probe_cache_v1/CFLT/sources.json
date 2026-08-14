@@ -1,0 +1,22 @@
+[
+  {
+    "bytes": 169,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T10:48:17.282783+00:00",
+    "sha256": "23a0476e0260748d95e9a40160b5371532c9c0a05fac895d0a8039887b1c526d",
+    "url": "https://api.tiingo.com/tiingo/daily/CFLT"
+  },
+  {
+    "bytes": 163972,
+    "http_status": 200,
+    "response_headers": {
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "retrieved_at_utc": "2026-08-13T10:48:18.932301+00:00",
+    "sha256": "7d6bcf218aba07a09443bd46ba534ec882746e5025af16aea33c078728cd41ad",
+    "url": "https://api.tiingo.com/tiingo/daily/CFLT/prices?startDate=2023-04-01&endDate=2026-04-11&resampleFreq=daily"
+  }
+]

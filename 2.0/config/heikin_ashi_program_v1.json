@@ -1,0 +1,62 @@
+{
+  "program": "repository_heikin_ashi_program_v1",
+  "predeclared_before_results": true,
+  "catalog_source": {
+    "entries": ["ast-0079", "ast-0087"],
+    "repository": "je-suis-tm/quant-trading",
+    "commit": "611b73f2c3f577ac5b28aaa19ac8c43d3236c7a5",
+    "source_sha256": "bb50360b83a8c1c3256e2d1a162b1b375af4882d1d32934db32d8e64fcf76f66",
+    "integration": "independent fixed-rule rebuild; repository code is not executed or copied"
+  },
+  "data": {
+    "snapshot_id": "20260809T002313Z-0d8632e2cf759918",
+    "assets": ["SPY", "QQQ", "IWM", "EFA", "VEA", "VWO", "EWJ", "VNQ", "HYG", "LQD", "GLD", "PDBC", "DBA", "TLT"],
+    "start_date": "2005-01-03",
+    "adjusted_ohlc": "raw OHLC multiplied by adjusted_close/raw_close",
+    "decision": "completed daily close",
+    "realization": "next adjusted close"
+  },
+  "heikin_ashi": {
+    "close": "mean of adjusted open high low close",
+    "initial_open": "first adjusted open",
+    "recursive_open": "mean of previous Heikin-Ashi open and close",
+    "high": "maximum of adjusted high, Heikin-Ashi open and close",
+    "low": "minimum of adjusted low, Heikin-Ashi open and close",
+    "maximum_units": 3
+  },
+  "fixed_candidates": {
+    "source_exact": "enter one unit after two bearish HA candles when current has no upper wick and its body is larger; exit all after two bullish HA candles when current has no lower wick",
+    "direction_corrected": "enter one unit after two bullish HA candles when current has no lower wick and its body is larger; exit all after two bearish HA candles when current has no upper wick"
+  },
+  "negative_controls": [
+    "one additional trading-day stale state for each candidate",
+    "five additional trading-day stale state for each candidate",
+    "deterministic within-date permutation preserving the candidate's complete unit distribution"
+  ],
+  "portfolio": {
+    "weighting": "unit-proportional across active assets",
+    "maximum_asset_weight": 0.2,
+    "residual": "zero-return cash",
+    "leverage": false,
+    "turnover": "half L1 change including cash from drifted holdings"
+  },
+  "frictions": {"costs_bps": [10, 50, 100], "primary_cost_bps": 50},
+  "evaluation": {
+    "two_fixed_candidate_family": true,
+    "paired_bootstrap_samples": 20000,
+    "block_weeks": 13,
+    "one_sided_familywise_alpha": 0.05,
+    "per_candidate_alpha": 0.025,
+    "later_windows": ["2016-01-01/2020-12-31", "2021-01-01/present"]
+  },
+  "promotion_gates": {
+    "primary_performance": "annual return positive, Sharpe above 0.5, and maximum drawdown no worse than -25 percent at 50 bps",
+    "stress": "annual return and both later windows positive at 100 bps",
+    "controls": "candidate Sharpe exceeds its stale and matched-random controls at 50 bps",
+    "dependence": "absolute correlation no greater than 0.80 to frozen trend and core",
+    "blend": "80/20 core-candidate blend improves Sharpe with no worse drawdown and familywise paired Sharpe lower bound above zero",
+    "survivorship_safe_universe": true,
+    "untouched_forward_weeks": 52
+  },
+  "live_trading_approved": false
+}

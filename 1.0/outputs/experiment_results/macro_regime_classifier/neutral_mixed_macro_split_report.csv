@@ -1,0 +1,9 @@
+period,macro_quadrant,n,mean_4w_fwd_spy,std_4w_fwd_spy,sharpe_4w
+dev,expansion,67,0.00373,0.03657,0.102
+dev,overheating,95,0.01015,0.03745,0.271
+dev,slowdown,237,0.01466,0.0316,0.464
+dev,stress,35,0.00241,0.04007,0.06
+holdout,expansion,0,,,
+holdout,overheating,11,-0.0074,0.04783,-0.155
+holdout,slowdown,0,,,
+holdout,stress,45,0.00522,0.03293,0.158

@@ -1,0 +1,257 @@
+{
+  "all_attempts": [
+    {
+      "commit": "351c782b9b8b395c1a5f886b77e0d55f1bc9396e",
+      "entry_id": "ast-0183",
+      "evidence_file": "evidence/portfolio_libraries_batch_11/capability_probes/ast-0183-attempt-2.json",
+      "host_mounts": false,
+      "install_seconds": 159,
+      "network_disabled_during_probe": true,
+      "probe_seconds": 18,
+      "repository": "cvxgrp/cvxportfolio",
+      "result": {
+        "assets": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "capability": "policy_construction",
+        "policy_type": "SinglePeriodOptimization"
+      },
+      "started_at": "2026-08-09T01:18:19.547759+00:00",
+      "status": "passed"
+    },
+    {
+      "commit": "351c782b9b8b395c1a5f886b77e0d55f1bc9396e",
+      "entry_id": "ast-0183",
+      "evidence_file": "evidence/portfolio_libraries_batch_11/capability_probes/ast-0183.json",
+      "host_mounts": false,
+      "install_seconds": 64,
+      "network_disabled_during_probe": true,
+      "probe_seconds": 0,
+      "repository": "cvxgrp/cvxportfolio",
+      "result": {},
+      "started_at": "2026-08-09T01:04:23.784762+00:00",
+      "status": "minimal_install_failed"
+    },
+    {
+      "commit": "c06db8406385cf4bce83577d0f0710ee5a27e67e",
+      "entry_id": "ast-0184",
+      "evidence_file": "evidence/portfolio_libraries_batch_11/capability_probes/ast-0184.json",
+      "host_mounts": false,
+      "install_seconds": 138,
+      "network_disabled_during_probe": true,
+      "probe_seconds": 15,
+      "repository": "skfolio/skfolio",
+      "result": {
+        "capability": "minimum_variance",
+        "max": 0.3499996892951941,
+        "sum": 0.9999999999999998,
+        "weights": {
+          "A": 0.11302315640255034,
+          "B": 0.3499996892951941,
+          "C": 0.25994264018013097,
+          "D": 0.27703451412212443
+        }
+      },
+      "started_at": "2026-08-09T01:05:28.923651+00:00",
+      "status": "passed"
+    },
+    {
+      "commit": "632a9e48fbaf2b9f8e83864a492332364b6ed32c",
+      "entry_id": "ast-0185",
+      "evidence_file": "evidence/portfolio_libraries_batch_11/capability_probes/ast-0185-attempt-2.json",
+      "host_mounts": false,
+      "install_seconds": 416,
+      "network_disabled_during_probe": true,
+      "probe_seconds": 97,
+      "repository": "dcajasn/Riskfolio-Lib",
+      "result": {
+        "capability": "minimum_variance",
+        "max": 0.3499999984824986,
+        "sum": 1.0000000000000002,
+        "weights": {
+          "A": 0.11306087220061915,
+          "B": 0.3499999984824986,
+          "C": 0.25993290277850417,
+          "D": 0.27700622653837825
+        }
+      },
+      "started_at": "2026-08-09T01:21:34.227205+00:00",
+      "status": "passed"
+    },
+    {
+      "commit": "632a9e48fbaf2b9f8e83864a492332364b6ed32c",
+      "entry_id": "ast-0185",
+      "evidence_file": "evidence/portfolio_libraries_batch_11/capability_probes/ast-0185.json",
+      "host_mounts": false,
+      "install_seconds": 442,
+      "network_disabled_during_probe": true,
+      "probe_seconds": 21,
+      "repository": "dcajasn/Riskfolio-Lib",
+      "result": {
+        "capability": "minimum_variance",
+        "max": 0.43648779939187016,
+        "sum": 1.0000000000000002,
+        "weights": {
+          "A": 0.06233530815357959,
+          "B": 0.43648779939187016,
+          "C": 0.24102971582197075,
+          "D": 0.2601471766325797
+        }
+      },
+      "started_at": "2026-08-09T01:08:05.346688+00:00",
+      "status": "passed"
+    },
+    {
+      "commit": "a6638d2e06dae6f444fd022cfd4b3c528902a85b",
+      "entry_id": "ast-0187",
+      "evidence_file": "evidence/portfolio_libraries_batch_11/capability_probes/ast-0187-attempt-2.json",
+      "host_mounts": false,
+      "install_seconds": 163,
+      "network_disabled_during_probe": true,
+      "probe_seconds": 10,
+      "repository": "robertmartin8/PyPortfolioOpt",
+      "result": {
+        "capability": "minimum_variance",
+        "max": 0.35,
+        "sum": 1.0,
+        "weights": {
+          "A": 0.1311,
+          "B": 0.35,
+          "C": 0.25335,
+          "D": 0.26555
+        }
+      },
+      "started_at": "2026-08-09T01:30:12.372641+00:00",
+      "status": "passed"
+    },
+    {
+      "commit": "a6638d2e06dae6f444fd022cfd4b3c528902a85b",
+      "entry_id": "ast-0187",
+      "evidence_file": "evidence/portfolio_libraries_batch_11/capability_probes/ast-0187.json",
+      "host_mounts": false,
+      "install_seconds": 106,
+      "network_disabled_during_probe": true,
+      "probe_seconds": 5,
+      "repository": "robertmartin8/PyPortfolioOpt",
+      "result": {},
+      "started_at": "2026-08-09T01:15:53.764043+00:00",
+      "status": "probe_failed"
+    }
+  ],
+  "attempt_count": 7,
+  "batch": 11,
+  "common_constraints": {
+    "fully_invested": true,
+    "long_only": true,
+    "maximum_asset_weight": 0.35
+  },
+  "decisions": {
+    "ast-0183": "sandbox_reference_only_gpl",
+    "ast-0184": "eligible_research_library_after_minimal_install",
+    "ast-0185": "eligible_only_if_explicit_bounds_are_enforced_and_rechecked",
+    "ast-0187": "eligible_research_library_with_pinned_dependencies; HRP compatibility issue remains"
+  },
+  "generated_at_utc": "2026-08-09T01:33:28.969877+00:00",
+  "identical_synthetic_return_panel": true,
+  "latest_attempt_by_repository": {
+    "ast-0183": {
+      "commit": "351c782b9b8b395c1a5f886b77e0d55f1bc9396e",
+      "entry_id": "ast-0183",
+      "evidence_file": "evidence/portfolio_libraries_batch_11/capability_probes/ast-0183-attempt-2.json",
+      "host_mounts": false,
+      "install_seconds": 159,
+      "network_disabled_during_probe": true,
+      "probe_seconds": 18,
+      "repository": "cvxgrp/cvxportfolio",
+      "result": {
+        "assets": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "capability": "policy_construction",
+        "policy_type": "SinglePeriodOptimization"
+      },
+      "started_at": "2026-08-09T01:18:19.547759+00:00",
+      "status": "passed"
+    },
+    "ast-0184": {
+      "commit": "c06db8406385cf4bce83577d0f0710ee5a27e67e",
+      "entry_id": "ast-0184",
+      "evidence_file": "evidence/portfolio_libraries_batch_11/capability_probes/ast-0184.json",
+      "host_mounts": false,
+      "install_seconds": 138,
+      "network_disabled_during_probe": true,
+      "probe_seconds": 15,
+      "repository": "skfolio/skfolio",
+      "result": {
+        "capability": "minimum_variance",
+        "max": 0.3499996892951941,
+        "sum": 0.9999999999999998,
+        "weights": {
+          "A": 0.11302315640255034,
+          "B": 0.3499996892951941,
+          "C": 0.25994264018013097,
+          "D": 0.27703451412212443
+        }
+      },
+      "started_at": "2026-08-09T01:05:28.923651+00:00",
+      "status": "passed"
+    },
+    "ast-0185": {
+      "commit": "632a9e48fbaf2b9f8e83864a492332364b6ed32c",
+      "entry_id": "ast-0185",
+      "evidence_file": "evidence/portfolio_libraries_batch_11/capability_probes/ast-0185-attempt-2.json",
+      "host_mounts": false,
+      "install_seconds": 416,
+      "network_disabled_during_probe": true,
+      "probe_seconds": 97,
+      "repository": "dcajasn/Riskfolio-Lib",
+      "result": {
+        "capability": "minimum_variance",
+        "max": 0.3499999984824986,
+        "sum": 1.0000000000000002,
+        "weights": {
+          "A": 0.11306087220061915,
+          "B": 0.3499999984824986,
+          "C": 0.25993290277850417,
+          "D": 0.27700622653837825
+        }
+      },
+      "started_at": "2026-08-09T01:21:34.227205+00:00",
+      "status": "passed"
+    },
+    "ast-0187": {
+      "commit": "a6638d2e06dae6f444fd022cfd4b3c528902a85b",
+      "entry_id": "ast-0187",
+      "evidence_file": "evidence/portfolio_libraries_batch_11/capability_probes/ast-0187-attempt-2.json",
+      "host_mounts": false,
+      "install_seconds": 163,
+      "network_disabled_during_probe": true,
+      "probe_seconds": 10,
+      "repository": "robertmartin8/PyPortfolioOpt",
+      "result": {
+        "capability": "minimum_variance",
+        "max": 0.35,
+        "sum": 1.0,
+        "weights": {
+          "A": 0.1311,
+          "B": 0.35,
+          "C": 0.25335,
+          "D": 0.26555
+        }
+      },
+      "started_at": "2026-08-09T01:30:12.372641+00:00",
+      "status": "passed"
+    }
+  },
+  "portfolio_winner_selected": false,
+  "reason": "Library agreement and capability are engineering evidence; they do not create an independent return source or justify changing frozen v1.",
+  "status": "capability_comparison_complete_no_baseline_replacement",
+  "strategy_alpha_claim": false,
+  "track": "portfolio_libraries"
+}

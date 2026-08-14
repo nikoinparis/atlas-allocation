@@ -1,0 +1,53 @@
+{
+  "candidate": "sec_growth_three_tier_return_leader_v1",
+  "variant": "breadth3_concentration60_vol_60 with weekly universal 1.50x cap",
+  "current_signal": "exceptional",
+  "current_growth_allocation": 0.60,
+  "retrospective_primary_50bps": {
+    "trailing_1y_cagr": 1.104877,
+    "trailing_1y_sharpe_zero_rf": 2.564079,
+    "trailing_1y_max_drawdown": -0.140733,
+    "trailing_1y_peak_single_stock_weight": 0.203590,
+    "trailing_1y_annual_turnover": 3.174501,
+    "ytd_cagr": 1.090551,
+    "trailing_2y_cagr": 0.624395,
+    "holdout_cagr": 0.418452,
+    "holdout_sharpe_zero_rf": 1.508564,
+    "holdout_max_drawdown": -0.217995
+  },
+  "binary_control_50bps": {
+    "trailing_1y_cagr": 0.923104,
+    "trailing_1y_sharpe_zero_rf": 2.433138,
+    "trailing_1y_max_drawdown": -0.134419,
+    "holdout_cagr": 0.387137
+  },
+  "cost_stress_trailing_1y_cagr": {"100bps": 1.054033, "200bps": 0.955809},
+  "paired_diagnostics": {
+    "trailing_1y_probability_positive_4w_block": 0.9914,
+    "trailing_1y_probability_positive_13w_block": 1.0,
+    "holdout_probability_positive_4w_block": 0.9118,
+    "holdout_95pct_interval_crosses_zero": true,
+    "holdout_rolling_26w_outperformance_share": 0.439394,
+    "trailing_1y_rolling_26w_outperformance_share": 1.0
+  },
+  "known_limitations": [
+    "Selected after observing this history",
+    "60% allocated to a five-stock sleeve during exceptional states",
+    "Peak single-stock weight reached approximately 20.36% even with weekly caps",
+    "Annual turnover exceeded 3.17x capital in the trailing year",
+    "The full-holdout bootstrap interval includes no improvement",
+    "The severe 200-bps full-holdout drawdown approached -29.24%"
+  ],
+  "falsification": {
+    "status": "failed",
+    "failed_gates": ["single-stock exclusion", "parameter-neighborhood breadth"],
+    "mu_excluded_trailing_1y_cagr": 0.752252,
+    "control_trailing_1y_cagr": 0.923104,
+    "positive_recent_and_holdout_parameter_share": 0.333333,
+    "one_week_signal_delay_trailing_1y_cagr": 0.991879,
+    "one_week_selection_delay_trailing_1y_cagr": 1.056350
+  },
+  "status": "falsification-failed forward shadow; not replacement eligible",
+  "research_only": true,
+  "live_trading_enabled": false
+}

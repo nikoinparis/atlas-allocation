@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "status": "research_only_not_final",
+  "repositories": ["ast-0006", "ast-0011", "ast-0076", "ast-0186"],
+  "prediction_target": "next_week_excess_return",
+  "feature_availability": "all features lagged and known by weekly decision close",
+  "outer_walk_forward": {
+    "minimum_training_weeks": 260,
+    "test_weeks": 52,
+    "step_weeks": 52,
+    "expanding_training_window": true
+  },
+  "inner_selection": {
+    "method": "time_ordered_walk_forward_only",
+    "folds": 3,
+    "embargo_weeks": 1,
+    "selection_metric": "after_cost_sharpe"
+  },
+  "mandatory_controls": [
+    "unchanged_frozen_portfolio",
+    "linear_or_tree_baseline",
+    "label_shuffle_negative_control",
+    "feature_lag_reconciliation",
+    "training_scaler_fit_inside_each_fold",
+    "hyperparameters_selected_inside_outer_training_window",
+    "10_25_50_100_bps_costs",
+    "all_model_and_hyperparameter_trials_logged"
+  ],
+  "automatic_rejection_conditions": [
+    "shuffle_control_performs_materially_above_chance",
+    "any feature timestamp exceeds decision timestamp",
+    "test window influences preprocessing_or_selection",
+    "result depends on one seed or one outer fold",
+    "unbounded dependency or disk footprint"
+  ],
+  "promotion_requires": {
+    "minimum_outer_test_folds": 5,
+    "positive_median_after_cost_fold_return": true,
+    "improves_multiple_testing_adjusted_evidence": true,
+    "untouched_forward_weeks": 52
+  }
+}

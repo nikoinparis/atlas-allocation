@@ -1,0 +1,16 @@
+{
+  "all_validation_checks_passed": true,
+  "created_at_utc": "2026-08-14T09:42:37.381763+00:00",
+  "experiment": "sec_growth_mu_cap_sensitivity_v1",
+  "growth_formula_changed": false,
+  "live_trading_enabled": false,
+  "only_micron_cap_varied": true,
+  "selection_or_promotion_authorized": false,
+  "validation": {
+    "all_numeric_results_finite": true,
+    "all_predeclared_caps_reported": true,
+    "base_and_adverse_reported": true,
+    "growth_formula_unchanged": true,
+    "strict_other_stock_cap_unchanged": true
+  }
+}

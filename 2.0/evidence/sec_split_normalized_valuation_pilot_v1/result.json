@@ -1,0 +1,29 @@
+{
+  "all_validation_checks_passed": true,
+  "best_benchmark": "benchmark::XLK",
+  "best_benchmark_holdout_50bps_cagr": 0.31696325328868546,
+  "best_factor": "sales_yield",
+  "best_factor_holdout_50bps_cagr": 0.4125319369463951,
+  "best_factor_holdout_50bps_drawdown": -0.19425077277828906,
+  "best_factor_holdout_50bps_sharpe": 1.6366748092781886,
+  "best_factor_trailing_1y_50bps_cagr": 0.4899737262079793,
+  "created_at_utc": "2026-08-14T21:40:16.284570+00:00",
+  "current_survivor_pilot_only": true,
+  "experiment": "sec_split_normalized_valuation_pilot_v1",
+  "factor_beats_best_benchmark": true,
+  "live_trading_enabled": false,
+  "median_naive_to_normalized_cap_ratio_on_split_rows": 0.4159482553312588,
+  "rows_with_positive_market_cap": 1066,
+  "rows_with_split_adjustment": 8,
+  "strategy_promotion_authorized": false,
+  "validation_checks": {
+    "adjusted_close_used_only_as_naive_audit": true,
+    "all_positive_market_caps": true,
+    "all_prices_strictly_before_decision": true,
+    "all_share_facts_available_before_decision": true,
+    "raw_close_used_for_market_cap": true,
+    "results_finite": true,
+    "split_adjustments_are_date_bounded": true
+  },
+  "valuation_rows": 1076
+}

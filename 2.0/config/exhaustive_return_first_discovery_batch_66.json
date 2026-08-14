@@ -1,0 +1,78 @@
+{
+  "batch": 66,
+  "campaign": "exhaustive_return_first_discovery_and_adversarial_validation",
+  "frozen_on": "2026-08-12",
+  "data_bundle": "ggg_causal_v2_027530550388432a",
+  "comparison_candidate": "candidate-breadth-confirmed-trend-return-ceiling-v3",
+  "primary_simple_benchmark": "XLK",
+  "signal_families": [
+    "trend_quality_26",
+    "trend_quality_52",
+    "leadership_persistence",
+    "gain_to_pain_26",
+    "gain_to_pain_52",
+    "downside_efficiency_52",
+    "low_vol_momentum_26",
+    "high_proximity_strength",
+    "volatility_breakout",
+    "drawdown_recovery",
+    "rank_consensus",
+    "persistent_consensus"
+  ],
+  "top_n": [1, 2, 3],
+  "portfolio_methods": ["equal_weight", "score_inverse_volatility"],
+  "minimum_score": 0.0,
+  "discovery_assets": [
+    "SPY", "QQQ", "IWM", "EFA", "VEA", "VWO", "EWJ", "VNQ",
+    "HYG", "LQD", "GLD", "PDBC", "DBA", "TLT", "IEF", "TIP",
+    "VTV", "VUG", "XLB", "XLE", "XLF", "XLI", "XLK", "XLP",
+    "XLU", "XLV", "XLY", "SLV", "USO", "UUP"
+  ],
+  "source_weights_in_core_blends": [0.25, 0.5, 0.75],
+  "dynamic_regimes": ["tech_leadership", "broad_risk_on", "high_dispersion", "low_volatility_risk_on"],
+  "simple_benchmarks": ["SPY", "QQQ", "XLK", "XLE", "VUG", "USO"],
+  "fixed_benchmark_portfolios": {
+    "XLK75_QQQ25": {"XLK": 0.75, "QQQ": 0.25},
+    "XLK75_XLE25": {"XLK": 0.75, "XLE": 0.25},
+    "XLK75_USO25": {"XLK": 0.75, "USO": 0.25},
+    "XLK50_XLE25_USO25": {"XLK": 0.5, "XLE": 0.25, "USO": 0.25},
+    "XLK50_QQQ25_XLE25": {"XLK": 0.5, "QQQ": 0.25, "XLE": 0.25},
+    "XLK_QQQ_XLE_USO_equal": {"XLK": 0.25, "QQQ": 0.25, "XLE": 0.25, "USO": 0.25}
+  },
+  "training_end": "2023-08-04",
+  "training_score": "0.60 * trailing_5y_CAGR + 0.30 * trailing_3y_CAGR + 0.10 * trailing_5y_Sharpe",
+  "family_finalists_per_family": 1,
+  "walk_forward": {
+    "first_selection_year": 2015,
+    "training_weeks": 260,
+    "selectors": ["top1", "equal_top3"]
+  },
+  "nonlinear_ml": {
+    "models": ["random_forest", "extra_trees", "gradient_boosting", "hist_gradient_boosting"],
+    "allocation_rules": ["sign", "confidence_70"],
+    "minimum_training_months": 60,
+    "label_horizon_weeks": 4,
+    "random_seed": 20260812
+  },
+  "cost_bps": [50, 100, 200],
+  "additional_execution_delays_weeks": [1, 2, 4],
+  "bootstrap_samples": 30000,
+  "bootstrap_block_weeks": 13,
+  "promotion_gates": {
+    "minimum_holdout_cagr_advantage_over_xlk": 0.005,
+    "minimum_holdout_cagr_advantage_over_breadth_ceiling": 0.005,
+    "minimum_holdout_100bps_cagr_advantage_over_breadth_ceiling": 0.0,
+    "minimum_holdout_200bps_cagr": 0.2,
+    "maximum_holdout_drawdown_magnitude": 0.35,
+    "minimum_full_cagr": 0.04,
+    "minimum_delay_share_beating_breadth_ceiling": 0.6666666666666666,
+    "minimum_ex_best_year_advantage_over_breadth_ceiling": 0.0,
+    "minimum_rolling_3y_win_share_over_xlk": 0.5,
+    "maximum_familywise_adjusted_pvalue": 0.1
+  },
+  "selection_rule": "Among candidates fixed without holdout outcomes, select the highest holdout 50-bps CAGR that passes every promotion gate; otherwise retain the point leader as an unconfirmed research ceiling.",
+  "leverage_allowed": false,
+  "shorting_allowed": false,
+  "live_trading_enabled": false,
+  "existing_forward_protocol_must_remain_untouched": true
+}

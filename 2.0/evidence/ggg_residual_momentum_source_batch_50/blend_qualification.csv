@@ -1,0 +1,5 @@
+candidate,source,blend_weight,recent_3y_50bps_cagr,recent_cagr_improvement,post_2024_cagr_improvement,full_cagr_improvement,recent_3y_50bps_sharpe,recent_3y_50bps_max_drawdown,parent_source_gate,recent_cagr_gate,post_2024_gate,full_cagr_gate,drawdown_gate,prefix_gate,determinism_gate,manifest_gate,blend_qualified
+ggg_plus_residual_raw_10,raw,0.1,0.13015021672015714,0.0012766933805510305,0.006632701554998066,-0.0002442317092119506,1.4889858171874513,-0.07998248079631631,False,False,True,True,True,True,True,True,False
+ggg_plus_residual_vol_05,vol_managed,0.05,0.12896988607918436,9.636273957824848e-05,0.0025497101578246806,-0.00047451432239209446,1.5121890240599782,-0.07642292969406816,False,False,True,True,True,True,True,True,False
+ggg_plus_residual_vol_10,vol_managed,0.1,0.128849354504599,-2.416883500711009e-05,0.0048707635036588925,-0.0010900981617658623,1.4763178623238045,-0.07998248079631631,False,False,True,True,True,True,True,True,False
+ggg_plus_residual_vol_15,vol_managed,0.15,0.12866384252396013,-0.00020968081564598506,0.007114025495564391,-0.0017663638426945738,1.4385861084432283,-0.0835344365964884,False,False,True,True,True,True,True,True,False

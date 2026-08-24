@@ -1,0 +1,14 @@
+{
+  "experiment_id": "sec-cross-strategy-residual-allocator-v2",
+  "sealed_at": "2026-08-24T22:21:51.346315+00:00",
+  "sealed_sha256": {
+    "config/sec_cross_strategy_residual_allocator_v3.json": "199bba385971baa978a6781d3f02d4e3b264c3ee1a7fc5febe6d3bf7de3529f0",
+    "dashboard/public/return-first-dashboard.json": "2a427c970521fee814ebf6fed47afae9228afd4551459335b110658464b906db",
+    "data/cross_strategy_concentration_map_v2/sector_map.csv": "fbcf3b5250f176be264c82c8e0757aa1c590dbf5f168afe31202a11809e8fc81",
+    "data/cross_strategy_concentration_map_v2/manifest.json": "cad7fa5984f5cd024c731d1d18703f54777e1b1706e839fc544a90656011d144",
+    "scripts/run_sec_cross_strategy_residual_allocator_v3.py": "a9cb2146b280db9860ecf66782c6ecc68e1b621f8c6f3b05a6dde03e5338b923"
+  },
+  "one_shot": true,
+  "financing_deferred_until_unlevered_promoted": true,
+  "live_trading_enabled": false
+}

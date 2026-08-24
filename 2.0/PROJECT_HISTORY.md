@@ -5079,6 +5079,112 @@ References:
 
 - `dashboard/scripts/build-return-first-dashboard.py`
 - `dashboard/public/return-first-dashboard.json`
+
+## Step 177 — Fragility-aware accelerator and industry-residual tournament
+
+A frozen 40-candidate tournament tested all five planned improvements on the
+August 7, 2026 common endpoint: causal fragility guards, an 8%/12% financing
+and 1.25x/1.30x/1.35x exposure map, a new industry-residual momentum plus SEC
+acceleration family, common-cost robustness tests, and preservation of the
+exact-daily 174.97% diagnostic in the dashboard.
+
+The strongest retrospective candidate, `alpha30_1.35x`, returned 186.90% over
+the trailing 52 weeks with 3.206 Sharpe and -15.06% maximum drawdown. It
+retained 142.28% at 200-bps costs, 159.63% under the worst execution delay, and
+162.32% under the conservative five-issuer stress. It nevertheless failed the
+frozen evidence gates: rolling 26-week outperformance was only 47.02% and the
+familywise-adjusted bootstrap probability was 83.68%, below the required 60%
+and 95%. No candidate passed every historical gate.
+
+The independent industry-residual family did not rival the incumbent. Its best
+levered candidate returned 71.20% with 2.506 Sharpe and -7.37% drawdown, and
+failed the issuer-dependence test. That branch is rejected in its present form.
+The 186.90% result is saved as a fragile research lead, not a replacement.
+
+The dashboard now includes the exact-daily 174.97% amplifier as a selectable
+strategy with a visible failed-robustness label. The Next.js production build,
+type check, and interactive browser verification passed without console errors.
+Live trading and strategy replacement remain disabled.
+
+References:
+
+- `config/sec_fragility_industry_tournament_v1.json`
+- `scripts/run_sec_fragility_industry_tournament_v1.py`
+- `tests/test_sec_fragility_industry_tournament_v1.py`
+- `docs/SEC_FRAGILITY_INDUSTRY_TOURNAMENT_V1.md`
+- `research_registry/sec_fragility_industry_tournament_v1.json`
+- `evidence/sec_fragility_industry_tournament_v1/`
+- `dashboard/scripts/append-fragile-dashboard-strategy.py`
+
+## Step 178 — Broad quant mathematics tournament v3
+
+A pre-result sealed, one-shot tournament evaluated 96 broad-universe candidates
+using causal monthly price features and the latest available point-in-time SEC
+snapshot. The engine added robust residualization, quality interactions, purged
+nonlinear ridge, inverse-volatility and covariance-shrinkage construction,
+controlled exposure, deflated Sharpe, CSCV overfitting probability, and the
+existing cost, delay, issuer, sector, and missing-company stresses.
+
+The best broad candidate returned 123.33% recently but had -43.66% drawdown,
+only 1.590 Sharpe, 23.99% under delayed execution, and -10.31% after removing
+its five largest positive issuers. No candidate passed. The broad v3 strategy
+family is rejected as a replacement, although its causal monthly panel and
+portfolio mathematics are retained as infrastructure.
+
+## Step 179 — Above-300% fragility exposure study
+
+A second sealed study tested 22 exposure rules on the 186.90% fragility-aware
+source candidate. It demonstrated that the historical path can exceed both
+200% and 300%: fixed 1.50x returned 217.11%, fixed 1.65x returned 249.96%, and
+fixed 2.00x returned 337.83%. The 2.00x path had 3.132 recent Sharpe and -22.02%
+recent drawdown, but its full-history drawdown reached -37.16%.
+
+No exposure rule passed all gates. The 2.00x ceiling achieved only 83.28%
+familywise-adjusted bootstrap confidence and 85.90% deflated-Sharpe confidence,
+while CSCV estimated a 37.14% probability of backtest overfitting. The 217.11%,
+220.60%, and 337.83% variants are saved as fragile diagnostics only. No strategy
+replacement, dashboard default change, execution, or live trading was enabled.
+
+References:
+
+- `docs/SEC_QUANT_MATH_TOURNAMENT_V3.md`
+- `docs/SEC_FRAGILITY_EXPOSURE_CONTROL_V1.md`
+- `evidence/sec_quant_math_tournament_v3/`
+- `evidence/sec_fragility_exposure_control_v1/`
+
+
+## Step 177 — Test realistic financing, adaptive leverage, and contribution risk
+
+A separate sealed experiment compared unlevered exposure, fixed 1.25x exposure,
+causal adaptive 1.00x-1.25x exposure, and adaptive exposure with a ticker-neutral
+residual-sleeve volatility-contribution limit. It preserved the existing 0/52
+forward protocol. Financing was charged weekly only above 1.00x, using the
+published 5% path as a reference, 8% as the baseline, and 12% as a stress.
+Leverage changes, internal margin safety, broker maintenance ratios, and forced
+next-week deleveraging were modeled explicitly.
+
+On the common trailing-52-week endpoint, fixed 1.25x returned 150.86% at the
+published 5% assumption and 149.01% at 8%. Adaptive leverage returned 147.66%
+with 3.088 Sharpe and -13.86% drawdown. Adding the residual contribution limit
+improved that slightly to 147.76%, 3.090, and -13.86%, while keeping observed
+issuer volatility-budget contribution at 12% or less. Neither adaptive path
+beat the 8% fixed benchmark or had familywise bootstrap support, so no research
+display winner or replacement was authorized.
+
+No historical margin breach occurred, but shock arithmetic showed why this is
+not evidence of safety: a 50% one-week asset loss at 1.25x would lose about
+62.5% of equity without crossing the frozen threshold, while a 60% asset loss
+would lose about 75% and trigger internal deleveraging. The dashboard incumbent,
+forward clock, and live-trading-disabled state were unchanged.
+
+References:
+
+- `config/sec_residual_financing_adaptive_risk_v1.json`
+- `scripts/run_sec_residual_financing_adaptive_risk_v1.py`
+- `scripts/audit_sec_residual_financing_adaptive_risk_v1.py`
+- `tests/test_sec_residual_financing_adaptive_risk_v1.py`
+- `evidence/sec_residual_financing_adaptive_risk_v1/`
+- `evidence/sec_residual_financing_adaptive_risk_audit_v1/`
 - `dashboard/src/components/return-first-dashboard.tsx`
 
 ## Step 118 — Build a split-normalized point-in-time valuation pipeline
@@ -7122,3 +7228,204 @@ References:
 - `dashboard/src/components/return-first-dashboard.tsx`
 - `dashboard/scripts/build-return-first-dashboard.py`
 - `dashboard/public/return-first-dashboard.json`
+
+## Step 180 — Execute the V1 upgrade backlog and preserve the negative results
+
+The two V1 strategy and upgrade audits were reconciled against the current repository
+rather than treated as instructions that could override research controls. The current
+registry contains 24 provisional strategy candidates and one portfolio candidate, with
+zero final or live-approved strategies. One covariance-portfolio forward observation
+has now been recorded; all other inspected forward clocks remain at zero, and no clock
+is close to the required 52 weeks.
+
+A mandatory candidate-breadth gate was added. It requires aligned return correlations
+and holdings overlap against every surviving peer, reports participation-ratio effective
+breadth and each candidate's marginal contribution, and rejects candidates whose
+contribution rounds below 0.01 as new independent return sources. An optional
+Fundamental Law decomposition keeps IC, breadth, transfer coefficient, theoretical IR,
+and realized implementation efficiency explicit. The gate never authorizes promotion.
+
+Two genuinely missing retrospective upgrades were then frozen and run. A two-state
+Gaussian hidden Markov scaler, fit on 2005-2015 only and filtered with a one-period lag,
+improved locked-period drawdown by 7.53 percentage points at 50 bps but reduced annual
+return by 3.14 points, failing the predeclared one-point return-drag tolerance. A true
+meta-label model used primary-direction correctness as its label and precision/F1 as its
+objective. Precision improved only from 52.37% to 52.67%, F1 fell from 0.687 to 0.680,
+and a shuffled-label control reached 53.20% precision. It failed before portfolio
+pass-through, so no return backtest was allowed. Both upgrades are rejected.
+
+The remaining V1 items were found to be either completed later or externally data-
+blocked. Point-in-time cross-sectional value was already completed and rejected in
+Steps 118-123. Fractional Kelly, inverse-volatility, covariance/rank sizing, issuer and
+sector caps, and later sizing/exposure tournaments were also already tested; the latest
+22- and 96-candidate programs had zero historical gate passers. The Indonesia/IDX80
+international program is rejected or inconclusive because local inactive/delisted
+history, benchmark, cost, and forward gates remain open.
+
+Hull 11e sections 10.6-10.8, 19.6, 19.8, 19.10-19.11, and 20.5 were checked before
+adding derivatives contracts. Futures research now requires explicit contract identity,
+expiration, bid/ask, multiplier, fees, initial/maintenance margin, and both legs of a
+roll. Options research requires quote time, exercise style, bid/ask, implied volatility,
+Greeks, margin, assignment fees, explicit tail scenarios, and a maximum-weekly-loss
+budget. No derivatives performance was calculated because the required point-in-time
+chains, surfaces, execution, margin, and roll histories do not exist locally. Live
+trading remains disabled.
+
+References:
+
+- `config/candidate_breadth_gate_v1.json`
+- `scripts/run_candidate_breadth_gate_v1.py`
+- `evidence/formal_markov_regime_scaling_v1/`
+- `evidence/true_meta_labeling_v1/`
+- `config/derivatives_breadth_program_v1.json`
+- `docs/UPGRADE_EXECUTION_AUDIT_V2.md`
+- `research_registry/upgrade_execution_audit_v2.json`
+
+## Step 181 — Compare every dashboard strategy in a frozen survival laboratory
+
+A common historical-survival battery was frozen and applied to all six saved
+dashboard strategies using their native weekly records. Ten thousand 52-week
+moving-block bootstrap paths were generated with 4- and 13-week blocks. The
+same study also tested rolling-year failure, doubled trading costs, an extra
+300 basis points of financing, 25% positive-signal decay, a forced -20% week,
+displayed holding concentration, original research-gate status, and untouched
+forward evidence.
+
+Dynamic Breadth-20, the sector-aware ensemble, the residual-controlled 1.25x
+leader, and the fragile 1.35x ceiling each scored 75/100 under the modeled
+historical battery. Growth / Micron scored 55 and the ETF incumbent scored 40.
+The 1.25x leader's 13-week block bootstrap produced 94.62% profitable paths,
+a -0.83% 5th-percentile annual return, and a 1.59% probability of crossing a
+30% drawdown. The Micron-led path was materially weaker at 81.14%, -19.21%,
+and 21.91%, respectively.
+
+No strategy is labeled proven or live-ready. All retain zero completed forward
+weeks in this snapshot, and executable liquidity, market impact, financing,
+tax, and model-drift evidence remains incomplete. A dedicated Survival Lab page
+was added to the Next.js dashboard to keep modeled stress survival, original
+research validation, and live-forward proof visibly separate.
+
+References:
+
+- `config/dashboard_strategy_survival_lab_v2.json`
+- `scripts/run_dashboard_strategy_survival_lab_v2.py`
+- `tests/test_dashboard_strategy_survival_lab_v2.py`
+- `docs/DASHBOARD_STRATEGY_SURVIVAL_LAB_V2.md`
+- `evidence/dashboard_strategy_survival_lab_v2/`
+- `dashboard/src/app/survival/page.tsx`
+- `dashboard/public/strategy-survival.json`
+
+## Step 182 — Kill the cross-strategy residual allocator at the holdings level
+
+The 158.52% / 3.73-Sharpe / -10.87% blend that motivated this step was a post-hoc
+diagnostic: 80% of the 150.86% leader plus 20% of the fragile sector sleeve, noticed
+after inspecting results, on the strength of a 0.079 recent return correlation. A
+sealed, unlevered cross-strategy residual allocator was built to test it properly.
+
+A v1 of this experiment already existed and had already run. Re-reading it found five
+defects, four of which manufactured passing gates. It never inspected holdings. It
+charged reallocation cost only on the change in the allocator weight, so the static 20%
+rule it selected had zero turnover inside the locked window and its doubled-cost stress
+was arithmetically identical to the headline. Both delay stresses shifted a constant and
+were likewise no-ops. The sleeve shock landed at the midpoint of the full frame, inside
+the development period, and never touched the locked window. There was no missing-stock
+stress and no reconciliation. V1's `double_cost_improvement` and `delay_improvement`
+gates both read true; neither test did anything.
+
+V2 reconciles first and fails closed. Each source is checked against its own daily
+records, its published wealth path, and the net-equals-gross-minus-cost identity before
+any performance number is computed; both passed at machine precision, worst error
+1.5e-16. The de-levered base reproduces the published cash-only trailing figure of
+112.6039000930664% to an absolute error of exactly zero, so the unlevering is verified
+against an independent published number rather than asserted.
+
+Reconciliation then surfaced a cost asymmetry that invalidates every prior comparison
+between these two strategies. The sector sleeve is published with 32.29 units of
+cumulative turnover and zero charged trading cost, while the base pays a full 50 bps and
+carries 13.05 points of cumulative cost drag. Charging the sleeve 50 bps on its own
+turnover costs it roughly 8 points of trailing CAGR and 6.7 points of full-history CAGR.
+The 158.52% blend was a cost-charged strategy measured against a cost-free one.
+
+V2 rebuilds the combined book at the holdings level, charges its real turnover once, and
+adds issuer, sector and ETF look-through concentration controls. Over half of each
+strategy's weight sits in exchange traded products, so a frozen map resolves held symbols
+to SIC-derived sectors and expands funds through a declared look-through table. Selection
+uses only lagged residual momentum, beta, correlation and residual information ratio,
+over purged expanding walk-forward folds with a four-week embargo. Twenty-three tests
+pass, including two prefix-invariance tests confirming that perturbing future data leaves
+historical signals and allocator paths unchanged, and three reconciliation tests that
+detect a tampered daily record, a broken cost identity, and a zero-cost source.
+
+Unlevered and cost-symmetric, the selected static 20% sleeve returned 110.36% against the
+base's 109.22% over the 52 weeks ending August 7, 2026, with Sharpe 3.640 against 3.097
+and drawdown -8.97% against -11.31%. The improvement is 1.13 percentage points, not the
+7.66 points claimed. Every non-vacuous stress is larger than the edge: doubled cost
+-6.05 points, 25% signal decay -8.99, a -20% sleeve week -7.00, and removing the single
+largest sleeve name each week -10.50. Removing XLK alone costs 10.73 points against the
+base; SLV, MU, PLTR and VICR each independently flip the result negative, and only five
+of the ten largest sleeve names leave any improvement standing. Micron appearing again is
+the same chronic failure mode. Paired moving-block bootstrap probability of outperformance
+was 0.4684 at four-week blocks and 0.3968 at thirteen, against a 0.9999 familywise
+threshold after correcting for 402 cumulative trials. The two delay stresses remain
+genuine no-ops for a static rule; unlike v1 the run flags them as vacuous, so they carry
+no evidential weight.
+
+The decisive finding is at the holdings level. The 0.079 return correlation is reproduced
+exactly and is misleading. Mean weight overlap between the two books is 75.81% over the
+recent window and 75.45% over full history; they share 25 of the sleeve's 29 final-week
+names, including MU, GTLB, QLYS, PANW, PLTR, ZS, XLK and XLE. The returns-based effective
+breadth statistic reports 1.99 independent strategies, close to the maximum for two
+series, while the holdings say the books are three-quarters identical. Where they
+disagree the holdings are ground truth, and a returns-only breadth measure is fooled by
+re-weighting. Under Grinold and Kahn this cannot raise breadth; it is the ≈1.15 ceiling
+of Batch 03 reached by another route.
+
+Concentration produced a second finding about the incumbent rather than the sleeve. After
+look-through the 150.86% leader is an 81.6% technology book with 48.0% in a single fund at
+the 95th percentile of the locked window, breaching two of four conventional caps on its
+own. The sleeve worsens all four measures, and its single-fund increase of 2.40 points
+exceeds the declared 2-point tolerance. Every cap from 5% to 20% raises every
+concentration measure monotonically, so no allocation size diversifies the book. A
+sensitivity check tilting each broad fund a further 15 points into its largest sector
+leaves the verdict unchanged.
+
+After v2's result was written, a defect was found in its concentration inputs. The v1
+map's hand-written fund list omitted SLV, XLB, XLP, XLV, XLY, VTV, VWO, BIL and PDBC, and
+unlisted funds fell through to the issuer bucket. SLV reaches 21.5% and 26.8% de-levered
+weight in the two sources, and because the iShares Silver Trust is itself an SEC filer
+with a finance-division SIC code, v2 counted it twice as a company; v2's headline
+"max single issuer 21.5%" was SLV. V2 was a completed one-shot and was not overwritten. A
+corrected map was built and the identical experiment was sealed and rerun as v3. Base max
+single issuer falls from 21.5% to 7.4% and the absolute issuer gate flips to pass; total
+fund weight rises from 57.3% to 58.8%; single-fund and sector figures are unchanged.
+Returns, stresses, breadth and bootstrap are bit-identical across the two runs, which is
+the intended proof that the map feeds risk measurement only and never the return path.
+Nine of thirteen gates fail in both.
+
+Financing was never evaluated. The runner computes no levered path unless the unlevered
+book clears every gate, and it did not. The allocator is rejected. No forward clock was
+started, no candidate was promoted, and live trading remains disabled. A separate
+unrepaired artifact is recorded: `sec-growth-survivorship-aware-v1` carries a holding
+whose symbol is the literal string `PRICES` at up to 40% weight across 54 weeks. The new
+map classifies it as a data artifact so it cannot be absorbed into an issuer or sector
+bucket, but the export defect belongs to that strategy.
+
+The conclusion is that no allocator over these two books can help. Any blend of them is a
+re-weighting of one book. Breadth requires a return source that does not hold MU, XLK and
+PANW.
+
+References:
+
+- `config/sec_cross_strategy_residual_allocator_v2.json`
+- `config/sec_cross_strategy_residual_allocator_v3.json`
+- `scripts/build_cross_strategy_concentration_map_v1.py`
+- `scripts/build_cross_strategy_concentration_map_v2.py`
+- `scripts/seal_sec_cross_strategy_residual_allocator_v2.py`
+- `scripts/seal_sec_cross_strategy_residual_allocator_v3.py`
+- `scripts/run_sec_cross_strategy_residual_allocator_v2.py`
+- `scripts/run_sec_cross_strategy_residual_allocator_v3.py`
+- `tests/test_sec_cross_strategy_residual_allocator_v2.py`
+- `docs/SEC_CROSS_STRATEGY_RESIDUAL_ALLOCATOR_V2.md`
+- `research_registry/sec_cross_strategy_residual_allocator_v3.json`
+- `evidence/sec_cross_strategy_residual_allocator_v2/`
+- `evidence/sec_cross_strategy_residual_allocator_v3/`

@@ -1,0 +1,13 @@
+candidate,rule,cap,mean_validation_objective,minimum_validation_objective,risk_gate_passed
+static__cap_20pct,static,0.2,0.04930349747291474,-0.25094514205172613,True
+static__cap_15pct,static,0.15,0.04846455699856839,-0.25430358859199576,True
+static__cap_10pct,static,0.1,0.04694670145352134,-0.2572829030031505,True
+static__cap_05pct,static,0.05,0.04484372220379734,-0.2599671001315405,True
+gated__cap_05pct,gated,0.05,0.0373865908692842,-0.26745263821588494,True
+covariance_scaled__cap_05pct,covariance_scaled,0.05,0.03237406575722532,-0.2744247793651198,True
+gated__cap_10pct,gated,0.1,0.03191275614980876,-0.27260826384050935,True
+gated__cap_15pct,gated,0.15,0.025835608337908572,-0.27783141961004454,True
+covariance_scaled__cap_10pct,covariance_scaled,0.1,0.022395203671093877,-0.28649914398612175,True
+gated__cap_20pct,gated,0.2,0.01917513705834714,-0.2830364881987584,True
+covariance_scaled__cap_15pct,covariance_scaled,0.15,0.012351296585569077,-0.2986032799927184,True
+covariance_scaled__cap_20pct,covariance_scaled,0.2,0.0022719443276703333,-0.3106782084091215,True

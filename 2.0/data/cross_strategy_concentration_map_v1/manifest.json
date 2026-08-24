@@ -1,0 +1,22 @@
+{
+  "experiment": "cross_strategy_concentration_map_v1",
+  "created_at_utc": "2026-08-24T22:08:32.858264+00:00",
+  "symbols": 271,
+  "counts_by_source": {
+    "sec_broad_research_panel_v2": 214,
+    "unresolved_identity": 38,
+    "explicit_exchange_traded_list": 19
+  },
+  "input_sha256": {
+    "data/sec_broad_panel_inputs_v2/price_source_inventory.csv": "ae92089137650995c8d6007a39d0d0cfcfe3189580bf7f8629fb8351b6f63a88",
+    "data/sec_broad_research_panel_v2/panel.csv.gz": "64df7fb1bff17754f0b67190b963d8786553c7834f6419b27aa60052136272c8",
+    "dashboard/public/return-first-dashboard.json": "2a427c970521fee814ebf6fed47afae9228afd4551459335b110658464b906db"
+  },
+  "artifact_sha256": {
+    "sector_map.csv": "20ecd5141d778e46ff967c0bbe6eacb291b0e1c061df7eefbb4604065454586f"
+  },
+  "sector_vintage_is_point_in_time": false,
+  "sector_vintage_note": "SIC-derived sector divisions reflect the current SEC company-facts vintage, not the sector recorded at each historical decision date. They are used only as a risk constraint and never as a return signal.",
+  "performance_evaluated": false,
+  "live_trading_enabled": false
+}

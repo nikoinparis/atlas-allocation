@@ -1,0 +1,16 @@
+{
+  "artifact_sha256": {
+    "nested_ml_audit": "37fad05fe4f8fb0599f451ec8acf3f2ed9803611b411bf77cb84fdb054ba321e",
+    "screening": "f78323a11c1f9bde7454c60b2955035836d9eeed77922285c5c7aaf2c75158cb"
+  },
+  "created_at_utc": "2026-08-24T02:23:35.510568+00:00",
+  "experiment": "sec_return_improvement_tournament_v2",
+  "live_trading_enabled": false,
+  "manual_review_required": true,
+  "performance_evaluated": true,
+  "qualified_families": [],
+  "research_gate_open": true,
+  "status": "one_shot_tournament_complete",
+  "strategy_promotion_authorized": false,
+  "winner_selected": null
+}

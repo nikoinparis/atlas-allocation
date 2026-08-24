@@ -1,0 +1,39 @@
+{
+  "candidate_last_date": "2026-08-21",
+  "common_endpoint": "2026-08-07",
+  "control_last_date": "2026-08-07",
+  "created_at_utc": "2026-08-24T03:11:38.276779+00:00",
+  "excluded_mismatched_candidate_dates": [
+    "2026-08-14",
+    "2026-08-21"
+  ],
+  "experiment": "sec_residual_common_endpoint_audit_v1",
+  "interpretation": "The corrected 5% financing path exceeds 150% on the historical common endpoint, but financing is assumed and the result remains selection-contaminated retrospective research.",
+  "live_trading_enabled": false,
+  "missing_control_returns_filled_with_zero": false,
+  "source_sha256": {
+    "evidence/sec_cash_conversion_breadth_dynamic_v1/best_path__base__50bps.csv": "1d1f7926ff1663a1d22360818c64a172c203d2b9e1a145465993c4f66894cf26",
+    "evidence/sec_residual_controlled_sleeve_v1/candidate_path.csv": "17e9a1147973613264c6326342ba58482100c28033b202ee98528c3d3037f3c7"
+  },
+  "strategy_promotion_authorized": false,
+  "trailing_52_week_paths": {
+    "levered_1.25x_5pct_financing": {
+      "cagr": 1.5085821122127712,
+      "max_drawdown": -0.13868614262902035,
+      "sharpe": 3.120075863125595,
+      "weeks": 52
+    },
+    "levered_1.25x_8pct_financing": {
+      "cagr": 1.49014787440349,
+      "max_drawdown": -0.13945010233556354,
+      "sharpe": 3.096074155549312,
+      "weeks": 52
+    },
+    "unlevered_1.00x": {
+      "cagr": 1.1260390009306636,
+      "max_drawdown": -0.11116225097772747,
+      "sharpe": 3.1600787090860667,
+      "weeks": 52
+    }
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "all_economic_gates_passed": false,
+  "all_statistical_gates_passed": false,
+  "artifact_sha256": {
+    "block_bootstrap.csv": "35dea1b4dc161bc2245838f4ca7a6860fa12275f5cb58c75313408d7f951578d",
+    "development_shortlist.csv": "d2fa96f467e9645d4f6a5ffb127c411ed27617552a0631ae5540107e9618a66c",
+    "screening.csv": "95297ecc608a251516208ea560c75e43c5f0f156bad64671d721c2ea684b4c9d",
+    "selected_allocations.csv": "cb0cf34cc09ab06c1ef6d3a172a81e0d7a5f07691c39041c8224ff6b3ef01dea",
+    "selected_path.csv": "1ed5f9c5f206c0ef61cd14c3eacdc49f44a7223c4be02023af1305fe2fd45e54",
+    "source_correlations.csv": "c067a7ee27f5a2b007f65fa7d07683e555ff81c93371c258d91ade078e69c245",
+    "stress_tests.csv": "7e4a41768d9bf649bc79188d7443dae098f5cf58436fe28e863c46318ffb2473"
+  },
+  "candidate_count": 378,
+  "common_endpoint": "2026-08-07",
+  "cost_200bps_locked_cagr": 0.9141882615067172,
+  "created_at_utc": "2026-08-24T03:10:01.858167+00:00",
+  "experiment": "sec_independent_sleeve_return_accelerator_v1",
+  "frozen_forward_candidate_modified": false,
+  "full_candidate": {
+    "cagr": 0.393695228282954,
+    "max_drawdown": -0.20952918768245943,
+    "sharpe": 1.763507752693101
+  },
+  "full_corrected_benchmark": {
+    "cagr": 0.4980692820612842,
+    "max_drawdown": -0.23541360098537645,
+    "sharpe": 1.782921908739682
+  },
+  "gate_results": {
+    "cost_200bps": true,
+    "execution_delay": true,
+    "incremental_issuer_concentration": true,
+    "locked_cagr": false,
+    "locked_drawdown": true,
+    "locked_sharpe": true,
+    "multiplicity": false
+  },
+  "live_trading_enabled": false,
+  "locked_cagr_improvement": -0.37827976770251226,
+  "locked_candidate": {
+    "cagr": 1.1118681067009804,
+    "max_drawdown": -0.11116225097772792,
+    "sharpe": 3.1433251334737147
+  },
+  "locked_corrected_147pct_benchmark": {
+    "cagr": 1.4901478744034926,
+    "max_drawdown": -0.1394501023355641,
+    "sharpe": 3.0960741555493105
+  },
+  "locked_sharpe_improvement": 0.047250977924404136,
+  "maximum_incremental_issuer_positive_return_share": 0.08337650577804075,
+  "mismatched_endpoint_zero_fill_forbidden": true,
+  "selected_candidate": "lb52__k1__a0.20-0.20__vol0.35__cap1.00",
+  "selected_parameters": {
+    "high_allocation": 0.2,
+    "lookback": 52,
+    "low_allocation": 0.2,
+    "maximum_leverage": 1.0,
+    "top_k": 1,
+    "volatility_target": 0.35
+  },
+  "selection_contaminated": true,
+  "split_dates": {
+    "development": {
+      "end": "2024-08-09",
+      "start": "2023-01-06",
+      "weeks": 84
+    },
+    "full": {
+      "end": "2026-08-07",
+      "start": "2023-01-06",
+      "weeks": 188
+    },
+    "locked_test": {
+      "end": "2026-08-07",
+      "start": "2025-08-15",
+      "weeks": 52
+    },
+    "validation": {
+      "end": "2025-08-08",
+      "start": "2024-08-16",
+      "weeks": 52
+    }
+  },
+  "status": "one_shot_tournament_complete",
+  "strategy_promotion_authorized": false,
+  "worst_delay_locked_cagr": 1.023349040154284
+}

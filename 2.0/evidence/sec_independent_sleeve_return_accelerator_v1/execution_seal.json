@@ -1,0 +1,17 @@
+{
+  "frozen_forward_protocol_sha256": "2774fcc8a5e0aa3df9dbf563588c90c691e8644a39a03f98f3b9d00c37043288",
+  "live_trading_enabled": false,
+  "performance_evaluated_at_seal": false,
+  "sealed_at_utc": "2026-08-24T03:09:41.631146+00:00",
+  "sealed_sha256": {
+    "config/forward/sec_residual_controlled_sleeve_forward_v1.json": "2774fcc8a5e0aa3df9dbf563588c90c691e8644a39a03f98f3b9d00c37043288",
+    "config/sec_independent_sleeve_return_accelerator_v1.json": "8dbf0397af763c1e04fd6cf13d60fb9eafda60382dd310c6f579dd1b6ad99ed7",
+    "config/sec_return_improvement_program_v1.json": "e6237a76d3b43a1e04bbeb27664b47110e119ae63c7fcb53d9928bec3cf93489",
+    "data/sec_broad_research_panel_v2/manifest.json": "3f0910f8193424356d491d8647fccc01995a2943ba6f5d8268005bb44f992f43",
+    "evidence/sec_residual_controlled_sleeve_v1/result.json": "80a2670de1c2c2bc91a9c1c94b71a77a16a468ed4ffb6535861aa2f883383679",
+    "scripts/run_sec_independent_sleeve_return_accelerator_v1.py": "b8c71a9f0d0d87b54293e5c82275d4ca99cc5c7432fb212de30ede714ebc9891",
+    "src/systematic_trader/sec_real_tournament_v2.py": "593863857552c0bc2677660e8b4c219cf995c749bae9fa4c754c9cce380ad842",
+    "src/systematic_trader/sec_return_improvement.py": "12c5f3faf179d1e76af7c6fad068eeb81e2ae34b195c82305176eaa975c4707b",
+    "src/systematic_trader/sec_tournament_rehearsal.py": "950d183705f5dec0f8d54c07ca471b0055c566c561b3fdc45566d2cb1832dc76"
+  }
+}

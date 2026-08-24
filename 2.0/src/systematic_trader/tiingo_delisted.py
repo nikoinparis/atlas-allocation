@@ -32,9 +32,18 @@ def issuer_name_score(sec_name: object, provider_name: object) -> float:
 def issuer_name_match(sec_name: object, provider_name: object, threshold: float = 0.60) -> bool:
     left = set(name_tokens(sec_name))
     right = set(name_tokens(provider_name))
-    if not left or not right or not (left & right):
+    if not left or not right:
         return False
-    return issuer_name_score(sec_name, provider_name) >= threshold
+    score = issuer_name_score(sec_name, provider_name)
+    if left & right:
+        return score >= threshold
+
+    # Providers sometimes join or split the same distinctive issuer token
+    # (for example, "PC TEL" versus "PCTEL") or normalize punctuation
+    # ("AARON'S" versus "Aarons").  Accept only a very-high normalized-name
+    # similarity when no exact token overlaps; the stricter threshold keeps
+    # recycled ticker identities from being admitted on a loose fuzzy match.
+    return score >= 0.90
 
 
 def candidate_cache_key(symbol: object, cik10: object, occupied_cik10: object | None = None) -> str:

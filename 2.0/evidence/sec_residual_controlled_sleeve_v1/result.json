@@ -1,0 +1,49 @@
+{
+  "all_statistical_validation_gates_passed": false,
+  "artifact_sha256": {
+    "block_bootstrap.csv": "ddc2eeafc35b39f98e20e90d7c7190138fab61dc497b538dba36284b3af9165d",
+    "calendar_years.csv": "61c9d21fc9bdb45d52a2180a1892d2b44505412f7d4e60974a417d1a9f2b6fcc",
+    "candidate_path.csv": "17e9a1147973613264c6326342ba58482100c28033b202ee98528c3d3037f3c7",
+    "leverage_stress.csv": "4782aa2b5135549932fc449aae7b52b149994ffe9083e804d727091e1c79436c",
+    "metrics.csv": "fc057818f2c0f2e921fca9f32e6bb16765dd94fbfceacb41d61c670905df4fba",
+    "rolling_outperformance.csv": "38112db5ab02ce8b95d81b342d1bff018191075bdefebca7db3f92986178b32c"
+  },
+  "created_at_utc": "2026-08-24T02:26:26.352079+00:00",
+  "experiment": "sec_residual_controlled_sleeve_v1",
+  "full_candidate": {
+    "cagr": 0.3941212257428348,
+    "max_drawdown": -0.1868546022649621,
+    "sharpe": 1.8310923641102101
+  },
+  "full_control": {
+    "cagr": 0.3753553124119442,
+    "max_drawdown": -0.23256296706298507,
+    "sharpe": 1.5307643840977947
+  },
+  "full_return_correlation": 0.961151126924249,
+  "gate_results": {
+    "delay": true,
+    "full_cagr": true,
+    "issuer_concentration": true,
+    "multiplicity": false,
+    "recent_cagr": true,
+    "recent_drawdown": true,
+    "recent_sharpe": true
+  },
+  "live_trading_enabled": false,
+  "maximum_positive_issuer_share": 0.04616287426689241,
+  "promotion_authorized": false,
+  "recent_candidate": {
+    "cagr": 1.1064965452480715,
+    "max_drawdown": -0.11116225097772803,
+    "sharpe": 3.1161286263540986
+  },
+  "recent_control": {
+    "cagr": 1.0990284521603058,
+    "max_drawdown": -0.10669251571766458,
+    "sharpe": 2.7279783800301516
+  },
+  "required_next_step": "frozen forward observation because the sleeve weight was selected on this sample",
+  "selection_contaminated": true,
+  "worst_delay_recent_cagr": 1.083512813981521
+}

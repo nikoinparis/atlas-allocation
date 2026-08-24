@@ -1,0 +1,13 @@
+{
+  "performance_evaluated_at_seal": false,
+  "sealed_at_utc": "2026-08-24T02:26:24.993546+00:00",
+  "sealed_sha256": {
+    "config/sec_residual_controlled_sleeve_v1.json": "8b44a972cd975adf011eac43935e14a06c09870d46bb9378ef893a378713976d",
+    "data/sec_broad_research_panel_v2/manifest.json": "3f0910f8193424356d491d8647fccc01995a2943ba6f5d8268005bb44f992f43",
+    "evidence/sec_return_improvement_tournament_v2/final_result.json": "7ab100179956998366b7c6dfc7b146d9fe2c4446efd370b091d87d50cea8f425",
+    "scripts/run_sec_residual_controlled_sleeve_v1.py": "db5eb0b04c9313f2375f00355d00c77cc763d2930547a3a1545f566c2cd0e0cd",
+    "src/systematic_trader/sec_real_tournament_v2.py": "593863857552c0bc2677660e8b4c219cf995c749bae9fa4c754c9cce380ad842",
+    "src/systematic_trader/sec_return_improvement.py": "12c5f3faf179d1e76af7c6fad068eeb81e2ae34b195c82305176eaa975c4707b",
+    "src/systematic_trader/sec_tournament_rehearsal.py": "950d183705f5dec0f8d54c07ca471b0055c566c561b3fdc45566d2cb1832dc76"
+  }
+}

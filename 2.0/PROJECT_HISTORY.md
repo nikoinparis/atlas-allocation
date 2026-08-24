@@ -1,6 +1,6 @@
 # Portfolio Optimizer: End-to-End Project History
 
-Last updated: 2026-08-08
+Last updated: 2026-08-16
 
 This is the living reference for the project from its original 1.0 research
 stack through the current 2.0 repository-evaluation platform. Update it whenever
@@ -5241,3 +5241,1861 @@ References:
 - `evidence/sec_diversified_valuation_ensemble_audit_v1/result.json`
 - `evidence/sec_diversified_valuation_ensemble_audit_v1/candidate_summary.csv`
 - `research_registry/sec_diversified_valuation_ensemble_v1.json`
+
+## Step 124 — Test filing-triggered fundamental acceleration and reject the recent-only lift
+
+A new event-driven research path used actual SEC availability timestamps rather
+than quarterly portfolio dates. The panel contained 4,789 filing events across
+578 historical issuers. Revenue, operating-income, cash-flow, margin, and
+dilution changes became eligible only after their source facts were public.
+Four- and eight-week price confirmation used the prior weekly close, not the
+execution close.
+
+The static search covered 5,832 paths across three fundamental-momentum
+families, 4/8/13-week event ages, three price-confirmation rules, 10/20/30-name
+breadths, three liquidity floors, two sector limits, four controlled
+allocations, and 50/100/200-bps costs. The strongest recent result was a 20%
+allocation to 30 positive-eight-week-price-confirmed filing names: 105.38%
+recent CAGR, 2.929 Sharpe, and -10.76% drawdown. Full CAGR was only 38.59%, and
+recent CAGR fell to 102.29% at 200 bps. No static path beat the leader on both
+recent and full CAGR.
+
+A second search tested 900 one-week-shifted conditional allocations. The best
+recent gate activated a 50% sleeve only when the leader was negative and the
+filing sleeve was positive over the prior eight weeks. It reached 107.04%
+recent CAGR with -10.08% drawdown, but full CAGR remained 38.57% and its
+200-bps recent CAGR was 104.11%. No conditional path beat the 105.10% recent
+and 40.93% full control simultaneously. The filing signal is therefore
+rejected as a replacement and recorded as a recent-only diagnostic rather
+than a saved leader.
+
+References:
+
+- `config/sec_filing_fundamental_momentum_search_v1.json`
+- `scripts/run_sec_filing_fundamental_momentum_search_v1.py`
+- `evidence/sec_filing_fundamental_momentum_search_v1/result.json`
+- `config/sec_filing_momentum_dynamic_overlay_v1.json`
+- `scripts/run_sec_filing_momentum_dynamic_overlay_v1.py`
+- `evidence/sec_filing_momentum_dynamic_overlay_v1/result.json`
+- `research_registry/sec_filing_fundamental_momentum_v1.json`
+
+## Step 125 — Test SEC Form 4 insider clusters and retain only as a diversifier
+
+The official SEC Insider Transactions Data Sets were acquired for every
+quarter from 2023 Q1 through 2026 Q2. All 14 source ZIP files were preserved
+in an immutable timestamped vintage and their SHA-256 hashes were verified.
+The normalized panel retained 2,560 original Form 4 filings across 362
+historical issuers. Only non-derivative open-market purchase transactions
+(code P, acquisition code A) with positive shares and prices were eligible;
+amendments, grants, option exercises, sales, and equity swaps were excluded.
+Because the bulk tables provide a filing date rather than an acceptance time,
+each filing became eligible only on a strictly later Friday decision.
+
+The search correctly counted distinct reporting-owner CIKs across separate
+filings, so a CEO and CFO buying independently within the same window formed a
+cluster. It tested all purchases, two-person clusters, executive-or-cluster,
+non-10b5-1, and non-10b5-1 cluster families across 7/14/30-day windows,
+optional lagged four-week price confirmation, 5/10/20/30-name breadths, two
+liquidity floors, two sector limits, 10%-40% allocations, and 50/100/200-bps
+costs. This produced 480 structures and 5,760 costed overlay paths.
+
+The best return path was a 10% allocation to five executive-or-cluster names
+from a 30-day window: 97.36% recent CAGR, 2.777 Sharpe, -9.13% recent drawdown,
+and 37.38% full CAGR. It retained 91.32% recent CAGR at 200-bps costs. The
+cluster-only version reached 97.28% recent CAGR, 2.788 Sharpe, and -8.88%
+drawdown. These are useful risk-adjusted diversification results, but no path
+beat the 105.10% recent and 40.93% full-CAGR control simultaneously. The
+weekly leader therefore remains unchanged and the insider signal is saved as
+an unpromoted research diversifier.
+
+References:
+
+- `config/sec_form4_bulk_acquisition_v1.json`
+- `scripts/acquire_sec_form4_bulk_v1.py`
+- `data/sec_form4_bulk_vintages/20260815T005416Z-sec-form4-bulk-v1/manifest.json`
+- `config/sec_form4_insider_cluster_search_v1.json`
+- `scripts/run_sec_form4_insider_cluster_search_v1.py`
+- `evidence/sec_form4_insider_cluster_search_v1/result.json`
+- `evidence/sec_form4_insider_cluster_search_v1/report.md`
+- `research_registry/sec_form4_insider_cluster_v1.json`
+
+## Step 126 — Test the Form 4 insider sleeve as a causal overlay and reject it on concentration grounds
+
+Step 125 only tested the Form 4 insider-purchase signal as a fixed-weight static
+blend against the frozen breadth-20 leader and found no static allocation beat
+the control on both recent and full CAGR. This mirrored the cash-conversion
+family's own history: a static blend failed in Step 114, and only a causal
+relative-trend gate turned it into the current leader in Step 115. The same
+gate pattern was applied to the Form 4 signal instead of re-running its
+480-structure search, to avoid compounding a second layer of retrospective
+selection on top of an already-searched signal. Three predeclared
+insider-purchase families (all open-market purchases, two-or-more-owner
+clusters, and executive-or-cluster purchases), a fixed 30-day event window, a
+10-name breadth, a $50 million market-cap floor, and a 70% sector cap were
+combined with a shifted rolling-trend gate at 8/13/26-week lookbacks and
+10%/20%/30% allocations, producing 27 predeclared overlays at 50/100/200 bps.
+
+The strongest screened candidate, a 13-week executive-or-cluster gate with a
+30% allocation, produced 108.43% trailing-one-year CAGR, 2.768 Sharpe, and
+-10.08% drawdown, versus 105.10%, 2.692, and -10.08% for the unchanged
+control; full-period CAGR improved from 40.93% to 41.41%, and it retained
+94.11% at 200 bps. On its face this passed every predeclared screening gate.
+
+It failed the deeper falsification gauntlet. Excluding a single company,
+ProFrac Holding Corp., from the sleeve dropped trailing-one-year CAGR to
+99.27%, below the unchanged control — the same single-stock fragility that
+sank the 110% three-tier candidate in Step 113. Only 35.11% of rolling
+26-week windows beat the control, and only 33.33% of the same family's
+neighboring lookback/allocation combinations jointly improved recent and full
+CAGR, short of the 50% bar. The 4-week block bootstrap assigned only 70.80%
+probability to a positive difference. One- and two-week signal delays did
+still beat the control (106.76% and 106.61%), so timing was not the failure
+mode.
+
+Two further diagnostics limit what this experiment can claim even before
+falsification: maximum drawdown was numerically identical across all 27
+candidates and the control, and year-to-date 2026 CAGR matched the control to
+nine decimal places, meaning the gate never activated during calendar-year
+2026 or during the leader's own worst historical week. The entire claimed
+improvement is concentrated in a minority of active weeks in 2025. The
+candidate is rejected; the breadth-20 leader and its existing forward
+protocol are unchanged, and no new forward observation clock is started for
+this candidate.
+
+References:
+
+- `config/sec_form4_dynamic_overlay_v1.json`
+- `scripts/run_sec_form4_dynamic_overlay_v1.py`
+- `evidence/sec_form4_dynamic_overlay_v1/result.json`
+- `evidence/sec_form4_dynamic_overlay_v1/performance.csv`
+- `evidence/sec_form4_dynamic_overlay_v1/screening_gates.csv`
+- `evidence/sec_form4_dynamic_overlay_v1/recent_leave_one_company_out.csv`
+- `evidence/sec_form4_dynamic_overlay_v1/parameter_neighborhood.csv`
+- `evidence/sec_form4_dynamic_overlay_v1/delay_stress.csv`
+- `evidence/sec_form4_dynamic_overlay_v1/bootstrap.csv`
+- `evidence/sec_form4_dynamic_overlay_v1/report.md`
+- `research_registry/sec_form4_dynamic_overlay_v1.json`
+
+## Step 143 — Raise the challenger to 123.71% with issuer-level multi-signal membership
+
+The remaining issuer dependence was attacked inside the cash-conversion sleeve
+without changing the breadth controller, fast market-regime activation, or
+four-week equal-tranche schedule. The search tested 178 predeclared variants:
+cash-conversion, balance-sheet-quality, and shareholder-discipline membership
+blends crossed with equal, sector-balanced, inverse-volatility, inverse-
+correlation, and combined causal risk weights. All adaptive weights used only
+weekly returns ending before the quarterly decision, with generic shrinkage
+and per-name caps.
+
+The selected construction was simpler than the risk-weighted alternatives. It
+ranked companies using 80% cash-conversion and 20% balance-sheet-quality scores,
+selected the top 20, and equal weighted them. Rebuilding the complete regime
+strategy around this sleeve produced 123.71% trailing-one-year CAGR, 3.117
+Sharpe, -8.71% drawdown, 42.47% full CAGR, and 108.45% recent CAGR at 200-bps
+costs. One/two-week delays of only the new increment retained 121.72%/120.15%,
+and peak portfolio single-stock exposure was 6.82%.
+
+The issuer result materially improved. Removing every recently held company
+one at a time left a worst case of 120.04% when 10x Genomics was removed. This
+beats both the 119.22% predecessor and the untouched 112.93% base. The candidate
+also beat its predecessor in 51.53% of 163 completed rolling 26-week windows.
+The local 15%/17.5%/20%/22.5%/25% balance-weight neighborhood passed the full
+surface in three of five cases; the 20%, 22.5%, and 25% settings formed the
+stable region.
+
+Complete falsification nevertheless failed. Four-week and thirteen-week block-
+bootstrap probabilities of positive excess versus the 119.22% predecessor were
+82.90% and 80.28%, below the predeclared 95% promotion threshold. The 123.71%
+path therefore becomes the strongest saved return-oriented research challenger,
+but it does not replace the frozen 105.10% incumbent, start a forward clock, or
+enable live execution.
+
+References:
+
+- `config/sec_cluster_aware_cash_sleeve_v1.json`
+- `scripts/run_sec_cluster_aware_cash_sleeve_v1.py`
+- `tests/test_sec_cluster_aware_cash_sleeve_v1.py`
+- `evidence/sec_cluster_aware_cash_sleeve_v1/result.json`
+- `evidence/sec_cluster_aware_cash_sleeve_v1/screening.csv`
+- `evidence/sec_cluster_aware_cash_sleeve_v1/balance_weight_neighborhood.csv`
+- `evidence/sec_cluster_aware_cash_sleeve_v1/leave_one_company_out.csv`
+- `evidence/sec_cluster_aware_cash_sleeve_v1/report.md`
+- `research_registry/sec_cluster_aware_cash_sleeve_v1.json`
+
+## Step 144 — Locked audit exposes endpoint and multi-issuer fragility
+
+The 123.71% challenger was frozen exactly and reconstructed byte-for-byte from
+its 80% cash-conversion / 20% balance-sheet-quality top-20 rule. No parameters
+were reselected. The 188 available weeks were divided into three non-overlapping
+52-week retrospective pseudo-holdouts, and the fixed strategy was subjected to
+rolling windows, fourteen nearby trailing-year endpoints, quarterly ablation,
+decision and increment delays, severe costs, and simultaneous removal of the
+historically most damaging issuers.
+
+The candidate remained positive in all three one-year blocks and beat the
+119.22% predecessor in two of three. Its block CAGRs were 17.31%, 16.00%, and
+125.80%, versus 18.63%, 14.34%, and 121.04% for the predecessor. Every one/two-
+week decision, increment, and combined delay retained at least 122.92% recent
+CAGR. The exact trailing-52-week 200-bps result was 110.18%, and three of four
+quarter-removal cases still beat the predecessor.
+
+The audit also showed that the improvement is concentrated near the latest
+endpoint. Only two of fourteen adjacent trailing-year endpoints beat the
+predecessor. Rolling outperformance shares were 44.32%, 51.53%, and 46.72% for
+13/26/52-week windows. Removing the single worst issuer retained 122.03%, but
+simultaneously removing the worst two, three, and five issuers reduced recent
+CAGR to 112.08%, 111.13%, and 110.56%. Four/thirteen-week bootstrap probabilities
+were 83.94%/81.72%, still below 95%.
+
+The locked audit failed. The 123.71% result remains the highest saved research
+return, but it is not yet temporally broad enough for promotion. The next
+justified branch is a fixed ensemble of the already-confirmed 20%/22.5%/25%
+balance-score neighborhood and the cash-only predecessor—not another parameter
+search—aimed specifically at endpoint and simultaneous-issuer robustness.
+
+References:
+
+- `config/sec_cluster_challenger_locked_audit_v1.json`
+- `scripts/run_sec_cluster_challenger_locked_audit_v1.py`
+- `tests/test_sec_cluster_challenger_locked_audit_v1.py`
+- `evidence/sec_cluster_challenger_locked_audit_v1/result.json`
+- `evidence/sec_cluster_challenger_locked_audit_v1/nonoverlapping_52w_blocks.csv`
+- `evidence/sec_cluster_challenger_locked_audit_v1/trailing_endpoint_perturbation.csv`
+- `evidence/sec_cluster_challenger_locked_audit_v1/missing_issuer_bundles.csv`
+- `evidence/sec_cluster_challenger_locked_audit_v1/report.md`
+- `research_registry/sec_cluster_challenger_locked_audit_v1.json`
+
+## Step 145 — Improve endpoint breadth with a fixed holdings ensemble
+
+Nine fixed ensembles combined only the already-confirmed 20%/22.5%/25%
+balance-score cohorts and the cash-only predecessor. The complete sleeve,
+breadth controller, fast-regime increment, and four-week schedule were rebuilt
+for each ensemble. Selection required at least 119.22% exact trailing-52-week
+CAGR, full CAGR no worse than the predecessor, severe-cost and delay floors,
+at least 50% nearby-endpoint and rolling-26-week outperformance, and no more
+than 8% peak single-stock exposure.
+
+Only one candidate passed: a 50/50 holdings blend of the cash-only top 20 and
+the 80/20 cash-conversion/balance-sheet top 20. It held 26 distinct names in
+the latest cohort and produced 123.56% exact trailing-52-week CAGR, 3.088
+Sharpe, -8.71% drawdown, 42.52% full CAGR, and 106.67% at 200-bps costs. Its
+worst decision/increment-delay result was 122.32%, peak single-stock exposure
+was 7.05%, nearby-endpoint outperformance improved from 14.29% to 50.00%, and
+rolling-26-week outperformance improved from 51.53% to 57.06%.
+
+The fixed ensemble repaired much of the timing concentration but did not solve
+joint issuer dependence. Removing the historically worst one issuer left
+121.57%, while removing the worst two, three, and five together left 111.44%,
+109.98%, and 109.32%. Four/thirteen-week bootstrap probabilities improved only
+to 84.88%/82.58%. The branch is retained as the strongest endpoint-stabilized
+diagnostic, not promoted. The next bounded test is a mild sector-aware selection
+constraint around this exact 50/50 ensemble because its latest cohort remains
+87.5% technology.
+
+References:
+
+- `config/sec_signal_neighborhood_ensemble_v1.json`
+- `scripts/run_sec_signal_neighborhood_ensemble_v1.py`
+- `tests/test_sec_signal_neighborhood_ensemble_v1.py`
+- `evidence/sec_signal_neighborhood_ensemble_v1/result.json`
+- `evidence/sec_signal_neighborhood_ensemble_v1/screening.csv`
+- `evidence/sec_signal_neighborhood_ensemble_v1/missing_issuer_bundles.csv`
+- `evidence/sec_signal_neighborhood_ensemble_v1/report.md`
+- `research_registry/sec_signal_neighborhood_ensemble_v1.json`
+
+## Step 146 — Raise the endpoint-stabilized diagnostic to 124.20%
+
+The remaining 87.5% technology concentration was tested with nine generic
+sector-aware selection policies around the fixed 50/50 cash-only/balance-ranked
+holdings ensemble. Both symmetric 70%–90% sector limits and three asymmetric
+component limits were predeclared. Every construction rebuilt the underlying
+sleeves, controller, regime increment, delays, severe-cost path, and one/two/
+three/five-issuer bundle stresses.
+
+No construction passed every gate because none lifted the simultaneous five-
+issuer floor above the 112.93% base. The strongest diagnostic was asymmetric:
+an 80% sector cap on the cash-only component and 90% on the balance-ranked
+component. It raised exact trailing-52-week CAGR from the ensemble's 123.56%
+to 124.20%, Sharpe from 3.088 to 3.103, full CAGR from 42.52% to 42.74%, and
+200-bps CAGR from 106.67% to 107.27%, with the same -8.71% drawdown. The worst
+delay retained 122.80%, peak single-stock exposure was 7.03%, and the latest
+maximum sector share fell to 85% across 26 names.
+
+Endpoint and rolling-26-week outperformance remained 50.00% and 57.06%.
+Bootstrap probabilities improved to 88.50%/84.24%, but stayed below 95%.
+The worst five-issuer bundle remained 109.32%, proving that simple sector
+constraints do not resolve the shared-company dependence. The 124.20% path is
+saved as the strongest return-plus-endpoint diagnostic, but it is not promoted
+and does not replace the 123.71% locked research challenger.
+
+References:
+
+- `config/sec_sector_aware_signal_ensemble_v1.json`
+- `scripts/run_sec_sector_aware_signal_ensemble_v1.py`
+- `tests/test_sec_sector_aware_signal_ensemble_v1.py`
+- `evidence/sec_sector_aware_signal_ensemble_v1/result.json`
+- `evidence/sec_sector_aware_signal_ensemble_v1/screening.csv`
+- `evidence/sec_sector_aware_signal_ensemble_v1/missing_issuer_bundles.csv`
+- `evidence/sec_sector_aware_signal_ensemble_v1/report.md`
+- `research_registry/sec_sector_aware_signal_ensemble_v1.json`
+
+## Step 128 — Use Form 4 purchases as a diversified rank feature and reject the result
+
+The concentration failure in Steps 126–127 suggested a narrower use for insider
+purchases: a bounded feature inside the existing diversified cash-conversion
+ranker, rather than a separate concentrated sleeve. A causal grid tested 30-day
+and 90-day executive-or-cluster Form 4 scores at 0%/5%/10%/20%/30% feature
+weights, ticker-agnostic prior-winner penalties of 0%/5%/10%, and
+50%/70%/100% sector caps. Each stock sleeve targeted 20 equal-weight issuers,
+used the existing 1.5x internal cap, and fed the frozen 11-week/50% causal
+overlay. The 0% variants supplied matched no-Form-4 baselines. In total, 90
+structures were evaluated at 50/100/200 bps under base and adverse scenarios.
+
+The selected 90-day, 5%-feature path produced 105.48% trailing-one-year CAGR,
+2.705 Sharpe, -9.83% drawdown, and 38.17% full CAGR. That was only 0.38
+percentage points above the frozen leader's 105.10%, below the predeclared
+one-point improvement gate, while full CAGR fell from 40.93% to 38.17%.
+Against the exactly matched constrained no-Form-4 structure, the signal added
+0.73 points recently but removed 2.69 points over the full period.
+
+The deeper evidence was uniformly weak. A one-week decision delay returned
+98.21% and a two-week delay 102.51%; only 25.77% of 163 completed rolling
+26-week windows beat the control; no neighboring parameter combination jointly
+improved recent and full CAGR; and 4-week/13-week block-bootstrap probabilities
+were 80.54%/87.22%, below the required 95%. Exact leave-one-company-out
+reranking identified GitLab as the worst omission and reduced recent CAGR to
+96.24%. The candidate failed every substantive promotion group despite its
+slightly higher headline return. It is rejected, the 105.10% frozen leader
+remains unchanged, and neither execution nor a new forward clock was enabled.
+
+References:
+
+- `config/sec_form4_rank_feature_v1.json`
+- `scripts/run_sec_form4_rank_feature_v1.py`
+- `tests/test_sec_form4_rank_feature_v1.py`
+- `evidence/sec_form4_rank_feature_v1/result.json`
+- `evidence/sec_form4_rank_feature_v1/report.md`
+- `research_registry/sec_form4_rank_feature_v1.json`
+
+## Step 129 — Combine independent fundamentals at the issuer level and retain one promising diagnostic
+
+Earlier factor-rotation and top-two-sleeve experiments combined the returns of
+already-formed portfolios and failed. This experiment instead combined signals
+before stock selection, requiring individual issuers to rank on cash conversion
+and one or more independent SEC fundamental dimensions. Twenty-seven frozen
+issuer-level ensemble specifications covered single secondary families at
+10%/20%/30%, pairs at 20%/40% total weight, and all four secondaries at
+20%/40%. Each was crossed with 0%/5% Form 4 confirmation and 70%/100% sector
+caps, producing 108 breadth-20 candidates at 50/100/200 bps in base and adverse
+scenarios. All fundamental inputs remained point-in-time and sector-neutral;
+missing secondary scores received a neutral percentile rather than exclusion.
+
+The strongest candidate that cleared the headline screen used 80% cash
+conversion and 20% balance-sheet quality, with no Form 4 adjustment and no
+additional sector cap. It produced 106.39% trailing-one-year CAGR, 2.712
+Sharpe, -10.09% drawdown, and 41.54% full CAGR, versus 105.10%, 2.692,
+-10.08%, and 40.93% for the frozen control. It retained 94.42% recent CAGR at
+200 bps versus 93.20% for the control. Relative to its mechanically matched
+cash-only candidate, the second signal added 1.63 points recently and 0.67
+points over the full period.
+
+This is better evidence than the prior Form 4 feature, but it is not sufficient
+for promotion. A one-week delay retained 106.92%, while a two-week delay fell
+to 100.43%. It beat the control in 55.83% of 163 completed rolling 26-week
+windows, but only 8.33% of its twelve nearby weight/Form-4/sector variants
+improved both recent and full CAGR. Four-week and thirteen-week block-bootstrap
+probabilities of a positive difference were only 68.02% and 71.44%, below the
+required 95%. Exact leave-one-company-out reranking left the worst case, 10X
+Genomics, at 105.71%, still above the control, but that issuer explained 52.25%
+of the small improvement and narrowly exceeded the 50% influence limit.
+
+The 80/20 construction is preserved as a promising diagnostic, not a new
+leader. The 105.10% breadth-20 strategy remains frozen, no new forward clock
+was started, and live execution remains disabled. A future follow-up may test a
+strictly predeclared fine weight/breadth plateau around the 80/20 structure,
+but it must be treated as post-discovery confirmation rather than evidence from
+this search.
+
+References:
+
+- `config/sec_multisignal_company_rank_v1.json`
+- `scripts/run_sec_multisignal_company_rank_v1.py`
+- `tests/test_sec_multisignal_company_rank_v1.py`
+- `evidence/sec_multisignal_company_rank_v1/result.json`
+- `evidence/sec_multisignal_company_rank_v1/report.md`
+- `research_registry/sec_multisignal_company_rank_v1.json`
+
+## Step 130 — Lock the 80/20 blend and reject it after a fine plateau confirmation
+
+Step 129's 80% cash-conversion / 20% balance-sheet-quality breadth-20 result was
+locked as the primary candidate before this follow-up. It was not reselected
+from the new outcomes. The confirmation crossed five fine secondary weights
+(15%, 17.5%, 20%, 22.5%, and 25%) with breadths 15, 20, 25, and 30, producing
+twenty prespecified paths. Form 4 and sector constraints were held at the
+discovery candidate's zero-adjustment settings. The existing 11-week/50%
+causal overlay, 1.5x internal cap, base/adverse cases, and 50/100/200-bps costs
+were unchanged.
+
+The primary path reproduced byte-for-byte and retained 106.39% trailing-one-
+year CAGR, 2.712 Sharpe, -10.09% drawdown, 41.54% full CAGR, and 94.42% recent
+CAGR at 200 bps. This validates the implementation but not the economic
+stability of the result.
+
+Only two of twenty fine-grid paths improved both recent and full CAGR, a 10%
+plateau share versus the required 50%. The primary was the only path to clear
+all headline gates. The other joint improvement, 15% balance-sheet quality at
+breadth 30, returned 105.15% recently—only 0.05 percentage points above the
+control. The grid's highest recent result, 25% at breadth 25, reached 106.98%
+but its full CAGR collapsed to 37.32%, well below the control's 40.93%.
+
+Because the primary path is identical, its remaining falsification failures
+also reproduce: two-week delay CAGR of 100.43%, 4-week/13-week bootstrap
+probabilities of 68.02%/71.44%, and 52.25% of the small improvement attributable
+to the worst issuer omission. The 55.83% completed rolling-window share and
+worst leave-one-out CAGR of 105.71% still pass, but cannot overcome the fine-
+plateau and resampling failures. The multi-signal blend is rejected as a
+replacement. The frozen 105.10% leader remains unchanged and no execution or
+new forward clock was enabled.
+
+References:
+
+- `config/sec_multisignal_plateau_confirmation_v1.json`
+- `scripts/run_sec_multisignal_plateau_confirmation_v1.py`
+- `tests/test_sec_multisignal_plateau_confirmation_v1.py`
+- `evidence/sec_multisignal_plateau_confirmation_v1/result.json`
+- `evidence/sec_multisignal_plateau_confirmation_v1/fine_plateau.csv`
+- `evidence/sec_multisignal_plateau_confirmation_v1/report.md`
+- `research_registry/sec_multisignal_plateau_confirmation_v1.json`
+
+## Step 131 — Test issuer-level sector-relative momentum and close the branch
+
+The next distinct source combined the cash-conversion score with strictly
+lagged company-price momentum before stock selection. Momentum was measured
+over 26, 39, or 52 weeks from the most recent weekly price strictly before each
+decision, ranked within sector, and assigned 0%, 10%, 15%, 20%, or 25% of the
+issuer score. Breadths 20, 25, and 30 and ticker-neutral rank buffers of zero
+or five produced ninety prespecified paths. Fundamentals were carried forward
+only after their point-in-time SEC decision date. Holding sets were evaluated
+weekly, but an unchanged set was not forced back to equal weight, avoiding
+artificial weekly turnover. Base/adverse scenarios and 50/100/200-bps costs
+were retained.
+
+The strongest positive-momentum challenger used a 52-week lookback, 15%
+momentum weight, breadth 30, and a five-name buffer. It produced 100.09%
+trailing-one-year CAGR, 2.593 Sharpe, -11.19% drawdown, and 39.06% full CAGR,
+versus 105.10%, 2.692, -10.08%, and 40.93% for the frozen leader. At 200 bps
+it returned 88.29% versus 93.20%. Its stock-sleeve annual one-way turnover was
+only 2.56x, safely below the 6x gate, so excessive trading was not the cause.
+
+The momentum feature did add 4.03 percentage points of recent CAGR to its
+mechanically matched breadth-30 buffered zero-momentum construction. That
+construction, however, returned only 96.06%, and no positive-momentum path
+beat the actual frozen control recently; none improved both recent and full
+CAGR. Falsification was correspondingly weak: one/two-week momentum delays
+returned 99.88%/99.69%, one/two-week overlay delays returned 94.64%/94.33%,
+48.47% of completed rolling windows won, no local neighbor improved both
+horizons, and 4-week/13-week bootstrap probabilities were only 12.02%/17.78%.
+Removing Qualys reduced recent CAGR to 93.80%.
+
+This is an economic rejection rather than a timing, turnover, or implementation
+failure. Further issuer-momentum weight and lookback tuning is prohibited for
+this branch. The frozen 105.10% leader remains unchanged, no forward clock was
+started, and live execution remains disabled.
+
+References:
+
+- `config/sec_cash_momentum_rank_v1.json`
+- `scripts/run_sec_cash_momentum_rank_v1.py`
+- `tests/test_sec_cash_momentum_rank_v1.py`
+- `evidence/sec_cash_momentum_rank_v1/result.json`
+- `evidence/sec_cash_momentum_rank_v1/screening.csv`
+- `evidence/sec_cash_momentum_rank_v1/report.md`
+- `research_registry/sec_cash_momentum_rank_v1.json`
+
+## Step 132 — Complete and validate the free SEC earnings-event source
+
+The issuer-level price-momentum branch failed, so the next distinct return
+source requires earnings-announcement events. The existing SEC Submissions
+cache covered only 111 of the 598 cash-conversion issuers and therefore could
+not support an unbiased event test. A resumable collector was added using the
+declared SEC contact identity, a 0.13-second global request interval, immutable
+gzip response caching, response hashes, retries, and no persisted credentials.
+It acquired every issuer's main Submissions record plus each historical segment
+overlapping January 2022 onward.
+
+Acquisition completed for all 598 issuers with zero failures. The normalized
+vintage contains 10,854 unique Form 8-K/8-K-A Item 2.02 events across 594
+issuers from January 3, 2022 through August 20, 2026. Every event has the SEC's
+precise `acceptanceDateTime`; no filing-date fallback was required. The SEC can
+assign the next business `filingDate` to an after-hours acceptance, including
+a weekend gap, so the acceptance timestamp—not filing-date midnight—is frozen
+as causal availability.
+
+An independent audit decompressed and hashed all 608 referenced raw source
+files, verified both normalized-manifest hashes, confirmed unique issuer rows
+and event accessions, required Item 2.02 on every event, and checked every
+acceptance time against the SEC filing-date convention. All checks passed.
+The source is now authorized for research testing, but it supplies no strategy
+result by itself and does not authorize promotion or live trading. The next
+experiment can test post-earnings announcement drift using event reactions
+known strictly before each portfolio decision.
+
+References:
+
+- `config/sec_earnings_8k_acquisition_v1.json`
+- `scripts/acquire_sec_earnings_8k_v1.py`
+- `scripts/audit_sec_earnings_8k_acquisition_v1.py`
+- `tests/test_acquire_sec_earnings_8k_v1.py`
+- `tests/test_audit_sec_earnings_8k_acquisition_v1.py`
+- `data/sec_earnings_event_vintages/20260821T035516Z-sec-earnings-8k-v1/manifest.json`
+- `data/sec_earnings_event_vintages/20260821T035516Z-sec-earnings-8k-v1/earnings_8k_events.csv`
+- `evidence/sec_earnings_8k_acquisition_v1/result.json`
+- `evidence/sec_earnings_8k_acquisition_v1/report.md`
+- `research_registry/sec_earnings_8k_acquisition_v1.json`
+
+## Step 133 — Test conservative post-earnings drift and reject the ranking overlay
+
+The validated Item 2.02 source was converted into a deliberately conservative
+price-reaction signal. Duplicate issuer/report-period filings were collapsed to
+the earliest acceptance. Each reaction used the last weekly close before SEC
+acceptance and the first weekly close strictly after the acceptance date, then
+subtracted the same-period median return of the issuer's sector. A reaction was
+not eligible until a later weekly portfolio decision. This produced 8,271
+priced reactions across 558 issuers; unavailable reactions were not imputed.
+
+The bounded grid applied centered event-rank adjustments of 10%, 20%, or 30%
+for four, eight, or thirteen weeks, with breadths 20/25/30 and ticker-neutral
+rank buffers of zero/five. Fifty-four paths were tested under base/adverse
+missing-data treatment and 50/100/200-bps costs. Unchanged holding sets were
+not mechanically rebalanced.
+
+The strongest result used a four-week window, 30% event adjustment, breadth 20,
+and a five-name buffer. At 50 bps it produced 105.84% trailing-one-year CAGR,
+2.735 Sharpe, -8.88% drawdown, and 41.55% full CAGR, versus 105.10%, 2.692,
+-10.08%, and 40.93% for the frozen control. The drawdown and full-history
+improvements are useful evidence, but the 0.74-point recent-return lift missed
+the required one-point gate.
+
+The result did not survive implementation stress. Annual sleeve turnover was
+6.71x, above the 6x cap, and recent CAGR at 200 bps was 93.41% versus the
+control's 93.20%. One/two-week event-signal delays returned 93.64%/93.55%, and
+one/two-week outer-overlay delays returned 98.16%/101.92%. Only 12.5% of local
+neighbors improved both recent and full CAGR; 4-week/13-week bootstrap
+probabilities were 58.84%/64.52%; and exact removal of GitLab reduced recent
+CAGR to 96.00%. Only three of 54 paths improved both horizons and none cleared
+the surface gates.
+
+The issuer-ranking PEAD overlay is rejected. The validated earnings source is
+retained for genuinely different future constructions, but this weight/window
+grid must not be tuned further. The frozen 105.10% leader remains unchanged,
+no forward clock was started, and live execution remains disabled.
+
+References:
+
+- `config/sec_earnings_drift_rank_v1.json`
+- `scripts/run_sec_earnings_drift_rank_v1.py`
+- `tests/test_sec_earnings_drift_rank_v1.py`
+- `evidence/sec_earnings_drift_rank_v1/result.json`
+- `evidence/sec_earnings_drift_rank_v1/event_reactions.csv`
+- `evidence/sec_earnings_drift_rank_v1/report.md`
+- `research_registry/sec_earnings_drift_rank_v1.json`
+
+## Step 134 — Test a sparse quarterly negative-earnings veto and reject it
+
+The validated earnings-event source was next tested as a low-turnover veto
+rather than a weekly ranking feature. At each existing quarterly cash-conversion
+rebalance, a top-20 company could be replaced only if its latest sector-relative
+earnings reaction was negative and in the configured bottom sector percentile.
+Windows of four/eight/thirteen weeks, percentiles of 10%/20%/30%, and limits of
+two/four vetoes per rebalance created 18 bounded rules. No extra weekly trading
+was introduced and unchanged holding sets were not rebalanced.
+
+The strongest headline path, `veto4__q30__max2`, made five substitutions across
+three issuers. At 50 bps it produced 105.10% trailing-one-year CAGR, 2.692
+Sharpe, -10.08% drawdown, and 41.05% full CAGR, versus 105.10%, 2.692, -10.08%,
+and 40.93% for the frozen control. At 200 bps both produced 93.20% recent CAGR.
+The veto therefore added only 0.11 points to full CAGR and added no recent or
+severe-cost return.
+
+The result failed the broader evidence gates. One/two-week event delays produced
+105.82%/98.73%; outer-overlay delays produced 98.13%/102.72%; completed rolling
+outperformance was 49.08%; neighborhood joint improvement was 0%; and 4-week/
+13-week bootstrap probabilities were only 11.92%/14.20%. Exact removal of
+GitLab reduced recent CAGR to 96.44%. The quarterly veto family is rejected,
+the frozen 105.10% leader remains unchanged, and no forward clock or live
+execution was started.
+
+During this audit, the earnings reranker and cash-momentum scripts were also
+repaired so their 100/200-bps stress cases reuse the allocation targets frozen
+from the base 50-bps signal. This prevents transaction costs from changing the
+strategy being evaluated. Regenerated headline decisions did not change: the
+earnings reranker remains rejected with a corrected 93.41% severe-cost CAGR,
+and the cash-momentum challenger remains rejected with 88.29%.
+
+References:
+
+- `config/sec_earnings_negative_veto_v1.json`
+- `scripts/run_sec_earnings_negative_veto_v1.py`
+- `tests/test_sec_earnings_negative_veto_v1.py`
+- `evidence/sec_earnings_negative_veto_v1/result.json`
+- `evidence/sec_earnings_negative_veto_v1/selected_veto_log.csv`
+- `evidence/sec_earnings_negative_veto_v1/report.md`
+- `research_registry/sec_earnings_negative_veto_v1.json`
+
+## Step 135 — Test persistent earnings direction with fundamental acceleration and reject it
+
+The earnings branch next tested a structurally different quarterly confirmation
+hypothesis. Rather than using one recent announcement or creating a new weekly
+sleeve, it combined the existing cash-conversion rank with two independent,
+timestamp-safe features: sector-relative direction across the latest two or
+three completed earnings reactions, and acceleration in revenue, operating
+income, and operating cash flow from SEC facts already public before the
+quarterly decision. The test added no weekly stock-selection trades.
+
+The bounded grid covered 26/52-week fundamental ages, two/three-event earnings
+persistence, 0%-30% weights for each confirmation feature, and zero/five-name
+rank buffers. Excluding the unchanged all-zero control left 120 candidates.
+All higher-cost paths reused allocation targets frozen from the 50-bps signal.
+Feature coverage was broad: the selected panel covered 82.28% of issuer rows
+for acceleration and 84.96% for persistent earnings evidence.
+
+The best combined candidate used a 26-week acceleration age, two earnings
+events, 30% acceleration weight, 10% earnings weight, and a five-name buffer.
+At 50 bps it produced 102.43% trailing-one-year CAGR, 2.680 Sharpe, -9.14%
+drawdown, and 35.24% full CAGR, versus 105.10%, 2.692, -10.08%, and 40.93% for
+the frozen control. At 200 bps it returned 90.70% versus 93.20%. The best path
+anywhere on the surface reached only 102.66% recent CAGR. No candidate beat
+the control recently, only two beat it over the full period, and none improved
+both horizons or cleared the surface gates.
+
+Robustness evidence confirmed the rejection. One/two-week feature delays both
+returned 103.11%; outer-overlay delays returned 95.14%/99.05%; completed
+rolling-window outperformance was only 5.52%; neighborhood joint improvement
+was 0%; and 4-week/13-week bootstrap probabilities were 21.26%/11.88%.
+Removing Qualys reduced recent CAGR to 93.13%. The feature timestamps were
+strictly earlier than every affected decision, so the failure is economic,
+not a lookahead artifact.
+
+This construction is closed without further weight tuning. The frozen 105.10%
+leader remains unchanged, and no strategy replacement, forward clock, or live
+execution was enabled.
+
+References:
+
+- `config/sec_persistent_earnings_acceleration_rank_v1.json`
+- `scripts/run_sec_persistent_earnings_acceleration_rank_v1.py`
+- `tests/test_sec_persistent_earnings_acceleration_rank_v1.py`
+- `evidence/sec_persistent_earnings_acceleration_rank_v1/result.json`
+- `evidence/sec_persistent_earnings_acceleration_rank_v1/screening.csv`
+- `evidence/sec_persistent_earnings_acceleration_rank_v1/report.md`
+- `research_registry/sec_persistent_earnings_acceleration_rank_v1.json`
+
+## Step 136 — Test a breadth/dispersion allocation controller and retain a 112.93% challenger
+
+The next branch stopped changing issuer rankings and instead preserved the
+frozen breadth-20 cash-conversion holdings and existing 11-week activation rule.
+It asked whether strictly lagged market breadth and cross-sectional dispersion
+could scale the cash-conversion sleeve only while that frozen rule was already
+active. Signals were built from 576 historical issuer price series. At each
+Friday, 13/26-week issuer returns ended at the prior Friday; breadth measured
+the positive-return share and dispersion used cross-sectionally winsorized
+returns. State thresholds used only earlier 26/52-week observations.
+
+The bounded grid covered two return horizons, two calibration windows, two
+state quantiles, five breadth/dispersion regimes, and five low/high active
+allocation pairs, producing 200 controllers. Stock holdings never changed.
+The maximum tested active sleeve weight was 80%; the promotion gate limited
+portfolio-level single-stock exposure to 8% and annual controller turnover to
+8x. Fifty candidates cleared the initial recent/full/severe-cost/concentration
+surface.
+
+The strongest path used 26-week breadth versus its trailing 26-week 40th
+percentile. When the frozen rule was active, it raised the cash-conversion
+allocation from 50% to 80% in the high-breadth state. At realistic 50-bps costs
+it produced 112.93% trailing-one-year CAGR, 2.806 Sharpe, -9.13% drawdown, and
+42.01% full CAGR, versus 105.10%, 2.692, -10.08%, and 40.93% for the incumbent.
+It retained 100.00% recent CAGR at 200-bps costs versus 93.20%. Peak total
+single-stock exposure was 7.38%, and controller turnover was 4.09x annually.
+
+A confirmation sweep evaluated all 50 headline passers before issuer removal.
+None cleared every preliminary robustness gate. For the 112.93% candidate,
+one/two-week controller delays both retained 112.93%, while one/two-week outer-
+overlay delays returned 101.57%/109.14%. The same-family neighborhood joint-
+improvement share was 70%, but the candidate beat the control in only 19.02%
+of 163 completed rolling windows. Four-week/13-week block-bootstrap positive-
+excess probabilities were 88.40%/79.66%, below the required 95%. Removing
+GitLab reduced recent CAGR to 98.86%, so one issuer accounted for more than the
+entire measured improvement.
+
+The audit also found that strict floating-point comparisons could turn CSV
+round-trip differences near 1e-16 into false rolling wins and nonzero bootstrap
+observations. This experiment now applies a 1e-12 economic tie tolerance and
+asserts that shortlist statistics reproduce after persistence. Under the
+corrected policy, 73 of the headline candidate's 163 rolling windows were ties,
+not wins.
+
+The 112.93% path is saved as the strongest return-oriented research challenger,
+but it does not replace the frozen 105.10% leader and starts no forward clock.
+No live execution was enabled.
+
+References:
+
+- `config/sec_breadth_dispersion_allocation_controller_v1.json`
+- `scripts/run_sec_breadth_dispersion_allocation_controller_v1.py`
+- `tests/test_sec_breadth_dispersion_allocation_controller_v1.py`
+- `evidence/sec_breadth_dispersion_allocation_controller_v1/result.json`
+- `evidence/sec_breadth_dispersion_allocation_controller_v1/robust_shortlist.csv`
+- `evidence/sec_breadth_dispersion_allocation_controller_v1/report.md`
+- `research_registry/sec_breadth_dispersion_allocation_controller_v1.json`
+
+## Step 137 — Falsify generic sleeve caps and persistent controller states
+
+The 112.93% breadth-controller challenger was retested without naming or
+special-casing any company. The bounded surface crossed five monthly
+cash-sleeve cap levels with one-to-three-week entry/exit confirmation for the
+breadth state and one-to-two-week confirmation for the underlying activation
+state, producing 180 generic variants. The unchanged specification reproduced
+the saved 112.93% path to a 1e-12 tolerance in the pinned research runtime.
+
+No candidate simultaneously preserved at least 110% recent CAGR and beat the
+105.10% frozen incumbent after a one-week activation delay. Requiring a second
+activation week mostly exchanged the current and delayed outcomes rather than
+making them stable. State persistence therefore did not repair the timing
+fragility.
+
+The strongest genuinely capped diagnostic used a 1.5x monthly sleeve cap and
+two-week breadth-state entry confirmation. It retained 112.37% trailing-one-
+year CAGR, 2.802 Sharpe, -9.13% drawdown, and improved full CAGR to 42.28%.
+At 200-bps costs it returned 99.46%. Peak portfolio-level single-stock weight
+fell from 7.38% to 6.95%, showing that the generic cap worked mechanically.
+
+That lower nominal exposure did not reduce economic dependence. A one-week
+outer-overlay delay returned only 101.31%, the strategy beat the incumbent in
+20.25% of 163 completed rolling windows, and 4-week/13-week bootstrap
+probabilities remained 88.40%/79.66%. Removing GitLab reduced recent CAGR to
+98.54%; the single-issuer improvement-share ratio worsened to 190.23%.
+
+The cap/persistence branch is rejected. The frozen 105.10% incumbent and saved
+112.93% return challenger remain unchanged. No forward clock, strategy
+promotion, or live execution was enabled.
+
+References:
+
+- `config/sec_breadth_controller_cap_persistence_v1.json`
+- `scripts/run_sec_breadth_controller_cap_persistence_v1.py`
+- `tests/test_sec_breadth_controller_cap_persistence_v1.py`
+- `evidence/sec_breadth_controller_cap_persistence_v1/result.json`
+- `evidence/sec_breadth_controller_cap_persistence_v1/screening.csv`
+- `evidence/sec_breadth_controller_cap_persistence_v1/report.md`
+- `research_registry/sec_breadth_controller_cap_persistence_v1.json`
+
+## Step 138 — Reject multi-horizon activation voting
+
+The fragile 11-week activation boundary was replaced with strictly lagged
+voting across 8-, 11-, 13-, 16-, and 20-week relative-return signals. Four
+diversified lookback families plus the original 11-week rule were crossed with
+all feasible vote thresholds and binary, proportional, or confidence-blended
+sizing, producing 48 bounded candidates. Holdings and the 26-week breadth
+controller were unchanged. The single-11-week control reproduced the saved
+112.93% challenger to 1e-12 tolerance.
+
+No candidate preserved at least 110% current CAGR while beating the 105.10%
+incumbent under both one- and two-week activation delays. In fact, every
+diversified rule retaining at least 110% current CAGR reproduced the original
+recent activation pattern: 112.93% current CAGR, 101.57% after a one-week
+delay, and 109.14% after two weeks. The nearby horizons agreed during the few
+decisive recent weeks, so voting did not diversify the timing risk.
+
+The best worst-current/delay diagnostic was a proportional two-of-three vote
+across 8, 11, and 13 weeks. It produced only 105.62% current CAGR, 2.664
+Sharpe, -11.20% drawdown, 40.63% full CAGR, and 91.80% at 200-bps costs. Its
+one/two-week delayed results were 102.12%/104.37%. It beat the incumbent in
+36.20% of completed rolling windows; bootstrap probabilities were
+55.24%/62.36%; removing Qualys left 92.26%.
+
+The multi-horizon ensemble branch is rejected. The evidence indicates that
+the next timing experiment must use information different from trailing sleeve
+relative returns rather than more nearby versions of the same signal. No
+strategy promotion, forward clock, or live execution was enabled.
+
+References:
+
+- `config/sec_multi_horizon_activation_ensemble_v1.json`
+- `scripts/run_sec_multi_horizon_activation_ensemble_v1.py`
+- `tests/test_sec_multi_horizon_activation_ensemble_v1.py`
+- `evidence/sec_multi_horizon_activation_ensemble_v1/result.json`
+- `evidence/sec_multi_horizon_activation_ensemble_v1/screening.csv`
+- `evidence/sec_multi_horizon_activation_ensemble_v1/report.md`
+- `research_registry/sec_multi_horizon_activation_ensemble_v1.json`
+
+## Step 139 — Test independent market regimes and retain a 119.33% return spike
+
+The next activation branch stopped using only the cash sleeve's trailing
+relative return. It built five strictly lagged market votes from SPY trend,
+SPY realized volatility versus its prior median, HYG-versus-LQD credit
+strength, VIX contango, and cross-sectional issuer breadth. Fast, balanced,
+and slow calibrations were crossed with all one-to-five vote thresholds and
+five activation constructions: market-only, confirmation, one/two-week
+bridges, and union with the frozen activation rule. This produced 75 bounded
+controllers using current frozen ETF and VIX vintages.
+
+No candidate preserved at least 110% recent CAGR while improving both one- and
+two-week timing delays, full CAGR, severe-cost performance, and concentration.
+The best worst-current/delay diagnostic simply reproduced the 112.93% headline
+path and its 101.57%/109.14% delayed results. It also retained the earlier
+GitLab and bootstrap failures, so the independent regime information did not
+repair the existing challenger.
+
+One return-first result was important enough to audit separately. The fast
+unanimous-union rule activated whenever either the frozen rule was active or
+all five independent fast regime votes agreed. It reached 119.33% trailing-
+one-year CAGR, 3.032 Sharpe, and -8.71% drawdown—the strongest recent-return
+diagnostic found in this branch and an improvement over the 112.93% challenger.
+
+The return spike failed validation. Full CAGR was only 39.63%, 200-bps recent
+CAGR fell to 86.57%, and a one-week signal delay collapsed recent CAGR to
+85.29% even though a two-week delay reached 121.79%. Removing Qualys left
+103.97%, below the 105.10% incumbent, and one issuer explained 107.93% of the
+measured improvement. Its separate paths, target weights, regime panel, and
+issuer-removal evidence were retained for future comparison.
+
+The 119.33% path is saved as the highest recent-return spike diagnostic, not a
+replacement. The 112.93% breadth controller remains the stronger overall
+return challenger and the 105.10% strategy remains the frozen incumbent. No
+forward clock, strategy promotion, or live execution was enabled.
+
+References:
+
+- `config/sec_independent_market_regime_activation_v1.json`
+- `scripts/run_sec_independent_market_regime_activation_v1.py`
+- `tests/test_sec_independent_market_regime_activation_v1.py`
+- `evidence/sec_independent_market_regime_activation_v1/result.json`
+- `evidence/sec_independent_market_regime_activation_v1/screening.csv`
+- `evidence/sec_independent_market_regime_activation_v1/report.md`
+- `evidence/sec_independent_market_regime_activation_v1/return_leader_path__50bps.csv`
+- `research_registry/sec_independent_market_regime_activation_v1.json`
+
+## Step 140 — Stabilize the regime increment and retain a 119.22% challenger
+
+The 119.33% fast-regime spike was decomposed against the unchanged 112.93%
+breadth-controller base. Only the incremental allocation was modified; the
+base target was never delayed, resized, or reselected. The attribution found
+sixteen isolated incremental weeks across sixteen episodes. A bounded grid
+then crossed 25%/50%/75%/100% increment strength with two-to-four-week equal,
+front-loaded, entry-ramp, and exit-decay schedules, plus direct controls. This
+produced 52 ticker-agnostic candidates, and the direct 100% control reproduced
+the saved 119.33% spike to 1e-12 tolerance.
+
+Six candidates passed the predeclared return, increment-delay, full-period,
+severe-cost, and concentration surface gates. The strongest worst-current/
+delay result deployed the full increment over four equal weekly tranches. It
+produced 119.22% trailing-one-year CAGR, 3.037 Sharpe, -8.71% drawdown, 41.97%
+full CAGR, and 102.86% recent CAGR at 200-bps costs. Peak portfolio-level
+single-stock exposure remained 7.38%, and annual one-way controller turnover
+was 4.87x.
+
+Most importantly, delaying only the new increment by one/two weeks retained
+118.96%/118.63% recent CAGR. This repaired the timing failure that reduced the
+raw regime spike to 85.29% when the entire strategy was shifted. The test shows
+that execution diversification can preserve the profitable addition without
+disturbing the established base.
+
+The challenger still failed complete falsification. Because the increment was
+active in only sixteen isolated weeks, it beat the 112.93% base in just 9.20%
+of 163 completed rolling windows; 4-week/13-week bootstrap probabilities of
+positive incremental excess were 63.26%/64.34%. Removing Qualys left 109.17%,
+above the frozen 105.10% incumbent but below the 112.93% base. One issuer
+therefore explained 159.95% of the incremental improvement.
+
+The four-week tranche path supersedes 112.93% as the strongest saved return-
+oriented research challenger, but it does not replace the frozen 105.10%
+incumbent, start a forward clock, or enable live execution. Its next required
+improvement is generic issuer/cohort diversification, not further timing
+tuning.
+
+References:
+
+- `config/sec_regime_increment_tranching_v1.json`
+- `scripts/run_sec_regime_increment_tranching_v1.py`
+- `tests/test_sec_regime_increment_tranching_v1.py`
+- `evidence/sec_regime_increment_tranching_v1/result.json`
+- `evidence/sec_regime_increment_tranching_v1/screening.csv`
+- `evidence/sec_regime_increment_tranching_v1/increment_episode_attribution.csv`
+- `evidence/sec_regime_increment_tranching_v1/report.md`
+- `research_registry/sec_regime_increment_tranching_v1.json`
+
+## Step 141 — Reject quarterly-cohort diversification around the 119.22% challenger
+
+The next branch preserved the four-week equal-tranche regime increment and
+changed only the quarterly cash-conversion membership construction. Thirteen
+ticker-agnostic alternatives covered current top-20/top-25/top-30 cohorts,
+five current/prior-quarter blends, and five three-cohort decay schedules. Each
+construction rebuilt its own 11-week activation, breadth controller, unanimous
+fast-regime increment, and four-week execution path. Issuer removal was run
+for every construction and every company it held during the recent window
+before diagnostic selection.
+
+The unchanged current top-20 control reproduced the saved 119.22% challenger
+to 1e-12 tolerance and was the only surface passer. No non-control construction
+simultaneously retained at least 115% recent CAGR, both increment-delay floors,
+the full-period floor, severe-cost performance, and concentration limits.
+
+The best issuer-aware non-control diagnostic broadened the current cohort from
+20 to 25 stocks. It produced 112.43% recent CAGR, 2.917 Sharpe, -8.71%
+drawdown, 41.62% full CAGR, and 96.75% at 200-bps costs. One/two-week delayed
+increment results were 111.34%/114.04%, and peak portfolio single-stock weight
+fell to 6.01%. Removing Qualys left 108.62%. This reduced the drop from its own
+headline result to 3.81 percentage points, but its absolute issuer-removal
+floor remained below the top-20 control's 109.17%, while headline return fell
+by 6.79 percentage points.
+
+Prior-quarter blending did not solve the problem. The 67% current / 33% prior
+blend slightly increased recent CAGR to 119.51% and retained 103.22% at
+200-bps costs, but full CAGR fell to 40.00% and removing Qualys collapsed CAGR
+to 102.04%. Smaller prior weights also failed the full-period gate and did not
+improve the top-20 issuer-removal floor.
+
+The cohort-diversification branch is rejected. The 119.22% four-week-tranched
+top-20 path remains the strongest saved return challenger; the 105.10% strategy
+remains the frozen incumbent. No forward clock, promotion, or live execution
+was enabled.
+
+References:
+
+- `config/sec_cohort_diversified_regime_tranche_v1.json`
+- `scripts/run_sec_cohort_diversified_regime_tranche_v1.py`
+- `tests/test_sec_cohort_diversified_regime_tranche_v1.py`
+- `evidence/sec_cohort_diversified_regime_tranche_v1/result.json`
+- `evidence/sec_cohort_diversified_regime_tranche_v1/screening.csv`
+- `evidence/sec_cohort_diversified_regime_tranche_v1/leave_one_company_out_summary.csv`
+- `evidence/sec_cohort_diversified_regime_tranche_v1/report.md`
+- `research_registry/sec_cohort_diversified_regime_tranche_v1.json`
+
+## Step 142 — Diversify only the regime increment across independent sleeves
+
+The 112.93% base target and the four-week equal-tranche execution schedule were
+frozen. Only the extra regime allocation was routed among the breadth-20 cash-
+conversion sleeve and four independently constructed, point-in-time SEC
+families: profitability, balance-sheet quality, shareholder discipline, and
+quality acceleration. Twenty-one ticker-agnostic routes covered single-family
+25%/50%/75% substitutions, equal-family baskets, and strictly lagged 13/26-week
+inverse-volatility baskets. The cash-only control reproduced the saved 119.22%
+challenger to 1e-12 tolerance.
+
+The strongest robust diversified route split the increment equally between
+cash conversion and shareholder discipline. It produced 119.46% trailing-one-
+year CAGR, 3.045 Sharpe, -8.71% drawdown, 41.91% full CAGR, and 102.54% recent
+CAGR at 200-bps costs. One/two-week delays of only the increment retained
+118.98%/120.45%. Removing either routed sleeve and returning that incremental
+capital to the leader left at least 116.17%, above the 112.93% base. The
+conservative overlapping-issuer concentration bound remained 7.38%.
+
+The improvement is real but small and not statistically broad. It beat the
+119.22% control in 44.17% of completed rolling 26-week windows, while 4/13-week
+block-bootstrap probabilities of positive excess were only 57.34%/56.74%.
+Full point-in-time company removal improved the worst case from the prior
+challenger's 109.17% to 110.70%, but Qualys remained the worst issuer and the
+result remained below the 112.93% base. The branch is therefore saved as an
+issuer-improved return challenger, not promoted or forwarded, and no live
+execution was enabled.
+
+References:
+
+- `config/sec_increment_sleeve_diversification_v1.json`
+- `scripts/run_sec_increment_sleeve_diversification_v1.py`
+- `tests/test_sec_increment_sleeve_diversification_v1.py`
+- `evidence/sec_increment_sleeve_diversification_v1/result.json`
+- `evidence/sec_increment_sleeve_diversification_v1/screening.csv`
+- `evidence/sec_increment_sleeve_diversification_v1/leave_one_company_out.csv`
+- `evidence/sec_increment_sleeve_diversification_v1/report.md`
+- `research_registry/sec_increment_sleeve_diversification_v1.json`
+
+## Step 127 — Reproduce and repair the Form 4 dynamic-overlay audit
+
+The Step 126 implementation was independently rerun in the pinned
+`po2-yfinance:1.5.2-v1` research container. Its central result reproduced:
+the 13-week, 30% executive-or-cluster candidate retained 108.43% trailing-one-
+year CAGR, 2.768 Sharpe, -10.08% drawdown, and 41.41% full CAGR, while the
+ProFrac leave-one-out case remained 99.27%. The rejection decision therefore
+did not change.
+
+The audit found that the original rolling-window statistic counted incomplete
+26-week windows as failures and that rolling and bootstrap observations had no
+explicit promotion thresholds. The implementation was repaired to discard
+incomplete windows, require at least 50% rolling-window outperformance, require
+at least 95% positive-excess-return probability under both 4-week and 13-week
+block bootstraps, and include those booleans explicitly in the all-gates
+decision. It now calculates falsification from the persisted path artifacts,
+round-trips their metrics, records SHA-256 hashes, and refuses to run outside
+Python 3.12.13, NumPy 2.5.1, and Pandas 3.0.5.
+
+The corrected candidate beat the control in 56.44% of 163 completed rolling
+26-week windows, passing that gate. It still failed decisively elsewhere: the
+same-family neighborhood pass share was 33.33%, the 4-week bootstrap probability
+was 69.52%, the 13-week probability was 86.14%, and removing ProFrac left CAGR
+below the control. Step 126 remains rejected, the frozen breadth-20 leader is
+unchanged, and no forward clock or live execution was started.
+
+References:
+
+- `config/sec_form4_dynamic_overlay_v1.json`
+- `scripts/run_sec_form4_dynamic_overlay_v1.py`
+- `evidence/sec_form4_dynamic_overlay_v1/result.json`
+- `evidence/sec_form4_dynamic_overlay_v1/report.md`
+- `research_registry/sec_form4_dynamic_overlay_v1.json`
+
+## Step 147 — Preserve the 124.20% diagnostic and open a broad SEC universe
+
+The sector-aware signal ensemble from Step 146 was added to the Version 2
+dashboard as a fourth selectable research strategy. Its saved trailing-52-week
+result remains 124.20% CAGR, 3.103 Sharpe, and -8.71% maximum drawdown at 50-bps
+turnover costs. The dashboard reconstructs the historical leader and stock-
+sleeve allocations, exposes 188 weekly decisions and 909 daily observations,
+and keeps the failed promotion evidence visible: 50.0% endpoint outperformance,
+57.1% rolling-26-week outperformance, failed bootstrap thresholds, and a
+109.32% five-issuer stress. It is explicitly marked not eligible; no live
+execution or strategy replacement was enabled.
+
+The next improvement started at the actual universe bottleneck. The historical
+SEC filer builder was generalized from a technology/energy-only description to
+a declared SIC taxonomy, and a new broad-v2 configuration was frozen. It keeps
+technology and energy as first-match carve-outs, then covers the remaining SEC
+SIC divisions. Membership still uses only filings accepted before each
+quarterly decision, accelerated/large-accelerated filer status, and a 450-day
+staleness limit.
+
+Using the 57 already cached SEC Financial Statement Data Set quarters from
+2012Q1 through 2026Q1, the first broad vintage contains 174,598 qualifying
+submissions, 188,282 decision-membership rows, 6,094 unique historical CIKs,
+and 2,889 members at the latest decision. The prior universe contained 1,281
+unique CIKs, so the candidate pool expanded by about 4.8x without using today's
+index constituents as historical membership. Only 51.09% of historical CIKs
+have a current SEC ticker mapping, so price acquisition, historical identity
+recovery, delisting outcomes, and explicit missing-company stress tests remain
+mandatory before this universe can authorize any return claim.
+
+A readiness audit then reduced that work to explicit queues. From 2023 onward
+the broad universe has 3,587 unique CIKs across 14 decisions. Existing validated
+prices cover 16.07% of company-decision rows and cached Company Facts cover
+17.55%. Of the unique issuers, 485 are already ready in the existing panel, 12
+need prices only, 1,997 need both prices and facts, and 1,093 require historical
+identity recovery. Strategy testing stays blocked until decision-date coverage
+reaches 95%, terminal outcomes are audited, and missing-company adverse tests
+pass.
+
+References:
+
+- `dashboard/scripts/build-return-first-dashboard.py`
+- `dashboard/src/components/return-first-dashboard.tsx`
+- `dashboard/public/return-first-dashboard.json`
+- `config/sec_historical_filer_universe_broad_v2.json`
+- `scripts/build_sec_historical_filer_universe_v1.py`
+- `scripts/audit_sec_broad_universe_readiness_v2.py`
+- `evidence/sec_broad_universe_readiness_v2/result.json`
+- `data/sec_historical_universe_vintages/20260821T231634Z-sec-historical-filers-broad-v2/manifest.json`
+
+## Step 148 — Start validated broad-universe price and fundamentals batches
+
+The broad-v2 acquisition queue was converted into a bounded, resumable batch
+runner. Every requested current SEC ticker is checked against the issuer's
+first and last eligible decision dates; a returned history is not accepted
+merely because the symbol exists. SEC Company Facts use the existing paced,
+cached fetcher and the real project contact. Each batch freezes its inputs,
+results, provider/runtime metadata, and keeps strategy testing disabled.
+
+The complete twelve-issuer price-only queue was attempted first. Nine histories
+passed their eligible-date intervals. DBD, NINE, and WOLF began too late for
+their historical membership and were routed to identity/terminal review rather
+than silently backfilled under their current symbols.
+
+Five controlled 40-company batches were then completed from the price-plus-
+fundamentals queue. All 200 companies returned interval-valid adjusted price
+histories and all 200 returned SEC Company Facts. Across both acquisition
+stages, 209 of 212 attempted CIKs added valid histories. The number of fully
+ready recent issuers rose from 485 to 694; validated price coverage across
+company-decision rows rose from 16.07% to 22.41%, and cached Company Facts
+coverage rose from 17.55% to 23.72%. The remaining queue contains 1,797
+current-ticker issuers needing both datasets, 1,093 needing identity recovery,
+and three needing explicit identity/terminal review. Broad-universe strategy
+testing remains unauthorized until the 95% coverage and adverse missing-company
+gates are satisfied.
+
+References:
+
+- `scripts/acquire_sec_broad_current_data_batch_v2.py`
+- `evidence/sec_broad_universe_readiness_v2/result.json`
+- `data/sec_broad_current_data_vintages/20260821T233030Z-broad-v2-acquire_price_only-o0-n12/manifest.json`
+- `data/sec_broad_current_data_vintages/20260821T233109Z-broad-v2-acquire_price_and_facts-o0-n40/manifest.json`
+- `data/sec_broad_current_data_vintages/20260821T233202Z-broad-v2-acquire_price_and_facts-o40-n40/manifest.json`
+- `data/sec_broad_current_data_vintages/20260821T233301Z-broad-v2-acquire_price_and_facts-o80-n40/manifest.json`
+- `data/sec_broad_current_data_vintages/20260821T233408Z-broad-v2-acquire_price_and_facts-o120-n40/manifest.json`
+- `data/sec_broad_current_data_vintages/20260821T233510Z-broad-v2-acquire_price_and_facts-o160-n40/manifest.json`
+
+## Step 149 — Advance the refreshed broad-data queue by another 200 issuers
+
+After rebuilding the readiness queue, five more fixed 40-company batches were
+run against the same frozen queue hash. SEC Company Facts succeeded for all 200
+issuers. Adjusted-price histories passed their full eligible-date intervals for
+198. XAEIU returned no Yahoo history, while OPI's returned history began after
+its earliest eligible decision; both were routed to identity/terminal review.
+
+Cumulatively, 412 unique broad-universe issuers have now been attempted, 407
+have interval-valid prices, and all 412 have cached Company Facts. Fully ready
+recent issuers increased from 694 to 892. Validated company-decision price
+coverage increased from 22.41% to 28.50%, and Company Facts coverage increased
+from 23.72% to 29.86%. The current-ticker price-plus-fundamentals queue declined
+from 1,797 to 1,597 issuers. Five current-ticker histories are now isolated for
+identity/terminal review, and the separate 1,093-issuer historical identity
+recovery queue is unchanged. No strategy test, promotion, or live execution was
+enabled.
+
+References:
+
+- `evidence/sec_broad_universe_readiness_v2/result.json`
+- `data/sec_broad_current_data_vintages/20260821T234641Z-broad-v2-acquire_price_and_facts-o0-n40/manifest.json`
+- `data/sec_broad_current_data_vintages/20260821T234744Z-broad-v2-acquire_price_and_facts-o40-n40/manifest.json`
+- `data/sec_broad_current_data_vintages/20260821T234831Z-broad-v2-acquire_price_and_facts-o80-n40/manifest.json`
+- `data/sec_broad_current_data_vintages/20260821T234913Z-broad-v2-acquire_price_and_facts-o120-n40/manifest.json`
+- `data/sec_broad_current_data_vintages/20260821T234953Z-broad-v2-acquire_price_and_facts-o160-n40/manifest.json`
+
+## Step 150 — Complete a third 200-issuer broad-data tranche
+
+The next refreshed price-plus-fundamentals queue was frozen by SHA-256 and run
+in five more 40-company batches. Company Facts succeeded for all 200 issuers.
+Adjusted-price histories passed their complete eligible intervals for 199.
+ANG-PD began only on 2025-01-10 despite an earlier eligible membership interval,
+so it was isolated for identity/terminal review rather than accepted.
+
+Cumulatively, 612 unique issuers have been attempted without duplication, 606
+have interval-valid adjusted prices, and all 612 have cached Company Facts.
+Fully ready recent issuers increased from 892 to 1,091. Validated price coverage
+across company-decision rows rose from 28.50% to 33.62%; Company Facts coverage
+rose from 29.86% to 35.01%. The current-ticker price-plus-fundamentals queue now
+contains 1,397 issuers, while six attempted current-ticker histories require
+identity/terminal review. No broad strategy test, promotion, or live execution
+was enabled.
+
+References:
+
+- `evidence/sec_broad_universe_readiness_v2/result.json`
+- `data/sec_broad_current_data_vintages/20260822T002032Z-broad-v2-acquire_price_and_facts-o0-n40/manifest.json`
+- `data/sec_broad_current_data_vintages/20260822T003029Z-broad-v2-acquire_price_and_facts-o40-n40/manifest.json`
+- `data/sec_broad_current_data_vintages/20260822T003245Z-broad-v2-acquire_price_and_facts-o80-n40/manifest.json`
+- `data/sec_broad_current_data_vintages/20260822T003321Z-broad-v2-acquire_price_and_facts-o120-n40/manifest.json`
+- `data/sec_broad_current_data_vintages/20260822T003359Z-broad-v2-acquire_price_and_facts-o160-n40/manifest.json`
+
+## Step 151 — Exhaust the current-ticker broad-data queue
+
+The remaining 1,397 current-ticker issuers were processed in seven large,
+frozen batches. An explicit-CIK retry mode was added so failures could be
+retried without changing the queue or repeating successful companies. In
+total, 1,392 histories passed their complete eligible intervals on the first
+pass. CWH passed on retry. QVCAQ, STRZ, WW, and BALY remained isolated as
+historical identity gaps rather than being accepted with incomplete data. The
+current-ticker acquisition queue reached zero; no strategy test or execution
+was enabled.
+
+References:
+
+- `scripts/acquire_sec_broad_current_data_batch_v2.py`
+- `data/sec_broad_current_data_vintages/`
+- `evidence/sec_broad_universe_readiness_v2/result.json`
+
+## Step 152 — Recover historical identities and exhaust free Yahoo coverage
+
+SEC submission records were downloaded in six resumable batches for all 1,093
+historical-identity cases. Explicit XBRL trading symbols were recovered for
+1,059 issuers. A strict identity audit retained 751 unique single-symbol cases,
+quarantined 12 duplicate/ticker-reuse CIKs, and routed 330 multi-symbol or
+missing-tag cases to review. All 751 accepted identities then received a Yahoo
+history attempt and SEC Company Facts acquisition. Facts succeeded for all 751;
+133 price histories passed their full eligible intervals. The other cases were
+kept missing, primarily because the companies had already delisted or been
+acquired, rather than being silently substituted with a present-day ticker.
+
+References:
+
+- `scripts/recover_sec_broad_historical_symbols_batch_v2.py`
+- `scripts/audit_sec_broad_recovered_identity_v2.py`
+- `scripts/acquire_sec_broad_recovered_data_batch_v2.py`
+- `evidence/sec_broad_recovered_identity_v2/`
+- `data/sec_broad_recovered_data_vintages/`
+
+## Step 153 — Add authenticated delisted histories and terminal membership
+
+The remaining recovered-symbol gaps were checked against Tiingo's public
+inventory. Of 618 unresolved Yahoo cases, 134 had a matching public Tiingo
+symbol and 484 were unsupported by that free inventory. The authenticated
+free-tier downloader is capped at 24 candidates per hourly window and never
+persists its token. The first two attempts produced 28 validated histories
+before the provider rate limit. Six compatible, previously authenticated
+histories were then reused under the same strict current audit, bringing the
+validated Tiingo total to 34 and avoiding duplicate provider calls.
+
+Separately, SEC filings confirmed 586 merger/acquisition terminations under a
+strict form-and-item rule. Removing only decision rows after those confirmed
+terminal dates reduced the recent evaluation population to 3,439 unique CIKs.
+The latest readiness result contains 2,710 ready issuers, 91.12% Company Facts
+coverage, and 83.25% validated price coverage. A combined hourly continuation
+now advances at most one Tiingo batch per reset while preserving the frozen
+Friday forward-evidence protocol. The broad strategy gate remains closed until
+free sources are exhausted and the stated 95% coverage plus missing-company
+stress requirements are evaluated; live trading remains disabled.
+
+References:
+
+- `scripts/build_sec_broad_tiingo_queue_v2.py`
+- `scripts/acquire_sec_broad_tiingo_batch_v2.py`
+- `scripts/audit_sec_broad_tiingo_v2.py`
+- `scripts/audit_sec_broad_terminal_membership_v2.py`
+- `scripts/audit_sec_broad_universe_readiness_v2.py`
+- `evidence/sec_broad_tiingo_queue_v2/`
+- `evidence/sec_broad_tiingo_audit_v2/`
+- `evidence/sec_broad_terminal_membership_v2/`
+- `evidence/sec_broad_universe_readiness_v2/result.json`
+
+## Step 154 — Resolve multi-security issuers without choosing preferreds or units
+
+The unresolved identity set was audited for issuers that report more than one
+security. A deterministic primary-common-share rule accepted 272 candidates
+and quarantined nine duplicate issuer symbols, preferred securities, and SPAC
+units. The first acquisition attempt correctly rejected every price because a
+merged date field had been renamed; this exposed a schema error without
+allowing any false history into the panel. After correcting the canonical date
+fields, the identical frozen queue was rerun. Yahoo histories passed their full
+eligible intervals for 209 issuers and SEC Company Facts succeeded for all 272.
+
+A separate conservative current-primary recovery found seven more candidates
+among unresolved multi-ticker issuers; six histories and all seven Company Facts
+validated. The remaining 49 missing Company Facts were then acquired directly
+from SEC, bringing Company Facts coverage to 100%. Price coverage rose from
+84.06% to 90.90%, with 2,949 issuers fully ready. No failed or ambiguous symbol
+was treated as valid.
+
+References:
+
+- `scripts/audit_sec_broad_multi_symbol_primary_v2.py`
+- `scripts/acquire_sec_broad_multi_symbol_primary_batch_v2.py`
+- `scripts/build_sec_broad_current_primary_recovery_v2.py`
+- `scripts/acquire_sec_broad_missing_companyfacts_v2.py`
+- `evidence/sec_broad_multi_symbol_primary_v2/`
+- `evidence/sec_broad_current_primary_recovery_v2/`
+- `data/sec_broad_multi_symbol_data_vintages/`
+
+## Step 155 — Rebuild delisted-provider eligibility after terminal adjustment
+
+The Tiingo inventory queues were rebuilt against the current SEC-terminal-
+adjusted membership intervals rather than the older pre-terminal dates. This
+fixed a conservative screening error that had required acquired companies to
+provide prices after they ceased to exist. A symmetric ten-calendar-day
+decision-date tolerance now handles quarter dates that fall on weekends or
+market holidays. The same tolerance is applied by the strict price audit.
+
+The eligible free-provider universe expanded to 399 recovered single-symbol
+companies plus 39 multi-symbol supplements. Seventy-eight earlier authenticated
+histories were reusable; 123 of 130 audited candidates currently validate, and
+all 67 histories ending before their final decision have independent SEC-
+confirmed terminal events. There are no unconfirmed early delistings. The
+remaining combined provider queue contains 308 unaudited candidates and can
+theoretically lift overall price coverage above 96% if all histories validate.
+
+References:
+
+- `scripts/build_sec_broad_tiingo_queue_v2.py`
+- `scripts/build_sec_broad_tiingo_multi_symbol_supplement_v2.py`
+- `scripts/audit_sec_broad_tiingo_v2.py`
+- `evidence/sec_broad_tiingo_queue_v2/`
+- `evidence/sec_broad_tiingo_multi_symbol_supplement_v2/`
+- `evidence/sec_broad_tiingo_audit_v2/`
+
+## Step 156 — Freeze the broad research authorization gate
+
+A new v2 gate now measures coverage at every quarterly decision, not only as an
+overall average. It requires at least 95% price coverage at each decision, at
+least 95% Company Facts coverage, completion of every authenticated free-
+provider candidate, zero unconfirmed early delistings, and explicit missing-
+company policies. Missing selections remain as cash in the base case and are
+assigned a total loss in the adverse case. At this checkpoint, Company Facts
+and terminal gates pass, but the free-provider queue and price-coverage gates
+do not: minimum decision coverage is 85.98%, overall coverage is 90.90%, and
+308 candidates remain. Research strategy testing therefore remains blocked and
+live trading remains disabled.
+
+The hourly continuation automation now runs one free-tier-safe batch, re-audits
+the provider histories and readiness panel, and reruns this gate. It preserves
+the separate frozen Friday forward-evidence protocol and will restore the
+original weekly schedule when the provider queue is exhausted.
+
+References:
+
+- `config/sec_broad_missing_company_gate_v2.json`
+- `scripts/audit_sec_broad_research_gate_v2.py`
+- `evidence/sec_broad_research_gate_v2/`
+
+## Step 157 — Make terminal evidence idempotent and recover the 95% path
+
+The terminal audit was expanded with a second strict SEC rule: a Form 25
+delisting followed within 45 days by Form 15 deregistration, with no later
+10-K, 10-Q, 20-F, or 40-F. This covers public-equity terminations whose closing
+8-K does not use the original exact merger item combination, while companies
+that continue periodic reporting remain in the universe.
+
+An audit rerun then revealed that the terminal detector was reading its own
+already-filtered readiness output, causing fully removed companies to vanish on
+subsequent runs. The source was corrected to the immutable broad-v2 quarterly
+membership vintage. The regenerated result is stable and contains 634
+SEC-confirmed terminal issuers: 556 under the completion-8-K rule and 78 under
+the Form-25-plus-Form-15 rule. It removes 1,875 post-terminal decision rows,
+leaving 3,431 recent unique CIKs.
+
+At this checkpoint, Company Facts coverage is 100%, current validated price
+coverage is 91.15%, and 2,948 issuers are fully ready. The combined Tiingo
+inventory has 446 candidates, of which 315 are not yet audited; the downloader
+also has seven previously rejected legacy cases scheduled for one controlled
+recheck. If every eligible history validates, the minimum quarterly coverage is
+95.20% and overall coverage is 96.87%, so the frozen 95%-at-every-decision gate
+is now attainable without relaxing it. Research testing remains blocked until
+the actual batches prove that outcome.
+
+References:
+
+- `scripts/audit_sec_terminal_membership_v1.py`
+- `scripts/audit_sec_broad_terminal_membership_v2.py`
+- `evidence/sec_broad_terminal_membership_v2/`
+- `evidence/sec_broad_research_gate_v2/`
+
+## Step 158 — Advance the Tiingo queue and fix a plain-Form-25 detection gap
+
+Before running, the current UTC provider window (03:00-04:00Z) was confirmed to
+have no prior successful batch; the last success was in the 02:00-03:00Z
+window. One 24-candidate batch was run through the authenticated downloader.
+Twenty-three candidates validated identity and start coverage; NOVA was
+correctly rejected for a name mismatch/ticker-reuse rather than accepted on a
+returned symbol history.
+
+Re-running the three required audits then exposed a new
+`validated_early_delisting_needs_terminal_audit` case: Cutera Inc (CIK
+0001162461, CUTR), whose authenticated history ends 2025-03-12 while its
+membership interval runs through 2026-01-01. Re-running the terminal audit
+against the immutable broad-v2 vintage did not confirm it, so the research
+gate's `terminal_outcome_gate` correctly failed with one unconfirmed early
+delisting rather than silently accepting the truncated history.
+
+Investigating the raw SEC submission record found the cause: Cutera filed a
+plain Form 25 on 2025-03-20 and a Form 15-12G eleven days later on 2025-03-31,
+with no periodic filing after the Form 25 — an exact match for the frozen
+"Form 25 followed within 45 days by Form 15" rule. `terminal_filing()` in
+`scripts/audit_sec_terminal_membership_v1.py` matched only the exact SEC form
+value `25-NSE` (an exchange-filed removal notice) and never matched plain `25`
+(an issuer-filed removal notice), which is the same substantive filing under
+the same rule. A scan of the 1,093 cached historical-identity submissions
+found 127 CIKs with a plain `25` filing, of which 33 have no `25-NSE` filing
+at all and were therefore invisible to the old check. The fix adds `25`
+alongside `25-NSE` to the notice-form set; no other matching logic changed,
+and the completion-8-K rule was untouched. This did not loosen the rule itself
+— it only widened form-code recognition to match the rule exactly as
+specified, and only decisions with independent SEC filing evidence are now
+confirmed terminal.
+
+Re-running the terminal audit against the same immutable vintage raised
+SEC-confirmed terminal issuers from 634 to 643, including CUTR under the
+`form25_plus_form15_no_later_periodic` rule. Re-running all three audits in
+order then cleared the regression: unconfirmed early delistings returned to
+zero, `terminal_outcome_gate_passed` returned to true, and no other gate
+regressed.
+
+Before this step: 3,431 recent unique CIKs, 2,948 fully ready issuers, 91.15%
+validated price coverage (86.15% at the weakest decision), 100% Company Facts
+coverage, 634 SEC-confirmed terminal issuers, 131 audited Tiingo candidates
+(315 pending), zero unconfirmed early delistings. After this step: 3,430
+recent unique CIKs (one issuer's remaining decision rows were fully removed by
+the newly confirmed terminal date), 2,971 fully ready issuers, 91.93% validated
+price coverage (86.75% at the weakest decision), 100% Company Facts coverage,
+643 SEC-confirmed terminal issuers, 155 audited Tiingo candidates (291
+pending), zero unconfirmed early delistings. The Company Facts gate and
+missing-company policy gate continue to pass; the free-provider-queue gate and
+the 95%-at-every-decision price-coverage gate remain the only failures.
+Research strategy testing remains unauthorized and live trading remains
+disabled.
+
+References:
+
+- `scripts/acquire_sec_broad_tiingo_batch_v2.py`
+- `scripts/audit_sec_terminal_membership_v1.py`
+- `scripts/audit_sec_broad_terminal_membership_v2.py`
+- `scripts/audit_sec_broad_tiingo_v2.py`
+- `scripts/audit_sec_broad_universe_readiness_v2.py`
+- `scripts/audit_sec_broad_research_gate_v2.py`
+- `data/sec_broad_tiingo_runs_v2/20260822T031139Z-sec-broad-tiingo-batch-v2.json`
+- `evidence/sec_broad_terminal_membership_v2/`
+- `evidence/sec_broad_tiingo_audit_v2/`
+- `evidence/sec_broad_universe_readiness_v2/`
+- `evidence/sec_broad_research_gate_v2/`
+
+## Step 159 — Prioritize scarce provider calls across the combined queue
+
+The authenticated downloader previously concatenated the recovered-single-
+symbol queue ahead of the multi-symbol supplement and then took the first 24
+pending issuers. That unintentionally forced every base candidate to run before
+any supplement, even when a supplement could fill more quarterly decisions.
+The downloader now ranks the deduplicated combined queue by decision rows,
+latest eligible decision, and CIK, preserving deterministic reruns while using
+each hourly request where it can close the most panel gaps.
+
+At the current checkpoint, the old next batch represented 266 missing
+decision-company rows; the globally ranked batch represents 277, a 4.1%
+increase in potential coverage contribution for the same 24-candidate limit.
+This changes only acquisition order. It does not accept a price, relax any
+identity rule, consume a provider request, authorize a strategy test, or enable
+live trading. A regression test confirms that a higher-impact supplement is
+ranked ahead of a lower-impact base candidate.
+
+References:
+
+- `scripts/acquire_sec_broad_tiingo_batch_v2.py`
+- `tests/test_sec_broad_tiingo_batch.py`
+
+## Step 160 — Resolve bankruptcy terminals using economic reporting periods
+
+The next authenticated batch surfaced three histories that ended before their
+last nominal membership decision: Lazydays Holdings, Nikola, and Benson Hill.
+Their SEC sequences show bankruptcy and equity-termination evidence rather
+than missing price observations. The terminal audit was therefore extended
+with a narrow bankruptcy rule: an Item 1.03 8-K must have either a Form 25 or
+25-NSE within 60 days, or at least two corroborating shutdown/delisting items
+from 2.05, 2.06, and 3.01. A company is not classified terminal if it reports
+an economic period after that event.
+
+The economic-period condition fixes an important timing bug. A periodic report
+filed after bankruptcy may cover a period that ended before bankruptcy; its
+late filing date is not evidence that the equity remained economically active.
+Nikola, for example, filed a 2024-period 10-K later in 2025. The audit now uses
+the SEC `reportDate` for periodic evidence, falling back to filing date only
+when the report date is absent. Regression tests cover that delayed-filing
+case, a genuine later reporting period, and the stricter no-Form-25 path.
+
+The rule identifies 58 bankruptcy equity terminations in the immutable broad
+universe and raises the total SEC-confirmed terminal set to 696. All three new
+early-ending histories now validate and the unconfirmed-early-delisting count
+falls from three to zero. Post-terminal removal increases overall validated
+price coverage to 92.91% and the weakest quarterly decision coverage to
+87.61%; 2,992 issuers are fully ready. Company Facts coverage remains 100%.
+The terminal and missing-company gates pass, while the frozen research gate
+remains closed because 267 free-provider candidates are still pending and the
+minimum price coverage is below 95%. No strategy test or live trading was
+enabled.
+
+References:
+
+- `scripts/audit_sec_terminal_membership_v1.py`
+- `scripts/audit_sec_broad_terminal_membership_v2.py`
+- `tests/test_sec_terminal_membership.py`
+- `evidence/sec_broad_terminal_membership_v2/`
+- `evidence/sec_broad_tiingo_audit_v2/`
+- `evidence/sec_broad_universe_readiness_v2/`
+- `evidence/sec_broad_research_gate_v2/`
+
+## Step 161 — Freeze eight independent return-improvement workstreams
+
+A new return-improvement program was predeclared before the broad SEC research
+gate opened. It covers sector/market-residual momentum, 52-week-high and trend
+consistency, point-in-time quality momentum, delayed earnings/Form-4 event
+confirmation, generic confidence-based concentration, purged walk-forward ML
+ranking, buffered holding/exit rules, and causal allocation across independently
+accounted strategy sleeves. Ticker-specific caps are explicitly forbidden.
+
+All eight shared implementations are complete. Their causality contract uses a
+full-observation delay for prices, strict pre-decision event cutoffs, sector-
+neutral fundamental ranks, purged and embargoed ML folds, generic issuer/sector
+caps with excess in explicit cash, and strategy weights computed only from past
+returns. Eleven focused tests cover future-data mutation, event timing, feature
+signs, cap enforcement, fold separation, out-of-sample ML predictions, holding
+state, and allocator causality. Twelve existing compatibility tests also pass.
+
+The frozen tournament guard currently reports
+`blocked_broad_research_gate`: 267 authenticated candidates remain and minimum
+decision coverage is 87.61%. It wrote no broad performance metric or selection
+artifact. The preparation script now refuses to overwrite a differing frozen
+configuration, closing a potential silent re-freeze path.
+
+References:
+
+- `config/sec_return_improvement_program_v1.json`
+- `src/systematic_trader/sec_return_improvement.py`
+- `scripts/prepare_sec_return_improvement_program_v1.py`
+- `scripts/run_sec_return_improvement_tournament_v1.py`
+- `tests/test_sec_return_improvement.py`
+- `tests/test_sec_return_improvement_tournament.py`
+- `docs/RETURN_IMPROVEMENT_PROGRAM_V1.md`
+- `evidence/sec_return_improvement_program_v1/`
+- `evidence/sec_return_improvement_tournament_v1/`
+
+## Step 162 — Reject the first causal strategy allocator without rescue tuning
+
+The predeclared past-strength and dependence-penalized allocator was tested on
+the three already selected dashboard strategies, separately from the blocked
+broad-universe tournament. The comparison begins only after its mandatory
+26-week learning period and charges another 50 bps on allocator turnover.
+
+From 2023-07-14 through 2026-08-07, the allocator returned 21.97% CAGR with
+1.254 Sharpe and -16.61% maximum drawdown. Static equal weight returned 40.00%
+CAGR with 1.852 Sharpe and -20.40% drawdown; the best standalone common-window
+sleeve returned 38.91%. The dynamic allocator therefore fails both relevant
+return comparisons and is rejected without a post-result parameter search.
+Static equal weight is retained only as a selection-contaminated exploratory
+ceiling, not a promoted strategy.
+
+References:
+
+- `scripts/run_strategy_allocator_diagnostic_v1.py`
+- `evidence/strategy_allocator_diagnostic_v1/`
+
+## Step 163 — Clear 150% with bounded exposure but keep issuer risk binding
+
+A twelve-rule risk-scaling experiment was frozen around the 124.20% sector-aware
+diagnostic. It tested fixed exposure, inverse-volatility scaling, trend
+confirmation, a momentum-crash guard, and drawdown throttles. Exposure was
+capped at 1.5x; financing was charged at 6% and stressed at 10%; underlying
+costs were tested at 50/100/200 bps; and eleven challengers received a
+Bonferroni multiple-testing adjustment. Five new causality and safety tests
+passed before results were calculated.
+
+Volatility targeting and drawdown throttles reduced both return and Sharpe. The
+fixed 1.35x rule was the return leader at the weekly level: 185.77% trailing-
+year CAGR, 3.046 Sharpe, -11.82% drawdown, 56.22% full CAGR, and 153.49% under
+the severe cost/financing case. Fixed 1.25x returned 166.89% with 3.059 Sharpe
+and -10.94% drawdown. Both passed every overlay-level gate, but neither passed
+complete falsification because fixed exposure cannot repair the underlying
+strategy's unresolved joint issuer dependence. No promotion or execution was
+enabled.
+
+References:
+
+- `config/sec_recent_return_risk_scaling_v1.json`
+- `scripts/run_sec_recent_return_risk_scaling_v1.py`
+- `tests/test_sec_recent_return_risk_scaling_v1.py`
+- `evidence/sec_recent_return_risk_scaling_v1/`
+
+## Step 164 — Reject residual and trend confirmation inside the fundamental ensemble
+
+Nine price-confirmation challengers were frozen before evaluation. They added
+10%, 20%, or 30% sector/market-residual momentum, trend quality, or their equal
+combination to the fixed fundamental membership scores. The existing breadth,
+sector caps, delayed prices, costs, execution delays, endpoint checks, rolling
+windows, issuer bundles, and Bonferroni-adjusted bootstrap gate were retained.
+Seventeen focused and compatibility tests passed.
+
+No challenger passed. The best recent point, a 10% trend-quality contribution,
+reduced recent CAGR from 124.20% to 111.86%, Sharpe from 3.103 to 2.876, full
+CAGR from 42.74% to 38.49%, and the worst five-issuer stress to 86.87%. The
+entire price-confirmation branch was rejected without changing its lookbacks or
+weights after seeing the result.
+
+References:
+
+- `config/sec_price_confirmed_fundamental_ensemble_v1.json`
+- `scripts/run_sec_price_confirmed_fundamental_ensemble_v1.py`
+- `tests/test_sec_price_confirmed_fundamental_ensemble_v1.py`
+- `evidence/sec_price_confirmed_fundamental_ensemble_v1/`
+
+## Step 165 — Replace the weekly 185.77% headline with an exact-daily 174.97% audit
+
+The frozen sector-aware ensemble was reconstructed from its saved stock and
+strategy targets on exact daily adjusted closes. Four holdings without
+validated daily histories remained cash under the existing base missing-company
+rule; no current-ticker substitution or fabricated history was used. The
+unlevered daily result was 118.79% trailing-year CAGR, 2.643 Sharpe, and -17.94%
+drawdown, establishing that weekly accounting had understated intrawweek risk.
+
+After 6% financing, fixed 1.25x produced 157.93% CAGR, 2.605 Sharpe, and -22.59%
+drawdown. Fixed 1.35x produced 174.97% CAGR, 2.594 Sharpe, and -24.43% drawdown.
+One- and two-session delays retained roughly 152.5% at 1.25x and 168.7% at
+1.35x. The maximum weekly reconciliation difference was 2.77%, inside the
+frozen 3% tolerance. Both are preserved as research-only amplifiers; the 1.25x
+path is the better risk trade-off and the 1.35x path is the return leader.
+Neither is promoted because the source strategy's joint issuer test remains
+failed. Live trading remains disabled.
+
+References:
+
+- `config/sec_sector_ensemble_daily_risk_scaling_audit_v1.json`
+- `scripts/run_sec_sector_ensemble_daily_risk_scaling_audit_v1.py`
+- `tests/test_sec_sector_ensemble_daily_risk_scaling_audit_v1.py`
+- `evidence/sec_sector_ensemble_daily_risk_scaling_audit_v1/`
+- `docs/RECENT_RETURN_ALPHA_SEARCH_V1.md`
+
+## Step 166 — Reject forced cross-component issuer separation
+
+A frozen 15-construction experiment limited the overlap between the two
+fundamental ranking components from 20 shared issuers down to zero, tested in
+both selection orders. The factors, 20-stock component breadth, 50/50 mix,
+sector caps, outer controller, costs, and timing were held fixed. Five focused
+tests passed, and the unconstrained control reproduced the 124.20% source path
+exactly.
+
+No challenger cleared all predeclared gates. The strongest five-issuer
+diagnostic, `balance_first_overlap12`, expanded the latest portfolio from 26 to
+28 distinct holdings and produced 122.37% recent CAGR, 3.078 Sharpe, -8.71%
+drawdown, and 109.21% CAGR after removing the five previously worst issuers.
+It missed the 124.20% return gate, the 112.93% issuer-stress gate, temporal
+outperformance gates, and the multiple-testing-adjusted bootstrap gate. Tighter
+overlap limits generally reduced returns further. The branch is rejected; the
+daily leverage audit was not rerun on a weaker foundation, and no strategy was
+promoted.
+
+References:
+
+- `config/sec_cross_component_overlap_budget_v1.json`
+- `scripts/run_sec_cross_component_overlap_budget_v1.py`
+- `tests/test_sec_cross_component_overlap_budget_v1.py`
+- `evidence/sec_cross_component_overlap_budget_v1/`
+
+## Step 167 — Advance the independent broad-universe gate by 24 issuers
+
+At the next eligible hourly free-provider window, one bounded 24-candidate
+Tiingo batch was acquired. All 24 histories passed issuer-identity and required
+start-date validation; no rate-limit response occurred and the credential was
+used transiently without persistence. The broad audits were then regenerated
+inside the pinned research runtime.
+
+Validated candidates increased from 191 to 215 and validated decision keys
+from 2,004 to 2,251. Overall price coverage rose from 93.5724% to 94.1854%,
+while minimum decision-date coverage rose from 88.3853% to 89.1289%. The
+pending free-provider queue fell from 243 to 219. Company-facts,
+missing-company-policy, and terminal-outcome gates pass, with zero unconfirmed
+early delistings; the price and queue gates remain closed. Consequently, the
+frozen broad-universe fundamental/ML tournament was not run and live trading
+remains disabled. All eight refreshed audit artifact hashes verified.
+
+## Step 168 — Add a no-performance tournament readiness preflight
+
+The next independent-alpha stage was audited without loading a broad price
+panel or calculating any strategy return. A deterministic preflight now checks
+the frozen protocol hash, all nine required signal/portfolio primitives, and
+the eight upstream gate, readiness, and Tiingo evidence hashes. Thirteen
+focused and compatibility tests passed in the pinned runtime.
+
+The frozen protocol, signal primitives, and every upstream artifact hash pass.
+Tournament execution remains correctly blocked because the research gate is
+closed and the broad-panel manifest does not yet exist. The next dependency is
+therefore explicit: after the coverage gate opens, materialize a hash-verified
+broad research panel, then run the frozen eight-family evaluator. The preflight
+contains no performance engine and cannot enable promotion or live trading.
+
+References:
+
+- `scripts/audit_sec_return_tournament_readiness_v1.py`
+- `tests/test_sec_return_tournament_readiness_v1.py`
+- `evidence/sec_return_tournament_readiness_v1/`
+
+## Step 169 — Complete and seal an eight-family synthetic tournament rehearsal
+
+The broad-tournament execution path was rehearsed end to end without reading
+incomplete real-universe returns. A deterministic fixture generated 260 weekly
+observations for 48 fictional issuers and 15 quarterly point-in-time decisions
+containing 720 issuer-decision rows. The schema rejects late-arriving features,
+duplicate keys, and a target horizon longer than the decision interval.
+
+All eight frozen workstream shapes executed: residual momentum, trend quality,
+quality momentum, event conditioning, adaptive concentration, nested
+walk-forward ML, buffered holding/exits, and the causal sleeve allocator. The
+rehearsal applied 50/100/200-bps costs, zero/one/two-week delays, adverse missing
+prices, issuer and sector dependence checks, rolling 26/52-week comparisons,
+and 4/13-week block bootstraps. A future-target mutation test confirmed that
+outer test labels cannot change ML predictions. Twenty-one tests passed.
+
+The configuration, point-in-time schema, engine, runner, and tests were sealed
+by SHA-256 and the seal independently reverified. Synthetic performance has no
+investment meaning, no real broad return was calculated, and neither promotion
+nor live execution was authorized. Once the independent data gate opens, the
+next step is to materialize the real panel under this contract and freeze its
+source manifest before running the real tournament.
+
+References:
+
+- `config/sec_return_tournament_synthetic_rehearsal_v1.json`
+- `schemas/sec_broad_research_panel_v1.schema.json`
+- `src/systematic_trader/sec_tournament_rehearsal.py`
+- `scripts/run_sec_return_tournament_synthetic_rehearsal_v1.py`
+- `scripts/seal_sec_return_tournament_rehearsal_v1.py`
+- `tests/test_sec_tournament_rehearsal.py`
+- `docs/SEC_TOURNAMENT_REHEARSAL_V1.md`
+- `evidence/sec_return_tournament_synthetic_rehearsal_v1/`
+
+## Step 170 — Build and pre-result seal the guarded real tournament
+
+The synthetic rehearsal was converted into a separate real-data v2 contract
+without modifying its sealed v1 files. The real schema corrects the synthetic
+assumption that every issuer has a price: unavailable histories remain explicit
+nulls governed by the frozen cash base case and total-loss adverse case.
+Decision, feature-availability, execution, and label-end timestamps are all
+preserved, and execution is delayed at least one full week.
+
+A gate-locked materializer now requires a hash-verified causal feature, weekly
+price, and frozen-benchmark input package before it can write the broad panel.
+The final runner additionally verifies the frozen protocol, panel manifest, and
+an eleven-file pre-result execution seal. It evaluates every family against
+both benchmarks with true trailing-52-week and full-period metrics. The
+strategy allocator now inherits the same cost, timing, missing-price, issuer,
+and sector stresses as its constituent sleeves rather than receiving neutral
+placeholders.
+
+Twenty-eight fixture and compatibility tests passed. Future-price changes did
+not alter completed labels, late features were rejected, missing prices retained
+their explicit policy, all eight workstreams executed, and the four-stage guard
+order was verified. The materializer and tournament runner both remain blocked
+at the closed research gate, so no real panel or performance result was written.
+The execution seal was created before results and reverified independently.
+
+References:
+
+- `schemas/sec_broad_research_panel_v2.schema.json`
+- `src/systematic_trader/sec_broad_panel_v2.py`
+- `src/systematic_trader/sec_real_tournament_v2.py`
+- `scripts/materialize_sec_broad_research_panel_v2.py`
+- `scripts/run_sec_return_improvement_tournament_v2.py`
+- `scripts/seal_sec_return_improvement_tournament_v2.py`
+- `tests/test_sec_broad_panel_and_tournament_v2.py`
+- `docs/SEC_REAL_TOURNAMENT_V2.md`
+- `evidence/sec_return_improvement_tournament_v2/execution_seal.json`
+
+## Step 171 — Complete the broad data gate without lowering it
+
+The completed 446-candidate Tiingo queue still missed the frozen 95% minimum
+decision-date threshold by two rows and had one unresolved Li-Cycle endpoint.
+Two generic identity false negatives were corrected: `PC TEL` versus `PCTEL`
+and `AARON'S` versus `Aarons (The)`. Both had 0.909 normalized similarity; the
+new rule accepts only no-overlap similarities of at least 0.90 and retains the
+existing recycled-ticker rejection tests.
+
+Li-Cycle's SEC record confirmed NYSE suspension, Form 25 delisting, OTC
+transition, and bankruptcy/restructuring within one quarter. The generic
+bankruptcy-delisting corroboration window was extended to one calendar quarter
+with a boundary test rejecting older unrelated delistings. The full terminal
+and Tiingo audits were parallelized without changing sorted deterministic
+outputs.
+
+The refreshed gate passed at 95.0071% minimum decision-date price coverage,
+96.9219% overall price coverage, 100% Company Facts coverage, 446/446 provider
+candidates audited, zero pending candidates, and zero unresolved early
+delistings. Missing selections remain cash in the base case and total losses in
+the adverse case. Authorization is research-only; live trading remains off.
+
+## Step 172 — Materialize and run the sealed real tournament
+
+A causal source adapter assembled 40,284 issuer-decision feature rows across 14
+decisions, 3,253 identity-keyed adjusted-price histories, and 7,609 hashed SEC,
+Yahoo, Tiingo, membership, and gate source records. Feature availability was
+97.83% for sector-neutral quality momentum, 82.09% for residual momentum,
+67.96% for trend quality, and explicit for every event row. Execution remains
+one full week after each decision and 13-week ML labels are sector-relative.
+
+The gate-locked materializer independently verified all input hashes and wrote
+the real panel without evaluating performance. Two real-data compatibility
+defects then caused safe pre-result aborts: a buffered incumbent with a missing
+score had no auditable rank, and serialized timestamps had mismatched merge
+types. Both were fixed generically, covered by regression tests, and recorded
+as pre-result repairs. No `final_result.json` existed during either repair.
+Seventeen focused tests passed and the 12-file execution seal reverified.
+
+The one-shot tournament then evaluated all eight families against both frozen
+benchmarks. No family qualified. Residual momentum led the rejected set at
+101.20% trailing-52-week CAGR, 2.323 Sharpe, and -18.54% drawdown after 50 bps;
+it beat the ETF incumbent but trailed the SEC cash-conversion control's 109.90%
+recent CAGR and failed familywise bootstrap evidence. The ML family lost 19.18%
+recently with a -42.64% drawdown. No winner, replacement, or live execution was
+authorized.
+
+## Step 173 — Validate a fixed residual-momentum sleeve hypothesis
+
+Because residual momentum had only 0.081 full-return correlation to the SEC
+cash control, an explicitly post-selection diagnostic froze a 20% residual / 80%
+control sleeve. The unlevered blend produced 110.65% recent CAGR, 3.116 Sharpe,
+and -11.12% drawdown versus 109.90%, 2.728, and -10.67% for the control. Full
+CAGR improved from 37.54% to 39.41%, full Sharpe from 1.531 to 1.831, and full
+drawdown from -23.26% to -18.69%. One- and two-week delay recent CAGRs remained
+108.35% and 109.65%; 200-bps recent CAGR was 98.02%.
+
+The 1.25x research stress reached 147.98% recent CAGR, 3.076 Sharpe, and -13.87%
+drawdown at 5% financing, and 146.16%, 3.052, and -13.95% at 8% financing.
+However, raw 4/13-week block-bootstrap probabilities were only 61.26% and
+62.26%, becoming zero after the eight-family correction. The sleeve passes all
+economic gates but fails the multiplicity gate. It is therefore the strongest
+new frozen forward candidate, not a promoted strategy; the 20% weight was
+chosen after observing this same sample.
+
+References:
+
+- `scripts/build_sec_broad_panel_inputs_v2.py`
+- `data/sec_broad_panel_inputs_v2/manifest.json`
+- `data/sec_broad_research_panel_v2/manifest.json`
+- `evidence/sec_return_improvement_tournament_v2/final_result.json`
+- `config/sec_residual_controlled_sleeve_v1.json`
+- `scripts/run_sec_residual_controlled_sleeve_v1.py`
+- `evidence/sec_residual_controlled_sleeve_v1/result.json`
+
+## Step 174 — Freeze the residual controlled sleeve for untouched forward evidence
+
+The exact 80% SEC cash-conversion control / 20% residual-momentum candidate was
+frozen as a new forward-only protocol after all historical information through
+August 21, 2026 had already been observed. The first eligible decision is
+August 28, the first eligible realization is September 4, and no historical
+week advances the new 0/52 clock. The unlevered portfolio and the 1.25x paths at
+both 5% and 8% financing are tracked in parallel; none is promoted or executable.
+
+A dedicated recorder now accepts only hashed, immutable decision and
+realization packets inside their Friday 21:00 UTC snapshot windows. It validates
+point-in-time source cutoffs and manifest hashes, saves control and residual
+holdings, calculates turnover and 50-bps costs, derives security-level sleeve
+returns, and writes separate append-only hash chains. Missing prices fail
+closed. Duplicate, late, changed, out-of-order, pre-boundary, and backfilled
+records are rejected. The first decision conservatively assumes a full
+transition from cash rather than importing a favorable pre-freeze turnover
+anchor.
+
+Nine forward-recorder and shared-ledger tests passed, including weekly-window
+boundaries, exact 80/20 and 1.25x arithmetic, hashed source packets, conservative
+first-week costs, duplicate rejection, pre-freeze rejection, and tamper
+detection. The initialized status is 0/52, with execution and live trading off.
+
+References:
+
+- `config/forward/sec_residual_controlled_sleeve_forward_v1.json`
+- `scripts/record_sec_residual_controlled_sleeve_forward_v1.py`
+- `tests/test_sec_residual_forward_recorder_v1.py`
+- `docs/SEC_RESIDUAL_FORWARD_PROTOCOL_V1.md`
+- `evidence/forward_sec_residual_controlled_sleeve_v1/`
+
+## Step 175 — Test and reject the independent-sleeve return accelerator
+
+A sealed 378-candidate tournament tested residual momentum, trend quality,
+quality momentum, and delayed filing/event conditioning as a causal accelerator
+around the SEC cash-conversion control. The rules were frozen before reading
+performance. They used lagged 13/26/52-week selection, one to three active
+sleeves, 10%-40% alpha allocations, volatility targets, a 1.5x maximum exposure,
+50/100/200-bps costs, one/two-week delays, 8% financing, issuer influence, block
+bootstrap, and correction for all trials. Chronology was split into 84
+development, 52 validation, and one 52-week locked block.
+
+The run also found an endpoint mismatch in the prior 80/20 diagnostic: the
+control ended August 7 while residual data continued through August 21, and the
+two missing control returns had been filled with zero. All new comparisons
+truncate to the August 7 common endpoint. The corrected trailing-52-week 1.25x
+incumbent returned 150.86% at 5% financing and 149.01% at the conservative 8%
+assumption, with Sharpe 3.120/3.096 and drawdown -13.87%/-13.95%.
+
+The validation-selected accelerator returned 111.19% in the locked block with
+3.143 Sharpe and -11.12% drawdown. It survived 200-bps costs at 91.42% and
+one/two-week delays at 105.86%/102.33%, but trailed the corrected benchmark by
+37.83 percentage points and had zero familywise bootstrap support. The new
+allocator is rejected. The corrected incumbent is retained as research-only;
+its 0/52 forward protocol was not changed and live trading remains disabled.
+
+References:
+
+- `config/sec_independent_sleeve_return_accelerator_v1.json`
+- `scripts/run_sec_independent_sleeve_return_accelerator_v1.py`
+- `scripts/audit_sec_residual_common_endpoint_v1.py`
+- `tests/test_sec_independent_sleeve_return_accelerator_v1.py`
+- `docs/SEC_INDEPENDENT_SLEEVE_RETURN_ACCELERATOR_V1.md`
+- `evidence/sec_independent_sleeve_return_accelerator_v1/`

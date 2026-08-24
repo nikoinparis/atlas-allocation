@@ -1,0 +1,27 @@
+{
+  "experiment": "sec_return_improvement_tournament_v2",
+  "live_trading_enabled": false,
+  "one_shot_execution": true,
+  "performance_evaluated_at_seal": false,
+  "pre_result_execution_seal": true,
+  "pre_result_repair": true,
+  "pre_result_repair_reason": "missing-score buffered-holding crash before performance output",
+  "prior_execution_seal_sha256": "c63ab5a01aab0c4de9d8de774772d7b3f917a15da085bfea7c12fa8961535d5f",
+  "research_gate_open_at_seal": false,
+  "sealed_at_utc": "2026-08-24T02:23:29.767322+00:00",
+  "sealed_sha256": {
+    "config/sec_broad_missing_company_gate_v2.json": "249e98a61492d81227c2f03c5e46121c1491fb7ac881a8cd8654abf8696141f7",
+    "config/sec_return_improvement_program_v1.json": "e6237a76d3b43a1e04bbeb27664b47110e119ae63c7fcb53d9928bec3cf93489",
+    "schemas/sec_broad_research_panel_v2.schema.json": "89e1174c8860b91d6c6fb98455fb3062e97ab5aa473ebb86e270ade88d48d4f3",
+    "scripts/materialize_sec_broad_research_panel_v2.py": "3a00cde07aa166aaf9849c00496d5531e3abc1e3b0af26cadf9f43635c28dd6e",
+    "scripts/run_sec_return_improvement_tournament_v2.py": "3ab19d6baf79b4622256609ae876d0a92920e0b5070bde3ac7d2723f75749762",
+    "scripts/seal_sec_return_improvement_tournament_v2.py": "4badae2ccea797c6548e8da9ecee94d716b06a01b7ff0587d637d95b5180fadd",
+    "src/systematic_trader/sec_broad_panel_v2.py": "3597514ad6b2e7f42822d9c330053c8cdb65bdb7f751fde315f439f8a98d360e",
+    "src/systematic_trader/sec_real_tournament_v2.py": "593863857552c0bc2677660e8b4c219cf995c749bae9fa4c754c9cce380ad842",
+    "src/systematic_trader/sec_return_improvement.py": "12c5f3faf179d1e76af7c6fad068eeb81e2ae34b195c82305176eaa975c4707b",
+    "src/systematic_trader/sec_tournament_rehearsal.py": "950d183705f5dec0f8d54c07ca471b0055c566c561b3fdc45566d2cb1832dc76",
+    "tests/test_sec_broad_panel_and_tournament_v2.py": "82f03664eb2effda93d0a8a3e58514c7df7e6ba2c74c5f2b40ebd839d65d4b80",
+    "tests/test_sec_return_improvement.py": "ddebb69e42e1eec33e40f87aa5ab48eaa0c68e2eae8596c82dda3744790ecced"
+  },
+  "strategy_promotion_authorized": false
+}

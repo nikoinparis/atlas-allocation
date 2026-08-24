@@ -1,0 +1,16 @@
+{
+  "execution_enabled": false,
+  "first_decision_prior_control_weights": {
+    "cash::USD": 1.0
+  },
+  "first_decision_prior_residual_weights": {
+    "cash::USD": 1.0
+  },
+  "first_decision_turnover_policy": "conservative full transition from cash",
+  "forward_protocol_sha256": "2774fcc8a5e0aa3df9dbf563588c90c691e8644a39a03f98f3b9d00c37043288",
+  "historical_data_through": "2026-08-21",
+  "historical_result_sha256": "80a2670de1c2c2bc91a9c1c94b71a77a16a468ed4ffb6535861aa2f883383679",
+  "protocol_version": "sec_residual_controlled_sleeve_forward_v1",
+  "purpose": "pre-forward provenance and turnover anchor; never counted as untouched evidence",
+  "schema_version": 1
+}

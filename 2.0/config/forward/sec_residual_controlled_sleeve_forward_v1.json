@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "protocol_version": "sec_residual_controlled_sleeve_forward_v1",
+  "frozen_at_utc": "2026-08-24T02:35:00Z",
+  "historical_data_through": "2026-08-21",
+  "historical_result": "evidence/sec_residual_controlled_sleeve_v1/result.json",
+  "first_eligible_decision_date": "2026-08-28",
+  "first_eligible_realization_date": "2026-09-04",
+  "required_untouched_weeks": 52,
+  "control": "sec_cash_conversion_breadth20_dynamic_v1",
+  "control_weight": 0.8,
+  "residual_family": "residual_momentum",
+  "residual_sleeve_weight": 0.2,
+  "residual_signal": {
+    "lookback_weeks": 52,
+    "skip_weeks": 4,
+    "minimum_history_weeks": 26,
+    "sector_residual_weight": 0.7,
+    "market_residual_weight": 0.3,
+    "breadth": 20,
+    "maximum_issuer_weight": 0.2,
+    "maximum_sector_weight": 0.4,
+    "execution_delay_weeks": 1
+  },
+  "cost_bps_per_unit_turnover": 50.0,
+  "tracked_paths": [
+    {
+      "name": "unlevered_1.00x",
+      "multiplier": 1.0,
+      "financing_rate": 0.0
+    },
+    {
+      "name": "levered_1.25x_5pct_financing",
+      "multiplier": 1.25,
+      "financing_rate": 0.05
+    },
+    {
+      "name": "levered_1.25x_8pct_financing",
+      "multiplier": 1.25,
+      "financing_rate": 0.08
+    }
+  ],
+  "financing_rates": [0.05, 0.08],
+  "decision_snapshot_window": "observed at or after 21:00 UTC on the decision Friday and before 21:00 UTC the following Friday",
+  "realization_snapshot_window": "observed at or after 21:00 UTC on the realization Friday and before 21:00 UTC the following Friday",
+  "decision_packet_policy": "immutable packet must contain point-in-time control and residual target weights, a workspace-relative source manifest and its hash, source_data_through no later than the decision Friday, and a packet hash",
+  "observation_packet_policy": "immutable packet must contain security-level total returns for every held security, a workspace-relative source manifest and its hash, the completed realization week, and a packet hash",
+  "missed_snapshot_policy": "a missed weekly decision or realization window cannot be backfilled from a later vintage",
+  "mutation_policy": "any formula, weight, cost, financing, timing, data-policy, or pinned-file change creates a new protocol version and restarts its clock at zero",
+  "log_policy": "decision and observation JSON Lines logs are independently hash-chained; duplicate, out-of-order, pre-freeze, changed, or unhashed records are rejected",
+  "first_decision_turnover_policy": "conservative full transition from cash for both sleeves",
+  "selection_status": "selected after observing the historical sample; forward evidence is mandatory and historical results never advance this clock",
+  "promotion_gate": "52 untouched weekly observations plus a separately predeclared statistical review; clock completion alone does not authorize promotion",
+  "pinned_files_sha256": {
+    "config/sec_residual_controlled_sleeve_v1.json": "8b44a972cd975adf011eac43935e14a06c09870d46bb9378ef893a378713976d",
+    "data/sec_broad_research_panel_v2/manifest.json": "3f0910f8193424356d491d8647fccc01995a2943ba6f5d8268005bb44f992f43",
+    "evidence/sec_residual_controlled_sleeve_v1/execution_seal.json": "0af1b9d7fae75a24dbea7aff7c0016f2bb966e0d769d4f0d7cf839adb075f251",
+    "evidence/sec_residual_controlled_sleeve_v1/result.json": "80a2670de1c2c2bc91a9c1c94b71a77a16a468ed4ffb6535861aa2f883383679",
+    "evidence/sec_return_improvement_tournament_v2/final_result.json": "7ab100179956998366b7c6dfc7b146d9fe2c4446efd370b091d87d50cea8f425",
+    "scripts/record_sec_residual_controlled_sleeve_forward_v1.py": "e006e5cd2a802d0ae803d7c6219b6d65765a77c163e121ac6e305f12264eed4f",
+    "src/systematic_trader/forward_evidence.py": "05f7f416348e7aa6157af511f487a0b55f884225a707ef738d3b1aea8c4450fb"
+  },
+  "research_only": true,
+  "strategy_promotion_authorized": false,
+  "approved_for_live_trading": false,
+  "execution_enabled": false,
+  "live_trading_enabled": false
+}

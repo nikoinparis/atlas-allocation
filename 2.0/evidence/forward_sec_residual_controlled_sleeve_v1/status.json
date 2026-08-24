@@ -1,0 +1,33 @@
+{
+  "anchor_sha256": "37e9cdaf1837547bbcb080971cbb491c77ae04e032f8f79d5ff248ba81424bcf",
+  "approved_for_live_trading": false,
+  "clock_complete": false,
+  "decision_log_head": null,
+  "decision_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "execution_enabled": false,
+  "final": false,
+  "forward_protocol_sha256": "2774fcc8a5e0aa3df9dbf563588c90c691e8644a39a03f98f3b9d00c37043288",
+  "generated_at_utc": "2026-08-24T02:45:23.270758+00:00",
+  "latest_decision_date": null,
+  "latest_realization_date": null,
+  "observation_log_head": null,
+  "observation_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "observed_weeks": 0,
+  "performance_metrics": {
+    "levered_1.25x_5pct_financing": {
+      "observations": 0
+    },
+    "levered_1.25x_8pct_financing": {
+      "observations": 0
+    },
+    "unlevered_1.00x": {
+      "observations": 0
+    }
+  },
+  "promotion_authorized": false,
+  "protocol_version": "sec_residual_controlled_sleeve_forward_v1",
+  "remaining_weeks": 52,
+  "required_weeks": 52,
+  "saved_decisions": 0,
+  "selection_contaminated": true
+}

@@ -1,0 +1,59 @@
+{
+  "experiment": "sec_independent_sleeve_return_accelerator_v1",
+  "purpose": "Challenge the frozen 80/20 residual candidate with a causal multi-sleeve allocator and volatility-scaled exposure without modifying its forward protocol.",
+  "common_endpoint_policy": "All controls and challengers are truncated to the last date on which every required return stream is observed; missing benchmark returns are never filled with zero.",
+  "sources": [
+    "residual_momentum",
+    "trend_quality",
+    "quality_momentum",
+    "event_conditioning"
+  ],
+  "development_weeks": 84,
+  "validation_weeks": 52,
+  "locked_test_weeks": 52,
+  "allocator_grid": {
+    "lookback_weeks": [13, 26, 52],
+    "top_k_sleeves": [1, 2, 3],
+    "low_alpha_allocations": [0.1, 0.2],
+    "high_alpha_allocations": [0.2, 0.3, 0.4],
+    "volatility_targets": [null, 0.35, 0.5],
+    "maximum_leverage": [1.0, 1.25, 1.5]
+  },
+  "selection": {
+    "development_shortlist": 25,
+    "minimum_development_sharpe": 0.75,
+    "maximum_development_drawdown": -0.3,
+    "minimum_validation_sharpe": 1.0,
+    "maximum_validation_drawdown": -0.25,
+    "selection_order": [
+      "validation_cagr",
+      "validation_sharpe",
+      "validation_drawdown"
+    ]
+  },
+  "primary_cost_bps": 50,
+  "stress_cost_bps": [100, 200],
+  "execution_delays_weeks": [1, 2],
+  "financing_rate": 0.08,
+  "leverage_rebalance_cost_bps": 10,
+  "volatility_lookback_weeks": 13,
+  "minimum_exposure": 0.5,
+  "bootstrap_blocks_weeks": [4, 13],
+  "bootstrap_draws": 5000,
+  "bootstrap_seed": 20260824,
+  "maximum_incremental_issuer_positive_return_share": 0.1,
+  "minimum_familywise_probability_positive": 0.95,
+  "hurdles": {
+    "minimum_locked_cagr_improvement": 0.0,
+    "minimum_locked_sharpe_improvement": 0.0,
+    "maximum_locked_drawdown": -0.2,
+    "minimum_200bps_locked_cagr": 0.75,
+    "minimum_worst_delay_locked_cagr": 0.75
+  },
+  "selection_contamination_warning": "Every historical week in this repository has already been visible to the research process. The locked block is a procedural anti-overfit check, not untouched forward evidence.",
+  "frozen_forward_protocol": "config/forward/sec_residual_controlled_sleeve_forward_v1.json",
+  "frozen_forward_protocol_must_not_change": true,
+  "research_only": true,
+  "strategy_promotion_authorized": false,
+  "live_trading_enabled": false
+}

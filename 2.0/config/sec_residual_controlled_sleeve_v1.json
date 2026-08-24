@@ -1,0 +1,27 @@
+{
+  "experiment": "sec_residual_controlled_sleeve_v1",
+  "status": "post-selection validation of an exploratory hypothesis",
+  "control": "sec_cash_conversion_breadth20_dynamic_v1",
+  "residual_sleeve_weight": 0.2,
+  "control_weight": 0.8,
+  "cost_bps": [50, 100, 200],
+  "residual_execution_delays_weeks": [0, 1, 2],
+  "bootstrap_blocks_weeks": [4, 13],
+  "bootstrap_draws": 5000,
+  "bootstrap_seed": 20260824,
+  "familywise_trials": 8,
+  "leverage_multipliers": [1.0, 1.25],
+  "financing_rates": [0.05, 0.08],
+  "gates": {
+    "minimum_recent_cagr_improvement": 0.0,
+    "minimum_full_cagr_improvement": 0.0,
+    "minimum_recent_sharpe_improvement": 0.0,
+    "maximum_recent_drawdown": -0.15,
+    "minimum_worst_delay_recent_cagr": 0.9,
+    "minimum_familywise_adjusted_probability_positive": 0.95,
+    "maximum_positive_issuer_share": 0.1
+  },
+  "selection_contamination_warning": "The 20% sleeve weight was chosen after observing the same 2023-2026 sample. Passing this diagnostic cannot authorize promotion; forward evidence is required.",
+  "strategy_promotion_authorized": false,
+  "live_trading_enabled": false
+}

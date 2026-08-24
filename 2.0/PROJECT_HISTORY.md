@@ -7099,3 +7099,26 @@ References:
 - `tests/test_sec_independent_sleeve_return_accelerator_v1.py`
 - `docs/SEC_INDEPENDENT_SLEEVE_RETURN_ACCELERATOR_V1.md`
 - `evidence/sec_independent_sleeve_return_accelerator_v1/`
+
+## Step 176 — Publish the streamlined multi-strategy research dashboard
+
+The locally developed dashboard redesign was consolidated into a dark-mode
+Next.js interface with overview, performance, rebalances, methodology,
+guardrails, and activity views. It now exposes five saved research strategies,
+day-level calendar returns, bone-white rebalance markers, before-and-after
+holding changes, adjustable starting-capital and date scenarios, and historical
+price charts that stop at the selected calendar date.
+
+The corrected common-endpoint residual-controlled candidate is the default
+research view. Its displayed trailing-52-week figures reconcile to the sealed
+weekly evidence: 150.86% CAGR, 3.120 Sharpe, and -13.87% maximum drawdown under
+1.25x exposure and an assumed 5% financing rate through August 7, 2026. The
+dashboard also states that this result is selection-contaminated, is not
+promotion-authorized, and has 0/52 untouched forward weeks. No execution or
+live-trading capability was added.
+
+References:
+
+- `dashboard/src/components/return-first-dashboard.tsx`
+- `dashboard/scripts/build-return-first-dashboard.py`
+- `dashboard/public/return-first-dashboard.json`

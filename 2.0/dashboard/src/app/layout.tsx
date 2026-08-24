@@ -1,19 +1,6 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
 import type { ReactNode } from "react";
 import "./globals.css";
-
-const display = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-display",
-  weight: ["400", "500", "600", "700"],
-});
-
-const mono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  weight: ["400", "500", "600"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -21,20 +8,25 @@ export const metadata: Metadata = {
       ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
       : "http://localhost:3000",
   ),
-  title: "Return-First Control Room | Portfolio Optimizer",
-  description: "Interactive research dashboard for the frozen return-first systematic strategy, including simulated P&L, allocation history, rebalances, and what-if analysis.",
+  title: "Portfolio Optimizer | Systematic Research Dashboard",
+  description: "Inspect simulated portfolio performance, allocation decisions, daily P&L, strategy methodology, guardrails, and frozen-strategy what-if scenarios.",
   openGraph: {
-    title: "Return-First Control Room",
-    description: "A research-only systematic portfolio dashboard with honest costs, holdings history, and what-if simulation.",
-    images: ["/og.png"],
+    title: "Portfolio Optimizer",
+    description: "Systematic research, made inspectable.",
+    images: ["/og-dark.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Portfolio Optimizer",
+    description: "Systematic research, made inspectable.",
+    images: ["/og-dark.png"],
   },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${mono.variable}`}>
+    <html lang="en">
       <body>{children}</body>
     </html>
   );
 }
-

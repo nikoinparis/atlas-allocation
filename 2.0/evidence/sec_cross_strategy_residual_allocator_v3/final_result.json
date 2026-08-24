@@ -1,0 +1,504 @@
+{
+  "experiment_id": "sec-cross-strategy-residual-allocator-v3",
+  "supersedes": "sec-cross-strategy-residual-allocator-v2",
+  "status": "completed_research_only",
+  "generated_at": "2026-08-24T22:21:54.754054+00:00",
+  "frozen_config_sha256": "199bba385971baa978a6781d3f02d4e3b264c3ee1a7fc5febe6d3bf7de3529f0",
+  "frozen_source_sha256": "2a427c970521fee814ebf6fed47afae9228afd4551459335b110658464b906db",
+  "frozen_sector_map_sha256": "fbcf3b5250f176be264c82c8e0757aa1c590dbf5f168afe31202a11809e8fc81",
+  "daily_reconciliation": {
+    "base": {
+      "weekly_observations": 193,
+      "daily_observations": 922,
+      "reconciled_weeks": 193,
+      "max_absolute_error": {
+        "weekly_net_return_equals_compounded_daily": 1.491862189340054e-16,
+        "weekly_wealth_equals_cumulative_net_return": 0.0,
+        "weekly_net_equals_gross_minus_cost": 6.938893903907228e-18
+      },
+      "passed": {
+        "weekly_net_return_equals_compounded_daily": true,
+        "weekly_wealth_equals_cumulative_net_return": true,
+        "weekly_net_equals_gross_minus_cost": true
+      },
+      "all_passed": true,
+      "charged_total_turnover": 26.093280640465977,
+      "charged_total_cost": 0.13046640320232988,
+      "implied_average_cost_bps": 50.0
+    },
+    "sleeve": {
+      "weekly_observations": 188,
+      "daily_observations": 901,
+      "reconciled_weeks": 188,
+      "max_absolute_error": {
+        "weekly_net_return_equals_compounded_daily": 0.0,
+        "weekly_wealth_equals_cumulative_net_return": 0.0,
+        "weekly_net_equals_gross_minus_cost": 0.0
+      },
+      "passed": {
+        "weekly_net_return_equals_compounded_daily": true,
+        "weekly_wealth_equals_cumulative_net_return": true,
+        "weekly_net_equals_gross_minus_cost": true
+      },
+      "all_passed": true,
+      "charged_total_turnover": 32.29124637591192,
+      "charged_total_cost": 0.0,
+      "implied_average_cost_bps": 0.0
+    },
+    "all_passed": true
+  },
+  "cash_only_anchor": {
+    "published": 1.1260390009306636,
+    "rebuilt": 1.1260390009306636,
+    "absolute_error": 0.0,
+    "passed": true
+  },
+  "cost_symmetry": {
+    "base_implied_average_cost_bps": 50.0,
+    "sleeve_implied_average_cost_bps": 0.0,
+    "sleeve_total_turnover": 32.29124637591192,
+    "sleeve_uncharged_cost_at_experiment_bps": 0.1614562318795596,
+    "asymmetry_detected": true,
+    "correction": "All allocator paths charge combined-book turnover at the experiment rate, so both sources pay the same price to trade."
+  },
+  "breadth": {
+    "mean_holdings_overlap_full": 0.7544875783773024,
+    "mean_holdings_overlap_recent": 0.7580978576167815,
+    "min_holdings_overlap": 0.3829787234042552,
+    "max_holdings_overlap": 1.0,
+    "return_correlation_full": 0.11623301782748889,
+    "return_correlation_recent": 0.079062586330082,
+    "effective_independent_strategies": 1.98757587674518,
+    "shared_names_final_week": 25,
+    "base_names_final_week": 44,
+    "sleeve_names_final_week": 29,
+    "shared_names_sample": [
+      "BKV",
+      "BLND",
+      "BSY",
+      "EQT",
+      "GTLB",
+      "HLIT",
+      "HPK",
+      "MDRX",
+      "MU",
+      "NOG",
+      "OSPN",
+      "PANW",
+      "PEGA",
+      "PLTR",
+      "QLYS",
+      "RDDT",
+      "RMBS",
+      "TBCH",
+      "USO",
+      "VEEV",
+      "VICR",
+      "VRNS",
+      "XLE",
+      "XLK",
+      "ZS"
+    ],
+    "threshold": 0.4,
+    "passed": false
+  },
+  "selection_protocol": {
+    "candidate_count": 12,
+    "fold_count": 2,
+    "development_weeks": 132,
+    "purge_weeks": 4,
+    "locked_replay_weeks": 52,
+    "cumulative_trials_searched": 402,
+    "locked_replay_is_selection_contaminated": true,
+    "locked_replay_contamination_reason": "The 80/20 residual-sleeve hypothesis was formed after observing this same trailing window in Steps 173-175. No untouched data exists for it."
+  },
+  "selected_candidate": {
+    "name": "static__cap_20pct",
+    "rule": "static",
+    "cap": 0.2,
+    "mean_validation_objective": 0.04930349747291474
+  },
+  "locked_replay": {
+    "base": {
+      "observations": 52,
+      "start": "2025-08-15",
+      "end": "2026-08-07",
+      "total_return": 1.0922409730709122,
+      "cagr": 1.0922409730709122,
+      "sharpe": 3.0970059930188665,
+      "max_drawdown": -0.1130837067682291,
+      "ending_value_10000": 20922.40973070912
+    },
+    "selected": {
+      "observations": 52,
+      "start": "2025-08-15",
+      "end": "2026-08-07",
+      "total_return": 1.1035571007735903,
+      "cagr": 1.1035571007735903,
+      "sharpe": 3.639533610764325,
+      "max_drawdown": -0.08971569597436502,
+      "ending_value_10000": 21035.571007735904
+    },
+    "cagr_improvement": 0.011316127702678092,
+    "sharpe_improvement": 0.5425276177454585,
+    "drawdown_change": 0.02336801079386408
+  },
+  "concentration": {
+    "measured_at_percentile": 0.95,
+    "base_alone": {
+      "p95_max_single_issuer_weight": 0.07400000000000001,
+      "p95_max_single_exchange_traded_weight": 0.4800000000000001,
+      "p95_max_total_exchange_traded_weight": 0.587999999999999,
+      "p95_max_look_through_sector_weight": 0.8160000000000002,
+      "p95_data_artifact_weight": 0.0,
+      "max_max_single_issuer_weight": 0.07400000000000001,
+      "max_max_single_exchange_traded_weight": 0.4800000000000001,
+      "max_max_total_exchange_traded_weight": 0.7200000000000002,
+      "max_max_look_through_sector_weight": 0.8320000000000001,
+      "max_data_artifact_weight": 0.0,
+      "most_frequent_top_sector": "technology"
+    },
+    "selected_candidate": {
+      "p95_max_single_issuer_weight": 0.07520000000000002,
+      "p95_max_single_exchange_traded_weight": 0.5040000000000001,
+      "p95_max_total_exchange_traded_weight": 0.6072749999999991,
+      "p95_max_look_through_sector_weight": 0.8368000000000002,
+      "p95_data_artifact_weight": 0.0,
+      "max_max_single_issuer_weight": 0.07520000000000002,
+      "max_max_single_exchange_traded_weight": 0.5040000000000001,
+      "max_max_total_exchange_traded_weight": 0.7559999999999999,
+      "max_max_look_through_sector_weight": 0.8536000000000002,
+      "max_data_artifact_weight": 0.0,
+      "most_frequent_top_sector": "technology"
+    },
+    "per_cap": {
+      "cap_05pct": {
+        "p95_max_single_issuer_weight": 0.0743,
+        "p95_max_single_exchange_traded_weight": 0.4860000000000001,
+        "p95_max_total_exchange_traded_weight": 0.592818749999999,
+        "p95_max_look_through_sector_weight": 0.8212000000000002,
+        "p95_data_artifact_weight": 0.0,
+        "max_max_single_issuer_weight": 0.0743,
+        "max_max_single_exchange_traded_weight": 0.4860000000000001,
+        "max_max_total_exchange_traded_weight": 0.7289999999999999,
+        "max_max_look_through_sector_weight": 0.8374000000000001,
+        "max_data_artifact_weight": 0.0,
+        "most_frequent_top_sector": "technology"
+      },
+      "cap_10pct": {
+        "p95_max_single_issuer_weight": 0.07460000000000001,
+        "p95_max_single_exchange_traded_weight": 0.4920000000000001,
+        "p95_max_total_exchange_traded_weight": 0.5976374999999992,
+        "p95_max_look_through_sector_weight": 0.8264000000000002,
+        "p95_data_artifact_weight": 0.0,
+        "max_max_single_issuer_weight": 0.07460000000000001,
+        "max_max_single_exchange_traded_weight": 0.4920000000000001,
+        "max_max_total_exchange_traded_weight": 0.7379999999999999,
+        "max_max_look_through_sector_weight": 0.8428000000000001,
+        "max_data_artifact_weight": 0.0,
+        "most_frequent_top_sector": "technology"
+      },
+      "cap_15pct": {
+        "p95_max_single_issuer_weight": 0.07490000000000001,
+        "p95_max_single_exchange_traded_weight": 0.4980000000000001,
+        "p95_max_total_exchange_traded_weight": 0.602456249999999,
+        "p95_max_look_through_sector_weight": 0.8316000000000002,
+        "p95_data_artifact_weight": 0.0,
+        "max_max_single_issuer_weight": 0.07490000000000001,
+        "max_max_single_exchange_traded_weight": 0.4980000000000001,
+        "max_max_total_exchange_traded_weight": 0.747,
+        "max_max_look_through_sector_weight": 0.8482000000000001,
+        "max_data_artifact_weight": 0.0,
+        "most_frequent_top_sector": "technology"
+      },
+      "cap_20pct": {
+        "p95_max_single_issuer_weight": 0.07520000000000002,
+        "p95_max_single_exchange_traded_weight": 0.5040000000000001,
+        "p95_max_total_exchange_traded_weight": 0.6072749999999991,
+        "p95_max_look_through_sector_weight": 0.8368000000000002,
+        "p95_data_artifact_weight": 0.0,
+        "max_max_single_issuer_weight": 0.07520000000000002,
+        "max_max_single_exchange_traded_weight": 0.5040000000000001,
+        "max_max_total_exchange_traded_weight": 0.7559999999999999,
+        "max_max_look_through_sector_weight": 0.8536000000000002,
+        "max_data_artifact_weight": 0.0,
+        "most_frequent_top_sector": "technology"
+      }
+    },
+    "absolute_caps": {
+      "max_single_issuer_weight": 0.1,
+      "max_single_exchange_traded_weight": 0.35,
+      "max_total_exchange_traded_weight": 0.7,
+      "max_look_through_sector_weight": 0.45
+    },
+    "absolute_passed_base_alone": {
+      "max_single_issuer_weight": true,
+      "max_single_exchange_traded_weight": false,
+      "max_total_exchange_traded_weight": true,
+      "max_look_through_sector_weight": false
+    },
+    "absolute_passed_selected": {
+      "max_single_issuer_weight": true,
+      "max_single_exchange_traded_weight": false,
+      "max_total_exchange_traded_weight": true,
+      "max_look_through_sector_weight": false
+    },
+    "incremental": {
+      "max_single_issuer_weight": {
+        "base": 0.07400000000000001,
+        "selected": 0.07520000000000002,
+        "delta": 0.0012000000000000066,
+        "tolerance": 0.02,
+        "passed": true
+      },
+      "max_single_exchange_traded_weight": {
+        "base": 0.4800000000000001,
+        "selected": 0.5040000000000001,
+        "delta": 0.02400000000000002,
+        "tolerance": 0.02,
+        "passed": false
+      },
+      "max_total_exchange_traded_weight": {
+        "base": 0.587999999999999,
+        "selected": 0.6072749999999991,
+        "delta": 0.019275000000000153,
+        "tolerance": 0.03,
+        "passed": true
+      },
+      "max_look_through_sector_weight": {
+        "base": 0.8160000000000002,
+        "selected": 0.8368000000000002,
+        "delta": 0.02080000000000004,
+        "tolerance": 0.03,
+        "passed": true
+      }
+    },
+    "look_through_sensitivity": {
+      "perturbed_base_p95_sector": 0.8160000000000002,
+      "perturbed_selected_p95_sector": 0.8368000000000002,
+      "perturbed_delta": 0.02080000000000004,
+      "verdict_unchanged": true
+    },
+    "incumbent_already_breaches_absolute_caps": true
+  },
+  "stresses": {
+    "double_cost": {
+      "observations": 52,
+      "start": "2025-08-15",
+      "end": "2026-08-07",
+      "total_return": 1.0317003454075797,
+      "cagr": 1.0317003454075797,
+      "sharpe": 3.46558596631719,
+      "max_drawdown": -0.09442601012187213,
+      "ending_value_10000": 20317.0034540758
+    },
+    "delay_1_weeks": {
+      "observations": 52,
+      "start": "2025-08-15",
+      "end": "2026-08-07",
+      "total_return": 1.1035571007735903,
+      "cagr": 1.1035571007735903,
+      "sharpe": 3.639533610764325,
+      "max_drawdown": -0.08971569597436502,
+      "ending_value_10000": 21035.571007735904
+    },
+    "delay_2_weeks": {
+      "observations": 52,
+      "start": "2025-08-15",
+      "end": "2026-08-07",
+      "total_return": 1.1035571007735903,
+      "cagr": 1.1035571007735903,
+      "sharpe": 3.639533610764325,
+      "max_drawdown": -0.08971569597436502,
+      "ending_value_10000": 21035.571007735904
+    },
+    "positive_increment_decay": {
+      "observations": 52,
+      "start": "2025-08-15",
+      "end": "2026-08-07",
+      "total_return": 1.002354646976047,
+      "cagr": 1.002354646976047,
+      "sharpe": 3.337248750146672,
+      "max_drawdown": -0.09708436025592582,
+      "ending_value_10000": 20023.54646976047
+    },
+    "sleeve_shock": {
+      "observations": 52,
+      "start": "2025-08-15",
+      "end": "2026-08-07",
+      "total_return": 1.0222091982358958,
+      "cagr": 1.0222091982358958,
+      "sharpe": 3.450349655591953,
+      "max_drawdown": -0.08971569597436513,
+      "ending_value_10000": 20222.091982358957
+    },
+    "missing_top_1_sleeve_names": {
+      "observations": 52,
+      "start": "2025-08-15",
+      "end": "2026-08-07",
+      "total_return": 0.9872395725565695,
+      "cagr": 0.9872395725565695,
+      "sharpe": 3.4526753663657654,
+      "max_drawdown": -0.09108725407280638,
+      "ending_value_10000": 19872.395725565693
+    },
+    "missing_top_3_sleeve_names": {
+      "observations": 52,
+      "start": "2025-08-15",
+      "end": "2026-08-07",
+      "total_return": 0.9246071912067364,
+      "cagr": 0.9246071912067364,
+      "sharpe": 3.3359396773742045,
+      "max_drawdown": -0.0910630900155226,
+      "ending_value_10000": 19246.071912067364
+    },
+    "missing_top_5_sleeve_names": {
+      "observations": 52,
+      "start": "2025-08-15",
+      "end": "2026-08-07",
+      "total_return": 0.884073303793828,
+      "cagr": 0.884073303793828,
+      "sharpe": 3.250048318831121,
+      "max_drawdown": -0.09103957971165288,
+      "ending_value_10000": 18840.73303793828
+    }
+  },
+  "stress_vacuity_check": {
+    "double_cost": false,
+    "delay_1_weeks": true,
+    "delay_2_weeks": true,
+    "positive_increment_decay": false,
+    "sleeve_shock": false,
+    "missing_top_1_sleeve_names": false,
+    "missing_top_3_sleeve_names": false,
+    "missing_top_5_sleeve_names": false
+  },
+  "leave_one_issuer_out": {
+    "names_tested": [
+      "XLK",
+      "SLV",
+      "MU",
+      "PLTR",
+      "VICR",
+      "GLD",
+      "VUG",
+      "EQT",
+      "UI",
+      "TE"
+    ],
+    "all_still_beat_base": false,
+    "worst_name": "XLK",
+    "worst_cagr_versus_base": -0.10726935719169695,
+    "detail": {
+      "XLK": {
+        "cagr": 0.9849716158792152,
+        "sharpe": 3.445581592914153,
+        "max_drawdown": -0.09108725407280627,
+        "cagr_versus_base": -0.10726935719169695,
+        "still_beats_base": false
+      },
+      "SLV": {
+        "cagr": 1.0810174780515314,
+        "sharpe": 3.6108008158025,
+        "max_drawdown": -0.08973042037105095,
+        "cagr_versus_base": -0.011223495019380803,
+        "still_beats_base": false
+      },
+      "MU": {
+        "cagr": 1.081442377260764,
+        "sharpe": 3.60817827474993,
+        "max_drawdown": -0.08992793412393063,
+        "cagr_versus_base": -0.010798595810148193,
+        "still_beats_base": false
+      },
+      "PLTR": {
+        "cagr": 1.0840291907588067,
+        "sharpe": 3.613018748499648,
+        "max_drawdown": -0.08992793412393096,
+        "cagr_versus_base": -0.008211782312105509,
+        "still_beats_base": false
+      },
+      "VICR": {
+        "cagr": 1.0896878223072957,
+        "sharpe": 3.624146010146154,
+        "max_drawdown": -0.08992793412393085,
+        "cagr_versus_base": -0.0025531507636165074,
+        "still_beats_base": false
+      },
+      "GLD": {
+        "cagr": 1.1028962699886002,
+        "sharpe": 3.6446904211966142,
+        "max_drawdown": -0.08971569597436513,
+        "cagr_versus_base": 0.010655296917688073,
+        "still_beats_base": true
+      },
+      "VUG": {
+        "cagr": 1.0999027615274795,
+        "sharpe": 3.6309079215924474,
+        "max_drawdown": -0.08971569597436502,
+        "cagr_versus_base": 0.007661788456567287,
+        "still_beats_base": true
+      },
+      "EQT": {
+        "cagr": 1.0962564393652365,
+        "sharpe": 3.627533292782232,
+        "max_drawdown": -0.08965394568517804,
+        "cagr_versus_base": 0.004015466294324366,
+        "still_beats_base": true
+      },
+      "UI": {
+        "cagr": 1.0955836098306455,
+        "sharpe": 3.624199666327317,
+        "max_drawdown": -0.08971569597436524,
+        "cagr_versus_base": 0.0033426367597333417,
+        "still_beats_base": true
+      },
+      "TE": {
+        "cagr": 1.1027699609603872,
+        "sharpe": 3.6439559230444067,
+        "max_drawdown": -0.08971569597436502,
+        "cagr_versus_base": 0.010528987889474983,
+        "still_beats_base": true
+      }
+    }
+  },
+  "paired_moving_block_probability_of_outperformance": {
+    "4": 0.4684,
+    "13": 0.3968
+  },
+  "familywise_probability_threshold": 0.9998756218905472,
+  "promotion_gates": {
+    "daily_reconciliation": true,
+    "locked_cagr_improvement": false,
+    "locked_sharpe": true,
+    "locked_drawdown": true,
+    "double_cost_improvement": false,
+    "delay_improvement": true,
+    "missing_stock_improvement": false,
+    "leave_one_issuer_out_improvement": false,
+    "incremental_concentration": false,
+    "absolute_concentration": false,
+    "breadth_overlap": false,
+    "familywise_bootstrap": false,
+    "source_research_gate": false
+  },
+  "promoted": false,
+  "conclusion": "diagnostic_only_not_a_replacement",
+  "financing": {
+    "evaluated": false,
+    "reason": "The unlevered allocator did not clear every gate. Financing multiplies whatever edge exists, including an edge of zero, so no levered path was computed.",
+    "failed_gates": [
+      "absolute_concentration",
+      "breadth_overlap",
+      "double_cost_improvement",
+      "familywise_bootstrap",
+      "incremental_concentration",
+      "leave_one_issuer_out_improvement",
+      "locked_cagr_improvement",
+      "missing_stock_improvement",
+      "source_research_gate"
+    ]
+  },
+  "source_research_gate_reason": "The sector sleeve remains a retrospective, fragile diagnostic. Its own five-issuer and bootstrap gates failed and it has zero untouched forward weeks.",
+  "live_trading_enabled": false
+}

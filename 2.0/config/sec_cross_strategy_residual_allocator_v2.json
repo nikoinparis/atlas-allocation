@@ -1,0 +1,151 @@
+{
+  "experiment_id": "sec-cross-strategy-residual-allocator-v2",
+  "description": "Sealed, unlevered, holdings-level cross-strategy residual allocator with issuer/sector/ETF look-through concentration controls, exact-daily reconciliation, and a missing-stock stress. Supersedes v1, which operated only on return series.",
+  "supersedes": "sec-cross-strategy-residual-allocator-v1",
+  "v1_defects_addressed": [
+    "v1 never inspected holdings, so it could not detect that the two strategies hold largely the same names.",
+    "v1 charged outer reallocation cost only on the allocator weight change; the selected static rule therefore had zero turnover inside the locked window and the doubled-cost stress was a no-op.",
+    "v1 delayed only a constant weight series, so both delay stresses were no-ops inside the locked window.",
+    "v1 applied the sleeve shock at the midpoint of the full frame, which lies inside the development period and never touched the locked window.",
+    "v1 ran no missing-stock stress and no exact-daily reconciliation."
+  ],
+  "base_strategy_id": "sec-residual-controlled-1.25x-5pct-v1",
+  "sleeve_strategy_id": "sec-sector-ensemble-fragile-1.35x-v1",
+  "base_source_reconstruction": {
+    "display_gross": 1.25,
+    "annual_financing_rate": 0.05,
+    "periods_per_year": 52,
+    "published_cash_only_trailing_52w": 1.1260390009306636,
+    "published_cash_only_sharpe": 3.1600787090860667,
+    "published_cash_only_max_drawdown": -0.11116225097772747,
+    "reconciliation_tolerance": 1e-9
+  },
+  "sleeve_source_reconstruction": {
+    "display_gross": 1.35,
+    "annual_financing_rate": 0.06,
+    "periods_per_year": 252,
+    "initial_exposure_change_cost_bps": 25.0
+  },
+  "daily_reconciliation": {
+    "required": true,
+    "tolerance": 1e-9,
+    "checks": [
+      "weekly_net_return_equals_compounded_daily",
+      "weekly_wealth_equals_cumulative_net_return",
+      "weekly_net_equals_gross_minus_cost"
+    ],
+    "fail_closed": true
+  },
+  "candidate_caps": [0.05, 0.10, 0.15, 0.20],
+  "candidate_rules": ["static", "gated", "covariance_scaled"],
+  "signal": {
+    "beta_correlation_lookback_weeks": 52,
+    "minimum_history_weeks": 26,
+    "short_residual_momentum_weeks": 13,
+    "long_residual_momentum_weeks": 26,
+    "maximum_correlation": 0.60,
+    "maximum_residual_information_ratio": 2.0,
+    "inputs_are_lagged_only": true
+  },
+  "selection": {
+    "locked_replay_weeks": 52,
+    "purge_weeks": 4,
+    "minimum_training_weeks": 52,
+    "validation_weeks": 26,
+    "step_weeks": 26,
+    "minimum_validation_max_drawdown": -0.25,
+    "objective_sharpe_weight": 0.25,
+    "objective_drawdown_penalty": 0.50
+  },
+  "concentration": {
+    "note": "Absolute caps are conventional institutional limits. They are reported for the base alone as well, because the incumbent already breaches several of them; the operative promotion gate is the incremental test, which asks only whether the sleeve makes concentration worse.",
+    "absolute_caps": {
+      "max_single_issuer_weight": 0.10,
+      "max_single_exchange_traded_weight": 0.35,
+      "max_total_exchange_traded_weight": 0.70,
+      "max_look_through_sector_weight": 0.45
+    },
+    "incremental_tolerances": {
+      "max_single_issuer_weight": 0.02,
+      "max_single_exchange_traded_weight": 0.02,
+      "max_total_exchange_traded_weight": 0.03,
+      "max_look_through_sector_weight": 0.03
+    },
+    "measure_at_percentile": 0.95,
+    "look_through": {
+      "note": "Declared sector splits for exchange traded products, expressed in the SIC-division vocabulary used by the SEC broad research panel. These are approximate figures from general knowledge of each fund's mandate, not point-in-time provider constituent files. A perturbation sensitivity check is run against them.",
+      "XLK": {"technology": 1.0},
+      "XLE": {"energy": 1.0},
+      "XLF": {"finance_insurance_real_estate": 1.0},
+      "XLU": {"transport_communications_utilities": 1.0},
+      "XLI": {"manufacturing": 0.70, "transport_communications_utilities": 0.20, "services": 0.10},
+      "QQQ": {"technology": 0.55, "services": 0.20, "manufacturing": 0.10, "retail_trade": 0.10, "transport_communications_utilities": 0.05},
+      "SPY": {"technology": 0.32, "manufacturing": 0.20, "finance_insurance_real_estate": 0.14, "services": 0.14, "retail_trade": 0.08, "transport_communications_utilities": 0.08, "energy": 0.04},
+      "VUG": {"technology": 0.55, "services": 0.18, "retail_trade": 0.12, "manufacturing": 0.10, "finance_insurance_real_estate": 0.05},
+      "EFA": {"manufacturing": 0.30, "finance_insurance_real_estate": 0.22, "services": 0.15, "technology": 0.12, "retail_trade": 0.08, "transport_communications_utilities": 0.08, "energy": 0.05},
+      "VEA": {"manufacturing": 0.30, "finance_insurance_real_estate": 0.22, "services": 0.15, "technology": 0.12, "retail_trade": 0.08, "transport_communications_utilities": 0.08, "energy": 0.05},
+      "EWJ": {"manufacturing": 0.45, "finance_insurance_real_estate": 0.15, "services": 0.12, "technology": 0.12, "retail_trade": 0.10, "transport_communications_utilities": 0.06},
+      "LQD": {"fixed_income": 1.0},
+      "HYG": {"fixed_income": 1.0},
+      "USO": {"energy": 1.0},
+      "IWM": {"manufacturing": 0.25, "finance_insurance_real_estate": 0.20, "services": 0.20, "technology": 0.15, "retail_trade": 0.10, "energy": 0.05, "transport_communications_utilities": 0.05},
+      "GLD": {"materials_and_mining": 1.0},
+      "TLT": {"fixed_income": 1.0},
+      "IEF": {"fixed_income": 1.0},
+      "SHY": {"fixed_income": 1.0},
+      "VNQ": {"finance_insurance_real_estate": 1.0},
+      "DBC": {"materials_and_mining": 1.0}
+    },
+    "look_through_sensitivity": {
+      "concentrated_shift": 0.15,
+      "note": "Each broad fund's largest declared sector is shifted up by this amount (renormalised) to confirm the concentration verdict does not depend on the exact declared split."
+    }
+  },
+  "breadth": {
+    "note": "Grinold-Kahn breadth check. A sleeve that holds the same names as the incumbent adds variance, not independent bets, whatever its return correlation looks like.",
+    "maximum_mean_holdings_overlap": 0.40,
+    "overlap_window_weeks": 52,
+    "report_effective_independent_strategies": true
+  },
+  "holdings_turnover_cost_bps": 50.0,
+  "stress": {
+    "double_cost_bps": 100.0,
+    "delay_weeks": [1, 2],
+    "positive_increment_retention": 0.75,
+    "sleeve_shock": -0.20,
+    "sleeve_shock_inside_locked_window": true,
+    "missing_stock_top_k": [1, 3, 5],
+    "leave_one_issuer_out_top_n": 10,
+    "bootstrap_simulations": 10000,
+    "bootstrap_blocks": [4, 13],
+    "bootstrap_seed": 3224,
+    "familywise_alpha": 0.05,
+    "cumulative_trials_searched": 390,
+    "cumulative_trials_note": "12 candidates in this run plus the 378-candidate sealed tournament of Step 175 on the same two return series. Familywise correction uses the cumulative count, not this run's 12."
+  },
+  "promotion_gates": {
+    "minimum_locked_cagr_improvement": 0.05,
+    "minimum_locked_sharpe_delta": 0.0,
+    "maximum_drawdown_deterioration": 0.02,
+    "require_daily_reconciliation": true,
+    "require_double_cost_improvement": true,
+    "require_delay_improvement": true,
+    "require_missing_stock_improvement": true,
+    "require_leave_one_issuer_out_improvement": true,
+    "require_incremental_concentration": true,
+    "require_absolute_concentration": true,
+    "require_breadth_overlap": true,
+    "require_familywise_bootstrap": true,
+    "require_source_research_gate": true
+  },
+  "financing": {
+    "evaluate_only_if_unlevered_promoted": true,
+    "gross_exposures": [1.25],
+    "annual_financing_rates": [0.05, 0.08]
+  },
+  "source_research_gate_passed": false,
+  "source_research_gate_reason": "The sector sleeve remains a retrospective, fragile diagnostic. Its own five-issuer and bootstrap gates failed and it has zero untouched forward weeks.",
+  "locked_replay_is_selection_contaminated": true,
+  "locked_replay_contamination_reason": "The 80/20 residual-sleeve hypothesis was formed after observing this same trailing window in Steps 173-175. No untouched data exists for it.",
+  "live_trading_enabled": false
+}

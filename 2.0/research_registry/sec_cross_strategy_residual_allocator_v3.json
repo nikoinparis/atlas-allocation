@@ -1,0 +1,124 @@
+{
+  "program": "sec_cross_strategy_residual_allocator_v3",
+  "classification": "cross-strategy allocator over two existing books; rejected",
+  "status": "rejected; not promoted; no forward clock started",
+  "predecessor": "sec_cross_strategy_residual_allocator_v2",
+  "supersedes_reason": "v2 misclassified nine exchange traded products as issuers; SLV alone was reported as a 21.5% single issuer. Returns and every non-concentration gate are bit-identical between v2 and v3.",
+  "hypothesis": "A capped, unlevered sleeve of the fragile sector ensemble diversifies the residual-controlled incumbent, on the evidence of a 0.079 recent return correlation.",
+  "hypothesis_origin": "post-hoc; formed after observing the trailing window in Steps 173-175",
+  "tested_surface": {
+    "candidates_this_run": 12,
+    "rules": [
+      "static",
+      "gated",
+      "covariance_scaled"
+    ],
+    "caps": [
+      0.05,
+      0.1,
+      0.15,
+      0.2
+    ],
+    "cumulative_trials_corrected_for": 402,
+    "selection_inputs": "lagged residual momentum, beta, correlation, residual information ratio only",
+    "purged_walk_forward": true,
+    "strictly_lagged_risk_inputs": true,
+    "financing_evaluated": false
+  },
+  "selected_candidate": {
+    "name": "static__cap_20pct",
+    "rule": "static",
+    "cap": 0.2,
+    "mean_validation_objective": 0.04930349747291474
+  },
+  "locked_replay_unlevered": {
+    "base_cagr": 1.0922409730709122,
+    "selected_cagr": 1.1035571007735903,
+    "cagr_improvement": 0.011316127702678092,
+    "sharpe_improvement": 0.5425276177454585,
+    "drawdown_change": 0.02336801079386408,
+    "window": "2025-08-15 to 2026-08-07",
+    "selection_contaminated": true
+  },
+  "why_the_headline_shrank": {
+    "claimed_improvement_levered": "150.86% -> 158.52% (+7.66pp)",
+    "measured_improvement_unlevered_cost_symmetric": "109.22% -> 110.36% (+1.13pp)",
+    "causes": [
+      "the claimed figure was levered 1.25x with an assumed 5% financing rate",
+      "the sleeve is published with zero charged trading cost against 32.29 units of turnover, while the base pays 50 bps",
+      "combined-book turnover was never charged in the original diagnostic"
+    ]
+  },
+  "falsification": {
+    "holdings_overlap_recent_52w": 0.7580978576167815,
+    "return_correlation_recent_52w": 0.079062586330082,
+    "shared_names_final_week": 25,
+    "sleeve_names_final_week": 29,
+    "leave_one_out_worst": {
+      "name": "XLK",
+      "cagr_versus_base": -0.10726935719169695
+    },
+    "names_that_flip_it_negative": [
+      "XLK",
+      "SLV",
+      "MU",
+      "PLTR",
+      "VICR"
+    ],
+    "double_cost_cagr_versus_base": -0.06054062766333246,
+    "missing_top_1_cagr_versus_base": -0.1050014005143427,
+    "bootstrap_probability": {
+      "4": 0.4684,
+      "13": 0.3968
+    },
+    "familywise_threshold": 0.9998756218905472,
+    "vacuous_stresses_flagged": [
+      "delay_1_weeks",
+      "delay_2_weeks"
+    ]
+  },
+  "concentration_p95": {
+    "base_max_single_issuer": 0.07400000000000001,
+    "base_max_single_exchange_traded": 0.4800000000000001,
+    "base_max_look_through_sector": 0.8160000000000002,
+    "base_top_sector": "technology",
+    "selected_max_single_exchange_traded": 0.5040000000000001,
+    "selected_max_look_through_sector": 0.8368000000000002,
+    "incumbent_already_breaches_absolute_caps": true,
+    "every_cap_raises_every_measure_monotonically": true
+  },
+  "promotion_gates": {
+    "daily_reconciliation": true,
+    "locked_cagr_improvement": false,
+    "locked_sharpe": true,
+    "locked_drawdown": true,
+    "double_cost_improvement": false,
+    "delay_improvement": true,
+    "missing_stock_improvement": false,
+    "leave_one_issuer_out_improvement": false,
+    "incremental_concentration": false,
+    "absolute_concentration": false,
+    "breadth_overlap": false,
+    "familywise_bootstrap": false,
+    "source_research_gate": false
+  },
+  "gates_failed": [
+    "absolute_concentration",
+    "breadth_overlap",
+    "double_cost_improvement",
+    "familywise_bootstrap",
+    "incremental_concentration",
+    "leave_one_issuer_out_improvement",
+    "locked_cagr_improvement",
+    "missing_stock_improvement",
+    "source_research_gate"
+  ],
+  "decision": "REJECTED",
+  "rationale": "The improvement is 1.13 percentage points of unlevered CAGR, smaller than every non-vacuous stress applied to it. Removing XLK alone costs 10.73 points against the base, and four other single names each flip it negative. The 0.079 return correlation that motivated the work sits on top of 75.8% holdings overlap: the two books share 25 of the sleeve's 29 names. This is a re-weighting of one book, not a second return source, so it cannot raise breadth.",
+  "next_direction": "No further allocator over these two strategies. Breadth requires a return source that does not hold MU, XLK and PANW.",
+  "evidence_path": "evidence/sec_cross_strategy_residual_allocator_v3/",
+  "documentation": "docs/SEC_CROSS_STRATEGY_RESIDUAL_ALLOCATOR_V2.md",
+  "forward_weeks_completed": 0,
+  "promotion_authorized": false,
+  "live_trading_enabled": false
+}

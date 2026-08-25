@@ -1,0 +1,28 @@
+{
+  "experiment_id": "low-asset-growth-candidate-v1",
+  "signal": "low_asset_growth",
+  "source": "Cooper, Gulen & Schill (2008). Negative of year-on-year total asset growth, standardised within SIC sector.",
+  "question": "The discovery program used overlapping weekly windows. This asks whether the effect survives strictly non-overlapping evaluation, and whether it produces a usable portfolio once costs, execution delay and breadth are applied.",
+  "strict_evaluation": {
+    "non_overlapping_windows": true,
+    "window_weeks": 13,
+    "note": "Weekly evaluation of a 13-week forward return reuses each observation thirteen times. Non-overlapping windows give genuinely independent observations at the cost of a much smaller sample, which is the honest trade."
+  },
+  "portfolio": {
+    "rebalance_weeks": 13,
+    "breadth_sizes": [10, 20, 50, 100, 200],
+    "weighting": "equal",
+    "execution_delay_weeks": 1,
+    "cost_bps_per_unit_turnover": 50.0,
+    "benchmark": "equal-weight panel of all priced issuers",
+    "breadth_rationale": "Step 190 showed that in this cross-section breadth captures skew rather than sacrificing return. If that holds, wider books should not lose to narrow ones."
+  },
+  "gates": {
+    "non_overlapping_spread_positive": true,
+    "beats_benchmark_after_costs": true,
+    "wide_book_not_worse_than_narrow": true,
+    "no_single_name_drives_result": true
+  },
+  "honest_scope": "One 2023-2026 bull regime, roughly ten independent windows. Nothing here can promote anything; the purpose is to decide whether the candidate deserves a forward clock.",
+  "live_trading_enabled": false
+}

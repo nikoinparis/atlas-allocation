@@ -1,0 +1,12 @@
+{
+  "experiment_id": "signal-decile-spread-audit-v1",
+  "description": "The information coefficient says whether a signal orders the whole cross-section. It does not say whether the names you actually buy beat the names you actually avoid. This measures the top-decile minus bottom-decile forward return per signal, per decision, which is the economically relevant question.",
+  "panel": "data/sec_broad_research_panel_v2/panel.csv.gz",
+  "features": ["residual_momentum", "trend_quality", "quality_momentum", "event_score"],
+  "label": "future_sector_relative_return",
+  "decile_fraction": 0.10,
+  "minimum_names_per_decision": 200,
+  "relationship_to_ic_audit": "Companion to signal-information-coefficient-audit-v1. A statistically significant IC across 3,000 names and a zero decile spread are not contradictory: a weak monotonic relationship can be significant in rank terms while the tails, where trading happens, are dominated by outliers.",
+  "small_sample_warning": "Ten to fourteen usable quarterly decisions per signal. Indicative, not established.",
+  "live_trading_enabled": false
+}

@@ -7686,3 +7686,55 @@ References:
 - `config/unlevered_concentration_caps_v2.json`
 - `scripts/run_unlevered_concentration_caps_v2.py`
 - `evidence/unlevered_concentration_caps_v2/`
+
+## Step 188 — The signals order the cross-section but cannot separate the tails
+
+Step 185 measured information coefficients and found three of four signals outside a
+permutation null at p below 0.0001. That is a statement about ordering the whole
+cross-section. It is not the question that decides whether a strategy makes money, which
+is whether the names actually bought beat the names actually avoided.
+
+This step measures the top-decile minus bottom-decile forward return per signal, per
+quarterly decision, on the same panel.
+
+No signal has a usable spread. Residual momentum is the best at +0.45%, with the top
+decile returning 4.50% against the bottom decile's 4.06%, and it beat its own bottom
+decile in only six of twelve decisions. Quality momentum is -0.20%, event score -0.59%,
+and trend quality is -1.17% despite having the highest measured IC of the four. Three of
+four spreads are negative. Top-decile win rates sit between 49.6% and 54.5%.
+
+The tension with Step 185 is real and worth stating plainly rather than reconciling away.
+A rank correlation of 0.057 across roughly three thousand names can be statistically
+significant while being economically negligible, and the tails, which is where trading
+actually happens, are dominated by outliers rather than by the weak monotonic
+relationship the IC detects. Both measurements are correct. The IC audit answered a
+question that turns out not to be the operative one, and this correction is recorded
+against it rather than replacing it.
+
+The distribution explains why. In a single top decile of roughly 270 names, the best
+single outcome reached +468% over thirteen weeks and supplied 14.3% of every gain in
+that decile. Across all decisions the best single name averages 6-7% of the entire top
+decile's positive return. Returns at this horizon are not merely fat-tailed; a handful of
+names decide the result whatever the selection rule does.
+
+That reframes this project's chronic single-name problem. Micron supplying 67.63% of the
+growth strategy's return was never evidence that the rule found Micron. It is what a
+concentrated draw from this distribution looks like when the draw goes well. The same
+process produces the opposite outcome with the same probability, and nothing measured
+here suggests the selection rule anticipated it.
+
+The constructive reading is that breadth is not a risk-control preference in this
+project, it is the only defence available. If single names decide outcomes and the rule
+cannot rank them ex ante, then holding more of them is the sole mechanism that converts
+a lottery into an expectation. Twenty names is better than five for that reason and not
+for tidiness.
+
+Ten to fourteen usable quarterly decisions per signal is a small sample and the result is
+indicative rather than established. No strategy was promoted and live trading remains
+disabled.
+
+References:
+
+- `config/signal_decile_spread_audit_v1.json`
+- `scripts/run_signal_decile_spread_audit_v1.py`
+- `evidence/signal_decile_spread_audit_v1/`

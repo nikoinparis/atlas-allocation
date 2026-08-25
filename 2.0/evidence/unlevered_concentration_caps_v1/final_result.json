@@ -1,0 +1,349 @@
+{
+  "borrowing_used": false,
+  "caps": {
+    "max_look_through_sector_weight": 0.35,
+    "max_single_exchange_traded_weight": 0.25,
+    "max_single_issuer_weight": 0.1,
+    "max_total_exchange_traded_weight": 0.6
+  },
+  "every_strategy_passes_after_caps": true,
+  "experiment_id": "unlevered-concentration-caps-v1",
+  "exposure_policy": {
+    "borrowing_used": false,
+    "financing_used": false,
+    "note": "Every strategy is measured on cash it actually has. Leverage is removed before caps are applied; capped weight is released to cash and never reinvested.",
+    "target_gross": 1.0
+  },
+  "financing_used": false,
+  "generated_at": "2026-08-25T05:06:32.871558+00:00",
+  "live_trading_enabled": false,
+  "remaining_blocker": "52 untouched forward weeks per strategy; first eligible realization 2026-09-04.",
+  "return_impact_computed": false,
+  "return_impact_note": "This program measures risk geometry only. The dashboard export cannot be repriced from its own holdings and prices (weekly correlation 0.25 against published returns), so capped return series must come from re-running each strategy against data/sec_broad_panel_inputs_v2, not from this artifact.",
+  "strategies": [
+    {
+      "all_caps_pass_after": true,
+      "average_invested_after": 0.6934141131869797,
+      "average_names_capped": 9.664893617021276,
+      "cash_released": {
+        "max": 0.56,
+        "median": 0.29798200023167865,
+        "p95": 0.4700000000000004
+      },
+      "gates": {
+        "max_look_through_sector_weight": {
+          "after_max": 0.35000000091242445,
+          "after_p95": 0.3500000005914663,
+          "after_passes": true,
+          "before_max": 0.8700000000000002,
+          "before_p95": 0.8160000000000005,
+          "before_passes": false,
+          "cap": 0.35
+        },
+        "max_single_exchange_traded_weight": {
+          "after_max": 0.25,
+          "after_p95": 0.25,
+          "after_passes": true,
+          "before_max": 0.8100000000000002,
+          "before_p95": 0.6688886466415122,
+          "before_passes": false,
+          "cap": 0.25
+        },
+        "max_single_issuer_weight": {
+          "after_max": 0.06400000000000006,
+          "after_p95": 0.06400000000000004,
+          "after_passes": true,
+          "before_max": 0.07400000000000007,
+          "before_p95": 0.07400000000000007,
+          "before_passes": true,
+          "cap": 0.1
+        },
+        "max_total_exchange_traded_weight": {
+          "after_max": 0.5944996851233719,
+          "after_p95": 0.5450775434568882,
+          "after_passes": true,
+          "before_max": 0.9000000000000001,
+          "before_p95": 0.9000000000000001,
+          "before_passes": false,
+          "cap": 0.6
+        }
+      },
+      "id": "sec-residual-controlled-1.25x-5pct-v1",
+      "max_original_gross": 1.2499999999999996,
+      "name": "Residual-Controlled 1.25x \u2014 Recent Return Leader",
+      "short_name": "150.86% Residual 1.25x",
+      "used_leverage": true,
+      "weeks": 188
+    },
+    {
+      "all_caps_pass_after": true,
+      "average_invested_after": 0.5898321617700952,
+      "average_names_capped": 11.595744680851064,
+      "cash_released": {
+        "max": 0.6500000000000001,
+        "median": 0.41836734693877564,
+        "p95": 0.5699999999999996
+      },
+      "gates": {
+        "max_look_through_sector_weight": {
+          "after_max": 0.3500000008441844,
+          "after_p95": 0.35000000060362546,
+          "after_passes": true,
+          "before_max": 0.9800000000000003,
+          "before_p95": 0.8995000000000003,
+          "before_passes": false,
+          "cap": 0.35
+        },
+        "max_single_exchange_traded_weight": {
+          "after_max": 0.25,
+          "after_p95": 0.25,
+          "after_passes": true,
+          "before_max": 0.9000000000000002,
+          "before_p95": 0.8100000000000003,
+          "before_passes": false,
+          "cap": 0.25
+        },
+        "max_single_issuer_weight": {
+          "after_max": 0.08,
+          "after_p95": 0.07999999999999999,
+          "after_passes": true,
+          "before_max": 0.08,
+          "before_p95": 0.07999999999999999,
+          "before_passes": true,
+          "cap": 0.1
+        },
+        "max_total_exchange_traded_weight": {
+          "after_max": 0.5970943358266937,
+          "after_p95": 0.5,
+          "after_passes": true,
+          "before_max": 0.9183673469387759,
+          "before_p95": 0.9183673469387758,
+          "before_passes": false,
+          "cap": 0.6
+        }
+      },
+      "id": "sec-sector-ensemble-fragile-1.35x-v1",
+      "max_original_gross": 1.3500000000000005,
+      "name": "Sector Ensemble 1.35x \u2014 Fragile Return Ceiling",
+      "short_name": "174.97% Fragile 1.35x",
+      "used_leverage": true,
+      "weeks": 188
+    },
+    {
+      "all_caps_pass_after": true,
+      "average_invested_after": 0.465268669599017,
+      "average_names_capped": 1.8456078083407277,
+      "cash_released": {
+        "max": 0.75,
+        "median": 0.5,
+        "p95": 0.65
+      },
+      "gates": {
+        "max_look_through_sector_weight": {
+          "after_max": 0.35000000099235407,
+          "after_p95": 0.35000000055452873,
+          "after_passes": true,
+          "before_max": 1.0,
+          "before_p95": 0.9322510866444409,
+          "before_passes": false,
+          "cap": 0.35
+        },
+        "max_single_exchange_traded_weight": {
+          "after_max": 0.25,
+          "after_p95": 0.25,
+          "after_passes": true,
+          "before_max": 1.0,
+          "before_p95": 0.9,
+          "before_passes": false,
+          "cap": 0.25
+        },
+        "max_single_issuer_weight": {
+          "after_max": 0.1,
+          "after_p95": 0.0485900396584224,
+          "after_passes": true,
+          "before_max": 0.4,
+          "before_p95": 0.0485900396584224,
+          "before_passes": false,
+          "cap": 0.1
+        },
+        "max_total_exchange_traded_weight": {
+          "after_max": 0.6000000000000001,
+          "after_p95": 0.6,
+          "after_passes": true,
+          "before_max": 1.0,
+          "before_p95": 1.0,
+          "before_passes": false,
+          "cap": 0.6
+        }
+      },
+      "id": "candidate-return-first-60-40-forward-v1",
+      "max_original_gross": 1.0,
+      "name": "ETF Incumbent \u2014 Return-First 60/40",
+      "short_name": "ETF Incumbent",
+      "used_leverage": false,
+      "weeks": 1127
+    },
+    {
+      "all_caps_pass_after": true,
+      "average_invested_after": 0.48111702127659584,
+      "average_names_capped": 4.51595744680851,
+      "cash_released": {
+        "max": 0.65,
+        "median": 0.5,
+        "p95": 0.65
+      },
+      "gates": {
+        "max_look_through_sector_weight": {
+          "after_max": 0.35,
+          "after_p95": 0.35,
+          "after_passes": true,
+          "before_max": 1.0,
+          "before_p95": 1.0,
+          "before_passes": false,
+          "cap": 0.35
+        },
+        "max_single_exchange_traded_weight": {
+          "after_max": 0.0,
+          "after_p95": 0.0,
+          "after_passes": true,
+          "before_max": 0.0,
+          "before_p95": 0.0,
+          "before_passes": true,
+          "cap": 0.25
+        },
+        "max_single_issuer_weight": {
+          "after_max": 0.1,
+          "after_p95": 0.1,
+          "after_passes": true,
+          "before_max": 0.2,
+          "before_p95": 0.2,
+          "before_passes": false,
+          "cap": 0.1
+        },
+        "max_total_exchange_traded_weight": {
+          "after_max": 0.0,
+          "after_p95": 0.0,
+          "after_passes": true,
+          "before_max": 0.0,
+          "before_p95": 0.0,
+          "before_passes": true,
+          "cap": 0.6
+        }
+      },
+      "id": "sec-growth-survivorship-aware-v1",
+      "max_original_gross": 1.0,
+      "name": "SEC Growth Top-Five \u2014 Micron-Led",
+      "short_name": "142% Growth / Micron",
+      "used_leverage": false,
+      "weeks": 188
+    },
+    {
+      "all_caps_pass_after": true,
+      "average_invested_after": 0.5792418130984163,
+      "average_names_capped": 7.226519337016574,
+      "cash_released": {
+        "max": 0.6499999999999999,
+        "median": 0.3999999999999999,
+        "p95": 0.5699999999999997
+      },
+      "gates": {
+        "max_look_through_sector_weight": {
+          "after_max": 0.35000000093542905,
+          "after_p95": 0.35000000060362546,
+          "after_passes": true,
+          "before_max": 0.9800000000000001,
+          "before_p95": 0.8995000000000001,
+          "before_passes": false,
+          "cap": 0.35
+        },
+        "max_single_exchange_traded_weight": {
+          "after_max": 0.25,
+          "after_p95": 0.25,
+          "after_passes": true,
+          "before_max": 0.9,
+          "before_p95": 0.81,
+          "before_passes": false,
+          "cap": 0.25
+        },
+        "max_single_issuer_weight": {
+          "after_max": 0.08,
+          "after_p95": 0.08,
+          "after_passes": true,
+          "before_max": 0.08,
+          "before_p95": 0.08,
+          "before_passes": true,
+          "cap": 0.1
+        },
+        "max_total_exchange_traded_weight": {
+          "after_max": 0.5970943358266937,
+          "after_p95": 0.5097782887481082,
+          "after_passes": true,
+          "before_max": 0.9000000000000001,
+          "before_p95": 0.9,
+          "before_passes": false,
+          "cap": 0.6
+        }
+      },
+      "id": "sec-cash-conversion-breadth20-dynamic-v1",
+      "max_original_gross": 1.0000000000000004,
+      "name": "Dynamic Breadth-20 \u2014 Return Leader",
+      "short_name": "102% Daily-Audited",
+      "used_leverage": false,
+      "weeks": 181
+    },
+    {
+      "all_caps_pass_after": true,
+      "average_invested_after": 0.5763231543008679,
+      "average_names_capped": 11.590425531914894,
+      "cash_released": {
+        "max": 0.6499999999999999,
+        "median": 0.3961404641237991,
+        "p95": 0.56
+      },
+      "gates": {
+        "max_look_through_sector_weight": {
+          "after_max": 0.35000000088089095,
+          "after_p95": 0.35000000059078673,
+          "after_passes": true,
+          "before_max": 0.9800000000000001,
+          "before_p95": 0.8995000000000001,
+          "before_passes": false,
+          "cap": 0.35
+        },
+        "max_single_exchange_traded_weight": {
+          "after_max": 0.25,
+          "after_p95": 0.25,
+          "after_passes": true,
+          "before_max": 0.9,
+          "before_p95": 0.81,
+          "before_passes": false,
+          "cap": 0.25
+        },
+        "max_single_issuer_weight": {
+          "after_max": 0.08,
+          "after_p95": 0.08,
+          "after_passes": true,
+          "before_max": 0.08,
+          "before_p95": 0.08,
+          "before_passes": true,
+          "cap": 0.1
+        },
+        "max_total_exchange_traded_weight": {
+          "after_max": 0.5970943358266937,
+          "after_p95": 0.5,
+          "after_passes": true,
+          "before_max": 0.9000000000000001,
+          "before_p95": 0.9,
+          "before_passes": false,
+          "cap": 0.6
+        }
+      },
+      "id": "sec-sector-aware-signal-ensemble-v1",
+      "max_original_gross": 1.0000000000000004,
+      "name": "Sector-Aware Signal Ensemble \u2014 124% Diagnostic",
+      "short_name": "124% Sector Ensemble",
+      "used_leverage": false,
+      "weeks": 188
+    }
+  ]
+}

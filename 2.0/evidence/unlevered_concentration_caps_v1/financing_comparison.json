@@ -1,0 +1,132 @@
+{
+  "candidate-return-first-60-40-forward-v1": {
+    "benefits_heavily_from_financing": false,
+    "default_path": "unlevered_1.00x",
+    "financing_uplift_cagr": 0.0,
+    "native_gross": 1.0,
+    "note": "This strategy is already pure cash. There is nothing borrowed and no financing to pay.",
+    "paths": {
+      "unlevered_1.00x": {
+        "cagr": 0.7031215336942174,
+        "ending_value_10000": 17031.215336942172,
+        "max_drawdown": -0.15825384743697146,
+        "sharpe": 2.129569037485696,
+        "weeks": 52
+      }
+    },
+    "uses_financing": false
+  },
+  "sec-cash-conversion-breadth20-dynamic-v1": {
+    "benefits_heavily_from_financing": false,
+    "default_path": "unlevered_1.00x",
+    "financing_uplift_cagr": 0.0,
+    "native_gross": 1.0,
+    "note": "This strategy is already pure cash. There is nothing borrowed and no financing to pay.",
+    "paths": {
+      "unlevered_1.00x": {
+        "cagr": 0.9268381493153905,
+        "ending_value_10000": 19268.381493153905,
+        "max_drawdown": -0.12641934634039875,
+        "sharpe": 2.4651928556384086,
+        "weeks": 52
+      }
+    },
+    "uses_financing": false
+  },
+  "sec-growth-survivorship-aware-v1": {
+    "benefits_heavily_from_financing": false,
+    "default_path": "unlevered_1.00x",
+    "financing_uplift_cagr": 0.0,
+    "native_gross": 1.0,
+    "note": "This strategy is already pure cash. There is nothing borrowed and no financing to pay.",
+    "paths": {
+      "unlevered_1.00x": {
+        "cagr": 1.5571844956406475,
+        "ending_value_10000": 25571.844956406476,
+        "max_drawdown": -0.23437197795158637,
+        "sharpe": 2.4624502866309066,
+        "weeks": 52
+      }
+    },
+    "uses_financing": false
+  },
+  "sec-residual-controlled-1.25x-5pct-v1": {
+    "benefits_heavily_from_financing": true,
+    "default_path": "unlevered_1.00x",
+    "financing_uplift_cagr": 0.3825431112821076,
+    "native_gross": 1.25,
+    "note": "Unlevered is the default. Financing this book at 1.25x adds 38.3 points of trailing CAGR, and the same multiple to every loss.",
+    "paths": {
+      "levered_1.25x_5pct": {
+        "cagr": 1.5085821122127712,
+        "ending_value_10000": 25085.821122127712,
+        "max_drawdown": -0.13868614262902035,
+        "sharpe": 3.120075863125595,
+        "weeks": 52
+      },
+      "levered_1.25x_8pct": {
+        "cagr": 1.49014787440349,
+        "ending_value_10000": 24901.4787440349,
+        "max_drawdown": -0.13945010233556354,
+        "sharpe": 3.096074155549312,
+        "weeks": 52
+      },
+      "unlevered_1.00x": {
+        "cagr": 1.1260390009306636,
+        "ending_value_10000": 21260.390009306637,
+        "max_drawdown": -0.11116225097772747,
+        "sharpe": 3.1600787090860663,
+        "weeks": 52
+      }
+    },
+    "uses_financing": true
+  },
+  "sec-sector-aware-signal-ensemble-v1": {
+    "benefits_heavily_from_financing": false,
+    "default_path": "unlevered_1.00x",
+    "financing_uplift_cagr": 0.0,
+    "native_gross": 1.0,
+    "note": "This strategy is already pure cash. There is nothing borrowed and no financing to pay.",
+    "paths": {
+      "unlevered_1.00x": {
+        "cagr": 1.242041493092192,
+        "ending_value_10000": 22420.414930921917,
+        "max_drawdown": -0.087087583753373,
+        "sharpe": 3.102884417478825,
+        "weeks": 52
+      }
+    },
+    "uses_financing": false
+  },
+  "sec-sector-ensemble-fragile-1.35x-v1": {
+    "benefits_heavily_from_financing": true,
+    "default_path": "unlevered_1.00x",
+    "financing_uplift_cagr": 0.5455711264193539,
+    "native_gross": 1.35,
+    "note": "Unlevered is the default. Financing this book at 1.35x adds 54.6 points of trailing CAGR, and the same multiple to every loss.",
+    "paths": {
+      "levered_1.35x_6pct": {
+        "cagr": 1.6867917279385294,
+        "ending_value_10000": 26867.917279385292,
+        "max_drawdown": -0.12202296088345932,
+        "sharpe": 2.8871350837562644,
+        "weeks": 52
+      },
+      "levered_1.35x_8pct": {
+        "cagr": 1.6683778142245371,
+        "ending_value_10000": 26683.77814224537,
+        "max_drawdown": -0.1231026624649929,
+        "sharpe": 2.8681193303567043,
+        "weeks": 52
+      },
+      "unlevered_1.00x": {
+        "cagr": 1.1412206015191755,
+        "ending_value_10000": 21412.206015191754,
+        "max_drawdown": -0.08867162684539742,
+        "sharpe": 2.9441823439549486,
+        "weeks": 52
+      }
+    },
+    "uses_financing": true
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "experiment_id": "unlevered-concentration-caps-v1",
+  "description": "Apply issuer, single-fund, total-fund and look-through sector caps to every saved strategy on a pure-cash (1.00x) book, and measure how far each one is from the design gate it currently fails.",
+  "source_dashboard": "dashboard/public/return-first-dashboard.json",
+  "sector_map": "data/cross_strategy_concentration_map_v2/sector_map.csv",
+  "exposure_policy": {
+    "target_gross": 1.00,
+    "note": "Every strategy is measured on cash it actually has. Leverage is removed before caps are applied; capped weight is released to cash and never reinvested.",
+    "financing_used": false,
+    "borrowing_used": false
+  },
+  "caps": {
+    "max_single_issuer_weight": 0.10,
+    "max_single_exchange_traded_weight": 0.25,
+    "max_total_exchange_traded_weight": 0.60,
+    "max_look_through_sector_weight": 0.35
+  },
+  "solver": {
+    "max_iterations": 64,
+    "tolerance": 1e-9,
+    "note": "Caps are applied iteratively because a sector cap can bind after an issuer cap releases weight. Excess weight always goes to cash."
+  },
+  "measure_at_percentiles": [0.50, 0.95, 1.00],
+  "look_through_source": "config/sec_cross_strategy_residual_allocator_v3.json",
+  "return_impact_computed": false,
+  "return_impact_note": "This program measures risk geometry only. The dashboard export cannot be repriced from its own holdings and prices (weekly correlation 0.25 against published returns), so capped return series must come from re-running each strategy against data/sec_broad_panel_inputs_v2, not from this artifact.",
+  "live_trading_enabled": false
+}

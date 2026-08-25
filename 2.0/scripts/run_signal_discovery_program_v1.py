@@ -66,7 +66,7 @@ def build_price_signals(prices: pd.DataFrame) -> dict[str, pd.DataFrame]:
 def build_fundamental_signals(prices: pd.DataFrame, facts_path: Path) -> dict[str, pd.DataFrame]:
     if not facts_path.exists():
         return {}
-    facts = pd.read_csv(facts_path, dtype={"cik10": str}, parse_dates=["filed", "end"])
+    facts = pd.read_csv(facts_path, dtype={"cik10": str}, parse_dates=["filed"])
     facts = facts[facts.filed.notna()]
     weeks = prices.index
     columns = prices.columns

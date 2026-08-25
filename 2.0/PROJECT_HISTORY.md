@@ -7891,3 +7891,61 @@ References:
 - `config/volatility_tilt_gate_v1.json`
 - `scripts/run_volatility_tilt_gate_v1.py`
 - `evidence/volatility_tilt_gate_v1/`
+
+## Step 192 — Run the fundamental half, and find one signal that survives
+
+Moving the project off the iCloud-synced Documents folder unblocked the XBRL extraction
+that had defeated three earlier attempts. It now completes in seventy seconds, producing
+486,620 point-in-time facts across 3,567 issuers and eight concepts. The full
+twenty-two-signal program then ran in twenty seconds.
+
+Twenty-one of twenty-two signals fail, and the pattern from Step 189 holds. Every
+defensive factor is heavily negative, with low idiosyncratic volatility at -41.28%
+annualised spread and low volatility at -38.97%. The quality family is also negative:
+gross profitability -13.88%, return on assets -17.63%, and the quality composite -19.37%.
+Value is mildly negative, with book to market at -1.68% and earnings yield at -4.55%.
+Momentum is flat to negative. Cash conversion, this project's incumbent signal, produces
++0.77% with a coin-flip 50% weekly hit rate and a permutation p of 0.85, which is the
+first like-for-like measurement of it against the literature and is not encouraging.
+
+One signal survives every pre-declared gate. Low asset growth, from Cooper, Gulen and
+Schill (2008), returns a +7.61% annualised top-minus-bottom decile spread, is positive in
+63.6% of weeks, and has a block-bootstrap p of 0.0020 against a Bonferroni threshold of
+0.00227 across all twenty-two trials.
+
+It was then attacked. Sub-period stability holds: +6.57% in the first half and +8.64% in
+the second, positive in 58% and 69% of weeks respectively. It is not a size effect, with
+a correlation to log assets of only -0.071 across 3,003 issuers. Most importantly for
+this project, it is close to orthogonal to everything already here: its largest absolute
+correlation with any other tested signal is +0.118 against gross profitability, and it
+correlates -0.057 with twelve-one momentum and -0.032 with return on assets.
+
+Two failures are recorded against it. Bootstrap significance is block-length sensitive:
+p is 0.0000 at four weeks, 0.0015 at eight and 0.0020 at thirteen, but 0.0045 at
+twenty-six, which fails the same Bonferroni threshold. And only 4.1% of the raw spread
+survives removing the single best contributor from each decile in each window, so the
+measured edge lives almost entirely in the tails. That last figure is less damning than it
+first appears, because a portfolio holding the whole decile would capture those tails
+rather than lose them, and Step 190 established that capturing skew is precisely what
+breadth buys in this cross-section. It nonetheless means realised outcomes will be highly
+variable.
+
+The candidate's real interest is not its spread but its independence. This project's
+binding constraint has been an effective breadth near 1.15, and no amount of retuning the
+momentum and cash-conversion family moved it. A signal with a genuine, literature-backed
+prior that correlates below 0.12 with everything already tested is the first plausible
+route to a second bet rather than a re-weighting of the first.
+
+It is a candidate, not a discovery. It rests on 129 overlapping weekly windows inside a
+single 2023-2026 bull regime, it is one of twenty-two tested here on top of the project's
+much larger cumulative search, and it has no forward evidence whatsoever. It should be
+frozen and given its own forward clock rather than blended into anything.
+
+No strategy was promoted and live trading remains disabled.
+
+References:
+
+- `scripts/build_fundamental_signal_panel_v1.py`
+- `scripts/run_signal_discovery_program_v1.py`
+- `evidence/signal_discovery_program_v1/`
+- `data/fundamental_signal_panel_v1/`

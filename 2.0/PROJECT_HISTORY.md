@@ -7805,3 +7805,52 @@ References:
 - `scripts/run_volatility_tilt_attribution_v1.py`
 - `evidence/signal_discovery_program_v1/`
 - `evidence/volatility_tilt_attribution_v1/`
+
+## Step 190 — Price the breadth trade, and find diversification buys return here
+
+Step 188 established two things: single names decide outcomes, and no signal on this
+panel ranks them ex ante. If both hold, then holding more names is the only mechanism
+available for converting a lottery into an expectation. This step measures the
+conversion rate directly.
+
+Equal-weight portfolios of N names were drawn uniformly at random from the 2,748 issuers
+with a complete trailing year, four thousand draws at each size, over the 52 weeks ending
+August 21, 2026. Selection is random by construction, which is the point: it isolates
+breadth with zero skill assumed.
+
+The variance result is the expected one and is dramatic. The gap between the 5th and 95th
+percentile outcome falls from 152.3 points at one name to 43.5 points at twenty and 10.4
+points at three hundred and twenty, a reduction to 0.07 of the single-name spread. The
+probability of losing money falls from 31.6% to 6.3% at twenty names and to zero beyond
+forty. The probability of losing more than 20% falls from 16.4% at one name to 3.0% at
+five, and to zero at twenty.
+
+The unexpected result is the median. It does not stay flat as diversification theory
+usually implies; it rises from 6.7% at one name to 13.1% at five, 16.3% at twenty and
+17.8% at three hundred and twenty. The reason is the skew this project keeps running
+into. The cross-sectional return distribution has a long right tail, so its mean sits far
+above its median. A single-name portfolio typically delivers something near the median.
+A wide portfolio delivers something near the mean. Averaging does not sacrifice return
+here, it collects the tail that a concentrated book usually misses.
+
+That inverts the usual framing. In this universe diversification is not a cost paid for
+safety; it is the mechanism that captures the skew. A randomly chosen twenty-name book
+beat a randomly chosen five-name book on median return, on fifth-percentile outcome, and
+on both loss probabilities simultaneously, with no selection ability whatsoever.
+
+The direct consequence for the saved strategies is that the five-name growth book is
+strictly dominated by breadth it could have had for free. A random five-name portfolio
+carries a 23.1% chance of losing money and a 3.0% chance of losing more than a fifth of
+capital over a year; at twenty names those become 6.3% and zero. Whatever selection skill
+that strategy has must first overcome a structural handicap it chose.
+
+The finding is one 52-week window in a strong bull market and the absolute numbers will
+not generalise. The shape of the curve, which is what matters, follows from the skew of
+the cross-section rather than from its direction.
+
+No strategy was promoted and live trading remains disabled.
+
+References:
+
+- `scripts/run_breadth_diversification_curve_v1.py`
+- `evidence/breadth_diversification_curve_v1/`

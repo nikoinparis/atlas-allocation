@@ -1,0 +1,133 @@
+{
+  "curve": [
+    {
+      "mean": 0.18241117899304032,
+      "median": 0.06683227845156137,
+      "names": 1,
+      "p05": -0.4960174632527055,
+      "p25": -0.07495039446333193,
+      "p75": 0.3484123666214485,
+      "p95": 1.0274093372370134,
+      "probability_below_minus_20pct": 0.1635,
+      "probability_of_loss": 0.3155,
+      "spread_p05_p95": 1.523426800489719,
+      "standard_deviation": 0.5939709539547162
+    },
+    {
+      "mean": 0.18251447226256276,
+      "median": 0.12412934901545838,
+      "names": 3,
+      "p05": -0.24364446645140797,
+      "p25": -0.021786206990872463,
+      "p75": 0.3057192007338652,
+      "p95": 0.7984822306092478,
+      "probability_below_minus_20pct": 0.07275,
+      "probability_of_loss": 0.28625,
+      "spread_p05_p95": 1.0421266970606557,
+      "standard_deviation": 0.3554500075179593
+    },
+    {
+      "mean": 0.18159314800785142,
+      "median": 0.13102606136882572,
+      "names": 5,
+      "p05": -0.1649303191840492,
+      "p25": 0.010271204474061846,
+      "p75": 0.2988178290758578,
+      "p95": 0.6852097640022455,
+      "probability_below_minus_20pct": 0.02975,
+      "probability_of_loss": 0.23125,
+      "spread_p05_p95": 0.8501400831862947,
+      "standard_deviation": 0.2724299374673492
+    },
+    {
+      "mean": 0.18148452335532136,
+      "median": 0.15592157971996062,
+      "names": 10,
+      "p05": -0.07031128652132144,
+      "p25": 0.056901155692354044,
+      "p75": 0.2715328682348421,
+      "p95": 0.5384103187422609,
+      "probability_below_minus_20pct": 0.00425,
+      "probability_of_loss": 0.13725,
+      "spread_p05_p95": 0.6087216052635823,
+      "standard_deviation": 0.18754192499696143
+    },
+    {
+      "mean": 0.17818838121020097,
+      "median": 0.16258206737381103,
+      "names": 20,
+      "p05": -0.011408819643567446,
+      "p25": 0.08554865319563912,
+      "p75": 0.25310395725364754,
+      "p95": 0.42309507235577937,
+      "probability_below_minus_20pct": 0.00025,
+      "probability_of_loss": 0.06275,
+      "spread_p05_p95": 0.4345038919993468,
+      "standard_deviation": 0.13361828036521364
+    },
+    {
+      "mean": 0.17625223908478174,
+      "median": 0.1661121505699547,
+      "names": 40,
+      "p05": 0.04192982845766538,
+      "p25": 0.11322812572850753,
+      "p75": 0.23004780776605147,
+      "p95": 0.3452401778199027,
+      "probability_below_minus_20pct": 0.0,
+      "probability_of_loss": 0.01375,
+      "spread_p05_p95": 0.30331034936223733,
+      "standard_deviation": 0.09290529027189058
+    },
+    {
+      "mean": 0.1807236630721965,
+      "median": 0.176314617281235,
+      "names": 80,
+      "p05": 0.07969506014070218,
+      "p25": 0.13407747652374474,
+      "p75": 0.22342488081658876,
+      "p95": 0.29777664287552696,
+      "probability_below_minus_20pct": 0.0,
+      "probability_of_loss": 0.0005,
+      "spread_p05_p95": 0.21808158273482478,
+      "standard_deviation": 0.06678483384268005
+    },
+    {
+      "mean": 0.17726234264656335,
+      "median": 0.1752401564649197,
+      "names": 160,
+      "p05": 0.1039602996048795,
+      "p25": 0.1454333092895213,
+      "p75": 0.20719655663880293,
+      "p95": 0.25526305453030057,
+      "probability_below_minus_20pct": 0.0,
+      "probability_of_loss": 0.0,
+      "spread_p05_p95": 0.15130275492542106,
+      "standard_deviation": 0.04578791571197781
+    },
+    {
+      "mean": 0.1785621293712028,
+      "median": 0.17761384111354828,
+      "names": 320,
+      "p05": 0.12827701520986284,
+      "p25": 0.15689596276457946,
+      "p75": 0.19935077382915617,
+      "p95": 0.23189155251740035,
+      "probability_below_minus_20pct": 0.0,
+      "probability_of_loss": 0.0,
+      "spread_p05_p95": 0.1036145373075375,
+      "standard_deviation": 0.03149991250167592
+    }
+  ],
+  "draws_per_size": 4000,
+  "experiment_id": "breadth-diversification-curve-v1",
+  "generated_at": "2026-08-25T18:57:36.727599+00:00",
+  "interpretation": "The median barely moves with N because random selection has no edge. What collapses is the spread. Every additional name buys certainty, not return. That is precisely the trade a strategy with no measurable decile spread should want to make.",
+  "live_trading_enabled": false,
+  "selection": "uniform random, zero skill assumed",
+  "universe_names": 2748,
+  "window": {
+    "end": "2026-08-21",
+    "start": "2025-08-22",
+    "weeks": 52
+  }
+}

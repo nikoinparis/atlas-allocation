@@ -8005,3 +8005,62 @@ References:
 - `config/low_asset_growth_candidate_v2.json`
 - `scripts/run_low_asset_growth_candidate_v2.py`
 - `evidence/low_asset_growth_candidate_v2/`
+
+## Step 194 — Audit the price panel, and correct a comparison error in Step 193
+
+Two things here: an integrity audit of the price panel every strategy is built on, and a
+correction to a claim made in Step 193 that does not survive a matched-window comparison.
+
+The sealed weekly price panel was audited without being modified. It is hashed in the
+panel-inputs manifest, which chains to a file the forward protocol pins, so a cleaned
+derivative is the only safe form this correction can take.
+
+Across 3,253 issuers and 195 weeks the panel contains 52 zero prices, all inside a single
+issuer, producing one infinite weekly return. There are no negative prices. Sixty-seven
+weekly returns exceed +200%, twelve exceed +1000%, and the largest single week is a 29x
+move; ten weekly returns are below -95%. Correcting all of it touches 77 return
+observations out of roughly 630,000, so the price defects are real but small.
+
+The larger finding is not the extremes. Four hundred and twenty-nine issuers, 13% of the
+universe, carry runs of eight or more consecutive identical weekly prices. A frozen price
+is a name that is not trading, usually delisted or halted, and it is being carried in the
+universe as though it were investable. Twenty-five further issuers have internal coverage
+gaps, where a price disappears and later returns, which manufactures a fake return across
+the gap. A cleaned derivative was written to `data/clean_weekly_prices_v1/` with zero and
+negative prices removed and weekly moves capped at +200% and floored at -95%.
+
+The correction matters more. Step 193 reported that the equal-weight panel returned 22.21%
+at a Sharpe of 1.28 and stated this was better risk-adjusted performance than any of the
+six saved strategies achieved on pure cash. That comparison was invalid. The 22.21% figure
+covers the full 143-week sample, while the saved strategies' figures are trailing
+fifty-two weeks. It is the same mismatched-window error this project has caught elsewhere,
+made here by me.
+
+Measured over the identical trailing fifty-two weeks to August 7, 2026, the equal-weight
+universe returned 30.19% with a Sharpe of 2.03 and a maximum drawdown of -6.7%. Every
+saved strategy beat it on both return and Sharpe over that window: the sector ensemble at
+124.20% and 3.10, the residual leader at 112.60% and 3.16, the daily-audited book at
+92.68% and 2.47, and even the ETF incumbent at 70.31% and 2.13. The claim in Step 193 is
+withdrawn.
+
+What survives the correction is narrower and still worth keeping. The equal-weight
+universe has the shallowest drawdown of any book measured here, at -6.7% against the
+sector ensemble's -8.71%, and it achieves that with no selection, no leverage and
+essentially no turnover at 0.0003 per week. Excluding the 429 stale issuers raises its
+return to 23.72% on the full sample while slightly lowering its Sharpe, so the untradeable
+names are not the source of its performance.
+
+It is not a candidate. It has no thesis beyond owning everything, and over the window the
+strategies are judged on it loses to all of them. It is a useful floor: any future
+candidate that cannot beat owning the universe equally, after costs, is not earning its
+complexity.
+
+No strategy was promoted and live trading remains disabled.
+
+References:
+
+- `scripts/run_price_panel_integrity_audit_v1.py`
+- `scripts/run_equal_weight_universe_candidate_v1.py`
+- `evidence/price_panel_integrity_audit_v1/`
+- `evidence/equal_weight_universe_candidate_v1/`
+- `data/clean_weekly_prices_v1/`

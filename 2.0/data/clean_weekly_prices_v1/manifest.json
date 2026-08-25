@@ -1,0 +1,18 @@
+{
+  "artifact_sha256": {
+    "weekly_adjusted_prices_clean.csv.gz": "3ad97d8174266ca6301281e10acc12ab9082cdd26615483ea4ca2ecb67f24123"
+  },
+  "cleaning_rules": {
+    "return_observations_adjusted": 77,
+    "weekly_return_cap": 2.0,
+    "weekly_return_floor": -0.95,
+    "zero_and_negative_prices": "set to missing"
+  },
+  "created_at_utc": "2026-08-25T23:12:53.978778+00:00",
+  "derived_from": "data/sec_broad_panel_inputs_v2/weekly_adjusted_prices.csv.gz",
+  "experiment": "clean_weekly_prices_v1",
+  "live_trading_enabled": false,
+  "note": "The sealed panel is hashed in the panel-inputs manifest, which chains to a file the forward protocol pins. It is therefore never edited; this is a derivative for future work.",
+  "source_sha256": "b251f8089f9e163bf43282e2e26f3e112cdc5fc03f7ebcdaf1b57f5536d327a7",
+  "source_unmodified": true
+}

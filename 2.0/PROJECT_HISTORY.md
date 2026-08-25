@@ -7854,3 +7854,40 @@ References:
 
 - `scripts/run_breadth_diversification_curve_v1.py`
 - `evidence/breadth_diversification_curve_v1/`
+
+## Step 191 — Turn the volatility exposure into a gate, and sharpen the Step 189 claim
+
+Step 189 found that a high-volatility tilt is sufficient to explain most of the saved
+strategies' return ranking, and that nothing in the existing battery measures it. This
+step turns that measurement into a standing gate so the exposure is chosen rather than
+inherited.
+
+The statistic is the weight-weighted mean cross-sectional volatility percentile of the
+single names a book holds, where 0.50 is a book of typical volatility. Thresholds were
+declared before measurement: a neutral band of 0.40 to 0.60, mandatory declaration and
+bear-regime evidence above 0.60, and outright failure above 0.75.
+
+Applied to the six saved strategies the result is more discriminating than the Step 189
+write-up implied, and that write-up is corrected here. Two books sit clearly above the
+band and fail: the Micron-led growth strategy at 0.717 and the residual leader at 0.642.
+Three sit inside it at 0.551 to 0.553, which is above the median but not a declared bet.
+The ETF incumbent at 0.216 is genuinely defensive. Step 189 stated that every SEC
+strategy sits well above the median; the accurate statement is that two do markedly, three
+do marginally, and the correlation of 0.855 between tilt and return across the six is
+driven mainly by the spread between those two extremes and the incumbent.
+
+The gate cannot currently be satisfied by any tilted book for a reason that is not the
+strategies' fault. Above the neutral band it demands evidence of behaviour in a falling
+market, and the SEC stock price panel starts 2022-12-02. That evidence does not exist and
+cannot be produced without historical stock prices the project does not have. The gate is
+therefore recorded as binding on data availability rather than on construction, which is
+the honest description and keeps the requirement visible instead of quietly dropping it.
+
+The gate applies to every candidate evaluated from this point onward. No strategy was
+promoted and live trading remains disabled.
+
+References:
+
+- `config/volatility_tilt_gate_v1.json`
+- `scripts/run_volatility_tilt_gate_v1.py`
+- `evidence/volatility_tilt_gate_v1/`

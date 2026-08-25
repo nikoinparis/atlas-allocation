@@ -1,0 +1,25 @@
+{
+  "experiment_id": "volatility-tilt-gate-v1",
+  "purpose": "Make the volatility exposure a declared decision instead of an unwatched accident. Step 189 found every saved strategy sits well above the panel's median volatility, and that a high-volatility tilt alone explains most of the return ranking. Nothing in the existing gate battery measures this.",
+  "measure": {
+    "statistic": "weight-weighted mean cross-sectional volatility percentile of held single names",
+    "volatility_lookback_weeks": 52,
+    "minimum_weeks": 40,
+    "percentile_universe": "all issuers in the SEC broad price panel with sufficient history",
+    "note": "0.50 means the book holds names of typical volatility. 1.00 means it holds the most volatile names available."
+  },
+  "thresholds": {
+    "neutral_band": [0.40, 0.60],
+    "declared_tilt_maximum": 0.65,
+    "hard_maximum": 0.75,
+    "rationale": "A book inside the neutral band is not making a volatility bet. Between 0.60 and 0.65 the bet must be declared and sized deliberately. Above 0.75 the strategy is a leveraged volatility bet wearing a stock-selection label, whatever its stated rules."
+  },
+  "gate_rules": {
+    "requires_declaration_above": 0.60,
+    "fails_above": 0.75,
+    "requires_bear_regime_evidence_above": 0.60,
+    "bear_evidence_note": "Any book tilted above the neutral band must show how it behaves in a falling market before promotion. No SEC strategy here can currently supply that, because the stock price panel starts 2022-12-02."
+  },
+  "applies_to": "every candidate evaluated from Step 190 onward",
+  "live_trading_enabled": false
+}

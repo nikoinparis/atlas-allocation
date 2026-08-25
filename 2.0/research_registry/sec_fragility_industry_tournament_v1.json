@@ -1,0 +1,42 @@
+{
+  "program": "sec_fragility_industry_tournament_v1",
+  "classification": "recent-return-leading fragile diagnostic; historical gates failed",
+  "status": "saved research candidate; not promoted",
+  "common_endpoint": "2026-08-07",
+  "tested_surface": {
+    "total_candidates": 40,
+    "fragility_aware_accelerators": 8,
+    "industry_residual_candidates": 32,
+    "historical_gate_passers": 0,
+    "selection_contaminated": true
+  },
+  "selected_diagnostic": {
+    "name": "alpha30_1.35x",
+    "recent_cagr": 1.8689582075057198,
+    "recent_sharpe": 3.2059318413037308,
+    "recent_max_drawdown": -0.1505682137519605,
+    "full_cagr": 0.5167722652426503,
+    "full_sharpe": 1.7035286613139844,
+    "full_max_drawdown": -0.2498798212534894,
+    "severe_200bps_recent_cagr": 1.4227562941242518,
+    "worst_delay_recent_cagr": 1.596315644171772,
+    "worst_five_issuer_recent_cagr": 1.6231859955800125,
+    "rolling_26w_outperformance_share": 0.47023809523809523,
+    "raw_bootstrap_probability": 0.9932,
+    "familywise_bootstrap_probability": 0.8367999999999993
+  },
+  "rejected_branch": {
+    "family": "industry_residual_momentum_plus_sec_acceleration",
+    "best_candidate": "ir13_reversal50_s4_n2__1.25x",
+    "recent_cagr": 0.7119987637610925,
+    "reason": "large return gap and failure of the five-issuer dependence test"
+  },
+  "frozen_config": "config/sec_fragility_industry_tournament_v1.json",
+  "frozen_config_sha256": "2a86c682636926013d4c909f62d721b6ca429b9fd7d13247c0030d2a674b8545",
+  "evidence": "evidence/sec_fragility_industry_tournament_v1/result.json",
+  "decision": "Retain alpha30_1.35x as a fragile research lead only. It failed temporal consistency and familywise-adjusted evidence, so the incumbent is not replaced and untouched forward evidence remains mandatory.",
+  "research_only": true,
+  "approved_for_live_trading": false,
+  "execution_enabled": false,
+  "strategy_replacement_authorized": false
+}

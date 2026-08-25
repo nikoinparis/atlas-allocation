@@ -1,0 +1,46 @@
+{
+  "experiment": "indonesia_equity_research_v1",
+  "status": "research_only_source_gated",
+  "notice": "RESEARCH ONLY — not investment advice, not a recommendation, and not approved for live or paper brokerage execution.",
+  "jurisdiction": "Indonesia",
+  "currency": "IDR",
+  "primary_universe": "IDX80",
+  "supported_universes": ["IDX80", "LQ45", "IDX30"],
+  "optional_overlay": "OJK Daftar Efek Syariah (DES), applied point in time",
+  "benchmark_research": ["IDX Composite (IHSG)", "IDX80", "LQ45"],
+  "strategy": {
+    "name": "Indonesia liquid equity momentum-low-volatility research sleeve",
+    "direction": "long_only",
+    "rebalance_frequency": "monthly",
+    "signal": {
+      "momentum_52w_skip_4w_weight": 0.70,
+      "low_volatility_26w_weight": 0.30
+    },
+    "selection_count": 12,
+    "minimum_eligible_names": 10,
+    "weighting": "inverse_26w_volatility",
+    "maximum_name_weight": 0.10,
+    "minimum_median_daily_value_idr": 5000000000,
+    "residual_allocation": "CASH_IDR",
+    "shorting": false,
+    "leverage": false
+  },
+  "source_gates": {
+    "licensed_or_permissioned_price_history": false,
+    "point_in_time_index_membership": false,
+    "point_in_time_des_membership_for_sharia_runs": false,
+    "corporate_actions_and_adjustment_policy": false,
+    "suspension_delisting_and_inactive_security_history": false,
+    "local_fee_tax_spread_and_slippage_model": false,
+    "benchmark_total_return_series": false,
+    "data_license_and_redistribution_review": false
+  },
+  "promotion_rules": [
+    "No performance claim may be published while any required source gate is false.",
+    "Synthetic tests establish software behavior only and never strategy profitability.",
+    "Index and DES membership must use the version available before each decision time.",
+    "A current constituent list must never be backfilled into historical decisions.",
+    "The sleeve must remain disconnected from broker, order, and live execution interfaces.",
+    "Any future recommendation, advisory, or managed-account use requires Indonesian legal and OJK review."
+  ]
+}

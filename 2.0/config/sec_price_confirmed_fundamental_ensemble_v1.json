@@ -1,0 +1,75 @@
+{
+  "experiment": "sec_price_confirmed_fundamental_ensemble_v1",
+  "purpose": "Test whether delayed issuer-specific residual momentum and trend quality improve the fixed 50/50 fundamental holdings ensemble without adding ticker rules or raising concentration.",
+  "control": {
+    "cash_component_sector_cap": 0.80,
+    "balance_component_sector_cap": 0.90,
+    "component_mix": {"cash100": 0.50, "balance20": 0.50},
+    "breadth": 20
+  },
+  "candidate_specs": [
+    {"name": "fundamental_control", "price_family": "none", "price_weight": 0.00},
+    {"name": "residual_10", "price_family": "residual", "price_weight": 0.10},
+    {"name": "residual_20", "price_family": "residual", "price_weight": 0.20},
+    {"name": "residual_30", "price_family": "residual", "price_weight": 0.30},
+    {"name": "trend_10", "price_family": "trend", "price_weight": 0.10},
+    {"name": "trend_20", "price_family": "trend", "price_weight": 0.20},
+    {"name": "trend_30", "price_family": "trend", "price_weight": 0.30},
+    {"name": "residual_trend_10", "price_family": "residual_trend", "price_weight": 0.10},
+    {"name": "residual_trend_20", "price_family": "residual_trend", "price_weight": 0.20},
+    {"name": "residual_trend_30", "price_family": "residual_trend", "price_weight": 0.30}
+  ],
+  "price_signals": {
+    "residual_lookback_weeks": 52,
+    "residual_skip_weeks": 4,
+    "minimum_history_weeks": 26,
+    "sector_residual_weight": 0.70,
+    "market_residual_weight": 0.30,
+    "trend_high_window_weeks": 52,
+    "trend_positive_week_window": 26,
+    "trend_momentum_horizons_weeks": [13, 26, 52],
+    "trend_skip_weeks": 4,
+    "full_observation_delay_weeks": 1
+  },
+  "cost_bps": [50, 100, 200],
+  "scenarios": ["base", "adverse"],
+  "decision_delays_weeks": [1, 2],
+  "increment_delays_weeks": [1, 2],
+  "endpoint_offsets_weeks": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+  "missing_issuer_bundle_sizes": [1, 2, 3, 5],
+  "bootstrap_blocks_weeks": [4, 13],
+  "bootstrap_draws": 5000,
+  "bootstrap_seed": 20260822,
+  "gates": {
+    "minimum_recent_cagr": 1.2720414930921906,
+    "minimum_recent_sharpe": 3.10,
+    "minimum_recent_drawdown": -0.12,
+    "minimum_full_cagr": 0.4273578340691979,
+    "minimum_severe_recent_cagr": 1.0726891496158184,
+    "minimum_delay_recent_cagr": 1.20,
+    "minimum_endpoint_outperformance_share": 0.50,
+    "minimum_rolling_26w_outperformance_share": 0.50,
+    "minimum_worst_five_issuer_cagr": 1.1293348809519022,
+    "maximum_peak_total_stock_weight": 0.08,
+    "minimum_adjusted_bootstrap_probability": 0.95
+  },
+  "multiple_testing": {
+    "challenger_count": 9,
+    "adjustment": "bonferroni"
+  },
+  "literature_basis": [
+    "Blitz, Huij, and Martens (2011), Residual Momentum",
+    "George and Hwang (2004), The 52-Week High and Momentum Investing",
+    "Da, Gurun, and Warachka (2014), Frog in the Pan"
+  ],
+  "pinned_runtime": {
+    "container_image": "localhost/po2-yfinance:1.5.2-v1",
+    "container_image_id": "c84c194bef2052b0b4e4997d5780eb8ccf48d0ed2a3ec35bcafb726f691e0c5c",
+    "python": "3.12.13",
+    "numpy": "2.5.1",
+    "pandas": "3.0.5"
+  },
+  "research_only": true,
+  "strategy_promotion_authorized": false,
+  "live_trading_enabled": false
+}

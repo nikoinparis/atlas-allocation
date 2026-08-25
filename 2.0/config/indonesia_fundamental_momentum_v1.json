@@ -1,0 +1,72 @@
+{
+  "experiment": "indonesia_fundamental_momentum_v1",
+  "status": "predeclared_research_only_data_gated_challenger",
+  "notice": "RESEARCH ONLY — this Indonesian fundamental-momentum challenger is not an investment recommendation and is not approved for execution.",
+  "universe": "point_in_time_IDX80",
+  "baseline_strategy": "config/indonesia_multihorizon_momentum_challenger_v1.json",
+  "source_policy": {
+    "primary_point_in_time_source": "Indonesia Stock Exchange archived Financial Data and Ratio tables",
+    "primary_point_in_time_url": "https://www.idx.id/en/market-data/statistical-reports/digital-statistic/monthly/financial-report-and-ratio-of-listed-companies/financial-data-and-ratio",
+    "snapshot_availability": "month-end snapshot becomes eligible only at the next month's first trading decision",
+    "detailed_follow_on_source": "Indonesia Stock Exchange issuer financial-statement archive",
+    "listing_endpoint": "https://www.idx.co.id/primary/ListedCompany/GetFinancialReport",
+    "preferred_attachment": "instance.zip",
+    "fallback_attachment": "FinancialStatement XLSX",
+    "xbrl_availability_time": "IDX File_Modified publication timestamp",
+    "period_end_is_not_availability_time": true,
+    "revisions": "latest filing revision may replace an earlier filing only from its own publication timestamp forward"
+  },
+  "candidate": {
+    "rebalance": "monthly_first_trading_session_close",
+    "selection_count": 12,
+    "minimum_eligible_names": 20,
+    "price_score_weight": 0.7,
+    "fundamental_score_weight": 0.3,
+    "price_score": {
+      "momentum_52w_skip_4w_weight": 0.5,
+      "momentum_26w_skip_4w_weight": 0.3,
+      "low_volatility_26w_weight": 0.2
+    },
+    "fundamental_score": {
+      "year_over_year_revenue_growth_weight": 0.25,
+      "year_over_year_net_income_growth_weight": 0.25,
+      "return_on_equity_weight": 0.2,
+      "operating_cash_flow_to_net_income_weight": 0.2,
+      "inverse_liabilities_to_assets_weight": 0.1,
+      "cross_sectional_normalization": "industry_then_market_winsorized_zscore",
+      "missing_feature_rule": "renormalize available feature weights only when at least three features are present"
+    },
+    "weighting": "inverse_26w_volatility",
+    "maximum_name_weight": 0.1,
+    "minimum_median_daily_value_idr": 5000000000,
+    "maximum_price_staleness_calendar_days": 10,
+    "residual_allocation": "CASH_IDR",
+    "leverage": false,
+    "shorting": false
+  },
+  "data_gates": {
+    "minimum_point_in_time_filing_coverage": 0.8,
+    "minimum_canonical_feature_coverage": 0.7,
+    "minimum_history_start": "2019-02-01",
+    "minimum_consecutive_years_per_issuer": 3,
+    "require_publication_timestamps": true,
+    "require_no_future_filing_leakage": true,
+    "require_sector_specific_coverage_report": true,
+    "performance_claim_before_gates_pass": false
+  },
+  "evaluation": {
+    "cost_bps_one_way": [25, 50, 100, 150],
+    "base_cost_bps_one_way": 50,
+    "compare_with": [
+      "indonesia_equity_research_v1",
+      "indonesia_multihorizon_momentum_challenger_v1"
+    ],
+    "untouched_forward_observations": 52
+  },
+  "policy": [
+    "Factor definitions and weights are frozen before a return is calculated.",
+    "Do not substitute period end dates or statutory deadlines for actual publication timestamps.",
+    "A failed data gate produces DATA_BLOCKED, not an estimated return.",
+    "Historical results cannot authorize promotion, recommendation, commercialization, or execution."
+  ]
+}

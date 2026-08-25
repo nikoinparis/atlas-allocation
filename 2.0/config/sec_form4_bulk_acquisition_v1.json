@@ -1,0 +1,20 @@
+{
+  "experiment": "sec_form4_bulk_acquisition_v1",
+  "quarters": [
+    "2023q1", "2023q2", "2023q3", "2023q4",
+    "2024q1", "2024q2", "2024q3", "2024q4",
+    "2025q1", "2025q2", "2025q3", "2025q4",
+    "2026q1", "2026q2"
+  ],
+  "standard_url_template": "https://www.sec.gov/files/structureddata/data/insider-transactions-data-sets/{quarter}_form345.zip",
+  "url_overrides": {
+    "2026q2": "https://www.sec.gov/files/datastandardsinnovation/data/insider-transactions-data-sets/2026q2_form345.zip"
+  },
+  "required_tables": [
+    "SUBMISSION.tsv",
+    "REPORTINGOWNER.tsv",
+    "NONDERIV_TRANS.tsv"
+  ],
+  "strategy_testing_authorized": false,
+  "live_trading_enabled": false
+}

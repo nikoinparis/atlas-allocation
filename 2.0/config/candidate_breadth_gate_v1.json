@@ -1,0 +1,19 @@
+{
+  "program": "candidate_breadth_gate_v1",
+  "status": "required_for_new_candidates",
+  "created_at": "2026-08-24",
+  "minimum_common_return_observations": 52,
+  "minimum_rounded_marginal_effective_breadth": 0.01,
+  "marginal_contribution_rounding_decimals": 2,
+  "holdings_overlap_required_for_every_peer": true,
+  "entire_surviving_candidate_set_required": true,
+  "low_or_zero_breadth_action": "reject_as_new_independent_return_source",
+  "performance_promotion_authorized_by_this_gate": false,
+  "required_outputs": [
+    "pairwise_return_correlation",
+    "pairwise_holdings_overlap",
+    "effective_independent_strategy_count",
+    "candidate_marginal_effective_breadth",
+    "ic_ir_decomposition_when_comparable_oos_ic_exists"
+  ]
+}

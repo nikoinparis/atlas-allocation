@@ -1,0 +1,59 @@
+{
+  "program": "sec_form4_rank_feature_v1",
+  "classification": "rejected - small recent gain, weaker full history, and broad falsification failure",
+  "status": "not promoted",
+  "predecessor": "sec_form4_dynamic_overlay_v1",
+  "structure": {
+    "control": "sec_cash_conversion_breadth20_candidate_v1 (unchanged)",
+    "feature": "causal executive-or-cluster Form 4 purchasing score",
+    "feature_windows_days": [30, 90],
+    "feature_weights": [0.0, 0.05, 0.1, 0.2, 0.3],
+    "breadth": 20,
+    "sector_caps": [0.5, 0.7, 1.0],
+    "ticker_agnostic_prior_winner_penalties": [0.0, 0.05, 0.1],
+    "tested_candidates": 90
+  },
+  "selected_candidate": {
+    "name": "win90__f4w05__pen00__sector100",
+    "trailing_1y_cagr": 1.0547913841543441,
+    "trailing_1y_sharpe": 2.704593057829952,
+    "trailing_1y_drawdown": -0.09833780786146462,
+    "full_cagr": 0.38174005753689166,
+    "trailing_1y_200bps_cagr": 0.9355492788534607
+  },
+  "control": {
+    "trailing_1y_cagr": 1.0510082013109483,
+    "full_cagr": 0.4093476771616662,
+    "trailing_1y_200bps_cagr": 0.9320198735415857
+  },
+  "matched_zero_form4_baseline": {
+    "trailing_1y_cagr": 1.0475360879501023,
+    "full_cagr": 0.4086746589588126,
+    "form4_incremental_trailing_1y_cagr": 0.007255296204241812,
+    "form4_incremental_full_cagr": -0.026934601421920945
+  },
+  "falsification": {
+    "one_week_delay_cagr": 0.9820682253446484,
+    "two_week_delay_cagr": 1.0250858418727877,
+    "completed_rolling_26w_windows": 163,
+    "rolling_26w_outperformance_share": 0.25766871165644173,
+    "neighborhood_joint_improvement_share": 0.0,
+    "bootstrap_4w_probability_positive": 0.8054,
+    "bootstrap_13w_probability_positive": 0.8722,
+    "worst_leave_one_out_company": "GITLAB INC.",
+    "worst_leave_one_out_trailing_1y_cagr": 0.9624462463522852,
+    "single_issuer_improvement_share": 24.40937740116426,
+    "all_passed": false
+  },
+  "rejection_reason": "The selected feature path improves recent CAGR by only 0.38 percentage points over the frozen control and misses the predeclared 1-point gate, while full CAGR falls by 2.77 points. It also fails decision-delay, rolling-window, neighborhood, both bootstrap, leave-one-company-out, and issuer-influence gates. The feature's 0.73-point recent lift over its matched constrained baseline does not persist through the broader tests.",
+  "reproducibility": {
+    "runtime_pinned": true,
+    "persisted_artifact_roundtrip_passed": true,
+    "frozen_control_rebuilt_exactly": true,
+    "artifact_hashes_recorded_in_result": true
+  },
+  "research_only": true,
+  "approved_for_live_trading": false,
+  "execution_enabled": false,
+  "strategy_replacement_authorized": false
+}

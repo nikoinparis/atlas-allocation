@@ -1,0 +1,52 @@
+{
+  "program": "sec_multisignal_plateau_confirmation_v1",
+  "classification": "rejected - locked primary reproduces but fine weight/breadth plateau fails",
+  "status": "not promoted",
+  "predecessor": "sec_multisignal_company_rank_v1",
+  "protocol": {
+    "primary_candidate_frozen_before_confirmation": "80% cash conversion / 20% balance-sheet quality / breadth 20",
+    "secondary_weights": [0.15, 0.175, 0.2, 0.225, 0.25],
+    "breadths": [15, 20, 25, 30],
+    "tested_paths": 20,
+    "selection_rule": "primary remains fixed; highest-return point is diagnostic only"
+  },
+  "primary_candidate": {
+    "name": "bsq200__breadth20",
+    "trailing_1y_cagr": 1.0638676796283404,
+    "trailing_1y_sharpe": 2.7124220329806326,
+    "trailing_1y_drawdown": -0.10088583249311045,
+    "full_cagr": 0.41538224358517795,
+    "trailing_1y_200bps_cagr": 0.9441960043139512,
+    "reproduces_discovery_path_exactly": true
+  },
+  "best_diagnostic_point": {
+    "name": "bsq250__breadth25",
+    "trailing_1y_cagr": 1.069816620292575,
+    "full_cagr": 0.37324616604686534,
+    "eligible_for_promotion": false
+  },
+  "control": {
+    "trailing_1y_cagr": 1.0510082013109483,
+    "full_cagr": 0.4093476771616662,
+    "trailing_1y_200bps_cagr": 0.9320198735415857
+  },
+  "confirmation": {
+    "jointly_improving_paths": 2,
+    "tested_paths": 20,
+    "plateau_joint_improvement_share": 0.1,
+    "required_plateau_share": 0.5,
+    "completed_rolling_26w_windows": 163,
+    "rolling_26w_outperformance_share": 0.558282208588957,
+    "bootstrap_4w_probability_positive": 0.6802,
+    "bootstrap_13w_probability_positive": 0.7144,
+    "worst_leave_one_out_company": "10X GENOMICS, INC.",
+    "worst_leave_one_out_trailing_1y_cagr": 1.0571483137691895,
+    "single_issuer_improvement_share": 0.5225224300167088,
+    "all_passed": false
+  },
+  "decision": "Reject the multi-signal blend as a strategy replacement. Only the exact 20%/breadth-20 primary clears the headline gates; the only other jointly improving path adds just 0.05 percentage points of recent CAGR. The fine grid therefore confirms an isolated parameter ridge, while bootstrap, two-week delay, and issuer-influence failures remain unchanged.",
+  "research_only": true,
+  "approved_for_live_trading": false,
+  "execution_enabled": false,
+  "strategy_replacement_authorized": false
+}

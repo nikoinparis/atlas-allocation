@@ -1,0 +1,53 @@
+{
+  "experiment": "sec_breadth_dispersion_allocation_controller_v1",
+  "purpose": "Use strictly lagged issuer breadth and cross-sectional dispersion to scale the already-active frozen cash-conversion sleeve without changing its holdings.",
+  "breadth": 20,
+  "signal_horizons_weeks": [13, 26],
+  "calibration_windows_weeks": [26, 52],
+  "state_quantiles": [0.4, 0.6],
+  "state_modes": [
+    "breadth_high",
+    "dispersion_high",
+    "breadth_and_dispersion_high",
+    "breadth_high_dispersion_low",
+    "breadth_or_dispersion_high"
+  ],
+  "active_weight_pairs": [
+    [0.0, 0.5],
+    [0.25, 0.65],
+    [0.25, 0.8],
+    [0.5, 0.65],
+    [0.5, 0.8]
+  ],
+  "overlay_lookback_weeks": 11,
+  "cost_bps": [50, 100, 200],
+  "scenarios": ["base", "adverse"],
+  "promotion_gates": {
+    "minimum_recent_cagr_improvement": 0.01,
+    "minimum_full_cagr_improvement": 0.0,
+    "minimum_completed_rolling_outperformance_share": 0.5,
+    "minimum_neighborhood_joint_improvement_share": 0.5,
+    "minimum_bootstrap_probability_positive": 0.95,
+    "maximum_single_issuer_improvement_share": 0.5,
+    "maximum_peak_total_portfolio_stock_weight": 0.08,
+    "maximum_controller_annual_one_way_turnover": 8.0
+  },
+  "falsification": {
+    "controller_signal_delays_weeks": [1, 2],
+    "overlay_delays_weeks": [1, 2],
+    "rolling_comparison_weeks": 26,
+    "bootstrap_blocks_weeks": [4, 13],
+    "bootstrap_draws": 5000,
+    "bootstrap_seed": 20260821
+  },
+  "pinned_runtime": {
+    "container_image": "localhost/po2-yfinance:1.5.2-v1",
+    "container_image_id": "c84c194bef2052b0b4e4997d5780eb8ccf48d0ed2a3ec35bcafb726f691e0c5c",
+    "python": "3.12.13",
+    "numpy": "2.5.1",
+    "pandas": "3.0.5"
+  },
+  "research_only": true,
+  "strategy_promotion_authorized": false,
+  "live_trading_enabled": false
+}

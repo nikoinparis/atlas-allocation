@@ -1,0 +1,51 @@
+{
+  "experiment": "indonesia_multihorizon_momentum_challenger_v1",
+  "status": "predeclared_research_only_stock_selection_challenger",
+  "notice": "RESEARCH ONLY — Indonesian stock-selection challenger; not an investment recommendation and not approved for execution.",
+  "baseline_strategy": "config/indonesia_equity_research_v1.json",
+  "data_protocol": "config/indonesia_survival_diagnostic_extended_v2.json",
+  "candidate": {
+    "universe": "point_in_time_IDX80",
+    "direction": "long_only",
+    "rebalance": "monthly_first_trading_session_close",
+    "selection_count": 12,
+    "minimum_eligible_names": 10,
+    "score": {
+      "momentum_52w_skip_4w_weight": 0.50,
+      "momentum_26w_skip_4w_weight": 0.30,
+      "low_volatility_26w_weight": 0.20
+    },
+    "weighting": "inverse_26w_volatility",
+    "maximum_name_weight": 0.10,
+    "minimum_median_daily_value_idr": 5000000000,
+    "maximum_price_staleness_calendar_days": 10,
+    "residual_allocation": "CASH_IDR",
+    "leverage": false,
+    "shorting": false
+  },
+  "evaluation": {
+    "start_date": "2019-02-01",
+    "end_date": "latest_frozen_price",
+    "cost_bps_one_way": [25, 50, 100, 150],
+    "base_cost_bps_one_way": 50,
+    "baseline_comparison": "original_70pct_52w_momentum_30pct_low_volatility"
+  },
+  "challenger_gates": {
+    "minimum_monthly_decisions": 60,
+    "cagr_above_baseline_at_base_cost": true,
+    "sharpe_above_baseline_at_base_cost": true,
+    "maximum_drawdown_no_more_than_5pp_worse_than_baseline": true,
+    "positive_cagr_at_150bps": true,
+    "no_single_calendar_year_dependency": true,
+    "complete_inactive_security_and_delisting_history": true,
+    "validated_local_cost_model": true,
+    "licensed_total_return_benchmarks": true,
+    "untouched_forward_observations": 52
+  },
+  "policy": [
+    "This is one fixed stock-selection hypothesis, not a searched grid.",
+    "Do not alter factor weights, lookbacks, holdings count, weighting, costs, or gates after observing this run; create a new version instead.",
+    "The baseline and challenger must use identical data, membership, inactive-security, portfolio, and cost inputs.",
+    "Historical results cannot authorize promotion, recommendation, commercialization, or execution."
+  ]
+}

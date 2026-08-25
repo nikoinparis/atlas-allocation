@@ -1,0 +1,22 @@
+{
+  "experiment": "sec_form4_insider_cluster_search_v1",
+  "start_date": "2023-01-01",
+  "event_windows_days": [7, 14, 30],
+  "families": [
+    "all_open_market",
+    "cluster_2plus",
+    "executive_or_cluster",
+    "discretionary",
+    "discretionary_cluster_2plus"
+  ],
+  "price_confirmation": ["none", "positive_4w"],
+  "breadths": [5, 10, 20, 30],
+  "market_cap_floors": [50000000, 250000000],
+  "sector_caps": [0.50, 0.70],
+  "overlay_allocations": [0.10, 0.20, 0.30, 0.40],
+  "cost_bps": [50, 100, 200],
+  "control_recent_cagr": 1.0510082013109465,
+  "control_full_cagr": 0.4093476771616644,
+  "strategy_promotion_authorized": false,
+  "live_trading_enabled": false
+}

@@ -1,0 +1,45 @@
+{
+  "program": "sec_fragility_exposure_control_v1",
+  "classification": "above-300-percent fragile exposure diagnostic; historical gates failed",
+  "status": "saved research diagnostics; not promoted",
+  "candidate_count": 22,
+  "source_candidate": "alpha30_1.35x",
+  "saved_diagnostics": [
+    {
+      "name": "fixed_1.50x_8pct",
+      "role": "simplest above-200-percent path",
+      "recent_cagr": 2.17109334,
+      "recent_sharpe": 3.18310681,
+      "recent_max_drawdown": -0.16703690
+    },
+    {
+      "name": "vol35_cap1.75_8pct",
+      "role": "best recent return-drawdown balance",
+      "recent_cagr": 2.20599503,
+      "recent_sharpe": 3.21261932,
+      "recent_max_drawdown": -0.15447006
+    },
+    {
+      "name": "fixed_2.00x_8pct",
+      "role": "fragile return ceiling",
+      "recent_cagr": 3.3782524894798263,
+      "recent_sharpe": 3.1317504856896714,
+      "recent_max_drawdown": -0.22015926713777434,
+      "two_year_cagr": 1.4126794786837453,
+      "full_max_drawdown": -0.37158102501607404,
+      "severe_200bps_recent_cagr": 2.423864727947779,
+      "worst_delay_recent_cagr": 2.791638671410571,
+      "worst_five_issuer_recent_cagr": 2.8483465703629767,
+      "familywise_bootstrap_probability": 0.8327999999999989,
+      "deflated_sharpe_probability": 0.8590224382927849,
+      "probability_of_backtest_overfitting": 0.37142857142857144
+    }
+  ],
+  "decision": "Retain only as post-selection exposure diagnostics. The historical path can exceed 300% at 2.00x, but no rule passed multiplicity, deflated-Sharpe, and overfitting gates.",
+  "evidence": "evidence/sec_fragility_exposure_control_v1/final_result.json",
+  "research_only": true,
+  "strategy_replacement_authorized": false,
+  "approved_for_live_trading": false,
+  "execution_enabled": false
+}
+

@@ -1,0 +1,60 @@
+{
+  "experiment_id": "sec-cross-strategy-residual-allocator-v1",
+  "description": "Predeclared no-financing allocator between the cash-only residual incumbent and a reconstructed 1.00x sector sleeve.",
+  "base_strategy_id": "sec-residual-controlled-1.25x-5pct-v1",
+  "sleeve_strategy_id": "sec-sector-ensemble-fragile-1.35x-v1",
+  "base_source_reconstruction": {
+    "display_gross": 1.25,
+    "annual_financing_rate": 0.05,
+    "periods_per_year": 52
+  },
+  "sleeve_source_reconstruction": {
+    "display_gross": 1.35,
+    "annual_financing_rate": 0.06,
+    "periods_per_year": 252,
+    "initial_exposure_change_cost_bps": 25.0
+  },
+  "candidate_caps": [0.05, 0.10, 0.15, 0.20],
+  "candidate_rules": ["static", "gated", "covariance_scaled"],
+  "signal": {
+    "beta_correlation_lookback_weeks": 52,
+    "minimum_history_weeks": 26,
+    "short_residual_momentum_weeks": 13,
+    "long_residual_momentum_weeks": 26,
+    "maximum_correlation": 0.60,
+    "maximum_residual_information_ratio": 2.0
+  },
+  "selection": {
+    "locked_replay_weeks": 52,
+    "purge_weeks": 4,
+    "minimum_training_weeks": 52,
+    "validation_weeks": 26,
+    "step_weeks": 26,
+    "minimum_validation_max_drawdown": -0.25,
+    "objective_sharpe_weight": 0.25,
+    "objective_drawdown_penalty": 0.50
+  },
+  "outer_reallocation_cost_bps": 50.0,
+  "stress": {
+    "double_cost_bps": 100.0,
+    "delay_weeks": [1, 2],
+    "positive_increment_retention": 0.75,
+    "sleeve_shock": -0.20,
+    "bootstrap_simulations": 10000,
+    "bootstrap_blocks": [4, 13],
+    "bootstrap_seed": 3224,
+    "familywise_alpha": 0.05
+  },
+  "promotion_gates": {
+    "minimum_locked_cagr_improvement": 0.05,
+    "minimum_locked_sharpe_delta": 0.0,
+    "maximum_drawdown_deterioration": 0.02,
+    "require_double_cost_improvement": true,
+    "require_delay_improvement": true,
+    "require_familywise_bootstrap": true,
+    "require_source_research_gate": true
+  },
+  "source_research_gate_passed": false,
+  "source_research_gate_reason": "The sector sleeve remains a retrospective, fragile diagnostic and has not passed forward evidence or broad-source falsification.",
+  "live_trading_enabled": false
+}

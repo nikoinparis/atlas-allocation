@@ -1,0 +1,50 @@
+{
+  "program": "sec_earnings_negative_veto_v1",
+  "classification": "rejected - sparse quarterly earnings veto does not improve recent return and fails robustness tests",
+  "status": "not promoted",
+  "source": "sec_earnings_8k_acquisition_v1",
+  "structure": {
+    "primary_fundamental": "cash conversion",
+    "event_feature": "most recent strongly negative sector-relative post-earnings reaction",
+    "application": "veto only at existing quarterly rebalances",
+    "event_windows_weeks": [4, 8, 13],
+    "negative_sector_percentiles": [0.1, 0.2, 0.3],
+    "maximum_vetoes_per_rebalance": [2, 4],
+    "tested_candidates": 18,
+    "unchanged_holding_sets_not_rebalanced": true
+  },
+  "selected_candidate": {
+    "name": "veto4__q30__max2",
+    "actual_vetoes": 5,
+    "vetoed_issuers": 3,
+    "trailing_1y_cagr": 1.051008201310947,
+    "trailing_1y_sharpe": 2.6918745642719997,
+    "trailing_1y_drawdown": -0.10076752452473348,
+    "full_cagr": 0.4104645147358126,
+    "trailing_1y_200bps_cagr": 0.9320198735415866,
+    "sleeve_annual_one_way_turnover": 1.6980558945139181
+  },
+  "control": {
+    "trailing_1y_cagr": 1.0510082013109483,
+    "full_cagr": 0.4093476771616662,
+    "trailing_1y_200bps_cagr": 0.9320198735415857
+  },
+  "falsification": {
+    "event_one_week_delay_cagr": 1.0581724224424565,
+    "event_two_week_delay_cagr": 0.9872759282442878,
+    "overlay_one_week_delay_cagr": 0.9813038878434379,
+    "overlay_two_week_delay_cagr": 1.0271888492770982,
+    "rolling_26w_outperformance_share": 0.49079754601226994,
+    "neighborhood_joint_improvement_share": 0.0,
+    "bootstrap_4w_probability_positive": 0.1192,
+    "bootstrap_13w_probability_positive": 0.142,
+    "worst_leave_one_out_company": "GITLAB INC.",
+    "worst_leave_one_out_trailing_1y_cagr": 0.9644417212646514,
+    "all_passed": false
+  },
+  "decision": "Reject and close this parameter family. Five quarterly substitutions added 0.11 points to full CAGR but no recent or severe-cost improvement, while delay, rolling, neighborhood, bootstrap, and leave-one-issuer-out evidence failed. Preserve the earnings data for a structurally different future hypothesis.",
+  "research_only": true,
+  "approved_for_live_trading": false,
+  "execution_enabled": false,
+  "strategy_replacement_authorized": false
+}

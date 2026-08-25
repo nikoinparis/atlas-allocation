@@ -1,0 +1,56 @@
+{
+  "program": "sec_cash_momentum_rank_v1",
+  "classification": "rejected - every issuer-level momentum challenger underperforms the frozen control",
+  "status": "not promoted",
+  "predecessor": "sec_multisignal_plateau_confirmation_v1",
+  "structure": {
+    "primary_fundamental": "cash conversion",
+    "confirmation_feature": "strictly lagged sector-relative company momentum",
+    "lookbacks_weeks": [26, 39, 52],
+    "momentum_weights": [0.0, 0.1, 0.15, 0.2, 0.25],
+    "breadths": [20, 25, 30],
+    "rank_buffers": [0, 5],
+    "tested_candidates": 90,
+    "unchanged_holding_sets_not_rebalanced": true
+  },
+  "selected_challenger": {
+    "name": "mom52__w15__b30__buf5",
+    "trailing_1y_cagr": 1.00092532711595,
+    "trailing_1y_sharpe": 2.5925533468187627,
+    "trailing_1y_drawdown": -0.11186695265845437,
+    "full_cagr": 0.3906328968670496,
+    "trailing_1y_200bps_cagr": 0.882861671510957,
+    "sleeve_annual_one_way_turnover": 2.558303725938031
+  },
+  "control": {
+    "trailing_1y_cagr": 1.0510082013109483,
+    "full_cagr": 0.4093476771616662,
+    "trailing_1y_200bps_cagr": 0.9320198735415857
+  },
+  "breadth30_buffer5_zero_momentum_match": {
+    "trailing_1y_cagr": 0.9606445186499308,
+    "full_cagr": 0.3895194785526739,
+    "momentum_incremental_trailing_1y_cagr": 0.04028080846601911,
+    "momentum_incremental_full_cagr": 0.0011134183143757248
+  },
+  "falsification": {
+    "challengers_beating_control_recently": 0,
+    "challengers_beating_control_recent_and_full": 0,
+    "rolling_26w_outperformance_share": 0.48466257668711654,
+    "neighborhood_joint_improvement_share": 0.0,
+    "bootstrap_4w_probability_positive": 0.1202,
+    "bootstrap_13w_probability_positive": 0.1778,
+    "momentum_one_week_delay_cagr": 0.9988455116017885,
+    "momentum_two_week_delay_cagr": 0.9968903370419884,
+    "overlay_one_week_delay_cagr": 0.9464105226069428,
+    "overlay_two_week_delay_cagr": 0.9432652650715363,
+    "worst_leave_one_out_company": "QUALYS, INC.",
+    "worst_leave_one_out_trailing_1y_cagr": 0.9379744239115855,
+    "all_passed": false
+  },
+  "decision": "Close this branch without a confirmation sweep. Although momentum improves its mechanically matched breadth-30 buffered construction, no positive-momentum candidate beats the actual frozen breadth-20 leader recently, over the full period, or at severe costs. This is an economic rejection, not a turnover or causality failure.",
+  "research_only": true,
+  "approved_for_live_trading": false,
+  "execution_enabled": false,
+  "strategy_replacement_authorized": false
+}

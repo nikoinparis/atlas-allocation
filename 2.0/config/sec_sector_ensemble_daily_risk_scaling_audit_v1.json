@@ -1,0 +1,23 @@
+{
+  "experiment": "sec_sector_ensemble_daily_risk_scaling_audit_v1",
+  "purpose": "Reconstruct the frozen sector-aware ensemble on exact daily adjusted closes and audit the preselected fixed 1.25x and 1.35x return amplifiers.",
+  "stock_targets": "evidence/sec_sector_aware_signal_ensemble_v1/selected_stock_target_weights.csv",
+  "strategy_targets": "evidence/sec_sector_aware_signal_ensemble_v1/selected_strategy_target_weights.csv",
+  "daily_leader_path": "evidence/sec_cash_conversion_breadth20_daily_execution_audit_v1/daily_leader_path_primary.csv",
+  "weekly_reference": "evidence/sec_sector_aware_signal_ensemble_v1/selected_path__50bps.csv",
+  "fixed_exposures": [1.0, 1.25, 1.35],
+  "execution_delays_sessions": [0, 1, 2],
+  "trading_cost_bps": 50,
+  "financing_rate_annual": 0.06,
+  "outer_exposure_change_cost_bps": 25,
+  "gates": {
+    "minimum_levered_daily_recent_cagr": 1.50,
+    "minimum_levered_daily_recent_sharpe": 2.50,
+    "minimum_levered_daily_drawdown": -0.30,
+    "maximum_weekly_reconciliation_difference": 0.03
+  },
+  "underlying_strategy_falsification_passed": false,
+  "research_only": true,
+  "strategy_promotion_authorized": false,
+  "live_trading_enabled": false
+}

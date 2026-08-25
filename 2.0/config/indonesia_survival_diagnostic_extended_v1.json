@@ -1,0 +1,43 @@
+{
+  "experiment": "indonesia_survival_diagnostic_extended_v1",
+  "status": "predeclared_research_only_data_gated",
+  "notice": "RESEARCH ONLY — reconstructed-membership diagnostic, not an investment recommendation or authorized performance claim.",
+  "strategy_config": "config/indonesia_equity_research_v1.json",
+  "evaluation": {
+    "start_date": "2019-02-01",
+    "end_date": "latest_frozen_price",
+    "rebalance": "monthly_first_trading_session_close",
+    "signal_information": "observations strictly before each decision session",
+    "return_application": "weights apply after decision close beginning with the next trading session",
+    "benchmarks": ["IHSG_price_index", "LQ45_price_index", "equal_weight_eligible_IDX80"],
+    "cost_bps_one_way": [25, 50, 100, 150],
+    "base_cost_bps_one_way": 50
+  },
+  "survival_gates": {
+    "minimum_monthly_decisions": 60,
+    "positive_net_cagr_at_base_cost": true,
+    "positive_net_cagr_at_150bps": true,
+    "minimum_net_sharpe_at_base_cost": 0.30,
+    "maximum_drawdown_floor": -0.40,
+    "no_single_calendar_year_dependency": true,
+    "complete_point_in_time_membership_from_2019": true,
+    "complete_delisting_and_inactive_security_history": true,
+    "validated_local_cost_model": true,
+    "licensed_price_and_benchmark_total_return_data": true
+  },
+  "better_than_indonesia_gates": {
+    "net_cagr_above_ihsg": true,
+    "net_cagr_above_lq45": true,
+    "net_cagr_above_equal_weight_eligible": true,
+    "net_sharpe_above_ihsg": true,
+    "net_sharpe_above_lq45": true,
+    "net_sharpe_above_equal_weight_eligible": true
+  },
+  "policy": [
+    "Do not change gates after observing results; create a new version instead.",
+    "A sample shorter than 60 monthly decisions cannot receive a survival verdict.",
+    "Vendor-revised historical prices are diagnostic inputs, not untouched evidence.",
+    "Reconstructed membership, missing inactive-security prices, and price-only benchmarks prevent promotion.",
+    "Do not promote, recommend, execute, or commercialize from this diagnostic."
+  ]
+}

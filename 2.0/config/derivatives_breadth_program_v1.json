@@ -1,0 +1,41 @@
+{
+  "program": "derivatives_breadth_program_v1",
+  "status": "implementation_complete_data_blocked",
+  "created_at": "2026-08-24",
+  "execution_enabled": false,
+  "futures_trend": {
+    "performance_status": "not_run",
+    "blockers": [
+      "point_in_time_contract_chain_history",
+      "settlement_and_roll_calendar_vintages",
+      "historical_bid_ask_commission_and_exchange_fees",
+      "historical_initial_and_maintenance_margin",
+      "survivorship_complete_instrument_universe"
+    ],
+    "required_regimes": ["2008", "2020", "non_bull_asset_specific"],
+    "leave_one_instrument_out_required": true
+  },
+  "short_index_volatility": {
+    "performance_status": "not_run",
+    "blockers": [
+      "point_in_time_full_option_chain_quotes",
+      "historical_bid_ask_and_trade_execution",
+      "volatility_surface_vintages",
+      "corporate_action_and_dividend_inputs",
+      "broker_specific_margin_and_assignment_history"
+    ],
+    "required_tail_scenarios": ["2018-02", "2020-03"],
+    "position_sizing_basis": "predeclared_maximum_weekly_loss_fraction",
+    "naked_short_option_live_orders_allowed": false
+  },
+  "book_verification": {
+    "source": "Hull, Options Futures and Other Derivatives, 11th edition",
+    "sections_checked": ["10.6", "10.7", "10.8", "19.6", "19.8", "19.10", "19.11", "20.5"],
+    "implications": [
+      "bid_ask_exercise_and_assignment_costs_are_required",
+      "short_option_margin_and_automatic_exercise_mechanics_are_required",
+      "gamma_vega_and_scenario_risk_are_required",
+      "single_constant_volatility_is_not_an_adequate_surface_model"
+    ]
+  }
+}

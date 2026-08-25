@@ -1,0 +1,64 @@
+{
+  "program": "sec_persistent_earnings_acceleration_rank_v1",
+  "classification": "rejected - persistent earnings direction and fundamental acceleration underperform the frozen leader",
+  "status": "not promoted",
+  "sources": [
+    "sec_earnings_8k_acquisition_v1",
+    "sec_independent_fundamental_discovery_v1"
+  ],
+  "structure": {
+    "primary_factor": "cash conversion",
+    "confirmation_features": [
+      "two-or-three-event persistent sector-relative earnings direction",
+      "point-in-time revenue, operating-income, and operating-cash-flow acceleration"
+    ],
+    "application": "quarterly issuer ranking only",
+    "fundamental_age_weeks": [26, 52],
+    "earnings_event_counts": [2, 3],
+    "acceleration_weights": [0.0, 0.1, 0.2, 0.3],
+    "earnings_weights": [0.0, 0.1, 0.2, 0.3],
+    "rank_buffers": [0, 5],
+    "tested_candidates": 120,
+    "extra_weekly_stock_trading": false
+  },
+  "selected_combined_candidate": {
+    "name": "age26__persist2__a30__e10__buf5",
+    "trailing_1y_cagr": 1.0243357063047878,
+    "trailing_1y_sharpe": 2.6795410661453993,
+    "trailing_1y_drawdown": -0.09135993394414521,
+    "full_cagr": 0.3524345958824686,
+    "trailing_1y_200bps_cagr": 0.9070064375987101,
+    "sleeve_annual_one_way_turnover": 2.39937223331191,
+    "acceleration_coverage": 0.8227884754596786,
+    "earnings_coverage": 0.8495728970609526
+  },
+  "control": {
+    "trailing_1y_cagr": 1.0510082013109483,
+    "full_cagr": 0.4093476771616662,
+    "trailing_1y_200bps_cagr": 0.9320198735415857
+  },
+  "surface": {
+    "candidates_beating_control_recently": 0,
+    "candidates_beating_control_full_period": 2,
+    "candidates_beating_control_both": 0,
+    "surface_gate_passers": 0
+  },
+  "falsification": {
+    "feature_one_week_delay_cagr": 1.0311460026480304,
+    "feature_two_week_delay_cagr": 1.0311460026480312,
+    "overlay_one_week_delay_cagr": 0.9513833618734766,
+    "overlay_two_week_delay_cagr": 0.9905117468155478,
+    "rolling_26w_outperformance_share": 0.05521472392638037,
+    "neighborhood_joint_improvement_share": 0.0,
+    "bootstrap_4w_probability_positive": 0.2126,
+    "bootstrap_13w_probability_positive": 0.1188,
+    "worst_leave_one_out_company": "QUALYS, INC.",
+    "worst_leave_one_out_trailing_1y_cagr": 0.9313184942566033,
+    "all_passed": false
+  },
+  "decision": "Reject and close this construction. No tested path beat the frozen leader recently, no path improved both recent and full CAGR, and the selected combined path failed every economic robustness gate. Preserve the timestamp-safe feature panels for a genuinely different hypothesis, not further weight tuning.",
+  "research_only": true,
+  "approved_for_live_trading": false,
+  "execution_enabled": false,
+  "strategy_replacement_authorized": false
+}

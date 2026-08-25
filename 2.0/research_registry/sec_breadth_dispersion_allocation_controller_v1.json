@@ -1,0 +1,66 @@
+{
+  "program": "sec_breadth_dispersion_allocation_controller_v1",
+  "classification": "return-oriented research challenger - strong headline improvement but fails temporal breadth, bootstrap, overlay-delay, and issuer-removal tests",
+  "status": "saved challenger; not promoted",
+  "predecessor": "sec_cash_conversion_breadth20_candidate_v1",
+  "structure": {
+    "stock_holdings": "unchanged frozen breadth-20 cash-conversion holdings",
+    "base_activation": "unchanged 11-week cash-sleeve versus leader rule",
+    "controller_inputs": [
+      "strictly lagged positive-return breadth across 576 issuer histories",
+      "strictly lagged winsorized cross-sectional return dispersion"
+    ],
+    "signal_horizons_weeks": [13, 26],
+    "calibration_windows_weeks": [26, 52],
+    "state_quantiles": [0.4, 0.6],
+    "state_modes": 5,
+    "active_weight_pairs": 5,
+    "tested_candidates": 200,
+    "headline_surface_passers": 50,
+    "preliminary_robustness_passers": 0
+  },
+  "selected_challenger": {
+    "name": "h26__cal26__q40__breadth_high__w50_80",
+    "rule": "when the frozen base rule is active, hold 80% cash-conversion sleeve if lagged 26-week issuer breadth exceeds its prior 26-week 40th percentile; otherwise retain the incumbent 50% active weight",
+    "trailing_1y_cagr": 1.1293348809519004,
+    "trailing_1y_sharpe": 2.8063277222372536,
+    "trailing_1y_drawdown": -0.09130115412557338,
+    "full_cagr": 0.4200790331177189,
+    "trailing_1y_200bps_cagr": 1.0000080831418994,
+    "controller_annual_one_way_turnover": 4.093617021276595,
+    "peak_total_stock_weight": 0.07378789503220702,
+    "high_state_share_when_active": 0.49019607843137253,
+    "state_transitions": 13
+  },
+  "control": {
+    "trailing_1y_cagr": 1.0510082013109483,
+    "trailing_1y_sharpe": 2.691874564272,
+    "trailing_1y_drawdown": -0.10076752452473337,
+    "full_cagr": 0.4093476771616662,
+    "trailing_1y_200bps_cagr": 0.9320198735415857
+  },
+  "falsification": {
+    "controller_one_week_delay_cagr": 1.129334880951899,
+    "controller_two_week_delay_cagr": 1.129334880951899,
+    "overlay_one_week_delay_cagr": 1.0157224126704927,
+    "overlay_two_week_delay_cagr": 1.0913590251045484,
+    "rolling_26w_outperformance_share": 0.1901840490797546,
+    "neighborhood_joint_improvement_share": 0.7,
+    "bootstrap_4w_probability_positive": 0.884,
+    "bootstrap_13w_probability_positive": 0.7966,
+    "worst_leave_one_out_company": "GITLAB INC.",
+    "worst_leave_one_out_trailing_1y_cagr": 0.9885828033168238,
+    "single_issuer_improvement_share": 1.7969876711266362,
+    "all_passed": false
+  },
+  "numerical_policy": {
+    "economic_tie_tolerance": 1e-12,
+    "reason": "Treat CSV round-trip and machine-precision return differences as ties in rolling and bootstrap comparisons.",
+    "persisted_and_in_memory_statistics_match": true
+  },
+  "decision": "Retain as the strongest return-oriented research challenger, but do not replace the frozen leader. The recent return, Sharpe, drawdown, full CAGR, and severe-cost results improve materially, yet the improvement occurs in too few rolling windows, does not reach 95% bootstrap confidence, fails the one-week outer-overlay delay, and disappears when GitLab is removed.",
+  "research_only": true,
+  "approved_for_live_trading": false,
+  "execution_enabled": false,
+  "strategy_replacement_authorized": false
+}

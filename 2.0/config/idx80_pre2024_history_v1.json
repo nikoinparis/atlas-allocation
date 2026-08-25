@@ -1,0 +1,68 @@
+{
+  "dataset": "idx80_pre2024_history_v1",
+  "research_only": true,
+  "method": "Launch membership plus announced major-review and fast-entry changes; minor reviews are weight-only in this historical methodology.",
+  "launch": {
+    "effective_from": "2019-02-01",
+    "effective_to": "2019-07-31",
+    "published_date": "2019-01-21",
+    "source_id": "kontan:idx80-launch-2019",
+    "source_url": "https://investasi.kontan.co.id/news/indeks-idx80-resmi-meluncur-berikut-saham-saham-penghuninya",
+    "evidence_tier": "contemporaneous_report_of_official_announcement",
+    "tickers": "AALI ACES ADHI ADRO AKRA ANTM ASII ASRI BBCA BBNI BBRI BBTN BDMN BEST BJBR BJTM BKSL BMRI BNGA BNLI BRPT BSDE CPIN CTRA ELSA ERAA ESSA EXCL GGRM GJTL HMSP HOKI HRUM ICBP INCO INDF INDY INKP INTP ITMG JPFA JSMR KLBF LINK LPPF LSIP MAIN MAPI MEDC MIKA MNCN MYOR PGAS PNBN PPRO PTBA PTRO PTPP PWON RALS SCMA SMGR SMRA SMSM SRIL SSIA TBIG TBLA TINS TKIM TLKM TOWR TPIA UNTR UNVR WIKA WOOD WSBP WSKT WTON"
+  },
+  "transitions": [
+    {
+      "effective_from": "2019-08-01", "effective_to": "2020-01-31", "published_date": "2019-07-25",
+      "source_id": "idx:Peng-00413/BEI.POP/07-2019", "source_url": "https://smsm.co.id/uploads/attachment/news/Indexs%20IDX80%20Peng-00413_BEI.POP_07-2019.pdf", "evidence_tier": "official_document_company_mirror",
+      "add": "BMTR BTPS LPKR PNLF SSMS TOPS", "remove": "BEST BJTM GJTL LINK PTRO TBLA"
+    },
+    {
+      "effective_from": "2020-02-03", "effective_to": "2020-07-31", "published_date": "2020-01-27",
+      "source_id": "idx:Peng-00016/BEI.POP/01-2020", "source_url": "https://smsm.co.id/uploads/attachment/news/IDX80%20Peng-00016_BEI.POP_01-2020.pdf", "evidence_tier": "official_document_company_mirror",
+      "add": "DMAS ISAT KBLI MDKA MTDL SIDO WEGE", "remove": "ADHI ASRI BDMN BMTR PPRO SSMS TOPS"
+    },
+    {
+      "effective_from": "2020-08-03", "effective_to": "2021-01-31", "published_date": "2020-07-24",
+      "source_id": "idx:Peng-00226/BEI.POP/07-2020", "source_url": "https://smsm.co.id/uploads/attachment/news/Peng-00226-IDX80---Jul-2020-Mayor.pdf", "evidence_tier": "official_document_company_mirror",
+      "add": "APLN BDMN BJTM BMTR BRIS BULL CLEO KAEF LINK SMBR", "remove": "BKSL BNGA BRPT ESSA HRUM INDY KBLI LPKR LPPF WSKT"
+    },
+    {
+      "effective_from": "2021-02-01", "effective_to": "2021-08-01", "published_date": "2021-01-25",
+      "source_id": "secondary:astronacci-idx80-2021-02", "source_url": "https://astronacci.com/blog/read/sudah-kenal-dengan-idx80-dalam-bursa-efek-indonesia", "evidence_tier": "secondary_full_constituent_list",
+      "add": "BEST DOID IPTV LPKR LPPF PPRE PSAB SSMS WIIM WSKT", "remove": "APLN BMTR BNLI CLEO ISAT MAIN MTDL PNBN SMSM WTON"
+    },
+    {
+      "effective_from": "2021-08-02", "effective_to": "2021-09-28", "published_date": "2021-07-26",
+      "source_id": "idx:Peng-00210/BEI.POP/07-2021", "source_url": "https://pdfcoffee.com/peng-00210-idx30-lq45-idx80-26-jul-2021-pdf-free.html", "evidence_tier": "official_document_mirror",
+      "add": "ADHI AMRT ASRI ASSA BFIN BMTR BRPT HRUM ISAT", "remove": "BDMN BULL PNLF PPRE PSAB SRIL SSMS WEGE WSBP"
+    },
+    {
+      "effective_from": "2021-09-29", "effective_to": "2022-02-01", "published_date": "2021-09-22",
+      "source_id": "idx:Peng-00289/BEI.POP/09-2021", "source_url": "https://id.scribd.com/document/544941450/3-Lamp-Peng-00289-Bei-Pop-Idx80-Sep-2021-Buka-1", "evidence_tier": "official_document_mirror",
+      "add": "BUKA", "remove": "LINK"
+    },
+    {
+      "effective_from": "2022-02-02", "effective_to": "2022-07-31", "published_date": "2022-01-25",
+      "source_id": "idx:Peng-00023/BEI.POP/01-2022", "source_url": "https://id.scribd.com/document/565388555/Peng-00023-BEI-pop-01-2022-Review-Indeks-Jan-2022", "evidence_tier": "official_document_mirror_cross_checked_full_list",
+      "cross_check_url": "https://www.kuhuni.com/2022/01/daftar-saham-idx80.html",
+      "add": "AGII DGNS DSNG EMTK ESSA HEAL SRTG TAPG WMUU", "remove": "ADHI BEST BRIS IPTV RALS SMBR SSIA WIIM WOOD"
+    },
+    {
+      "effective_from": "2022-08-01", "effective_to": "2023-01-31", "published_date": "2022-07-25",
+      "source_id": "idx:Peng-00184/BEI.POP/07-2022", "source_url": "https://id.scribd.com/document/648852069/Peng-00184-Idx30-Lq45-Idx80-k100-Infobank15-Bisnis-27-Mnc36-Sminfra18-25-Juli-2022", "evidence_tier": "official_document_mirror_cross_checked_full_list",
+      "cross_check_url": "https://investasi.kontan.co.id/news/11-saham-jadi-penghuni-baru-idx80-periode-agustus-2022-januari-2023",
+      "add": "ADHI ARTO AVIA BACA BRIS BRMS DMMX ENRG INDY MTEL SMDR", "remove": "ASRI BJBR BJTM BMTR DGNS DMAS ELSA KAEF LPKR MYOR WMUU"
+    },
+    {
+      "effective_from": "2023-02-01", "effective_to": "2023-07-31", "published_date": "2023-01-25",
+      "source_id": "idx:Peng-00018/BEI.POP/01-2023", "source_url": "https://www.trenasia.id/read/bei-kocok-ulang-indeks-idx-30-lq-45-hingga-kompas-100-cek-daftarnya", "evidence_tier": "contemporaneous_report_of_official_announcement",
+      "add": "ADMR BMTR ELSA MPMX MYOR PNLF RMKE", "remove": "ADHI AGII BACA BTPS DMMX DSNG LPPF"
+    },
+    {
+      "effective_from": "2023-08-01", "effective_to": "2024-01-31", "published_date": "2023-07-25",
+      "source_id": "idx:Peng-00190/BEI.POP/07-2023", "source_url": "https://id.scribd.com/document/705110390/Indeks-Peng-00190", "evidence_tier": "official_document_mirror_full_list",
+      "add": "BTPS JKON OMED PNBN", "remove": "AALI LSIP TAPG WSKT"
+    }
+  ]
+}

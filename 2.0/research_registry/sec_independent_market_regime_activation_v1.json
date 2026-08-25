@@ -1,0 +1,57 @@
+{
+  "program": "sec_independent_market_regime_activation_v1",
+  "classification": "independent market-regime activation and return-spike discovery",
+  "status": "return spike saved; no candidate promoted",
+  "predecessor": "sec_breadth_dispersion_allocation_controller_v1",
+  "inputs": {
+    "strictly_lagged": true,
+    "signals": [
+      "SPY trend",
+      "SPY realized volatility versus prior median",
+      "HYG versus LQD credit strength",
+      "VIX contango",
+      "cross-sectional issuer breadth"
+    ],
+    "regime_families": ["fast", "balanced", "slow"],
+    "activation_modes": ["market_only", "confirm", "bridge1", "bridge2", "union"],
+    "tested_candidates": 75,
+    "eligible_candidates": 0
+  },
+  "robustness_selected_diagnostic": {
+    "name": "slow__score3__confirm",
+    "trailing_1y_cagr": 1.1293348809519008,
+    "trailing_1y_sharpe": 2.806327722237254,
+    "trailing_1y_drawdown": -0.09130115412557338,
+    "full_cagr": 0.40817550238441,
+    "trailing_1y_200bps_cagr": 1.0000080831419003,
+    "one_week_delay_cagr": 1.0157224126704936,
+    "two_week_delay_cagr": 1.0913590251045475,
+    "worst_leave_one_out_company": "GITLAB INC.",
+    "worst_leave_one_out_cagr": 0.9885828033168242
+  },
+  "highest_return_diagnostic": {
+    "name": "fast__score5__union",
+    "rule": "use the frozen activation or activate when all five fast independent regime votes are risk-on",
+    "trailing_1y_cagr": 1.193304436309016,
+    "trailing_1y_sharpe": 3.0323364981509897,
+    "trailing_1y_drawdown": -0.08708758375337322,
+    "full_cagr": 0.3962555175783007,
+    "trailing_1y_200bps_cagr": 0.8656925321954299,
+    "one_week_delay_cagr": 0.8529475376236657,
+    "two_week_delay_cagr": 1.2179128727473336,
+    "worst_leave_one_out_company": "QUALYS, INC.",
+    "worst_leave_one_out_cagr": 1.0397251871433277,
+    "single_issuer_improvement_share": 1.0792924294010575
+  },
+  "falsification": {
+    "rolling_26w_outperformance_share_for_selected": 0.12269938650306748,
+    "bootstrap_4w_probability_positive_for_selected": 0.884,
+    "bootstrap_13w_probability_positive_for_selected": 0.7966,
+    "all_passed": false
+  },
+  "decision": "Save the 119.33% fast unanimous-union path as the highest recent-return diagnostic, but do not promote it because its full CAGR, severe-cost result, one-week delay, and issuer-removal evidence fail. Retain the 112.93% breadth controller as the stronger overall return challenger and the 105.10% strategy as the frozen incumbent.",
+  "research_only": true,
+  "approved_for_live_trading": false,
+  "execution_enabled": false,
+  "strategy_replacement_authorized": false
+}

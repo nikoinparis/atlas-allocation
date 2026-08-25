@@ -1,0 +1,52 @@
+{
+  "program": "sec_cluster_aware_cash_sleeve_v1",
+  "classification": "strongest saved return-oriented research challenger; issuer robust, bootstrap incomplete",
+  "status": "saved challenger; not promoted",
+  "predecessor": "sec_regime_increment_tranching_v1",
+  "tested_surface": {
+    "candidates": 178,
+    "membership_families": [
+      "cash_conversion",
+      "balance_sheet_quality",
+      "shareholder_discipline"
+    ],
+    "allocation_methods": [
+      "equal",
+      "sector_balance",
+      "inverse_volatility",
+      "inverse_correlation",
+      "inverse_volatility_correlation"
+    ],
+    "surface_gate_passers": 32,
+    "strictly_lagged_risk_inputs": true,
+    "ticker_specific_rules": false
+  },
+  "selected_challenger": {
+    "name": "cash80_balance20__equal__lb26__s00__cap1.00x",
+    "rule": "rank the point-in-time universe by 80% cash-conversion and 20% balance-sheet-quality percentile score, select the top 20, equal weight the names, and apply the unchanged breadth controller plus four-week-tranched fast-regime increment",
+    "trailing_1y_cagr": 1.2371115996688697,
+    "trailing_1y_sharpe": 3.1172056716974486,
+    "trailing_1y_drawdown": -0.08708758375337289,
+    "full_cagr": 0.4246991766154238,
+    "trailing_1y_200bps_cagr": 1.0844549332674522,
+    "one_week_increment_delay_cagr": 1.217162569762591,
+    "two_week_increment_delay_cagr": 1.201524199133802,
+    "peak_total_stock_weight": 0.06815751020591881
+  },
+  "falsification": {
+    "rolling_26w_outperformance_share_vs_119pct_control": 0.5153374233128835,
+    "bootstrap_4w_probability_positive_vs_119pct_control": 0.829,
+    "bootstrap_13w_probability_positive_vs_119pct_control": 0.8028,
+    "local_balance_weight_neighborhood_pass_share": 0.6,
+    "worst_leave_one_out_company": "10X GENOMICS, INC.",
+    "worst_leave_one_out_cagr": 1.200410258199029,
+    "worst_leave_one_out_beats_119pct_predecessor": true,
+    "worst_leave_one_out_beats_112pct_base": true,
+    "all_passed": false
+  },
+  "decision": "Save as the strongest return-oriented research challenger. It improves return, full-period CAGR, issuer-removal floor, and concentration while retaining delay and severe-cost robustness. Do not promote because both block-bootstrap probabilities remain below 95% and the result was selected in research rather than observed prospectively.",
+  "research_only": true,
+  "approved_for_live_trading": false,
+  "execution_enabled": false,
+  "strategy_replacement_authorized": false
+}

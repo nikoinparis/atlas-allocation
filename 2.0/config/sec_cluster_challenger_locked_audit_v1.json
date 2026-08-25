@@ -1,0 +1,40 @@
+{
+  "experiment": "sec_cluster_challenger_locked_audit_v1",
+  "purpose": "Audit the frozen 80/20 cash-conversion/balance-sheet top-20 challenger without parameter reselection.",
+  "candidate": "cash80_balance20__equal__lb26__s00__cap1.00x",
+  "breadth": 20,
+  "membership_weights": {
+    "cash_conversion": 0.8,
+    "balance_sheet_quality": 0.2
+  },
+  "decision_delays_weeks": [1, 2],
+  "increment_delays_weeks": [1, 2],
+  "combined_delays_weeks": [1, 2],
+  "missing_issuer_bundle_sizes": [1, 2, 3, 5],
+  "rolling_windows_weeks": [13, 26, 52],
+  "trailing_endpoint_offsets_weeks": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+  "bootstrap_blocks_weeks": [4, 13],
+  "bootstrap_draws": 5000,
+  "bootstrap_seed": 20260821,
+  "gates": {
+    "minimum_positive_nonoverlapping_52w_blocks": 3,
+    "minimum_blocks_beating_predecessor": 2,
+    "minimum_rolling_outperformance_share": 0.5,
+    "minimum_endpoint_outperformance_share": 0.6,
+    "minimum_quarter_ablation_outperformance_share": 0.75,
+    "minimum_delay_recent_cagr": 1.1293348809519022,
+    "minimum_missing_bundle_recent_cagr": 1.1293348809519022,
+    "minimum_severe_cost_recent_cagr": 1.0510082013109483,
+    "minimum_bootstrap_probability": 0.95
+  },
+  "pinned_runtime": {
+    "container_image": "localhost/po2-yfinance:1.5.2-v1",
+    "container_image_id": "c84c194bef2052b0b4e4997d5780eb8ccf48d0ed2a3ec35bcafb726f691e0c5c",
+    "python": "3.12.13",
+    "numpy": "2.5.1",
+    "pandas": "3.0.5"
+  },
+  "research_only": true,
+  "strategy_promotion_authorized": false,
+  "live_trading_enabled": false
+}

@@ -1,0 +1,76 @@
+{
+  "program": "quant_idea_challengers_v1",
+  "status": "predeclared_research_only",
+  "created_at": "2026-08-23",
+  "execution_enabled": false,
+  "shared_rules": {
+    "source_snapshot": "latest verified free_yahoo_via_yfinance vintage available at run time",
+    "cost_grid_bps_round_trip": [0, 10, 25, 50],
+    "no_same_bar_fills": true,
+    "retrospective_results_are_not_untouched": true,
+    "failed_and_blocked_results_are_preserved": true,
+    "parameter_changes_after_locked_test": "new version required"
+  },
+  "overnight": {
+    "symbols": ["SPY", "QQQ", "IWM"],
+    "legs": ["previous_adjusted_close_to_next_adjusted_open", "adjusted_open_to_adjusted_close"],
+    "eras": [
+      ["1993-01-01", "2010-12-31"],
+      ["2011-01-01", "2020-12-31"],
+      ["2021-01-01", "9999-12-31"]
+    ],
+    "promotion_gate": "post_2021_overnight_net_return_positive_at_25bps_and_sharpe_above_0_5",
+    "source_limitation": "current-acquisition Yahoo history is not archived point-in-time market data"
+  },
+  "raam_proxy": {
+    "risky_assets": ["SPY", "IWM", "EFA", "EEM", "VNQ", "PDBC", "GLD", "LQD", "TIP", "TLT", "XLB"],
+    "cash_asset": "SHY",
+    "lookback_trading_days": 84,
+    "trend_moving_average_days": 200,
+    "top_n": 5,
+    "rebalance": "month_end_signal_next_trading_day_return",
+    "evaluation_start": "2018-01-01",
+    "cost_bps_one_way": 10,
+    "promotion_gate": "net_sharpe_and_calmar_both_exceed_equal_weight_proxy_benchmark",
+    "literal_replication_gate": "blocked_until_original_12_etf_total_return_vintage_and_opaque_ATR_rules_are_resolved"
+  },
+  "kelly": {
+    "source_returns": "evidence/monte_carlo_risk_batch_28/frozen_weekly_returns_50bps.csv",
+    "fraction": 0.25,
+    "maximum_gross": 1.0,
+    "maximum_sleeve_weight": 0.5,
+    "promotion_gate": "must_improve_geometric_return_without_worsening_max_drawdown_beyond_2_percentage_points_in_locked_test",
+    "use_before_validated_edge": false
+  },
+  "icir_and_trial_statistics": {
+    "rank_ic_source": "evidence/cross_sectional_factor_baseline_batch_16/monthly_rank_ic.csv",
+    "rank_ic_periods_per_year": 12,
+    "trial_return_source": "evidence/research_lab_batch_01/leaderboard.csv_and_registry",
+    "metrics": ["ICIR", "probabilistic_sharpe", "deflated_sharpe", "PBO_CSCV", "White_reality_check"],
+    "promotion_gate": "no_single_metric_can_promote_a_strategy"
+  },
+  "intraday_first_candle": {
+    "signal": "first_regular_session_5min_close_above_12EMA_long_else_short",
+    "entry": "next_bar_open",
+    "stop": "2x_14bar_ATR_trailing_from_completed_bars",
+    "real_data_status": "blocked_missing_point_in_time_one_minute_quotes_and_NBBO_execution_data",
+    "synthetic_contract_tests_required": true
+  },
+  "options_disagreement": {
+    "feature": "put_call_parity_option_implied_stock_price_minus_stock_quote",
+    "use": "attention_or_incremental_rank_feature_only",
+    "real_data_status": "blocked_missing_OPRA_quality_point_in_time_quotes_dividends_and_trade_signs",
+    "execution_enabled": false
+  },
+  "politician_and_influencer": {
+    "use": "delayed_alternative_data_feature_only",
+    "minimum_trade_time": "strictly_after_public_filing_or_post_timestamp",
+    "real_data_status": "blocked_until_complete_timestamped_all_person_disclosure_and_archived_social_dataset_exists",
+    "automatic_copy_orders": false
+  },
+  "indonesia_pairs": {
+    "real_data_status": "blocked_until_short_sale_financing_borrow_inventory_and_cost_history_are_operational",
+    "allowed_interim": "long_only_relative_value_and_shadow_short_eligibility_record",
+    "must_not_be_labeled_pairs_if_long_only": true
+  }
+}

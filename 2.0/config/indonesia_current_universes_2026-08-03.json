@@ -1,0 +1,70 @@
+{
+  "snapshot_id": "indonesia-current-universes-2026-08-03",
+  "status": "current_snapshot_secondary_source_pending_official_file_validation",
+  "effective_from": "2026-08-03",
+  "effective_to_exclusive": "2026-10-31",
+  "historical_membership": false,
+  "backtest_membership_authorized": false,
+  "notice": "Current-period research snapshot only. Do not apply this constituent list to any date before it was observed and do not treat it as an official historical-membership archive.",
+  "universes": {
+    "IDX80": [
+      "AADI", "ACES", "ADMR", "ADRO", "AKRA", "AMMN", "AMRT", "ANTM", "ARTO", "ASII",
+      "BBCA", "BBNI", "BBRI", "BBTN", "BFIN", "BKSL", "BMRI", "BRMS", "BRPT", "BSDE",
+      "BUKA", "BUMI", "CBDK", "CMRY", "CPIN", "CTRA", "CUAN", "DEWA", "DSNG", "ELSA",
+      "EMTK", "ENRG", "ERAA", "ESSA", "EXCL", "GGRM", "GOTO", "HEAL", "HRTA", "HRUM",
+      "ICBP", "INCO", "INDF", "INDY", "INKP", "ISAT", "ITMG", "JPFA", "JSMR", "KIJA",
+      "KLBF", "KPIG", "LSIP", "MAPA", "MAPI", "MBMA", "MDKA", "MEDC", "MIKA", "MYOR",
+      "NCKL", "PGAS", "PGEO", "PNLF", "PTBA", "PTRO", "PWON", "RAJA", "RATU", "SCMA",
+      "SMGR", "SMRA", "SSIA", "TAPG", "TLKM", "TOWR", "TPIA", "UNTR", "UNVR", "WIFI"
+    ],
+    "LQ45": [
+      "AADI", "ADMR", "ADRO", "AKRA", "AMMN", "AMRT", "ANTM", "ASII", "BBCA", "BBNI",
+      "BBRI", "BBTN", "BMRI", "BRPT", "BUMI", "CPIN", "CUAN", "DEWA", "EMTK", "ESSA",
+      "EXCL", "GOTO", "HRTA", "ICBP", "INCO", "INDF", "INDY", "INKP", "ISAT", "ITMG",
+      "JPFA", "KLBF", "MAPI", "MBMA", "MDKA", "MEDC", "NCKL", "PGAS", "PGEO", "PTBA",
+      "SCMA", "TLKM", "UNTR", "UNVR", "WIFI"
+    ],
+    "IDX30": [
+      "AADI", "ADMR", "ADRO", "AMRT", "ANTM", "ASII", "BBCA", "BBNI", "BBRI", "BMRI",
+      "BRPT", "BUMI", "CPIN", "DEWA", "EMTK", "GOTO", "ICBP", "INCO", "INDF", "INKP",
+      "JPFA", "KLBF", "MBMA", "MDKA", "MEDC", "PGAS", "PGEO", "TLKM", "UNTR", "UNVR"
+    ]
+  },
+  "reported_changes": {
+    "IDX80": {"added": ["BFIN", "LSIP", "NCKL"], "removed": ["INTP", "PANI", "SIDO"]},
+    "LQ45": {"added": ["INDY", "NCKL"], "removed": ["SMGR", "TOWR"]},
+    "IDX30": {"added": ["DEWA"], "removed": ["PTBA"]}
+  },
+  "sources": [
+    {
+      "source_id": "investasiku-idx80-2026-08",
+      "url": "https://www.investasiku.id/eduvest/saham/daftar-saham-idx80",
+      "role": "complete current-period IDX80 list",
+      "authority": "secondary"
+    },
+    {
+      "source_id": "investasiku-lq45-2026-08",
+      "url": "https://www.investasiku.id/eduvest/saham/perusahaan-di-bei-yang-masuk-lq45",
+      "role": "complete current-period LQ45 list",
+      "authority": "secondary"
+    },
+    {
+      "source_id": "investasiku-idx30-2026-08",
+      "url": "https://www.investasiku.id/eduvest/saham/daftar-saham-idx30",
+      "role": "complete current-period IDX30 list",
+      "authority": "secondary"
+    },
+    {
+      "source_id": "kontan-index-rebalance-2026-08",
+      "url": "https://lipsus.kontan.co.id/v2/outlookihsg/readtopik/rebalancing-indeks-utama-resmi-berlaku-ini-dampaknya-ke-likuiditas-ihsg",
+      "role": "independent additions and removals cross-check",
+      "authority": "secondary"
+    },
+    {
+      "source_id": "idx-index-methodology-2024",
+      "url": "https://www.idx.id/media/i2sd4vsk/appendix-index-guide-methodology-idx80-lq45-and-idx30.pdf",
+      "role": "official index definitions and methodology",
+      "authority": "official"
+    }
+  ]
+}

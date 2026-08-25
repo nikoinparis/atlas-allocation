@@ -1,0 +1,129 @@
+{
+  "experiment": "sec_quant_math_tournament_v3",
+  "status": "post-v2 research discovery; freeze before real performance evaluation",
+  "purpose": "Test whether higher-frequency causal price mathematics, SEC quality interactions, robust covariance allocation, and controlled exposure can produce independent recent-return alpha in the broad point-in-time universe.",
+  "source_panel": "data/sec_broad_research_panel_v2",
+  "benchmark_column": "sec_cash_conversion_breadth20_dynamic_v1",
+  "primary_endpoint": "2026-08-21",
+  "common_reference_endpoint": "2026-08-07",
+  "decision_frequency_weeks": 4,
+  "execution_delay_weeks": 1,
+  "signal_families": [
+    "multi_horizon_residual_momentum",
+    "residual_acceleration",
+    "quality_momentum_interaction",
+    "trend_breakout_quality",
+    "reversal_conditioned_momentum",
+    "causal_nonlinear_ridge"
+  ],
+  "price_features": {
+    "momentum_horizons_weeks": [13, 26, 52],
+    "skip_recent_weeks": 4,
+    "short_reversal_weeks": 4,
+    "risk_lookback_weeks": 26,
+    "covariance_lookback_weeks": 52,
+    "minimum_price_history_weeks": 26,
+    "winsor_percentiles": [0.01, 0.99],
+    "robust_scale": "median_absolute_deviation",
+    "sector_and_market_residualization": true
+  },
+  "fundamental_features": {
+    "quality_momentum_weight": 0.8,
+    "event_score_weight": 0.2,
+    "forward_fill_only_from_latest_available_quarter": true
+  },
+  "causal_model": {
+    "features": [
+      "residual_13",
+      "residual_26",
+      "residual_52",
+      "momentum_acceleration",
+      "trend_consistency",
+      "downside_volatility",
+      "quality_momentum",
+      "event_centered",
+      "quality_times_residual",
+      "acceleration_times_quality"
+    ],
+    "ridge_alphas": [1.0, 10.0, 100.0],
+    "minimum_training_decisions": 12,
+    "label_horizon_weeks": 13,
+    "purge_by_label_end": true,
+    "inner_validation_decisions": 1,
+    "nonlinear_basis": "predeclared_pairwise_interactions"
+  },
+  "portfolio_constructions": [
+    "rank_inverse_volatility",
+    "diagonal_shrinkage_signal_optimizer"
+  ],
+  "breadths": [5, 10],
+  "constraints": {
+    "maximum_issuer_weight": 0.30,
+    "maximum_sector_weight": 0.55,
+    "minimum_distinct_sectors": 3,
+    "shrinkage_to_diagonal": 0.65,
+    "score_power": 1.5,
+    "ticker_specific_caps_forbidden": true,
+    "long_only": true
+  },
+  "exposure_rules": [
+    {"name": "fixed_1.00x", "kind": "fixed", "gross": 1.00},
+    {"name": "fixed_1.25x", "kind": "fixed", "gross": 1.25},
+    {"name": "fixed_1.50x", "kind": "fixed", "gross": 1.50},
+    {"name": "vol30_drawdown_guard", "kind": "volatility_target", "target_annual_volatility": 0.30, "minimum_gross": 0.75, "maximum_gross": 1.50, "lookback_weeks": 26, "drawdown_guard_weeks": 13, "drawdown_guard_threshold": -0.15, "guarded_maximum_gross": 1.00}
+  ],
+  "costs": {
+    "primary_bps": 50,
+    "stress_bps": [100, 200],
+    "annual_financing_rates": [0.08, 0.12],
+    "primary_financing_rate": 0.08,
+    "exposure_change_bps": 25
+  },
+  "stress_tests": {
+    "additional_execution_delays_weeks": [1, 2],
+    "remove_top_positive_issuers": 5,
+    "remove_worst_positive_sector": true,
+    "missing_prices": ["base_cash", "adverse_total_loss"],
+    "rolling_windows_weeks": [26, 52, 104],
+    "bootstrap_blocks_weeks": [4, 13],
+    "bootstrap_draws": 5000,
+    "bootstrap_seed": 20260824,
+    "cscv_partitions": 8,
+    "deflated_sharpe": true
+  },
+  "candidate_accounting": {
+    "base_candidates": 24,
+    "exposure_variants_per_base": 4,
+    "total_candidates": 96,
+    "familywise_trials": 96,
+    "prior_project_searches_penalized_separately": true
+  },
+  "historical_research_gates": {
+    "minimum_recent_cagr": 1.50,
+    "minimum_recent_sharpe": 3.00,
+    "minimum_recent_drawdown": -0.25,
+    "minimum_two_year_cagr": 0.60,
+    "minimum_200bps_recent_cagr": 1.20,
+    "minimum_worst_delay_recent_cagr": 1.30,
+    "minimum_worst_five_issuer_recent_cagr": 1.00,
+    "minimum_rolling_26w_outperformance_share": 0.60,
+    "minimum_familywise_bootstrap_probability": 0.95,
+    "maximum_probability_of_backtest_overfitting": 0.20,
+    "minimum_deflated_sharpe_probability": 0.95
+  },
+  "research_basis": [
+    "Blitz, Huij and Martens: Residual Momentum",
+    "Ledoit and Wolf: covariance shrinkage for portfolio selection",
+    "Asness, Frazzini and Pedersen: Quality Minus Junk",
+    "Harvey, Liu and Zhu: multiple-testing hurdles in the factor zoo",
+    "Bailey et al.: probability of backtest overfitting and deflated Sharpe discipline"
+  ],
+  "selection_warning": "This v3 design was proposed after observing prior project results. Even a complete historical pass is selection-contaminated and cannot authorize deployment without untouched forward evidence.",
+  "historical_references": {
+    "residual_controlled_1.25x_common_endpoint_cagr": 1.5086,
+    "exact_daily_fragile_1.35x_cagr": 1.7496783269699088,
+    "fragility_accelerator_alpha30_1.35x_cagr": 1.8689582075057198
+  },
+  "strategy_replacement_authorized": false,
+  "live_trading_enabled": false
+}

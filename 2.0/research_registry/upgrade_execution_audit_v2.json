@@ -1,0 +1,67 @@
+{
+  "audit": "upgrade_execution_audit_v2",
+  "as_of": "2026-08-24",
+  "scope": {
+    "registered_strategy_candidates": 24,
+    "registered_portfolio_candidates": 1,
+    "approved_strategy_candidates": 0,
+    "final_strategy_candidates": 0,
+    "live_trading_enabled": false
+  },
+  "upgrade_dispositions": [
+    {
+      "item": 1,
+      "name": "standing_effective_breadth_governance",
+      "status": "IMPLEMENTED",
+      "verdict": "GOVERNANCE_ONLY",
+      "evidence": "config/candidate_breadth_gate_v1.json"
+    },
+    {
+      "item": 2,
+      "name": "new_asset_classes",
+      "status": "PARTIALLY_TESTED_AND_DATA_BLOCKED",
+      "verdict": "INDONESIA_REJECTED_OR_INCONCLUSIVE; FUTURES_NOT_RUN",
+      "evidence": "config/derivatives_breadth_program_v1.json"
+    },
+    {
+      "item": 3,
+      "name": "short_index_volatility",
+      "status": "IMPLEMENTATION_CONTRACT_COMPLETE_DATA_BLOCKED",
+      "verdict": "NO_PERFORMANCE_CLAIM",
+      "evidence": "docs/DERIVATIVES_BREADTH_PROGRAM_V1.md"
+    },
+    {
+      "item": 4,
+      "name": "cross_sectional_value",
+      "status": "ALREADY_COMPLETED_AFTER_V1_REPORT",
+      "verdict": "REJECTED",
+      "evidence": "PROJECT_HISTORY.md steps 118-123"
+    },
+    {
+      "item": 5,
+      "name": "kelly_and_risk_budgeted_position_sizing",
+      "status": "ALREADY_TESTED",
+      "verdict": "REJECTED; ZERO HISTORICAL GATE PASSERS",
+      "evidence": "evidence/sec_quant_math_tournament_v3/final_result.json"
+    },
+    {
+      "item": 6,
+      "name": "true_meta_labeling",
+      "status": "IMPLEMENTED_AND_TESTED",
+      "verdict": "REJECTED_CLASSIFICATION_GATE",
+      "evidence": "evidence/true_meta_labeling_v1/result.json"
+    },
+    {
+      "item": 7,
+      "name": "formal_markov_regime_scaling",
+      "status": "IMPLEMENTED_AND_TESTED",
+      "verdict": "REJECTED_HISTORICAL_GATE",
+      "evidence": "evidence/formal_markov_regime_scaling_v1/result.json"
+    }
+  ],
+  "real_world_readiness": {
+    "approved_for_real_money": false,
+    "reason": "No candidate has completed the required untouched 52-week forward record and all current candidates retain material missing gates.",
+    "maximum_observed_forward_weeks_in_any_registered_clock": 1
+  }
+}

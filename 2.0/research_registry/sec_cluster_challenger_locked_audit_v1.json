@@ -1,0 +1,35 @@
+{
+  "program": "sec_cluster_challenger_locked_audit_v1",
+  "classification": "locked retrospective audit; endpoint and simultaneous-issuer fragility",
+  "status": "failed locked audit; challenger retained without promotion",
+  "candidate": "cash80_balance20__equal__lb26__s00__cap1.00x",
+  "history": {
+    "start": "2023-01-06",
+    "end": "2026-08-07",
+    "weeks": 188,
+    "classification": "retrospective pseudo-holdout; not untouched forward evidence"
+  },
+  "strengths": {
+    "positive_nonoverlapping_52w_blocks": 3,
+    "nonoverlapping_52w_blocks_beating_119pct_predecessor": 2,
+    "worst_delay_recent_cagr": 1.2291839478078095,
+    "exact_trailing_52w_200bps_cagr": 1.1017886610128267,
+    "quarter_ablation_outperformance_share": 0.75,
+    "single_worst_issuer_removal_cagr": 1.220255
+  },
+  "failures": {
+    "trailing_endpoint_outperformance_share": 0.14285714285714285,
+    "rolling_13w_outperformance_share": 0.4431818181818182,
+    "rolling_26w_outperformance_share": 0.5153374233128835,
+    "rolling_52w_outperformance_share": 0.46715328467153283,
+    "worst_five_issuer_bundle_removal_cagr": 1.105628444837937,
+    "bootstrap_4w_probability_positive": 0.8394,
+    "bootstrap_13w_probability_positive": 0.8172,
+    "all_passed": false
+  },
+  "decision": "Retain 123.71% as the highest saved research result, but do not promote it. Continue only with fixed ensembles of the already-confirmed balance-score neighborhood and predecessor to target endpoint and multi-issuer robustness without reopening a broad parameter search.",
+  "research_only": true,
+  "approved_for_live_trading": false,
+  "execution_enabled": false,
+  "strategy_replacement_authorized": false
+}

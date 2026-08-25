@@ -1,0 +1,68 @@
+{
+  "program": "sec_multisignal_company_rank_v1",
+  "classification": "promising diagnostic - headline gates pass but stability and resampling gates fail",
+  "status": "not promoted",
+  "predecessor": "sec_form4_rank_feature_v1",
+  "structure": {
+    "control": "sec_cash_conversion_breadth20_candidate_v1 (unchanged)",
+    "ranking_level": "issuer",
+    "primary_family": "cash_conversion",
+    "secondary_families": [
+      "profitability",
+      "balance_sheet_quality",
+      "shareholder_discipline",
+      "quality_acceleration"
+    ],
+    "optional_form4_confirmation_weights": [0.0, 0.05],
+    "breadth": 20,
+    "tested_candidates": 108
+  },
+  "selected_candidate": {
+    "name": "cash_balance_sheet_quality_20__f400__sector100",
+    "weights": {
+      "cash_conversion": 0.8,
+      "balance_sheet_quality": 0.2,
+      "form4": 0.0
+    },
+    "trailing_1y_cagr": 1.0638676796283404,
+    "trailing_1y_sharpe": 2.7124220329806326,
+    "trailing_1y_drawdown": -0.10088583249311045,
+    "full_cagr": 0.41538224358517795,
+    "trailing_1y_200bps_cagr": 0.9441960043139512
+  },
+  "control": {
+    "trailing_1y_cagr": 1.0510082013109483,
+    "full_cagr": 0.4093476771616662,
+    "trailing_1y_200bps_cagr": 0.9320198735415857
+  },
+  "matched_constrained_cash_baseline": {
+    "trailing_1y_cagr": 1.0475360879501023,
+    "full_cagr": 0.4086746589588126,
+    "multisignal_incremental_trailing_1y_cagr": 0.016331591678238055,
+    "multisignal_incremental_full_cagr": 0.006707584626365337
+  },
+  "falsification": {
+    "one_week_delay_cagr": 1.0692107142411018,
+    "two_week_delay_cagr": 1.0043456565374513,
+    "completed_rolling_26w_windows": 163,
+    "rolling_26w_outperformance_share": 0.558282208588957,
+    "neighborhood_joint_improvement_share": 0.08333333333333333,
+    "bootstrap_4w_probability_positive": 0.6802,
+    "bootstrap_13w_probability_positive": 0.7144,
+    "worst_leave_one_out_company": "10X GENOMICS, INC.",
+    "worst_leave_one_out_trailing_1y_cagr": 1.0571483137691895,
+    "single_issuer_improvement_share": 0.5225224300167088,
+    "all_passed": false
+  },
+  "decision": "Retain as a promising research candidate, but do not replace the frozen leader. It passes the recent/full/cost headline screen, completed rolling-window gate, and worst-company-above-control gate. It fails the two-week delay, parameter-neighborhood, both bootstrap, and maximum single-issuer influence gates.",
+  "reproducibility": {
+    "runtime_pinned": true,
+    "persisted_artifact_roundtrip_passed": true,
+    "frozen_control_rebuilt_exactly": true,
+    "artifact_hashes_recorded_in_result": true
+  },
+  "research_only": true,
+  "approved_for_live_trading": false,
+  "execution_enabled": false,
+  "strategy_replacement_authorized": false
+}

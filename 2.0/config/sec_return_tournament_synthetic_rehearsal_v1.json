@@ -1,0 +1,22 @@
+{
+  "experiment": "sec_return_tournament_synthetic_rehearsal_v1",
+  "seed": 20260822,
+  "assets": 48,
+  "weekly_periods": 260,
+  "decision_interval_weeks": 13,
+  "target_horizon_weeks": 13,
+  "breadth": 10,
+  "issuer_cap": 0.15,
+  "sector_cap": 0.40,
+  "cost_bps": [50, 100, 200],
+  "execution_delays_weeks": [0, 1, 2],
+  "missing_scenarios": ["base_cash", "adverse_total_loss"],
+  "rolling_windows_weeks": [26, 52],
+  "bootstrap_blocks_weeks": [4, 13],
+  "bootstrap_draws": 1000,
+  "familywise_trials": 8,
+  "research_gate_required_for_real_panel": true,
+  "synthetic_only": true,
+  "strategy_promotion_authorized": false,
+  "live_trading_enabled": false
+}

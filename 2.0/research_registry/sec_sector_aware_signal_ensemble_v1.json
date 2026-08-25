@@ -1,0 +1,39 @@
+{
+  "program": "sec_sector_aware_signal_ensemble_v1",
+  "classification": "strongest return-plus-endpoint diagnostic; multi-issuer gate failed",
+  "status": "saved diagnostic; not promoted",
+  "predecessor": "sec_signal_neighborhood_ensemble_v1",
+  "tested_surface": {
+    "candidates": 9,
+    "generic_sector_limits": [0.7, 0.75, 0.8, 0.85, 0.9, 1.0],
+    "symmetric_and_asymmetric_component_limits": true,
+    "surface_gate_passers": 0,
+    "ticker_specific_rules": false
+  },
+  "selected_diagnostic": {
+    "name": "cash80_balance90",
+    "rule": "blend the cash-only and 80/20 balance-ranked top-20 cohorts equally, constrain each sector to 80% in the cash component and 90% in the balance component, then rebuild the unchanged regime strategy",
+    "exact_trailing_52w_cagr": 1.2420414930921906,
+    "exact_trailing_52w_sharpe": 3.1028844174788257,
+    "exact_trailing_52w_drawdown": -0.08708758375337322,
+    "full_cagr": 0.4273578340691979,
+    "exact_trailing_52w_200bps_cagr": 1.0726891496158184,
+    "worst_delay_recent_cagr": 1.2280379258660892,
+    "endpoint_outperformance_share": 0.5,
+    "rolling_26w_outperformance_share": 0.5705521472392638,
+    "latest_distinct_holdings": 26,
+    "latest_max_sector_share": 0.8500000000000003,
+    "peak_total_stock_weight": 0.07025288590307753
+  },
+  "falsification": {
+    "worst_five_issuer_bundle_cagr": 1.0931712975015522,
+    "bootstrap_4w_probability_positive": 0.885,
+    "bootstrap_13w_probability_positive": 0.8424,
+    "all_passed": false
+  },
+  "decision": "Save as the strongest return-plus-endpoint diagnostic, but do not promote it or replace the locked 123.71% research challenger. Sector-aware selection improved return and reduced latest sector concentration, but did not improve the simultaneous five-issuer floor above the 112.93% base.",
+  "research_only": true,
+  "approved_for_live_trading": false,
+  "execution_enabled": false,
+  "strategy_replacement_authorized": false
+}

@@ -1,0 +1,52 @@
+{
+  "experiment": "sec_form4_dynamic_overlay_v1",
+  "purpose": "Test the SEC Form 4 insider-purchase sleeve as a causal conditional overlay on the frozen breadth-20 cash-conversion leader, since Step 125 only tested it as a static-weight blend and found no static allocation beat the control.",
+  "frozen_control": "sec_cash_conversion_breadth20_candidate_v1",
+  "control_path_50bps": "evidence/sec_cash_conversion_breadth20_candidate_audit_v1/candidate_path_50bps.csv",
+  "control_leader_lookback_weeks": 11,
+  "control_leader_high_weight": 0.5,
+  "start_date": "2023-01-01",
+  "predeclared_families": ["executive_or_cluster", "cluster_2plus", "all_open_market"],
+  "event_window_days": 30,
+  "price_confirmation": "none",
+  "breadth": 10,
+  "market_cap_floor": 50000000,
+  "sector_cap": 0.70,
+  "lookbacks_weeks": [8, 13, 26],
+  "weight_pairs": [[0.0, 0.10], [0.0, 0.20], [0.0, 0.30]],
+  "cost_bps": [50, 100, 200],
+  "selection_note": "The single window/breadth/floor/sector-cap combination is fixed to the values Step 125 found robust across its own family variants, rather than re-searching all 480 Form4 structures, to avoid compounding a second layer of retrospective selection on top of an already-searched signal.",
+  "promotion_gates": {
+    "minimum_trailing_1y_cagr_improvement": 0.01,
+    "minimum_ytd_cagr_improvement": 0.0,
+    "minimum_recent_sharpe_ratio_to_control": 0.9,
+    "maximum_recent_drawdown_ratio_to_control": 1.25,
+    "maximum_full_cagr_sacrifice": 0.03,
+    "maximum_full_drawdown_ratio_to_control": 1.35,
+    "must_beat_control_at_200bps_recent": true
+  },
+  "falsification": {
+    "signal_delays_weeks": [1, 2],
+    "rolling_comparison_weeks": 26,
+    "bootstrap_blocks_weeks": [4, 13],
+    "bootstrap_draws": 5000,
+    "bootstrap_seed": 20260816,
+    "minimum_neighborhood_joint_improvement_share": 0.5,
+    "minimum_completed_rolling_window_outperformance_share": 0.5,
+    "minimum_bootstrap_probability_positive": 0.95
+  },
+  "pinned_runtime": {
+    "container_image": "localhost/po2-yfinance:1.5.2-v1",
+    "container_image_id": "c84c194bef2052b0b4e4997d5780eb8ccf48d0ed2a3ec35bcafb726f691e0c5c",
+    "python": "3.12.13",
+    "numpy": "2.5.1",
+    "pandas": "3.0.5"
+  },
+  "known_limitations": [
+    "The Form4 sleeve's own weekly simulator has no adverse missing-price scenario, unlike the growth and cash-conversion sleeves; only the base scenario is modeled for it.",
+    "The Form4 signal itself was already chosen from a 480-structure search in Step 125; this experiment only searches the smaller conditional-overlay grid on top of three predeclared, non-cherry-picked structures."
+  ],
+  "research_only": true,
+  "strategy_promotion_authorized": false,
+  "live_trading_enabled": false
+}

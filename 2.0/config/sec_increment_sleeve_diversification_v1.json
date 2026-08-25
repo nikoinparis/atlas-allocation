@@ -1,0 +1,42 @@
+{
+  "experiment": "sec_increment_sleeve_diversification_v1",
+  "purpose": "Route only the four-week-tranched regime increment across independent point-in-time fundamental sleeves while preserving the 112.93% base target.",
+  "independent_families": [
+    "profitability",
+    "balance_sheet_quality",
+    "shareholder_discipline",
+    "quality_acceleration"
+  ],
+  "fixed_cash_shares": [0.75, 0.5, 0.25, 0.0],
+  "pair_cash_shares": [0.75, 0.5, 0.25],
+  "inverse_volatility_windows_weeks": [13, 26],
+  "inverse_volatility_cash_shares": [0.5, 0.25],
+  "cost_bps": [50, 100, 200],
+  "scenarios": ["base", "adverse"],
+  "surface_gates": {
+    "minimum_recent_cagr": 1.15,
+    "minimum_delay_recent_cagr": 1.1293348809519022,
+    "minimum_full_cagr": 0.4093476771616662,
+    "minimum_severe_recent_cagr": 0.9320198735415857,
+    "maximum_peak_total_stock_weight": 0.08
+  },
+  "falsification": {
+    "increment_delays_weeks": [1, 2],
+    "rolling_comparison_weeks": 26,
+    "bootstrap_blocks_weeks": [4, 13],
+    "bootstrap_draws": 5000,
+    "bootstrap_seed": 20260821,
+    "minimum_rolling_outperformance_share": 0.5,
+    "minimum_bootstrap_probability": 0.95
+  },
+  "pinned_runtime": {
+    "container_image": "localhost/po2-yfinance:1.5.2-v1",
+    "container_image_id": "c84c194bef2052b0b4e4997d5780eb8ccf48d0ed2a3ec35bcafb726f691e0c5c",
+    "python": "3.12.13",
+    "numpy": "2.5.1",
+    "pandas": "3.0.5"
+  },
+  "research_only": true,
+  "strategy_promotion_authorized": false,
+  "live_trading_enabled": false
+}

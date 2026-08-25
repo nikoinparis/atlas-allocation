@@ -1,0 +1,45 @@
+{
+  "cleaned_output": "data/clean_weekly_prices_v1/weekly_adjusted_prices_clean.csv.gz",
+  "experiment_id": "price-panel-integrity-audit-v1",
+  "findings": {
+    "coverage": {
+      "end": "2026-08-21",
+      "issuers": 3253,
+      "median_issuers_priced_per_week": 3231,
+      "start": "2022-12-02",
+      "weeks": 195
+    },
+    "extreme_returns": {
+      "above_plus_1000pct": 12,
+      "above_plus_200pct": 67,
+      "below_minus_95pct": 10,
+      "largest_weekly_gain": 29.375669192737746,
+      "largest_weekly_loss": -0.9932942164517
+    },
+    "gapped_coverage": {
+      "issuers_with_internal_gaps": 25,
+      "note": "Prices that disappear and return. Legitimate for halted names, but a source of fake returns across the gap."
+    },
+    "infinite_returns": {
+      "count": 1,
+      "note": "Every one is produced by a zero price in the prior week."
+    },
+    "negative_prices": {
+      "count": 0
+    },
+    "stale_price_runs": {
+      "issuers_with_run_of_8_or_more_identical_weeks": 429,
+      "note": "A frozen price is usually a delisted or untraded name still being carried in the panel."
+    },
+    "zero_prices": {
+      "count": 52,
+      "issuers_affected": 1,
+      "note": "A zero price is a data error, not a trade. It makes the next return infinite."
+    }
+  },
+  "generated_at": "2026-08-25T23:12:53.983297+00:00",
+  "live_trading_enabled": false,
+  "return_observations_adjusted": 77,
+  "sealed_source_modified": false,
+  "sealed_source_sha256": "b251f8089f9e163bf43282e2e26f3e112cdc5fc03f7ebcdaf1b57f5536d327a7"
+}

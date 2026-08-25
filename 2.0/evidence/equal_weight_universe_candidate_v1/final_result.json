@@ -1,0 +1,54 @@
+{
+  "beats_every_saved_strategy_on_sharpe": null,
+  "best_by_sharpe": "all issuers",
+  "caveat": "Same 2023-2026 bull window as everything else, and no forward evidence. It also has no selection story at all, which is simultaneously its weakness as a thesis and the reason it is hard to overfit.",
+  "cost_bps": 50.0,
+  "execution_delay_weeks": 1,
+  "experiment_id": "equal-weight-universe-candidate-v1",
+  "generated_at": "2026-08-25T23:13:31.527330+00:00",
+  "live_trading_enabled": false,
+  "price_source": "data/clean_weekly_prices_v1/weekly_adjusted_prices_clean.csv.gz",
+  "saved_strategies_pure_cash_trailing": {
+    "Daily-Audited": 0.9268,
+    "ETF Incumbent": 0.7031,
+    "Fragile 1.35x (unlevered)": 1.1412,
+    "Growth / Micron": 1.5572,
+    "Residual 1.25x (unlevered)": 1.126,
+    "Sector Ensemble": 1.242
+  },
+  "variants": [
+    {
+      "average_turnover": 0.0003055099601957749,
+      "best_week": 0.06455651568584429,
+      "cagr": 0.2225400817023344,
+      "label": "all issuers",
+      "max_drawdown": -0.20250624510804038,
+      "names": 3253,
+      "sharpe": 1.280203952604849,
+      "weeks": 143,
+      "worst_week": -0.08919640986440477
+    },
+    {
+      "average_turnover": 0.00017210951775882728,
+      "best_week": 0.06877142984681953,
+      "cagr": 0.23719613785397242,
+      "label": "excluding stale (8+ identical weeks)",
+      "max_drawdown": -0.22040654527723402,
+      "names": 2824,
+      "sharpe": 1.2611902711574838,
+      "weeks": 143,
+      "worst_week": -0.09739150790966754
+    },
+    {
+      "average_turnover": 0.00017210951775882728,
+      "best_week": 0.06877142984681953,
+      "cagr": 0.23719613785397242,
+      "label": "excluding stale and sub-$1 names",
+      "max_drawdown": -0.22040654527723402,
+      "names": 2824,
+      "sharpe": 1.2611902711574838,
+      "weeks": 143,
+      "worst_week": -0.09739150790966754
+    }
+  ]
+}

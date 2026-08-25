@@ -7590,3 +7590,52 @@ References:
 - `config/signal_information_coefficient_audit_v1.json`
 - `scripts/run_signal_information_coefficient_audit_v1.py`
 - `evidence/signal_information_coefficient_audit_v1/`
+
+## Step 186 — Regime-probe the sector engine, and find the alpha is somewhere else
+
+Five of the six saved strategies begin in 2023 and have never been measured through a
+bear market. They cannot be extended backwards: their stock price panel starts
+2022-12-02. Their engine can be. Nine SPDR sector ETFs have daily history to
+December 1998, so the mechanism those strategies share — multi-horizon
+cross-sectional momentum, sector balance, volatility targeting, an execution delay and
+costs — was run once, unmodified, over 1,751 weeks from 1993 to 2026.
+
+The engine parameters were copied from the saved sector ensemble's frozen configuration
+and nothing was tuned inside the probe. Regime windows were declared before running.
+
+The result is severe. Over the full sample the engine returned 0.32% annually against
+SPY's 10.84%, with a Sharpe of 0.09 against 0.69, and a deeper maximum drawdown at
+-56.4% against -54.6%. It underperformed the benchmark in six of eight declared regimes,
+catastrophically during the post-GFC bull where it returned 41.7% against SPY's 389.1%.
+
+It is genuinely defensive. Average drawdown across the four bear regimes was -27.2%
+against SPY's -38.7%, and it beat the benchmark outright during the global financial
+crisis by 24.5 points and through the 2022 bear by 9.1 points. It did not help during
+the dot-com crash, losing 11.0 points more than the benchmark, and it was flat against
+SPY through the COVID crash.
+
+The most useful finding is an accident of the probe. In the 2023-2026 window where the
+saved strategies returned between 92% and 175%, this engine returned 34.3% and
+underperformed SPY's 111.5%. The mechanism therefore does not reproduce the saved
+results at all, which means the probe fails as a proxy for those strategies and cannot
+condemn them. What it does establish is where their return actually comes from: not the
+sector rotation, which is measurably poor over three decades, but the SEC fundamental
+stock selection layered on top of it.
+
+That reframes the untested risk rather than resolving it. The component doing the work
+is the stock picking, and the stock picking is exactly the component with only three and
+a half years of history and no bear market in it. The regime question is not answered;
+it is now correctly located.
+
+Two conclusions are carried forward. Generic sector-momentum rotation should not be
+built on again as a return source in this project; thirty-three years say it does not
+pay. And any future regime work must target the fundamental selection layer, which
+requires historical stock prices the project does not have.
+
+No strategy was promoted and live trading remains disabled.
+
+References:
+
+- `config/sector_mechanism_regime_probe_v1.json`
+- `scripts/run_sector_mechanism_regime_probe_v1.py`
+- `evidence/sector_mechanism_regime_probe_v1/`

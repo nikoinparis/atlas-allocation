@@ -1,0 +1,155 @@
+{
+  "bear_summary": {
+    "average_engine_drawdown": -0.27216690090759454,
+    "average_spy_drawdown": -0.3865572159552326,
+    "count": 4,
+    "engine_beat_spy": 2
+  },
+  "experiment_id": "sector-mechanism-regime-probe-v1",
+  "full_sample": {
+    "benchmark": {
+      "cagr": 0.10842583607443701,
+      "max_drawdown": -0.5461304445876867,
+      "sharpe": 0.6913189680142021,
+      "total_return": 30.955851060926644,
+      "weeks": 1750
+    },
+    "engine": {
+      "cagr": 0.0032354828306431216,
+      "max_drawdown": -0.5644845333441051,
+      "sharpe": 0.0884232119442358,
+      "total_return": 0.1149090038972167,
+      "weeks": 1751
+    }
+  },
+  "generated_at": "2026-08-25T07:58:37.909710+00:00",
+  "honest_scope": "A pass here does not validate any saved strategy. A failure here is strong evidence that the family is regime-dependent, because the same engine is being tested on the same kind of signal over a much longer sample.",
+  "live_trading_enabled": false,
+  "regimes": [
+    {
+      "average_sector_weight": 0.7301670541003665,
+      "end": "2002-10-31",
+      "engine_cagr": -0.17925266593191813,
+      "engine_drawdown": -0.4955866646523226,
+      "engine_sharpe": -1.1742244862774822,
+      "engine_total": -0.41023996034064814,
+      "excess_total": -0.11016145176433667,
+      "regime": "dotcom_crash",
+      "spy_cagr": -0.1249500537177406,
+      "spy_drawdown": -0.4570142268589631,
+      "spy_total": -0.30007850857631146,
+      "start": "2000-03-01",
+      "weeks": 139
+    },
+    {
+      "average_sector_weight": 0.9441419492641743,
+      "end": "2007-09-30",
+      "engine_cagr": 0.04678843965942492,
+      "engine_drawdown": -0.15804914929818248,
+      "engine_sharpe": 0.42029548683390827,
+      "engine_total": 0.25357084297078725,
+      "excess_total": -0.5951688688207453,
+      "regime": "recovery_2003_2007",
+      "spy_cagr": 0.1323956967125084,
+      "spy_drawdown": -0.1090716437531567,
+      "spy_total": 0.8487397117915325,
+      "start": "2002-11-01",
+      "weeks": 257
+    },
+    {
+      "average_sector_weight": 0.514560372578559,
+      "end": "2009-03-31",
+      "engine_cagr": -0.138395558520214,
+      "engine_drawdown": -0.22874945790093149,
+      "engine_sharpe": -1.145644725478194,
+      "engine_total": -0.20023592203368712,
+      "excess_total": 0.24517465770889113,
+      "regime": "global_financial_crisis",
+      "spy_cagr": -0.3249835028730905,
+      "spy_drawdown": -0.5461304445876864,
+      "spy_total": -0.44541057974257825,
+      "start": "2007-10-01",
+      "weeks": 78
+    },
+    {
+      "average_sector_weight": 0.9381445260882123,
+      "end": "2020-01-31",
+      "engine_cagr": 0.032519275326253094,
+      "engine_drawdown": -0.22161834730872876,
+      "engine_sharpe": 0.3191339824817551,
+      "engine_total": 0.41669451474037644,
+      "excess_total": -3.474791668845781,
+      "regime": "post_gfc_bull",
+      "spy_cagr": 0.15701996698675358,
+      "spy_drawdown": -0.17084325156200364,
+      "spy_total": 3.8914861835861574,
+      "start": "2009-04-01",
+      "weeks": 566
+    },
+    {
+      "average_sector_weight": 0.5776699105006134,
+      "end": "2020-04-30",
+      "engine_cagr": -0.4276373007214477,
+      "engine_drawdown": -0.16242943730829462,
+      "engine_sharpe": -1.6744168408326534,
+      "engine_total": -0.1208195998620516,
+      "excess_total": -0.00551794199643818,
+      "regime": "covid_crash",
+      "spy_cagr": -0.41190711537233127,
+      "spy_drawdown": -0.31828962533650984,
+      "spy_total": -0.11530165786561342,
+      "start": "2020-02-01",
+      "weeks": 12
+    },
+    {
+      "average_sector_weight": 0.77733799041139,
+      "end": "2021-12-31",
+      "engine_cagr": 0.15696492615107793,
+      "engine_drawdown": -0.09690713302584186,
+      "engine_sharpe": 1.0904667470130172,
+      "engine_total": 0.27984462914343333,
+      "excess_total": -0.44264540424660614,
+      "regime": "covid_recovery",
+      "spy_cagr": 0.37894565700081584,
+      "spy_drawdown": -0.06484380841310311,
+      "spy_total": 0.7224900333900395,
+      "start": "2020-05-01",
+      "weeks": 88
+    },
+    {
+      "average_sector_weight": 0.703019776745275,
+      "end": "2022-12-31",
+      "engine_cagr": -0.09051245428900856,
+      "engine_drawdown": -0.20190204376882948,
+      "engine_sharpe": -0.3957235277082904,
+      "engine_total": -0.09051245428900856,
+      "excess_total": 0.09124114625073443,
+      "regime": "bear_2022",
+      "spy_cagr": -0.181753600539743,
+      "spy_drawdown": -0.224794567037771,
+      "spy_total": -0.181753600539743,
+      "start": "2022-01-01",
+      "weeks": 52
+    },
+    {
+      "average_sector_weight": 0.9080360832392061,
+      "end": "2026-08-11",
+      "engine_cagr": 0.08488672160774358,
+      "engine_drawdown": -0.14282653792417555,
+      "engine_sharpe": 0.6898652531626573,
+      "engine_total": 0.34254296337205115,
+      "excess_total": -0.7720759256173546,
+      "regime": "strategy_window_2023_2026",
+      "spy_cagr": 0.23014928039324256,
+      "spy_drawdown": -0.16877150389255402,
+      "spy_total": 1.1146188889894058,
+      "start": "2023-01-01",
+      "weeks": 188
+    }
+  ],
+  "sample": {
+    "end": "2026-08-14",
+    "start": "1993-01-29",
+    "weeks": 1751
+  }
+}

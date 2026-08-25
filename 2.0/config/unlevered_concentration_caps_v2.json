@@ -1,0 +1,36 @@
+{
+  "caps": {
+    "max_look_through_sector_weight": 0.35,
+    "max_single_exchange_traded_weight": 0.25,
+    "max_single_issuer_weight": 0.1,
+    "max_total_exchange_traded_weight": 0.6
+  },
+  "description": "Same caps as v1, but released weight is redistributed into the names that still have headroom instead of being dumped to cash. v1 measured the conservative bound; this measures what a real implementation would actually hold.",
+  "experiment_id": "unlevered-concentration-caps-v2",
+  "exposure_policy": {
+    "borrowing_used": false,
+    "financing_used": false,
+    "note": "Every strategy is measured on cash it actually has. Leverage is removed before caps are applied; capped weight is released to cash and never reinvested.",
+    "target_gross": 1.0
+  },
+  "honest_limitation": "A real implementation would pull in the next-ranked name that the strategy already wanted. This version can only spread across names already held, so it is a lower bound on how much of the book stays invested, and an upper bound on how concentrated the survivors become.",
+  "live_trading_enabled": false,
+  "look_through_source": "config/sec_cross_strategy_residual_allocator_v3.json",
+  "measure_at_percentiles": [
+    0.5,
+    0.95,
+    1.0
+  ],
+  "return_impact_computed": false,
+  "return_impact_note": "This program measures risk geometry only. The dashboard export cannot be repriced from its own holdings and prices (weekly correlation 0.25 against published returns), so capped return series must come from re-running each strategy against data/sec_broad_panel_inputs_v2, not from this artifact.",
+  "sector_map": "data/cross_strategy_concentration_map_v2/sector_map.csv",
+  "solver": {
+    "max_iterations": 64,
+    "note": "Caps are applied iteratively because a sector cap can bind after an issuer cap releases weight. Excess weight always goes to cash.",
+    "redistribute": true,
+    "redistribution_rule": "Released weight is offered proportionally to holdings that are below their own cap, repeatedly, until either all of it is placed or no headroom remains anywhere. Only genuinely unplaceable weight becomes cash. No new names are introduced, because choosing which name to buy next requires the strategy's own ranking and cannot be done from a holdings snapshot.",
+    "tolerance": 1e-09
+  },
+  "source_dashboard": "dashboard/public/return-first-dashboard.json",
+  "supersedes": "unlevered-concentration-caps-v1"
+}

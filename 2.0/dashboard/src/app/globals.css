@@ -92,13 +92,14 @@ h1, h2, h3, p { margin: 0; }
 .pill { display: inline-flex; align-items: center; gap: 5px; min-height: 26px; padding: 0 8px; border: 1px solid var(--border); border-radius: 999px; background: #fafbfc; color: var(--text-secondary); font-size: 10px; font-weight: 600; white-space: nowrap; }
 .pill.research { color: var(--amber); border-color: #f0d69b; background: var(--amber-soft); }.pill.strategy-badge { color: var(--green); border-color: #bce5cb; background: var(--green-soft); }
 
-.metric-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
+.metric-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px; }
 .metric-card, .panel { border: 1px solid var(--border); background: var(--surface); box-shadow: 0 1px 2px rgba(0,0,0,.025); }
 .metric-card { min-width: 0; min-height: 130px; padding: 20px; border-radius: var(--radius); }
 .metric-card.featured { border-color: rgba(113,135,255,.42); background: linear-gradient(145deg, #171925, #13141b); }
 .metric-label { display: flex; align-items: center; justify-content: space-between; gap: 8px; }.metric-label span { overflow: hidden; color: var(--text-secondary); font-size: 11px; font-weight: 600; text-overflow: ellipsis; white-space: nowrap; }.metric-label i { min-width: 0; padding: 4px 6px; border-radius: 999px; background: #f1f2f4; color: var(--text-secondary); font-size: 8px; font-style: normal; font-weight: 700; white-space: nowrap; }
 .metric-label i.positive-chip { background: var(--green-soft); color: var(--green); }.metric-label i.negative-chip { background: var(--red-soft); color: var(--red); }
 .metric-card > strong { display: block; margin-top: 14px; font-size: 30px; line-height: 1; letter-spacing: -.035em; font-variant-numeric: tabular-nums; }
+.cash-only-card { border-color: rgba(232,226,212,.24); background: linear-gradient(145deg, rgba(232,226,212,.07), var(--surface)); }
 .metric-card small { display: block; margin-top: 9px; overflow: hidden; color: var(--text-tertiary); font-size: 10px; line-height: 1.35; text-overflow: ellipsis; white-space: nowrap; }
 
 .section-block { padding-top: 34px; scroll-margin-top: 58px; }
@@ -351,6 +352,19 @@ button.metric-card:hover { border-color: rgba(139,114,255,.38); transform: trans
 .progress-track i { position: relative; overflow: hidden; }.progress-track i::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,.48), transparent); transform: translateX(-100%); animation: progress-shimmer 2.7s ease-in-out infinite; }
 .guardrail-card, .compact-panel, .calendar-panel, .date-inspector { transition: transform 180ms ease, border-color 180ms ease; }.guardrail-card:hover, .compact-panel:hover { transform: translateY(-2px); border-color: rgba(113,135,255,.28); }
 
+/* Survival lab keeps modeled resilience, research validity, and live evidence separate. */
+.survival-page { display: grid; gap: 16px; padding-top: 0; }
+.survival-hero { display: grid; grid-template-columns: minmax(0, 1fr) 220px; align-items: center; gap: 40px; min-height: 290px; padding: 38px; border-color: rgba(255,125,141,.25); background: radial-gradient(circle at 82% 20%, rgba(255,125,141,.12), transparent 25rem), linear-gradient(145deg, rgba(20,21,30,.98), rgba(13,14,20,.98)); }
+.survival-hero-copy h2 { margin-top: 9px; font-size: clamp(34px, 4.4vw, 58px); line-height: 1; letter-spacing: -.055em; }.survival-hero-copy > p { max-width: 760px; margin-top: 14px; color: var(--text-secondary); font-size: 12px; line-height: 1.65; }
+.survival-status-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }.survival-chip { display: inline-flex; align-items: center; min-height: 28px; padding: 0 9px; border: 1px solid var(--border); border-radius: 999px; font-size: 8px; font-weight: 760; letter-spacing: .055em; text-transform: uppercase; }.survival-chip.pass { border-color: rgba(86,217,139,.28); background: var(--green-soft); color: var(--green); }.survival-chip.warn { border-color: rgba(241,193,95,.28); background: var(--amber-soft); color: var(--amber); }.survival-chip.fail { border-color: rgba(255,125,141,.28); background: var(--red-soft); color: var(--red); }
+.survival-score { display: grid; place-items: center; align-content: center; width: 190px; height: 190px; margin-left: auto; border: 1px solid rgba(255,125,141,.24); border-radius: 50%; background: radial-gradient(circle, rgba(255,125,141,.12), rgba(19,20,27,.7) 64%); box-shadow: 0 0 50px rgba(255,125,141,.08); }.survival-score span { color: var(--text-tertiary); font-size: 8px; font-weight: 750; letter-spacing: .08em; }.survival-score strong { margin-top: 6px; font-size: 62px; line-height: .9; letter-spacing: -.06em; }.survival-score small { margin-top: 8px; color: var(--text-tertiary); font-size: 8px; }
+.survival-metric-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }.survival-metric { min-height: 132px; padding: 21px; }.survival-metric > span { color: var(--text-tertiary); font-size: 8px; font-weight: 750; letter-spacing: .075em; }.survival-metric > strong { display: block; margin-top: 13px; font-size: 28px; letter-spacing: -.035em; }.survival-metric > small { display: block; margin-top: 8px; color: var(--text-tertiary); font-size: 9px; line-height: 1.45; }
+.survival-two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }.survival-tests, .survival-stresses, .survival-comparison, .survival-readiness { padding: 26px; }.survival-test-list { display: grid; gap: 6px; margin-top: 20px; }.survival-test { display: grid; grid-template-columns: 46px minmax(0, 1fr) 35px; align-items: center; gap: 12px; min-height: 56px; padding: 9px 10px; border: 1px solid var(--border); border-radius: 10px; background: rgba(255,255,255,.018); }.survival-test.pass { border-color: rgba(86,217,139,.13); }.survival-test.fail { border-color: rgba(255,125,141,.16); }.test-state { display: grid; place-items: center; min-height: 26px; border-radius: 7px; background: var(--green-soft); color: var(--green); font-size: 7px; font-weight: 800; letter-spacing: .06em; }.survival-test.fail .test-state { background: var(--red-soft); color: var(--red); }.survival-test strong { font-size: 10px; }.survival-test small { display: block; margin-top: 3px; color: var(--text-tertiary); font-size: 8px; }.survival-test > b { color: var(--text-tertiary); font-size: 10px; text-align: right; }
+.stress-bars { display: grid; gap: 17px; margin-top: 25px; }.stress-bars > div > span { display: flex; align-items: center; justify-content: space-between; gap: 12px; }.stress-bars b { color: var(--text-secondary); font-size: 10px; }.stress-bars strong { font-size: 11px; }.stress-bars i { display: block; height: 7px; margin-top: 7px; border-radius: 999px; background: #22242e; overflow: hidden; }.stress-bars em { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #7187ff, #9c72ff); }
+.concentration-note { display: grid; grid-template-columns: 18px 1fr; gap: 9px; margin-top: 25px; padding: 13px; border: 1px solid rgba(241,193,95,.18); border-radius: 10px; background: var(--amber-soft); color: var(--amber); }.concentration-note p { color: #c9ad72; font-size: 9px; line-height: 1.55; }
+.survival-comparison { overflow: hidden; }.survival-table { margin-top: 22px; overflow-x: auto; }.survival-table-row { display: grid; grid-template-columns: minmax(190px, 1.6fr) .42fr .62fr .62fr .55fr .62fr .65fr; align-items: center; gap: 12px; min-width: 900px; min-height: 54px; width: 100%; padding: 8px 10px; border: 0; border-bottom: 1px solid var(--border); background: transparent; color: var(--text-secondary); font-size: 9px; text-align: right; }.survival-table-row:not(.head) { cursor: pointer; }.survival-table-row:not(.head):hover, .survival-table-row.selected { background: rgba(113,135,255,.07); }.survival-table-row > :first-child { text-align: left; }.survival-table-row.head { min-height: 34px; color: var(--text-tertiary); font-size: 7px; font-weight: 760; letter-spacing: .06em; }.survival-table-row strong { color: var(--text); font-size: 9px; }.survival-table-row small { display: block; margin-top: 3px; color: var(--text-tertiary); font-size: 7px; text-transform: capitalize; }.survival-table-row > b { color: #c8ceff; font-size: 14px; }
+.readiness-grid { align-items: stretch; }.survival-readiness h3 { margin-top: 8px; font-size: 18px; }.survival-readiness ul, .survival-readiness ol { display: grid; gap: 9px; margin: 18px 0 0; padding-left: 20px; color: var(--text-secondary); font-size: 10px; line-height: 1.55; }.survival-readiness li::marker { color: var(--blue); }.survival-readiness > p { margin-top: 18px; padding-top: 15px; border-top: 1px solid var(--border); color: var(--text-tertiary); font-size: 9px; line-height: 1.6; }.survival-loading { min-height: 300px; padding: 40px; }.survival-loading h2 { margin-top: 10px; }.survival-loading p { margin-top: 10px; color: var(--text-secondary); }
+
 @keyframes shine-number { 0%, 18% { background-position: 120% 50%; } 60%, 100% { background-position: -110% 50%; } }
 @keyframes tape-rise { from { transform: scaleY(.08); opacity: .25; } }
 @keyframes ambient-drift { to { transform: translate3d(-7vw, 5vh, 0) scale(1.15); } }
@@ -360,12 +374,140 @@ button.metric-card:hover { border-color: rgba(139,114,255,.38); transform: trans
 
 @media (max-width: 1200px) {
   .overview-lead-grid { grid-template-columns: 1fr; }.overview-side-stack { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }.overview-performance-hero { min-height: 380px; }
+  .survival-metric-grid { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 900px) {
   .overview-performance-hero { grid-template-columns: 1fr; }.overview-chart { height: 210px; margin-top: 12px; }.overview-side-stack, .overview-quick-grid { grid-template-columns: 1fr; }.market-tape { grid-template-columns: 1fr; gap: 18px; }.tape-bars small { display: none; }.tape-bars a { grid-template-rows: 1fr; }.attribution-row { grid-template-columns: minmax(105px, 1.15fr) .5fr .68fr .78fr; }.attribution-row > :nth-child(2) { display: none; }
+  .survival-hero { grid-template-columns: 1fr; }.survival-score { width: 150px; height: 150px; margin: 0; }.survival-score strong { font-size: 48px; }.survival-two-column { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 580px) {
   .overview-performance-hero { min-height: 0; padding: 25px 18px; }.overview-chart { height: 170px; }.overview-stat-row { grid-template-columns: 1fr 1fr; }.overview-stat-row span:last-child { grid-column: 1 / -1; }.overview-validation-card { grid-template-columns: 78px 1fr; }.validation-ring { width: 76px; height: 76px; }.validation-ring > span { width: 58px; height: 58px; }.market-tape { padding: 20px 16px; }.tape-bars { gap: 3px; }.overview-quick-card { min-height: 126px; padding: 18px 16px; }.attribution-row { grid-template-columns: minmax(100px, 1.1fr) .62fr .75fr; }.attribution-row > :nth-child(2), .attribution-row > :nth-child(4) { display: none; }.attribution-list { max-height: 250px; }
+  .survival-hero { min-height: 0; padding: 26px 19px; }.survival-metric-grid { grid-template-columns: 1fr; }.survival-tests, .survival-stresses, .survival-comparison, .survival-readiness { padding: 20px 16px; }.survival-status-row { display: grid; }.survival-chip { justify-content: center; }
+}
+
+/* ============================================================
+   Survival Lab — interactive per-strategy evidence view
+   ============================================================ */
+
+.survival-lab { display: flex; flex-direction: column; gap: 18px; }
+
+/* ---- strategy picker ---- */
+.lab-picker {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(168px, 1fr)); gap: 10px;
+}
+.lab-pick {
+  display: flex; flex-direction: column; gap: 7px; text-align: left; cursor: pointer;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 13px 15px; color: var(--text-secondary); transition: border-color .15s ease, background .15s ease;
+}
+.lab-pick:hover { border-color: var(--border-strong); background: var(--surface-muted); }
+.lab-pick.active { border-color: var(--blue); background: var(--blue-soft); color: var(--text); }
+.lab-pick-name { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.3; }
+.lab-pick-score { display: flex; align-items: center; gap: 9px; }
+.lab-pick-score b { font-size: 17px; font-weight: 600; color: var(--text); font-variant-numeric: tabular-nums; min-width: 26px; }
+.lab-pick-score i { flex: 1; height: 4px; border-radius: 999px; background: var(--surface-muted); overflow: hidden; display: block; }
+.lab-pick-score i::after { content: ""; display: block; height: 100%; width: 100%; }
+.lab-pick-score .good { background: var(--green); height: 4px; border-radius: 999px; display: block; }
+.lab-pick-score .mid { background: var(--amber); height: 4px; border-radius: 999px; display: block; }
+.lab-pick-score .bad { background: var(--red); height: 4px; border-radius: 999px; display: block; }
+.lab-pick small { font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-tertiary); }
+
+/* ---- tabs ---- */
+.lab-tabs { display: flex; flex-wrap: wrap; gap: 6px; border-bottom: 1px solid var(--border); padding-bottom: 2px; }
+.lab-tab {
+  display: inline-flex; align-items: center; gap: 7px; cursor: pointer;
+  background: transparent; border: 1px solid transparent; border-radius: var(--radius) var(--radius) 0 0;
+  padding: 9px 14px; color: var(--text-tertiary); font-size: 13px; font-weight: 500;
+  transition: color .15s ease, background .15s ease;
+}
+.lab-tab:hover { color: var(--text-secondary); background: var(--surface-muted); }
+.lab-tab.active { color: var(--text); background: var(--surface); border-color: var(--border); border-bottom-color: var(--surface); margin-bottom: -3px; }
+
+.lab-stack { display: flex; flex-direction: column; gap: 14px; }
+.lab-panel { display: flex; flex-direction: column; gap: 14px; }
+
+/* ---- controls ---- */
+.lab-controls { display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-start; }
+.lab-toggle {
+  cursor: pointer; background: var(--surface-muted); border: 1px solid var(--border);
+  border-radius: 999px; padding: 5px 12px; color: var(--text-tertiary);
+  font-size: 11.5px; font-weight: 500; letter-spacing: .02em; transition: all .15s ease;
+}
+.lab-toggle:hover { border-color: var(--border-strong); color: var(--text-secondary); }
+.lab-toggle.on { background: var(--blue-soft); border-color: var(--blue); color: var(--text); }
+
+/* ---- charts ---- */
+.lab-chart { position: relative; width: 100%; height: 260px; }
+.lab-chart.tall { height: 340px; }
+.lab-chart.short { height: 150px; padding-top: 18px; }
+.lab-chart-label {
+  position: absolute; top: 0; left: 4px; font-size: 10.5px; letter-spacing: .09em;
+  text-transform: uppercase; color: var(--text-tertiary);
+}
+
+.lab-tooltip {
+  background: var(--surface); border: 1px solid var(--border-strong); border-radius: 10px;
+  padding: 10px 12px; display: flex; flex-direction: column; gap: 4px; min-width: 150px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.45);
+}
+.lab-tooltip strong { font-size: 12px; color: var(--text); margin-bottom: 2px; }
+.lab-tooltip span { display: flex; justify-content: space-between; gap: 14px; font-size: 11.5px; }
+.lab-tooltip span i { font-style: normal; color: var(--text-tertiary); }
+.lab-tooltip span b { color: var(--text); font-variant-numeric: tabular-nums; font-weight: 500; }
+.lab-tooltip span.mid b { color: var(--blue); font-weight: 600; }
+
+/* ---- quartile strip ---- */
+.lab-quartiles {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(76px, 1fr)); gap: 10px;
+  border-top: 1px solid var(--border); padding-top: 13px;
+}
+.lab-quartiles div { display: flex; flex-direction: column; gap: 3px; }
+.lab-quartiles dt { font-size: 10px; letter-spacing: .07em; text-transform: uppercase; color: var(--text-tertiary); }
+.lab-quartiles dd { margin: 0; font-size: 14px; font-weight: 600; color: var(--text); font-variant-numeric: tabular-nums; }
+
+/* ---- note ---- */
+.lab-note { display: flex; gap: 11px; align-items: flex-start; padding: 15px 18px; }
+.lab-note svg { color: var(--amber); flex-shrink: 0; margin-top: 2px; }
+.lab-note p { margin: 0; font-size: 13px; color: var(--text-secondary); line-height: 1.55; }
+.lab-note p b { color: var(--text); }
+
+.lab-binding { display: flex; align-items: center; gap: 7px; font-size: 12.5px; color: var(--text-secondary); }
+.lab-binding svg { color: var(--red); flex-shrink: 0; }
+.lab-binding b { color: var(--red); font-weight: 600; }
+
+/* ---- scenario table ---- */
+.lab-table { display: flex; flex-direction: column; }
+.lab-table-row {
+  display: grid; grid-template-columns: 2fr 1fr 1fr .8fr 1.1fr; gap: 10px; align-items: center;
+  padding: 11px 4px; border-bottom: 1px solid var(--border); font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+.lab-table-row:last-child { border-bottom: none; }
+.lab-table-row.head {
+  font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--text-tertiary); font-variant-numeric: normal;
+}
+.lab-table-row.head span:not(:first-child) { text-align: right; }
+.lab-table-row span:not(:first-child) { text-align: right; color: var(--text-secondary); }
+.lab-table-row strong { color: var(--text); font-weight: 500; }
+.lab-table-row.baseline { background: var(--blue-soft); border-radius: 8px; }
+
+/* ---- score total ---- */
+.lab-score-total {
+  display: flex; align-items: center; gap: 14px; border-top: 1px solid var(--border); padding-top: 14px;
+}
+.lab-score-total span { font-size: 10.5px; letter-spacing: .09em; text-transform: uppercase; color: var(--text-tertiary); }
+.lab-score-total strong { font-size: 18px; font-weight: 600; color: var(--text); font-variant-numeric: tabular-nums; }
+.lab-score-total i { flex: 1; height: 6px; border-radius: 999px; background: var(--surface-muted); overflow: hidden; display: block; }
+.lab-score-total em { display: block; height: 100%; border-radius: 999px; }
+.lab-score-total .good { background: var(--green); }
+.lab-score-total .mid { background: var(--amber); }
+.lab-score-total .bad { background: var(--red); }
+
+@media (max-width: 720px) {
+  .lab-table-row { grid-template-columns: 1.6fr 1fr 1fr; }
+  .lab-table-row span:nth-child(4), .lab-table-row span:nth-child(5) { display: none; }
+  .lab-chart.tall { height: 260px; }
 }

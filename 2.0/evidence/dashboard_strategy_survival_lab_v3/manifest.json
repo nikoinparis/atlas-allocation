@@ -1,0 +1,12 @@
+{
+  "artifact_sha256": {
+    "dashboard/public/strategy-survival.json": "c4e806d48dea78d86b3ce7f3aad4c242f0080a4ea52b24081dfe8716bbf171f8",
+    "final_result.json": "43353b52d92b4e79c7b0b4d61aa8d8731b74bcc280495c2f045a0b03d7201e33",
+    "strategy_comparison.csv": "4636c49d56dd599979fddfbaf316a608d7edfb0eedbff7de44df7c1886342e24"
+  },
+  "created_at_utc": "2026-08-25T03:49:11.816482+00:00",
+  "execution_enabled": false,
+  "experiment": "dashboard_strategy_survival_lab_v3",
+  "live_trading_enabled": false,
+  "source_dashboard_sha256": "2a427c970521fee814ebf6fed47afae9228afd4551459335b110658464b906db"
+}

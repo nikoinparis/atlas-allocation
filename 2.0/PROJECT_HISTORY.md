@@ -7429,3 +7429,62 @@ References:
 - `research_registry/sec_cross_strategy_residual_allocator_v3.json`
 - `evidence/sec_cross_strategy_residual_allocator_v2/`
 - `evidence/sec_cross_strategy_residual_allocator_v3/`
+
+## Step 183 — Expose the survival evidence per strategy, and refuse the forward shortcut
+
+The dashboard's Survival Lab summarised ten thousand bootstrap paths per strategy
+into eight numbers. This step exports the underlying distributions and rebuilds the
+page so each strategy can be opened and inspected on its own.
+
+A v3 of the survival laboratory was sealed and run. It changes no methodology: the
+same seed, the same 10,000 moving-block simulations, the same 4- and 13-week blocks,
+and the same seven scoring gates. A regression check confirms every summary number is
+bit-identical to v2. What is new is what the run keeps: a 44-bin histogram of terminal
+returns, a 44-bin histogram of the deepest drawdown per path, a week-by-week
+percentile fan of simulated wealth at the 5th, 25th, 50th, 75th and 95th percentiles,
+twenty-four deterministically sampled individual paths, extended quantiles, and the
+realised weekly return, wealth and drawdown series for each strategy. The payload grew
+from 30 KB to 253 KB. Nine tests pass, covering histogram coverage, percentile
+monotonicity across the fan, deterministic sampling, the distributions-only-on-request
+switch, and a JSON NaN guard.
+
+The Survival Lab page was rebuilt as its own component. A strategy picker opens any of
+the six saved strategies; four tabs then expose the Monte Carlo fan and both outcome
+distributions, the realised equity and drawdown path with adjustable starting capital,
+the stress battery as a ranked comparison against the trailing-year baseline, and the
+seven scoring gates with the all-strategy table. Block length is switchable between 4
+and 13 weeks, sample paths can be toggled, and every chart carries a detail tooltip.
+
+Two requests were not implemented, for the same reason in different forms.
+
+The 150.86% blend cannot be extended to the current date without regenerating a leg.
+Its residual sleeve already runs through August 21, 2026 and returned +0.61% and
+-0.44% in the two weeks past the published endpoint. The cash-conversion control stops
+at August 7, so the common endpoint is August 7 and those two weeks are excluded by the
+Step 175 audit rather than missing. Extending the blend requires re-running the control
+for two decision dates, which changes a file pinned by the forward protocol and creates
+a new protocol version. It is also worth stating that the extension would lower the
+headline: both new weeks are far weaker than the +5.51% and +4.99% weeks they would
+push out of the trailing window.
+
+Those two weeks cannot count as forward evidence at all. The protocol was frozen on
+August 24, 2026 with historical data through August 21, a first eligible decision on
+August 28, and a first eligible realization on September 4. Today is August 24. Every
+week now available predates the freeze and was already observed. The protocol's own
+missed-snapshot policy forbids backfilling a window from a later vintage, and its
+selection status records that historical results never advance the clock. The forward
+count stays at 0 of 52. Counting pre-freeze weeks as forward evidence would destroy the
+only untouched test this candidate has left.
+
+No strategy was promoted, no pinned file was modified, and live trading remains
+disabled.
+
+References:
+
+- `config/dashboard_strategy_survival_lab_v3.json`
+- `scripts/run_dashboard_strategy_survival_lab_v3.py`
+- `scripts/seal_dashboard_strategy_survival_lab_v3.py`
+- `tests/test_dashboard_strategy_survival_lab_v3.py`
+- `evidence/dashboard_strategy_survival_lab_v3/`
+- `dashboard/src/components/survival-lab.tsx`
+- `dashboard/public/strategy-survival.json`

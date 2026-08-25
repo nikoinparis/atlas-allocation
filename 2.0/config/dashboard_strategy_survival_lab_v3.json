@@ -1,0 +1,58 @@
+{
+  "annualization_periods": 52,
+  "execution_enabled": false,
+  "experiment": "dashboard_strategy_survival_lab_v3",
+  "historical_resilience_score": {
+    "concentration_points": 10,
+    "double_cost_positive_points": 15,
+    "drawdown_probability_threshold": 0.25,
+    "full_drawdown_points": 20,
+    "monte_carlo_drawdown_points": 10,
+    "monte_carlo_profit_probability_points": 15,
+    "positive_worst_rolling_year_points": 15,
+    "profit_probability_threshold": 0.75,
+    "signal_decay_positive_points": 15
+  },
+  "interpretation": {
+    "historically_resilient_minimum_score": 75,
+    "live_proof_required_forward_weeks": 52,
+    "live_verdict": "No strategy can be labeled proven live until its untouched forward protocol and implementation-readiness checks are complete.",
+    "mixed_minimum_score": 50
+  },
+  "known_missing_real_world_inputs": [
+    "current executable bid-ask spreads and market impact",
+    "portfolio-size-specific liquidity and days-to-exit",
+    "broker margin terms, borrow availability, and changing financing rates",
+    "taxes and account-specific constraints",
+    "future delistings, data outages, and model drift",
+    "52 untouched forward weeks for each eligible strategy"
+  ],
+  "live_trading_enabled": false,
+  "monte_carlo": {
+    "block_lengths": [
+      4,
+      13
+    ],
+    "horizon_weeks": 52,
+    "primary_block_length": 13,
+    "seed": 20260824,
+    "simulations": 10000
+  },
+  "native_frequency": "weekly",
+  "selection_warning": "All six strategies and this comparison were selected after historical observation. Monte Carlo resamples the observed distribution and cannot validate an unknown future distribution.",
+  "source_dashboard": "dashboard/public/return-first-dashboard.json",
+  "status": "freeze before evaluating the six saved dashboard strategies",
+  "strategy_replacement_authorized": false,
+  "stress_tests": {
+    "additional_cost_multiplier": 1.0,
+    "additional_financing_rate": 0.03,
+    "capital_loss_threshold": -0.5,
+    "concentration_threshold": 0.3,
+    "crash_evaluation_window_weeks": 52,
+    "crash_insertion_week": 26,
+    "crash_week_return": -0.2,
+    "drawdown_failure_threshold": -0.3,
+    "positive_return_retention": 0.75,
+    "rolling_window_weeks": 52
+  }
+}

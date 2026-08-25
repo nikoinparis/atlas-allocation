@@ -323,6 +323,7 @@ export function SurvivalLab({
       <article className="panel survival-hero aurora-panel spotlight-surface" onMouseMove={positionSpotlight}>
         <div className="survival-hero-copy">
           <span className="section-kicker">REAL-WORLD READINESS</span>
+          <h3 className="lab-hero-name">{survival.name}</h3>
           <h2>{survival.live_verdict === "not_proven_live" ? "Not proven live." : "Forward validation complete."}</h2>
           <p>{survival.plain_english_verdict} Monte Carlo resamples the history already observed; it cannot prove the future distribution looks the same.</p>
           <div className="survival-status-row">
@@ -414,10 +415,10 @@ export function SurvivalLab({
 
             <div className="lab-chart tall">
               <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={fanData} margin={{ top: 8, right: 12, bottom: 4, left: 4 }}>
+                <AreaChart data={fanData} margin={{ top: 12, right: 28, bottom: 18, left: 12 }}>
                   <CartesianGrid stroke="var(--border)" strokeDasharray="2 4" vertical={false} />
-                  <XAxis dataKey="week" tick={{ fill: "var(--text-tertiary)", fontSize: 11 }} tickLine={false} axisLine={{ stroke: "var(--border)" }} label={{ value: "week", position: "insideBottomRight", fill: "var(--text-tertiary)", fontSize: 11, dy: 10 }} />
-                  <YAxis tickFormatter={(value: number) => `${value.toFixed(1)}x`} tick={{ fill: "var(--text-tertiary)", fontSize: 11 }} tickLine={false} axisLine={false} width={46} />
+                  <XAxis dataKey="week" tick={{ fill: "var(--text-tertiary)", fontSize: 11 }} tickLine={false} axisLine={{ stroke: "var(--border)" }} interval="preserveStartEnd" minTickGap={22} label={{ value: "week", position: "insideBottom", fill: "var(--text-tertiary)", fontSize: 11, dy: 16 }} />
+                  <YAxis tickFormatter={(value: number) => `${value.toFixed(1)}x`} tick={{ fill: "var(--text-tertiary)", fontSize: 11 }} tickLine={false} axisLine={false} width={58} />
                   <Tooltip content={<FanTooltip capital={capital} />} />
                   <ReferenceLine y={1} stroke="var(--border-strong)" strokeDasharray="3 3" />
                   <Area type="monotone" dataKey="p05" stackId="fan" stroke="none" fill="transparent" isAnimationActive={false} />
@@ -433,10 +434,10 @@ export function SurvivalLab({
               <div className="lab-chart short">
                 <span className="lab-chart-label">24 individual simulated paths</span>
                 <ResponsiveContainer width="100%" height="100%">
-                  <LineChart data={samplePathData} margin={{ top: 6, right: 12, bottom: 4, left: 4 }}>
+                  <LineChart data={samplePathData} margin={{ top: 10, right: 28, bottom: 14, left: 12 }}>
                     <CartesianGrid stroke="var(--border)" strokeDasharray="2 4" vertical={false} />
-                    <XAxis dataKey="week" tick={{ fill: "var(--text-tertiary)", fontSize: 11 }} tickLine={false} axisLine={{ stroke: "var(--border)" }} />
-                    <YAxis tickFormatter={(value: number) => `${value.toFixed(1)}x`} tick={{ fill: "var(--text-tertiary)", fontSize: 11 }} tickLine={false} axisLine={false} width={46} />
+                    <XAxis dataKey="week" tick={{ fill: "var(--text-tertiary)", fontSize: 11 }} tickLine={false} axisLine={{ stroke: "var(--border)" }} interval="preserveStartEnd" minTickGap={22} />
+                    <YAxis tickFormatter={(value: number) => `${value.toFixed(1)}x`} tick={{ fill: "var(--text-tertiary)", fontSize: 11 }} tickLine={false} axisLine={false} width={58} />
                     <ReferenceLine y={1} stroke="var(--border-strong)" strokeDasharray="3 3" />
                     {(primary.sample_curves ?? []).map((_, index) => (
                       <Line key={index} type="monotone" dataKey={`s${index}`} stroke="var(--blue)" strokeOpacity={0.35} strokeWidth={1} dot={false} isAnimationActive={false} />
@@ -452,10 +453,10 @@ export function SurvivalLab({
               <div className="panel-head"><div><span className="section-kicker">OUTCOME DISTRIBUTION</span><h3>Where the 10,000 years land</h3><p>Red bars are losing years. The dashed line is break-even.</p></div></div>
               <div className="lab-chart">
                 <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={returnBins} margin={{ top: 8, right: 12, bottom: 4, left: 4 }}>
+                  <BarChart data={returnBins} margin={{ top: 12, right: 28, bottom: 18, left: 12 }}>
                     <CartesianGrid stroke="var(--border)" strokeDasharray="2 4" vertical={false} />
-                    <XAxis dataKey="mid" tickFormatter={(value: number) => `${(value * 100).toFixed(0)}%`} tick={{ fill: "var(--text-tertiary)", fontSize: 11 }} tickLine={false} axisLine={{ stroke: "var(--border)" }} />
-                    <YAxis tick={{ fill: "var(--text-tertiary)", fontSize: 11 }} tickLine={false} axisLine={false} width={40} />
+                    <XAxis dataKey="mid" tickFormatter={(value: number) => `${(value * 100).toFixed(0)}%`} tick={{ fill: "var(--text-tertiary)", fontSize: 11 }} tickLine={false} axisLine={{ stroke: "var(--border)" }} interval="preserveStartEnd" minTickGap={26} />
+                    <YAxis tick={{ fill: "var(--text-tertiary)", fontSize: 11 }} tickLine={false} axisLine={false} width={52} />
                     <Tooltip content={<BinTooltip unit="return" total={summary.simulations} />} />
                     <ReferenceLine x={0} stroke="var(--text-secondary)" strokeDasharray="3 3" />
                     <Bar dataKey="count" isAnimationActive={false}>
@@ -479,10 +480,10 @@ export function SurvivalLab({
               <div className="panel-head"><div><span className="section-kicker">DEEPEST DRAWDOWN PER PATH</span><h3>How far each simulated year fell</h3><p>The marked line is the −30% failure threshold used by the score.</p></div></div>
               <div className="lab-chart">
                 <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={drawdownBins} margin={{ top: 8, right: 12, bottom: 4, left: 4 }}>
+                  <BarChart data={drawdownBins} margin={{ top: 12, right: 28, bottom: 18, left: 12 }}>
                     <CartesianGrid stroke="var(--border)" strokeDasharray="2 4" vertical={false} />
-                    <XAxis dataKey="mid" tickFormatter={(value: number) => `${(value * 100).toFixed(0)}%`} tick={{ fill: "var(--text-tertiary)", fontSize: 11 }} tickLine={false} axisLine={{ stroke: "var(--border)" }} />
-                    <YAxis tick={{ fill: "var(--text-tertiary)", fontSize: 11 }} tickLine={false} axisLine={false} width={40} />
+                    <XAxis dataKey="mid" tickFormatter={(value: number) => `${(value * 100).toFixed(0)}%`} tick={{ fill: "var(--text-tertiary)", fontSize: 11 }} tickLine={false} axisLine={{ stroke: "var(--border)" }} interval="preserveStartEnd" minTickGap={26} />
+                    <YAxis tick={{ fill: "var(--text-tertiary)", fontSize: 11 }} tickLine={false} axisLine={false} width={52} />
                     <Tooltip content={<BinTooltip unit="drawdown" total={summary.simulations} />} />
                     <ReferenceLine x={-0.30} stroke="var(--red)" strokeDasharray="4 3" label={{ value: "−30%", fill: "var(--red)", fontSize: 11, position: "top" }} />
                     <Bar dataKey="count" isAnimationActive={false}>
@@ -525,7 +526,7 @@ export function SurvivalLab({
             </div>
             <div className="lab-chart tall">
               <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={realized} margin={{ top: 8, right: 12, bottom: 4, left: 4 }}>
+                <AreaChart data={realized} margin={{ top: 12, right: 28, bottom: 18, left: 12 }}>
                   <defs>
                     <linearGradient id="labWealth" x1="0" y1="0" x2="0" y2="1">
                       <stop offset="0%" stopColor="var(--green)" stopOpacity={0.35} />
@@ -534,7 +535,7 @@ export function SurvivalLab({
                   </defs>
                   <CartesianGrid stroke="var(--border)" strokeDasharray="2 4" vertical={false} />
                   <XAxis dataKey="date" tick={{ fill: "var(--text-tertiary)", fontSize: 11 }} tickLine={false} axisLine={{ stroke: "var(--border)" }} minTickGap={48} />
-                  <YAxis tickFormatter={(value: number) => `$${(value / 1000).toFixed(0)}k`} tick={{ fill: "var(--text-tertiary)", fontSize: 11 }} tickLine={false} axisLine={false} width={54} />
+                  <YAxis tickFormatter={(value: number) => `$${(value / 1000).toFixed(0)}k`} tick={{ fill: "var(--text-tertiary)", fontSize: 11 }} tickLine={false} axisLine={false} width={62} />
                   <Tooltip content={<HistoryTooltip />} />
                   <Area type="monotone" dataKey="wealth" stroke="var(--green)" strokeWidth={2} fill="url(#labWealth)" isAnimationActive={false} />
                 </AreaChart>
@@ -543,10 +544,10 @@ export function SurvivalLab({
             <div className="lab-chart short">
               <span className="lab-chart-label">Drawdown from running peak</span>
               <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={realized} margin={{ top: 6, right: 12, bottom: 4, left: 4 }}>
+                <AreaChart data={realized} margin={{ top: 10, right: 28, bottom: 14, left: 12 }}>
                   <CartesianGrid stroke="var(--border)" strokeDasharray="2 4" vertical={false} />
                   <XAxis dataKey="date" tick={{ fill: "var(--text-tertiary)", fontSize: 11 }} tickLine={false} axisLine={{ stroke: "var(--border)" }} minTickGap={48} />
-                  <YAxis tickFormatter={(value: number) => `${(value * 100).toFixed(0)}%`} tick={{ fill: "var(--text-tertiary)", fontSize: 11 }} tickLine={false} axisLine={false} width={54} />
+                  <YAxis tickFormatter={(value: number) => `${(value * 100).toFixed(0)}%`} tick={{ fill: "var(--text-tertiary)", fontSize: 11 }} tickLine={false} axisLine={false} width={62} />
                   <Tooltip content={<HistoryTooltip drawdown />} />
                   <Area type="monotone" dataKey="drawdown" stroke="var(--red)" strokeWidth={1.5} fill="var(--red)" fillOpacity={0.12} isAnimationActive={false} />
                 </AreaChart>
@@ -575,7 +576,7 @@ export function SurvivalLab({
             <div className="panel-head"><div><span className="section-kicker">PATH DEGRADATION</span><h3>Returns after harsher assumptions</h3><p>Positive CAGR here is survival, not proof of repeatability. Every bar uses the same frozen rules.</p></div></div>
             <div className="lab-chart tall">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={stressRows} layout="vertical" margin={{ top: 8, right: 24, bottom: 4, left: 8 }}>
+                <BarChart data={stressRows} layout="vertical" margin={{ top: 12, right: 36, bottom: 14, left: 12 }}>
                   <CartesianGrid stroke="var(--border)" strokeDasharray="2 4" horizontal={false} />
                   <XAxis type="number" tickFormatter={(value: number) => `${(value * 100).toFixed(0)}%`} tick={{ fill: "var(--text-tertiary)", fontSize: 11 }} tickLine={false} axisLine={{ stroke: "var(--border)" }} />
                   <YAxis type="category" dataKey="label" tick={{ fill: "var(--text-secondary)", fontSize: 12 }} tickLine={false} axisLine={false} width={150} />

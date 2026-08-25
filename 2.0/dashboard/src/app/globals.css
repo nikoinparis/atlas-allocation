@@ -525,3 +525,37 @@ button.metric-card:hover { border-color: rgba(139,114,255,.38); transform: trans
   .lab-table-row.design { grid-template-columns: 1.6fr 1fr 1fr; }
   .lab-table-row.design span:nth-child(2) { display: none; }
 }
+
+/* ---- hero: name the strategy, and give the financing card room ---- */
+.lab-hero-name {
+  margin: 0; font-size: 13px; font-weight: 650; letter-spacing: .01em;
+  color: #aeb9ff; line-height: 1.35;
+}
+.survival-hero-copy { gap: 14px; }
+.survival-hero-copy > h2 { margin-top: 2px; }
+
+/* the financing card is its own block: keep real air above and below it */
+.lab-financing {
+  display: flex; align-items: center; gap: 18px; row-gap: 14px; flex-wrap: wrap;
+  margin: 6px 0 2px; padding: 16px 18px;
+  border: 1px solid rgba(241,193,95,.28); border-radius: var(--radius);
+  background: var(--amber-soft);
+}
+.lab-financing > svg { color: var(--amber); flex-shrink: 0; }
+.lab-financing > div { flex: 1 1 280px; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.lab-financing strong { font-size: 13px; font-weight: 650; color: #f3d79a; line-height: 1.4; }
+.lab-financing p { margin: 0; font-size: 12.5px; color: var(--text-secondary); line-height: 1.55; max-width: 62ch; }
+.lab-financing .lab-controls { flex: 0 0 auto; gap: 8px; }
+
+.lab-exposure-readout {
+  display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+  margin-top: 10px; padding-top: 12px; border-top: 1px solid var(--border);
+}
+.lab-exposure-readout span { font-size: 9px; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; color: var(--text-tertiary); }
+.lab-exposure-readout b { font-size: 22px; font-weight: 650; font-variant-numeric: tabular-nums; }
+.lab-exposure-readout i { font-style: normal; font-size: 11.5px; color: var(--text-secondary); }
+
+.lab-binding { margin-top: 2px; }
+
+/* charts: keep tick text clear of the panel edge */
+.lab-chart { padding-right: 6px; }

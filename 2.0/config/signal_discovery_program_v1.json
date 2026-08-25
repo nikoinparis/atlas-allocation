@@ -1,0 +1,67 @@
+{
+  "experiment_id": "signal-discovery-program-v1",
+  "question": "Does ANY selection rule on this panel produce a positive top-minus-bottom decile spread? If none does, that is the honest ceiling.",
+  "protocol": {
+    "declared_before_running": true,
+    "signal_list_frozen": true,
+    "note": "The full signal list is written into this config before any result is computed. Signals are taken from published literature, not invented by searching this data. Every signal that is run is counted in the multiple-testing correction, including the ones that fail."
+  },
+  "price_panel": "data/sec_broad_panel_inputs_v2/weekly_adjusted_prices.csv.gz",
+  "fundamental_panel": "data/fundamental_signal_panel_v1/facts.csv.gz",
+  "evaluation": {
+    "forward_weeks": 13,
+    "decile_fraction": 0.10,
+    "minimum_names": 200,
+    "warmup_weeks": 52,
+    "rebalance": "weekly",
+    "overlapping_windows": true,
+    "overlap_note": "Weekly evaluation with a 13-week forward return means overlapping windows. Significance therefore uses a moving-block bootstrap with a 13-week block, not an i.i.d. t-test, which would badly overstate confidence.",
+    "sector_neutral": true,
+    "sector_neutral_note": "Signals are standardised within SIC sector before ranking, so a signal cannot win merely by loading on whichever sector ran."
+  },
+  "price_signals": {
+    "momentum_12_1": "Jegadeesh & Titman (1993). 52-week return skipping the most recent 4 weeks.",
+    "momentum_6_1": "Six-month variant. 26-week return skipping the most recent 4 weeks.",
+    "reversal_1m": "Jegadeesh (1990). Negative of the most recent 4-week return.",
+    "low_volatility": "Ang, Hodrick, Xing, Zhang (2006). Negative of 52-week realised volatility.",
+    "low_beta": "Frazzini & Pedersen (2014), betting against beta. Negative of 52-week beta to the equal-weighted panel.",
+    "low_max_return": "Bali, Cakici, Whitelaw (2011), the lottery effect. Negative of the maximum weekly return over 52 weeks.",
+    "near_52w_high": "George & Hwang (2004). Current price divided by its own 52-week high.",
+    "low_idiosyncratic_volatility": "Negative of the residual volatility after removing the panel return."
+  },
+  "fundamental_signals": {
+    "gross_profitability": "Novy-Marx (2013). Gross profit divided by total assets.",
+    "return_on_assets": "Net income divided by total assets.",
+    "low_accruals": "Sloan (1996). Negative of (net income minus operating cash flow) over assets.",
+    "low_asset_growth": "Cooper, Gulen, Schill (2008). Negative of year-on-year asset growth.",
+    "cash_conversion": "Operating cash flow divided by revenue. The project's incumbent signal, included so it is measured on the same footing.",
+    "net_margin": "Net income divided by revenue.",
+    "book_to_market": "Book equity divided by market capitalisation.",
+    "earnings_yield": "Net income divided by market capitalisation.",
+    "low_leverage": "Negative of liabilities over assets."
+  },
+  "composites": {
+    "quality_composite": "Equal-weight z of gross_profitability, return_on_assets, low_accruals.",
+    "value_composite": "Equal-weight z of book_to_market, earnings_yield.",
+    "momentum_composite": "Equal-weight z of momentum_12_1, near_52w_high.",
+    "defensive_composite": "Equal-weight z of low_volatility, low_beta, low_max_return.",
+    "quality_value_momentum": "Equal-weight z of quality_composite, value_composite, momentum_composite."
+  },
+  "significance": {
+    "bootstrap_simulations": 2000,
+    "block_weeks": 13,
+    "seed": 611,
+    "alpha": 0.05,
+    "correction": "bonferroni_over_all_signals_run",
+    "cumulative_correction_note": "Bonferroni is applied over every signal in this program. The project's earlier searches are noted separately in the write-up; they are not double-counted here because these signals are literature-specified rather than searched."
+  },
+  "promotion_gates": {
+    "positive_mean_decile_spread": true,
+    "spread_beats_block_bootstrap_null": true,
+    "survives_bonferroni": true,
+    "positive_in_majority_of_weeks": true,
+    "not_driven_by_single_name": "Spread must remain positive after removing the single largest contributor in each window."
+  },
+  "honest_expectation": "The prior from this project's own record is that nothing survives. Recording that outcome is the purpose; a survivor would be the surprise.",
+  "live_trading_enabled": false
+}

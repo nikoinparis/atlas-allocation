@@ -7738,3 +7738,70 @@ References:
 - `config/signal_decile_spread_audit_v1.json`
 - `scripts/run_signal_decile_spread_audit_v1.py`
 - `evidence/signal_decile_spread_audit_v1/`
+
+## Step 189 — Test the literature, and find the sample rewards volatility, not selection
+
+The question was whether any selection rule on this panel produces a positive
+top-minus-bottom decile spread. Twenty-two signals from the asset-pricing literature
+were written into a frozen config before anything was computed. Eleven price-based
+signals ran; the nine fundamental signals and two of the composites could not be built,
+because extracting XBRL facts from 3,567 cached filings is blocked by a per-file-open
+penalty on this machine that defeats sequential reads, bulk copying, and thread
+parallelism alike. That is an environment limit, not a research result, and the
+untested families are named below so the gap is explicit.
+
+Signals were standardised inside SIC sector, ranked weekly across roughly 3,200
+issuers, and scored on the forward 13-week return of the top decile minus the bottom
+decile over 130 evaluation weeks. Significance used a moving-block bootstrap with a
+13-week block, because weekly evaluation of a 13-week forward return produces
+overlapping windows and an i.i.d. test would badly overstate confidence.
+
+Three controls establish that the pipeline works. Perfect foresight, using the forward
+return as its own signal, produced a 363.9% annualised spread and was positive in 100%
+of weeks. Pure noise produced 0.3% and was positive in 51%. Buying high volatility
+produced 39.0% and was positive in 68%.
+
+No signal passed. Every one of the eleven has a negative mean spread. Ordered from least
+to most negative: six-month momentum at -0.09%, one-month reversal at -0.14%, twelve-one
+momentum at -4.85%, the momentum composite at -10.38%, proximity to the 52-week high at
+-21.74%, low maximum return at -29.99%, low beta at -31.55%, the defensive composite at
+-35.70%, low volatility at -38.97%, and low idiosyncratic volatility at -41.28%. No
+signal survived Bonferroni at p below 0.00455, and none was positive in a majority of
+weeks.
+
+The pattern in those numbers is the finding. Every classic defensive factor is strongly
+negative, which is the same statement as the control: in this sample the stocks that won
+were the most volatile, highest-beta, most lottery-like names available. Low volatility,
+the most robust defensive anomaly in the literature, was the second worst performing rule
+tested.
+
+A follow-up confirms the strategies are on that side of the trade. Weight-weighted
+volatility percentiles of actual holdings are 0.717 for the Micron-led growth book, 0.642
+for the residual leader, and 0.551 to 0.553 for the three mid-tier strategies, against
+0.216 for the ETF incumbent. The incumbent is the only strategy below the panel median
+and also the lowest returning at 70.31%. Correlation between volatility tilt and
+pure-cash return across the six is 0.855 Pearson, on a sample of six, which is
+corroborating rather than conclusive.
+
+Taken with Step 188, the position is now specific rather than vague. The signals cannot
+separate the tails, the sector overlay does not pay, and what the sample rewarded was
+volatility exposure. A high-volatility tilt is sufficient to explain most of the return
+ranking with no stock-selection skill required. That is not an edge; it is a factor
+exposure that has been paid handsomely for three and a half years and is the single most
+regime-dependent bet available.
+
+Untested and owed: gross profitability, return on assets, accruals, asset growth, cash
+conversion measured on this footing, net margin, book to market, earnings yield, low
+leverage, and the quality and value composites. Those are the factor families most likely
+to behave differently from the momentum and volatility group, and this program cannot
+claim to have tested the literature until they run.
+
+No strategy was promoted and live trading remains disabled.
+
+References:
+
+- `config/signal_discovery_program_v1.json`
+- `scripts/run_signal_discovery_program_v1.py`
+- `scripts/run_volatility_tilt_attribution_v1.py`
+- `evidence/signal_discovery_program_v1/`
+- `evidence/volatility_tilt_attribution_v1/`

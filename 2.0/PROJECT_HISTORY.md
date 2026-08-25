@@ -7488,3 +7488,60 @@ References:
 - `evidence/dashboard_strategy_survival_lab_v3/`
 - `dashboard/src/components/survival-lab.tsx`
 - `dashboard/public/strategy-survival.json`
+
+## Step 184 — Make every book pure cash, and price the design gate honestly
+
+The concentration gate fails for all six saved strategies. This step asks what it
+would actually take to satisfy it, on money the account actually has.
+
+Four caps were declared before measurement: 10% in any single company, 25% in any
+single fund, 60% in funds altogether, and 35% in any sector after exchange-traded
+look-through. Each book is first reduced to 1.00x, removing all borrowing and all
+financing, and the caps are then applied iteratively because a sector cap can bind
+after an issuer cap releases weight. Released weight goes to cash and is never
+reinvested.
+
+Every strategy satisfies every cap afterwards. The concentration failure is therefore
+fixable rather than structural. The cost is the actual finding: between 30% and 50% of
+each book has to sit in cash to get there. The residual leader releases a median 29.8%
+and the fragile sleeve 41.8%; the ETF incumbent and the Micron-led growth book release a
+median 50%. These strategies' returns are substantially a function of the concentration
+that fails the gate.
+
+That number is a conservative bound, and the reason matters. Released weight has nowhere
+to go inside the dashboard artifact, so it becomes cash. A real implementation would
+redistribute into the next-ranked names, which requires re-running each strategy against
+the research panel rather than re-weighting its published output.
+
+No capped return series was produced, deliberately. An attempt to reprice the strategies
+from their own published holdings and asset prices failed: recomputed weekly gross
+returns correlate only 0.25 with the published series, across every tested holdings lag
+from -1 to +2, even though cumulative return is close (394% recomputed against 404%
+published). Contributions decompose sensibly name by name, weights sum to the stated
+gross, and price coverage is complete, so the mismatch is not missing data. Until that
+is understood, any capped return derived from this artifact would be fiction, and the
+program records risk geometry only.
+
+Two of the six strategies ever used borrowed money; the other four were already 1.00x.
+Pure cash is now the default presentation everywhere. For the two levered books the
+dashboard states plainly that they benefit heavily from financing and offers a toggle
+between the paths: the residual candidate returns 112.60% on pure cash against 150.86%
+financed at 1.25x, and the fragile sleeve 114.12% against 168.68% at 1.35x. The ranking
+inverts once borrowed money is removed. On pure cash the Micron-led growth book returns
+155.72%, ahead of both levered strategies unlevered, though it also carries the weakest
+Monte Carlo profile of the six.
+
+A Design gate tab was added showing each constraint before and after caps, the weight
+forced to cash, the positions trimmed, and the native exposure. The remaining blocker is
+unchanged and cannot be shortened: 52 untouched forward weeks, first eligible
+realization September 4, 2026.
+
+No strategy was promoted, no pinned file was modified, and live trading remains disabled.
+
+References:
+
+- `config/unlevered_concentration_caps_v1.json`
+- `scripts/run_unlevered_concentration_caps_v1.py`
+- `scripts/run_unlevered_financing_comparison_v1.py`
+- `evidence/unlevered_concentration_caps_v1/`
+- `dashboard/public/concentration-caps.json`

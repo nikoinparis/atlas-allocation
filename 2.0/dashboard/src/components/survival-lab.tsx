@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   Area,
   AreaChart,
@@ -16,7 +16,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { AlertTriangle, Activity, BarChart3, Info, ShieldAlert, TrendingDown } from "lucide-react";
+import { AlertTriangle, Activity, BarChart3, Info, Landmark, ShieldAlert, SlidersHorizontal, TrendingDown } from "lucide-react";
 
 /* ------------------------------------------------------------------ types */
 
@@ -131,6 +131,49 @@ export type SurvivalBundlePayload = {
   known_missing_real_world_inputs: string[];
 };
 
+export type CapGate = {
+  cap: number;
+  before_p95: number; after_p95: number;
+  before_max: number; after_max: number;
+  before_passes: boolean; after_passes: boolean;
+};
+
+export type ExposurePath = { weeks: number; cagr: number; sharpe: number; max_drawdown: number; ending_value_10000: number };
+
+export type CapsStrategy = {
+  id: string; short_name: string; weeks: number;
+  used_leverage: boolean; max_original_gross: number;
+  gates: Record<string, CapGate>;
+  all_caps_pass_after: boolean;
+  cash_released: { median: number; p95: number; max: number };
+  average_invested_after: number;
+  average_names_capped: number;
+  exposure?: {
+    native_gross: number;
+    uses_financing: boolean;
+    benefits_heavily_from_financing: boolean;
+    financing_uplift_cagr: number;
+    paths: Record<string, ExposurePath>;
+    default_path: string;
+    note: string;
+  };
+};
+
+export type CapsPayload = {
+  caps: Record<string, number>;
+  strategies: CapsStrategy[];
+  every_strategy_passes_after_caps: boolean;
+  return_impact_note: string;
+  remaining_blocker: string;
+};
+
+const CAP_LABELS: Record<string, string> = {
+  max_single_issuer_weight: "Largest single company",
+  max_single_exchange_traded_weight: "Largest single fund",
+  max_total_exchange_traded_weight: "Total fund exposure",
+  max_look_through_sector_weight: "Sector after ETF look-through",
+};
+
 /* ---------------------------------------------------------------- helpers */
 
 const pct = (value: number, digits = 1) => `${value >= 0 ? "" : "−"}${Math.abs(value * 100).toFixed(digits)}%`;
@@ -144,13 +187,14 @@ const STRESS_LABELS: Record<string, string> = {
   one_off_20pct_crash: "One −20% crash week",
 };
 
-type TabName = "montecarlo" | "history" | "stress" | "gates";
+type TabName = "montecarlo" | "history" | "stress" | "gates" | "design";
 
 const TABS: { id: TabName; label: string; icon: typeof Activity }[] = [
   { id: "montecarlo", label: "Monte Carlo", icon: Activity },
   { id: "history", label: "Realized history", icon: TrendingDown },
   { id: "stress", label: "Stress battery", icon: ShieldAlert },
   { id: "gates", label: "Score gates", icon: BarChart3 },
+  { id: "design", label: "Design gate", icon: SlidersHorizontal },
 ];
 
 /* ------------------------------------------------------------- the module */
@@ -170,11 +214,27 @@ export function SurvivalLab({
   const [blockKey, setBlockKey] = useState<string>(String(bundle.methodology.monte_carlo.primary_block_length));
   const [showPaths, setShowPaths] = useState(true);
   const [capital, setCapital] = useState(10000);
+  const [caps, setCaps] = useState<CapsPayload | null>(null);
+  const [financed, setFinanced] = useState(false);
+
+  useEffect(() => {
+    let live = true;
+    fetch("/concentration-caps.json")
+      .then((response) => (response.ok ? (response.json() as Promise<CapsPayload>) : null))
+      .then((payload) => { if (live && payload) setCaps(payload); })
+      .catch(() => undefined);
+    return () => { live = false; };
+  }, []);
 
   const survival = useMemo(
     () => bundle.strategies.find((item) => item.id === selectedId) ?? bundle.strategies[0],
     [bundle.strategies, selectedId],
   );
+
+  const capEntry = caps?.strategies.find((item) => item.id === survival.id) ?? null;
+  const exposure = capEntry?.exposure ?? null;
+  const leveredKey = exposure ? Object.keys(exposure.paths).find((k) => k !== "unlevered_1.00x") : undefined;
+  const shownPath = exposure ? (financed && leveredKey ? exposure.paths[leveredKey] : exposure.paths["unlevered_1.00x"]) : null;
 
   const summary = survival.monte_carlo.block_summaries[blockKey] ?? survival.monte_carlo.block_summaries[String(survival.monte_carlo.primary_block_weeks)];
   const primary = survival.monte_carlo.block_summaries[String(survival.monte_carlo.primary_block_weeks)];
@@ -272,6 +332,26 @@ export function SurvivalLab({
           </div>
           {survival.binding_failures.length > 0 && (
             <p className="lab-binding"><AlertTriangle size={15} /> Binding failures: <b>{survival.binding_failures.join(" · ")}</b></p>
+          )}
+          {exposure?.benefits_heavily_from_financing && (
+            <div className="lab-financing">
+              <Landmark size={16} />
+              <div>
+                <strong>This strategy benefits heavily from financing.</strong>
+                <p>{exposure.note}</p>
+              </div>
+              <div className="lab-controls">
+                <button className={`lab-toggle ${!financed ? "on" : ""}`} onClick={() => setFinanced(false)}>Pure cash</button>
+                <button className={`lab-toggle ${financed ? "on" : ""}`} onClick={() => setFinanced(true)}>Financed {exposure.native_gross.toFixed(2)}x</button>
+              </div>
+            </div>
+          )}
+          {shownPath && (
+            <div className="lab-exposure-readout">
+              <span>{financed && exposure?.uses_financing ? `FINANCED ${exposure.native_gross.toFixed(2)}x` : "PURE CASH 1.00x"} · TRAILING 52W</span>
+              <b className={shownPath.cagr >= 0 ? "gain" : "loss"}>{pct(shownPath.cagr)}</b>
+              <i>Sharpe {shownPath.sharpe.toFixed(2)} · drawdown {pct(shownPath.max_drawdown)}</i>
+            </div>
           )}
         </div>
         <div className="survival-score">
@@ -529,6 +609,59 @@ export function SurvivalLab({
               })}
             </div>
           </article>
+        </div>
+      )}
+
+      {/* ================= DESIGN GATE ================= */}
+      {tab === "design" && (
+        <div className="lab-stack">
+          {!capEntry ? (
+            <article className="panel lab-note"><Info size={16} /><p>Loading the concentration study&hellip;</p></article>
+          ) : (
+            <>
+              <article className="panel lab-panel spotlight-surface" onMouseMove={positionSpotlight}>
+                <div className="panel-head">
+                  <div>
+                    <span className="section-kicker">CONCENTRATION CAPS ON A PURE-CASH BOOK</span>
+                    <h3>{capEntry.all_caps_pass_after ? "Every cap can be satisfied" : "Caps still breached"}</h3>
+                    <p>Leverage is removed first, then caps are applied. Released weight goes to cash and is never reinvested, so this is the conservative bound.</p>
+                  </div>
+                  <span className={`survival-chip ${capEntry.all_caps_pass_after ? "pass" : "fail"}`}>
+                    {capEntry.all_caps_pass_after ? "DESIGN GATE SATISFIABLE" : "STILL FAILING"}
+                  </span>
+                </div>
+                <div className="lab-table">
+                  <div className="lab-table-row head design"><span>Constraint</span><span>Cap</span><span>Before</span><span>After</span><span>Result</span></div>
+                  {Object.entries(capEntry.gates).map(([key, gate]) => (
+                    <div key={key} className="lab-table-row design">
+                      <span><strong>{CAP_LABELS[key] ?? key}</strong></span>
+                      <span>{plainPct(gate.cap, 0)}</span>
+                      <span className={gate.before_passes ? "" : "loss"}>{plainPct(gate.before_max, 1)}</span>
+                      <span className={gate.after_passes ? "gain" : "loss"}>{plainPct(gate.after_max, 1)}</span>
+                      <span className={gate.after_passes ? "gain" : "loss"}>{gate.after_passes ? "PASS" : "FAIL"}</span>
+                    </div>
+                  ))}
+                </div>
+              </article>
+
+              <div className="survival-metric-grid">
+                <article className="panel survival-metric"><span>WEIGHT FORCED TO CASH</span><strong className="loss">{plainPct(capEntry.cash_released.median, 1)}</strong><small>Median week · p95 {plainPct(capEntry.cash_released.p95, 1)}</small></article>
+                <article className="panel survival-metric"><span>STILL INVESTED</span><strong>{plainPct(capEntry.average_invested_after, 1)}</strong><small>Average across {capEntry.weeks} weeks</small></article>
+                <article className="panel survival-metric"><span>POSITIONS TRIMMED</span><strong>{capEntry.average_names_capped.toFixed(1)}</strong><small>Average per week</small></article>
+                <article className="panel survival-metric"><span>NATIVE EXPOSURE</span><strong>{capEntry.max_original_gross.toFixed(2)}x</strong><small>{capEntry.used_leverage ? "Borrowed money used" : "Pure cash already"}</small></article>
+              </div>
+
+              <article className="panel lab-note">
+                <AlertTriangle size={16} />
+                <p><b>What this does and does not prove.</b> The caps are satisfiable, so the design gate is fixable rather than structural. But roughly {plainPct(capEntry.cash_released.median, 0)} of the book has to sit in cash to get there, because released weight has nowhere to go in this artifact. A real implementation redistributes into the next-ranked names instead, which requires re-running the strategy rather than re-weighting its output. {caps?.return_impact_note}</p>
+              </article>
+
+              <article className="panel lab-note">
+                <Info size={16} />
+                <p><b>Remaining blocker.</b> {caps?.remaining_blocker}</p>
+              </article>
+            </>
+          )}
         </div>
       )}
 

@@ -10,6 +10,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { SurvivalLab, type SurvivalBundlePayload } from "@/components/survival-lab";
 import {
   ArrowUpRight,
   CalendarDays,
@@ -23,6 +24,7 @@ import {
   PanelLeftClose,
   PieChart,
   Settings2,
+  Siren,
   ShieldCheck,
   TrendingUp,
   Workflow,
@@ -60,6 +62,7 @@ type DashboardPayload = {
     retrospectiveHoldout: { cagr: number; sharpe: number; maxDrawdown: number; start: string };
     fullHistory: { cagr: number; maxDrawdown: number; start: string };
     featuredMetric: { label: string; value: number; note: string };
+    cashOnlyMetric?: { label: string; value: number; sharpe: number; maxDrawdown: number; note: string };
     forward: { status: string; observedWeeks: number; requiredWeeks: number; firstDecision: string; firstRealization: string; note: string };
     disclosures: { researchOnly: boolean; liveTradingEnabled: boolean; costBps: number; returnConvention: string };
   };
@@ -68,17 +71,46 @@ type DashboardPayload = {
   assetPrices: Record<string, AssetPrice[]>;
 };
 type DashboardBundle = { strategies: DashboardPayload[] };
+type SurvivalTest = { id: string; label: string; passed: boolean; status: "pass" | "fail"; value: number; threshold: number; points: number };
+type SurvivalStrategy = {
+  id: string;
+  name: string;
+  short_name: string;
+  end: string;
+  historical_resilience_score: number;
+  historical_grade: "historically_resilient" | "mixed_evidence" | "historically_fragile";
+  live_verdict: "not_proven_live" | "forward_validation_complete";
+  plain_english_verdict: string;
+  binding_failures: string[];
+  historical: { full: { cagr: number; sharpe: number; max_drawdown: number }; trailing_52w: { cagr: number; sharpe: number; max_drawdown: number }; rolling_52w: { worst_return: number; median_return: number; positive_rate: number; windows: number } };
+  stress_tests: Record<string, { cagr: number; sharpe: number; max_drawdown: number; total_return: number }>;
+  monte_carlo: { primary_block_weeks: number; block_summaries: Record<string, { simulations: number; median_return: number; p05_return: number; p95_return: number; probability_of_profit: number; probability_of_50pct_capital_loss: number; probability_drawdown_over_30pct: number; median_max_drawdown: number; p05_max_drawdown: number }> };
+  concentration: { maximum_single_position_weight: number; average_largest_position_weight: number; average_borrowed_exposure: number };
+  test_results: SurvivalTest[];
+  research_evidence_gate: { status: "passed" | "failed" | "not_exposed_in_dashboard"; boolean_checks: number; checks_passed: number };
+  forward_evidence: { observed_weeks: number; required_weeks: number; status: string; passed: boolean };
+  readiness: { execution_enabled: boolean; live_trading_enabled: boolean; missing_real_world_inputs: string[] };
+};
+type SurvivalBundle = {
+  experiment: string;
+  methodology: { selection_warning: string; interpretation: string; monte_carlo: { simulations: number; horizon_weeks: number; block_lengths: number[] } };
+  comparison: Array<{ id: string; name: string; score: number; grade: string; recent_cagr: number; worst_rolling_year: number; monte_profit_probability: number; monte_30pct_drawdown_probability: number; live_verdict: string }>;
+  strategies: SurvivalStrategy[];
+  all_strategies_not_proven_live: boolean;
+  known_missing_real_world_inputs: string[];
+};
 type MetricKey = "annualized" | "sharpe" | "drawdown" | "winRate" | "evidence";
-type FormulaKey = "priceReturn" | "coreBlend" | "rankScore" | "sourceBlend" | "netReturn" | "equalFive" | "momentumGate" | "volatilityRatio" | "stockCap" | "turnover" | "baseLeader" | "cashSpread" | "equalTwenty" | "cashGate" | "netCost" | "signalBlend" | "sectorCap" | "outerGate" | "residualScore" | "controlledBlend" | "leverageFinancing" | "calendarDelta" | "annualized" | "sharpe" | "drawdown" | "winRate" | "cagr";
+type FormulaKey = "priceReturn" | "coreBlend" | "rankScore" | "sourceBlend" | "netReturn" | "equalFive" | "momentumGate" | "volatilityRatio" | "stockCap" | "turnover" | "baseLeader" | "cashSpread" | "equalTwenty" | "cashGate" | "netCost" | "signalBlend" | "sectorCap" | "outerGate" | "residualScore" | "controlledBlend" | "leverageFinancing" | "fragileLeverage" | "calendarDelta" | "annualized" | "sharpe" | "drawdown" | "winRate" | "cagr";
 type MethodStep = { number: string; label: string; title: string; description: string; formula: FormulaKey; note: string };
 type StrategyMethodology = { summary: string; cadence: string; universe: string; steps: MethodStep[] };
-export type DashboardViewName = "overview" | "performance" | "activity" | "rebalances" | "methodology" | "guardrails";
+export type DashboardViewName = "overview" | "performance" | "activity" | "rebalances" | "survival" | "methodology" | "guardrails";
 
 const viewDetails: Record<DashboardViewName, { label: string; title: string; description: string; path: string }> = {
   overview: { label: "Overview", title: "Portfolio overview", description: "A clear read on performance, risk, and the portfolio’s latest systematic decision.", path: "/" },
   performance: { label: "Performance", title: "Performance", description: "Study the simulated equity curve, risk-adjusted results, and the complete current allocation.", path: "/performance" },
   activity: { label: "Daily activity", title: "Daily activity", description: "Inspect daily P&L, historical holdings, and every recorded change in the strategy book.", path: "/activity" },
   rebalances: { label: "Rebalances", title: "Rebalances", description: "Review recent portfolio changes, turnover, and the strategy’s forward-validation clock.", path: "/rebalances" },
+  survival: { label: "Survival lab", title: "Real-world survival lab", description: "See which strategies survive modeled stress, what still fails, and why none is proven live yet.", path: "/survival" },
   methodology: { label: "How it works", title: "How the portfolio works", description: "Follow the selected strategy from raw evidence to target weights, costs, and the final recorded decision.", path: "/methodology" },
   guardrails: { label: "Guardrails", title: "Research guardrails", description: "Understand exactly what the simulation can do, what it cannot do, and how its evidence is controlled.", path: "/guardrails" },
 };
@@ -144,6 +176,18 @@ const methodologyByStrategy: Record<string, StrategyMethodology> = {
       { number: "05", label: "FALSIFY", title: "Keep the failure visible", description: "The simulation deducts turnover costs and records execution-delay, endpoint, bootstrap, and missing-issuer tests. The attractive return remains visible, but it is not a replacement strategy.", formula: "netCost", note: "Bootstrap confidence and the five-issuer stress missed the required thresholds." },
     ],
   },
+  "sec-sector-ensemble-fragile-1.35x-v1": {
+    summary: "This view preserves the highest exact-daily return ceiling discovered so far. It applies fixed 1.35x exposure to the sector-aware filing ensemble, but the source strategy failed its five-issuer and bootstrap falsification gates. It is intentionally shown as fragile research, not as the current strategy.",
+    cadence: "Quarterly stock ranks · weekly allocation gate · exact daily accounting",
+    universe: "ETF core plus point-in-time SEC-screened U.S. companies",
+    steps: [
+      { number: "01", label: "SOURCE", title: "Start with the sector-aware ensemble", description: "The underlying portfolio combines cash conversion and balance-sheet quality rankings beside the established dynamic leader.", formula: "signalBlend", note: "The source produced strong recent returns but did not pass complete issuer-dependence falsification." },
+      { number: "02", label: "DIVERSIFY", title: "Retain generic sector limits", description: "The saved construction applies the same sector-based limits to every company and never names Micron or any other issuer.", formula: "sectorCap", note: "Generic limits reduced simple concentration but did not eliminate joint dependence on the best issuers." },
+      { number: "03", label: "ALLOCATE", title: "Use the lagged outer gate", description: "The independent filing sleeve enters only when its saved causal gate permits it; otherwise capital remains with the established leader.", formula: "outerGate", note: "No future return is used to form the weekly allocation." },
+      { number: "04", label: "AMPLIFY", title: "Apply fixed 1.35x exposure", description: "The complete portfolio is scaled to 135% and charged 6% annual financing on the borrowed 35%, plus an exposure-change cost.", formula: "fragileLeverage", note: "This layer lifts the trailing result to 174.97%, while also increasing exact-daily drawdown to 24.43%." },
+      { number: "05", label: "REJECT", title: "Do not promote the ceiling", description: "The leverage layer passed its narrow daily checks, but leverage cannot repair a weak underlying issuer test. The candidate therefore remains ineligible for forward promotion.", formula: "netCost", note: "Failed robustness is part of the strategy label and remains visible throughout the dashboard." },
+    ],
+  },
 };
 
 const mathMarkup: Record<FormulaKey, { label: string; markup: string }> = {
@@ -168,6 +212,7 @@ const mathMarkup: Record<FormulaKey, { label: string; markup: string }> = {
   residualScore: { label: "residual score equals seventy percent sector residual momentum plus thirty percent market residual momentum", markup: `<math display="block"><mrow><msub><mi>s</mi><mtext>residual</mtext></msub><mo>=</mo><mn>0.70</mn><mo>·</mo><msub><mi>R</mi><mtext>sector residual</mtext></msub><mo>+</mo><mn>0.30</mn><mo>·</mo><msub><mi>R</mi><mtext>market residual</mtext></msub></mrow></math>` },
   controlledBlend: { label: "controlled portfolio weight equals eighty percent control plus twenty percent residual sleeve", markup: `<math display="block"><mrow><msub><mi>w</mi><mtext>blend</mtext></msub><mo>=</mo><mn>0.80</mn><mo>·</mo><msub><mi>w</mi><mtext>control</mtext></msub><mo>+</mo><mn>0.20</mn><mo>·</mo><msub><mi>w</mi><mtext>residual</mtext></msub></mrow></math>` },
   leverageFinancing: { label: "levered return equals one point two five times portfolio return minus borrowed quarter times annual financing divided by fifty two", markup: `<math display="block"><mrow><msub><mi>r</mi><mtext>levered</mtext></msub><mo>=</mo><mn>1.25</mn><mo>·</mo><msub><mi>r</mi><mtext>blend</mtext></msub><mo>−</mo><mn>0.25</mn><mo>·</mo><mfrac><msub><mi>f</mi><mtext>annual</mtext></msub><mn>52</mn></mfrac></mrow></math>` },
+  fragileLeverage: { label: "levered return equals one point three five times source return minus borrowed thirty-five percent times six percent financing divided by two hundred fifty-two", markup: `<math display="block"><mrow><msub><mi>r</mi><mtext>levered</mtext></msub><mo>=</mo><mn>1.35</mn><mo>·</mo><msub><mi>r</mi><mtext>source</mtext></msub><mo>−</mo><mn>0.35</mn><mo>·</mo><mfrac><mn>0.06</mn><mn>252</mn></mfrac></mrow></math>` },
   calendarDelta: { label: "change in asset weight equals current weight minus prior weight", markup: `<math display="block"><mrow><mi>Δ</mi><msub><mi>w</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>=</mo><msub><mi>w</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>−</mo><msub><mi>w</mi><mrow><mi>i</mi><mo>,</mo><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub></mrow></math>` },
   annualized: { label: "annualized return equals compounded daily returns raised to two hundred fifty-two divided by the observation count, minus one", markup: `<math display="block"><mrow><msub><mi>R</mi><mtext>ann</mtext></msub><mo>=</mo><msup><mrow><mo>[</mo><munderover><mo>∏</mo><mrow><mi>t</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><msub><mi>r</mi><mi>t</mi></msub><mo stretchy="false">)</mo><mo>]</mo></mrow><mfrac><mn>252</mn><mi>N</mi></mfrac></msup><mo>−</mo><mn>1</mn></mrow></math>` },
   sharpe: { label: "Sharpe ratio equals mean daily return divided by daily standard deviation, multiplied by the square root of two hundred fifty-two", markup: `<math display="block"><mrow><mi>S</mi><mo>=</mo><mfrac><mrow><mtext>mean</mtext><mo stretchy="false">(</mo><msub><mi>r</mi><mi>d</mi></msub><mo stretchy="false">)</mo></mrow><mrow><mi>σ</mi><mo stretchy="false">(</mo><msub><mi>r</mi><mi>d</mi></msub><mo stretchy="false">)</mo></mrow></mfrac><mo>×</mo><msqrt><mn>252</mn></msqrt></mrow></math>` },
@@ -262,6 +307,7 @@ function MathEquation({ formula }: { formula: FormulaKey }) {
 
 export function ReturnFirstDashboard({ initialView = "overview" }: { initialView?: DashboardViewName }) {
   const [bundle, setBundle] = useState<DashboardBundle | null>(null);
+  const [survivalBundle, setSurvivalBundle] = useState<SurvivalBundle | null>(null);
   const [activeStrategy, setActiveStrategy] = useState("sec-residual-controlled-1.25x-5pct-v1");
   const [error, setError] = useState(false);
 
@@ -273,6 +319,10 @@ export function ReturnFirstDashboard({ initialView = "overview" }: { initialView
       })
       .then(setBundle)
       .catch(() => setError(true));
+    fetch("/strategy-survival.json")
+      .then((response) => response.ok ? response.json() as Promise<SurvivalBundle> : null)
+      .then((payload) => payload && setSurvivalBundle(payload))
+      .catch(() => undefined);
     const savedStrategy = window.localStorage.getItem("portfolio-optimizer-strategy-v2");
     if (savedStrategy) setActiveStrategy(savedStrategy);
   }, []);
@@ -285,10 +335,10 @@ export function ReturnFirstDashboard({ initialView = "overview" }: { initialView
   if (error) return <main className="loading-state"><span>PORTFOLIO OPTIMIZER</span><h1>Research snapshot unavailable</h1><p>Rebuild the dashboard snapshot and refresh this page.</p></main>;
   if (!bundle) return <main className="loading-state"><span>PORTFOLIO OPTIMIZER</span><h1>Loading the research book…</h1></main>;
   const data = bundle.strategies.find((item) => item.strategy.id === activeStrategy) ?? bundle.strategies[0];
-  return <DashboardView key={`${data.strategy.id}-${initialView}`} data={data} strategies={bundle.strategies} activeView={initialView} onStrategyChange={changeStrategy} />;
+  return <DashboardView key={`${data.strategy.id}-${initialView}`} data={data} strategies={bundle.strategies} survivalBundle={survivalBundle} activeView={initialView} onStrategyChange={changeStrategy} />;
 }
 
-function DashboardView({ data, strategies, activeView, onStrategyChange }: { data: DashboardPayload; strategies: DashboardPayload[]; activeView: DashboardViewName; onStrategyChange: (id: string) => void }) {
+function DashboardView({ data, strategies, survivalBundle, activeView, onStrategyChange }: { data: DashboardPayload; strategies: DashboardPayload[]; survivalBundle: SurvivalBundle | null; activeView: DashboardViewName; onStrategyChange: (id: string) => void }) {
   const latest = data.records.at(-1)!;
   const latestDay = data.dailyRecords.at(-1)!;
   const firstHoldoutRecord = data.dailyRecords.find((row) => row.date > data.strategy.retrospectiveHoldout.start)?.date ?? data.strategy.retrospectiveHoldout.start;
@@ -477,6 +527,7 @@ function DashboardView({ data, strategies, activeView, onStrategyChange }: { dat
           <Link className={activeView === "performance" ? "active" : ""} href="/performance" onClick={() => setMobileMenuOpen(false)}><PieChart size={18} /><span>Performance</span></Link>
           <Link className={activeView === "activity" ? "active" : ""} href="/activity" onClick={() => setMobileMenuOpen(false)}><CalendarDays size={18} /><span>Daily activity</span></Link>
           <Link className={activeView === "rebalances" ? "active" : ""} href="/rebalances" onClick={() => setMobileMenuOpen(false)}><History size={18} /><span>Rebalances</span></Link>
+          <Link className={activeView === "survival" ? "active" : ""} href="/survival" onClick={() => setMobileMenuOpen(false)}><Siren size={18} /><span>Survival lab</span></Link>
           <Link className={activeView === "methodology" ? "active" : ""} href="/methodology" onClick={() => setMobileMenuOpen(false)}><Workflow size={18} /><span>How it works</span></Link>
           <Link className={activeView === "guardrails" ? "active" : ""} href="/guardrails" onClick={() => setMobileMenuOpen(false)}><ShieldCheck size={18} /><span>Guardrails</span></Link>
         </nav>
@@ -614,6 +665,11 @@ function DashboardView({ data, strategies, activeView, onStrategyChange }: { dat
           <strong>{pct(data.strategy.featuredMetric.value, 2)}</strong>
           <small>{data.strategy.featuredMetric.note}</small>
         </button>
+        {data.strategy.cashOnlyMetric && <article className="metric-card cash-only-card spotlight-surface" onMouseMove={positionSpotlight} aria-label="Cash-only performance without financing">
+          <div className="metric-label"><span>{data.strategy.cashOnlyMetric.label}</span></div>
+          <strong>{pct(data.strategy.cashOnlyMetric.value, 2)}</strong>
+          <small>Sharpe {data.strategy.cashOnlyMetric.sharpe.toFixed(2)} · drawdown {pct(data.strategy.cashOnlyMetric.maxDrawdown, 1)} · {data.strategy.cashOnlyMetric.note}</small>
+        </article>}
       </section>
 
       <section className="section-block">
@@ -831,6 +887,17 @@ function DashboardView({ data, strategies, activeView, onStrategyChange }: { dat
           <article className="panel guardrail-card spotlight-surface" onMouseMove={positionSpotlight}><span>05</span><div><h3>Forward validation</h3><p>{data.strategy.forward.observedWeeks} of {data.strategy.forward.requiredWeeks} required weeks have been observed. First eligible realization: {data.strategy.forward.firstRealization}.</p></div><strong>{data.strategy.forward.status.toUpperCase()}</strong></article>
           <article className="panel guardrail-card spotlight-surface" onMouseMove={positionSpotlight}><span>06</span><div><h3>Research disclosure</h3><p>Past simulated performance is not a promise of future returns and should not be read as investment advice.</p></div><strong>RESEARCH ONLY</strong></article>
         </div>
+      </section>}
+
+      {activeView === "survival" && <section className="section-block page-section survival-page">
+        {!survivalBundle ? <article className="panel survival-loading"><span className="section-kicker">SURVIVAL EVIDENCE</span><h2>Loading the frozen stress results&hellip;</h2><p>The performance dashboard remains available while the separate survival artifact loads.</p></article> : (
+          <SurvivalLab
+            bundle={survivalBundle as unknown as SurvivalBundlePayload}
+            selectedId={data.strategy.id}
+            onSelect={onStrategyChange}
+            positionSpotlight={positionSpotlight}
+          />
+        )}
       </section>}
 
       <footer>

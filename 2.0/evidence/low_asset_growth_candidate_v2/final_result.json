@@ -1,0 +1,70 @@
+{
+  "all_gates_pass": false,
+  "benchmark": {
+    "cagr": 0.22206466903245814,
+    "max_drawdown": -0.2025481898826792,
+    "sharpe": 1.2776994871528589,
+    "total_return": 0.7358373075433187,
+    "weeks": 143
+  },
+  "experiment_id": "low-asset-growth-candidate-v2",
+  "gates": {
+    "beats_benchmark_after_costs": true,
+    "no_single_name_drives_result": true,
+    "non_overlapping_spread_positive": true,
+    "wide_book_not_worse_than_narrow": false
+  },
+  "generated_at": "2026-08-25T22:55:41.001368+00:00",
+  "honest_scope": "One 2023-2026 bull regime, roughly ten independent windows. Nothing here can promote anything; the purpose is to decide whether the candidate deserves a forward clock.",
+  "live_trading_enabled": false,
+  "portfolios": {
+    "10": {
+      "average_turnover": 0.04545454545454547,
+      "cagr": 0.17317187955133817,
+      "max_drawdown": -0.2699728982193328,
+      "sharpe": 0.6210520794674521,
+      "total_return": 0.5514740736354717,
+      "weeks": 143
+    },
+    "100": {
+      "average_turnover": 0.04167832167832168,
+      "cagr": 0.15582698794313843,
+      "max_drawdown": -0.3089297112852013,
+      "sharpe": 0.7189327896489938,
+      "total_return": 0.489207739756476,
+      "weeks": 143
+    },
+    "20": {
+      "average_turnover": 0.045104895104895106,
+      "cagr": 0.2473291864761913,
+      "max_drawdown": -0.2561784909005105,
+      "sharpe": 0.8840655284584659,
+      "total_return": 0.8363183862428663,
+      "weeks": 143
+    },
+    "200": {
+      "average_turnover": 0.040139860139860144,
+      "cagr": 0.1505671157976658,
+      "max_drawdown": -0.31739039408413117,
+      "sharpe": 0.7094528776651012,
+      "total_return": 0.47064510832678885,
+      "weeks": 143
+    },
+    "50": {
+      "average_turnover": 0.04293706293706294,
+      "cagr": 0.17464054782692284,
+      "max_drawdown": -0.32890525433968654,
+      "sharpe": 0.748046738508569,
+      "total_return": 0.5568211316650398,
+      "weeks": 143
+    }
+  },
+  "strict_non_overlapping": {
+    "annualised": 0.08695850342175916,
+    "mean_spread": 0.02173962585543979,
+    "mean_spread_trimmed": 0.007183931828958902,
+    "median_spread": 0.007865625955754263,
+    "share_positive": 0.5555555555555556,
+    "windows": 9
+  }
+}

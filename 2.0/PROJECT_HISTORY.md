@@ -7949,3 +7949,59 @@ References:
 - `scripts/run_signal_discovery_program_v1.py`
 - `evidence/signal_discovery_program_v1/`
 - `data/fundamental_signal_panel_v1/`
+
+## Step 193 — Test the survivor properly, and decline to freeze it
+
+Step 192 found low asset growth surviving all pre-declared gates on overlapping weekly
+windows. Before freezing it with a forward clock it was re-tested two ways: on strictly
+non-overlapping windows, and as an actual long-only portfolio with costs, an execution
+delay and varying breadth.
+
+A defect in the first run is recorded rather than hidden. The equal-weight benchmark
+returned infinity, because the price panel contains 52 zero prices, one of which produces
+an infinite weekly return, together with twelve observations above +1000% in a single
+week. The benchmark gate in v1 was therefore meaningless. A v2 was built with zero prices
+dropped and weekly moves capped at +200%. That hygiene was checked before adoption: it
+moves the non-overlapping spread from +2.43% to +2.17% per thirteen weeks, so the signal
+never depended on the bad prints.
+
+The strict test does not confirm the effect. Nine genuinely independent windows give a
+mean spread of +2.17% per thirteen weeks, but a median of only +0.79%, and the spread is
+positive in five of nine windows. Mean far above median across nine observations that are
+close to a coin flip is not evidence. The overlapping test reused every observation
+thirteen times, and its p of 0.0020 was correspondingly overstated despite the block
+bootstrap.
+
+The portfolio test is decisive. The equal-weight panel of all priced issuers returned
+22.21% annually with a Sharpe of 1.28 and a maximum drawdown of -20.3%. Long-only books
+built from the signal returned 17.32% at ten names, 24.73% at twenty, 17.46% at fifty,
+15.58% at one hundred and 15.06% at two hundred, with Sharpe ratios between 0.62 and 0.88.
+Every configuration has a worse Sharpe than simply holding the whole universe, and four of
+five underperform it outright. The two-hundred-name book, which approximates the full top
+decile, trailed the benchmark by 7.15 points.
+
+The reconciliation between a positive long-short spread and a losing long-only book is
+the interesting part, and it is consistent with everything else found this session. A top
+decile can beat a bottom decile while both trail the mean. Steps 189 and 191 established
+that this sample rewarded volatile, high-beta names; low asset growth selects
+systematically against exactly those names. The signal is measuring something real about
+the cross-section and that something is on the wrong side of the regime.
+
+The candidate is therefore not frozen and no forward clock is started. Doing so would
+commit a year of the project's only untouched evidence to a rule that loses to buying the
+universe equally. The correct record is that low asset growth is the only literature
+signal of twenty-two to produce a positive spread here, that the spread does not survive
+independent windows, and that it does not convert into a long-only portfolio without a
+short book this project cannot cost or borrow.
+
+An unglamorous benchmark result is worth carrying forward. The equal-weight panel returned
+22.21% with a Sharpe of 1.28 and a -20.3% drawdown over the same window, which is better
+risk-adjusted performance than any of the six saved strategies achieved on pure cash.
+
+No strategy was promoted and live trading remains disabled.
+
+References:
+
+- `config/low_asset_growth_candidate_v2.json`
+- `scripts/run_low_asset_growth_candidate_v2.py`
+- `evidence/low_asset_growth_candidate_v2/`

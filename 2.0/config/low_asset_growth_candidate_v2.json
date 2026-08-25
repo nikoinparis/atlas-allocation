@@ -1,0 +1,41 @@
+{
+  "experiment_id": "low-asset-growth-candidate-v2",
+  "gates": {
+    "beats_benchmark_after_costs": true,
+    "no_single_name_drives_result": true,
+    "non_overlapping_spread_positive": true,
+    "wide_book_not_worse_than_narrow": true
+  },
+  "honest_scope": "One 2023-2026 bull regime, roughly ten independent windows. Nothing here can promote anything; the purpose is to decide whether the candidate deserves a forward clock.",
+  "live_trading_enabled": false,
+  "portfolio": {
+    "benchmark": "equal-weight panel of all priced issuers",
+    "breadth_rationale": "Step 190 showed that in this cross-section breadth captures skew rather than sacrificing return. If that holds, wider books should not lose to narrow ones.",
+    "breadth_sizes": [
+      10,
+      20,
+      50,
+      100,
+      200
+    ],
+    "cost_bps_per_unit_turnover": 50.0,
+    "execution_delay_weeks": 1,
+    "rebalance_weeks": 13,
+    "weighting": "equal"
+  },
+  "price_hygiene": {
+    "cap_weekly_return": 2.0,
+    "drop_zero_prices": true,
+    "rationale": "Zero prices are data errors, not trades. Capping weekly moves at +200% keeps genuine microcap moves while preventing a single bad print from dominating a decile mean. Checked before adopting: cleaning moves the non-overlapping spread from +2.43% to +2.17% per 13 weeks, so the signal does not depend on the bad prints."
+  },
+  "question": "The discovery program used overlapping weekly windows. This asks whether the effect survives strictly non-overlapping evaluation, and whether it produces a usable portfolio once costs, execution delay and breadth are applied.",
+  "signal": "low_asset_growth",
+  "source": "Cooper, Gulen & Schill (2008). Negative of year-on-year total asset growth, standardised within SIC sector.",
+  "strict_evaluation": {
+    "non_overlapping_windows": true,
+    "note": "Weekly evaluation of a 13-week forward return reuses each observation thirteen times. Non-overlapping windows give genuinely independent observations at the cost of a much smaller sample, which is the honest trade.",
+    "window_weeks": 13
+  },
+  "supersedes": "low-asset-growth-candidate-v1",
+  "v1_defect": "v1's equal-weight benchmark returned infinity. The price panel contains 52 zero prices, one of which produces an infinite weekly return, plus 12 observations above +1000% in a single week. The benchmark comparison gate in v1 is therefore meaningless and is superseded rather than trusted."
+}

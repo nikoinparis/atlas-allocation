@@ -1,0 +1,30 @@
+{
+  "protocol_version": "1.0.0",
+  "status": "implemented_research_only",
+  "principles": [
+    "Freeze thesis, signal, universe, parameters, snapshot, code version, direction, and metric family before evaluation",
+    "Use chronological, mutually exclusive train, validation, and locked-test windows",
+    "Score cross-sectional signals with date-level Spearman RankIC and ICIR",
+    "Score timing strategies with net portfolio returns and portfolio risk metrics",
+    "Feed only train and validation diagnoses into recursive revisions",
+    "Open the locked test once and only after every development promotion gate passes",
+    "Retain every failed and successful trial in a hash-chained append-only ledger"
+  ],
+  "default_promotion_policy": {
+    "minimum_train_observations": 52,
+    "minimum_validation_observations": 26,
+    "minimum_locked_observations": 26,
+    "minimum_train_primary": 0.25,
+    "minimum_validation_primary": 0.0,
+    "maximum_validation_degradation": 0.75,
+    "minimum_timing_sharpe": 0.5,
+    "maximum_timing_drawdown": -0.3,
+    "minimum_rank_ic": 0.01
+  },
+  "claims_policy": {
+    "locked_test_pass_is_not_live_authorization": true,
+    "requires_forward_shadow_evidence": true,
+    "failed_trials_must_remain_in_ledger": true,
+    "threshold_changes_require_new_protocol_version": true
+  }
+}

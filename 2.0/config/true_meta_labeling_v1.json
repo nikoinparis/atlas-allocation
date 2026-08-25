@@ -1,0 +1,23 @@
+{
+  "program": "true_meta_labeling_v1",
+  "status": "predeclared_research_only",
+  "primary_model": "fixed_real_predictions_from_robust_cross_sectional_ml_batch_17",
+  "prediction_source": "evidence/robust_cross_sectional_ml_batch_17/predictions.csv",
+  "secondary_label": "primary_prediction_sign_matches_future_target_rank_sign",
+  "secondary_features": [
+    "absolute_primary_prediction",
+    "primary_prediction_sign",
+    "prediction_member_std_real",
+    "prediction_family_std_real",
+    "prediction_sign_agreement_real"
+  ],
+  "outer_test_start_year": 2016,
+  "embargo_days": 7,
+  "selection_probability_threshold": 0.5,
+  "minimum_precision_improvement": 0.02,
+  "minimum_coverage": 0.1,
+  "negative_control_precision_margin": 0.01,
+  "negative_controls": ["deterministic_label_shuffle", "deterministic_random_features"],
+  "portfolio_backtest_rule": "blocked_unless_classification_gate_passes",
+  "execution_enabled": false
+}

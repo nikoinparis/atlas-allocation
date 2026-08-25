@@ -1,0 +1,71 @@
+{
+  "program": "sec_form4_dynamic_overlay_v1",
+  "classification": "rejected - fails leave-one-company-out, neighborhood, and bootstrap falsification",
+  "status": "not promoted",
+  "predecessor": "sec_form4_insider_cluster_v1 (rejected as a static blend; this experiment tests the same signal as a causal conditional overlay instead)",
+  "structure": {
+    "control": "sec_cash_conversion_breadth20_candidate_v1 (unchanged)",
+    "sleeve_families_tested": ["executive_or_cluster", "cluster_2plus", "all_open_market"],
+    "event_window_days": 30,
+    "breadth": 10,
+    "market_cap_floor": 50000000,
+    "sector_cap": 0.70,
+    "gate": "shifted rolling trend comparison, lookback in {8, 13, 26} weeks, allocation in {10%, 20%, 30%} only when the sleeve's trend exceeds both zero and the leader's trend",
+    "tested_candidates": 27
+  },
+  "selected_candidate": {
+    "name": "executive_or_cluster__13w__30",
+    "trailing_1y_cagr": 1.0843237847531686,
+    "trailing_1y_sharpe": 2.768442932312267,
+    "trailing_1y_drawdown": -0.10076752452473314,
+    "full_cagr": 0.4141298640919968,
+    "ytd_cagr": 1.095041975165166,
+    "trailing_1y_200bps_cagr": 0.9410753719423468,
+    "active_weeks": 55,
+    "active_weeks_total": 188
+  },
+  "control": {
+    "trailing_1y_cagr": 1.0510082013109483,
+    "trailing_1y_sharpe": 2.691874564272,
+    "trailing_1y_drawdown": -0.10076752452473337,
+    "full_cagr": 0.4093476771616662
+  },
+  "screen_gates_passed": true,
+  "falsification": {
+    "one_week_delay_beats_control": true,
+    "two_week_delay_beats_control": true,
+    "prefix_invariance": true,
+    "completed_rolling_26w_windows": 163,
+    "rolling_26w_outperformance_share": 0.5644171779141104,
+    "rolling_window_gate_passed": true,
+    "neighborhood_joint_improvement_share": 0.3333333333333333,
+    "neighborhood_gate_passed": false,
+    "bootstrap_minimum_probability_required": 0.95,
+    "bootstrap_4w_probability_positive": 0.6952,
+    "bootstrap_4w_gate_passed": false,
+    "bootstrap_13w_probability_positive": 0.8614,
+    "bootstrap_13w_gate_passed": false,
+    "worst_leave_one_out_company": "PROFRAC HOLDING CORP.",
+    "worst_leave_one_out_trailing_1y_cagr": 0.992699,
+    "worst_leave_one_out_beats_control": false,
+    "all_passed": false
+  },
+  "rejection_reason": "The screened candidate passes surface promotion gates (higher trailing-1y and full CAGR, similar Sharpe and drawdown, still ahead of control at 200 bps) but fails the falsification gauntlet: excluding ProFrac Holding Corp. drops trailing-1y CAGR from 108.43% to 99.27%, below the unchanged control's 105.10%; only 33.3% of the same family's neighboring combinations jointly improve recent and full CAGR versus the required 50%; and 4-week/13-week block-bootstrap probabilities of positive excess return are 69.52%/86.14%, both below the required 95%. The corrected completed-window calculation does pass at 56.44% across 163 rolling 26-week windows, but that does not offset the other failures.",
+  "diagnostic_notes": [
+    "The selected candidate's trailing-one-year maximum drawdown (-10.08%) matches the control to numerical precision, meaning it was inactive during the leader's worst week in that window; this does not establish protection during genuine portfolio stress.",
+    "The selected candidate's year-to-date 2026 CAGR is identical to the control to numerical precision because its gate has not activated in calendar-year 2026; its trailing-one-year improvement is concentrated in a minority of weeks in 2025.",
+    "1- and 2-week signal delays still beat the control (106.76% and 106.61%), so the timing/lag dimension is not the failure mode; the failure is concentration and low-frequency robustness."
+  ],
+  "reproducibility": {
+    "runtime_pinned": true,
+    "python": "3.12.13",
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "persisted_artifact_roundtrip_passed": true,
+    "artifact_hashes_recorded_in_result": true
+  },
+  "research_only": true,
+  "approved_for_live_trading": false,
+  "execution_enabled": false,
+  "strategy_replacement_authorized": false
+}

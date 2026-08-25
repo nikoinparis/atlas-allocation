@@ -1,0 +1,52 @@
+{
+  "program": "sec_earnings_drift_rank_v1",
+  "classification": "rejected - modest headline improvement fails cost, timing, neighborhood, bootstrap, and issuer-removal tests",
+  "status": "not promoted",
+  "source": "sec_earnings_8k_acquisition_v1",
+  "structure": {
+    "event_reactions": 8271,
+    "priced_event_issuers": 558,
+    "reaction_rule": "issuer return from the last weekly close before SEC acceptance to the first weekly close strictly after acceptance, minus the same-period sector median return",
+    "tradability_rule": "reaction becomes eligible only at a later weekly decision",
+    "event_windows_weeks": [4, 8, 13],
+    "event_weights": [0.1, 0.2, 0.3],
+    "breadths": [20, 25, 30],
+    "rank_buffers": [0, 5],
+    "tested_candidates": 54
+  },
+  "selected_candidate": {
+    "name": "pead4__w30__b20__buf5",
+    "trailing_1y_cagr": 1.058410760272836,
+    "trailing_1y_sharpe": 2.7348563114694815,
+    "trailing_1y_drawdown": -0.08879660071665174,
+    "full_cagr": 0.4155247536719753,
+    "trailing_1y_200bps_cagr": 0.9340729533758856,
+    "sleeve_annual_one_way_turnover": 6.709769679861219
+  },
+  "control": {
+    "trailing_1y_cagr": 1.0510082013109483,
+    "full_cagr": 0.4093476771616662,
+    "trailing_1y_200bps_cagr": 0.9320198735415857
+  },
+  "falsification": {
+    "candidates_beating_control_recent_and_full": 3,
+    "surface_gate_passers": 0,
+    "event_one_week_delay_cagr": 0.9364447227626149,
+    "event_two_week_delay_cagr": 0.9354734003711613,
+    "overlay_one_week_delay_cagr": 0.9815650970527174,
+    "overlay_two_week_delay_cagr": 1.0192468610747043,
+    "rolling_26w_outperformance_share": 0.5276073619631901,
+    "neighborhood_joint_improvement_share": 0.125,
+    "bootstrap_4w_probability_positive": 0.5884,
+    "bootstrap_13w_probability_positive": 0.6452,
+    "worst_leave_one_out_company": "GITLAB INC.",
+    "worst_leave_one_out_trailing_1y_cagr": 0.9600006269607799,
+    "single_issuer_improvement_share": 13.294069499307263,
+    "all_passed": false
+  },
+  "decision": "Reject as a strategy replacement. The 0.74-point recent improvement is below the required one point, turnover exceeds the 6x limit, severe-cost performance only marginally exceeds the control, and the result collapses under even a one-week event delay and exact issuer removal.",
+  "research_only": true,
+  "approved_for_live_trading": false,
+  "execution_enabled": false,
+  "strategy_replacement_authorized": false
+}

@@ -1,0 +1,41 @@
+{
+  "experiment": "sec_cash_momentum_rank_v1",
+  "purpose": "Test strictly lagged sector-relative company momentum as a bounded issuer-level confirmation feature for cash conversion.",
+  "momentum_lookbacks_weeks": [26, 39, 52],
+  "momentum_weights": [0.00, 0.10, 0.15, 0.20, 0.25],
+  "breadths": [20, 25, 30],
+  "rank_buffers": [0, 5],
+  "internal_stock_cap_multiple": 1.50,
+  "overlay_lookback_weeks": 11,
+  "overlay_active_allocation": 0.50,
+  "cost_bps": [50, 100, 200],
+  "scenarios": ["base", "adverse"],
+  "promotion_gates": {
+    "minimum_recent_cagr_improvement": 0.01,
+    "minimum_full_cagr_improvement": 0.0,
+    "minimum_completed_rolling_outperformance_share": 0.50,
+    "minimum_neighborhood_joint_improvement_share": 0.50,
+    "minimum_bootstrap_probability_positive": 0.95,
+    "maximum_single_issuer_improvement_share": 0.50,
+    "maximum_peak_total_portfolio_stock_weight": 0.05,
+    "maximum_sleeve_annual_one_way_turnover": 6.0
+  },
+  "falsification": {
+    "momentum_signal_delays_weeks": [1, 2],
+    "overlay_delays_weeks": [1, 2],
+    "rolling_comparison_weeks": 26,
+    "bootstrap_blocks_weeks": [4, 13],
+    "bootstrap_draws": 5000,
+    "bootstrap_seed": 20260820
+  },
+  "pinned_runtime": {
+    "container_image": "localhost/po2-yfinance:1.5.2-v1",
+    "container_image_id": "c84c194bef2052b0b4e4997d5780eb8ccf48d0ed2a3ec35bcafb726f691e0c5c",
+    "python": "3.12.13",
+    "numpy": "2.5.1",
+    "pandas": "3.0.5"
+  },
+  "research_only": true,
+  "strategy_promotion_authorized": false,
+  "live_trading_enabled": false
+}

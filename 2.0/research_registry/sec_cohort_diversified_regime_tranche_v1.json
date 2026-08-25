@@ -1,0 +1,50 @@
+{
+  "program": "sec_cohort_diversified_regime_tranche_v1",
+  "classification": "generic issuer and quarterly-cohort diversification falsification",
+  "status": "rejected; diagnostic artifacts retained",
+  "predecessor": "sec_regime_increment_tranching_v1",
+  "tested_surface": {
+    "candidates": 13,
+    "current_breadths": [20, 25, 30],
+    "one_prior_cohort_blends": 5,
+    "two_prior_cohort_blends": 5,
+    "issuer_removal_scope": "every construction and every issuer held in its recent window",
+    "ticker_specific_rules": false,
+    "surface_passers": 1,
+    "non_control_surface_passers": 0
+  },
+  "control": {
+    "name": "top20_current_control",
+    "trailing_1y_cagr": 1.1921841481621755,
+    "worst_leave_one_out_cagr": 1.0916574328451771
+  },
+  "selected_diagnostic": {
+    "name": "top25_current",
+    "trailing_1y_cagr": 1.12426438437214,
+    "trailing_1y_sharpe": 2.9165056263025684,
+    "trailing_1y_drawdown": -0.08708758375337278,
+    "full_cagr": 0.4162440440942028,
+    "trailing_1y_200bps_cagr": 0.9675359369983625,
+    "one_week_increment_delay_cagr": 1.1134187397703772,
+    "two_week_increment_delay_cagr": 1.1404236996753703,
+    "peak_total_stock_weight": 0.06006754544008051,
+    "worst_leave_one_out_company": "QUALYS, INC.",
+    "worst_leave_one_out_cagr": 1.0861815587783044,
+    "rolling_26w_outperformance_share_vs_control": 0.48466257668711654,
+    "bootstrap_4w_probability_positive_vs_control": 0.1294,
+    "bootstrap_13w_probability_positive_vs_control": 0.181
+  },
+  "highest_headline_noncontrol": {
+    "name": "top20_current67_prior33",
+    "trailing_1y_cagr": 1.1950734942600612,
+    "full_cagr": 0.3999878264117509,
+    "trailing_1y_200bps_cagr": 1.0321787511146017,
+    "worst_leave_one_out_company": "QUALYS, INC.",
+    "worst_leave_one_out_cagr": 1.0203696965933804
+  },
+  "decision": "Reject all breadth and quarterly-cohort replacements. Top 25 reduced nominal concentration and the size of the Qualys removal drop but sacrificed too much recent and delayed return, and its absolute removal floor remained below the top-20 control. Prior-quarter blends preserved headline return but failed the full-period gate and worsened issuer-removal outcomes. Keep the 119.22% four-week-tranched top-20 challenger unchanged.",
+  "research_only": true,
+  "approved_for_live_trading": false,
+  "execution_enabled": false,
+  "strategy_replacement_authorized": false
+}

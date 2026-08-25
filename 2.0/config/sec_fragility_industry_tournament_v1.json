@@ -1,0 +1,80 @@
+{
+  "experiment": "sec_fragility_industry_tournament_v1",
+  "status": "post-selection research tournament; no promotion authority",
+  "common_endpoint": "2026-08-07",
+  "primary_cost_bps": 50,
+  "cost_stress_bps": [100, 200],
+  "execution_delay_weeks": [1, 2],
+  "leverage_change_cost_bps": 25,
+  "financing_rates": [0.08, 0.12],
+  "incumbent_exposures": [1.25, 1.30, 1.35],
+  "sector_reference_exposures": [1.25, 1.35],
+  "accelerator_variants": [
+    {"name": "alpha10_1.25x", "alpha_weight": 0.10, "gross_exposure": 1.25, "guard": "balanced"},
+    {"name": "alpha20_1.25x", "alpha_weight": 0.20, "gross_exposure": 1.25, "guard": "balanced"},
+    {"name": "alpha30_1.25x", "alpha_weight": 0.30, "gross_exposure": 1.25, "guard": "balanced"},
+    {"name": "alpha10_1.35x", "alpha_weight": 0.10, "gross_exposure": 1.35, "guard": "balanced"},
+    {"name": "alpha20_1.35x", "alpha_weight": 0.20, "gross_exposure": 1.35, "guard": "balanced"},
+    {"name": "alpha30_1.35x", "alpha_weight": 0.30, "gross_exposure": 1.35, "guard": "balanced"},
+    {"name": "alpha20_1.35x_strict", "alpha_weight": 0.20, "gross_exposure": 1.35, "guard": "strict"},
+    {"name": "alpha30_1.35x_strict", "alpha_weight": 0.30, "gross_exposure": 1.35, "guard": "strict"}
+  ],
+  "fragility_guards": {
+    "balanced": {
+      "lookback_weeks": 13,
+      "minimum_history_weeks": 8,
+      "maximum_positive_issuer_share": 0.30,
+      "maximum_positive_sector_share": 0.70,
+      "minimum_positive_issuer_breadth": 5,
+      "maximum_annualized_source_volatility": 0.45
+    },
+    "strict": {
+      "lookback_weeks": 26,
+      "minimum_history_weeks": 13,
+      "maximum_positive_issuer_share": 0.22,
+      "maximum_positive_sector_share": 0.58,
+      "minimum_positive_issuer_breadth": 8,
+      "maximum_annualized_source_volatility": 0.36
+    }
+  },
+  "industry_residual_variants": [
+    {"name": "ir13_skip4_s3_n2", "lookback_weeks": 13, "skip_recent_weeks": 4, "reversal_penalty": 0.0, "top_sectors": 3, "names_per_sector": 2},
+    {"name": "ir13_skip4_s3_n3", "lookback_weeks": 13, "skip_recent_weeks": 4, "reversal_penalty": 0.0, "top_sectors": 3, "names_per_sector": 3},
+    {"name": "ir13_skip4_s4_n2", "lookback_weeks": 13, "skip_recent_weeks": 4, "reversal_penalty": 0.0, "top_sectors": 4, "names_per_sector": 2},
+    {"name": "ir13_skip4_s4_n3", "lookback_weeks": 13, "skip_recent_weeks": 4, "reversal_penalty": 0.0, "top_sectors": 4, "names_per_sector": 3},
+    {"name": "ir26_skip4_s3_n2", "lookback_weeks": 26, "skip_recent_weeks": 4, "reversal_penalty": 0.0, "top_sectors": 3, "names_per_sector": 2},
+    {"name": "ir26_skip4_s3_n3", "lookback_weeks": 26, "skip_recent_weeks": 4, "reversal_penalty": 0.0, "top_sectors": 3, "names_per_sector": 3},
+    {"name": "ir26_skip4_s4_n2", "lookback_weeks": 26, "skip_recent_weeks": 4, "reversal_penalty": 0.0, "top_sectors": 4, "names_per_sector": 2},
+    {"name": "ir26_skip4_s4_n3", "lookback_weeks": 26, "skip_recent_weeks": 4, "reversal_penalty": 0.0, "top_sectors": 4, "names_per_sector": 3},
+    {"name": "ir13_reversal50_s3_n2", "lookback_weeks": 13, "skip_recent_weeks": 0, "reversal_penalty": 0.5, "top_sectors": 3, "names_per_sector": 2},
+    {"name": "ir13_reversal50_s3_n3", "lookback_weeks": 13, "skip_recent_weeks": 0, "reversal_penalty": 0.5, "top_sectors": 3, "names_per_sector": 3},
+    {"name": "ir13_reversal50_s4_n2", "lookback_weeks": 13, "skip_recent_weeks": 0, "reversal_penalty": 0.5, "top_sectors": 4, "names_per_sector": 2},
+    {"name": "ir13_reversal50_s4_n3", "lookback_weeks": 13, "skip_recent_weeks": 0, "reversal_penalty": 0.5, "top_sectors": 4, "names_per_sector": 3},
+    {"name": "ir26_reversal50_s3_n2", "lookback_weeks": 26, "skip_recent_weeks": 0, "reversal_penalty": 0.5, "top_sectors": 3, "names_per_sector": 2},
+    {"name": "ir26_reversal50_s3_n3", "lookback_weeks": 26, "skip_recent_weeks": 0, "reversal_penalty": 0.5, "top_sectors": 3, "names_per_sector": 3},
+    {"name": "ir26_reversal50_s4_n2", "lookback_weeks": 26, "skip_recent_weeks": 0, "reversal_penalty": 0.5, "top_sectors": 4, "names_per_sector": 2},
+    {"name": "ir26_reversal50_s4_n3", "lookback_weeks": 26, "skip_recent_weeks": 0, "reversal_penalty": 0.5, "top_sectors": 4, "names_per_sector": 3}
+  ],
+  "industry_exposures": [1.0, 1.25],
+  "industry_financing_rate": 0.08,
+  "industry_beta_lookback_weeks": 52,
+  "industry_beta_minimum_weeks": 13,
+  "fundamental_score_weights": {"quality_momentum": 0.8, "event_score": 0.2},
+  "bootstrap_blocks_weeks": [4, 13],
+  "bootstrap_draws": 5000,
+  "bootstrap_seed": 20260824,
+  "familywise_trials": 24,
+  "promotion_gates": {
+    "minimum_recent_cagr": 1.50,
+    "minimum_recent_sharpe": 3.0,
+    "minimum_recent_drawdown": -0.20,
+    "minimum_200bps_recent_cagr": 1.30,
+    "minimum_worst_delay_recent_cagr": 1.40,
+    "minimum_worst_five_issuer_recent_cagr": 1.25,
+    "minimum_rolling_26w_outperformance_share": 0.60,
+    "minimum_familywise_bootstrap_probability": 0.95
+  },
+  "selection_warning": "Every variant is retrospective and selection-contaminated. Passing historical gates cannot authorize promotion; untouched forward evidence remains mandatory.",
+  "strategy_promotion_authorized": false,
+  "live_trading_enabled": false
+}

@@ -1,0 +1,42 @@
+{
+  "program": "sec_breadth_controller_cap_persistence_v1",
+  "classification": "generic concentration and state-persistence falsification",
+  "status": "rejected; diagnostic artifacts retained",
+  "predecessor": "sec_breadth_dispersion_allocation_controller_v1",
+  "tested_surface": {
+    "candidates": 180,
+    "cash_sleeve_cap_multiples": [null, 2.0, 1.5, 1.25, 1.0],
+    "breadth_entry_confirmations": [1, 2, 3],
+    "breadth_exit_confirmations": [1, 2, 3],
+    "overlay_entry_confirmations": [1, 2],
+    "overlay_exit_confirmations": [1, 2],
+    "ticker_specific_rules": false
+  },
+  "selected_diagnostic": {
+    "name": "cap1.50x__breadth2in1out__overlay1in1out",
+    "cash_sleeve_cap_multiple": 1.5,
+    "breadth_entry_confirmations": 2,
+    "trailing_1y_cagr": 1.1236955524689365,
+    "trailing_1y_sharpe": 2.8023500104033734,
+    "trailing_1y_drawdown": -0.09134952675727048,
+    "full_cagr": 0.42284681150800707,
+    "trailing_1y_200bps_cagr": 0.9946211191878989,
+    "peak_total_stock_weight": 0.06949108709070234
+  },
+  "comparisons": {
+    "uncapped_challenger_trailing_1y_cagr": 1.1293348809519022,
+    "frozen_incumbent_trailing_1y_cagr": 1.0510082013109483,
+    "one_week_overlay_delay_cagr": 1.0131321307224983,
+    "rolling_26w_outperformance_share": 0.20245398773006135,
+    "bootstrap_4w_probability_positive": 0.884,
+    "bootstrap_13w_probability_positive": 0.7966,
+    "worst_leave_one_out_company": "GITLAB INC.",
+    "worst_leave_one_out_trailing_1y_cagr": 0.9854190184182265,
+    "single_issuer_improvement_share": 1.90234658228447
+  },
+  "decision": "Do not replace the frozen incumbent or the saved 112.93% challenger. A generic 1.5x sleeve cap preserved most headline return and reduced nominal peak weight, while two-week breadth entry confirmation improved full-period CAGR. Neither mechanism repaired one-week activation timing sensitivity or economic dependence on GitLab; the capped result made the measured issuer-share ratio worse.",
+  "research_only": true,
+  "approved_for_live_trading": false,
+  "execution_enabled": false,
+  "strategy_replacement_authorized": false
+}

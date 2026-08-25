@@ -1,0 +1,40 @@
+{
+  "program": "sec_signal_neighborhood_ensemble_v1",
+  "classification": "endpoint-stabilized research diagnostic; joint issuer dependence remains",
+  "status": "saved diagnostic; not promoted",
+  "predecessor": "sec_cluster_aware_cash_sleeve_v1",
+  "tested_surface": {
+    "candidates": 9,
+    "components_restricted_to_preconfirmed_neighborhood": true,
+    "surface_gate_passers": 1,
+    "ticker_specific_rules": false
+  },
+  "selected_diagnostic": {
+    "name": "cash50_balance20_50",
+    "rule": "blend the cash-only top-20 holdings and 80/20 cash-conversion/balance-sheet top-20 holdings equally at each quarterly decision, then rebuild the unchanged regime strategy",
+    "exact_trailing_52w_cagr": 1.2355522249300335,
+    "exact_trailing_52w_sharpe": 3.0880985765008626,
+    "exact_trailing_52w_drawdown": -0.08708758375337311,
+    "full_cagr": 0.4251677206423654,
+    "exact_trailing_52w_200bps_cagr": 1.0666810009696333,
+    "worst_delay_recent_cagr": 1.2232470732582343,
+    "endpoint_outperformance_share": 0.5,
+    "rolling_26w_outperformance_share": 0.5705521472392638,
+    "latest_distinct_holdings": 26,
+    "peak_total_stock_weight": 0.0704758668327816
+  },
+  "falsification": {
+    "worst_one_issuer_bundle_cagr": 1.215705,
+    "worst_two_issuer_bundle_cagr": 1.114393,
+    "worst_three_issuer_bundle_cagr": 1.099803,
+    "worst_five_issuer_bundle_cagr": 1.093171297501553,
+    "bootstrap_4w_probability_positive": 0.8488,
+    "bootstrap_13w_probability_positive": 0.8258,
+    "all_passed": false
+  },
+  "decision": "Retain as the strongest endpoint-stabilized diagnostic, but do not replace the 123.71% headline challenger or promote it. Continue with a mild generic sector-aware selection constraint because the latest 50/50 ensemble remains 87.5% technology and simultaneous tech-issuer removal is the remaining failure.",
+  "research_only": true,
+  "approved_for_live_trading": false,
+  "execution_enabled": false,
+  "strategy_replacement_authorized": false
+}

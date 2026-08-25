@@ -1,0 +1,54 @@
+{
+  "experiment": "dashboard_strategy_survival_lab_v1",
+  "status": "freeze before evaluating the six saved dashboard strategies",
+  "source_dashboard": "dashboard/public/return-first-dashboard.json",
+  "native_frequency": "weekly",
+  "annualization_periods": 52,
+  "monte_carlo": {
+    "seed": 20260824,
+    "simulations": 10000,
+    "horizon_weeks": 52,
+    "block_lengths": [4, 13],
+    "primary_block_length": 13
+  },
+  "stress_tests": {
+    "additional_cost_multiplier": 1.0,
+    "additional_financing_rate": 0.03,
+    "positive_return_retention": 0.75,
+    "crash_week_return": -0.20,
+    "crash_insertion_week": 26,
+    "rolling_window_weeks": 52,
+    "drawdown_failure_threshold": -0.30,
+    "capital_loss_threshold": -0.50,
+    "concentration_threshold": 0.30
+  },
+  "historical_resilience_score": {
+    "full_drawdown_points": 20,
+    "positive_worst_rolling_year_points": 15,
+    "double_cost_positive_points": 15,
+    "signal_decay_positive_points": 15,
+    "monte_carlo_profit_probability_points": 15,
+    "monte_carlo_drawdown_points": 10,
+    "concentration_points": 10,
+    "profit_probability_threshold": 0.75,
+    "drawdown_probability_threshold": 0.25
+  },
+  "interpretation": {
+    "historically_resilient_minimum_score": 75,
+    "mixed_minimum_score": 50,
+    "live_proof_required_forward_weeks": 52,
+    "live_verdict": "No strategy can be labeled proven live until its untouched forward protocol and implementation-readiness checks are complete."
+  },
+  "known_missing_real_world_inputs": [
+    "current executable bid-ask spreads and market impact",
+    "portfolio-size-specific liquidity and days-to-exit",
+    "broker margin terms, borrow availability, and changing financing rates",
+    "taxes and account-specific constraints",
+    "future delistings, data outages, and model drift",
+    "52 untouched forward weeks for each eligible strategy"
+  ],
+  "selection_warning": "All six strategies and this comparison were selected after historical observation. Monte Carlo resamples the observed distribution and cannot validate an unknown future distribution.",
+  "strategy_replacement_authorized": false,
+  "execution_enabled": false,
+  "live_trading_enabled": false
+}

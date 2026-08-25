@@ -1,0 +1,37 @@
+{
+  "registry_id": "sec_daily_risk_scaling_amplifiers_v1",
+  "status": "research_only_underlying_falsification_failed",
+  "created_at_utc": "2026-08-22T05:06:48.233249+00:00",
+  "source_strategy": "sec_sector_aware_signal_ensemble_v1_cash80_balance90",
+  "candidates": [
+    {
+      "name": "daily_fixed_1.25x",
+      "role": "preferred_risk_tradeoff",
+      "trailing_1y_cagr": 1.579271,
+      "trailing_1y_sharpe_zero_rf": 2.605122,
+      "trailing_1y_max_drawdown": -0.225888,
+      "delay_1_session_cagr": 1.524919,
+      "delay_2_sessions_cagr": 1.524552,
+      "path": "evidence/sec_sector_ensemble_daily_risk_scaling_audit_v1/daily_path__1.25x.csv",
+      "path_sha256": "c64cf0037440c0c43af7f09a36e945b9ddd2bfa6f8a5b6bac5daa7fa74a54d43"
+    },
+    {
+      "name": "daily_fixed_1.35x",
+      "role": "recent_return_leader",
+      "trailing_1y_cagr": 1.7496783269699088,
+      "trailing_1y_sharpe_zero_rf": 2.5938583884881465,
+      "trailing_1y_max_drawdown": -0.24429899433416014,
+      "delay_1_session_cagr": 1.687070,
+      "delay_2_sessions_cagr": 1.686719,
+      "path": "evidence/sec_sector_ensemble_daily_risk_scaling_audit_v1/daily_path__1.35x.csv",
+      "path_sha256": "5d977923deec97f0491c86e9a727b51aeed03393ae962a6c6889b45c55cec062"
+    }
+  ],
+  "financing_rate_annual": 0.06,
+  "frozen_config": "config/sec_sector_ensemble_daily_risk_scaling_audit_v1.json",
+  "frozen_config_sha256": "8c211fa498821ff2751fa820bb9888db2327123fb620fffb497dcaac3f23e0ee",
+  "binding_rejection": "The underlying 124.20% sector-aware strategy has not passed joint issuer-dependence and adjusted-bootstrap falsification; fixed exposure magnifies rather than repairs that risk.",
+  "dashboard_eligible": false,
+  "strategy_replacement_authorized": false,
+  "live_trading_enabled": false
+}

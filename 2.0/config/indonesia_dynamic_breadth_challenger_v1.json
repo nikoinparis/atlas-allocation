@@ -1,0 +1,53 @@
+{
+  "experiment": "indonesia_dynamic_breadth_challenger_v1",
+  "status": "predeclared_research_only_challenger",
+  "notice": "RESEARCH ONLY — architecture-inspired Indonesian challenger; not the US Dynamic Breadth-20 strategy, not an investment recommendation, and not approved for execution.",
+  "strategy_config": "config/indonesia_equity_research_v1.json",
+  "data_config": "config/indonesia_survival_diagnostic_extended_v2.json",
+  "lineage": {
+    "baseline": "Indonesia liquid equity momentum-low-volatility research sleeve",
+    "inspiration": "Dynamic Breadth-20 risk-allocation architecture",
+    "equivalent_to_us_return_leader": false,
+    "signal_changes": "none_to_stock_ranking_or_stock_sizing",
+    "overlay_change": "point_in_time_IDX80_breadth_controls_total_stock_allocation"
+  },
+  "breadth_overlay": {
+    "measure": "fraction_of_eligible_point_in_time_IDX80_members_above_43_week_simple_moving_average",
+    "information_cutoff": "strictly_before_monthly_decision_session",
+    "minimum_names": 30,
+    "maximum_price_staleness_calendar_days": 10,
+    "tiers": [
+      {"minimum_breadth_inclusive": 0.60, "stock_allocation": 1.00, "state": "broad"},
+      {"minimum_breadth_inclusive": 0.40, "stock_allocation": 0.60, "state": "mixed"},
+      {"minimum_breadth_inclusive": 0.00, "stock_allocation": 0.25, "state": "weak"}
+    ],
+    "residual_allocation": "CASH_IDR",
+    "leverage": false,
+    "shorting": false
+  },
+  "evaluation": {
+    "start_date": "2019-02-01",
+    "end_date": "latest_frozen_price",
+    "cost_bps_one_way": [25, 50, 100, 150],
+    "base_cost_bps_one_way": 50,
+    "baseline_comparison": "same_stock_sleeve_without_breadth_overlay"
+  },
+  "challenger_gates": {
+    "minimum_monthly_decisions": 60,
+    "cagr_at_least_baseline_at_base_cost": true,
+    "sharpe_above_baseline_at_base_cost": true,
+    "maximum_drawdown_at_least_5pp_better_than_baseline": true,
+    "positive_cagr_at_150bps": true,
+    "no_single_calendar_year_dependency": true,
+    "complete_inactive_security_and_delisting_history": true,
+    "validated_local_cost_model": true,
+    "licensed_total_return_benchmarks": true,
+    "untouched_forward_observations": 52
+  },
+  "policy": [
+    "Do not change breadth thresholds, allocations, stock rules, costs, or gates after observing this run; create a new version instead.",
+    "The baseline and challenger must use identical price, membership, inactive-security, and cost inputs.",
+    "This challenger is an Indonesian architecture translation, not the US Dynamic Breadth-20 strategy.",
+    "Historical results cannot authorize promotion, recommendation, commercialization, or execution."
+  ]
+}

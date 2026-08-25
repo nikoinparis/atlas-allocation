@@ -1,0 +1,45 @@
+{
+  "program": "sec_multi_horizon_activation_ensemble_v1",
+  "classification": "strictly lagged multi-horizon activation ensemble",
+  "status": "rejected; diagnostic artifacts retained",
+  "predecessor": "sec_breadth_dispersion_allocation_controller_v1",
+  "tested_surface": {
+    "candidates": 48,
+    "lookback_families": {
+      "single11_control": [11],
+      "short3": [8, 11, 13],
+      "balanced5": [8, 11, 13, 16, 20],
+      "long4": [11, 13, 16, 20],
+      "wide3": [8, 13, 20]
+    },
+    "allocation_modes": ["binary", "proportional", "confidence_blend"],
+    "strictly_lagged": true
+  },
+  "selected_diagnostic": {
+    "name": "short3__votes2__proportional",
+    "lookbacks_weeks": [8, 11, 13],
+    "vote_threshold": 2,
+    "trailing_1y_cagr": 1.056241505223689,
+    "trailing_1y_sharpe": 2.663895319398825,
+    "trailing_1y_drawdown": -0.11202451621245046,
+    "full_cagr": 0.40627230042006457,
+    "trailing_1y_200bps_cagr": 0.9179737871410039,
+    "one_week_delay_cagr": 1.021215815738405,
+    "two_week_delay_cagr": 1.0437374932111525
+  },
+  "falsification": {
+    "eligible_candidates": 0,
+    "rolling_26w_outperformance_share": 0.3619631901840491,
+    "bootstrap_4w_probability_positive": 0.5524,
+    "bootstrap_13w_probability_positive": 0.6236,
+    "worst_leave_one_out_company": "QUALYS, INC.",
+    "worst_leave_one_out_trailing_1y_cagr": 0.9225773339298342,
+    "all_passed": false
+  },
+  "key_finding": "Every diversified ensemble retaining at least 110% current CAGR reproduced the original challenger's recent activation pattern and its 101.57% one-week-delay result. Nearby return horizons agreed on the same decisive weeks, so horizon voting did not diversify timing risk.",
+  "decision": "Reject the ensemble branch. Keep the frozen 105.10% incumbent and saved 112.93% return challenger unchanged.",
+  "research_only": true,
+  "approved_for_live_trading": false,
+  "execution_enabled": false,
+  "strategy_replacement_authorized": false
+}

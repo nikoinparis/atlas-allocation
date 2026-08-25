@@ -1,0 +1,24 @@
+{
+  "experiment": "sec_fragility_exposure_daily_audit_v1",
+  "status": "freeze before exact-daily performance evaluation",
+  "start": "2023-01-06",
+  "end": "2026-08-07",
+  "source_alpha_weight": 0.30,
+  "source_guard": "balanced",
+  "core_control_weight": 0.80,
+  "core_residual_weight": 0.20,
+  "trading_cost_bps": 50,
+  "annual_financing_rate": 0.08,
+  "exposure_change_cost_bps": 25,
+  "daily_paths": [
+    {"name": "cash_only_1.00x", "kind": "fixed", "gross": 1.00, "financing_rate": 0.00},
+    {"name": "fixed_1.50x", "kind": "fixed", "gross": 1.50, "financing_rate": 0.08},
+    {"name": "vol35_cap1.75x", "kind": "volatility_target", "target_annual_volatility": 0.35, "minimum_gross": 0.75, "maximum_gross": 1.75, "lookback_sessions": 126, "minimum_sessions": 63, "drawdown_guard_sessions": 63, "drawdown_threshold": -0.15, "guarded_maximum_gross": 1.00, "financing_rate": 0.08},
+    {"name": "fixed_2.00x", "kind": "fixed", "gross": 2.00, "financing_rate": 0.08}
+  ],
+  "reconciliation_tolerance": 0.04,
+  "cash_only_definition": "Use only current capital: 1.00x gross exposure, zero borrowed capital, zero financing expense; ordinary underlying trading costs remain.",
+  "selection_warning": "The exposure rules and source alpha are retrospective. Exact-daily reconciliation does not create untouched evidence.",
+  "strategy_replacement_authorized": false,
+  "live_trading_enabled": false
+}

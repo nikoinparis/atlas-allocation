@@ -1,0 +1,9 @@
+{
+  "minimum_price_coverage_each_decision": 0.95,
+  "minimum_companyfacts_coverage": 0.95,
+  "base_selected_missing_company_treatment": "hold_intended_weight_in_cash_for_holding_period",
+  "adverse_selected_missing_company_return": -1.0,
+  "require_all_free_tiingo_candidates_audited": true,
+  "require_zero_unconfirmed_early_delistings": true,
+  "authorization_scope": "research backtests only; live trading remains disabled"
+}

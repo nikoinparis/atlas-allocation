@@ -1,0 +1,75 @@
+{
+  "experiment": "sec_residual_financing_adaptive_risk_v1",
+  "status": "predeclared retrospective risk-construction comparison",
+  "source_candidate": "evidence/sec_residual_controlled_sleeve_v1/candidate_path.csv",
+  "source_control": "evidence/sec_cash_conversion_breadth_dynamic_v1/best_path__base__50bps.csv",
+  "common_endpoint_source": "evidence/sec_independent_sleeve_return_accelerator_v1/common_endpoint_audit.json",
+  "comparison_variants": [
+    "unlevered_1.00x",
+    "fixed_1.25x_realistic_financing",
+    "adaptive_1.00x_to_1.25x",
+    "adaptive_with_residual_risk_contribution_limit"
+  ],
+  "reference_only_variant": "fixed_1.25x_5pct_published_reference",
+  "financing": {
+    "published_reference_annual_rate": 0.05,
+    "baseline_annual_rate": 0.08,
+    "stress_annual_rate": 0.12,
+    "accrual_periods_per_year": 52,
+    "charge_only_above_one_x": true
+  },
+  "leverage": {
+    "minimum": 1.0,
+    "middle": 1.125,
+    "maximum": 1.25,
+    "minimum_history_weeks": 26,
+    "volatility_lookback_weeks": 13,
+    "short_trend_weeks": 13,
+    "long_trend_weeks": 26,
+    "drawdown_lookback_weeks": 26,
+    "maximum_volatility_for_high": 0.35,
+    "maximum_volatility_for_middle": 0.5,
+    "minimum_short_trend": 0.0,
+    "minimum_long_trend": 0.0,
+    "minimum_drawdown_for_high": -0.1,
+    "minimum_drawdown_for_middle": -0.15,
+    "signal_lag_weeks": 1,
+    "leverage_change_cost_bps": 10,
+    "stress_leverage_change_cost_bps": 50
+  },
+  "margin": {
+    "broker_maintenance_equity_ratio": 0.4,
+    "internal_safety_equity_ratio": 0.5,
+    "forced_deleverage_target": 1.0,
+    "forced_deleverage_cost_bps": 50,
+    "one_week_asset_shocks": [-0.2, -0.35, -0.5, -0.6]
+  },
+  "residual_risk_contribution": {
+    "lookback_weeks": 26,
+    "minimum_history_weeks": 13,
+    "maximum_standalone_volatility_contribution_share": 0.12,
+    "maximum_iterations": 100,
+    "ticker_specific_caps_forbidden": true,
+    "unallocated_weight_to_cash": true
+  },
+  "evaluation": {
+    "primary_window_weeks": 52,
+    "secondary_window_weeks": 104,
+    "rolling_windows_weeks": [26, 52],
+    "cost_stress_bps": [10, 50],
+    "financing_rates": [0.05, 0.08, 0.12],
+    "bootstrap_blocks_weeks": [4, 13],
+    "bootstrap_draws": 5000,
+    "bootstrap_seed": 20260824,
+    "familywise_trials": 4
+  },
+  "research_rules": {
+    "common_endpoint_required": true,
+    "missing_endpoint_returns_may_not_be_zero_filled": true,
+    "all_signals_use_only_prior_returns": true,
+    "selection_contaminated": true,
+    "strategy_promotion_authorized": false,
+    "live_trading_enabled": false,
+    "frozen_forward_candidate_modified": false
+  }
+}

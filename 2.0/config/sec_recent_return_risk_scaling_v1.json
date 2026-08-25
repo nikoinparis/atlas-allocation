@@ -1,0 +1,81 @@
+{
+  "experiment": "sec_recent_return_risk_scaling_v1",
+  "purpose": "Test whether bounded, causal risk scaling can lift the endpoint-stabilized SEC diagnostic above 150% recent CAGR without sacrificing its high Sharpe or low drawdown.",
+  "source_paths": {
+    "50": "evidence/sec_sector_aware_signal_ensemble_v1/selected_path__50bps.csv",
+    "100": "evidence/sec_sector_aware_signal_ensemble_v1/selected_path__100bps.csv",
+    "200": "evidence/sec_sector_aware_signal_ensemble_v1/selected_path__200bps.csv"
+  },
+  "candidate_specs": [
+    {"name": "unscaled_control", "family": "fixed", "fixed_exposure": 1.0},
+    {"name": "fixed_115", "family": "fixed", "fixed_exposure": 1.15},
+    {"name": "fixed_125", "family": "fixed", "fixed_exposure": 1.25},
+    {"name": "fixed_135", "family": "fixed", "fixed_exposure": 1.35},
+    {"name": "vol20", "family": "inverse_volatility", "target_volatility": 0.20},
+    {"name": "vol25", "family": "inverse_volatility", "target_volatility": 0.25},
+    {"name": "vol30", "family": "inverse_volatility", "target_volatility": 0.30},
+    {"name": "trend_vol25", "family": "trend_inverse_volatility", "target_volatility": 0.25},
+    {"name": "trend_vol30", "family": "trend_inverse_volatility", "target_volatility": 0.30},
+    {"name": "crash_guard_vol25", "family": "crash_guard_inverse_volatility", "target_volatility": 0.25},
+    {"name": "drawdown_vol25", "family": "drawdown_inverse_volatility", "target_volatility": 0.25},
+    {"name": "trend_drawdown_vol30", "family": "trend_drawdown_inverse_volatility", "target_volatility": 0.30}
+  ],
+  "signal_rules": {
+    "volatility_lookback_weeks": 13,
+    "minimum_volatility_observations": 13,
+    "trend_lookback_weeks": 13,
+    "crash_return_lookback_weeks": 4,
+    "crash_volatility_quantile": 0.75,
+    "crash_minimum_history_weeks": 52,
+    "drawdown_soft_threshold": -0.04,
+    "drawdown_hard_threshold": -0.08,
+    "soft_drawdown_exposure_cap": 1.0,
+    "hard_drawdown_exposure_cap": 0.5,
+    "crash_exposure_cap": 0.75,
+    "failed_trend_exposure_cap": 1.0,
+    "minimum_exposure": 0.5,
+    "maximum_exposure": 1.5,
+    "maximum_weekly_exposure_change": 0.25,
+    "full_observation_delay_weeks": 1
+  },
+  "costs": {
+    "base_financing_rate_annual": 0.06,
+    "stress_financing_rate_annual": 0.10,
+    "base_outer_turnover_bps": 25,
+    "stress_outer_turnover_bps": 100
+  },
+  "evaluation": {
+    "recent_weeks": 52,
+    "rolling_windows_weeks": [13, 26, 52],
+    "endpoint_offsets_weeks": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+    "nonoverlapping_blocks_weeks": 52,
+    "bootstrap_blocks_weeks": [4, 13],
+    "bootstrap_draws": 5000,
+    "bootstrap_seed": 20260822
+  },
+  "gates": {
+    "minimum_recent_cagr": 1.50,
+    "minimum_recent_sharpe": 3.0,
+    "minimum_recent_drawdown": -0.15,
+    "minimum_full_cagr": 0.45,
+    "minimum_stress_recent_cagr": 1.25,
+    "minimum_endpoint_outperformance_share": 0.50,
+    "minimum_rolling_26w_outperformance_share": 0.50,
+    "minimum_positive_nonoverlapping_blocks": 3,
+    "minimum_beating_nonoverlapping_blocks": 2,
+    "minimum_bootstrap_probability": 0.95
+  },
+  "multiple_testing": {
+    "challenger_count": 11,
+    "adjustment": "bonferroni"
+  },
+  "literature_basis": [
+    "Daniel and Moskowitz (2016), Momentum Crashes",
+    "Moreira and Muir (2017), Volatility-Managed Portfolios",
+    "Blitz, Huij, and Martens (2011), Residual Momentum"
+  ],
+  "underlying_strategy_falsification_passed": false,
+  "research_only": true,
+  "strategy_promotion_authorized": false,
+  "live_trading_enabled": false
+}

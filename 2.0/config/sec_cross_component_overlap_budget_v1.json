@@ -1,0 +1,47 @@
+{
+  "experiment": "sec_cross_component_overlap_budget_v1",
+  "purpose": "Reduce simultaneous issuer dependence by limiting overlap between the cash-conversion and cash-plus-balance component cohorts without changing their factors, breadth, sector caps, or outer controller.",
+  "breadth_per_component": 20,
+  "component_mix": {"cash100": 0.50, "balance20": 0.50},
+  "component_sector_caps": {"cash100": 0.80, "balance20": 0.90},
+  "selection_orders": ["cash_first", "balance_first"],
+  "maximum_overlap_counts": [0, 2, 4, 6, 8, 10, 12, 20],
+  "control": "cash_first_overlap20",
+  "cost_bps": [50, 100, 200],
+  "scenarios": ["base", "adverse"],
+  "decision_delays_weeks": [1, 2],
+  "increment_delays_weeks": [1, 2],
+  "endpoint_offsets_weeks": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+  "rolling_windows_weeks": [13, 26, 52],
+  "missing_issuer_bundle_sizes": [1, 2, 3, 5],
+  "bootstrap_blocks_weeks": [4, 13],
+  "bootstrap_draws": 5000,
+  "bootstrap_seed": 20260822,
+  "gates": {
+    "minimum_recent_cagr": 1.2420414930921906,
+    "minimum_recent_sharpe": 3.00,
+    "minimum_recent_drawdown": -0.12,
+    "minimum_full_cagr": 0.42,
+    "minimum_severe_recent_cagr": 1.05,
+    "minimum_delay_recent_cagr": 1.15,
+    "minimum_endpoint_outperformance_share": 0.50,
+    "minimum_rolling_26w_outperformance_share": 0.50,
+    "minimum_worst_five_issuer_cagr": 1.1293348809519022,
+    "maximum_peak_total_stock_weight": 0.08,
+    "minimum_adjusted_bootstrap_probability_vs_predecessor": 0.95
+  },
+  "multiple_testing": {
+    "challenger_count": 14,
+    "adjustment": "bonferroni"
+  },
+  "pinned_runtime": {
+    "container_image": "localhost/po2-yfinance:1.5.2-v1",
+    "container_image_id": "c84c194bef2052b0b4e4997d5780eb8ccf48d0ed2a3ec35bcafb726f691e0c5c",
+    "python": "3.12.13",
+    "numpy": "2.5.1",
+    "pandas": "3.0.5"
+  },
+  "research_only": true,
+  "strategy_promotion_authorized": false,
+  "live_trading_enabled": false
+}

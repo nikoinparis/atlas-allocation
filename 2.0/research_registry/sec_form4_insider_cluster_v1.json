@@ -1,0 +1,49 @@
+{
+  "program": "sec_form4_insider_cluster_v1",
+  "classification": "rejected risk-adjusted diversifier",
+  "status": "not promoted",
+  "source": {
+    "provider": "U.S. Securities and Exchange Commission",
+    "dataset": "Insider Transactions Data Sets",
+    "coverage": "2023 Q1 through 2026 Q2",
+    "vintage": "20260815T005416Z-sec-form4-bulk-v1",
+    "quarterly_archives": 14,
+    "all_archive_hashes_verified": true
+  },
+  "event_panel": {
+    "open_market_purchase_filings": 2560,
+    "unique_issuers": 362,
+    "included_document_type": "original Form 4 only",
+    "included_transaction_code": "P",
+    "included_acquisition_code": "A",
+    "filing_eligible_only_on_later_weekly_decision": true,
+    "cluster_definition": "distinct reporting-owner CIKs across all eligible filings in the event window"
+  },
+  "search": {
+    "tested_structures": 480,
+    "tested_costed_paths": 5760,
+    "event_windows_days": [7, 14, 30],
+    "breadths": [5, 10, 20, 30],
+    "cost_bps": [50, 100, 200]
+  },
+  "best_overlay": {
+    "candidate": "executive_or_cluster__win30d__none__top5__floor50m__sector70__w0.10__50bps",
+    "recent_cagr": 0.9735893977922692,
+    "recent_sharpe_zero_rf": 2.7770206829685637,
+    "recent_max_drawdown": -0.09129684332002119,
+    "full_cagr": 0.3737813829004877,
+    "full_max_drawdown": -0.2088060085182083,
+    "severe_200bps_recent_cagr": 0.9131989847354305,
+    "active_weeks": 146
+  },
+  "control": {
+    "recent_cagr": 1.0510082013109465,
+    "recent_sharpe_zero_rf": 2.692,
+    "recent_max_drawdown": -0.1008,
+    "full_cagr": 0.4093476771616644
+  },
+  "rejection_reason": "No tested insider-purchase overlay beat the weekly control on both recent and full CAGR. The signal improved Sharpe and recent drawdown but reduced the return objective.",
+  "research_only": true,
+  "approved_for_live_trading": false,
+  "execution_enabled": false
+}

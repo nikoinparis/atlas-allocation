@@ -1,0 +1,35 @@
+{
+  "experiment": "indonesia_fundamental_momentum_v3",
+  "base_config": "config/indonesia_fundamental_momentum_v1.json",
+  "status": "predeclared_research_only_quarterly_point_in_time_challenger",
+  "notice": "RESEARCH ONLY — V3 tests quarterly archived IDX snapshots with same-fiscal-period year-over-year comparisons; it is not an investment recommendation and is not approved for execution.",
+  "registered_before_return_calculation": true,
+  "fundamental_update_frequency": "quarterly snapshots sampled from the official IDX Financial Data and Ratio archive for March, June, September, and December",
+  "growth_method": "yoy_same_fs_period",
+  "growth_period_alignment": "compare cumulative sales and profit attributable to owners only with the same fiscal-statement month one calendar year earlier",
+  "growth_eligibility": "current and comparison observations must have valid FS Date values with the same month and exactly one year of separation; prior value must be positive",
+  "evaluation_start": "2022-04-01",
+  "frozen_settings": {
+    "price_score_weight": 0.7,
+    "fundamental_score_weight": 0.3,
+    "price_subweights": [0.5, 0.3, 0.2],
+    "fundamental_subweights": {
+      "revenue_growth": 0.25,
+      "profit_growth": 0.25,
+      "return_on_equity": 0.2,
+      "operating_cash_flow_to_net_income": 0.2,
+      "inverse_liabilities_to_assets": 0.1
+    },
+    "selection_count": 12,
+    "weighting": "inverse_26w_volatility",
+    "maximum_name_weight": 0.1,
+    "minimum_median_daily_value_idr": 5000000000,
+    "cost_bps_one_way": [25, 50, 100, 150]
+  },
+  "policy_addendum": [
+    "V1 and V2 remain preserved and are not overwritten.",
+    "V3 changes only the frequency and fiscal-period matching of the fundamental observations; all portfolio construction settings remain frozen.",
+    "A snapshot becomes usable only from the next month, preventing use of future archive information.",
+    "The price-only comparator uses the identical decisions, universe, portfolio construction, evaluation window, and cost assumptions."
+  ]
+}

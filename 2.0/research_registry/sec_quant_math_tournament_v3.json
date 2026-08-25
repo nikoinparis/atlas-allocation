@@ -1,0 +1,24 @@
+{
+  "program": "sec_quant_math_tournament_v3",
+  "classification": "broad mathematical alpha search; rejected",
+  "status": "one-shot complete; no historical gate passers",
+  "candidate_count": 96,
+  "selected_diagnostic": {
+    "name": "quality_momentum_interaction__n5__rank_inverse_volatility__fixed_1.50x",
+    "recent_cagr": 1.2333346913192766,
+    "recent_sharpe": 1.5904687725124187,
+    "recent_max_drawdown": -0.43662930372823616,
+    "two_year_cagr": 0.9509573477813718,
+    "worst_delay_recent_cagr": 0.2399229564587282,
+    "worst_five_issuer_recent_cagr": -0.10314720281127654,
+    "deflated_sharpe_probability": 0.24437840091417048,
+    "probability_of_backtest_overfitting": 0.35714285714285715
+  },
+  "decision": "Reject. The candidate failed return, drawdown, delay, issuer-dependence, multiplicity, deflated-Sharpe, and overfitting gates.",
+  "evidence": "evidence/sec_quant_math_tournament_v3/final_result.json",
+  "research_only": true,
+  "strategy_replacement_authorized": false,
+  "approved_for_live_trading": false,
+  "execution_enabled": false
+}
+

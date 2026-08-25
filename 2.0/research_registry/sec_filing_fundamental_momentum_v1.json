@@ -1,0 +1,36 @@
+{
+  "program": "sec_filing_fundamental_momentum_v1",
+  "classification": "rejected recent-only challenger",
+  "status": "not promoted",
+  "event_panel": {
+    "filing_events": 4789,
+    "unique_issuers": 578,
+    "facts_eligible_only_after_sec_availability": true,
+    "price_confirmation_lagged_one_week": true
+  },
+  "best_static_overlay": {
+    "candidate": "balanced_filing_momentum__hold4__positive_8w__top30__floor50m__sector70__w0.20__50bps",
+    "recent_cagr": 1.053827653734778,
+    "recent_sharpe_zero_rf": 2.9292417837000304,
+    "recent_max_drawdown": -0.10764495929000406,
+    "full_cagr": 0.38585011397630886,
+    "severe_200bps_recent_cagr": 1.0229138588809485
+  },
+  "best_dynamic_overlay": {
+    "candidate": "leader_negative_sleeve_positive__lb8__w0.50__under50__outer50",
+    "recent_cagr": 1.0703901198445664,
+    "recent_sharpe_zero_rf": 2.7450913815611226,
+    "recent_max_drawdown": -0.10076752452473337,
+    "full_cagr": 0.38573176654214025,
+    "severe_200bps_recent_cagr": 1.041132719186892,
+    "active_share": 0.07446808510638298
+  },
+  "control": {
+    "recent_cagr": 1.0510082013109465,
+    "full_cagr": 0.4093476771616644
+  },
+  "rejection_reason": "No static or lagged conditional allocation beat the control on both recent and full CAGR; the dynamic recent improvement also fell below the control at 200-bps costs.",
+  "research_only": true,
+  "approved_for_live_trading": false,
+  "execution_enabled": false
+}

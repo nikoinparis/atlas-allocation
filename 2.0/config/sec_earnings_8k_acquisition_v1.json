@@ -1,0 +1,13 @@
+{
+  "program": "sec_earnings_8k_acquisition_v1",
+  "event_start_date": "2022-01-01",
+  "minimum_seconds_between_requests": 0.13,
+  "request_timeout_seconds": 120,
+  "maximum_attempts": 4,
+  "minimum_complete_issuer_share_for_research": 0.95,
+  "source_endpoint": "https://data.sec.gov/submissions/CIK{cik10}.json",
+  "historical_source_endpoint": "https://data.sec.gov/submissions/{filename}",
+  "research_only": true,
+  "strategy_testing_requires_completed_manifest": true,
+  "live_trading_enabled": false
+}

@@ -1,0 +1,24 @@
+{
+  "program": "formal_markov_regime_scaling_v1",
+  "status": "predeclared_research_only",
+  "source_strategy": "composite_trend_quality_refined_v4",
+  "source_returns": "evidence/strategy_rebuild_trend_quality/returns.csv",
+  "development_end": "2015-12-31",
+  "locked_evaluation_start": "2016-01-01",
+  "model": "two_state_gaussian_hidden_markov",
+  "fit_iterations": 100,
+  "initial_transition_persistence": 0.95,
+  "stress_state_definition": "lower_fitted_development_mean",
+  "decision_timing": "period_t_exposure_uses_observations_through_t_minus_1",
+  "stress_minimum_exposure": 0.5,
+  "cost_grid_bps": [0, 10, 50, 100],
+  "primary_cost_bps": 50,
+  "promotion_gates": {
+    "locked_2008_2009_and_2020_not_available_for_promotion": true,
+    "locked_period_max_drawdown_improvement_minimum": 0.05,
+    "locked_period_annual_return_drag_maximum": 0.01,
+    "prefix_invariance_required": true,
+    "untouched_forward_weeks_required": 52
+  },
+  "execution_enabled": false
+}

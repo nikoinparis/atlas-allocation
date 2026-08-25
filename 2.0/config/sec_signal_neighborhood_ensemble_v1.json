@@ -1,0 +1,51 @@
+{
+  "experiment": "sec_signal_neighborhood_ensemble_v1",
+  "purpose": "Blend only pre-confirmed issuer-ranking neighborhoods to improve endpoint and multi-issuer robustness without reopening parameter search.",
+  "breadth": 20,
+  "membership_definitions": {
+    "cash100": {"cash_conversion": 1.0},
+    "balance20": {"cash_conversion": 0.8, "balance_sheet_quality": 0.2},
+    "balance225": {"cash_conversion": 0.775, "balance_sheet_quality": 0.225},
+    "balance25": {"cash_conversion": 0.75, "balance_sheet_quality": 0.25}
+  },
+  "ensembles": [
+    {"name": "balance20_control", "components": {"balance20": 1.0}},
+    {"name": "stable_equal3", "components": {"balance20": 0.3333333333333333, "balance225": 0.3333333333333333, "balance25": 0.3333333333333333}},
+    {"name": "stable_centered50_25_25", "components": {"balance20": 0.5, "balance225": 0.25, "balance25": 0.25}},
+    {"name": "balance20_225_equal", "components": {"balance20": 0.5, "balance225": 0.5}},
+    {"name": "balance20_25_equal", "components": {"balance20": 0.5, "balance25": 0.5}},
+    {"name": "cash25_balance20_75", "components": {"cash100": 0.25, "balance20": 0.75}},
+    {"name": "cash25_stable75", "components": {"cash100": 0.25, "balance20": 0.25, "balance225": 0.25, "balance25": 0.25}},
+    {"name": "cash50_balance20_50", "components": {"cash100": 0.5, "balance20": 0.5}},
+    {"name": "cash25_centered", "components": {"cash100": 0.25, "balance20": 0.375, "balance225": 0.1875, "balance25": 0.1875}}
+  ],
+  "cost_bps": [50, 100, 200],
+  "scenarios": ["base", "adverse"],
+  "increment_delays_weeks": [1, 2],
+  "decision_delays_weeks": [1, 2],
+  "missing_issuer_bundle_sizes": [1, 2, 3, 5],
+  "trailing_endpoint_offsets_weeks": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+  "surface_gates": {
+    "minimum_recent_cagr": 1.1921841481621755,
+    "minimum_full_cagr": 0.41966075544908743,
+    "minimum_severe_recent_cagr": 1.0510082013109483,
+    "minimum_delay_recent_cagr": 1.1293348809519022,
+    "minimum_endpoint_outperformance_share": 0.5,
+    "minimum_rolling_26w_outperformance_share": 0.5,
+    "maximum_peak_total_stock_weight": 0.08
+  },
+  "bootstrap_blocks_weeks": [4, 13],
+  "bootstrap_draws": 5000,
+  "bootstrap_seed": 20260821,
+  "minimum_bootstrap_probability": 0.95,
+  "pinned_runtime": {
+    "container_image": "localhost/po2-yfinance:1.5.2-v1",
+    "container_image_id": "c84c194bef2052b0b4e4997d5780eb8ccf48d0ed2a3ec35bcafb726f691e0c5c",
+    "python": "3.12.13",
+    "numpy": "2.5.1",
+    "pandas": "3.0.5"
+  },
+  "research_only": true,
+  "strategy_promotion_authorized": false,
+  "live_trading_enabled": false
+}

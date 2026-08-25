@@ -1,0 +1,74 @@
+{
+  "experiment": "sec_fragility_exposure_control_v1",
+  "status": "post-selection exposure study; freeze before performance evaluation",
+  "source_candidate": "alpha30_1.35x",
+  "source_alpha_weight": 0.30,
+  "source_guard": "balanced",
+  "common_endpoint": "2026-08-07",
+  "fixed_rules": [
+    {"name": "fixed_1.35x_8pct", "gross": 1.35, "financing_rate": 0.08},
+    {"name": "fixed_1.35x_12pct", "gross": 1.35, "financing_rate": 0.12},
+    {"name": "fixed_1.50x_8pct", "gross": 1.50, "financing_rate": 0.08},
+    {"name": "fixed_1.50x_12pct", "gross": 1.50, "financing_rate": 0.12},
+    {"name": "fixed_1.65x_8pct", "gross": 1.65, "financing_rate": 0.08},
+    {"name": "fixed_1.65x_12pct", "gross": 1.65, "financing_rate": 0.12},
+    {"name": "fixed_1.80x_8pct", "gross": 1.80, "financing_rate": 0.08},
+    {"name": "fixed_1.80x_12pct", "gross": 1.80, "financing_rate": 0.12},
+    {"name": "fixed_2.00x_8pct", "gross": 2.00, "financing_rate": 0.08},
+    {"name": "fixed_2.00x_12pct", "gross": 2.00, "financing_rate": 0.12}
+  ],
+  "volatility_target_rules": [
+    {"name": "vol30_cap1.50_8pct", "target_annual_volatility": 0.30, "maximum_gross": 1.50, "financing_rate": 0.08},
+    {"name": "vol30_cap1.50_12pct", "target_annual_volatility": 0.30, "maximum_gross": 1.50, "financing_rate": 0.12},
+    {"name": "vol35_cap1.75_8pct", "target_annual_volatility": 0.35, "maximum_gross": 1.75, "financing_rate": 0.08},
+    {"name": "vol35_cap1.75_12pct", "target_annual_volatility": 0.35, "maximum_gross": 1.75, "financing_rate": 0.12},
+    {"name": "vol40_cap2.00_8pct", "target_annual_volatility": 0.40, "maximum_gross": 2.00, "financing_rate": 0.08},
+    {"name": "vol40_cap2.00_12pct", "target_annual_volatility": 0.40, "maximum_gross": 2.00, "financing_rate": 0.12}
+  ],
+  "fractional_kelly_rules": [
+    {"name": "kelly10_cap2.00", "fraction": 0.10, "maximum_gross": 2.00, "financing_rate": 0.08},
+    {"name": "kelly20_cap2.00", "fraction": 0.20, "maximum_gross": 2.00, "financing_rate": 0.08},
+    {"name": "kelly30_cap2.00", "fraction": 0.30, "maximum_gross": 2.00, "financing_rate": 0.08}
+  ],
+  "fragility_tier_rules": [
+    {"name": "tier_1.50_1.00", "risk_on_gross": 1.50, "risk_off_gross": 1.00, "financing_rate": 0.08},
+    {"name": "tier_1.75_1.10", "risk_on_gross": 1.75, "risk_off_gross": 1.10, "financing_rate": 0.08},
+    {"name": "tier_2.00_1.25", "risk_on_gross": 2.00, "risk_off_gross": 1.25, "financing_rate": 0.08}
+  ],
+  "dynamic_rule_common": {
+    "lookback_weeks": 26,
+    "minimum_history_weeks": 13,
+    "minimum_gross": 0.75,
+    "drawdown_guard_weeks": 13,
+    "drawdown_guard_threshold": -0.15,
+    "guarded_maximum_gross": 1.00
+  },
+  "costs": {
+    "primary_bps": 50,
+    "severe_bps": 200,
+    "exposure_change_bps": 25,
+    "execution_delays_weeks": [1, 2]
+  },
+  "candidate_count": 22,
+  "familywise_trials": 22,
+  "bootstrap_draws": 5000,
+  "bootstrap_blocks_weeks": [4, 13],
+  "bootstrap_seed": 20260824,
+  "cscv_partitions": 8,
+  "historical_gates": {
+    "minimum_recent_cagr": 2.00,
+    "minimum_recent_sharpe": 3.00,
+    "minimum_recent_drawdown": -0.25,
+    "minimum_two_year_cagr": 0.70,
+    "minimum_200bps_recent_cagr": 1.50,
+    "minimum_worst_delay_recent_cagr": 1.80,
+    "minimum_worst_five_issuer_recent_cagr": 1.50,
+    "minimum_rolling_26w_outperformance_share": 0.60,
+    "minimum_familywise_bootstrap_probability": 0.95,
+    "minimum_deflated_sharpe_probability": 0.95,
+    "maximum_probability_of_backtest_overfitting": 0.20
+  },
+  "selection_warning": "This exposure study is applied to a source candidate selected after observing the same sample. A 200% or 300% historical CAGR is not independent alpha and cannot authorize promotion.",
+  "strategy_replacement_authorized": false,
+  "live_trading_enabled": false
+}

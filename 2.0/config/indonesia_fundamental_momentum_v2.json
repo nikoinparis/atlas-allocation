@@ -1,0 +1,12 @@
+{
+  "experiment": "indonesia_fundamental_momentum_v2",
+  "base_config": "config/indonesia_fundamental_momentum_v1.json",
+  "status": "predeclared_research_only_data_gated_challenger",
+  "notice": "RESEARCH ONLY — V2 fixes a statement-period comparability defect found in V1; it is not an investment recommendation and is not approved for execution.",
+  "growth_period_alignment": "annualize cumulative sales and owner profit by the numeric month in FS Date before year-over-year comparison",
+  "growth_eligibility": "current and prior cumulative periods must each have a valid month from 1 through 12; prior annualized value must be positive",
+  "policy_addendum": [
+    "V1 is preserved and must not be overwritten because its 2026 cash state revealed the period-alignment defect.",
+    "V2 changes only period comparability; price/fundamental weights, feature weights, selection count, sizing, liquidity, and costs remain frozen."
+  ]
+}

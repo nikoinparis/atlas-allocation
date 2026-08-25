@@ -1,0 +1,53 @@
+{
+  "program": "sec_regime_increment_tranching_v1",
+  "classification": "strongest return-oriented research challenger; timing stabilized, issuer dependence remains",
+  "status": "saved challenger; not promoted",
+  "predecessor": "sec_independent_market_regime_activation_v1",
+  "base": {
+    "strategy": "h26__cal26__q40__breadth_high__w50_80",
+    "trailing_1y_cagr": 1.1293348809519022
+  },
+  "increment_attribution": {
+    "source": "fast__score5__union",
+    "active_weeks": 16,
+    "episodes": 16,
+    "interpretation": "The raw return spike came from sixteen isolated incremental activation weeks above the unchanged breadth-controller base."
+  },
+  "tested_surface": {
+    "candidates": 52,
+    "increment_multipliers": [0.25, 0.5, 0.75, 1.0],
+    "tranche_counts": [1, 2, 3, 4],
+    "tranche_policies": ["symmetric_equal", "frontloaded", "entry_ramp", "exit_decay"],
+    "surface_gate_passers": 6,
+    "ticker_specific_rules": false
+  },
+  "selected_challenger": {
+    "name": "inc100__tranches4__symmetric_equal",
+    "rule": "preserve the 112.93% base target exactly and deploy 100% of each independent fast-regime incremental allocation in four equal weekly tranches, capped at 80% total cash-sleeve weight",
+    "trailing_1y_cagr": 1.1921841481621729,
+    "trailing_1y_sharpe": 3.036734026100816,
+    "trailing_1y_drawdown": -0.08708758375337322,
+    "full_cagr": 0.41966075544908743,
+    "trailing_1y_200bps_cagr": 1.0286117233322742,
+    "one_week_increment_delay_cagr": 1.189550918496959,
+    "two_week_increment_delay_cagr": 1.186275367586628,
+    "worst_current_delay_cagr": 1.186275367586628,
+    "peak_total_stock_weight": 0.07378789503220702,
+    "annual_one_way_turnover": 4.8680851063829795
+  },
+  "falsification": {
+    "rolling_26w_outperformance_share_vs_base": 0.09202453987730061,
+    "bootstrap_4w_probability_positive_vs_base": 0.6326,
+    "bootstrap_13w_probability_positive_vs_base": 0.6434,
+    "worst_leave_one_out_company": "QUALYS, INC.",
+    "worst_leave_one_out_cagr": 1.0916574328451771,
+    "single_issuer_increment_improvement_share": 1.5994890597637363,
+    "worst_leave_one_out_beats_frozen_incumbent": true,
+    "all_passed": false
+  },
+  "decision": "Replace the 112.93% path only as the strongest saved return-oriented research challenger, not as the frozen incumbent or a forward/live strategy. Four-week equal tranching preserved nearly all of the 119.33% return spike and made one/two-week incremental delays stable while improving severe-cost performance. The result still lacks temporal breadth and bootstrap confidence, and removing Qualys reduces it below the 112.93% base, so promotion remains prohibited.",
+  "research_only": true,
+  "approved_for_live_trading": false,
+  "execution_enabled": false,
+  "strategy_replacement_authorized": false
+}

@@ -1,0 +1,50 @@
+{
+  "experiment": "sec_cluster_aware_cash_sleeve_v1",
+  "purpose": "Reduce issuer and correlated-cluster dependence inside the breadth-20 cash sleeve while preserving the breadth controller, fast-regime increment, and four-week execution schedule.",
+  "breadth": 20,
+  "membership_blends": [
+    {"name": "cash100", "weighting_search": true, "cash_conversion": 1.0},
+    {"name": "cash90_balance10", "weighting_search": false, "cash_conversion": 0.9, "balance_sheet_quality": 0.1},
+    {"name": "cash85_balance15", "weighting_search": false, "cash_conversion": 0.85, "balance_sheet_quality": 0.15},
+    {"name": "cash825_balance175", "weighting_search": false, "cash_conversion": 0.825, "balance_sheet_quality": 0.175},
+    {"name": "cash80_balance20", "weighting_search": true, "cash_conversion": 0.8, "balance_sheet_quality": 0.2},
+    {"name": "cash775_balance225", "weighting_search": false, "cash_conversion": 0.775, "balance_sheet_quality": 0.225},
+    {"name": "cash75_balance25", "weighting_search": false, "cash_conversion": 0.75, "balance_sheet_quality": 0.25},
+    {"name": "cash70_balance30", "weighting_search": false, "cash_conversion": 0.7, "balance_sheet_quality": 0.3},
+    {"name": "cash80_shareholder20", "weighting_search": true, "cash_conversion": 0.8, "shareholder_discipline": 0.2},
+    {"name": "cash70_balance15_shareholder15", "weighting_search": true, "cash_conversion": 0.7, "balance_sheet_quality": 0.15, "shareholder_discipline": 0.15}
+  ],
+  "risk_methods": ["inverse_volatility", "inverse_correlation", "inverse_volatility_correlation"],
+  "lookback_weeks": [26, 52],
+  "risk_shrinkages": [0.25, 0.5, 0.75],
+  "sector_shrinkages": [0.25, 0.5, 0.75],
+  "cap_multiples": [1.25, 1.5],
+  "cost_bps": [50, 100, 200],
+  "scenarios": ["base", "adverse"],
+  "surface_gates": {
+    "minimum_recent_cagr": 1.15,
+    "minimum_delay_recent_cagr": 1.1293348809519022,
+    "minimum_full_cagr": 0.4093476771616662,
+    "minimum_severe_recent_cagr": 0.9320198735415857,
+    "maximum_peak_total_stock_weight": 0.08
+  },
+  "falsification": {
+    "increment_delays_weeks": [1, 2],
+    "rolling_comparison_weeks": 26,
+    "bootstrap_blocks_weeks": [4, 13],
+    "bootstrap_draws": 5000,
+    "bootstrap_seed": 20260821,
+    "minimum_rolling_outperformance_share": 0.5,
+    "minimum_bootstrap_probability": 0.95
+  },
+  "pinned_runtime": {
+    "container_image": "localhost/po2-yfinance:1.5.2-v1",
+    "container_image_id": "c84c194bef2052b0b4e4997d5780eb8ccf48d0ed2a3ec35bcafb726f691e0c5c",
+    "python": "3.12.13",
+    "numpy": "2.5.1",
+    "pandas": "3.0.5"
+  },
+  "research_only": true,
+  "strategy_promotion_authorized": false,
+  "live_trading_enabled": false
+}

@@ -1,0 +1,52 @@
+{
+  "program": "sec_increment_sleeve_diversification_v1",
+  "classification": "issuer-improved return-oriented research challenger; complete falsification failed",
+  "status": "saved challenger; not promoted",
+  "predecessor": "sec_regime_increment_tranching_v1",
+  "frozen_elements": {
+    "base_strategy": "h26__cal26__q40__breadth_high__w50_80",
+    "base_trailing_1y_cagr": 1.1293348809519022,
+    "increment_schedule": "four-week symmetric equal tranches"
+  },
+  "tested_surface": {
+    "candidates": 21,
+    "independent_sleeves": [
+      "cash_conversion",
+      "profitability",
+      "balance_sheet_quality",
+      "shareholder_discipline",
+      "quality_acceleration"
+    ],
+    "fixed_and_causal_inverse_volatility_routes": true,
+    "surface_gate_passers": 14,
+    "ticker_specific_rules": false
+  },
+  "selected_challenger": {
+    "name": "cash50__shareholder_discipline50",
+    "rule": "route half of only the stabilized regime increment to breadth-20 cash conversion and half to the point-in-time top-10 shareholder-discipline sleeve",
+    "trailing_1y_cagr": 1.1945554490489667,
+    "trailing_1y_sharpe": 3.045202650349167,
+    "trailing_1y_drawdown": -0.087087583753373,
+    "full_cagr": 0.4190581499473012,
+    "trailing_1y_200bps_cagr": 1.0254077549527474,
+    "one_week_increment_delay_cagr": 1.1898240208433046,
+    "two_week_increment_delay_cagr": 1.204519614053507,
+    "worst_sleeve_removal_cagr": 1.161668770653443,
+    "peak_total_stock_weight_bound": 0.07378789503220702
+  },
+  "falsification": {
+    "rolling_26w_outperformance_share_vs_119pct_control": 0.44171779141104295,
+    "bootstrap_4w_probability_positive_vs_119pct_control": 0.5734,
+    "bootstrap_13w_probability_positive_vs_119pct_control": 0.5674,
+    "worst_leave_one_out_company": "QUALYS, INC.",
+    "worst_leave_one_out_cagr": 1.107020201131634,
+    "worst_leave_one_out_beats_frozen_incumbent": true,
+    "worst_leave_one_out_beats_112pct_base": false,
+    "all_passed": false
+  },
+  "decision": "Save the 50/50 cash-conversion/shareholder-discipline increment route as the strongest diversified diagnostic: it slightly improves headline return and the Qualys-removal floor. Do not replace the 119.22% saved challenger or the 105.10% frozen incumbent because temporal and bootstrap evidence fail and the company-removal floor remains below the 112.93% base.",
+  "research_only": true,
+  "approved_for_live_trading": false,
+  "execution_enabled": false,
+  "strategy_replacement_authorized": false
+}

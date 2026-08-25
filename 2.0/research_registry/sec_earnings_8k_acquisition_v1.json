@@ -1,0 +1,36 @@
+{
+  "program": "sec_earnings_8k_acquisition_v1",
+  "classification": "validated point-in-time data source",
+  "status": "research testing authorized",
+  "scope": {
+    "event": "SEC Form 8-K and 8-K/A Item 2.02 Results of Operations and Financial Condition",
+    "event_start_date": "2022-01-01",
+    "target_issuers": 598,
+    "complete_issuers": 598,
+    "issuers_with_events": 594,
+    "events": 10854,
+    "source_files": 608
+  },
+  "availability": {
+    "rule": "SEC acceptanceDateTime is the causal event timestamp",
+    "events_with_acceptance_datetime": 10854,
+    "fallback_events": 0,
+    "note": "SEC filingDate can be the next business day for after-hours acceptances; all acceptance timestamps are within four days of filingDate and are retained without forward adjustment."
+  },
+  "validation": {
+    "all_598_issuers_complete": true,
+    "all_referenced_raw_sources_present_and_hashed": true,
+    "event_accessions_unique": true,
+    "all_events_are_item_202_8k": true,
+    "all_events_have_acceptance_datetime": true,
+    "normalized_event_hash_matches_manifest": true,
+    "all_checks_passed": true
+  },
+  "vintage_id": "20260821T035516Z-sec-earnings-8k-v1",
+  "event_file_sha256": "7c26e1f617d580a2134c9d1d0d5a632727395a476b2aca2d20ad20fd69932d91",
+  "source_manifest_sha256": "c6264ca309dbc9bc93aedcb6d2ec3178080c3c4497b610ae08b77d409dfd6985",
+  "research_testing_authorized": true,
+  "approved_for_live_trading": false,
+  "execution_enabled": false,
+  "strategy_replacement_authorized": false
+}

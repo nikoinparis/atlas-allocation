@@ -1,0 +1,50 @@
+{
+  "any_signal_has_positive_spread": true,
+  "experiment_id": "signal-decile-spread-audit-v1",
+  "features": {
+    "event_score": {
+      "decisions_used": 14,
+      "decisions_where_top_beat_bottom": 5,
+      "hit_rate": 0.35714285714285715,
+      "mean_best_name_share_of_decile_gain": 0.05653283054397031,
+      "mean_bottom_decile_return": 0.03737192546199226,
+      "mean_spread": -0.005883696008227739,
+      "mean_top_decile_return": 0.03148822945376452,
+      "spread_is_positive": false
+    },
+    "quality_momentum": {
+      "decisions_used": 14,
+      "decisions_where_top_beat_bottom": 9,
+      "hit_rate": 0.6428571428571429,
+      "mean_best_name_share_of_decile_gain": 0.06213242871548703,
+      "mean_bottom_decile_return": 0.029920923307007293,
+      "mean_spread": -0.001964634265985945,
+      "mean_top_decile_return": 0.027956289041021348,
+      "spread_is_positive": false
+    },
+    "residual_momentum": {
+      "decisions_used": 12,
+      "decisions_where_top_beat_bottom": 6,
+      "hit_rate": 0.5,
+      "mean_best_name_share_of_decile_gain": 0.07281661102152412,
+      "mean_bottom_decile_return": 0.040574128946711155,
+      "mean_spread": 0.004466217446749375,
+      "mean_top_decile_return": 0.04504034639346053,
+      "spread_is_positive": true
+    },
+    "trend_quality": {
+      "decisions_used": 10,
+      "decisions_where_top_beat_bottom": 5,
+      "hit_rate": 0.5,
+      "mean_best_name_share_of_decile_gain": 0.0665832878286858,
+      "mean_bottom_decile_return": 0.05266783450653349,
+      "mean_spread": -0.011665970444606488,
+      "mean_top_decile_return": 0.041001864061927004,
+      "spread_is_positive": false
+    }
+  },
+  "generated_at": "2026-08-25T09:49:56.969883+00:00",
+  "live_trading_enabled": false,
+  "relationship_to_ic_audit": "Companion to signal-information-coefficient-audit-v1. A statistically significant IC across 3,000 names and a zero decile spread are not contradictory: a weak monotonic relationship can be significant in rank terms while the tails, where trading happens, are dominated by outliers.",
+  "small_sample_warning": "Ten to fourteen usable quarterly decisions per signal. Indicative, not established."
+}

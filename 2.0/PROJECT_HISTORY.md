@@ -8064,3 +8064,44 @@ References:
 - `evidence/price_panel_integrity_audit_v1/`
 - `evidence/equal_weight_universe_candidate_v1/`
 - `data/clean_weekly_prices_v1/`
+
+## Step 195 — Reconcile every panel-dependent result against the cleaned prices
+
+The request was to re-run the survival laboratory on the cleaned price panel. That
+operation does not exist: the survival lab reads only each strategy's own weekly return
+series from the dashboard export and never touches the price panel, so cleaning the panel
+cannot change a single survival number. Recording that is more useful than performing a
+re-run that would have produced identical output by construction.
+
+Three analyses do depend on the panel, and all three were reconciled. The volatility tilt
+gate and its attribution study use the panel to rank cross-sectional volatility; the
+breadth diversification curve draws random portfolios from it.
+
+Nothing material moves. Weight-weighted volatility tilts are identical to four decimal
+places for five of six strategies, and the sixth changes by 0.000011. The reason is
+structural rather than lucky: the tilt is a rank statistic, and correcting 77 observations
+out of roughly 630,000 does not reorder a 52-week volatility ranking. The breadth curve's
+median outcomes move by at most 0.85 percentage points at 320 names, leaving both the
+shape of the curve and its conclusion untouched.
+
+Every conclusion previously drawn from the dirty panel therefore stands: the tilt verdicts
+in Step 191, the attribution in Step 189, and the diversification curve in Step 190.
+
+A process failure is recorded. The first attempt at this reconciliation renamed three
+scripts to v2 but did not repoint their output paths, so the clean-panel runs silently
+overwrote the v1 evidence directories. Because the results were numerically identical the
+overwrite destroyed nothing, but that was luck rather than design; a genuine difference
+would have erased the comparison it was meant to establish. The duplicate scripts were
+deleted and replaced with a single reconciliation that reads both panels and reports the
+delta, which is what the check should have been from the start.
+
+The cleaned panel remains the correct input for future work, not because it changes past
+results but because carrying an infinite return and 429 untradeable issuers into new
+research is an avoidable risk.
+
+No strategy was promoted and live trading remains disabled.
+
+References:
+
+- `scripts/run_clean_panel_reconciliation_v1.py`
+- `evidence/clean_panel_reconciliation_v1/`

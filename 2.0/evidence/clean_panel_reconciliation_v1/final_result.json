@@ -1,0 +1,74 @@
+{
+  "breadth_curve_medians": [
+    {
+      "clean_median": 0.06509764615985103,
+      "delta": -0.004683230703434904,
+      "dirty_median": 0.06978087686328593,
+      "names": "1"
+    },
+    {
+      "clean_median": 0.13515586218810516,
+      "delta": -0.0013931781940322852,
+      "dirty_median": 0.13654904038213744,
+      "names": "5"
+    },
+    {
+      "clean_median": 0.15952266485091443,
+      "delta": -0.006059491043456433,
+      "dirty_median": 0.16558215589437086,
+      "names": "20"
+    },
+    {
+      "clean_median": 0.17012747193186784,
+      "delta": -0.008532615721235925,
+      "dirty_median": 0.17866008765310376,
+      "names": "320"
+    }
+  ],
+  "conclusion": "Cleaning changes nothing material. Volatility tilts are rank statistics and 77 corrected observations out of roughly 630,000 do not move ranks. Earlier conclusions drawn from the dirty panel stand.",
+  "experiment_id": "clean-panel-reconciliation-v1",
+  "generated_at": "2026-08-25T23:34:27.699417+00:00",
+  "live_trading_enabled": false,
+  "max_absolute_breadth_delta": 0.008532615721235925,
+  "max_absolute_tilt_delta": 1.0906527244447517e-05,
+  "survival_lab_note": "The survival laboratory reads only each strategy's own weekly return series from the dashboard export. It never touches the price panel, so cleaning the panel cannot change any survival result.",
+  "survival_lab_uses_price_panel": false,
+  "volatility_tilts": [
+    {
+      "clean": 0.6419752993155345,
+      "delta": -1.0906527244447517e-05,
+      "dirty": 0.641986205842779,
+      "strategy": "150.86% Residual 1.25x"
+    },
+    {
+      "clean": 0.5510957384175125,
+      "delta": 0.0,
+      "dirty": 0.5510957384175125,
+      "strategy": "174.97% Fragile 1.35x"
+    },
+    {
+      "clean": 0.2162702422246144,
+      "delta": 0.0,
+      "dirty": 0.2162702422246144,
+      "strategy": "ETF Incumbent"
+    },
+    {
+      "clean": 0.7166461317252989,
+      "delta": 0.0,
+      "dirty": 0.7166461317252989,
+      "strategy": "142% Growth / Micron"
+    },
+    {
+      "clean": 0.5531752486812826,
+      "delta": 0.0,
+      "dirty": 0.5531752486812826,
+      "strategy": "102% Daily-Audited"
+    },
+    {
+      "clean": 0.5510957384175124,
+      "delta": 0.0,
+      "dirty": 0.5510957384175124,
+      "strategy": "124% Sector Ensemble"
+    }
+  ]
+}

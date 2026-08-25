@@ -1,0 +1,7 @@
+id,short_name,volatility_tilt,verdict,passes_gate,requires_bear_regime_evidence,bear_regime_evidence_available,observations
+sec-residual-controlled-1.25x-5pct-v1,150.86% Residual 1.25x,0.641986205842779,requires_declaration_and_bear_evidence,False,True,False,4515
+sec-sector-ensemble-fragile-1.35x-v1,174.97% Fragile 1.35x,0.5510957384175125,neutral,True,False,False,2659
+candidate-return-first-60-40-forward-v1,ETF Incumbent,0.2162702422246144,defensive_tilt,True,False,False,123
+sec-growth-survivorship-aware-v1,142% Growth / Micron,0.7166461317252989,requires_declaration_and_bear_evidence,False,True,False,776
+sec-cash-conversion-breadth20-dynamic-v1,102% Daily-Audited,0.5531752486812826,neutral,True,False,False,1616
+sec-sector-aware-signal-ensemble-v1,124% Sector Ensemble,0.5510957384175124,neutral,True,False,False,2659

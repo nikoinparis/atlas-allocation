@@ -1,0 +1,78 @@
+{
+  "any_strategy_passes": true,
+  "experiment_id": "volatility-tilt-gate-v1",
+  "generated_at": "2026-08-25T19:01:57.333703+00:00",
+  "live_trading_enabled": false,
+  "note": "No SEC strategy can supply bear-regime evidence: the stock price panel starts 2022-12-02. Every tilted book therefore fails the evidence requirement by data availability, not by construction.",
+  "strategies": [
+    {
+      "bear_regime_evidence_available": false,
+      "id": "sec-residual-controlled-1.25x-5pct-v1",
+      "observations": 4515,
+      "passes_gate": false,
+      "requires_bear_regime_evidence": true,
+      "short_name": "150.86% Residual 1.25x",
+      "verdict": "requires_declaration_and_bear_evidence",
+      "volatility_tilt": 0.641986205842779
+    },
+    {
+      "bear_regime_evidence_available": false,
+      "id": "sec-sector-ensemble-fragile-1.35x-v1",
+      "observations": 2659,
+      "passes_gate": true,
+      "requires_bear_regime_evidence": false,
+      "short_name": "174.97% Fragile 1.35x",
+      "verdict": "neutral",
+      "volatility_tilt": 0.5510957384175125
+    },
+    {
+      "bear_regime_evidence_available": false,
+      "id": "candidate-return-first-60-40-forward-v1",
+      "observations": 123,
+      "passes_gate": true,
+      "requires_bear_regime_evidence": false,
+      "short_name": "ETF Incumbent",
+      "verdict": "defensive_tilt",
+      "volatility_tilt": 0.2162702422246144
+    },
+    {
+      "bear_regime_evidence_available": false,
+      "id": "sec-growth-survivorship-aware-v1",
+      "observations": 776,
+      "passes_gate": false,
+      "requires_bear_regime_evidence": true,
+      "short_name": "142% Growth / Micron",
+      "verdict": "requires_declaration_and_bear_evidence",
+      "volatility_tilt": 0.7166461317252989
+    },
+    {
+      "bear_regime_evidence_available": false,
+      "id": "sec-cash-conversion-breadth20-dynamic-v1",
+      "observations": 1616,
+      "passes_gate": true,
+      "requires_bear_regime_evidence": false,
+      "short_name": "102% Daily-Audited",
+      "verdict": "neutral",
+      "volatility_tilt": 0.5531752486812826
+    },
+    {
+      "bear_regime_evidence_available": false,
+      "id": "sec-sector-aware-signal-ensemble-v1",
+      "observations": 2659,
+      "passes_gate": true,
+      "requires_bear_regime_evidence": false,
+      "short_name": "124% Sector Ensemble",
+      "verdict": "neutral",
+      "volatility_tilt": 0.5510957384175124
+    }
+  ],
+  "thresholds": {
+    "declared_tilt_maximum": 0.65,
+    "hard_maximum": 0.75,
+    "neutral_band": [
+      0.4,
+      0.6
+    ],
+    "rationale": "A book inside the neutral band is not making a volatility bet. Between 0.60 and 0.65 the bet must be declared and sized deliberately. Above 0.75 the strategy is a leveraged volatility bet wearing a stock-selection label, whatever its stated rules."
+  }
+}

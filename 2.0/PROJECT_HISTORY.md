@@ -8105,3 +8105,58 @@ References:
 
 - `scripts/run_clean_panel_reconciliation_v1.py`
 - `evidence/clean_panel_reconciliation_v1/`
+
+## Step 196 — Test the strategies against a random-portfolio null, and correct Step 189
+
+Every negative result this session concerned signals measured in isolation. None of them
+asked the direct question: are the saved strategies themselves distinguishable from
+portfolios drawn at random? They returned between 92% and 156% on pure cash while the
+equal-weight universe returned 30.19% over the same trailing fifty-two weeks, so either
+they are doing something or they are extreme draws.
+
+For each strategy, four thousand random portfolios were generated holding the median
+number of names that strategy actually held, over that strategy's own trailing
+fifty-two weekly decision dates, using the cleaned price panel. A second null additionally
+matched each random portfolio's volatility percentile to the strategy's own median tilt,
+within a five-point tolerance, which asks whether anything survives once the exposure
+identified in Step 191 is held constant.
+
+Every strategy sits in the extreme right tail. Against the size-matched null the
+percentiles are 99.4% for the sector ensemble and the residual leader, 99.1% for the
+Micron-led growth book, 99.0% for the fragile sleeve, 98.4% for the daily-audited book and
+86.1% for the ETF incumbent. The random medians are 21% to 30% and the ninety-fifth
+percentiles 56% to 120%, against realised returns of 72% to 144%.
+
+The volatility-matched null is the part that forces a correction. Controlling for tilt
+does not reduce these figures, it raises them: 100.0% for the sector ensemble, the fragile
+sleeve and the residual leader, 99.8% for the daily-audited book, 98.7% for the growth
+book and 94.8% for the incumbent. Step 189 stated that a high-volatility tilt is
+sufficient to explain most of the return ranking with no stock-selection skill required.
+That claim is withdrawn. Holding tilt constant makes the strategies look more exceptional,
+not less, so the tilt is not what is generating their returns.
+
+What this does not establish is skill, and the reason is the oldest problem in this
+project. These strategies were selected out of a very large search precisely because they
+performed well in this window, and the test is run on that same window. Finding a
+deliberately chosen high performer in the top percentile of random draws over its own
+selection period is close to tautological. The result refutes one specific alternative
+explanation; it does not confirm the positive one.
+
+Three readings are consistent with the evidence and cannot be separated here. The
+strategies may capture something real that the isolated signal tests were too blunt to
+detect, since a portfolio combines several weak signals with sizing and timing that a
+single-signal decile spread ignores. They may be the survivors of a search wide enough to
+produce 99th-percentile outcomes by chance alone. Or the returns may come from an exposure
+not yet measured, as the volatility tilt was not measured until Step 191.
+
+Separating them requires data the selection never touched. That is what the forward clock
+is for, and its first realisation is September 4, 2026. This step raises the value of
+that clock considerably: there is now a specific, falsifiable expectation attached to it
+rather than a vague hope.
+
+No strategy was promoted and live trading remains disabled.
+
+References:
+
+- `scripts/run_random_portfolio_null_v1.py`
+- `evidence/random_portfolio_null_v1/`

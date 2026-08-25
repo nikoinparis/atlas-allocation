@@ -7639,3 +7639,50 @@ References:
 - `config/sector_mechanism_regime_probe_v1.json`
 - `scripts/run_sector_mechanism_regime_probe_v1.py`
 - `evidence/sector_mechanism_regime_probe_v1/`
+
+## Step 187 — Redistribute instead of holding cash, and find the caps are unreachable
+
+Step 184 applied concentration caps by releasing every capped position to cash, and
+noted that this was a conservative bound: a real implementation would redistribute the
+released weight rather than sit on it. This step does the redistribution.
+
+Released weight is now offered proportionally to holdings that are still below their own
+issuer, single-fund, total-fund and sector limits, repeatedly, until either all of it is
+placed or no headroom remains anywhere. Only genuinely unplaceable weight becomes cash.
+No new names are introduced, because choosing what to buy next requires the strategy's
+own ranking and cannot be recovered from a holdings snapshot.
+
+Redistribution does what it was supposed to do about cash. Median released weight falls
+from between 29.8% and 50% under v1 to between 0% and 10% for four of the six
+strategies. The money stays invested.
+
+It also breaks the caps, and that is the finding. Once weight is pushed back into the
+names these books already hold, sector exposure after look-through climbs to between
+43.0% and 65.0% against a 35% cap, and total fund exposure reaches 83.6% against a 60%
+cap. Five of six strategies fail at least two caps under redistribution, where all six
+passed when the same weight was dumped to cash.
+
+The two results together say something neither says alone. The concentration in these
+strategies is not a weighting problem that better sizing can solve. It is a selection
+problem: the set of names each strategy chooses does not contain enough independent
+exposure to be spread out. You can satisfy the caps or you can stay invested, and with
+this name set you cannot do both.
+
+One exception is instructive. The Micron-led growth book passes every cap under
+redistribution, because it holds five single names and no funds at all; capping each at
+10% leaves half the book in cash but breaches nothing. Its concentration is honest and
+visible, where the fund-heavy books hide theirs inside baskets until look-through
+exposes it.
+
+The practical consequence is that fixing the design gate requires re-running each
+strategy so that trimmed weight flows into the next-ranked name it already wanted, not
+post-processing its published output. That work needs the strategy ranking at each
+decision date, which lives in the research panel rather than the dashboard export.
+
+No strategy was promoted and live trading remains disabled.
+
+References:
+
+- `config/unlevered_concentration_caps_v2.json`
+- `scripts/run_unlevered_concentration_caps_v2.py`
+- `evidence/unlevered_concentration_caps_v2/`

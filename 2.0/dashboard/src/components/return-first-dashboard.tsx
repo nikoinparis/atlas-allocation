@@ -11,6 +11,7 @@ import {
   YAxis,
 } from "recharts";
 import { SurvivalLab, type SurvivalBundlePayload } from "@/components/survival-lab";
+import { deepMethodology, deepFormulas } from "@/components/methodology";
 import {
   ArrowUpRight,
   CalendarDays,
@@ -300,6 +301,12 @@ function positionSpotlight(event: MouseEvent<HTMLElement>) {
   event.currentTarget.style.setProperty("--spotlight-y", `${event.clientY - bounds.top}px`);
 }
 
+function DeepEquation({ formulaKey }: { formulaKey: string }) {
+  const equation = deepFormulas[formulaKey];
+  if (!equation) return null;
+  return <div className="math-equation" role="math" aria-label={equation.label} dangerouslySetInnerHTML={{ __html: equation.markup }} />;
+}
+
 function MathEquation({ formula }: { formula: FormulaKey }) {
   const equation = mathMarkup[formula];
   return <div className="math-equation" role="math" aria-label={equation.label} dangerouslySetInnerHTML={{ __html: equation.markup }} />;
@@ -419,6 +426,7 @@ function DashboardView({ data, strategies, survivalBundle, activeView, onStrateg
   );
   const activeViewDetails = viewDetails[activeView];
   const methodology = methodologyByStrategy[data.strategy.id] ?? methodologyByStrategy["candidate-return-first-60-40-forward-v1"];
+  const deep = deepMethodology[data.strategy.id] ?? null;
   const latestChange = recentRebalances[0];
   const latestChangeItems = latestChange?.holdings.filter((holding) => Math.abs(holding.change ?? 0) > 1e-8) ?? [];
   const recentTape = data.dailyRecords.filter((row) => row.tradingDay).slice(-20);
@@ -825,10 +833,10 @@ function DashboardView({ data, strategies, survivalBundle, activeView, onStrateg
           <div className="methodology-hero-copy">
             <span className="section-kicker gradient-copy">FROM EVIDENCE TO WEIGHTS</span>
             <h2>One decision, fully traceable.</h2>
-            <p>{methodology.summary}</p>
+            <p>{deep?.summary ?? methodology.summary}</p>
             <div className="methodology-meta">
-              <span><small>CADENCE</small>{methodology.cadence}</span>
-              <span><small>INVESTMENT UNIVERSE</small>{methodology.universe}</span>
+              <span><small>CADENCE</small>{deep?.cadence ?? methodology.cadence}</span>
+              <span><small>INVESTMENT UNIVERSE</small>{deep?.universe ?? methodology.universe}</span>
               <span><small>EXECUTION STATE</small>Simulation only</span>
             </div>
           </div>
@@ -842,14 +850,39 @@ function DashboardView({ data, strategies, survivalBundle, activeView, onStrateg
           <div><span className="section-kicker">DECISION PIPELINE</span><h2>The strategy, step by step</h2></div>
           <p>Change the strategy above and this explanation changes with it.</p>
         </div>
+        {deep && <article className="panel method-sources spotlight-surface" onMouseMove={positionSpotlight}>
+          <span className="section-kicker">STEP 00 &middot; WHAT GOES IN</span>
+          <h3>The data this strategy is built from</h3>
+          <p>Everything downstream depends on these being point-in-time. If any of them leak information from the future, every number after this step is fiction.</p>
+          <div className="method-source-grid">
+            {deep.dataSources.map((source) => <div key={source.name}><strong>{source.name}</strong><p>{source.detail}</p></div>)}
+          </div>
+        </article>}
+
         <ol className="methodology-flow">
-          {methodology.steps.map((step) => <li key={step.number} className="panel methodology-step spotlight-surface" onMouseMove={positionSpotlight}>
+          {(deep ? deep.steps : []).map((step) => <li key={step.number} className="panel methodology-step spotlight-surface" onMouseMove={positionSpotlight}>
             <div className="step-index"><span>{step.number}</span><i /></div>
             <div className="step-copy">
               <span className="section-kicker">{step.label}</span>
               <h3>{step.title}</h3>
               <p>{step.description}</p>
+              <div className="step-inputs">
+                <small>INPUTS</small>
+                <ul>{step.inputs.map((input) => <li key={input}>{input}</li>)}</ul>
+              </div>
+              {step.example && <div className="step-example">
+                <small>WORKED EXAMPLE &middot; {step.example.caption}</small>
+                <table><tbody>
+                  {step.example.rows.map((row) => <tr key={row.label}><th>{row.label}</th><td>{row.value}</td></tr>)}
+                </tbody></table>
+                {step.example.outcome && <p>{step.example.outcome}</p>}
+              </div>}
             </div>
+            <div className="formula-block"><span>RULE / FORMULA</span><DeepEquation formulaKey={step.formulaKey} /><small>{step.note}</small></div>
+          </li>)}
+          {!deep && methodology.steps.map((step) => <li key={step.number} className="panel methodology-step spotlight-surface" onMouseMove={positionSpotlight}>
+            <div className="step-index"><span>{step.number}</span><i /></div>
+            <div className="step-copy"><span className="section-kicker">{step.label}</span><h3>{step.title}</h3><p>{step.description}</p></div>
             <div className="formula-block"><span>RULE / FORMULA</span><MathEquation formula={step.formula} /><small>{step.note}</small></div>
           </li>)}
         </ol>

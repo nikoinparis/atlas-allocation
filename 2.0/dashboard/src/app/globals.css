@@ -559,3 +559,47 @@ button.metric-card:hover { border-color: rgba(139,114,255,.38); transform: trans
 
 /* charts: keep tick text clear of the panel edge */
 .lab-chart { padding-right: 6px; }
+
+/* ---- How it works: data sources, inputs, worked examples ---- */
+.method-sources { display: flex; flex-direction: column; gap: 12px; margin-bottom: 18px; }
+.method-sources h3 { margin: 0; font-size: 17px; }
+.method-sources > p { margin: 0; font-size: 13px; color: var(--text-secondary); max-width: 70ch; line-height: 1.6; }
+.method-source-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(232px, 1fr)); gap: 12px; margin-top: 4px; }
+.method-source-grid > div {
+  padding: 13px 15px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface-muted);
+  display: flex; flex-direction: column; gap: 5px;
+}
+.method-source-grid strong { font-size: 12.5px; font-weight: 650; color: var(--text); }
+.method-source-grid p { margin: 0; font-size: 12px; color: var(--text-secondary); line-height: 1.55; }
+
+.step-inputs { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+.step-inputs > small { font-size: 9px; font-weight: 750; letter-spacing: .08em; color: var(--text-tertiary); flex-shrink: 0; }
+.step-inputs ul { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.step-inputs li {
+  font-size: 11px; padding: 3px 9px; border-radius: 999px;
+  background: #181922; border: 1px solid var(--border); color: var(--text-secondary);
+}
+
+.step-example {
+  margin-top: 13px; padding: 13px 15px; border-radius: 12px;
+  border: 1px solid var(--border); background: var(--surface-muted);
+  display: flex; flex-direction: column; gap: 9px;
+}
+.step-example > small { font-size: 9px; font-weight: 750; letter-spacing: .08em; color: var(--text-tertiary); }
+.step-example table { width: 100%; border-collapse: collapse; }
+.step-example tr { border-bottom: 1px solid var(--border); }
+.step-example tr:last-child { border-bottom: none; }
+.step-example tr:last-child td { color: var(--green); font-weight: 650; }
+.step-example th {
+  text-align: left; font-weight: 400; font-size: 12px; color: var(--text-secondary);
+  padding: 6px 0; white-space: normal;
+}
+.step-example td {
+  text-align: right; font-size: 12.5px; color: var(--text); font-weight: 500;
+  font-variant-numeric: tabular-nums; padding: 6px 0 6px 14px; white-space: nowrap;
+}
+.step-example > p { margin: 0; font-size: 12px; color: var(--text-secondary); line-height: 1.55; }
+
+@media (max-width: 640px) {
+  .step-example th, .step-example td { font-size: 11.5px; }
+}

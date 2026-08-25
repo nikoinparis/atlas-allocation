@@ -1,0 +1,34 @@
+{
+  "decisions_available": 14,
+  "description": "Measure the realised information coefficient of every signal in the SEC broad research panel, against a permutation null, and decompose the Fundamental Law ceiling using the project's own measured breadth.",
+  "experiment_id": "signal-information-coefficient-audit-v1",
+  "features": [
+    "residual_momentum",
+    "trend_quality",
+    "quality_momentum",
+    "event_score"
+  ],
+  "fundamental_law": {
+    "cross_strategy_breadth_source": "PROJECT_HISTORY Batch 03 pairwise-correlation participation ratio",
+    "cross_strategy_effective_breadth": 1.15,
+    "publish_information_ratio": false,
+    "reason": "IR = IC * sqrt(BR) requires BR to be the number of genuinely independent bets per year. The project's measured 1.15 is the effective number of independent STRATEGIES, which is a different quantity. Multiplying a cross-sectional IC by a cross-strategy breadth conflates two things and would produce a meaningless number, so no IR is published here.",
+    "what_would_be_needed": "An effective-independent-bet count for the cross-section, estimated from the residual correlation structure of the names actually held. Not yet measured."
+  },
+  "label": "future_sector_relative_return",
+  "live_trading_enabled": false,
+  "method": {
+    "computed_per": "decision_date",
+    "ic_type": "spearman_rank",
+    "minimum_names_per_decision": 200,
+    "note": "The panel label is already sector-relative and every feature is point-in-time by construction, so no additional lagging is applied.",
+    "sector_neutral_label": true
+  },
+  "panel": "data/sec_broad_research_panel_v2/panel.csv.gz",
+  "permutation_null": {
+    "scheme": "labels shuffled within each decision date, preserving cross-sectional size and the feature vector",
+    "seed": 90210,
+    "shuffles": 2000
+  },
+  "small_sample_warning": "Fourteen quarterly decisions is a small sample for an IC t-statistic. Treat any single-feature result as indicative, not established."
+}

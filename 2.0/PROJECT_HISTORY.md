@@ -7545,3 +7545,48 @@ References:
 - `scripts/run_unlevered_financing_comparison_v1.py`
 - `evidence/unlevered_concentration_caps_v1/`
 - `dashboard/public/concentration-caps.json`
+
+## Step 185 — Measure what each signal is actually worth, using data already on disk
+
+The free half of the upgrade backlog: no vendor feed, no financing, no trading. The
+question is whether the panel's four features carry information at all.
+
+Rank information coefficients were computed between each feature and the forward
+sector-relative return, one quarterly decision at a time across the fourteen decisions
+in the broad research panel, roughly three thousand issuers each. Each feature was then
+tested against a permutation null of two thousand label shuffles performed inside each
+decision, preserving cross-sectional size and the feature vector.
+
+Three of four features carry real information. Trend quality averages an IC of 0.0665,
+residual momentum 0.0571, and quality momentum 0.0285; all three sit outside the
+permutation null at p below 0.0001. Residual momentum is the most consistent, positive
+in 67% of decisions with the highest IC information ratio at 0.69, and the only feature
+whose t-statistic clears 2 at 2.40. Trend quality has the largest average IC but a
+weaker t-statistic of 1.85 across only fourteen observations.
+
+Event score is noise. Its average IC is 0.0005, it is positive in 43% of decisions, and
+its permutation p-value is 0.929. On this evidence it contributes nothing and should be
+dropped from any future ensemble rather than carried along.
+
+A methodological error was caught before publication and is recorded rather than hidden.
+The first version of this audit multiplied each IC by the square root of the project's
+measured effective breadth of 1.15 and reported the result as an information ratio. That
+is wrong. In IR = IC * sqrt(BR), breadth is the number of genuinely independent bets per
+year; the 1.15 figure from Batch 03 is the effective number of independent *strategies*,
+a different quantity. Multiplying a cross-sectional IC by a cross-strategy breadth
+produces a meaningless number. No information ratio is published. Obtaining one would
+require an effective-independent-bet count estimated from the residual correlation
+structure of the names actually held, which this project has not measured.
+
+Fourteen quarterly observations is a small sample for an IC t-statistic, and the result
+is recorded as indicative rather than established. The useful conclusions are narrow and
+free: one feature can be dropped outright, and the remaining three have ICs in a normal
+range for equity signals, meaning the project's problem has never been signal quality.
+
+No strategy was promoted and live trading remains disabled.
+
+References:
+
+- `config/signal_information_coefficient_audit_v1.json`
+- `scripts/run_signal_information_coefficient_audit_v1.py`
+- `evidence/signal_information_coefficient_audit_v1/`

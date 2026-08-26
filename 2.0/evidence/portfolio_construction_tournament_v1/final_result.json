@@ -1,0 +1,106 @@
+{
+  "baseline": "equal_weight",
+  "caveat": "One 2023-2026 window, no forward evidence, and no selection skill assumed anywhere. These are structural rules with nothing fitted, which limits overfitting but does not remove regime dependence.",
+  "experiment_id": "portfolio-construction-tournament-v1",
+  "generated_at": "2026-08-26T00:30:17.315796+00:00",
+  "live_trading_enabled": false,
+  "variants": {
+    "capped_equal_weight": {
+      "average_turnover": 0.0003055099601973243,
+      "beats_baseline_on_both": false,
+      "cagr": 0.2225400817023253,
+      "cagr_vs_baseline": -9.103828801926284e-15,
+      "drawdown_vs_baseline": -6.8833827526759706e-15,
+      "fifth_percentile_52w": 0.03881729345803753,
+      "max_drawdown": -0.20250624510804727,
+      "sharpe": 1.280203952604782,
+      "weeks": 143,
+      "worst_rolling_52w": -0.055097689047153287
+    },
+    "drawdown_controlled": {
+      "average_turnover": 0.009035993982469208,
+      "beats_baseline_on_both": false,
+      "cagr": 0.20630859095159826,
+      "cagr_vs_baseline": -0.016231490750736155,
+      "drawdown_vs_baseline": 0.04192850738164511,
+      "fifth_percentile_52w": 0.029249693564372348,
+      "max_drawdown": -0.16057773772639528,
+      "sharpe": 1.2907313117222106,
+      "weeks": 143,
+      "worst_rolling_52w": -0.005419126329002322
+    },
+    "equal_weight": {
+      "average_turnover": 0.0003055099601957749,
+      "beats_baseline_on_both": false,
+      "cagr": 0.2225400817023344,
+      "cagr_vs_baseline": 0.0,
+      "drawdown_vs_baseline": 0.0,
+      "fifth_percentile_52w": 0.03881729345805218,
+      "max_drawdown": -0.20250624510804038,
+      "sharpe": 1.280203952604849,
+      "weeks": 143,
+      "worst_rolling_52w": -0.055097689047136855
+    },
+    "exclude_bottom_vol_decile": {
+      "average_turnover": 0.0028957746525841354,
+      "beats_baseline_on_both": false,
+      "cagr": 0.23535513900826088,
+      "cagr_vs_baseline": 0.01281505730592647,
+      "drawdown_vs_baseline": -0.018121841261295457,
+      "fifth_percentile_52w": 0.03276176981818557,
+      "max_drawdown": -0.22062808636933584,
+      "sharpe": 1.2445174008715492,
+      "weeks": 143,
+      "worst_rolling_52w": -0.07320765560197084
+    },
+    "exclude_top_vol_decile": {
+      "average_turnover": 0.002924017800759486,
+      "beats_baseline_on_both": false,
+      "cagr": 0.1854997591155807,
+      "cagr_vs_baseline": -0.037040322586753716,
+      "drawdown_vs_baseline": 0.006943445151139094,
+      "fifth_percentile_52w": 0.0066818469642304645,
+      "max_drawdown": -0.1955627999569013,
+      "sharpe": 1.1667925296468176,
+      "weeks": 143,
+      "worst_rolling_52w": -0.06479565331229531
+    },
+    "inverse_variance": {
+      "average_turnover": 0.05438789399610971,
+      "beats_baseline_on_both": false,
+      "cagr": -0.004322585077187746,
+      "cagr_vs_baseline": -0.22686266677952216,
+      "drawdown_vs_baseline": 0.17672823660996562,
+      "fifth_percentile_52w": -0.023045234005730886,
+      "max_drawdown": -0.025778008498074767,
+      "sharpe": -0.35403482463340835,
+      "weeks": 143,
+      "worst_rolling_52w": -0.02443073669877427
+    },
+    "inverse_volatility": {
+      "average_turnover": 0.03709313742611355,
+      "beats_baseline_on_both": false,
+      "cagr": 0.01418764134414885,
+      "cagr_vs_baseline": -0.20835244035818556,
+      "drawdown_vs_baseline": 0.14673779937166365,
+      "fifth_percentile_52w": -0.026153476249710428,
+      "max_drawdown": -0.05576844573637674,
+      "sharpe": 0.48486990586243467,
+      "weeks": 143,
+      "worst_rolling_52w": -0.05290406488869348
+    },
+    "volatility_targeted": {
+      "average_turnover": 0.00855986130149903,
+      "beats_baseline_on_both": false,
+      "cagr": 0.1746773492838265,
+      "cagr_vs_baseline": -0.047862732418507914,
+      "drawdown_vs_baseline": 0.036069811837098564,
+      "fifth_percentile_52w": 0.01701339312196415,
+      "max_drawdown": -0.16643643327094182,
+      "sharpe": 1.2075361045007407,
+      "weeks": 143,
+      "worst_rolling_52w": -0.04455178539278548
+    }
+  },
+  "variants_beating_baseline_on_return_and_drawdown": []
+}

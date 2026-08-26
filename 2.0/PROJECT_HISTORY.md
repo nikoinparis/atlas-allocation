@@ -8215,3 +8215,57 @@ References:
 - `config/forward_prediction_registry_v1.json`
 - `scripts/score_forward_week_v1.py`
 - `evidence/forward_prediction_registry_v1/`
+
+## Step 198 — Vary construction instead of selection, and find drawdown control is the only real gain
+
+Every prior program in this project varied which names to hold. The decile study measured
+that space as empty, so searching it harder is searching something already known to be
+flat. This step holds selection constant at "every priced issuer" and varies only portfolio
+construction, which Step 190 showed moves the whole outcome distribution rather than just
+its variance. Eight structural rules were declared before running; none has a fitted
+parameter, so there is nothing to tune.
+
+No variant beats equal weighting on both return and drawdown. The baseline returns 22.25%
+annually at a Sharpe of 1.28 with a -20.3% maximum drawdown over the 143-week sample.
+
+Drawdown control is the one variant that materially improves the shape of the outcome.
+Cutting exposure to half whenever the book sits more than 8% below its running peak returns
+20.63% at a Sharpe of 1.29, with the maximum drawdown improving from -20.3% to -16.1% and
+the worst rolling fifty-two-week return improving from -5.5% to -0.5%. It gives up 1.62
+points of annual return to remove almost all of the losing-year tail, and it is the only
+rule in the set with a higher Sharpe than the baseline, if only by 0.01. Turnover rises
+from 0.0003 to 0.0090 per week, which is still negligible.
+
+Excluding the least volatile decile produces the highest return at 23.54% but a worse
+drawdown at -22.1%, which is the volatility finding from Steps 189 and 191 appearing from
+a third direction. The inverse-volatility and inverse-variance books confirm it in the
+mirror: weighting toward low-volatility names returns 1.42% and -0.43% respectively,
+destroying almost all return, because this sample punished exactly what those rules
+overweight.
+
+A design flaw in this run is recorded. The capped equal-weight variant produced results
+identical to the baseline to every reported digit, because a 1% cap can never bind on a
+book of roughly three thousand names each holding about 0.03%. The variant tested nothing.
+It is left in the record as a no-op rather than quietly re-run with a tighter cap, because
+choosing a cap after seeing that the first one did nothing is how a structural test turns
+into a fitted one.
+
+The comparison that matters is stated carefully to avoid repeating the Step 193 error.
+These figures cover the full 143-week sample and are not comparable to the saved
+strategies' trailing fifty-two-week returns of 92% to 156%. On drawdown they are
+comparable in kind, and a -16.1% maximum drawdown with a -0.5% worst year is a materially
+better distribution than any saved strategy achieved, all of which carry negative worst
+rolling years between -14.06% and -39.81%.
+
+The honest summary is that construction cannot manufacture return here, but it can
+reshape the distribution, and drawdown control is the only rule tested that does so at an
+acceptable price. That is worth carrying into any future candidate as an overlay rather
+than treated as a strategy in itself.
+
+No strategy was promoted and live trading remains disabled.
+
+References:
+
+- `config/portfolio_construction_tournament_v1.json`
+- `scripts/run_portfolio_construction_tournament_v1.py`
+- `evidence/portfolio_construction_tournament_v1/`

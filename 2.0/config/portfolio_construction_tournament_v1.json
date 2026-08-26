@@ -1,0 +1,25 @@
+{
+  "experiment_id": "portfolio-construction-tournament-v1",
+  "question": "Given that selection does not work here, what is the best portfolio obtainable with no selection skill at all? Every prior program varied WHICH names to hold. This holds selection constant at 'everything' and varies only construction.",
+  "why_this_is_not_another_signal_sweep": "The decile study showed signals cannot separate the tails, so searching harder for names is searching a space already measured as empty. Construction is a different axis and Step 190 showed it moves the whole distribution, not just its variance.",
+  "declared_variants": {
+    "equal_weight": "Every priced issuer, equal weight. The baseline from Step 194.",
+    "inverse_volatility": "Weight proportional to 1/sigma over a trailing 52 weeks, lagged.",
+    "inverse_variance": "Weight proportional to 1/sigma squared, lagged. More aggressive de-risking than inverse volatility.",
+    "volatility_targeted": "Equal weight scaled toward a 15% annual target, capped at 1.0 so the rule can only de-risk.",
+    "drawdown_controlled": "Equal weight, exposure cut to 50% while the book sits more than 8% below its running peak, restored when recovered.",
+    "exclude_top_vol_decile": "Equal weight excluding the most volatile 10% of names.",
+    "exclude_bottom_vol_decile": "Equal weight excluding the least volatile 10%, the mirror test.",
+    "capped_equal_weight": "Equal weight with any single name capped at 1% and the excess redistributed."
+  },
+  "evaluation": {
+    "price_source": "data/clean_weekly_prices_v1/weekly_adjusted_prices_clean.csv.gz",
+    "cost_bps_per_unit_turnover": 50.0,
+    "execution_delay_weeks": 1,
+    "warmup_weeks": 52,
+    "report": ["cagr", "sharpe", "max_drawdown", "worst_rolling_52w", "fifth_percentile_52w", "turnover"]
+  },
+  "multiple_testing_note": "Eight variants, all declared here before running. They are structural rules rather than fitted parameters, so there is nothing to tune; the risk is choosing the winner after the fact, which is why the baseline is fixed as equal weight and any winner must beat it on drawdown as well as return.",
+  "promotion_authority": "none",
+  "live_trading_enabled": false
+}

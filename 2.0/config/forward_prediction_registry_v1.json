@@ -1,0 +1,43 @@
+{
+  "experiment_id": "forward-prediction-registry-v1",
+  "purpose": "Step 196 showed every saved strategy sitting at the 98th-100th percentile of size- and volatility-matched random portfolios, but on the same window it was selected from. That test cannot separate skill from selection. This registers, before any forward data exists, exactly what each outcome would mean.",
+  "registered_at_utc": "2026-08-26",
+  "first_eligible_realization": "2026-09-04",
+  "why_this_must_be_written_now": "A prediction made after seeing forward data is not a prediction. The thresholds below are fixed at registration and may not be revised; revising them creates a new registry version and voids this one.",
+  "scoring_method": {
+    "benchmark": "random-portfolio null, regenerated each week",
+    "draws": 4000,
+    "match_on": ["number of names held", "volatility percentile within 0.05"],
+    "statistic": "percentile of the strategy's realised weekly return within the null distribution",
+    "note": "Scoring against a same-size, same-tilt random portfolio is far stricter than scoring against absolute return or a market index, because it removes size, breadth and volatility exposure at once."
+  },
+  "predictions": {
+    "skill": {
+      "claim": "The strategies capture something real that isolated signal tests were too blunt to detect.",
+      "implies": "Median weekly percentile against the null stays at or above 0.65 across the first 13 forward weeks, and above 0.60 across 52.",
+      "falsified_if": "Median weekly percentile falls below 0.55 over any completed 13-week block."
+    },
+    "selection": {
+      "claim": "They are survivors of a search wide enough to produce 99th-percentile outcomes by chance.",
+      "implies": "Weekly percentiles regress toward 0.50 and the median over 52 weeks lands between 0.45 and 0.55.",
+      "falsified_if": "Median weekly percentile over 52 weeks is above 0.60 or below 0.40."
+    },
+    "unmeasured_exposure": {
+      "claim": "Returns come from a factor nobody has measured, as volatility tilt was unmeasured until Step 191.",
+      "implies": "Percentiles stay high while absolute returns track some common factor, so the six strategies' forward percentiles correlate above 0.6 with each other.",
+      "falsified_if": "Cross-strategy correlation of weekly percentiles is below 0.3 while percentiles remain high."
+    }
+  },
+  "strategies_tracked": [
+    "sec-residual-controlled-1.25x-5pct-v1",
+    "sec-sector-aware-signal-ensemble-v1",
+    "sec-cash-conversion-breadth20-dynamic-v1",
+    "sec-growth-survivorship-aware-v1",
+    "sec-sector-ensemble-fragile-1.35x-v1",
+    "candidate-return-first-60-40-forward-v1"
+  ],
+  "shadow_tracking_note": "Two of these are marked NOT ELIGIBLE for promotion on their own falsification record. They are tracked here as shadow observations only. Recording what happens to an ineligible strategy costs nothing and cannot promote it; declining to record it would discard free evidence.",
+  "promotion_authority": "none. This registry scores predictions and never authorises trading.",
+  "revision_policy": "Thresholds are frozen. Any change creates forward-prediction-registry-v2 and this version is marked superseded rather than edited.",
+  "live_trading_enabled": false
+}

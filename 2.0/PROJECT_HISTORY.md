@@ -8160,3 +8160,58 @@ References:
 
 - `scripts/run_random_portfolio_null_v1.py`
 - `evidence/random_portfolio_null_v1/`
+
+## Step 197 — Pre-register what September 4 will mean, and rehearse the scorer
+
+Step 196 established that the saved strategies sit at the 98th to 100th percentile of
+size- and volatility-matched random portfolios, and that the test cannot separate skill
+from selection because it runs on the window the strategies were selected from. The only
+thing that separates them is data the selection never touched. This step makes sure that
+data will actually settle the question when it arrives.
+
+Three things were registered before any forward observation exists, because a prediction
+written after seeing the data is not a prediction.
+
+First, the scoring method. Each completed week, every tracked strategy's realised return
+is placed inside a distribution of four thousand random portfolios holding the same number
+of names at the same volatility percentile within five points, over that same week. This is
+considerably stricter than scoring against absolute return or a market index, because it
+removes size, breadth and volatility exposure simultaneously.
+
+Second, three competing hypotheses with fixed falsification thresholds. Skill implies the
+median weekly percentile stays at or above 0.65 across the first thirteen forward weeks
+and above 0.60 across fifty-two, and is falsified if it falls below 0.55 over any completed
+thirteen-week block. Selection implies regression toward 0.50 with a fifty-two-week median
+between 0.45 and 0.55. An unmeasured common exposure implies percentiles stay high while
+the six strategies' weekly percentiles correlate above 0.6 with one another. The thresholds
+are frozen; revising them creates a v2 and voids this registry rather than editing it.
+
+Third, all six dashboard strategies are tracked rather than the one that currently holds a
+forward protocol. Two of them are marked not eligible for promotion on their own
+falsification record and are tracked as shadow observations only. Recording what happens to
+an ineligible strategy cannot promote it, and declining to record it would discard free
+evidence.
+
+The scorer was then rehearsed on six historical weeks. A rehearsal writes to separate files,
+is stamped as such, and advances no clock; its purpose is to ensure the machinery does not
+fail on September 4 with nobody watching.
+
+The rehearsal produced an unplanned observation worth recording. Over the six most recent
+historical weeks the median weekly percentiles are 0.246 for the growth book, 0.293 for the
+residual leader, 0.392 for the daily-audited book, 0.527 for the sector ensemble, 0.569 for
+the fragile sleeve and 0.623 for the ETF incumbent. Four of six sit at or below 0.50. That
+is the pattern the selection hypothesis predicts, appearing in the last weeks of the
+selection window itself.
+
+It should not be overread. Six weekly observations are extremely noisy, weekly percentiles
+are far noisier than the fifty-two-week figures in Step 196, and these weeks remain inside
+the sample the strategies were chosen on. It is a hint, not a result, and it is recorded
+now precisely so that it cannot later be presented as a prediction made in advance.
+
+No strategy was promoted, no forward clock advanced, and live trading remains disabled.
+
+References:
+
+- `config/forward_prediction_registry_v1.json`
+- `scripts/score_forward_week_v1.py`
+- `evidence/forward_prediction_registry_v1/`

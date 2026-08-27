@@ -23,3 +23,42 @@ regime-snapshot.*/
 
 # Local datasets and generated experiment artifacts will receive explicit
 # versioning rules when their contracts are introduced.
+
+# ---------------------------------------------------------------------------
+# Raw acquisition caches. These are verbatim downloads from SEC EDGAR and price
+# vendors, they are large, and they can be re-fetched by their acquire_* script.
+# What must never be ignored is anything DERIVED from them: the panels under
+# data/sec_broad_panel_inputs_v2, data/sec_broad_research_panel_v2,
+# data/fundamental_signal_panel_v1 and data/clean_weekly_prices_v1 are research
+# inputs, are hashed by sealed manifests, and stay in the repository.
+data/sec_recent_companyfacts_cache_v1/
+data/sec_historical_identity_cache/
+data/sec_form4_bulk_vintages/
+data/sec_broad_tiingo_cache_v2/
+data/sec_broad_tiingo_runs_v2/
+
+# NOTE: dashboard/public/return-first-dashboard.json is deliberately NOT ignored.
+# It is 184MB and regenerable, but the deployed site fetches it at runtime, so
+# untracking it would break production. Local edits to it are marked
+# skip-worktree instead. Shrinking it (a shared price map cuts it ~75%) is
+# tracked as future work, not solved by ignoring it.
+
+# Vendor acquisition vintages. Raw, timestamped downloads kept for provenance.
+# Re-fetched by the matching acquire_* script in scripts/. The SEALED panels
+# derived from them are committed, so research is reproducible without these.
+# Note: price_source_inventory.csv stores absolute paths INTO these directories,
+# so a fresh clone must re-acquire before running anything that reads it.
+data/sec_broad_current_data_vintages/
+data/sec_broad_identity_cache_v2/
+data/sec_broad_identity_vintages/
+data/sec_broad_missing_companyfacts_runs_v2/
+data/sec_broad_multi_symbol_data_vintages/
+data/sec_broad_recovered_data_vintages/
+data/sec_earnings_event_vintages/
+data/sec_historical_universe_vintages/
+data/vintages/
+
+# Indonesia program data. The program is closed and rejected (see
+# PROJECT_HISTORY and research_registry); its code, configs and evidence are
+# committed, only the raw market data is not.
+data/indonesia_*/

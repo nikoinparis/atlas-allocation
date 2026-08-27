@@ -1,0 +1,20 @@
+
+=== trailing_52w ===
+  sector_ensemble_incumbent        total   124.20%  Sh  3.10  maxDD   -8.71%
+  composite_5_books                total   120.83%  Sh  3.42  maxDD  -11.00%
+  composite_4_books                total   111.24%  Sh  3.57  maxDD   -7.79%
+  composite_3_books_no_gaps        total   113.24%  Sh  2.95  maxDD  -10.22%
+  composite_4_plus_20pct_trend     total    84.85%  Sh  3.61  maxDD   -6.46%
+  composite_4_plus_30pct_trend     total    72.79%  Sh  3.64  maxDD   -5.80%
+  composite_4_plus_50pct_trend     total    50.75%  Sh  3.71  maxDD   -4.48%
+
+=== full_history ===
+  sector_ensemble_incumbent        total   261.99%  Sh  1.71  maxDD  -21.80%
+  composite_5_books                total   265.16%  Sh  1.94  maxDD  -21.24%
+  composite_4_books                total   282.97%  Sh  2.24  maxDD  -17.22%
+  composite_3_books_no_gaps        total   286.78%  Sh  1.83  maxDD  -19.93%
+  composite_4_plus_20pct_trend     total   206.52%  Sh  2.30  maxDD  -13.84%
+  composite_4_plus_30pct_trend     total   173.78%  Sh  2.34  maxDD  -12.12%
+  composite_4_plus_50pct_trend     total   117.70%  Sh  2.46  maxDD   -8.60%
+
+incumbent reconciles to dashboard: True | maxDD match: True

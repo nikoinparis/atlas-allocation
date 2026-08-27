@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "experiment": "incumbent_head_to_head_v1",
+  "status": "comparison_no_promotion",
+  "purpose": "Compare the composite against the 124% sector ensemble on matched windows, because the dashboard reports a trailing 52-week figure and the composite work reported a full-history figure, and Step 194 already caught this project making exactly that comparison error once.",
+  "methodology_correction_recorded": {
+    "error": "The first attempt built the composite on the intersection of all five books' dates. The daily-audited book is missing seven weeks, three of which fall inside the trailing 52-week window, so requiring all five present shifted the window start from 2025-08-15 to 2025-07-25 and silently discarded three weeks of the incumbent's own returns. It produced 113.94% for a book whose dashboard reports 124.20%.",
+    "fix": "Evaluate on the incumbent's own 188-week calendar and average whichever sleeves reported in a given week. A sleeve failing to report is not a reason to skip the week for every other sleeve.",
+    "verification": "The incumbent now reconciles to 124.20% trailing and -8.71% maximum drawdown, matching its dashboard tile exactly.",
+    "residual_caveat": "A three-book variant excluding the gapped sleeve entirely is reported alongside, so the gap-filling choice can be seen not to drive the conclusion."
+  },
+  "declared_before_running": {
+    "windows": {
+      "trailing_52w": "2025-08-15 to 2026-08-07, the incumbent's own retrospective holdout window",
+      "full_history": "2023-01-06 to 2026-08-07, 188 weeks"
+    },
+    "comparators": [
+      "124% sector ensemble, unchanged",
+      "equal-weight composite of all five books",
+      "equal-weight composite of four books, excluding the Micron growth book per Step 209",
+      "equal-weight composite of three books, excluding the gapped sleeve as a robustness check",
+      "four-book composite blended with the cross-asset trend sleeve at 20, 30 and 50 percent"
+    ],
+    "sharpe_convention": "weekly returns annualised by sqrt(52). The dashboard's 2.77 tile is computed from daily returns and is not directly comparable; the weekly figure for the same book and window is 3.10.",
+    "trend_sleeve": "Step 201 sleeve at its lowest leverage setting with Rogers-Satchell sizing from Step 207"
+  },
+  "not_claimed": [
+    "The composite CONTAINS the sector ensemble. This is not a rival stock-selection strategy that beats it; it is a portfolio that holds it alongside others. Any framing of 'a better strategy was found' would misrepresent what was done.",
+    "Both books are measured on the window they were selected in. Neither figure is forward evidence."
+  ],
+  "strategy_source": "dashboard/public/return-first-dashboard.json",
+  "live_trading_enabled": false
+}

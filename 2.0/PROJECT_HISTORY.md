@@ -8806,3 +8806,57 @@ References:
 - `config/pnl_attribution_v1.json`
 - `scripts/run_pnl_attribution_v1.py`
 - `evidence/pnl_attribution_v1/`
+
+## Step 210 — Compare the composite against the incumbent, and answer the question directly
+
+The question was whether the work of Steps 199-209 produced something better than the 124%
+sector ensemble. Answering it required a matched-window comparison, because the dashboard
+reports a trailing 52-week figure and the composite work reported a full-history one. Step
+194 already caught this project making exactly that comparison error once.
+
+A methodology error in the first attempt is recorded rather than quietly fixed. The composite
+was built on the intersection of all five books' dates. The daily-audited book is missing
+seven weeks, three of them inside the trailing 52-week window, so requiring all five present
+shifted the window start from 2025-08-15 to 2025-07-25 and discarded three weeks of the
+incumbent's own returns. It produced 113.94% for a book whose dashboard reports 124.20%. The
+fix is to evaluate on the incumbent's own calendar and average whichever sleeves reported in
+a given week, since one sleeve failing to report is not a reason to skip the week for the
+others. The incumbent now reconciles to 124.20% and -8.71% exactly. A three-book variant
+excluding the gapped sleeve entirely is reported alongside so the gap-filling choice can be
+seen not to drive the conclusion.
+
+The answer splits by window, and both halves are stated because reporting only one would be
+the same error again.
+
+Over the trailing fifty-two weeks the incumbent wins on return. It returns 124.20% against
+the four-book composite's 111.24%, a gap of thirteen points, with a 75.0% weekly win rate
+against 63.5%. The composite wins on the other two measures, at a Sharpe of 3.57 against 3.10
+and a maximum drawdown of -7.79% against -8.71%.
+
+Over the full 188 weeks the composite wins on every measure. It returns 282.97% against
+261.99%, at a Sharpe of 2.24 against 1.71, a maximum drawdown of -17.22% against -21.80% and
+a worst rolling year of -7.84% against -14.06%. Its deflated Sharpe ratio against the ledger's
+4,518 trials is 0.665 against the incumbent's 0.289.
+
+The framing matters more than either table. The composite *contains* the sector ensemble as
+one of its four sleeves. Nothing here is a rival stock-selection rule that beats it, and
+describing this as finding a better strategy would misrepresent what was done. What was found
+is a better way to hold the strategies that already existed: drop the one sleeve that costs
+more risk than it returns, stop choosing between the rest, and add an independent sleeve. The
+selection layer improved; the alpha layer did not.
+
+That distinction also explains the trailing-window result rather than excusing it. Averaging
+four books cannot beat the best of the four over a window in which that book happened to be
+the best, and the incumbent was. What averaging buys is that the identity of the best book is
+not known in advance, which Step 203 measured directly: choosing the trailing leader returned
+10.07% annually against 50.59% for holding the set, and lost to random choice.
+
+Neither figure is forward evidence. Both books are measured on the window they were selected
+in, and the deflated ratios of 0.289 and 0.665 both sit below the 0.95 gate.
+
+No strategy was promoted and live trading remains disabled.
+
+References:
+
+- `config/incumbent_head_to_head_v1.json`
+- `evidence/incumbent_head_to_head_v1/`

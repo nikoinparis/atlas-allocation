@@ -1,0 +1,57 @@
+{
+  "all_falsification_checks_passed": false,
+  "artifact_sha256": {
+    "screening": "61eb95aa704c148cb3f6528c55d3ec4124d43f1d9151964d1b6d38ddb43bbefc",
+    "selected_path_50bps": "8bcfdc9c6568d2fbe33fd3fa96fa554b360f1518ab147195dffbd598c61f5b7f",
+    "stock_targets": "51be7923d5344ada42c8730c5d09ca178763812588b70938456c504cae25d47e"
+  },
+  "bootstrap_13w_probability_positive_vs_predecessor": 0.8424,
+  "bootstrap_4w_probability_positive_vs_predecessor": 0.885,
+  "candidate_count": 9,
+  "checks": {
+    "bootstrap_13w_at_least_95pct": false,
+    "bootstrap_4w_at_least_95pct": false,
+    "control_reproduces_endpoint_ensemble": true,
+    "selected_surface_gates_passed": false,
+    "worst_five_issuer_bundle_beats_112pct_base": false
+  },
+  "created_at_utc": "2026-08-21T23:04:10.712874+00:00",
+  "endpoint_outperformance_share": 0.5,
+  "experiment": "sec_sector_aware_signal_ensemble_v1",
+  "full_cagr": 0.4273578340691979,
+  "latest_distinct_holdings": 26,
+  "latest_max_sector_share": 0.8500000000000003,
+  "live_trading_enabled": false,
+  "peak_total_stock_weight": 0.07025288590307753,
+  "recent_cagr": 1.2420414930921906,
+  "recent_drawdown": -0.08708758375337322,
+  "recent_sharpe": 3.1028844174788257,
+  "rolling26_outperformance_share": 0.5705521472392638,
+  "runtime": {
+    "actual": {
+      "numpy": "2.5.1",
+      "pandas": "3.0.5",
+      "python": "3.12.13"
+    },
+    "all_versions_match": true,
+    "expected": {
+      "container_image": "localhost/po2-yfinance:1.5.2-v1",
+      "container_image_id": "c84c194bef2052b0b4e4997d5780eb8ccf48d0ed2a3ec35bcafb726f691e0c5c",
+      "numpy": "2.5.1",
+      "pandas": "3.0.5",
+      "python": "3.12.13"
+    },
+    "versions_match": {
+      "numpy": true,
+      "pandas": true,
+      "python": true
+    }
+  },
+  "selected_candidate": "cash80_balance90",
+  "selection_reason": "no sector-aware construction passed all gates; best joint issuer/endpoint diagnostic",
+  "severe_recent_cagr": 1.0726891496158184,
+  "strategy_replacement_authorized": false,
+  "surface_passer_count": 0,
+  "worst_delay_recent_cagr": 1.2280379258660892,
+  "worst_missing_bundle_recent_cagr": 1.0931712975015522
+}

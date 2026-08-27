@@ -1,0 +1,30 @@
+{
+  "artifact_sha256": {
+    "performance": "67721d030956f72715cd163338464d76d0168e547080238935695ae4db699677",
+    "reconciliation": "4d378ff94f938f9b32cda9cc50136aa93a4c3faf4307505d92f708a8d2afb447",
+    "selected_path": "5d977923deec97f0491c86e9a727b51aeed03393ae962a6c6889b45c55cec062"
+  },
+  "candidate_level_gates_passed": true,
+  "complete_falsification_passed": false,
+  "created_at_utc": "2026-08-22T05:06:48.233249+00:00",
+  "daily_full_cagr": 0.5495292678277202,
+  "daily_recent_cagr": 1.7496783269699088,
+  "daily_recent_drawdown": -0.24429899433416014,
+  "daily_recent_sharpe": 2.5938583884881465,
+  "experiment": "sec_sector_ensemble_daily_risk_scaling_audit_v1",
+  "frozen_config_sha256": "8c211fa498821ff2751fa820bb9888db2327123fb620fffb497dcaac3f23e0ee",
+  "live_trading_enabled": false,
+  "maximum_weekly_reconciliation_difference": 0.02770760321507066,
+  "missing_price_ciks_held_as_cash": [
+    "0000351817",
+    "0000732834",
+    "0001459417",
+    "0001628945"
+  ],
+  "selected_exposure": 1.35,
+  "strategy_replacement_authorized": false,
+  "underlying_strategy_falsification_passed": false,
+  "unlevered_daily_recent_cagr": 1.1879404810238872,
+  "unlevered_daily_recent_drawdown": -0.17941471582306479,
+  "unlevered_daily_recent_sharpe": 2.643136224529354
+}

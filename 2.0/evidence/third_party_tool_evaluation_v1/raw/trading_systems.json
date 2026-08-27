@@ -1,0 +1,17 @@
+{
+  "approved_for_core_import": false,
+  "approved_for_live_trading": false,
+  "blockers": [
+    "the name does not uniquely identify a GitHub repository",
+    "an exact repository URL is required before source, license, commit, or capability evaluation"
+  ],
+  "capability": "unknown",
+  "id": "trading_systems",
+  "isolation": "none",
+  "name": "Trading Systems (ambiguous)",
+  "probe": {
+    "live_probe_attempted": false,
+    "source_status": "blocked_missing_exact_url"
+  },
+  "verdict": "blocked_ambiguous_source"
+}

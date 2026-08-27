@@ -1,0 +1,81 @@
+{
+  "artifact_sha256": {
+    "control_path_50bps": "7ecaf8db5b73d254d7a2846a4f78c5a6acc7faa4a8372a32d3669f743cf8453d",
+    "selected_path_100bps": "4e6bf9d5c4d4d6aadb74bf83b508fad698d2596592dd8064b48987806f5ed0fa",
+    "selected_path_200bps": "9469baa166f68182cd0e1c24116af66d92cfff075a2c79a0b546f1e49e6062d1",
+    "selected_path_50bps": "0d7cfba32721237808afd65829090ce9281561e175a42d50a08ab0783a81b533",
+    "selected_target_weights": "e9c735245c1423aabede7eb07591f61b9b343847d1d73a665cd906f6f66677bc"
+  },
+  "candidate_count": 27,
+  "control_full_cagr": 0.4093476771616662,
+  "control_trailing_1y_cagr": 1.0510082013109483,
+  "control_trailing_1y_drawdown": -0.10076752452473337,
+  "control_trailing_1y_sharpe": 2.691874564272,
+  "created_at_utc": "2026-08-20T09:52:08.226511+00:00",
+  "experiment": "sec_form4_dynamic_overlay_v1",
+  "falsification": {
+    "all_passed": false,
+    "bootstrap_13w_gate_passed": false,
+    "bootstrap_13w_probability_positive": 0.8614,
+    "bootstrap_4w_gate_passed": false,
+    "bootstrap_4w_probability_positive": 0.6952,
+    "completed_rolling_26w_windows": 163,
+    "neighborhood_gate_passed": false,
+    "neighborhood_joint_improvement_share": 0.3333333333333333,
+    "one_week_delay_beats_control": true,
+    "prefix_invariance": true,
+    "required_gate_keys": [
+      "screen_gates_passed",
+      "one_week_delay_beats_control",
+      "two_week_delay_beats_control",
+      "rolling_window_gate_passed",
+      "neighborhood_gate_passed",
+      "bootstrap_4w_gate_passed",
+      "bootstrap_13w_gate_passed",
+      "worst_leave_one_out_beats_control",
+      "prefix_invariance"
+    ],
+    "rolling_26w_outperformance_share": 0.5644171779141104,
+    "rolling_window_gate_passed": true,
+    "screen_gates_passed": true,
+    "two_week_delay_beats_control": true,
+    "worst_leave_one_out_beats_control": false
+  },
+  "live_trading_enabled": false,
+  "persisted_artifact_roundtrip": {
+    "all_passed": true,
+    "full_cagr_matches_screen": true,
+    "recent_cagr_matches_screen": true,
+    "recent_sharpe_matches_screen": true,
+    "rolling_share_recomputable_from_persisted_paths": true
+  },
+  "qualified_screen_candidates": 3,
+  "runtime": {
+    "actual": {
+      "numpy": "2.5.1",
+      "pandas": "3.0.5",
+      "python": "3.12.13"
+    },
+    "all_versions_match": true,
+    "expected": {
+      "container_image": "localhost/po2-yfinance:1.5.2-v1",
+      "container_image_id": "c84c194bef2052b0b4e4997d5780eb8ccf48d0ed2a3ec35bcafb726f691e0c5c",
+      "numpy": "2.5.1",
+      "pandas": "3.0.5",
+      "python": "3.12.13"
+    },
+    "versions_match": {
+      "numpy": true,
+      "pandas": true,
+      "python": true
+    }
+  },
+  "selected_200bps_trailing_1y_cagr": 0.9410753719423466,
+  "selected_candidate": "executive_or_cluster__13w__30",
+  "selected_full_cagr": 0.4141298640919968,
+  "selected_trailing_1y_cagr": 1.0843237847531682,
+  "selected_trailing_1y_drawdown": -0.10076752452473325,
+  "selected_trailing_1y_sharpe": 2.7684429323122672,
+  "selected_ytd_cagr": 1.0950419751651674,
+  "strategy_replacement_authorized": false
+}

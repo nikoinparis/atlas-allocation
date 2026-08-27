@@ -1,20 +1,20 @@
 {
   "caveat": "Six strategies is far too small a sample for the correlation to be conclusive on its own. It is corroborating evidence for the decile-spread result, not independent proof.",
   "experiment_id": "volatility-tilt-attribution-v1",
-  "generated_at": "2026-08-25T10:56:11.674769+00:00",
+  "generated_at": "2026-08-25T23:32:54.895658+00:00",
   "interpretation": "Every SEC strategy sits well above the median volatility percentile, and the one strategy that does not, the ETF incumbent at 0.216, is also the lowest returning at 70.31%. In a sample where buying high volatility earned roughly +39% annualised decile spread, a high-volatility tilt is sufficient to explain most of the return ranking without any stock-selection skill.",
   "live_trading_enabled": false,
-  "pearson_correlation_tilt_vs_return": 0.8554854940442792,
+  "pearson_correlation_tilt_vs_return": 0.8554916402326337,
   "sample_size": 6,
   "spearman_correlation_tilt_vs_return": 0.48571428571428577,
   "strategies": [
     {
       "id": "sec-residual-controlled-1.25x-5pct-v1",
-      "mean_volatility_percentile": 0.7192246549005814,
+      "mean_volatility_percentile": 0.7192056375639758,
       "pure_cash_trailing_return": 1.126,
       "resolved_holding_observations": 4515,
       "short_name": "150.86% Residual 1.25x",
-      "weight_weighted_volatility_percentile": 0.641986205842779
+      "weight_weighted_volatility_percentile": 0.6419752993155345
     },
     {
       "id": "sec-sector-ensemble-fragile-1.35x-v1",

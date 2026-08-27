@@ -1,0 +1,55 @@
+{
+  "data_gates": {
+    "minimum_canonical_feature_coverage": false,
+    "minimum_consecutive_years_per_issuer": true,
+    "minimum_history_start": false,
+    "minimum_point_in_time_filing_coverage": true,
+    "require_no_future_filing_leakage": true,
+    "require_publication_timestamps": false,
+    "require_sector_specific_coverage_report": true
+  },
+  "evaluation_end": "2026-08-21",
+  "evaluation_start": "2023-01-03",
+  "execution_authorized": false,
+  "fundamental_momentum_150bps": {
+    "annualized_volatility": 0.1569126058939155,
+    "cagr": -0.00601718605235213,
+    "cumulative_return": -0.020245424774045118,
+    "daily_observations": 854.0,
+    "maximum_drawdown": -0.32424731718407085,
+    "sharpe_zero_rf": 0.040461711239111964
+  },
+  "fundamental_momentum_50bps": {
+    "annualized_volatility": 0.15577165172628993,
+    "cagr": 0.030575739458344797,
+    "cumulative_return": 0.10745573712305245,
+    "daily_observations": 854.0,
+    "maximum_drawdown": -0.27266136839096167,
+    "sharpe_zero_rf": 0.2716989346422813
+  },
+  "fundamental_momentum_calendar_returns": {
+    "2023": -0.010397368727186107,
+    "2024": -0.026110460758108633,
+    "2025": 0.11977910569768446,
+    "2026": 0.02617983279050229
+  },
+  "minimum_fundamental_eligible_names": 0,
+  "monthly_decisions": 44,
+  "notice": "RESEARCH ONLY \u2014 this Indonesian fundamental-momentum challenger is not an investment recommendation and is not approved for execution.",
+  "performance_claim_authorized": false,
+  "price_only_50bps": {
+    "annualized_volatility": 0.2525555296241451,
+    "cagr": -0.03500117535678593,
+    "cumulative_return": -0.11373623904007113,
+    "daily_observations": 854.0,
+    "maximum_drawdown": -0.4629079461963629,
+    "sharpe_zero_rf": -0.014115344150877196
+  },
+  "price_only_calendar_returns": {
+    "2023": 0.04992737517762369,
+    "2024": 0.07819486048202107,
+    "2025": 0.1119632281918368,
+    "2026": -0.29592966048776037
+  },
+  "verdict": "HISTORICAL_RETURN_IMPROVEMENT_DATA_GATED"
+}

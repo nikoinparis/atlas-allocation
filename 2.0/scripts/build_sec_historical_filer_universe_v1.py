@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a point-in-time technology/energy filer roster from SEC FSDS archives."""
+"""Build a point-in-time filer roster from SEC FSDS archives and a declared SIC taxonomy."""
 
 from __future__ import annotations
 
@@ -193,7 +193,8 @@ def main() -> int:
     coverage["current_ticker_coverage"] = coverage["current_ticker_matches"] / coverage["members"]
 
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    output = Path(args.output_root).resolve() / f"{stamp}-sec-historical-filers-v1"
+    output_slug = str(config.get("output_slug", "sec-historical-filers-v1"))
+    output = Path(args.output_root).resolve() / f"{stamp}-{output_slug}"
     output.mkdir(parents=True, exist_ok=False)
     submissions.to_csv(output / "qualifying_submissions.csv", index=False)
     membership.to_csv(output / "quarterly_membership.csv", index=False)
@@ -221,6 +222,7 @@ def main() -> int:
         "historical_ciks_without_current_ticker": int(former["cik10"].nunique()),
         "historical_cik_current_ticker_coverage": float(identities["has_current_sec_ticker"].mean()),
         "strict_point_in_time_membership": True,
+        "sector_taxonomy": list(config["sic_groups"]),
         "historical_ticker_mapping_complete": False,
         "delisting_returns_complete": False,
         "strategy_testing_authorized": False,

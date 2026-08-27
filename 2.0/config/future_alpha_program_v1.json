@@ -1,0 +1,65 @@
+{
+  "experiment": "future_alpha_program_v1",
+  "registered_before_results": true,
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false,
+  "research_window": {
+    "first_decision": "2023-04-01",
+    "last_decision": "2026-04-01",
+    "selection_decisions": 9,
+    "retrospective_holdout_decisions": 4,
+    "purge_weeks": 13,
+    "execution_delay_weeks": 1,
+    "label_horizon_weeks": 13
+  },
+  "portfolio": {
+    "long_only": true,
+    "breadth": 20,
+    "maximum_sector_names": 5,
+    "cost_bps_one_way": [10, 25, 50],
+    "financing": false
+  },
+  "branches": [
+    {
+      "id": "ohlcv_alpha_zoo",
+      "hypothesis": "predeclared price, range, volatility, gap and volume features contain sector-relative forward information",
+      "families": ["momentum", "reversal", "trend", "volatility", "range", "gap", "volume", "liquidity", "price_volume"],
+      "minimum_nonmissing_share": 0.70
+    },
+    {
+      "id": "sec_language_change",
+      "hypothesis": "large year-over-year changes in 10-K language predict weaker future returns",
+      "required_source": "point-in-time filing body text"
+    },
+    {
+      "id": "standardized_unexpected_earnings",
+      "hypothesis": "quarterly earnings change versus the same fiscal quarter last year, standardized by prior changes, predicts drift"
+    },
+    {
+      "id": "net_issuance_shareholder_yield",
+      "hypothesis": "falling shares outstanding and positive distributions predict stronger future returns"
+    },
+    {
+      "id": "intangible_adjusted_fundamentals",
+      "hypothesis": "capitalizing a fixed fraction of R&D and SG&A improves cross-sectional quality measurement",
+      "rd_capitalization_years": 5,
+      "sga_capitalization_fraction": 0.30
+    },
+    {
+      "id": "online_strategy_aggregation",
+      "hypothesis": "a causal exponentially weighted allocator improves recent portfolio returns without financing",
+      "learning_rates": [1.0, 2.0, 4.0],
+      "minimum_weight": 0.05,
+      "forward_status": "shadow_only"
+    }
+  ],
+  "gates": {
+    "minimum_holdout_rank_ic": 0.02,
+    "minimum_positive_holdout_decision_share": 0.60,
+    "minimum_costed_holdout_spread": 0.0,
+    "maximum_single_name_weight": 0.10,
+    "require_bootstrap_probability_positive": 0.90,
+    "multiple_testing": "benjamini_hochberg_10pct",
+    "no_result_can_change_september_4_registry": true
+  }
+}

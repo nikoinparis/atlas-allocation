@@ -1,0 +1,26 @@
+{
+  "all_validation_checks_passed": true,
+  "best_candidate": "balanced_filing_momentum__hold4__positive_8w__top30__floor50m__sector70__w0.20__50bps",
+  "best_full_cagr": 0.38585011397630886,
+  "best_full_drawdown": -0.23083997781140153,
+  "best_recent_cagr": 1.053827653734778,
+  "best_recent_drawdown": -0.10764495929000406,
+  "best_recent_sharpe": 2.9292417837000304,
+  "best_sleeve_recent_cagr": 1.0027312628628757,
+  "candidates_beating_control_both": 0,
+  "created_at_utc": "2026-08-15T00:10:20.503119+00:00",
+  "experiment": "sec_filing_fundamental_momentum_search_v1",
+  "filing_events": 4789,
+  "live_trading_enabled": false,
+  "severe_200bps_recent_cagr": 1.0229138588809485,
+  "strategy_replacement_authorized": false,
+  "tested_paths": 5832,
+  "unique_issuers": 578,
+  "validation_checks": {
+    "all_costs_reported": true,
+    "all_events_known_before_eligibility": true,
+    "allocations_bounded": true,
+    "results_finite": true,
+    "signals_use_lagged_price_confirmation": true
+  }
+}

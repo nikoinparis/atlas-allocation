@@ -1,0 +1,29 @@
+{
+  "allocator_cost_bps": 50.0,
+  "artifact_sha256": {
+    "frozen_config": "e6237a76d3b43a1e04bbeb27664b47110e119ae63c7fcb53d9928bec3cf93489",
+    "path": "ad1a4f8871c0ff5d6ed79bb692ce1da5f77646d22fd517d0aa1a836ebb4420f8",
+    "performance": "61d61f8ec8e5015c763610252f79b77ea65d72c5b89f034100961161244b5de3",
+    "weights": "d705cae7b312e007666e3529cbc10738117838dfd26ec15b574c979b0e321bcb"
+  },
+  "best_sleeve": "etf_incumbent",
+  "best_sleeve_cagr": 0.3891106885455753,
+  "broad_research_gate_used": false,
+  "created_at_utc": "2026-08-22T04:40:35.896423+00:00",
+  "dynamic_beats_best_sleeve": false,
+  "dynamic_beats_equal_weight": false,
+  "dynamic_cagr": 0.21969444421667883,
+  "dynamic_max_drawdown": -0.16612023798523456,
+  "dynamic_sharpe": 1.2544740908025145,
+  "equal_weight_cagr": 0.39996606434783,
+  "evaluation_start_after_warmup": "2023-07-14",
+  "experiment": "strategy_allocator_diagnostic_v1",
+  "live_trading_enabled": false,
+  "retrospective_selection_contaminated": true,
+  "sleeves": {
+    "dynamic_breadth20": "sec-cash-conversion-breadth20-dynamic-v1",
+    "etf_incumbent": "candidate-return-first-60-40-forward-v1",
+    "growth_top5": "sec-growth-survivorship-aware-v1"
+  },
+  "strategy_promotion_authorized": false
+}

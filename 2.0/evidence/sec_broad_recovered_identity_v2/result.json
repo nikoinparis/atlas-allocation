@@ -1,0 +1,19 @@
+{
+  "artifact_sha256": {
+    "all_recovery_results": "3f553240b92ea0bc109ddbeb702b7ab3422534fc5f253b5ccc448a21c43984f0",
+    "identity_quarantine": "b46ad9b2ed400ca3dc6db2b6a2565cc4c38525d40d89e1d75ab56ddf232697e9",
+    "recovered_single_symbol_queue": "addbc8f1c92284df6d01fdcf5aba24d6db2f975abc41da542f136bfe048d9ecf"
+  },
+  "created_at_utc": "2026-08-22T01:41:59.082985+00:00",
+  "duplicate_symbol_ciks_quarantined": 12,
+  "experiment": "sec_broad_recovered_identity_v2",
+  "explicit_symbol_recoveries": 1059,
+  "live_trading_enabled": false,
+  "other_identity_cases_quarantined": 330,
+  "price_testing_authorized": true,
+  "recovery_batches": 6,
+  "single_symbol_recoveries": 763,
+  "strategy_testing_authorized": false,
+  "targets": 1093,
+  "unique_single_symbol_queue": 751
+}

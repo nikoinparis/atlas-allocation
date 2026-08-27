@@ -1,0 +1,77 @@
+{
+  "all_falsification_checks_passed": false,
+  "artifact_sha256": {
+    "event_reactions": "8390f31d377021c73049171853b79761abfa04ea3140082751ce2263b99bccaa",
+    "frozen_control_50bps": "7ecaf8db5b73d254d7a2846a4f78c5a6acc7faa4a8372a32d3669f743cf8453d",
+    "selected_path_50bps": "2a6ea7bea635b6d872a9412060240b78a078674197554a5a01051d10eab3b42d"
+  },
+  "bootstrap_13w_probability_positive": 0.6452,
+  "bootstrap_4w_probability_positive": 0.5884,
+  "breadth": 20,
+  "candidate_count": 54,
+  "checks": {
+    "all_used_event_responses_precede_decisions": true,
+    "bootstrap_13w_gate": false,
+    "bootstrap_4w_gate": false,
+    "event_one_week_delay_beats_control": false,
+    "event_two_week_delay_beats_control": false,
+    "neighborhood_gate": false,
+    "overlay_one_week_delay_beats_control": false,
+    "overlay_two_week_delay_beats_control": false,
+    "persisted_recent_cagr_matches": true,
+    "rolling_gate": true,
+    "single_issuer_influence_gate": false,
+    "surface_gates": false,
+    "worst_loo_beats_control": false
+  },
+  "completed_rolling_windows": 163,
+  "control_full_cagr": 0.4093476771616662,
+  "control_recent_cagr": 1.0510082013109483,
+  "control_severe_recent_cagr": 0.9320198735415857,
+  "created_at_utc": "2026-08-21T04:50:43.258036+00:00",
+  "event_one_week_delay_recent_cagr": 0.9364447227626149,
+  "event_two_week_delay_recent_cagr": 0.9354734003711613,
+  "event_weight": 0.3,
+  "event_window_weeks": 4,
+  "experiment": "sec_earnings_drift_rank_v1",
+  "frozen_control_rebuilt_exactly": true,
+  "full_cagr": 0.4155247536719753,
+  "live_trading_enabled": false,
+  "neighborhood_joint_improvement_share": 0.125,
+  "overlay_one_week_delay_recent_cagr": 0.9815650970527174,
+  "overlay_two_week_delay_recent_cagr": 1.0192468610747043,
+  "priced_event_issuers": 558,
+  "priced_event_reactions": 8271,
+  "rank_buffer": 5,
+  "recent_cagr": 1.058410760272836,
+  "recent_drawdown": -0.08879660071665174,
+  "recent_sharpe": 2.7348563114694815,
+  "rolling_outperformance_share": 0.5276073619631901,
+  "runtime": {
+    "actual": {
+      "numpy": "2.5.1",
+      "pandas": "3.0.5",
+      "python": "3.12.13"
+    },
+    "all_versions_match": true,
+    "expected": {
+      "container_image": "localhost/po2-yfinance:1.5.2-v1",
+      "container_image_id": "c84c194bef2052b0b4e4997d5780eb8ccf48d0ed2a3ec35bcafb726f691e0c5c",
+      "numpy": "2.5.1",
+      "pandas": "3.0.5",
+      "python": "3.12.13"
+    },
+    "versions_match": {
+      "numpy": true,
+      "pandas": true,
+      "python": true
+    }
+  },
+  "selected_candidate": "pead4__w30__b20__buf5",
+  "severe_recent_cagr": 0.9340729533758856,
+  "single_issuer_improvement_share": 13.294069499307263,
+  "sleeve_annual_turnover": 6.709769679861219,
+  "strategy_replacement_authorized": false,
+  "worst_loo_company": "GITLAB INC.",
+  "worst_loo_recent_cagr": 0.9600006269607799
+}

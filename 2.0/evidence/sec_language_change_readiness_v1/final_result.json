@@ -1,0 +1,15 @@
+{
+  "created_at_utc": "2026-08-26T05:30:03.089187+00:00",
+  "experiment": "sec_language_change_readiness_v1",
+  "issuers_with_year_over_year_pairs": 1413,
+  "live_trading_enabled": false,
+  "local_filing_body_documents": 0,
+  "membership_sha256": "64df7fb1bff17754f0b67190b963d8786553c7834f6419b27aa60052136272c8",
+  "performance_evaluated": false,
+  "reason": "Submissions metadata proves filing dates and accession identities but contains no filing language. Treating metadata as text would fabricate the Lazy Prices signal.",
+  "required_next_step": "Acquire and hash the queued primary documents under SEC fair-access rules, parse stable sections, then compare each filing only with the issuer's prior filing.",
+  "status": "blocked_filing_body_text_not_acquired",
+  "strategy_promotion_authorized": false,
+  "submissions_sources": 1427,
+  "ten_k_filings_queued": 9755
+}

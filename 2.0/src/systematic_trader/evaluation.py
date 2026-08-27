@@ -163,7 +163,8 @@ def rolling_window_summary(
 
 
 def block_bootstrap_intervals(
-    returns: Sequence[float], *, seed: int, samples: int = 500, block_size: int = 13
+    returns: Sequence[float], *, seed: int, samples: int = 500, block_size: int = 13,
+    periods_per_year: int = PERIODS_PER_YEAR,
 ) -> dict[str, float | int]:
     values = _finite_returns(returns)
     generator = random.Random(seed)
@@ -175,7 +176,7 @@ def block_bootstrap_intervals(
             start = generator.randrange(len(values))
             block = [values[(start + offset) % len(values)] for offset in range(block_size)]
             sample.extend(block)
-        metric = performance_metrics(sample[: len(values)])
+        metric = performance_metrics(sample[: len(values)], periods_per_year=periods_per_year)
         annual_returns.append(metric.annual_return)
         sharpes.append(metric.sharpe_zero_rf)
 
@@ -189,11 +190,16 @@ def block_bootstrap_intervals(
         weight = position - lower
         return ordered[lower] * (1.0 - weight) + ordered[upper] * weight
 
-    return {
+    result = {
         "bootstrap_samples": samples,
-        "bootstrap_block_weeks": block_size,
+        "bootstrap_block_periods": block_size,
+        "periods_per_year": periods_per_year,
         "annual_return_ci_low": percentile(annual_returns, 0.025),
         "annual_return_ci_high": percentile(annual_returns, 0.975),
         "sharpe_ci_low": percentile(sharpes, 0.025),
         "sharpe_ci_high": percentile(sharpes, 0.975),
     }
+    # Preserve the established weekly evidence schema for existing callers.
+    if periods_per_year == PERIODS_PER_YEAR:
+        result["bootstrap_block_weeks"] = block_size
+    return result

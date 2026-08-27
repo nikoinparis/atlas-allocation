@@ -1,0 +1,20 @@
+{
+  "approved_for_core_import": false,
+  "approved_for_live_trading": false,
+  "blockers": [
+    "not an identified open-source repository or importable library",
+    "account, product terms, market-data entitlements, and reproducible export format are not supplied",
+    "manual replay cannot serve as automated out-of-sample evidence without an auditable event export"
+  ],
+  "capability": "manual_market_replay",
+  "id": "das_replay",
+  "isolation": "human_operated_replay_with_exported_results_only",
+  "name": "DAS Trader Replay",
+  "probe": {
+    "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
+    "live_probe_attempted": true,
+    "source_status": "network_probe_failed",
+    "url": "https://www.dasreplay.com/"
+  },
+  "verdict": "manual_commercial_evaluation_only"
+}

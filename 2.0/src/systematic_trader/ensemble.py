@@ -101,6 +101,114 @@ def effective_independent_count(matrix: dict[str, dict[str, float]]) -> float:
     return trace * trace / trace_square if trace_square > 0.0 else 0.0
 
 
+def marginal_effective_breadth(
+    candidate: str, matrix: dict[str, dict[str, float]]
+) -> float:
+    """Return the candidate's participation-ratio breadth contribution.
+
+    The comparison is deliberately made against the complete peer set.  A
+    candidate that is merely another highly correlated variant can therefore
+    have a contribution close to zero (or even negative), regardless of its
+    standalone Sharpe ratio.
+    """
+    if candidate not in matrix:
+        raise ValueError("candidate is absent from the correlation matrix")
+    names = list(matrix)
+    if any(set(matrix[name]) != set(names) for name in names):
+        raise ValueError("correlation matrix must be square and complete")
+    if len(names) == 1:
+        return effective_independent_count(matrix)
+    without = {
+        left: {right: matrix[left][right] for right in names if right != candidate}
+        for left in names
+        if left != candidate
+    }
+    return effective_independent_count(matrix) - effective_independent_count(without)
+
+
+def breadth_admission_gate(
+    *,
+    candidate: str,
+    matrix: dict[str, dict[str, float]],
+    holdings_overlap_by_peer: dict[str, float],
+    minimum_rounded_contribution: float = 0.01,
+    contribution_decimals: int = 2,
+) -> dict[str, object]:
+    """Fail-closed breadth gate for a proposed strategy candidate.
+
+    Holdings overlap is mandatory because return correlation alone can look
+    low over a short or unusual regime.  This gate does not claim alpha; it
+    only decides whether a candidate contributes measurable diversification.
+    """
+    if candidate not in matrix:
+        raise ValueError("candidate is absent from the correlation matrix")
+    peers = [name for name in matrix if name != candidate]
+    if not peers:
+        raise ValueError("breadth admission requires at least one incumbent peer")
+    if set(holdings_overlap_by_peer) != set(peers):
+        raise ValueError("holdings overlap is required for every incumbent peer")
+    overlaps = [float(holdings_overlap_by_peer[name]) for name in peers]
+    if any(not 0.0 <= value <= 1.0 for value in overlaps):
+        raise ValueError("holdings overlap must be in [0, 1]")
+    correlations = [float(matrix[candidate][name]) for name in peers]
+    contribution = marginal_effective_breadth(candidate, matrix)
+    rounded = round(contribution, contribution_decimals)
+    passed = rounded >= minimum_rounded_contribution
+    return {
+        "candidate": candidate,
+        "incumbent_count": len(peers),
+        "effective_breadth_with_candidate": effective_independent_count(matrix),
+        "marginal_effective_breadth": contribution,
+        "rounded_marginal_effective_breadth": rounded,
+        "minimum_rounded_contribution": minimum_rounded_contribution,
+        "average_peer_correlation": statistics.fmean(correlations),
+        "maximum_absolute_peer_correlation": max(abs(value) for value in correlations),
+        "average_holdings_overlap": statistics.fmean(overlaps),
+        "maximum_holdings_overlap": max(overlaps),
+        "breadth_gate_pass": passed,
+        "performance_promotion_authorized": False,
+    }
+
+
+def fundamental_law_decomposition(
+    *,
+    information_coefficient: float,
+    effective_breadth: float,
+    transfer_coefficient: float = 1.0,
+    realized_information_ratio: float | None = None,
+) -> dict[str, float | None]:
+    """Report an explicit IC/breadth/implementation-efficiency decomposition.
+
+    This is a measurement helper, not a performance estimator.  Callers must
+    supply an out-of-sample IC and should omit realized IR when it is not
+    available on a matching horizon.
+    """
+    ic = float(information_coefficient)
+    breadth = float(effective_breadth)
+    transfer = float(transfer_coefficient)
+    if not -1.0 <= ic <= 1.0:
+        raise ValueError("information coefficient must be in [-1, 1]")
+    if breadth < 0.0:
+        raise ValueError("effective breadth must be nonnegative")
+    if not 0.0 <= transfer <= 1.0:
+        raise ValueError("transfer coefficient must be in [0, 1]")
+    theoretical = ic * math.sqrt(breadth)
+    implementable = theoretical * transfer
+    realized = None if realized_information_ratio is None else float(realized_information_ratio)
+    efficiency = None
+    if realized is not None and implementable != 0.0:
+        efficiency = realized / implementable
+    return {
+        "information_coefficient": ic,
+        "effective_breadth": breadth,
+        "transfer_coefficient": transfer,
+        "theoretical_information_ratio": theoretical,
+        "implementable_information_ratio": implementable,
+        "realized_information_ratio": realized,
+        "realized_to_implementable_efficiency": efficiency,
+    }
+
+
 def block_bootstrap_positive_mean_pvalue(
     returns: list[float], *, seed: int, samples: int = 2000, block_size: int = 13
 ) -> float:

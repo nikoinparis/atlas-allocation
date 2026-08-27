@@ -1,0 +1,65 @@
+{
+  "all_falsification_checks_passed": false,
+  "artifact_sha256": {
+    "screening": "81e138bcc1fd34e6aa956b61b2c82f7d34bf886fe16cef4399de55f4793f8eee",
+    "selected_path_50bps": "96dcedb761b8dcf2a6905b906d68c9357137ba35b2ee3c9c8978a269809deb19",
+    "stock_targets": "e76c429f445d4bb9349fbb24f3577ad562e908f32ce4db9839941cb5d528a168"
+  },
+  "balance_weight_neighborhood_pass_share": 0.6,
+  "base_recent_cagr": 1.1293348809519022,
+  "bootstrap_13w_probability_positive_vs_119pct_control": 0.8028,
+  "bootstrap_4w_probability_positive_vs_119pct_control": 0.829,
+  "candidate_count": 178,
+  "checks": {
+    "balance_weight_neighborhood_at_least_60pct": true,
+    "bootstrap_13w_at_least_95pct": false,
+    "bootstrap_4w_at_least_95pct": false,
+    "control_reproduces_119pct_challenger": true,
+    "recent_cagr_beats_119pct_control": true,
+    "rolling_outperformance_at_least_50pct": true,
+    "selected_surface_gates_passed": true,
+    "worst_loo_beats_112pct_base": true,
+    "worst_loo_beats_119pct_control": true
+  },
+  "completed_rolling_windows": 163,
+  "control_recent_cagr": 1.1921841481621755,
+  "created_at_utc": "2026-08-21T19:11:42.706919+00:00",
+  "delay1_recent_cagr": 1.217162569762591,
+  "delay2_recent_cagr": 1.201524199133802,
+  "experiment": "sec_cluster_aware_cash_sleeve_v1",
+  "frozen_recent_cagr": 1.0510082013109483,
+  "full_cagr": 0.4246991766154238,
+  "live_trading_enabled": false,
+  "peak_total_stock_weight": 0.06815751020591881,
+  "recent_cagr": 1.2371115996688697,
+  "recent_drawdown": -0.08708758375337289,
+  "recent_sharpe": 3.1172056716974486,
+  "rolling_outperformance_share_vs_119pct_control": 0.5153374233128835,
+  "runtime": {
+    "actual": {
+      "numpy": "2.5.1",
+      "pandas": "3.0.5",
+      "python": "3.12.13"
+    },
+    "all_versions_match": true,
+    "expected": {
+      "container_image": "localhost/po2-yfinance:1.5.2-v1",
+      "container_image_id": "c84c194bef2052b0b4e4997d5780eb8ccf48d0ed2a3ec35bcafb726f691e0c5c",
+      "numpy": "2.5.1",
+      "pandas": "3.0.5",
+      "python": "3.12.13"
+    },
+    "versions_match": {
+      "numpy": true,
+      "pandas": true,
+      "python": true
+    }
+  },
+  "selected_candidate": "cash80_balance20__equal__lb26__s00__cap1.00x",
+  "selection_reason": "best current/delay floor among non-control surface passers",
+  "severe_recent_cagr": 1.0844549332674522,
+  "strategy_replacement_authorized": false,
+  "surface_passer_count": 32,
+  "worst_loo_company": "10X GENOMICS, INC.",
+  "worst_loo_recent_cagr": 1.200410258199029
+}

@@ -1,0 +1,22 @@
+{
+  "artifacts": {
+    "checklist.json": {
+      "bytes": 1017,
+      "sha256": "e741bdca07539d573a80b8b4f2421862619163d8669a66e09a8c8180dd14393c"
+    },
+    "report.md": {
+      "bytes": 2443,
+      "sha256": "7f674f9c286adac5f73b1b02dccfb633c979d65db027395bb4d87fb214b65f86"
+    },
+    "result.json": {
+      "bytes": 110341,
+      "sha256": "9ca51d10de6ffca758df2b8f2cd76d599c7fdf0108e45aa90623c47592e9e0b0"
+    },
+    "scoreboard.csv": {
+      "bytes": 1943,
+      "sha256": "1ef563a266e6ca34aea91eb9a4d01f885f3d51fa44c34700a5a3910172b98c35"
+    }
+  },
+  "config": "config/quant_idea_challengers_v1.json",
+  "snapshot_verified": true
+}

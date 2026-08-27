@@ -1,0 +1,111 @@
+{
+  "experiment": "sec_return_improvement_program_v1",
+  "purpose": "Predeclare eight causal return-improvement families before the broad SEC research gate opens, then evaluate them as one multiple-testing-controlled tournament.",
+  "benchmark_candidates": [
+    "sec_cash_conversion_breadth20_dynamic_v1",
+    "candidate_return_first_60_40_forward_v1"
+  ],
+  "signal_families": {
+    "residual_momentum": {
+      "lookback_weeks": [26, 52],
+      "skip_weeks": 4,
+      "sector_residual_weight": 0.7,
+      "market_residual_weight": 0.3,
+      "minimum_history_weeks": 26
+    },
+    "trend_quality": {
+      "high_window_weeks": 52,
+      "positive_week_window": 26,
+      "momentum_horizons_weeks": [13, 26, 52],
+      "skip_weeks": 4,
+      "component_weights": {
+        "high_proximity": 0.3,
+        "trend_consistency": 0.3,
+        "multi_horizon_strength": 0.4
+      }
+    },
+    "quality_momentum": {
+      "positive_features": [
+        "revenue_growth",
+        "earnings_growth",
+        "free_cash_flow_growth",
+        "operating_margin_change",
+        "gross_profitability",
+        "repurchases_to_revenue"
+      ],
+      "negative_features": [
+        "accruals_to_assets",
+        "asset_growth",
+        "dilution_growth"
+      ],
+      "minimum_available_features": 3,
+      "sector_neutral": true
+    },
+    "event_conditioning": {
+      "event_lookback_weeks": [26, 52],
+      "minimum_signal_delay_weeks": 1,
+      "event_weights": [0.1, 0.2],
+      "neutral_missing_event_score": 0.5,
+      "accepted_event_families": ["earnings_8k_reaction", "form4_cluster"]
+    }
+  },
+  "adaptive_concentration": {
+    "breadth_tiers": [5, 10, 20],
+    "high_confidence_minimum": 0.75,
+    "medium_confidence_minimum": 0.5,
+    "maximum_issuer_weight": 0.2,
+    "maximum_sector_weight": 0.4,
+    "conviction_power": [1.0, 1.5],
+    "ticker_specific_caps_forbidden": true
+  },
+  "ml_ranking": {
+    "target_horizon_weeks": 13,
+    "minimum_training_decisions": 8,
+    "test_decisions_per_fold": 2,
+    "purge_decisions": 1,
+    "embargo_decisions": 1,
+    "ridge_alphas": [0.1, 1.0, 10.0],
+    "minimum_training_rows": 200,
+    "confidence_percentiles": [0.5, 0.75, 0.9],
+    "sector_neutral_target": true,
+    "nested_model_selection": true
+  },
+  "holding_and_exit": {
+    "minimum_holding_decisions": [1, 2],
+    "maximum_holding_decisions": [4, 8],
+    "entry_rank_buffer": [0, 5],
+    "exit_rank_multiple": [1.5, 2.0],
+    "replace_only_on_rebalance": true
+  },
+  "strategy_allocator": {
+    "lookback_weeks": 52,
+    "minimum_history_weeks": 26,
+    "momentum_lookbacks_weeks": [13, 26],
+    "covariance_diagonal_shrinkage": 0.5,
+    "maximum_sleeve_weight": 0.6,
+    "minimum_active_sleeve_weight": 0.1,
+    "cash_when_no_positive_strength": true,
+    "independence_penalty": 0.5
+  },
+  "tournament": {
+    "primary_cost_bps": 50,
+    "cost_stress_bps": [100, 200],
+    "missing_price_scenarios": ["base_cash", "adverse_total_loss"],
+    "rolling_comparison_weeks": [26, 52],
+    "bootstrap_blocks_weeks": [4, 13],
+    "bootstrap_draws": 5000,
+    "bootstrap_seed": 20260822,
+    "familywise_trials": 8,
+    "minimum_recent_cagr_improvement": 0.03,
+    "minimum_full_cagr_improvement": 0.0,
+    "minimum_rolling_outperformance_share": 0.6,
+    "minimum_bootstrap_probability_positive": 0.95,
+    "maximum_single_issuer_positive_return_share": 0.35,
+    "maximum_recent_drawdown": -0.3
+  },
+  "research_gate": "evidence/sec_broad_research_gate_v2/result.json",
+  "broad_performance_must_not_run_before_gate": true,
+  "research_only": true,
+  "strategy_promotion_authorized": false,
+  "live_trading_enabled": false
+}

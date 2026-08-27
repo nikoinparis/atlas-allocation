@@ -1,0 +1,86 @@
+{
+  "activation_mode": "confirm",
+  "all_falsification_checks_passed": false,
+  "annual_one_way_turnover": 4.0169312169312175,
+  "artifact_sha256": {
+    "return_leader_path_50bps": "a8a5dd115d32ef020ad0d1713346f6a9931339dcd5aee36c50d35088a1f410dd",
+    "screening": "365c9c915c2989dc1d814891317d04a783880928fa04f82929b647330fe0e52e",
+    "selected_path_50bps": "181aedaaa6e088cb76acb4a844c255f88de7c3caaee1bdab0b73ec2c72db5204",
+    "selected_regime_panel": "47870fe434cfc1605e4065d06796a103c579e938689c34e3ad27c124612917a5",
+    "selected_target_weights": "5eb833483955be649ba73470c1857c6b084180a5240786d8f2cf1ee167547adb"
+  },
+  "bootstrap_13w_probability_positive": 0.7966,
+  "bootstrap_4w_probability_positive": 0.884,
+  "candidate_count": 75,
+  "challenger_recent_cagr": 1.1293348809519022,
+  "checks": {
+    "bootstrap_13w_at_least_95pct": false,
+    "bootstrap_4w_at_least_95pct": false,
+    "both_signal_delays_beat_control": false,
+    "recent_cagr_at_least_110pct": true,
+    "rolling_outperformance_at_least_50pct": false,
+    "selection_gates_passed": false,
+    "single_issuer_share_at_most_50pct": false,
+    "worst_loo_beats_control": false
+  },
+  "completed_rolling_windows": 163,
+  "control_recent_cagr": 1.0510082013109483,
+  "created_at_utc": "2026-08-21T08:44:32.573356+00:00",
+  "delay1_recent_cagr": 1.0157224126704936,
+  "delay2_recent_cagr": 1.0913590251045475,
+  "eligible_candidate_count": 0,
+  "experiment": "sec_independent_market_regime_activation_v1",
+  "full_cagr": 0.40817550238441,
+  "live_trading_enabled": false,
+  "peak_total_stock_weight": 0.07378789503220702,
+  "recent_cagr": 1.1293348809519008,
+  "recent_drawdown": -0.09130115412557338,
+  "recent_sharpe": 2.806327722237254,
+  "regime_family": "slow",
+  "return_leader": {
+    "activation_mode": "union",
+    "candidate": "fast__score5__union",
+    "delay1_recent_cagr": 0.8529475376236657,
+    "delay2_recent_cagr": 1.2179128727473336,
+    "full_cagr": 0.3962555175783007,
+    "recent_cagr": 1.193304436309016,
+    "recent_drawdown": -0.08708758375337322,
+    "recent_sharpe": 3.0323364981509897,
+    "regime_family": "fast",
+    "risk_on_threshold": 5,
+    "severe_recent_cagr": 0.8656925321954299,
+    "single_issuer_improvement_share": 1.0792924294010575,
+    "worst_loo_company": "QUALYS, INC.",
+    "worst_loo_recent_cagr": 1.0397251871433277
+  },
+  "risk_on_threshold": 3,
+  "rolling_outperformance_share": 0.12269938650306748,
+  "runtime": {
+    "actual": {
+      "numpy": "2.5.1",
+      "pandas": "3.0.5",
+      "python": "3.12.13"
+    },
+    "all_versions_match": true,
+    "expected": {
+      "container_image": "localhost/po2-yfinance:1.5.2-v1",
+      "container_image_id": "c84c194bef2052b0b4e4997d5780eb8ccf48d0ed2a3ec35bcafb726f691e0c5c",
+      "numpy": "2.5.1",
+      "pandas": "3.0.5",
+      "python": "3.12.13"
+    },
+    "versions_match": {
+      "numpy": true,
+      "pandas": true,
+      "python": true
+    }
+  },
+  "selected_candidate": "slow__score3__confirm",
+  "selection_reason": "no candidate passed all timing gates; best worst-case diagnostic",
+  "severe_recent_cagr": 1.0000080831419003,
+  "single_issuer_improvement_share": 1.796987671126626,
+  "strategy_replacement_authorized": false,
+  "worst_current_delay_recent_cagr": 1.0157224126704936,
+  "worst_loo_company": "GITLAB INC.",
+  "worst_loo_recent_cagr": 0.9885828033168242
+}

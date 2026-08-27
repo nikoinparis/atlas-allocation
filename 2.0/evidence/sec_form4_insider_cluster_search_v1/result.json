@@ -1,0 +1,30 @@
+{
+  "all_validation_checks_passed": true,
+  "best_active_weeks": 146,
+  "best_candidate": "executive_or_cluster__win30d__none__top5__floor50m__sector70__w0.10__50bps",
+  "best_full_cagr": 0.3737813829004877,
+  "best_full_drawdown": -0.2088060085182083,
+  "best_recent_cagr": 0.9735893977922692,
+  "best_recent_drawdown": -0.09129684332002119,
+  "best_recent_sharpe": 2.7770206829685637,
+  "candidates_beating_control_both": 0,
+  "created_at_utc": "2026-08-15T01:44:12.931814+00:00",
+  "experiment": "sec_form4_insider_cluster_search_v1",
+  "live_trading_enabled": false,
+  "open_market_purchase_filings": 2560,
+  "severe_200bps_recent_cagr": 0.9131989847354305,
+  "source_vintage": "20260815T005416Z-sec-form4-bulk-v1",
+  "strategy_replacement_authorized": false,
+  "tested_paths": 5760,
+  "tested_structures": 480,
+  "unique_issuers": 362,
+  "validation_checks": {
+    "all_costs_reported": true,
+    "allocations_bounded": true,
+    "filings_strictly_before_decisions": true,
+    "only_open_market_purchases": true,
+    "only_original_form4": true,
+    "price_confirmation_lagged": true,
+    "results_finite": true
+  }
+}

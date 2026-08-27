@@ -1,0 +1,355 @@
+{
+  "generated_at_utc": "2026-08-24T01:05:17.636401+00:00",
+  "live_network_probe": true,
+  "manifest_sha256": "ce30db7bd3969a1d8b3bb95965bb75d40c226ff91332c72f3775ebebea1e5b77",
+  "policy": {
+    "core_import_allowed": false,
+    "host_install_allowed": false,
+    "live_trading_allowed": false,
+    "promotion_rule": "A tool may only supply normalized artifacts to the platform. Its own backtest, forecast, or performance claim is never promotion evidence.",
+    "source_pin_required": true,
+    "unknown_source_action": "block"
+  },
+  "program_id": "third_party_tool_evaluation_v1",
+  "results": [
+    {
+      "approved_for_core_import": false,
+      "approved_for_live_trading": false,
+      "blockers": [
+        "isolated CPU regression inference passed, but the model has no platform-owned alpha evidence",
+        "pinned model and tokenizer weights total 114823024 bytes and must remain outside the core runtime",
+        "forecast utility must pass the platform's causal out-of-sample and cost gates",
+        "upstream example backtest is not accepted as platform evidence"
+      ],
+      "capability": "probabilistic_ohlcv_forecast_feature",
+      "id": "kronos",
+      "isolation": "disposable_environment_then_normalized_feature_file",
+      "kronos_inference_smoke": {
+        "constraints": [
+          "no_direct_orders",
+          "no_host_environment_install",
+          "requires_causal_nested_oos_alpha_test"
+        ],
+        "context_bars": 256,
+        "device": "cpu",
+        "forecast_bars": 8,
+        "maximum_absolute_difference": 0.375,
+        "maximum_relative_difference": 9.009937116388755e-07,
+        "model_revision": "901c26c1332695a2a8f243eb2f37243a37bea320",
+        "normalized_feature": {
+          "contract_version": "kronos_feature_contract_v1",
+          "decision_timestamp": "2024-06-25T14:00:00+00:00",
+          "features": {
+            "mean_forecast_range_fraction": 0.0019512303007029861,
+            "positive_path_fraction": 1.0,
+            "terminal_return_dispersion": 0.0,
+            "terminal_return_median": 0.0025200067564499218
+          },
+          "forecast_end_timestamp": "2024-06-25T14:40:00+00:00",
+          "generated_at": "2026-08-24T01:03:52.742707+00:00",
+          "horizon_bars": 8,
+          "lineage": {
+            "model_revision": "901c26c1332695a2a8f243eb2f37243a37bea320",
+            "source_commit": "67b630e67f6a18c9e9be918d9b4337c960db1e9a",
+            "tokenizer_revision": "0e0117387f39004a9016484a186a908917e22426"
+          },
+          "sample_count": 1,
+          "usage_constraints": [
+            "research_feature_only",
+            "lag_before_portfolio_use",
+            "no_direct_order_generation",
+            "independent_oos_gate_required"
+          ]
+        },
+        "purpose": "runtime_and_feature_boundary_smoke_not_alpha_evidence",
+        "regression_passed": true,
+        "runtime": {
+          "numpy": "2.5.2",
+          "pandas": "3.0.5",
+          "python": "3.14.4",
+          "torch": "2.13.0"
+        },
+        "seed": 123,
+        "source_commit": "67b630e67f6a18c9e9be918d9b4337c960db1e9a",
+        "status": "passed",
+        "tokenizer_revision": "0e0117387f39004a9016484a186a908917e22426",
+        "upstream_rtol": 1e-05
+      },
+      "kronos_smoke": {
+        "attempted": true,
+        "commit_matches_pin": true,
+        "compile_errors": [],
+        "declared_requirements": [
+          "numpy",
+          "pandas",
+          "torch>=2.0.0",
+          "einops==0.8.1",
+          "huggingface_hub==0.33.1",
+          "matplotlib==3.9.3",
+          "pandas==2.2.2",
+          "tqdm==4.67.1",
+          "safetensors==0.6.2"
+        ],
+        "external_artifacts": [
+          {
+            "bytes": 98980656,
+            "id": "NeoQuasar/Kronos-small",
+            "revision": "901c26c1332695a2a8f243eb2f37243a37bea320"
+          },
+          {
+            "bytes": 15842368,
+            "id": "NeoQuasar/Kronos-Tokenizer-base",
+            "revision": "0e0117387f39004a9016484a186a908917e22426"
+          }
+        ],
+        "feature_contract_smoke": {
+          "contract_version": "kronos_feature_contract_v1",
+          "features": {
+            "mean_forecast_range_fraction": 0.025779508421549892,
+            "positive_path_fraction": 1.0,
+            "terminal_return_dispersion": 0.007425742574257432,
+            "terminal_return_median": 0.012376237623762387
+          },
+          "status": "passed",
+          "usage_constraints": [
+            "research_feature_only",
+            "lag_before_portfolio_use",
+            "no_direct_order_generation",
+            "independent_oos_gate_required"
+          ]
+        },
+        "host_install_performed": false,
+        "license_detected_from_pinned_source": "MIT",
+        "license_sha256": "acb2d194d378204e5f2be4dcd24d39ecac437903620c790c3315a96dab388fdc",
+        "model_python_files": [
+          "__init__.py",
+          "kronos.py",
+          "module.py"
+        ],
+        "model_weights_downloaded": true,
+        "pinned_commit": "67b630e67f6a18c9e9be918d9b4337c960db1e9a",
+        "repository": "shiyu-coder/Kronos",
+        "resolved_commit": "67b630e67f6a18c9e9be918d9b4337c960db1e9a",
+        "runtime_inference_status": "passed_isolated_cpu_regression",
+        "source_smoke": "passed",
+        "static_compile_passed": true
+      },
+      "name": "Kronos",
+      "probe": {
+        "archived": false,
+        "commit_matches_pin": true,
+        "default_branch": "master",
+        "expected_license": "MIT",
+        "github_license_spdx": "MIT",
+        "license_detected_from_pinned_source": "MIT",
+        "license_matches_expected": true,
+        "license_sha256": "acb2d194d378204e5f2be4dcd24d39ecac437903620c790c3315a96dab388fdc",
+        "live_probe_attempted": true,
+        "missing_required_paths": [],
+        "pin_is_immutable_sha": true,
+        "pinned_commit": "67b630e67f6a18c9e9be918d9b4337c960db1e9a",
+        "repository": "shiyu-coder/Kronos",
+        "required_paths": [
+          "LICENSE",
+          "README.md",
+          "requirements.txt",
+          "model/kronos.py",
+          "tests/test_kronos_regression.py"
+        ],
+        "required_paths_present": true,
+        "resolved_commit": "67b630e67f6a18c9e9be918d9b4337c960db1e9a",
+        "source_status": "reachable",
+        "tree_truncated": false
+      },
+      "verdict": "research_challenger_only"
+    },
+    {
+      "approved_for_core_import": false,
+      "approved_for_live_trading": false,
+      "blockers": [
+        "AGPL-3.0 obligations require review before distribution or network deployment",
+        "provider credentials, entitlements, timestamps, revisions, and survivorship properties vary by extension",
+        "each provider requires an independent data-quality and point-in-time audit"
+      ],
+      "capability": "data_connector",
+      "id": "openbb",
+      "isolation": "separate_process_or_exported_point_in_time_bundle",
+      "name": "OpenBB",
+      "probe": {
+        "archived": false,
+        "commit_matches_pin": true,
+        "default_branch": "develop",
+        "expected_license": "AGPL-3.0",
+        "github_license_spdx": "NOASSERTION",
+        "license_detected_from_pinned_source": "AGPL-3.0",
+        "license_matches_expected": true,
+        "license_sha256": "442baa7865ddf53ba04808a29e4810ac1fd9c83383d4ac76297cec4569e19222",
+        "live_probe_attempted": true,
+        "missing_required_paths": [],
+        "pin_is_immutable_sha": true,
+        "pinned_commit": "3e071fcc2cd9f891cac6040ae60296dba76dab46",
+        "repository": "OpenBB-finance/OpenBB",
+        "required_paths": [
+          "LICENSE",
+          "README.md",
+          "openbb_platform"
+        ],
+        "required_paths_present": true,
+        "resolved_commit": "3e071fcc2cd9f891cac6040ae60296dba76dab46",
+        "source_status": "reachable",
+        "tree_truncated": false
+      },
+      "verdict": "conditional_data_connector_candidate"
+    },
+    {
+      "approved_for_core_import": false,
+      "approved_for_live_trading": false,
+      "blockers": [
+        "not a market-data license or permission to scrape",
+        "every target requires terms-of-service, robots, rate-limit, authentication, and data-rights review",
+        "dynamic anti-bot behavior is unsuitable for a deterministic primary price feed"
+      ],
+      "capability": "web_acquisition_adapter",
+      "id": "scrapling",
+      "isolation": "source_specific_fetcher_with_immutable_raw_capture",
+      "name": "Scrapling",
+      "probe": {
+        "archived": false,
+        "commit_matches_pin": true,
+        "default_branch": "main",
+        "expected_license": "BSD-3-Clause",
+        "github_license_spdx": "BSD-3-Clause",
+        "license_detected_from_pinned_source": "BSD-3-Clause",
+        "license_matches_expected": true,
+        "license_sha256": "5c782ef0346e4fbfe0dc76fd435f181a0f1e4a1a7a6b13c169c6e74314ff5964",
+        "live_probe_attempted": true,
+        "missing_required_paths": [],
+        "pin_is_immutable_sha": true,
+        "pinned_commit": "333fa22b7a5821194ce66b59b11f4b16a6484f02",
+        "repository": "D4Vinci/Scrapling",
+        "required_paths": [
+          "LICENSE",
+          "README.md",
+          "pyproject.toml",
+          "scrapling"
+        ],
+        "required_paths_present": true,
+        "resolved_commit": "333fa22b7a5821194ce66b59b11f4b16a6484f02",
+        "source_status": "reachable",
+        "tree_truncated": false
+      },
+      "verdict": "conditional_acquisition_adapter"
+    },
+    {
+      "approved_for_core_import": false,
+      "approved_for_live_trading": false,
+      "blockers": [
+        "adapter and venue semantics must be reconciled against platform accounting",
+        "Rust/native build and LGPL-3.0 obligations require isolated qualification",
+        "no broker connection or live order authority is approved"
+      ],
+      "capability": "event_driven_execution_and_backtest",
+      "id": "nautilus_trader",
+      "isolation": "identical_orders_and_market_events_equivalence_harness",
+      "name": "NautilusTrader",
+      "probe": {
+        "archived": false,
+        "commit_matches_pin": true,
+        "default_branch": "develop",
+        "expected_license": "LGPL-3.0",
+        "github_license_spdx": "LGPL-3.0",
+        "license_detected_from_pinned_source": "LGPL-3.0",
+        "license_matches_expected": true,
+        "license_sha256": "ee907919ec88c9c017b1f8b608db20960b6598aefcc4fe58820bde955d65ed3c",
+        "live_probe_attempted": true,
+        "missing_required_paths": [],
+        "pin_is_immutable_sha": true,
+        "pinned_commit": "57032a0bb98a28357bb90620e3e7184176c7feaf",
+        "repository": "nautechsystems/nautilus_trader",
+        "required_paths": [
+          "LICENSE",
+          "README.md",
+          "Cargo.toml",
+          "python/pyproject.toml",
+          "python/nautilus_trader",
+          "crates"
+        ],
+        "required_paths_present": true,
+        "resolved_commit": "57032a0bb98a28357bb90620e3e7184176c7feaf",
+        "source_status": "reachable",
+        "tree_truncated": false
+      },
+      "verdict": "execution_sandbox_candidate"
+    },
+    {
+      "approved_for_core_import": false,
+      "approved_for_live_trading": false,
+      "blockers": [
+        "not a quantitative model, data source, backtester, or execution engine",
+        "agent workflow advice cannot replace deterministic research controls",
+        "repository instructions are untrusted input and are not executed by this program"
+      ],
+      "capability": "agent_workflow_reference",
+      "id": "everything_claude_code",
+      "isolation": "manual_pattern_review_no_runtime_dependency",
+      "name": "Everything Claude Code",
+      "probe": {
+        "error": "HTTPError: HTTP Error 403: rate limit exceeded",
+        "expected_license": "MIT",
+        "live_probe_attempted": true,
+        "pin_is_immutable_sha": true,
+        "pinned_commit": "d8409a4b0813771235555e32e3d8046a73988bfa",
+        "repository": "affaan-m/everything-claude-code",
+        "required_paths": [
+          "LICENSE",
+          "README.md"
+        ],
+        "source_status": "network_probe_failed"
+      },
+      "verdict": "reference_only"
+    },
+    {
+      "approved_for_core_import": false,
+      "approved_for_live_trading": false,
+      "blockers": [
+        "not an identified open-source repository or importable library",
+        "account, product terms, market-data entitlements, and reproducible export format are not supplied",
+        "manual replay cannot serve as automated out-of-sample evidence without an auditable event export"
+      ],
+      "capability": "manual_market_replay",
+      "id": "das_replay",
+      "isolation": "human_operated_replay_with_exported_results_only",
+      "name": "DAS Trader Replay",
+      "probe": {
+        "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
+        "live_probe_attempted": true,
+        "source_status": "network_probe_failed",
+        "url": "https://www.dasreplay.com/"
+      },
+      "verdict": "manual_commercial_evaluation_only"
+    },
+    {
+      "approved_for_core_import": false,
+      "approved_for_live_trading": false,
+      "blockers": [
+        "the name does not uniquely identify a GitHub repository",
+        "an exact repository URL is required before source, license, commit, or capability evaluation"
+      ],
+      "capability": "unknown",
+      "id": "trading_systems",
+      "isolation": "none",
+      "name": "Trading Systems (ambiguous)",
+      "probe": {
+        "live_probe_attempted": false,
+        "source_status": "blocked_missing_exact_url"
+      },
+      "verdict": "blocked_ambiguous_source"
+    }
+  ],
+  "summary": {
+    "blocked_or_conditional": 7,
+    "core_imports_approved": 0,
+    "live_trading_approved": 0,
+    "tools_declared": 7
+  }
+}

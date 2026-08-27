@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Point-in-time broad SEC research panel v1",
+  "type": "object",
+  "required": ["decision_at", "available_at", "cik10", "sector", "price_at_decision", "residual_momentum", "trend_quality", "quality_momentum", "event_score", "future_sector_relative_return"],
+  "properties": {
+    "decision_at": {"type": "string", "format": "date-time"},
+    "available_at": {"type": "string", "format": "date-time"},
+    "cik10": {"type": "string", "pattern": "^[0-9]{10}$"},
+    "sector": {"type": "string"},
+    "price_at_decision": {"type": "number", "exclusiveMinimum": 0},
+    "residual_momentum": {"type": ["number", "null"]},
+    "trend_quality": {"type": ["number", "null"]},
+    "quality_momentum": {"type": ["number", "null"]},
+    "event_score": {"type": ["number", "null"]},
+    "future_sector_relative_return": {"type": ["number", "null"], "description": "Training label only; never available to same-decision portfolio construction."}
+  },
+  "additionalProperties": true
+}

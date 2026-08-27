@@ -44,7 +44,10 @@ class PortfolioRobustnessBatch07Tests(unittest.TestCase):
         self.assertFalse(candidate["approved_for_live_trading"])
         if result["robustness_pass"]:
             manifest = json.loads((root / result["frozen_manifest"]).read_text())
-            self.assertEqual(0, candidate["forward_clock"]["observed_weeks"])
+            self.assertLess(
+                candidate["forward_clock"]["observed_weeks"],
+                candidate["forward_clock"]["required_weeks"],
+            )
             self.assertFalse(manifest["final"])
             self.assertFalse(manifest["approved_for_live_trading"])
 

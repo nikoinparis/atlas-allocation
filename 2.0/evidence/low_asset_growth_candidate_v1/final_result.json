@@ -1,0 +1,70 @@
+{
+  "all_gates_pass": false,
+  "benchmark": {
+    "cagr": Infinity,
+    "max_drawdown": NaN,
+    "sharpe": NaN,
+    "total_return": Infinity,
+    "weeks": 143
+  },
+  "experiment_id": "low-asset-growth-candidate-v1",
+  "gates": {
+    "beats_benchmark_after_costs": false,
+    "no_single_name_drives_result": true,
+    "non_overlapping_spread_positive": true,
+    "wide_book_not_worse_than_narrow": true
+  },
+  "generated_at": "2026-08-25T20:45:08.881717+00:00",
+  "honest_scope": "One 2023-2026 bull regime, roughly ten independent windows. Nothing here can promote anything; the purpose is to decide whether the candidate deserves a forward clock.",
+  "live_trading_enabled": false,
+  "portfolios": {
+    "10": {
+      "average_turnover": 0.04545454545454547,
+      "cagr": 0.19982959101200226,
+      "max_drawdown": -0.2699728982193327,
+      "sharpe": 0.6525892426006525,
+      "total_return": 0.6503604735252382,
+      "weeks": 143
+    },
+    "100": {
+      "average_turnover": 0.04167832167832168,
+      "cagr": 0.18124612854446065,
+      "max_drawdown": -0.3083578744238604,
+      "sharpe": 0.8066586778562514,
+      "total_return": 0.5810153806222838,
+      "weeks": 143
+    },
+    "20": {
+      "average_turnover": 0.045104895104895106,
+      "cagr": 0.2629119996366802,
+      "max_drawdown": -0.25617849090051037,
+      "sharpe": 0.8992367580851727,
+      "total_return": 0.900097982371876,
+      "weeks": 143
+    },
+    "200": {
+      "average_turnover": 0.040139860139860144,
+      "cagr": 0.2168872354027569,
+      "max_drawdown": -0.31711050045903766,
+      "sharpe": 0.931438658608446,
+      "total_return": 0.7156884311225375,
+      "weeks": 143
+    },
+    "50": {
+      "average_turnover": 0.04293706293706294,
+      "cagr": 0.1811412183355121,
+      "max_drawdown": -0.32890525433968654,
+      "sharpe": 0.7634214375577462,
+      "total_return": 0.5806292694286104,
+      "weeks": 143
+    }
+  },
+  "strict_non_overlapping": {
+    "annualised": 0.09736633529354997,
+    "mean_spread": 0.024341583823387494,
+    "mean_spread_trimmed": 0.009002286697513977,
+    "median_spread": 0.007865625955754284,
+    "share_positive": 0.5555555555555556,
+    "windows": 9
+  }
+}

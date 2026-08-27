@@ -1,0 +1,57 @@
+{
+  "all_falsification_checks_passed": false,
+  "artifact_sha256": {
+    "screening": "7073100d8115a2573f356aefb9467d3275a93b32138927f0307d0ba1e2f71c84",
+    "selected_path_50bps": "032fb2f3a3dbc1451b69e6f28b067b556d6768b137d4b67d338c56ad3e2bdd6e",
+    "stock_targets": "0691f68623e20aee1f40758588ca0639b606d4c151307bf675ea270ba018dc2b"
+  },
+  "bootstrap_13w_probability_positive_vs_predecessor": 0.8258,
+  "bootstrap_4w_probability_positive_vs_predecessor": 0.8488,
+  "candidate_count": 9,
+  "checks": {
+    "bootstrap_13w_at_least_95pct": false,
+    "bootstrap_4w_at_least_95pct": false,
+    "control_reproduces_123pct_candidate": true,
+    "recent_cagr_at_least_119pct": true,
+    "selected_surface_gates_passed": true,
+    "worst_five_issuer_bundle_beats_112pct_base": false
+  },
+  "created_at_utc": "2026-08-21T22:59:05.585688+00:00",
+  "endpoint_outperformance_share": 0.5,
+  "experiment": "sec_signal_neighborhood_ensemble_v1",
+  "full_cagr": 0.4251677206423654,
+  "latest_distinct_holdings": 26,
+  "live_trading_enabled": false,
+  "peak_total_stock_weight": 0.0704758668327816,
+  "recent_cagr": 1.2355522249300335,
+  "recent_drawdown": -0.08708758375337311,
+  "recent_sharpe": 3.0880985765008626,
+  "rolling26_outperformance_share": 0.5705521472392638,
+  "runtime": {
+    "actual": {
+      "numpy": "2.5.1",
+      "pandas": "3.0.5",
+      "python": "3.12.13"
+    },
+    "all_versions_match": true,
+    "expected": {
+      "container_image": "localhost/po2-yfinance:1.5.2-v1",
+      "container_image_id": "c84c194bef2052b0b4e4997d5780eb8ccf48d0ed2a3ec35bcafb726f691e0c5c",
+      "numpy": "2.5.1",
+      "pandas": "3.0.5",
+      "python": "3.12.13"
+    },
+    "versions_match": {
+      "numpy": true,
+      "pandas": true,
+      "python": true
+    }
+  },
+  "selected_candidate": "cash50_balance20_50",
+  "selection_reason": "endpoint/rolling robustness gates with recent return at least 119.22%",
+  "severe_recent_cagr": 1.0666810009696333,
+  "strategy_replacement_authorized": false,
+  "surface_passer_count": 1,
+  "worst_delay_recent_cagr": 1.2232470732582343,
+  "worst_missing_bundle_recent_cagr": 1.093171297501553
+}

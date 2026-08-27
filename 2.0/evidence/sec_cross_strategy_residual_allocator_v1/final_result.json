@@ -1,0 +1,116 @@
+{
+  "experiment_id": "sec-cross-strategy-residual-allocator-v1",
+  "status": "completed_research_only",
+  "generated_at": "2026-08-24T21:42:41.728273+00:00",
+  "frozen_config_sha256": "466f93d99dc1aff6652bba7b85597d4efe9fc185f6a401d7fb902d24d042f363",
+  "frozen_source_sha256": "2a427c970521fee814ebf6fed47afae9228afd4551459335b110658464b906db",
+  "selection_protocol": {
+    "candidate_count": 12,
+    "fold_count": 2,
+    "development_weeks": 132,
+    "purge_weeks": 4,
+    "locked_replay_weeks": 52,
+    "locked_replay_selection_contaminated_by_prior_hypothesis": true
+  },
+  "selected_candidate": {
+    "name": "static__cap_20pct",
+    "rule": "static",
+    "cap": 0.2,
+    "mean_validation_objective": 0.17192792576065583
+  },
+  "locked_replay": {
+    "base": {
+      "observations": 52,
+      "start": "2025-08-15",
+      "end": "2026-08-07",
+      "total_return": 1.1260390009306636,
+      "cagr": 1.1260390009306636,
+      "sharpe": 3.1600787090860663,
+      "max_drawdown": -0.11116225097772747,
+      "ending_value_10000": 21260.390009306637
+    },
+    "selected": {
+      "observations": 52,
+      "start": "2025-08-15",
+      "end": "2026-08-07",
+      "total_return": 1.1513847792378602,
+      "cagr": 1.1513847792378602,
+      "sharpe": 3.7559829314821345,
+      "max_drawdown": -0.08655576844914525,
+      "ending_value_10000": 21513.8477923786
+    },
+    "cagr_improvement": 0.025345778307196642,
+    "sharpe_improvement": 0.5959042223960682
+  },
+  "stresses": {
+    "double_outer_cost": {
+      "observations": 52,
+      "start": "2025-08-15",
+      "end": "2026-08-07",
+      "total_return": 1.1513847792378602,
+      "cagr": 1.1513847792378602,
+      "sharpe": 3.7559829314821345,
+      "max_drawdown": -0.08655576844914525,
+      "ending_value_10000": 21513.8477923786
+    },
+    "delay_1_weeks": {
+      "observations": 52,
+      "start": "2025-08-15",
+      "end": "2026-08-07",
+      "total_return": 1.1513847792378602,
+      "cagr": 1.1513847792378602,
+      "sharpe": 3.7559829314821345,
+      "max_drawdown": -0.08655576844914525,
+      "ending_value_10000": 21513.8477923786
+    },
+    "delay_2_weeks": {
+      "observations": 52,
+      "start": "2025-08-15",
+      "end": "2026-08-07",
+      "total_return": 1.1513847792378602,
+      "cagr": 1.1513847792378602,
+      "sharpe": 3.7559829314821345,
+      "max_drawdown": -0.08655576844914525,
+      "ending_value_10000": 21513.8477923786
+    },
+    "positive_increment_decay": {
+      "observations": 52,
+      "start": "2025-08-15",
+      "end": "2026-08-07",
+      "total_return": 1.047624954062067,
+      "cagr": 1.047624954062067,
+      "sharpe": 3.448629403950035,
+      "max_drawdown": -0.09409950017213453,
+      "ending_value_10000": 20476.24954062067
+    },
+    "sleeve_shock": {
+      "observations": 52,
+      "start": "2025-08-15",
+      "end": "2026-08-07",
+      "total_return": 1.1513847792378602,
+      "cagr": 1.1513847792378602,
+      "sharpe": 3.7559829314821345,
+      "max_drawdown": -0.08655576844914525,
+      "ending_value_10000": 21513.8477923786
+    }
+  },
+  "paired_moving_block_probability_of_outperformance": {
+    "4": 0.5288,
+    "13": 0.4672
+  },
+  "familywise_probability_threshold": 0.9958333333333333,
+  "promotion_gates": {
+    "locked_cagr_improvement": false,
+    "locked_sharpe": true,
+    "locked_drawdown": true,
+    "double_cost_improvement": true,
+    "delay_improvement": true,
+    "familywise_bootstrap": false,
+    "source_research_gate": false
+  },
+  "promoted": false,
+  "conclusion": "diagnostic_only_not_a_replacement",
+  "source_research_gate_reason": "The sector sleeve remains a retrospective, fragile diagnostic and has not passed forward evidence or broad-source falsification.",
+  "financing_used": false,
+  "live_trading_enabled": false
+}

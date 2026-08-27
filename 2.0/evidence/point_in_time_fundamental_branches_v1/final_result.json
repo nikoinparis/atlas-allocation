@@ -1,0 +1,129 @@
+{
+  "bh_discoveries": [
+    "shareholder_yield"
+  ],
+  "composite_features": [
+    "standardized_unexpected_earnings",
+    "net_issuance",
+    "shareholder_yield",
+    "intangible_adjusted_quality"
+  ],
+  "created_at_utc": "2026-08-26T05:48:04.783929+00:00",
+  "experiment": "point_in_time_fundamental_branches_v1",
+  "feature_results": {
+    "intangible_adjusted_quality": {
+      "direction": 1,
+      "holdout_mean_ic": 8.383668869080263e-05,
+      "holdout_positive_share": 0.5,
+      "nonmissing_share": 0.6452934167411379,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.08991033835888089,
+      "selection_positive_share": 0.6666666666666666,
+      "selection_sign_flip_p": 0.05859375
+    },
+    "net_issuance": {
+      "direction": 1,
+      "holdout_mean_ic": -0.0038183670921455564,
+      "holdout_positive_share": 0.5,
+      "nonmissing_share": 0.758911726740145,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.04725646077675567,
+      "selection_positive_share": 0.5555555555555556,
+      "selection_sign_flip_p": 0.078125
+    },
+    "shareholder_yield": {
+      "direction": 1,
+      "holdout_mean_ic": -0.010708282642764105,
+      "holdout_positive_share": 0.75,
+      "nonmissing_share": 0.7576953629232449,
+      "selection_bh_10pct": true,
+      "selection_mean_ic": 0.042493917706066676,
+      "selection_positive_share": 0.7777777777777778,
+      "selection_sign_flip_p": 0.0234375
+    },
+    "standardized_unexpected_earnings": {
+      "direction": 1,
+      "holdout_mean_ic": 0.01743538523596165,
+      "holdout_positive_share": 0.5,
+      "nonmissing_share": 0.9501539072584649,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.0269203815782562,
+      "selection_positive_share": 0.5555555555555556,
+      "selection_sign_flip_p": 0.1640625
+    }
+  },
+  "feature_rows": 47936,
+  "live_trading_enabled": false,
+  "portfolio_metrics": {
+    "10": {
+      "full": {
+        "cagr": 0.23795816055127728,
+        "max_drawdown": -0.13058452050751823,
+        "sharpe_zero_rf": 1.3436793605397834,
+        "total_return": 1.172453722873898,
+        "weeks": 189
+      },
+      "retrospective_holdout": {
+        "cagr": 0.1660734688805552,
+        "max_drawdown": -0.11082471150872797,
+        "sharpe_zero_rf": 0.8978397369920545,
+        "total_return": 0.1904420217743763,
+        "weeks": 59
+      }
+    },
+    "25": {
+      "full": {
+        "cagr": 0.2342615231650702,
+        "max_drawdown": -0.13144742519269337,
+        "sharpe_zero_rf": 1.3264618460527733,
+        "total_return": 1.1489681603532436,
+        "weeks": 189
+      },
+      "retrospective_holdout": {
+        "cagr": 0.16283820924584114,
+        "max_drawdown": -0.11082471150872797,
+        "sharpe_zero_rf": 0.8831390686815468,
+        "total_return": 0.18669523509866948,
+        "weeks": 59
+      }
+    },
+    "50": {
+      "full": {
+        "cagr": 0.22811834467849024,
+        "max_drawdown": -0.13288559966798474,
+        "sharpe_zero_rf": 1.297505870878541,
+        "total_return": 1.1103470000891766,
+        "weeks": 189
+      },
+      "retrospective_holdout": {
+        "cagr": 0.1574602746735192,
+        "max_drawdown": -0.11082471150872797,
+        "sharpe_zero_rf": 0.8585415263770774,
+        "total_return": 0.18047010122988283,
+        "weeks": 59
+      }
+    }
+  },
+  "purged_decision": "2025-04-01 00:00:00+00:00",
+  "raw_fact_rows": 3731295,
+  "retrospective_holdout_decisions": [
+    "2025-07-01 00:00:00+00:00",
+    "2025-10-01 00:00:00+00:00",
+    "2026-01-01 00:00:00+00:00",
+    "2026-04-01 00:00:00+00:00"
+  ],
+  "selection_decisions": [
+    "2023-01-01 00:00:00+00:00",
+    "2023-04-01 00:00:00+00:00",
+    "2023-07-01 00:00:00+00:00",
+    "2023-10-01 00:00:00+00:00",
+    "2024-01-01 00:00:00+00:00",
+    "2024-04-01 00:00:00+00:00",
+    "2024-07-01 00:00:00+00:00",
+    "2024-10-01 00:00:00+00:00",
+    "2025-01-01 00:00:00+00:00"
+  ],
+  "source_inventory_sha256": "c3d3fe87cb76a4588897308a73f10c8c66a94f1faf0d21b31630975e16af2837",
+  "status": "retrospective_research_complete_no_promotion",
+  "strategy_promotion_authorized": false
+}

@@ -1,0 +1,1286 @@
+{
+  "all_strategies_not_proven_live": true,
+  "comparison": [
+    {
+      "crash_cagr": 0.28924805624581973,
+      "double_cost_cagr": 0.34104668862629084,
+      "forward_weeks": 0,
+      "full_cagr": 0.3861720477502413,
+      "full_drawdown": -0.21473689564444642,
+      "grade": "historically_resilient",
+      "id": "sec-cash-conversion-breadth20-dynamic-v1",
+      "live_verdict": "not_proven_live",
+      "maximum_concentration": 0.9,
+      "monte_30pct_drawdown_probability": 0.0068,
+      "monte_profit_probability": 0.9584,
+      "name": "102% Daily-Audited",
+      "recent_cagr": 0.9268381493153905,
+      "score": 75,
+      "signal_decay_cagr": 0.13636948516569625,
+      "worst_rolling_year": -0.14065390679329814
+    },
+    {
+      "crash_cagr": 0.3304046953557067,
+      "double_cost_cagr": 0.4010363149122369,
+      "forward_weeks": 0,
+      "full_cagr": 0.42735783406919925,
+      "full_drawdown": -0.21800170778866745,
+      "grade": "historically_resilient",
+      "id": "sec-sector-aware-signal-ensemble-v1",
+      "live_verdict": "not_proven_live",
+      "maximum_concentration": 0.9,
+      "monte_30pct_drawdown_probability": 0.008,
+      "monte_profit_probability": 0.947,
+      "name": "124% Sector Ensemble",
+      "recent_cagr": 1.242041493092192,
+      "score": 75,
+      "signal_decay_cagr": 0.17112383012718113,
+      "worst_rolling_year": -0.14055957522140305
+    },
+    {
+      "crash_cagr": 0.40716012448876304,
+      "double_cost_cagr": 0.44146996297216656,
+      "forward_weeks": 0,
+      "full_cagr": 0.4927724277121879,
+      "full_drawdown": -0.23350524551091945,
+      "grade": "historically_resilient",
+      "id": "sec-residual-controlled-1.25x-5pct-v1",
+      "live_verdict": "not_proven_live",
+      "maximum_concentration": 0.9000000000000001,
+      "monte_30pct_drawdown_probability": 0.0159,
+      "monte_profit_probability": 0.9462,
+      "name": "150.86% Residual 1.25x",
+      "recent_cagr": 1.5085821122127712,
+      "score": 75,
+      "signal_decay_cagr": 0.20068951720914696,
+      "worst_rolling_year": -0.1617332437004836
+    },
+    {
+      "crash_cagr": 0.4460124390655258,
+      "double_cost_cagr": 0.46489736037554086,
+      "forward_weeks": 0,
+      "full_cagr": 0.5322050342734757,
+      "full_drawdown": -0.29244991315633306,
+      "grade": "historically_resilient",
+      "id": "sec-sector-ensemble-fragile-1.35x-v1",
+      "live_verdict": "not_proven_live",
+      "maximum_concentration": 1.215,
+      "monte_30pct_drawdown_probability": 0.0586,
+      "monte_profit_probability": 0.9328,
+      "name": "174.97% Fragile 1.35x",
+      "recent_cagr": 1.6867917279385294,
+      "score": 75,
+      "signal_decay_cagr": 0.18460639257169542,
+      "worst_rolling_year": -0.20884528496248667
+    },
+    {
+      "crash_cagr": 0.22697366056787116,
+      "double_cost_cagr": 0.30084423403617344,
+      "forward_weeks": 0,
+      "full_cagr": 0.317028680354114,
+      "full_drawdown": -0.3649710972166301,
+      "grade": "mixed_evidence",
+      "id": "sec-growth-survivorship-aware-v1",
+      "live_verdict": "not_proven_live",
+      "maximum_concentration": 0.4,
+      "monte_30pct_drawdown_probability": 0.2191,
+      "monte_profit_probability": 0.8114,
+      "name": "142% Growth / Micron",
+      "recent_cagr": 1.5571844956406475,
+      "score": 55,
+      "signal_decay_cagr": 0.0018598903211690665,
+      "worst_rolling_year": -0.18473123973669292
+    },
+    {
+      "crash_cagr": 0.11323991341056505,
+      "double_cost_cagr": 0.10621800132008019,
+      "forward_weeks": 0,
+      "full_cagr": 0.12597434243865036,
+      "full_drawdown": -0.44097501255850147,
+      "grade": "historically_fragile",
+      "id": "candidate-return-first-60-40-forward-v1",
+      "live_verdict": "not_proven_live",
+      "maximum_concentration": 1.0,
+      "monte_30pct_drawdown_probability": 0.0531,
+      "monte_profit_probability": 0.7772,
+      "name": "ETF Incumbent",
+      "recent_cagr": 0.7031215336942174,
+      "score": 40,
+      "signal_decay_cagr": -0.020126435679806876,
+      "worst_rolling_year": -0.3981051781436775
+    }
+  ],
+  "created_at_utc": "2026-08-24T20:21:19.934525+00:00",
+  "execution_enabled": false,
+  "experiment": "dashboard_strategy_survival_lab_v1",
+  "known_missing_real_world_inputs": [
+    "current executable bid-ask spreads and market impact",
+    "portfolio-size-specific liquidity and days-to-exit",
+    "broker margin terms, borrow availability, and changing financing rates",
+    "taxes and account-specific constraints",
+    "future delistings, data outages, and model drift",
+    "52 untouched forward weeks for each eligible strategy"
+  ],
+  "leader": {
+    "crash_cagr": 0.28924805624581973,
+    "double_cost_cagr": 0.34104668862629084,
+    "forward_weeks": 0,
+    "full_cagr": 0.3861720477502413,
+    "full_drawdown": -0.21473689564444642,
+    "grade": "historically_resilient",
+    "id": "sec-cash-conversion-breadth20-dynamic-v1",
+    "live_verdict": "not_proven_live",
+    "maximum_concentration": 0.9,
+    "monte_30pct_drawdown_probability": 0.0068,
+    "monte_profit_probability": 0.9584,
+    "name": "102% Daily-Audited",
+    "recent_cagr": 0.9268381493153905,
+    "score": 75,
+    "signal_decay_cagr": 0.13636948516569625,
+    "worst_rolling_year": -0.14065390679329814
+  },
+  "live_trading_enabled": false,
+  "methodology": {
+    "frequency": "weekly",
+    "interpretation": "Historical resilience is a diagnostic grade, not a forecast or live-trading authorization.",
+    "monte_carlo": {
+      "block_lengths": [
+        4,
+        13
+      ],
+      "horizon_weeks": 52,
+      "primary_block_length": 13,
+      "seed": 20260824,
+      "simulations": 10000
+    },
+    "selection_warning": "All six strategies and this comparison were selected after historical observation. Monte Carlo resamples the observed distribution and cannot validate an unknown future distribution.",
+    "stress_tests": {
+      "additional_cost_multiplier": 1.0,
+      "additional_financing_rate": 0.03,
+      "capital_loss_threshold": -0.5,
+      "concentration_threshold": 0.3,
+      "crash_insertion_week": 26,
+      "crash_week_return": -0.2,
+      "drawdown_failure_threshold": -0.3,
+      "positive_return_retention": 0.75,
+      "rolling_window_weeks": 52
+    }
+  },
+  "source_dashboard_sha256": "2a427c970521fee814ebf6fed47afae9228afd4551459335b110658464b906db",
+  "strategies": [
+    {
+      "as_of": "2026-08-07",
+      "binding_failures": [
+        "Worst rolling year",
+        "Single-position concentration"
+      ],
+      "concentration": {
+        "average_borrowed_exposure": 0.1848445595854922,
+        "average_largest_position_weight": 0.4555271204913065,
+        "maximum_single_position_weight": 0.9000000000000001
+      },
+      "end": "2026-08-07",
+      "forward_evidence": {
+        "observed_weeks": 0,
+        "passed": false,
+        "required_weeks": 52,
+        "status": "FROZEN FORWARD \u00b7 NOT PROMOTED"
+      },
+      "historical": {
+        "full": {
+          "cagr": 0.4927724277121879,
+          "max_drawdown": -0.23350524551091945,
+          "observations": 193,
+          "sharpe": 1.7872179138155015,
+          "total_return": 3.4236825763635066
+        },
+        "rolling_52w": {
+          "median_return": 0.28471612783464195,
+          "positive_rate": 0.9295774647887324,
+          "windows": 142,
+          "worst_return": -0.1617332437004836
+        },
+        "trailing_52w": {
+          "cagr": 1.5085821122127712,
+          "max_drawdown": -0.13868614262902035,
+          "observations": 52,
+          "sharpe": 3.120075863125595,
+          "total_return": 1.5085821122127712
+        }
+      },
+      "historical_grade": "historically_resilient",
+      "historical_resilience_score": 75,
+      "id": "sec-residual-controlled-1.25x-5pct-v1",
+      "live_verdict": "not_proven_live",
+      "monte_carlo": {
+        "block_summaries": {
+          "13": {
+            "median_max_drawdown": -0.13868614262902035,
+            "median_return": 0.4829066847876241,
+            "p05_max_drawdown": -0.2535441341981397,
+            "p05_return": -0.008349256045431882,
+            "p95_return": 1.336077122067182,
+            "probability_drawdown_over_30pct": 0.0159,
+            "probability_of_50pct_capital_loss": 0.0,
+            "probability_of_profit": 0.9462,
+            "simulations": 10000
+          },
+          "4": {
+            "median_max_drawdown": -0.13684668795911042,
+            "median_return": 0.46267279774121195,
+            "p05_max_drawdown": -0.2596832717648768,
+            "p05_return": -0.028551784066744423,
+            "p95_return": 1.2564778368045355,
+            "probability_drawdown_over_30pct": 0.0202,
+            "probability_of_50pct_capital_loss": 0.0,
+            "probability_of_profit": 0.9367,
+            "simulations": 10000
+          }
+        },
+        "method": "moving-block bootstrap of native weekly net returns",
+        "primary_block_weeks": 13
+      },
+      "name": "Residual-Controlled 1.25x \u2014 Recent Return Leader",
+      "observations": 193,
+      "plain_english_verdict": "Historically survived the frozen stress suite, but is not proven live.",
+      "readiness": {
+        "execution_enabled": false,
+        "live_trading_enabled": false,
+        "missing_real_world_inputs": [
+          "current executable bid-ask spreads and market impact",
+          "portfolio-size-specific liquidity and days-to-exit",
+          "broker margin terms, borrow availability, and changing financing rates",
+          "taxes and account-specific constraints",
+          "future delistings, data outages, and model drift",
+          "52 untouched forward weeks for each eligible strategy"
+        ]
+      },
+      "short_name": "150.86% Residual 1.25x",
+      "start": "2022-12-02",
+      "stress_tests": {
+        "double_cost": {
+          "cagr": 0.44146996297216656,
+          "max_drawdown": -0.24775596702410685,
+          "observations": 193,
+          "sharpe": 1.6400066734385952,
+          "total_return": 2.8851973290288493
+        },
+        "financing_plus_300bps": {
+          "cagr": 0.4845855371518988,
+          "max_drawdown": -0.23511396137341944,
+          "observations": 193,
+          "sharpe": 1.7644606370165348,
+          "total_return": 3.3343042532717586
+        },
+        "one_off_20pct_crash": {
+          "cagr": 0.40716012448876304,
+          "max_drawdown": -0.25964999787860943,
+          "observations": 193,
+          "sharpe": 1.431283151902585,
+          "total_return": 2.552897506028554
+        },
+        "signal_decay": {
+          "cagr": 0.20068951720914696,
+          "max_drawdown": -0.2976397358574815,
+          "observations": 193,
+          "sharpe": 0.9911436316830126,
+          "total_return": 0.9715607723650841
+        }
+      },
+      "test_results": [
+        {
+          "id": "full_drawdown",
+          "label": "Full-history drawdown",
+          "passed": true,
+          "points": 20,
+          "status": "pass",
+          "threshold": -0.3,
+          "value": -0.23350524551091945
+        },
+        {
+          "id": "rolling_year",
+          "label": "Worst rolling year",
+          "passed": false,
+          "points": 15,
+          "status": "fail",
+          "threshold": 0.0,
+          "value": -0.1617332437004836
+        },
+        {
+          "id": "double_cost",
+          "label": "Doubled trading cost",
+          "passed": true,
+          "points": 15,
+          "status": "pass",
+          "threshold": 0.0,
+          "value": 0.44146996297216656
+        },
+        {
+          "id": "signal_decay",
+          "label": "25% positive-signal decay",
+          "passed": true,
+          "points": 15,
+          "status": "pass",
+          "threshold": 0.0,
+          "value": 0.20068951720914696
+        },
+        {
+          "id": "monte_profit",
+          "label": "Monte Carlo profit probability",
+          "passed": true,
+          "points": 15,
+          "status": "pass",
+          "threshold": 0.75,
+          "value": 0.9462
+        },
+        {
+          "id": "monte_drawdown",
+          "label": "Monte Carlo drawdown control",
+          "passed": true,
+          "points": 10,
+          "status": "pass",
+          "threshold": 0.25,
+          "value": 0.0159
+        },
+        {
+          "id": "concentration",
+          "label": "Single-position concentration",
+          "passed": false,
+          "points": 10,
+          "status": "fail",
+          "threshold": 0.3,
+          "value": 0.9000000000000001
+        }
+      ]
+    },
+    {
+      "as_of": "2026-08-11",
+      "binding_failures": [
+        "Worst rolling year",
+        "Single-position concentration"
+      ],
+      "concentration": {
+        "average_borrowed_exposure": 0.282625664893617,
+        "average_largest_position_weight": 0.5741093530318956,
+        "maximum_single_position_weight": 1.215
+      },
+      "end": "2026-08-07",
+      "forward_evidence": {
+        "observed_weeks": 0,
+        "passed": false,
+        "required_weeks": 52,
+        "status": "FRAGILE DIAGNOSTIC \u00b7 NOT ELIGIBLE"
+      },
+      "historical": {
+        "full": {
+          "cagr": 0.5322050342734757,
+          "max_drawdown": -0.29244991315633306,
+          "observations": 188,
+          "sharpe": 1.5687519627280084,
+          "total_return": 3.677263258963464
+        },
+        "rolling_52w": {
+          "median_return": 0.2833087862549444,
+          "positive_rate": 0.9124087591240876,
+          "windows": 137,
+          "worst_return": -0.20884528496248667
+        },
+        "trailing_52w": {
+          "cagr": 1.6867917279385294,
+          "max_drawdown": -0.12202296088345932,
+          "observations": 52,
+          "sharpe": 2.8871350837562644,
+          "total_return": 1.6867917279385294
+        }
+      },
+      "historical_grade": "historically_resilient",
+      "historical_resilience_score": 75,
+      "id": "sec-sector-ensemble-fragile-1.35x-v1",
+      "live_verdict": "not_proven_live",
+      "monte_carlo": {
+        "block_summaries": {
+          "13": {
+            "median_max_drawdown": -0.16019792206329664,
+            "median_return": 0.4869329165691194,
+            "p05_max_drawdown": -0.30857757465604363,
+            "p05_return": -0.03539777786987939,
+            "p95_return": 1.3794958142742484,
+            "probability_drawdown_over_30pct": 0.0586,
+            "probability_of_50pct_capital_loss": 0.0,
+            "probability_of_profit": 0.9328,
+            "simulations": 10000
+          },
+          "4": {
+            "median_max_drawdown": -0.16292367782198863,
+            "median_return": 0.4939640965978146,
+            "p05_max_drawdown": -0.299882731117991,
+            "p05_return": -0.053792174101241215,
+            "p95_return": 1.4068882215868028,
+            "probability_drawdown_over_30pct": 0.0499,
+            "probability_of_50pct_capital_loss": 0.0,
+            "probability_of_profit": 0.9274,
+            "simulations": 10000
+          }
+        },
+        "method": "moving-block bootstrap of native weekly net returns",
+        "primary_block_weeks": 13
+      },
+      "name": "Sector Ensemble 1.35x \u2014 Fragile Return Ceiling",
+      "observations": 188,
+      "plain_english_verdict": "Historically survived the frozen stress suite, but is not proven live.",
+      "readiness": {
+        "execution_enabled": false,
+        "live_trading_enabled": false,
+        "missing_real_world_inputs": [
+          "current executable bid-ask spreads and market impact",
+          "portfolio-size-specific liquidity and days-to-exit",
+          "broker margin terms, borrow availability, and changing financing rates",
+          "taxes and account-specific constraints",
+          "future delistings, data outages, and model drift",
+          "52 untouched forward weeks for each eligible strategy"
+        ]
+      },
+      "short_name": "174.97% Fragile 1.35x",
+      "start": "2023-01-06",
+      "stress_tests": {
+        "double_cost": {
+          "cagr": 0.46489736037554086,
+          "max_drawdown": -0.3043780630762014,
+          "observations": 188,
+          "sharpe": 1.4120825447724732,
+          "total_return": 2.9760953184136953
+        },
+        "financing_plus_300bps": {
+          "cagr": 0.5193696192470638,
+          "max_drawdown": -0.2938946954860514,
+          "observations": 188,
+          "sharpe": 1.5407728496847983,
+          "total_return": 3.537150648352503
+        },
+        "one_off_20pct_crash": {
+          "cagr": 0.4460124390655258,
+          "max_drawdown": -0.29244991315633295,
+          "observations": 188,
+          "sharpe": 1.3145490161618167,
+          "total_return": 2.793879118330922
+        },
+        "signal_decay": {
+          "cagr": 0.18460639257169542,
+          "max_drawdown": -0.36528941950503757,
+          "observations": 188,
+          "sharpe": 0.7841621521848069,
+          "total_return": 0.8450093344489895
+        }
+      },
+      "test_results": [
+        {
+          "id": "full_drawdown",
+          "label": "Full-history drawdown",
+          "passed": true,
+          "points": 20,
+          "status": "pass",
+          "threshold": -0.3,
+          "value": -0.29244991315633306
+        },
+        {
+          "id": "rolling_year",
+          "label": "Worst rolling year",
+          "passed": false,
+          "points": 15,
+          "status": "fail",
+          "threshold": 0.0,
+          "value": -0.20884528496248667
+        },
+        {
+          "id": "double_cost",
+          "label": "Doubled trading cost",
+          "passed": true,
+          "points": 15,
+          "status": "pass",
+          "threshold": 0.0,
+          "value": 0.46489736037554086
+        },
+        {
+          "id": "signal_decay",
+          "label": "25% positive-signal decay",
+          "passed": true,
+          "points": 15,
+          "status": "pass",
+          "threshold": 0.0,
+          "value": 0.18460639257169542
+        },
+        {
+          "id": "monte_profit",
+          "label": "Monte Carlo profit probability",
+          "passed": true,
+          "points": 15,
+          "status": "pass",
+          "threshold": 0.75,
+          "value": 0.9328
+        },
+        {
+          "id": "monte_drawdown",
+          "label": "Monte Carlo drawdown control",
+          "passed": true,
+          "points": 10,
+          "status": "pass",
+          "threshold": 0.25,
+          "value": 0.0586
+        },
+        {
+          "id": "concentration",
+          "label": "Single-position concentration",
+          "passed": false,
+          "points": 10,
+          "status": "fail",
+          "threshold": 0.3,
+          "value": 1.215
+        }
+      ]
+    },
+    {
+      "as_of": "2026-08-13",
+      "binding_failures": [
+        "Full-history drawdown",
+        "Worst rolling year",
+        "25% positive-signal decay",
+        "Single-position concentration"
+      ],
+      "concentration": {
+        "average_borrowed_exposure": 0.0,
+        "average_largest_position_weight": 0.6891529833580466,
+        "maximum_single_position_weight": 1.0
+      },
+      "end": "2026-08-07",
+      "forward_evidence": {
+        "observed_weeks": 0,
+        "passed": false,
+        "required_weeks": 52,
+        "status": "awaiting_first_eligible_realization"
+      },
+      "historical": {
+        "full": {
+          "cagr": 0.12597434243865036,
+          "max_drawdown": -0.44097501255850147,
+          "observations": 1127,
+          "sharpe": 0.7205778864964351,
+          "total_return": 12.085219799687243
+        },
+        "rolling_52w": {
+          "median_return": 0.12121678879534703,
+          "positive_rate": 0.8020446096654275,
+          "windows": 1076,
+          "worst_return": -0.3981051781436775
+        },
+        "trailing_52w": {
+          "cagr": 0.7031215336942174,
+          "max_drawdown": -0.15825384743697146,
+          "observations": 52,
+          "sharpe": 2.129569037485696,
+          "total_return": 0.7031215336942174
+        }
+      },
+      "historical_grade": "historically_fragile",
+      "historical_resilience_score": 40,
+      "id": "candidate-return-first-60-40-forward-v1",
+      "live_verdict": "not_proven_live",
+      "monte_carlo": {
+        "block_summaries": {
+          "13": {
+            "median_max_drawdown": -0.12463281452176872,
+            "median_return": 0.13417736916763934,
+            "p05_max_drawdown": -0.305741793424801,
+            "p05_return": -0.16507068617383128,
+            "p95_return": 0.4884297202336849,
+            "probability_drawdown_over_30pct": 0.0531,
+            "probability_of_50pct_capital_loss": 0.0001,
+            "probability_of_profit": 0.7772,
+            "simulations": 10000
+          },
+          "4": {
+            "median_max_drawdown": -0.12868734984663982,
+            "median_return": 0.1296797254939842,
+            "p05_max_drawdown": -0.28093008144489906,
+            "p05_return": -0.16975645481275758,
+            "p95_return": 0.5041485143483014,
+            "probability_drawdown_over_30pct": 0.037,
+            "probability_of_50pct_capital_loss": 0.0001,
+            "probability_of_profit": 0.7528,
+            "simulations": 10000
+          }
+        },
+        "method": "moving-block bootstrap of native weekly net returns",
+        "primary_block_weeks": 13
+      },
+      "name": "ETF Incumbent \u2014 Return-First 60/40",
+      "observations": 1127,
+      "plain_english_verdict": "Some historical stresses failed; treat as fragile research, not a live-ready strategy.",
+      "readiness": {
+        "execution_enabled": false,
+        "live_trading_enabled": false,
+        "missing_real_world_inputs": [
+          "current executable bid-ask spreads and market impact",
+          "portfolio-size-specific liquidity and days-to-exit",
+          "broker margin terms, borrow availability, and changing financing rates",
+          "taxes and account-specific constraints",
+          "future delistings, data outages, and model drift",
+          "52 untouched forward weeks for each eligible strategy"
+        ]
+      },
+      "short_name": "ETF Incumbent",
+      "start": "2005-01-07",
+      "stress_tests": {
+        "double_cost": {
+          "cagr": 0.10621800132008019,
+          "max_drawdown": -0.4466004798234423,
+          "observations": 1127,
+          "sharpe": 0.6266105136022473,
+          "total_return": 7.91586178289549
+        },
+        "financing_plus_300bps": {
+          "cagr": 0.12597434243865036,
+          "max_drawdown": -0.44097501255850147,
+          "observations": 1127,
+          "sharpe": 0.7205778864964351,
+          "total_return": 12.085219799687243
+        },
+        "one_off_20pct_crash": {
+          "cagr": 0.11323991341056505,
+          "max_drawdown": -0.44097501255850147,
+          "observations": 1127,
+          "sharpe": 0.649624943151166,
+          "total_return": 9.226381055184323
+        },
+        "signal_decay": {
+          "cagr": -0.020126435679806876,
+          "max_drawdown": -0.6408407139239947,
+          "observations": 1127,
+          "sharpe": -0.03724968984830723,
+          "total_return": -0.35638282849861924
+        }
+      },
+      "test_results": [
+        {
+          "id": "full_drawdown",
+          "label": "Full-history drawdown",
+          "passed": false,
+          "points": 20,
+          "status": "fail",
+          "threshold": -0.3,
+          "value": -0.44097501255850147
+        },
+        {
+          "id": "rolling_year",
+          "label": "Worst rolling year",
+          "passed": false,
+          "points": 15,
+          "status": "fail",
+          "threshold": 0.0,
+          "value": -0.3981051781436775
+        },
+        {
+          "id": "double_cost",
+          "label": "Doubled trading cost",
+          "passed": true,
+          "points": 15,
+          "status": "pass",
+          "threshold": 0.0,
+          "value": 0.10621800132008019
+        },
+        {
+          "id": "signal_decay",
+          "label": "25% positive-signal decay",
+          "passed": false,
+          "points": 15,
+          "status": "fail",
+          "threshold": 0.0,
+          "value": -0.020126435679806876
+        },
+        {
+          "id": "monte_profit",
+          "label": "Monte Carlo profit probability",
+          "passed": true,
+          "points": 15,
+          "status": "pass",
+          "threshold": 0.75,
+          "value": 0.7772
+        },
+        {
+          "id": "monte_drawdown",
+          "label": "Monte Carlo drawdown control",
+          "passed": true,
+          "points": 10,
+          "status": "pass",
+          "threshold": 0.25,
+          "value": 0.0531
+        },
+        {
+          "id": "concentration",
+          "label": "Single-position concentration",
+          "passed": false,
+          "points": 10,
+          "status": "fail",
+          "threshold": 0.3,
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "as_of": "2026-08-13",
+      "binding_failures": [
+        "Full-history drawdown",
+        "Worst rolling year",
+        "Single-position concentration"
+      ],
+      "concentration": {
+        "average_borrowed_exposure": 0.0,
+        "average_largest_position_weight": 0.21382978723404253,
+        "maximum_single_position_weight": 0.4
+      },
+      "end": "2026-08-07",
+      "forward_evidence": {
+        "observed_weeks": 0,
+        "passed": false,
+        "required_weeks": 52,
+        "status": "frozen_waiting_for_first_realization"
+      },
+      "historical": {
+        "full": {
+          "cagr": 0.317028680354114,
+          "max_drawdown": -0.3649710972166301,
+          "observations": 188,
+          "sharpe": 0.9481996522893604,
+          "total_return": 1.7063425372723646
+        },
+        "rolling_52w": {
+          "median_return": 0.06973609960674199,
+          "positive_rate": 0.7007299270072993,
+          "windows": 137,
+          "worst_return": -0.18473123973669292
+        },
+        "trailing_52w": {
+          "cagr": 1.5571844956406475,
+          "max_drawdown": -0.23437197795158637,
+          "observations": 52,
+          "sharpe": 2.4624502866309066,
+          "total_return": 1.5571844956406475
+        }
+      },
+      "historical_grade": "mixed_evidence",
+      "historical_resilience_score": 55,
+      "id": "sec-growth-survivorship-aware-v1",
+      "live_verdict": "not_proven_live",
+      "monte_carlo": {
+        "block_summaries": {
+          "13": {
+            "median_max_drawdown": -0.2124643712782961,
+            "median_return": 0.3290280565230198,
+            "p05_max_drawdown": -0.3934607861836975,
+            "p05_return": -0.19211410935998322,
+            "p95_return": 1.3011176324699039,
+            "probability_drawdown_over_30pct": 0.2191,
+            "probability_of_50pct_capital_loss": 0.0009,
+            "probability_of_profit": 0.8114,
+            "simulations": 10000
+          },
+          "4": {
+            "median_max_drawdown": -0.22404307061727935,
+            "median_return": 0.2811802042304865,
+            "p05_max_drawdown": -0.4059298259211286,
+            "p05_return": -0.24581007910047892,
+            "p95_return": 1.2896969104742912,
+            "probability_drawdown_over_30pct": 0.2231,
+            "probability_of_50pct_capital_loss": 0.0012,
+            "probability_of_profit": 0.7756,
+            "simulations": 10000
+          }
+        },
+        "method": "moving-block bootstrap of native weekly net returns",
+        "primary_block_weeks": 13
+      },
+      "name": "SEC Growth Top-Five \u2014 Micron-Led",
+      "observations": 188,
+      "plain_english_verdict": "Some historical stresses failed; treat as fragile research, not a live-ready strategy.",
+      "readiness": {
+        "execution_enabled": false,
+        "live_trading_enabled": false,
+        "missing_real_world_inputs": [
+          "current executable bid-ask spreads and market impact",
+          "portfolio-size-specific liquidity and days-to-exit",
+          "broker margin terms, borrow availability, and changing financing rates",
+          "taxes and account-specific constraints",
+          "future delistings, data outages, and model drift",
+          "52 untouched forward weeks for each eligible strategy"
+        ]
+      },
+      "short_name": "142% Growth / Micron",
+      "start": "2023-01-06",
+      "stress_tests": {
+        "double_cost": {
+          "cagr": 0.30084423403617344,
+          "max_drawdown": -0.36692595647747595,
+          "observations": 188,
+          "sharpe": 0.9139880648005517,
+          "total_return": 1.5880244735699485
+        },
+        "financing_plus_300bps": {
+          "cagr": 0.317028680354114,
+          "max_drawdown": -0.3649710972166301,
+          "observations": 188,
+          "sharpe": 0.9481996522893604,
+          "total_return": 1.7063425372723646
+        },
+        "one_off_20pct_crash": {
+          "cagr": 0.22697366056787116,
+          "max_drawdown": -0.4680318083747723,
+          "observations": 188,
+          "sharpe": 0.7361357277429988,
+          "total_return": 1.094949504284786
+        },
+        "signal_decay": {
+          "cagr": 0.0018598903211690665,
+          "max_drawdown": -0.5479924430944908,
+          "observations": 188,
+          "sharpe": 0.16529192148536048,
+          "total_return": 0.006740589641555772
+        }
+      },
+      "test_results": [
+        {
+          "id": "full_drawdown",
+          "label": "Full-history drawdown",
+          "passed": false,
+          "points": 20,
+          "status": "fail",
+          "threshold": -0.3,
+          "value": -0.3649710972166301
+        },
+        {
+          "id": "rolling_year",
+          "label": "Worst rolling year",
+          "passed": false,
+          "points": 15,
+          "status": "fail",
+          "threshold": 0.0,
+          "value": -0.18473123973669292
+        },
+        {
+          "id": "double_cost",
+          "label": "Doubled trading cost",
+          "passed": true,
+          "points": 15,
+          "status": "pass",
+          "threshold": 0.0,
+          "value": 0.30084423403617344
+        },
+        {
+          "id": "signal_decay",
+          "label": "25% positive-signal decay",
+          "passed": true,
+          "points": 15,
+          "status": "pass",
+          "threshold": 0.0,
+          "value": 0.0018598903211690665
+        },
+        {
+          "id": "monte_profit",
+          "label": "Monte Carlo profit probability",
+          "passed": true,
+          "points": 15,
+          "status": "pass",
+          "threshold": 0.75,
+          "value": 0.8114
+        },
+        {
+          "id": "monte_drawdown",
+          "label": "Monte Carlo drawdown control",
+          "passed": true,
+          "points": 10,
+          "status": "pass",
+          "threshold": 0.25,
+          "value": 0.2191
+        },
+        {
+          "id": "concentration",
+          "label": "Single-position concentration",
+          "passed": false,
+          "points": 10,
+          "status": "fail",
+          "threshold": 0.3,
+          "value": 0.4
+        }
+      ]
+    },
+    {
+      "as_of": "2026-08-11",
+      "binding_failures": [
+        "Worst rolling year",
+        "Single-position concentration"
+      ],
+      "concentration": {
+        "average_borrowed_exposure": 0.0,
+        "average_largest_position_weight": 0.46635287920695345,
+        "maximum_single_position_weight": 0.9
+      },
+      "end": "2026-08-07",
+      "forward_evidence": {
+        "observed_weeks": 0,
+        "passed": false,
+        "required_weeks": 52,
+        "status": "awaiting_first_eligible_realization"
+      },
+      "historical": {
+        "full": {
+          "cagr": 0.3861720477502413,
+          "max_drawdown": -0.21473689564444642,
+          "observations": 181,
+          "sharpe": 1.5369225828579247,
+          "total_return": 2.1162531244207496
+        },
+        "rolling_52w": {
+          "median_return": 0.24503071769660056,
+          "positive_rate": 0.9615384615384616,
+          "windows": 130,
+          "worst_return": -0.14065390679329814
+        },
+        "trailing_52w": {
+          "cagr": 0.9268381493153905,
+          "max_drawdown": -0.12641934634039875,
+          "observations": 52,
+          "sharpe": 2.4651928556384086,
+          "total_return": 0.9268381493153905
+        }
+      },
+      "historical_grade": "historically_resilient",
+      "historical_resilience_score": 75,
+      "id": "sec-cash-conversion-breadth20-dynamic-v1",
+      "live_verdict": "not_proven_live",
+      "monte_carlo": {
+        "block_summaries": {
+          "13": {
+            "median_max_drawdown": -0.12235501777358548,
+            "median_return": 0.3809289593231264,
+            "p05_max_drawdown": -0.2334732354936981,
+            "p05_return": 0.01830637535646607,
+            "p95_return": 0.8830416602047618,
+            "probability_drawdown_over_30pct": 0.0068,
+            "probability_of_50pct_capital_loss": 0.0,
+            "probability_of_profit": 0.9584,
+            "simulations": 10000
+          },
+          "4": {
+            "median_max_drawdown": -0.12514070780389042,
+            "median_return": 0.37297937154653504,
+            "p05_max_drawdown": -0.22764969439726934,
+            "p05_return": -0.01636795443870606,
+            "p95_return": 0.9453216281839155,
+            "probability_drawdown_over_30pct": 0.0086,
+            "probability_of_50pct_capital_loss": 0.0,
+            "probability_of_profit": 0.9412,
+            "simulations": 10000
+          }
+        },
+        "method": "moving-block bootstrap of native weekly net returns",
+        "primary_block_weeks": 13
+      },
+      "name": "Dynamic Breadth-20 \u2014 Return Leader",
+      "observations": 181,
+      "plain_english_verdict": "Historically survived the frozen stress suite, but is not proven live.",
+      "readiness": {
+        "execution_enabled": false,
+        "live_trading_enabled": false,
+        "missing_real_world_inputs": [
+          "current executable bid-ask spreads and market impact",
+          "portfolio-size-specific liquidity and days-to-exit",
+          "broker margin terms, borrow availability, and changing financing rates",
+          "taxes and account-specific constraints",
+          "future delistings, data outages, and model drift",
+          "52 untouched forward weeks for each eligible strategy"
+        ]
+      },
+      "short_name": "102% Daily-Audited",
+      "start": "2023-01-06",
+      "stress_tests": {
+        "double_cost": {
+          "cagr": 0.34104668862629084,
+          "max_drawdown": -0.22449317350450837,
+          "observations": 181,
+          "sharpe": 1.3869914226794648,
+          "total_return": 1.7771721356298897
+        },
+        "financing_plus_300bps": {
+          "cagr": 0.3861720477502413,
+          "max_drawdown": -0.21473689564444642,
+          "observations": 181,
+          "sharpe": 1.5369225828579247,
+          "total_return": 2.1162531244207496
+        },
+        "one_off_20pct_crash": {
+          "cagr": 0.28924805624581973,
+          "max_drawdown": -0.25991801591869035,
+          "observations": 181,
+          "sharpe": 1.1281398991427785,
+          "total_return": 1.4213403710788106
+        },
+        "signal_decay": {
+          "cagr": 0.13636948516569625,
+          "max_drawdown": -0.2636927229187598,
+          "observations": 181,
+          "sharpe": 0.7453883287695522,
+          "total_return": 0.5604533398327352
+        }
+      },
+      "test_results": [
+        {
+          "id": "full_drawdown",
+          "label": "Full-history drawdown",
+          "passed": true,
+          "points": 20,
+          "status": "pass",
+          "threshold": -0.3,
+          "value": -0.21473689564444642
+        },
+        {
+          "id": "rolling_year",
+          "label": "Worst rolling year",
+          "passed": false,
+          "points": 15,
+          "status": "fail",
+          "threshold": 0.0,
+          "value": -0.14065390679329814
+        },
+        {
+          "id": "double_cost",
+          "label": "Doubled trading cost",
+          "passed": true,
+          "points": 15,
+          "status": "pass",
+          "threshold": 0.0,
+          "value": 0.34104668862629084
+        },
+        {
+          "id": "signal_decay",
+          "label": "25% positive-signal decay",
+          "passed": true,
+          "points": 15,
+          "status": "pass",
+          "threshold": 0.0,
+          "value": 0.13636948516569625
+        },
+        {
+          "id": "monte_profit",
+          "label": "Monte Carlo profit probability",
+          "passed": true,
+          "points": 15,
+          "status": "pass",
+          "threshold": 0.75,
+          "value": 0.9584
+        },
+        {
+          "id": "monte_drawdown",
+          "label": "Monte Carlo drawdown control",
+          "passed": true,
+          "points": 10,
+          "status": "pass",
+          "threshold": 0.25,
+          "value": 0.0068
+        },
+        {
+          "id": "concentration",
+          "label": "Single-position concentration",
+          "passed": false,
+          "points": 10,
+          "status": "fail",
+          "threshold": 0.3,
+          "value": 0.9
+        }
+      ]
+    },
+    {
+      "as_of": "2026-08-13",
+      "binding_failures": [
+        "Worst rolling year",
+        "Single-position concentration"
+      ],
+      "concentration": {
+        "average_borrowed_exposure": 0.0,
+        "average_largest_position_weight": 0.4252661874310336,
+        "maximum_single_position_weight": 0.9
+      },
+      "end": "2026-08-07",
+      "forward_evidence": {
+        "observed_weeks": 0,
+        "passed": false,
+        "required_weeks": 52,
+        "status": "NOT ELIGIBLE"
+      },
+      "historical": {
+        "full": {
+          "cagr": 0.42735783406919925,
+          "max_drawdown": -0.21800170778866745,
+          "observations": 188,
+          "sharpe": 1.708492721828043,
+          "total_return": 2.619893016955897
+        },
+        "rolling_52w": {
+          "median_return": 0.2300964068945608,
+          "positive_rate": 0.9343065693430657,
+          "windows": 137,
+          "worst_return": -0.14055957522140305
+        },
+        "trailing_52w": {
+          "cagr": 1.242041493092192,
+          "max_drawdown": -0.087087583753373,
+          "observations": 52,
+          "sharpe": 3.102884417478825,
+          "total_return": 1.242041493092192
+        }
+      },
+      "historical_grade": "historically_resilient",
+      "historical_resilience_score": 75,
+      "id": "sec-sector-aware-signal-ensemble-v1",
+      "live_verdict": "not_proven_live",
+      "monte_carlo": {
+        "block_summaries": {
+          "13": {
+            "median_max_drawdown": -0.11681331152070185,
+            "median_return": 0.37573879923077924,
+            "p05_max_drawdown": -0.23051660634472185,
+            "p05_return": -0.006126644608751476,
+            "p95_return": 0.9837245879696956,
+            "probability_drawdown_over_30pct": 0.008,
+            "probability_of_50pct_capital_loss": 0.0,
+            "probability_of_profit": 0.947,
+            "simulations": 10000
+          },
+          "4": {
+            "median_max_drawdown": -0.11977865559350309,
+            "median_return": 0.3882106613046097,
+            "p05_max_drawdown": -0.21912546949259104,
+            "p05_return": -0.0076222949304054,
+            "p95_return": 0.9807315130383858,
+            "probability_drawdown_over_30pct": 0.0046,
+            "probability_of_50pct_capital_loss": 0.0,
+            "probability_of_profit": 0.9457,
+            "simulations": 10000
+          }
+        },
+        "method": "moving-block bootstrap of native weekly net returns",
+        "primary_block_weeks": 13
+      },
+      "name": "Sector-Aware Signal Ensemble \u2014 124% Diagnostic",
+      "observations": 188,
+      "plain_english_verdict": "Historically survived the frozen stress suite, but is not proven live.",
+      "readiness": {
+        "execution_enabled": false,
+        "live_trading_enabled": false,
+        "missing_real_world_inputs": [
+          "current executable bid-ask spreads and market impact",
+          "portfolio-size-specific liquidity and days-to-exit",
+          "broker margin terms, borrow availability, and changing financing rates",
+          "taxes and account-specific constraints",
+          "future delistings, data outages, and model drift",
+          "52 untouched forward weeks for each eligible strategy"
+        ]
+      },
+      "short_name": "124% Sector Ensemble",
+      "start": "2023-01-06",
+      "stress_tests": {
+        "double_cost": {
+          "cagr": 0.4010363149122369,
+          "max_drawdown": -0.2227597163677647,
+          "observations": 188,
+          "sharpe": 1.6213135876239333,
+          "total_return": 2.38431578892042
+        },
+        "financing_plus_300bps": {
+          "cagr": 0.42735783406919925,
+          "max_drawdown": -0.21800170778866745,
+          "observations": 188,
+          "sharpe": 1.708492721828043,
+          "total_return": 2.619893016955897
+        },
+        "one_off_20pct_crash": {
+          "cagr": 0.3304046953557067,
+          "max_drawdown": -0.28175607801409885,
+          "observations": 188,
+          "sharpe": 1.279661572874501,
+          "total_return": 1.8070426468862997
+        },
+        "signal_decay": {
+          "cagr": 0.17112383012718113,
+          "max_drawdown": -0.267270000633136,
+          "observations": 188,
+          "sharpe": 0.9198898906818335,
+          "total_return": 0.7702131934366858
+        }
+      },
+      "test_results": [
+        {
+          "id": "full_drawdown",
+          "label": "Full-history drawdown",
+          "passed": true,
+          "points": 20,
+          "status": "pass",
+          "threshold": -0.3,
+          "value": -0.21800170778866745
+        },
+        {
+          "id": "rolling_year",
+          "label": "Worst rolling year",
+          "passed": false,
+          "points": 15,
+          "status": "fail",
+          "threshold": 0.0,
+          "value": -0.14055957522140305
+        },
+        {
+          "id": "double_cost",
+          "label": "Doubled trading cost",
+          "passed": true,
+          "points": 15,
+          "status": "pass",
+          "threshold": 0.0,
+          "value": 0.4010363149122369
+        },
+        {
+          "id": "signal_decay",
+          "label": "25% positive-signal decay",
+          "passed": true,
+          "points": 15,
+          "status": "pass",
+          "threshold": 0.0,
+          "value": 0.17112383012718113
+        },
+        {
+          "id": "monte_profit",
+          "label": "Monte Carlo profit probability",
+          "passed": true,
+          "points": 15,
+          "status": "pass",
+          "threshold": 0.75,
+          "value": 0.947
+        },
+        {
+          "id": "monte_drawdown",
+          "label": "Monte Carlo drawdown control",
+          "passed": true,
+          "points": 10,
+          "status": "pass",
+          "threshold": 0.25,
+          "value": 0.008
+        },
+        {
+          "id": "concentration",
+          "label": "Single-position concentration",
+          "passed": false,
+          "points": 10,
+          "status": "fail",
+          "threshold": 0.3,
+          "value": 0.9
+        }
+      ]
+    }
+  ],
+  "strategy_replacement_authorized": false
+}

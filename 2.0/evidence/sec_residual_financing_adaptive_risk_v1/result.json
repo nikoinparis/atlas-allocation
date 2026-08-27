@@ -1,0 +1,66 @@
+{
+  "adaptive_risk_cap_trailing_52w": {
+    "cagr": 1.4776400108015002,
+    "max_drawdown": -0.13862817669558458,
+    "sharpe": 3.09036428229583,
+    "weeks": 52,
+    "window": "trailing_52w"
+  },
+  "adaptive_trailing_52w": {
+    "cagr": 1.4766217090391716,
+    "max_drawdown": -0.13862817669558414,
+    "sharpe": 3.0883625189674984,
+    "weeks": 52,
+    "window": "trailing_52w"
+  },
+  "artifact_sha256": {
+    "adaptive_multipliers.csv": "1492d9af137b9e9aa1c86261e98d64eb5b98eb7546f66e9cd1d02d0d0447acee",
+    "block_bootstrap.csv": "4368b0b789541c9dd8b064e9d72a589ea48f26632b13430ca106328cfc416c90",
+    "capped_residual_weights.csv": "b0bd30cc9b83301cc2edab747b8afdd2b96b8594871ebde9dfe1a0cf3be02493",
+    "execution_seal.json": "022ba875bfa8b841dca60b3fb0c052287c501f6a289437ce2a91f90f8325e9af",
+    "exposure_audit__adaptive_1.00x_to_1.25x.csv": "61ff4584ad1fde475740bf45dfffcb77691e3902c677c3db2b7ab1f0a1ad0d0b",
+    "exposure_audit__adaptive_with_residual_risk_contribution_limit.csv": "b176e2f5d5e99a0a727d891efba8b259ef6897a54812281a63d4c0d2251a6a6a",
+    "exposure_audit__fixed_1.25x_5pct_published_reference.csv": "d616cb00b8acbc7476d882dd82fac14bbc4d050404ca79529ab61ba923809bd4",
+    "exposure_audit__fixed_1.25x_realistic_financing.csv": "e223ab7952c2a0ea905a5aca700ace50f744b488a4a474ef878429c0aef4a0a3",
+    "margin_shocks.csv": "f6c62d1b817a72489eb077432804b3278a31a4856d9d5254636e962ccb80dfc4",
+    "metrics.csv": "d46d0baf123e709e125de509686836e58ea2c1794003d7ca45303f8a671b1f53",
+    "path__adaptive_1.00x_to_1.25x.csv": "9ecc43f0884e3ff29d04126a32290247bba9a8edc1219d7e9de7d037ed237d0d",
+    "path__adaptive_with_residual_risk_contribution_limit.csv": "25524963ac3f5727523ec6f9461cf47dee4892106fc65791fcfd44f717f39c16",
+    "path__fixed_1.25x_5pct_published_reference.csv": "8b314627da1f172abf32c6e146dbf2fc38c410f114b6e8abdee6ac0c8719f7e1",
+    "path__fixed_1.25x_realistic_financing.csv": "b45538cd55dc28ec7134c3e3e2b942902fdfe9ee253a9e27ab9aa2c3d94227c5",
+    "path__unlevered_1.00x.csv": "fd9dcf513fc339d3eb7da602b955313956fc6f915c2fda8c82e3714c65664df2",
+    "risk_contribution_diagnostics.csv": "8b35bc75dea8ff1f0afd5861e2f68f9a8dbdcb1cae3f74a19d27cc43364905eb",
+    "stress_grid.csv": "33597ef35836e75b61ea2d409285bfff54404587fec51b04a9845acdff80a6ac"
+  },
+  "common_endpoint": "2026-08-07",
+  "created_at_utc": "2026-08-24T08:24:23.419562+00:00",
+  "experiment": "sec_residual_financing_adaptive_risk_v1",
+  "forward_clock_weeks": 0,
+  "frozen_forward_candidate_modified": false,
+  "historical_margin_safety_breaches": {
+    "adaptive_1.00x_to_1.25x": 0,
+    "adaptive_with_residual_risk_contribution_limit": 0,
+    "fixed_1.25x_5pct_published_reference": 0,
+    "fixed_1.25x_realistic_financing": 0
+  },
+  "interpretation": "A historical winner may be shown as a research diagnostic only. These rules were specified after the historical sample was known, so untouched forward evidence remains required.",
+  "live_trading_enabled": false,
+  "maximum_observed_residual_risk_contribution_share": 0.1200000000823334,
+  "published_reference_trailing_52w": {
+    "cagr": 1.5085821122127712,
+    "max_drawdown": -0.13868614262902035,
+    "sharpe": 3.120075863125595,
+    "weeks": 52,
+    "window": "trailing_52w"
+  },
+  "realistic_fixed_trailing_52w": {
+    "cagr": 1.49014787440349,
+    "max_drawdown": -0.13945010233556354,
+    "sharpe": 3.096074155549312,
+    "weeks": 52,
+    "window": "trailing_52w"
+  },
+  "replacement_authorized": false,
+  "research_display_winner": null,
+  "selection_contaminated": true
+}

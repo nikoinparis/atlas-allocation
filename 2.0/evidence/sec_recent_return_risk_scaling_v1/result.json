@@ -1,0 +1,41 @@
+{
+  "artifact_sha256": {
+    "blocks": "4f3af8c579cbdb810c1107180928921acb8c86c1d1b2b98178dba0e3524164c2",
+    "screening": "608614af5d107082470f4a8c3670a61a1a4f9b045bd3894753ecb5508a7c1802",
+    "selected_path": "52370d0f7090679ddc532e920e842bab1dcb959761cd8b2988548c372f80eb53"
+  },
+  "candidate_count": 12,
+  "candidate_level_gates_passed": true,
+  "challenger_count": 11,
+  "complete_falsification_passed": false,
+  "control_exact_reproduction": true,
+  "created_at_utc": "2026-08-22T04:59:19.333451+00:00",
+  "experiment": "sec_recent_return_risk_scaling_v1",
+  "frozen_config_sha256": "b9f1ace0af13f5ef2480fdfe53c251e7316c57bef2e88b2db63a91f14f8eb6e3",
+  "live_trading_enabled": false,
+  "selected_candidate": "fixed_135",
+  "selected_metrics": {
+    "all_candidate_gates": true,
+    "annual_outer_turnover": 0.0968085106382979,
+    "average_exposure": 1.3494680851063827,
+    "beating_nonoverlapping_blocks": 3,
+    "bonferroni_adjusted_probability": 0.989,
+    "candidate": "fixed_135",
+    "endpoint_outperformance_share": 1.0,
+    "family": "fixed",
+    "full_cagr": 0.5621893295701565,
+    "maximum_exposure": 1.35,
+    "minimum_delay_recent_cagr": 1.8576846897816108,
+    "minimum_raw_bootstrap_probability": 0.999,
+    "positive_nonoverlapping_blocks": 3,
+    "recent_cagr": 1.8576846897816108,
+    "recent_drawdown": -0.11821957312028941,
+    "recent_sharpe": 3.0460909087628,
+    "rolling26_outperformance_share": 0.7607361963190185,
+    "rolling26_windows": 163,
+    "stress_recent_cagr": 1.534891836622812
+  },
+  "selection_reason": "all predeclared return, risk, temporal, stress, and multiple-testing gates",
+  "strategy_replacement_authorized": false,
+  "underlying_strategy_falsification_passed": false
+}

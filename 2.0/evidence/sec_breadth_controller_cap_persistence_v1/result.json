@@ -1,0 +1,69 @@
+{
+  "all_falsification_checks_passed": false,
+  "artifact_sha256": {
+    "screening": "44a81fdd949dcb5035c20590905993d4959e168ae18f5fccf3ce656396844006",
+    "selected_path_50bps": "28ebfe3700022fffa8bbca5982e3adc94d4539d9abde3c88a9376c87bd72c45b",
+    "selected_states": "574cac3387a7aea8ff438bf005f0ebe7dc2423c7825cd8e84f29777a08fb515f",
+    "selected_target_weights": "881955326c2d5aa9d6f0e60d7cd2003b99d21ec78711c9feb3b948ef799fc61c"
+  },
+  "bootstrap_13w_probability_positive": 0.7966,
+  "bootstrap_4w_probability_positive": 0.884,
+  "breadth_entry_confirmations": 2,
+  "breadth_exit_confirmations": 1,
+  "candidate_count": 180,
+  "cap_multiple": 1.5,
+  "challenger_recent_cagr": 1.1293348809519022,
+  "checks": {
+    "baseline_reproduces_112pct_challenger": true,
+    "bootstrap_13w_at_least_95pct": false,
+    "bootstrap_4w_at_least_95pct": false,
+    "overlay_delay1_beats_frozen_control": false,
+    "recent_cagr_at_least_110pct": true,
+    "rolling_outperformance_at_least_50pct": false,
+    "selected_by_return_preserving_robustness_gates": false,
+    "single_issuer_share_at_most_50pct": false,
+    "worst_loo_beats_frozen_control": false
+  },
+  "completed_rolling_windows": 163,
+  "control_recent_cagr": 1.0510082013109483,
+  "created_at_utc": "2026-08-21T07:08:23.296135+00:00",
+  "eligible_candidate_count": 0,
+  "experiment": "sec_breadth_controller_cap_persistence_v1",
+  "full_cagr": 0.42284681150800707,
+  "live_trading_enabled": false,
+  "overlay_delay1_recent_cagr": 1.0131321307224983,
+  "overlay_entry_confirmations": 1,
+  "overlay_exit_confirmations": 1,
+  "peak_total_stock_weight": 0.06949108709070234,
+  "recent_cagr": 1.1236955524689365,
+  "recent_drawdown": -0.09134952675727048,
+  "recent_sharpe": 2.8023500104033734,
+  "rolling_outperformance_share": 0.20245398773006135,
+  "runtime": {
+    "actual": {
+      "numpy": "2.5.1",
+      "pandas": "3.0.5",
+      "python": "3.12.13"
+    },
+    "all_versions_match": true,
+    "expected": {
+      "container_image": "localhost/po2-yfinance:1.5.2-v1",
+      "container_image_id": "c84c194bef2052b0b4e4997d5780eb8ccf48d0ed2a3ec35bcafb726f691e0c5c",
+      "numpy": "2.5.1",
+      "pandas": "3.0.5",
+      "python": "3.12.13"
+    },
+    "versions_match": {
+      "numpy": true,
+      "pandas": true,
+      "python": true
+    }
+  },
+  "selected_candidate": "cap1.50x__breadth2in1out__overlay1in1out",
+  "selection_reason": "no timing-robust candidate; strongest genuinely capped diagnostic",
+  "severe_recent_cagr": 0.9946211191878989,
+  "single_issuer_improvement_share": 1.90234658228447,
+  "strategy_replacement_authorized": false,
+  "worst_loo_company": "GITLAB INC.",
+  "worst_loo_recent_cagr": 0.9854190184182265
+}

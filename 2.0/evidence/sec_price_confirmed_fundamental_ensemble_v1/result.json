@@ -1,0 +1,57 @@
+{
+  "artifact_sha256": {
+    "screening": "13093448b2e470a0d2c1b82ba0351489ac4a69301fbb2f2ffc80fd553d42deb5",
+    "selected_path": "7c77e6ac14e36156977f7030113d8d5521e7e18d1a25bd0bc2b3c5297290afde",
+    "stock_targets": "e8983e1da20cbfa40cf17d98ed981f9b9e08959e2d9f6ec42f7c14246745d50f"
+  },
+  "candidate_count": 10,
+  "candidate_level_gates_passed": false,
+  "control_exact_reproduction": true,
+  "created_at_utc": "2026-08-22T05:03:16.102776+00:00",
+  "experiment": "sec_price_confirmed_fundamental_ensemble_v1",
+  "frozen_config_sha256": "a57f6c5ee1a022fbe9d23b67662f0e3447e585e8923eb370d6b359ba84df4709",
+  "live_trading_enabled": false,
+  "runtime": {
+    "actual": {
+      "numpy": "2.5.1",
+      "pandas": "3.0.5",
+      "python": "3.12.13"
+    },
+    "all_versions_match": true,
+    "expected": {
+      "container_image": "localhost/po2-yfinance:1.5.2-v1",
+      "container_image_id": "c84c194bef2052b0b4e4997d5780eb8ccf48d0ed2a3ec35bcafb726f691e0c5c",
+      "numpy": "2.5.1",
+      "pandas": "3.0.5",
+      "python": "3.12.13"
+    },
+    "versions_match": {
+      "numpy": true,
+      "pandas": true,
+      "python": true
+    }
+  },
+  "selected_candidate": "trend_10",
+  "selected_metrics": {
+    "all_candidate_gates": false,
+    "bonferroni_adjusted_probability": 0.0,
+    "candidate": "trend_10",
+    "endpoint_outperformance_share": 0.0,
+    "full_cagr": 0.384899040793627,
+    "latest_distinct_holdings": 28,
+    "minimum_raw_bootstrap_probability": 0.0854,
+    "peak_total_stock_weight": 0.07432052982306604,
+    "price_family": "trend",
+    "price_weight": 0.1,
+    "recent_cagr": 1.1186287872104108,
+    "recent_drawdown": -0.087087583753373,
+    "recent_sharpe": 2.8755772567426225,
+    "rolling26_outperformance_share": 0.10429447852760736,
+    "rolling26_windows": 163,
+    "severe_recent_cagr": 0.959429606825527,
+    "worst_delay_recent_cagr": 1.1030063719039078,
+    "worst_missing_bundle_recent_cagr": 0.8686835529803183
+  },
+  "selection_reason": "no candidate passed all gates; highest-return diagnostic only",
+  "strategy_replacement_authorized": false
+}

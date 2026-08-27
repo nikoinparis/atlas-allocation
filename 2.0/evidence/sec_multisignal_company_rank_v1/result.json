@@ -1,0 +1,69 @@
+{
+  "all_falsification_checks_passed": false,
+  "artifact_sha256": {
+    "frozen_control_50bps": "7ecaf8db5b73d254d7a2846a4f78c5a6acc7faa4a8372a32d3669f743cf8453d",
+    "selected_path_50bps": "a5e5d723b97d6cc854c3dbdc13bb6121793f1db1eb908d8ed0a55aeda3ae4092"
+  },
+  "bootstrap_13w_probability_positive": 0.7144,
+  "bootstrap_4w_probability_positive": 0.6802,
+  "candidate_count": 108,
+  "checks": {
+    "bootstrap_13w_gate": false,
+    "bootstrap_4w_gate": false,
+    "neighborhood_gate": false,
+    "one_week_delay_beats_control": true,
+    "persisted_recent_cagr_matches": true,
+    "rolling_gate": true,
+    "single_issuer_influence_gate": false,
+    "surface_gates": true,
+    "two_week_delay_beats_control": false,
+    "worst_loo_beats_control": true
+  },
+  "completed_rolling_windows": 163,
+  "control_full_cagr": 0.4093476771616662,
+  "control_recent_cagr": 1.0510082013109483,
+  "control_severe_recent_cagr": 0.9320198735415857,
+  "created_at_utc": "2026-08-20T10:26:09.604800+00:00",
+  "experiment": "sec_multisignal_company_rank_v1",
+  "frozen_control_rebuilt_exactly": true,
+  "full_cagr": 0.41538224358517795,
+  "live_trading_enabled": false,
+  "matched_cash_full_cagr": 0.4086746589588126,
+  "matched_cash_recent_cagr": 1.0475360879501023,
+  "multisignal_incremental_full_cagr": 0.006707584626365337,
+  "multisignal_incremental_recent_cagr": 0.016331591678238055,
+  "neighborhood_joint_improvement_share": 0.08333333333333333,
+  "recent_cagr": 1.0638676796283404,
+  "recent_drawdown": -0.10088583249311045,
+  "recent_sharpe": 2.7124220329806326,
+  "rolling_outperformance_share": 0.558282208588957,
+  "runtime": {
+    "actual": {
+      "numpy": "2.5.1",
+      "pandas": "3.0.5",
+      "python": "3.12.13"
+    },
+    "all_versions_match": true,
+    "expected": {
+      "container_image": "localhost/po2-yfinance:1.5.2-v1",
+      "container_image_id": "c84c194bef2052b0b4e4997d5780eb8ccf48d0ed2a3ec35bcafb726f691e0c5c",
+      "numpy": "2.5.1",
+      "pandas": "3.0.5",
+      "python": "3.12.13"
+    },
+    "versions_match": {
+      "numpy": true,
+      "pandas": true,
+      "python": true
+    }
+  },
+  "selected_candidate": "cash_balance_sheet_quality_20__f400__sector100",
+  "selected_family_set": "balance_sheet_quality",
+  "selected_form4_weight": 0.0,
+  "selected_secondary_total_weight": 0.2,
+  "severe_recent_cagr": 0.9441960043139512,
+  "single_issuer_improvement_share": 0.5225224300167088,
+  "strategy_replacement_authorized": false,
+  "worst_loo_company": "10X GENOMICS, INC.",
+  "worst_loo_recent_cagr": 1.0571483137691895
+}

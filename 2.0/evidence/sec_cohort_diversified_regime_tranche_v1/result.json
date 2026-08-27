@@ -1,0 +1,73 @@
+{
+  "all_falsification_checks_passed": false,
+  "annual_one_way_turnover": 4.1489361702127665,
+  "artifact_sha256": {
+    "loo_summary": "c77a45dfd390b5bea52ca4230421a0fbc815edfb0e74147efc8d7ec536643cc6",
+    "screening": "bb1f94b911f57c3f22804314210df90b42349447be70f5f29b81161d6c3ece42",
+    "selected_path_50bps": "b83663b1e756bd8a4a36b529c1661bd9fc59d774971167dd0c53b7f0935fe5d6",
+    "selected_target_weights": "28d9e64326020e96b0b77ee008dfdf2d2e93a1b710b45683d9cfe7709be2d086",
+    "selected_weighted_cohort_targets": "4b6cb4520214e5c0bb27e0140d0c3395072c57593559a09323b09856809b45e7"
+  },
+  "bootstrap_13w_probability_positive_vs_incumbent_challenger": 0.181,
+  "bootstrap_4w_probability_positive_vs_incumbent_challenger": 0.1294,
+  "breadth": 25,
+  "candidate_count": 13,
+  "checks": {
+    "bootstrap_13w_at_least_95pct": false,
+    "bootstrap_4w_at_least_95pct": false,
+    "both_increment_delays_at_least_112pct_base": false,
+    "non_control_surface_gates_passed": false,
+    "recent_cagr_at_least_115pct": false,
+    "rolling_outperformance_at_least_50pct": false,
+    "single_issuer_share_at_most_50pct": false,
+    "top20_control_reproduces_119pct_challenger": true,
+    "worst_loo_beats_119pct_control_loo": false,
+    "worst_loo_beats_frozen": true
+  },
+  "cohort_weights": [
+    "1.0"
+  ],
+  "completed_rolling_windows": 163,
+  "created_at_utc": "2026-08-21T09:29:22.088268+00:00",
+  "delay1_recent_cagr": 1.1134187397703772,
+  "delay2_recent_cagr": 1.1404236996753703,
+  "experiment": "sec_cohort_diversified_regime_tranche_v1",
+  "full_cagr": 0.4162440440942028,
+  "incumbent_challenger_recent_cagr": 1.1921841481621755,
+  "latest_distinct_holdings": 25,
+  "live_trading_enabled": false,
+  "peak_total_stock_weight": 0.06006754544008051,
+  "recent_cagr": 1.12426438437214,
+  "recent_drawdown": -0.08708758375337278,
+  "recent_sharpe": 2.9165056263025684,
+  "robust_floor_cagr": 1.0861815587783044,
+  "rolling_outperformance_share_vs_incumbent_challenger": 0.48466257668711654,
+  "runtime": {
+    "actual": {
+      "numpy": "2.5.1",
+      "pandas": "3.0.5",
+      "python": "3.12.13"
+    },
+    "all_versions_match": true,
+    "expected": {
+      "container_image": "localhost/po2-yfinance:1.5.2-v1",
+      "container_image_id": "c84c194bef2052b0b4e4997d5780eb8ccf48d0ed2a3ec35bcafb726f691e0c5c",
+      "numpy": "2.5.1",
+      "pandas": "3.0.5",
+      "python": "3.12.13"
+    },
+    "versions_match": {
+      "numpy": true,
+      "pandas": true,
+      "python": true
+    }
+  },
+  "selected_candidate": "top25_current",
+  "selection_reason": "no non-control surface passer; best issuer-aware robust-floor diagnostic",
+  "severe_recent_cagr": 0.9675359369983625,
+  "single_issuer_increment_improvement_share": null,
+  "strategy_replacement_authorized": false,
+  "surface_passer_count": 1,
+  "worst_loo_company": "QUALYS, INC.",
+  "worst_loo_recent_cagr": 1.0861815587783044
+}

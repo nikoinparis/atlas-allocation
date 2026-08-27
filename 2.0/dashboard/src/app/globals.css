@@ -432,7 +432,10 @@ button.metric-card:hover { border-color: rgba(139,114,255,.38); transform: trans
 .lab-tab.active { background: var(--blue-soft); border-color: rgba(113,135,255,.42); color: #aeb9ff; }
 
 .lab-stack { display: flex; flex-direction: column; gap: 14px; }
-.lab-panel { display: flex; flex-direction: column; gap: 14px; }
+.lab-panel {
+  display: flex; flex-direction: column; gap: 14px; min-width: 0;
+  padding: 26px;
+}
 
 /* ---- inline controls, matching .pill ---- */
 .lab-controls { display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-start; }
@@ -502,6 +505,7 @@ button.metric-card:hover { border-color: rgba(139,114,255,.38); transform: trans
   .lab-table-row { grid-template-columns: 1.6fr 1fr 1fr; }
   .lab-table-row span:nth-child(4), .lab-table-row span:nth-child(5) { display: none; }
   .lab-chart.tall { height: 264px; }
+  .lab-panel { padding: 20px 16px; }
 }
 
 /* ---- financing option + design gate ---- */

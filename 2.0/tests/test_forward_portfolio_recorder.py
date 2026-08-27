@@ -5,15 +5,17 @@ from pathlib import Path
 
 
 class ForwardPortfolioRecorderTests(unittest.TestCase):
-    def test_current_state_is_initialized_but_has_no_post_freeze_evidence(self):
+    def test_current_state_matches_append_only_forward_logs(self):
         root = Path(__file__).resolve().parents[1]
         output = root / "evidence/forward_covariance_minimum_variance_v1"
         status = json.loads((output / "status.json").read_text())
         anchor = json.loads((output / "anchor.json").read_text())
         self.assertEqual("2026-08-07", anchor["anchor_decision_date"])
-        self.assertEqual(0, status["saved_decisions"])
-        self.assertEqual(0, status["observed_weeks"])
-        self.assertEqual(52, status["remaining_weeks"])
+        decision_count = sum(1 for line in (output / "decisions.jsonl").read_text().splitlines() if line)
+        observation_count = sum(1 for line in (output / "observations.jsonl").read_text().splitlines() if line)
+        self.assertEqual(decision_count, status["saved_decisions"])
+        self.assertEqual(observation_count, status["observed_weeks"])
+        self.assertEqual(status["required_weeks"] - observation_count, status["remaining_weeks"])
         self.assertFalse(status["clock_complete"])
         self.assertFalse(status["execution_enabled"])
 
@@ -30,7 +32,9 @@ class ForwardPortfolioRecorderTests(unittest.TestCase):
         )
         registry = json.loads((root / "research_registry/portfolio_candidates.json").read_text())
         candidate = registry["candidates"][0]
-        self.assertEqual(0, candidate["forward_clock"]["observed_weeks"])
+        status = json.loads((root / candidate["forward_clock"]["status_file"]).read_text())
+        self.assertEqual(status["observed_weeks"], candidate["forward_clock"]["observed_weeks"])
+        self.assertLess(candidate["forward_clock"]["observed_weeks"], candidate["forward_clock"]["required_weeks"])
         self.assertFalse(candidate["final"])
         self.assertFalse(candidate["approved_for_live_trading"])
 

@@ -1,0 +1,59 @@
+{
+  "artifact_sha256": {
+    "overlap": "01c1ce7541ca3bf700817f0b9f64b599c31622ea3a07d3e17098814dc1447ba7",
+    "screening": "938498596b7cf264aa4bd1ad9237b318873ca0e5f1840cc024fe5069adca1007",
+    "selected_path": "1ce611751dcd2164890c72a3ef68e5d79ef00dada1a43d38ba45b47a5f84120d",
+    "stock_targets": "860f5b83189ee2f89eaf4640e1e0d95e2b847d3f919d3e633e630db39af1643e"
+  },
+  "candidate_count": 15,
+  "candidate_level_gates_passed": false,
+  "control_exact_reproduction": true,
+  "created_at_utc": "2026-08-22T06:05:04.942062+00:00",
+  "experiment": "sec_cross_component_overlap_budget_v1",
+  "frozen_config_sha256": "f47e9d402f21b962ee3b8821bcf8e71b9e5285eed5eebc7c9c3007c9d58d5791",
+  "live_trading_enabled": false,
+  "runtime": {
+    "actual": {
+      "numpy": "2.5.1",
+      "pandas": "3.0.5",
+      "python": "3.12.13"
+    },
+    "all_versions_match": true,
+    "expected": {
+      "container_image": "localhost/po2-yfinance:1.5.2-v1",
+      "container_image_id": "c84c194bef2052b0b4e4997d5780eb8ccf48d0ed2a3ec35bcafb726f691e0c5c",
+      "numpy": "2.5.1",
+      "pandas": "3.0.5",
+      "python": "3.12.13"
+    },
+    "versions_match": {
+      "numpy": true,
+      "pandas": true,
+      "python": true
+    }
+  },
+  "selected_candidate": "balance_first_overlap12",
+  "selected_metrics": {
+    "all_candidate_gates": false,
+    "bonferroni_adjusted_probability_vs_predecessor": 0.0,
+    "candidate": "balance_first_overlap12",
+    "endpoint_outperformance_share": 0.21428571428571427,
+    "full_cagr": 0.4241231833866492,
+    "latest_distinct_holdings": 28,
+    "latest_realized_overlap": 12,
+    "maximum_overlap": 12,
+    "minimum_raw_bootstrap_probability_vs_predecessor": 0.7088,
+    "peak_total_stock_weight": 0.07123432013504874,
+    "recent_cagr": 1.2237265606141277,
+    "recent_drawdown": -0.08708758375337322,
+    "recent_sharpe": 3.0780156870083295,
+    "rolling26_outperformance_share": 0.018404907975460124,
+    "rolling26_windows": 163,
+    "selection_order": "balance_first",
+    "severe_recent_cagr": 1.0558679592555098,
+    "worst_delay_recent_cagr": 1.2123079034616144,
+    "worst_missing_bundle_recent_cagr": 1.0920689784255342
+  },
+  "selection_reason": "no candidate passed all gates; strongest five-issuer diagnostic only",
+  "strategy_replacement_authorized": false
+}

@@ -1,0 +1,22 @@
+{
+  "artifact_sha256": {
+    "candidate_audit": "9ed08b44564578f25632dbc29c6233929e18ff7d03b70aba9a94a3ff71c603d0",
+    "validated_price_decision_keys": "6d95bdeeca3d31ee14b136f51405496296e1c808b5c4ee081d34dc6741bab627"
+  },
+  "created_at_utc": "2026-08-24T01:43:03.594734+00:00",
+  "early_delistings_requiring_terminal_audit": 0,
+  "experiment": "sec_broad_tiingo_audit_v2",
+  "legacy_authenticated_candidates_reused": 72,
+  "live_trading_enabled": false,
+  "status_counts": {
+    "rejected_insufficient_prices": 1,
+    "rejected_missing_start": 5,
+    "rejected_name_mismatch_or_ticker_reuse": 13,
+    "validated_history_through_last_decision": 354,
+    "validated_sec_confirmed_early_delisting": 73
+  },
+  "strategy_testing_authorized": false,
+  "terminal_cached_candidates": 446,
+  "validated_candidates": 427,
+  "validated_decision_keys": 3343
+}

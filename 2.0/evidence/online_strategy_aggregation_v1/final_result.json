@@ -1,0 +1,86 @@
+{
+  "best_retrospective_learning_rate": "eta_1.0",
+  "causal": true,
+  "common_weeks": 181,
+  "config_sha256": "47c346b7f21fc7e5bf4148869091fd1fa8dc88fe0b67a0d3dce6f5aa8dc59bbd",
+  "created_at_utc": "2026-08-26T05:27:11.167093+00:00",
+  "experiment": "online_strategy_aggregation_v1",
+  "forward_status": "eligible_for_preregistered_shadow_observation_only",
+  "interpretation": "shadow diagnostic only; saved component paths were selected in-sample and holdings-level allocator costs are not reconstructed",
+  "live_trading_enabled": false,
+  "scorecard": {
+    "component_candidate-return-first-60-40-forward-v1": {
+      "cagr": 0.426580555885256,
+      "max_drawdown": -0.15825384743697146,
+      "sharpe_zero_rf": 1.8109186094506287,
+      "total_return": 2.444052909121776,
+      "weeks": 181
+    },
+    "component_sec-cash-conversion-breadth20-dynamic-v1": {
+      "cagr": 0.3861720477502413,
+      "max_drawdown": -0.21473689564444642,
+      "sharpe_zero_rf": 1.536922582857925,
+      "total_return": 2.1162531244207496,
+      "weeks": 181
+    },
+    "component_sec-growth-survivorship-aware-v1": {
+      "cagr": 0.30845635340333866,
+      "max_drawdown": -0.36497109721663024,
+      "sharpe_zero_rf": 0.9250173407833573,
+      "total_return": 1.549247318242854,
+      "weeks": 181
+    },
+    "component_sec-residual-controlled-1.25x-5pct-v1": {
+      "cagr": 0.5142996249299798,
+      "max_drawdown": -0.23350524551091967,
+      "sharpe_zero_rf": 1.8225951487261147,
+      "total_return": 3.2391202856250674,
+      "weeks": 181
+    },
+    "component_sec-sector-aware-signal-ensemble-v1": {
+      "cagr": 0.42157201587772963,
+      "max_drawdown": -0.21800170778866734,
+      "sharpe_zero_rf": 1.6740218312514585,
+      "total_return": 2.4021477229565407,
+      "weeks": 181
+    },
+    "component_sec-sector-ensemble-fragile-1.35x-v1": {
+      "cagr": 0.5150843109980119,
+      "max_drawdown": -0.29244991315633306,
+      "sharpe_zero_rf": 1.5123988038583316,
+      "total_return": 3.2467712155040296,
+      "weeks": 181
+    },
+    "equal_weight": {
+      "cagr": 0.4549697289906136,
+      "max_drawdown": -0.20445568195764197,
+      "sharpe_zero_rf": 2.1666833220652855,
+      "total_return": 2.688561640451486,
+      "weeks": 181
+    },
+    "eta_1.0": {
+      "cagr": 0.3760858965350493,
+      "max_drawdown": -0.22976583268539785,
+      "sharpe_zero_rf": 1.8536331363668732,
+      "total_return": 2.03803758800377,
+      "weeks": 181
+    },
+    "eta_2.0": {
+      "cagr": 0.3194430572604985,
+      "max_drawdown": -0.27878618906209807,
+      "sharpe_zero_rf": 1.5921138642426829,
+      "total_return": 1.6245332433553514,
+      "weeks": 181
+    },
+    "eta_4.0": {
+      "cagr": 0.2629534406261169,
+      "max_drawdown": -0.3271251005644593,
+      "sharpe_zero_rf": 1.3054241880617805,
+      "total_return": 1.2537510122161062,
+      "weeks": 181
+    }
+  },
+  "source_sha256": "2a427c970521fee814ebf6fed47afae9228afd4551459335b110658464b906db",
+  "strategy_promotion_authorized": false,
+  "uses_current_week_to_set_current_weight": false
+}

@@ -1,0 +1,48 @@
+{
+  "claims": {
+    "better_than_indonesia_established": false,
+    "execution_authorized": false,
+    "historical_diagnostic_calculated": true,
+    "investment_recommendation": false,
+    "performance_claim_authorized": false,
+    "survival_established": false
+  },
+  "config_sha256": "1c9a48f3a830fc0a5abc6d6ece3d342876ab0298ba0bb6a165409a993960be2f",
+  "outputs": {
+    "daily_paths.csv": {
+      "bytes": 290210,
+      "sha256": "6f749c5da74ac75e0307a3be8116ef3c1e90848ae126ff5f2a0b7026e527084c"
+    },
+    "decisions.csv": {
+      "bytes": 3127,
+      "sha256": "dcdfb55dbf3d1488d8f9650edcdd5a2bc1839077562033d545e3bc71af89c5e1"
+    },
+    "metrics.csv": {
+      "bytes": 998,
+      "sha256": "86e217f0fe302062aa7d72b9e5ee7a0da6da12dee39d4254c659b083cd07844b"
+    },
+    "report.md": {
+      "bytes": 2303,
+      "sha256": "6148dce161f8740584e4c75fc4e342f8c7e0161574a5d104af9678f3e311855d"
+    },
+    "result.json": {
+      "bytes": 1405,
+      "sha256": "0d0beb38ea3ed472a8d670aa604a7941b2d87d7963c68da802bd7333d2d364c6"
+    },
+    "targets.csv": {
+      "bytes": 151959,
+      "sha256": "9d0117145adb7d8a068d88516b29d1b845f6147fc76919dce4242cbe6c6b38df"
+    },
+    "turnover.csv": {
+      "bytes": 4980,
+      "sha256": "c1a532ec3c9e9d78cd23a7845fb6635b0cee3d63e5e00bfad2693fb5ee3bf158"
+    }
+  },
+  "price_manifest_sha256": "dba8bd1d15dec29d606dbb423c8d0c3480ce262c1c00c6d4cad76d33afc86aa8",
+  "price_vintage": "20260822T094207Z-idx80-extended-prices-v1",
+  "program_sha256": "fa72f51c571ec5d5eafc7ee31c8469e2801e0b58ecc1aca85b4a860aff82e53d",
+  "purpose": "preliminary data-gated Indonesia strategy survival diagnostic",
+  "run_id": "20260822T094300Z-inactive-repair-v2",
+  "strategy_config_sha256": "3a813a99932e891cf1464cfcb2340bf86ab4080ed8db37bc0a36a323263b3e87",
+  "supplemental_price_manifest_sha256": "1c1ccdb2d2a49d3622479a59455628d4299d5e20cd1298d09385836eb2217c84"
+}

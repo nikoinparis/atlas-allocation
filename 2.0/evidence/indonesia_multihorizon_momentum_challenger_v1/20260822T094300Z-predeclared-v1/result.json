@@ -1,0 +1,67 @@
+{
+  "average_selection_overlap": 8.153846153846153,
+  "baseline_50bps": {
+    "annualized_volatility": 0.21689119003365773,
+    "cagr": 0.024024435065810756,
+    "cumulative_return": 0.18524681615943295,
+    "daily_observations": 1804.0,
+    "maximum_drawdown": -0.4599511821697342,
+    "sharpe_zero_rf": 0.21772054105363156
+  },
+  "baseline_calendar_returns": {
+    "2019": -0.09166636912964288,
+    "2020": 0.13154590236782004,
+    "2021": 0.041821954147606366,
+    "2022": 0.030421548979596702,
+    "2023": 0.03997235690022549,
+    "2024": 0.003285939772077473,
+    "2025": 0.20314549273584892,
+    "2026": -0.1443067237674337
+  },
+  "challenger_150bps": {
+    "annualized_volatility": 0.250831393614736,
+    "cagr": -0.014555367063231461,
+    "cumulative_return": -0.09964279911519769,
+    "daily_observations": 1804.0,
+    "maximum_drawdown": -0.5006196236781049,
+    "sharpe_zero_rf": 0.06709484950394942
+  },
+  "challenger_50bps": {
+    "annualized_volatility": 0.25011109937696485,
+    "cagr": 0.03281322978413659,
+    "cumulative_return": 0.26002229005444844,
+    "daily_observations": 1804.0,
+    "maximum_drawdown": -0.462907946196363,
+    "sharpe_zero_rf": 0.2542538398119124
+  },
+  "challenger_calendar_returns": {
+    "2019": -0.09115155279340081,
+    "2020": 0.25541944951070605,
+    "2021": 0.15595508959481674,
+    "2022": 0.10949848621500102,
+    "2023": 0.05787504026957313,
+    "2024": 0.03965533149270217,
+    "2025": 0.1119632281918368,
+    "2026": -0.2959296604877606
+  },
+  "evaluation_end": "2026-08-21",
+  "evaluation_start": "2019-02-04",
+  "execution_authorized": false,
+  "gates": {
+    "cagr_above_baseline_at_base_cost": true,
+    "complete_inactive_security_and_delisting_history": false,
+    "licensed_total_return_benchmarks": false,
+    "maximum_drawdown_no_more_than_5pp_worse_than_baseline": true,
+    "minimum_monthly_decisions": true,
+    "no_single_calendar_year_dependency": false,
+    "positive_cagr_at_150bps": false,
+    "sharpe_above_baseline_at_base_cost": true,
+    "untouched_forward_observations": false,
+    "validated_local_cost_model": false
+  },
+  "investment_recommendation": false,
+  "monthly_decisions": 91,
+  "notice": "RESEARCH ONLY \u2014 Indonesian stock-selection challenger; not an investment recommendation and not approved for execution.",
+  "performance_claim_authorized": false,
+  "verdict": "HISTORICAL_SELECTION_FAIL"
+}

@@ -1,0 +1,29 @@
+{
+  "all_checks_passed": true,
+  "checks": {
+    "all_598_issuers_complete": true,
+    "all_acceptance_times_within_sec_filing_date_convention": true,
+    "all_events_are_item_202_8k": true,
+    "all_events_have_acceptance_datetime": true,
+    "all_events_on_or_after_start": true,
+    "all_referenced_raw_sources_present_and_hashed": true,
+    "event_accessions_unique": true,
+    "issuer_rows_unique": true,
+    "manifest_event_hash_matches": true,
+    "manifest_research_authorized": true,
+    "manifest_source_hash_matches": true
+  },
+  "complete_issuer_share": 1.0,
+  "created_at_utc": "2026-08-21T03:59:17.951811+00:00",
+  "event_date_end": "2026-08-20",
+  "event_date_start": "2022-01-03",
+  "events": 10854,
+  "experiment": "sec_earnings_8k_acquisition_v1",
+  "issuers_with_events": 594,
+  "live_trading_enabled": false,
+  "research_testing_authorized": true,
+  "source_files_verified": 608,
+  "strategy_replacement_authorized": false,
+  "target_issuers": 598,
+  "vintage_id": "20260821T035516Z-sec-earnings-8k-v1"
+}

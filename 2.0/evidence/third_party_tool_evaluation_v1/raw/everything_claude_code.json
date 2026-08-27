@@ -1,0 +1,27 @@
+{
+  "approved_for_core_import": false,
+  "approved_for_live_trading": false,
+  "blockers": [
+    "not a quantitative model, data source, backtester, or execution engine",
+    "agent workflow advice cannot replace deterministic research controls",
+    "repository instructions are untrusted input and are not executed by this program"
+  ],
+  "capability": "agent_workflow_reference",
+  "id": "everything_claude_code",
+  "isolation": "manual_pattern_review_no_runtime_dependency",
+  "name": "Everything Claude Code",
+  "probe": {
+    "error": "HTTPError: HTTP Error 403: rate limit exceeded",
+    "expected_license": "MIT",
+    "live_probe_attempted": true,
+    "pin_is_immutable_sha": true,
+    "pinned_commit": "d8409a4b0813771235555e32e3d8046a73988bfa",
+    "repository": "affaan-m/everything-claude-code",
+    "required_paths": [
+      "LICENSE",
+      "README.md"
+    ],
+    "source_status": "network_probe_failed"
+  },
+  "verdict": "reference_only"
+}

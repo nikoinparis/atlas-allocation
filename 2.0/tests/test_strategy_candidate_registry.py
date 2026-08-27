@@ -9,6 +9,7 @@ class StrategyCandidateRegistryTests(unittest.TestCase):
         registry = json.loads((root / "research_registry/strategy_candidates.json").read_text())
         self.assertGreaterEqual(registry["candidate_count"], 8)
         self.assertEqual(registry["candidate_count"], len(registry["candidates"]))
+        candidate_ids = set()
         experiment_ids = set()
         for candidate in registry["candidates"]:
             self.assertFalse(candidate["final"])
@@ -17,15 +18,23 @@ class StrategyCandidateRegistryTests(unittest.TestCase):
                 "provisional_not_approved", "provisional_robust", "provisional_fragile",
                 "provisional_new_family", "provisional_robust_new_family",
                 "provisional_robust_research_only",
+                "provisional_ggg_improvement", "provisional_ggg_return_leader",
+                "provisional_aggressive_return_ceiling",
             })
             self.assertIn("52_week_untouched_forward_record", candidate["missing_gates"])
-            self.assertNotIn(candidate["experiment_id"], experiment_ids)
-            experiment_ids.add(candidate["experiment_id"])
+            self.assertNotIn(candidate["candidate_id"], candidate_ids)
+            candidate_ids.add(candidate["candidate_id"])
+            if "experiment_id" in candidate:
+                self.assertNotIn(candidate["experiment_id"], experiment_ids)
+                experiment_ids.add(candidate["experiment_id"])
 
     def test_frozen_v4_and_walk_forward_choices_are_preserved(self):
         root = Path(__file__).resolve().parents[1]
         registry = json.loads((root / "research_registry/strategy_candidates.json").read_text())
-        candidates = {item["experiment_id"]: item for item in registry["candidates"]}
+        candidates = {
+            item["experiment_id"]: item for item in registry["candidates"]
+            if "experiment_id" in item
+        }
         self.assertIn("exp-fc7248702f02b421", candidates)
         self.assertIn("exact_frozen_v4_benchmark", candidates["exp-fc7248702f02b421"]["selection_reasons"])
         self.assertTrue(any(

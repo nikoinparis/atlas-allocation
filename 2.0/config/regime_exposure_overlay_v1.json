@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "experiment": "regime_exposure_overlay_v1",
+  "status": "structural_test_no_promotion",
+  "purpose": "Test whether a regime signal built only from series with genuine long history can reduce drawdown on a long-only book without destroying return, over a span that contains 2000, 2008, 2020 and 2022.",
+  "coverage_finding_that_shaped_this": {
+    "problem": "The project's existing regime feature set is anchored on the VIX term-structure slope, and VIX3M begins 2009-09-18. Anything built on the slope cannot be tested through the dot-com crash or the global financial crisis, which are the two regimes Step 191's gate most needs.",
+    "series_with_long_history": {
+      "VIX": "1990-01-02",
+      "NFCI": "1971-01-08",
+      "T10Y2Y": "1976-06-01",
+      "DGS3MO": "1981-09-01"
+    },
+    "series_too_short_to_use_here": {
+      "VIX3M": "2009-09-18",
+      "VIX6M": "2008-01-02",
+      "BAMLH0A0HYM2": "2023-08-14",
+      "DTWEXBGS": "2006-01-02"
+    },
+    "consequence": "The overlay is built from VIX level and NFCI only. This is a weaker signal than the slope-based one already in the repository, and it is the only one that can be honestly tested across four bear markets."
+  },
+  "declared_before_running": {
+    "gates": [
+      {"name": "vix_percentile", "rule": "cut exposure when the VIX close sits above its own trailing 5-year percentile threshold", "thresholds": [0.80, 0.90]},
+      {"name": "nfci_positive", "rule": "cut exposure when the Chicago Fed National Financial Conditions Index is above zero, meaning conditions are tighter than average"},
+      {"name": "vix_or_nfci", "rule": "cut when either fires"},
+      {"name": "vix_and_nfci", "rule": "cut only when both fire"}
+    ],
+    "exposure_when_gated": [0.0, 0.5],
+    "publication_lags": {
+      "VIX": "1 trading day, because the close is known only after the close",
+      "NFCI": "8 calendar days, which is longer than the actual weekly release lag and is chosen to be conservative rather than exact"
+    },
+    "underlying_books": ["SPY", "equal_weight_etf_universe", "cross_asset_trend_sleeve"],
+    "execution_delay_days": 1,
+    "cost_bps_per_unit_turnover": 10.0,
+    "evaluation_start": "1993-06-01",
+    "regimes_reported": ["dotcom_2000_2002", "gfc_2007_2009", "covid_2020", "bear_2022", "recent_2023_2026"]
+  },
+  "hypotheses": [
+    "A regime gate that only fires after a shock is priced in will cut drawdown and cut return by more, which is the usual failure mode and must be visible.",
+    "If any gate improves drawdown while keeping return within a few points, it is worth carrying as an overlay.",
+    "If the gates work on SPY but not on the trend sleeve, that is evidence the sleeve already contains its own de-risking."
+  ],
+  "not_claimed": [
+    "Testing on SPY and ETF books is a proxy. The SEC equity books start 2022-12 and cannot be tested across these regimes at all; that gap is exactly what Step 191 recorded and this does not close it.",
+    "No threshold is selected. Both VIX percentile thresholds and both gated exposures are reported in full."
+  ],
+  "price_source": "data/vintages/20260814T220630Z-6807cd7f14ae66bb/payload/prices.csv",
+  "regime_source": "data/regime_vintages/20260812T090851Z-5c6de663ac77/payload/",
+  "live_trading_enabled": false
+}

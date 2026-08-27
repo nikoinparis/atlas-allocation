@@ -8510,3 +8510,55 @@ References:
 - `config/bagged_selection_v1.json`
 - `scripts/run_bagged_selection_v1.py`
 - `evidence/bagged_selection_v1/`
+
+## Step 204 — Gate the book on macro regime, and find the equity curve is the better signal
+
+Step 191 recorded the volatility-tilt gate as binding on data availability: above the
+neutral band it demands bear-market evidence, and the SEC price panel starts 2022-12. That
+evidence cannot be produced for those books. It can be produced for the mechanism, on ETFs,
+across four bear markets, and that is what this does.
+
+One coverage fact shaped the whole design and is worth recording on its own. The
+repository's existing regime features are anchored on the VIX term-structure slope, and
+VIX3M begins 2009-09-18 — after both of the regimes the gate most needs. VIX6M begins 2008,
+high-yield OAS only 2023. The series with genuine long history are the VIX level from 1990
+and the Chicago Fed NFCI from 1971. Any regime work in this project that wants pre-2009
+evidence must be built from those two, and the existing feature set cannot be.
+
+Twenty variants were declared and all twenty are reported. Every VIX-level gate fails, and
+several fail in the specific way that matters. Cutting SPY to cash above the trailing
+five-year 80th percentile of the VIX drops the return from 10.92% to 4.25% while moving the
+maximum drawdown only from -55.19% to -54.19%: two thirds of the return surrendered for one
+point of drawdown. The 90th-percentile variant is worse than useless, deepening the drawdown
+to -55.66%. On the equal-weight ETF book the same gate takes the drawdown from -38.02% to
+-51.12%.
+
+That last number is the instructive one. Gating out and back in does not remove a drawdown,
+it splits it: the rule sells after the fall is already priced, sits out part of the
+recovery, and re-enters in time for the next leg. Two partial drawdowns compound into
+something deeper than the one that was avoided.
+
+One combination is mildly useful. Requiring both tight financial conditions and an elevated
+VIX, which fires on 5.8% of days, halves exposure for a maximum drawdown of -47.52% against
+the baseline's -55.19%, with the return essentially intact at 10.85% against 10.92% and the
+Sharpe improving from 0.65 to 0.70. NFCI alone behaves similarly. Seven points of drawdown
+for seven basis points of annual return is a real if modest trade, and it is the conjunction
+that does it — either signal alone is either useless or harmful.
+
+The comparison that decides what to carry forward is against Step 198. A price-based rule
+that reacts to the book's own equity curve, halving exposure 8% below the running peak,
+moved the maximum drawdown from -20.3% to -16.1% and the worst rolling year from -5.5% to
+-0.5%. A macro-based rule reacting to external conditions buys roughly a seventh of that
+improvement on a far longer sample. Drawdown control should therefore be built from the
+portfolio's own path, with macro conditions at most a secondary confirmation.
+
+All twenty variants were registered in the trial ledger at evaluation time, which is the
+first program in this project to do so. The ledger now holds 4,432 records.
+
+No strategy was promoted and live trading remains disabled.
+
+References:
+
+- `config/regime_exposure_overlay_v1.json`
+- `scripts/run_regime_exposure_overlay_v1.py`
+- `evidence/regime_exposure_overlay_v1/`

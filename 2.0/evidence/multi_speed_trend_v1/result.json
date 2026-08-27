@@ -1,0 +1,161 @@
+{
+  "experiment": "multi_speed_trend_v1",
+  "status": "structural_test_no_promotion",
+  "created_at_utc": "2026-08-27T07:34:14.953842+00:00",
+  "results_by_window": {
+    "cross_asset": {
+      "signal_average_medium_only": {
+        "observations": 4832,
+        "cagr": 0.04099939442325784,
+        "sharpe": 0.9565313621698006,
+        "max_drawdown": -0.08751847910578647,
+        "worst_rolling_1y": -0.07522042608213886,
+        "annual_turnover": 4.401780096502154
+      },
+      "signal_average_all_nine": {
+        "observations": 4832,
+        "cagr": 0.035575321747609356,
+        "sharpe": 0.8212126025831448,
+        "max_drawdown": -0.10427667429945597,
+        "worst_rolling_1y": -0.0946586714023736,
+        "annual_turnover": 5.6552581421025385
+      },
+      "book_average_three_speeds": {
+        "observations": 4832,
+        "cagr": 0.03659447194900545,
+        "sharpe": 0.9043452896250572,
+        "max_drawdown": -0.09070684303042453,
+        "worst_rolling_1y": -0.08344384072743316,
+        "annual_turnover": 4.421886507606858
+      },
+      "single_speed_fast": {
+        "observations": 4832,
+        "cagr": 0.028541645628118895,
+        "sharpe": 0.648490157311702,
+        "max_drawdown": -0.14120162768186006,
+        "worst_rolling_1y": -0.13209993168470546,
+        "annual_turnover": 7.315752374514416
+      },
+      "single_speed_medium": {
+        "observations": 4832,
+        "cagr": 0.04099939442325784,
+        "sharpe": 0.9565313621698006,
+        "max_drawdown": -0.08751847910578647,
+        "worst_rolling_1y": -0.07522042608213886,
+        "annual_turnover": 4.401780096502154
+      },
+      "single_speed_slow": {
+        "observations": 4832,
+        "cagr": 0.03820179303102811,
+        "sharpe": 0.9165226147308009,
+        "max_drawdown": -0.08680698844440105,
+        "worst_rolling_1y": -0.06957374999989252,
+        "annual_turnover": 3.225956389095979
+      }
+    },
+    "post_2002_bonds": {
+      "signal_average_medium_only": {
+        "observations": 6048,
+        "cagr": 0.0470001966147513,
+        "sharpe": 1.0043012377791354,
+        "max_drawdown": -0.0875184791057867,
+        "worst_rolling_1y": -0.07522042608213886,
+        "annual_turnover": 4.445802923418736
+      },
+      "signal_average_all_nine": {
+        "observations": 6048,
+        "cagr": 0.04169279606861043,
+        "sharpe": 0.8846633245335892,
+        "max_drawdown": -0.10427667429945531,
+        "worst_rolling_1y": -0.09465867140237316,
+        "annual_turnover": 5.698413472288213
+      },
+      "book_average_three_speeds": {
+        "observations": 6048,
+        "cagr": 0.04292047404493715,
+        "sharpe": 0.9561205667072826,
+        "max_drawdown": -0.09070684303042487,
+        "worst_rolling_1y": -0.0834438407274336,
+        "annual_turnover": 4.459822735654616
+      },
+      "single_speed_fast": {
+        "observations": 6048,
+        "cagr": 0.03556847033810473,
+        "sharpe": 0.7254015029452577,
+        "max_drawdown": -0.14120162768186084,
+        "worst_rolling_1y": -0.13209993168470624,
+        "annual_turnover": 7.405073720268521
+      },
+      "single_speed_medium": {
+        "observations": 6048,
+        "cagr": 0.0470001966147513,
+        "sharpe": 1.0043012377791354,
+        "max_drawdown": -0.0875184791057867,
+        "worst_rolling_1y": -0.07522042608213886,
+        "annual_turnover": 4.445802923418736
+      },
+      "single_speed_slow": {
+        "observations": 6048,
+        "cagr": 0.044044539198496935,
+        "sharpe": 0.9607603710101151,
+        "max_drawdown": -0.08680698844440038,
+        "worst_rolling_1y": -0.0695737499998923,
+        "annual_turnover": 3.262964976888463
+      }
+    },
+    "recent_3y": {
+      "signal_average_medium_only": {
+        "observations": 763,
+        "cagr": 0.05403537005408365,
+        "sharpe": 2.7279533238575926,
+        "max_drawdown": -0.013597426853475536,
+        "worst_rolling_1y": 0.03931234437884479,
+        "annual_turnover": 2.1059220209511094
+      },
+      "signal_average_all_nine": {
+        "observations": 763,
+        "cagr": 0.05507509431753799,
+        "sharpe": 3.035674530323652,
+        "max_drawdown": -0.011815563868102563,
+        "worst_rolling_1y": 0.037450952420553074,
+        "annual_turnover": 2.407981865402176
+      },
+      "book_average_three_speeds": {
+        "observations": 763,
+        "cagr": 0.05614179661551377,
+        "sharpe": 2.9415222206175966,
+        "max_drawdown": -0.012649492336255563,
+        "worst_rolling_1y": 0.038758737439022584,
+        "annual_turnover": 1.899582772144163
+      },
+      "single_speed_fast": {
+        "observations": 763,
+        "cagr": 0.05452068630784379,
+        "sharpe": 3.000948520493745,
+        "max_drawdown": -0.011460567735835259,
+        "worst_rolling_1y": 0.03341931516457097,
+        "annual_turnover": 3.034841151150039
+      },
+      "single_speed_medium": {
+        "observations": 763,
+        "cagr": 0.05403537005408365,
+        "sharpe": 2.7279533238575926,
+        "max_drawdown": -0.013597426853475536,
+        "worst_rolling_1y": 0.03931234437884479,
+        "annual_turnover": 2.1059220209511094
+      },
+      "single_speed_slow": {
+        "observations": 763,
+        "cagr": 0.05921440175346304,
+        "sharpe": 2.910338071296228,
+        "max_drawdown": -0.013892125547509071,
+        "worst_rolling_1y": 0.043071955320930444,
+        "annual_turnover": 1.1646585943447587
+      }
+    }
+  },
+  "trials_registered": 18,
+  "trial_ledger_total": 4518,
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

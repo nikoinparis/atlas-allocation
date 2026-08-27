@@ -1,0 +1,175 @@
+{
+  "experiment": "pnl_attribution_v1",
+  "status": "diagnostic_tool_no_promotion",
+  "created_at_utc": "2026-08-27T07:35:19.654189+00:00",
+  "window": {
+    "weeks": 181,
+    "first": "2023-01-06",
+    "last": "2026-08-07"
+  },
+  "per_book": {
+    "150.86% Residual 1.25x": {
+      "net_cagr": 0.5142996249299798,
+      "gross_cagr": 0.5717045710288677,
+      "total_cost_paid_as_share_of_final_wealth": 0.03077676367069455,
+      "average_weekly_cost_bps": 7.208088574714359,
+      "by_calendar_year": {
+        "2023": 0.286689912635947,
+        "2024": 0.16706769888566275,
+        "2025": 0.6141112322970934,
+        "2026": 0.7489296271074364
+      },
+      "concentration": {
+        "positive_weeks": 111,
+        "total_weeks": 181,
+        "hit_rate": 0.6132596685082873,
+        "best_week_share_of_gain": 0.036373807454324295,
+        "best_5_weeks_share_of_gain": 0.13757582488102135,
+        "best_10_weeks_share_of_gain": 0.23653843768391714,
+        "weeks_supplying_half_the_gain": 27,
+        "weeks_supplying_half_as_share": 0.14917127071823205
+      }
+    },
+    "ETF Incumbent": {
+      "net_cagr": 0.426580555885256,
+      "gross_cagr": 0.45107308374441213,
+      "total_cost_paid_as_share_of_final_wealth": 0.017187828938190847,
+      "average_weekly_cost_bps": 3.2704857600035155,
+      "by_calendar_year": {
+        "2023": 0.3613701157244511,
+        "2024": 0.287720054242137,
+        "2025": 0.5183308815543164,
+        "2026": 0.2939149097219049
+      },
+      "concentration": {
+        "positive_weeks": 112,
+        "total_weeks": 181,
+        "hit_rate": 0.6187845303867403,
+        "best_week_share_of_gain": 0.03082856902322902,
+        "best_5_weeks_share_of_gain": 0.1424662454152941,
+        "best_10_weeks_share_of_gain": 0.2569348022535238,
+        "weeks_supplying_half_the_gain": 26,
+        "weeks_supplying_half_as_share": 0.143646408839779
+      }
+    },
+    "142% Growth / Micron": {
+      "net_cagr": 0.30845635340333866,
+      "gross_cagr": 0.322494962378461,
+      "total_cost_paid_as_share_of_final_wealth": 0.014833317748676265,
+      "average_weekly_cost_bps": 2.0891599719037073,
+      "by_calendar_year": {
+        "2023": -0.08456760676847108,
+        "2024": 0.1780638157666088,
+        "2025": 0.37213646664152034,
+        "2026": 0.7227393411527776
+      },
+      "concentration": {
+        "positive_weeks": 98,
+        "total_weeks": 181,
+        "hit_rate": 0.5414364640883977,
+        "best_week_share_of_gain": 0.04964486821122885,
+        "best_5_weeks_share_of_gain": 0.16077569303910533,
+        "best_10_weeks_share_of_gain": 0.28269775804206915,
+        "weeks_supplying_half_the_gain": 24,
+        "weeks_supplying_half_as_share": 0.13259668508287292
+      }
+    },
+    "102% Daily-Audited": {
+      "net_cagr": 0.3861720477502413,
+      "gross_cagr": 0.3861720477502413,
+      "total_cost_paid_as_share_of_final_wealth": 0.0,
+      "average_weekly_cost_bps": 0.0,
+      "by_calendar_year": {
+        "2023": 0.39486364130492735,
+        "2024": 0.10492422041557425,
+        "2025": 0.43090359480820206,
+        "2026": 0.41305187139190136
+      },
+      "concentration": {
+        "positive_weeks": 110,
+        "total_weeks": 181,
+        "hit_rate": 0.6077348066298343,
+        "best_week_share_of_gain": 0.03994234083136298,
+        "best_5_weeks_share_of_gain": 0.14870862224251605,
+        "best_10_weeks_share_of_gain": 0.25705850226060445,
+        "weeks_supplying_half_the_gain": 26,
+        "weeks_supplying_half_as_share": 0.143646408839779
+      }
+    },
+    "124% Sector Ensemble": {
+      "net_cagr": 0.42157201587772963,
+      "gross_cagr": 0.4452376504621054,
+      "total_cost_paid_as_share_of_final_wealth": 0.016943023796930717,
+      "average_weekly_cost_bps": 3.184677891200349,
+      "by_calendar_year": {
+        "2023": 0.29810941527652535,
+        "2024": 0.18063454726850647,
+        "2025": 0.3355858286756488,
+        "2026": 0.6620901568590936
+      },
+      "concentration": {
+        "positive_weeks": 114,
+        "total_weeks": 181,
+        "hit_rate": 0.6298342541436464,
+        "best_week_share_of_gain": 0.04001658220324546,
+        "best_5_weeks_share_of_gain": 0.15128207277213043,
+        "best_10_weeks_share_of_gain": 0.25749065854117287,
+        "weeks_supplying_half_the_gain": 26,
+        "weeks_supplying_half_as_share": 0.143646408839779
+      }
+    }
+  },
+  "equal_weight_composite": {
+    "net_cagr": 0.43063448440261465,
+    "by_calendar_year": {
+      "2023": 0.24671798664360622,
+      "2024": 0.1966628765467031,
+      "2025": 0.4764418037674891,
+      "2026": 0.5790762407128638
+    },
+    "concentration": {
+      "positive_weeks": 113,
+      "total_weeks": 181,
+      "hit_rate": 0.6243093922651933,
+      "best_week_share_of_gain": 0.03807771070445835,
+      "best_5_weeks_share_of_gain": 0.13574230853287103,
+      "best_10_weeks_share_of_gain": 0.23528013176580348,
+      "weeks_supplying_half_the_gain": 28,
+      "weeks_supplying_half_as_share": 0.15469613259668508
+    },
+    "sleeve_contribution": {
+      "150.86% Residual 1.25x": {
+        "summed_weekly_contribution": 0.310726177378354,
+        "share_of_total_contribution": 0.23594127693257622,
+        "share_of_total_risk": 0.19248597280984014,
+        "contribution_per_unit_of_risk": 1.225758290271189
+      },
+      "ETF Incumbent": {
+        "summed_weekly_contribution": 0.2631429888327425,
+        "share_of_total_contribution": 0.19981030669795444,
+        "share_of_total_risk": 0.1640606113226874,
+        "contribution_per_unit_of_risk": 1.217905413658076
+      },
+      "142% Growth / Micron": {
+        "summed_weekly_contribution": 0.2333756401272437,
+        "share_of_total_contribution": 0.17720729872569493,
+        "share_of_total_risk": 0.28485057592051094,
+        "contribution_per_unit_of_risk": 0.6221061626891201
+      },
+      "102% Daily-Audited": {
+        "summed_weekly_contribution": 0.24636589001520873,
+        "share_of_total_contribution": 0.18707108352844015,
+        "share_of_total_risk": 0.18098394081318991,
+        "contribution_per_unit_of_risk": 1.0336336068708623
+      },
+      "124% Sector Ensemble": {
+        "summed_weekly_contribution": 0.2633533440977058,
+        "share_of_total_contribution": 0.19997003411533418,
+        "share_of_total_risk": 0.17761889913377157,
+        "contribution_per_unit_of_risk": 1.1258375943695558
+      }
+    }
+  },
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

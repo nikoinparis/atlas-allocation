@@ -8668,3 +8668,141 @@ References:
 - `config/composite_book_v1.json`
 - `scripts/run_composite_book_v1.py`
 - `evidence/composite_book_v1/`
+
+## Step 207 — Use the whole candle, not just where the day ended
+
+Every strategy in this project estimates volatility from closing prices and discards the
+open, high and low sitting in the same file. Since the trend sleeve sizes positions by
+inverse volatility, a better volatility reading is a free improvement to the portfolio if it
+survives measurement.
+
+One correctness trap is recorded because it would have corrupted the result silently. The
+vintage stores raw bars beside a split- and dividend-adjusted close, and the adjustment
+factor ranges from 0.55 to 1.00 on SPY alone and varies on 31 of 35 tickers. Raw highs and
+lows must be scaled onto the adjusted basis before any range estimator touches them.
+
+The mechanical property appears exactly as the literature predicts. Measured as the average
+absolute day-to-day change in each estimator's own reading, relative to its level, the range
+estimators are steadier than close-to-close: Garman-Klass at 0.76 times the noise, Parkinson
+0.77, Rogers-Satchell and Yang-Zhang 0.80. This is a property of the estimator rather than a
+finding about markets, and it would hold on any price series.
+
+Applied to the trend sleeve, changing nothing but the volatility input, every range
+estimator improves return and four of four improve drawdown. Over the 2002-onward window
+Rogers-Satchell returns 4.70% against close-to-close's 4.33%, at a Sharpe of 1.00 against
+0.98, a maximum drawdown of -8.75% against -9.02% and a worst rolling year of -7.52% against
+-7.91%. Over the 2007-onward window the same ordering holds, 4.10% against 3.67% at 0.96
+against 0.92.
+
+The size of the gain is the right size to believe. An improvement of two Sharpe points from
+a better estimator of an input is plausible; a large one would have suggested an error. What
+makes it credible is that all four estimators move the same direction on return and
+drawdown, so the result does not depend on picking one.
+
+Rogers-Satchell is adopted as the sizing input for subsequent trend work, on the basis that
+the whole family improved rather than that it was the best of the four.
+
+No strategy was promoted and live trading remains disabled.
+
+References:
+
+- `config/candle_volatility_sizing_v1.json`
+- `scripts/run_candle_volatility_sizing_v1.py`
+- `evidence/candle_volatility_sizing_v1/`
+
+## Step 208 — Run three speeds side by side, and find the incumbent already wins
+
+The sleeve averages three lookbacks into one score and trades one book. A signal average can
+sit at zero while its components disagree, taking the book to cash exactly when the speeds
+are most informative. Managed-futures programmes instead run several speeds as separate
+books and hold all of them, which is the Step 203 argument applied one level down.
+
+The hypothesis was that averaging books would beat averaging signals. It does not, and the
+result is recorded as a failed hypothesis rather than reframed.
+
+Over 2002 onward the incumbent medium-speed book returns 4.70% at a Sharpe of 1.00. Holding
+fast, medium and slow as three books returns 4.29% at 0.96. Averaging all nine lookbacks into
+one signal is worse still at 4.17% and 0.88, with turnover rising from 4.45 to 5.70 and the
+maximum drawdown deepening from -8.75% to -10.43%.
+
+The fast book explains it. On its own it returns 3.56% at a Sharpe of 0.73, with a -14.12%
+maximum drawdown and an annual turnover of 7.41 against the slow book's 3.26. It is worse for
+a mechanical reason rather than a performance one: it trades more than twice as often for a
+weaker signal, and averaging it into anything drags that cost along.
+
+This does not contradict Step 203, and the distinction matters for how both are applied.
+Step 203 concerned choosing among comparable books on their past returns, which is selection
+and fails. This concerns including a component that is structurally more expensive, which is
+a cost decision and can be made in advance. Holding the set beats choosing within it when the
+members are comparable; the fast book is not comparable, and its inferiority is visible in
+its turnover before any return is examined.
+
+A separate observation from the same run is worth recording as a caution rather than a
+result. Over the trailing three years every variant looks superb, with Sharpe ratios between
+2.73 and 3.04 and no losing rolling year at all — the worst twelve-month return across all
+six variants is positive. The same rules over nineteen years produce Sharpe ratios between
+0.65 and 1.00. Recent windows flatter this family severely, and the three-year figures were
+reported precisely so they could not later be mistaken for the basis of a choice.
+
+The incumbent medium speed is retained. No strategy was promoted and live trading remains
+disabled.
+
+References:
+
+- `config/multi_speed_trend_v1.json`
+- `scripts/run_multi_speed_trend_v1.py`
+- `evidence/multi_speed_trend_v1/`
+
+## Step 209 — Decompose the profit and loss, and find the worst deal in the book
+
+Two hundred steps have measured returns and never decomposed them. A return says how much
+was made; an attribution says which positions and which weeks made it, and how much trading
+took back. Step 188 found that Micron supplied 67.63% of one strategy's return by accident
+while looking at something else. This finds that class of fact on purpose.
+
+Three decompositions were run across the 181 common weeks.
+
+Cost drag, stated as its own line rather than netted silently, is largest where leverage is.
+The residual 1.25x book grosses 57.17% and nets 51.43%, so trading takes 5.74 points a year
+at an average 7.2 basis points a week. The ETF incumbent and sector ensemble pay 2.4 points
+each. The daily-audited book reports zero cost, which is a data gap in the dashboard export
+rather than a free strategy, and is recorded as such.
+
+Time concentration is healthier than expected and corrects an assumption this project has
+been carrying. Between 24 and 28 of 181 weeks supply half of each book's total gain, the best
+single week contributes 3.1% to 5.0%, and hit rates run 54% to 63%. These books grind rather
+than lurching. The concentration problem in this project has always been in positions, not
+in time, and conflating the two would have led to the wrong fix.
+
+The third decomposition is the one that changes a decision. Comparing each book's share of
+the composite's return against its share of the composite's risk, four of five sit between
+1.03 and 1.23. The Micron-led growth book sits at 0.62: it supplies 17.7% of the return while
+consuming 28.5% of the risk, the only book in the set that costs more risk than it returns.
+
+Removing it improves the composite on every measure at once, which is rare enough to state
+carefully. Return rises from 43.06% to 45.21%, volatility falls from 19.6% to 17.3%, Sharpe
+rises from 1.93 to 2.25, maximum drawdown improves from -21.24% to -17.22% and the worst
+rolling year from -9.22% to -7.84%. Adding the trend sleeve on top continues the pattern: at
+half and half the four-book composite returns 23.88% at a Sharpe of 2.46 with a -8.60%
+maximum drawdown and a -1.31% worst year.
+
+The deflated Sharpe ratio moves with it. Against the ledger's 4,518 documented trials the
+five-book composite scores 0.395 and the four-book composite 0.640, rising to 0.763 when
+blended half and half with trend. That is the largest movement toward the gate any change in
+this project has produced, and it is still short of 0.95.
+
+Whether this counts as selection is the fair objection and it is answered rather than
+dodged. The decision is in-sample, but it was not made on return: the growth book is not the
+worst performer, and three separate earlier steps flagged it structurally before any
+attribution existed. Step 187 recorded it as the only book whose concentration is five single
+names, Step 188 found its headline return traceable to one holding, and Step 190 established
+that a five-name book is dominated by breadth available for free. The attribution confirms a
+conclusion those steps had already reached; it did not discover it by ranking.
+
+No strategy was promoted, no sleeve weight was selected, and live trading remains disabled.
+
+References:
+
+- `config/pnl_attribution_v1.json`
+- `scripts/run_pnl_attribution_v1.py`
+- `evidence/pnl_attribution_v1/`

@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "experiment": "pnl_attribution_v1",
+  "status": "diagnostic_tool_no_promotion",
+  "purpose": "This project has always measured returns and never decomposed them. PnL attribution answers a different question from performance: not how much was made, but which positions, which periods and which costs made it. Step 188 found Micron supplied 67.63% of one strategy's return only by accident; attribution finds that class of fact on purpose.",
+  "plain_statement": "PnL means profit and loss. We have always asked how much the strategy made. This asks where the money actually came from - which holdings, which months, and how much the trading costs ate.",
+  "what_attribution_adds_over_returns": [
+    "Concentration: whether a small number of positions supplied most of the gain, which is the single most common way a backtest flatters a strategy that is really one lucky bet.",
+    "Cost drag: gross return minus net return, stated as its own line rather than buried inside the net figure.",
+    "Timing: whether the return arrived steadily or in a few windows, which decides how much of it an investor would actually have sat through.",
+    "Sleeve contribution: for a blended book, how much each sleeve contributed versus how much risk it consumed."
+  ],
+  "declared_before_running": {
+    "book": "the Step 206 composite at each declared sleeve weight",
+    "decomposition_axes": ["sleeve", "calendar_year", "top_contributing_periods"],
+    "cost_treatment": "gross and net are both reported, and their difference is labelled as cost drag rather than netted silently",
+    "concentration_statistic": "share of total gain supplied by the best N weeks, and the number of weeks required to reach half the total gain"
+  },
+  "not_claimed": [
+    "Attribution explains a realised path. It does not predict, and a well-attributed backtest is still a backtest.",
+    "A concentrated attribution is a warning, not a disqualification; Step 190 established that capturing skew is how this cross-section pays."
+  ],
+  "strategy_source": "dashboard/public/return-first-dashboard.json",
+  "live_trading_enabled": false
+}

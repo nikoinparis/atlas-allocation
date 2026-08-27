@@ -1,0 +1,127 @@
+{
+  "experiment": "candle_volatility_sizing_v1",
+  "status": "structural_test_no_promotion",
+  "created_at_utc": "2026-08-27T07:33:06.248405+00:00",
+  "estimator_steadiness": {
+    "close_to_close": {
+      "mean_level": 0.1729600163114609,
+      "mean_absolute_daily_change": 0.0010614218606252598,
+      "noise_ratio": 0.006136804813396207,
+      "noise_versus_close_to_close": 1.0
+    },
+    "parkinson": {
+      "mean_level": 0.1338321397321108,
+      "mean_absolute_daily_change": 0.0006326255409398151,
+      "noise_ratio": 0.0047270075947835055,
+      "noise_versus_close_to_close": 0.770271784506619
+    },
+    "garman_klass": {
+      "mean_level": 0.13367749959601258,
+      "mean_absolute_daily_change": 0.0006213467911705295,
+      "noise_ratio": 0.0046481030319111645,
+      "noise_versus_close_to_close": 0.7574141875532178
+    },
+    "rogers_satchell": {
+      "mean_level": 0.1357311126950678,
+      "mean_absolute_daily_change": 0.0006681352129560825,
+      "noise_ratio": 0.004922491237930898,
+      "noise_versus_close_to_close": 0.8021260880231111
+    },
+    "yang_zhang": {
+      "mean_level": 0.1768041793528117,
+      "mean_absolute_daily_change": 0.0008699480838434892,
+      "noise_ratio": 0.004920404523399376,
+      "noise_versus_close_to_close": 0.8017860552870255
+    }
+  },
+  "sleeve_results": {
+    "cross_asset": {
+      "close_to_close": {
+        "observations": 4832,
+        "cagr": 0.03673885198243343,
+        "sharpe": 0.9197755331766846,
+        "max_drawdown": -0.0902079987766784,
+        "worst_rolling_1y": -0.0790559912177552,
+        "annual_turnover": 4.333348037708769
+      },
+      "parkinson": {
+        "observations": 4832,
+        "cagr": 0.039175753390835455,
+        "sharpe": 0.9359606779461078,
+        "max_drawdown": -0.08738862087345078,
+        "worst_rolling_1y": -0.07509734685221159,
+        "annual_turnover": 4.33214294437364
+      },
+      "garman_klass": {
+        "observations": 4832,
+        "cagr": 0.03947795692027767,
+        "sharpe": 0.9422281958614421,
+        "max_drawdown": -0.08730687494169864,
+        "worst_rolling_1y": -0.0751453958868209,
+        "annual_turnover": 4.351010659157276
+      },
+      "rogers_satchell": {
+        "observations": 4832,
+        "cagr": 0.04099939442325784,
+        "sharpe": 0.9565313621698006,
+        "max_drawdown": -0.08751847910578647,
+        "worst_rolling_1y": -0.07522042608213886,
+        "annual_turnover": 4.401780096502154
+      },
+      "yang_zhang": {
+        "observations": 4832,
+        "cagr": 0.040460680086504164,
+        "sharpe": 0.9288668779683914,
+        "max_drawdown": -0.09145781964864375,
+        "worst_rolling_1y": -0.07959134141491231,
+        "annual_turnover": 4.399449536063673
+      }
+    },
+    "post_2002_bonds": {
+      "close_to_close": {
+        "observations": 6048,
+        "cagr": 0.0432942956608402,
+        "sharpe": 0.9773886780274407,
+        "max_drawdown": -0.0902079987766784,
+        "worst_rolling_1y": -0.0790559912177553,
+        "annual_turnover": 4.38191115149594
+      },
+      "parkinson": {
+        "observations": 6048,
+        "cagr": 0.04541635938808408,
+        "sharpe": 0.9893821098990987,
+        "max_drawdown": -0.08738862087344978,
+        "worst_rolling_1y": -0.07509734685221114,
+        "annual_turnover": 4.391881634759227
+      },
+      "garman_klass": {
+        "observations": 6048,
+        "cagr": 0.045739132890662004,
+        "sharpe": 0.9932717153508,
+        "max_drawdown": -0.08730687494169731,
+        "worst_rolling_1y": -0.07514539588682023,
+        "annual_turnover": 4.405249938515493
+      },
+      "rogers_satchell": {
+        "observations": 6048,
+        "cagr": 0.0470001966147513,
+        "sharpe": 1.0043012377791354,
+        "max_drawdown": -0.0875184791057867,
+        "worst_rolling_1y": -0.07522042608213886,
+        "annual_turnover": 4.445802923418736
+      },
+      "yang_zhang": {
+        "observations": 6048,
+        "cagr": 0.04675586091444828,
+        "sharpe": 0.9842273482360181,
+        "max_drawdown": -0.09145781964864286,
+        "worst_rolling_1y": -0.07959134141491198,
+        "annual_turnover": 4.440911650699164
+      }
+    }
+  },
+  "trials_registered": 10,
+  "trial_ledger_total": 4500,
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

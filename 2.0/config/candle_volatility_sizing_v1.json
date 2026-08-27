@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "experiment": "candle_volatility_sizing_v1",
+  "status": "structural_test_no_promotion",
+  "purpose": "Every strategy in this project sizes positions by volatility estimated from closing prices alone, discarding the open, high and low that are already on disk. Range-based estimators use the whole bar and are several times more statistically efficient. Better sizing is a free improvement if it holds, and this measures whether it does.",
+  "plain_statement": "We only ever looked at where each day ended. Each day also has a start, a high and a low. This asks whether using the whole day makes the portfolio better.",
+  "data_correctness_note": "The vintage stores raw open/high/low/close alongside a split- and dividend-adjusted close. The adjustment factor ranges from 0.55 to 1.00 on SPY alone, so raw bars must be scaled by adjusted_close/close before any range estimator touches them. Mixing an adjusted close with unadjusted highs and lows would corrupt every estimate silently.",
+  "declared_before_running": {
+    "estimators": [
+      {"name": "close_to_close", "role": "incumbent", "uses": ["close"]},
+      {"name": "parkinson", "role": "challenger", "uses": ["high", "low"], "reference": "Parkinson (1980)"},
+      {"name": "garman_klass", "role": "challenger", "uses": ["open", "high", "low", "close"], "reference": "Garman and Klass (1980)"},
+      {"name": "rogers_satchell", "role": "challenger", "uses": ["open", "high", "low", "close"], "reference": "Rogers and Satchell (1991)"},
+      {"name": "yang_zhang", "role": "challenger", "uses": ["open", "high", "low", "close"], "reference": "Yang and Zhang (2000)", "note": "the only one of these that handles overnight gaps"}
+    ],
+    "applied_to": "the Step 201 cross-asset trend sleeve, changing only the volatility input to its inverse-volatility sizing; the signal, universe, rebalance, delay and costs are untouched",
+    "estimation_window_days": 126,
+    "windows": {"cross_asset": "2007-06-01", "post_2002_bonds": "2002-08-01"},
+    "secondary_measurement": "estimator efficiency, as the standard deviation of each estimator's own rolling estimate; a more efficient estimator produces a steadier reading of the same underlying volatility"
+  },
+  "hypotheses": [
+    "Range estimators should be steadier than close-to-close on the same data, which is a property of the estimator and should appear regardless of whether returns improve.",
+    "Steadier sizing should mean less unnecessary rebalancing, so turnover should fall.",
+    "Any Sharpe improvement is expected to be small. A large one would be suspicious rather than encouraging."
+  ],
+  "not_claimed": [
+    "This changes sizing only. It cannot create a signal that was not already there.",
+    "No estimator is selected. All five are reported."
+  ],
+  "price_source": "data/vintages/20260814T220630Z-6807cd7f14ae66bb/payload/prices.csv",
+  "live_trading_enabled": false
+}

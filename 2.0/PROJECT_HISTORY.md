@@ -32,8 +32,8 @@ a repository, component, dataset, strategy, or promotion gate is tested.
   found no economically material price revision at a 0.01% threshold.
 - Current evidence grades: **2 B, 26 C, 5 D, 0 A**.
 - Repositories or strategies proven durably profitable: **0**.
-- Documented trials in the append-only ledger: **4,500** (a reconstructed lower
-  bound of 4,412 plus 88 registered at evaluation time since Step 204).
+- Documented trials in the append-only ledger: **4,480** (a reconstructed lower
+  bound of 4,412 plus 68 registered at evaluation time since Step 204).
 - Saved strategies clearing a deflated Sharpe of 0.95 at any credible trial
   count: **0** (Steps 199 and 202).
 - Point-in-time issuer universe rebuilt from SEC filings: **14,392 issuers,
@@ -8562,7 +8562,7 @@ improvement on a far longer sample. Drawdown control should therefore be built f
 portfolio's own path, with macro conditions at most a secondary confirmation.
 
 All twenty variants were registered in the trial ledger at evaluation time, which is the
-first program in this project to do so. The ledger now holds 4,432 records.
+first program in this project to do so. The ledger held 4,432 records at that point.
 
 No strategy was promoted and live trading remains disabled.
 

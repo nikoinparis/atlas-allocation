@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "experiment": "seasonality_program_v1",
+  "status": "structural_test_no_promotion",
+  "purpose": "Test the standard calendar effects on the 33-year ETF panel, with the multiple-testing correction stated before running, because seasonality is the single easiest family in which to manufacture a false positive.",
+  "why_this_family_needs_extra_care": "There are twelve months, five weekdays, and an unlimited number of day-of-month windows. Searching them produces significant-looking results by construction. Every effect tested here is named in the literature before it is computed, the full family is corrected together, and no effect is reported without its corrected p-value.",
+  "declared_before_running": {
+    "effects": [
+      {"name": "turn_of_month", "rule": "long from the last trading day of the month through the third trading day of the next", "reference": "Ariel (1987), Lakonishok and Smidt (1988)"},
+      {"name": "halloween", "rule": "long November through April, flat May through October", "reference": "Bouman and Jacobsen (2002)"},
+      {"name": "january", "rule": "long January only", "reference": "Rozeff and Kinney (1976)"},
+      {"name": "santa_claus", "rule": "long the last five trading days of December and the first two of January", "reference": "Hirsch, Stock Trader's Almanac"},
+      {"name": "monday_effect", "rule": "long Mondays only", "reference": "French (1980)"},
+      {"name": "friday_effect", "rule": "long Fridays only", "reference": "French (1980)"},
+      {"name": "first_half_of_month", "rule": "long trading days 1 through 10 of each month", "reference": "Ariel (1987)"},
+      {"name": "quarter_end", "rule": "long the last three trading days of each calendar quarter", "reference": "window-dressing literature"}
+    ],
+    "assets": ["SPY", "QQQ", "IWM", "TLT", "GLD", "equal_weight_etf_universe"],
+    "statistic": "mean daily excess return on active days minus mean daily return on inactive days",
+    "significance": {
+      "test": "stationary block bootstrap, 10,000 resamples, expected block length 21 trading days",
+      "block_rationale": "Daily equity returns carry volatility clustering; an i.i.d. bootstrap would overstate confidence on a calendar rule that concentrates its exposure in particular parts of the month.",
+      "family_size": 48,
+      "correction": "Bonferroni across all 48 asset-effect pairs, threshold 0.05/48 = 0.00104"
+    },
+    "cost_bps_per_unit_turnover": 10.0,
+    "evaluation_start": "1993-06-01"
+  },
+  "hypotheses": [
+    "Most of these effects were documented decades ago on data ending decades ago; the prior is that they have decayed or reversed.",
+    "Turn-of-month has the strongest surviving literature and is the most likely to persist.",
+    "Any effect that survives correction must still be checked for whether it is tradable after costs, given that a rule active 15% of days pays turnover to be active."
+  ],
+  "not_claimed": [
+    "A surviving effect is a candidate for further work, not an alpha source. Calendar effects have no economic mechanism that prevents arbitrage.",
+    "The equal-weight ETF universe is not an investable book; it is included as a breadth control."
+  ],
+  "price_source": "data/vintages/20260814T220630Z-6807cd7f14ae66bb/payload/prices.csv",
+  "live_trading_enabled": false
+}

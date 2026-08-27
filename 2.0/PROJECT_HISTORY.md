@@ -1,6 +1,6 @@
 # Portfolio Optimizer: End-to-End Project History
 
-Last updated: 2026-08-16
+Last updated: 2026-08-27
 
 This is the living reference for the project from its original 1.0 research
 stack through the current 2.0 repository-evaluation platform. Update it whenever
@@ -32,6 +32,15 @@ a repository, component, dataset, strategy, or promotion gate is tested.
   found no economically material price revision at a 0.01% threshold.
 - Current evidence grades: **2 B, 26 C, 5 D, 0 A**.
 - Repositories or strategies proven durably profitable: **0**.
+- Documented trials in the append-only ledger: **4,500** (a reconstructed lower
+  bound of 4,412 plus 88 registered at evaluation time since Step 204).
+- Saved strategies clearing a deflated Sharpe of 0.95 at any credible trial
+  count: **0** (Steps 199 and 202).
+- Point-in-time issuer universe rebuilt from SEC filings: **14,392 issuers,
+  2012q1-2026q1**, of which **8,830 exited before the current price panel
+  begins** — the survivorship gap the price backfill exists to close.
+- Price backfill status: queue built (17,970 request pairs, 36 unattended days at
+  the free tier); acquisition **not started**, pending a provider token.
 - Live brokerage or real-money trading approval: **none**.
 
 Passing a software test means only that the tested behavior worked. It never
@@ -8562,3 +8571,47 @@ References:
 - `config/regime_exposure_overlay_v1.json`
 - `scripts/run_regime_exposure_overlay_v1.py`
 - `evidence/regime_exposure_overlay_v1/`
+
+## Step 205 — Test the calendar, and find one survivor that cannot be traded
+
+Seasonality is the easiest family in this project to manufacture a false positive in: twelve
+months, five weekdays and an unbounded number of day-of-month windows. The protection was
+declared before anything was computed. Eight effects, each named in the literature with its
+citation, across six books, giving a family of forty-eight pairs corrected together at
+Bonferroni's 0.00104, with a stationary block bootstrap at an expected block length of
+twenty-one trading days because daily equity returns cluster.
+
+Five pairs are nominally significant at 0.05. Forty-eight tests at that level would produce
+about 2.4 by chance, so five is unremarkable. One survives correction: long-dated Treasuries
+in the first half of the month, at a -20.43% annualised spread with a bootstrap p of 0.0002.
+
+The survivor cannot be used, and the reason is worth stating rather than working around. Its
+spread is negative, so a rule that goes long when it fires loses: the long-flat book returns
+-5.62% against TLT's own 3.53%. Extracting value would mean inverting it, and choosing to
+invert a rule after seeing the sign of its coefficient is precisely the fitted decision the
+pre-declaration forbids. It is recorded as a surviving effect and a rejected candidate,
+which are different things.
+
+The broader result is more useful than any individual p-value. Not one of the forty-eight
+long-flat books beats its own buy-and-hold. The best is the Halloween effect on SPY at 6.66%
+against 10.92%. The arithmetic is the same in every case: a calendar rule sits in cash for a
+large share of days, and the equity risk premium accrues on those days too. An effect must
+therefore be very large to survive being out of the market half the time, and none of these
+is.
+
+Two effects are worth noting as failures because their reputations are strong. Turn-of-month,
+which has the best-surviving literature of the eight, is nominally insignificant on all six
+books, with p between 0.10 and 0.93. The January effect is insignificant everywhere and
+negative on three books.
+
+All forty-eight pairs were registered in the trial ledger at evaluation time. The family is
+closed rather than parked: it has now been tested properly, and re-opening it would need a
+new mechanism rather than a new window.
+
+No strategy was promoted and live trading remains disabled.
+
+References:
+
+- `config/seasonality_program_v1.json`
+- `scripts/run_seasonality_program_v1.py`
+- `evidence/seasonality_program_v1/`

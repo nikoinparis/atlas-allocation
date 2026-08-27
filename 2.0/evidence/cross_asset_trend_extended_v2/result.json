@@ -1,0 +1,406 @@
+{
+  "experiment": "cross_asset_trend_extended_v2",
+  "status": "feasibility_probe_not_a_candidate",
+  "created_at_utc": "2026-08-27T06:37:19.859733+00:00",
+  "assets_available_by_year": {
+    "1994": 1,
+    "1995": 1,
+    "1996": 1,
+    "1997": 2,
+    "1998": 2,
+    "1999": 2,
+    "2000": 12,
+    "2001": 13,
+    "2002": 13,
+    "2003": 14,
+    "2004": 19,
+    "2005": 22,
+    "2006": 26,
+    "2007": 28,
+    "2008": 33,
+    "2009": 34,
+    "2010": 34,
+    "2011": 34,
+    "2012": 34,
+    "2013": 34,
+    "2014": 34,
+    "2015": 34,
+    "2016": 35,
+    "2017": 35,
+    "2018": 35,
+    "2019": 35,
+    "2020": 35,
+    "2021": 35,
+    "2022": 35,
+    "2023": 35,
+    "2024": 35,
+    "2025": 35,
+    "2026": 35
+  },
+  "variants": {
+    "unconditional_vt10_lev1.0": {
+      "variant": "unconditional",
+      "vol_target": 0.1,
+      "max_leverage": 1.0,
+      "windows": {
+        "full": {
+          "observations": 8443,
+          "cagr": 0.02471537456366968,
+          "volatility": 0.046332321245512606,
+          "sharpe": 0.5501614314406069,
+          "max_drawdown": -0.21259095571582776,
+          "worst_rolling_1y": -0.1540745002445807,
+          "annual_turnover": 3.5668177773349306
+        },
+        "cross_asset": {
+          "observations": 4832,
+          "cagr": 0.03676080653273561,
+          "volatility": 0.040131645583665214,
+          "sharpe": 0.9197139781135899,
+          "max_drawdown": -0.09024424578338197,
+          "worst_rolling_1y": -0.07909107990470332,
+          "annual_turnover": 4.333252743777541
+        },
+        "post_2002_bonds": {
+          "observations": 6048,
+          "cagr": 0.043315055949218584,
+          "volatility": 0.04439481914276522,
+          "sharpe": 0.9774285509043348,
+          "max_drawdown": -0.09024424578338264,
+          "worst_rolling_1y": -0.0790910799047031,
+          "annual_turnover": 4.381823880777323
+        }
+      }
+    },
+    "unconditional_vt15_lev1.5": {
+      "variant": "unconditional",
+      "vol_target": 0.15,
+      "max_leverage": 1.5,
+      "windows": {
+        "full": {
+          "observations": 8443,
+          "cagr": 0.03647111407435655,
+          "volatility": 0.06949942596968817,
+          "sharpe": 0.550256343902718,
+          "max_drawdown": -0.30701751768457397,
+          "worst_rolling_1y": -0.2244090497358765,
+          "annual_turnover": 5.350226666002396
+        },
+        "cross_asset": {
+          "observations": 4832,
+          "cagr": 0.055017321748880965,
+          "volatility": 0.060199359003220904,
+          "sharpe": 0.9198916314370397,
+          "max_drawdown": -0.13309403452769264,
+          "worst_rolling_1y": -0.117263812737459,
+          "annual_turnover": 6.499879115666312
+        },
+        "post_2002_bonds": {
+          "observations": 6048,
+          "cagr": 0.06489030384686534,
+          "volatility": 0.0665935883582961,
+          "sharpe": 0.9775577622963342,
+          "max_drawdown": -0.13309403452769164,
+          "worst_rolling_1y": -0.1172638127374579,
+          "annual_turnover": 6.572735821165985
+        }
+      }
+    },
+    "unconditional_vt20_lev2.0": {
+      "variant": "unconditional",
+      "vol_target": 0.2,
+      "max_leverage": 2.0,
+      "windows": {
+        "full": {
+          "observations": 8443,
+          "cagr": 0.04779184997286379,
+          "volatility": 0.09266594488168985,
+          "sharpe": 0.5502614413778683,
+          "max_drawdown": -0.3935831765294513,
+          "worst_rolling_1y": -0.2903969748012416,
+          "annual_turnover": 7.133635554669861
+        },
+        "cross_asset": {
+          "observations": 4832,
+          "cagr": 0.07315227921426981,
+          "volatility": 0.08026589896162796,
+          "sharpe": 0.9199014398510417,
+          "max_drawdown": -0.1744549677234969,
+          "worst_rolling_1y": -0.15449885707095734,
+          "annual_turnover": 8.666505487555082
+        },
+        "post_2002_bonds": {
+          "observations": 6048,
+          "cagr": 0.08636642995778865,
+          "volatility": 0.08879151354336703,
+          "sharpe": 0.9775648789859687,
+          "max_drawdown": -0.17445496772349645,
+          "worst_rolling_1y": -0.15449885707095712,
+          "annual_turnover": 8.763647761554646
+        }
+      }
+    },
+    "unconditional_vt25_lev2.5": {
+      "variant": "unconditional",
+      "vol_target": 0.25,
+      "max_leverage": 2.5,
+      "windows": {
+        "full": {
+          "observations": 8443,
+          "cagr": 0.05866353704499505,
+          "volatility": 0.1158324311021123,
+          "sharpe": 0.5502614413778684,
+          "max_drawdown": -0.47230995117454266,
+          "worst_rolling_1y": -0.35215050965208483,
+          "annual_turnover": 8.917044443337325
+        },
+        "cross_asset": {
+          "observations": 4832,
+          "cagr": 0.09115521283990602,
+          "volatility": 0.10033237370203496,
+          "sharpe": 0.9199014398510416,
+          "max_drawdown": -0.214348582815288,
+          "worst_rolling_1y": -0.190782556415381,
+          "annual_turnover": 10.833131859443853
+        },
+        "post_2002_bonds": {
+          "observations": 6048,
+          "cagr": 0.10772499805948277,
+          "volatility": 0.1109893919292088,
+          "sharpe": 0.9775648789859687,
+          "max_drawdown": -0.21434858281528746,
+          "worst_rolling_1y": -0.1907825564153801,
+          "annual_turnover": 10.954559701943309
+        }
+      }
+    },
+    "conditional_vt10_lev1.0": {
+      "variant": "conditional",
+      "vol_target": 0.1,
+      "max_leverage": 1.0,
+      "windows": {
+        "full": {
+          "observations": 8443,
+          "cagr": 0.02471537456366968,
+          "volatility": 0.046332321245512606,
+          "sharpe": 0.5501614314406069,
+          "max_drawdown": -0.21259095571582776,
+          "worst_rolling_1y": -0.1540745002445807,
+          "annual_turnover": 3.5668177773349306
+        },
+        "cross_asset": {
+          "observations": 4832,
+          "cagr": 0.03676080653273561,
+          "volatility": 0.040131645583665214,
+          "sharpe": 0.9197139781135899,
+          "max_drawdown": -0.09024424578338197,
+          "worst_rolling_1y": -0.07909107990470332,
+          "annual_turnover": 4.333252743777541
+        },
+        "post_2002_bonds": {
+          "observations": 6048,
+          "cagr": 0.043315055949218584,
+          "volatility": 0.04439481914276522,
+          "sharpe": 0.9774285509043348,
+          "max_drawdown": -0.09024424578338264,
+          "worst_rolling_1y": -0.0790910799047031,
+          "annual_turnover": 4.381823880777323
+        }
+      }
+    },
+    "conditional_vt15_lev1.5": {
+      "variant": "conditional",
+      "vol_target": 0.15,
+      "max_leverage": 1.5,
+      "windows": {
+        "full": {
+          "observations": 8443,
+          "cagr": 0.02285930586675544,
+          "volatility": 0.05685691982253878,
+          "sharpe": 0.42600353625318943,
+          "max_drawdown": -0.30701751768457397,
+          "worst_rolling_1y": -0.2244090497358765,
+          "annual_turnover": 3.8943663967915594
+        },
+        "cross_asset": {
+          "observations": 4832,
+          "cagr": 0.03862668059162555,
+          "volatility": 0.04107191767681445,
+          "sharpe": 0.943372933020927,
+          "max_drawdown": -0.09024424578338197,
+          "worst_rolling_1y": -0.07909107990470277,
+          "annual_turnover": 4.406690464502286
+        },
+        "post_2002_bonds": {
+          "observations": 6048,
+          "cagr": 0.04541811718377087,
+          "volatility": 0.04699244134973086,
+          "sharpe": 0.9687819972065544,
+          "max_drawdown": -0.09024424578338186,
+          "worst_rolling_1y": -0.07909107990470243,
+          "annual_turnover": 4.540356811088755
+        }
+      }
+    },
+    "conditional_vt20_lev2.0": {
+      "variant": "conditional",
+      "vol_target": 0.2,
+      "max_leverage": 2.0,
+      "windows": {
+        "full": {
+          "observations": 8443,
+          "cagr": 0.021104793656472776,
+          "volatility": 0.0655755689517187,
+          "sharpe": 0.35134665116970965,
+          "max_drawdown": -0.37615026228625925,
+          "worst_rolling_1y": -0.28316058494194507,
+          "annual_turnover": 4.122662088469999
+        },
+        "cross_asset": {
+          "observations": 4832,
+          "cagr": 0.038836570547218674,
+          "volatility": 0.04112845618935025,
+          "sharpe": 0.9470461264912148,
+          "max_drawdown": -0.09024424578338197,
+          "worst_rolling_1y": -0.07909107990470277,
+          "annual_turnover": 4.411501974588443
+        },
+        "post_2002_bonds": {
+          "observations": 6048,
+          "cagr": 0.04629360546202199,
+          "volatility": 0.0491137539363757,
+          "sharpe": 0.9460579671200947,
+          "max_drawdown": -0.09024424578338364,
+          "worst_rolling_1y": -0.07909107990470465,
+          "annual_turnover": 4.627760203389234
+        }
+      }
+    },
+    "conditional_vt25_lev2.5": {
+      "variant": "conditional",
+      "vol_target": 0.25,
+      "max_leverage": 2.5,
+      "windows": {
+        "full": {
+          "observations": 8443,
+          "cagr": 0.020529330748682684,
+          "volatility": 0.0690314928690492,
+          "sharpe": 0.3289960322869653,
+          "max_drawdown": -0.41085739334158233,
+          "worst_rolling_1y": -0.31600668976506385,
+          "annual_turnover": 4.2080792861869165
+        },
+        "cross_asset": {
+          "observations": 4832,
+          "cagr": 0.038836570547218674,
+          "volatility": 0.04112845618935025,
+          "sharpe": 0.9470461264912148,
+          "max_drawdown": -0.09024424578338197,
+          "worst_rolling_1y": -0.07909107990470277,
+          "annual_turnover": 4.411501974588443
+        },
+        "post_2002_bonds": {
+          "observations": 6048,
+          "cagr": 0.04709278471254463,
+          "volatility": 0.05162535462519888,
+          "sharpe": 0.9172693005642367,
+          "max_drawdown": -0.09024424578338186,
+          "worst_rolling_1y": -0.07909107990470265,
+          "annual_turnover": 4.708196136905115
+        }
+      }
+    },
+    "no_vol_target_vt10_lev1.0": {
+      "variant": "no_vol_target",
+      "vol_target": 0.1,
+      "max_leverage": 1.0,
+      "windows": {
+        "full": {
+          "observations": 8443,
+          "cagr": 0.020440102948377392,
+          "volatility": 0.06969642872668605,
+          "sharpe": 0.32526643519143184,
+          "max_drawdown": -0.4193778969786005,
+          "worst_rolling_1y": -0.31600668976506385,
+          "annual_turnover": 4.23297182065057
+        },
+        "cross_asset": {
+          "observations": 4832,
+          "cagr": 0.038836570547218674,
+          "volatility": 0.04112845618935025,
+          "sharpe": 0.9470461264912148,
+          "max_drawdown": -0.09024424578338197,
+          "worst_rolling_1y": -0.07909107990470277,
+          "annual_turnover": 4.411501974588443
+        },
+        "post_2002_bonds": {
+          "observations": 6048,
+          "cagr": 0.04696498280069861,
+          "volatility": 0.05285800466134625,
+          "sharpe": 0.8947910221795656,
+          "max_drawdown": -0.1104084435110726,
+          "worst_rolling_1y": -0.07909107990470299,
+          "annual_turnover": 4.742946082089742
+        }
+      }
+    }
+  },
+  "benchmarks_by_window": {
+    "full": {
+      "SPY_buy_and_hold": {
+        "observations": 8442,
+        "cagr": 0.10919736434824068,
+        "volatility": 0.1855481478795939,
+        "sharpe": 0.6514745659845675,
+        "max_drawdown": -0.5518941160715971,
+        "worst_rolling_1y": -0.47354136786231127
+      },
+      "sixty_forty_SPY_IEF": {
+        "observations": 6049,
+        "cagr": 0.08784455856877282,
+        "volatility": 0.10799941323787782,
+        "sharpe": 0.833710467076386,
+        "max_drawdown": -0.31393508561325056,
+        "worst_rolling_1y": -0.271410781647496
+      }
+    },
+    "cross_asset": {
+      "SPY_buy_and_hold": {
+        "observations": 4832,
+        "cagr": 0.10853191671951912,
+        "volatility": 0.1973879586115974,
+        "sharpe": 0.6208544823995962,
+        "max_drawdown": -0.5518941160715968,
+        "worst_rolling_1y": -0.47354136786231094
+      },
+      "sixty_forty_SPY_IEF": {
+        "observations": 4832,
+        "cagr": 0.08424059258472982,
+        "volatility": 0.11337399366339537,
+        "sharpe": 0.7701471365434452,
+        "max_drawdown": -0.31393508561324934,
+        "worst_rolling_1y": -0.2714107816474952
+      }
+    },
+    "post_2002_bonds": {
+      "SPY_buy_and_hold": {
+        "observations": 6048,
+        "cagr": 0.11348527951995435,
+        "volatility": 0.18800822340562034,
+        "sharpe": 0.6659193941015075,
+        "max_drawdown": -0.5518941160715963,
+        "worst_rolling_1y": -0.4735413678623104
+      },
+      "sixty_forty_SPY_IEF": {
+        "observations": 6048,
+        "cagr": 0.08762824133905545,
+        "volatility": 0.10800396595735669,
+        "sharpe": 0.8318379139272944,
+        "max_drawdown": -0.31393508561325045,
+        "worst_rolling_1y": -0.27141078164749566
+      }
+    }
+  },
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

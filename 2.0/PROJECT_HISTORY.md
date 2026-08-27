@@ -8364,3 +8364,53 @@ References:
 - `config/cross_asset_trend_probe_v1.json`
 - `scripts/run_cross_asset_trend_probe_v1.py`
 - `evidence/cross_asset_trend_probe_v1/`
+
+## Step 201 — Extend the sleeve to 1993, and find the volatility target is a leverage rule
+
+Step 200 evaluated the cross-asset trend sleeve from 2007 because that is when the bond,
+commodity, FX and international sleeves all exist. This extends it to 1993, sweeps the
+leverage grid, and adds two sizing variants to find out what the volatility target is
+actually contributing.
+
+The 1993 extension answers its own question, and the answer is that the earlier start is
+not informative about the rule. Over the full span the Sharpe falls to 0.55, but the count
+of assets the rule could choose from is 1 in 1994, 2 in 1999, 14 in 2003, 28 in 2007 and 35
+today. Before 2007 this is not a cross-asset book; it is a single-asset trend filter on SPY
+that gradually acquires company. The degradation measures the opportunity set, not the
+signal. Recorded because a full-span Sharpe of 0.55 would otherwise look like the 2007-2026
+result failing to generalise backwards, and it is not that.
+
+The window that does generalise is 2002-08 onward, the point at which the Treasury and
+credit sleeves arrive and the universe reaches fourteen assets. Over that span the Sharpe is
+0.98, slightly better than the 0.92 measured from 2007, with the same -9.02% maximum
+drawdown at the lowest leverage setting. Two independent windows of fourteen and nineteen
+years now agree on a Sharpe near unity.
+
+The sizing result is a correction to how Step 200 described itself. Three variants were run:
+unconditional targeting, conditional targeting that intervenes only when realised volatility
+exceeds the target, and no targeting at all. The conditional variant collapses onto the
+untargeted control at every leverage cap, producing an identical 3.88% return, an identical
+-9.02% drawdown and an identical 4.41 annual turnover. The reason is that this book's
+natural volatility is almost always *below* the target, so a conditional rule that only acts
+when volatility is high essentially never acts.
+
+That means the unconditional "volatility target" in Step 200 was not reducing risk. It was
+levering the book up to a chosen volatility, and the Sharpe invariance across the grid —
+0.92 at every one of the four settings, to two decimals — is the signature of a pure scaling
+operation rather than a risk control. The sleeve has a Sharpe near 0.95 and the grid is
+simply a choice of how much of it to take. Step 200's leverage-grid figures are unaffected;
+its description of them was imprecise, and this is the correction.
+
+The practical consequence is that the conditional-targeting upgrade from the literature does
+not apply to this sleeve, because the condition it triggers on does not occur here. It may
+still apply to the SEC equity books, whose realised volatility is far higher, and that is
+where it should be tested instead.
+
+This remains a probe. No point on the leverage grid was selected, no forward clock was
+started, and live trading remains disabled.
+
+References:
+
+- `config/cross_asset_trend_extended_v2.json`
+- `scripts/run_cross_asset_trend_extended_v2.py`
+- `evidence/cross_asset_trend_extended_v2/`

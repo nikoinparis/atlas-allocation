@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "experiment": "cross_asset_trend_extended_v2",
+  "status": "feasibility_probe_not_a_candidate",
+  "supersedes_reporting_of": "cross_asset_trend_probe_v1",
+  "purpose": "Extend the Step 200 sleeve to the full 1993-2026 span, report the leverage grid without selecting a point, and test whether conditional volatility targeting improves the shape at lower turnover than the unconditional rule.",
+  "the_1993_caveat": "Before 2007 the universe is not cross-asset. SPY exists from 1993, sector ETFs from 1998, QQQ from 1999, bonds from 2002, gold from 2004. A pre-2007 result is therefore a measurement of a progressively smaller and more equity-concentrated universe, and any comparison against the 2007+ figures conflates the rule with the opportunity set. Both are reported; neither is presented as the headline.",
+  "declared_before_running": {
+    "lookbacks_trading_days": [63, 126, 252],
+    "signal": "mean sign of total return over each lookback; hold only assets with positive score",
+    "sizing": "inverse trailing 126d volatility within the held set, scaled to a portfolio volatility target",
+    "rebalance": "last trading day of each calendar month",
+    "execution_delay_days": 1,
+    "cost_bps_per_unit_turnover": 10.0,
+    "cash_asset": "BIL",
+    "minimum_history_days": 300,
+    "minimum_assets_held": 4,
+    "leverage_grid": [[0.10, 1.0], [0.15, 1.5], [0.20, 2.0], [0.25, 2.5]],
+    "windows": {
+      "full": "1993-01-29",
+      "cross_asset": "2007-06-01",
+      "post_2002_bonds": "2002-08-01"
+    },
+    "variants": {
+      "unconditional": "Scale to the volatility target at every rebalance.",
+      "conditional": "Scale only when trailing realised portfolio volatility exceeds the target; otherwise hold the unscaled inverse-volatility book capped at the leverage cap.",
+      "no_vol_target": "Inverse-volatility weights with no portfolio-level scaling, as a control that isolates what the targeting itself contributes."
+    }
+  },
+  "questions": [
+    "Does the Sharpe hold up before 2007, and if not, is that the rule failing or the universe shrinking?",
+    "Does the conditional variant match the unconditional one on drawdown at lower turnover?",
+    "Is the Sharpe still close to invariant across the leverage grid, which is what makes the sleeve scalable?"
+  ],
+  "not_claimed": [
+    "No point on the leverage grid is selected. Choosing one after seeing the grid converts a structural test into a fitted one.",
+    "This remains a probe. No forward clock is started and nothing is promoted.",
+    "Pre-2007 figures are not comparable to post-2007 figures and are not averaged with them."
+  ],
+  "price_source": "data/vintages/20260814T220630Z-6807cd7f14ae66bb/payload/prices.csv",
+  "live_trading_enabled": false
+}

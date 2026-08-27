@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "experiment": "deflated_sharpe_audit_v1",
+  "status": "retrospective_audit_of_existing_results",
+  "purpose": "Apply the Bailey and Lopez de Prado (2014) deflated Sharpe ratio to the saved dashboard strategies, so that the project's own search volume is priced into its headline numbers rather than left implicit.",
+  "method": {
+    "reference": "Bailey, D. and Lopez de Prado, M. (2014), The Deflated Sharpe Ratio: Correcting for Selection Bias, Backtest Overfitting and Non-Normality, Journal of Portfolio Management",
+    "statistic": "DSR = P(true Sharpe > 0) after deflating the observed Sharpe by the expected maximum Sharpe under a null of N independent zero-skill trials, adjusting for sample length, skewness and kurtosis",
+    "significance_threshold": 0.95,
+    "trial_counts_reported": [10, 100, 1000, 5000],
+    "trial_count_rationale": "N is not observed, so it is reported as a sensitivity grid rather than assumed. Documented lower bounds from the project's own record: 576 standardized configurations in Batch 05 alone, 288-experiment batches in Batches 01 and 04, 2,924 nested ML fits in Batch 17, 22 literature signals in Step 189/192, and 198 recorded steps. A defensible N for the SEC family is in the thousands, not the tens."
+  },
+  "declared_before_running": {
+    "return_series": "weekly net returns exactly as published on the dashboard, no re-derivation",
+    "periods_per_year": 52,
+    "no_parameter_is_fitted": true
+  },
+  "not_claimed": [
+    "A low DSR does not prove a strategy has no edge; it proves the retrospective sample cannot establish one.",
+    "This audit cannot be repaired by finding a higher Sharpe on the same window, because raising the observed Sharpe on the sample the search ran over also raises the null it is deflated against."
+  ],
+  "strategy_source": "dashboard/public/return-first-dashboard.json",
+  "live_trading_enabled": false
+}

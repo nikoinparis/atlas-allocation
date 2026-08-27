@@ -1,0 +1,194 @@
+{
+  "experiment": "deflated_sharpe_audit_v1",
+  "status": "retrospective_audit_of_existing_results",
+  "created_at_utc": "2026-08-27T06:12:54.885813+00:00",
+  "threshold": 0.95,
+  "strategies": {
+    "150.86% Residual 1.25x": {
+      "weeks": 193,
+      "skewness": -0.10905335942057189,
+      "kurtosis": 4.437377436891985,
+      "by_trial_count": {
+        "10": {
+          "trials": 10,
+          "annualised_sharpe": 1.7872179138155015,
+          "annualised_null_threshold": 0.8515209333649697,
+          "deflated_sharpe_ratio": 0.9582074823433688,
+          "significant_at_0.95": true
+        },
+        "100": {
+          "trials": 100,
+          "annualised_sharpe": 1.7872179138155015,
+          "annualised_null_threshold": 1.3685149639457328,
+          "deflated_sharpe_ratio": 0.780608125325921,
+          "significant_at_0.95": false
+        },
+        "1000": {
+          "trials": 1000,
+          "annualised_sharpe": 1.7872179138155015,
+          "annualised_null_threshold": 1.7603245901846856,
+          "deflated_sharpe_ratio": 0.519831246636452,
+          "significant_at_0.95": false
+        },
+        "5000": {
+          "trials": 5000,
+          "annualised_sharpe": 1.7872179138155015,
+          "annualised_null_threshold": 1.994258708448084,
+          "deflated_sharpe_ratio": 0.3509149295446031,
+          "significant_at_0.95": false
+        }
+      }
+    },
+    "ETF Incumbent": {
+      "weeks": 1127,
+      "skewness": -0.3470491711786023,
+      "kurtosis": 5.715963148426156,
+      "by_trial_count": {
+        "10": {
+          "trials": 10,
+          "annualised_sharpe": 0.7205778864964351,
+          "annualised_null_threshold": 0.3461480347418683,
+          "deflated_sharpe_ratio": 0.9557393448295746,
+          "significant_at_0.95": true
+        },
+        "100": {
+          "trials": 100,
+          "annualised_sharpe": 0.7205778864964351,
+          "annualised_null_threshold": 0.5563090074752375,
+          "deflated_sharpe_ratio": 0.7725422529316677,
+          "significant_at_0.95": false
+        },
+        "1000": {
+          "trials": 1000,
+          "annualised_sharpe": 0.7205778864964351,
+          "annualised_null_threshold": 0.7155818178095781,
+          "deflated_sharpe_ratio": 0.5090658596260876,
+          "significant_at_0.95": false
+        },
+        "5000": {
+          "trials": 5000,
+          "annualised_sharpe": 0.7205778864964351,
+          "annualised_null_threshold": 0.8106773487860786,
+          "deflated_sharpe_ratio": 0.3409562037361973,
+          "significant_at_0.95": false
+        }
+      }
+    },
+    "142% Growth / Micron": {
+      "weeks": 188,
+      "skewness": -0.17944817008486252,
+      "kurtosis": 5.324629541125672,
+      "by_trial_count": {
+        "10": {
+          "trials": 10,
+          "annualised_sharpe": 0.9481996522893604,
+          "annualised_null_threshold": 0.8477050405870065,
+          "deflated_sharpe_ratio": 0.5740391750052823,
+          "significant_at_0.95": false
+        },
+        "100": {
+          "trials": 100,
+          "annualised_sharpe": 0.9481996522893604,
+          "annualised_null_threshold": 1.3623822828067982,
+          "deflated_sharpe_ratio": 0.2208464940518542,
+          "significant_at_0.95": false
+        },
+        "1000": {
+          "trials": 1000,
+          "annualised_sharpe": 0.9481996522893604,
+          "annualised_null_threshold": 1.7524361054424344,
+          "deflated_sharpe_ratio": 0.06760661629875274,
+          "significant_at_0.95": false
+        },
+        "5000": {
+          "trials": 5000,
+          "annualised_sharpe": 0.9481996522893604,
+          "annualised_null_threshold": 1.9853219024286646,
+          "deflated_sharpe_ratio": 0.027024873057333542,
+          "significant_at_0.95": false
+        }
+      }
+    },
+    "102% Daily-Audited": {
+      "weeks": 181,
+      "skewness": -0.14766188361198557,
+      "kurtosis": 4.564038663403756,
+      "by_trial_count": {
+        "10": {
+          "trials": 10,
+          "annualised_sharpe": 1.5369225828579247,
+          "annualised_null_threshold": 0.876237226869165,
+          "deflated_sharpe_ratio": 0.8824358011823754,
+          "significant_at_0.95": false
+        },
+        "100": {
+          "trials": 100,
+          "annualised_sharpe": 1.5369225828579247,
+          "annualised_null_threshold": 1.4082375546518715,
+          "deflated_sharpe_ratio": 0.5914385392803768,
+          "significant_at_0.95": false
+        },
+        "1000": {
+          "trials": 1000,
+          "annualised_sharpe": 1.5369225828579247,
+          "annualised_null_threshold": 1.811419868678572,
+          "deflated_sharpe_ratio": 0.3109103377377199,
+          "significant_at_0.95": false
+        },
+        "5000": {
+          "trials": 5000,
+          "annualised_sharpe": 1.5369225828579247,
+          "annualised_null_threshold": 2.052144171541184,
+          "deflated_sharpe_ratio": 0.17726113833596563,
+          "significant_at_0.95": false
+        }
+      }
+    },
+    "124% Sector Ensemble": {
+      "weeks": 188,
+      "skewness": -0.1472602019489152,
+      "kurtosis": 4.832265077439547,
+      "by_trial_count": {
+        "10": {
+          "trials": 10,
+          "annualised_sharpe": 1.708492721828043,
+          "annualised_null_threshold": 0.8663605163455946,
+          "deflated_sharpe_ratio": 0.9370613680898275,
+          "significant_at_0.95": false
+        },
+        "100": {
+          "trials": 100,
+          "annualised_sharpe": 1.708492721828043,
+          "annualised_null_threshold": 1.392364279414053,
+          "deflated_sharpe_ratio": 0.7172052361372896,
+          "significant_at_0.95": false
+        },
+        "1000": {
+          "trials": 1000,
+          "annualised_sharpe": 1.708492721828043,
+          "annualised_null_threshold": 1.7910020307564063,
+          "deflated_sharpe_ratio": 0.44039827141797805,
+          "significant_at_0.95": false
+        },
+        "5000": {
+          "trials": 5000,
+          "annualised_sharpe": 1.708492721828043,
+          "annualised_null_threshold": 2.0290129539742647,
+          "deflated_sharpe_ratio": 0.280101131049764,
+          "significant_at_0.95": false
+        }
+      }
+    }
+  },
+  "strategies_significant_by_trial_count": {
+    "10": [
+      "150.86% Residual 1.25x",
+      "ETF Incumbent"
+    ],
+    "100": [],
+    "1000": [],
+    "5000": []
+  },
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

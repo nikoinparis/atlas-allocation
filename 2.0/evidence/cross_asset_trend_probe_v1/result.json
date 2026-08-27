@@ -1,0 +1,97 @@
+{
+  "experiment": "cross_asset_trend_probe_v1",
+  "status": "feasibility_probe_not_a_candidate",
+  "created_at_utc": "2026-08-27T06:12:19.447435+00:00",
+  "evaluation_start": "2007-06-01",
+  "leverage_grid": {
+    "vol_target_10_leverage_cap_1.0": {
+      "observations": 4832,
+      "cagr": 0.03676080653273561,
+      "volatility": 0.040131645583665214,
+      "sharpe": 0.9197139781135899,
+      "max_drawdown": -0.09024424578338197,
+      "worst_rolling_1y": -0.07909107990470332,
+      "vol_target": 0.1,
+      "max_leverage": 1.0
+    },
+    "vol_target_15_leverage_cap_1.5": {
+      "observations": 4832,
+      "cagr": 0.055017321748880965,
+      "volatility": 0.060199359003220904,
+      "sharpe": 0.9198916314370397,
+      "max_drawdown": -0.13309403452769264,
+      "worst_rolling_1y": -0.117263812737459,
+      "vol_target": 0.15,
+      "max_leverage": 1.5
+    },
+    "vol_target_20_leverage_cap_2.0": {
+      "observations": 4832,
+      "cagr": 0.07315227921426981,
+      "volatility": 0.08026589896162796,
+      "sharpe": 0.9199014398510417,
+      "max_drawdown": -0.1744549677234969,
+      "worst_rolling_1y": -0.15449885707095734,
+      "vol_target": 0.2,
+      "max_leverage": 2.0
+    },
+    "vol_target_25_leverage_cap_2.5": {
+      "observations": 4832,
+      "cagr": 0.09115521283990602,
+      "volatility": 0.10033237370203496,
+      "sharpe": 0.9199014398510416,
+      "max_drawdown": -0.214348582815288,
+      "worst_rolling_1y": -0.190782556415381,
+      "vol_target": 0.25,
+      "max_leverage": 2.5
+    }
+  },
+  "benchmarks": {
+    "SPY_buy_and_hold": {
+      "observations": 4832,
+      "cagr": 0.10853191671951912,
+      "volatility": 0.1973879586115974,
+      "sharpe": 0.6208544823995962,
+      "max_drawdown": -0.5518941160715968,
+      "worst_rolling_1y": -0.47354136786231094
+    },
+    "sixty_forty_SPY_IEF": {
+      "observations": 4832,
+      "cagr": 0.08424059258472982,
+      "volatility": 0.11337399366339537,
+      "sharpe": 0.7701471365434452,
+      "max_drawdown": -0.31393508561324934,
+      "worst_rolling_1y": -0.2714107816474952
+    }
+  },
+  "regime_returns": {
+    "gfc_2007_2009": {
+      "cross_asset_trend": 0.12528565169700268,
+      "spy": -0.44914844309795343
+    },
+    "covid_2020": {
+      "cross_asset_trend": -0.013590515508710044,
+      "spy": -0.11586440167885459
+    },
+    "bear_2022": {
+      "cross_asset_trend": 0.0017570376652098485,
+      "spy": -0.18175368123865843
+    },
+    "recent_2023_2026": {
+      "cross_asset_trend": 0.4541269249156661,
+      "spy": 1.123042105303563
+    }
+  },
+  "correlation_to_saved_strategies": {
+    "150.86% Residual 1.25x": 0.14858634195863799,
+    "ETF Incumbent": -0.0866879862991652,
+    "142% Growth / Micron": -0.052979454466223534,
+    "102% Daily-Audited": 0.6538486844925954,
+    "124% Sector Ensemble": -0.04226314041817377
+  },
+  "effective_independent_bets": {
+    "equity_books_only": 2.484616640926174,
+    "with_cross_asset_trend": 3.077628805393613
+  },
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

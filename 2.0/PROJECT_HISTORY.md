@@ -8269,3 +8269,98 @@ References:
 - `config/portfolio_construction_tournament_v1.json`
 - `scripts/run_portfolio_construction_tournament_v1.py`
 - `evidence/portfolio_construction_tournament_v1/`
+
+## Step 199 — Price the search itself, and find no saved book survives it
+
+Step 196 said plainly that finding a deliberately chosen high performer in the top
+percentile of random draws over its own selection period is close to tautological. It did
+not put a number on the tautology. This does, using the deflated Sharpe ratio of Bailey
+and Lopez de Prado (2014), which deflates an observed Sharpe by the expected maximum
+Sharpe under a null of N zero-skill trials and corrects for sample length, skew and
+kurtosis.
+
+N has never been counted in this project, so it is reported as a sensitivity grid rather
+than guessed at. The documented lower bounds are already large: 576 standardized
+configurations in Batch 05, 288-experiment batches in Batches 01 and 04, 2,924 nested ML
+fits in Batch 17, 22 literature signals across Steps 189 and 192, and 198 recorded steps.
+A defensible N for the SEC family is in the thousands.
+
+At ten trials, two of five books clear the 0.95 threshold: the residual leader at 0.958
+and the ETF incumbent at 0.957. At one hundred trials, none do. At one thousand, the
+deflated ratios are 0.520, 0.509, 0.440, 0.311 and 0.068. At five thousand they fall to
+between 0.351 and 0.027.
+
+The mechanism is worth stating because it changes what counts as progress. The residual
+leader's full-history annualised Sharpe is 1.79 and the expected maximum Sharpe under a
+thousand zero-skill trials on a sample this short is 1.76. The observed number is not
+beaten by the null by much, but it is not distinguishable from it either. The Micron-led
+growth book is the clearest case: an annualised Sharpe of 0.95 against a null threshold of
+1.75, which is to say it underperforms what pure search would be expected to produce.
+
+The consequence is the part that matters. This audit cannot be repaired by finding a
+higher Sharpe on the same window, because raising the observed Sharpe on the sample the
+search ran over also raises the null it is deflated against. Only two things move a
+deflated Sharpe in the right direction: a longer or genuinely independent sample, and
+fewer effective trials. Both are structural, and neither is available by tuning.
+
+A low deflated ratio does not prove a strategy has no edge. It proves the retrospective
+sample cannot establish one, which is the same conclusion Steps 196 and 197 reached from a
+different direction, now with a number attached.
+
+No strategy was promoted and live trading remains disabled.
+
+References:
+
+- `config/deflated_sharpe_audit_v1.json`
+- `scripts/run_deflated_sharpe_audit_v1.py`
+- `evidence/deflated_sharpe_audit_v1/`
+
+## Step 200 — Find a second bet on the panel that was already on disk
+
+Step 186 ran the 35-ETF vintage as a cross-sectional sector rotation and found it worthless
+over 33 years, concluding that generic sector-momentum rotation should not be built on
+again. That conclusion stands and is not revisited. It concerned one way of using the
+panel. This step runs the other one: long-only time-series momentum across bonds,
+commodities, FX, international and equity, which is a different mechanism with a different
+literature behind it, and which the project has never tested.
+
+Evaluation starts 2007-06-01, the first date on which the bond, commodity, FX and
+international sleeves all exist. Before it the universe is equities only, and the probe
+would be measuring sector rotation again. Signals are the mean sign of the 63, 126 and
+252-day return, sizing is inverse trailing volatility scaled to a volatility target,
+rebalancing is monthly with a one-day execution delay and 10 bps per unit turnover. Every
+parameter was declared in the config before the run.
+
+Over 4,832 trading days the sleeve returns between 3.68% and 9.12% annually depending on
+the leverage cap, at a Sharpe of 0.92 that is almost invariant to that cap, against SPY's
+0.62 and a 60/40 book's 0.77. Its maximum drawdown at the widest setting tested is -21.4%
+against SPY's -55.2%.
+
+The regime record is the part the equity books cannot produce. Through the global financial
+crisis the sleeve returned +12.5% against SPY's -44.9%; through the 2022 bear, +0.2%
+against -18.2%; through the COVID crash, -1.4% against -11.6%. It badly lags in the
+2023-2026 window, returning 45.4% against SPY's 112.3%, which is the correct behaviour for
+a defensive diversifier and the reason it must never be judged on that window alone.
+
+The independence result is the reason to record this at all. Weekly correlations to the
+saved books are -0.087, -0.053, -0.042 and +0.149; only the daily-audited book, which
+itself holds ETFs, correlates meaningfully at +0.654. Adding the sleeve raises the
+effective independent bet count across the tracked books from 2.48 to 3.08. The project's
+binding constraint since Batch 03 has been an effective breadth near 1.15, and no
+re-weighting inside the momentum and cash-conversion family has ever moved it. This is the
+first tested source that does.
+
+Two limits are recorded against it. Long-only trend is materially weaker than the
+long-short trend the literature documents, because the short leg is where much of the
+crisis payoff lives and this project can neither borrow nor cost it. And the leverage grid
+is reported rather than selected; choosing a point on it after seeing the results is how a
+structural test becomes a fitted one.
+
+This is a probe, not a candidate. No forward clock was started, no strategy was promoted,
+and live trading remains disabled.
+
+References:
+
+- `config/cross_asset_trend_probe_v1.json`
+- `scripts/run_cross_asset_trend_probe_v1.py`
+- `evidence/cross_asset_trend_probe_v1/`

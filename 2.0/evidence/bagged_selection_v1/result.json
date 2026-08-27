@@ -1,0 +1,209 @@
+{
+  "experiment": "bagged_selection_v1",
+  "status": "structural_test_no_promotion",
+  "created_at_utc": "2026-08-27T06:41:57.957832+00:00",
+  "common_window": {
+    "weeks_total": 181,
+    "weeks_evaluated": 129,
+    "first": "2024-01-12",
+    "last": "2026-08-07"
+  },
+  "candidates": [
+    "150.86% Residual 1.25x",
+    "ETF Incumbent",
+    "142% Growth / Micron",
+    "102% Daily-Audited",
+    "124% Sector Ensemble"
+  ],
+  "rules": {
+    "top1_lookback13w": {
+      "k": 1,
+      "lookback_weeks": 13,
+      "weeks": 129,
+      "cagr": -0.002626135546881181,
+      "volatility": 0.32700779919240675,
+      "sharpe": 0.15476738868699702,
+      "max_drawdown": -0.5047728681202923
+    },
+    "top2_lookback13w": {
+      "k": 2,
+      "lookback_weeks": 13,
+      "weeks": 129,
+      "cagr": 0.12014814674022811,
+      "volatility": 0.266308982628875,
+      "sharpe": 0.5562389325535927,
+      "max_drawdown": -0.35124279309893547
+    },
+    "top3_lookback13w": {
+      "k": 3,
+      "lookback_weeks": 13,
+      "weeks": 129,
+      "cagr": 0.20967338939254776,
+      "volatility": 0.23856412538898156,
+      "sharpe": 0.9159780473944461,
+      "max_drawdown": -0.266667184260031
+    },
+    "top4_lookback13w": {
+      "k": 4,
+      "lookback_weeks": 13,
+      "weeks": 129,
+      "cagr": 0.3850885065503449,
+      "volatility": 0.21751831902602292,
+      "sharpe": 1.609237388707214,
+      "max_drawdown": -0.2279734443746949
+    },
+    "top5_lookback13w": {
+      "k": 5,
+      "lookback_weeks": 13,
+      "weeks": 129,
+      "cagr": 0.5058562431093403,
+      "volatility": 0.2152931280026122,
+      "sharpe": 2.0156107321925814,
+      "max_drawdown": -0.21242576996510043
+    },
+    "top1_lookback26w": {
+      "k": 1,
+      "lookback_weeks": 26,
+      "weeks": 129,
+      "cagr": 0.0038449345934747914,
+      "volatility": 0.33436242896585544,
+      "sharpe": 0.1836975374626358,
+      "max_drawdown": -0.5314746646013597
+    },
+    "top2_lookback26w": {
+      "k": 2,
+      "lookback_weeks": 26,
+      "weeks": 129,
+      "cagr": 0.282633544532811,
+      "volatility": 0.2828767511833691,
+      "sharpe": 1.0210408988847182,
+      "max_drawdown": -0.38073205834039014
+    },
+    "top3_lookback26w": {
+      "k": 3,
+      "lookback_weeks": 26,
+      "weeks": 129,
+      "cagr": 0.23095603977140455,
+      "volatility": 0.2337232091699,
+      "sharpe": 1.0065387874733975,
+      "max_drawdown": -0.3069797459753747
+    },
+    "top4_lookback26w": {
+      "k": 4,
+      "lookback_weeks": 26,
+      "weeks": 129,
+      "cagr": 0.36876881042827225,
+      "volatility": 0.2207278531855275,
+      "sharpe": 1.5356664911906281,
+      "max_drawdown": -0.22772659638725545
+    },
+    "top5_lookback26w": {
+      "k": 5,
+      "lookback_weeks": 26,
+      "weeks": 129,
+      "cagr": 0.5058562431093403,
+      "volatility": 0.2152931280026122,
+      "sharpe": 2.0156107321925814,
+      "max_drawdown": -0.21242576996510043
+    },
+    "top1_lookback52w": {
+      "k": 1,
+      "lookback_weeks": 52,
+      "weeks": 129,
+      "cagr": 0.3008960140214316,
+      "volatility": 0.2831812522570539,
+      "sharpe": 1.0710175397219337,
+      "max_drawdown": -0.23880250385542756
+    },
+    "top2_lookback52w": {
+      "k": 2,
+      "lookback_weeks": 52,
+      "weeks": 129,
+      "cagr": 0.22324983355137884,
+      "volatility": 0.2799441186500415,
+      "sharpe": 0.859352708541365,
+      "max_drawdown": -0.3765516941320495
+    },
+    "top3_lookback52w": {
+      "k": 3,
+      "lookback_weeks": 52,
+      "weeks": 129,
+      "cagr": 0.2158699383929057,
+      "volatility": 0.23791221809852603,
+      "sharpe": 0.9406946732671412,
+      "max_drawdown": -0.29168829026885146
+    },
+    "top4_lookback52w": {
+      "k": 4,
+      "lookback_weeks": 52,
+      "weeks": 129,
+      "cagr": 0.4018992306554088,
+      "volatility": 0.21264309141752014,
+      "sharpe": 1.6988888819528192,
+      "max_drawdown": -0.2368725768947585
+    },
+    "top5_lookback52w": {
+      "k": 5,
+      "lookback_weeks": 52,
+      "weeks": 129,
+      "cagr": 0.5058562431093403,
+      "volatility": 0.2152931280026122,
+      "sharpe": 2.0156107321925814,
+      "max_drawdown": -0.21242576996510043
+    }
+  },
+  "summary_by_k": {
+    "1": {
+      "mean_sharpe_across_lookbacks": 0.46982748862385554,
+      "mean_cagr_across_lookbacks": 0.10070493768934174,
+      "mean_max_drawdown_across_lookbacks": -0.42501667885902655
+    },
+    "2": {
+      "mean_sharpe_across_lookbacks": 0.812210846659892,
+      "mean_cagr_across_lookbacks": 0.20867717494147264,
+      "mean_max_drawdown_across_lookbacks": -0.3695088485237917
+    },
+    "3": {
+      "mean_sharpe_across_lookbacks": 0.954403836044995,
+      "mean_cagr_across_lookbacks": 0.21883312251895268,
+      "mean_max_drawdown_across_lookbacks": -0.28844507350141907
+    },
+    "4": {
+      "mean_sharpe_across_lookbacks": 1.6145975872835538,
+      "mean_cagr_across_lookbacks": 0.3852521825446753,
+      "mean_max_drawdown_across_lookbacks": -0.23085753921890295
+    },
+    "5": {
+      "mean_sharpe_across_lookbacks": 2.0156107321925814,
+      "mean_cagr_across_lookbacks": 0.5058562431093403,
+      "mean_max_drawdown_across_lookbacks": -0.21242576996510043
+    }
+  },
+  "controls": {
+    "oracle_best": {
+      "book": "150.86% Residual 1.25x",
+      "weeks": 129,
+      "cagr": 0.6005029344824004,
+      "volatility": 0.2680630143996606,
+      "sharpe": 1.8952155795703396,
+      "max_drawdown": -0.23350524551091945
+    },
+    "equal_weight_all": {
+      "weeks": 129,
+      "cagr": 0.5070294089587049,
+      "volatility": 0.21539453751436052,
+      "sharpe": 2.0184046723598015,
+      "max_drawdown": -0.21242576996510065
+    },
+    "random_pick": {
+      "draws": 500,
+      "median_cagr": 0.489848014504641,
+      "median_sharpe": 1.5592822341615693,
+      "median_max_drawdown": -0.2676237204884702,
+      "cagr_5th_percentile": 0.21909876710230206,
+      "cagr_95th_percentile": 0.7927698033604873
+    }
+  },
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

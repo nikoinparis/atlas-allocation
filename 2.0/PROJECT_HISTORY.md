@@ -8460,3 +8460,53 @@ References:
 - `scripts/seed_trial_ledger_v1.py`
 - `scripts/run_deflated_sharpe_gate_v2.py`
 - `evidence/deflated_sharpe_gate_v2/`
+
+## Step 203 — Stop picking: trailing selection is worse than choosing at random
+
+Step 196 diagnosed selection as this project's central problem and Step 202 measured it.
+Neither tested the obvious remedy, which is to stop selecting. This holds the candidate set
+fixed at the five saved books and varies only the rule for choosing among them, so there is
+nothing to search and nothing to tune.
+
+At each weekly decision the rule ranks the books by trailing performance using strictly
+prior data, holds the top k equally, and pays 20 bps on every unit of weight moved. Three
+lookbacks and five values of k were declared before running, and no value of k is selected.
+
+The result is monotonic in k and the direction is the opposite of the intuition the whole
+project has been operating on. Averaged across the three lookbacks, holding the single
+best-performing book returns 10.07% at a Sharpe of 0.47 with a -42.50% maximum drawdown.
+Holding all five returns 50.59% at a Sharpe of 2.02 with a -21.24% drawdown. Every
+intermediate k sits in between, in order, on all three measures at once.
+
+The control that settles it is random choice. Picking one book at random each week, across
+five hundred draws, produces a median return of 48.98% at a Sharpe of 1.56 — nearly five
+times the return and three times the Sharpe of picking the book that just performed best.
+Trailing-performance selection is not merely uninformative here; it is substantially worse
+than ignoring performance entirely. The likely mechanism is short-horizon reversal between
+correlated books, where the one that just ran is the one about to give some back, and the
+rule buys it precisely then.
+
+Equal weighting also matches the unimplementable upper bound. An oracle holding the single
+book with the best full-sample return, which cannot be known at decision time, returns
+60.05% at a Sharpe of 1.90. Equal weighting returns 50.70% at a Sharpe of 2.02. Perfect
+foresight about which book wins buys 9.35 points of return and costs 0.12 of Sharpe.
+
+Two limits are recorded. The five candidates were themselves selected on this window, so
+these figures compare rules for combining an already-biased set and cannot remove the bias
+in the set. And 129 evaluated weeks is a short sample in which the drawdown figures in
+particular are fragile.
+
+What survives both limits is the ordering, which is consistent across every lookback and
+every k, and which follows from the same skew argument Step 190 made one level down: when
+outcomes are decided by a few extreme draws and no rule ranks them ex ante, averaging
+collects the tail that concentration misses. The practical consequence is that any future
+multi-candidate decision in this project should default to holding the set rather than
+choosing within it, and the burden of proof sits with any rule that proposes to choose.
+
+No strategy was promoted and live trading remains disabled.
+
+References:
+
+- `config/bagged_selection_v1.json`
+- `scripts/run_bagged_selection_v1.py`
+- `evidence/bagged_selection_v1/`

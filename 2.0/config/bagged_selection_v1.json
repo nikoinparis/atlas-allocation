@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "experiment": "bagged_selection_v1",
+  "status": "structural_test_no_promotion",
+  "purpose": "Test whether holding the average of several candidates beats picking the best one, using only information available at each decision date. Step 196 diagnosed selection as the project's central problem; this is the cheapest structural defence against it.",
+  "why_this_is_not_another_search": "Every prior program searched for a better candidate. This holds the candidate set fixed and varies only the rule for choosing among them. There is nothing to tune: k is swept and reported in full, and no value of k is selected.",
+  "declared_before_running": {
+    "candidates": "the five saved dashboard strategies, using their published weekly net returns unchanged",
+    "selection_rule_under_test": "at each weekly decision, rank candidates by trailing performance using only data strictly before that date, then hold the top k equally weighted until the next decision",
+    "k_values": [1, 2, 3, 4, 5],
+    "lookback_weeks": [13, 26, 52],
+    "burn_in_weeks": 52,
+    "rebalance": "weekly",
+    "switching_cost_bps": 20.0,
+    "switching_cost_rationale": "Moving between books is a real portfolio turnover event, not a free relabelling. 20 bps per unit of weight changed is charged so that a rule which churns is penalised for churning.",
+    "controls": [
+      {"name": "oracle_best", "rule": "hold the single book with the best FULL-SAMPLE return, which cannot be known at decision time; upper bound on selection"},
+      {"name": "equal_weight_all", "rule": "hold all five equally at all times, which is k=5 with no ranking"},
+      {"name": "random_pick", "rule": "hold one book chosen at random each decision, 500 draws; lower bound with zero skill"}
+    ]
+  },
+  "hypotheses": [
+    "If past performance selects future performance, k=1 beats k=5.",
+    "If the ranking is noise, k=5 beats k=1 on risk-adjusted return because averaging cancels idiosyncratic error.",
+    "If the ranking is worse than noise, k=1 underperforms the random-pick control."
+  ],
+  "not_claimed": [
+    "The five candidates were themselves selected on this window, so every figure here is conditional on that. This test compares rules for combining an already-biased set; it cannot remove the bias in the set.",
+    "The overlapping histories differ in length, so results are computed on the common window only."
+  ],
+  "strategy_source": "dashboard/public/return-first-dashboard.json",
+  "live_trading_enabled": false
+}

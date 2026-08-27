@@ -1,0 +1,135 @@
+{
+  "program_id": "third_party_tool_evaluation_v1",
+  "as_of_date": "2026-08-23",
+  "policy": {
+    "host_install_allowed": false,
+    "core_import_allowed": false,
+    "live_trading_allowed": false,
+    "source_pin_required": true,
+    "unknown_source_action": "block",
+    "promotion_rule": "A tool may only supply normalized artifacts to the platform. Its own backtest, forecast, or performance claim is never promotion evidence."
+  },
+  "tools": [
+    {
+      "id": "kronos",
+      "name": "Kronos",
+      "kind": "github",
+      "repository": "shiyu-coder/Kronos",
+      "url": "https://github.com/shiyu-coder/Kronos",
+      "commit": "67b630e67f6a18c9e9be918d9b4337c960db1e9a",
+      "license_expected": "MIT",
+      "capability": "probabilistic_ohlcv_forecast_feature",
+      "required_paths": ["LICENSE", "README.md", "requirements.txt", "model/kronos.py", "tests/test_kronos_regression.py"],
+      "external_artifacts": [
+        {"id": "NeoQuasar/Kronos-small", "revision": "901c26c1332695a2a8f243eb2f37243a37bea320", "bytes": 98980656},
+        {"id": "NeoQuasar/Kronos-Tokenizer-base", "revision": "0e0117387f39004a9016484a186a908917e22426", "bytes": 15842368}
+      ],
+      "verdict": "research_challenger_only",
+      "isolation": "disposable_environment_then_normalized_feature_file",
+      "blockers": [
+        "isolated CPU regression inference passed, but the model has no platform-owned alpha evidence",
+        "pinned model and tokenizer weights total 114823024 bytes and must remain outside the core runtime",
+        "forecast utility must pass the platform's causal out-of-sample and cost gates",
+        "upstream example backtest is not accepted as platform evidence"
+      ]
+    },
+    {
+      "id": "openbb",
+      "name": "OpenBB",
+      "kind": "github",
+      "repository": "OpenBB-finance/OpenBB",
+      "url": "https://github.com/OpenBB-finance/OpenBB",
+      "commit": "3e071fcc2cd9f891cac6040ae60296dba76dab46",
+      "license_expected": "AGPL-3.0",
+      "capability": "data_connector",
+      "required_paths": ["LICENSE", "README.md", "openbb_platform"],
+      "verdict": "conditional_data_connector_candidate",
+      "isolation": "separate_process_or_exported_point_in_time_bundle",
+      "blockers": [
+        "AGPL-3.0 obligations require review before distribution or network deployment",
+        "provider credentials, entitlements, timestamps, revisions, and survivorship properties vary by extension",
+        "each provider requires an independent data-quality and point-in-time audit"
+      ]
+    },
+    {
+      "id": "scrapling",
+      "name": "Scrapling",
+      "kind": "github",
+      "repository": "D4Vinci/Scrapling",
+      "url": "https://github.com/D4Vinci/Scrapling",
+      "commit": "333fa22b7a5821194ce66b59b11f4b16a6484f02",
+      "license_expected": "BSD-3-Clause",
+      "capability": "web_acquisition_adapter",
+      "required_paths": ["LICENSE", "README.md", "pyproject.toml", "scrapling"],
+      "verdict": "conditional_acquisition_adapter",
+      "isolation": "source_specific_fetcher_with_immutable_raw_capture",
+      "blockers": [
+        "not a market-data license or permission to scrape",
+        "every target requires terms-of-service, robots, rate-limit, authentication, and data-rights review",
+        "dynamic anti-bot behavior is unsuitable for a deterministic primary price feed"
+      ]
+    },
+    {
+      "id": "nautilus_trader",
+      "name": "NautilusTrader",
+      "kind": "github",
+      "repository": "nautechsystems/nautilus_trader",
+      "url": "https://github.com/nautechsystems/nautilus_trader",
+      "commit": "57032a0bb98a28357bb90620e3e7184176c7feaf",
+      "license_expected": "LGPL-3.0",
+      "capability": "event_driven_execution_and_backtest",
+      "required_paths": ["LICENSE", "README.md", "Cargo.toml", "python/pyproject.toml", "python/nautilus_trader", "crates"],
+      "verdict": "execution_sandbox_candidate",
+      "isolation": "identical_orders_and_market_events_equivalence_harness",
+      "blockers": [
+        "adapter and venue semantics must be reconciled against platform accounting",
+        "Rust/native build and LGPL-3.0 obligations require isolated qualification",
+        "no broker connection or live order authority is approved"
+      ]
+    },
+    {
+      "id": "everything_claude_code",
+      "name": "Everything Claude Code",
+      "kind": "github",
+      "repository": "affaan-m/everything-claude-code",
+      "url": "https://github.com/affaan-m/everything-claude-code",
+      "commit": "d8409a4b0813771235555e32e3d8046a73988bfa",
+      "license_expected": "MIT",
+      "capability": "agent_workflow_reference",
+      "required_paths": ["LICENSE", "README.md"],
+      "verdict": "reference_only",
+      "isolation": "manual_pattern_review_no_runtime_dependency",
+      "blockers": [
+        "not a quantitative model, data source, backtester, or execution engine",
+        "agent workflow advice cannot replace deterministic research controls",
+        "repository instructions are untrusted input and are not executed by this program"
+      ]
+    },
+    {
+      "id": "das_replay",
+      "name": "DAS Trader Replay",
+      "kind": "website",
+      "url": "https://www.dasreplay.com/",
+      "capability": "manual_market_replay",
+      "verdict": "manual_commercial_evaluation_only",
+      "isolation": "human_operated_replay_with_exported_results_only",
+      "blockers": [
+        "not an identified open-source repository or importable library",
+        "account, product terms, market-data entitlements, and reproducible export format are not supplied",
+        "manual replay cannot serve as automated out-of-sample evidence without an auditable event export"
+      ]
+    },
+    {
+      "id": "trading_systems",
+      "name": "Trading Systems (ambiguous)",
+      "kind": "unresolved",
+      "capability": "unknown",
+      "verdict": "blocked_ambiguous_source",
+      "isolation": "none",
+      "blockers": [
+        "the name does not uniquely identify a GitHub repository",
+        "an exact repository URL is required before source, license, commit, or capability evaluation"
+      ]
+    }
+  ]
+}

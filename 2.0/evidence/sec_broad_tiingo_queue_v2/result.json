@@ -1,0 +1,17 @@
+{
+  "api_requests_per_candidate": 2,
+  "artifact_sha256": {
+    "candidates": "387ad386fade802d7820cb4bf249f2b0927b462237ef7eadf99a3c86ff3d7aae",
+    "inventory_unsupported": "85d033860022152669c567f3909edc5c852e0ccdfbab0fed460a417832b50c7c"
+  },
+  "created_at_utc": "2026-08-22T04:10:31.513445+00:00",
+  "experiment": "sec_broad_tiingo_queue_v2",
+  "inventory_source": "/project/data/tiingo_symbol_inventory_vintages/20260813T102139Z-tiingo-supported-symbols-v1/supported_tickers.csv",
+  "inventory_unsupported": 89,
+  "live_trading_enabled": false,
+  "recovered_single_symbols": 751,
+  "strategy_testing_authorized": false,
+  "tiingo_inventory_candidates": 406,
+  "yahoo_interval_valid": 133,
+  "yahoo_unresolved": 495
+}

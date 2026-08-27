@@ -1,0 +1,66 @@
+{
+  "all_falsification_checks_passed": false,
+  "artifact_sha256": {
+    "frozen_control_50bps": "7ecaf8db5b73d254d7a2846a4f78c5a6acc7faa4a8372a32d3669f743cf8453d",
+    "selected_path_50bps": "afbcf3a2e784cd295f836cab31ed5c804b9e18dfb92829800343feaae516b92e"
+  },
+  "bootstrap_13w_probability_positive": 0.8722,
+  "bootstrap_4w_probability_positive": 0.8054,
+  "candidate_count": 90,
+  "checks": {
+    "bootstrap_13w_gate": false,
+    "bootstrap_4w_gate": false,
+    "neighborhood_gate": false,
+    "one_week_delay_beats_control": false,
+    "persisted_recent_cagr_matches": true,
+    "rolling_gate": false,
+    "single_issuer_influence_gate": false,
+    "surface_gates": false,
+    "two_week_delay_beats_control": false,
+    "worst_loo_beats_control": false
+  },
+  "completed_rolling_windows": 163,
+  "control_full_cagr": 0.4093476771616662,
+  "control_recent_cagr": 1.0510082013109483,
+  "control_severe_recent_cagr": 0.9320198735415857,
+  "created_at_utc": "2026-08-20T10:11:19.885661+00:00",
+  "experiment": "sec_form4_rank_feature_v1",
+  "form4_incremental_full_cagr": -0.026934601421920945,
+  "form4_incremental_recent_cagr": 0.007255296204241812,
+  "frozen_control_rebuilt_exactly": true,
+  "full_cagr": 0.38174005753689166,
+  "live_trading_enabled": false,
+  "matched_zero_form4_full_cagr": 0.4086746589588126,
+  "matched_zero_form4_recent_cagr": 1.0475360879501023,
+  "neighborhood_joint_improvement_share": 0.0,
+  "recent_cagr": 1.0547913841543441,
+  "recent_drawdown": -0.09833780786146462,
+  "recent_sharpe": 2.704593057829952,
+  "rolling_outperformance_share": 0.25766871165644173,
+  "runtime": {
+    "actual": {
+      "numpy": "2.5.1",
+      "pandas": "3.0.5",
+      "python": "3.12.13"
+    },
+    "all_versions_match": true,
+    "expected": {
+      "container_image": "localhost/po2-yfinance:1.5.2-v1",
+      "container_image_id": "c84c194bef2052b0b4e4997d5780eb8ccf48d0ed2a3ec35bcafb726f691e0c5c",
+      "numpy": "2.5.1",
+      "pandas": "3.0.5",
+      "python": "3.12.13"
+    },
+    "versions_match": {
+      "numpy": true,
+      "pandas": true,
+      "python": true
+    }
+  },
+  "selected_candidate": "win90__f4w05__pen00__sector100",
+  "severe_recent_cagr": 0.9355492788534607,
+  "single_issuer_improvement_share": 24.40937740116426,
+  "strategy_replacement_authorized": false,
+  "worst_loo_company": "GITLAB INC.",
+  "worst_loo_recent_cagr": 0.9624462463522852
+}

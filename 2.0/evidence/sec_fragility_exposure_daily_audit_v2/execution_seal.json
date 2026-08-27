@@ -1,0 +1,15 @@
+{
+  "experiment": "sec_fragility_exposure_daily_audit_v2",
+  "live_trading_enabled": false,
+  "one_shot_execution": true,
+  "performance_evaluated_at_seal": false,
+  "pre_result_execution_seal": true,
+  "sealed_at_utc": "2026-08-24T10:08:52.316633+00:00",
+  "sealed_sha256": {
+    "config/sec_fragility_exposure_daily_audit_v2.json": "5c0ef54b26f33e8f6a7c78a6571fd657d88363015151b593734a1cd8856b17c2",
+    "scripts/run_sec_fragility_exposure_daily_audit_v2.py": "ea7367d87b3a282e72bf99bbdf11a6e17f4c8595da98d9f8d924909072d517d0",
+    "scripts/seal_sec_fragility_exposure_daily_audit_v2.py": "db93e5dc66470ce5fda429889502dc6ec6f165ac17886eafbe04d9e71a837931",
+    "tests/test_sec_fragility_exposure_daily_audit_v2.py": "c7d89019674da01e421b74a7ddf7d7f7396423ff80b543a9b572653ebbe9a1df"
+  },
+  "strategy_replacement_authorized": false
+}

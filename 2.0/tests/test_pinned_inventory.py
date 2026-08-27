@@ -43,6 +43,8 @@ class PinnedInventoryTests(unittest.TestCase):
                     "inventory", "source_screened", "bundled_tests_passed_offline",
                     "dependency_failed", "recorded_fixture_guarded",
                     "behavioral_probe_conditional",
+                    "drawdown_component_tested_not_promoted",
+                    "upstream_tests_failed",
                 },
             )
 

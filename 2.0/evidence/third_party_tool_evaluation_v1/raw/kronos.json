@@ -1,0 +1,151 @@
+{
+  "approved_for_core_import": false,
+  "approved_for_live_trading": false,
+  "blockers": [
+    "isolated CPU regression inference passed, but the model has no platform-owned alpha evidence",
+    "pinned model and tokenizer weights total 114823024 bytes and must remain outside the core runtime",
+    "forecast utility must pass the platform's causal out-of-sample and cost gates",
+    "upstream example backtest is not accepted as platform evidence"
+  ],
+  "capability": "probabilistic_ohlcv_forecast_feature",
+  "id": "kronos",
+  "isolation": "disposable_environment_then_normalized_feature_file",
+  "kronos_inference_smoke": {
+    "constraints": [
+      "no_direct_orders",
+      "no_host_environment_install",
+      "requires_causal_nested_oos_alpha_test"
+    ],
+    "context_bars": 256,
+    "device": "cpu",
+    "forecast_bars": 8,
+    "maximum_absolute_difference": 0.375,
+    "maximum_relative_difference": 9.009937116388755e-07,
+    "model_revision": "901c26c1332695a2a8f243eb2f37243a37bea320",
+    "normalized_feature": {
+      "contract_version": "kronos_feature_contract_v1",
+      "decision_timestamp": "2024-06-25T14:00:00+00:00",
+      "features": {
+        "mean_forecast_range_fraction": 0.0019512303007029861,
+        "positive_path_fraction": 1.0,
+        "terminal_return_dispersion": 0.0,
+        "terminal_return_median": 0.0025200067564499218
+      },
+      "forecast_end_timestamp": "2024-06-25T14:40:00+00:00",
+      "generated_at": "2026-08-24T01:03:52.742707+00:00",
+      "horizon_bars": 8,
+      "lineage": {
+        "model_revision": "901c26c1332695a2a8f243eb2f37243a37bea320",
+        "source_commit": "67b630e67f6a18c9e9be918d9b4337c960db1e9a",
+        "tokenizer_revision": "0e0117387f39004a9016484a186a908917e22426"
+      },
+      "sample_count": 1,
+      "usage_constraints": [
+        "research_feature_only",
+        "lag_before_portfolio_use",
+        "no_direct_order_generation",
+        "independent_oos_gate_required"
+      ]
+    },
+    "purpose": "runtime_and_feature_boundary_smoke_not_alpha_evidence",
+    "regression_passed": true,
+    "runtime": {
+      "numpy": "2.5.2",
+      "pandas": "3.0.5",
+      "python": "3.14.4",
+      "torch": "2.13.0"
+    },
+    "seed": 123,
+    "source_commit": "67b630e67f6a18c9e9be918d9b4337c960db1e9a",
+    "status": "passed",
+    "tokenizer_revision": "0e0117387f39004a9016484a186a908917e22426",
+    "upstream_rtol": 1e-05
+  },
+  "kronos_smoke": {
+    "attempted": true,
+    "commit_matches_pin": true,
+    "compile_errors": [],
+    "declared_requirements": [
+      "numpy",
+      "pandas",
+      "torch>=2.0.0",
+      "einops==0.8.1",
+      "huggingface_hub==0.33.1",
+      "matplotlib==3.9.3",
+      "pandas==2.2.2",
+      "tqdm==4.67.1",
+      "safetensors==0.6.2"
+    ],
+    "external_artifacts": [
+      {
+        "bytes": 98980656,
+        "id": "NeoQuasar/Kronos-small",
+        "revision": "901c26c1332695a2a8f243eb2f37243a37bea320"
+      },
+      {
+        "bytes": 15842368,
+        "id": "NeoQuasar/Kronos-Tokenizer-base",
+        "revision": "0e0117387f39004a9016484a186a908917e22426"
+      }
+    ],
+    "feature_contract_smoke": {
+      "contract_version": "kronos_feature_contract_v1",
+      "features": {
+        "mean_forecast_range_fraction": 0.025779508421549892,
+        "positive_path_fraction": 1.0,
+        "terminal_return_dispersion": 0.007425742574257432,
+        "terminal_return_median": 0.012376237623762387
+      },
+      "status": "passed",
+      "usage_constraints": [
+        "research_feature_only",
+        "lag_before_portfolio_use",
+        "no_direct_order_generation",
+        "independent_oos_gate_required"
+      ]
+    },
+    "host_install_performed": false,
+    "license_detected_from_pinned_source": "MIT",
+    "license_sha256": "acb2d194d378204e5f2be4dcd24d39ecac437903620c790c3315a96dab388fdc",
+    "model_python_files": [
+      "__init__.py",
+      "kronos.py",
+      "module.py"
+    ],
+    "model_weights_downloaded": true,
+    "pinned_commit": "67b630e67f6a18c9e9be918d9b4337c960db1e9a",
+    "repository": "shiyu-coder/Kronos",
+    "resolved_commit": "67b630e67f6a18c9e9be918d9b4337c960db1e9a",
+    "runtime_inference_status": "passed_isolated_cpu_regression",
+    "source_smoke": "passed",
+    "static_compile_passed": true
+  },
+  "name": "Kronos",
+  "probe": {
+    "archived": false,
+    "commit_matches_pin": true,
+    "default_branch": "master",
+    "expected_license": "MIT",
+    "github_license_spdx": "MIT",
+    "license_detected_from_pinned_source": "MIT",
+    "license_matches_expected": true,
+    "license_sha256": "acb2d194d378204e5f2be4dcd24d39ecac437903620c790c3315a96dab388fdc",
+    "live_probe_attempted": true,
+    "missing_required_paths": [],
+    "pin_is_immutable_sha": true,
+    "pinned_commit": "67b630e67f6a18c9e9be918d9b4337c960db1e9a",
+    "repository": "shiyu-coder/Kronos",
+    "required_paths": [
+      "LICENSE",
+      "README.md",
+      "requirements.txt",
+      "model/kronos.py",
+      "tests/test_kronos_regression.py"
+    ],
+    "required_paths_present": true,
+    "resolved_commit": "67b630e67f6a18c9e9be918d9b4337c960db1e9a",
+    "source_status": "reachable",
+    "tree_truncated": false
+  },
+  "verdict": "research_challenger_only"
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Point-in-time broad SEC research panel v2",
+  "type": "object",
+  "required": ["decision_at", "execution_at", "label_end_at", "available_at", "cik10", "sector", "validated_price_available", "price_at_execution", "missing_price_policy", "residual_momentum", "trend_quality", "quality_momentum", "event_score", "future_sector_relative_return"],
+  "properties": {
+    "decision_at": {"type": "string", "format": "date-time"},
+    "execution_at": {"type": "string", "format": "date-time"},
+    "label_end_at": {"type": "string", "format": "date-time"},
+    "available_at": {"type": "string", "format": "date-time"},
+    "cik10": {"type": "string", "pattern": "^[0-9]{10}$"},
+    "sector": {"type": "string"},
+    "validated_price_available": {"type": "boolean"},
+    "price_at_execution": {"type": ["number", "null"], "exclusiveMinimum": 0},
+    "missing_price_policy": {"enum": ["validated", "base_cash_adverse_total_loss"]},
+    "residual_momentum": {"type": ["number", "null"]},
+    "trend_quality": {"type": ["number", "null"]},
+    "quality_momentum": {"type": ["number", "null"]},
+    "event_score": {"type": ["number", "null"]},
+    "future_sector_relative_return": {"type": ["number", "null"], "description": "Training label only; excluded from same-decision selection."}
+  },
+  "additionalProperties": true
+}

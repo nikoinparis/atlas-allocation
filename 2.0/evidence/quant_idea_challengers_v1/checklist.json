@@ -1,0 +1,36 @@
+{
+  "blocked": [
+    {
+      "idea": "First 5-minute candle / 12 EMA / ATR",
+      "reason": "No PIT one-minute/NBBO dataset"
+    },
+    {
+      "idea": "Options-vs-stock disagreement",
+      "reason": "No OPRA-quality PIT quotes, dividends, or trade signs"
+    },
+    {
+      "idea": "Politician/influencer delayed signal",
+      "reason": "No complete timestamped all-person/archive dataset"
+    },
+    {
+      "idea": "Indonesia market-neutral pairs",
+      "reason": "Short-sale financing, borrow inventory, and cost history unavailable"
+    },
+    {
+      "idea": "Derivatives execution",
+      "reason": "Margin, Greeks, expiry, assignment and settlement oracle absent"
+    }
+  ],
+  "complete": [
+    "Overnight effect (SPY)",
+    "Overnight effect (QQQ)",
+    "Overnight effect (IWM)",
+    "RAAM-inspired allocation",
+    "Quarter-Kelly sizing",
+    "NuScale/SMR thematic sleeve",
+    "Copy famous traders",
+    "IC/ICIR research scoring",
+    "Existing ETF pairs strategy",
+    "Monte Carlo robustness"
+  ]
+}

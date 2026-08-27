@@ -1,0 +1,10 @@
+{
+  "sealed_at": "2026-08-24T21:42:39.622488+00:00",
+  "sealed_sha256": {
+    "config/sec_cross_strategy_residual_allocator_v1.json": "466f93d99dc1aff6652bba7b85597d4efe9fc185f6a401d7fb902d24d042f363",
+    "dashboard/public/return-first-dashboard.json": "2a427c970521fee814ebf6fed47afae9228afd4551459335b110658464b906db",
+    "scripts/run_sec_cross_strategy_residual_allocator_v1.py": "fba9a2122bd41ca84f1781cae4c5fa5fb28e94c7749ce0abd49445ba3c219e14"
+  },
+  "one_shot": true,
+  "live_trading_enabled": false
+}

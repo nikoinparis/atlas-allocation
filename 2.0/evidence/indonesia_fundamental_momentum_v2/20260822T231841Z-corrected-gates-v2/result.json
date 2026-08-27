@@ -1,0 +1,61 @@
+{
+  "data_gates": {
+    "minimum_canonical_feature_coverage": true,
+    "minimum_consecutive_years_per_issuer": true,
+    "minimum_history_start": false,
+    "minimum_point_in_time_filing_coverage": true,
+    "require_no_future_filing_leakage": true,
+    "require_publication_timestamps": false,
+    "require_sector_specific_coverage_report": true
+  },
+  "evaluation_end": "2026-08-21",
+  "evaluation_start": "2023-01-03",
+  "execution_authorized": false,
+  "fundamental_momentum_150bps": {
+    "annualized_volatility": 0.22500173359417566,
+    "cagr": -0.06928075776257936,
+    "cumulative_return": -0.21597481302515387,
+    "daily_observations": 854.0,
+    "maximum_drawdown": -0.41194092184602094,
+    "sharpe_zero_rf": -0.20565266760382978
+  },
+  "fundamental_momentum_50bps": {
+    "annualized_volatility": 0.22441226622244984,
+    "cagr": -0.02994123569414009,
+    "cumulative_return": -0.09788887781397915,
+    "daily_observations": 854.0,
+    "maximum_drawdown": -0.402957447340587,
+    "sharpe_zero_rf": -0.022375359000033814
+  },
+  "fundamental_momentum_calendar_returns": {
+    "2023": -0.01918186539393496,
+    "2024": 0.0797336324760356,
+    "2025": 0.07976870756782506,
+    "2026": -0.21109595340190623
+  },
+  "minimum_fundamental_eligible_names": 70,
+  "monthly_decisions": 44,
+  "notice": "RESEARCH ONLY \u2014 V2 fixes a statement-period comparability defect found in V1; it is not an investment recommendation and is not approved for execution.",
+  "performance_claim_authorized": false,
+  "price_only_50bps": {
+    "annualized_volatility": 0.2525555296241451,
+    "cagr": -0.03500117535678593,
+    "cumulative_return": -0.11373623904007113,
+    "daily_observations": 854.0,
+    "maximum_drawdown": -0.4629079461963629,
+    "sharpe_zero_rf": -0.014115344150877196
+  },
+  "price_only_calendar_returns": {
+    "2023": 0.04992737517762369,
+    "2024": 0.07819486048202107,
+    "2025": 0.1119632281918368,
+    "2026": -0.29592966048776037
+  },
+  "return_gates": {
+    "cagr_above_price_only": true,
+    "maximum_drawdown_no_more_than_5pp_worse": true,
+    "positive_cagr_at_150bps": false,
+    "sharpe_above_price_only": false
+  },
+  "verdict": "HISTORICAL_SELECTION_FAIL"
+}

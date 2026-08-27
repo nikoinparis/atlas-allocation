@@ -1,0 +1,68 @@
+{
+  "all_locked_audit_checks_passed": false,
+  "artifact_sha256": {
+    "delay_stress": "26ba1f17d21ef16d66ce261b7d7b3252a8ecb9428f834613b8573e5155dc9134",
+    "missing_issuer_bundles": "171060041e50a637a1a40ac468450a14f0bddbe090793d3a9f01c59352ef69b8",
+    "rebuilt_candidate_path": "96dcedb761b8dcf2a6905b906d68c9357137ba35b2ee3c9c8978a269809deb19",
+    "rolling_outperformance": "34f552a289e207920bdc60f78f8cdbae5d8609d881ace7093b2c84c80b04a003",
+    "source_candidate_path": "96dcedb761b8dcf2a6905b906d68c9357137ba35b2ee3c9c8978a269809deb19"
+  },
+  "bootstrap_13w_probability_positive_vs_predecessor": 0.8172,
+  "bootstrap_4w_probability_positive_vs_predecessor": 0.8394,
+  "candidate": "cash80_balance20__equal__lb26__s00__cap1.00x",
+  "checks": {
+    "200bps_beats_frozen_incumbent": true,
+    "all_delays_beat_112pct_base": true,
+    "all_missing_bundles_beat_112pct_base": false,
+    "all_rolling_horizons_at_least_50pct": false,
+    "all_three_52w_blocks_positive": true,
+    "at_least_two_52w_blocks_beat_predecessor": true,
+    "bootstrap_13w_at_least_95pct": false,
+    "bootstrap_4w_at_least_95pct": false,
+    "endpoint_outperformance_at_least_60pct": false,
+    "locked_candidate_rebuilt_exactly": true,
+    "quarter_ablation_outperformance_at_least_75pct": true
+  },
+  "created_at_utc": "2026-08-21T22:55:49.341613+00:00",
+  "experiment": "sec_cluster_challenger_locked_audit_v1",
+  "history_classification": "retrospective pseudo-holdout; not untouched forward evidence",
+  "history_end": "2026-08-07",
+  "history_start": "2023-01-06",
+  "history_weeks": 188,
+  "live_trading_enabled": false,
+  "nonoverlapping_52w_blocks_beating_predecessor": 2,
+  "positive_nonoverlapping_52w_blocks": 3,
+  "quarter_ablation_outperformance_share": 0.75,
+  "rolling_outperformance": {
+    "13": 0.4431818181818182,
+    "26": 0.5153374233128835,
+    "52": 0.46715328467153283
+  },
+  "runtime": {
+    "actual": {
+      "numpy": "2.5.1",
+      "pandas": "3.0.5",
+      "python": "3.12.13"
+    },
+    "all_versions_match": true,
+    "expected": {
+      "container_image": "localhost/po2-yfinance:1.5.2-v1",
+      "container_image_id": "c84c194bef2052b0b4e4997d5780eb8ccf48d0ed2a3ec35bcafb726f691e0c5c",
+      "numpy": "2.5.1",
+      "pandas": "3.0.5",
+      "python": "3.12.13"
+    },
+    "versions_match": {
+      "numpy": true,
+      "pandas": true,
+      "python": true
+    }
+  },
+  "severe_200bps_recent_cagr": 1.1017886610128267,
+  "strategy_replacement_authorized": false,
+  "trailing_endpoint_outperformance_share": 0.14285714285714285,
+  "worst_delay_case": "increment_2w",
+  "worst_delay_recent_cagr": 1.2291839478078095,
+  "worst_missing_bundle_recent_cagr": 1.105628444837937,
+  "worst_missing_bundle_size": 5
+}

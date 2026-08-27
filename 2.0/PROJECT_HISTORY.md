@@ -8269,3 +8269,123 @@ References:
 - `config/portfolio_construction_tournament_v1.json`
 - `scripts/run_portfolio_construction_tournament_v1.py`
 - `evidence/portfolio_construction_tournament_v1/`
+
+## Step 199 — Freeze the inherited state before opening another research program
+
+Claude's completed work was present in a legitimately dirty worktree containing thousands
+of acquired data and evidence files. It was not cleaned, staged, or rewritten. A
+pre-experiment manifest records the current branch and commit, the complete porcelain
+status hash, scoped hashes for code/configuration/tests/registries, data and evidence
+directory sizes, and eight protected forward-evidence sentinels. The starting commit was
+`e5108de5c99287d1d4e605c4c16c62a14a5109ea` and live trading remained disabled.
+
+The new program was registered before its results. It fixed a nine-decision selection
+sample, a purged quarter, four retrospective holdout decisions, a one-week execution
+delay, 13-week labels, long-only breadth of twenty, sector caps, no financing, and 10,
+25 and 50 basis-point one-way cost cases. No result from this program may change the
+September 4 registry or promote a strategy.
+
+References:
+
+- `config/future_alpha_program_v1.json`
+- `scripts/freeze_future_alpha_program_manifest_v1.py`
+- `evidence/pre_future_alpha_program_manifest_v1/`
+
+## Step 200 — Test a broad daily OHLCV alpha zoo and reject it as a replacement
+
+Thirty-four pre-registered daily features spanning momentum, reversal, trend,
+volatility, range, gaps, volume, liquidity and price-volume interaction were computed
+from 3,253 hash-verified issuer histories. Every snapshot used prices dated on or before
+the decision. Feature signs and one representative per family were selected without
+opening the four-decision holdout; the intervening decision was purged. Exact sign-flip
+tests were corrected across the feature set with Benjamini-Hochberg at 10%.
+
+No feature survived the multiple-testing screen. Several trend and medium-horizon
+momentum measures were directionally positive in holdout, but their selection evidence
+was insufficient. The nine-family composite returned 19.99% annually in the 59-week
+retrospective holdout after 25 basis points one-way costs, at a Sharpe of 1.42 and a
+-5.36% maximum drawdown. Those are useful low-drawdown results, but they are not close to
+the saved return-first strategies and the feature evidence did not pass the registered
+gate. The branch is rejected as a replacement and retained as a research baseline.
+
+References:
+
+- `scripts/run_daily_ohlcv_alpha_zoo_v1.py`
+- `tests/test_future_alpha_program_v1.py`
+- `evidence/daily_ohlcv_alpha_zoo_v1/`
+
+## Step 201 — Reconstruct SUE, issuance, shareholder yield and intangible quality from exact SEC contexts
+
+The flattened fundamental table could not support these tests because it discarded
+fiscal-period identity. The new branch therefore parsed 3,731,295 relevant raw Company
+Facts rows and rebuilt each issuer-decision snapshot from exact start/end periods. Only
+facts filed before the decision were visible. Shareholder yield uses the last weekly
+close strictly before the decision; an initial draft that referenced the later execution
+price was stopped before producing evidence and corrected.
+
+Standardized unexpected earnings remained weakly positive, with a 0.0269 selection IC
+and 0.0174 holdout IC, but was positive in only half of holdout decisions. Net issuance
+reversed from +0.0473 selection IC to -0.0038 in holdout. Intangible-adjusted quality
+collapsed from +0.0899 to effectively zero. Shareholder yield was the only selection
+discovery after the 10% multiple-testing correction, then reversed from +0.0425 to
+-0.0107 in holdout. That failure is precisely why the holdout existed.
+
+The four-feature composite returned 16.28% annually in holdout after 25 basis points
+one-way costs, at a Sharpe of 0.88 and a -11.08% drawdown. It is rejected as a replacement.
+No signal was promoted.
+
+References:
+
+- `scripts/run_point_in_time_fundamental_branches_v1.py`
+- `evidence/point_in_time_fundamental_branches_v1/`
+
+## Step 202 — Prepare, but do not fabricate, the SEC filing-language branch
+
+The language-change idea requires the actual text of consecutive 10-K filings. Cached
+submissions metadata identifies accessions and dates but contains no filing prose. A
+hash-backed acquisition queue now contains 9,755 filings and 1,413 issuers with at least
+one year-over-year pair. There are no local filing-body documents, so no language score
+or return was computed. Using metadata as a substitute would fabricate the signal.
+
+This branch is source-blocked rather than rejected. It should be continued only by
+acquiring and hashing the queued primary documents under SEC fair-access limits, parsing
+stable comparable sections, and applying the already registered causal comparison.
+
+References:
+
+- `scripts/audit_sec_language_change_readiness_v1.py`
+- `evidence/sec_language_change_readiness_v1/`
+
+## Step 203 — Reject online performance chasing across the saved strategies
+
+A causal exponentially weighted allocator set each week's strategy weights using only
+the prior 26 weeks and enforced a 5% minimum allocation. Learning rates of 1, 2 and 4
+were registered. On the 181-week common retrospective window, the best online variant
+returned 37.61% annually at a 1.85 Sharpe and -22.98% drawdown. Simple equal weighting
+returned 45.50% at a 2.17 Sharpe and -20.45% drawdown.
+
+The mathematical allocator therefore made every headline dimension worse than the
+simpler diversification rule. It remains eligible only for shadow observation and is
+rejected as an improvement. Exact holdings-level allocator costs were not reconstructed,
+which would make the online result weaker rather than stronger.
+
+References:
+
+- `scripts/run_online_strategy_aggregation_v1.py`
+- `evidence/online_strategy_aggregation_v1/`
+
+## Step 204 — Give the Survival Lab chart card real interior spacing
+
+The Monte Carlo card had no panel padding, leaving its kicker, heading, controls, chart
+ticks and sample-path label nearly against the border. The common Survival Lab panel now
+has 26 pixels of desktop padding and responsive 20-by-16 pixel mobile padding. Its chart
+header and plot both measure a 27-pixel rendered inset from the card edge.
+
+Next.js 16.3.1 production compilation and TypeScript validation pass. A browser check of
+`/survival` found meaningful content, no framework error overlay, all expected controls,
+and the corrected inset. Live trading remains disabled.
+
+References:
+
+- `dashboard/src/app/globals.css`
+- `/tmp/portfolio-survival-chart-padding-v1.png` (local verification capture)

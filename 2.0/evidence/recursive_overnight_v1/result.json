@@ -1,0 +1,60 @@
+{
+  "claim": "A rejected recursive family is retained; the unopened lockbox was not used as feedback.",
+  "cost_bps_round_trip": 10,
+  "ledger_verified": true,
+  "locked_test_opened": false,
+  "outcomes": [
+    {
+      "diagnosis": [
+        "large_validation_decay",
+        "failed_gate:train_primary",
+        "failed_gate:validation_primary",
+        "failed_gate:timing_sharpe",
+        "failed_gate:timing_drawdown"
+      ],
+      "locked_test": null,
+      "name": "SPY overnight: all_nights",
+      "status": "rejected_in_development",
+      "train_sharpe": -1.5215786638671944,
+      "trial_id": "trial-0001-e4f486b7e3ccf1ac",
+      "validation_sharpe": -1.2252264163109607
+    },
+    {
+      "diagnosis": [
+        "large_validation_decay",
+        "failed_gate:train_primary",
+        "failed_gate:validation_primary",
+        "failed_gate:timing_sharpe",
+        "failed_gate:timing_drawdown"
+      ],
+      "locked_test": null,
+      "name": "SPY overnight: after_negative_day",
+      "status": "rejected_in_development",
+      "train_sharpe": -0.5008629396856942,
+      "trial_id": "trial-0002-3b04f36d51819807",
+      "validation_sharpe": -0.6136293645647151
+    },
+    {
+      "diagnosis": [
+        "large_validation_decay",
+        "failed_gate:train_primary",
+        "failed_gate:validation_primary",
+        "failed_gate:timing_sharpe",
+        "failed_gate:timing_drawdown"
+      ],
+      "locked_test": null,
+      "name": "SPY overnight: after_positive_day",
+      "status": "rejected_in_development",
+      "train_sharpe": -1.689885223378925,
+      "trial_id": "trial-0003-17598a779533f3ca",
+      "validation_sharpe": -1.1305571901607687
+    }
+  ],
+  "predeclared_candidates": [
+    "all_nights",
+    "after_negative_day",
+    "after_positive_day"
+  ],
+  "program": "recursive_overnight_v1",
+  "snapshot": "20260821T213726Z-5ea7a9e5e4ce214c"
+}

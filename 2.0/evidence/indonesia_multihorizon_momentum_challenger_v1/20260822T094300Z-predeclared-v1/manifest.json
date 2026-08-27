@@ -1,0 +1,47 @@
+{
+  "baseline_strategy_sha256": "3a813a99932e891cf1464cfcb2340bf86ab4080ed8db37bc0a36a323263b3e87",
+  "claims": {
+    "execution_authorized": false,
+    "historical_diagnostic_calculated": true,
+    "investment_recommendation": false,
+    "performance_claim_authorized": false
+  },
+  "config_sha256": "1cb6e8aed2486d0d0191095cd848f0afcb51f37c2f3acaafba34afbcf9c1153c",
+  "outputs": {
+    "daily_paths.csv": {
+      "bytes": 326941,
+      "sha256": "4e05dcf416b1e4fa3642fcf536573f3be24a108324f051ebc4aa32e9bd9421f3"
+    },
+    "decisions.csv": {
+      "bytes": 3374,
+      "sha256": "2515cefe2414e216db0e30db5c10fa3f9c8bce14287730c0fd245135fedc3602"
+    },
+    "metrics.csv": {
+      "bytes": 1108,
+      "sha256": "b2f98d8587b8a84436a3d5487be30a555ea2075754e363d0c4a38650628557fa"
+    },
+    "report.md": {
+      "bytes": 1781,
+      "sha256": "808b304cafe9a763d3c89afb3a39aa372d9a50a946c16c1d34bfe1904c97a7ad"
+    },
+    "result.json": {
+      "bytes": 2388,
+      "sha256": "51da5dfad484ba9a05164a413ed4f8fe67a3c287326443889bce425e3a3bacd4"
+    },
+    "targets.csv": {
+      "bytes": 171219,
+      "sha256": "a4af227bcb4de11514fc04f9e29455c845daf585fef8919eda9289048c20fc7c"
+    },
+    "turnover.csv": {
+      "bytes": 11641,
+      "sha256": "d2d55362178a02399d34dfe4e518cf01dbeb76e815b3cb362194b1ee20b3775b"
+    }
+  },
+  "price_manifest_sha256": "dba8bd1d15dec29d606dbb423c8d0c3480ce262c1c00c6d4cad76d33afc86aa8",
+  "price_vintage": "20260822T094207Z-idx80-extended-prices-v1",
+  "program_sha256": "25eccb8f08559193e2a4f1784306efa17931b277ae3b96b06527ea0461313182",
+  "purpose": "predeclared research-only Indonesia stock-selection challenger",
+  "run_id": "20260822T094300Z-predeclared-v1",
+  "supplemental_price_manifest_sha256": "1c1ccdb2d2a49d3622479a59455628d4299d5e20cd1298d09385836eb2217c84",
+  "supplemental_price_vintage": "20260822T102940Z-idx80-inactive-price-supplement-v1"
+}

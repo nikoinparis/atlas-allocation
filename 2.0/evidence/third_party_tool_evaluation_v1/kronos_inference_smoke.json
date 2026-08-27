@@ -1,0 +1,51 @@
+{
+  "constraints": [
+    "no_direct_orders",
+    "no_host_environment_install",
+    "requires_causal_nested_oos_alpha_test"
+  ],
+  "context_bars": 256,
+  "device": "cpu",
+  "forecast_bars": 8,
+  "maximum_absolute_difference": 0.375,
+  "maximum_relative_difference": 9.009937116388755e-07,
+  "model_revision": "901c26c1332695a2a8f243eb2f37243a37bea320",
+  "normalized_feature": {
+    "contract_version": "kronos_feature_contract_v1",
+    "decision_timestamp": "2024-06-25T14:00:00+00:00",
+    "features": {
+      "mean_forecast_range_fraction": 0.0019512303007029861,
+      "positive_path_fraction": 1.0,
+      "terminal_return_dispersion": 0.0,
+      "terminal_return_median": 0.0025200067564499218
+    },
+    "forecast_end_timestamp": "2024-06-25T14:40:00+00:00",
+    "generated_at": "2026-08-24T01:03:52.742707+00:00",
+    "horizon_bars": 8,
+    "lineage": {
+      "model_revision": "901c26c1332695a2a8f243eb2f37243a37bea320",
+      "source_commit": "67b630e67f6a18c9e9be918d9b4337c960db1e9a",
+      "tokenizer_revision": "0e0117387f39004a9016484a186a908917e22426"
+    },
+    "sample_count": 1,
+    "usage_constraints": [
+      "research_feature_only",
+      "lag_before_portfolio_use",
+      "no_direct_order_generation",
+      "independent_oos_gate_required"
+    ]
+  },
+  "purpose": "runtime_and_feature_boundary_smoke_not_alpha_evidence",
+  "regression_passed": true,
+  "runtime": {
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "python": "3.14.4",
+    "torch": "2.13.0"
+  },
+  "seed": 123,
+  "source_commit": "67b630e67f6a18c9e9be918d9b4337c960db1e9a",
+  "status": "passed",
+  "tokenizer_revision": "0e0117387f39004a9016484a186a908917e22426",
+  "upstream_rtol": 1e-05
+}

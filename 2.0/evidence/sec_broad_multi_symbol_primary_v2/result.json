@@ -1,0 +1,17 @@
+{
+  "accepted_primary_candidates": 272,
+  "artifact_sha256": {
+    "primary_symbol_queue": "a2ccffe869708ebd3a935f3859fdfb25e0adcd6a57054a761706e321a709e5b9",
+    "quarantine": "43a33b35ec0bd5758939acb52bcd86b3e29f29a848dcd8bebc01043c4e01b405"
+  },
+  "created_at_utc": "2026-08-22T02:06:33.453492+00:00",
+  "experiment": "sec_broad_multi_symbol_primary_v2",
+  "live_trading_enabled": false,
+  "multi_symbol_targets": 281,
+  "quarantined": 9,
+  "selection_basis_counts": {
+    "sec_current_primary_matches_xbrl_first": 180,
+    "sec_xbrl_first_reported_symbol": 92
+  },
+  "strategy_testing_authorized": false
+}

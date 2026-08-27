@@ -1,0 +1,28 @@
+{
+  "artifact_sha256": {
+    "frozen_config": "e6237a76d3b43a1e04bbeb27664b47110e119ae63c7fcb53d9928bec3cf93489",
+    "implementation_module": "18489ce9fd0d51fb03692138a72816985f8023ca08699093ffbf0ffd09e10730",
+    "implementation_tests": "310ce74c2b8c66f5830f55c865e74cd83fe432b49f4e47581a92d919064e0c51",
+    "source_readiness": "90847a9ab102a8fb95b3339ae8fc64f8a97ebecf048190c6a34151ef111fe066",
+    "tournament_guard_tests": "4022e2be48bd0414fb39e922de518918b2208679d81fc49c2f7d820d07ab9986",
+    "workstream_inventory": "a30d3ca8e6052bc0671c815a8a2ebc727730053d5f0064feabc1723813b22005"
+  },
+  "broad_strategy_testing_authorized": false,
+  "created_at_utc": "2026-08-22T04:42:09.477675+00:00",
+  "engineering_ready_workstreams": 8,
+  "experiment": "sec_return_improvement_program_v1",
+  "gate_snapshot": {
+    "free_tiingo_pending_ciks": 267,
+    "minimum_decision_price_coverage": 0.8760623229461756,
+    "overall_price_coverage": 0.9291227199404393,
+    "terminal_outcome_gate_passed": true
+  },
+  "live_trading_enabled": false,
+  "module_exports_verified": true,
+  "performance_evaluated": false,
+  "performance_metrics_written": false,
+  "protocol_frozen": true,
+  "research_only": true,
+  "strategy_promotion_authorized": false,
+  "workstreams": 8
+}

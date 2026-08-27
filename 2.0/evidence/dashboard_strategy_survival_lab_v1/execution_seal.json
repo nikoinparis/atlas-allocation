@@ -1,0 +1,17 @@
+{
+  "execution_enabled": false,
+  "experiment": "dashboard_strategy_survival_lab_v1",
+  "live_trading_enabled": false,
+  "one_shot_execution": true,
+  "performance_evaluated_at_seal": false,
+  "pre_result_execution_seal": true,
+  "sealed_at_utc": "2026-08-24T20:21:18.368993+00:00",
+  "sealed_sha256": {
+    "config/dashboard_strategy_survival_lab_v1.json": "c5282f08a7a9952c56e8bddddfe4dee5ab91b322409ee4761552de5563445e2e",
+    "dashboard/public/return-first-dashboard.json": "2a427c970521fee814ebf6fed47afae9228afd4551459335b110658464b906db",
+    "scripts/run_dashboard_strategy_survival_lab_v1.py": "6483367c79fe8b661cddc8c6ba1bfc768a38f0e03baeb3b44fba53616998a72c",
+    "scripts/seal_dashboard_strategy_survival_lab_v1.py": "63037d8fea4ef437e46df3879f1ea41e9e75959500554a439b864855f5a763a5",
+    "tests/test_dashboard_strategy_survival_lab_v1.py": "c4035f00c96d4a187da287917d86b03285c51b52976aa76a1dfe85b875c9d359"
+  },
+  "strategy_replacement_authorized": false
+}

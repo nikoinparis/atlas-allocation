@@ -1,0 +1,34 @@
+{
+  "config_path": "config/indonesia_fundamental_momentum_v2.json",
+  "config_sha256": "efc170f4daef9cb06e698dacc486613153b20d3a402911a3b5e98ffb066eced2",
+  "fundamental_manifest": {
+    "created_at_utc": "2026-08-22T23:09:48.835020+00:00",
+    "data_end": "2025-12-31",
+    "data_start": "2021-12-31",
+    "files": {
+      "Source_Index.csv": "5389615db9aa5e59419434b9b730e3e4c324a8a234d3856181dababd6d637e30",
+      "coverage.csv": "8981868f7eb013f56bc30db5711a2a9b37cfdfa9a6508c92a1821d72a3ff7ee2",
+      "financial_ratio_panel.csv": "d868f71d69be694264ea4f7b54db5f88875654f88124b53e13ea82446b9479d9",
+      "idx80_membership.csv": "5f67b5c163f78aa6690b22df3cae8cfbe2b7670af0422b13a8d1e82db5ca3f1f",
+      "raw/2021-12.json": "10a4cd4265f807cc1fdcda769264713352b3ac1ce7a10ceafa55977881177cfe",
+      "raw/2022-12.json": "4e43da5a0a3df1e8309e3fbbd258da31738a86e704a4bf83b8894eba9daafeba",
+      "raw/2023-12.json": "8d66fc8b1a05fab02b76bc883a0eff5646b0a86b5260809c52aab942b41fa906",
+      "raw/2024-12.json": "2433a1e2b38e2d702a9f578705ead478e1200a8da308fc56e5e486b7a344817a",
+      "raw/2025-12.json": "0de0dca25ae23cf0b3b84541e03dd5d4adc0c96acb66c39dc33c9e1e42d2e326"
+    },
+    "maximum_idx80_coverage": 1.0,
+    "minimum_idx80_coverage": 1.0,
+    "panel_rows": 753,
+    "performance_claim_authorized": false,
+    "research_only": true,
+    "snapshot_count": 5,
+    "source": "official IDX Digital Statistic \u2014 Financial Data and Ratio",
+    "vintage_id": "20260822T230948Z-idx-ratio-panel-v1"
+  },
+  "fundamental_vintage": "20260822T230948Z-idx-ratio-panel-v1",
+  "growth_method": "annualized_fs_month",
+  "price_vintage": "20260822T094207Z-idx80-extended-prices-v1",
+  "research_only": true,
+  "run_id": "20260822T231615Z-predeclared-v2",
+  "supplemental_vintage": "20260822T102940Z-idx80-inactive-price-supplement-v1"
+}

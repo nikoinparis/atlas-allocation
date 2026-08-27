@@ -1,0 +1,42 @@
+{
+  "adaptive_multiplier_transitions": 15,
+  "adaptive_multiplier_week_counts": {
+    "1.0": 66,
+    "1.125": 2,
+    "1.25": 125
+  },
+  "artifact_sha256": {
+    "calendar_years.csv": "b56675bd23afb65e13b513d4e7742e23c7a31fd7b5b82b0e971e956fa107b595",
+    "rolling_windows.csv": "26f1078820deef529d1035273dc05d1c3365e3875b93dd2815f2feea9d15723b"
+  },
+  "common_endpoint": "2026-08-07",
+  "comparable_primary_window": "trailing_52w",
+  "comparable_secondary_window": "trailing_104w",
+  "created_at_utc": "2026-08-24T08:25:46.737990+00:00",
+  "experiment": "sec_residual_financing_adaptive_risk_audit_v1",
+  "full_window_comparison_authorized": false,
+  "full_window_start_mismatch": {
+    "adaptive_1.00x_to_1.25x": "2022-12-02",
+    "adaptive_with_residual_risk_contribution_limit": "2023-01-06",
+    "fixed_1.25x_5pct_published_reference": "2022-12-02",
+    "fixed_1.25x_realistic_financing": "2022-12-02",
+    "unlevered_1.00x": "2022-12-02"
+  },
+  "historical_margin_safety_breaches": {
+    "adaptive_1.00x_to_1.25x": 0,
+    "adaptive_with_residual_risk_contribution_limit": 0,
+    "fixed_1.25x_5pct_published_reference": 0,
+    "fixed_1.25x_realistic_financing": 0
+  },
+  "live_trading_enabled": false,
+  "replacement_authorized": false,
+  "research_display_winner": null,
+  "source_artifact_hashes_verified": true,
+  "source_result_sha256": "31703a49b060fbe9950603da38b83e09c86356581af8bb63d5080e4dad5a602a",
+  "source_support_sha256": {
+    "evidence/sec_residual_financing_adaptive_risk_v1/margin_shocks.csv": "f6c62d1b817a72489eb077432804b3278a31a4856d9d5254636e962ccb80dfc4",
+    "evidence/sec_residual_financing_adaptive_risk_v1/metrics.csv": "d46d0baf123e709e125de509686836e58ea2c1794003d7ca45303f8a671b1f53",
+    "evidence/sec_residual_financing_adaptive_risk_v1/risk_contribution_diagnostics.csv": "8b35bc75dea8ff1f0afd5861e2f68f9a8dbdcb1cae3f74a19d27cc43364905eb",
+    "evidence/sec_residual_financing_adaptive_risk_v1/stress_grid.csv": "33597ef35836e75b61ea2d409285bfff54404587fec51b04a9845acdff80a6ac"
+  }
+}

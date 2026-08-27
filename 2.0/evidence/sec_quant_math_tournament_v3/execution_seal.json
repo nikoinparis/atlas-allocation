@@ -1,0 +1,17 @@
+{
+  "experiment": "sec_quant_math_tournament_v3",
+  "live_trading_enabled": false,
+  "one_shot_execution": true,
+  "performance_evaluated_at_seal": false,
+  "pre_result_execution_seal": true,
+  "sealed_at_utc": "2026-08-24T09:45:39.841675+00:00",
+  "sealed_sha256": {
+    "config/sec_quant_math_tournament_v3.json": "fe85b93ed97ea3604ab5acb2a01ca166ece755d4815f91247d35ad18addf28fb",
+    "scripts/run_sec_quant_math_tournament_v3.py": "9b749a81fb504e6d3fd095242fe7abe97427d1f3eec95286008e39b71dac0172",
+    "scripts/seal_sec_quant_math_tournament_v3.py": "14076457d4ca8d6da7d267bf803f50e55e09912b77885eec8efd2ad61d5f62c5",
+    "src/systematic_trader/sec_quant_math_tournament_v3.py": "8e758dcbbda7ff509bd9d0606245e136e0d57278e08ed00b3195d70dedadf853",
+    "tests/test_sec_quant_math_tournament_v3.py": "d850c5b17ad6626d50093d36b9c47b00f2379e4a598435ba4430b8021ee6e77f"
+  },
+  "selection_contaminated_by_prior_project_results": true,
+  "strategy_promotion_authorized": false
+}

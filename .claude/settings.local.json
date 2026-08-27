@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c ' *)",
+      "Bash(cd \"/Users/nicholasturangan/Documents/Portfolio Optimizer/2.0\" && until ! ps -p 52955 > /dev/null 2>&1; do sleep 5; done; echo \"process finished\"; tail -100 /tmp/form4_dynamic_run.log)",
+      "Read(//private/tmp/**)",
+      "Bash(git -C \"/Users/nicholasturangan/Documents/Portfolio Optimizer\" status --short -- 2.0/config 2.0/scripts 2.0/evidence/sec_form4_dynamic_overlay_v1 2.0/research_registry 2.0/PROJECT_HISTORY.md 2.0/.venv 2.0/.gitignore)",
+      "Bash(git -C \"/Users/nicholasturangan/Documents/Portfolio Optimizer\" rev-parse --show-toplevel)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(git -C \"/Users/nicholasturangan/Documents/Portfolio Optimizer\" status --short -- 2.0/config 2.0/scripts 2.0/evidence/sec_form4_dynamic_overlay_v1 2.0/research_registry 2.0/PROJECT_HISTORY.md)",
+      "Bash(brctl status *)",
+      "Bash(brctl download *)",
+      "Bash(git -C \"/Users/nicholasturangan/Documents/Portfolio Optimizer\" status --short -- 2.0/config 2.0/scripts 2.0/evidence/sec_form4_dynamic_overlay_v1 2.0/research_registry 2.0/PROJECT_HISTORY.md 2.0/.venv 2.0/.gitignore > /tmp/git_status_check.log 2>&1 *)",
+      "Bash(git -C \"/Users/nicholasturangan/Documents/Portfolio Optimizer\" status --short -- 2.0/)",
+      "Bash(git -C \"/Users/nicholasturangan/Documents/Portfolio Optimizer\" status --short -- 2.0/evidence 2.0/data/sec_form4_bulk_vintages)",
+      "Bash(git -C \"/Users/nicholasturangan/Documents/Portfolio Optimizer\" status --short -- 2.0/src 2.0/dashboard 2.0/tests 2.0/containers 2.0/docs 2.0/.gitignore)",
+      "Bash(git -C \"/Users/nicholasturangan/Documents/Portfolio Optimizer\" ls-files -- \"2.0/data/\")",
+      "Bash(git -C '/Users/nicholasturangan/Documents/Portfolio Optimizer' add 2.0/PROJECT_HISTORY.md 2.0/config/sec_filing_fundamental_momentum_search_v1.json 2.0/config/sec_filing_momentum_dynamic_overlay_v1.json 2.0/config/sec_form4_bulk_acquisition_v1.json 2.0/config/sec_form4_dynamic_overlay_v1.json 2.0/config/sec_form4_insider_cluster_search_v1.json 2.0/scripts/run_sec_filing_fundamental_momentum_search_v1.py 2.0/scripts/run_sec_filing_momentum_dynamic_overlay_v1.py 2.0/scripts/acquire_sec_form4_bulk_v1.py 2.0/scripts/run_sec_form4_insider_cluster_search_v1.py 2.0/scripts/run_sec_form4_dynamic_overlay_v1.py 2.0/evidence/sec_filing_fundamental_momentum_search_v1/ 2.0/evidence/sec_filing_momentum_dynamic_overlay_v1/ 2.0/evidence/sec_form4_insider_cluster_search_v1/ 2.0/evidence/sec_form4_dynamic_overlay_v1/ 2.0/data/sec_form4_bulk_vintages/ 2.0/research_registry/sec_filing_fundamental_momentum_v1.json 2.0/research_registry/sec_form4_insider_cluster_v1.json 2.0/research_registry/sec_form4_dynamic_overlay_v1.json)",
+      "Bash(echo \"add exit: $?\")",
+      "Bash(git -C \"/Users/nicholasturangan/Documents/Portfolio Optimizer\" diff --cached --stat)",
+      "Bash(git -C '/Users/nicholasturangan/Documents/Portfolio Optimizer' commit -m ' *)",
+      "Bash(echo \"commit exit: $?\")"
+    ],
+    "additionalDirectories": [
+      "/tmp"
+    ]
+  }
+}

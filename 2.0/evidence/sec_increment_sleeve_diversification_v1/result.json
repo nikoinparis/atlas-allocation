@@ -1,0 +1,76 @@
+{
+  "all_falsification_checks_passed": false,
+  "artifact_sha256": {
+    "screening": "33f4b9e0908dd8691904dcc4a62098d9ea3e224b9bb88f78dad9722b9948b3c5",
+    "selected_increment_route": "fda216f0b4b592cd81b2300625f2539fff1af5bd8080992dfd986fbaa9f2614c",
+    "selected_path_50bps": "04c5edccf153111dc6c22e738d70351c2fe6f7d17a8b4f499974686616f0fe8c",
+    "selected_target_weights": "60ee3df9ce0101a47447aec5912a6cf70d27d3c714fce3268f59abeb9a70d069"
+  },
+  "average_selected_increment_route": {
+    "balance_sheet_quality": 0.0,
+    "cash_conversion": 0.5,
+    "profitability": 0.0,
+    "quality_acceleration": 0.0,
+    "shareholder_discipline": 0.5
+  },
+  "base_recent_cagr": 1.1293348809519022,
+  "bootstrap_13w_probability_positive_vs_119pct_control": 0.5674,
+  "bootstrap_4w_probability_positive_vs_119pct_control": 0.5734,
+  "candidate_count": 21,
+  "checks": {
+    "bootstrap_13w_at_least_95pct": false,
+    "bootstrap_4w_at_least_95pct": false,
+    "control_reproduces_119pct_challenger": true,
+    "diversified_candidate_selected": true,
+    "recent_cagr_beats_119pct_control": true,
+    "robust_floor_beats_112pct_base": true,
+    "rolling_outperformance_at_least_50pct": false,
+    "selected_surface_gates_passed": true,
+    "worst_company_removal_beats_112pct_base": false,
+    "worst_company_removal_beats_frozen": true
+  },
+  "completed_rolling_windows": 163,
+  "created_at_utc": "2026-08-21T09:52:18.733464+00:00",
+  "delay1_recent_cagr": 1.1898240208433046,
+  "delay2_recent_cagr": 1.204519614053507,
+  "experiment": "sec_increment_sleeve_diversification_v1",
+  "frozen_recent_cagr": 1.0510082013109483,
+  "full_cagr": 0.4190581499473012,
+  "incumbent_challenger_recent_cagr": 1.1921841481621755,
+  "live_trading_enabled": false,
+  "peak_total_stock_weight_bound": 0.07378789503220702,
+  "recent_cagr": 1.1945554490489667,
+  "recent_drawdown": -0.087087583753373,
+  "recent_sharpe": 3.045202650349167,
+  "robust_floor": 1.161668770653443,
+  "rolling_outperformance_share_vs_119pct_control": 0.44171779141104295,
+  "runtime": {
+    "actual": {
+      "numpy": "2.5.1",
+      "pandas": "3.0.5",
+      "python": "3.12.13"
+    },
+    "all_versions_match": true,
+    "expected": {
+      "container_image": "localhost/po2-yfinance:1.5.2-v1",
+      "container_image_id": "c84c194bef2052b0b4e4997d5780eb8ccf48d0ed2a3ec35bcafb726f691e0c5c",
+      "numpy": "2.5.1",
+      "pandas": "3.0.5",
+      "python": "3.12.13"
+    },
+    "versions_match": {
+      "numpy": true,
+      "pandas": true,
+      "python": true
+    }
+  },
+  "selected_candidate": "cash50__shareholder_discipline50",
+  "selected_is_diversified": true,
+  "selection_reason": "best robust floor among diversified surface passers",
+  "severe_recent_cagr": 1.0254077549527474,
+  "strategy_replacement_authorized": false,
+  "surface_passer_count": 14,
+  "worst_loo_company": "QUALYS, INC.",
+  "worst_loo_recent_cagr": 1.107020201131634,
+  "worst_sleeve_removal_recent_cagr": 1.161668770653443
+}

@@ -1,0 +1,16 @@
+{
+  "contract_version": "kronos_feature_contract_v1",
+  "features": {
+    "mean_forecast_range_fraction": 0.025779508421549892,
+    "positive_path_fraction": 1.0,
+    "terminal_return_dispersion": 0.007425742574257432,
+    "terminal_return_median": 0.012376237623762387
+  },
+  "status": "passed",
+  "usage_constraints": [
+    "research_feature_only",
+    "lag_before_portfolio_use",
+    "no_direct_order_generation",
+    "independent_oos_gate_required"
+  ]
+}

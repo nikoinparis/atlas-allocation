@@ -31,6 +31,7 @@ BREADTH_AUDIT = V2 / "evidence/sec_cash_conversion_breadth20_daily_execution_aud
 BREADTH_WEEKLY = V2 / "evidence/sec_cash_conversion_breadth20_candidate_audit_v1"
 BREADTH_FORWARD = V2 / "config/forward/sec_cash_conversion_breadth20_challenger_v1.json"
 SECTOR_ENSEMBLE = V2 / "evidence/sec_sector_aware_signal_ensemble_v1"
+SECTOR_DAILY_RISK = V2 / "evidence/sec_sector_ensemble_daily_risk_scaling_audit_v1"
 RESIDUAL_CONTROLLED = V2 / "evidence/sec_residual_controlled_sleeve_v1"
 RESIDUAL_COMMON_ENDPOINT = V2 / "evidence/sec_independent_sleeve_return_accelerator_v1/common_endpoint_audit.json"
 RESIDUAL_FORWARD = V2 / "evidence/forward_sec_residual_controlled_sleeve_v1/status.json"
@@ -602,6 +603,97 @@ def sector_ensemble_payload() -> dict[str, object]:
     }
 
 
+def sector_fragile_135_payload() -> dict[str, object]:
+    """Render the exact-daily 1.35x return ceiling with its failed gate visible."""
+    base = sector_ensemble_payload()
+    daily_path = load_frame(SECTOR_DAILY_RISK / "daily_path__1.35x.csv")
+    result = json.loads((SECTOR_DAILY_RISK / "result.json").read_text())
+    dates = pd.to_datetime([record["date"] for record in base["records"]])
+    symbols = sorted({
+        str(holding["symbol"])
+        for record in base["records"]
+        for holding in record["holdings"]
+    } | {"cash::USD"})
+    weights = pd.DataFrame(0.0, index=dates, columns=symbols)
+    for record in base["records"]:
+        date = pd.Timestamp(record["date"])
+        for holding in record["holdings"]:
+            weights.at[date, str(holding["symbol"])] = 1.35 * float(holding["weight"] or 0.0)
+        weights.at[date, "cash::USD"] -= 0.35
+    weekly = (1.0 + daily_path["net_return"]).resample("W-FRI").prod() - 1.0
+    weekly = weekly.reindex(weights.index).fillna(0.0)
+    wealth = (1.0 + weekly).cumprod()
+    drawdown = wealth / wealth.cummax() - 1.0
+    turnover = 0.5 * weights.diff().abs().sum(axis=1).fillna(0.0)
+    records = records_from_weights(
+        weights,
+        weekly,
+        weekly,
+        turnover,
+        pd.Series(0.0, index=weights.index),
+        wealth,
+        drawdown,
+    )
+    rebalance_dates = {record["date"] for record in records if record["rebalance"]}
+    daily_records = [
+        {
+            "date": date.strftime("%Y-%m-%d"),
+            "netReturn": clean(row.net_return),
+            "rebalance": date.strftime("%Y-%m-%d") in rebalance_dates,
+            "tradingDay": True,
+        }
+        for date, row in daily_path.iterrows()
+    ]
+    return {
+        "strategy": {
+            "id": "sec-sector-ensemble-fragile-1.35x-v1",
+            "name": "Sector Ensemble 1.35x — Fragile Return Ceiling",
+            "shortName": "174.97% Fragile 1.35x",
+            "subtitle": "Sector-aware filing ensemble · 1.35x exposure · 6% financing · failed issuer falsification",
+            "badge": "FAILED ROBUSTNESS · 174.97%",
+            "asOf": daily_records[-1]["date"],
+            "retrospectiveHoldout": {
+                "cagr": result["daily_recent_cagr"],
+                "sharpe": result["daily_recent_sharpe"],
+                "maxDrawdown": result["daily_recent_drawdown"],
+                "start": daily_path.index[-252].strftime("%Y-%m-%d"),
+            },
+            "fullHistory": {
+                "cagr": result["daily_full_cagr"],
+                "maxDrawdown": float(daily_path["drawdown"].min()),
+                "start": daily_path.index[0].strftime("%Y-%m-%d"),
+            },
+            "featuredMetric": {
+                "label": "DAILY-AUDITED TRAILING 1Y",
+                "value": result["daily_recent_cagr"],
+                "note": "Return ceiling only · underlying five-issuer and bootstrap gates failed",
+            },
+            "forward": {
+                "status": "FRAGILE DIAGNOSTIC · NOT ELIGIBLE",
+                "observedWeeks": 0,
+                "requiredWeeks": 52,
+                "firstDecision": "Not scheduled",
+                "firstRealization": "Not scheduled",
+                "note": "The leverage layer passed its narrow daily checks, but the underlying strategy failed complete falsification.",
+            },
+            "disclosures": {
+                "researchOnly": True,
+                "liveTradingEnabled": False,
+                "costBps": 50,
+                "returnConvention": "Exact daily adjusted-close path; fixed 1.35x exposure, 6% annual financing and 25 bps exposure-change cost. Selection-contaminated.",
+            },
+        },
+        "records": records,
+        "dailyRecords": daily_records,
+        "assetPrices": base["assetPrices"],
+        "validation": {
+            "candidateLevelGatesPassed": result["candidate_level_gates_passed"],
+            "underlyingStrategyFalsificationPassed": result["underlying_strategy_falsification_passed"],
+            "completeFalsificationPassed": result["complete_falsification_passed"],
+        },
+    }
+
+
 def weekly_statistics(returns: pd.Series) -> dict[str, float]:
     values = pd.to_numeric(returns, errors="coerce").dropna()
     wealth = (1.0 + values).cumprod()
@@ -732,6 +824,7 @@ def residual_controlled_payload(control_payload: dict[str, object]) -> dict[str,
 
     recent = audit["trailing_52_week_paths"]["levered_1.25x_5pct_financing"]
     conservative = audit["trailing_52_week_paths"]["levered_1.25x_8pct_financing"]
+    cash_only = weekly_statistics(candidate.tail(52))
     full = weekly_statistics(levered_returns)
     return {
         "strategy": {
@@ -758,6 +851,13 @@ def residual_controlled_payload(control_payload: dict[str, object]) -> dict[str,
                 "label": "COMMON-ENDPOINT TRAILING 52W",
                 "value": recent["cagr"],
                 "note": f"5% financing assumption · 8% stress: {conservative['cagr'] * 100:.2f}% · selected on this sample",
+            },
+            "cashOnlyMetric": {
+                "label": "CASH-ONLY TRAILING 52W",
+                "value": cash_only["cagr"],
+                "sharpe": cash_only["sharpe"],
+                "maxDrawdown": cash_only["max_drawdown"],
+                "note": "1.00x exposure · $0 borrowed · $0 financing",
             },
             "forward": {
                 "status": "FROZEN FORWARD · NOT PROMOTED",
@@ -789,7 +889,14 @@ def residual_controlled_payload(control_payload: dict[str, object]) -> dict[str,
 def main() -> int:
     breadth = breadth20_payload()
     residual = residual_controlled_payload(breadth)
-    payload = {"strategies": [residual, incumbent_payload(), growth_payload(), breadth, sector_ensemble_payload()]}
+    payload = {"strategies": [
+        residual,
+        sector_fragile_135_payload(),
+        incumbent_payload(),
+        growth_payload(),
+        breadth,
+        sector_ensemble_payload(),
+    ]}
     temporary = OUTPUT.with_suffix(".json.tmp")
     temporary.write_text(json.dumps(payload, separators=(",", ":")) + "\n")
     temporary.replace(OUTPUT)

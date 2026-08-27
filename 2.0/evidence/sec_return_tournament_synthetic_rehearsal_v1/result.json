@@ -1,0 +1,26 @@
+{
+  "artifact_sha256": {
+    "config": "bd54a5728f54c6039a6c2dba6aae1f3363074c2ebc359a7b72b7cf7605c3b610",
+    "family_rehearsal": "4c3786209d5e9f1350c85d69c9316629cd7db98b80d4804cc7402c459bb2140c",
+    "nested_ml_audit": "59f154ddff2102997cd1c8bd3e15649c05b98a605fa8a0b72e4a322919837a50",
+    "panel_sample": "2f50278d440cf4cd29a30c453379eed18f0f78e92aad5f6328d6631b9a2e014a"
+  },
+  "created_at_utc": "2026-08-22T06:47:17.138653+00:00",
+  "experiment": "sec_return_tournament_synthetic_rehearsal_v1",
+  "families_exercised": 8,
+  "live_trading_enabled": false,
+  "nested_ml_folds": 6,
+  "point_in_time_contract": {
+    "decisions": 15,
+    "issuers": 48,
+    "prefix_causal": true,
+    "required_purge_decisions": 1,
+    "rows": 720
+  },
+  "real_performance_evaluated": false,
+  "real_research_gate_open": false,
+  "sealed_for_real_run": false,
+  "strategy_promotion_authorized": false,
+  "synthetic_only": true,
+  "synthetic_winner_is_not_a_strategy_candidate": true
+}

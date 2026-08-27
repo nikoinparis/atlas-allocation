@@ -1,0 +1,39 @@
+{
+  "approved_for_core_import": false,
+  "approved_for_live_trading": false,
+  "blockers": [
+    "not a market-data license or permission to scrape",
+    "every target requires terms-of-service, robots, rate-limit, authentication, and data-rights review",
+    "dynamic anti-bot behavior is unsuitable for a deterministic primary price feed"
+  ],
+  "capability": "web_acquisition_adapter",
+  "id": "scrapling",
+  "isolation": "source_specific_fetcher_with_immutable_raw_capture",
+  "name": "Scrapling",
+  "probe": {
+    "archived": false,
+    "commit_matches_pin": true,
+    "default_branch": "main",
+    "expected_license": "BSD-3-Clause",
+    "github_license_spdx": "BSD-3-Clause",
+    "license_detected_from_pinned_source": "BSD-3-Clause",
+    "license_matches_expected": true,
+    "license_sha256": "5c782ef0346e4fbfe0dc76fd435f181a0f1e4a1a7a6b13c169c6e74314ff5964",
+    "live_probe_attempted": true,
+    "missing_required_paths": [],
+    "pin_is_immutable_sha": true,
+    "pinned_commit": "333fa22b7a5821194ce66b59b11f4b16a6484f02",
+    "repository": "D4Vinci/Scrapling",
+    "required_paths": [
+      "LICENSE",
+      "README.md",
+      "pyproject.toml",
+      "scrapling"
+    ],
+    "required_paths_present": true,
+    "resolved_commit": "333fa22b7a5821194ce66b59b11f4b16a6484f02",
+    "source_status": "reachable",
+    "tree_truncated": false
+  },
+  "verdict": "conditional_acquisition_adapter"
+}

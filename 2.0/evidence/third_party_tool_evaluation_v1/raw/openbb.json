@@ -1,0 +1,38 @@
+{
+  "approved_for_core_import": false,
+  "approved_for_live_trading": false,
+  "blockers": [
+    "AGPL-3.0 obligations require review before distribution or network deployment",
+    "provider credentials, entitlements, timestamps, revisions, and survivorship properties vary by extension",
+    "each provider requires an independent data-quality and point-in-time audit"
+  ],
+  "capability": "data_connector",
+  "id": "openbb",
+  "isolation": "separate_process_or_exported_point_in_time_bundle",
+  "name": "OpenBB",
+  "probe": {
+    "archived": false,
+    "commit_matches_pin": true,
+    "default_branch": "develop",
+    "expected_license": "AGPL-3.0",
+    "github_license_spdx": "NOASSERTION",
+    "license_detected_from_pinned_source": "AGPL-3.0",
+    "license_matches_expected": true,
+    "license_sha256": "442baa7865ddf53ba04808a29e4810ac1fd9c83383d4ac76297cec4569e19222",
+    "live_probe_attempted": true,
+    "missing_required_paths": [],
+    "pin_is_immutable_sha": true,
+    "pinned_commit": "3e071fcc2cd9f891cac6040ae60296dba76dab46",
+    "repository": "OpenBB-finance/OpenBB",
+    "required_paths": [
+      "LICENSE",
+      "README.md",
+      "openbb_platform"
+    ],
+    "required_paths_present": true,
+    "resolved_commit": "3e071fcc2cd9f891cac6040ae60296dba76dab46",
+    "source_status": "reachable",
+    "tree_truncated": false
+  },
+  "verdict": "conditional_data_connector_candidate"
+}

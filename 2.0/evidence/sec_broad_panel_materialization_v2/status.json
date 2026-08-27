@@ -1,0 +1,13 @@
+{
+  "created_at_utc": "2026-08-24T02:20:44.709362+00:00",
+  "experiment": "sec_broad_panel_materialization_v2",
+  "frozen_protocol_matches": true,
+  "input_manifest_exists": true,
+  "live_trading_enabled": false,
+  "output_manifest_sha256": "3f0910f8193424356d491d8647fccc01995a2943ba6f5d8268005bb44f992f43",
+  "performance_evaluated": false,
+  "real_panel_written": true,
+  "research_gate_open": true,
+  "status": "materialized_hash_verified_panel",
+  "strategy_promotion_authorized": false
+}

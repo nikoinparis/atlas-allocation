@@ -1,0 +1,32 @@
+{
+  "better_than_indonesia_gates": {
+    "net_cagr_above_equal_weight_eligible": true,
+    "net_cagr_above_ihsg": true,
+    "net_cagr_above_lq45": true,
+    "net_sharpe_above_equal_weight_eligible": true,
+    "net_sharpe_above_ihsg": true,
+    "net_sharpe_above_lq45": true
+  },
+  "evaluation_end": "2026-08-21",
+  "evaluation_start": "2019-02-04",
+  "execution_authorized": false,
+  "investment_recommendation": false,
+  "minimum_required_monthly_decisions": 60,
+  "monthly_decisions": 91,
+  "notice": "RESEARCH ONLY \u2014 reconstructed-membership diagnostic, not an investment recommendation or authorized performance claim.",
+  "performance_claim_authorized": false,
+  "price_vintage": "20260822T094207Z-idx80-extended-prices-v1",
+  "survival_gates": {
+    "complete_delisting_and_inactive_security_history": false,
+    "complete_point_in_time_membership_from_2019": true,
+    "licensed_price_and_benchmark_total_return_data": false,
+    "maximum_drawdown_floor": false,
+    "minimum_monthly_decisions": true,
+    "minimum_net_sharpe_at_base_cost": true,
+    "no_single_calendar_year_dependency": false,
+    "positive_net_cagr_at_150bps": true,
+    "positive_net_cagr_at_base_cost": true,
+    "validated_local_cost_model": false
+  },
+  "verdict": "INCONCLUSIVE_DATA_GATED"
+}

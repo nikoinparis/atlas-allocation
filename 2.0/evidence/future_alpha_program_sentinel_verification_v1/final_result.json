@@ -1,0 +1,75 @@
+{
+  "all_match": true,
+  "created_at_utc": "2026-08-26T05:50:49.867845+00:00",
+  "experiment": "future_alpha_program_sentinel_verification_v1",
+  "failures": [],
+  "forward_evidence_mutated": false,
+  "live_trading_enabled": false,
+  "protected_files": 8,
+  "rows": [
+    {
+      "actual_exists": true,
+      "actual_sha256": "9340f6202870c864a317c0ac71d455649449261a08751ff50942c386b1916020",
+      "expected_exists": true,
+      "expected_sha256": "9340f6202870c864a317c0ac71d455649449261a08751ff50942c386b1916020",
+      "matches": true,
+      "path": "config/forward_prediction_registry_v1.json"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "6d45c45f8911534eea03a0aabcc65bd732602b0d9651b1826926539287919f20",
+      "expected_exists": true,
+      "expected_sha256": "6d45c45f8911534eea03a0aabcc65bd732602b0d9651b1826926539287919f20",
+      "matches": true,
+      "path": "evidence/forward_covariance_minimum_variance_v1/decisions.jsonl"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "be889a6cb0ec4fb2ca676bf585f419fb972484e8db889f8e30ce23df34b423d7",
+      "expected_exists": true,
+      "expected_sha256": "be889a6cb0ec4fb2ca676bf585f419fb972484e8db889f8e30ce23df34b423d7",
+      "matches": true,
+      "path": "evidence/forward_covariance_minimum_variance_v1/observations.jsonl"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "1acc9f28cdc3621c9e2e09487f9e9f165648f73329929b3797e26c227fe698d0",
+      "expected_exists": true,
+      "expected_sha256": "1acc9f28cdc3621c9e2e09487f9e9f165648f73329929b3797e26c227fe698d0",
+      "matches": true,
+      "path": "evidence/forward_covariance_minimum_variance_v1/report.md"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "af64245de736b7b85095da7ebdf5f46c3cb387f46b4afb2ff1a1ad08c71cd947",
+      "expected_exists": true,
+      "expected_sha256": "af64245de736b7b85095da7ebdf5f46c3cb387f46b4afb2ff1a1ad08c71cd947",
+      "matches": true,
+      "path": "evidence/forward_covariance_minimum_variance_v1/status.json"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "2ee51fcdaaaf946032eafc3f3cb0b0c2f89a5838729695cbad0082fe7d101db6",
+      "expected_exists": true,
+      "expected_sha256": "2ee51fcdaaaf946032eafc3f3cb0b0c2f89a5838729695cbad0082fe7d101db6",
+      "matches": true,
+      "path": "evidence/forward_prediction_registry_v1/rehearsal_scores.csv"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "8e04e699d3ea063a19e8859dfd3f30f94c51ec0d25b9840ea45c2adfc6fc8bfe",
+      "expected_exists": true,
+      "expected_sha256": "8e04e699d3ea063a19e8859dfd3f30f94c51ec0d25b9840ea45c2adfc6fc8bfe",
+      "matches": true,
+      "path": "evidence/forward_prediction_registry_v1/rehearsal_summary.json"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "863eade2f72629880fabb670fe0c4e88c83b28eb38b156a954fd40e67c477f35",
+      "expected_exists": true,
+      "expected_sha256": "863eade2f72629880fabb670fe0c4e88c83b28eb38b156a954fd40e67c477f35",
+      "matches": true,
+      "path": "evidence/weekly_forward_cycles/latest_result.json"
+    }
+  ]
+}

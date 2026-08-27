@@ -1,0 +1,13 @@
+{
+  "performance_evaluated_at_seal": false,
+  "sealed_at_utc": "2026-08-24T08:23:58.389027+00:00",
+  "sealed_sha256": {
+    "config/sec_residual_financing_adaptive_risk_v1.json": "f1da9997b13780e72796a9e75c39a2517f14cdd42ffa402c123fed042d156664",
+    "config/sec_return_improvement_program_v1.json": "e6237a76d3b43a1e04bbeb27664b47110e119ae63c7fcb53d9928bec3cf93489",
+    "data/sec_broad_research_panel_v2/manifest.json": "3f0910f8193424356d491d8647fccc01995a2943ba6f5d8268005bb44f992f43",
+    "evidence/sec_cash_conversion_breadth_dynamic_v1/best_path__base__50bps.csv": "1d1f7926ff1663a1d22360818c64a172c203d2b9e1a145465993c4f66894cf26",
+    "evidence/sec_independent_sleeve_return_accelerator_v1/common_endpoint_audit.json": "1872ad86bc098f3cb08c14a58311a21a7512bfe5f26552e7bfa9ec6cc2f203e5",
+    "evidence/sec_residual_controlled_sleeve_v1/candidate_path.csv": "17e9a1147973613264c6326342ba58482100c28033b202ee98528c3d3037f3c7",
+    "scripts/run_sec_residual_financing_adaptive_risk_v1.py": "ef1b267fd1b6b0bf233bc6f11e3a3d4ecaeadf9effd6c8ec56deef8ed2bf3824"
+  }
+}

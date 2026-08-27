@@ -40,7 +40,11 @@ class GuardedWeeklyForwardCycleTests(unittest.TestCase):
         self.assertEqual("complete", result["status"])
         self.assertFalse(result["execution_enabled"])
         self.assertIsNone(result["broker_connection"])
-        self.assertEqual(0, result["forward_status"]["observed_weeks"])
+        self.assertLess(
+            result["forward_status"]["observed_weeks"],
+            result["forward_status"]["required_weeks"],
+        )
+        self.assertFalse(result["forward_status"]["clock_complete"])
 
 
 if __name__ == "__main__":

@@ -1,0 +1,17 @@
+{
+  "experiment": "sec_return_tournament_synthetic_rehearsal_v1",
+  "live_trading_enabled": false,
+  "real_execution_authorized": false,
+  "real_performance_evaluated": false,
+  "real_research_gate_open_at_seal": false,
+  "rehearsal_contract_sealed": true,
+  "sealed_at_utc": "2026-08-22T06:48:08.305734+00:00",
+  "sealed_sha256": {
+    "config/sec_return_tournament_synthetic_rehearsal_v1.json": "bd54a5728f54c6039a6c2dba6aae1f3363074c2ebc359a7b72b7cf7605c3b610",
+    "schemas/sec_broad_research_panel_v1.schema.json": "8ac387231bf5372feaa66264a6ff1e240e992389f68179caa7bbed238b315bb4",
+    "scripts/run_sec_return_tournament_synthetic_rehearsal_v1.py": "fe23db925b1f253089bcd958f23a073468cb32e97efb1cea0a300fac09ff5cb7",
+    "src/systematic_trader/sec_tournament_rehearsal.py": "950d183705f5dec0f8d54c07ca471b0055c566c561b3fdc45566d2cb1832dc76",
+    "tests/test_sec_tournament_rehearsal.py": "981d56221196b1c4004aa55d28d22a43f21c01d6de54e9627eb8f12a008cf6b7"
+  },
+  "strategy_promotion_authorized": false
+}

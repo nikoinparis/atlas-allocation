@@ -1,0 +1,25 @@
+{
+  "active_share": 0.07446808510638298,
+  "all_validation_checks_passed": true,
+  "average_sleeve_weight": 0.03723404255319149,
+  "best_candidate": "leader_negative_sleeve_positive__lb8__w0.50__under50__outer50",
+  "best_full_cagr": 0.38573176654214025,
+  "best_full_drawdown": -0.23897864896280285,
+  "best_recent_cagr": 1.0703901198445664,
+  "best_recent_drawdown": -0.10076752452473337,
+  "best_recent_sharpe": 2.7450913815611226,
+  "candidates_beating_control_both": 0,
+  "created_at_utc": "2026-08-15T00:11:50.745399+00:00",
+  "experiment": "sec_filing_momentum_dynamic_overlay_v1",
+  "live_trading_enabled": false,
+  "severe_200bps_recent_cagr": 1.041132719186892,
+  "strategy_replacement_authorized": false,
+  "tested_paths": 900,
+  "validation_checks": {
+    "all_costs_reported": true,
+    "all_gates_reported": true,
+    "allocations_bounded": true,
+    "results_finite": true,
+    "signals_shifted": true
+  }
+}

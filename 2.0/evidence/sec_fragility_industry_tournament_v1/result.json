@@ -1,0 +1,81 @@
+{
+  "accelerator_candidate_count": 8,
+  "artifact_sha256": {
+    "accelerator_exposure_audit.csv": "a7ec9aee5d00fe37b17d905ddfc675c137d8c3707796a9fad8f57d6dc20941fb",
+    "common_paths.csv": "4653b62b7fecc4f7f98929eb4ab982ed03dca6bd85f9a570ca822d4d12dcda91",
+    "fragility_diagnostics.csv": "c30ead16e413c21001d307c2efb9180d37fee607e95016f0643f32455fa5a38e",
+    "industry_screening.csv": "85f1aab1143e3024de1f086e05e15edaa1b28eb2f381a7b862466bd42fe5330a",
+    "industry_selected_weights.csv": "456e46736b846c4e85ccb296159e0e2b50e1a20a4f773a318d2dd5289d16d436",
+    "leverage_frontier.csv": "8e3ee791ab53e2ff1e6d1f99756400f570e46a1baeb91e9da41ddd970e57185b",
+    "screening.csv": "196b027664aa39ea7c2d58719be43fbded6f00a95ae7290c3d20a1f88904024d"
+  },
+  "candidate_count": 40,
+  "common_endpoint": "2026-08-07",
+  "created_at_utc": "2026-08-24T09:07:19.450369+00:00",
+  "experiment": "sec_fragility_industry_tournament_v1",
+  "fragile_1.35x_daily_reference": {
+    "artifact_sha256": {
+      "performance": "67721d030956f72715cd163338464d76d0168e547080238935695ae4db699677",
+      "reconciliation": "4d378ff94f938f9b32cda9cc50136aa93a4c3faf4307505d92f708a8d2afb447",
+      "selected_path": "5d977923deec97f0491c86e9a727b51aeed03393ae962a6c6889b45c55cec062"
+    },
+    "candidate_level_gates_passed": true,
+    "complete_falsification_passed": false,
+    "created_at_utc": "2026-08-22T05:06:48.233249+00:00",
+    "daily_full_cagr": 0.5495292678277202,
+    "daily_recent_cagr": 1.7496783269699088,
+    "daily_recent_drawdown": -0.24429899433416014,
+    "daily_recent_sharpe": 2.5938583884881465,
+    "experiment": "sec_sector_ensemble_daily_risk_scaling_audit_v1",
+    "frozen_config_sha256": "8c211fa498821ff2751fa820bb9888db2327123fb620fffb497dcaac3f23e0ee",
+    "live_trading_enabled": false,
+    "maximum_weekly_reconciliation_difference": 0.02770760321507066,
+    "missing_price_ciks_held_as_cash": [
+      "0000351817",
+      "0000732834",
+      "0001459417",
+      "0001628945"
+    ],
+    "selected_exposure": 1.35,
+    "strategy_replacement_authorized": false,
+    "underlying_strategy_falsification_passed": false,
+    "unlevered_daily_recent_cagr": 1.1879404810238872,
+    "unlevered_daily_recent_drawdown": -0.17941471582306479,
+    "unlevered_daily_recent_sharpe": 2.643136224529354
+  },
+  "frozen_config_sha256": "2a86c682636926013d4c909f62d721b6ca429b9fd7d13247c0030d2a674b8545",
+  "historical_gate_passer_count": 0,
+  "incumbent_1.25x_8pct": {
+    "cagr": 1.4901478744034926,
+    "max_drawdown": -0.1394501023355641,
+    "sharpe": 3.0960741555493105,
+    "weeks": 52
+  },
+  "industry_candidate_count": 32,
+  "live_trading_enabled": false,
+  "required_next_step": "retain only as research candidates and gather untouched forward evidence",
+  "selected_diagnostic": "alpha30_1.35x",
+  "selected_metrics": {
+    "all_historical_promotion_gates": false,
+    "base_variant": NaN,
+    "candidate": "alpha30_1.35x",
+    "exposure": NaN,
+    "family": "fragility_aware_accelerator",
+    "familywise_bootstrap_probability": 0.8367999999999993,
+    "full_cagr": 0.5167722652426503,
+    "full_drawdown": -0.2498798212534894,
+    "full_sharpe": 1.7035286613139844,
+    "raw_bootstrap_probability": 0.9932,
+    "recent_cagr": 1.8689582075057198,
+    "recent_drawdown": -0.1505682137519605,
+    "recent_sharpe": 3.2059318413037308,
+    "removed_issuers": NaN,
+    "rolling_26w_outperformance_share": 0.47023809523809523,
+    "rolling_26w_windows": 168,
+    "severe_200bps_recent_cagr": 1.4227562941242518,
+    "worst_delay_recent_cagr": 1.596315644171772,
+    "worst_five_issuer_recent_cagr": 1.6231859955800125
+  },
+  "selection_contaminated": true,
+  "strategy_replacement_authorized": false
+}

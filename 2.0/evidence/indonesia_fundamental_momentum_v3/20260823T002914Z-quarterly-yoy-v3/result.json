@@ -1,0 +1,63 @@
+{
+  "data_gates": {
+    "minimum_canonical_feature_coverage": false,
+    "minimum_consecutive_years_per_issuer": true,
+    "minimum_history_start": true,
+    "minimum_point_in_time_filing_coverage": true,
+    "require_no_future_filing_leakage": true,
+    "require_publication_timestamps": false,
+    "require_sector_specific_coverage_report": true
+  },
+  "evaluation_end": "2026-08-21",
+  "evaluation_start": "2022-04-04",
+  "execution_authorized": false,
+  "fundamental_momentum_150bps": {
+    "annualized_volatility": 0.19863209232057774,
+    "cagr": -0.014281127678620664,
+    "cumulative_return": -0.057581474256478415,
+    "daily_observations": 1039.0,
+    "maximum_drawdown": -0.3553877607577709,
+    "sharpe_zero_rf": 0.027206278906582632
+  },
+  "fundamental_momentum_50bps": {
+    "annualized_volatility": 0.1969828355322793,
+    "cagr": 0.036270966735208354,
+    "cumulative_return": 0.15823527599380682,
+    "daily_observations": 1039.0,
+    "maximum_drawdown": -0.30653948480712134,
+    "sharpe_zero_rf": 0.27964826616397664
+  },
+  "fundamental_momentum_calendar_returns": {
+    "2022": 0.037537803842856876,
+    "2023": -0.012196228738306614,
+    "2024": -0.014575597242422522,
+    "2025": 0.1422778173621173,
+    "2026": 0.003984764808555585
+  },
+  "minimum_fundamental_eligible_names": 55,
+  "monthly_decisions": 53,
+  "notice": "RESEARCH ONLY \u2014 V3 tests quarterly archived IDX snapshots with same-fiscal-period year-over-year comparisons; it is not an investment recommendation and is not approved for execution.",
+  "performance_claim_authorized": false,
+  "price_only_50bps": {
+    "annualized_volatility": 0.1969183396137981,
+    "cagr": 0.05803465382418871,
+    "cumulative_return": 0.2618665997356735,
+    "daily_observations": 1039.0,
+    "maximum_drawdown": -0.28651214950597037,
+    "sharpe_zero_rf": 0.3852569885245873
+  },
+  "price_only_calendar_returns": {
+    "2022": 0.09303586188352098,
+    "2023": 0.0016571030981744617,
+    "2024": 0.05727716164025032,
+    "2025": 0.10611052737485704,
+    "2026": -0.014463797604448825
+  },
+  "return_gates": {
+    "cagr_above_price_only": false,
+    "maximum_drawdown_no_more_than_5pp_worse": true,
+    "positive_cagr_at_150bps": false,
+    "sharpe_above_price_only": false
+  },
+  "verdict": "HISTORICAL_SELECTION_FAIL"
+}

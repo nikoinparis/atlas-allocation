@@ -1,0 +1,41 @@
+{
+  "approved_for_core_import": false,
+  "approved_for_live_trading": false,
+  "blockers": [
+    "adapter and venue semantics must be reconciled against platform accounting",
+    "Rust/native build and LGPL-3.0 obligations require isolated qualification",
+    "no broker connection or live order authority is approved"
+  ],
+  "capability": "event_driven_execution_and_backtest",
+  "id": "nautilus_trader",
+  "isolation": "identical_orders_and_market_events_equivalence_harness",
+  "name": "NautilusTrader",
+  "probe": {
+    "archived": false,
+    "commit_matches_pin": true,
+    "default_branch": "develop",
+    "expected_license": "LGPL-3.0",
+    "github_license_spdx": "LGPL-3.0",
+    "license_detected_from_pinned_source": "LGPL-3.0",
+    "license_matches_expected": true,
+    "license_sha256": "ee907919ec88c9c017b1f8b608db20960b6598aefcc4fe58820bde955d65ed3c",
+    "live_probe_attempted": true,
+    "missing_required_paths": [],
+    "pin_is_immutable_sha": true,
+    "pinned_commit": "57032a0bb98a28357bb90620e3e7184176c7feaf",
+    "repository": "nautechsystems/nautilus_trader",
+    "required_paths": [
+      "LICENSE",
+      "README.md",
+      "Cargo.toml",
+      "python/pyproject.toml",
+      "python/nautilus_trader",
+      "crates"
+    ],
+    "required_paths_present": true,
+    "resolved_commit": "57032a0bb98a28357bb90620e3e7184176c7feaf",
+    "source_status": "reachable",
+    "tree_truncated": false
+  },
+  "verdict": "execution_sandbox_candidate"
+}

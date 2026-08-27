@@ -1,0 +1,468 @@
+{
+  "bh_discoveries": [],
+  "config_sha256": "47c346b7f21fc7e5bf4148869091fd1fa8dc88fe0b67a0d3dce6f5aa8dc59bbd",
+  "created_at_utc": "2026-08-26T05:35:21.459837+00:00",
+  "experiment": "daily_ohlcv_alpha_zoo_v1",
+  "family_representatives_selected_without_holdout": {
+    "gap": "intraday_5",
+    "liquidity": "dollar_volume_21",
+    "momentum": "momentum_126_21",
+    "price_volume": "price_volume_corr_63",
+    "range": "range_10",
+    "reversal": "reversal_1",
+    "trend": "near_252_high",
+    "volatility": "vol_63",
+    "volume": "volume_ratio_5_63"
+  },
+  "feature_results": {
+    "amihud_21": {
+      "direction": -1,
+      "family": "liquidity",
+      "holdout_mean_ic": -0.018954820574779527,
+      "holdout_positive_share": 0.5,
+      "nonmissing_share": 0.8924138615827624,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.05744821138631287,
+      "selection_positive_share": 0.5555555555555556,
+      "selection_sign_flip_p": 0.09765625
+    },
+    "close_location_21": {
+      "direction": 1,
+      "family": "range",
+      "holdout_mean_ic": 0.02072297866603049,
+      "holdout_positive_share": 1.0,
+      "nonmissing_share": 0.8926124515936849,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.038198687391773546,
+      "selection_positive_share": 0.5555555555555556,
+      "selection_sign_flip_p": 0.23046875
+    },
+    "dollar_volume_21": {
+      "direction": 1,
+      "family": "liquidity",
+      "holdout_mean_ic": -0.014479088109156532,
+      "holdout_positive_share": 0.25,
+      "nonmissing_share": 0.8924138615827624,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.05885592245940955,
+      "selection_positive_share": 0.6666666666666666,
+      "selection_sign_flip_p": 0.0390625
+    },
+    "downside_vol_63": {
+      "direction": -1,
+      "family": "volatility",
+      "holdout_mean_ic": 0.011110547455773473,
+      "holdout_positive_share": 0.5,
+      "nonmissing_share": 0.8931337503723563,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.05527209008620274,
+      "selection_positive_share": 0.4444444444444444,
+      "selection_sign_flip_p": 0.37890625
+    },
+    "drawdown_252": {
+      "direction": 1,
+      "family": "trend",
+      "holdout_mean_ic": 0.06489804477206447,
+      "holdout_positive_share": 0.75,
+      "nonmissing_share": 0.8931337503723563,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.06791324127819351,
+      "selection_positive_share": 0.5555555555555556,
+      "selection_sign_flip_p": 0.19140625
+    },
+    "gap_1": {
+      "direction": -1,
+      "family": "gap",
+      "holdout_mean_ic": -0.04725946110794042,
+      "holdout_positive_share": 0.5,
+      "nonmissing_share": 0.8931337503723563,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.03794050928454737,
+      "selection_positive_share": 0.5555555555555556,
+      "selection_sign_flip_p": 0.48046875
+    },
+    "gap_5": {
+      "direction": -1,
+      "family": "gap",
+      "holdout_mean_ic": -0.05167035644818717,
+      "holdout_positive_share": 0.25,
+      "nonmissing_share": 0.8931337503723563,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.013593384851342333,
+      "selection_positive_share": 0.5555555555555556,
+      "selection_sign_flip_p": 0.84765625
+    },
+    "intraday_5": {
+      "direction": 1,
+      "family": "gap",
+      "holdout_mean_ic": -0.0332609842361057,
+      "holdout_positive_share": 0.25,
+      "nonmissing_share": 0.8931337503723563,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.038217948680384306,
+      "selection_positive_share": 0.5555555555555556,
+      "selection_sign_flip_p": 0.75390625
+    },
+    "ma_distance_20": {
+      "direction": 1,
+      "family": "trend",
+      "holdout_mean_ic": 0.00403950011762046,
+      "holdout_positive_share": 0.75,
+      "nonmissing_share": 0.8931337503723563,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.014771181579606937,
+      "selection_positive_share": 0.5555555555555556,
+      "selection_sign_flip_p": 0.58984375
+    },
+    "ma_distance_200": {
+      "direction": 1,
+      "family": "trend",
+      "holdout_mean_ic": 0.06745182095541633,
+      "holdout_positive_share": 0.75,
+      "nonmissing_share": 0.8319183795055108,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.03337768339560851,
+      "selection_positive_share": 0.5555555555555556,
+      "selection_sign_flip_p": 0.16015625
+    },
+    "ma_distance_60": {
+      "direction": -1,
+      "family": "trend",
+      "holdout_mean_ic": -0.04882335012380512,
+      "holdout_positive_share": 0.25,
+      "nonmissing_share": 0.8931337503723563,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.020873020634257722,
+      "selection_positive_share": 0.6666666666666666,
+      "selection_sign_flip_p": 0.328125
+    },
+    "max_return_63": {
+      "direction": -1,
+      "family": "volatility",
+      "holdout_mean_ic": 0.005763351914559761,
+      "holdout_positive_share": 0.5,
+      "nonmissing_share": 0.8931337503723563,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.06580064754765842,
+      "selection_positive_share": 0.7777777777777778,
+      "selection_sign_flip_p": 0.16015625
+    },
+    "momentum_126_21": {
+      "direction": 1,
+      "family": "momentum",
+      "holdout_mean_ic": 0.053486211042806556,
+      "holdout_positive_share": 0.75,
+      "nonmissing_share": 0.8240988978254393,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.05316586576593795,
+      "selection_positive_share": 0.7777777777777778,
+      "selection_sign_flip_p": 0.046875
+    },
+    "momentum_252_21": {
+      "direction": 1,
+      "family": "momentum",
+      "holdout_mean_ic": 0.05067843788105359,
+      "holdout_positive_share": 0.75,
+      "nonmissing_share": 0.6845645914010525,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.02245056532364216,
+      "selection_positive_share": 0.5555555555555556,
+      "selection_sign_flip_p": 0.7578125
+    },
+    "near_252_high": {
+      "direction": 1,
+      "family": "trend",
+      "holdout_mean_ic": 0.06489804477206447,
+      "holdout_positive_share": 0.75,
+      "nonmissing_share": 0.8931337503723563,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.06791324127819351,
+      "selection_positive_share": 0.5555555555555556,
+      "selection_sign_flip_p": 0.19140625
+    },
+    "price_volume_corr_21": {
+      "direction": -1,
+      "family": "price_volume",
+      "holdout_mean_ic": 0.011579217462782376,
+      "holdout_positive_share": 0.75,
+      "nonmissing_share": 0.8915202065336114,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.03271236653847495,
+      "selection_positive_share": 0.7777777777777778,
+      "selection_sign_flip_p": 0.02734375
+    },
+    "price_volume_corr_63": {
+      "direction": -1,
+      "family": "price_volume",
+      "holdout_mean_ic": -0.0019214999300341028,
+      "holdout_positive_share": 0.75,
+      "nonmissing_share": 0.8920663290636481,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.041686226322097876,
+      "selection_positive_share": 0.7777777777777778,
+      "selection_sign_flip_p": 0.0234375
+    },
+    "range_10": {
+      "direction": -1,
+      "family": "range",
+      "holdout_mean_ic": -0.01095896165654357,
+      "holdout_positive_share": 0.25,
+      "nonmissing_share": 0.8931337503723563,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.07058437952013537,
+      "selection_positive_share": 0.4444444444444444,
+      "selection_sign_flip_p": 0.3359375
+    },
+    "range_21": {
+      "direction": -1,
+      "family": "range",
+      "holdout_mean_ic": -0.01338849450322191,
+      "holdout_positive_share": 0.25,
+      "nonmissing_share": 0.8931337503723563,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.06491338795239138,
+      "selection_positive_share": 0.4444444444444444,
+      "selection_sign_flip_p": 0.37109375
+    },
+    "ret_10": {
+      "direction": 1,
+      "family": "momentum",
+      "holdout_mean_ic": 0.006559600419302614,
+      "holdout_positive_share": 0.5,
+      "nonmissing_share": 0.8931337503723563,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.03576067827614671,
+      "selection_positive_share": 0.8888888888888888,
+      "selection_sign_flip_p": 0.140625
+    },
+    "ret_126": {
+      "direction": 1,
+      "family": "momentum",
+      "holdout_mean_ic": 0.055648775085489835,
+      "holdout_positive_share": 0.75,
+      "nonmissing_share": 0.8240988978254393,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.04061218392163565,
+      "selection_positive_share": 0.6666666666666666,
+      "selection_sign_flip_p": 0.08984375
+    },
+    "ret_21": {
+      "direction": -1,
+      "family": "momentum",
+      "holdout_mean_ic": -0.01613167109895028,
+      "holdout_positive_share": 0.25,
+      "nonmissing_share": 0.8931337503723563,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.026321505996442493,
+      "selection_positive_share": 0.6666666666666666,
+      "selection_sign_flip_p": 0.1796875
+    },
+    "ret_252": {
+      "direction": 1,
+      "family": "momentum",
+      "holdout_mean_ic": 0.05266356512052334,
+      "holdout_positive_share": 0.75,
+      "nonmissing_share": 0.6845645914010525,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.018478417954047904,
+      "selection_positive_share": 0.5555555555555556,
+      "selection_sign_flip_p": 0.796875
+    },
+    "ret_5": {
+      "direction": 1,
+      "family": "momentum",
+      "holdout_mean_ic": -0.010396289817611903,
+      "holdout_positive_share": 0.5,
+      "nonmissing_share": 0.8931337503723563,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.03757078435327375,
+      "selection_positive_share": 0.5555555555555556,
+      "selection_sign_flip_p": 0.40234375
+    },
+    "ret_63": {
+      "direction": -1,
+      "family": "momentum",
+      "holdout_mean_ic": -0.06977975710117432,
+      "holdout_positive_share": 0.25,
+      "nonmissing_share": 0.8931337503723563,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.020731771293804133,
+      "selection_positive_share": 0.6666666666666666,
+      "selection_sign_flip_p": 0.453125
+    },
+    "return_skew_63": {
+      "direction": -1,
+      "family": "volatility",
+      "holdout_mean_ic": -0.0003972578532004268,
+      "holdout_positive_share": 0.25,
+      "nonmissing_share": 0.8931337503723563,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.03956222368650026,
+      "selection_positive_share": 1.0,
+      "selection_sign_flip_p": 0.00390625
+    },
+    "reversal_1": {
+      "direction": -1,
+      "family": "reversal",
+      "holdout_mean_ic": -0.021644404144269123,
+      "holdout_positive_share": 0.75,
+      "nonmissing_share": 0.8931337503723563,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.055967183128933735,
+      "selection_positive_share": 0.7777777777777778,
+      "selection_sign_flip_p": 0.08203125
+    },
+    "reversal_21": {
+      "direction": 1,
+      "family": "reversal",
+      "holdout_mean_ic": -0.016131671098950282,
+      "holdout_positive_share": 0.25,
+      "nonmissing_share": 0.8931337503723563,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.02632150599644249,
+      "selection_positive_share": 0.6666666666666666,
+      "selection_sign_flip_p": 0.1796875
+    },
+    "reversal_5": {
+      "direction": -1,
+      "family": "reversal",
+      "holdout_mean_ic": -0.010396289817611905,
+      "holdout_positive_share": 0.5,
+      "nonmissing_share": 0.8931337503723563,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.03757078435327375,
+      "selection_positive_share": 0.5555555555555556,
+      "selection_sign_flip_p": 0.40234375
+    },
+    "trend_consistency_63": {
+      "direction": 1,
+      "family": "trend",
+      "holdout_mean_ic": 0.06373305030938455,
+      "holdout_positive_share": 0.75,
+      "nonmissing_share": 0.8931337503723563,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.022086538873656834,
+      "selection_positive_share": 0.5555555555555556,
+      "selection_sign_flip_p": 0.37890625
+    },
+    "vol_21": {
+      "direction": -1,
+      "family": "volatility",
+      "holdout_mean_ic": -7.331152958521721e-05,
+      "holdout_positive_share": 0.25,
+      "nonmissing_share": 0.8931337503723563,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.06336076502365454,
+      "selection_positive_share": 0.4444444444444444,
+      "selection_sign_flip_p": 0.3359375
+    },
+    "vol_63": {
+      "direction": -1,
+      "family": "volatility",
+      "holdout_mean_ic": 0.000973166758224793,
+      "holdout_positive_share": 0.5,
+      "nonmissing_share": 0.8931337503723563,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.0736035455860993,
+      "selection_positive_share": 0.4444444444444444,
+      "selection_sign_flip_p": 0.2734375
+    },
+    "volume_ratio_5_63": {
+      "direction": -1,
+      "family": "volume",
+      "holdout_mean_ic": -0.006109201876297397,
+      "holdout_positive_share": 0.5,
+      "nonmissing_share": 0.8925379803395889,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.017442565858709156,
+      "selection_positive_share": 0.8888888888888888,
+      "selection_sign_flip_p": 0.359375
+    },
+    "volume_shock_21": {
+      "direction": -1,
+      "family": "volume",
+      "holdout_mean_ic": 0.019586566992520423,
+      "holdout_positive_share": 0.5,
+      "nonmissing_share": 0.8901300764571543,
+      "selection_bh_10pct": false,
+      "selection_mean_ic": 0.0009458116068853885,
+      "selection_positive_share": 0.5555555555555556,
+      "selection_sign_flip_p": 0.984375
+    }
+  },
+  "feature_rows": 40814,
+  "features_tested": 34,
+  "input_inventory_sha256": "ae92089137650995c8d6007a39d0d0cfcfe3189580bf7f8629fb8351b6f63a88",
+  "issuer_histories": 3253,
+  "live_trading_enabled": false,
+  "portfolio_metrics": {
+    "10": {
+      "full": {
+        "cagr": 0.21803830432078097,
+        "max_drawdown": -0.09499409458534713,
+        "sharpe_zero_rf": 1.2560430149260369,
+        "total_return": 1.048069038558864,
+        "weeks": 189
+      },
+      "retrospective_holdout": {
+        "cagr": 0.20603894011211987,
+        "max_drawdown": -0.05362645231565566,
+        "sharpe_zero_rf": 1.4671309806569632,
+        "total_return": 0.23684084027045094,
+        "weeks": 59
+      }
+    },
+    "25": {
+      "full": {
+        "cagr": 0.21152527584344516,
+        "max_drawdown": -0.09628749314652496,
+        "sharpe_zero_rf": 1.2233924334085617,
+        "total_return": 1.0085447439301083,
+        "weeks": 189
+      },
+      "retrospective_holdout": {
+        "cagr": 0.19993059182486128,
+        "max_drawdown": -0.053626452315655326,
+        "sharpe_zero_rf": 1.4238809009828857,
+        "total_return": 0.22973563460519708,
+        "weeks": 59
+      }
+    },
+    "50": {
+      "full": {
+        "cagr": 0.20072745946294113,
+        "max_drawdown": -0.09844315741515608,
+        "sharpe_zero_rf": 1.1684154042338193,
+        "total_return": 0.9442405351933341,
+        "weeks": 189
+      },
+      "retrospective_holdout": {
+        "cagr": 0.18979926018546767,
+        "max_drawdown": -0.05376392800779839,
+        "sharpe_zero_rf": 1.3514851382717044,
+        "total_return": 0.21796165308019377,
+        "weeks": 59
+      }
+    }
+  },
+  "purged_decision": "2025-04-01 00:00:00+00:00",
+  "retrospective_holdout_decisions": [
+    "2025-07-01 00:00:00+00:00",
+    "2025-10-01 00:00:00+00:00",
+    "2026-01-01 00:00:00+00:00",
+    "2026-04-01 00:00:00+00:00"
+  ],
+  "selection_decisions": [
+    "2023-01-01 00:00:00+00:00",
+    "2023-04-01 00:00:00+00:00",
+    "2023-07-01 00:00:00+00:00",
+    "2023-10-01 00:00:00+00:00",
+    "2024-01-01 00:00:00+00:00",
+    "2024-04-01 00:00:00+00:00",
+    "2024-07-01 00:00:00+00:00",
+    "2024-10-01 00:00:00+00:00",
+    "2025-01-01 00:00:00+00:00"
+  ],
+  "status": "retrospective_research_complete_no_promotion",
+  "strategy_promotion_authorized": false
+}

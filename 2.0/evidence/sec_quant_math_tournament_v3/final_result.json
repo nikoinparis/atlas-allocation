@@ -1,0 +1,45 @@
+{
+  "artifact_sha256": {
+    "candidate_paths.csv.gz": "b50a2a34db884a7e8f6a27bff1404ab2c2bb3aa57f5ed7b5d3a9d7db72709fca",
+    "causal_ridge_audit.csv": "0ece33bce7afb2896fa83e43ed1695b9e5bcb7b8d0ef5ea938e6f555221aceb7",
+    "monthly_feature_panel.csv.gz": "a95163a68f2e23a551678ca4da548484ba73aa87fb5a73a959a0be3b9b1e6b06",
+    "screening.csv": "1fb11254baff5c77b7e172070b9ae0e074bff44ccaf87e182c6ef43cfa286021",
+    "selected_path.csv": "99fc8eb03527c502ab1f397be411f3dc6b2590847854265bddfcf5e605825923"
+  },
+  "base_candidate_count": 24,
+  "candidate_count": 96,
+  "created_at_utc": "2026-08-24T09:47:52.155527+00:00",
+  "experiment": "sec_quant_math_tournament_v3",
+  "historical_gate_passers": 0,
+  "historical_references": {
+    "exact_daily_fragile_1.35x_cagr": 1.7496783269699088,
+    "fragility_accelerator_alpha30_1.35x_cagr": 1.8689582075057198,
+    "residual_controlled_1.25x_common_endpoint_cagr": 1.5086
+  },
+  "live_trading_enabled": false,
+  "required_next_step": "untouched forward evidence for any retained candidate",
+  "selected_diagnostic": "quality_momentum_interaction__n5__rank_inverse_volatility__fixed_1.50x",
+  "selected_metrics": {
+    "average_gross_exposure": 1.5,
+    "common_endpoint_recent_cagr": 0.9207594324058523,
+    "deflated_sharpe_probability": 0.24437840091417048,
+    "familywise_bootstrap_probability": 0.0,
+    "maximum_gross_exposure": 1.5,
+    "passes_historical_gates": false,
+    "probability_of_backtest_overfitting": 0.35714285714285715,
+    "recent_cagr": 1.2333346913192766,
+    "recent_drawdown": -0.43662930372823616,
+    "recent_sharpe": 1.5904687725124187,
+    "rolling_26w_outperformance_share": 0.47058823529411764,
+    "severe_200bps_recent_cagr": 0.6876719982478519,
+    "two_year_cagr": 0.9509573477813718,
+    "two_year_drawdown": -0.44612784352336354,
+    "two_year_sharpe": 1.2215921051479735,
+    "worst_delay_recent_cagr": 0.2399229564587282,
+    "worst_five_issuer_recent_cagr": -0.10314720281127654,
+    "worst_sector_removed_recent_cagr": 0.30593241441090235
+  },
+  "selection_contaminated": true,
+  "status": "one_shot_tournament_complete",
+  "strategy_replacement_authorized": false
+}

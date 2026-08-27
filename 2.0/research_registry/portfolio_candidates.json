@@ -68,8 +68,8 @@
         "first_eligible_decision_date": "2026-08-14",
         "first_eligible_realization_date": "2026-08-21",
         "forward_protocol": "config/forward/covariance_minimum_variance_v1.json",
-        "latest_realization_date": null,
-        "observed_weeks": 0,
+        "latest_realization_date": "2026-08-21",
+        "observed_weeks": 1,
         "required_weeks": 52,
         "status_file": "evidence/forward_covariance_minimum_variance_v1/status.json"
       },
@@ -100,6 +100,6 @@
       "status": "frozen_forward_candidate"
     }
   ],
-  "last_updated_at_utc": "2026-08-14T22:08:46.613055+00:00",
+  "last_updated_at_utc": "2026-08-21T21:38:11.735405+00:00",
   "schema_version": 1
 }

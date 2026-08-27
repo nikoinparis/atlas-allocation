@@ -2,12 +2,15 @@ import unittest
 
 from src.systematic_trader.ensemble import (
     average_holdings_overlap,
+    breadth_admission_gate,
     combine_weight_histories,
     correlation,
     correlation_clusters,
     effective_independent_count,
     expected_maximum_sharpe,
+    fundamental_law_decomposition,
     greedy_low_correlation_selection,
+    marginal_effective_breadth,
     weighted_holdings_overlap,
 )
 
@@ -39,6 +42,46 @@ class EnsembleTests(unittest.TestCase):
             expected_maximum_sharpe(trials=288, observations=1000),
             expected_maximum_sharpe(trials=10, observations=1000),
         )
+
+    def test_marginal_breadth_rewards_independent_not_duplicate_candidate(self):
+        independent = {
+            "a": {"a": 1.0, "b": 0.0},
+            "b": {"a": 0.0, "b": 1.0},
+        }
+        duplicate = {
+            "a": {"a": 1.0, "b": 1.0},
+            "b": {"a": 1.0, "b": 1.0},
+        }
+        self.assertAlmostEqual(1.0, marginal_effective_breadth("b", independent))
+        self.assertAlmostEqual(0.0, marginal_effective_breadth("b", duplicate))
+
+    def test_breadth_gate_fails_closed_without_holdings_overlap(self):
+        matrix = {
+            "incumbent": {"incumbent": 1.0, "candidate": 1.0},
+            "candidate": {"incumbent": 1.0, "candidate": 1.0},
+        }
+        with self.assertRaises(ValueError):
+            breadth_admission_gate(
+                candidate="candidate", matrix=matrix, holdings_overlap_by_peer={}
+            )
+        result = breadth_admission_gate(
+            candidate="candidate",
+            matrix=matrix,
+            holdings_overlap_by_peer={"incumbent": 1.0},
+        )
+        self.assertFalse(result["breadth_gate_pass"])
+        self.assertFalse(result["performance_promotion_authorized"])
+
+    def test_fundamental_law_decomposition_keeps_transfer_efficiency_explicit(self):
+        result = fundamental_law_decomposition(
+            information_coefficient=0.05,
+            effective_breadth=100.0,
+            transfer_coefficient=0.5,
+            realized_information_ratio=0.2,
+        )
+        self.assertAlmostEqual(0.5, result["theoretical_information_ratio"])
+        self.assertAlmostEqual(0.25, result["implementable_information_ratio"])
+        self.assertAlmostEqual(0.8, result["realized_to_implementable_efficiency"])
 
 
 if __name__ == "__main__":

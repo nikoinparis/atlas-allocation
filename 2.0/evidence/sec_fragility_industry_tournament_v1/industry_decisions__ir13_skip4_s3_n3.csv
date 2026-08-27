@@ -1,0 +1,15 @@
+candidate,decision_at,execution_at,status,selected_sectors,selected_issuers,maximum_issuer_weight,signal_cutoff
+ir13_skip4_s3_n3,2023-01-01 00:00:00+00:00,2023-01-13 00:00:00+00:00,insufficient_history,,,,
+ir13_skip4_s3_n3,2023-04-01 00:00:00+00:00,2023-04-14 00:00:00+00:00,selected,construction|technology|retail_trade,9.0,0.1111111111111111,2023-04-07 00:00:00+00:00
+ir13_skip4_s3_n3,2023-07-01 00:00:00+00:00,2023-07-14 00:00:00+00:00,selected,construction|technology|services,9.0,0.1111111111111111,2023-07-07 00:00:00+00:00
+ir13_skip4_s3_n3,2023-10-01 00:00:00+00:00,2023-10-13 00:00:00+00:00,selected,energy|construction|finance_insurance_real_estate,9.0,0.1111111111111111,2023-10-06 00:00:00+00:00
+ir13_skip4_s3_n3,2024-01-01 00:00:00+00:00,2024-01-12 00:00:00+00:00,selected,finance_insurance_real_estate|construction|wholesale_trade,9.0,0.1111111111111111,2024-01-05 00:00:00+00:00
+ir13_skip4_s3_n3,2024-04-01 00:00:00+00:00,2024-04-12 00:00:00+00:00,selected,construction|manufacturing|energy,9.0,0.1111111111111111,2024-04-05 00:00:00+00:00
+ir13_skip4_s3_n3,2024-07-01 00:00:00+00:00,2024-07-12 00:00:00+00:00,selected,materials_and_mining|construction|agriculture_forestry_fishing,9.0,0.1111111111111111,2024-07-05 00:00:00+00:00
+ir13_skip4_s3_n3,2024-10-01 00:00:00+00:00,2024-10-11 00:00:00+00:00,selected,finance_insurance_real_estate|services|construction,9.0,0.1111111111111111,2024-10-04 00:00:00+00:00
+ir13_skip4_s3_n3,2025-01-01 00:00:00+00:00,2025-01-10 00:00:00+00:00,selected,materials_and_mining|technology|retail_trade,9.0,0.1111111111111111,2025-01-03 00:00:00+00:00
+ir13_skip4_s3_n3,2025-04-01 00:00:00+00:00,2025-04-11 00:00:00+00:00,selected,transport_communications_utilities|finance_insurance_real_estate|services,9.0,0.1111111111111111,2025-04-04 00:00:00+00:00
+ir13_skip4_s3_n3,2025-07-01 00:00:00+00:00,2025-07-11 00:00:00+00:00,selected,materials_and_mining|construction|services,9.0,0.1111111111111111,2025-07-04 00:00:00+00:00
+ir13_skip4_s3_n3,2025-10-01 00:00:00+00:00,2025-10-10 00:00:00+00:00,selected,agriculture_forestry_fishing|materials_and_mining|construction,9.0,0.1111111111111111,2025-10-03 00:00:00+00:00
+ir13_skip4_s3_n3,2026-01-01 00:00:00+00:00,2026-01-09 00:00:00+00:00,selected,materials_and_mining|energy|technology,9.0,0.1111111111111111,2026-01-02 00:00:00+00:00
+ir13_skip4_s3_n3,2026-04-01 00:00:00+00:00,2026-04-10 00:00:00+00:00,selected,energy|agriculture_forestry_fishing|materials_and_mining,9.0,0.1111111111111111,2026-04-03 00:00:00+00:00

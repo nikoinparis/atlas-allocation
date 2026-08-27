@@ -1,0 +1,28 @@
+{
+  "artifact_sha256": {
+    "issuer_acquisition_queue": "68d5427a417d5cf1ebb12eaa79a1649e752e5888bbad830775731f607fa90533",
+    "recent_membership_readiness": "60f41653aab67e6b56c7bf7b2c4bf848cf5466b31da5dd997643228fdafa0def",
+    "sector_readiness": "4f9ef2d2a5ef2d583247b7b09299ccff9a49f8f4dcc1724f161f2128f40c2e9d"
+  },
+  "attempted_batch_price_ciks": 3039,
+  "companyfacts_decision_coverage": 1.0,
+  "created_at_utc": "2026-08-24T01:44:01.351347+00:00",
+  "experiment": "sec_broad_universe_readiness_v2",
+  "issuer_queue_counts": {
+    "identity_recovery_required": 40,
+    "identity_terminal_review_required": 134,
+    "ready_validated_panel": 3250
+  },
+  "latest_members": 2743,
+  "live_trading_enabled": false,
+  "new_batch_price_ciks": 2347,
+  "next_gate": "acquire and validate adjusted prices plus company facts, recover former identities, audit terminal outcomes, then require at least 95% decision-date coverage and missing-company stress tests",
+  "recent_decisions": 14,
+  "recent_start": "2023-01-01",
+  "recent_unique_ciks": 3424,
+  "sec_terminal_removed_decision_rows": 2072,
+  "single_current_ticker_decision_coverage": 0.7804090954225003,
+  "strategy_testing_authorized": false,
+  "universe_vintage": "20260821T231634Z-sec-historical-filers-broad-v2",
+  "validated_price_decision_coverage": 0.9692185483070201
+}

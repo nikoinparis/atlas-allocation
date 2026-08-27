@@ -1,0 +1,15 @@
+candidate,decision_at,execution_at,status,selected_sectors,selected_issuers,maximum_issuer_weight,signal_cutoff
+ir13_skip4_s4_n3,2023-01-01 00:00:00+00:00,2023-01-13 00:00:00+00:00,insufficient_history,,,,
+ir13_skip4_s4_n3,2023-04-01 00:00:00+00:00,2023-04-14 00:00:00+00:00,selected,construction|technology|retail_trade|services,12.0,0.08333333333333333,2023-04-07 00:00:00+00:00
+ir13_skip4_s4_n3,2023-07-01 00:00:00+00:00,2023-07-14 00:00:00+00:00,selected,construction|technology|services|manufacturing,12.0,0.08333333333333333,2023-07-07 00:00:00+00:00
+ir13_skip4_s4_n3,2023-10-01 00:00:00+00:00,2023-10-13 00:00:00+00:00,selected,energy|construction|finance_insurance_real_estate|wholesale_trade,12.0,0.08333333333333333,2023-10-06 00:00:00+00:00
+ir13_skip4_s4_n3,2024-01-01 00:00:00+00:00,2024-01-12 00:00:00+00:00,selected,finance_insurance_real_estate|construction|wholesale_trade|agriculture_forestry_fishing,12.0,0.08333333333333333,2024-01-05 00:00:00+00:00
+ir13_skip4_s4_n3,2024-04-01 00:00:00+00:00,2024-04-12 00:00:00+00:00,selected,construction|manufacturing|energy|technology,12.0,0.08333333333333333,2024-04-05 00:00:00+00:00
+ir13_skip4_s4_n3,2024-07-01 00:00:00+00:00,2024-07-12 00:00:00+00:00,selected,materials_and_mining|construction|agriculture_forestry_fishing|wholesale_trade,12.0,0.08333333333333333,2024-07-05 00:00:00+00:00
+ir13_skip4_s4_n3,2024-10-01 00:00:00+00:00,2024-10-11 00:00:00+00:00,selected,finance_insurance_real_estate|services|construction|transport_communications_utilities,12.0,0.08333333333333333,2024-10-04 00:00:00+00:00
+ir13_skip4_s4_n3,2025-01-01 00:00:00+00:00,2025-01-10 00:00:00+00:00,selected,materials_and_mining|technology|retail_trade|transport_communications_utilities,12.0,0.08333333333333333,2025-01-03 00:00:00+00:00
+ir13_skip4_s4_n3,2025-04-01 00:00:00+00:00,2025-04-11 00:00:00+00:00,selected,transport_communications_utilities|finance_insurance_real_estate|services|wholesale_trade,12.0,0.08333333333333333,2025-04-04 00:00:00+00:00
+ir13_skip4_s4_n3,2025-07-01 00:00:00+00:00,2025-07-11 00:00:00+00:00,selected,materials_and_mining|construction|services|retail_trade,12.0,0.08333333333333333,2025-07-04 00:00:00+00:00
+ir13_skip4_s4_n3,2025-10-01 00:00:00+00:00,2025-10-10 00:00:00+00:00,selected,agriculture_forestry_fishing|materials_and_mining|construction|manufacturing,12.0,0.08333333333333333,2025-10-03 00:00:00+00:00
+ir13_skip4_s4_n3,2026-01-01 00:00:00+00:00,2026-01-09 00:00:00+00:00,selected,materials_and_mining|energy|technology|manufacturing,12.0,0.08333333333333333,2026-01-02 00:00:00+00:00
+ir13_skip4_s4_n3,2026-04-01 00:00:00+00:00,2026-04-10 00:00:00+00:00,selected,energy|agriculture_forestry_fishing|materials_and_mining|transport_communications_utilities,12.0,0.08333333333333333,2026-04-03 00:00:00+00:00

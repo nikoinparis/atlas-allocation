@@ -1,0 +1,167 @@
+{
+  "experiment": "composite_book_v1",
+  "status": "structural_test_no_promotion",
+  "created_at_utc": "2026-08-27T06:49:36.812894+00:00",
+  "common_window": {
+    "weeks": 181,
+    "first": "2023-01-06",
+    "last": "2026-08-07"
+  },
+  "blends": {
+    "equity_only": {
+      "equity_weight": 1.0,
+      "trend_weight": 0.0,
+      "without_overlay": {
+        "weeks": 181,
+        "cagr": 0.43063448440261465,
+        "volatility": 0.19567761244761156,
+        "sharpe": 1.9335595177766827,
+        "max_drawdown": -0.21242576996510043,
+        "worst_rolling_1y": -0.09222678135342277
+      },
+      "with_overlay": {
+        "weeks": 181,
+        "cagr": 0.38385247881743934,
+        "volatility": 0.1774325236044228,
+        "sharpe": 1.924045980152726,
+        "max_drawdown": -0.1534438451990251,
+        "worst_rolling_1y": -0.057456504175971035
+      }
+    },
+    "eighty_twenty": {
+      "equity_weight": 0.8,
+      "trend_weight": 0.2,
+      "without_overlay": {
+        "weeks": 181,
+        "cagr": 0.34871092631500633,
+        "volatility": 0.15713774631983657,
+        "sharpe": 1.987195796510231,
+        "max_drawdown": -0.17199795468525747,
+        "worst_rolling_1y": -0.06215784559157733
+      },
+      "with_overlay": {
+        "weeks": 181,
+        "cagr": 0.320157112727816,
+        "volatility": 0.1470184205002799,
+        "sharpe": 1.9668238684313428,
+        "max_drawdown": -0.13510795462646652,
+        "worst_rolling_1y": -0.05255695615519429
+      }
+    },
+    "seventy_thirty": {
+      "equity_weight": 0.7,
+      "trend_weight": 0.3,
+      "without_overlay": {
+        "weeks": 181,
+        "cagr": 0.30876218653609633,
+        "volatility": 0.13792186718251753,
+        "sharpe": 2.024465403215262,
+        "max_drawdown": -0.15129415855632233,
+        "worst_rolling_1y": -0.04739453582218378
+      },
+      "with_overlay": {
+        "weeks": 181,
+        "cagr": 0.2905567332911334,
+        "volatility": 0.12987227695380546,
+        "sharpe": 2.0329982455544164,
+        "max_drawdown": -0.11870471814606509,
+        "worst_rolling_1y": -0.03675835860856902
+      }
+    },
+    "sixty_forty": {
+      "equity_weight": 0.6,
+      "trend_weight": 0.4,
+      "without_overlay": {
+        "weeks": 181,
+        "cagr": 0.26950246401302436,
+        "volatility": 0.11876535925825897,
+        "sharpe": 2.072764562775699,
+        "max_drawdown": -0.13026071675843942,
+        "worst_rolling_1y": -0.03282823416056868
+      },
+      "with_overlay": {
+        "weeks": 181,
+        "cagr": 0.2473134087562634,
+        "volatility": 0.1167184097517701,
+        "sharpe": 1.9553416323846806,
+        "max_drawdown": -0.13026071675843942,
+        "worst_rolling_1y": -0.03282823416056868
+      }
+    },
+    "fifty_fifty": {
+      "equity_weight": 0.5,
+      "trend_weight": 0.5,
+      "without_overlay": {
+        "weeks": 181,
+        "cagr": 0.23094056882220437,
+        "volatility": 0.09970245060363979,
+        "sharpe": 2.137632587398513,
+        "max_drawdown": -0.10889537681433514,
+        "worst_rolling_1y": -0.018470982902071165
+      },
+      "with_overlay": {
+        "weeks": 181,
+        "cagr": 0.2154174976516705,
+        "volatility": 0.09829362523935276,
+        "sharpe": 2.0372613237983814,
+        "max_drawdown": -0.10889537681433514,
+        "worst_rolling_1y": -0.018470982902071165
+      }
+    }
+  },
+  "references": {
+    "single_book::150.86% Residual 1.25x": {
+      "weeks": 181,
+      "cagr": 0.5142996249299798,
+      "volatility": 0.24489640249569258,
+      "sharpe": 1.8225951487261147,
+      "max_drawdown": -0.23350524551091967,
+      "worst_rolling_1y": -0.1617332437004837
+    },
+    "single_book::ETF Incumbent": {
+      "weeks": 181,
+      "cagr": 0.426580555885256,
+      "volatility": 0.20873133204289412,
+      "sharpe": 1.8109186094506287,
+      "max_drawdown": -0.15825384743697146,
+      "worst_rolling_1y": -0.0001304162983762902
+    },
+    "single_book::142% Growth / Micron": {
+      "weeks": 181,
+      "cagr": 0.30845635340333866,
+      "volatility": 0.36241020721377526,
+      "sharpe": 0.9250173407833572,
+      "max_drawdown": -0.36497109721663024,
+      "worst_rolling_1y": -0.1804434851565896
+    },
+    "single_book::102% Daily-Audited": {
+      "weeks": 181,
+      "cagr": 0.3861720477502413,
+      "volatility": 0.23026257637189104,
+      "sharpe": 1.5369225828579247,
+      "max_drawdown": -0.21473689564444642,
+      "worst_rolling_1y": -0.14065390679329826
+    },
+    "single_book::124% Sector Ensemble": {
+      "weeks": 181,
+      "cagr": 0.42157201587772963,
+      "volatility": 0.22598129504261857,
+      "sharpe": 1.6740218312514585,
+      "max_drawdown": -0.21800170778866734,
+      "worst_rolling_1y": -0.14055957522140317
+    },
+    "trend_sleeve_alone": {
+      "weeks": 181,
+      "cagr": 0.04883112353751051,
+      "volatility": 0.020159461784971335,
+      "sharpe": 2.376060703142114,
+      "max_drawdown": -0.014327334611697662,
+      "worst_rolling_1y": 0.029539793205379805
+    },
+    "best_single_book_by_sharpe": "single_book::150.86% Residual 1.25x"
+  },
+  "trials_registered": 10,
+  "trial_ledger_total": 4490,
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

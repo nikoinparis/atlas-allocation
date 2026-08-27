@@ -8615,3 +8615,56 @@ References:
 - `config/seasonality_program_v1.json`
 - `scripts/run_seasonality_program_v1.py`
 - `evidence/seasonality_program_v1/`
+
+## Step 206 — Assemble what survived, and get a better shape but not a better verdict
+
+Three results from this session survived their own tests: stop selecting (Step 203), add an
+independent cross-asset sleeve (Steps 200 and 201), and control drawdown from the book's own
+equity curve rather than from macro conditions (Steps 198 and 204). Each was measured alone.
+This measures them together, which is the only question that decides whether the portfolio
+actually improved. Nothing new is searched, the drawdown threshold is copied from Step 198
+unchanged, and the trend sleeve is taken at its lowest leverage setting because that is the
+only point on the grid that is not itself a decision.
+
+Over the 181 overlapping weeks the composite dominates every individual book on
+risk-adjusted return and drawdown simultaneously. The best single book by Sharpe is the
+residual leader at 1.82, with a -23.35% maximum drawdown and a -16.17% worst rolling year.
+Equal-weighting all five without any selection gives 1.93, -21.24% and -9.22%. Adding the
+trend sleeve raises Sharpe monotonically with its weight: 1.99 at twenty percent, 2.02 at
+thirty, 2.07 at forty and 2.14 at fifty, while the maximum drawdown falls from -21.24% to
+-10.89% and the worst rolling year from -9.22% to -1.85%.
+
+The worst-year column is the one that matters for the question the project keeps asking about
+real-world survival. Every individual SEC book carries a worst rolling year between -14.06%
+and -18.04%. The half-and-half composite carries -1.85%. That is not a small refinement of
+the same object; it is a different risk profile.
+
+The overlay result is a genuine surprise and corrects an assumption carried into this step.
+The drawdown rule helps a lot at the concentrated end, taking the pure equity composite from
+-21.24% to -15.34% and its worst year from -9.22% to -5.75%. At forty percent trend and
+beyond it does nothing at all, because the composite's drawdown never reaches the 8% trigger,
+and at sixty-forty it actively costs Sharpe, 2.07 falling to 1.96, by charging turnover for
+an intervention that does not help. Diversification has already done the overlay's job. The
+overlay should therefore be carried as insurance for concentrated books, not applied
+uniformly.
+
+The verdict against the standing gate has not changed and is stated plainly rather than
+buried. Against the ledger's 4,490 documented trials, the deflated Sharpe ratios are 0.396
+for the equity composite, 0.454 at seventy-thirty and 0.528 at half-and-half. None clears
+0.95. One detail is worth noting without being oversold: the half-and-half blend is the
+first construct in this project whose observed annualised Sharpe of 2.14 exceeds its own
+null threshold of 2.10 at all. It exceeds it by 0.04, on a sample whose equity component was
+selected on itself, which is a direction rather than a result.
+
+Two limits bound everything above. The five equity books were chosen on this window, so the
+absolute return figures inherit that bias and the composite cannot remove it; it can only
+stop adding to it. And 181 weeks is short, which makes the drawdown and worst-year figures
+the most fragile numbers in the table even though they are the most encouraging.
+
+No sleeve weight was selected, no strategy was promoted, and live trading remains disabled.
+
+References:
+
+- `config/composite_book_v1.json`
+- `scripts/run_composite_book_v1.py`
+- `evidence/composite_book_v1/`

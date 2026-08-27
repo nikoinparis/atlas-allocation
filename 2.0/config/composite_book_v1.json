@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "experiment": "composite_book_v1",
+  "status": "structural_test_no_promotion",
+  "purpose": "Assemble the three results of this session that survived their own tests, and measure whether the combination is better than its parts. Nothing new is searched; every component is already on the record.",
+  "components_and_where_they_came_from": [
+    {"component": "equal weight across the saved books rather than selecting one", "source": "Step 203", "evidence": "holding all five returns 50.59% at Sharpe 2.02 against 10.07% at 0.47 for holding the trailing best, and beats random choice, which selection does not"},
+    {"component": "an independent cross-asset trend sleeve", "source": "Steps 200 and 201", "evidence": "Sharpe near 0.95 across two independent windows of fourteen and nineteen years, correlations of -0.087 to +0.149 against four of the five books, effective bets 2.48 to 3.08"},
+    {"component": "a drawdown overlay driven by the book's own equity curve", "source": "Steps 198 and 204", "evidence": "halving exposure 8% below the running peak improved maximum drawdown from -20.3% to -16.1%; the macro-regime alternative bought a seventh of that on a far longer sample"}
+  ],
+  "declared_before_running": {
+    "sleeve_weights": [
+      {"name": "equity_only", "equity": 1.0, "trend": 0.0},
+      {"name": "eighty_twenty", "equity": 0.8, "trend": 0.2},
+      {"name": "seventy_thirty", "equity": 0.7, "trend": 0.3},
+      {"name": "sixty_forty", "equity": 0.6, "trend": 0.4},
+      {"name": "fifty_fifty", "equity": 0.5, "trend": 0.5}
+    ],
+    "equity_sleeve": "equal weight across the five saved dashboard books, rebalanced weekly, no selection",
+    "trend_sleeve": "the Step 201 sleeve at its lowest leverage setting, which is the unlevered book",
+    "trend_leverage_choice_rationale": "The lowest setting is chosen because it is the only one that is not a leverage decision. Picking a higher point after seeing blended results would be fitting.",
+    "drawdown_overlay": {
+      "trigger_drawdown": 0.08,
+      "exposure_when_triggered": 0.5,
+      "source": "Step 198, copied unchanged; the threshold is not re-tuned here"
+    },
+    "rebalance": "weekly",
+    "cost_bps_per_unit_turnover": 20.0,
+    "no_parameter_is_fitted_in_this_step": true
+  },
+  "questions": [
+    "Does adding the trend sleeve improve risk-adjusted return over the equity composite, and at what cost in return?",
+    "Does the drawdown overlay still help once the book is already diversified, or has diversification already done that job?",
+    "Is the combination better than the best single saved book on Sharpe and drawdown simultaneously?"
+  ],
+  "not_claimed": [
+    "The five equity books were selected on this window. Every figure here inherits that bias and the composite cannot remove it - it only stops adding to it.",
+    "The overlapping window is short. Drawdown figures in particular are fragile on roughly 190 weeks.",
+    "No sleeve weight is selected. The grid is reported in full and the choice belongs to a forward test, not to this step."
+  ],
+  "strategy_source": "dashboard/public/return-first-dashboard.json",
+  "price_source": "data/vintages/20260814T220630Z-6807cd7f14ae66bb/payload/prices.csv",
+  "live_trading_enabled": false
+}

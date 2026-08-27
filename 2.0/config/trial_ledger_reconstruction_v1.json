@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "experiment": "trial_ledger_reconstruction_v1",
+  "status": "reconstructed_lower_bound_not_a_complete_census",
+  "purpose": "Seed the trial ledger with the configuration counts the project record explicitly states, so that deflated Sharpe gates have a defensible N instead of a sensitivity grid.",
+  "honesty_statement": "This is a LOWER BOUND, not a census. It counts only trials the history names a number for. Steps that say 'searched the neighbourhood' or 'tested several variants' without a count contribute nothing here, so the true N is higher than what this produces. A lower bound is the conservative direction for a significance test in only one sense - it makes promotion easier, not harder - so the reconstruction is marked as such and future trials must be registered at evaluation time rather than reconstructed.",
+  "reconstructed_trials": [
+    {"family": "etf_trend_momentum", "count": 288, "source": "Step 19 - research lab batch 01, 288 standardized experiments"},
+    {"family": "etf_new_families", "count": 288, "source": "Step 22 - batch 04, 288 mean-reversion, defensive and carry experiments"},
+    {"family": "etf_new_family_robustness", "count": 576, "source": "Step 23 - batch 05, 576 statistical trials"},
+    {"family": "cross_sectional_ml", "count": 2924, "source": "Step 41 - batch 17, 2,924 nested ML fits"},
+    {"family": "literature_signals", "count": 22, "source": "Steps 189 and 192 - 22 pre-declared literature signals"},
+    {"family": "repository_factor_screen", "count": 213, "source": "Step 54 - 213 candidate ETF factors screened before preselection"},
+    {"family": "saved_layer2_strategies", "count": 33, "source": "Step 13 - 33 saved Layer 2 strategies scored"},
+    {"family": "portfolio_construction", "count": 8, "source": "Step 198 - 8 declared structural construction rules"},
+    {"family": "sec_fundamental_search", "count": 60, "source": "Steps 106 through 146 - conservative count of one named candidate configuration per step across the SEC fundamental program"}
+  ],
+  "not_claimed": [
+    "The SEC fundamental family count of 60 is the weakest entry here. It is a per-step floor across a program that plainly evaluated more configurations per step than one, and it should be replaced by a real count if one can be reconstructed from the evidence directories.",
+    "Registering these does not make past results significant. It makes the deflation exact rather than illustrative."
+  ],
+  "ledger_path": "data/trial_ledger_v1/trials.jsonl",
+  "live_trading_enabled": false
+}

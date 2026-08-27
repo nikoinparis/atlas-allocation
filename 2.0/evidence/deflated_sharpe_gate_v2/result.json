@@ -1,0 +1,125 @@
+{
+  "experiment": "deflated_sharpe_gate_v2",
+  "status": "retrospective_audit_with_counted_trials",
+  "created_at_utc": "2026-08-27T06:40:59.583462+00:00",
+  "ledger_verification": {
+    "valid": true,
+    "records": 4412
+  },
+  "trial_counts": {
+    "project": 4412,
+    "by_family": {
+      "cross_sectional_ml": 2924,
+      "etf_new_family_robustness": 576,
+      "etf_trend_momentum": 288,
+      "etf_new_families": 288,
+      "repository_factor_screen": 213,
+      "sec_fundamental_search": 60,
+      "saved_layer2_strategies": 33,
+      "literature_signals": 22,
+      "portfolio_construction": 8
+    }
+  },
+  "threshold": 0.95,
+  "strategies": {
+    "150.86% Residual 1.25x": {
+      "family": "sec_fundamental_search",
+      "family_scope": {
+        "observations": 193,
+        "trials": 60,
+        "annualised_sharpe": 1.7872179138155007,
+        "annualised_null_threshold": 1.2683261155907521,
+        "deflated_sharpe_ratio": 0.8313500315062383,
+        "trials_source": "sec_fundamental_search=60"
+      },
+      "project_scope": {
+        "observations": 193,
+        "trials": 4412,
+        "annualised_sharpe": 1.7872179138155007,
+        "annualised_null_threshold": 1.9769554588727287,
+        "deflated_sharpe_ratio": 0.36284854915321607,
+        "trials_source": "all families=4412"
+      }
+    },
+    "ETF Incumbent": {
+      "family": "etf_new_family_robustness",
+      "family_scope": {
+        "observations": 1127,
+        "trials": 576,
+        "annualised_sharpe": 0.7205778864964353,
+        "annualised_null_threshold": 0.6803409693568029,
+        "deflated_sharpe_ratio": 0.5726144677139473,
+        "trials_source": "etf_new_family_robustness=576"
+      },
+      "project_scope": {
+        "observations": 1127,
+        "trials": 4412,
+        "annualised_sharpe": 0.7205778864964353,
+        "annualised_null_threshold": 0.8036434807970809,
+        "deflated_sharpe_ratio": 0.35276789243974216,
+        "trials_source": "all families=4412"
+      }
+    },
+    "142% Growth / Micron": {
+      "family": "sec_fundamental_search",
+      "family_scope": {
+        "observations": 188,
+        "trials": 60,
+        "annualised_sharpe": 0.9481996522893612,
+        "annualised_null_threshold": 1.2626424074457754,
+        "deflated_sharpe_ratio": 0.2795858369493397,
+        "trials_source": "sec_fundamental_search=60"
+      },
+      "project_scope": {
+        "observations": 188,
+        "trials": 4412,
+        "annualised_sharpe": 0.9481996522893612,
+        "annualised_null_threshold": 1.9680961933370524,
+        "deflated_sharpe_ratio": 0.029083235553498586,
+        "trials_source": "all families=4412"
+      }
+    },
+    "102% Daily-Audited": {
+      "family": "sec_fundamental_search",
+      "family_scope": {
+        "observations": 181,
+        "trials": 60,
+        "annualised_sharpe": 1.5369225828579254,
+        "annualised_null_threshold": 1.305140619267247,
+        "deflated_sharpe_ratio": 0.6614823753040389,
+        "trials_source": "sec_fundamental_search=60"
+      },
+      "project_scope": {
+        "observations": 181,
+        "trials": 4412,
+        "annualised_sharpe": 1.5369225828579254,
+        "annualised_null_threshold": 2.034338676890784,
+        "deflated_sharpe_ratio": 0.18569927749911325,
+        "trials_source": "all families=4412"
+      }
+    },
+    "124% Sector Ensemble": {
+      "family": "sec_fundamental_search",
+      "family_scope": {
+        "observations": 188,
+        "trials": 60,
+        "annualised_sharpe": 1.7084927218280441,
+        "annualised_null_threshold": 1.2904294249767305,
+        "deflated_sharpe_ratio": 0.776320186722502,
+        "trials_source": "sec_fundamental_search=60"
+      },
+      "project_scope": {
+        "observations": 188,
+        "trials": 4412,
+        "annualised_sharpe": 1.7084927218280441,
+        "annualised_null_threshold": 2.0114081580741554,
+        "deflated_sharpe_ratio": 0.2909729366849074,
+        "trials_source": "all families=4412"
+      }
+    }
+  },
+  "significant_family_scope": [],
+  "significant_project_scope": [],
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

@@ -1,0 +1,24 @@
+{
+  "experiment": "trial_ledger_reconstruction_v1",
+  "status": "reconstructed_lower_bound_not_a_complete_census",
+  "created_at_utc": "2026-08-27T06:39:11.311790+00:00",
+  "records_written": 4412,
+  "families": {
+    "cross_sectional_ml": 2924,
+    "etf_new_family_robustness": 576,
+    "etf_trend_momentum": 288,
+    "etf_new_families": 288,
+    "repository_factor_screen": 213,
+    "sec_fundamental_search": 60,
+    "saved_layer2_strategies": 33,
+    "literature_signals": 22,
+    "portfolio_construction": 8
+  },
+  "total_reconstructed_lower_bound": 4412,
+  "verification": {
+    "valid": true,
+    "records": 4412
+  },
+  "note": "This is a LOWER BOUND, not a census. It counts only trials the history names a number for. Steps that say 'searched the neighbourhood' or 'tested several variants' without a count contribute nothing here, so the true N is higher than what this produces. A lower bound is the conservative direction for a significance test in only one sense - it makes promotion easier, not harder - so the reconstruction is marked as such and future trials must be registered at evaluation time rather than reconstructed.",
+  "live_trading_enabled": false
+}

@@ -8414,3 +8414,49 @@ References:
 - `config/cross_asset_trend_extended_v2.json`
 - `scripts/run_cross_asset_trend_extended_v2.py`
 - `evidence/cross_asset_trend_extended_v2/`
+
+## Step 202 — Count the trials, and replace the sensitivity grid with a number
+
+Step 199 could not state how many configurations this project has evaluated, so it reported
+the deflated Sharpe ratio as a grid across assumed trial counts. A grid is the honest
+fallback when the number is unknown; it is not a substitute for knowing it.
+
+An append-only, hash-chained trial ledger was built with the same reasoning as the forward
+evidence store: a trial count that can be quietly revised downward after a disappointing
+result is not a trial count. It was then seeded from the counts the project record states
+explicitly — 2,924 nested ML fits from Batch 17, 576 statistical trials from Batch 05, 288
+each from Batches 01 and 04, 213 screened repository factors, 33 scored Layer 2 strategies,
+22 literature signals, 8 construction rules, and a deliberately conservative 60 for the
+entire SEC fundamental program.
+
+That totals 4,412 and it is a lower bound, not a census. Steps that say a neighbourhood was
+searched without naming a number contribute nothing to it, and the SEC entry in particular
+assigns one configuration per step to a program that plainly evaluated more. The direction
+of the error matters and is recorded: an undercount makes promotion easier, not harder, so
+the reconstruction is marked as such and only trials registered at evaluation time count as
+properly recorded from here.
+
+Re-running the Step 199 audit against counted trials removes the last ambiguity. At family
+scope, which asks only how many configurations were tried inside the family a book came
+from and uses the deliberately generous 60 for the SEC program, the deflated ratios are
+0.831, 0.776, 0.662, 0.573 and 0.280. At project scope, which is the right question because
+the books that reached a dashboard were chosen by looking across families, they are 0.363,
+0.353, 0.291, 0.186 and 0.029. Nothing clears 0.95 under either reading, and the family
+scope is already the most favourable framing available.
+
+The gate itself fails closed in three ways, each tested. An unregistered family returns a
+refusal rather than treating an unknown N as one. A broken hash chain refuses to score at
+all. And a return series with no usable dispersion is rejected rather than producing an
+infinite Sharpe — a guard that a test caught failing on exactly constant input, because the
+floating-point standard deviation of a constant series is small but not zero.
+
+No strategy was promoted and live trading remains disabled.
+
+References:
+
+- `src/systematic_trader/trial_ledger.py`
+- `tests/test_trial_ledger.py`
+- `config/trial_ledger_reconstruction_v1.json`
+- `scripts/seed_trial_ledger_v1.py`
+- `scripts/run_deflated_sharpe_gate_v2.py`
+- `evidence/deflated_sharpe_gate_v2/`

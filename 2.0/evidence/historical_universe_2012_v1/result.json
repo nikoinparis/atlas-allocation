@@ -1,0 +1,35 @@
+{
+  "experiment": "historical_universe_2012_v1",
+  "status": "data_construction_no_performance_evaluated",
+  "created_at_utc": "2026-08-27T06:33:15.038675+00:00",
+  "quarters": {
+    "count": 57,
+    "first": "2012q1",
+    "last": "2026q1"
+  },
+  "filings_included": 372957,
+  "issuers_total": 14392,
+  "issuers_still_filing_at_end": 5131,
+  "issuers_exited_before_end": 9261,
+  "issuers_in_current_price_panel": 3253,
+  "issuers_absent_from_current_panel_and_exited": 8830,
+  "survivorship_gap_share": 0.6135352973874375,
+  "ticker_resolution": {
+    "issuers_with_a_ticker": 12846,
+    "issuers_unresolved": 1546,
+    "issuers_with_ticker_change": 3646,
+    "resolved_share": 0.8925792106725959
+  },
+  "members_per_quarter": {
+    "first_quarter": 6698,
+    "last_quarter": 5131,
+    "median": 5926
+  },
+  "artifacts": [
+    "issuers.csv.gz",
+    "quarterly_membership.csv.gz",
+    "ticker_spans.csv.gz"
+  ],
+  "performance_evaluated": false,
+  "live_trading_enabled": false
+}

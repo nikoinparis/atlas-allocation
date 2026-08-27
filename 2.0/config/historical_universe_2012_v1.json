@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "experiment": "historical_universe_2012_v1",
+  "status": "data_construction_no_performance_evaluated",
+  "purpose": "Build a survivorship-safe point-in-time issuer universe from 2012q1 to 2026q1 using only the SEC Financial Statement Data Sets already on disk, so that the price backfill has a membership spine that includes issuers which stopped filing.",
+  "why_this_matters": "The current research panel is the CURRENT SEC universe. Any issuer that existed in 2012 and stopped filing before 2022 is absent from it by construction. Backfilling prices for the current panel alone would produce a longer sample with worse survivorship bias than the short one it replaces.",
+  "declared_before_running": {
+    "source": "data/sec_fsds_sub_cache/*.sub.txt.gz",
+    "quarters_expected": 57,
+    "forms_included": ["10-K", "10-Q", "10-K/A", "10-Q/A", "10-KT", "10-QT"],
+    "membership_rule": "An issuer is a member of quarter q if it filed an included form whose filed date falls in q. Membership is asserted from the filed date only, never from the period, so a late filing cannot backdate membership.",
+    "exit_rule": "An issuer's last observed quarter is the last quarter in which it filed. No exit reason is inferred here; classifying delisting versus deregistration versus acquisition is a separate step.",
+    "ticker_resolution": {
+      "method": "Parse the XBRL instance document filename in the sub.txt instance column, which conventionally begins with the issuer's ticker followed by the period date.",
+      "pattern": "^([A-Za-z][A-Za-z0-9-]{0,9})-\\d{8}[._]",
+      "conflict_rule": "Where an issuer resolves to more than one ticker, record every ticker with the filed-date range over which it was observed, and mark the issuer as a ticker-change case rather than choosing one.",
+      "known_limits": "The convention is not universal. Filings named form10-k_htm.xml or d700274d10k_htm.xml carry no ticker and are recorded as unresolved rather than guessed."
+    }
+  },
+  "not_claimed": [
+    "This constructs membership and identity only. No price, no return, and no performance figure is produced.",
+    "A resolved ticker is a candidate identity, not a validated one. Validation against provider issuer names happens at acquisition time using the existing issuer_name_match gate.",
+    "Absence from a later quarter is not proof of delisting."
+  ],
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

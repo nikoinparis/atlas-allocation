@@ -1,0 +1,36 @@
+{
+  "experiment": "price_backfill_2012_v1",
+  "status": "acquisition_program_no_performance_evaluated",
+  "created_at_utc": "2026-08-27T06:34:26.171674+00:00",
+  "queue_rows": 17970,
+  "distinct_issuers": 12846,
+  "by_tier": [
+    {
+      "tier": 1,
+      "name": "current_panel_continuity",
+      "request_pairs": 4011,
+      "issuers": 3209,
+      "cumulative_days_at_free_tier": 9
+    },
+    {
+      "tier": 2,
+      "name": "exited_long_lived",
+      "request_pairs": 9275,
+      "issuers": 5859,
+      "cumulative_days_at_free_tier": 27
+    },
+    {
+      "tier": 3,
+      "name": "exited_short_lived",
+      "request_pairs": 4684,
+      "issuers": 3778,
+      "cumulative_days_at_free_tier": 36
+    }
+  ],
+  "estimated_unattended_days": 36,
+  "days_to_finish_tier_1": 9,
+  "days_to_finish_tier_2": 27,
+  "warning": "Tier 1 alone reproduces the survivorship bias this program exists to remove. Research is authorised only after tier 2 completes.",
+  "performance_evaluated": false,
+  "live_trading_enabled": false
+}

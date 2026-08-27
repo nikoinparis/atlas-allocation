@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "experiment": "price_backfill_2012_v1",
+  "status": "acquisition_program_no_performance_evaluated",
+  "purpose": "Acquire daily prices from 2011-01-01 for the survivorship-safe 2012-2026 issuer universe, so that every signal this project has tested on a 143-week bull sample can be retested across 2015-16, 2018, 2020 and 2022.",
+  "scale_reality": {
+    "issuers_with_a_resolved_ticker": 12846,
+    "requests_per_issuer": 2,
+    "free_tier_requests_per_day": 1000,
+    "unattended_days_for_full_universe": 26,
+    "note": "The earlier seven-day estimate covered the current 3,253-issuer panel only. Including the 8,830 issuers that exited before the panel begins is what makes the sample survivorship-safe, and it is four times the work. The queue is therefore tiered so that a usable panel exists after a few days and improves monotonically."
+  },
+  "declared_before_running": {
+    "history_start": "2011-01-01",
+    "history_start_rationale": "One year of warmup before the 2012q1 fundamentals so that trailing-year signals are defined at the first decision date.",
+    "priority_tiers": [
+      {
+        "tier": 1,
+        "name": "current_panel_continuity",
+        "rule": "Issuers already in the current price panel, which extend an existing series backwards rather than starting a new one.",
+        "why_first": "Cheapest coverage gain per request and immediately usable, but on its own it is survivorship-biased and must never be researched alone."
+      },
+      {
+        "tier": 2,
+        "name": "exited_long_lived",
+        "rule": "Issuers absent from the current panel that filed in at least 12 quarters.",
+        "why_second": "This is the survivorship correction. A long filing history means a real operating company rather than a shell, and Hou, Xue and Zhang show anomaly evidence is dominated by microcaps, so filtering toward substance is a research choice made before results exist."
+      },
+      {
+        "tier": 3,
+        "name": "exited_short_lived",
+        "rule": "Everything else with a resolved ticker.",
+        "why_third": "Completes the universe. Expected to contain most of the shells, reverse mergers and never-traded registrants."
+      }
+    ],
+    "ticker_change_policy": "Where an issuer resolved to more than one ticker, request each ticker over the filed-date span in which it was observed, rather than assuming the latest ticker covers the whole history.",
+    "identity_gate": "Every response is checked with the existing issuer_name_match gate against the SEC name as filed. A name mismatch is recorded as a rejected row, never silently accepted, because recycled tickers are the main failure mode here.",
+    "rate_limits": {"requests_per_hour": 50, "requests_per_day": 1000, "minimum_seconds_between_requests": 1.5},
+    "resumability": "Every issuer writes a terminal result.json before the next is attempted. Restarting the daemon skips terminal rows, so an interrupted run loses at most one issuer."
+  },
+  "not_claimed": [
+    "No strategy may be evaluated on a partial backfill. The membership spine must be complete for a tier before that tier is researched.",
+    "Acquiring a price series does not establish that the issuer was investable, liquid, or borrowable.",
+    "Delisting returns are not solved by this program and remain an open gap."
+  ],
+  "universe_source": "data/historical_universe_2012_v1/",
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

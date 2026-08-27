@@ -255,3 +255,83 @@ Zhu (2016), *…and the Cross-Section of Expected Returns*. Hong, Li, Ni, Schein
 Series Momentum*. Blitz, Baltussen and van Vliet on long-only versus long-short factor
 implementation. Lopez de Prado (2018), *Advances in Financial Machine Learning*, on purged
 and combinatorial cross-validation.
+
+---
+
+# Round 2 — status after Steps 199–206, and what to try next
+
+Written 2026-08-27, after executing the first list.
+
+## What was done
+
+| Item | Step | Outcome |
+|---|---|---|
+| 0.1 price backfill | — | **Not started.** Runner built, queue built, dry-run clean. Needs a provider token. |
+| 0.3 use the ETF panel | 200, 201, 204, 205 | Done. Four programs run against it. |
+| 1.1 cross-asset trend sleeve | 200, 201, 206 | Sharpe 0.98 from 2002, 0.92 from 2007. Independent of the equity books. |
+| 2.1 deflated Sharpe gate | 199, 202 | Done, fails closed three ways, tested. |
+| 2.2 count the trials | 202 | Done. 4,490 counted. |
+| 2.4 bag the strategies | 203 | Done. **Selection is worse than random here.** |
+| 3.1 drawdown overlay | 206 | Done. Helps concentrated books only. |
+| 3.2 conditional vol targeting | 201 | Tested, does not apply to the trend sleeve. |
+| 3.3 regime overlay | 204 | Tested, macro gating rejected. |
+| 1.7 seasonality | 205 | Tested, family closed. |
+
+Two corrections to the first list are on the record. The backfill is **36 unattended days, not
+seven**, because the seven-day figure covered only the current panel and excluded the 8,830
+issuers that make the sample survivorship-safe. And the "volatility target" in the trend sleeve
+was a leverage rule, not a risk control.
+
+## The nine new items
+
+Each follows from something the eight steps found, rather than from the original list.
+
+**N1.1 Open a second forward registry for the composite, and leave the first one alone.** The
+September 4 registry tracks six individual books; Step 203 says choosing among them is worse
+than random and Step 206 says the composite dominates all of them. Do not edit the existing
+registry — open a parallel v2 with its own pre-registered thresholds.
+
+**N1.2 Rebuild the regime feature set on VIX level and NFCI.** Step 204 found the existing
+features anchored on VIX3M, which starts 2009. This does not make the signal better; it makes
+it testable across the two regimes Step 191's gate demands.
+
+**N1.3 Test conditional volatility targeting on the SEC books.** It never triggers on the trend
+sleeve because that book's volatility sits below target. The SEC books run at 20–36%.
+
+**N1.4 Widen the trend universe beyond 35 ETFs.** Trend Sharpe scales with the number of
+independent markets; real managed-futures books run 50 to 100. International government bonds,
+more of the commodity complex, more FX crosses, corporate credit. Free, and it improves the one
+sleeve with nineteen years behind it.
+
+**N1.5 Add a short leg using inverse ETFs.** Step 201 recorded that long-only trend is weaker
+because the short leg carries the crisis payoff, and that this project cannot borrow or cost a
+real short. SH, PSQ, RWM, TBF and DOG sidestep that: no borrow, no locate, no buy-in risk. Their
+decay and tracking error must be modelled honestly.
+
+**N2.1 Solve delisting returns alongside the acquisition, not after it.** Now the most dangerous
+open gap. A panel of 8,830 exited issuers with missing terminal returns is *optimistically*
+biased — a worse failure, in a specific direction, than the survivorship bias it fixes. This
+gates all backfilled research.
+
+**N2.2 Lazy Prices, short interest, PEAD, low asset growth.** Unchanged and still the best
+orthogonal candidates. Worth far more against fourteen years than four, so they wait.
+
+**N3.1 Risk parity across asset classes rather than inverse-volatility within the held set.**
+The sleeve currently lets one asset class dominate when several of its members trend together.
+
+**N3.2 Audit the dashboard for the selection it encourages.** It ranks books by trailing return
+and badges the leader, which is precisely the decision rule Step 203 rejected. Lead with the
+composite; show the individual books as components.
+
+**N3.3 Reconstruct a real trial count for the SEC program.** The ledger assigns it 60 — one per
+step — and that is the weakest number in it, erring in the direction that makes promotion
+easier.
+
+## The standing verdict
+
+Nothing has been promoted. The composite improves the shape of the portfolio substantially —
+Sharpe 2.14 against the best single book's 1.82, worst rolling year −1.85% against −16.17% — and
+still returns a deflated Sharpe of 0.53 against 4,490 documented trials. The half-and-half blend
+is the first construct in this project whose observed Sharpe exceeds its own null threshold, by
+0.04, on a sample its equity component was selected on. That is a direction, not a result, and
+the forward clock is what turns one into the other.

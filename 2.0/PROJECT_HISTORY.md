@@ -8782,3 +8782,66 @@ References:
 - `scripts/run_metalabel_signstructure_v1.py`
 - `scripts/run_inverted_overlay_null_v1.py`
 - `evidence/metalabel_precondition_v1/`, `evidence/inverted_overlay_null_v1/`
+
+## Step 202 — Scope a supply-chain graph, and find the filing corpus was already here
+
+The owner asked for a proper scope of the customer-supplier graph proposed in Step 201.
+Scoping meant measuring rather than estimating, and the first measurement corrected a
+claim made an hour earlier in this same session. I had told the owner the project held
+only XBRL structured facts and no filing body text. That was wrong.
+`data/sec_broad_identity_cache_v2/` and `data/sec_historical_identity_cache/` together
+hold 1,800 gzipped primary filing documents, 439MB of full body text dated 2014 to 2026.
+
+It is not a filing history. It holds exactly one filing per company across 1,093 of the
+3,253-name universe, because it was built for identity resolution. That is enough to
+measure extraction yield and not enough to backtest, so it was used for the former.
+
+Of 1,093 filings, 56.2% discuss customer concentration at all. A naive entity regex
+appeared to name a customer in 16.7%, but that figure is inflated and the reason is
+instructive: of 1,140 raw matches, 781 were the junk entity "Company" and much of the
+remainder was boilerplate, FDIC deposit insurance and SIPC language rather than commercial
+relationships. Naive extraction runs at roughly 69% false positives. After filtering to
+entities that are genuinely named and carry a revenue share, the yield is 139 filings of
+1,800, or 7.7%, producing 349 clean weighted edges across 193 distinct named customers at
+a median disclosed revenue share of 20%. A further 14.3% of filings disclose concentration
+but name no counterparty, which is unusable as a graph edge.
+
+The named hubs are exactly the ones the mechanism predicts: Apple, Cisco, McKesson,
+Samsung, IBM, Hewlett Packard Enterprise, AmerisourceBergen, Southern Company, Boeing.
+
+The decisive measurement is hub concentration, because it determines whether this adds
+breadth or reproduces the project's chronic single-name failure. Supplier positions that
+share one customer are one bet rather than many. The top ten customers carry only 19% of
+edges and the Herfindahl over customers is 0.0090, giving roughly 111 effective distinct
+customers from 193 named. The graph does not collapse into hubs.
+
+Acquisition cost was measured from EDGAR's 2024 QTR1 full index: 4,980 10-K filings across
+all filers, of which 2,535 fall in our universe, so 78% of the universe files a 10-K in the
+first quarter alone. A twenty-year history is roughly 62,000 filings, 74GB raw and 16GB
+gzipped, and 1.7 hours of requests at EDGAR's ten per second. Rate limiting is not the
+constraint and storage need not be one, since extracting candidate windows during download
+and discarding raw HTML reduces the retained artefact to a few hundred megabytes.
+
+Projected forward, the measured rates imply roughly 240 filers per year carrying a named
+customer and, on an unverified assumption that about half of named customers are US-listed
+and in the price panel, 120 to 140 tradeable supplier names per year. That assumption is
+the largest single uncertainty in the scope and is labelled as such. Against a current
+effective breadth of 1.15, even the low end would be a change of kind.
+
+The scope is written to `docs/SUPPLY_CHAIN_GRAPH_SCOPE_V1.md` with five pre-registered
+ways it most likely dies, recorded before any build so the outcome cannot be rationalised
+afterwards: an eighteen-year-published effect that has probably decayed, extraction
+precision, name-to-ticker resolution, point-in-time vintaging by filing date rather than
+fiscal period, and the fact that recency-weighted criteria will fail a graph strategy that
+only worked before 2015. Each of five phases carries an explicit kill gate.
+
+Estimated at two working weeks dominated by extractor precision and name resolution. It
+cannot be ready for the September 4 first realization and is explicitly not to be rushed
+toward it. The forward clock and its seven pinned files are untouched.
+
+Nothing was built. Approval is sought for phases 0 and 1 only, since the hand-labelled
+precision measurement decides whether the remaining work is worth spending.
+
+References:
+
+- `docs/SUPPLY_CHAIN_GRAPH_SCOPE_V1.md`

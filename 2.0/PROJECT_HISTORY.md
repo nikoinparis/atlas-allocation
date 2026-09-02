@@ -8389,3 +8389,279 @@ References:
 
 - `dashboard/src/app/globals.css`
 - `/tmp/portfolio-survival-chart-padding-v1.png` (local verification capture)
+
+## Step 205 — Verify the Micron removal, then reject a fixed cross-asset trend blend
+
+An external summary claimed a new portfolio result, P&L attribution, historical-universe
+rebuild and scheduled data-acquisition workflow. None of its exact headline figures or
+corresponding artifacts exists in the current Git history, so those claims remain
+unverified. The reproducible part was tested directly on the 181-week common window of
+the six saved dashboard strategies. Removing the growth/Micron sleeve improved CAGR from
+45.50% to 47.50%, Sharpe from 2.17 to 2.40, maximum drawdown from -20.45% to -18.11%,
+and worst rolling fifty-two-week return from -8.34% to -7.33%. On the same window the
+excluded sleeve supplied 14.2% of equal-weight arithmetic return but 25.7% of variance
+risk. This confirms the direction of the external claim, not its different attribution
+figures.
+
+One new candidate was frozen before measurement: 80% equal weight across the remaining
+five saved strategies and 20% causal long-only trend across bonds, credit, metals,
+commodities and the dollar. The trend sleeve uses the mean of fixed 13-, 26- and 52-week
+returns, inverse-volatility weights capped at 20% per market, a four-week rebalance,
+next-week execution and explicit 0-100 basis-point one-way cost cases. No result was used
+to change the primary rules.
+
+On the identical 180-week candidate window, the five-sleeve base returned 45.47% at a
+2.342 Sharpe, 2.511 Calmar and -18.11% maximum drawdown. At 50 basis points, the fixed
+80/20 candidate returned 36.68% at a 2.387 Sharpe, 2.467 Calmar and -14.87% drawdown;
+its worst rolling year improved from -7.33% to -5.23%. The modest Sharpe improvement is
+real as arithmetic, but the candidate lost 8.79 points of CAGR and slightly worsened
+Calmar, failing the predeclared joint hurdle. A 13-week block bootstrap gives a raw
+p-value of 0.9991 for incremental mean return, and 19.8% of 1,000 random matched
+placebos equaled or exceeded its joint Sharpe-and-Calmar result. Prefix invariance passed,
+as did every leave-one-market-out and positive-CAGR neighborhood check; none rescues the
+primary failure.
+
+The candidate is rejected as a portfolio improvement and preserved as a negative,
+reproducible baseline. No diagnostic weight or lookback is selected after the fact. The
+repository has no verified global attempt counter, so no project-wide multiplicity-
+adjusted significance claim is made. No strategy is promoted, no forward clock is
+started, and live trading remains disabled.
+
+References:
+
+- `config/cross_asset_crisis_trend_v1.json`
+- `src/systematic_trader/cross_asset_trend.py`
+- `scripts/run_cross_asset_crisis_trend_v1.py`
+- `tests/test_cross_asset_trend.py`
+- `evidence/cross_asset_crisis_trend_v1/`
+- `research_registry/cross_asset_crisis_trend_v1.json`
+
+## Step 206 — Restart the weekly cycle and take the first real forward observations
+
+The guarded weekly forward cycle had not run since August 21. Its isolated collector image,
+`po2-yfinance:1.5.2-v1`, had been pruned from the local container store, so the cycle failed
+closed rather than silently degrading, which is the correct behaviour. The image was rebuilt
+from the collector source tracked at `scripts/container/free_etf_download.py` and pinned to the
+same yfinance version. The rebuilt image has a different image id, which is recorded rather than
+hidden; nothing about the frozen protocol or its pinned files changed.
+
+Running the cycle on September 1 targets the decision week ending August 28. That is legitimate
+rather than a backfill: `covariance_minimum_variance_v1` defines its decision and realization
+windows as opening at 21:00 UTC on the relevant Friday and closing at 21:00 UTC the following
+Friday, and September 1 sits inside the August 28 window. Its own missed-snapshot rule, which
+forbids reconstructing a window from a later vintage, is therefore satisfied rather than bypassed.
+
+The protocol advanced from one observed week to two. Both are negative: -0.405% for the week
+ending August 21 and -0.010% for the week ending August 28, for a cumulative -0.415% on zero
+turnover. Two observations carry no statistical content whatsoever and are recorded only because
+the clock requires an unbroken record.
+
+Every other frozen protocol remains at zero observed weeks. Four of them declare a first eligible
+realization of August 21 but have no recorder that can advance them without re-running their
+source pipelines, and `sec_residual_controlled_sleeve_forward_v1` is not eligible until
+September 4. The pre-registered prediction registry from Step 197 also opens on September 4, so
+it has still produced rehearsals only.
+
+No strategy was promoted and live trading remains disabled.
+
+References:
+
+- `containers/Containerfile.yfinance`
+- `scripts/run_guarded_weekly_forward_cycle.py`
+- `evidence/weekly_forward_cycles/2026-08-28-20260902T045003Z-9b57ef73a2709ddd/`
+- `evidence/forward_covariance_minimum_variance_v1/`
+
+## Step 207 — Extend the price panel, and find the sealed panel is not what it looked like
+
+Bringing the dashboard current required weeks the cleaned panel did not have. The first attempt
+appended fresh Yahoo adjusted closes directly and produced a reconciliation with a median
+relative difference of thirty times against the stored values. The cause was not a bad pull. The
+sealed panel does not hold dollar prices at all: every issuer series is rebased to 1.0 at its
+first observation, which the file's own manifest never states. Appending raw prices to it is
+meaningless, and the only reason the error was visible at all is that the outlier filter caught
+the resulting four-thousand-percent weekly returns.
+
+The corrected extension chains each issuer onto its own stored level at the last week the two
+series share, and reconciles on weekly returns rather than levels, because returns are invariant
+to the rebasing and levels are not. On that basis 30,485 overlapping cells were compared, 529
+differ by more than ten basis points, and the median difference is exactly zero.
+
+A second bug is recorded. The first attempt appended a week ending September 4 as well, because
+resampling to Friday labels the current partial week with its future Friday date and fills it
+with Monday's price. A partial week entering a panel as a closed week is a lookahead defect, so
+the extension now refuses any week whose Friday has not passed.
+
+The panel runs through August 28 with 2,812 issuers priced in the new week. The 439 issuers that
+could not be extended are almost entirely Tiingo-sourced delisted names; their series legitimately
+stop, but the newest week is consequently thinner than the historical panel and anything computed
+on it inherits that.
+
+No strategy was promoted and live trading remains disabled.
+
+References:
+
+- `scripts/extend_weekly_price_panel_v2.py`
+- `data/clean_weekly_prices_v2/`
+- `data/sec_broad_recent_tail_vintages/`
+
+## Step 208 — Mark the last decided books to market, and find one exposure explains all of it
+
+Every dashboard strategy's weekly record stops on August 7. That is where its backtest stops, not
+where the data stops, and advancing a strategy means re-running its selection pipeline on new
+point-in-time filings, which re-opens selection. Rather than do that casually, this step answers
+the narrower question that can be answered honestly: if the last book each strategy actually
+decided had simply been held, what would it have returned over the three weeks that have closed
+since?
+
+Over the weeks ending August 14, 21 and 28, five of six held books were positive while the market
+was not: the ETF incumbent at +3.97%, the fragile 1.35x sleeve at +3.47%, the daily-audited
+cash-conversion book at +3.14%, the sector ensemble at +2.63% and the residual 1.25x book at
++1.73%, against SPY at -0.51%, QQQ at -0.91%, XLK at -1.21% and the equal-weight issuer universe
+at -0.78%. The growth and Micron book was the only loser at -1.34%.
+
+That looks like five independent confirmations and is not one. Decomposing the three-week
+arithmetic contribution by instrument, energy supplied 64% to 119% of every positive result. XLE
+returned +9.01% and USO +9.93% over the same weeks. The ETF incumbent and the residual book are
+both negative once energy is removed, and the one book holding no energy sector exposure is the
+one that lost. Five books produced five versions of the same bet, which is the breadth problem
+this project measured at an effective independent strategy count near 1.15, appearing again in
+live prices rather than in a correlation matrix.
+
+Three caveats are attached and none of them is optional. Three weekly observations carry no
+statistical content. These books were selected on data through August 7, so their holdings are by
+construction the names that ranked highest at that moment, and short-horizon persistence in a
+freshly selected momentum book is expected rather than informative. And the energy grouping was
+made after seeing the result, which makes it a diagnostic and not a test.
+
+The dashboard gained a forward record page carrying all of this. It also gained an architectural
+correction: the page reads a ten-kilobyte artifact and renders independently of the
+193-megabyte strategy bundle, which fails to cache in the browser and had been blocking every
+page in the application behind it.
+
+No strategy was promoted and live trading remains disabled.
+
+References:
+
+- `scripts/extract_dashboard_last_books_v1.py`
+- `scripts/mark_last_books_to_market_v1.py`
+- `scripts/build_forward_tracker_payload_v1.py`
+- `evidence/dashboard_held_book_marks_v1/`
+- `dashboard/src/components/forward-tracker.tsx`
+- `dashboard/public/forward-tracker.json`
+
+## Step 209 — Test the Opening Range Breakout family and reject it on the cost hurdle
+
+The request was to evaluate ORB, the intraday-momentum rule popularised by Zarattini and Barbon
+(2023). It was worth testing for a reason unrelated to its publicity: every return source in this
+project decides weekly, and CLAUDE.md section 2 names a different time horizon as one of the few
+axes that can raise breadth rather than retune an existing family. A rule holding for hours
+cannot mechanically inherit the weekly cross-sectional momentum exposure that dominates
+everything already here.
+
+The design was registered before any result. The opening range is sixty minutes, not because
+sixty performs well but because Yahoo serves hourly bars for roughly 730 days and five-minute
+bars for only sixty. Three variants were declared with no fitted parameter: trade the sign of the
+opening-range return, the long-only half of it, or the first touch of an opening-range extreme.
+The universe is the already-registered free ETF set plus DIA, so no fresh instrument selection was
+made. Leveraged instruments were excluded deliberately.
+
+Nothing survives cost. Across 730 sessions and 36 instruments, the breakout variant is the only
+one distinguishable from zero, at 5.04% annually and a 1.32 Sharpe with a block-bootstrap p-value
+of 0.0025 — at zero basis points. Its entire gross edge is 1.98 basis points per session, which is
+less than one ETF round trip costs. At two basis points it returns 0.47% with a p-value of 0.3875,
+and at five it loses 6.01% annually. The other two variants are not significant even gross.
+
+Every control behaves as it should. Sign-shuffled and random-sign placebos are negative across all
+three variants. Leave-one-instrument-out leaves the sleeve between -0.02% and +0.83% regardless of
+which instrument is dropped, because there is no result to concentrate. Calendar years alternate
+sign. The decisive check is resolution: run the same three rules at five-minute bars on SPY, QQQ,
+IWM and DIA over the sixty overlapping sessions and every one of the twelve combinations is
+negative. The resolution the literature actually uses makes the result worse, not better.
+
+The rejection is scoped. This kills ORB as an index and sector ETF intraday rule at realistic
+costs. It does not test the single-stock version, which screens small caps on gaps and relative
+volume and needs point-in-time intraday data for a broad stock universe that no free source
+supplies at usable history length; that branch is source-blocked in the same sense as the SEC
+filing-language branch in Step 202. It is also worth recording that the widely circulated headline
+figures for this family come largely from applying the rule to TQQQ, which multiplies the signal
+rather than adding evidence about whether the signal exists.
+
+The implementation is kept as this project's first intraday baseline and as the cost hurdle any
+future higher-frequency proposal has to clear: a daily-turnover rule needs roughly 252 round trips
+a year against 52 for the weekly books here, so it must earn about five times the gross edge to
+net the same result.
+
+No strategy was promoted and live trading remains disabled.
+
+References:
+
+- `config/intraday_opening_range_breakout_v1.json`
+- `scripts/run_intraday_opening_range_breakout_v1.py`
+- `evidence/intraday_opening_range_breakout_v1/`
+- `research_registry/intraday_opening_range_breakout_v1.json`
+
+## Step 199 — Write success criteria, and reject a genuinely new strategy family
+
+Two pieces of work: a proposed definition of success, and the first strategy family tested
+here that is neither cross-sectional nor US-equity-only.
+
+After 198 recorded steps the project had no stated target return, drawdown tolerance,
+capital base or definition of done. Without one, "improve returns" is unbounded and no
+result can ever be sufficient. Worse, the per-experiment gates had drifted to thresholds
+only a bull-market sample produces. Live configurations demand a 150% CAGR at 200 basis
+points of cost, and one requires a positive worst rolling year. SPY over the same 33.7
+years returns 10.84% with a worst rolling year of -45.6%. The gates therefore demand
+roughly fourteen times the market's long-run return, and a level of downside protection
+the market itself has never delivered. Gates calibrated on the sample being tested are not
+gates; they encode the sample, and they may be the reason nothing has been promoted in 198
+steps.
+
+A proposal was written to `config/success_criteria_v1.json` with three tiers, all net of
+costs and all required to be measured on data the candidate was not selected on. Minimum
+viable is 12% CAGR at a Sharpe of 0.80 with drawdown no worse than -35%, which is the bar
+for preferring a systematic book to an index fund. Good is 18% and 1.00 at -25%. Excellent
+is 25% and 1.30 at -20%, with the note that any backtest claiming it deserves proportionate
+suspicion. The positive-worst-rolling-year gate is withdrawn as stricter than the market
+has ever achieved, and its only effect was to fail every candidate uniformly, which carries
+no information. Capital base and horizon are left unspecified because neither can be
+inferred from code. The document is a proposal and governs nothing until accepted.
+
+The new family came from the project owner, who proposed an opening-range breakout. True
+ORB needs intraday bars, which do not exist here; the daily-bar analogue is channel and
+volatility breakout, which is the older and better-documented literature. Testing it
+revealed that the "new asset classes" item long marked DATA_BLOCKED was not blocked at
+all: 35 ETFs spanning bonds, gold, commodities, currencies and international equity sit on
+disk with complete daily open, high, low, close and volume back to 1993.
+
+Four standard parameterisations were declared before running, long only, no leverage, no
+financing, unallocated capital in SHY, 50 basis points on turnover and a one-day execution
+delay. All four fail, and not marginally. Donchian 100/50 returns 2.76% at a Sharpe of
+0.28, Donchian 55/20 returns 0.43%, Donchian 20/10 loses 3.99%, and the volatility
+breakout loses 34.22% annually. SPY over the same period returns 10.90% at 0.65.
+
+Two mechanisms explain it. The volatility breakout's collapse is entirely transaction
+costs: the signal flips on 80% of days, annual turnover reaches 85.7 times, and the cost
+drag is 42.8% a year against a gross return of only 1.02%. It is untradeable rather than
+merely unprofitable. The Donchian variants sit long 84% to 88% of the time, so they are
+approximately buy-and-hold with added whipsaw, and they underperform accordingly.
+
+The regime result is the one worth remembering, because it is the opposite of what trend
+following is supposed to deliver. Through the dot-com crash Donchian 20/10 lost 61.3%
+against SPY's 33%, and Donchian 100/50 lost 35.5% against the same 33%. A long-only
+breakout system on a small ETF universe was destroyed in exactly the regime it is meant to
+protect against, by repeatedly buying failed breakouts.
+
+The honest caveat is that this is not the strategy the literature describes. Real trend
+following is long and short, runs on futures where costs are a fraction of these, and
+diversifies across dozens of uncorrelated contracts. Long-only ETF trend with 50 basis
+point costs is a weak proxy, and its failure is evidence against this implementation
+rather than against the family. It is not frozen and does not join the September 4 cohort.
+
+No strategy was promoted and live trading remains disabled.
+
+References:
+
+- `config/success_criteria_v1.json`
+- `config/multi_asset_breakout_v1.json`
+- `scripts/run_multi_asset_breakout_v1.py`
+- `evidence/multi_asset_breakout_v1/`

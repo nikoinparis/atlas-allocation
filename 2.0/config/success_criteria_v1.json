@@ -1,0 +1,58 @@
+{
+  "document_id": "success-criteria-v1",
+  "status": "PROPOSAL - requires the project owner's acceptance before it governs anything",
+  "why_this_exists": "After 198 recorded steps the project had no stated target return, drawdown tolerance, capital base or definition of done. Without one, 'improve returns' is unbounded and no result can ever be sufficient. Separately, the existing per-experiment gates had drifted to thresholds a bull-market sample produced.",
+  "the_calibration_problem": {
+    "observed_gates": {
+      "minimum_200bps_recent_cagr": [1.20, 1.30, 1.50],
+      "minimum_200bps_locked_cagr": 0.75,
+      "worst_rolling_year_must_be_positive": true
+    },
+    "benchmark_reality_1993_2026": {
+      "spy_cagr": 0.1084,
+      "spy_sharpe": 0.69,
+      "spy_max_drawdown": -0.546,
+      "spy_worst_rolling_52w": -0.456,
+      "years": 33.7
+    },
+    "diagnosis": [
+      "A 150% CAGR gate demands roughly fourteen times the market's long-run return. Only a bull-market artifact clears it, which is exactly the class of candidate that has died under falsification 198 times.",
+      "Requiring a positive worst rolling year is stricter than the market itself has ever managed; SPY's worst rolling year is -45.6%. Every saved strategy 'fails' this gate, but so would any real portfolio ever run.",
+      "Gates calibrated on the sample being tested are not gates. They encode the sample."
+    ]
+  },
+  "proposed_tiers": {
+    "note": "All figures are net of 50bps turnover costs, unlevered, and must be measured on data the strategy was not selected on. The owner should adjust these to personal risk tolerance; they are a defensible starting point, not a recommendation about how much risk to take.",
+    "minimum_viable": {
+      "description": "Worth running instead of buying an index fund.",
+      "cagr": 0.12, "sharpe": 0.80, "max_drawdown": -0.35, "worst_rolling_52w": -0.25,
+      "must_beat": "SPY buy-and-hold on Sharpe, and the equal-weight universe on Sharpe"
+    },
+    "good": {
+      "description": "Worth the operational effort and concentration risk of running a systematic book.",
+      "cagr": 0.18, "sharpe": 1.00, "max_drawdown": -0.25, "worst_rolling_52w": -0.15
+    },
+    "excellent": {
+      "description": "Genuinely rare. Treat any backtest claiming this with proportionate suspicion.",
+      "cagr": 0.25, "sharpe": 1.30, "max_drawdown": -0.20, "worst_rolling_52w": -0.10
+    }
+  },
+  "mandatory_regardless_of_tier": {
+    "forward_weeks": 52,
+    "forward_evidence_untouched": true,
+    "costs_charged": "50bps on turnover minimum; 200bps stress reported",
+    "multiple_testing_correction": "against the cumulative trial count, currently 402",
+    "beats_equal_weight_universe_after_costs": true,
+    "no_single_name_drives_result": "leave-one-out must not flip the verdict",
+    "regime_evidence": "measured through at least one drawdown regime, or explicitly labelled as untested through one"
+  },
+  "explicitly_not_required": {
+    "positive_worst_rolling_year": "Withdrawn as a gate. It is stricter than the market has ever achieved and its only effect was to fail every candidate uniformly, which carries no information.",
+    "beating_the_saved_strategies_backtests": "The 92%-156% trailing figures are selection-contaminated single-window results. Requiring a new candidate to beat them would require it to be an equally extreme artifact."
+  },
+  "capital_and_horizon": {
+    "status": "UNSPECIFIED - the owner must supply these",
+    "why_it_matters": "Capital determines whether liquidity and market impact bind at all, and horizon determines whether a 25% drawdown is survivable or terminal. Neither can be inferred from the code."
+  },
+  "live_trading_enabled": false
+}

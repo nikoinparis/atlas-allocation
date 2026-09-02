@@ -1,0 +1,159 @@
+{
+  "benchmark_spy_full_sample": {
+    "cagr": 0.1089907346697161,
+    "days": 8439,
+    "max_drawdown": -0.5518943390690041,
+    "sharpe": 0.6503978613654641,
+    "worst_rolling_252": -0.4735412329832488
+  },
+  "experiment_id": "multi-asset-breakout-v1",
+  "generated_at": "2026-09-02T20:23:33.755957+00:00",
+  "graded_against": "config/success_criteria_v1.json (proposal, not yet accepted)",
+  "live_trading_enabled": false,
+  "variants": {
+    "donchian_100_50": {
+      "bear_2022": {
+        "spy_drawdown": -0.24496393860941024,
+        "spy_total": -0.18175360053974343,
+        "strategy_drawdown": -0.2539005376921688,
+        "strategy_total": -0.2164429259464986
+      },
+      "beats_spy_sharpe": false,
+      "covid": {
+        "spy_drawdown": -0.33717259405893574,
+        "spy_total": -0.09182160215075585,
+        "strategy_drawdown": -0.13019756509113,
+        "strategy_total": -0.03433571291825166
+      },
+      "dotcom": {
+        "spy_drawdown": -0.4751587332908199,
+        "spy_total": -0.33365256883363004,
+        "strategy_drawdown": -0.379148919422157,
+        "strategy_total": -0.35538821279856625
+      },
+      "exposure": 0.8838862559241706,
+      "full_sample": {
+        "cagr": 0.027574041690747286,
+        "days": 8440,
+        "max_drawdown": -0.5038005964973793,
+        "sharpe": 0.2820343631665708,
+        "worst_rolling_252": -0.32318327629273547
+      },
+      "gfc": {
+        "spy_drawdown": -0.5518943390690041,
+        "spy_total": -0.459613361447214,
+        "strategy_drawdown": -0.3030599396239759,
+        "strategy_total": -0.2350624951546143
+      },
+      "tier": "below_minimum"
+    },
+    "donchian_20_10": {
+      "bear_2022": {
+        "spy_drawdown": -0.24496393860941024,
+        "spy_total": -0.18175360053974343,
+        "strategy_drawdown": -0.28591247478348103,
+        "strategy_total": -0.19722834393400857
+      },
+      "beats_spy_sharpe": false,
+      "covid": {
+        "spy_drawdown": -0.33717259405893574,
+        "spy_total": -0.09182160215075585,
+        "strategy_drawdown": -0.09249491751693106,
+        "strategy_total": -0.04015167068827841
+      },
+      "dotcom": {
+        "spy_drawdown": -0.4751587332908199,
+        "spy_total": -0.33365256883363004,
+        "strategy_drawdown": -0.6355600857988535,
+        "strategy_total": -0.6132316250134973
+      },
+      "exposure": 0.8503554502369668,
+      "full_sample": {
+        "cagr": -0.0398956434140586,
+        "days": 8440,
+        "max_drawdown": -0.8530842608168129,
+        "sharpe": -0.2763042497042749,
+        "worst_rolling_252": -0.44639184211569216
+      },
+      "gfc": {
+        "spy_drawdown": -0.5518943390690041,
+        "spy_total": -0.459613361447214,
+        "strategy_drawdown": -0.2566453941824429,
+        "strategy_total": -0.22248558827541642
+      },
+      "tier": "below_minimum"
+    },
+    "donchian_55_20": {
+      "bear_2022": {
+        "spy_drawdown": -0.24496393860941024,
+        "spy_total": -0.18175360053974343,
+        "strategy_drawdown": -0.1947345748080611,
+        "strategy_total": -0.10490772301001694
+      },
+      "beats_spy_sharpe": false,
+      "covid": {
+        "spy_drawdown": -0.33717259405893574,
+        "spy_total": -0.09182160215075585,
+        "strategy_drawdown": -0.0892934893743953,
+        "strategy_total": -0.06740384772766395
+      },
+      "dotcom": {
+        "spy_drawdown": -0.4751587332908199,
+        "spy_total": -0.33365256883363004,
+        "strategy_drawdown": -0.5171644710447539,
+        "strategy_total": -0.49690077348413064
+      },
+      "exposure": 0.8425355450236967,
+      "full_sample": {
+        "cagr": 0.004332800998898323,
+        "days": 8440,
+        "max_drawdown": -0.6223284639537107,
+        "sharpe": 0.09600015697240862,
+        "worst_rolling_252": -0.3879448438943075
+      },
+      "gfc": {
+        "spy_drawdown": -0.5518943390690041,
+        "spy_total": -0.459613361447214,
+        "strategy_drawdown": -0.2738515972893423,
+        "strategy_total": -0.17355316467698823
+      },
+      "tier": "below_minimum"
+    },
+    "volatility_breakout": {
+      "bear_2022": {
+        "spy_drawdown": -0.24496393860941024,
+        "spy_total": -0.18175360053974343,
+        "strategy_drawdown": -0.4302636673605371,
+        "strategy_total": -0.430487338974071
+      },
+      "beats_spy_sharpe": false,
+      "covid": {
+        "spy_drawdown": -0.33717259405893574,
+        "spy_total": -0.09182160215075585,
+        "strategy_drawdown": -0.2643236946008237,
+        "strategy_total": -0.20885984105707656
+      },
+      "dotcom": {
+        "spy_drawdown": -0.4751587332908199,
+        "spy_total": -0.33365256883363004,
+        "strategy_drawdown": -0.9018549444285014,
+        "strategy_total": -0.8909053489937138
+      },
+      "exposure": 0.8773696682464455,
+      "full_sample": {
+        "cagr": -0.3421921366904248,
+        "days": 8440,
+        "max_drawdown": -0.9999992287614952,
+        "sharpe": -2.9535307671615274,
+        "worst_rolling_252": -0.7735533410213595
+      },
+      "gfc": {
+        "spy_drawdown": -0.5518943390690041,
+        "spy_total": -0.459613361447214,
+        "strategy_drawdown": -0.8468170980279274,
+        "strategy_total": -0.8391719987284906
+      },
+      "tier": "below_minimum"
+    }
+  }
+}

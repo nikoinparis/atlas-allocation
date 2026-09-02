@@ -1,0 +1,37 @@
+{
+  "experiment_id": "multi-asset-breakout-v1",
+  "family": "time-series breakout / trend following",
+  "why_this_is_genuinely_new": [
+    "Every prior program in this project is CROSS-SECTIONAL: rank N instruments, hold the best. This is TIME-SERIES: each instrument is asked, independently, whether it is breaking out. The two mechanisms are close to orthogonal by construction.",
+    "Every prior program is US equities. This universe holds bonds, gold, commodities, currencies and international equity alongside sectors. The 'new asset classes' item was marked DATA_BLOCKED because it assumed futures were required; liquid ETF proxies with 33 years of daily OHLCV are already on disk.",
+    "Every SEC strategy begins in 2023 and has never seen a bear market. This has 1993-2026, covering the dot-com crash, the global financial crisis, COVID and 2022."
+  ],
+  "user_origin": "Proposed by the project owner as an ORB-style idea. True opening-range breakout needs intraday bars, which do not exist here. The daily-bar analogue - channel and volatility breakout - is the closest faithful implementation and is the older, better-documented literature (Donchian channels; Turtle rules; Larry Williams volatility breakout).",
+  "price_source": "data/vintages/20260812T035702Z-0c1bf62d74413e2a/payload/prices.csv",
+  "universe_note": "35 ETFs with complete daily open/high/low/close/volume. Instruments with fewer than 500 daily bars at a decision date are ineligible.",
+  "declared_variants": {
+    "donchian_20_10": "Enter long when the close exceeds the trailing 20-day high; exit when it falls below the trailing 10-day low. The original Turtle short-term system.",
+    "donchian_55_20": "The Turtle long-term system.",
+    "donchian_100_50": "A slower variant, included to show the parameter neighbourhood rather than to be selected from.",
+    "volatility_breakout": "Enter when the close exceeds the prior close plus 0.5 times the 20-day ATR; exit on the reverse. Larry Williams style."
+  },
+  "rules": {
+    "direction": "long only",
+    "leverage": "none",
+    "financing": "none",
+    "unallocated_capital": "held in SHY, the short-treasury proxy, earning its actual return",
+    "sizing": "equal weight across instruments currently signalled",
+    "execution_delay_days": 1,
+    "cost_bps_per_unit_turnover": 50.0,
+    "rebalance": "daily evaluation, trades only on signal change"
+  },
+  "anti_overfitting": {
+    "parameters_are_from_literature": true,
+    "no_sweep": "Four variants, all standard published parameterisations. No grid search, and the neighbourhood variant is reported rather than chosen from.",
+    "declared_before_running": true,
+    "regimes_declared_before_running": ["dotcom", "gfc", "covid", "bear_2022", "full_sample"]
+  },
+  "gates": "config/success_criteria_v1.json",
+  "forward_intent": "If this clears the historical bar it is to be frozen and added to the September 4 forward cohort, so it is tested on untouched data at the same time as the six existing strategies rather than on its own schedule.",
+  "live_trading_enabled": false
+}

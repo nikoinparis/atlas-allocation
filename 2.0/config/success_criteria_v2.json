@@ -1,0 +1,36 @@
+{
+  "document_id": "success-criteria-v2",
+  "supersedes": "success-criteria-v1",
+  "status": "PROPOSAL - requires the project owner's acceptance",
+  "change_from_v1": "The owner directs that recent performance be prioritised, on the reasoning that what worked a decade ago may not work now. v1 weighted all history equally. v2 makes recency the primary ranking axis.",
+  "owner_reasoning_accepted": "Markets do change. Regime persistence is real, practitioners routinely use rolling windows and exponential decay, and a strategy that only worked in 2003 is not useful in 2026.",
+  "the_one_caveat_worth_stating": {
+    "risk": "This project's entire failure record is candidates that looked excellent on recent data and died. Weighting recency higher makes selection MORE exposed to that, not less. Steps 189 and 196 showed the recent window rewarded a volatility exposure that is unlikely to persist.",
+    "resolution": "Recency governs RANKING. It does not govern the floors. A candidate may be ranked on how well it does now, but it may not be promoted if it dies in a drawdown regime, fails forward evidence, or depends on one name. Those stay hard and unweighted, which lets the owner chase current-regime performance without the selection becoming a bull-market artifact detector.",
+    "status": "stated once, not re-litigated"
+  },
+  "ranking_metric": {
+    "primary": "recency_weighted_cagr",
+    "method": "exponentially weighted, half-life 104 weeks (2 years)",
+    "explicit_windows_reported": ["trailing_52w", "trailing_104w", "trailing_156w", "full_sample"],
+    "window_weights": {"trailing_52w": 0.45, "trailing_104w": 0.30, "trailing_156w": 0.15, "full_sample": 0.10},
+    "note": "A strategy is ranked mostly on the last one to two years. Full history contributes 10%, enough that a strategy which only ever worked once is visible, not enough to dominate."
+  },
+  "proposed_tiers_recent_window": {
+    "note": "Applied to the trailing 52 weeks, net of instrument-appropriate costs, measured on data the candidate was not selected on.",
+    "minimum_viable": {"cagr": 0.15, "sharpe": 0.90, "max_drawdown": -0.30},
+    "good": {"cagr": 0.25, "sharpe": 1.20, "max_drawdown": -0.22},
+    "excellent": {"cagr": 0.40, "sharpe": 1.60, "max_drawdown": -0.18},
+    "why_higher_than_v1": "A recent-window bar should be higher than a full-history bar, because recent windows are easier. v1's 12% minimum was calibrated against SPY's 10.84% long-run return; the equal-weight universe returned 30.19% over the trailing 52 weeks, so 15% is the equivalent hurdle in the recent window."
+  },
+  "hard_floors_not_subject_to_recency_weighting": {
+    "forward_weeks": 52,
+    "survives_at_least_one_drawdown_regime": "or is explicitly labelled untested through one",
+    "no_single_name_drives_result": "leave-one-out must not flip the verdict",
+    "beats_the_passive_alternative_over_the_same_window": "equal-weight universe or SPY, whichever is higher",
+    "multiple_testing_correction": "against the cumulative trial count",
+    "costs_matched_to_instrument": "50bps for single stocks; 5-10bps for liquid ETFs. Step 199 showed a mis-specified 50bps assumption turned a 4.97% ETF strategy into -3.99%."
+  },
+  "capital_and_horizon": {"status": "UNSPECIFIED - the owner must supply these"},
+  "live_trading_enabled": false
+}

@@ -8845,3 +8845,76 @@ precision measurement decides whether the remaining work is worth spending.
 References:
 
 - `docs/SUPPLY_CHAIN_GRAPH_SCOPE_V1.md`
+
+## Step 203 — Phase 0 verifies the paper; Phase 1 misses its precision gate at 80%
+
+Phase 0 read the specification rather than recalling it. Cohen & Frazzini, "Economic Links
+and Predictable Returns", Journal of Finance 63(4), pages 1983 to 1988, was fetched and
+read directly. Links come from Compustat segment files under SFAS 131, which requires
+naming any customer above 10% of total sales, over 1980 to 2004, giving 30,622 firm-year
+relationships and 11,484 unique links. Link data is lagged six months. The signal is the
+month t-1 return of an equal-weighted portfolio of a firm's customers; suppliers are ranked
+on it into quintiles, rebalanced monthly, with a five dollar minimum price. The headline is
+a Fama-French three-factor alpha of 1.45% per month with a t-statistic of 3.61, about 18.4%
+a year, falling to 1.24% and t of 2.99 after the Pastor-Stambaugh liquidity factor.
+
+Two corrections to the scope followed. The threshold is 10%, not the 5% used in the scope
+probe. And the scope's projected yield was too pessimistic: 56.2% of filings discuss
+concentration and only 14.3% are anonymous, so the ceiling is near 42% rather than 7.7%.
+
+A third finding is a risk the paper states about itself and which lands directly on this
+project. Their customers sit above the 90th size percentile, so customer returns are
+strongly correlated with the customer's industry return, and Section V exists to hedge
+inter- and intra-industry exposure. This project has already tested and rejected sector
+rotation over 33 years. Customer momentum may therefore be substantially industry momentum
+in a graph costume, so any Phase 4 test must report the industry-hedged number as the real
+one, pre-registered rather than discovered afterwards.
+
+Phase 1 built the extractor and hand-labelled sixty edges per version against full sentence
+context, each version scored on a different random seed so that no version was graded on
+the sample its filters were designed against.
+
+Version one scored 73.3%. Its sixteen errors fell into seven mechanical classes: the
+filer's own product or segment names, entity and percentage misattributed across sentences,
+percentages that were tax or growth rates rather than revenue shares, page furniture such
+as "42 Table of Contents Group companies", entities named but not verifiably tied, an
+anonymous defined term, and one reversed direction where a supplier to the filer was read
+as a customer. The reversal is the dangerous class because it silently inverts an edge.
+
+Version two moved to sentence-bounded extraction with direction and percentage-type
+filters. It scored 73.3% again. Every targeted class was eliminated with no recurrence,
+but the rate did not move because one class expanded to fill the gap: eleven of sixteen
+remaining errors were the filer's own segment names. "Consumer Electronics sales
+represented 70.3% of our net sales" is grammatically identical to a customer sentence.
+
+Version three required corporate form, since segment labels never carry one while real
+customers do, and rejected entities followed by a segment word. It scored 80.0%. That is
+below the 85% gate and the gate is not met.
+
+The remaining twelve errors are no longer syntactic. Four are segment names that acquired
+a customer lead-in, three are misattribution inside a sentence, three are name fragments
+that would resolve to the wrong company, "Nokia" for Nokia Siemens Networks and
+"Distribution Company" for D&H Distribution Company, and two are relationships of the wrong
+type, a lender and a contract manufacturer serving the filer's customers. Distinguishing
+those requires reading comprehension, not pattern matching, so regex plateaus here.
+
+The more serious number is recall. Version three yields an edge from 4.6% of filings,
+implying about 143 suppliers a year for this universe. The paper's Table I puts supplier
+coverage at 12.8% of the stock universe, which for our 3,253 names is about 416. Recall is
+therefore roughly 34% of the Compustat-curated benchmark, and about 114 suppliers a year
+survive at 80% precision. Precision is the fixable half; recall is the constraint, and
+recall is what determines breadth.
+
+The labeller also wrote the extractor, which is a bias risk and is recorded as one. The
+labels were made against full sentence context and the samples are stored so they can be
+re-scored independently.
+
+No approval is sought to continue to Phase 2. The gate was set before the work and it was
+missed. Whether an extraction pass by a language model is worth its cost is a separate
+decision for the owner, and the case for it is that every remaining error class is a
+reading-comprehension task rather than a pattern-matching one.
+
+References:
+
+- `scripts/extract_customer_edges_v1.py`, `_v2.py`, `_v3.py`
+- `evidence/customer_edge_extraction_v1/phase1_result.json`

@@ -8725,3 +8725,60 @@ References:
 - `config/success_criteria_v2.json`
 - `scripts/run_breakout_regime_overlay_v1.py`
 - `evidence/breakout_regime_overlay_v1/`
+
+## Step 201 — Meta-labeling fails its precondition, and breadth timing fails in both directions
+
+Before building a meta-model (López de Prado, AFML ch. 3) the cheaper question was
+asked: is there conditional structure in the saved strategies' returns for a meta-model
+to find? Eleven state features, all computed from data up to t-1 and matched to the
+return realised at t, were tested against seven return series — the six saved strategies
+on pure cash plus the equal-weight universe. Seventy-seven Spearman rank ICs, each with a
+moving-block bootstrap p-value.
+
+Forty-two of seventy-seven features exceed |IC| 0.10 and eighteen are significant
+uncorrected, which is well above the ~4 expected by chance. None survive correction.
+Bonferroni against the cumulative trial count gives zero. Because Bonferroni assumes
+independence and these tests are plainly dependent — the features are mutually correlated
+and the seven series share holdings at an effective breadth near 1.15 — Benjamini-Hochberg
+FDR was also run, as the pre-authorized less-conservative alternative named in CLAUDE.md
+rather than as a relaxation chosen after seeing an unwelcome answer. FDR at q=0.05 also
+gives zero of seventy-seven. The precondition fails under both corrections. The
+meta-model is not built.
+
+The IC signs are nonetheless perfectly consistent across all seven series. Trailing
+volatility, dispersion and the volatility ratio carry positive IC in seven of seven;
+drawdown, breadth, and trailing thirteen-week return carry negative IC in seven of seven.
+Every one of those says the same thing: forward returns are higher after stress. That is
+consistent with short-horizon reversal, and it explains why Step 200's risk-off overlay
+had negative timing skill rather than merely zero — de-risking on weak breadth trades
+against the direction the data points. The sign consistency is descriptive only. Seven
+correlated series are not seven independent confirmations.
+
+The implied inversion was then tested symmetrically, both directions scored against the
+same null so the result could not be an artifact of choosing a direction after seeing the
+loser. Risk-off on weak breadth loses to constant exposure at matched average, mean
+-0.066 Sharpe. Risk-off on strong breadth beats it, mean +0.134, positive in six of seven
+series, and unusually it costs no return, averaging +1.1% CAGR and 1.0% shallower
+drawdowns.
+
+That looked like something, so it was tested against the schedule null: a moving-block
+shuffle of the risk-off schedule itself, preserving the number of risk-off weeks and their
+clustering but destroying any relation to breadth. Only three of seven series beat a random
+schedule at an uncorrected 5%, and none survive correction across the seven. The breadth
+signal is not distinguishable from de-risking on arbitrary dates. Both directions of the
+overlay are closed.
+
+Two threads end here. Meta-labeling on price-derived state has no material to work with,
+and breadth timing adds nothing in either direction. What survives is a negative worth
+keeping: the failure is not model capacity, since seventy-seven features found nothing
+that correction respects, so a larger model on the same inputs would find the same nothing
+with more parameters to overfit. The constraint is the information, not the estimator.
+
+No strategy was promoted and live trading remains disabled.
+
+References:
+
+- `scripts/run_metalabel_precondition_v1.py`
+- `scripts/run_metalabel_signstructure_v1.py`
+- `scripts/run_inverted_overlay_null_v1.py`
+- `evidence/metalabel_precondition_v1/`, `evidence/inverted_overlay_null_v1/`

@@ -8665,3 +8665,63 @@ References:
 - `config/multi_asset_breakout_v1.json`
 - `scripts/run_multi_asset_breakout_v1.py`
 - `evidence/multi_asset_breakout_v1/`
+
+## Step 200 — Reweight success toward recent returns, and close the breakout thread three ways
+
+The owner directs that recent performance be the priority, on the reasoning that what
+worked a decade ago may not work now. That reasoning is accepted: regime persistence is
+real and a strategy that only worked in 2003 is not useful in 2026.
+`config/success_criteria_v2.json` makes recency the primary ranking axis, weighting the
+trailing fifty-two weeks at 45%, two years at 30%, three years at 15% and full history at
+10%. Recent-window tiers are set higher than v1's full-history tiers because recent
+windows are easier: minimum viable becomes 15% CAGR at a Sharpe of 0.90, calibrated
+against the equal-weight universe's 30.19% over the same trailing year.
+
+One caveat is recorded once and not re-litigated. This project's entire failure record is
+candidates that looked excellent on recent data and died, and Steps 189 and 196 showed the
+recent window rewarding a volatility exposure unlikely to persist. The resolution is that
+recency governs ranking only. Six floors stay hard and unweighted: fifty-two forward weeks,
+survival through a drawdown regime or explicit labelling as untested, leave-one-out
+robustness, beating the passive alternative, multiple-testing correction, and costs matched
+to the instrument. That lets the owner chase current-regime performance without the
+selection process becoming a bull-market artifact detector.
+
+The breakout family was then attacked from three directions before being closed.
+
+First, two corrections to Step 199. Mean exposure is roughly 30%, not the 84% to 88%
+reported, which counted days holding any position rather than average allocation. And the
+gross return is stable at 4.84% to 5.49% across all three Donchian parameterisations, which
+is genuine parameter robustness rather than noise.
+
+Second, the cost assumption was wrong. Fifty basis points was inherited from single-stock
+SEC strategies; these are among the most liquid ETFs in existence, where real spreads run
+one to five basis points. Re-costed at 5 bps the variants return 3.92%, 4.97% and 4.85%
+instead of -3.99%, 0.43% and 2.76%. The mis-specification was material and is a
+transferable lesson: cost assumptions must match the instrument, and this one had silently
+turned a mediocre strategy into a catastrophic one. It does not rescue the family. Even at
+5 bps the best variant returns 4.97% at a Sharpe of 0.47 with a -56.1% drawdown, against
+SPY's 10.90%, 0.65 and -55.2%. Long-only ETF breakout loses to buying and holding on every
+axis, generously costed.
+
+Third, the salvage attempt failed. Cross-sectional breakout breadth was tested as a
+risk-off overlay rather than a strategy, scaling exposure to half whenever fewer than 40%
+of the universe was breaking out, lagged one week. Applied to the equal-weight universe
+and all six saved strategies it cut drawdowns substantially, from -20.3% to -13.3% on the
+universe and from -43.5% to -29.6% on the ETF incumbent. But Sharpe did not improve in a
+single case. Testing it against the obvious null settles it: holding a constant exposure at
+the same average beats the timed overlay everywhere, with a mean timing gain of -0.090
+Sharpe. The overlay de-risks at the wrong moments. It is worse than simply holding less all
+the time, which is the cheapest possible alternative.
+
+The breakout family is closed. It fails standalone at realistic costs, it fails as an
+overlay, and its risk reduction is obtainable more cheaply by holding a constant lower
+exposure. What survives is the cost-specification lesson, which applies to every future
+experiment.
+
+No strategy was promoted and live trading remains disabled.
+
+References:
+
+- `config/success_criteria_v2.json`
+- `scripts/run_breakout_regime_overlay_v1.py`
+- `evidence/breakout_regime_overlay_v1/`

@@ -8975,3 +8975,62 @@ References:
 
 - `evidence/customer_edge_extraction_v1/recall_gap.json`
 - `evidence/customer_edge_extraction_v1/yield_by_form.json`
+
+## Step 205 — Shared analyst coverage: strongest effect in the literature, but the data gate fails
+
+Phase 0 was run on Ali & Hirshleifer, "Shared Analyst Coverage: Unifying Momentum
+Spillover", NBER working paper 25201, pages 4 to 11 read directly rather than recalled.
+
+The construction is simple. Two stocks are connected at the end of each month if at least
+one analyst covers both, where covered means the analyst issued at least one FY1 or FY2
+earnings forecast in the trailing twelve months. Each stock is linked to the portfolio of
+its connected stocks, and stocks are sorted into quintiles on that connected-stock
+portfolio's past one-month return. The sample is CRSP common stocks from 1983:12 to
+2015:12, excluding prices below five dollars.
+
+The reported results are stronger than anything else in this family. A value-weighted
+long-short portfolio earns a five-factor alpha of 1.19% per month with a t-statistic of
+6.71; equal-weighted it earns 2.10% per month at t of 11.88. On average each stock connects
+to 86 others, only 39% of which share a Fama-French industry and only 5% a county, so the
+linkage is not a repackaged industry bet. Coverage reaches 98% of market capitalisation.
+
+The finding that matters most here is the spanning result. The authors test seven
+cross-asset momentum anomalies including industry, geographic, customer, customer-industry,
+supplier-industry, single-to-multi-segment and technology momentum. All seven become
+insignificant or negative once connected-stock momentum is added, while connected-stock
+momentum survives all of them. Their conclusion is that there is really one momentum
+spillover effect and shared analyst coverage is the best proxy for it.
+
+That lands directly on Step 202 through 204. The customer-supplier graph scoped and
+partially built over the past day is testing an effect this paper reports as spanned. Worse
+for the owner's recency-weighted criteria, the paper's split-sample robustness test finds
+that in the more recent half only two of the previously studied cross-asset momentum
+strategies retain significance and those are economically small, while connected-stock
+momentum still earns 1.13% per month at t of 4.48. A customer-momentum strategy would
+therefore be expected to fail `success_criteria_v2`, which weights the trailing year at 45%.
+
+The data gate then fails. Links require the IBES detail file, which identifies individual
+analysts and the stocks each covers. That is Refinitiv proprietary data and searching
+confirmed no free source exposes analyst identities; free feeds publish consensus counts
+and aggregate ratings, which cannot produce a co-coverage graph. Commercial analyst-ratings
+feeds do exist at non-institutional prices with fifteen or more years of history, but they
+carry ratings and price targets rather than the FY1 and FY2 earnings forecasts the paper
+defines coverage by, so they would be a related but different linkage.
+
+One free proxy was checked properly rather than assumed. SEC EDGAR log file data sets, the
+basis for the co-search peer measure of Lee, Ma and Wang (2016), are genuinely still
+published, covering 2003-01-01 to 2017-06-30 and 2020-05-19 to 2025-06-30, with the period
+between no longer available. A single day, log20160104.zip, is 163MB compressed, which
+puts roughly 41GB on a trading year and about 800GB on the usable span before
+decompression. It could be streamed and aggregated without retaining the raw files, but it
+is a multi-week job, it ends fifteen months before the current date, and the paper's own
+literature review reports that search-based peers underperform analyst co-coverage.
+
+Nothing was built and no approval is sought. The idea is the strongest in this literature
+and it is blocked on data rather than on merit, which makes it a purchasing decision rather
+than a research one.
+
+References:
+
+- Ali & Hirshleifer, NBER w25201, read 2026-09-02
+- `https://www.sec.gov/data-research/sec-markets-data/edgar-log-file-data-sets`

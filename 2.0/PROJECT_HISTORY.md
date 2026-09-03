@@ -8918,3 +8918,60 @@ References:
 
 - `scripts/extract_customer_edges_v1.py`, `_v2.py`, `_v3.py`
 - `evidence/customer_edge_extraction_v1/phase1_result.json`
+
+## Step 204 — The recall problem was a corpus artifact; correcting Step 203
+
+Step 203 reported recall at roughly 34% of the Compustat-curated benchmark and called it
+the binding constraint. That number was measured on the wrong corpus and the conclusion
+drawn from it was wrong.
+
+No API key or SDK is available here, so a batch extraction script could not be run. The
+extraction was instead performed directly by reading, which is a fair test of what a
+language model recovers, and it was aimed at the one measurement that is not circular: the
+recall gap. Forty filings were sampled from the 791 that contain concentration language
+and a percentage but from which the regex extracted nothing, and their windows were read.
+
+Two of forty held a genuine named customer edge at or above ten percent, Walmart at 11%
+and Dow above 10%. The other thirty-eight were not extractable by any method because there
+is nothing to extract. They were anonymous by construction, "one customer accounted for
+10%", anonymised tables labelled Customer A and Customer B, geographic or cohort metrics
+that merely contain the word customer, or receivable concentrations rather than revenue.
+
+That inverts the Step 203 reading. The recall gap is overwhelmingly not a extraction
+failure. Perfect extraction would lift yield from 83 filings to about 123 of 1,800, from
+4.6% to 6.8%, which is a real gain of about half but nothing like the tenfold the earlier
+framing implied.
+
+Then the confound surfaced. The corpus is 150 10-K filings, 507 10-Q, and 989 unclear, so
+only about eight percent are annual reports. Customer identities are disclosed in 10-K
+Item 1 and the segment footnote; quarterly reports carry abbreviated concentration language
+and frequently drop the names. Measuring naming rates on a 10-Q-skewed corpus understates
+them structurally.
+
+Yield by form settles it. The extractor returns an edge from 12.7% of 10-K filings against
+5.7% of 10-Q and 3.5% of the unclear remainder, so 10-Ks yield 2.2 times the 10-Q rate and
+carry 0.38 edges per filing against 0.13. Applied to the roughly 3,100 10-K filings this
+universe produces each year, the 10-K rate projects to about 393 suppliers a year against
+the benchmark of about 416 implied by Cohen & Frazzini's Table I coverage of 12.8% of the
+stock universe. That is roughly 94% recall, not 34%, and about 314 usable suppliers a year
+after applying the measured 80% precision.
+
+The corrected Phase 1 verdict is therefore the reverse of Step 203's. Recall is not the
+constraint once the right documents are read; it was an artifact of an identity-resolution
+cache that was never assembled for this purpose. Precision at 80% remains below the 85%
+gate, and the gate remains missed, but the blocker is now a single well-characterised
+problem rather than a structural shortage of data. Every remaining error class is a
+reading-comprehension judgment: segment names carrying a customer lead-in, misattribution
+inside a sentence, fragments that would resolve to the wrong company, and relationships of
+the wrong type such as a lender or a contract manufacturer.
+
+Two limits are recorded rather than glossed. The 94% projection assumes the 10-K rate holds
+across a full 10-K corpus, which has not been tested because no such corpus exists here
+yet. And the reader who judged the forty filings also wrote the extractor, so that estimate
+carries the same bias risk recorded in Step 203; the sample is stored for independent
+re-scoring.
+
+References:
+
+- `evidence/customer_edge_extraction_v1/recall_gap.json`
+- `evidence/customer_edge_extraction_v1/yield_by_form.json`

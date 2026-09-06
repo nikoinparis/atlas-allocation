@@ -1,0 +1,125 @@
+{
+  "artifact_sha256": {
+    "flagged_weeks.csv.gz": "cbf4ec6505fd45c11474051de46fb4c9b53d92d2c740d6fc757f044dc254b517",
+    "weekly_returns_repaired.csv.gz": "810888fc7adf40ade1024e69af516fba7bbf7ea9ebff11c62f2bd5aa107f2cef"
+  },
+  "baseline_proxy_correlations": {
+    "CL=F": 0.92957,
+    "ES=F": 0.98201,
+    "GC=F": 0.98442,
+    "NQ=F": 0.98245,
+    "RTY=F": 0.98356,
+    "SI=F": 0.9817,
+    "ZB=F": 0.91677,
+    "ZC=F": 0.63094,
+    "ZN=F": 0.95024
+  },
+  "created_at_utc": "2026-09-06T07:47:42.619508+00:00",
+  "excluded_instruments": [
+    "6J=F"
+  ],
+  "experiment": "futures_roll_repair_v1",
+  "k_selected": 6.0,
+  "k_selected_on": "mean improvement in correlation against nine ETF proxies; the IC measurement was not consulted",
+  "live_trading_enabled": false,
+  "method": {
+    "detector": "|r - trailing median| > k x 1.4826 x trailing MAD",
+    "treatment": "flagged returns set to missing, never to zero",
+    "why_not_adjusted": "roll dates are unknowable without contract-level data, so gaps can be excluded but not adjusted away",
+    "window_weeks": 104
+  },
+  "modifies_existing_panels": false,
+  "source": "evidence/futures_data_scoping_v1/probe_prices.csv.gz",
+  "source_sha256": "9402cb3476138320fc219171e78641c68d1f0b67292aec50bcff20463d76461e",
+  "strategy_promotion_authorized": false,
+  "sweep": [
+    {
+      "cells_flagged": 459,
+      "instruments_touched": 40,
+      "k": 4.0,
+      "mean_proxy_correlation": 0.9258484424152764,
+      "mean_proxy_improvement": -0.001002696683436234,
+      "per_proxy": {
+        "CL=F": -0.00479,
+        "ES=F": -0.00298,
+        "GC=F": -0.0013,
+        "NQ=F": -0.00216,
+        "RTY=F": -0.00173,
+        "SI=F": -0.00357,
+        "ZB=F": 0.02185,
+        "ZC=F": -0.0117,
+        "ZN=F": -0.00265
+      },
+      "proxies_compared": 9,
+      "proxies_improved": 1,
+      "share_of_cells_flagged": 0.01037897973950796,
+      "worst_surviving_weekly_return": 0.32713755223438756
+    },
+    {
+      "cells_flagged": 126,
+      "instruments_touched": 35,
+      "k": 6.0,
+      "mean_proxy_correlation": 0.9303446524463423,
+      "mean_proxy_improvement": 0.0034935133476296943,
+      "per_proxy": {
+        "CL=F": -0.00201,
+        "ES=F": -0.0011,
+        "GC=F": -0.00038,
+        "NQ=F": -0.00025,
+        "RTY=F": -0.00238,
+        "SI=F": -0.00104,
+        "ZB=F": 0.02468,
+        "ZC=F": 0.01392,
+        "ZN=F": 0.0
+      },
+      "proxies_compared": 9,
+      "proxies_improved": 2,
+      "share_of_cells_flagged": 0.0028491316931982635,
+      "worst_surviving_weekly_return": 0.32713755223438756
+    },
+    {
+      "cells_flagged": 34,
+      "instruments_touched": 19,
+      "k": 8.0,
+      "mean_proxy_correlation": 0.9290819668292666,
+      "mean_proxy_improvement": 0.0022308277305540403,
+      "per_proxy": {
+        "CL=F": -0.00283,
+        "ES=F": -0.00115,
+        "GC=F": -0.00021,
+        "NQ=F": 0.0,
+        "RTY=F": 0.0,
+        "SI=F": -0.0004,
+        "ZB=F": 0.02468,
+        "ZC=F": 0.0,
+        "ZN=F": 0.0
+      },
+      "proxies_compared": 9,
+      "proxies_improved": 1,
+      "share_of_cells_flagged": 0.0007688133140376267,
+      "worst_surviving_weekly_return": 0.6999678446091699
+    },
+    {
+      "cells_flagged": 15,
+      "instruments_touched": 10,
+      "k": 10.0,
+      "mean_proxy_correlation": 0.9267228885936729,
+      "mean_proxy_improvement": -0.000128250505039667,
+      "per_proxy": {
+        "CL=F": 0.0,
+        "ES=F": -0.00115,
+        "GC=F": 0.0,
+        "NQ=F": 0.0,
+        "RTY=F": 0.0,
+        "SI=F": 0.0,
+        "ZB=F": 0.0,
+        "ZC=F": 0.0,
+        "ZN=F": 0.0
+      },
+      "proxies_compared": 9,
+      "proxies_improved": 0,
+      "share_of_cells_flagged": 0.0003391823444283647,
+      "worst_surviving_weekly_return": 0.6999678446091699
+    }
+  ]
+}

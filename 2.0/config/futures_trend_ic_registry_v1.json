@@ -1,0 +1,45 @@
+{
+  "experiment": "futures_trend_ic_v1",
+  "declared_at_utc": "2026-09-06T00:00:00Z",
+  "question": "Does trend on futures have an information coefficient distinguishable from zero, before any strategy is built on it?",
+  "why_now": "Step 247 established that futures supply 13.2 effective assets and a projected 155 bets a year, clearing the 91 an IR of 0.25 needs. Breadth is capacity, not skill. IR = IC x sqrt(BR), and if IC is zero then 155 bets a year buys nothing. Step 245's lesson was that this project measures IC last; this measures it before a strategy exists.",
+  "data": "evidence/futures_data_scoping_v1/probe_prices.csv.gz",
+  "window": "weekly, 2005-01-01 onward, matching the ETF and equity comparisons",
+  "two_definitions_measured_separately": {
+    "cross_sectional_ic": "rank correlation across assets between the trend signal at week t and the realised return over the following horizon. This is the Grinold and Kahn quantity and it is what the equity book's +0.026 was measured as.",
+    "time_series_ic": "per-asset correlation between the trend signal and the asset's own next-horizon return, pooled across assets. This is what a CTA actually trades, and the cross-sectional number says nothing about it."
+  },
+  "declared_configurations": {
+    "trend_lookback_weeks": [4, 12, 26, 52],
+    "forward_horizon_weeks": [1, 2, 4],
+    "total_trials": 12
+  },
+  "bonferroni_threshold": 0.0042,
+  "significance_method": "non-overlapping forward windows plus a moving-block bootstrap over the weekly IC series, because overlapping horizons make naive t-statistics far too confident",
+  "bootstrap": {"draws": 5000, "block_weeks": 26, "seed": 20260906},
+  "contamination_handling": {
+    "problem": "Step 247 measured these as unadjusted front-month series: 6J=F carries a +903.8% day, NG has 134 daily moves above 10%, CL has a 306% day.",
+    "treatments_reported_side_by_side": [
+      "raw, everything included",
+      "excluding 6J=F, which is not a return series",
+      "excluding 6J and setting weekly moves above 25% to missing",
+      "Spearman throughout, which is insensitive to the magnitude of the gaps"
+    ],
+    "rule": "no IC may be reported from a single treatment; if the four disagree in sign the measurement is not usable"
+  },
+  "placebo": "the same pipeline run on a sign-shuffled signal, 200 draws, to confirm the estimator returns zero when there is nothing there",
+  "comparison_baseline": {
+    "equity_book_cross_sectional_ic": 0.0263,
+    "equity_book_ic_t_stat": 0.91,
+    "source": "PROJECT_HISTORY Step 245"
+  },
+  "interpretation_fixed_in_advance": {
+    "if_no_configuration_clears_bonferroni_in_either_definition": "futures trend has no demonstrated IC on this data; the breadth found in Step 247 is capacity with nothing to put in it, and the futures programme should stop rather than proceed to a strategy",
+    "if_time_series_ic_clears_but_cross_sectional_does_not": "the expected result for trend following, and it means any strategy must be time-series and the Step 247 breadth projection must be recomputed for a time-series design",
+    "if_a_configuration_clears_in_both": "record it, and note that twelve trials on one dataset that has already been used to measure breadth is a smaller multiple-testing burden than this project's usual but is not zero",
+    "always": "an IC that clears a threshold on unadjusted front-month data is provisional until the roll repair exists, because roll gaps enter both the signal and the forward return"
+  },
+  "no_strategy_will_be_built_in_this_step": true,
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

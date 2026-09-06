@@ -11324,3 +11324,100 @@ References:
 
 - `evidence/futures_data_scoping_v1/`
 - Steps 245 and 246 (the breadth accounting and the ETF refutation this follows from)
+
+## Step 248 — Futures trend IC: every significant result is negative, and my verdict logic could not see it
+
+Step 247 found the breadth. `IR = IC x sqrt(BR)` has two terms and this measures the other
+one, before any strategy exists. Twelve configurations declared in
+`config/futures_trend_ic_registry_v1.json` before the run -- four trend lookbacks by three
+forward horizons -- each under four contamination treatments, with non-overlapping forward
+windows, a 26-week moving-block bootstrap, and a Bonferroni threshold of 0.0042.
+
+### The estimator works
+
+Placebo, 200 sign-shuffled draws: mean IC **+0.00022**, 90% interval
+[-0.0153, +0.0152]. When there is nothing there, the estimator returns zero.
+
+### Cross-sectional: nothing clears
+
+| lookback | horizon | mean IC | t | bootstrap p |
+|---|---|---|---|---|
+| 4w | 1w | -0.0076 | -0.99 | 0.374 |
+| 4w | 4w | -0.0244 | -1.67 | 0.087 |
+| 12w | 4w | -0.0266 | -1.78 | 0.056 |
+| 26w | 4w | -0.0325 | -2.09 | 0.037 |
+| **52w** | **1w** | **+0.0180** | **+2.16** | **0.056** |
+| 52w | 4w | +0.0069 | +0.43 | 0.629 |
+
+Zero of twelve clear 0.0042. The only positive readings are at the 52-week lookback, the
+classic twelve-month momentum horizon, and they do not clear.
+
+### Time-series: fifteen rows clear, and all fifteen are negative
+
+| treatment | lookback | horizon | mean IC | share of assets positive | p |
+|---|---|---|---|---|---|
+| minus 6J and extremes | 4w | 4w | **-0.0510** | 0.275 | 0.0000 |
+| minus 6J and extremes | 4w | 2w | -0.0304 | 0.300 | 0.0005 |
+| minus 6J and extremes | 26w | 2w | -0.0215 | 0.275 | 0.0018 |
+| raw | 4w | 4w | -0.0521 | 0.268 | 0.0000 |
+| ... | | | | | |
+
+**Of fifteen clearing rows, zero have a positive information coefficient.** Fewer than a
+third of the forty instruments show positive trend IC in any short-horizon configuration.
+
+### The bug, which is the part worth recording
+
+The script's verdict branch keyed on significance alone. It printed:
+
+> time-series IC clears and cross-sectional does not, the expected shape for trend following:
+> any strategy must be time-series
+
+That sentence is about a set of rows whose information coefficients are **every one of them
+negative**. A clearing row with a negative IC is evidence against the signal, and a verdict
+that cannot distinguish the two is worse than no verdict: taken at face value it would have
+sent the next step off to build a time-series trend strategy on evidence that trend is
+anti-predictive. Fixed to check sign before significance, and the branch now says what the
+numbers say.
+
+Third time this session that an automated verdict or reconstruction was wrong in my favour
+before being caught -- Step 238's correlation, Step 240's ordering, and this. The pattern is
+that the check I write is only as good as the failure I imagined while writing it.
+
+### What the negative sign actually means, and why it cannot be settled here
+
+Two readings and this data cannot separate them.
+
+It could be **mean reversion**, which would be a real and tradeable finding in the opposite
+direction from trend.
+
+It is more likely **roll contamination**. These are unadjusted front-month series. Rolling
+from an expiring contract into a higher-priced one in contango manufactures an up-gap
+followed by decay toward spot, which is precisely negative short-horizon autocorrelation. The
+effect should be worst in the instruments with the heaviest carry structure, and Step 247
+measured exactly those -- NG with 134 daily moves above 10%, CL with a 306% day -- as the
+worst contaminated. The 4-week lookback, which is most exposed to a monthly roll cycle,
+carries the most negative IC at -0.051, and the 52-week lookback, over which roll effects
+largely average out, is the only one that turns positive.
+
+That pattern is what contamination predicts. It is not proof, and I am not claiming the
+underlying signal is fine; I am saying the measurement cannot tell.
+
+### Verdict
+
+**Inconclusive, and blocked on the roll repair.** Recorded as such rather than as either
+"futures trend works" or "futures trend fails". The registry's own rule -- that no IC may be
+reported from a single treatment and that sign disagreement makes a configuration unusable --
+is satisfied on eleven of twelve configurations, so the negative sign is robust to how the
+gaps are handled. What it is not robust to is the gaps existing at all.
+
+The sequence Step 247 set out is unchanged and now has a reason attached: seal a vintage,
+build the roll repair, then re-run this exact measurement. If the negative short-horizon IC
+survives a proper roll adjustment it is a real mean-reversion finding worth its own registry.
+If it disappears, it was the rolls, and the 52-week reading is where to look next.
+
+Nothing was built. No strategy is proposed.
+
+References:
+
+- `config/futures_trend_ic_registry_v1.json`, `scripts/run_futures_trend_ic_v1.py`
+- `evidence/futures_trend_ic_v1/`

@@ -71,6 +71,24 @@ Steps 239-240 treated the price panels: audit before use, never trust a vendor p
 
 ## A tier
 
+### A0. Institutional co-ownership linkage from Form 13F  *(new 2026-09-06)*
+**Status:** never attempted here. This is the free analogue of the thread that is stuck in the
+paid queue.
+**The idea:** P2's shared-analyst-coverage effect works because two stocks watched by the same
+people move together with a lag. The linkage does not have to be analysts. **Two stocks held by
+the same institutional managers** is the same shared-attention mechanism, and 13F is free.
+**Data:** SEC Form 13F structured data sets. **July 2013 to May 2026**, quarterly, flattened
+cover page plus an information table of holdings per manager per security, 70-95 MB per quarter,
+about 4 GB in total. Free bulk download, no rate limit, authoritative rather than a mirror.
+**Why it ranks here and not in S:** the construction is more involved than a single-signal test
+-- build the manager-holding matrix, link stocks by shared holders, form each stock's connected
+portfolio, sort on its lagged return -- and it inherits the sample problem that 52 quarters is
+still only 52 observations. But it is the only free path to a linkage signal, and linkage is the
+one family in the literature that is genuinely not a price or fundamentals transform.
+**Caveats to design around before starting:** 13F is filed 45 days after quarter end, so the
+point-in-time date is the filing date and not the report date; it covers long US equity positions
+over $100m only; and it says nothing about shorts.
+
 ### A1. The three near-zero-correlation OSAP anomalies that need no new data
 **Status:** identified in Step 216, never tested.
 **Which:** `EBM` (enterprise book-to-market, correlation 0.0018 against our strategies),

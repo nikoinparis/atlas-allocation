@@ -1,0 +1,41 @@
+{
+  "experiment": "untried_price_signals_v1",
+  "declared_at_utc": "2026-09-06T00:00:00Z",
+  "question": "Do any of eight untried price-based signal families predict returns on the 2011-2026 panel, and does anything selected without seeing recent data still work recently?",
+  "why_these_eight": "Every signal this project has tested is momentum, defensive/volatility, or fundamentals. These eight are the price-computable families it has not: a linkage-lite industry signal, three tail-risk moments, an instability measure, a dispersion measure, a bounce-controlled residual reversal, and a consistency measure. IndRetBig in particular sat in the OSAP screen's most-orthogonal band at 0.009 against every existing strategy and was never run.",
+  "owner_instruction": "The owner asked to prioritise recent returns, reasoning that a strategy which won last decade may not work now. That reasoning is sound about regimes and dangerous as a selection rule, because selecting on recent returns in sample is how the four existing strategies came to correlate 0.72 to 0.97. The design below honours the instruction without the trap: signals are SELECTED on 2011-2019 and EVALUATED on 2020-2026, so 'does it work recently' is answered out of sample. What recent-window selection would have chosen is also reported, side by side, so the difference is visible rather than argued about.",
+  "data": "data/clean_full_history_prices_v1/weekly_adjusted_prices_clean.csv.gz, 2,810 issuers, 817 weeks, corporate-action repaired in Step 240",
+  "sectors": "evidence/sec_broad_universe_readiness_full_v1/recent_membership_readiness.csv",
+  "declared_signals": {
+    "ind_ret_big": "lagged 4-week return of the largest-price quintile within the issuer's own sector, assigned to every member of that sector",
+    "coskewness": "covariance of the issuer's return with the squared market return, 104-week window",
+    "downside_beta": "beta estimated on weeks when the equal-weight market fell, 104-week window",
+    "idiosyncratic_skewness": "third moment of the residual from a market regression, 104-week window",
+    "volatility_of_volatility": "standard deviation of 13-week rolling volatility over 104 weeks",
+    "sector_dispersion": "cross-sectional standard deviation of returns within the issuer's sector over 13 weeks",
+    "residual_reversal_skip1": "minus the market-residual return over 4 weeks, skipping the most recent week to remove bid-ask bounce, the control that killed Step 250",
+    "trend_consistency": "share of positive weeks over 26 weeks"
+  },
+  "declared_trials": 8,
+  "bonferroni_threshold": 0.00625,
+  "windows": {
+    "selection": ["2011-01-01", "2019-12-31"],
+    "evaluation": ["2020-01-01", "2026-09-04"],
+    "note": "the evaluation window contains 2020, 2022 and the 2023-2026 bull, so it is not a single regime"
+  },
+  "controls": {
+    "bounce": "every signal uses a one-week skip between its last input and the forward return",
+    "sign_declared": "no sign is declared for these because none has an established direction here; a two-sided test is used and the sign found in selection must repeat in evaluation",
+    "cost": "0, 10, 50 and 100 bps on the best surviving signal only",
+    "correlation": "against the four existing strategy paths; the point is breadth"
+  },
+  "interpretation_fixed_in_advance": {
+    "if_nothing_clears_in_selection": "eight more families closed; record and move on",
+    "if_something_clears_in_selection_but_flips_or_dies_in_evaluation": "that is the answer to the owner's question, and it is the expected one: a signal that worked last decade and not now",
+    "if_something_clears_in_selection_and_repeats_in_evaluation": "a genuine candidate, and the first signal in this project selected without seeing the window it is judged on",
+    "always": "a cross-sectional IC is not a strategy. Anything surviving still needs a book, costs, concentration and a forward clock."
+  },
+  "cumulative_trial_warning": "These 8 stack on every configuration searched across 255 recorded steps.",
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

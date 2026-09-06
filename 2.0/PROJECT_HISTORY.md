@@ -11877,3 +11877,95 @@ References:
 
 - `config/filing_language_change_registry_v1.json`, `scripts/run_filing_language_change_v1.py`
 - `evidence/filing_language_change_v1/`, `data/sec_filing_text_v1/`
+
+## Step 256 — SUE extended to 58 decisions, and the survivorship gradient decides the answer
+
+Step 253 closed S3 as underpowered on fourteen quarterly decisions and named the fix: rebuild the
+feature back through the 2012 roster. Done. **58 decisions, 2012-04-01 to 2026-07-01, 131,169
+issuer-decisions**, from 3,472 issuers whose Company Facts parsed with usable EPS.
+
+### The survivorship gradient is the first result
+
+Company Facts is a current pull, so an issuer that delisted in 2015 is named by the 2015 roster
+and absent from the cache. Measured rather than assumed:
+
+| year | roster members with Company Facts |
+|---|---|
+| 2012 | **53.0%** |
+| 2015 | 56.6% |
+| 2018 | 66.5% |
+| 2020 | 74.4% |
+| 2022 | 92.4% |
+| 2023-2026 | **97.8%** |
+
+That monotone curve is the delisting rate compounding backward. **Any information coefficient
+computed on the early decisions is measured over survivors**, which is the bias CLAUDE.md rule 4
+exists to prevent. Gating on coverage: a 70% bar leaves 29 usable decisions from 2019-07, an 80%
+bar leaves 22 from 2021-04, a 90% bar leaves 18 from 2022-04. **The extension roughly doubles the
+usable sample rather than quadrupling it.**
+
+### And then the information coefficient, by coverage bar
+
+| coverage bar | decisions | 13w IC | t | 26w IC | t naive | t overlap-adjusted |
+|---|---|---|---|---|---|---|
+| **none (all 58)** | 57 | **+0.0053** | **0.71** | +0.0077 | 1.01 | 0.71 |
+| 70% | 28 | +0.0131 | 1.05 | +0.0146 | 1.13 | 0.80 |
+| 80% | 21 | +0.0265 | 2.28 | +0.0330 | 3.32 | 2.35 |
+| 90% | 17 | +0.0197 | 1.77 | +0.0316 | 3.57 | 2.52 |
+
+The signal gets *stronger* as the sample is restricted, and over the full fifteen years it is
+**+0.0053 at t = 0.71 -- indistinguishable from zero.**
+
+The tempting reading is that SUE is regime-dependent and works now. The honest reading is
+harder: **the high-coverage decisions are 2021 onward, which is the same window every other
+strategy in this project was selected on.** Restricting to where the data is clean is also
+restricting to the bull regime that Step 189 showed rewarded volatility rather than selection.
+The two explanations are not separable on this data, and the fifteen-year number is the one
+that does not depend on choosing a window.
+
+So the extension did its job and the answer is not the one hoped for. S3 stays closed. What it
+adds is that the earlier +0.0291 was not merely underpowered -- it was measured in the same
+window as everything else here, and the longer record does not support it.
+
+The 0.002 and 0.008 correlations from Step 253 stand, and mean exactly what they meant then:
+an uncorrelated book on a signal that a fifteen-year sample cannot distinguish from zero.
+
+References: `scripts/build_extended_sue_panel_v1.py`, `evidence/extended_sue_panel_v1/`
+
+## Step 257 — Eight untried price signal families, selected early and judged recently: none survive
+
+The owner asked to prioritise recent returns, reasoning that a strategy which won last decade
+may not work today. That reasoning is right about regimes and dangerous as a selection rule, so
+the design honours it without the trap: signals are **selected on 2011-2019 and evaluated on
+2020-2026**, which answers "does it work recently" out of sample.
+
+Eight families this project had never tested, all price-computable, all with a one-week skip
+because Step 250 established that anything touching last week's return measures the spread.
+
+| signal | select IC | t | evaluate IC | t | p | sign repeats |
+|---|---|---|---|---|---|---|
+| coskewness | -0.0140 | -1.45 | **-0.0208** | **-2.28** | 0.025 | yes |
+| idiosyncratic skewness | -0.0016 | -0.30 | -0.0149 | -2.15 | 0.034 | yes |
+| trend consistency | +0.0118 | 1.30 | +0.0212 | 1.72 | 0.088 | yes |
+| sector dispersion | -0.0119 | -1.13 | -0.0187 | -1.59 | 0.116 | yes |
+| volatility of volatility | -0.0154 | -1.14 | -0.0236 | -1.42 | 0.160 | yes |
+| downside beta | +0.0007 | 0.05 | +0.0175 | 1.24 | 0.218 | yes |
+| residual reversal skip-1 | -0.0015 | -0.18 | +0.0068 | 0.63 | 0.532 | **no** |
+| ind_ret_big | -0.0029 | -0.39 | -0.0007 | -0.07 | 0.948 | yes |
+
+**Zero of eight clear the Bonferroni threshold of 0.00625 in either window.** Coskewness and
+idiosyncratic skewness clear an uncorrected 5% bar recently with the sign they had in selection,
+but neither cleared in selection and neither survives correction.
+
+Seven of eight keep their sign across a decade boundary, which is mildly more structure than
+noise would give and is the only encouraging thing here. The magnitudes are all under 0.024.
+
+`ind_ret_big` deserves a specific note because it was the reason for running this batch: it sat
+in the OSAP screen's most-orthogonal band at 0.009 against every existing strategy and was never
+tested. It measures **-0.0007 at t = -0.07** recently. Orthogonal and empty.
+
+Eight families closed. The owner's question is answered in the least interesting way available:
+none of these worked then, and none works now.
+
+References: `config/untried_price_signal_registry_v1.json`, `scripts/run_untried_price_signals_v1.py`,
+`evidence/untried_price_signals_v1/`

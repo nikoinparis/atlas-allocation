@@ -1,0 +1,126 @@
+{
+  "bonferroni_threshold": 0.00625,
+  "clear_on_recent_only": [],
+  "cumulative_trial_warning": "These 8 stack on every configuration searched across 255 recorded steps.",
+  "declared_trials": 8,
+  "evaluation_window": [
+    "2020-01-01",
+    "2026-09-04"
+  ],
+  "experiment": "untried_price_signals_v1",
+  "forward_horizon_weeks": 4,
+  "live_trading_enabled": false,
+  "selection_window": [
+    "2011-01-01",
+    "2019-12-31"
+  ],
+  "signals": [
+    {
+      "evaluate_clears": false,
+      "evaluate_ic": -0.0007078709705620949,
+      "evaluate_p": 0.9478733401456743,
+      "evaluate_t": -0.06556876517627629,
+      "select_clears": false,
+      "select_ic": -0.002949588253175281,
+      "select_p": 0.6936572978138407,
+      "select_t": -0.39490516696879874,
+      "sign_repeats": true,
+      "signal": "ind_ret_big",
+      "survives_out_of_sample": false
+    },
+    {
+      "evaluate_clears": false,
+      "evaluate_ic": -0.020802263673334077,
+      "evaluate_p": 0.025092030980499096,
+      "evaluate_t": -2.279834951516802,
+      "select_clears": false,
+      "select_ic": -0.014009515242818951,
+      "select_p": 0.15022172567453795,
+      "select_t": -1.4488589073778164,
+      "sign_repeats": true,
+      "signal": "coskewness",
+      "survives_out_of_sample": false
+    },
+    {
+      "evaluate_clears": false,
+      "evaluate_ic": 0.017540612663987584,
+      "evaluate_p": 0.2176584381937716,
+      "evaluate_t": 1.241876142423988,
+      "select_clears": false,
+      "select_ic": 0.0007107654903715027,
+      "select_p": 0.9610322972872984,
+      "select_t": 0.04897838736770797,
+      "sign_repeats": true,
+      "signal": "downside_beta",
+      "survives_out_of_sample": false
+    },
+    {
+      "evaluate_clears": false,
+      "evaluate_ic": -0.014882485269316955,
+      "evaluate_p": 0.03402470114674948,
+      "evaluate_t": -2.154161647193508,
+      "select_clears": false,
+      "select_ic": -0.0015519588035455179,
+      "select_p": 0.7640187059971686,
+      "select_t": -0.3009957128929503,
+      "sign_repeats": true,
+      "signal": "idiosyncratic_skewness",
+      "survives_out_of_sample": false
+    },
+    {
+      "evaluate_clears": false,
+      "evaluate_ic": -0.023602669186529302,
+      "evaluate_p": 0.16043620101738765,
+      "evaluate_t": -1.4158320859663776,
+      "select_clears": false,
+      "select_ic": -0.015409190916174357,
+      "select_p": 0.25707892938504767,
+      "select_t": -1.1393476090432557,
+      "sign_repeats": true,
+      "signal": "volatility_of_volatility",
+      "survives_out_of_sample": false
+    },
+    {
+      "evaluate_clears": false,
+      "evaluate_ic": -0.01869642083677878,
+      "evaluate_p": 0.11638280023664072,
+      "evaluate_t": -1.586118210807332,
+      "select_clears": false,
+      "select_ic": -0.01187299926766546,
+      "select_p": 0.259089485201285,
+      "select_t": -1.1342516043280668,
+      "sign_repeats": true,
+      "signal": "sector_dispersion",
+      "survives_out_of_sample": false
+    },
+    {
+      "evaluate_clears": false,
+      "evaluate_ic": 0.006781677085562689,
+      "evaluate_p": 0.531531453395076,
+      "evaluate_t": 0.6282095689883943,
+      "select_clears": false,
+      "select_ic": -0.001502117373216733,
+      "select_p": 0.8546514151649449,
+      "select_t": -0.18361770423283186,
+      "sign_repeats": false,
+      "signal": "residual_reversal_skip1",
+      "survives_out_of_sample": false
+    },
+    {
+      "evaluate_clears": false,
+      "evaluate_ic": 0.021206380535838638,
+      "evaluate_p": 0.08837388435014724,
+      "evaluate_t": 1.7235979262003378,
+      "select_clears": false,
+      "select_ic": 0.011772232486490498,
+      "select_p": 0.19610936909304838,
+      "select_t": 1.30061235134987,
+      "sign_repeats": true,
+      "signal": "trend_consistency",
+      "survives_out_of_sample": false
+    }
+  ],
+  "strategy_promotion_authorized": false,
+  "survivors": [],
+  "verdict": "nothing clears in either window. Eight more families closed, and the owner's question is answered in the least interesting way: none of these worked then or works now."
+}

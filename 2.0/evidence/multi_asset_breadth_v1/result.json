@@ -1,0 +1,162 @@
+{
+  "assets": 35,
+  "breadth_projections": [
+    {
+      "clears_ir_0.25_requirement_of_91": false,
+      "clears_ir_0.50_requirement_of_362": false,
+      "independent_share_of_each_rebalance": 0.24213771839671128,
+      "projected_breadth_per_year": 13.110478173516084,
+      "rebalance_every_weeks": 4,
+      "rebalances_per_year": 13.0,
+      "trend_signal_persistence": 0.7578622816032887
+    },
+    {
+      "clears_ir_0.25_requirement_of_91": false,
+      "clears_ir_0.50_requirement_of_362": false,
+      "independent_share_of_each_rebalance": 0.4232919254658385,
+      "projected_breadth_per_year": 7.639673800225866,
+      "rebalance_every_weeks": 12,
+      "rebalances_per_year": 4.333333333333333,
+      "trend_signal_persistence": 0.5767080745341615
+    },
+    {
+      "clears_ir_0.25_requirement_of_91": false,
+      "clears_ir_0.50_requirement_of_362": false,
+      "independent_share_of_each_rebalance": 0.4326530612244899,
+      "projected_breadth_per_year": 3.6039811453308075,
+      "rebalance_every_weeks": 26,
+      "rebalances_per_year": 2.0,
+      "trend_signal_persistence": 0.5673469387755101
+    },
+    {
+      "clears_ir_0.25_requirement_of_91": false,
+      "clears_ir_0.50_requirement_of_362": false,
+      "independent_share_of_each_rebalance": 0.3857142857142857,
+      "projected_breadth_per_year": 1.6064915954422698,
+      "rebalance_every_weeks": 52,
+      "rebalances_per_year": 1.0,
+      "trend_signal_persistence": 0.6142857142857143
+    }
+  ],
+  "builds_no_strategy": true,
+  "caveat": "breadth is capacity, not return; two cross-asset strategies on this data have already been rejected",
+  "comparison_baseline": {
+    "breadth_needed_for_ir_0.25": 91,
+    "breadth_needed_for_ir_0.50": 362,
+    "equity_book_effective_breadth_per_year": 8.5,
+    "equity_book_effective_names": 5.42,
+    "source": "PROJECT_HISTORY Step 245"
+  },
+  "declared_trials": 0,
+  "effective_independent_assets_by_class": {
+    "commodities": {
+      "assets": 6,
+      "effective": 2.7861948508960728,
+      "independence_null": 5.951377633711507,
+      "median_abs_pairwise_correlation": 0.23534531315885648,
+      "share_of_nominal": 0.4643658084826788,
+      "weeks": 613
+    },
+    "credit": {
+      "assets": 3,
+      "effective": 1.935294799021854,
+      "independence_null": 2.9940535183349852,
+      "median_abs_pairwise_correlation": 0.5929120482328087,
+      "share_of_nominal": 0.6450982663406181,
+      "weeks": 1008
+    },
+    "government_bonds": {
+      "assets": 5,
+      "effective": 2.28825021844968,
+      "independence_null": 4.9800796812749,
+      "median_abs_pairwise_correlation": 0.5440736569907817,
+      "share_of_nominal": 0.45765004368993595,
+      "weeks": 1001
+    },
+    "international_equity": {
+      "assets": 5,
+      "effective": 1.2733483870224078,
+      "independence_null": 4.979919678714859,
+      "median_abs_pairwise_correlation": 0.8543195240815452,
+      "share_of_nominal": 0.25466967740448154,
+      "weeks": 993
+    },
+    "real_assets_fx": {
+      "assets": 2,
+      "effective": null,
+      "note": "fewer than three assets"
+    },
+    "us_equity_broad": {
+      "assets": 5,
+      "effective": 1.2077691980905523,
+      "independence_null": 4.982285208148804,
+      "median_abs_pairwise_correlation": 0.8917554341197542,
+      "share_of_nominal": 0.24155383961811044,
+      "weeks": 1126
+    },
+    "us_equity_sector": {
+      "assets": 9,
+      "effective": 2.06202954465463,
+      "independence_null": 8.936451897616946,
+      "median_abs_pairwise_correlation": 0.6353687895981966,
+      "share_of_nominal": 0.22911439385051446,
+      "weeks": 1126
+    }
+  },
+  "effective_independent_assets_by_regime": {
+    "covid_2020": {
+      "assets": 35,
+      "effective": 2.412141868809837,
+      "independence_null": 21.0,
+      "median_abs_pairwise_correlation": 0.6034878775380367,
+      "share_of_nominal": 0.06891833910885249,
+      "weeks": 52
+    },
+    "full_2005_2026": {
+      "assets": 35,
+      "effective": 4.164978210405885,
+      "independence_null": 33.1578947368421,
+      "median_abs_pairwise_correlation": 0.30942815655770317,
+      "share_of_nominal": 0.11899937744016816,
+      "weeks": 613
+    },
+    "gfc_2008_2009": {
+      "assets": 34,
+      "effective": 3.2023064716460565,
+      "independence_null": 25.75,
+      "median_abs_pairwise_correlation": 0.37749528248258224,
+      "share_of_nominal": 0.09418548446017813,
+      "weeks": 104
+    },
+    "recent_104w": {
+      "assets": 35,
+      "effective": 5.005810796421871,
+      "independence_null": 26.313868613138688,
+      "median_abs_pairwise_correlation": 0.2447569644231673,
+      "share_of_nominal": 0.14302316561205344,
+      "weeks": 104
+    },
+    "recent_52w": {
+      "assets": 35,
+      "effective": 4.487600612044234,
+      "independence_null": 21.0,
+      "median_abs_pairwise_correlation": 0.37590883578914674,
+      "share_of_nominal": 0.12821716034412098,
+      "weeks": 52
+    }
+  },
+  "experiment": "multi_asset_breadth_measurement_v1",
+  "live_trading_enabled": false,
+  "one_representative_per_class": {
+    "assets": 7,
+    "effective": 2.9984175097418855,
+    "independence_null": 6.962864721485412,
+    "median_abs_pairwise_correlation": 0.27489785438700576,
+    "share_of_nominal": 0.4283453585345551,
+    "weeks": 1126
+  },
+  "strategy_promotion_authorized": false,
+  "universe": "data/derived/20260808T212827Z-de103c2e063d6c4a/weekly_prices.csv",
+  "verdict_against_predeclared_interpretation": "refuted: the multi-asset universe supplies no more independence than the equity book",
+  "weeks": 1126
+}

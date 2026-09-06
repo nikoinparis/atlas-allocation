@@ -1,0 +1,40 @@
+{
+  "experiment": "multi_asset_breadth_measurement_v1",
+  "declared_at_utc": "2026-09-06T00:00:00Z",
+  "program": "UPGRADE_CANDIDATES_V1 item 2, new asset classes, entered because Step 245 measured the equity construction's breadth at 8.5 effective bets per year and its IR ceiling below 0.1",
+  "question": "Before building anything: how much breadth can a multi-asset universe actually supply, and is it the multiple Step 245 says is needed?",
+  "why_measurement_before_strategy": "Step 245's lesson is that this project searches for IC and never measures BR. Building a cross-asset strategy first would repeat that. The claim being tested is that new asset classes add breadth; that claim is measurable directly and cheaply, and if it fails there is no reason to build the strategy at all.",
+  "not_a_retry_of": {
+    "run_multi_asset_breakout_v1": "rejected as a portfolio improvement; kept as a cross-asset baseline",
+    "run_cross_asset_crisis_trend_v1": "rejected as a fixed blend",
+    "note": "Both were return searches on this data and both failed. Neither measured breadth. This measures breadth and proposes no strategy."
+  },
+  "universe": "data/derived/20260808T212827Z-de103c2e063d6c4a/weekly_prices.csv",
+  "assets_expected": 35,
+  "history": "2005-01-07 to 2026-08-07, 1127 weeks, spanning 2008-2009 and 2020",
+  "method": {
+    "effective_independent_assets": "participation ratio of the asset return correlation matrix, the same estimator used in measure_effective_bets_v1 and in Step 245",
+    "against_null": "E[PR] = N(T-1)/(T+N-2) if the assets were genuinely independent",
+    "regimes_measured_separately": ["full_2005_2026", "gfc_2008_2009", "covid_2020", "recent_52w", "recent_104w"],
+    "breadth_projection": "effective assets x rebalances per year x the independent share of each rebalance, matching the Step 245 accounting exactly so the two numbers are comparable",
+    "rebalance_frequencies_projected": [4, 12, 26, 52],
+    "signal_persistence_estimated_from": "autocorrelation of a 12-week trend signal at each rebalance frequency, because a signal that barely changes places no new bet"
+  },
+  "comparison_baseline": {
+    "equity_book_effective_breadth_per_year": 8.5,
+    "equity_book_effective_names": 5.42,
+    "breadth_needed_for_ir_0.25": 91,
+    "breadth_needed_for_ir_0.50": 362,
+    "source": "PROJECT_HISTORY Step 245"
+  },
+  "interpretation_fixed_in_advance": {
+    "if_effective_assets_below_8": "the multi-asset universe supplies no more independence than the equity book already has; option 1 is refuted on its own premise and should be abandoned rather than pursued with a strategy",
+    "if_effective_assets_8_to_15_and_projected_breadth_below_91": "a real improvement that still cannot reach an IR of 0.25 at the measured IC; report as insufficient and say so plainly rather than proceeding on hope",
+    "if_projected_breadth_at_or_above_91": "the premise of option 1 holds and a strategy is worth building, subject to every existing gate; the projection is still an upper bound because it assumes an IC as good as the equity book's",
+    "always": "breadth is capacity, not return. Nothing measured here is evidence that any cross-asset strategy makes money, and two have already been rejected on this data."
+  },
+  "declared_trials": 0,
+  "why_zero_trials": "nothing is fitted and no strategy is selected; these are properties of a correlation matrix",
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

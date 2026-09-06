@@ -12377,3 +12377,126 @@ No strategy was created or improved. This explains which parts of the existing b
 the work.
 
 References: `scripts/run_feature_importance_v1.py`, `evidence/feature_importance_v1/`
+
+## Step 265 — A8 works and A9 does not: the first usable technique from the reading list
+
+The two items skipped when the owner redirected to A10. Both were named in `CLAUDE.md` section 3
+and neither had been attempted in 272 steps.
+
+### A8, fractional differentiation: this one is real
+
+| order | issuers | mean ADF | stationary at 5% | memory kept (correlation with the price level) |
+|---|---|---|---|---|
+| 0.1 | 300 | -2.47 | 33% | 0.988 |
+| 0.2 | 300 | -3.90 | 81% | 0.944 |
+| **0.3** | 300 | **-5.99** | **99.7%** | **0.856** |
+| 0.5 | 300 | -12.07 | 100% | 0.551 |
+| **1.0 (plain returns)** | 300 | -29.90 | 100% | **0.050** |
+
+Fractional differencing at order 0.3 is stationary in 99.7% of issuers and **retains 0.856
+correlation with the price level, against 0.050 for the plain returns this project has always
+used.** That is the Lopez de Prado result reproduced on this panel: stationarity costs almost all
+of the memory when you difference fully, and almost none of it at order 0.3.
+
+This does not add a signal. It says every price-based feature here has been computed from an
+input that threw away 95% of its memory to buy stationarity it could have had for 14%. Whether
+better inputs produce better signals is a separate experiment, and it is now worth running.
+
+**First technique from the reading list to produce a usable result.**
+
+### A9, triple-barrier labelling: it does not help here
+
+| barriers | horizon | decisions | IC against barrier label | t | IC against plain return | t |
+|---|---|---|---|---|---|---|
+| ±10% | 13w | 12 | 0.0461 | 1.15 | **0.0769** | 2.05 |
+| ±15% | 13w | 12 | 0.0495 | 1.29 | **0.0769** | 2.05 |
+| +10/-5% | 13w | 12 | 0.0379 | 0.84 | **0.0769** | 2.05 |
+| ±20% | 26w | 11 | 0.0960 | 3.31 | 0.0981 | 2.88 |
+
+**Zero of four configurations give a larger absolute information coefficient than the plain
+forward return.** The widest configuration is a tie. Between 9% and 43% of observations touch no
+barrier at all and are labelled zero, which throws away information rather than sharpening it.
+
+A9 closes. It also weakens one hypothesis from Step 201: meta-labelling was thought to have
+failed partly because it had no triple-barrier target underneath it, and on this data such a
+target would have been no better than what it already had.
+
+Two alignment bugs on the way, both of the kind that returns an empty or NaN table rather than an
+error: the panel's quarterly decision dates never match the Friday price index exactly, and the
+panel is timezone-aware where the price index is not. Fourth and fifth this session.
+
+References: `scripts/run_representation_tests_v1.py`, `evidence/representation_tests_v1/`
+
+## Step 266 — A10: the market states are real, they are not the states that explain our strategies, and the classifier cannot call the transition
+
+The owner's idea after Step 262: if our strategies thrive after April 2025 and not before,
+classify the market state and hold what suits it. Their instinct that states should be
+probabilistic rather than dated was right and is what this produces.
+
+One change was necessary before building it. **Inferring states from how our own strategies
+performed is circular** -- define the state by strategy returns and "strategies do well in state
+A" becomes true by construction, with no predictive content. It would relabel the Step 261 break
+rather than explain it. So states are estimated from market observables that exist independently
+of anything this project built, and strategy performance is tested against them.
+
+Two-state Gaussian Markov models on dispersion, average pairwise correlation, breadth and
+volatility, fit on **2011-2020 only and never refit**, with the project's existing
+`causal_stress_probabilities`, which returns the probability for week t using observations only
+through t-1.
+
+### The test that decides everything
+
+| observable | mean probability, year before break | max within 8 weeks of break | mean after break | level shift | detects |
+|---|---|---|---|---|---|
+| dispersion | 0.477 | 0.740 | 0.244 | **-0.233** | no |
+| average correlation | 0.909 | 0.987 | 0.720 | **-0.189** | no |
+| breadth | 0.193 | 0.931 | 0.190 | -0.003 | no |
+| volatility | 0.031 | 0.031 | 0.030 | -0.000 | no |
+
+**No observable shows a persistent state change at 2025-04-04.** Three spike above 0.5 near the
+break and **every one of them sits lower after the break than in the year before it.** A spike
+that reverts is not a transition.
+
+The pre-declared stop condition was that the classifier must call the transition at the time.
+It does not. State-conditioned strategy selection is therefore **not authorised**, and the
+registry said so before the run.
+
+### A flaw in my own test, corrected
+
+The first version asked only whether the probability exceeded 0.5 near the break, and on that
+basis passed three of four observables. It never required the level to *stay* shifted, so a
+transient spike passed, and an observable already sitting at 0.909 before the break passed
+trivially by remaining high. Corrected to require a spike **and** a level shift above 0.2 **and**
+a post-break mean above 0.5. All four then fail, which is what the numbers said all along.
+
+Sixth verdict function this session to be too generous before being caught.
+
+### And the strategies point the other way
+
+| strategy | return in high-probability state | in low state | difference |
+|---|---|---|---|
+| sector ensemble | 24.2% | **52.2%** | -27.9pp |
+| residual composite | 32.4% | 37.9% | -5.6pp |
+| cash conversion | 25.2% | **46.3%** | -21.1pp |
+| growth top five | 12.4% | **55.2%** | -42.8pp |
+
+All four do **worse** in the state these observables identify, and the break period had high
+probability. So the states are real -- dispersion, correlation and breadth genuinely move between
+two regimes -- but **they are not the states that explain what happened to these strategies in
+April 2025.**
+
+### What this settles and what it leaves open
+
+Settled: the obvious market observables do not explain the break, and a classifier built on them
+cannot call it in real time. The owner's mechanism may still be right; this particular
+implementation of it is not actionable, and building strategy selection on top of it would have
+been building on a classifier that labels history and cannot see the present.
+
+Left open: the owner's second hypothesis, that some strategy thrived *before* April 2025 the way
+these do after. That is a search over saved paths restricted to the pre-break window and needs no
+state model at all. It is the cheaper half of the idea and it has not been run.
+
+No strategy was created or improved. This closes one route to explaining the break.
+
+References: `config/market_state_registry_v1.json`, `scripts/run_market_state_v1.py`,
+`evidence/market_state_v1/`

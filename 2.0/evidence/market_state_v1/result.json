@@ -1,0 +1,90 @@
+{
+  "detection": [
+    {
+      "detects_transition_at_the_time": false,
+      "fit_weeks": 495,
+      "level_shift_after_vs_before": -0.2324830441616962,
+      "max_probability_within_8_weeks_of_break": 0.7400429518734447,
+      "mean_probability_after": 0.24434218965001528,
+      "mean_probability_pre_break_year": 0.4768252338117115,
+      "observable": "dispersion",
+      "spike_near_break": true
+    },
+    {
+      "detects_transition_at_the_time": false,
+      "fit_weeks": 495,
+      "level_shift_after_vs_before": -0.1886639641544805,
+      "max_probability_within_8_weeks_of_break": 0.9872835332028259,
+      "mean_probability_after": 0.720386444375748,
+      "mean_probability_pre_break_year": 0.9090504085302284,
+      "observable": "average_correlation",
+      "spike_near_break": true
+    },
+    {
+      "detects_transition_at_the_time": false,
+      "fit_weeks": 495,
+      "level_shift_after_vs_before": -0.0030603456761808256,
+      "max_probability_within_8_weeks_of_break": 0.9313020359371822,
+      "mean_probability_after": 0.19023964364323973,
+      "mean_probability_pre_break_year": 0.19329998931942055,
+      "observable": "breadth",
+      "spike_near_break": true
+    },
+    {
+      "detects_transition_at_the_time": false,
+      "fit_weeks": 495,
+      "level_shift_after_vs_before": -0.00044122241765525913,
+      "max_probability_within_8_weeks_of_break": 0.030554058025482004,
+      "mean_probability_after": 0.030304411583958413,
+      "mean_probability_pre_break_year": 0.030745634001613672,
+      "observable": "volatility",
+      "spike_near_break": false
+    }
+  ],
+  "experiment": "market_state_v1",
+  "fit_window": [
+    "2011-01-01",
+    "2020-12-31"
+  ],
+  "known_risk": "state-conditioned strategy selection multiplies the search space by the number of states, and this registry does not authorise that search. It authorises estimating the states and testing whether strategy performance differs across them. Selection is a separate experiment with its own registry.",
+  "live_trading_enabled": false,
+  "never_refit": true,
+  "queue_item": "A10",
+  "states_from": "market observables, never from strategy returns",
+  "strategy_by_state": [
+    {
+      "difference": -0.2795179269461614,
+      "high_state_weeks": 94,
+      "return_high_state_annualised": 0.2420725790078846,
+      "return_low_state_annualised": 0.521590505954046,
+      "strategy": "sector_ensemble",
+      "weeks": 188
+    },
+    {
+      "difference": -0.05575053801778025,
+      "high_state_weeks": 97,
+      "return_high_state_annualised": 0.3235865639920051,
+      "return_low_state_annualised": 0.3793371020097853,
+      "strategy": "residual_composite",
+      "weeks": 195
+    },
+    {
+      "difference": -0.21085922210265182,
+      "high_state_weeks": 94,
+      "return_high_state_annualised": 0.2522949820540118,
+      "return_low_state_annualised": 0.46315420415666364,
+      "strategy": "cash_conversion_b20",
+      "weeks": 188
+    },
+    {
+      "difference": -0.4281788564080951,
+      "high_state_weeks": 94,
+      "return_high_state_annualised": 0.12408631167995582,
+      "return_low_state_annualised": 0.5522651680880509,
+      "strategy": "growth_top_five",
+      "weeks": 188
+    }
+  ],
+  "strategy_promotion_authorized": false,
+  "verdict": "NO observable shows a PERSISTENT state change at 2025-04-04: some spike above 0.5 near the break and every one of them sits LOWER after the break than in the year before it, which is a transient move and not a transition. The classifier labels history and cannot call the transition at the time, which is the pre-declared stop condition. The regime story may be true and is not actionable, and state-conditioned strategy selection is NOT authorised."
+}

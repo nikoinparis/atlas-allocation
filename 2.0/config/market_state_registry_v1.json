@@ -1,0 +1,36 @@
+{
+  "experiment": "market_state_v1",
+  "declared_at_utc": "2026-09-06T00:00:00Z",
+  "queue_item": "A10",
+  "origin": "the owner's idea after Step 262: if our strategies thrive after April 2025 and not before, classify the market state and hold what suits it",
+  "the_objection_this_design_answers": {
+    "problem": "The owner proposed inferring states from how our strategies performed. That is circular: define the state by strategy returns and 'strategies do well in state A' becomes true by construction, with no predictive content. It would relabel the Step 261 break rather than explain it.",
+    "fix": "States are estimated from MARKET OBSERVABLES that exist independently of anything this project built -- cross-sectional dispersion, average pairwise correlation, breadth and volatility. Strategy performance is then TESTED against those states rather than used to define them.",
+    "owner_was_right_about": "probabilistic states rather than hard dates. A two-state Gaussian Markov model gives a probability per week, which is what the owner asked for and is also the honest representation: a transition is not a date, it is a shifting likelihood."
+  },
+  "data": "data/clean_full_history_prices_v1/weekly_adjusted_prices_clean.csv.gz, 2011-2026, corporate-action repaired",
+  "observables": {
+    "dispersion": "cross-sectional standard deviation of weekly returns -- how differently stocks are behaving from each other",
+    "average_correlation": "mean pairwise correlation over a trailing 26 weeks, estimated from the ratio of index variance to mean constituent variance so it is O(n) rather than O(n squared)",
+    "breadth": "share of issuers above their own trailing 26-week mean price",
+    "volatility": "cross-sectional mean of trailing 13-week issuer volatility"
+  },
+  "model": "two-state Gaussian Markov, fit with the project's existing markov_regime module, whose causal_stress_probabilities returns the probability for week t using observations only through t-1",
+  "protocol": {
+    "fit_window": ["2011-01-01", "2020-12-31"],
+    "never_refit": "the model is estimated once on the fit window and applied forward. Refitting on later data would let the 2025 break inform the parameters that are supposed to detect it.",
+    "labelling_window": ["2021-01-01", "2026-09-04"]
+  },
+  "the_test_that_decides_everything": {
+    "question": "does the classifier flag the 2025 transition AT THE TIME, or only in hindsight?",
+    "why": "Almost every published regime model labels history beautifully and cannot call the present. If the causal state probability only moves well after 2025-04-04, the classifier is a historian and cannot be traded on, whatever its in-sample fit looks like.",
+    "pass_condition": "the causal probability of the post-break state must rise above 0.5 within eight weeks either side of 2025-04-04",
+    "if_it_fails": "stop. Do not proceed to state-conditioned strategy selection, and record that the regime story is not actionable even if it is true."
+  },
+  "secondary_test": "whether any strategy path in this project performs materially differently across states, measured with causal probabilities only",
+  "declared_trials": 4,
+  "bonferroni_threshold": 0.0125,
+  "known_risk_declared_up_front": "state-conditioned strategy selection multiplies the search space by the number of states, and this registry does not authorise that search. It authorises estimating the states and testing whether strategy performance differs across them. Selection is a separate experiment with its own registry.",
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

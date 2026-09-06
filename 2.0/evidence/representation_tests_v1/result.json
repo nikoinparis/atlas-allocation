@@ -1,0 +1,109 @@
+{
+  "a8_verdict": "order 0.3 is the lowest that is stationary in 90% of issuers, and it retains 0.856 correlation with the price level against 0.050 for plain returns",
+  "a9_verdict": "0 of 4 barrier configurations give a larger absolute IC than the plain forward return does",
+  "builds_no_strategy": true,
+  "experiment": "representation_tests_v1",
+  "fractional_differentiation": [
+    {
+      "issuers": 300,
+      "mean_adf": -2.469139693325103,
+      "mean_memory_correlation_with_level": 0.9880490180816393,
+      "order": 0.1,
+      "share_stationary_at_5pct": 0.33
+    },
+    {
+      "issuers": 300,
+      "mean_adf": -3.9004558403359155,
+      "mean_memory_correlation_with_level": 0.9438766518792996,
+      "order": 0.2,
+      "share_stationary_at_5pct": 0.8066666666666666
+    },
+    {
+      "issuers": 300,
+      "mean_adf": -5.989730160953751,
+      "mean_memory_correlation_with_level": 0.855583652280031,
+      "order": 0.3,
+      "share_stationary_at_5pct": 0.9966666666666667
+    },
+    {
+      "issuers": 300,
+      "mean_adf": -8.77287189059676,
+      "mean_memory_correlation_with_level": 0.7194436449795603,
+      "order": 0.4,
+      "share_stationary_at_5pct": 1.0
+    },
+    {
+      "issuers": 300,
+      "mean_adf": -12.07391528665721,
+      "mean_memory_correlation_with_level": 0.5513624095153123,
+      "order": 0.5,
+      "share_stationary_at_5pct": 1.0
+    },
+    {
+      "issuers": 300,
+      "mean_adf": -18.883687444199996,
+      "mean_memory_correlation_with_level": 0.25162343974691775,
+      "order": 0.7,
+      "share_stationary_at_5pct": 1.0
+    },
+    {
+      "issuers": 300,
+      "mean_adf": -29.900011150745893,
+      "mean_memory_correlation_with_level": 0.0495168531570759,
+      "order": 1.0,
+      "share_stationary_at_5pct": 1.0
+    }
+  ],
+  "live_trading_enabled": false,
+  "queue_items": [
+    "A8",
+    "A9"
+  ],
+  "strategy_promotion_authorized": false,
+  "triple_barrier": [
+    {
+      "decisions": 12,
+      "horizon_weeks": 13,
+      "lower": 0.1,
+      "mean_ic_vs_barrier": 0.04613463790476056,
+      "mean_ic_vs_plain_return": 0.0769465014805685,
+      "share_no_barrier_touched": 0.21118105393016498,
+      "t_vs_barrier": 1.1539620237759722,
+      "t_vs_plain": 2.044955186748132,
+      "upper": 0.1
+    },
+    {
+      "decisions": 12,
+      "horizon_weeks": 13,
+      "lower": 0.15,
+      "mean_ic_vs_barrier": 0.04945616311133242,
+      "mean_ic_vs_plain_return": 0.0769465014805685,
+      "share_no_barrier_touched": 0.43190872553815146,
+      "t_vs_barrier": 1.2866324790037087,
+      "t_vs_plain": 2.044955186748132,
+      "upper": 0.15
+    },
+    {
+      "decisions": 12,
+      "horizon_weeks": 13,
+      "lower": 0.05,
+      "mean_ic_vs_barrier": 0.0378702014105576,
+      "mean_ic_vs_plain_return": 0.0769465014805685,
+      "share_no_barrier_touched": 0.0908417732479419,
+      "t_vs_barrier": 0.8371503571551787,
+      "t_vs_plain": 2.044955186748132,
+      "upper": 0.1
+    },
+    {
+      "decisions": 11,
+      "horizon_weeks": 26,
+      "lower": 0.2,
+      "mean_ic_vs_barrier": 0.09602886515695062,
+      "mean_ic_vs_plain_return": 0.09812865249241205,
+      "share_no_barrier_touched": 0.3626567598488282,
+      "t_vs_barrier": 3.314300924835085,
+      "t_vs_plain": 2.8804462494447356,
+      "upper": 0.2
+    }
+  ]
+}

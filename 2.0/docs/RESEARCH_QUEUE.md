@@ -192,22 +192,6 @@ Classify the market state, then hold whatever suits it.
 the Closed table restricted to the pre-break window, and it needs no new model at all. Worth doing
 first because it is one afternoon and it either supports the regime story or undermines it.
 
-### A8. Fractional differentiation  *(new 2026-09-06)*
-**Status:** never attempted. Zero mentions. Named in CLAUDE.md section 3.
-**Why it matters:** every price-based signal here differences returns fully, which makes the
-series stationary and throws away all memory. Fractional differentiation keeps as much memory as
-stationarity allows. It does not add a signal; it may improve the input to every signal already
-built.
-
-### A9. Triple-barrier labelling  *(new 2026-09-06)*
-**Status:** never attempted. Zero mentions.
-**Why it matters:** everything tested here predicts "the return over the next N weeks". Triple
-barrier predicts "does it hit +x before -y, within a horizon" -- a different and often more
-learnable target, and the one that meta-labelling was designed to sit on top of. Meta-labelling
-failed its precondition in Step 201, which may be because it was applied without this underneath.
-
-## B tier
-
 ### B1. Volatility risk premium, reading first
 **Status:** `UPGRADE_CANDIDATES_V1` item 3, Tier 3, "needs Hull read properly before".
 **Why it is not higher:** selling option premium is selling insurance. Negatively skewed --
@@ -304,6 +288,9 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 | Cross-asset crisis trend | Rejected as a fixed blend | Step 205 |
 | Daily OHLCV alpha zoo | Rejected as a replacement | Step 200 |
 | Breadth accounting | Done. IR ceiling below 0.1; the finding that reframed everything after it | Step 245 |
+| **Triple-barrier labelling (was A9)** | **Closed.** Zero of four barrier configurations beat the plain forward return; the widest is a tie, and 9-43% of observations touch no barrier and are labelled zero. Also weakens the Step 201 hypothesis that meta-labelling failed for want of a barrier target underneath it. | Step 265 |
+| **Feature importance MDA/MDI (was A7)** | **Done.** Model has modest held-out skill (+0.0337, positive in 86% of folds). Only residual momentum degrades it when shuffled (+0.0439, t=1.99). **Trend quality is 29.9% of MDI and -0.0059 of MDA** — the forest leans on it and it carries nothing. The feature that matters is the one Step 234 found picks twenty names from a tie of fifty-nine by lowest CIK. | Step 264 |
+| **Short interest (was A5)** | **First signal to survive both windows, and still not worth holding.** IC -0.0312 (t=-4.80) select, -0.0435 (t=-5.30) evaluate. But a long-only book returns 12.54% at 50bps against a market at 13.15%, with a -36.5% drawdown, and correlates +0.873 with the market. Near-zero against our own strategies, which is the breadth property we want. **Open as an exclusion filter, closed as a strategy.** | Step 263 |
 | **Structural break tests (was A6)** | **Done, and it changed the reading of everything else.** All four strategies select the identical break week, 2025-04-04, scanning independently over 188-195 weeks. Mean return goes from 8-13% before to 80-105% after, betas near zero on both sides so it is not market exposure, and the market itself shows no break there. None clears Bonferroni 0.01 (p 0.022-0.038) so it is suggestive rather than established -- but four independent strategies do not pick the same week by chance, and it is the cleanest evidence yet that they are one bet. **Consequence: future tests should split at 2025-04-04, and no test in this project has ever asked what the strategies look like with those 75 weeks removed.** | Step 261 |
 | **13D/13G activist events (was A4)** | **Closed.** 38,849 subject events, 2013-2026, sector-matched abnormal returns bootstrapped with clustering by filing month. Nothing clears for either form in either window. The strongest reading, 13D at 13 weeks recently, is **-2.13%** -- the wrong sign against a declared positive. The 13G control is flat at 20,000 events, so the absence is real rather than a broken pipeline. Caught mid-run: EDGAR relabelled `SC 13D` to `SCHEDULE 13D` in 2025 and the first parse silently lost two years. | Step 260 |
 | **13F institutional linkage (was A0)** | **Closed.** 110M holding rows, 73.4% identity match, manager cap declared before any signal. Every IC negative against a declared positive sign, none significant, at three caps and two horizons, and the sector-controlled column is equally flat so it is an absence rather than a sector effect. Mild evidence against buying P2. | Step 258 |

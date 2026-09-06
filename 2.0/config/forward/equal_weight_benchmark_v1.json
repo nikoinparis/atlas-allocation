@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "protocol_version": "equal_weight_benchmark_v1",
+  "frozen_at_utc": "2026-09-05T12:30:00Z",
+  "purpose": "Record forward, week by week, what an equal weighting of the same point-in-time universes would have returned, so that the residual sleeve's forward clock can be read as a comparison rather than as a bare return series.",
+  "why_this_exists": "Step 222 found the composite's 80% control leg losing to an equal weighting of its own universe in sample, and Step 231 found the composite's edge over a blended equal-weight benchmark indistinguishable from noise at P(>0)=0.533. Step 230 and Step 232 then established that neither leg can be validated out of sample from free data. A forward record without a benchmark beside it would repeat the ambiguity for another 52 weeks.",
+  "relationship_to_the_frozen_protocol": {
+    "modifies": "nothing",
+    "reads": "config/forward/sec_residual_controlled_sleeve_forward_v1.json, for its weights and cadence only",
+    "note": "This is a measurement companion. It does not alter, reinterpret, or supersede the residual sleeve protocol, and its existence must not be treated as a change to that protocol's terms. If the residual sleeve clock never starts, this record simply stands alone."
+  },
+  "tracked_series": [
+    {"name": "equal_weight_narrow", "universe": "narrow SEC filer roster, tradable members at the governing quarterly decision"},
+    {"name": "equal_weight_broad", "universe": "broad research panel roster, tradable members at the governing quarterly decision"},
+    {"name": "blended_benchmark", "definition": "0.8 x equal_weight_narrow + 0.2 x equal_weight_broad, matching the composite's sleeve weights"}
+  ],
+  "construction": {
+    "weighting": "equal across every tradable member; no selection of any kind",
+    "rebalance": "quarterly, on the same schedule the strategies use, held weekly between",
+    "cost_bps_per_unit_turnover": 50.0,
+    "missing_price_policy": "an issuer with no validated price is excluded and its weight held in cash, matching the base scenario"
+  },
+  "cadence": {
+    "decision_day": "Friday",
+    "window": "observed at or after 21:00 UTC on the decision Friday and before 21:00 UTC the following Friday",
+    "first_eligible_decision_date": "2026-09-11",
+    "missed_snapshot_policy": "a missed weekly window cannot be backfilled from a later vintage"
+  },
+  "what_this_can_and_cannot_show": {
+    "can": "whether the composite, once its clock runs, is beating a portfolio that makes no selection decisions at all",
+    "cannot": "anything about the composite on its own. A benchmark is a denominator, not a verdict, and 52 weeks of either series alone settles nothing."
+  },
+  "log_policy": "decision and observation JSON Lines logs are independently hash-chained; duplicate, out-of-order, pre-freeze, changed, or unhashed records are rejected",
+  "promotion_authority": "none. This protocol measures a benchmark and can never authorise trading of anything.",
+  "revision_policy": "Any change to the construction, cost, cadence or tracked series creates v2 and marks this version superseded.",
+  "research_only": true,
+  "approved_for_live_trading": false,
+  "execution_enabled": false,
+  "live_trading_enabled": false
+}

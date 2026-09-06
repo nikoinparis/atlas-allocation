@@ -1,0 +1,21 @@
+{
+  "decision_basis": "held_frozen_book",
+  "execution_enabled": false,
+  "first_decision_prior_weights": {
+    "cash::USD": 1.0
+  },
+  "forward_protocol_sha256": "43be2582b1472bf926eb8dcae12b16386719e8d45401b85fb11d1033ba783648",
+  "frozen_book": {
+    "USO": 0.1795420823937235,
+    "XLE": 0.40184793691874665,
+    "XLK": 0.4186099806875298
+  },
+  "limitation": "The pinned source bundle ends 2026-08-07, so no fresh strategy decision can be produced without changing its hash and voiding the pin. Every forward decision under this protocol holds the last decided book unchanged, which tests the book rather than the rule and decays as a test of the rule.",
+  "protocol_id": "breadth_confirmed_trend_return_ceiling_v3_forward",
+  "schema_version": 1,
+  "source_bundle": "ggg_causal_v2_027530550388432a",
+  "source_bundle_data_through": "2026-08-07",
+  "weights_artifact": "evidence/breadth_ceiling_adversarial_validation_batch_65/current_holdings.csv",
+  "weights_artifact_resolved_by": "sha256 scan of evidence/**/*.csv on 2026-09-04",
+  "weights_artifact_sha256": "689be23ec2ccbd136a7c0f4bab450b8b128becf46a140bc2bd5f2273be498fd7"
+}

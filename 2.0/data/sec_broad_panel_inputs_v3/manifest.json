@@ -1,0 +1,26 @@
+{
+  "artifact_sha256": {
+    "benchmark_weekly_returns.csv.gz": "8e434853e10c8eaff4a9fdb8346d7e3c2c5840d654d8d9885c96ab3f89e1fe3a",
+    "causal_features.csv.gz": "7b326d3b03e620744af1661c04aadb3c530185a3acd20813c54a6bcf94a77336",
+    "source_inventory.csv": "1bd5788c45dbaf39fb22972284d53f14ad08fdc51ec1e002956e55a212cafaae",
+    "weekly_adjusted_prices.csv.gz": "588e12dc99d105df87d392a5dc0ca69098ea0b78dede6c74c868e2a209289f1f"
+  },
+  "created_at_utc": "2026-09-05T04:58:28.663179+00:00",
+  "decisions": 15,
+  "experiment": "sec_broad_panel_inputs_v3",
+  "feature_nonmissing_share": {
+    "event_score": 1.0,
+    "quality_momentum": 0.9782371131623614,
+    "residual_momentum": 0.8311283684810156,
+    "trend_quality": 0.6987607244995233
+  },
+  "gate_sha256": "6074b16ea70835d72d66ada344bedf409005a02bf2d327d6b9ac5830931883e9",
+  "live_trading_enabled": false,
+  "membership_sha256": "06a58b2e9b6aa5e0320e497aa28b6cc8ed140f5b2a5a2e32be798ba4f117e5f2",
+  "performance_evaluated": false,
+  "point_in_time": true,
+  "priced_ciks": 3253,
+  "rows": 43009,
+  "source_inventory_rows": 7609,
+  "strategy_promotion_authorized": false
+}

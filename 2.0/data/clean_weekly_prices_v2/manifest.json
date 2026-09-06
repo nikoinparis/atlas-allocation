@@ -1,0 +1,58 @@
+{
+  "appended_weeks": [
+    "2026-08-28",
+    "2026-09-04"
+  ],
+  "artifact_sha256": {
+    "weekly_adjusted_prices_clean.csv.gz": "09eac5ff70171dcad49eb75a27ce56f7d97f520bbdfc20fde68eb1186eceddb6"
+  },
+  "cleaning_rules": {
+    "applied_to": "appended weeks only; existing cells are never rewritten",
+    "return_observations_adjusted": 2,
+    "weekly_return_cap": 2.0,
+    "weekly_return_floor": -0.95,
+    "zero_and_negative_prices": "set to missing"
+  },
+  "coverage_new_week": {
+    "2026-08-28": 2812,
+    "2026-09-04": 2809
+  },
+  "created_at_utc": "2026-09-04T21:13:06.567737+00:00",
+  "derived_from": "data/clean_weekly_prices_v1/weekly_adjusted_prices_clean.csv.gz",
+  "derived_from_sha256": "3ad97d8174266ca6301281e10acc12ab9082cdd26615483ea4ca2ecb67f24123",
+  "experiment": "clean_weekly_prices_v2",
+  "issuers": 3253,
+  "issuers_extended": 2814,
+  "issuers_not_extended": 439,
+  "last_closed_friday_at_build": "2026-09-04",
+  "live_trading_enabled": false,
+  "new_last_week": "2026-09-04",
+  "not_extended_reason": "no fresh Yahoo observation in the new week; these are overwhelmingly Tiingo-sourced delisted issuers whose series legitimately stops",
+  "overlap_reconciliation": {
+    "basis": "weekly simple returns over the overlapping weeks",
+    "cells_over_100bps": 367,
+    "cells_over_10bps": 531,
+    "compared_cells": 30452,
+    "max_absolute_return_gap": 27.375669192737746,
+    "median_absolute_return_gap": 0.0,
+    "overlap_weeks": [
+      "2026-06-05",
+      "2026-06-12",
+      "2026-06-19",
+      "2026-06-26",
+      "2026-07-03",
+      "2026-07-10",
+      "2026-07-17",
+      "2026-07-24",
+      "2026-07-31",
+      "2026-08-07",
+      "2026-08-14",
+      "2026-08-21"
+    ]
+  },
+  "panel_convention": "each issuer is rebased to 1.0 at its first observation; new weeks are chained onto the stored level at the last shared week",
+  "prior_last_week": "2026-08-21",
+  "raw_tail_vintage": "data/sec_broad_recent_tail_vintages/20260904T211301Z-broad-recent-tail-v1",
+  "symbols_failed": 0,
+  "symbols_requested": 3235
+}

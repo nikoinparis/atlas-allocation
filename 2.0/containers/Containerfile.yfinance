@@ -1,0 +1,11 @@
+# Rebuild of the isolated free-data collector image used by
+# scripts/acquire_free_etf_snapshot.py. The original localhost/po2-yfinance:1.5.2-v1
+# was pruned from the local store; this reproduces it from the collector source
+# that is tracked in the repository at scripts/container/free_etf_download.py.
+FROM docker.io/library/python:3.11-slim
+
+RUN pip install --no-cache-dir "yfinance==1.5.2" "pandas>=2.2,<3" "numpy<3"
+
+COPY scripts/container/free_etf_download.py /opt/free_etf_download.py
+
+ENTRYPOINT ["python", "/opt/free_etf_download.py"]

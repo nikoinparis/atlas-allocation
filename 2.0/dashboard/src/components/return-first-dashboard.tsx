@@ -10,27 +10,10 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { ForwardTracker } from "@/components/forward-tracker";
 import { SurvivalLab, type SurvivalBundlePayload } from "@/components/survival-lab";
 import { deepMethodology, deepFormulas } from "@/components/methodology";
-import {
-  ArrowUpRight,
-  CalendarDays,
-  ChevronLeft,
-  ChevronRight,
-  FlaskConical,
-  Gauge,
-  History,
-  Info,
-  Menu,
-  PanelLeftClose,
-  PieChart,
-  Settings2,
-  Siren,
-  ShieldCheck,
-  TrendingUp,
-  Workflow,
-  X,
-} from "lucide-react";
+import { ArrowUpRight, CalendarDays, ChevronLeft, ChevronRight, FlaskConical, Gauge, History, Info, Menu, PanelLeftClose, PieChart, Settings2, ShieldCheck, Siren, Timer, TrendingUp, Workflow, X } from "lucide-react";
 import { type MouseEvent, useEffect, useMemo, useState } from "react";
 
 type Holding = { symbol: string; weight: number | null; change: number | null };
@@ -104,13 +87,14 @@ type MetricKey = "annualized" | "sharpe" | "drawdown" | "winRate" | "evidence";
 type FormulaKey = "priceReturn" | "coreBlend" | "rankScore" | "sourceBlend" | "netReturn" | "equalFive" | "momentumGate" | "volatilityRatio" | "stockCap" | "turnover" | "baseLeader" | "cashSpread" | "equalTwenty" | "cashGate" | "netCost" | "signalBlend" | "sectorCap" | "outerGate" | "residualScore" | "controlledBlend" | "leverageFinancing" | "fragileLeverage" | "calendarDelta" | "annualized" | "sharpe" | "drawdown" | "winRate" | "cagr";
 type MethodStep = { number: string; label: string; title: string; description: string; formula: FormulaKey; note: string };
 type StrategyMethodology = { summary: string; cadence: string; universe: string; steps: MethodStep[] };
-export type DashboardViewName = "overview" | "performance" | "activity" | "rebalances" | "survival" | "methodology" | "guardrails";
+export type DashboardViewName = "overview" | "performance" | "activity" | "rebalances" | "forward" | "survival" | "methodology" | "guardrails";
 
 const viewDetails: Record<DashboardViewName, { label: string; title: string; description: string; path: string }> = {
   overview: { label: "Overview", title: "Portfolio overview", description: "A clear read on performance, risk, and the portfolio’s latest systematic decision.", path: "/" },
   performance: { label: "Performance", title: "Performance", description: "Study the simulated equity curve, risk-adjusted results, and the complete current allocation.", path: "/performance" },
   activity: { label: "Daily activity", title: "Daily activity", description: "Inspect daily P&L, historical holdings, and every recorded change in the strategy book.", path: "/activity" },
   rebalances: { label: "Rebalances", title: "Rebalances", description: "Review recent portfolio changes, turnover, and the strategy’s forward-validation clock.", path: "/rebalances" },
+  forward: { label: "Forward record", title: "Forward record", description: "See how much untouched forward evidence actually exists, and what the last decided books did on the weeks that have closed since.", path: "/forward" },
   survival: { label: "Survival lab", title: "Real-world survival lab", description: "See which strategies survive modeled stress, what still fails, and why none is proven live yet.", path: "/survival" },
   methodology: { label: "How it works", title: "How the portfolio works", description: "Follow the selected strategy from raw evidence to target weights, costs, and the final recorded decision.", path: "/methodology" },
   guardrails: { label: "Guardrails", title: "Research guardrails", description: "Understand exactly what the simulation can do, what it cannot do, and how its evidence is controlled.", path: "/guardrails" },
@@ -312,6 +296,28 @@ function MathEquation({ formula }: { formula: FormulaKey }) {
   return <div className="math-equation" role="math" aria-label={equation.label} dangerouslySetInnerHTML={{ __html: equation.markup }} />;
 }
 
+function ForwardStandalone() {
+  return (
+    <main className="dashboard-page forward-standalone">
+      <div className="content-frame">
+        <nav className="forward-topbar">
+          <Link href="/"><ChevronLeft size={15} />Portfolio Optimizer</Link>
+          <span>
+            <Link href="/performance">Performance</Link>
+            <Link href="/survival">Survival lab</Link>
+            <Link href="/guardrails">Guardrails</Link>
+          </span>
+        </nav>
+        <div className="dashboard-content">
+          <section className="section-block page-section forward-view">
+            <ForwardTracker positionSpotlight={positionSpotlight} />
+          </section>
+        </div>
+      </div>
+    </main>
+  );
+}
+
 export function ReturnFirstDashboard({ initialView = "overview" }: { initialView?: DashboardViewName }) {
   const [bundle, setBundle] = useState<DashboardBundle | null>(null);
   const [survivalBundle, setSurvivalBundle] = useState<SurvivalBundle | null>(null);
@@ -339,6 +345,10 @@ export function ReturnFirstDashboard({ initialView = "overview" }: { initialView
     window.localStorage.setItem("portfolio-optimizer-strategy-v2", id);
   }
 
+  // The forward record reads its own small artifact. Gating it on the multi-hundred-megabyte
+  // strategy bundle would make the one page that answers "what has actually happened since?"
+  // the slowest and most failure-prone page in the app, so it renders on its own.
+  if (initialView === "forward") return <ForwardStandalone />;
   if (error) return <main className="loading-state"><span>PORTFOLIO OPTIMIZER</span><h1>Research snapshot unavailable</h1><p>Rebuild the dashboard snapshot and refresh this page.</p></main>;
   if (!bundle) return <main className="loading-state"><span>PORTFOLIO OPTIMIZER</span><h1>Loading the research book…</h1></main>;
   const data = bundle.strategies.find((item) => item.strategy.id === activeStrategy) ?? bundle.strategies[0];
@@ -535,6 +545,7 @@ function DashboardView({ data, strategies, survivalBundle, activeView, onStrateg
           <Link className={activeView === "performance" ? "active" : ""} href="/performance" onClick={() => setMobileMenuOpen(false)}><PieChart size={18} /><span>Performance</span></Link>
           <Link className={activeView === "activity" ? "active" : ""} href="/activity" onClick={() => setMobileMenuOpen(false)}><CalendarDays size={18} /><span>Daily activity</span></Link>
           <Link className={activeView === "rebalances" ? "active" : ""} href="/rebalances" onClick={() => setMobileMenuOpen(false)}><History size={18} /><span>Rebalances</span></Link>
+          <Link className={activeView === "forward" ? "active" : ""} href="/forward" onClick={() => setMobileMenuOpen(false)}><Timer size={18} /><span>Forward record</span></Link>
           <Link className={activeView === "survival" ? "active" : ""} href="/survival" onClick={() => setMobileMenuOpen(false)}><Siren size={18} /><span>Survival lab</span></Link>
           <Link className={activeView === "methodology" ? "active" : ""} href="/methodology" onClick={() => setMobileMenuOpen(false)}><Workflow size={18} /><span>How it works</span></Link>
           <Link className={activeView === "guardrails" ? "active" : ""} href="/guardrails" onClick={() => setMobileMenuOpen(false)}><ShieldCheck size={18} /><span>Guardrails</span></Link>
@@ -920,6 +931,10 @@ function DashboardView({ data, strategies, survivalBundle, activeView, onStrateg
           <article className="panel guardrail-card spotlight-surface" onMouseMove={positionSpotlight}><span>05</span><div><h3>Forward validation</h3><p>{data.strategy.forward.observedWeeks} of {data.strategy.forward.requiredWeeks} required weeks have been observed. First eligible realization: {data.strategy.forward.firstRealization}.</p></div><strong>{data.strategy.forward.status.toUpperCase()}</strong></article>
           <article className="panel guardrail-card spotlight-surface" onMouseMove={positionSpotlight}><span>06</span><div><h3>Research disclosure</h3><p>Past simulated performance is not a promise of future returns and should not be read as investment advice.</p></div><strong>RESEARCH ONLY</strong></article>
         </div>
+      </section>}
+
+      {activeView === "forward" && <section className="section-block page-section forward-view">
+        <ForwardTracker positionSpotlight={positionSpotlight} />
       </section>}
 
       {activeView === "survival" && <section className="section-block page-section survival-page">

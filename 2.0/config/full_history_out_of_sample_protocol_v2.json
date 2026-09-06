@@ -1,0 +1,54 @@
+{
+  "coverage_gate": {
+    "applies_to": "every quarterly decision in the tested window",
+    "if_unmet": "the affected decisions are excluded and the exclusion is reported, rather than the bar being lowered again",
+    "minimum_decision_row_coverage": 0.9
+  },
+  "experiment": "full_history_out_of_sample_protocol_v2",
+  "known_limitations": [
+    "85 issuers cannot be priced from any source available here and are the adverse scenario's entire subject",
+    "coverage decays going backwards, so the earliest years lean hardest on the adverse assumption",
+    "the ETF-family strategies are not included; this protocol covers the SEC single-name families only"
+  ],
+  "live_trading_enabled": false,
+  "promotion_authority": "none. This protocol measures and never authorises trading.",
+  "promotion_gate": {
+    "benchmarks": {
+      "primary": "equal-weight portfolio of the same point-in-time universe, rebalanced on the same quarterly schedule, at the same cost",
+      "requirement": "must beat BOTH benchmarks, under BOTH scenarios, at 50bps",
+      "secondary": "SPY total return over the identical window",
+      "why_equal_weight_is_primary": "SPY is a different universe. A strategy selecting 20 names from a technology and energy filer roster can beat SPY by holding that roster's beta, which the OSAP screen already showed these books do. The equal-weight version of the strategy's own universe is the benchmark that isolates selection from exposure."
+    },
+    "binding": "failure under adverse is a rejection. The adverse scenario may not be weakened, reinterpreted, or replaced after seeing a result.",
+    "regime_windows": [
+      "2012-2015",
+      "2016-2019",
+      "2020 covid",
+      "2022 bear",
+      "2023-2026"
+    ],
+    "requirement": "a strategy must beat its declared benchmark under BOTH scenarios, at 50bps, across the full tested window and in each regime window separately"
+  },
+  "purpose": "Test strategies that are already frozen against 2012-2022, a period none of them has ever seen. Because the strategies are fixed, this consumes no new trials; nothing is being searched, only measured.",
+  "registered_at_utc": "2026-09-05",
+  "revision_policy": "Any change to the coverage bar, either scenario, or the promotion gate creates v2 and marks this version superseded.",
+  "scenarios": {
+    "adverse": "an issuer with no validated price is held at its intended weight and assigned a -100% return over the holding period",
+    "base": "an issuer with no validated price is excluded from the book and its intended weight is held in cash earning zero"
+  },
+  "strategies_tested": [
+    "sec_cash_conversion_breadth20_dynamic_v1",
+    "sec_growth_survivorship_retest_v1",
+    "residual_momentum_breadth20"
+  ],
+  "supersedes": "full_history_out_of_sample_protocol_v1 (sha256 49a2b3a6216a1747ffe1355fbe81f113137a328f2d07a4ef00be99a4d78668a4)",
+  "trial_accounting": "zero new trials. Every strategy here was frozen before this protocol was written and no parameter is searched. Any parameter varied later is a new trial and must be declared in a v2.",
+  "why_the_coverage_bar_moved_and_what_that_costs": {
+    "decision": "bar lowered to 90% minimum decision-row coverage, paired with a binding adverse scenario",
+    "honest_characterisation": "This is a threshold relaxed after watching it fail, which is the move this project exists to resist. It is defensible only because the adverse scenario below is genuinely punishing and is declared before the backtest rather than after. If the adverse result is bad, that is the answer and it will not be relitigated by loosening the scenario.",
+    "measured_ceiling": "89.9% minimum annual coverage, 21 of 58 decisions clearing 95%, with 85 issuers permanently unpriced",
+    "original_bar": "95% of decision rows priced at every decision, declared 2026-09-05 before any coverage number existed"
+  },
+  "why_v2": "v1's promotion gate said a strategy must beat 'its declared benchmark' without naming one. An unspecified gate is a loophole: after seeing a result, any of several benchmarks could be called the declared one. This version names them. It is written before any strategy has been run against pre-2023 data, so this is specification rather than relaxation, and no threshold in v1 is weakened.",
+  "written_before": "any strategy has been run against any pre-2023 data, and before the Tiingo recovery batches finished"
+}

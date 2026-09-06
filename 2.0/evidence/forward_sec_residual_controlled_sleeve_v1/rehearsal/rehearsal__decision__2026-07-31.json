@@ -1,0 +1,297 @@
+{
+  "control_target_weights": {
+    "ALAB": 0.04000000000000001,
+    "CRM": 0.025,
+    "CRNC": 0.025,
+    "DEC": 0.025,
+    "DT": 0.025,
+    "GTE": 0.025,
+    "GTLB": 0.025,
+    "MU": 0.04000000000000001,
+    "NCNO": 0.025,
+    "NOG": 0.025,
+    "OLED": 0.025,
+    "PANW": 0.025,
+    "PEGA": 0.025,
+    "PLTR": 0.04000000000000001,
+    "RDDT": 0.04000000000000001,
+    "RMBS": 0.025,
+    "SONO": 0.025,
+    "TBCH": 0.025,
+    "TTD": 0.025,
+    "TXO": 0.025,
+    "USO": 0.00969527244926106,
+    "VEEV": 0.025,
+    "VRNS": 0.025,
+    "WDC": 0.04000000000000001,
+    "XLE": 0.1416997885936123,
+    "XLK": 0.14860493895712662,
+    "YOU": 0.025,
+    "ZS": 0.025
+  },
+  "decision_date": "2026-07-31",
+  "observed_at_utc": "2026-09-05T23:51:50Z",
+  "packet_sha256": "c74edb7fd65786ca946f21ceb99939e3382214b0eea2edb9185ea19541ecec7f",
+  "packet_type": "sec_residual_forward_decision_v1",
+  "price_identity": {
+    "AGX": {
+      "key": "0000100591",
+      "source": "sec_cik10"
+    },
+    "ALAB": {
+      "key": "0001736297",
+      "source": "sec_cik10"
+    },
+    "AMD": {
+      "key": "0000002488",
+      "source": "sec_cik10"
+    },
+    "ASYS": {
+      "key": "0000720500",
+      "source": "sec_cik10"
+    },
+    "COHU": {
+      "key": "0000021535",
+      "source": "sec_cik10"
+    },
+    "CRM": {
+      "key": "0001108524",
+      "source": "sec_cik10"
+    },
+    "CRNC": {
+      "key": "0001768267",
+      "source": "sec_cik10"
+    },
+    "DEC": {
+      "key": "0001922446",
+      "source": "sec_cik10"
+    },
+    "DT": {
+      "key": "0001773383",
+      "source": "sec_cik10"
+    },
+    "EZPW": {
+      "key": "0000876523",
+      "source": "sec_cik10"
+    },
+    "GLW": {
+      "key": "0000024741",
+      "source": "sec_cik10"
+    },
+    "GTE": {
+      "key": "0001273441",
+      "source": "sec_cik10"
+    },
+    "GTLB": {
+      "key": "0001653482",
+      "source": "sec_cik10"
+    },
+    "INTC": {
+      "key": "0000050863",
+      "source": "sec_cik10"
+    },
+    "KLIC": {
+      "key": "0000056978",
+      "source": "sec_cik10"
+    },
+    "LCUT": {
+      "key": "0000874396",
+      "source": "sec_cik10"
+    },
+    "LRCX": {
+      "key": "0000707549",
+      "source": "sec_cik10"
+    },
+    "MOD": {
+      "key": "0000067347",
+      "source": "sec_cik10"
+    },
+    "MU": {
+      "key": "0000723125",
+      "source": "sec_cik10"
+    },
+    "MYRG": {
+      "key": "0000700923",
+      "source": "sec_cik10"
+    },
+    "NCNO": {
+      "key": "0001902733",
+      "source": "sec_cik10"
+    },
+    "NOG": {
+      "key": "0001104485",
+      "source": "sec_cik10"
+    },
+    "OLED": {
+      "key": "0001005284",
+      "source": "sec_cik10"
+    },
+    "PANW": {
+      "key": "0001327567",
+      "source": "sec_cik10"
+    },
+    "PEGA": {
+      "key": "0001013857",
+      "source": "sec_cik10"
+    },
+    "PLTR": {
+      "key": "0001321655",
+      "source": "sec_cik10"
+    },
+    "POWL": {
+      "key": "0000080420",
+      "source": "sec_cik10"
+    },
+    "RDDT": {
+      "key": "0001713445",
+      "source": "sec_cik10"
+    },
+    "RMBS": {
+      "key": "0000917273",
+      "source": "sec_cik10"
+    },
+    "SMTC": {
+      "key": "0000088941",
+      "source": "sec_cik10"
+    },
+    "SONO": {
+      "key": "0001314727",
+      "source": "sec_cik10"
+    },
+    "STRL": {
+      "key": "0000874238",
+      "source": "sec_cik10"
+    },
+    "TBCH": {
+      "key": "0001493761",
+      "source": "sec_cik10"
+    },
+    "TER": {
+      "key": "0000097210",
+      "source": "sec_cik10"
+    },
+    "TTD": {
+      "key": "0001671933",
+      "source": "sec_cik10"
+    },
+    "TXO": {
+      "key": "0001559432",
+      "source": "sec_cik10"
+    },
+    "USO": {
+      "key": "0001327068",
+      "source": "sec_cik10"
+    },
+    "VECO": {
+      "key": "0000103145",
+      "source": "sec_cik10"
+    },
+    "VEEV": {
+      "key": "0001393052",
+      "source": "sec_cik10"
+    },
+    "VRNS": {
+      "key": "0001361113",
+      "source": "sec_cik10"
+    },
+    "VSAT": {
+      "key": "0000797721",
+      "source": "sec_cik10"
+    },
+    "VSH": {
+      "key": "0000103730",
+      "source": "sec_cik10"
+    },
+    "WDC": {
+      "key": "0000106040",
+      "source": "sec_cik10"
+    },
+    "WOLF": {
+      "key": "0000895419",
+      "source": "sec_cik10"
+    },
+    "XLE": {
+      "key": "XLE",
+      "source": "etf_weekly_prices"
+    },
+    "XLK": {
+      "key": "XLK",
+      "source": "etf_weekly_prices"
+    },
+    "YOU": {
+      "key": "0001856314",
+      "source": "sec_cik10"
+    },
+    "ZS": {
+      "key": "0001713683",
+      "source": "sec_cik10"
+    }
+  },
+  "protocol_version": "sec_residual_controlled_sleeve_forward_v1",
+  "provenance": {
+    "control": {
+      "cash_conversion_quarter": "2026-07-01",
+      "decision_date": "2026-07-31",
+      "growth_quarter": "2026-07-01",
+      "overlay_allocation_to_cash_conversion": 0.5,
+      "selection_cik10s": [
+        "0000917273",
+        "0001005284",
+        "0001013857",
+        "0001104485",
+        "0001108524",
+        "0001273441",
+        "0001314727",
+        "0001327567",
+        "0001361113",
+        "0001393052",
+        "0001493761",
+        "0001559432",
+        "0001653482",
+        "0001671933",
+        "0001713683",
+        "0001768267",
+        "0001773383",
+        "0001856314",
+        "0001902733",
+        "0001922446"
+      ],
+      "unpriced_cash_conversion_slots": 0
+    },
+    "panel": "data/sec_broad_research_panel_v3",
+    "residual": {
+      "cash_from_unpriced": 0.0,
+      "distinct_symbols": 20,
+      "held_from": "2026-07-10",
+      "names": 20,
+      "unpriced_cik10s": []
+    }
+  },
+  "rehearsal": true,
+  "residual_target_weights": {
+    "AGX": 0.05,
+    "AMD": 0.05,
+    "ASYS": 0.05,
+    "COHU": 0.05,
+    "EZPW": 0.05,
+    "GLW": 0.05,
+    "INTC": 0.05,
+    "KLIC": 0.05,
+    "LCUT": 0.05,
+    "LRCX": 0.05,
+    "MOD": 0.05,
+    "MYRG": 0.05,
+    "POWL": 0.05,
+    "SMTC": 0.05,
+    "STRL": 0.05,
+    "TER": 0.05,
+    "VECO": 0.05,
+    "VSAT": 0.05,
+    "VSH": 0.05,
+    "WOLF": 0.05
+  },
+  "snapshot_id": "residual-2026-07-31-b80578811d7a",
+  "source_data_through": "2026-07-31",
+  "source_manifest": "evidence/forward_sec_residual_controlled_sleeve_v1/rehearsal/rehearsal__decision__2026-07-31__sources.json",
+  "source_manifest_sha256": "b80578811d7ada6e2c7521849e216329f9f20e580f76f85c6116e0d8f54e122c"
+}

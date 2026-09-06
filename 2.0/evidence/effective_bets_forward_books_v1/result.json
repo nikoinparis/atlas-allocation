@@ -1,0 +1,92 @@
+{
+  "books": [
+    {
+      "annualised_volatility": 0.1332,
+      "book": "covariance_minimum_variance_v1",
+      "effective_bets_minimum_torsion": 22.081,
+      "effective_bets_pca_all_components": 1.416,
+      "effective_bets_signal_only": 1.092,
+      "eigenvalues_above_mp_edge": 4,
+      "interpretable": true,
+      "names_held": 7,
+      "signal_variance_share": 0.9664
+    },
+    {
+      "annualised_volatility": 0.214,
+      "book": "breadth_confirmed_trend_return_ceiling_v3",
+      "effective_bets_minimum_torsion": 12.183,
+      "effective_bets_pca_all_components": 2.412,
+      "effective_bets_signal_only": 2.19,
+      "eigenvalues_above_mp_edge": 4,
+      "interpretable": true,
+      "names_held": 3,
+      "signal_variance_share": 0.7331
+    },
+    {
+      "annualised_volatility": 0.2871,
+      "book": "past_only_consensus_selector_return_v1",
+      "effective_bets_minimum_torsion": 5.652,
+      "effective_bets_pca_all_components": 4.427,
+      "effective_bets_signal_only": 3.059,
+      "eigenvalues_above_mp_edge": 4,
+      "interpretable": true,
+      "names_held": 1,
+      "signal_variance_share": 0.7219
+    },
+    {
+      "annualised_volatility": 0.2051,
+      "book": "return_first_60_40_blend_v1",
+      "effective_bets_minimum_torsion": 14.746,
+      "effective_bets_pca_all_components": 2.331,
+      "effective_bets_signal_only": 1.66,
+      "eigenvalues_above_mp_edge": 4,
+      "interpretable": true,
+      "names_held": 3,
+      "signal_variance_share": 0.8006
+    },
+    {
+      "annualised_volatility": 0.1083,
+      "book": "equal_weight_35_reference",
+      "effective_bets_minimum_torsion": 26.943,
+      "effective_bets_pca_all_components": 1.146,
+      "effective_bets_signal_only": 1.072,
+      "eigenvalues_above_mp_edge": 4,
+      "interpretable": true,
+      "names_held": 34,
+      "signal_variance_share": 0.9892
+    }
+  ],
+  "experiment": "effective_bets_forward_books_v1",
+  "generated_at_utc": "2026-09-05T04:17:02.996055+00:00",
+  "live_trading_enabled": false,
+  "method_source": "independent reimplementation of github.com/nikoinparis/effective-number-of-bets",
+  "note": "effective-bet counts are only interpretable where signal_variance_share is at or above 0.5; below that the count describes noise directions, which is the study's Finding 5.2",
+  "panel": "data/ggg_vintages/ggg_causal_v2_027530550388432a/data/01_data_hub/weekly_prices.csv",
+  "panel_data_through": "2026-08-07",
+  "universe_breadth": [
+    {
+      "assets": 24,
+      "ci95": [
+        2.617,
+        3.213
+      ],
+      "independence_null": 23.52,
+      "overstatement_vs_counting_assets": 8.24,
+      "participation_ratio": 2.911,
+      "universe": "longest_history",
+      "weeks": 1126
+    },
+    {
+      "assets": 34,
+      "ci95": [
+        3.324,
+        4.796
+      ],
+      "independence_null": 32.26,
+      "overstatement_vs_counting_assets": 8.41,
+      "participation_ratio": 4.041,
+      "universe": "complete_case_2014_on",
+      "weeks": 614
+    }
+  ]
+}

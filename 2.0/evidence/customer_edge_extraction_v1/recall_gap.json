@@ -1,0 +1,16 @@
+{
+  "sampled": 40,
+  "named_edges_missed": 2,
+  "miss_rate": 0.05,
+  "regex_negative_population": 791,
+  "recoverable_filings": 39.550000000000004,
+  "recall_ceiling_rate": 0.06808333333333334,
+  "implied_suppliers_per_year_ceiling": 211.05833333333337,
+  "recall_ceiling_vs_benchmark": 0.5068838700174199,
+  "corpus_forms": {
+    "other/unclear": 1115,
+    "10-Q": 533,
+    "10-K": 152
+  },
+  "finding": "the recall gap is mostly NOT extractable - the disclosures are anonymous. But the corpus is 10-Q skewed, which is a confound."
+}

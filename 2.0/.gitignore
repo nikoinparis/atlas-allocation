@@ -36,6 +36,8 @@ data/sec_historical_identity_cache/
 data/sec_form4_bulk_vintages/
 data/sec_broad_tiingo_cache_v2/
 data/sec_broad_tiingo_runs_v2/
+data/tiingo_delisted_price_probe_cache_v1/
+data/tiingo_delisted_price_probe_runs/
 
 # NOTE: dashboard/public/return-first-dashboard.json is deliberately NOT ignored.
 # It is 184MB and regenerable, but the deployed site fetches it at runtime, so
@@ -56,6 +58,11 @@ data/sec_broad_multi_symbol_data_vintages/
 data/sec_broad_recovered_data_vintages/
 data/sec_earnings_event_vintages/
 data/sec_historical_universe_vintages/
+data/tiingo_symbol_inventory_vintages/
+data/broad_full_history_price_vintages/
+data/yahoo_recent_current_sec_price_vintages/
+data/sec_broad_recent_tail_vintages/
+data/osap_vintages/
 data/vintages/
 
 # Indonesia program data. The program is closed and rejected (see

@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import json
 from bisect import bisect_left
 from datetime import datetime, timezone
@@ -34,14 +35,21 @@ def read_dates(path: Path) -> list[pd.Timestamp]:
 
 def project_path(value: object) -> Path:
     path = Path(str(value))
-    if str(path).startswith("/project/"):
-        return ROOT / path.relative_to("/project")
+    # Vintages written in different containers root at /project or /workspace/2.0.
+    for prefix in ("/project/", "/workspace/2.0/"):
+        if str(path).startswith(prefix):
+            return ROOT / path.relative_to(prefix)
     return path
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--recent-start", default="2023-01-01")
+    parser.add_argument("--output-root", default=str(OUTPUT))
+    args = parser.parse_args()
+    output = Path(args.output_root).resolve()
     membership = pd.read_csv(MEMBERSHIP, dtype={"cik10": str}, parse_dates=["decision_at"])
-    membership = membership[membership["decision_at"] >= pd.Timestamp("2023-01-01", tz="UTC")].copy()
+    membership = membership[membership["decision_at"] >= pd.Timestamp(args.recent_start, tz="UTC")].copy()
 
     source_by_cik: dict[str, dict] = {}
     for vintage, results in current_yahoo_results():
@@ -125,12 +133,12 @@ def main() -> int:
         .rename(columns={"cik10": "covered_members"})
     )
 
-    OUTPUT.mkdir(parents=True, exist_ok=True)
-    classified.to_csv(OUTPUT / "classified_membership.csv", index=False)
-    coverage.to_csv(OUTPUT / "coverage_by_decision.csv", index=False)
-    source_coverage.to_csv(OUTPUT / "coverage_by_source.csv", index=False)
+    output.mkdir(parents=True, exist_ok=True)
+    classified.to_csv(output / "classified_membership.csv", index=False)
+    coverage.to_csv(output / "coverage_by_decision.csv", index=False)
+    source_coverage.to_csv(output / "coverage_by_source.csv", index=False)
     missing = tradable[~tradable["execution_price_available"]]
-    missing.to_csv(OUTPUT / "missing_membership.csv", index=False)
+    missing.to_csv(output / "missing_membership.csv", index=False)
     minimum_coverage = float(coverage["execution_price_coverage"].min())
     result = {
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
@@ -149,8 +157,8 @@ def main() -> int:
         "strategy_testing_authorized": False,
         "authorization_gate": "complete remaining recent-priority Tiingo batches, then require >=95% coverage at every recent decision plus missing-company adverse sensitivity",
     }
-    (OUTPUT / "result.json").write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
-    (OUTPUT / "report.md").write_text(
+    (output / "result.json").write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
+    (output / "report.md").write_text(
         f"# Combined recent price-panel audit v1\n\nThe current panel combines **{result['current_yahoo_ciks']}** current-company Yahoo histories, **{result['recovered_yahoo_ciks']}** issuer-period-valid recovered Yahoo histories, and **{result['validated_tiingo_ciks']}** identity-validated Tiingo histories. SEC-confirmed acquisitions remove **{result['sec_confirmed_acquisition_terminations']}** companies after their final trading dates.\n\nDecision-date coverage is currently {result['minimum_decision_coverage']:.1%} at its minimum, {result['median_decision_coverage']:.1%} at the median, and {result['latest_decision_coverage']:.1%} at the latest decision. Missing companies remain explicit. Strategy testing is blocked until all recent-priority Tiingo batches finish and every recent decision reaches the declared 95% gate with an adverse missing-company sensitivity.\n"
     )
     print(json.dumps(result, indent=2, sort_keys=True))

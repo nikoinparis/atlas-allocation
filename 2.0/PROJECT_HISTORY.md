@@ -8665,3 +8665,2041 @@ References:
 - `config/multi_asset_breakout_v1.json`
 - `scripts/run_multi_asset_breakout_v1.py`
 - `evidence/multi_asset_breakout_v1/`
+
+## Step 200 — Reweight success toward recent returns, and close the breakout thread three ways
+
+The owner directs that recent performance be the priority, on the reasoning that what
+worked a decade ago may not work now. That reasoning is accepted: regime persistence is
+real and a strategy that only worked in 2003 is not useful in 2026.
+`config/success_criteria_v2.json` makes recency the primary ranking axis, weighting the
+trailing fifty-two weeks at 45%, two years at 30%, three years at 15% and full history at
+10%. Recent-window tiers are set higher than v1's full-history tiers because recent
+windows are easier: minimum viable becomes 15% CAGR at a Sharpe of 0.90, calibrated
+against the equal-weight universe's 30.19% over the same trailing year.
+
+One caveat is recorded once and not re-litigated. This project's entire failure record is
+candidates that looked excellent on recent data and died, and Steps 189 and 196 showed the
+recent window rewarding a volatility exposure unlikely to persist. The resolution is that
+recency governs ranking only. Six floors stay hard and unweighted: fifty-two forward weeks,
+survival through a drawdown regime or explicit labelling as untested, leave-one-out
+robustness, beating the passive alternative, multiple-testing correction, and costs matched
+to the instrument. That lets the owner chase current-regime performance without the
+selection process becoming a bull-market artifact detector.
+
+The breakout family was then attacked from three directions before being closed.
+
+First, two corrections to Step 199. Mean exposure is roughly 30%, not the 84% to 88%
+reported, which counted days holding any position rather than average allocation. And the
+gross return is stable at 4.84% to 5.49% across all three Donchian parameterisations, which
+is genuine parameter robustness rather than noise.
+
+Second, the cost assumption was wrong. Fifty basis points was inherited from single-stock
+SEC strategies; these are among the most liquid ETFs in existence, where real spreads run
+one to five basis points. Re-costed at 5 bps the variants return 3.92%, 4.97% and 4.85%
+instead of -3.99%, 0.43% and 2.76%. The mis-specification was material and is a
+transferable lesson: cost assumptions must match the instrument, and this one had silently
+turned a mediocre strategy into a catastrophic one. It does not rescue the family. Even at
+5 bps the best variant returns 4.97% at a Sharpe of 0.47 with a -56.1% drawdown, against
+SPY's 10.90%, 0.65 and -55.2%. Long-only ETF breakout loses to buying and holding on every
+axis, generously costed.
+
+Third, the salvage attempt failed. Cross-sectional breakout breadth was tested as a
+risk-off overlay rather than a strategy, scaling exposure to half whenever fewer than 40%
+of the universe was breaking out, lagged one week. Applied to the equal-weight universe
+and all six saved strategies it cut drawdowns substantially, from -20.3% to -13.3% on the
+universe and from -43.5% to -29.6% on the ETF incumbent. But Sharpe did not improve in a
+single case. Testing it against the obvious null settles it: holding a constant exposure at
+the same average beats the timed overlay everywhere, with a mean timing gain of -0.090
+Sharpe. The overlay de-risks at the wrong moments. It is worse than simply holding less all
+the time, which is the cheapest possible alternative.
+
+The breakout family is closed. It fails standalone at realistic costs, it fails as an
+overlay, and its risk reduction is obtainable more cheaply by holding a constant lower
+exposure. What survives is the cost-specification lesson, which applies to every future
+experiment.
+
+No strategy was promoted and live trading remains disabled.
+
+References:
+
+- `config/success_criteria_v2.json`
+- `scripts/run_breakout_regime_overlay_v1.py`
+- `evidence/breakout_regime_overlay_v1/`
+
+## Step 201 — Meta-labeling fails its precondition, and breadth timing fails in both directions
+
+Before building a meta-model (López de Prado, AFML ch. 3) the cheaper question was
+asked: is there conditional structure in the saved strategies' returns for a meta-model
+to find? Eleven state features, all computed from data up to t-1 and matched to the
+return realised at t, were tested against seven return series — the six saved strategies
+on pure cash plus the equal-weight universe. Seventy-seven Spearman rank ICs, each with a
+moving-block bootstrap p-value.
+
+Forty-two of seventy-seven features exceed |IC| 0.10 and eighteen are significant
+uncorrected, which is well above the ~4 expected by chance. None survive correction.
+Bonferroni against the cumulative trial count gives zero. Because Bonferroni assumes
+independence and these tests are plainly dependent — the features are mutually correlated
+and the seven series share holdings at an effective breadth near 1.15 — Benjamini-Hochberg
+FDR was also run, as the pre-authorized less-conservative alternative named in CLAUDE.md
+rather than as a relaxation chosen after seeing an unwelcome answer. FDR at q=0.05 also
+gives zero of seventy-seven. The precondition fails under both corrections. The
+meta-model is not built.
+
+The IC signs are nonetheless perfectly consistent across all seven series. Trailing
+volatility, dispersion and the volatility ratio carry positive IC in seven of seven;
+drawdown, breadth, and trailing thirteen-week return carry negative IC in seven of seven.
+Every one of those says the same thing: forward returns are higher after stress. That is
+consistent with short-horizon reversal, and it explains why Step 200's risk-off overlay
+had negative timing skill rather than merely zero — de-risking on weak breadth trades
+against the direction the data points. The sign consistency is descriptive only. Seven
+correlated series are not seven independent confirmations.
+
+The implied inversion was then tested symmetrically, both directions scored against the
+same null so the result could not be an artifact of choosing a direction after seeing the
+loser. Risk-off on weak breadth loses to constant exposure at matched average, mean
+-0.066 Sharpe. Risk-off on strong breadth beats it, mean +0.134, positive in six of seven
+series, and unusually it costs no return, averaging +1.1% CAGR and 1.0% shallower
+drawdowns.
+
+That looked like something, so it was tested against the schedule null: a moving-block
+shuffle of the risk-off schedule itself, preserving the number of risk-off weeks and their
+clustering but destroying any relation to breadth. Only three of seven series beat a random
+schedule at an uncorrected 5%, and none survive correction across the seven. The breadth
+signal is not distinguishable from de-risking on arbitrary dates. Both directions of the
+overlay are closed.
+
+Two threads end here. Meta-labeling on price-derived state has no material to work with,
+and breadth timing adds nothing in either direction. What survives is a negative worth
+keeping: the failure is not model capacity, since seventy-seven features found nothing
+that correction respects, so a larger model on the same inputs would find the same nothing
+with more parameters to overfit. The constraint is the information, not the estimator.
+
+No strategy was promoted and live trading remains disabled.
+
+References:
+
+- `scripts/run_metalabel_precondition_v1.py`
+- `scripts/run_metalabel_signstructure_v1.py`
+- `scripts/run_inverted_overlay_null_v1.py`
+- `evidence/metalabel_precondition_v1/`, `evidence/inverted_overlay_null_v1/`
+
+## Step 202 — Scope a supply-chain graph, and find the filing corpus was already here
+
+The owner asked for a proper scope of the customer-supplier graph proposed in Step 201.
+Scoping meant measuring rather than estimating, and the first measurement corrected a
+claim made an hour earlier in this same session. I had told the owner the project held
+only XBRL structured facts and no filing body text. That was wrong.
+`data/sec_broad_identity_cache_v2/` and `data/sec_historical_identity_cache/` together
+hold 1,800 gzipped primary filing documents, 439MB of full body text dated 2014 to 2026.
+
+It is not a filing history. It holds exactly one filing per company across 1,093 of the
+3,253-name universe, because it was built for identity resolution. That is enough to
+measure extraction yield and not enough to backtest, so it was used for the former.
+
+Of 1,093 filings, 56.2% discuss customer concentration at all. A naive entity regex
+appeared to name a customer in 16.7%, but that figure is inflated and the reason is
+instructive: of 1,140 raw matches, 781 were the junk entity "Company" and much of the
+remainder was boilerplate, FDIC deposit insurance and SIPC language rather than commercial
+relationships. Naive extraction runs at roughly 69% false positives. After filtering to
+entities that are genuinely named and carry a revenue share, the yield is 139 filings of
+1,800, or 7.7%, producing 349 clean weighted edges across 193 distinct named customers at
+a median disclosed revenue share of 20%. A further 14.3% of filings disclose concentration
+but name no counterparty, which is unusable as a graph edge.
+
+The named hubs are exactly the ones the mechanism predicts: Apple, Cisco, McKesson,
+Samsung, IBM, Hewlett Packard Enterprise, AmerisourceBergen, Southern Company, Boeing.
+
+The decisive measurement is hub concentration, because it determines whether this adds
+breadth or reproduces the project's chronic single-name failure. Supplier positions that
+share one customer are one bet rather than many. The top ten customers carry only 19% of
+edges and the Herfindahl over customers is 0.0090, giving roughly 111 effective distinct
+customers from 193 named. The graph does not collapse into hubs.
+
+Acquisition cost was measured from EDGAR's 2024 QTR1 full index: 4,980 10-K filings across
+all filers, of which 2,535 fall in our universe, so 78% of the universe files a 10-K in the
+first quarter alone. A twenty-year history is roughly 62,000 filings, 74GB raw and 16GB
+gzipped, and 1.7 hours of requests at EDGAR's ten per second. Rate limiting is not the
+constraint and storage need not be one, since extracting candidate windows during download
+and discarding raw HTML reduces the retained artefact to a few hundred megabytes.
+
+Projected forward, the measured rates imply roughly 240 filers per year carrying a named
+customer and, on an unverified assumption that about half of named customers are US-listed
+and in the price panel, 120 to 140 tradeable supplier names per year. That assumption is
+the largest single uncertainty in the scope and is labelled as such. Against a current
+effective breadth of 1.15, even the low end would be a change of kind.
+
+The scope is written to `docs/SUPPLY_CHAIN_GRAPH_SCOPE_V1.md` with five pre-registered
+ways it most likely dies, recorded before any build so the outcome cannot be rationalised
+afterwards: an eighteen-year-published effect that has probably decayed, extraction
+precision, name-to-ticker resolution, point-in-time vintaging by filing date rather than
+fiscal period, and the fact that recency-weighted criteria will fail a graph strategy that
+only worked before 2015. Each of five phases carries an explicit kill gate.
+
+Estimated at two working weeks dominated by extractor precision and name resolution. It
+cannot be ready for the September 4 first realization and is explicitly not to be rushed
+toward it. The forward clock and its seven pinned files are untouched.
+
+Nothing was built. Approval is sought for phases 0 and 1 only, since the hand-labelled
+precision measurement decides whether the remaining work is worth spending.
+
+References:
+
+- `docs/SUPPLY_CHAIN_GRAPH_SCOPE_V1.md`
+
+## Step 203 — Phase 0 verifies the paper; Phase 1 misses its precision gate at 80%
+
+Phase 0 read the specification rather than recalling it. Cohen & Frazzini, "Economic Links
+and Predictable Returns", Journal of Finance 63(4), pages 1983 to 1988, was fetched and
+read directly. Links come from Compustat segment files under SFAS 131, which requires
+naming any customer above 10% of total sales, over 1980 to 2004, giving 30,622 firm-year
+relationships and 11,484 unique links. Link data is lagged six months. The signal is the
+month t-1 return of an equal-weighted portfolio of a firm's customers; suppliers are ranked
+on it into quintiles, rebalanced monthly, with a five dollar minimum price. The headline is
+a Fama-French three-factor alpha of 1.45% per month with a t-statistic of 3.61, about 18.4%
+a year, falling to 1.24% and t of 2.99 after the Pastor-Stambaugh liquidity factor.
+
+Two corrections to the scope followed. The threshold is 10%, not the 5% used in the scope
+probe. And the scope's projected yield was too pessimistic: 56.2% of filings discuss
+concentration and only 14.3% are anonymous, so the ceiling is near 42% rather than 7.7%.
+
+A third finding is a risk the paper states about itself and which lands directly on this
+project. Their customers sit above the 90th size percentile, so customer returns are
+strongly correlated with the customer's industry return, and Section V exists to hedge
+inter- and intra-industry exposure. This project has already tested and rejected sector
+rotation over 33 years. Customer momentum may therefore be substantially industry momentum
+in a graph costume, so any Phase 4 test must report the industry-hedged number as the real
+one, pre-registered rather than discovered afterwards.
+
+Phase 1 built the extractor and hand-labelled sixty edges per version against full sentence
+context, each version scored on a different random seed so that no version was graded on
+the sample its filters were designed against.
+
+Version one scored 73.3%. Its sixteen errors fell into seven mechanical classes: the
+filer's own product or segment names, entity and percentage misattributed across sentences,
+percentages that were tax or growth rates rather than revenue shares, page furniture such
+as "42 Table of Contents Group companies", entities named but not verifiably tied, an
+anonymous defined term, and one reversed direction where a supplier to the filer was read
+as a customer. The reversal is the dangerous class because it silently inverts an edge.
+
+Version two moved to sentence-bounded extraction with direction and percentage-type
+filters. It scored 73.3% again. Every targeted class was eliminated with no recurrence,
+but the rate did not move because one class expanded to fill the gap: eleven of sixteen
+remaining errors were the filer's own segment names. "Consumer Electronics sales
+represented 70.3% of our net sales" is grammatically identical to a customer sentence.
+
+Version three required corporate form, since segment labels never carry one while real
+customers do, and rejected entities followed by a segment word. It scored 80.0%. That is
+below the 85% gate and the gate is not met.
+
+The remaining twelve errors are no longer syntactic. Four are segment names that acquired
+a customer lead-in, three are misattribution inside a sentence, three are name fragments
+that would resolve to the wrong company, "Nokia" for Nokia Siemens Networks and
+"Distribution Company" for D&H Distribution Company, and two are relationships of the wrong
+type, a lender and a contract manufacturer serving the filer's customers. Distinguishing
+those requires reading comprehension, not pattern matching, so regex plateaus here.
+
+The more serious number is recall. Version three yields an edge from 4.6% of filings,
+implying about 143 suppliers a year for this universe. The paper's Table I puts supplier
+coverage at 12.8% of the stock universe, which for our 3,253 names is about 416. Recall is
+therefore roughly 34% of the Compustat-curated benchmark, and about 114 suppliers a year
+survive at 80% precision. Precision is the fixable half; recall is the constraint, and
+recall is what determines breadth.
+
+The labeller also wrote the extractor, which is a bias risk and is recorded as one. The
+labels were made against full sentence context and the samples are stored so they can be
+re-scored independently.
+
+No approval is sought to continue to Phase 2. The gate was set before the work and it was
+missed. Whether an extraction pass by a language model is worth its cost is a separate
+decision for the owner, and the case for it is that every remaining error class is a
+reading-comprehension task rather than a pattern-matching one.
+
+References:
+
+- `scripts/extract_customer_edges_v1.py`, `_v2.py`, `_v3.py`
+- `evidence/customer_edge_extraction_v1/phase1_result.json`
+
+## Step 204 — The recall problem was a corpus artifact; correcting Step 203
+
+Step 203 reported recall at roughly 34% of the Compustat-curated benchmark and called it
+the binding constraint. That number was measured on the wrong corpus and the conclusion
+drawn from it was wrong.
+
+No API key or SDK is available here, so a batch extraction script could not be run. The
+extraction was instead performed directly by reading, which is a fair test of what a
+language model recovers, and it was aimed at the one measurement that is not circular: the
+recall gap. Forty filings were sampled from the 791 that contain concentration language
+and a percentage but from which the regex extracted nothing, and their windows were read.
+
+Two of forty held a genuine named customer edge at or above ten percent, Walmart at 11%
+and Dow above 10%. The other thirty-eight were not extractable by any method because there
+is nothing to extract. They were anonymous by construction, "one customer accounted for
+10%", anonymised tables labelled Customer A and Customer B, geographic or cohort metrics
+that merely contain the word customer, or receivable concentrations rather than revenue.
+
+That inverts the Step 203 reading. The recall gap is overwhelmingly not a extraction
+failure. Perfect extraction would lift yield from 83 filings to about 123 of 1,800, from
+4.6% to 6.8%, which is a real gain of about half but nothing like the tenfold the earlier
+framing implied.
+
+Then the confound surfaced. The corpus is 150 10-K filings, 507 10-Q, and 989 unclear, so
+only about eight percent are annual reports. Customer identities are disclosed in 10-K
+Item 1 and the segment footnote; quarterly reports carry abbreviated concentration language
+and frequently drop the names. Measuring naming rates on a 10-Q-skewed corpus understates
+them structurally.
+
+Yield by form settles it. The extractor returns an edge from 12.7% of 10-K filings against
+5.7% of 10-Q and 3.5% of the unclear remainder, so 10-Ks yield 2.2 times the 10-Q rate and
+carry 0.38 edges per filing against 0.13. Applied to the roughly 3,100 10-K filings this
+universe produces each year, the 10-K rate projects to about 393 suppliers a year against
+the benchmark of about 416 implied by Cohen & Frazzini's Table I coverage of 12.8% of the
+stock universe. That is roughly 94% recall, not 34%, and about 314 usable suppliers a year
+after applying the measured 80% precision.
+
+The corrected Phase 1 verdict is therefore the reverse of Step 203's. Recall is not the
+constraint once the right documents are read; it was an artifact of an identity-resolution
+cache that was never assembled for this purpose. Precision at 80% remains below the 85%
+gate, and the gate remains missed, but the blocker is now a single well-characterised
+problem rather than a structural shortage of data. Every remaining error class is a
+reading-comprehension judgment: segment names carrying a customer lead-in, misattribution
+inside a sentence, fragments that would resolve to the wrong company, and relationships of
+the wrong type such as a lender or a contract manufacturer.
+
+Two limits are recorded rather than glossed. The 94% projection assumes the 10-K rate holds
+across a full 10-K corpus, which has not been tested because no such corpus exists here
+yet. And the reader who judged the forty filings also wrote the extractor, so that estimate
+carries the same bias risk recorded in Step 203; the sample is stored for independent
+re-scoring.
+
+References:
+
+- `evidence/customer_edge_extraction_v1/recall_gap.json`
+- `evidence/customer_edge_extraction_v1/yield_by_form.json`
+
+## Step 205 — Shared analyst coverage: strongest effect in the literature, but the data gate fails
+
+Phase 0 was run on Ali & Hirshleifer, "Shared Analyst Coverage: Unifying Momentum
+Spillover", NBER working paper 25201, pages 4 to 11 read directly rather than recalled.
+
+The construction is simple. Two stocks are connected at the end of each month if at least
+one analyst covers both, where covered means the analyst issued at least one FY1 or FY2
+earnings forecast in the trailing twelve months. Each stock is linked to the portfolio of
+its connected stocks, and stocks are sorted into quintiles on that connected-stock
+portfolio's past one-month return. The sample is CRSP common stocks from 1983:12 to
+2015:12, excluding prices below five dollars.
+
+The reported results are stronger than anything else in this family. A value-weighted
+long-short portfolio earns a five-factor alpha of 1.19% per month with a t-statistic of
+6.71; equal-weighted it earns 2.10% per month at t of 11.88. On average each stock connects
+to 86 others, only 39% of which share a Fama-French industry and only 5% a county, so the
+linkage is not a repackaged industry bet. Coverage reaches 98% of market capitalisation.
+
+The finding that matters most here is the spanning result. The authors test seven
+cross-asset momentum anomalies including industry, geographic, customer, customer-industry,
+supplier-industry, single-to-multi-segment and technology momentum. All seven become
+insignificant or negative once connected-stock momentum is added, while connected-stock
+momentum survives all of them. Their conclusion is that there is really one momentum
+spillover effect and shared analyst coverage is the best proxy for it.
+
+That lands directly on Step 202 through 204. The customer-supplier graph scoped and
+partially built over the past day is testing an effect this paper reports as spanned. Worse
+for the owner's recency-weighted criteria, the paper's split-sample robustness test finds
+that in the more recent half only two of the previously studied cross-asset momentum
+strategies retain significance and those are economically small, while connected-stock
+momentum still earns 1.13% per month at t of 4.48. A customer-momentum strategy would
+therefore be expected to fail `success_criteria_v2`, which weights the trailing year at 45%.
+
+The data gate then fails. Links require the IBES detail file, which identifies individual
+analysts and the stocks each covers. That is Refinitiv proprietary data and searching
+confirmed no free source exposes analyst identities; free feeds publish consensus counts
+and aggregate ratings, which cannot produce a co-coverage graph. Commercial analyst-ratings
+feeds do exist at non-institutional prices with fifteen or more years of history, but they
+carry ratings and price targets rather than the FY1 and FY2 earnings forecasts the paper
+defines coverage by, so they would be a related but different linkage.
+
+One free proxy was checked properly rather than assumed. SEC EDGAR log file data sets, the
+basis for the co-search peer measure of Lee, Ma and Wang (2016), are genuinely still
+published, covering 2003-01-01 to 2017-06-30 and 2020-05-19 to 2025-06-30, with the period
+between no longer available. A single day, log20160104.zip, is 163MB compressed, which
+puts roughly 41GB on a trading year and about 800GB on the usable span before
+decompression. It could be streamed and aggregated without retaining the raw files, but it
+is a multi-week job, it ends fifteen months before the current date, and the paper's own
+literature review reports that search-based peers underperform analyst co-coverage.
+
+Nothing was built and no approval is sought. The idea is the strongest in this literature
+and it is blocked on data rather than on merit, which makes it a purchasing decision rather
+than a research one.
+
+References:
+
+- Ali & Hirshleifer, NBER w25201, read 2026-09-02
+- `https://www.sec.gov/data-research/sec-markets-data/edgar-log-file-data-sets`
+
+## Step 206 — The first forward week that mattered, and four clocks that recorded nothing
+
+The 2026-09-04 close was the first date on which more than one forward track was
+supposed to advance. Every gate in this project opens at 21:00 UTC on the decision
+Friday, an hour after the US close, so the cycle was queued and run at 21:05 UTC rather
+than during the session. Attempts before the gate were correctly refused: the guarded
+weekly cycle reported `a complete cycle already exists for 2026-08-28`, and the forward
+scorer reported `no_eligible_week_yet`.
+
+The frozen ETF minimum-variance portfolio advanced to three untouched weeks of
+fifty-two. Its third realised week returned +0.199%, against SPY +0.109%, and the
+three-week cumulative is -0.217% against SPY -0.792% and QQQ -1.657%. Realised annual
+volatility is 2.21%. The revision comparison found zero economically material changes
+across 210,163 common price rows, so the vintage is clean. Three observations support no
+claim about anything and the status file says so.
+
+The six dashboard books, held unchanged since 2026-08-07 and marked to market, now have
+four closed weeks. Cumulative: ETF Incumbent +5.81%, cash-conversion +4.49%, fragile
+1.35x +3.38%, residual 1.25x +3.27%, sector ensemble +2.58%, growth +0.93%, against SPY
+-0.40% and an equal-weight issuer universe of -0.59%.
+
+Two measurements out of that mark are worth more than the returns.
+
+The first is that energy is the entire result. Summed weight-times-return contributions
+put the energy leg at +5.90% of the ETF Incumbent's +5.76% and at +1.50% of the growth
+book's +1.49%, so both have negative ex-energy contributions; the growth book's whole
+four-week gain is BKV, one of five equally weighted names. Across all six books energy
+supplies more than half the gain. Four of the six do have non-energy sleeves that beat
+the equal-weight universe, by between 1.0 and 2.7 percentage points, which is the first
+mildly encouraging forward number this project has produced and is also four weeks long.
+The energy classification was fixed on 2026-09-02 after seeing three weeks and is now
+held constant, which makes it a hypothesis about later weeks rather than a finding about
+the ones that produced it.
+
+The second is that Batch 03's breadth ceiling reproduced forward. Pairwise correlations
+of the four weekly held-book returns run 0.822 to 1.000 with a mean of 0.931, and the
+eigenvalue entropy of that matrix gives 1.28 effective independent strategies out of six.
+Batch 03 measured 1.15 in backtest. The registry's six entries are about four distinct
+books: the sector ensemble and the fragile 1.35x have 100% book overlap and correlation
+1.000, because the second is the first at leverage, and cash-conversion overlaps the
+residual sleeve by 80.9%. Equal-weighting all six yields a 48-name portfolio that is
+29.7% XLK plus XLE with 15.1 effective names.
+
+Then the failure. Five forward protocols exist in `config/forward/` with decision dates
+and clocks. Four of them have recorded nothing.
+
+`breadth_confirmed_trend_return_ceiling_v3`, `past_only_consensus_selector_return_v1`
+and `return_first_60_40_blend_v1` all name 2026-08-14 as their first eligible decision
+date. Three decision windows have opened and closed since. No recorder script exists for
+any of the three; `record_forward_portfolio_evidence.py` is hardwired to
+`covariance_minimum_variance_v1`, and the three evidence directories contain a status
+stub and nothing else. They were never able to record.
+
+`sec_residual_controlled_sleeve_forward_v1` was frozen on 2026-08-24 with a first
+eligible decision date of 2026-08-28, four days later. Its decision window ran to 21:00
+UTC on 2026-09-04 and closed tonight with zero saved decisions. A packet could not be
+produced in the hours available and should not have been rushed: the control leg needs
+point-in-time weights from `sec_broad_research_panel_v2`, whose last decision date is
+2026-04-01 with fundamentals available as of 2026-03-31. The 2026-07-01 vintage was never
+built. The raw companyfacts are cached locally from 2026-08-21, so the vintage is a build
+rather than an acquisition, but it is a build plus two strategy re-runs plus a hashed
+packet, and forcing that into an immutable hash-chained log against a deadline is how the
+two lookahead bugs already in this record were made. The window is recorded as missed.
+The cost is one week of fifty-two; the cost of not fixing the cause is every week after.
+
+`score_forward_week_v1.py` also cannot score. It reads
+`data/clean_weekly_prices_v1/`, which is frozen at 2026-08-21 and by design never
+extends, so `no_eligible_week_yet` is what it returns on the first eligible week and on
+every week after it. It also resolves realised returns from the dashboard payload's
+`records`, which stop at 2026-08-07 because that is where the backtests stop. Both ends
+of that script point at things that will never contain a forward week.
+
+Two repairs were made and neither touches a frozen threshold.
+`mark_last_books_to_market_v1.py` had its download end date and week cutoff hardcoded at
+2026-09-01 and 2026-08-28, so it could only ever reproduce the three weeks it already
+had; both now derive from the same `last_closed_friday` helper the other weekly scripts
+use. `build_held_book_attribution_v1.py` was added because the benchmark and energy
+attribution files feeding the forward tracker had been written by hand for three weeks
+and would otherwise have gone stale against a four-week mark.
+
+References:
+
+- `evidence/weekly_forward_cycles/2026-09-04-20260904T210521Z-5e7a46a61108ec76/result.json`
+- `evidence/forward_covariance_minimum_variance_v1/status.json`
+- `evidence/dashboard_held_book_marks_v1/{summary,benchmarks,energy_attribution}.json`
+- `data/clean_weekly_prices_v2/manifest.json`
+- `evidence/forward_sec_residual_controlled_sleeve_v1/status.json`
+
+## Step 207 — Three dead clocks started, and what they turn out to be betting on
+
+`record_frozen_book_forward_evidence_v1.py` was written for the three protocols Step 206
+found with no recorder. All three now hold four saved decisions and three realised weeks,
+the same clock position as the minimum-variance portfolio, with hash-chained decision and
+observation logs verified on read.
+
+What they can record had to be settled first. All three pin the source bundle
+`ggg_causal_v2_027530550388432a`, whose weekly prices end 2026-08-07. Their rules — breadth
+confirmation over 13 weeks, an annual re-selection over a 90-candidate grid, a fixed 60/40
+blend of two weight histories — all need prices past that date to decide anything new, and
+extending the bundle changes its hash and voids the pin. No fresh strategy decision is
+available under any of them. The only decision each frozen protocol still defines is to
+hold the book it last decided, so that is what is recorded, and every decision record
+carries `decision_basis: held_frozen_book` plus the limitation in full. A held book tests
+the names, not the rule, and decays as a test of the rule.
+
+Two of the three named a weights hash but no path. Both artifacts were recovered by
+hashing every CSV under `evidence/`: the breadth-confirmed book resolved to
+`breadth_ceiling_adversarial_validation_batch_65/current_holdings.csv` and the past-only
+selector to `exhaustive_return_first_discovery_batch_66/retrospective_ceiling_adversarial/
+past_only_selector_weights.csv`. Both hashes are re-verified on every run.
+
+Decisions were written only for weeks in which a snapshot was observed inside that week's
+Friday window, which is the test the minimum-variance recorder already applies; the
+snapshot is the immutable object, not the moment of writing. Five of the seven records per
+protocol were written after their window and carry `recorded_late` so the gap is auditable.
+No week was filled from a later vintage.
+
+Over the three realised weeks 2026-08-21, 08-28 and 09-04: past-only consensus +3.47%,
+breadth-confirmed +3.00%, 60/40 blend +1.35%, minimum variance -0.22%, SPY -0.79%. An
+independent check falls out of this: the 60/40 clock is the same book as the ETF Incumbent
+held-book mark, computed from the snapshot store rather than from Yahoo, and the two agree
+to four decimal places over the weeks they share.
+
+Then the books themselves. The past-only consensus selector holds XLE at 100%. The
+breadth-confirmed ceiling holds XLK 41.9%, XLE 40.2%, USO 18.0%. The 60/40 blend holds XLK
+49.5%, XLE 47.2%, USO 3.2%. These are not three candidates. They are three weightings of
+one energy-and-technology bet, and the ordering of their three-week returns is the ordering
+of their energy weight.
+
+`measure_effective_bets_v1.py` was then written to put a number on that, reimplementing the
+owner's own study at github.com/nikoinparis/effective-number-of-bets from the formulas in
+its README and report rather than from its package, so that agreement is a check rather
+than a restatement. On the 34-asset complete-case panel over 614 weeks the participation
+ratio comes out at 4.04 with a 13-week moving-block bootstrap interval of [3.32, 4.80],
+against the study's reported 4.13 [3.35, 4.99], and four eigenvalues sit above the
+Marchenko-Pastur edge in both. The independence null for that shape is 32.26, so counting
+assets overstates breadth by 8.4 times. The study reproduces.
+
+Applied to the four forward books, effective bets restricted to components above the noise
+edge are 1.09 for minimum variance, 1.66 for the 60/40 blend, 2.19 for breadth-confirmed
+and 3.06 for the single-name past-only selector, against 1.07 for an equal-weight holding
+of all 34. Signal variance shares run 0.72 to 0.99, so all five counts are interpretable.
+
+Two cautions came out of doing it. The study's Finding 5.1 reproduces exactly: minimum
+torsion reports 5.65 to 26.94 bets on these same books, which is nonsense for portfolios
+holding between one and seven instruments, and confirms that PCA is the right basis on a
+concentrated universe. And Finding 5.2 does not transfer. The study found a shrinkage
+minimum-variance optimiser reporting 11.93 bets with 95.6% of variance below the noise
+edge; this project's minimum-variance allocator optimises over two sleeves on 104 weeks,
+not over 35 assets, and its book measures 1.09 bets at a 0.97 signal share. It is not
+exposed to that failure mode. It is simply one bet.
+
+The measure answers how many independent risk sources a book's variance sits on. It is not
+the breadth term in Grinold and Kahn, which counts independent forecasts per year. Both
+land near one here, by different routes, which is the useful part.
+
+References:
+
+- `scripts/record_frozen_book_forward_evidence_v1.py`
+- `evidence/forward_{breadth_confirmed_trend_return_ceiling_v3,past_only_consensus_selector_return_v1,return_first_60_40_blend_v1}/status.json`
+- `scripts/measure_effective_bets_v1.py`, `evidence/effective_bets_forward_books_v1/result.json`
+- github.com/nikoinparis/effective-number-of-bets, README and reports/report.md, read 2026-09-04
+
+## Step 208 — The 2026-07-01 vintage is blocked on one 57 MB file, and the obvious build command was a trap
+
+Work toward the 2026-07-01 panel vintage that would let the residual sleeve take its first
+forward decision found a hazard before it found the blocker.
+
+`materialize_sec_broad_research_panel_v2.py` writes to
+`data/sec_broad_research_panel_v2`, and that directory's `manifest.json` is one of the
+seven files pinned by `config/forward/sec_residual_controlled_sleeve_forward_v1.json`.
+Running the materializer to produce a newer panel — the obvious thing to do, and the thing
+this step set out to do — would have rewritten the manifest, changed its hash, and made
+`verify_pinned_files` reject every subsequent call to the residual sleeve recorder. Building
+the panel that lets the clock start would have permanently prevented the clock from
+starting. The same applies one level up: `data/sec_broad_panel_inputs_v2` is not itself
+pinned but is the provenance of the pinned panel, and rebuilding it in place leaves the pin
+intact while making it unverifiable.
+
+Both scripts now take `--output-root` and refuse the default path when it already holds the
+pinned artifact, with the reason in the error. The inputs builder additionally takes
+`--membership` and `--weekly-end`; its weekly price index end date had been hardcoded at
+2026-08-21. Defaults are otherwise unchanged, and the residual sleeve's pins verify intact
+after both guarded runs.
+
+The blocker is the universe roster. Decision dates in the panel come from
+`recent_membership_readiness.csv`, which is built from SEC Financial Statement Data Sets
+submissions, and the local cache at `data/sec_fsds_sub_cache` ends at 2026Q1. A 2026-07-01
+decision needs 2026Q2, which SEC has published at 57.62 MB.
+
+Building the roster from 2026Q1 alone was considered and rejected on measurement rather than
+principle. It would not be lookahead — an older filing is a strictly smaller information set
+— but for the 2026-04-01 decision, 95.8% of the 2,743 members qualified on a filing from the
+immediately preceding quarter, at a median filing age of 35 days. Omitting 2026Q2 would
+therefore hand roughly nineteen of every twenty names a fundamental one whole quarter staler
+than at any decision date the strategy was validated on. That is a different information set
+from the one the backtest describes, applied to the first forward decision the clock would
+ever record, and it is not worth a week of calendar.
+
+Two things are needed and neither is a research judgment. `SEC_USER_AGENT` is unset, and
+SEC's fair-access policy requires a real contact in the header, so the acquisition script
+fails closed; supplying the owner's address to an outbound request is the owner's call, not
+this session's. And the fetch is a 57.62 MB download from sec.gov. Both are recorded here as
+asked rather than assumed.
+
+The 2026-09-04 decision window for the residual sleeve closes at 21:00 UTC on 2026-09-11.
+
+References:
+
+- `scripts/materialize_sec_broad_research_panel_v2.py`, `scripts/build_sec_broad_panel_inputs_v2.py`
+- `config/forward/sec_residual_controlled_sleeve_forward_v1.json` pinned file list
+- `https://www.sec.gov/files/dera/data/financial-statement-data-sets/2026q2.zip`
+
+## Step 209 — The 2026-07-01 vintage is built, and two of my own bugs are in it
+
+The owner authorised the SEC fetch with a named contact string. `2026q2.zip` came down at
+60,419,016 bytes, yielding a 2,329,420-byte `sub.txt`, and the broad filer universe rebuilt
+as `20260905T043552Z-sec-historical-filers-broad-v2` over 6,100 CIKs. The 2026-07-01
+decision date now exists with 2,874 members, 2,648 of them qualifying on a 2026Q2 filing.
+
+Four things had to be repaired to get there, three of them pre-existing and one mine.
+
+The filer universe script read each cached quarter from the absolute path recorded in its
+metadata. Those quarters were cached inside a container that rooted the project at
+`/project`, so every quarter before 2026Q2 failed with `FileNotFoundError` on a workstation.
+`read_sub` now resolves against the cache directory it was handed and falls back to the
+recorded path.
+
+The readiness audit then reported 80.7% validated price coverage for the new quarter against
+99.0% for 2026-04-01, which looked like an acquisition backlog and was not. 489 of the 527
+unvalidated issuers already had a price source in the inventory and 488 of them had been
+validated at the previous decision. `existing_execution_price` is read from a per-decision
+file built for the decision dates that existed when it was made, so every row of a newly
+added quarter reads False by construction. The audit now takes `--price-inventory` and
+unions it into the CIK-level price flag, which is the list the panel builder actually draws
+from; the new quarter lands at 98.6%, against 98.5% to 99.0% for the three before it.
+
+The third repair was the one that mattered most and was caught only because the hashes were
+checked rather than trusted. The parameterisation added in Step 208 routed the panel inputs
+builder's reads through `--membership`, but its manifest still wrote `sha256(MEMBERSHIP)`,
+the module-level constant. The first v3 build therefore consumed the v3 roster and recorded
+the v2 roster's hash, `60f41653`, in its provenance line. A panel whose manifest points at
+the wrong roster is worse than no manifest, because it verifies. The line now hashes the
+file actually read, the build was re-run rather than the artifact hand-edited, and the
+manifest carries `06a58b2e`, which matches the roster on disk. The same class of bug was
+then found and fixed before it ran in the materializer, which was still reading `INPUT` and
+`MEMBERSHIP` constants regardless of its new `--output-root`; it now takes `--input-root`
+and `--membership` too.
+
+`data/sec_broad_research_panel_v3` holds 15 decisions over 43,009 rows and 3,436 issuers,
+against v2's 14 and 40,284, with `causal_timestamps` and `explicit_missing_policy` both
+true. Feature coverage at 2026-07-01 tracks the prior quarter closely: residual momentum
+98.2% against 98.9%, trend quality 98.2% against 98.8%, quality momentum 97.7% against
+97.7%, event score 100% against 100%. Its `available_at` is 2026-06-30 23:59:59.999999999
+and its `execution_at` is 2026-07-10.
+
+The new decision carries 2,725 rows and zero labels, which is the point rather than a
+defect. The 13-week forward label would end near 2026-10-01 and that has not happened. The
+features exist and the outcome does not, which is exactly the shape a forward decision has
+and exactly what could not be built while the panel stopped at 2026-04-01.
+
+The residual sleeve's pins verify intact after all of this, the three v2 artifacts are
+byte-identical to what they were, and the four frozen-book clocks re-verify at 3/52 with the
+recorder adding nothing on a second run.
+
+What is now unblocked, and what is not. The data blocker is gone: a control leg computed on
+2026-09-04 would rest on a 2026-07-01 fundamental vintage rather than a five-month-old one.
+The packet generator itself is still unwritten, and the 2026-09-04 decision window closes at
+21:00 UTC on 2026-09-11.
+
+References:
+
+- `data/sec_broad_research_panel_v3/manifest.json`, `data/sec_broad_panel_inputs_v3/manifest.json`
+- `evidence/sec_broad_universe_readiness_v3/`, `data/sec_historical_universe_vintages/20260905T043552Z-sec-historical-filers-broad-v2`
+- `scripts/build_sec_historical_filer_universe_v1.py`, `scripts/audit_sec_broad_universe_readiness_v2.py`
+
+## Step 210 — The universe is filtered by a present-day ticker list, and refreshing it rewrites history
+
+The Tiingo key arrived and the control-roster chain was rebuilt: identity map, Tiingo symbol
+inventory, delisted probe batch, terminal outcomes, SEC terminal membership, recovered price
+probe, and the combined recent price panel. Eight of the nine stages needed to produce a
+2026-09-04 decision packet completed, and the roster now carries fifteen decisions through
+2026-07-01 with the coverage gate passed at a 95.2% minimum and 97.5% median.
+
+The golden-master check on that rebuild failed, and the reason matters more than the packet.
+
+Comparing the rebuilt `classified_membership.csv` against the version it replaced, 41 rows
+were removed from decision blocks that already existed and 14 were added. The removals were
+not random: the same three issuers disappeared from every one of the fourteen prior
+decisions, back to 2023-01-01. All three had previously carried
+`execution_price_available`.
+
+The cause is not a terminal-membership audit. None of the three appears in
+`sec_terminal_membership.csv`. It is the current ticker mapping. Electronic Arts and
+SkyWater Technology are no longer present in SEC's present-day
+`company_tickers_exchange.json`, so both resolved to `former_or_unmapped` with zero
+candidate symbols and `single_symbol_usable_for_price_probe` false. Quantum-Si is still
+listed but now maps to two symbols, `CAPA|QSI`, so it failed the single-symbol test the same
+way. Failing that test drops an issuer from the identity map, which drops it from the
+inventory coverage probe, which drops it from every decision block in the panel.
+
+That is a universe built by filtering a present-day ticker list backward, which is the
+practice `CLAUDE.md` rule 4 names explicitly. A company that was an unambiguous member of
+the January 2023 roster vanishes from January 2023 because of what happened to it in 2026.
+
+Two consequences, and they point in different directions. The bias in the returns is
+conservative rather than flattering: issuers that leave the mapping are overwhelmingly ones
+that were acquired, usually at a premium, so removing them retroactively understates
+historical performance. The reproducibility damage is not conservative at all. The roster is
+a live function of a file that SEC overwrites, so the same code on the same cached archives
+produces a different history on different days, and every backtest resting on this lineage
+is unreproducible by construction. The existing `factor_scores.csv` is not exempt; it was
+built against whatever mapping was current when it ran, and simply froze an earlier stage of
+the same drift.
+
+The immediate decision follows the rule set before the work began. The 2026-09-04 decision
+packet is not submitted. Its control leg would have to be computed on a universe that had
+just silently dropped three issuers from every historical block through a mechanism that is
+a survivorship violation, and putting a known-contaminated input into a hash-chained
+immutable log is worse than starting the clock a week late. The window closes at 21:00 UTC
+on 2026-09-11.
+
+The narrower golden master would probably have passed, which is worth recording so the
+decision is not mistaken for a stricter test than it was. None of the three removed issuers
+appears in the cash-conversion top twenty at 2026-04-01, and removal can only shrink the
+candidate pool, so the reconstructed book would very likely be unchanged. The packet is
+being withheld because its input lineage is contaminated, not because its output moved.
+
+What this does not change: the residual leg is sound and is built. Panel v3 produces a
+2026-07-10 execution block of twenty names at 0.05 each summing to one, every one resolving
+to a ticker, with zero overlap against the control book, so the 0.8/0.2 blend would not
+double-count. That leg came from the broad readiness roster, which is assembled from
+historical filer archives rather than from the present-day mapping.
+
+Three portability defects were also repaired. Cached vintages record the absolute path of
+whichever container wrote them, `/project/...` for some and `/workspace/2.0/...` for others.
+`build_sec_broad_panel_inputs_v2.py` already carried a `project_path` helper covering both;
+`build_sec_historical_filer_universe_v1.py`, `audit_tiingo_terminal_outcomes_v1.py` and
+`audit_combined_recent_price_panel_v1.py` each handled at most one prefix and failed closed
+on the other.
+
+References:
+
+- `evidence/combined_recent_price_panel_v1/classified_membership.csv` (15 decisions)
+- `evidence/sec_historical_identity_v1/combined_identity_map.csv`
+- `data/sec_fsds_sub_cache/company_tickers_exchange.json`
+- `data/sec_historical_universe_vintages/20260905T052027Z-sec-historical-filers-v1`
+
+## Step 211 — Identity resolution made monotone, and the universe stops moving
+
+Step 210's survivorship finding is fixed, and one part of its framing needs correcting
+first. The drift did not begin with that rebuild. Electronic Arts resolves to `EA` in the
+2026-08-13 universe vintage and to nothing in the 2026-08-21 one, so the mapping had already
+moved a fortnight earlier; the rebuild only made it visible by comparing against a
+`classified_membership.csv` that still descended from the August 13 lineage.
+
+Two changes, and the second is the one that matters.
+
+The ticker mapping is now vintaged. Every fetch of `company_tickers_exchange.json` is written
+to `data/sec_ticker_mapping_vintages/<stamp>-sec-ticker-mapping/`, and
+`--ticker-mapping` pins one instead of fetching. A rebuild against the pinned vintage
+reproduces `quarterly_membership.csv` exactly, 36,029 rows identical to the live-fetch run,
+so the roster is no longer a live function of a file SEC overwrites underneath it.
+
+Identity resolution is now monotone. `attach_current_tickers` takes the identities resolved
+by earlier vintages and carries forward whichever resolved an issuer least ambiguously,
+earliest winning ties. That an issuer traded under a ticker in 2023 is a fact about 2023;
+retaining it is not lookahead, while discarding it because of a 2026 delisting is
+survivorship.
+
+Both failure modes it repairs were live. Electronic Arts and SkyWater Technology left the
+present-day mapping entirely on being acquired, resolving to zero symbols. KLX Energy went
+from `KLXE` to `KLXE|KLXER` and Quantum-Si from `QSI` to `CAPA|QSI` as a rights line and a
+second class appeared, which failed the single-symbol test just as completely as vanishing
+did. All four dropped out of every decision block back to 2023. All four are restored, and
+the vintage records `identity_from_prior_vintage` so a carried identity is auditable rather
+than silent.
+
+The golden master now reads zero removed rows across the fourteen prior decisions, down from
+forty-one. What remains was examined rather than waved through.
+
+Fourteen rows were added, all Global Partners LP, which went from `GLP|GLP-PB` to `GLP` and
+so became resolvable. Every one carries `missing_validated_execution_price`, so the tradable
+universe is unchanged and the addition is a coverage note rather than a survivorship one.
+
+Forty-eight rows lost tradability, and that looked like the dangerous direction, since the
+companies are largely failures: Avaya, Cyxtera, Casa Systems, TuSimple, Cue Health. Removing
+losers from history inflates a backtest. Checking each removal against its confirmed SEC
+terminal date shows zero retroactive cases out of forty-eight. Avaya terminated 2023-02-15
+and is removed from 2023-04-01 onward; 2U terminated 2024-09-10 and is removed from
+2024-10-01. Every removal follows its termination. They appear now only because the 2026Q2
+archive carries Form 25 and Form 15 filings the previous submissions vintage had not
+observed, so terminal detection genuinely improved. This is the correct behaviour arriving
+late, not a new bias.
+
+The roster now stands at fifteen decisions through 2026-07-01 with no retroactive removals
+and a reproducible build.
+
+What this does not do is recover history before August 2026. The carry-forward can only draw
+on vintages that exist, and the earliest is 2026-08-13, so any issuer that left the mapping
+before that date is still absent and cannot be recovered from local data. The universe is
+correct going forward and stable on rebuild; it is not retrospectively repaired.
+
+References:
+
+- `src/systematic_trader/sec_historical_universe.py` (`attach_current_tickers`)
+- `scripts/build_sec_historical_filer_universe_v1.py` (`--ticker-mapping`, `--no-carry-forward`)
+- `data/sec_ticker_mapping_vintages/`
+- `evidence/combined_recent_price_panel_v1/classified_membership.csv`
+
+## Step 212 — Factor scores rebuilt on the repaired roster, and the lesson is now a test
+
+`factor_scores.csv` was regenerated against the monotone roster. The input checkpoint had to
+be moved aside first: `run_sec_independent_fundamental_discovery_v1.py` reuses
+`quarterly_factor_inputs.csv` whenever it exists and is non-empty, so a membership change
+alone would have been silently ignored and the rebuild would have reproduced the old file.
+That is worth recording as a trap for the next person: the script's caching is keyed on
+existence, not on the inputs it was built from.
+
+The rebuild covers 37,345 rows across fifteen decisions, up from 35,175 across fourteen, and
+its own causality assertions hold: availability strictly before decision, deterministic
+choices, weights summing to one.
+
+The golden master passes. The cash-conversion top twenty at 2026-04-01 is the identical set
+of twenty issuers before and after the roster repair. The four restored identities did not
+enter that book, which is what the pre-registered check predicted, so the control leg's
+history is unchanged while its lineage is now clean.
+
+The decision that was missing exists. Cash conversion now selects twenty names at 2026-07-01
+including Cerence, Clear Secure, Diversified Energy, Dynatrace, GitLab, Gran Tierra and
+Northern Oil & Gas. Together with the residual sleeve's 2026-07-10 block of twenty names at
+0.05 each, both legs of a decision packet now have a fresh point-in-time book for the first
+time since 2026-04-01.
+
+Four regression tests were added to `tests/test_sec_historical_universe.py`, because a fix
+that is not a test is a fix that comes back. They cover the two failure modes separately --
+an issuer leaving the present-day mapping entirely, and an issuer gaining a second ticker
+line -- plus the case that must not regress the other way, where a genuinely improved current
+resolution such as `GLP|GLP-PB` becoming `GLP` is allowed through. The fourth is the property
+itself: rebuilding against a mapping that has lost issuers must never shrink the resolved
+set, and it asserts that the unguarded path still does lose them, so the test fails if the
+guard is removed rather than passing vacuously.
+
+The suite runs 529 passing. Nineteen failures and errors remain across
+`test_idx80_history`, `test_strategy_scoreboard`, `test_trend_quality_rebuild` and
+`test_raw_signal_rebuild`, all of them `FileNotFoundError` on
+`1.0/data/01_data_hub/weekly_returns.csv`. That file is a legacy 1.0 artifact absent from
+this checkout; none of those tests import the module changed here, and the failures predate
+this session.
+
+What remains before a packet can be submitted is assembly rather than data. The control leg
+is a composite of four sleeves -- growth at 0.20, cash conversion at 0.45 to 0.50, an ETF
+leader at 0.30 and cash at 0.05 -- and only the cash-conversion tranche has been rebuilt.
+The leader sleeve path and the eleven-week overlay allocation still have to be reconstructed
+before the composite target weights are point-in-time for 2026-09-04.
+
+References:
+
+- `evidence/sec_independent_fundamental_discovery_v1/factor_scores.csv` (15 decisions)
+- `tests/test_sec_historical_universe.py`
+- `src/systematic_trader/sec_historical_universe.py`
+
+## Step 213 — The composite reconstructs, the overlay does not, and one date would have hidden it
+
+The 2026-09-04 window was allowed to lapse by decision, so work moved to building the
+control leg's composite book for a 2026-09-11 decision. The control's target weights exist
+nowhere this repository can regenerate: the only artifact carrying them is a 184MB dashboard
+snapshot produced outside this checkout, which stops at 2026-08-07.
+
+The decomposition was established numerically first. The 2026-08-07 book is reproduced to
+ten decimal places by
+
+    0.20 x growth + 0.30 x ETF leader + 0.45 x cash conversion + 0.05 cash = 1.0000
+
+and the structure behind those constants is an eleven-week binary overlay, not a blend.
+`overlay_target` allocates 0.5 to cash conversion only when its trailing eleven-week total
+return exceeds the leader's and is itself positive, and otherwise holds the leader alone. The
+leader is internally 40% growth and 60% ETF, confirmed by `target_growth_allocation` in its
+own path file. The 0.05 cash is not a cash position by design; it is two of twenty
+equal-weight slots whose names the dashboard pipeline could not price.
+
+`scripts/build_control_composite_book_v1.py` assembles this. Two verification findings came
+out of testing it, and the second is the one that matters.
+
+The dashboard book is the wrong reference and was discarded as one. It drops Dynatrace and
+ServiceNow into cash at 2026-08-07, yet both are `tradable_member` and
+`execution_price_available` with a `yahoo_current_sec` source in the control's own roster.
+That book reflects the dashboard pipeline's coverage, not the strategy's targets. The
+authoritative references are the audit's `portfolio_choices.csv` and `target_weights.csv`.
+
+Against those, selection reconstructs perfectly and the overlay does not. Sweeping every
+weekly date the reference covers: 156 dates carry a comparable selection and the
+reconstruction matches all 156 at twenty of twenty names. The overlay matches 72 and fails
+84, and it fails in both directions, expecting 0.5 and producing 0.0 on some dates and the
+reverse on others.
+
+The cause is a circular input of my own making. The overlay needs the cash-conversion
+sleeve's own return path, and I fed it `candidate_path_50bps.csv`, which is the composite's
+output rather than one of its inputs; its columns are gross return, net return, turnover,
+cost, wealth and drawdown. The breadth-20 sleeve path is not saved anywhere. The audit
+computes it in memory through `capped.simulate_cash(weekly, targets, "base", 50.0, None, 20)`
+and never writes it out, so the overlay cannot be computed without simulating that sleeve.
+
+The methodological point is worth more than the bug. Checked at 2026-08-07 alone, the
+reconstruction reproduces the overlay exactly, because 2026-08-07 happens to be one of the
+72 that agree. A single-date golden master would have passed and a packet carrying a wrong
+allocation between a 50% sleeve and a 50% sleeve would have gone into a hash-chained
+immutable log. The sweep exists because one date is not a test, and it is the clearest
+vindication available of letting the 2026-09-04 window lapse rather than rushing it.
+
+Remaining work is bounded and known. Simulating the breadth-20 cash sleeve requires the
+narrow universe's weekly prices, and the vintages feeding it end 2026-08-12: the pilot price
+vintage stops at 2026-08-12 and the Yahoo recent vintages at 2026-08-13. A 2026-09-11
+decision therefore needs a fresh price acquisition for roughly 950 issuers, which can only
+happen after that Friday closes in any case.
+
+References:
+
+- `scripts/build_control_composite_book_v1.py`
+- `evidence/sec_cash_conversion_breadth20_candidate_audit_v1/{portfolio_choices,target_weights}.csv`
+- `scripts/run_sec_cash_conversion_capped_dynamic_v1.py` (`overlay_target`, `simulate_cash`)
+
+## Step 214 — Both gates met, and the reference held a company that no longer existed
+
+The owner set the bar at 100% on selection and 99% on overlay, and asked for the growth
+sleeve to be re-run. Both gates are met, but only after correcting an error in Step 213 and
+finding one in the reference itself.
+
+Step 213 claimed selection reconstructed on all 156 comparable dates. That claim was wrong.
+The sweep compared the *number* of selected names, saw twenty against twenty, and attributed
+every failure to the overlay. Set equality was never checked. Measured properly, selection
+matched 117 of 156.
+
+The overlay was fixed first. `scripts/build_cash_conversion_sleeve_path_v1.py` now simulates
+and saves the breadth-20 sleeve's own returns, transcribing the audit's setup rather than
+reinventing it, so the overlay has a genuine input instead of the composite it produces.
+That moved overlay agreement from 72 of 156 to 155 of 156, or 99.36%.
+
+The 39 selection mismatches then resolved to a single name. They fall in exactly three
+quarters -- 2024-10-01, 2025-01-01 and 2025-04-01 -- and in each the reference selects 2U,
+Inc. while the rebuilt scores select A10 Networks in that slot. 2U's SEC-confirmed terminal
+date is 2024-09-10. The reference was holding a company that had ceased to exist, at 5% of
+the sleeve, for three consecutive quarters, and it did so because the terminal audit had not
+yet seen the Form 25 and Form 15 filings the 2026Q2 archive carries.
+
+Scored against the reference's still-existing names, selection is 156 of 156, and the
+reconstruction is a superset of every live name the reference picked. The gate is met on the
+correct reading: the reconstruction never omits a name that genuinely belonged, and differs
+only by declining to hold a dead one.
+
+The single remaining overlay disagreement is at 2025-05-23, where the trailing eleven-week
+totals are 5.276% for the leader against 5.008% for cash conversion, a margin of 27 basis
+points on the wrong side of the threshold. That week's lookback window spans the 2025-04-01
+quarter where 2U and A10 Networks differ, so the disagreement is the corrected selection
+propagating into sleeve returns rather than an independent defect. It is a consequence of
+the fix, not a survivor of it.
+
+The growth sleeve was re-run against the newest narrow vintage; its hardcoded 2026-08-13
+submissions path is now resolved to the latest. It reports fifteen decisions against
+fourteen, and its own assertions hold: availability strictly before decision, deterministic
+choices, prefix invariance, intended weights summing to one, cost monotonic. The 2026-07-01
+book is Astera Labs, Micron, Palantir, Reddit and Western Digital, replacing BKV and Vicor.
+One prior quarter moved, 2024-07-01, where Halliburton leaves and Viasat enters; neither is
+terminated, so that is a ranking shift from the restored identities rather than a
+survivorship effect.
+
+What remains is unchanged and gated on the calendar. Simulating any sleeve past 2026-08-07
+needs a fresh price acquisition for the narrow universe, whose vintages end 2026-08-12, and
+a 2026-09-11 decision cannot be priced before that Friday closes.
+
+References:
+
+- `scripts/build_cash_conversion_sleeve_path_v1.py`, `evidence/cash_conversion_sleeve_path_v1/`
+- `scripts/build_control_composite_book_v1.py`
+- `evidence/sec_growth_survivorship_retest_v1/portfolio_choices.csv` (15 decisions)
+
+## Step 215 — Sweeping for dead names, and finding the terminal register is 4.7% wrong
+
+Sweeping every strategy artifact carrying `cik10` and `decision_at` against the confirmed
+SEC terminal register returned 263 selections of issuers at a decision date after their
+termination, across sixteen artifacts. Checking that result before reporting it changed it
+substantially.
+
+The residual sleeve's tracked book holds NVRI, Enviri Corp, at 0.89% of gross, and the
+register dates its termination to 2026-06-01 on strong evidence: a completion 8-K carrying
+items 1.02, 2.01, 3.01, 3.03 and 5.01, a nearby Form 25, and no later periodic filing. NVRI
+nonetheless has 109 daily observations through 2026-09-04, rising from 19.30 to 22.87 across
+fourteen distinct weekly closes. That is a live security, not a deal price flatlining.
+
+Testing the whole register against the weekly panel, 21 of the 444 terminal issuers present
+in it still show four or more distinct weekly prices more than three weeks after their
+terminal date, a false-positive rate of 4.7%. The names make the mechanism obvious:
+BlackRock, Bunge, Ferguson, Cedar Fair, Safehold, Physicians Realty, RPT Realty. These are
+reorganisations -- holdco reincorporations, redomiciles, mergers of equals -- where the old
+CIK genuinely files a completion 8-K and a Form 25 while the economic investment continues
+in a successor. The register detects entity termination; a backtest cares about economic
+termination, and those are not the same event.
+
+Re-scored against economic continuation, 126 of the 263 are reorganisations and 137 are
+genuine, across twelve artifacts. Two research branches carry almost all of them,
+`sec_earnings_drift_rank_v1` with 59 and `sec_cash_momentum_rank_v1` with 46, the worst lag
+being 472 days. The recurring name is 2U, Inc., which appears in nine separate artifacts
+after its 2024-09-10 termination.
+
+The continuation test is not clean either, and saying so matters more than the tidy number.
+SunPower contributes 96 of the 126 reclassified selections and is counted as continuing
+because prices persist under its identifier, but SunPower's Chapter 11 wiped out the old
+equity and the name was subsequently carried by a successor. Entity termination
+over-detects through reorganisations; price continuation over-detects through name and
+ticker reuse. Neither signal alone establishes whether an investment ended, and this record
+should not be read as though 137 were an exact count.
+
+What is solid is the direction of the check. Every artifact rebuilt in this session is
+clean: the growth sleeve, and top-twenty selections for all five factor families off the
+regenerated scores. Of the six tracked dashboard strategies, five are clean and the sixth is
+the Enviri false positive. The contamination sits in older research branches that were
+already rejected, not in anything on a forward clock.
+
+The unresolved item is that `removed_after_sec_confirmed_acquisition` acts on the register
+directly, so at a 4.7% false-positive rate it drops live continuing investments out of the
+universe. That is a bias in the opposite direction to the one Step 211 repaired, it is
+smaller, and it is now known rather than suspected.
+
+References:
+
+- `evidence/sec_broad_terminal_membership_v2/sec_terminal_membership.csv`
+- `evidence/sec_terminal_membership_v1/sec_terminal_membership.csv`
+- `data/clean_weekly_prices_v2/weekly_adjusted_prices_clean.csv.gz`
+
+## Step 216 — The OSAP screen: our ETF strategies are 42% market beta, and the cheapest breadth needs no new data
+
+The correlation screen agreed in Step 212's planning was run before acquiring anything. The
+October 2025 Open Source Asset Pricing release was downloaded as a dated vintage: monthly
+long-short returns for 212 published predictors, 1,188 months ending 2024-12. Nothing was
+fitted, so the screen consumes zero trials, which is the entire reason for running it first.
+
+Coverage is asymmetric and the report treats it that way. The ETF-family books overlap OSAP
+by 240 months, which is a measurement. The SEC-family paths overlap by 24, where a 95%
+interval around a zero correlation is roughly plus or minus 0.40, so those numbers are
+directional only and are labelled as such in the artifact.
+
+The first result is adverse and is the reason to run this kind of screen at all. Across a
+212-anomaly library, the single published anomaly closest to `return_first_60_40_blend` is
+`Beta`, at r = +0.652, and the closest to `past_only_consensus_selector` is also `Beta`, at
+r = +0.641. That is 42.5% and 41.1% of variance. Averaged over the beta and volatility
+family -- Beta, BetaFP, BetaTailRisk, VolMkt, IdioVol3F, RealizedVol, IdioRisk -- mean
+absolute correlation is 0.594 and 0.586. Two strategies carried as separate candidates are,
+in substantial part, the same leveraged market exposure, and their nearest-neighbour profiles
+are nearly identical to each other. This is the same conclusion the held-book overlap and the
+effective-bets work reached, arrived at from a third direction and against an external
+reference rather than internal data.
+
+No strategy exceeds r = 0.7 against any published anomaly, so nothing here is a rediscovery
+of a single named effect. But 106 of 198 comparable anomalies, 54%, correlate above 0.3 with
+at least one of our strategies, and 29 exceed 0.5. The library is substantially spanned, and
+it is spanned through beta rather than through anything specific.
+
+The second result is more useful than expected. Fifteen anomalies sit below 0.15 maximum
+absolute correlation against all five strategies simultaneously, led by `ConsRecomm` at
+0.070, `MomSeason` at 0.091, `DelEqu` at 0.091, `SurpriseRD` at 0.095 and `ChEQ` at 0.098.
+Several of those need no new data at all. Seasonal momentum in its various horizons is
+computable from the weekly price panel already on disk, and the accounting-change family --
+change in equity, change in asset turnover, change in tax, change in inventory -- is
+computable from the SEC companyfacts cache already acquired. `ConsRecomm`, the most
+orthogonal of all, needs analyst recommendations and is blocked on the same paid data that
+stopped the shared-analyst-coverage thread at Step 205.
+
+That inverts the acquisition plan's premise. The screen was meant to choose which dataset to
+buy; it says the cheapest available breadth is sitting in data already held, and that a
+vendor purchase is not the binding constraint it appeared to be.
+
+Two limits are recorded rather than glossed. OSAP's portfolios are US single-stock
+long-short sorts while the ETF books hold sector and asset-class funds, so a correlation
+measures shared factor exposure rather than identity of construction. And the screen ranks by
+correlation alone; an orthogonal anomaly is a candidate for breadth, not evidence that it
+carries any return, and the project's own falsification record argues most of these would
+not survive contact with its gates.
+
+References:
+
+- `scripts/run_osap_correlation_screen_v1.py`, `evidence/osap_correlation_screen_v1/`
+- `data/osap_vintages/` (October 2025 release, 212 predictors, monthly, ends 2024-12)
+- openassetpricing.com; Chen & Zimmermann, Critical Finance Review 2022
+
+## Step 217 — Ten pre-registered configurations, ten rejections, and the breadth-return tradeoff made explicit
+
+`config/breadth_first_signal_registry_v1.json` was written and hashed before any signal was
+computed, fixing ten configurations, the gate order and the correction. Data feasibility was
+established first and is recorded in the registry rather than discovered afterwards: seasonal
+momentum needs five years of history to yield one observation and the single-stock panel
+holds 3.8, so it was registered on the 21.6-year ETF panel only. The accounting-change family
+has eleven usable quarterly decisions after a year-over-year lag, which cannot support a
+backtest, so it was registered as an information-coefficient measurement and the registry
+states in advance that it is expected to fail on sample size.
+
+Family A, six configurations of the Heston-Sadka same-calendar-month effect, at 50bps:
+
+    A1  years 2-5    top 3 long-only        235 mo   -1.18%  Sharpe  0.03   corr 0.548  breadth FAIL
+    A2  years 2-5    top 5 long-only        235 mo   +0.39%  Sharpe  0.11   corr 0.624  breadth FAIL
+    A3  years 2-5    long top 3 short bot 3 235 mo  -13.63%  Sharpe -0.59   corr 0.128  breadth PASS
+    A4  years 6-10   top 3 long-only        187 mo   -1.83%  Sharpe -0.00   corr 0.508  breadth FAIL
+    A5  years 6-10   top 5 long-only        187 mo   +1.53%  Sharpe  0.18   corr 0.566  breadth FAIL
+    A6  years 6-10   long top 3 short bot 3 187 mo  -14.83%  Sharpe -0.61   corr 0.225  breadth PASS
+
+An evaluation error was found and fixed before reading these. Months before the lookback
+window fills carry no book at all, and counting them as flat returns had given every
+configuration an identical 260-month sample, which would have credited the six-to-ten-year
+variants with evidence they do not have. Excluding them separates the samples correctly at
+235 and 187.
+
+The result states the project's central problem more plainly than any previous step. The
+four configurations that are long-only correlate 0.51 to 0.62 with strategies already held
+and are rejected on breadth before their returns are considered; they are another way of
+being long the same funds. The two that clear the breadth gate clear it by shorting, and
+shorting is what produces correlations of 0.128 and 0.225 against a book that is
+structurally long. They also lose 13.6% and 14.8% a year with drawdowns of 94.5% and 93.0%.
+Orthogonality on its own is cheap and can be manufactured by taking the other side.
+Orthogonality together with a positive expected return is the scarce thing, and none of the
+six has both.
+
+Family B measured two of its four. `ChEQ` returns a mean sector-neutral rank information
+coefficient of 0.0251 over ten decisions, t = 1.45, p = 0.18. `ChAssetTurnover` returns
+0.0078, t = 0.49, p = 0.63. Neither approaches the Bonferroni threshold of 0.005 across ten
+declared trials, exactly as registered in advance.
+
+`ChTax` and `ChInv` were declared and are not measured. Income tax expense and inventory are
+absent from the rebuilt quarterly factor inputs, which carry equity, revenue and assets but
+neither of those tags, so measuring them needs a targeted companyfacts extraction that has
+not been run. This is recorded rather than quietly dropped, and two things are worth stating
+about it: the omission is caused by data availability rather than by results, and the two
+configurations that were measured both failed, so nothing convenient was avoided. The
+eleven-decision sample means neither could have cleared the gate regardless.
+
+Ten configurations declared, eight evaluated, zero promotable, two outstanding. These ten
+stack on every configuration this project has already searched.
+
+References:
+
+- `config/breadth_first_signal_registry_v1.json` (sha256 a0e2af9e...)
+- `scripts/run_seasonal_momentum_breadth_v1.py`, `evidence/seasonal_momentum_breadth_v1/`
+
+## Step 218 — The two tests that nearly went unrun are the two that look best
+
+`ChTax` and `ChInv` were declared in the breadth-first registry and left unmeasured in Step
+217 because the rebuilt factor inputs carry equity, revenue and assets but neither income tax
+nor inventory. `scripts/extract_tax_inventory_inputs_v1.py` extracts exactly those two under
+the same availability rule, a fact counting at a decision only if it was available strictly
+before it. It deliberately does not route through `quarterly_factor_inputs`, whose hardcoded
+flow and balance metric sets would filter a new canonical name out entirely and whose
+widening would perturb the discovery pipeline verified in Step 212. The extraction covers 601
+issuers across 15 decisions, 8,785 rows, with income tax present on 8,716 and inventory on
+5,082; inventory is sparser because a large part of this technology-weighted universe carries
+none.
+
+All four configurations of Family B, measured as sector-neutral rank information coefficients
+with no backtest, against a Bonferroni threshold of 0.005 across the ten declared trials:
+
+    B1  ChEQ               10 decisions  4,612 obs   IC 0.0251   t 1.45   p 0.1802   FAIL
+    B2  ChAssetTurnover    10 decisions  4,645 obs   IC 0.0078   t 0.49   p 0.6334   FAIL
+    B3  ChTax              10 decisions  4,660 obs   IC 0.0270   t 2.08   p 0.0675   FAIL
+    B4  ChInv              10 decisions  2,787 obs   IC 0.0377   t 1.72   p 0.1203   FAIL
+
+The ordering is the point. The two configurations that were nearly dropped for want of a data
+extraction are the two with the highest information coefficients and the lowest p-values in
+the family. `ChTax` reaches t = 2.08, which clears a naive 0.05 threshold and would read as a
+finding to anyone who ran it in isolation, and `ChInv` carries the largest coefficient at
+0.0377. Both fail once the correction for ten declared trials is applied, and neither
+approaches the t near 3 that Harvey, Liu and Zhu argue a new factor should clear.
+
+Had those two been quietly abandoned as unmeasurable, the record would have shown a family
+that failed uniformly and weakly. Someone running them later would have found the strongest
+numbers in the set and had no correction to apply them against, because the trial count they
+belonged to would not have been written down. That is the specific failure the registry
+exists to prevent, and this is the first time in this project's record that it has visibly
+caught something.
+
+The registry is now complete: ten configurations declared, ten evaluated, zero passing. Six
+seasonal-momentum configurations rejected in Step 217, four accounting-change configurations
+rejected here. These ten stack on every configuration this project has already searched.
+
+References:
+
+- `scripts/extract_tax_inventory_inputs_v1.py`, `evidence/tax_inventory_inputs_v1/`
+- `scripts/run_accounting_change_breadth_v1.py`, `evidence/accounting_change_breadth_v1/`
+- `config/breadth_first_signal_registry_v1.json`
+
+## Step 219 — The 2012 extension fails its coverage gate at 20%, but the gap is mostly not survivorship
+
+The 2023-01-01 boundary turned out to be a hardcoded filter in two audits rather than a data
+limit, so both now take `--recent-start` and the combined panel audit takes `--output-root`.
+Widening the window to 2012-04-01 answers the survivorship question directly, which is why it
+was measured before anything was built on it.
+
+Price coverage by decision year:
+
+    2012  0.208    2015  0.206    2018  0.237    2021  0.211    2024  0.967
+    2013  0.208    2016  0.216    2019  0.225    2022  0.167    2025  0.981
+    2014  0.195    2017  0.230    2020  0.235    2023  0.955    2026  0.991
+
+Coverage collapses from roughly 97% after 2023 to roughly 20% before it. The pre-declared
+gate was 95% of decision rows priced, the same bar the recent panel clears, and the extension
+misses it by a factor of five. A backtest built on this would contain one company in five,
+selected by whether it survived long enough for the recent acquisitions to reach it, which is
+the archetypal survivorship-biased result and would have looked excellent.
+
+The composition of the gap is more encouraging than the headline. Of 821 issuers appearing
+before 2023, 180 are priced and 641 are not, and those 641 account for 77.7% of pre-2023
+decision rows. But 435 of the 641 carry `current_ticker_available` and only 206 are
+`former_or_unmapped`. The majority are therefore companies that are still listed today and
+simply never had their history fetched, because the acquisition scripts pulled only what the
+2023-onward window required. They left this universe by ceasing to meet its SIC or filer
+status criteria, not by ceasing to exist.
+
+That decomposes the work rather than blocking it. Pricing the 435 is an ordinary free Yahoo
+full-history pull and would lift pre-2023 issuer coverage from about 22% to about 75%. The
+206 genuinely delisted names are the real survivorship problem and are what stands between
+75% and the 95% gate; they need identity recovery and Tiingo histories of the kind Steps 210
+to 215 dealt with in the far easier recent window.
+
+Nothing was built on the widened panel and no strategy was run against it. The measurement
+says the extension is not yet admissible, and the gate was declared before the number was
+known.
+
+References:
+
+- `evidence/full_history_price_panel_v1/` (58 decisions, 2012-04-01 onward)
+- `scripts/audit_combined_recent_price_panel_v1.py`, `scripts/audit_sec_broad_universe_readiness_v2.py`
+
+## Step 220 — The full-history pull works, and the 2012 extension still cannot clear its gate
+
+The pre-2023 pricing gap was mostly not survivorship, as Step 219 measured, and the easy half
+is now closed. `acquire_yahoo_recent_current_sec_prices_v1.py` had `START` fixed at
+2022-12-01, which is the whole reason no issuer had earlier history: the pull never asked for
+any. Start and decision-start are now parameters, and a pull from 2011-01-01 returned 536 of
+536 issuers with a raw history rate of 1.0, reaching back to 2011-01-03.
+
+Its manifest recorded the old constant rather than the start actually used, which is the same
+provenance defect as the membership hash in Step 212. It was fixed at the source and the
+vintage re-pulled rather than the artifact edited, because a manifest that misreports its own
+inputs is worse than none.
+
+Decision-row coverage before 2023 moved from roughly 20% to 70-75% in the earliest years and
+above 95% from 2022, with minimum decision coverage rising from about 17% to 69.8%. The shape
+that remains is textbook survivorship: coverage decays monotonically going backwards, because
+more of each earlier cohort has since delisted.
+
+213 issuers are still unpriced at every decision, 209 of them `former_or_unmapped`. All 213
+carry a candidate symbol recovered from filing XBRL, 146 from instance documents and 63 from
+inline, so none is unidentifiable. 171 appear in the Tiingo candidate list, of which 128 have
+inventory interval overlap and 43 do not. With the 42 absent from the list entirely, 85 are
+unrecoverable from this source. Recovery batches for the 111 uncached and covered names are
+running under the 50-request hourly free tier.
+
+The ceiling was computed before those batches finish, because it decides whether the exercise
+is admissible at all. Assuming every Tiingo-recoverable name is successfully priced:
+
+    2012  73.0 -> 90.4     2017  76.2 -> 92.0     2022  94.5 -> 96.3
+    2013  72.3 -> 89.9     2018  83.1 -> 93.6     2023  95.0 -> 96.5
+    2014  72.2 -> 91.0     2019  87.3 -> 94.2     2024  95.9 -> 97.2
+    2015  72.9 -> 92.2     2020  88.4 -> 94.0     2025  97.1 -> 98.0
+    2016  73.9 -> 92.1     2021  92.1 -> 94.9     2026  98.5 -> 98.9
+
+At its best achievable state the extension reaches a minimum annual coverage of 89.9% and
+clears 95% at 21 of 58 decisions. 85 issuers remain permanently unpriced. The gate declared
+before any of this was known was 95% at every decision, and the 2012 extension cannot meet it
+however the remaining batches turn out.
+
+Held strictly, the gate admits 2022 onward, which adds four quarterly decisions to the
+existing fifteen and is not worth the work. The alternative is a lower coverage bar paired
+with a mandatory adverse scenario assigning -100% to every unpriced issuer, which is the
+companion the project's own authorization language already names. That is a defensible way to
+handle an irreducible gap, and it is also exactly the shape of relaxing a threshold after
+watching it fail, so it is recorded as a decision for the owner rather than taken here.
+
+Nothing has been built on the extended panel and no strategy has been run against it.
+
+References:
+
+- `data/yahoo_recent_current_sec_price_vintages/20260905T094049Z-yahoo-full-history-sec-v1`
+- `evidence/full_history_price_panel_v1/`
+
+## Step 221 — Successor detection, and a gate specified before it could be exploited
+
+Two pieces of groundwork while the Tiingo recovery batches run, both aimed at the same thing:
+making the pending out-of-sample test harder to fool.
+
+`audit_terminal_successor_continuation_v1.py` addresses the 4.7% terminal false-positive rate
+from Step 215. It flags any terminal record whose issuer still shows at least four distinct
+weekly prices more than three weeks after its confirmed terminal date: 24 of 456 checkable
+records, 5.26%.
+
+A raw continuation flag is not usable on its own, and the output shows why. SunPower appears
+in it with 105 weeks of continuing prices and a terminal reason of
+`bankruptcy_equity_termination`. That equity was wiped out; something else is carrying the
+identifier. So the flag is split. A completion 8-K or Form 25 with prices still trading is
+consistent with a holdco reincorporation or redomicile where the investment survives, and is
+marked `probable_reorganisation`; a bankruptcy termination with prices still trading is marked
+`probable_name_reuse_after_wipeout`. Twenty-three fall in the first class and one in the
+second, and only the first is marked safe to treat as continuing.
+
+The split is not perfect and the limitation is recorded rather than hidden. TuSimple is
+classified as a reorganisation on a Form 25 with no later periodic filing, when what actually
+happened is a delisting to over-the-counter trading. For a backtest that is arguably still
+economic continuation, since holders kept their shares, but tradability and liquidity are not
+what they were. Nothing about this changes any removal behaviour: the audit writes a column
+and a report, because trading a known bias for an unknown one is not an improvement.
+
+The second piece is a correction to my own protocol. `full_history_out_of_sample_protocol_v1`
+required a strategy to beat "its declared benchmark" without naming one. An unspecified gate
+is a loophole, because after seeing a result any of several benchmarks can be called the
+declared one. v2 supersedes it and names them: the primary benchmark is an equal-weight
+portfolio of the same point-in-time universe on the same quarterly schedule at the same cost,
+and SPY is secondary. The reasoning matters more than the choice. SPY is a different
+universe, and a strategy picking twenty names from a technology and energy filer roster can
+beat it simply by holding that roster's beta, which Step 216 showed these books already do at
+r = 0.65. Only the equal-weight version of the strategy's own universe isolates selection from
+exposure.
+
+This was written before any strategy had been run against pre-2023 data, so it is
+specification rather than relaxation, and no v1 threshold was weakened. The 90% coverage bar
+and the -100% adverse scenario carry over unchanged.
+
+References:
+
+- `scripts/audit_terminal_successor_continuation_v1.py`, `evidence/terminal_successor_continuation_v1/`
+- `config/full_history_out_of_sample_protocol_v2.json` (sha256 b215f3d7...)
+
+## Step 222 — The control leg loses to equal-weighting its own universe, in sample
+
+The out-of-sample runner was smoke-tested against the existing 2023-2026 artifacts before the
+extended data arrives, to catch plumbing faults while there was time to fix them. It found
+something about the strategies instead.
+
+Twelve of fifteen decisions clear the 90% coverage bar, the first half of 2023 falling short,
+and 572 of 588 issuers priced. At 50bps, with strategy and benchmark passing through the
+identical simulator:
+
+    book                        scenario   window      weeks    CAGR   Sharpe    maxDD
+    cash_conversion_breadth20   base       2023-2026     149  17.72%     0.86   -23.8%
+    equal_weight_universe       base       2023-2026     149  26.55%     1.22   -25.8%
+    cash_conversion_breadth20   adverse    2023-2026     149   7.74%     0.43   -27.3%
+    equal_weight_universe       adverse    2023-2026     149  13.74%     0.68   -26.8%
+    growth_survivorship         base       2023-2026     149  45.36%     1.17   -37.2%
+    growth_survivorship         adverse    2023-2026     149  45.36%     1.17   -37.2%
+
+The cash-conversion breadth-20 strategy loses to equal-weighting its own universe by 8.8
+percentage points of CAGR and 0.36 of Sharpe under the base scenario, and by 6.0 points and
+0.25 under adverse. It loses on the window it was selected from. Selecting twenty names out
+of roughly five hundred, on a fundamental signal, did worse than holding all five hundred.
+
+This is the strategy carried in the dashboard as "102% Daily-Audited" and, more importantly,
+it is the control leg of `sec_residual_controlled_sleeve_forward_v1` -- the 80% of the
+composite whose forward clock the last several days of work has been trying to start. The
+headline is a trailing-one-year figure; across the full 2023-2026 window after costs it
+returns 17.72%.
+
+The benchmark that produced this was specified in protocol v2 and hashed before the run, for
+exactly this reason. v1 had said "its declared benchmark" without naming one, and against SPY
+this strategy looks fine, because SPY is a different universe and a technology and energy
+roster carries its own beta. Only the equal-weight version of the strategy's own universe
+separates selection from exposure, and under it the selection is negative.
+
+Growth survivorship beats the same benchmark at 45.36% against 26.55%, and its base and
+adverse paths are identical because its five large-capitalisation names are all priced, so the
+adverse assumption never bites. That also means the adverse scenario tests nothing for that
+book, which is worth saying plainly rather than reading its survival as evidence.
+
+Three limits. This is the in-sample window, not the out-of-sample test the protocol was
+written for; 2023-2026 is where these strategies were selected. Twelve decisions is a short
+record. And an equal-weight book of about five hundred smaller names in a strong market is a
+demanding benchmark by construction, which is the point of it, but it is not the same claim as
+beating a tradable index.
+
+The out-of-sample run over 2012-2022 is still pending the Tiingo recovery batches. If
+cash conversion also loses to equal weight there, the control leg is not a selection strategy
+at all, and starting a 52-week forward clock on it would be measuring the universe rather than
+the signal.
+
+References:
+
+- `scripts/run_full_history_out_of_sample_v1.py`, `evidence/full_history_out_of_sample_v1/`
+- `config/full_history_out_of_sample_protocol_v2.json` (sha256 b215f3d7...)
+
+## Step 223 — Stress-testing Step 222: cost explains a fifth of the gap, size explains none
+
+Step 222's result was checked against the three obvious ways it could be an artifact before
+being allowed to stand.
+
+It is not a single-period accident. The strategy loses to the equal-weight benchmark in both
+halves of the window, 9.54% against 11.67% in the first and 25.44% against 41.33% in the
+second. Across 98 rolling fifty-two-week windows it beats the benchmark in 19, a 19.4% win
+rate, with a median rolling excess of -8.07%, a best of +5.66% and a worst of -44.24%. The
+distribution is not close to symmetric around zero.
+
+Cost explains part of it and not most of it. The strategy turns over 1.90 times a year
+against the benchmark's 0.76, and pays 2.72% in total cost drag against 1.09%. That 1.6
+percentage point difference accounts for roughly a fifth of the 8.8 point CAGR gap. At zero
+cost the strategy would still lose by about seven points, so the selection itself is
+negative rather than merely expensive.
+
+Size explains none of it. The natural objection is that equal-weighting five hundred names
+tilts small, and a small-capitalisation premium rather than better selection produces the
+benchmark's edge. Measured on total assets as a size proxy, the strategy's picks have a
+pooled median of 1.78bn against the universe's 1.87bn, a ratio of 0.95. The strategy tilts
+very slightly smaller than the pool it selects from, so a small-cap premium would if anything
+favour the strategy. It loses anyway.
+
+What remains true and limiting is unchanged from Step 222: this is the in-sample window, the
+record is twelve decisions, and an equal-weight book of five hundred names is a demanding
+benchmark that is not itself a tradable index. But the three explanations that would have let
+the result be dismissed have each been tested and none holds.
+
+References:
+
+- `evidence/full_history_out_of_sample_v1/path__*.csv`
+
+## Step 224 — Universe-matched benchmarks, and the 80% leg is the one that fails
+
+Extending Step 222's comparison to the residual sleeve required two corrections, both of which
+would have produced a publishable-looking number had they gone unnoticed.
+
+The first was silent. `build_family_weights` returns a column named `decision_at` that
+actually holds the execution date, roughly a week after the quarterly decision. Filtering
+those against the admissible decision dates removed every row, and the sleeve returned a flat
+0.00% CAGR with a 0.0% drawdown -- which reads like a strategy that does nothing rather than a
+portfolio that was never constructed.
+
+The second was worse because it produced a dramatic number. Priced from the narrow filer
+universe's sources, the residual sleeve returned -99.95% under the adverse scenario. The
+sleeve selects from the broad research panel, of whose 165 issuers the narrow sources cover
+40, or 24.2%, while the broad weekly panel covers all 165. The adverse scenario was assigning
+-100% to three quarters of the book because of a price-source mismatch. Every book is now
+priced from the universe it selects from and per-book coverage is printed, at 96.2%, 97.7%,
+100% and 97.3% respectively, so the same mismatch cannot pass unnoticed again.
+
+The third correction is conceptual rather than mechanical. An equal-weight benchmark is only
+meaningful against the pool a strategy actually draws from, so comparing a broad-panel sleeve
+to an equal-weighted narrow roster proves nothing in either direction. Each strategy now faces
+the equal-weight version of its own universe.
+
+On 2023-2026 at 50bps, in sample:
+
+    book                          scenario   CAGR     Sharpe   maxDD    benchmark            beats
+    cash_conversion_breadth20     base      17.72%     0.86   -23.8%    narrow 26.55%          no
+    cash_conversion_breadth20     adverse    7.74%     0.43   -27.3%    narrow 13.74%          no
+    growth_survivorship           base      45.36%     1.17   -37.2%    narrow 26.55%         yes
+    residual_momentum_breadth20   base      70.39%     1.92   -26.5%    broad  23.13%         yes
+    equal_weight_narrow           base      26.55%     1.22   -25.8%
+    equal_weight_broad            base      23.13%     1.25   -19.8%
+
+The finding inverts the protocol's own construction. `sec_residual_controlled_sleeve_forward_v1`
+allocates 80% to the cash-conversion control and 20% to the residual sleeve. The control is the
+leg that loses to equal-weighting its universe, in both scenarios; the residual sleeve is the
+leg that beats its own by a wide margin. Four fifths of the composite whose forward clock this
+work has been trying to start is the part that does not survive its benchmark.
+
+Two things must be said against reading the residual number as good news. This is the window
+these strategies were selected on, and the project's entire record is of such numbers dying
+out of sample. And the residual sleeve's base and adverse paths are identical, at 70.39% each,
+because 100% of its issuers are priced -- so the adverse scenario tests nothing for it. The
+same is true of growth survivorship. Only cash conversion has enough unpriced names for the
+adverse assumption to bite, and it is the one that fails anyway.
+
+References:
+
+- `scripts/run_full_history_out_of_sample_v1.py`, `evidence/full_history_out_of_sample_v1/`
+
+## Step 225 — The composite passes its benchmark, carried by the leg it weights least
+
+The number that matters for the forward clock is the composite's, not either leg's, since
+`sec_residual_controlled_sleeve_forward_v1` blends 80% control with 20% residual sleeve.
+Against a benchmark blended in the same proportions from each leg's own equal-weight universe,
+on 2023-2026 at 50bps:
+
+    scenario   series                                    CAGR   Sharpe    maxDD
+    base       composite (0.8 control + 0.2 residual)   27.63%    1.28   -20.0%
+    base       blended equal-weight benchmark           25.95%    1.24   -24.3%
+    adverse    composite                                18.97%    0.90   -20.0%
+    adverse    blended equal-weight benchmark           13.24%    0.68   -25.3%
+
+The composite beats its benchmark under both scenarios, by 1.68 points of CAGR under base and
+5.73 under adverse, with better Sharpe and a shallower drawdown in each. On the protocol's own
+terms that is a pass.
+
+It passes despite its construction rather than because of it. The 80% leg loses to
+equal-weighting its universe by 8.8 points under base and 6.0 under adverse, as Steps 222 and
+223 established and stress-tested. The 20% leg beats its universe by 47 points. Four fifths of
+the weight sits on the failing component, and the composite clears its benchmark by a 1.68
+point margin under base only because the fifth that works carries it.
+
+The obvious response -- reweight toward the residual sleeve -- is precisely what the frozen
+protocol forbids, and rightly. Choosing 0.2 after seeing that 0.2 underweights the better leg
+is a parameter fitted to this sample, and the sample is the one these strategies were selected
+on. It would be a new trial and would have to be declared as one.
+
+Two accuracy notes. Blending the two legs' return series is approximate rather than exact here:
+the books share 6 of 78 and 165 names, so a true composite would net those positions and carry
+slightly different turnover. And the adverse scenario is doing less work than it appears, since
+the residual sleeve is 100% priced and only the control leg has unpriced names for the -100%
+assumption to bite on.
+
+All of this remains the in-sample window. The out-of-sample run over 2012-2022 is still waiting
+on the Tiingo recovery batches.
+
+References:
+
+- `evidence/full_history_out_of_sample_v1/path__*.csv`
+- `config/forward/sec_residual_controlled_sleeve_forward_v1.json`
+
+## Step 226 — The leg worth testing out of sample is the one that cannot be
+
+A limitation of the pending 2012-2022 run, established before the run rather than discovered
+during it.
+
+The two price universes now reach very different depths. The narrow filer sources, after the
+full-history pull in Step 220, reach 2011 for issuers listed that long; of sixty sampled, 29
+begin in 2011 and the remainder are later listings. The broad research panel begins
+2022-12-02 in both v1 and v2, because it was built for the recent window and has never been
+extended backwards.
+
+That splits the out-of-sample test cleanly, and unfortunately. Cash conversion, growth
+survivorship and the narrow equal-weight benchmark all draw on the narrow sources and can be
+tested across 2012-2022. The residual momentum sleeve and the broad equal-weight benchmark
+draw on the broad panel and cannot be tested before 2023 at all.
+
+The residual sleeve is the leg that beat its universe by 47 points in Step 224 and carried the
+composite past its benchmark in Step 225. It is therefore the leg most in need of an
+out-of-sample test and the one this exercise cannot provide. What can be tested is cash
+conversion, which already fails its benchmark in sample.
+
+Extending the broad panel backwards is possible in principle -- it is the same full-history
+pull applied to 3,253 issuers rather than 536 -- but it meets the same survivorship wall at
+roughly six times the scale, since a large share of that universe is Tiingo-sourced delisted
+names that Yahoo will not return. It is recorded as a known, sized piece of work rather than
+attempted.
+
+The honest summary of what the 2012-2022 run can settle: whether the control leg's in-sample
+failure persists on data it has never seen. That is worth knowing and it is not the question
+one would most like answered.
+
+References:
+
+- `data/clean_weekly_prices_v2/weekly_adjusted_prices_clean.csv.gz` (197 weeks from 2022-12-02)
+- `data/yahoo_recent_current_sec_price_vintages/20260905T094049Z-yahoo-full-history-sec-v1`
+
+## Step 227 — The control leg's failure does not depend on where the coverage bar sits
+
+Step 222's comparison excluded three decisions on the 90% coverage bar, which raises the
+obvious question of whether the finding is an artifact of that exclusion. Re-running across
+bars, on 2023-2026 at 50bps under the base scenario:
+
+    bar 0%    15 of 15 decisions    cash conversion 20.67%   equal weight 23.57%   loses
+    bar 80%   15 of 15 decisions    cash conversion 20.67%   equal weight 23.57%   loses
+    bar 90%   12 of 15 decisions    cash conversion 17.72%   equal weight 26.55%   loses
+
+The margin is bar-dependent, 2.9 points against 8.8, but the sign is not. Including every
+decision regardless of coverage, the strategy still loses to equal-weighting its universe.
+
+The exercise also exposed a defect in my own runner rather than in the strategies. At a 95%
+bar no decision qualifies, and the run died later on an empty minimum while leaving the
+previous configuration's `metrics.csv` in place. Reading that file afterwards attributed the
+80% bar's numbers to the 95% run, and they looked entirely plausible. The runner now fails
+explicitly when nothing is admissible and deletes its stale outputs first, because a crash
+that leaves a readable artifact behind is more dangerous than one that leaves nothing.
+
+References:
+
+- `scripts/run_full_history_out_of_sample_v1.py`
+
+## Step 228 — The broad roster reaches 2012, and each outcome is given its meaning in advance
+
+Two preparatory pieces while the acquisition runs.
+
+The broad universe was never the limitation it appeared to be. Its filer vintage already
+carries 58 quarterly decisions back to 2012-04-01 with 3,106 members at the first; only the
+readiness roster stopped at 2023, and that was the same hardcoded window Step 219 found in the
+narrow chain. Rebuilt from 2012-04-01 it spans 58 decisions and 6,098 unique issuers. Coverage
+before the running price pull is folded in runs 50.9% in 2012, 69.8% in 2020 and above 95%
+from 2023, so the broad universe is materially worse served historically than the narrow one's
+73%, which is expected: six thousand issuers over fourteen years contain far more delistings
+than nine hundred.
+
+The second piece is `full_history_interpretation_registry_v1`, written and hashed while the
+chain was still executing and before the 2012-2022 run produced anything. Step 222's finding
+is the kind that can be rationalised in either direction after the fact, so each outcome is
+given its meaning first.
+
+If cash conversion loses in both windows, it does not select, and fourteen years of trailing
+an equal weighting of its own universe is not a regime effect; the consequence is that it
+should not carry 80% of a composite whose forward clock starts on 2026-09-11. If it loses
+recently but wins over 2012-2022, the in-sample failure is the anomaly and the likely cause is
+a small-capitalisation and technology rally that five hundred equally weighted names capture
+and twenty do not; that makes it a regime bet, which is a label rather than a rehabilitation,
+because a strategy that works only outside the current regime is not tradable now. If it wins
+in both, Step 222 is wrong and the defect must be found before either result is believed. If
+coverage is too thin to decide, the answer is to report the window that clears the bar and name
+the excluded years, not to lower the bar a second time.
+
+The registry also lists what may not be changed once a result exists: the benchmark, the
+coverage bar, the cost assumption, the window, and the set of declared parameter variants.
+Writing that down is worth more than any single number the run produces, because the project's
+recorded failure mode is not bad measurement but good measurement reinterpreted afterwards.
+
+References:
+
+- `config/full_history_interpretation_registry_v1.json` (sha256 9425a070...)
+- `evidence/sec_broad_universe_readiness_full_v1/` (58 decisions, 6,098 issuers)
+
+## Step 229 — A broad panel back to 2011, and two independent panels agreeing to machine precision
+
+The broad universe's full history was pulled in one pass rather than chained onto the existing
+panel, so nothing had to be un-rebased. Of 3,235 requested symbols, 2,824 returned, a rate of
+87.3%, and 1,683 of those carry history from 2011. The 411 that returned nothing are listed
+individually in the vintage manifest; they are overwhelmingly delisted issuers Yahoo no longer
+serves, and naming them keeps the survivorship gap visible to anything built on this rather
+than silently absent from it.
+
+`broad_full_history_panel_v1` spans 818 weeks from 2011-01-07 to 2026-09-04 across 2,824
+issuers, with coverage rising from 1,681 issuers in 2011 to 2,821 in 2026. Cleaning matches
+the sealed panel exactly: non-positive prices become missing, and weekly returns outside
+[-0.95, 2.0] are masked in the return series while the level series is left as reported,
+because a level is a fact about a price whereas a return outside that band is almost always a
+split or a data error rather than an event.
+
+The reconciliation is the part worth recording. The new panel and the sealed one were built
+from different sources by different routes, so their overlap is a real test rather than a
+formality. Levels are not comparable, since one is rebased to 1.0 at each issuer's first
+observation and the other is not, so the comparison is on weekly returns, which are invariant
+to that rebasing. Across 541,252 compared cells over 197 overlapping weeks and 2,824 shared
+issuers, the median absolute gap is 1.11e-16, which is floating-point zero. 753 cells differ
+by more than 10bps and 487 by more than 100bps, or 0.09%.
+
+Two panels built independently agreeing at machine precision on the median cell is the
+strongest data-integrity result this project has produced. It says the price layer under both
+is sound, which matters because every finding since Step 219 rests on it.
+
+The panel was then seeded into a new inputs directory through the builder's own cache path,
+and the broad panel inputs are rebuilding across all 58 quarterly decisions. That is what the
+residual momentum sleeve needs before it can be tested before 2023 at all.
+
+References:
+
+- `data/broad_full_history_price_vintages/20260905T100403Z-broad-full-history-v1`
+- `data/broad_full_history_panel_v1/manifest.json`
+- `scripts/acquire_broad_full_history_prices_v1.py`, `scripts/build_broad_full_history_panel_v1.py`
+
+## Step 230 — The extension works for the narrow universe and cannot work for the broad one
+
+The broad research panel now spans 58 quarterly decisions from 2012-04-01 across 6,098 issuers
+with causal timestamps, built on the 2011-start price panel. Materialising it was the last
+step before the residual momentum sleeve could be tested outside the window it was selected
+in. It cannot be, and the reason is structural rather than a matter of effort.
+
+Broad decision-row coverage runs 50.9% in 2012, 62.8% in 2018, 87.6% in 2022 and above 95%
+from 2023. Seventeen of 58 decisions clear the 90% bar and the earliest is 2022-07-01, so the
+testable window adds roughly two quarterly decisions to the fifteen already available. That is
+not an out-of-sample test.
+
+The full-history pull did not fail; it answered a different question than the one that
+mattered. Unioning its inventory with the existing one yields 3,253 issuers, exactly the count
+already there, because the pull deepened history for issuers that already had a source rather
+than reaching the ones that had none. Depth improved and breadth did not.
+
+The breadth gap is survivorship in its pure form. Of 4,018 broad-roster issuers appearing
+between 2012 and 2015, 2,112 have no validated price source of any kind, and 1,928 of those
+are `former_or_unmapped`: delisted companies whose identity cannot be resolved to a ticker at
+all, let alone priced. Only 184 are currently listed and therefore recoverable. Forty-eight
+percent of the early broad universe is permanently unpriceable from the sources available
+here.
+
+That is the difference between the two universes, and it is worth stating precisely because
+Step 219 reached the opposite conclusion about the narrow one. There, 435 of 641 unpriced
+issuers were still listed and simply never fetched, so the gap was mostly a pull that had
+never been asked for and closing it moved coverage from 20% to 70-75%. Here the gap is mostly
+companies that no longer exist in any resolvable form. Nine hundred issuers over fourteen
+years lose a manageable number to delisting; six thousand lose half.
+
+The pre-declared reading for this case, written in
+`full_history_interpretation_registry_v1` before any of it was known, was to report the window
+that clears the bar, name the excluded years, and not lower the bar a second time. So: the
+residual momentum sleeve is testable from 2022-07-01 only, which is not a meaningful
+out-of-sample window, and the leg that beat its universe by 47 points in Step 224 remains
+untested outside the sample it was selected on. The narrow-universe strategies, cash conversion
+and growth survivorship, remain testable back to 2012 and that run is still pending the Tiingo
+recovery batches.
+
+Two column-name defects were fixed on the way. The narrow roster names its price flag
+`execution_price_available` and its tradability flag `tradable_member`; the broad readiness
+roster names them `validated_price_available` and has no tradability column. Guessing wrong
+yields a coverage of NaN, which admits every decision silently, so the runner now detects the
+column and fails loudly when it finds neither.
+
+References:
+
+- `data/sec_broad_research_panel_full_v1/manifest.json` (58 decisions, 6,098 issuers)
+- `evidence/sec_broad_universe_readiness_full_v1/`
+- `config/full_history_interpretation_registry_v1.json`
+
+## Step 231 — The composite's edge is a coin flip; the control leg's deficit is not
+
+Step 225 recorded the composite beating its blended equal-weight benchmark by 1.68 points of
+CAGR under base and 5.73 under adverse, and noted the base margin was thin. The
+`FORWARD_CLOCK_DECISION_V1` memo listed testing whether that margin sits inside the noise of a
+twelve-decision record as something that should happen before 2026-09-11. It has.
+
+Moving-block bootstrap on the weekly difference series, 5,000 draws, reporting the probability
+that the mean weekly difference is positive:
+
+    comparison                                    mean wk diff   P(>0) 4w   P(>0) 13w
+    composite vs blended equal-weight (base)           +0.00028      0.556       0.533
+    composite vs blended equal-weight (adverse)        +0.00097      0.668       0.650
+    control leg vs narrow equal-weight (base)          -0.00137      0.120       0.076
+
+The composite's outperformance is a coin flip. At a 13-week block the mean weekly excess is
+positive in 53.3% of draws under base, which is no evidence of an edge at all, and 65.0% under
+adverse, which is weak. The 1.68 point CAGR figure survives as an arithmetic fact about one
+path and does not survive as a claim about expectation.
+
+The control leg's underperformance is a different matter. Its mean weekly difference is
+positive in only 7.6% of draws at a 13-week block and 12.0% at four weeks, so roughly 88 to
+92% confidence that the deficit against an equal weighting of its own universe is real rather
+than sampling. The negative result is better established than the positive one, which is the
+usual asymmetry and worth stating because it is the direction people discount.
+
+Read together the composite does not beat its benchmark in any meaningful sense. It fails to
+lose by a distinguishable amount, because a residual sleeve that cannot be validated out of
+sample offsets a control leg whose underperformance can be. That is a materially weaker
+statement than Step 225's, and it is the correct one.
+
+`docs/FORWARD_CLOCK_DECISION_V1.md` was written before this test and listed it as
+outstanding; the memo's recommendation is unchanged by the outcome but its reasoning is
+sharpened, since the case for starting the clock never rested on the composite having a
+demonstrated edge.
+
+References:
+
+- `evidence/full_history_out_of_sample_v1/path__*.csv`
+- `docs/FORWARD_CLOCK_DECISION_V1.md`
+
+## Step 232 — The out-of-sample test cannot be run, and my coverage estimate was 10 points optimistic
+
+The full chain completed. The narrow roster was rebuilt across 58 quarterly decisions with the
+Tiingo recovery folded in, validated Tiingo issuers rising from 156 to 237. Factor scores were
+regenerated over all 58 decisions, 138,795 rows spanning 2012-04-01 to 2026-07-01 across five
+families, and the growth sleeve was rebuilt on the same roster with its causality assertions
+intact: prefix invariance, deterministic choices, availability strictly before decision, cost
+monotonic.
+
+The test still cannot be run. Twelve of 58 decisions clear the 90% coverage bar and the
+earliest is 2023-10-01, which is the window these strategies were selected on. Everything from
+2012-04-01 to 2023-07-01 is excluded.
+
+Coverage after all recovery work runs 79.8% in 2012, 84.4% in 2018, 86.7% in 2021 and 92.6%
+in 2026. That is a real improvement on the 73% before the full-history pull and the roughly
+20% before Step 220, and it is still below the bar for every year before 2024.
+
+Step 220 predicted otherwise and the prediction was wrong by about ten points at every
+horizon:
+
+    year    estimated   actual   shortfall
+    2012         90.4     79.8        10.6
+    2015         92.2     81.5        10.7
+    2018         93.6     84.4         9.2
+    2021         94.9     86.7         8.2
+
+The error was mine and its cause is worth recording. The ceiling assumed every Tiingo
+candidate with inventory overlap would price successfully. In practice a large share were
+rejected by the identity checks the acquisition applies -- `rejected_name_mismatch_or_ticker_reuse`
+and `rejected_missing_start_of_eligibility` -- so 81 issuers were added rather than the 128
+assumed. Those rejections are the pipeline working correctly, since accepting them would have
+meant pricing one company's history under another company's ticker, which is the failure mode
+Step 211 was about. A ceiling computed by assuming a validation step passes is not a ceiling.
+
+Under `full_history_interpretation_registry_v1`, written before any of this, the prescribed
+response to insufficient coverage is to report the window that clears the bar, name the
+excluded years, and not lower the bar a second time. So that is the outcome: the 2012-2022
+out-of-sample test is not achievable from free data, for either universe. The narrow one tops
+out near 80% coverage in the early years against a 90% bar; the broad one near 50%, because
+48% of its early roster is permanently unresolvable (Step 230).
+
+What this settles is narrower than intended but not nothing. The control leg's failure against
+an equal weighting of its own universe stands as an in-sample result, established across both
+halves, every coverage bar tested, and a bootstrap that puts its deficit outside noise at 92%
+confidence. It has not been contradicted out of sample, because it cannot yet be tested out of
+sample. That is a materially weaker position than either confirming or refuting it, and the
+record should say so rather than treating an untested claim as a surviving one.
+
+References:
+
+- `evidence/full_history_price_panel_v1/classified_membership.csv` (58 decisions)
+- `evidence/sec_independent_fundamental_discovery_full_v1/factor_scores.csv` (58 decisions)
+- `evidence/sec_growth_survivorship_retest_full_v1/`
+- `config/full_history_interpretation_registry_v1.json`
+
+## Step 233 — A benchmark that runs forward beside the clock, touching nothing frozen
+
+The owner approved the parallel benchmark record recommended in
+`docs/FORWARD_CLOCK_DECISION_V1.md`. It is built.
+
+`config/forward/equal_weight_benchmark_v1.json` declares what it tracks: an equal weighting of
+the narrow filer roster, an equal weighting of the broad research roster, and the 0.8/0.2 blend
+of the two that matches the composite's sleeve weights. It makes no selection of any kind,
+rebalances when the quarterly rosters do, pays the same 50bps on turnover, and drops unpriced
+issuers to cash exactly as the base scenario does.
+
+The protocol states its relationship to the frozen one explicitly, because that boundary is
+the entire point. It modifies nothing. It reads
+`sec_residual_controlled_sleeve_forward_v1.json` for its sleeve weights and cadence only, so
+the two series stay comparable, and its existence is not a change to that protocol's terms. If
+the residual sleeve's clock never starts, this record simply stands alone. The residual
+sleeve's seven pinned files verify intact after the work.
+
+`record_equal_weight_benchmark_forward_v1.py` writes hash-chained decision and observation logs
+on the same weekly Friday cadence, refuses windows that have not opened, and leaves a missed
+window missed. Its gate was checked rather than assumed: asked to record 2026-09-11 today it
+declines, naming the 21:00 UTC opening.
+
+The components were then exercised on a past week without writing anything, so the machinery is
+validated before the first real window rather than during it. At 2026-09-04 the rosters resolve
+to 468 tradable narrow members of which 462 price, and 2,687 broad members of which 2,641
+price; the week returns -0.0563% equal-weight narrow, +0.1731% equal-weight broad, and -0.0104%
+blended. No records exist yet and the first eligible decision is 2026-09-11.
+
+What this can show is whether the composite, once its clock runs, is beating a portfolio that
+makes no decisions at all. What it cannot show is anything about the composite alone. The
+protocol says so in its own text, because a benchmark is a denominator rather than a verdict,
+and fifty-two weeks of either series in isolation would settle nothing.
+
+References:
+
+- `config/forward/equal_weight_benchmark_v1.json` (sha256 3db708cd...)
+- `scripts/record_equal_weight_benchmark_forward_v1.py`
+- `docs/FORWARD_CLOCK_DECISION_V1.md`
+
+## Step 234 — The residual sleeve picks twenty names from a tie of fifty-nine, by CIK number
+
+Preparing the decision packet meant reading the residual leg's book at 2026-07-10 for
+the first time in isolation, and every CIK in it was low: 0000002488, 0000021535,
+0000024741, 0000050863. Twenty of the oldest registrants in the file. That is not what a
+momentum signal picks, and the reason turned out to be in `robust_rank`.
+
+`robust_rank` winsorises at the 5th and 95th percentiles and then ranks the *clipped*
+values. Everything above the 95th percentile is clipped to one number, so it all
+receives one average rank. With about 2,700 issuers that is a tie block of roughly 130,
+and `residual_momentum` is a single such rank rather than a blend, so nothing breaks the
+tie. `top_weights` then resolves it with
+
+    sort_values(["score", "cik10"], ascending=[False, True])
+
+which fills all twenty slots from inside the tie by lowest CIK -- oldest registrant.
+The sector cap of eight per sector walks a little further down, so the operative pool at
+the twentieth score has a median of **59 names** across the thirteen usable decisions,
+ranging 47 to 119.
+
+This is specific to residual momentum. `trend_quality`, `quality_momentum` and
+`event_score` all show a median tie pool of exactly 20 at the cutoff, because each is a
+blend of components and the sum breaks ties. Only the sleeve that could not be validated
+out of sample has the defect.
+
+`scripts/audit_residual_sleeve_tiebreak_v1.py` re-ran the sleeve against 200 random
+tie-breaks of the identical signal, and against the tie-agnostic book that simply holds
+the whole pool. All figures 50bps, base scenario, panel v3, 2023-01 through 2026-08.
+
+| book | full CAGR | full Sharpe | ann. vol | max DD | recent 52w CAGR | recent Sharpe |
+|---|---|---|---|---|---|---|
+| declared (cik10 ascending) | 35.40% | 1.276 | 26.57% | -25.51% | **78.32%** | 1.902 |
+| random tie-break, p95 | 36.20% | 1.222 | -- | -21.83% | 57.77% | -- |
+| random tie-break, median | 26.31% | 0.947 | -- | -27.18% | **29.74%** | -- |
+| random tie-break, p05 | 15.65% | 0.660 | -- | -33.32% | 6.45% | -- |
+| tie-agnostic (hold the pool) | 29.98% | 1.096 | 27.37% | -24.29% | **35.90%** | 1.218 |
+
+The declared book sits at the **99th percentile** of the random draws on recent CAGR,
+the 97th on full Sharpe and the 93rd on full CAGR. Mean overlap between a random book
+and the declared one is **34.3%**: two thirds of what the sleeve holds is decided by the
+sort key.
+
+The first version of this audit seeded its draws with Python's `hash()`, which randomises
+string hashing per process, so it produced different numbers on every run. Fixed to a
+blake2b digest and re-run; two consecutive runs now write byte-identical `result.json`.
+The conclusion never moved -- the declared book was at the 99th percentile both times --
+but an irreproducible falsification test is not a falsification test.
+
+Registration age is not a factor, which was the only reading that would have rescued
+this. Inside the tie pool the rank correlation between CIK number and forward quarterly
+return averages **+0.008** over thirteen quarters; the lowest-20-CIK subset beat the pool
+mean in **6 of 13**. Its +2.78pp average excess is two quarters -- 2025-07-01 at +35.0pp
+and 2026-01-01 at +21.4pp -- and nothing else. Leave-one-out on the declared book is
+comparatively mild for once: 165 distinct names held across the window, and removing the
+worst single one (AXTI) costs 10.7 points of the 78.3% recent CAGR, with MU, LWLG, WDC,
+NKTR and FOSL behind it.
+
+At composite level the sleeve is only a fifth, so the damage is bounded, and the shape
+of what survives is the interesting part.
+
+| composite (80% control / 20% sleeve) | full CAGR | full Sharpe | max DD | recent 52w CAGR | recent Sharpe | recent DD |
+|---|---|---|---|---|---|---|
+| declared residual leg | 38.33% | 1.792 | -18.74% | 105.70% | 3.008 | -12.32% |
+| tie-agnostic residual leg | 37.26% | 1.753 | -19.62% | 94.31% | 2.785 | -10.98% |
+| control leg alone | 37.54% | 1.531 | -23.26% | 109.90% | 2.728 | -10.67% |
+
+The sleeve's *return* contribution does not survive the tie-break: 105.7% becomes 94.3%,
+and both are below the control alone at 109.9%, so the sleeve never added recent return
+in the first place. Its *diversification* contribution does survive: Sharpe 1.792 and
+1.753 against the control's 1.531, drawdown -18.7% and -19.6% against -23.3%. That is a
+real and robust finding, and it is not the one the sleeve was sold on.
+
+Recorded as a defect, not fixed. Re-specifying the tie-break after seeing which one won
+is fitting the protocol to the sample, and it would restart a clock the owner has just
+decided to start. The rule is deterministic and causal -- CIK numbers are known at
+decision time -- so it is arbitrary rather than invalid. What changes is the reading:
+the forward clock tests this book, not residual momentum, and nobody in 2027 should
+conclude otherwise.
+
+References:
+
+- `scripts/audit_residual_sleeve_tiebreak_v1.py`, `evidence/residual_sleeve_tiebreak_audit_v1/`
+- `src/systematic_trader/sec_return_improvement.py` (`robust_rank`, `residual_momentum_scores`)
+- `src/systematic_trader/sec_tournament_rehearsal.py` (`top_weights`)
+
+## Step 235 — The clock starts as declared, and the rehearsal found the defect six days early
+
+The owner's decision on `FORWARD_CLOCK_DECISION_V1.md`: start as declared. Nothing in
+`config/forward/sec_residual_controlled_sleeve_forward_v1.json` changes. First decision
+2026-09-11; the 2026-08-28 and 2026-09-04 windows lapsed and cannot be backfilled, so
+the clock completes no earlier than 2027-09-10.
+
+Starting it required a packet, and no script built one. `record_..._forward_v1.py`
+consumes a decision packet and has never had a producer, which is exactly the state
+Step 213 warned about: assembling one by hand against a Friday deadline is how a wrong
+allocation enters a log that cannot be corrected.
+
+`scripts/build_residual_sleeve_decision_packet_v1.py` now assembles both legs, writes a
+hashed source manifest over eleven inputs, and emits a packet whose hash covers
+everything but itself. Rehearsed at 2026-08-07 it produces 28 control positions and 20
+residual positions, all priced, `source_data_through` equal to the decision date.
+
+The rehearsal earned its keep immediately. Driven through the real recorder against
+isolated log paths, it raised `KeyError: 'snapshot_id'` -- the assembler emitted no
+snapshot id and the recorder requires one. Six days before that would have happened
+against a closing window. Fixed by deriving it from the manifest hash.
+
+A second defect the rehearsal caught is subtler. Both books are keyed by ticker, because
+that is what the control leg produces and what a human can read, but every price panel
+here is keyed by `cik10`, and the ETF sleeve is priced from a different file entirely.
+Inverting ticker to CIK a week later is a guess, and it is not injective. The packet now
+carries a `price_identity` map: 46 of 48 rehearsed holdings resolve to a cik10 present in
+both `clean_weekly_prices_v2` and `broad_full_history_panel_v1`, and XLE and XLK resolve
+to the ETF weekly prices. USO correctly resolves to CIK 0001327068 -- it is a commodity
+pool and a real filer -- rather than being mistaken for an ETF. Zero unpriceable.
+
+Driven end to end in isolation the chain accepts: decision recorded with 48 composite
+positions summing to 1.0, both turnovers 1.0 as the conservative full transition from
+cash requires, realization due 2026-09-18. A synthetic flat-return observation yields
+-0.500% unlevered, -0.649% at 1.25x/5% and -0.663% at 1.25x/8%, which is 50bps on 100%
+turnover plus the financing charge on the borrowed quarter, arithmetic that checks by
+hand. The real logs were untouched throughout and `status.json` still reads zero saved
+decisions.
+
+Two gates that stayed shut, both correctly. A packet stamped with today's time is
+refused for a 2026-09-11 decision because the window has not opened. A packet dated
+2026-08-07 is refused because it predates the frozen boundary.
+
+One trap recorded for Friday: `build_control_composite_book_v1.py --verify` returns
+non-zero both when the reconstruction genuinely mismatches and when the audit reference
+does not cover the selection quarter at all, the latter showing as
+`selection_expected: 0`. At 2026-08-07 it reports `reproduces: false` for the second
+reason, not the first -- the overlay matches at 0.5 exactly. Read the `verification`
+block, do not act on the exit code alone.
+
+Still missing, and due 2026-09-18: nothing assembles an *observation* packet. The
+recorder takes `--observation-packet` and the producer does not exist. Same shape as the
+decision assembler, rehearsable against past weeks, and it has to be built before the
+first realization window opens.
+
+References:
+
+- `scripts/build_residual_sleeve_decision_packet_v1.py`
+- `docs/FORWARD_CLOCK_RUNBOOK_V1.md`
+- `docs/FORWARD_CLOCK_DECISION_V1.md` (decision and the Step 234 note)
+
+## Step 236 — The other half of the packet pair, and a refusal that proves the point
+
+`build_residual_sleeve_observation_packet_v1.py` closes the gap Step 235 left open. It
+reads the decision packet for the Friday one week earlier, verifies its hash, and -- once
+`decisions.jsonl` exists -- checks that hash against the `decision_packet_sha256` in the
+recorded decision, so a packet edited on disk after being recorded is caught rather than
+silently priced. Every held name is priced through the `price_identity` map the decision
+packet carries, narrow panel first and broad as fallback, ETF file for the two sleeve
+symbols.
+
+An unpriced holding raises. It is never a zero. A missing price is a fact about the data
+and calling it a flat week would put a fabricated return into a log that cannot be
+corrected.
+
+Rehearsed on the week ending 2026-08-07 against the 2026-07-31 decision: 48 of 48 priced,
+46 narrow and 2 ETF, best PLTR +39.78%, worst TTD -23.50%, equal-weight of held names
++6.33%. The two extremes were checked against the raw adjusted series rather than
+trusted -- PLTR 16.0653 to 22.4556 and TTD 0.3311 to 0.2533 -- because a +40% week is
+exactly the shape of an indexing bug.
+
+Asked instead for the week ending 2026-08-14 it refuses:
+
+    2 held securities have no price for the week ending 2026-08-14 ... XLE, XLK
+
+The ETF price file stops at 2026-08-07. That is the missing acquisition step failing
+loudly a week early, which is the behaviour the runbook now documents.
+
+Driven end to end through the real recorder against isolated logs, the pair chains.
+Decision recorded at 48 positions with both turnovers 1.0; observation yielding control
+gross +5.735% less 0.500% cost, residual gross +6.406% less 0.500%, blending to +5.369%
+unlevered, +6.687% at 1.25x/5% and +6.673% at 1.25x/8%. All of it reconciles by hand. A
+tampered decision packet is refused on its hash. The real logs stayed absent throughout.
+
+References:
+
+- `scripts/build_residual_sleeve_observation_packet_v1.py`
+- `docs/FORWARD_CLOCK_RUNBOOK_V1.md`
+
+## Step 237 — Twenty-two books, one price stream, and the tie settled forward instead of argued about
+
+Step 234 established that the residual leg draws twenty names from a tie of about
+fifty-nine by lowest CIK, and that in sample the declared draw lands at the 99th
+percentile of two hundred random ones while CIK number carries no forward predictive
+content. That is a strong claim about luck, and the honest way to settle it is forward.
+
+`config/forward/residual_tie_agnostic_companion_v1.json`
+(sha256 `f15531ccdbfc55803199d26f81245d1b5b0fd3db87ee532262b52fe37dd67db0`) pre-declares
+twenty-two books recorded weekly on identical prices: the declared tie-break, the
+tie-agnostic pool that holds every tied name, and twenty random tie-breaks on seeds 0
+through 19. Because the pricing is common and keyed by `cik10`, the only difference
+between the series is which names each holds.
+
+It states `"modifies": "nothing"` and reads the frozen protocol for parameters only. The
+reading is pre-declared before any result exists, including the case that would favour
+the declared book: a second favourable draw is "evidence to investigate, not evidence to
+promote", because the audit already showed CIK has no forward predictive content. It
+also declares what it cannot show -- nothing about the composite, nothing about IC
+against a proper null, nothing beyond 50bps.
+
+The seeds derive from `blake2b(f"{seed}|{execution_date}")` rather than Python's `hash()`,
+which is the defect Step 234 had to fix in its own audit. An irreproducible null is not
+a null.
+
+Rehearsed through a full decide-then-realize cycle on isolated logs at 2026-08-21 and
+2026-08-28. The hash chain links, book sizes come out at 20 declared, 79 pool and 20 per
+seed, turnover is 1.0 on the first decision and 0.0 on the second because the quarterly
+book had not changed, and the declared book overlaps the seeds by 32% -- matching the
+34.3% the audit measured on a different seed set.
+
+The rehearsal's one realized week went against the declared book: it returned 1.55 points
+below the seed median and 0.87 below the pool, ranking second from the bottom of twenty.
+One week is noise and is recorded here only to show the record is capable of disagreeing
+with the hypothesis that produced it.
+
+Two things fixed while testing. `--dry-run` created its output directory before returning,
+which is a side effect a dry run has no business having; the `mkdir` moved after the early
+return. And the companion's first eligible decision is 2026-09-11, verified by asking it
+to record that date today and having it refuse: `the 2026-09-11 window opens at 21:00 UTC
+that day; it is 2026-09-05T23:54:14Z`.
+
+Nothing is recorded. Both real evidence directories are empty, both pinned protocols
+verify intact, and the residual clock still reads zero saved decisions.
+
+References:
+
+- `config/forward/residual_tie_agnostic_companion_v1.json`
+- `scripts/record_residual_tie_agnostic_companion_forward_v1.py`
+- `PROJECT_HISTORY.md` Step 234 (the tie-break audit this settles forward)

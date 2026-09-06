@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import concurrent.futures
+import argparse
 import gzip
 import hashlib
 import json
@@ -119,12 +120,17 @@ def correlations(paths: dict[str, pd.DataFrame], benchmark_paths: dict[str, pd.D
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--membership", default=str(MEMBERSHIP))
+    parser.add_argument("--output-root", default=str(OUTPUT))
+    args = parser.parse_args()
+    output = Path(args.output_root).resolve()
     config, pilot = json.loads(CONFIG.read_text()), json.loads(PILOT.read_text())
-    OUTPUT.mkdir(parents=True, exist_ok=True)
-    membership = pd.read_csv(MEMBERSHIP, dtype={"cik10": str}, parse_dates=["decision_at"])
+    output.mkdir(parents=True, exist_ok=True)
+    membership = pd.read_csv(Path(args.membership), dtype={"cik10": str}, parse_dates=["decision_at"])
     membership["tradable_member"] = membership.tradable_member.astype(bool)
     decisions = sorted(membership.decision_at.unique())
-    input_checkpoint = OUTPUT / "quarterly_factor_inputs.csv"
+    input_checkpoint = output / "quarterly_factor_inputs.csv"
     if input_checkpoint.exists() and input_checkpoint.stat().st_size > 0:
         inputs = pd.read_csv(input_checkpoint, dtype={"cik10": str}, low_memory=False)
         inputs["decision_time"] = pd.to_datetime(inputs.decision_time, utc=True)
@@ -160,7 +166,7 @@ def main() -> int:
                 performance_rows.extend(base.metric_rows(family, scenario, int(cost), path))
                 events["family"], events["cost_bps"] = family, int(cost)
                 event_rows.append(events)
-                path.rename_axis("Date").to_csv(OUTPUT / f"path_{family}__{scenario}__{cost}bps.csv")
+                path.rename_axis("Date").to_csv(output / f"path_{family}__{scenario}__{cost}bps.csv")
                 if cost == config["primary_cost_bps"] and scenario == "base":
                     primary_paths[family] = path
         for ticker in config["benchmarks"]:
@@ -191,14 +197,14 @@ def main() -> int:
         "weights_sum_to_one": bool(choices.groupby(["family", "decision_at"]).intended_weight.sum().sub(1).abs().max() < 1e-12),
         "base_and_adverse_run": True,
     }
-    inputs.to_csv(OUTPUT / "quarterly_factor_inputs.csv", index=False)
-    scores.to_csv(OUTPUT / "factor_scores.csv", index=False)
-    choices.to_csv(OUTPUT / "portfolio_choices.csv", index=False)
-    pd.DataFrame(source_rows).to_csv(OUTPUT / "selected_price_sources.csv", index=False)
-    pd.concat(event_rows, ignore_index=True).to_csv(OUTPUT / "rebalance_events.csv", index=False)
-    performance.to_csv(OUTPUT / "performance.csv", index=False)
-    corr.to_csv(OUTPUT / "return_correlations.csv", index=False)
-    focus.to_csv(OUTPUT / "primary_focus.csv", index=False)
+    inputs.to_csv(output / "quarterly_factor_inputs.csv", index=False)
+    scores.to_csv(output / "factor_scores.csv", index=False)
+    choices.to_csv(output / "portfolio_choices.csv", index=False)
+    pd.DataFrame(source_rows).to_csv(output / "selected_price_sources.csv", index=False)
+    pd.concat(event_rows, ignore_index=True).to_csv(output / "rebalance_events.csv", index=False)
+    performance.to_csv(output / "performance.csv", index=False)
+    corr.to_csv(output / "return_correlations.csv", index=False)
+    focus.to_csv(output / "primary_focus.csv", index=False)
     best_recent = focus[focus.window == "trailing_1y"].sort_values("cagr", ascending=False).iloc[0]
     result = {
         "experiment": config["experiment"], "created_at_utc": datetime.now(timezone.utc).isoformat(),
@@ -210,8 +216,8 @@ def main() -> int:
         "all_validation_checks_passed": bool(all(checks.values())), "validation_checks": checks,
         "strategy_replacement_authorized": False, "live_trading_enabled": False,
     }
-    (OUTPUT / "result.json").write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
-    (OUTPUT / "report.md").write_text(
+    (output / "result.json").write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
+    (output / "report.md").write_text(
         "# Independent SEC fundamental discovery v1\n\n"
         f"Five predeclared non-growth families were tested on {result['decisions']} point-in-time decisions with a fixed top-{config['top_n']} portfolio. "
         f"The strongest trailing-year result was **{best_recent.family}** at **{best_recent.cagr:.2%} CAGR**, **{best_recent.sharpe_zero_rf:.3f} Sharpe**, and **{best_recent.max_drawdown:.2%} drawdown**. "

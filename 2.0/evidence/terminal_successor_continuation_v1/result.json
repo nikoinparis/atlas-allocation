@@ -1,0 +1,22 @@
+{
+  "by_continuation_kind": {
+    "not_flagged": 432,
+    "probable_name_reuse_after_wipeout": 1,
+    "probable_reorganisation": 23
+  },
+  "by_terminal_reason": {
+    "bankruptcy_equity_termination": 1,
+    "completion_8k": 17,
+    "form25_plus_form15_no_later_periodic": 6
+  },
+  "changes_behaviour": false,
+  "experiment": "terminal_successor_continuation_v1",
+  "false_positive_rate": 0.0526,
+  "flagged_as_probable_continuation": 24,
+  "generated_at_utc": "2026-09-05T12:18:45.448916+00:00",
+  "live_trading_enabled": false,
+  "rule": "flagged when an issuer shows at least 4 distinct weekly prices more than 3 weeks after its confirmed terminal date",
+  "safe_to_treat_as_continuing": 23,
+  "terminal_records_checkable": 456,
+  "why_not": "price continuation is itself unreliable: a successor can carry a name forward after the old equity is wiped out, as SunPower did. This reports the ambiguity rather than resolving it in either direction."
+}

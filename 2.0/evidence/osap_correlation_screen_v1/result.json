@@ -1,0 +1,262 @@
+{
+  "caveat": "SEC-family overlap is ~24 months, where a 95% interval around zero is about +/-0.40; treat as directional",
+  "experiment": "osap_correlation_screen_v1",
+  "generated_at_utc": "2026-09-05T08:25:59.309670+00:00",
+  "live_trading_enabled": false,
+  "source": "openassetpricing.com October 2025 release, 212 predictors, monthly long-short",
+  "source_last_month": "2024-12-31",
+  "strategies": [
+    {
+      "anomalies_compared": 209,
+      "median_abs_correlation": 0.1434,
+      "most_orthogonal": [
+        {
+          "anomaly": "EBM",
+          "correlation": 0.0018282563102890055
+        },
+        {
+          "anomaly": "MomSeason11YrPlus",
+          "correlation": 0.0025157767998676703
+        },
+        {
+          "anomaly": "ChForecastAccrual",
+          "correlation": 0.002866468184198531
+        },
+        {
+          "anomaly": "IO_ShortInterest",
+          "correlation": 0.003254260165996259
+        },
+        {
+          "anomaly": "MomSeason16YrPlus",
+          "correlation": -0.003350874333942154
+        }
+      ],
+      "nearest_neighbour": [
+        {
+          "anomaly": "Beta",
+          "correlation": 0.6516305057965688
+        },
+        {
+          "anomaly": "VolMkt",
+          "correlation": -0.6411417677563317
+        },
+        {
+          "anomaly": "BetaFP",
+          "correlation": 0.6200286587143214
+        },
+        {
+          "anomaly": "BetaTailRisk",
+          "correlation": 0.5930532380775586
+        },
+        {
+          "anomaly": "zerotrade12M",
+          "correlation": -0.5891709202481836
+        }
+      ],
+      "overlap_months_median": 240,
+      "strategy": "return_first_60_40_blend"
+    },
+    {
+      "anomalies_compared": 209,
+      "median_abs_correlation": 0.1404,
+      "most_orthogonal": [
+        {
+          "anomaly": "HerfBE",
+          "correlation": -0.0004137116079445919
+        },
+        {
+          "anomaly": "DelDRC",
+          "correlation": -0.0030313125606071544
+        },
+        {
+          "anomaly": "MomOffSeason16YrPlus",
+          "correlation": -0.004200700321929759
+        },
+        {
+          "anomaly": "grcapx3y",
+          "correlation": 0.007282284643085026
+        },
+        {
+          "anomaly": "IO_ShortInterest",
+          "correlation": -0.007901873526338069
+        }
+      ],
+      "nearest_neighbour": [
+        {
+          "anomaly": "Beta",
+          "correlation": 0.6414173813352925
+        },
+        {
+          "anomaly": "VolMkt",
+          "correlation": -0.6318964041777563
+        },
+        {
+          "anomaly": "BetaFP",
+          "correlation": 0.6089929053181827
+        },
+        {
+          "anomaly": "zerotrade6M",
+          "correlation": -0.5890955680408679
+        },
+        {
+          "anomaly": "zerotrade12M",
+          "correlation": -0.5882808389919658
+        }
+      ],
+      "overlap_months_median": 240,
+      "strategy": "past_only_consensus_selector"
+    },
+    {
+      "anomalies_compared": 198,
+      "median_abs_correlation": 0.2719,
+      "most_orthogonal": [
+        {
+          "anomaly": "MomSeason",
+          "correlation": -0.0007823970847957116
+        },
+        {
+          "anomaly": "Illiquidity",
+          "correlation": -0.0029775702643143934
+        },
+        {
+          "anomaly": "AM",
+          "correlation": 0.008211253876922071
+        },
+        {
+          "anomaly": "IndRetBig",
+          "correlation": -0.008998473432342037
+        },
+        {
+          "anomaly": "ConsRecomm",
+          "correlation": -0.012067180794311632
+        }
+      ],
+      "nearest_neighbour": [
+        {
+          "anomaly": "IdioVol3F",
+          "correlation": -0.655799444067509
+        },
+        {
+          "anomaly": "realestate",
+          "correlation": 0.6504549633764622
+        },
+        {
+          "anomaly": "CF",
+          "correlation": -0.6296448904255721
+        },
+        {
+          "anomaly": "RealizedVol",
+          "correlation": -0.6144420193405292
+        },
+        {
+          "anomaly": "VolumeTrend",
+          "correlation": -0.5835712107306907
+        }
+      ],
+      "overlap_months_median": 24,
+      "strategy": "cash_conversion_sleeve_b20"
+    },
+    {
+      "anomalies_compared": 198,
+      "median_abs_correlation": 0.1807,
+      "most_orthogonal": [
+        {
+          "anomaly": "FEPS",
+          "correlation": 0.0009108647980286692
+        },
+        {
+          "anomaly": "ChAssetTurnover",
+          "correlation": -0.001377625050422288
+        },
+        {
+          "anomaly": "BrandInvest",
+          "correlation": 0.0030830632465102723
+        },
+        {
+          "anomaly": "ConsRecomm",
+          "correlation": 0.005067342337603032
+        },
+        {
+          "anomaly": "MomRev",
+          "correlation": 0.005568309802524802
+        }
+      ],
+      "nearest_neighbour": [
+        {
+          "anomaly": "GrSaleToGrInv",
+          "correlation": -0.5635870721564298
+        },
+        {
+          "anomaly": "realestate",
+          "correlation": 0.5031054499004954
+        },
+        {
+          "anomaly": "CompEquIss",
+          "correlation": 0.4731337749563699
+        },
+        {
+          "anomaly": "ChNNCOA",
+          "correlation": -0.4713863934919977
+        },
+        {
+          "anomaly": "EntMult",
+          "correlation": -0.46953175359408683
+        }
+      ],
+      "overlap_months_median": 24,
+      "strategy": "cash_conversion_composite"
+    },
+    {
+      "anomalies_compared": 198,
+      "median_abs_correlation": 0.1786,
+      "most_orthogonal": [
+        {
+          "anomaly": "BPEBM",
+          "correlation": -0.00018332134598999446
+        },
+        {
+          "anomaly": "ChTax",
+          "correlation": 0.0007065665531386569
+        },
+        {
+          "anomaly": "NOA",
+          "correlation": 0.0031782706847777774
+        },
+        {
+          "anomaly": "CBOperProf",
+          "correlation": 0.005576802974738564
+        },
+        {
+          "anomaly": "BetaLiquidityPS",
+          "correlation": -0.006676092406853352
+        }
+      ],
+      "nearest_neighbour": [
+        {
+          "anomaly": "GrSaleToGrInv",
+          "correlation": -0.5350586270762121
+        },
+        {
+          "anomaly": "EntMult",
+          "correlation": -0.4954478310275262
+        },
+        {
+          "anomaly": "AOP",
+          "correlation": -0.4813098158003096
+        },
+        {
+          "anomaly": "realestate",
+          "correlation": 0.47734163927248724
+        },
+        {
+          "anomaly": "CompEquIss",
+          "correlation": 0.46451082886157735
+        }
+      ],
+      "overlap_months_median": 24,
+      "strategy": "growth_leader_sleeve"
+    }
+  ],
+  "trials_consumed": 0,
+  "why_zero_trials": "nothing is fitted here; these are correlations against series published by others"
+}

@@ -32,6 +32,11 @@ def arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--only-symbols", default="")
     parser.add_argument("--label", default="yahoo-recent-current-sec-v1")
+    # START was fixed at 2022-12-01, which is why no issuer has history before the
+    # recent window: the pull never asked for any. Extending the panel back to 2012
+    # needs the same currently-listed issuers fetched from further back.
+    parser.add_argument("--start", default="2022-12-01")
+    parser.add_argument("--decision-start", default="2023-01-01")
     return parser.parse_args()
 
 
@@ -39,7 +44,7 @@ def main() -> int:
     args = arguments()
     membership = pd.read_csv(MEMBERSHIP, dtype={"cik10": str}, parse_dates=["decision_at"])
     recent = membership[
-        (membership["decision_at"] >= pd.Timestamp("2023-01-01", tz="UTC"))
+        (membership["decision_at"] >= pd.Timestamp(args.decision_start, tz="UTC"))
         & membership["symbol_source"].eq("current_sec_mapping")
         & membership["single_symbol_usable_for_price_probe"].astype(bool)
     ]
@@ -65,7 +70,7 @@ def main() -> int:
         symbols = [row["yahoo_symbol"] for row in batch]
         try:
             frame = yf.download(
-                symbols, start=START.date().isoformat(), interval="1d", auto_adjust=False,
+                symbols, start=pd.Timestamp(args.start).date().isoformat(), interval="1d", auto_adjust=False,
                 actions=True, repair=False, group_by="ticker", threads=8, progress=False,
             )
         except Exception as exc:
@@ -136,7 +141,8 @@ def main() -> int:
         "provider": "Yahoo Finance via pinned yfinance container",
         "yfinance_version": yf.__version__,
         "python_version": platform.python_version(),
-        "start_date": START.date().isoformat(),
+        "start_date": pd.Timestamp(args.start).date().isoformat(),
+        "decision_start": args.decision_start,
         "requested_ciks": int(len(pulls)),
         "histories_returned": ok,
         "histories_failed": int(len(pulls) - ok),

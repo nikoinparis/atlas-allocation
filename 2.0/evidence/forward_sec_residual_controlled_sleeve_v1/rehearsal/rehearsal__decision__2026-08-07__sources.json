@@ -1,0 +1,18 @@
+{
+  "decision_date": "2026-08-07",
+  "files": {
+    "config/sec_return_improvement_program_v1.json": "e6237a76d3b43a1e04bbeb27664b47110e119ae63c7fcb53d9928bec3cf93489",
+    "data/sec_broad_panel_inputs_v3/price_source_inventory.csv": "2e62a168c78888469ffc442d45a921a837506e456f44d88c5f47d064a5b861ee",
+    "data/sec_broad_research_panel_v3/manifest.json": "4ea8c6d5d378f370842e4e80f71cee478b2079874bdbbe84094042694fa5ff55",
+    "data/sec_broad_research_panel_v3/panel.csv.gz": "64d940d8058cc357384b469e5114886dca68518a693bb04297537d6f63e8c1b2",
+    "evidence/cash_conversion_sleeve_path_v1/sleeve_path__base__50bps__breadth20.csv": "113985142faa60bba5143dd76b7ad980bd450a1be38926aa334d6c3b6f151770",
+    "evidence/forward_return_first_60_40_blend_v1/frozen_weights.csv": "a3f5e0256fa30db10c3836fc7adc39609ea1dcd83d7e29a069a7e1ff916e34c4",
+    "evidence/sec_growth_confidence_universal_cap_v1/path__base__confidence_10_40__cap_1.50x__50bps.csv": "d02d33e0094a4f6bf72de49689565de8041bf3e64f2e9ff6f16b562e2ec85f04",
+    "evidence/sec_growth_survivorship_retest_v1/portfolio_choices.csv": "28b096ac8f716233eb32fc140d8f002ea15b4f85dcd2e77e6dc7224bdeb2ff9d",
+    "evidence/sec_independent_fundamental_discovery_v1/factor_scores.csv": "a72c45528f5a6501a72ae18d839b70d11abd1b08cf839264f77ae378a29d62bc",
+    "scripts/build_control_composite_book_v1.py": "b5893011d943f9f95297ae7ca8f047d4a5c21d119bc33ee442b6a1512f4ef543",
+    "scripts/build_residual_sleeve_decision_packet_v1.py": "0b505c94c681a615348baa6c82d5abf3cdf751252fa37babdfaa2960a5c1b95e"
+  },
+  "manifest_type": "sec_residual_forward_decision_sources_v1",
+  "source_data_through": "2026-08-07"
+}

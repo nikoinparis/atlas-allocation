@@ -37,6 +37,10 @@ def arguments() -> argparse.Namespace:
     parser.add_argument("--output-root", default=str(ROOT / "data/sec_historical_universe_vintages"))
     parser.add_argument("--cache-root", default=str(ROOT / "data/sec_fsds_sub_cache"))
     parser.add_argument("--start", default=None, help="Optional YYYYQn override")
+    parser.add_argument("--ticker-mapping", default=None,
+                        help="pin a dated company_tickers_exchange.json vintage instead of fetching a new one")
+    parser.add_argument("--no-carry-forward", action="store_true",
+                        help="resolve identities against the mapping alone, reproducing the pre-fix behaviour")
     parser.add_argument("--end", default=None, help="Optional YYYYQn override")
     return parser.parse_args()
 
@@ -138,7 +142,13 @@ def fetch_json(url: str, cache_path: Path, user_agent: str, timeout: int) -> tup
 
 
 def read_sub(cache: Path, metadata: dict) -> pd.DataFrame:
-    path = Path(metadata["cached_sub_file"])
+    # Quarters cached by an earlier containerised run recorded their absolute
+    # path as /project/..., which does not exist on a workstation. The cache
+    # directory and the quarter key together already determine the filename, so
+    # resolve locally first and fall back to the recorded path.
+    key = str(metadata["source_quarter"]).lower().replace("q", "q")
+    local = cache / f"{key}.sub.txt.gz"
+    path = local if local.is_file() else Path(metadata["cached_sub_file"])
     frame = pd.read_csv(path, sep="\t", dtype=str, low_memory=False)
     frame["source_quarter"] = metadata["source_quarter"]
     return frame
@@ -180,11 +190,40 @@ def main() -> int:
     decisions = quarter_decisions(f"{start[:4]}-01-01", pd.Period(end, freq="Q").end_time.normalize())
     membership = build_membership(submissions, decisions, int(config["membership_staleness_days"]))
 
-    ticker_cache = cache / "company_tickers_exchange.json"
-    ticker_payload, ticker_meta = fetch_json(
-        config["current_ticker_mapping_url"], ticker_cache, user_agent, int(config["request_timeout_seconds"])
+    # SEC overwrites the ticker mapping in place, so a live fetch makes the roster a
+    # moving target. Every fetch is stored as a dated vintage and --ticker-mapping can
+    # pin one, which is what makes a rebuild reproducible.
+    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    mapping_root = ROOT / "data/sec_ticker_mapping_vintages"
+    if args.ticker_mapping:
+        ticker_source = Path(args.ticker_mapping).resolve()
+        ticker_payload = json.loads(ticker_source.read_text())
+        ticker_meta = {"url": "pinned", "cached_file": str(ticker_source),
+                       "retrieved_at_utc": "pinned", "http_status": 0}
+    else:
+        ticker_cache = cache / "company_tickers_exchange.json"
+        ticker_payload, ticker_meta = fetch_json(
+            config["current_ticker_mapping_url"], ticker_cache, user_agent, int(config["request_timeout_seconds"])
+        )
+        mapping_vintage = mapping_root / f"{stamp}-sec-ticker-mapping"
+        mapping_vintage.mkdir(parents=True, exist_ok=True)
+        ticker_source = mapping_vintage / "company_tickers_exchange.json"
+        ticker_source.write_text(json.dumps(ticker_payload))
+        ticker_meta["vintage_file"] = str(ticker_source.relative_to(ROOT))
+
+    prior_identities = None
+    if not args.no_carry_forward:
+        frames = []
+        for coverage in sorted(ROOT.glob("data/sec_historical_universe_vintages/*/cik_identity_coverage.csv")):
+            frame = pd.read_csv(coverage, dtype={"cik10": str})
+            resolved = frame[frame["current_tickers"].notna()]
+            if len(resolved):
+                frames.append(resolved[["cik10", "current_tickers", "current_exchanges"]])
+        if frames:
+            prior_identities = pd.concat(frames, ignore_index=True)
+    membership, identities = attach_current_tickers(
+        membership, mapping_frame(ticker_payload), prior_identities
     )
-    membership, identities = attach_current_tickers(membership, mapping_frame(ticker_payload))
     coverage = membership.groupby(["decision_at", "sector"], as_index=False).agg(
         members=("cik10", "nunique"),
         current_ticker_matches=("identity_status", lambda values: int((values == "current_ticker_available").sum())),
@@ -192,7 +231,6 @@ def main() -> int:
     )
     coverage["current_ticker_coverage"] = coverage["current_ticker_matches"] / coverage["members"]
 
-    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     output_slug = str(config.get("output_slug", "sec-historical-filers-v1"))
     output = Path(args.output_root).resolve() / f"{stamp}-{output_slug}"
     output.mkdir(parents=True, exist_ok=False)

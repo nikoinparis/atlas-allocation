@@ -1,16 +1,16 @@
 {
   "additional_api_requests_used": 0,
-  "cached_candidates": 145,
-  "created_at_utc": "2026-08-14T07:07:46.395554+00:00",
-  "early_delistings_requiring_terminal_audit": 118,
-  "identity_and_start_validated_histories": 133,
-  "identity_and_start_validation_rate": 0.9172413793103448,
+  "cached_candidates": 273,
+  "created_at_utc": "2026-09-05T12:18:29.976196+00:00",
+  "early_delistings_requiring_terminal_audit": 206,
+  "identity_and_start_validated_histories": 237,
+  "identity_and_start_validation_rate": 0.8681318681318682,
   "next_gate": "continue free-tier batches, then audit full decision-date coverage and terminal delisting outcomes",
   "status_counts": {
-    "rejected_missing_start_of_eligibility": 8,
-    "rejected_name_mismatch_or_ticker_reuse": 4,
-    "validated_early_delisting_needs_terminal_audit": 118,
-    "validated_history_through_last_decision": 15
+    "rejected_missing_start_of_eligibility": 26,
+    "rejected_name_mismatch_or_ticker_reuse": 10,
+    "validated_early_delisting_needs_terminal_audit": 206,
+    "validated_history_through_last_decision": 31
   },
   "strategy_testing_authorized": false,
   "token_persisted": false

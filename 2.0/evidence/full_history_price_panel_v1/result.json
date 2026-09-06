@@ -1,0 +1,17 @@
+{
+  "authorization_gate": "complete remaining recent-priority Tiingo batches, then require >=95% coverage at every recent decision plus missing-company adverse sensitivity",
+  "created_at_utc": "2026-09-05T12:18:51.277500+00:00",
+  "current_yahoo_ciks": 536,
+  "latest_decision_coverage": 0.9957264957264957,
+  "median_decision_coverage": 0.8948484427141268,
+  "minimum_decision_coverage": 0.8004750593824228,
+  "missing_company_decision_rows": 2759,
+  "observed_coverage_gate_passed": false,
+  "recent_decisions": 58,
+  "recovered_yahoo_ciks": 58,
+  "sec_confirmed_acquisition_terminations": 382,
+  "strategy_testing_authorized": false,
+  "unique_ciks_with_price_source": 831,
+  "unique_members": 952,
+  "validated_tiingo_ciks": 237
+}

@@ -1,0 +1,11 @@
+{
+  "availability_rule": "a fact counts at a decision only if available strictly before it",
+  "decisions": 15,
+  "experiment": "tax_inventory_inputs_v1",
+  "generated_at_utc": "2026-09-05T09:06:45.680604+00:00",
+  "income_tax_nonnull": 8716,
+  "inventory_nonnull": 5082,
+  "issuers_requested": 601,
+  "live_trading_enabled": false,
+  "rows": 8785
+}

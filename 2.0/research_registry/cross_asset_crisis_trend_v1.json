@@ -1,0 +1,44 @@
+{
+  "program": "cross_asset_crisis_trend_v1",
+  "classification": "rejected - fixed non-equity trend blend reduces drawdown but does not improve the five-sleeve base on the declared joint return-risk hurdle",
+  "status": "not promoted",
+  "registered_before_results": true,
+  "primary_candidate": {
+    "base_weight": 0.8,
+    "trend_weight": 0.2,
+    "trend_cost_bps_one_way": 50,
+    "lookbacks_weeks": [13, 26, 52],
+    "rebalance_every_weeks": 4,
+    "maximum_asset_weight": 0.2,
+    "financing": false
+  },
+  "common_window_result": {
+    "start": "2023-01-06",
+    "end": "2026-07-31",
+    "weeks": 180,
+    "base_cagr": 0.45466864373482196,
+    "candidate_cagr": 0.3668131284966103,
+    "base_sharpe": 2.3423834765419165,
+    "candidate_sharpe": 2.387442304603393,
+    "base_calmar": 2.510631735660093,
+    "candidate_calmar": 2.4669141345766037,
+    "base_max_drawdown": -0.18109730601938756,
+    "candidate_max_drawdown": -0.14869310745571063,
+    "base_worst_rolling_52w": -0.0732985748565892,
+    "candidate_worst_rolling_52w": -0.05226165714574105
+  },
+  "falsification": {
+    "prefix_invariance_pass": true,
+    "leave_one_market_out_pass": true,
+    "parameter_neighborhood_positive_pass": true,
+    "paired_block_bootstrap_raw_pvalue_vs_base": 0.9990500474976252,
+    "random_placebo_joint_sharpe_calmar_pvalue": 0.198,
+    "project_wide_multiple_testing_adjusted": false,
+    "reason_adjustment_missing": "No verified global attempt counter exists in the repository."
+  },
+  "decision": "Reject as a portfolio improvement. Keep the implementation and negative evidence as a reproducible cross-asset baseline; do not select a diagnostic neighborhood after observing the primary failure.",
+  "research_only": true,
+  "approved_for_live_trading": false,
+  "execution_enabled": false,
+  "strategy_replacement_authorized": false
+}

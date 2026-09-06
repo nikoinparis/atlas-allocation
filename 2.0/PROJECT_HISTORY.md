@@ -11523,3 +11523,87 @@ References:
 
 - `scripts/build_futures_roll_repair_v1.py`, `data/futures_roll_repaired_v1/`
 - `evidence/futures_trend_ic_v1/`, Step 248
+
+## Step 250 — Short-term reversal is bid-ask bounce, and it looked better than anything else here
+
+The owner chose the reversal thread after Step 249. Eighteen configurations and three
+must-pass controls were fixed in `config/short_term_reversal_registry_v1.json` before the run,
+each with its rejection written down in advance.
+
+Data prepared first, because reversal buys exactly the names that just crashed and those are
+precisely the contaminated ones. The 2011-2026 full-history panel carried the same defects as
+the recent one and went through the Step 240 repair: 2,824 to 2,810 issuers, 11,798 sub-dollar
+cells removed, worst weekly return 25,733% to 1,873%, 1.09% of cells gone. **817 weeks, about
+2,220 priced issuers a week, four times the history of the recent panel and spanning 2015-16,
+2018, 2020 and 2022.**
+
+### Before the control, it is the most convincing result in this project
+
+| lookback | skip | horizon | mean IC | t | bootstrap p | clears |
+|---|---|---|---|---|---|---|
+| 1w | 0 | 1w | **+0.0233** | **+5.60** | 0.0000 | yes |
+| 2w | 0 | 2w | +0.0166 | +3.21 | 0.0000 | yes |
+| 2w | 0 | 4w | +0.0180 | +2.58 | 0.0020 | yes |
+| 4w | 0 | 1w | +0.0152 | +3.60 | 0.0000 | yes |
+| 4w | 0 | 4w | +0.0217 | +2.96 | 0.0000 | yes |
+
+Seven of nine skip-zero configurations clear a Bonferroni threshold of 0.0028. For scale, the
+cash-conversion book that 249 steps of work produced measures an IC of +0.0263 at **t = 0.91**.
+This measures comparable ICs at **t up to 5.60** on 817 weeks and 2,810 issuers.
+
+### The bid-ask bounce control destroys it
+
+| configuration | skip 0 | skip 1 | retained | survives |
+|---|---|---|---|---|
+| lb1 hz1 | +0.0233 | **-0.0014** | **-5.9%** | no |
+| lb2 hz1 | +0.0159 | +0.0030 | 19.0% | no |
+| lb4 hz1 | +0.0152 | +0.0049 | 32.0% | no |
+| lb2 hz2 | +0.0166 | +0.0077 | 46.7% | no |
+| lb4 hz4 | +0.0217 | +0.0109 | 50.4% | no |
+
+**Zero of nine survive.** The strongest configuration, at t = 5.60, falls to *below zero* when
+one week is skipped. The gradient is the signature: the shorter the forward horizon, the more
+of the effect is bounce, which is exactly what a price alternating between bid and ask
+produces and exactly what nobody can trade.
+
+### The other two controls agree
+
+With skip one, every price quintile is flat: -0.0036, +0.0039, -0.0026, +0.0020, -0.0027,
+all with absolute t below 1.01. Nothing survives anywhere, which is cleaner than the usual
+finding -- reversal normally at least persists in the cheapest names.
+
+And the cost ladder is decisive on its own, at breadth 100 rebalanced weekly:
+
+| bps | CAGR | Sharpe | annual vol | max drawdown |
+|---|---|---|---|---|
+| 0 | **+22.04%** | 0.839 | 28.66% | -48.0% |
+| 10 | +11.31% | 0.517 | 28.66% | -54.0% |
+| **50** | **-23.09%** | -0.770 | 28.66% | **-98.4%** |
+| 100 | -51.73% | -2.378 | 28.66% | **-100%** |
+| 200 | -81.23% | -5.592 | 28.68% | -100% |
+
+A one-week signal on a hundred names rebalanced weekly turns over about 100% a week, roughly
+52 points of cost a year at 50bps. The +22% at zero cost is an artifact of free trading and
+the book is wiped out entirely at 100bps.
+
+### Verdict
+
+**Rejected on all three controls.** Short-term reversal on this panel is bid-ask bounce plus a
+cost bill.
+
+The value of this step is not the rejection, which was a one-in-four call made before the run
+with the bounce control named as the likely killer. It is what the skip-zero table would have
+looked like without the control: seven configurations clearing Bonferroni at t up to 5.60 over
+fifteen years and 2,810 issuers, materially more convincing than any strategy currently on the
+dashboard. **A study that stopped at the IC table would have found this project's strongest
+statistical result and it would have been entirely an artifact of quote mechanics.**
+
+One correction back onto Step 249. The -0.0204 short-horizon IC that survived on clean ETF
+data there was measured at skip zero. ETFs have tighter spreads than single stocks so carry
+less bounce, but not none, and that number should now be read as an upper bound rather than as
+a finding.
+
+References:
+
+- `config/short_term_reversal_registry_v1.json`, `scripts/run_short_term_reversal_v1.py`
+- `evidence/short_term_reversal_v1/`, `data/clean_full_history_prices_v1/`

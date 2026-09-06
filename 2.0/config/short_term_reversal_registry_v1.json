@@ -1,0 +1,35 @@
+{
+  "experiment": "short_term_reversal_v1",
+  "declared_at_utc": "2026-09-06T00:00:00Z",
+  "question": "Does short-term reversal have an information coefficient on the SEC equity panel that survives costs, a liquidity screen, and a bid-ask-bounce control?",
+  "why_this_thread": "Step 249 found that a negative short-horizon IC survived on roll-free ETF data at -0.020 after rolls explained about forty percent of the futures reading. Reversal is a different signal family from everything in the registry, and it is fast: Step 247 measured a 4-week signal delivering 3.6 times the breadth of a 52-week one. The attraction is breadth from signal speed, not novelty. Reversal is a documented anomaly and finding it would be a sanity check, not a discovery.",
+  "data": "data/clean_full_history_prices_v1/weekly_adjusted_prices_clean.csv.gz",
+  "data_provenance": "broad_full_history_panel_v1 (2011-2026, 2824 issuers) put through build_corporate_action_clean_prices_v1: 14 issuers quarantined, 11,798 sub-dollar cells removed, worst weekly return 25,733% to 1,873%",
+  "signal": "minus the compounded return over the lookback, ranked cross-sectionally each week",
+  "declared_configurations": {
+    "lookback_weeks": [1, 2, 4],
+    "skip_weeks": [0, 1],
+    "forward_horizon_weeks": [1, 2, 4],
+    "total_trials": 18
+  },
+  "bonferroni_threshold": 0.0028,
+  "contamination_treatments": ["raw", "excluding weekly moves above 50%", "excluding weekly moves above 100%"],
+  "controls_that_must_pass": {
+    "bid_ask_bounce": "skip_weeks = 1 removes the week adjacent to the signal. A price series recorded at alternating bid and ask produces mechanical negative autocorrelation at lag one that no one can trade. If the IC exists at skip 0 and vanishes at skip 1, it was bounce and the result is rejected.",
+    "liquidity": "IC measured within price quintiles. Price level is a weak proxy for liquidity and is stated as such, but reversal concentrating in the cheapest quintile is the documented failure mode and must be visible.",
+    "cost": "0, 10, 50, 100 and 200 bps on a breadth-100 long-only book. Reversal is the most turnover-hungry family there is and this is where it usually dies.",
+    "breadth": "measured the same way as Steps 245 to 247 so the numbers are comparable",
+    "correlation": "against the existing strategy paths; the entire purpose is breadth, so a reversal book correlated with what is already held is worthless even if profitable"
+  },
+  "interpretation_fixed_in_advance": {
+    "if_ic_vanishes_at_skip_1": "it was bid-ask bounce; reject and record",
+    "if_ic_exists_only_in_the_cheapest_price_quintile": "not tradeable at size; reject and record",
+    "if_the_book_loses_money_at_50bps": "reject; a reversal strategy that needs sub-50bps execution is not available to this owner",
+    "if_it_survives_all_three_and_correlates_above_0.5_with_existing_strategies": "it adds no breadth and is not worth pursuing regardless of its return",
+    "if_it_survives_all_three_and_is_uncorrelated": "a genuine candidate, and the first breadth increase this project would have found; it still enters at the bottom of the gate list with no forward evidence"
+  },
+  "cumulative_trial_warning": "These 18 stack on every configuration searched in this project across 249 recorded steps. Nothing here may be reported without saying so.",
+  "no_promotion_possible_from_this_step": true,
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

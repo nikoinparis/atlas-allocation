@@ -17,6 +17,7 @@ type Clock = {
 
 type Pending = { protocol: string; firstDecision: string; purpose: string; modifies: string };
 type Closed = { name: string; verdict: string; step: number };
+type BeforeAfter = { strategy: string; window: string; weeks: number; cagr: number; sharpe: number; maxDrawdown: number };
 
 type ResearchStatus = {
   generatedAtUtc: string;
@@ -36,6 +37,7 @@ type ResearchStatus = {
     measuredIn: string;
     plainEnglish: string;
   };
+  structuralBreak: { date: string; note: string; beforeAfter: BeforeAfter[]; measuredIn: string };
   clocks: Clock[];
   pending: Pending[];
   closedFamilies: Closed[];
@@ -108,6 +110,33 @@ export function ResearchStatus() {
           </p>
         </div>
       </div>
+
+      <h3>Before and after {data.structuralBreak.date}</h3>
+      <p className="section-note">
+        The headline returns elsewhere on this site are an average of two very different periods.
+        Every displayed strategy independently selects the same break week, and before it none of
+        them beat simply holding the universe equally weighted. {data.structuralBreak.note} Measured
+        in {data.structuralBreak.measuredIn}.
+      </p>
+      <table className="data-table">
+        <thead>
+          <tr><th>Strategy</th><th>Period</th><th>Weeks</th><th>Return / yr</th><th>Sharpe</th><th>Max drawdown</th></tr>
+        </thead>
+        <tbody>
+          {["before_break", "after_break"].flatMap((window) =>
+            data.structuralBreak.beforeAfter.filter((r) => r.window === window).map((row) => (
+              <tr key={`${row.strategy}-${row.window}`}
+                  className={row.strategy === "equal_weight_market" ? "benchmark-row" : ""}>
+                <td>{readable(row.strategy)}</td>
+                <td>{row.window === "before_break" ? `to ${data.structuralBreak.date}` : `from ${data.structuralBreak.date}`}</td>
+                <td className="mono">{row.weeks}</td>
+                <td className="mono">{percent(row.cagr)}</td>
+                <td className="mono">{row.sharpe.toFixed(2)}</td>
+                <td className="mono">{percent(row.maxDrawdown)}</td>
+              </tr>
+            )))}
+        </tbody>
+      </table>
 
       <h3>Clocks running</h3>
       <table className="data-table">

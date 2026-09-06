@@ -46,6 +46,26 @@ CLOSED = [
 ]
 
 
+def before_after() -> list[dict]:
+    """The split that matters more than any headline CAGR on this site.
+
+    Read from the artifact rather than typed in, so it cannot drift from Step 262.
+    """
+    path = ROOT / "evidence/structural_break_v1/pre_break_performance.csv"
+    if not path.is_file():
+        return []
+    import csv
+    rows = []
+    with path.open() as handle:
+        for row in csv.DictReader(handle):
+            rows.append({
+                "strategy": row["strategy"], "window": row["window"],
+                "weeks": int(row["weeks"]), "cagr": float(row["cagr"]),
+                "sharpe": float(row["sharpe"]), "maxDrawdown": float(row["maxdd"]),
+            })
+    return rows
+
+
 def clock_rows() -> list[dict]:
     rows = []
     for directory in sorted(FORWARD.glob("forward_*")):
@@ -123,6 +143,12 @@ def main() -> int:
             "betsNeededForInformationRatio025": 91,
             "measuredIn": "Step 245",
             "plainEnglish": "The four displayed strategies correlate 0.93 to 0.97 with each other, so they are close to one bet held several times. The binding constraint on this portfolio is the number of genuinely independent bets it makes, not the size of any single return.",
+        },
+        "structuralBreak": {
+            "date": "2025-04-04",
+            "note": "Every displayed strategy selects this same week as its break point, scanned independently over 188 to 195 weeks. Betas sit near zero on both sides, so the change is not market exposure. It does not clear a Bonferroni-corrected bar (p 0.022 to 0.038) and is recorded as suggestive, but four different strategies do not pick the same week by chance.",
+            "beforeAfter": before_after(),
+            "measuredIn": "Steps 261 and 262",
         },
         "clocks": clocks,
         "pending": pending_rows(),

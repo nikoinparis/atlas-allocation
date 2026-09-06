@@ -12245,3 +12245,135 @@ No strategy was created, improved or promoted by this step. It explains the numb
 the dashboard.
 
 References: `evidence/structural_break_v1/pre_break_performance.csv`, Step 261
+
+## Step 263 — A5: the first signal to survive out of sample, and it still does not beat the market
+
+Short interest is the first candidate since Step 244 to clear its declared bar in **both** windows.
+187 FINRA files, 3.5 million rows, 2018-02 to 2026-08, joined to the panel by symbol.
+
+| signal | horizon | window | cohorts | IC | t | p |
+|---|---|---|---|---|---|---|
+| days to cover | 13w | select 2018-2022 | 108 | **-0.0312** | **-4.80** | 0.0000 |
+| days to cover | 13w | evaluate 2023-2026 | 73 | **-0.0435** | **-5.30** | 0.0000 |
+| days to cover | 4w | select | 108 | -0.0199 | -3.05 | 0.0029 |
+| days to cover | 4w | evaluate | 77 | -0.0305 | -3.29 | 0.0015 |
+| short interest change | 13w | select | 108 | +0.0000 | 0.00 | 0.9995 |
+
+Same sign in both windows, both clearing the Bonferroni threshold of 0.00833, positive in only 30
+to 34 percent of cohorts. Heavily shorted names underperform, which is the standard finding.
+Coverage is sound: a median of 2,518 panel issuers per cohort out of 2,810.
+
+### First correction: it is one signal, not two
+
+`days_to_cover` and `short_to_volume` correlate at **Spearman 0.9999** across 453,637 rows. They
+are the same quantity -- shares short over average daily volume -- declared as two signals. The
+registry counted six trials and there were four, of which two were duplicates of the other two.
+The Bonferroni threshold should have been 0.0125 rather than 0.00833, which does not change the
+outcome here because the p-values are 0.0000, but the trial count was wrong and is corrected.
+
+### Second correction, and it is the fatal one
+
+The information coefficient is real. The portfolio is not.
+
+A long-only book of the hundred least-shorted names, rebalanced twice monthly:
+
+| cost | CAGR | Sharpe | max drawdown |
+|---|---|---|---|
+| 0 bps | 22.62% | 1.056 | -35.87% |
+| 10 bps | 20.54% | 0.976 | -36.00% |
+| **50 bps** | **12.54%** | 0.656 | **-36.55%** |
+| 100 bps | 3.26% | 0.257 | -41.99% |
+
+**The equal-weight market returned 13.15% over the same window.** At a realistic 50bps the book
+returns less than the market with a drawdown eleven points deeper, and at 100bps it returns
+almost nothing.
+
+And the correlation table explains why:
+
+| against | correlation |
+|---|---|
+| cash conversion | -0.046 |
+| growth | +0.005 |
+| sector ensemble | -0.031 |
+| residual composite | +0.121 |
+| **equal-weight market** | **+0.873** |
+
+Near-zero against everything this project owns, which is the breadth property worth having -- and
+**+0.873 against the market**, which means the book is the market wearing a screen. The screen
+removes the worst names, the IC says that is a real removal, and the cost of doing it twice a
+month eats the benefit.
+
+### What this establishes
+
+A signal can have a genuine, replicable, out-of-sample information coefficient and still not
+produce a portfolio worth holding. Twelve families failed at the IC stage; this one passed it and
+failed at the portfolio stage, which is a different and more informative failure.
+
+Where the value would be is the short leg -- the IC is negative, so the tradeable expression is
+avoiding or shorting the heavily shorted, not buying the lightly shorted. This project has no
+short capability and no borrow-cost model, so that is not available and is not being proposed.
+
+Recorded as **closed for the long-only book, open as a screen**: the honest use of this signal is
+as an exclusion filter on another strategy's book rather than as a strategy, and that is a
+different experiment with its own registry.
+
+References: `config/short_interest_registry_v1.json`, `scripts/run_short_interest_v1.py`,
+`evidence/short_interest_v1/`
+
+## Step 264 — A7: three of the four features carry nothing, and the model uses one of them heavily
+
+Queue item A7, framed the way the owner put it: machine learning as a diagnostic rather than as a
+return predictor. The books here are built from four features and nobody had measured which of
+them carries information once the others are present.
+
+A random forest on purged folds with a thirteen-week embargo, seven held-out decisions, mean
+decrease in accuracy computed by shuffling each feature ten times per fold.
+
+The model has modest skill: **mean held-out rank correlation +0.0337, positive in 86% of folds.**
+Small, and real enough to make the importance question meaningful.
+
+| feature | MDI share | MDA drop | t | folds positive |
+|---|---|---|---|---|
+| **residual momentum** | 47.6% | **+0.0439** | **1.99** | 86% |
+| event score | 5.0% | +0.0040 | 1.73 | 86% |
+| quality momentum | 17.5% | +0.0017 | 0.24 | 57% |
+| **trend quality** | **29.9%** | **-0.0059** | -0.67 | 43% |
+
+### The disagreement between the two columns is the result
+
+MDI says trend quality is the second most used feature, at 29.9% of the forest's splits. MDA says
+shuffling it **improves** the model on average, and that it helps in fewer than half the folds.
+That is the textbook MDI bias -- a feature with more distinct values gets split on more often
+whether or not it carries signal -- and it is the reason MDA exists. Reported together because
+either alone would mislead.
+
+Only residual momentum degrades the model materially when shuffled, and at seven folds its
+t-statistic of 1.99 does not clear a corrected bar. So the honest statement is directional:
+**one of the four features appears to carry the information, one appears to carry none while
+consuming thirty percent of the model's attention, and the other two are indistinguishable from
+noise.**
+
+### The uncomfortable connection
+
+Residual momentum is the one feature that looks load-bearing here. It is also the feature Step
+234 found to be defective: `robust_rank` winsorises then ranks, collapsing its top block into a
+tie of about fifty-nine names, from which `top_weights` picks twenty by lowest CIK. The feature
+that matters most is the one whose selection is decided by a sort key.
+
+That is not a contradiction -- the *feature* can carry information while the *book built from it*
+is chosen arbitrarily within the top tier -- but it means the two findings have to be read
+together, and it sharpens Step 234 from a curiosity into a defect in the one input that appears
+to work.
+
+### A bug worth recording
+
+The first run reported "no feature is load-bearing" with NaN in every cell. `pd.Series(predicted)`
+carries a fresh index while `test[target]` keeps the panel's, and `.corr` aligns on index, so
+nothing overlapped. Every fold returned NaN and the verdict function read that as an absence of
+importance. Third index-or-label mismatch this session to produce a confident wrong answer, after
+the 13F URL rename and the EDGAR form rename.
+
+No strategy was created or improved. This explains which parts of the existing books are doing
+the work.
+
+References: `scripts/run_feature_importance_v1.py`, `evidence/feature_importance_v1/`

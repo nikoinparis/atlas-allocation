@@ -164,13 +164,33 @@ publishes short interest free, twice monthly, per security.
 that has failed twelve times running. But it is genuinely orthogonal by measurement and the data
 is free and complete.
 
-### A7. Feature importance by MDA and MDI  *(new 2026-09-06)*
-**Status:** never attempted. Zero mentions in 272 steps. Named in CLAUDE.md section 3 as untried.
-**Why it matters:** this is not prediction, it is diagnosis. The portfolio holds books built from
-residual momentum, trend quality, quality momentum and event score, and nobody has measured which
-of those four carries anything once the others are present. Mean-decrease-accuracy answers that
-directly, and it may explain Step 245's finding that the transfer coefficients are nonsense.
-**Data:** none needed.
+### A10. Market-state classifier, and a strategy chosen per state  *(new 2026-09-06, owner's idea)*
+**Status:** never attempted in this form. `src/systematic_trader/markov_regime.py` exists and was
+used for position *scaling* in an earlier batch; it has never been used to *select* a strategy.
+**The idea, as the owner put it:** if strategies like ours thrive after April 2025 and not before,
+then somewhere before 2025 there is probably a different strategy that thrived in *that* state.
+Classify the market state, then hold whatever suits it.
+**Why it is a real idea:** Step 261 found all four strategies breaking in the same week, and Step
+262 found they were market-average before it. That is exactly the shape a regime story predicts.
+**Why it is also the most dangerous idea in this file, and must be built defensively:**
+- Fitting a regime model on the same data will produce a model that says "state 2 began April
+  2025" and assigns our strategies to it. That is relabelling the break we already found, not
+  predicting anything.
+- The test that matters is whether the classifier identifies the state **in real time, using only
+  past data**, not whether it labels history well. Almost every published regime model looks
+  excellent in-sample and fails this.
+- It multiplies the search space: N strategies x M states is a far larger set of trials than
+  anything attempted here, and the multiple-testing burden has to be declared up front.
+**How to build it so the answer means something, in order:**
+1. Fit the state model on 2011-2020 only. Never refit on later data.
+2. Ask it, causally, to label 2021-2026 week by week using only information available then.
+3. Check whether its 2025 transition is detected **at the time** or only in hindsight. If only in
+   hindsight, stop -- the classifier is a historian, not a signal.
+4. Only if it passes 3, test whether state-conditioned strategy selection beats holding everything.
+**Owner's second hypothesis, testable separately and more cheaply:** that some strategy thrived
+*before* April 2025 the way ours thrive after. That is a search over the rejected candidates in
+the Closed table restricted to the pre-break window, and it needs no new model at all. Worth doing
+first because it is one afternoon and it either supports the regime story or undermines it.
 
 ### A8. Fractional differentiation  *(new 2026-09-06)*
 **Status:** never attempted. Zero mentions. Named in CLAUDE.md section 3.

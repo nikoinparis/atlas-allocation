@@ -1,0 +1,142 @@
+{
+  "bid_ask_bounce_control": {
+    "lb1_hz1": {
+      "ic_skip0": 0.023252029628161485,
+      "ic_skip1": -0.0013788268450058304,
+      "retained_share": -0.05929920385684855,
+      "survives_skip": false
+    },
+    "lb1_hz2": {
+      "ic_skip0": 0.014218488226103788,
+      "ic_skip1": 0.008737638335619309,
+      "retained_share": 0.6145265373274944,
+      "survives_skip": false
+    },
+    "lb1_hz4": {
+      "ic_skip0": 0.011152477964794924,
+      "ic_skip1": 0.01351286273128432,
+      "retained_share": 1.2116466648883264,
+      "survives_skip": false
+    },
+    "lb2_hz1": {
+      "ic_skip0": 0.015861638688881338,
+      "ic_skip1": 0.0030143720635555115,
+      "retained_share": 0.19004165475465787,
+      "survives_skip": false
+    },
+    "lb2_hz2": {
+      "ic_skip0": 0.016604843504022887,
+      "ic_skip1": 0.007747341482905272,
+      "retained_share": 0.46657118334348097,
+      "survives_skip": false
+    },
+    "lb2_hz4": {
+      "ic_skip0": 0.018021778313981867,
+      "ic_skip1": 0.0165006672131973,
+      "retained_share": 0.9155959487302959,
+      "survives_skip": false
+    },
+    "lb4_hz1": {
+      "ic_skip0": 0.015198714042072865,
+      "ic_skip1": 0.004860746380917695,
+      "retained_share": 0.31981300309106714,
+      "survives_skip": false
+    },
+    "lb4_hz2": {
+      "ic_skip0": 0.01549074239107411,
+      "ic_skip1": 0.010620718727041156,
+      "retained_share": 0.6856171550022612,
+      "survives_skip": false
+    },
+    "lb4_hz4": {
+      "ic_skip0": 0.0217230164587584,
+      "ic_skip1": 0.010940358217572976,
+      "retained_share": 0.5036297900129788,
+      "survives_skip": false
+    }
+  },
+  "bonferroni_threshold": 0.0028,
+  "configurations_surviving_skip": 0,
+  "cost_ladder": [
+    {
+      "annualised_volatility": 0.28664245246968245,
+      "cagr": 0.22038519897989906,
+      "cost_bps": 0.0,
+      "max_drawdown": -0.48029901239703066,
+      "recent_52w_return": 0.134830315080408,
+      "sharpe": 0.8389284768813003
+    },
+    {
+      "annualised_volatility": 0.2866277494643202,
+      "cagr": 0.11310730885934772,
+      "cost_bps": 10.0,
+      "max_drawdown": -0.5402887581283641,
+      "recent_52w_return": 0.03274544987329797,
+      "sharpe": 0.5172474951822879
+    },
+    {
+      "annualised_volatility": 0.28659401891581765,
+      "cagr": -0.23090073182566007,
+      "cost_bps": 50.0,
+      "max_drawdown": -0.9843281787200286,
+      "recent_52w_return": -0.2928795387935784,
+      "sharpe": -0.7697391514777681
+    },
+    {
+      "annualised_volatility": 0.28660830070966903,
+      "cagr": -0.5173183245692419,
+      "cost_bps": 100.0,
+      "max_drawdown": -0.9999892891318407,
+      "recent_52w_return": -0.5613059780674622,
+      "sharpe": -2.378430032381277
+    },
+    {
+      "annualised_volatility": 0.28682493172847856,
+      "cagr": -0.812300338011839,
+      "cost_bps": 200.0,
+      "max_drawdown": -0.9999999999961542,
+      "recent_52w_return": -0.8334006826105504,
+      "sharpe": -5.5916620855450905
+    }
+  ],
+  "cumulative_trial_warning": "These 18 stack on every configuration searched in this project across 249 recorded steps. Nothing here may be reported without saying so.",
+  "declared_trials": 18,
+  "experiment": "short_term_reversal_v1",
+  "ic_concentrated_in_cheapest_quintile": false,
+  "issuers": 2810,
+  "live_trading_enabled": false,
+  "price_quintile_ic": {
+    "price_quintile_1": {
+      "mean_ic": -0.003644367090006251,
+      "t_stat": -1.0117892241026314,
+      "weeks": 815
+    },
+    "price_quintile_2": {
+      "mean_ic": 0.003937595982343419,
+      "t_stat": 0.9423491683339082,
+      "weeks": 815
+    },
+    "price_quintile_3": {
+      "mean_ic": -0.0026255410121558036,
+      "t_stat": -0.5927576262558374,
+      "weeks": 815
+    },
+    "price_quintile_4": {
+      "mean_ic": 0.002048902739236144,
+      "t_stat": 0.4338464598930834,
+      "weeks": 815
+    },
+    "price_quintile_5": {
+      "mean_ic": -0.002690220059721137,
+      "t_stat": -0.5861388378366436,
+      "weeks": 815
+    }
+  },
+  "strategy_promotion_authorized": false,
+  "verdict": "REJECTED: the information coefficient does not survive the bid-ask-bounce control",
+  "weeks": 817,
+  "window": [
+    "2011-01-14",
+    "2026-09-04"
+  ]
+}

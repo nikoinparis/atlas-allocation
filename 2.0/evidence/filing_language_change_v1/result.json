@@ -1,0 +1,63 @@
+{
+  "bonferroni_threshold": 0.0042,
+  "configurations_clearing": 0,
+  "configurations_clearing_with_declared_sign": 0,
+  "cumulative_trial_warning": "These 12 stack on every configuration searched across 252 recorded steps.",
+  "declared_trials": 12,
+  "degenerate_measures": [
+    "cosine__full",
+    "cosine__item_1a"
+  ],
+  "experiment": "filing_language_change_v1",
+  "filing_pairs_compared": 8327,
+  "issuers": 1413,
+  "live_trading_enabled": false,
+  "median_cosine_full": 0.9982460799123224,
+  "median_jaccard_full": 0.8877721943048577,
+  "minimum_establishable_ic_at_bonferroni": 0.10999551980613168,
+  "similarity_dispersion": {
+    "cosine__full": {
+      "interquartile_range": 0.0020030686348203597,
+      "median": 0.9982460799123224,
+      "std": 0.011903059369930226,
+      "usable": false
+    },
+    "cosine__item_1a": {
+      "interquartile_range": 0.003767797926915062,
+      "median": 0.9980474462542178,
+      "std": 0.15799789322057892,
+      "usable": false
+    },
+    "cosine__item_7": {
+      "interquartile_range": 0.012360739131998422,
+      "median": 0.9925393211092326,
+      "std": 0.08493669763249174,
+      "usable": true
+    },
+    "jaccard__full": {
+      "interquartile_range": 0.05909255563687643,
+      "median": 0.8877721943048577,
+      "std": 0.06804303097595127,
+      "usable": true
+    },
+    "jaccard__item_1a": {
+      "interquartile_range": 0.10302002657292264,
+      "median": 0.8894363091037403,
+      "std": 0.1737004395386186,
+      "usable": true
+    },
+    "jaccard__item_7": {
+      "interquartile_range": 0.15294968403122855,
+      "median": 0.8043495364387391,
+      "std": 0.1769868962869525,
+      "usable": true
+    }
+  },
+  "strategy_promotion_authorized": false,
+  "usable_cohorts": 9,
+  "verdict": "INCONCLUSIVE BY CONSTRUCTION. 2 similarity measures are degenerate -- cosine__full, cosine__item_1a vary by less than 0.01 across the entire cross-section -- so the configurations built on them measured nothing. And with 9 usable cohorts, because 10-K filings are annual and cluster in Q1, the smallest information coefficient this design could establish at the Bonferroni threshold is about 0.110, which is roughly twice what any equity signal achieves. S1 is not refuted; it is untestable at this sample length.",
+  "window": [
+    "2019-01-04",
+    "2026-03-31"
+  ]
+}

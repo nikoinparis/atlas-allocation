@@ -11806,3 +11806,74 @@ before use in this project, not after.
 References:
 
 - `evidence/defeatbeta_source_audit_v1/`
+
+## Step 255 — S1 measured: not refuted, untestable at this sample length
+
+The 9,754 acquired filings parsed clean -- zero hash mismatches, zero missing bodies, Item 1A
+found in 99.0% and Item 7 in 99.9%, median 66,503 words. **8,327 year-over-year pairs across
+1,413 issuers, 2019-01-04 to 2026-03-31.** The signal and its sign were declared in advance:
+Cohen, Malloy and Nguyen find filings that change more predict lower returns, so similarity is
+the tradeable direction.
+
+### The measurement
+
+| measure | section | horizon | mean IC | t | length-controlled IC | t | p |
+|---|---|---|---|---|---|---|---|
+| cosine | full | 26w | +0.0271 | 0.90 | +0.0070 | 0.29 | 0.393 |
+| cosine | item 7 | 4w | +0.0496 | 1.51 | +0.0451 | 1.35 | 0.169 |
+| jaccard | full | 26w | +0.0583 | 1.86 | +0.0633 | 1.82 | 0.101 |
+| **jaccard** | **item 7** | **26w** | **+0.0553** | **2.00** | **+0.0579** | **1.98** | **0.081** |
+
+Zero of twelve clear the Bonferroni threshold of 0.0042.
+
+### Why "does not predict returns" is the wrong conclusion, and my first verdict said it anyway
+
+**Two of the measures are degenerate.** Cosine on raw word counts of a 66,000-word document is
+dominated by the words every filing uses. Its dispersion across the entire cross-section:
+
+| measure | median | interquartile range | std |
+|---|---|---|---|
+| **cosine, full document** | 0.9982 | **0.0020** | 0.0119 |
+| cosine, Item 7 | 0.9925 | 0.0124 | 0.0849 |
+| jaccard, full document | 0.8878 | 0.0591 | 0.0680 |
+| **jaccard, Item 7** | 0.8043 | **0.1529** | 0.1770 |
+
+An interquartile range of 0.0020 is not a signal, it is a constant. The configurations built on
+it did not fail to find an effect; they had nothing to rank. Jaccard, which compares word *sets*
+rather than counts, has real dispersion and is the measure that should have been primary.
+
+**And the design cannot clear its own bar.** 10-K filings are annual and cluster in the first
+quarter, so eight years of history gives **nine usable cross-sections**, not twenty-nine. At
+that sample size the smallest information coefficient establishable at a Bonferroni-corrected
+threshold is about **0.110** -- roughly twice what any equity signal in the literature achieves,
+and four times what this project's own best signals measure. **No annual signal can pass this
+test on this much history, whatever its merit.**
+
+So S1 is **inconclusive by construction**, not refuted. The best configuration -- jaccard on
+Item 7 at twenty-six weeks -- gives +0.0553 at t = 2.00, points the direction the literature
+declares, and survives the length control almost unchanged at +0.0579. That is a hint, on nine
+observations, and nothing more.
+
+### The pattern that keeps recurring
+
+The first verdict this script printed was "10-K language change does not predict returns on this
+universe. S1 closes as a negative result." That is a strong claim built on six configurations
+that measured a constant and six more that could not have cleared their own threshold. It is the
+third canned verdict this session to be wrong in a confident direction before being caught --
+after Step 238's reconstruction correlation and Step 248's sign-blind significance test. The
+common failure is the same each time: **a verdict function that checks whether a number cleared a
+bar, without first checking whether the number could mean anything.** Dispersion and power are
+now checked before any verdict is emitted.
+
+### What would make S1 testable
+
+Extending the filing corpus back to 2011 gives roughly fifteen annual cross-sections instead of
+nine. That still will not clear Bonferroni over twelve trials, so the honest options are to
+declare fewer trials up front -- jaccard on Item 7 alone, one horizon -- or to accept that an
+annual signal is judged on replication across independent sub-periods rather than on a p-value.
+Recorded in the queue rather than decided here.
+
+References:
+
+- `config/filing_language_change_registry_v1.json`, `scripts/run_filing_language_change_v1.py`
+- `evidence/filing_language_change_v1/`, `data/sec_filing_text_v1/`

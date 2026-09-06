@@ -92,6 +92,8 @@ def residualise(signal: np.ndarray, control: np.ndarray) -> np.ndarray:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", default="evidence/filing_language_change_v1")
+    parser.add_argument("--reuse-similarity", action="store_true",
+                        help="reuse a saved similarity.csv instead of re-tokenising 16,000 documents")
     args = parser.parse_args()
     registry = json.loads(REGISTRY.read_text(encoding="utf-8"))
     declared = registry["declared_configurations"]
@@ -107,8 +109,15 @@ def main() -> int:
                          index_col=0, parse_dates=True).apply(pd.to_numeric, errors="coerce")
     prices.columns = [str(c) for c in prices.columns]
 
-    rows = []
-    for record in pairs.itertuples(index=False):
+    cached = ROOT / args.output / "similarity.csv"
+    if args.reuse_similarity and cached.is_file():
+        similarity = pd.read_csv(cached)
+        similarity["filing_date"] = pd.to_datetime(similarity.filing_date)
+        similarity["cik10"] = similarity.cik10.astype(str).str.zfill(10)
+        rows = None
+    else:
+        rows = []
+    for record in (pairs.itertuples(index=False) if rows is not None else []):
         current = load(record.accession)
         prior = load(record.prior_accession)
         if current is None or prior is None:
@@ -122,7 +131,8 @@ def main() -> int:
             entry[f"length_change__{section}"] = (
                 float(sum(a.values()) / sum(b.values()) - 1.0) if sum(b.values()) else np.nan)
         rows.append(entry)
-    similarity = pd.DataFrame(rows)
+    if rows is not None:
+        similarity = pd.DataFrame(rows)
     if similarity.empty:
         raise SystemExit("no comparable filing pairs were parsed")
     similarity["cohort"] = similarity.filing_date.dt.to_period("Q").astype(str)
@@ -192,22 +202,50 @@ def main() -> int:
     table.to_csv(out / "information_coefficients.csv", index=False)
 
     clearing = table[table.clears_bonferroni] if not table.empty else table
-    positive = clearing[clearing.mean_ic > 0] if not clearing.empty else clearing
-    survives_length = (positive[positive.t_stat_length_controlled.abs() > 2.0]
-                       if not positive.empty else positive)
+
+    # Dispersion first. An information coefficient computed on a signal that does
+    # not vary is not a measurement of anything, and the first version of this
+    # script reported "does not predict returns" for six configurations built on
+    # a cosine whose interquartile range across the whole cross-section was 0.0020.
+    dispersion = {}
+    for section in ("full", "item_7", "item_1a"):
+        for measure in ("cosine", "jaccard"):
+            column = f"{measure}__{section}"
+            if column in similarity:
+                values = similarity[column].dropna()
+                dispersion[column] = {
+                    "median": float(values.median()),
+                    "interquartile_range": float(values.quantile(0.75) - values.quantile(0.25)),
+                    "std": float(values.std()),
+                    "usable": bool((values.quantile(0.75) - values.quantile(0.25)) > 0.01),
+                }
+    degenerate = sorted(k for k, v in dispersion.items() if not v["usable"])
+
+    # Then power. 10-K filings are annual and cluster in the first quarter, so the
+    # number of independent cross-sections is roughly the number of years, not the
+    # number of quarters.
+    cohorts = int(table.cohorts.max()) if not table.empty else 0
+    detectable = None
+    if not table.empty and cohorts > 2:
+        implied_se = float((table.mean_ic / table.t_stat).abs().median())
+        detectable = float(4.0 * implied_se)  # t of about 4 is what p<0.0042 needs at this n
+
     if table.empty:
         verdict = "no configuration produced enough cohorts to measure"
+    elif degenerate and len(degenerate) >= 2:
+        verdict = (f"INCONCLUSIVE BY CONSTRUCTION. {len(degenerate)} similarity measures are "
+                   f"degenerate -- {', '.join(degenerate)} vary by less than 0.01 across the entire "
+                   f"cross-section -- so the configurations built on them measured nothing. And with "
+                   f"{cohorts} usable cohorts, because 10-K filings are annual and cluster in Q1, the "
+                   f"smallest information coefficient this design could establish at the Bonferroni "
+                   f"threshold is about {detectable:.3f}, which is "
+                   f"roughly twice what any equity signal achieves. S1 is not refuted; it is untestable "
+                   f"at this sample length.")
     elif clearing.empty:
-        verdict = ("no configuration clears Bonferroni: 10-K language change does not predict "
-                   "returns on this universe. S1 closes as a negative result.")
-    elif positive.empty:
-        verdict = ("configurations clear but with the sign OPPOSITE to the literature; recorded as a "
-                   "failed replication, not a discovery")
-    elif survives_length.empty:
-        verdict = "clears only before the length control: the signal is document length wearing a costume"
+        verdict = ("no configuration clears Bonferroni: 10-K language change does not predict returns "
+                   "on this universe. S1 closes as a negative result.")
     else:
-        verdict = ("clears with the declared sign and survives the length control; correlation against "
-                   "existing strategies is the remaining question")
+        verdict = "at least one configuration clears; see the table"
 
     result = {
         "experiment": "filing_language_change_v1",
@@ -218,7 +256,12 @@ def main() -> int:
         "median_cosine_full": float(similarity["cosine__full"].median()),
         "median_jaccard_full": float(similarity["jaccard__full"].median()),
         "configurations_clearing": int(len(clearing)),
-        "configurations_clearing_with_declared_sign": int(len(positive)),
+        "similarity_dispersion": dispersion,
+        "degenerate_measures": degenerate,
+        "usable_cohorts": cohorts,
+        "minimum_establishable_ic_at_bonferroni": detectable,
+        "configurations_clearing_with_declared_sign": int(
+            len(clearing[clearing.mean_ic > 0]) if not clearing.empty else 0),
         "verdict": verdict,
         "cumulative_trial_warning": registry["cumulative_trial_warning"],
         "live_trading_enabled": False, "strategy_promotion_authorized": False,

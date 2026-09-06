@@ -1,0 +1,146 @@
+{
+  "bonferroni_threshold": 0.00833,
+  "declared_trials": 6,
+  "experiment": "short_interest_v1",
+  "files_used": 187,
+  "honest_prior": "This is the CONTINUOUS CROSS-SECTIONAL SCORE shape -- a number every stock carries -- and that shape has now failed twelve times in a row across Steps 244 to 258. A4 tested the event shape and failed too. There is no reason to expect this to be different, and it is being run because the data is free and the orthogonality was measured rather than assumed, not because the prior is good.",
+  "live_trading_enabled": false,
+  "queue_item": "A5",
+  "rows": [
+    {
+      "cohorts": 108,
+      "horizon": 4,
+      "mean_ic": -0.01990568923105998,
+      "p_value": 0.0029223168721491826,
+      "share_positive": 0.4074074074074074,
+      "signal": "days_to_cover",
+      "t_stat": -3.0457925408151736,
+      "window": "select"
+    },
+    {
+      "cohorts": 77,
+      "horizon": 4,
+      "mean_ic": -0.03047115544217304,
+      "p_value": 0.0015166621294323216,
+      "share_positive": 0.3116883116883117,
+      "signal": "days_to_cover",
+      "t_stat": -3.290770712914897,
+      "window": "evaluate"
+    },
+    {
+      "cohorts": 108,
+      "horizon": 13,
+      "mean_ic": -0.031211387529561832,
+      "p_value": 5.2799482888163414e-06,
+      "share_positive": 0.3425925925925926,
+      "signal": "days_to_cover",
+      "t_stat": -4.795195114443953,
+      "window": "select"
+    },
+    {
+      "cohorts": 73,
+      "horizon": 13,
+      "mean_ic": -0.04351992958415507,
+      "p_value": 1.1932142885029127e-06,
+      "share_positive": 0.3013698630136986,
+      "signal": "days_to_cover",
+      "t_stat": -5.304048678393325,
+      "window": "evaluate"
+    },
+    {
+      "cohorts": 108,
+      "horizon": 4,
+      "mean_ic": -0.0031489798360365795,
+      "p_value": 0.4346148315335742,
+      "share_positive": 0.4537037037037037,
+      "signal": "short_interest_change",
+      "t_stat": -0.7842694317527399,
+      "window": "select"
+    },
+    {
+      "cohorts": 77,
+      "horizon": 4,
+      "mean_ic": 0.002556245288437726,
+      "p_value": 0.4388517747388825,
+      "share_positive": 0.5844155844155844,
+      "signal": "short_interest_change",
+      "t_stat": 0.7782262801469656,
+      "window": "evaluate"
+    },
+    {
+      "cohorts": 108,
+      "horizon": 13,
+      "mean_ic": 2.460983600822936e-06,
+      "p_value": 0.9995023011064283,
+      "share_positive": 0.5185185185185185,
+      "signal": "short_interest_change",
+      "t_stat": 0.0006252321968955153,
+      "window": "select"
+    },
+    {
+      "cohorts": 73,
+      "horizon": 13,
+      "mean_ic": 0.003768766266655513,
+      "p_value": 0.29582764295202624,
+      "share_positive": 0.5068493150684932,
+      "signal": "short_interest_change",
+      "t_stat": 1.0530756486276112,
+      "window": "evaluate"
+    },
+    {
+      "cohorts": 108,
+      "horizon": 4,
+      "mean_ic": -0.019900041634686987,
+      "p_value": 0.0030190118201628637,
+      "share_positive": 0.4074074074074074,
+      "signal": "short_to_volume",
+      "t_stat": -3.035130724790894,
+      "window": "select"
+    },
+    {
+      "cohorts": 77,
+      "horizon": 4,
+      "mean_ic": -0.03039680132393339,
+      "p_value": 0.0015859889263244,
+      "share_positive": 0.3116883116883117,
+      "signal": "short_to_volume",
+      "t_stat": -3.276364713478676,
+      "window": "evaluate"
+    },
+    {
+      "cohorts": 108,
+      "horizon": 13,
+      "mean_ic": -0.031201531973329956,
+      "p_value": 5.539661490097419e-06,
+      "share_positive": 0.3425925925925926,
+      "signal": "short_to_volume",
+      "t_stat": -4.783486077342657,
+      "window": "select"
+    },
+    {
+      "cohorts": 73,
+      "horizon": 13,
+      "mean_ic": -0.04345462944588005,
+      "p_value": 1.2839699677212493e-06,
+      "share_positive": 0.3150684931506849,
+      "signal": "short_to_volume",
+      "t_stat": -5.285421903703221,
+      "window": "evaluate"
+    }
+  ],
+  "rows_matched_to_panel": 453756,
+  "rows_raw": 3534343,
+  "strategy_promotion_authorized": false,
+  "survivors": [
+    "days_to_cover_h4",
+    "days_to_cover_h13",
+    "short_to_volume_h4",
+    "short_to_volume_h13"
+  ],
+  "symbol_match_rate": 0.1284,
+  "verdict": "survives selection and evaluation at days_to_cover_h4, days_to_cover_h13, short_to_volume_h4, short_to_volume_h13",
+  "window": [
+    "2018-02-08",
+    "2026-08-22"
+  ]
+}

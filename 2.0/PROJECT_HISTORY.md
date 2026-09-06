@@ -12120,3 +12120,73 @@ References:
 
 - `config/activist_event_registry_v1.json`, `scripts/acquire_edgar_form_index_v1.py`,
   `scripts/run_activist_event_study_v1.py`, `evidence/activist_event_v1/`
+
+## Step 261 — The first structural break test in 272 steps, and all four strategies break in the same week
+
+Queue item A6. `CLAUDE.md` section 3 named structural-break tests as a Lopez de Prado technique
+not yet applied here, and a grep of the whole record found **zero mentions of CUSUM, Chow,
+Quandt-Andrews or Bai-Perron**. This is the first.
+
+The reason it mattered is procedural. The owner has asked repeatedly whether a strategy that
+worked last decade still works now, and every answer so far came from splitting the sample at a
+date **I** chose -- 2011/2019, 2013/2019, 2018/2022. That is an assumption dressed as a test. A
+supremum Wald test scans every interior candidate date and lets the data pick, with the null
+obtained by a moving-block bootstrap rather than a table, because asymptotic critical values
+assume an independence that weekly strategy returns do not have.
+
+### Every strategy breaks on the same week
+
+| series | weeks | break date | sup-Wald | bootstrap p | mean before | mean after |
+|---|---|---|---|---|---|---|
+| sector ensemble | 188 | **2025-04-04** | 9.58 | 0.034 | 10.5% | **83.8%** |
+| residual composite | 195 | **2025-04-04** | 12.68 | 0.022 | 8.6% | **79.5%** |
+| cash conversion b20 | 188 | **2025-04-04** | 9.26 | 0.038 | 7.8% | **81.9%** |
+| growth top five | 188 | **2025-04-04** | 9.01 | 0.028 | -9.1% | **104.6%** |
+| equal-weight universe 2011-2026 | 817 | 2020-03-27 | 1.83 | 0.761 | 9.9% | 23.8% |
+
+**None clears the Bonferroni threshold of 0.01** -- the p-values run 0.022 to 0.038, clearing an
+uncorrected five percent and not the correction for five trials. So the break is suggestive
+rather than established, and that is how it is recorded.
+
+But the *date* is the finding. **Four strategies, scanned independently over 188 to 195 weeks,
+each select the identical week.** Four genuinely different strategies would not do that. It is
+the cleanest evidence yet for what Step 245 measured as 1.57 effective independent strategies:
+they are one bet, and they turned at once.
+
+### And it is not beta
+
+| series | before | after | beta before | beta after | alpha before | alpha after |
+|---|---|---|---|---|---|---|
+| sector ensemble | 12.6% | 85.3% | -0.13 | 0.07 | 14.2% | **83.3%** |
+| residual composite | 8.6% | 79.5% | 0.05 | 0.23 | 8.1% | **73.2%** |
+| cash conversion | 9.8% | 82.1% | -0.14 | 0.07 | 11.6% | **80.0%** |
+| growth top five | -7.8% | 105.9% | -0.23 | 0.15 | -4.9% | **101.6%** |
+| equal-weight market | 14.6% | 26.6% | -- | -- | -- | -- |
+
+Betas sit between -0.23 and +0.23 on both sides, so the surge is not market exposure. The market
+went from 14.6% to 26.6%; the strategies went from about 10% to about 85%.
+
+### What this means for every number on the dashboard
+
+The strategies ran for roughly 113 weeks at **8 to 13 percent a year, below the 14.6% an equal
+weight of the market returned over the same stretch**, and then produced everything in the 75
+weeks since April 2025. The headline CAGRs of 33% to 45% are that average.
+
+This is the opposite of the owner's hypothesis, which was that a strategy winning last decade may
+stop working. These did close to nothing for two and a quarter years and then everything at once,
+and every backtest here was run on a sample containing that surge.
+
+The honest reading is not that the strategies are wrong. It is that **their entire measured edge
+lives in 75 weeks**, that all four found it in the same week, and that no test in this project has
+ever asked what happens if those 75 weeks are removed. That question now has a date attached to
+it, chosen by the data rather than by me.
+
+### What it does not mean
+
+A structural break is a description of the past. It does not predict the next one, and finding
+one tells nobody what to hold. The pre-declared reading in the registry said breaks clustering at
+one date would mean future tests should split there; that is now the recommendation, and prior
+results split elsewhere should be re-read with 2025-04-04 in mind.
+
+References: `config/structural_break_registry_v1.json`, `scripts/run_structural_break_tests_v1.py`,
+`evidence/structural_break_v1/`

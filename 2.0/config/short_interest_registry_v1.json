@@ -1,0 +1,33 @@
+{
+  "experiment": "short_interest_v1",
+  "declared_at_utc": "2026-09-06T00:00:00Z",
+  "queue_item": "A5",
+  "question": "Does FINRA short interest predict returns on this universe?",
+  "why_it_was_queued": "IO_ShortInterest sat in the OSAP screen's most-orthogonal band at 0.0033 against every existing strategy and was named in A1 without a data source. FINRA publishes short interest free, twice monthly, per security.",
+  "honest_prior": "This is the CONTINUOUS CROSS-SECTIONAL SCORE shape -- a number every stock carries -- and that shape has now failed twelve times in a row across Steps 244 to 258. A4 tested the event shape and failed too. There is no reason to expect this to be different, and it is being run because the data is free and the orthogonality was measured rather than assumed, not because the prior is good.",
+  "data": {
+    "source": "https://cdn.finra.org/equity/otcmarket/biweekly/shrtYYYYMMDD.csv, pipe-delimited",
+    "coverage": "probed before writing this: 2018-08-15 returns 200 and 2017-08-15 returns 403, so history starts in 2018. Roughly 24 files a year, about 20,600 securities each.",
+    "fields_used": ["symbolCode", "currentShortPositionQuantity", "previousShortPositionQuantity", "averageDailyVolumeQuantity", "daysToCoverQuantity", "settlementDate"],
+    "identity": "symbol-keyed; joined to cik10 through data/sec_broad_panel_inputs_v3/price_source_inventory.csv, and the match rate is reported rather than assumed"
+  },
+  "causality": "the settlement date is the point-in-time anchor and FINRA publishes it with a lag, so returns are measured from the first weekly close strictly after the PUBLICATION date, which is taken as settlement plus eight calendar days",
+  "declared_signals": {
+    "days_to_cover": "shares short divided by average daily volume, as published",
+    "short_interest_change": "current short position over previous, minus one",
+    "short_to_volume": "current short position divided by average daily volume"
+  },
+  "declared_configurations": {"signals": 3, "forward_horizon_weeks": [4, 13], "total_trials": 6},
+  "bonferroni_threshold": 0.00833,
+  "sign": "no sign is declared. The literature is genuinely two-sided -- high short interest predicts underperformance in most studies, but short squeezes cut the other way -- so a two-sided test is used and the sign found in selection must repeat in evaluation.",
+  "windows": {"selection": ["2018-01-01", "2022-12-31"], "evaluation": ["2023-01-01", "2026-09-04"],
+              "note": "the selection window contains the 2018 Q4 selloff, 2020 and 2022, so it is not a single regime"},
+  "interpretation_fixed_in_advance": {
+    "if_nothing_clears": "A5 closes, the free tier of the queue is exhausted, and the honest options become paid data or stopping the search",
+    "if_something_clears_in_selection_but_not_evaluation": "in-sample; record and close",
+    "if_something_clears_in_both_with_a_repeating_sign": "the first surviving signal since Step 244; it still needs a book, costs and a correlation check before it means anything"
+  },
+  "cumulative_trial_warning": "These 6 stack on every configuration searched across 261 recorded steps.",
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

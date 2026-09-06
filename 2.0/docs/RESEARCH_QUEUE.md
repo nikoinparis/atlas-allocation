@@ -164,6 +164,28 @@ publishes short interest free, twice monthly, per security.
 that has failed twelve times running. But it is genuinely orthogonal by measurement and the data
 is free and complete.
 
+### A7. Feature importance by MDA and MDI  *(new 2026-09-06)*
+**Status:** never attempted. Zero mentions in 272 steps. Named in CLAUDE.md section 3 as untried.
+**Why it matters:** this is not prediction, it is diagnosis. The portfolio holds books built from
+residual momentum, trend quality, quality momentum and event score, and nobody has measured which
+of those four carries anything once the others are present. Mean-decrease-accuracy answers that
+directly, and it may explain Step 245's finding that the transfer coefficients are nonsense.
+**Data:** none needed.
+
+### A8. Fractional differentiation  *(new 2026-09-06)*
+**Status:** never attempted. Zero mentions. Named in CLAUDE.md section 3.
+**Why it matters:** every price-based signal here differences returns fully, which makes the
+series stationary and throws away all memory. Fractional differentiation keeps as much memory as
+stationarity allows. It does not add a signal; it may improve the input to every signal already
+built.
+
+### A9. Triple-barrier labelling  *(new 2026-09-06)*
+**Status:** never attempted. Zero mentions.
+**Why it matters:** everything tested here predicts "the return over the next N weeks". Triple
+barrier predicts "does it hit +x before -y, within a horizon" -- a different and often more
+learnable target, and the one that meta-labelling was designed to sit on top of. Meta-labelling
+failed its precondition in Step 201, which may be because it was applied without this underneath.
+
 ## B tier
 
 ### B1. Volatility risk premium, reading first
@@ -262,6 +284,7 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 | Cross-asset crisis trend | Rejected as a fixed blend | Step 205 |
 | Daily OHLCV alpha zoo | Rejected as a replacement | Step 200 |
 | Breadth accounting | Done. IR ceiling below 0.1; the finding that reframed everything after it | Step 245 |
+| **Structural break tests (was A6)** | **Done, and it changed the reading of everything else.** All four strategies select the identical break week, 2025-04-04, scanning independently over 188-195 weeks. Mean return goes from 8-13% before to 80-105% after, betas near zero on both sides so it is not market exposure, and the market itself shows no break there. None clears Bonferroni 0.01 (p 0.022-0.038) so it is suggestive rather than established -- but four independent strategies do not pick the same week by chance, and it is the cleanest evidence yet that they are one bet. **Consequence: future tests should split at 2025-04-04, and no test in this project has ever asked what the strategies look like with those 75 weeks removed.** | Step 261 |
 | **13D/13G activist events (was A4)** | **Closed.** 38,849 subject events, 2013-2026, sector-matched abnormal returns bootstrapped with clustering by filing month. Nothing clears for either form in either window. The strongest reading, 13D at 13 weeks recently, is **-2.13%** -- the wrong sign against a declared positive. The 13G control is flat at 20,000 events, so the absence is real rather than a broken pipeline. Caught mid-run: EDGAR relabelled `SC 13D` to `SCHEDULE 13D` in 2025 and the first parse silently lost two years. | Step 260 |
 | **13F institutional linkage (was A0)** | **Closed.** 110M holding rows, 73.4% identity match, manager cap declared before any signal. Every IC negative against a declared positive sign, none significant, at three caps and two horizons, and the sector-controlled column is equally flat so it is an absence rather than a sector effect. Mild evidence against buying P2. | Step 258 |
 | **10-K language change (was S1)** | **Inconclusive by construction, scope reduced.** Corpus of 9,754 filings acquired and parsed and kept. Cosine on word counts is degenerate (IQR 0.0020); jaccard is the usable measure. 10-Ks are annual and cluster in Q1, so eight years give nine cross-sections and the smallest establishable IC is ~0.110. **Only worth reviving as: extend the corpus to 2011, declare ONE measure and ONE horizon, judge on sub-period replication rather than a p-value.** | Step 255 |

@@ -130,6 +130,29 @@ ideas; instead look for what from that same body of work *hasn't* been applied y
 (meta-labeling on existing signals, feature importance via MDA/MDI, fractional
 differentiation for stationarity without full information loss, structural-break tests).
 
+## 3b. Keep the research queue current — this is not optional
+
+`2.0/docs/RESEARCH_QUEUE.md` is the living, ranked list of what to do next. It exists because
+three of six strategies the owner proposed on 2026-09-06 had already been tested and rejected in
+`PROJECT_HISTORY.md` and nobody remembered. It fails in both directions if it is not maintained:
+good ideas get lost, and dead ideas get retried.
+
+**Whenever you have a new idea worth trying, write it into the queue in the same turn you have
+it** — even half-formed, even if you are not going to act on it. A line there costs nothing; a
+lost idea costs a year. Rank it S/A/B/C, say whether it needs free or paid data, and name the
+blocker, because "we forgot" is almost always "nobody wrote down what was stopping it."
+
+**Whenever you finish an idea, delete it from the queue and move a one-line verdict into its
+`Closed` table**, with the step number. The full record stays in `PROJECT_HISTORY.md`; the queue
+carries just enough to stop the idea being proposed again.
+
+**Read the queue before proposing anything new**, and read the `Closed` table first.
+
+Sources of new ideas that have actually produced untried items here: this file's own section 3
+(four López de Prado techniques were named there and sat unattempted for 272 steps), the OSAP
+correlation screen's most-orthogonal band, and the "blocked on" and "should be continued" lines
+buried in `PROJECT_HISTORY.md`.
+
 ## 4. Where things live
 
 - `PROJECT_HISTORY.md` (repo root and mirrored in `2.0/`) — the full chronological

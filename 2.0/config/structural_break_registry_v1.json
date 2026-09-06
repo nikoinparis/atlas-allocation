@@ -1,0 +1,31 @@
+{
+  "experiment": "structural_break_v1",
+  "declared_at_utc": "2026-09-06T00:00:00Z",
+  "queue_item": "A6",
+  "question": "Do this project's strategies and signals have structural breaks, and where does the data put them?",
+  "why_this_matters_here": "The owner has asked repeatedly whether a strategy that worked last decade still works now. Every answer so far came from splitting the sample at a date I chose -- 2011/2019, 2013/2019, 2018/2022. That is an assumption wearing the clothes of a test. A structural break test finds the break point FROM the data and tests whether one exists at all, which converts a recurring argument into a measurement.",
+  "from_the_reference_shelf": "CLAUDE.md section 3 names structural-break tests as a technique from the Lopez de Prado body of work not yet applied here. A grep of 272 recorded steps found zero mentions of CUSUM, Chow, Quandt-Andrews or Bai-Perron. This is the first.",
+  "data": {
+    "strategy_paths": ["sector ensemble", "residual composite", "cash conversion breadth-20", "growth top five"],
+    "reference_series": ["equal-weight universe from the 2011-2026 clean panel"],
+    "signal_ic_series": "the eight price-signal IC series from Step 257, so breaks in a signal can be separated from breaks in a book"
+  },
+  "method": {
+    "primary": "supremum Wald test for a break in mean at an unknown date, scanning every candidate break between the 15th and 85th percentile of the sample so the statistic is not driven by the endpoints",
+    "null_distribution": "obtained by a moving-block bootstrap that resamples the series under the no-break null and recomputes the supremum, rather than by table lookup. The sup-Wald statistic has a non-standard distribution and asymptotic critical values assume independence that weekly returns do not have.",
+    "secondary": "CUSUM of squares for variance instability, since a strategy whose volatility regime changes is a different object even if its mean does not move",
+    "bootstrap": {"draws": 2000, "block_weeks": 13, "seed": 20260906}
+  },
+  "declared_trials": 5,
+  "bonferroni_threshold": 0.01,
+  "interpretation_fixed_in_advance": {
+    "if_no_series_shows_a_break": "the owner's regime hypothesis is not supported by these series, and the window splits used so far were arbitrary but harmless",
+    "if_breaks_are_found_and_cluster_at_one_date": "that date, not one I chose, is the right place to split every future test, and prior results split elsewhere should be re-read",
+    "if_breaks_are_found_at_different_dates_per_strategy": "the strategies are responding to different regimes, which would be the first evidence in this project that they are not all the same bet",
+    "if_a_break_is_found_at_the_start_of_the_2023-2026_bull": "it would mean the sample every strategy was selected on begins at a genuine discontinuity, which weakens every backtest here rather than any single one",
+    "always": "a structural break is a description of the past. It does not predict the next break, and finding one does not tell anyone what to hold."
+  },
+  "cumulative_trial_warning": "These 5 stack on every configuration searched across 272 recorded steps.",
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

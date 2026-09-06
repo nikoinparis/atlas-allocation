@@ -11683,3 +11683,82 @@ References:
 - `docs/RESEARCH_QUEUE.md`
 - `scripts/acquire_sec_filing_text_v1.py`, `data/sec_filing_text_v1/`
 - `evidence/sec_language_change_readiness_v1/` (the queue Step 202 built)
+
+## Step 253 — S3: SUE gets its standalone test, and the significance comes from the overlap
+
+Step 201 measured standardised unexpected earnings at +0.0269 selection IC and +0.0174 holdout
+IC, positive in half of holdout decisions, then folded it into a four-feature composite that was
+rejected whole. SUE itself was never judged alone, which left it in the worst state a signal can
+be in: not promoted, not rejected, and quietly assumed alive. Item S3.
+
+### The information coefficient, by horizon
+
+| forward horizon | decisions | mean IC | t | p | positive | minimum detectable IC at 80% power |
+|---|---|---|---|---|---|---|
+| 4w | 14 | -0.0008 | -0.05 | 0.962 | 57% | 0.0478 |
+| **13w** | 14 | **+0.0207** | **1.69** | **0.115** | 79% | 0.0342 |
+| 26w | 13 | **+0.0291** | **2.94** | **0.012** | 85% | 0.0277 |
+
+The horizon gradient is the right shape. Nothing at four weeks, building through thirteen,
+strongest at twenty-six is what post-earnings drift is supposed to look like and not what a
+spurious spike looks like.
+
+### And then the overlap
+
+Decisions are quarterly. A 26-week forward return therefore spans two of them, so consecutive
+observations share about half their return window and the t-statistic is measuring the same
+weeks twice.
+
+| effective independent observations | t | p |
+|---|---|---|
+| 13, as if independent | 2.94 | 0.012 |
+| 9 | 2.45 | 0.040 |
+| **6.5, the honest figure for half-overlap** | **2.08** | **0.087** |
+
+**The only configuration that clears is the one whose significance comes from its own overlap.**
+The 13-week horizon is the one that does not overlap -- quarterly decisions, one quarter
+forward -- and it gives t = 1.69 at p = 0.115.
+
+So SUE is **not established**, which agrees with Step 201's holdout rather than contradicting
+it, and S3 closes as underpowered rather than as refuted. Fourteen quarterly decisions cannot
+resolve an IC of 0.02; the sample would need roughly forty to have a fair chance, which means
+extending the feature build back through the 2011 panel rather than running a different test on
+the same fourteen.
+
+### The part that is genuinely interesting, and is a separate claim
+
+A breadth-50 book on the same signal, rebalanced quarterly:
+
+| bps | CAGR | Sharpe | annual vol | max drawdown | recent 52w |
+|---|---|---|---|---|---|
+| 0 | 21.15% | 1.180 | 17.60% | -20.5% | +32.6% |
+| 10 | 20.58% | 1.152 | 17.61% | -20.7% | +32.1% |
+| **50** | **18.31%** | **1.039** | 17.69% | **-21.3%** | +30.1% |
+| 100 | 15.51% | 0.896 | 17.88% | -22.1% | +27.7% |
+
+It barely notices cost, because quarterly rebalancing turns over little -- a welcome contrast
+with Step 250, where a weekly signal lost everything by 100bps.
+
+And the correlation against what this project already owns:
+
+| against | correlation |
+|---|---|
+| cash conversion breadth-20 | **0.002** |
+| growth top five | **0.008** |
+
+That is the lowest correlation any candidate has ever measured here, against a book where the
+existing strategies correlate 0.506 to 0.874 with each other.
+
+**These are two different claims and they must not be merged.** The portfolio has attractive
+properties and is genuinely uncorrelated. The signal underneath it is not statistically
+established. An uncorrelated book built on an unestablished signal is not a breadth increase; it
+is a coin flip that happens to land differently from the other coin flips, and the honest
+reading of a Sharpe of 1.04 on fourteen decisions is that it has not been distinguished from
+one. The correlation number is a reason to extend the sample, not a reason to believe.
+
+Recorded in the queue as S3 closed-underpowered, with the extension named.
+
+References:
+
+- `scripts/run_pead_sue_standalone_v1.py`, `evidence/pead_sue_standalone_v1/`
+- `evidence/point_in_time_fundamental_branches_v1/` (Step 201's feature panel)

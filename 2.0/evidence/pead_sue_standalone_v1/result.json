@@ -1,0 +1,81 @@
+{
+  "correlation_with_existing_strategies": {
+    "cash_conversion": 0.0021708525592697065,
+    "growth": 0.008041962552984328
+  },
+  "cost_ladder": [
+    {
+      "annualised_volatility": 0.17596799212145803,
+      "cagr": 0.2115103967845302,
+      "cost_bps": 0.0,
+      "max_drawdown": -0.2051583959634865,
+      "recent_52w_return": 0.32549354838404043,
+      "sharpe": 1.1795028941339152
+    },
+    {
+      "annualised_volatility": 0.17608986956970676,
+      "cagr": 0.2057884713033038,
+      "cost_bps": 10.0,
+      "max_drawdown": -0.20672086086045427,
+      "recent_52w_return": 0.3205582405392533,
+      "sharpe": 1.1518294227823744
+    },
+    {
+      "annualised_volatility": 0.17693581221423355,
+      "cagr": 0.18308940454182254,
+      "cost_bps": 50.0,
+      "max_drawdown": -0.21296103032599045,
+      "recent_52w_return": 0.300930052407256,
+      "sharpe": 1.039407669319335
+    },
+    {
+      "annualised_volatility": 0.17878855834605514,
+      "cagr": 0.15513722107703098,
+      "cost_bps": 100.0,
+      "max_drawdown": -0.22073943938265805,
+      "recent_52w_return": 0.2766483273870568,
+      "sharpe": 0.8963779667211709
+    }
+  ],
+  "experiment": "pead_sue_standalone_v1",
+  "information_coefficients": [
+    {
+      "decisions": 14,
+      "forward_horizon_weeks": 4,
+      "ic_std": 0.06389502867359097,
+      "mean_ic": -0.0008398043052419899,
+      "minimum_detectable_ic_at_80pct_power": 0.047814661202934886,
+      "p_value": 0.9615246138281058,
+      "share_positive": 0.5714285714285714,
+      "standard_error": 0.017076664715333888,
+      "t_stat": -0.04917847362125068
+    },
+    {
+      "decisions": 14,
+      "forward_horizon_weeks": 13,
+      "ic_std": 0.04574383016951904,
+      "mean_ic": 0.020684480879317863,
+      "minimum_detectable_ic_at_80pct_power": 0.03423154801062271,
+      "p_value": 0.11447948537047596,
+      "share_positive": 0.7857142857142857,
+      "standard_error": 0.012225552860936684,
+      "t_stat": 1.6919055616216183
+    },
+    {
+      "decisions": 13,
+      "forward_horizon_weeks": 26,
+      "ic_std": 0.03566770421838499,
+      "mean_ic": 0.029116188258300806,
+      "minimum_detectable_ic_at_80pct_power": 0.027698835540378223,
+      "p_value": 0.012296889795099592,
+      "share_positive": 0.8461538461538461,
+      "standard_error": 0.009892441264420794,
+      "t_stat": 2.9432763339237846
+    }
+  ],
+  "live_trading_enabled": false,
+  "prior": "Step 201: +0.0269 selection IC, +0.0174 holdout IC, positive in half of holdout decisions",
+  "queue_item": "S3",
+  "strategy_promotion_authorized": false,
+  "verdict": "SUE clears an uncorrected 5% bar on at least one horizon; see the table"
+}

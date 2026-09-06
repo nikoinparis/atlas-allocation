@@ -58,16 +58,6 @@ language in a call is not in the 10-K and not in the price.
 Steps 239-240 treated the price panels: audit before use, never trust a vendor panel unchecked.
 **Do S1 first** — SEC text is authoritative, this is a mirror.
 
-### S3. PEAD / standardised unexpected earnings, standalone
-**Status:** half-tested. Step 201 measured SUE at **+0.0269 selection IC and +0.0174 holdout
-IC**, positive in only half of holdout decisions, then buried it in a four-feature composite
-that was rejected as a whole. SUE itself was never given a clean standalone test.
-**Why it matters:** it is the only fundamental signal in this project's history that survived a
-holdout at all, and the data is already local.
-**Data:** SEC companyfacts cache, already acquired.
-**Ceiling:** an IC of +0.017 is small and it will correlate with the fundamentals book, so this
-is closure rather than a new source of edge. Cheap enough to be worth closing.
-
 ## A tier
 
 ### A1. The three near-zero-correlation OSAP anomalies that need no new data
@@ -190,6 +180,7 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 | Cross-asset crisis trend | Rejected as a fixed blend | Step 205 |
 | Daily OHLCV alpha zoo | Rejected as a replacement | Step 200 |
 | Breadth accounting | Done. IR ceiling below 0.1; the finding that reframed everything after it | Step 245 |
+| PEAD / SUE standalone (was S3) | **Closed underpowered, not refuted.** The only horizon that clears (26w, t=2.94) gets its significance from overlapping windows; corrected for half-overlap it is p=0.087, and the non-overlapping 13w horizon gives p=0.115. Separately worth remembering: the book Sharpes 1.04 after 50bps and correlates **0.002 / 0.008** with existing strategies, the lowest ever measured here. That is a reason to extend the sample, not to believe. **To revive it:** rebuild the SUE feature back through the 2011 panel to get ~40 quarterly decisions instead of 14. | Step 253 |
 
 ---
 

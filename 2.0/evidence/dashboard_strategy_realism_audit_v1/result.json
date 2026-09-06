@@ -1,0 +1,302 @@
+{
+  "experiment": "dashboard_strategy_realism_audit_v1",
+  "findings": {
+    "candidate-return-first-60-40-forward-v1": {
+      "checks_not_run": [
+        "no 50bps return path found on disk",
+        "no per-issuer score file; tie structure cannot be measured from artifacts"
+      ],
+      "display": "ETF Incumbent - Return-First 60/40"
+    },
+    "sec-cash-conversion-breadth20-dynamic-v1": {
+      "as_displayed": {
+        "annualised_volatility": 0.22928583261493019,
+        "cagr": 0.391773797496644,
+        "covid_2020__cagr": null,
+        "covid_2020__weeks": 0,
+        "end": "2026-08-07",
+        "global_financial_crisis_2008_2009__cagr": null,
+        "global_financial_crisis_2008_2009__weeks": 0,
+        "max_drawdown": -0.23256296706298507,
+        "recent_104w__cagr": 0.5770992359316864,
+        "recent_104w__max_drawdown": -0.21672879097906128,
+        "recent_52w__cagr": 1.110798260424303,
+        "recent_52w__max_drawdown": -0.1066925157176648,
+        "sharpe": 1.5601687597772842,
+        "start": "2023-01-06",
+        "weeks": 188,
+        "years": 3.62
+      },
+      "checks_not_run": [
+        "the book does not reproduce the saved path, so leave-one-out and the random-book null would be measuring something else and were not run"
+      ],
+      "cost_ladder": {
+        "100bps": {
+          "cagr": 0.34446741796679503,
+          "recent_52w_cagr": 1.0684555402457367,
+          "sharpe": 1.4023717906078128
+        },
+        "200bps": {
+          "cagr": 0.25436523652241405,
+          "recent_52w_cagr": 0.9861733589319528,
+          "sharpe": 1.0884881688529682
+        },
+        "50bps": {
+          "cagr": 0.391773797496644,
+          "recent_52w_cagr": 1.110798260424303,
+          "sharpe": 1.5601687597772842
+        }
+      },
+      "display": "102% Daily-Audited (Dynamic Breadth-20)",
+      "leverage": {
+        "displayed_multiplier": 1.0,
+        "note": "headline is unlevered"
+      },
+      "reconstruction_check": {
+        "cagr_gap": -0.2043874112720272,
+        "checked": true,
+        "overlapping_weeks": 188,
+        "rebuilt_cagr": 0.18738638622461679,
+        "reproduces": false,
+        "saved_cagr": 0.391773797496644,
+        "weekly_correlation": 0.001283514668373255
+      },
+      "tie_structure": {
+        "decisions_measured": 15,
+        "median_candidates": 484.0,
+        "median_share_of_slots_decided_by_the_tiebreak": 0.0,
+        "median_tie_pool_at_cutoff": 20.0,
+        "selection_is_arbitrary": false,
+        "slots": 20,
+        "worst_tie_pool_at_cutoff": 20
+      }
+    },
+    "sec-growth-survivorship-aware-v1": {
+      "as_displayed": {
+        "annualised_volatility": 0.3568091885894768,
+        "cagr": 0.31481468655017575,
+        "covid_2020__cagr": null,
+        "covid_2020__weeks": 0,
+        "end": "2026-08-07",
+        "global_financial_crisis_2008_2009__cagr": null,
+        "global_financial_crisis_2008_2009__weeks": 0,
+        "max_drawdown": -0.3723994555918634,
+        "recent_104w__cagr": 0.6171321513901633,
+        "recent_104w__max_drawdown": -0.3649710972166299,
+        "recent_52w__cagr": 1.6246800873675067,
+        "recent_52w__max_drawdown": -0.19419561237381244,
+        "sharpe": 0.9477775536579245,
+        "start": "2023-01-06",
+        "weeks": 188,
+        "years": 3.62
+      },
+      "checks_not_run": [
+        "the book does not reproduce the saved path, so leave-one-out and the random-book null would be measuring something else and were not run"
+      ],
+      "cost_ladder": {
+        "100bps": {
+          "cagr": 0.297452050042569,
+          "recent_52w_cagr": 1.5961304141624852,
+          "sharpe": 0.9108880750814219
+        },
+        "200bps": {
+          "cagr": 0.26322006851081325,
+          "recent_52w_cagr": 1.5397268752788622,
+          "sharpe": 0.8359243416014372
+        },
+        "50bps": {
+          "cagr": 0.31481468655017575,
+          "recent_52w_cagr": 1.6246800873675067,
+          "sharpe": 0.9477775536579245
+        }
+      },
+      "display": "142% Growth / Micron",
+      "leverage": {
+        "displayed_multiplier": 1.0,
+        "note": "headline is unlevered"
+      },
+      "reconstruction_check": {
+        "cagr_gap": -0.018284416992858876,
+        "checked": true,
+        "overlapping_weeks": 188,
+        "rebuilt_cagr": 0.2965302695573169,
+        "reproduces": false,
+        "saved_cagr": 0.31481468655017575,
+        "weekly_correlation": -0.1186866873730154
+      },
+      "tie_structure": {
+        "decisions_measured": 15,
+        "median_candidates": 481.0,
+        "median_share_of_slots_decided_by_the_tiebreak": 0.0,
+        "median_tie_pool_at_cutoff": 5.0,
+        "selection_is_arbitrary": false,
+        "slots": 5,
+        "worst_tie_pool_at_cutoff": 5
+      }
+    },
+    "sec-residual-controlled-1.25x-5pct-v1": {
+      "as_displayed": {
+        "annualised_volatility": 0.1920191411366806,
+        "cagr": 0.3941212257428348,
+        "covid_2020__cagr": null,
+        "covid_2020__weeks": 0,
+        "end": "2026-08-21",
+        "global_financial_crisis_2008_2009__cagr": null,
+        "global_financial_crisis_2008_2009__weeks": 0,
+        "max_drawdown": -0.18685460226496164,
+        "recent_104w__cagr": 0.6103306801920105,
+        "recent_104w__max_drawdown": -0.18685460226496176,
+        "recent_52w__cagr": 1.1064965452480724,
+        "recent_52w__max_drawdown": -0.11116225097772747,
+        "sharpe": 1.8310923641102106,
+        "start": "2022-12-02",
+        "weeks": 195,
+        "years": 3.75
+      },
+      "checks_not_run": [
+        "no per-issuer score file; tie structure cannot be measured from artifacts",
+        "no saved book; leave-one-out unmeasurable from artifacts"
+      ],
+      "cost_ladder": {
+        "50bps": {
+          "cagr": 0.3941212257428348,
+          "recent_52w_cagr": 1.1064965452480724,
+          "sharpe": 1.8310923641102106
+        }
+      },
+      "display": "150.86% Residual 1.25x",
+      "leverage": {
+        "displayed_multiplier": 1.25,
+        "drawdown_added_by_leverage": -0.0466506432459578,
+        "financing_rate": 0.05,
+        "levered_full_cagr": 0.4872594948093323,
+        "levered_max_drawdown": -0.23350524551091945,
+        "levered_recent_52w_cagr": 1.4797860770201474,
+        "unlevered_full_cagr": 0.3941212257428348,
+        "unlevered_max_drawdown": -0.18685460226496164,
+        "unlevered_recent_52w_cagr": 1.1064965452480724
+      }
+    },
+    "sec-sector-aware-signal-ensemble-v1": {
+      "as_displayed": {
+        "annualised_volatility": 0.22349029504346696,
+        "cagr": 0.42735783406919925,
+        "covid_2020__cagr": null,
+        "covid_2020__weeks": 0,
+        "end": "2026-08-07",
+        "global_financial_crisis_2008_2009__cagr": null,
+        "global_financial_crisis_2008_2009__weeks": 0,
+        "max_drawdown": -0.21800170778866745,
+        "recent_104w__cagr": 0.6164305924586195,
+        "recent_104w__max_drawdown": -0.21800170778866745,
+        "recent_52w__cagr": 1.242041493092192,
+        "recent_52w__max_drawdown": -0.087087583753373,
+        "sharpe": 1.708492721828043,
+        "start": "2023-01-06",
+        "weeks": 188,
+        "years": 3.62
+      },
+      "checks_not_run": [
+        "no per-issuer score file; tie structure cannot be measured from artifacts",
+        "the book does not reproduce the saved path, so leave-one-out and the random-book null would be measuring something else and were not run"
+      ],
+      "cost_ladder": {
+        "100bps": {
+          "cagr": 0.3764115889150619,
+          "recent_52w_cagr": 1.184148168517165,
+          "sharpe": 1.5380809217674118
+        },
+        "200bps": {
+          "cagr": 0.27964341045586516,
+          "recent_52w_cagr": 1.0726891496158184,
+          "sharpe": 1.1985328920610903
+        },
+        "50bps": {
+          "cagr": 0.42735783406919925,
+          "recent_52w_cagr": 1.242041493092192,
+          "sharpe": 1.708492721828043
+        }
+      },
+      "display": "124% Sector Ensemble",
+      "leverage": {
+        "displayed_multiplier": 1.0,
+        "note": "headline is unlevered"
+      },
+      "reconstruction_check": {
+        "cagr_gap": -0.22772611319403602,
+        "checked": true,
+        "overlapping_weeks": 188,
+        "rebuilt_cagr": 0.19963172087516323,
+        "reproduces": false,
+        "saved_cagr": 0.42735783406919925,
+        "weekly_correlation": -0.022975294115030524
+      }
+    },
+    "sec-sector-ensemble-fragile-1.35x-v1": {
+      "as_displayed": {
+        "annualised_volatility": 0.22349029504346696,
+        "cagr": 0.42735783406919925,
+        "covid_2020__cagr": null,
+        "covid_2020__weeks": 0,
+        "end": "2026-08-07",
+        "global_financial_crisis_2008_2009__cagr": null,
+        "global_financial_crisis_2008_2009__weeks": 0,
+        "max_drawdown": -0.21800170778866745,
+        "recent_104w__cagr": 0.6164305924586195,
+        "recent_104w__max_drawdown": -0.21800170778866745,
+        "recent_52w__cagr": 1.242041493092192,
+        "recent_52w__max_drawdown": -0.087087583753373,
+        "sharpe": 1.708492721828043,
+        "start": "2023-01-06",
+        "weeks": 188,
+        "years": 3.62
+      },
+      "checks_not_run": [
+        "no per-issuer score file; tie structure cannot be measured from artifacts",
+        "the book does not reproduce the saved path, so leave-one-out and the random-book null would be measuring something else and were not run"
+      ],
+      "cost_ladder": {
+        "100bps": {
+          "cagr": 0.3764115889150619,
+          "recent_52w_cagr": 1.184148168517165,
+          "sharpe": 1.5380809217674118
+        },
+        "200bps": {
+          "cagr": 0.27964341045586516,
+          "recent_52w_cagr": 1.0726891496158184,
+          "sharpe": 1.1985328920610903
+        },
+        "50bps": {
+          "cagr": 0.42735783406919925,
+          "recent_52w_cagr": 1.242041493092192,
+          "sharpe": 1.708492721828043
+        }
+      },
+      "display": "174.97% Fragile 1.35x",
+      "leverage": {
+        "displayed_multiplier": 1.35,
+        "drawdown_added_by_leverage": -0.07394774613704302,
+        "financing_rate": 0.06,
+        "levered_full_cagr": 0.5641466702350586,
+        "levered_max_drawdown": -0.2919494539257105,
+        "levered_recent_52w_cagr": 1.8576846897816108,
+        "unlevered_full_cagr": 0.42735783406919925,
+        "unlevered_max_drawdown": -0.21800170778866745,
+        "unlevered_recent_52w_cagr": 1.242041493092192
+      },
+      "reconstruction_check": {
+        "cagr_gap": -0.22772611319403602,
+        "checked": true,
+        "overlapping_weeks": 188,
+        "rebuilt_cagr": 0.19963172087516323,
+        "reproduces": false,
+        "saved_cagr": 0.42735783406919925,
+        "weekly_correlation": -0.022975294115030524
+      }
+    }
+  },
+  "live_trading_enabled": false,
+  "panel": "data/sec_broad_research_panel_v3",
+  "strategies_audited": 6,
+  "strategy_promotion_authorized": false
+}

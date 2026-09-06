@@ -1,0 +1,48 @@
+{
+  "experiment": "institutional_linkage_v1",
+  "declared_at_utc": "2026-09-06T00:00:00Z",
+  "queue_item": "A0 in docs/RESEARCH_QUEUE.md",
+  "question": "Do stocks held by the same institutional managers predict each other's returns, the way stocks covered by the same analysts do?",
+  "hypothesis_from_literature": "Ali and Hirshleifer, NBER 25201, find a value-weighted long-short on connected-stock past returns earning 1.19% a month at t = 6.71, where two stocks are connected if one analyst covers both. P2 in the queue is blocked because analyst identity needs the paid IBES detail file. The mechanism is shared attention and it does not have to be analysts: two stocks held by the same managers are watched by the same people. 13F is free. The declared sign is POSITIVE -- a stock whose connected portfolio rose should rise -- so a negative result is a failed replication, not a discovery.",
+  "why_it_matters_here": "Every family this project has tested is a transform of prices or of reported numbers. Step 245 measured 1.57 effective independent strategies; Steps 246, 248, 250, 256 and 257 closed eleven candidate families. A linkage signal is the one shape in the literature that is neither a price nor a fundamentals transform, which is the only reason this is worth four gigabytes.",
+  "data": {
+    "source": "SEC Form 13F structured data sets, scraped from the official index rather than constructed by URL pattern because the naming changed in 2024",
+    "coverage": "53 files, 2013Q2 to 2026Q2, quarterly, roughly 70-95 MB compressed each",
+    "tables_used": ["COVERPAGE for the filing manager and the report period", "INFOTABLE for issuer CUSIP, name and value held"],
+    "cost": "free, no rate limit beyond SEC fair access"
+  },
+  "causality": {
+    "rule": "13F is due 45 days after quarter end, so the point-in-time date is the FILING date and never the report date",
+    "enforcement": "a quarter's holdings may only inform decisions strictly after the filing dates in that quarter's COVERPAGE"
+  },
+  "known_limitations_declared_up_front": [
+    "13F covers long US equity positions of managers above $100m only; it says nothing about shorts and nothing about small managers",
+    "holdings are quarterly snapshots, so intra-quarter trading is invisible",
+    "confidential treatment requests let managers omit positions, and those omissions are not observable"
+  ],
+  "identity_gate": {
+    "problem": "13F identifies issuers by CUSIP; this project's universe is keyed by cik10. There is no free official CUSIP-to-CIK crosswalk, so the join has to go through issuer names.",
+    "gate": "the CUSIP-to-cik10 match rate must be measured and reported before any signal is computed. Below 50% of the panel's issuers matched, the linkage graph is too sparse to trust and the experiment stops and says so.",
+    "precedent": "Steps 210 and 211 found a present-day ticker file silently rewriting universe history. Identity joins in this project get measured, not assumed."
+  },
+  "design": {
+    "connection": "two issuers are connected in a quarter if at least one manager reports holding both",
+    "connected_portfolio_return": "equal-weighted lagged 4-week return of an issuer's connected set, excluding the issuer itself",
+    "signal": "that connected-portfolio return, ranked cross-sectionally",
+    "selection_window": ["2013-01-01", "2019-12-31"],
+    "evaluation_window": ["2020-01-01", "2026-09-04"],
+    "forward_horizon_weeks": [4, 13],
+    "declared_trials": 2,
+    "bonferroni_threshold": 0.025,
+    "skip": "one week between the signal and the forward return, as in Step 257"
+  },
+  "interpretation_fixed_in_advance": {
+    "if_the_identity_gate_fails": "stop and record. The idea is untested, not refuted.",
+    "if_nothing_clears_in_selection": "the free linkage analogue does not reproduce the analyst effect on this universe; A0 closes and P2 stays a purchasing decision",
+    "if_it_clears_in_selection_and_repeats_in_evaluation": "the first linkage signal in this project and the first candidate selected without seeing the window it is judged on; it still enters at the bottom of the gate list",
+    "always": "a cross-sectional IC is not a strategy, and a connected-portfolio signal is mechanically correlated with sector returns. Any survivor must be shown to beat a sector-matched control before it means anything."
+  },
+  "cumulative_trial_warning": "These 2 stack on every configuration searched across 257 recorded steps.",
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

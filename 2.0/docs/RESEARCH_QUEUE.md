@@ -69,6 +69,22 @@ language in a call is not in the 10-K and not in the price.
 Steps 239-240 treated the price panels: audit before use, never trust a vendor panel unchecked.
 **Do S1 first** — SEC text is authoritative, this is a mirror.
 
+### S4. Beta-hedged reconstruction of the existing books *(new 2026-09-06)*
+**Status:** never attempted. Every config in this repo sets `shorting: false` or
+`long_only: true` -- US and Indonesia alike. The constraint has never been lifted or costed.
+**Why it matters:** Step 245 measured growth-top-five at IC **-0.0015** and realised IR
+**+0.457**, a transfer coefficient of **-103**. Those two facts cannot both be about stock
+selection. Step 193 hit the same wall from the other side: low asset growth produced a positive
+long-short spread that "does not convert into a long-only portfolio without a short book this
+project cannot cost or borrow." A beta hedge is what separates selection alpha from market
+exposure, and it is the only structural change on this list that needs **no new data at all**.
+**What it answers:** whether these books contain any selection skill, or are levered beta plus
+single-name concentration. Either answer is worth more than another signal test.
+**Cost:** one script over the saved book weights and the benchmark path. Hedge against the
+equal-weight panel or SPY, charge borrow explicitly, report at 0/10/50/100bps.
+**Not a promotion path on its own.** A market-neutral book still faces every existing gate, and
+the equal-weight panel benchmark to beat is 22.21% CAGR / 1.28 Sharpe / -20.3% drawdown.
+
 ## A tier
 
 ### A0. Institutional co-ownership linkage from Form 13F  *(new 2026-09-06)*
@@ -121,6 +137,35 @@ starting.
 estimated rather than chosen, which removes a large unrecorded search.
 **Ceiling:** it is a construction change, not a new signal. Step 245's cap applies.
 
+### A4. FINRA short interest and daily short-sale volume *(new 2026-09-06)*
+**Status:** new. Closes A1's open question -- "check whether the free sources cover it" for
+`IO_ShortInterest`. They do. FINRA publishes consolidated short interest twice monthly and
+daily short-sale volume files, both free and both authoritative rather than a mirror.
+**Why it matters:** short positioning is a *positioning* channel, not a transform of price or
+of reported numbers, which is the same orthogonality argument that puts S1 and S2 at the top.
+**Design caveat:** short interest and short-sale volume are different signals with different
+mechanisms. Declare which one, and one horizon, before testing -- do not test both and pick.
+
+### A5. Analyst estimate-revision breadth, aggregate only *(new 2026-09-06)*
+**Status:** new, coverage unverified.
+**Distinct from P2**, which is blocked because it needs analyst *identity* to build a graph.
+Revision direction and breadth are aggregates and may be obtainable on a free tier.
+**Before it can be ranked properly:** thirty minutes establishing whether any free source gives
+a point-in-time revision series. If not, it moves to the paid queue next to P2.
+
+### A6. Cross-sectional residual work in a second market *(new 2026-09-06)*
+**This corrects a likely misreading of Step 246, and the correction matters.** Step 246
+measured 35 multi-asset ETFs at 4.16 effective assets and international equity at **1.27**, and
+concluded international is near-redundant with US equity at weekly frequency. That is correct
+and it refutes international *index* diversification. It does **not** refute international
+*cross-sectional* work, because those are different quantities: a market-neutral cross-sectional
+book in Indonesia nets out the country factor, and its residual can be near-orthogonal to a US
+cross-sectional residual even when the two indices correlate 0.8. **Only asset correlation was
+measured; residual correlation was not.**
+**Data:** already on disk -- IDX80/LQ45/IDX30 point-in-time membership, fundamentals, extended
+prices, and a written protocol in `docs/INDONESIA_EQUITY_RESEARCH_V1.md`.
+**Depends on S4.** This means nothing while every book here is long-only.
+
 ## B tier
 
 ### B1. Volatility risk premium, reading first
@@ -136,6 +181,16 @@ spending anything.
 **Status:** Step 166 noted **446 candidates of which 315 are not yet audited**, plus seven
 rejected legacy cases scheduled for one controlled recheck.
 **Why it matters:** housekeeping that raises panel coverage, not a strategy.
+
+### B3. The Lopez de Prado methods not yet applied here *(new 2026-09-06)*
+CLAUDE.md section 3 names purged/embargoed walk-forward CV, deflated Sharpe, CSCV and block
+bootstrap as already implemented unusually well, and asks what from that body of work is still
+unused. The unused list is **fractional differentiation** (stationarity without full memory
+loss), **MDA/MDI feature importance**, and **structural-break tests**.
+**Why it is B and not A:** none of the three generates a signal. All three are diagnostics that
+would say which existing features are doing work and whether a series changed regime. Useful,
+bounded, and they do not touch the breadth ceiling.
+*Recorded from general knowledge of AFML, not from a read of the text this session.*
 
 ## C tier -- parked, recorded so it is not re-proposed
 
@@ -209,7 +264,9 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 | Cross-asset crisis trend | Rejected as a fixed blend | Step 205 |
 | Daily OHLCV alpha zoo | Rejected as a replacement | Step 200 |
 | Breadth accounting | Done. IR ceiling below 0.1; the finding that reframed everything after it | Step 245 |
-| PEAD / SUE standalone (was S3) | **Closed underpowered, not refuted.** The only horizon that clears (26w, t=2.94) gets its significance from overlapping windows; corrected for half-overlap it is p=0.087, and the non-overlapping 13w horizon gives p=0.115. Separately worth remembering: the book Sharpes 1.04 after 50bps and correlates **0.002 / 0.008** with existing strategies, the lowest ever measured here. That is a reason to extend the sample, not to believe. **To revive it:** rebuild the SUE feature back through the 2011 panel to get ~40 quarterly decisions instead of 14. | Step 253 |
+| Eight untried price signals -- coskewness, idiosyncratic skewness, trend consistency, sector dispersion, vol-of-vol, downside beta, residual reversal skip-1, industry return of big firms | **0 of 8 clear** Bonferroni 0.00625 in either the 2011-2019 selection window or the 2020-2026 evaluation window. Best is trend consistency at evaluate IC +0.0212, t=1.72, p=0.088. Two (coskewness, idiosyncratic skewness) are nominally significant with the **wrong sign**. | `evidence/untried_price_signals_v1/` |
+| World Cup Trading Championship as external evidence that better strategies exist | **Tested against their own published record.** 42 flagship futures winners 1984-2025, **33 distinct names**; solving N(1-(1-1/N)^42)=33 gives **N~=85**, so the entire repeat-winner structure is what a stable field of ~85 identical traders produces by chance. Median winner **+252%**, range +53% to **+11,376%** -- a variance distribution, not a skill distribution. Field size is not published, so skill cannot be separated from entry volume, and their own footer permits multiple accounts per entrant. **Does not establish that better strategies exist.** The one thing it does corroborate is that the field trades futures and FX with leverage and both directions -- which is P1 and S4, already here. | Step 256 |
+| PEAD / SUE standalone (was S3) | **Closed underpowered, not refuted.** The only horizon that clears (26w, t=2.94) gets its significance from overlapping windows; corrected for half-overlap it is p=0.087, and the non-overlapping 13w horizon gives p=0.115. Separately worth remembering: the book Sharpes 1.04 after 50bps and correlates **0.002 / 0.008** with existing strategies, the lowest ever measured here. That is a reason to extend the sample, not to believe. **Revival attempted 2026-09-06; the remedy was tried and it did not work.** The panel was rebuilt to **58 decisions**, 2012-04-01 to 2026-07-01, 131,169 rows over 6,098 roster issuers. Across all 58 the IC is **+0.0053 at 13w (t=0.71)** and **+0.0077 at 26w (overlap-adjusted t=0.71)** -- nothing. It reaches +0.0330 at 26w (overlap-adjusted t=2.35, p=0.044) only once decisions are restricted to companyfacts coverage >=0.8, which leaves **20 decisions** and, because coverage runs 54.3% before 2016 against 91.0% from 2020, is very nearly just the 2016-2026 window. The added decisions carry a **36.6pp survivorship coverage gap** and no signal. Eight configurations against a Bonferroni threshold of 0.00625: **none clear.** The sample-extension remedy is now spent; do not propose it a third time. | Steps 253, 256 |
 
 ---
 

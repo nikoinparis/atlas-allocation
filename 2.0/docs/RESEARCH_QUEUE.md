@@ -34,7 +34,7 @@ directions: good ideas do not get lost, and dead ideas do not get retried.
 
 ## S tier
 
-### S1. SEC 10-K language change *(measured 2026-09-06; see below before continuing)*
+### S1. SEC 10-K language change — extend the corpus to 2011  *(reduced scope)*
 **Status:** source-blocked since Step 202, never unblocked. This is the lost item that prompted
 this file.
 **Why it matters:** the only genuinely orthogonal information source available for free. Every
@@ -59,51 +59,7 @@ t = 2.00, surviving the length control at +0.0579.
 *one* measure and *one* horizon in advance instead of twelve trials. The text is acquired and
 parsed, so this is a further download rather than a fresh start.
 
-### S2. Earnings call transcripts
-**Status:** new, never attempted.
-**Why it matters:** same argument as S1 and a second, independent text channel. Management
-language in a call is not in the 10-K and not in the price.
-**Data:** `defeatbeta-api` (Apache-2.0, PyPI), backed by a HuggingFace Yahoo mirror with DuckDB.
-60+ quarters deep on the sample checked. Free, no stated rate limit.
-**Caveat:** it is a Yahoo mirror, so it inherits Yahoo's quality problems. Treat it the way
-Steps 239-240 treated the price panels: audit before use, never trust a vendor panel unchecked.
-**Do S1 first** — SEC text is authoritative, this is a mirror.
-
-### S4. Beta-hedged reconstruction of the existing books *(new 2026-09-06)*
-**Status:** never attempted. Every config in this repo sets `shorting: false` or
-`long_only: true` -- US and Indonesia alike. The constraint has never been lifted or costed.
-**Why it matters:** Step 245 measured growth-top-five at IC **-0.0015** and realised IR
-**+0.457**, a transfer coefficient of **-103**. Those two facts cannot both be about stock
-selection. Step 193 hit the same wall from the other side: low asset growth produced a positive
-long-short spread that "does not convert into a long-only portfolio without a short book this
-project cannot cost or borrow." A beta hedge is what separates selection alpha from market
-exposure, and it is the only structural change on this list that needs **no new data at all**.
-**What it answers:** whether these books contain any selection skill, or are levered beta plus
-single-name concentration. Either answer is worth more than another signal test.
-**Cost:** one script over the saved book weights and the benchmark path. Hedge against the
-equal-weight panel or SPY, charge borrow explicitly, report at 0/10/50/100bps.
-**Not a promotion path on its own.** A market-neutral book still faces every existing gate, and
-the equal-weight panel benchmark to beat is 22.21% CAGR / 1.28 Sharpe / -20.3% drawdown.
-
 ## A tier
-
-### A0. Institutional co-ownership linkage from Form 13F  *(new 2026-09-06)*
-**Status:** never attempted here. This is the free analogue of the thread that is stuck in the
-paid queue.
-**The idea:** P2's shared-analyst-coverage effect works because two stocks watched by the same
-people move together with a lag. The linkage does not have to be analysts. **Two stocks held by
-the same institutional managers** is the same shared-attention mechanism, and 13F is free.
-**Data:** SEC Form 13F structured data sets. **July 2013 to May 2026**, quarterly, flattened
-cover page plus an information table of holdings per manager per security, 70-95 MB per quarter,
-about 4 GB in total. Free bulk download, no rate limit, authoritative rather than a mirror.
-**Why it ranks here and not in S:** the construction is more involved than a single-signal test
--- build the manager-holding matrix, link stocks by shared holders, form each stock's connected
-portfolio, sort on its lagged return -- and it inherits the sample problem that 52 quarters is
-still only 52 observations. But it is the only free path to a linkage signal, and linkage is the
-one family in the literature that is genuinely not a price or fundamentals transform.
-**Caveats to design around before starting:** 13F is filed 45 days after quarter end, so the
-point-in-time date is the filing date and not the report date; it covers long US equity positions
-over $100m only; and it says nothing about shorts.
 
 ### A1. The three near-zero-correlation OSAP anomalies that need no new data
 **Status:** identified in Step 216, never tested.
@@ -165,6 +121,28 @@ measured; residual correlation was not.**
 **Data:** already on disk -- IDX80/LQ45/IDX30 point-in-time membership, fundamentals, extended
 prices, and a written protocol in `docs/INDONESIA_EQUITY_RESEARCH_V1.md`.
 **Depends on S4.** This means nothing while every book here is long-only.
+
+### A4. 13D and 13G activist and large-stake filings  *(new 2026-09-06)*
+**Status:** never attempted. The best remaining free idea in this file.
+**Why it is different from everything closed so far:** every family tested to date is a
+*continuous* cross-sectional score -- a number every stock has every week. A 13D is a **discrete
+event**: someone crossed 5% ownership with intent to influence. Events and scores fail for
+different reasons, and this project has never tested an event-driven signal that was not
+earnings.
+**Data:** SEC EDGAR, free, full history. Forms SC 13D, SC 13D/A, SC 13G. Filing date is the
+point-in-time anchor and the deadline is short, so the lag problem that may have killed A0 is
+much smaller here.
+**Design note before starting:** the sample is small -- a few thousand 13Ds a year across the
+whole market -- so this is an event study with cohort dates, not a weekly cross-sectional IC.
+Different statistics, and the registry has to say so up front.
+
+### A5. FINRA short interest  *(new 2026-09-06)*
+**Status:** never attempted. `IO_ShortInterest` sat in the OSAP screen's most-orthogonal band at
+0.0033 against every existing strategy, and was named in A1 without a data source. FINRA
+publishes short interest free, twice monthly, per security.
+**Why it ranks below A4:** it is another continuous cross-sectional score, which is the shape
+that has failed twelve times running. But it is genuinely orthogonal by measurement and the data
+is free and complete.
 
 ## B tier
 
@@ -264,9 +242,13 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 | Cross-asset crisis trend | Rejected as a fixed blend | Step 205 |
 | Daily OHLCV alpha zoo | Rejected as a replacement | Step 200 |
 | Breadth accounting | Done. IR ceiling below 0.1; the finding that reframed everything after it | Step 245 |
+| **13F institutional linkage (was A0)** | **Closed.** 110M holding rows, 73.4% identity match, manager cap declared before any signal. Every IC negative against a declared positive sign, none significant, at three caps and two horizons, and the sector-controlled column is equally flat so it is an absence rather than a sector effect. Mild evidence against buying P2. | Step 258 |
+| **10-K language change (was S1)** | **Inconclusive by construction, scope reduced.** Corpus of 9,754 filings acquired and parsed and kept. Cosine on word counts is degenerate (IQR 0.0020); jaccard is the usable measure. 10-Ks are annual and cluster in Q1, so eight years give nine cross-sections and the smallest establishable IC is ~0.110. **Only worth reviving as: extend the corpus to 2011, declare ONE measure and ONE horizon, judge on sub-period replication rather than a p-value.** | Step 255 |
+| **Earnings call transcripts (was S2)** | **Closed unstarted.** Audited: real, speaker-attributed, 2005-2026, but coverage is proportional to company size and age -- AAPL 84 transcripts, TXO zero. A cross-sectional signal on a source whose coverage tracks size is a selection problem before it is a signal. S1 showed the text channel cannot be established on annual data anyway. | Step 254 |
+| **Eight price signal families (coskewness, idiosyncratic skewness, trend consistency, sector dispersion, vol-of-vol, downside beta, residual reversal, ind_ret_big)** | **Closed.** Selected on 2011-2019, evaluated on 2020-2026. Zero of eight clear Bonferroni in either window. ind_ret_big, the most orthogonal of them at 0.009, measures -0.0007 at t=-0.07. | Step 257 |
 | Eight untried price signals -- coskewness, idiosyncratic skewness, trend consistency, sector dispersion, vol-of-vol, downside beta, residual reversal skip-1, industry return of big firms | **0 of 8 clear** Bonferroni 0.00625 in either the 2011-2019 selection window or the 2020-2026 evaluation window. Best is trend consistency at evaluate IC +0.0212, t=1.72, p=0.088. Two (coskewness, idiosyncratic skewness) are nominally significant with the **wrong sign**. | `evidence/untried_price_signals_v1/` |
 | World Cup Trading Championship as external evidence that better strategies exist | **Tested against their own published record.** 42 flagship futures winners 1984-2025, **33 distinct names**; solving N(1-(1-1/N)^42)=33 gives **N~=85**, so the entire repeat-winner structure is what a stable field of ~85 identical traders produces by chance. Median winner **+252%**, range +53% to **+11,376%** -- a variance distribution, not a skill distribution. Field size is not published, so skill cannot be separated from entry volume, and their own footer permits multiple accounts per entrant. **Does not establish that better strategies exist.** The one thing it does corroborate is that the field trades futures and FX with leverage and both directions -- which is P1 and S4, already here. | Step 256 |
-| PEAD / SUE standalone (was S3) | **Closed underpowered, not refuted.** The only horizon that clears (26w, t=2.94) gets its significance from overlapping windows; corrected for half-overlap it is p=0.087, and the non-overlapping 13w horizon gives p=0.115. Separately worth remembering: the book Sharpes 1.04 after 50bps and correlates **0.002 / 0.008** with existing strategies, the lowest ever measured here. That is a reason to extend the sample, not to believe. **Revival attempted 2026-09-06; the remedy was tried and it did not work.** The panel was rebuilt to **58 decisions**, 2012-04-01 to 2026-07-01, 131,169 rows over 6,098 roster issuers. Across all 58 the IC is **+0.0053 at 13w (t=0.71)** and **+0.0077 at 26w (overlap-adjusted t=0.71)** -- nothing. It reaches +0.0330 at 26w (overlap-adjusted t=2.35, p=0.044) only once decisions are restricted to companyfacts coverage >=0.8, which leaves **20 decisions** and, because coverage runs 54.3% before 2016 against 91.0% from 2020, is very nearly just the 2016-2026 window. The added decisions carry a **36.6pp survivorship coverage gap** and no signal. Eight configurations against a Bonferroni threshold of 0.00625: **none clear.** The sample-extension remedy is now spent; do not propose it a third time. | Steps 253, 256 |
+| PEAD / SUE standalone (was S3) — **REOPENED as a forward clock, Step 259.** The recent-window claim cannot be settled from history, so it is being settled forward: `sue_quarterly_forward_v1`, breadth 50, quarterly, first decision 2026-09-11, reading fixed in advance in both directions. Historical detail below. | **Closed underpowered, not refuted.** The only horizon that clears (26w, t=2.94) gets its significance from overlapping windows; corrected for half-overlap it is p=0.087, and the non-overlapping 13w horizon gives p=0.115. Separately worth remembering: the book Sharpes 1.04 after 50bps and correlates **0.002 / 0.008** with existing strategies, the lowest ever measured here. That is a reason to extend the sample, not to believe. **Revival attempted 2026-09-06; the remedy was tried and it did not work.** The panel was rebuilt to **58 decisions**, 2012-04-01 to 2026-07-01, 131,169 rows over 6,098 roster issuers. Across all 58 the IC is **+0.0053 at 13w (t=0.71)** and **+0.0077 at 26w (overlap-adjusted t=0.71)** -- nothing. It reaches +0.0330 at 26w (overlap-adjusted t=2.35, p=0.044) only once decisions are restricted to companyfacts coverage >=0.8, which leaves **20 decisions** and, because coverage runs 54.3% before 2016 against 91.0% from 2020, is very nearly just the 2016-2026 window. The added decisions carry a **36.6pp survivorship coverage gap** and no signal. Eight configurations against a Bonferroni threshold of 0.00625: **none clear.** The sample-extension remedy is now spent; do not propose it a third time. | Steps 253, 256 |
 
 ---
 

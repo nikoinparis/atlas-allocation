@@ -1,0 +1,24 @@
+{
+  "archives_read": 53,
+  "computes_no_signal": true,
+  "created_at_utc": "2026-09-06T18:58:19.581157+00:00",
+  "distinct_cusips": 122145,
+  "distinct_managers": 13098,
+  "experiment": "institutional_linkage_identity_v1",
+  "filing_date_range": [
+    "2013-05-20",
+    "2026-05-29"
+  ],
+  "gate": "declared in advance: below 0.50 panel match rate the graph is too sparse and this stops",
+  "gate_passed": true,
+  "holding_rows": 110341268,
+  "identity": {
+    "cusips_matched_to_cik10": 19300,
+    "cusips_with_a_name": 122145,
+    "panel_issuers": 6098,
+    "panel_issuers_matched": 4476,
+    "panel_match_rate": 0.734,
+    "roster_names_unambiguous": 5887
+  },
+  "live_trading_enabled": false
+}

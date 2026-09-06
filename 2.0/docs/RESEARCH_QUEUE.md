@@ -122,6 +122,26 @@ measured; residual correlation was not.**
 prices, and a written protocol in `docs/INDONESIA_EQUITY_RESEARCH_V1.md`.
 **Depends on S4.** This means nothing while every book here is long-only.
 
+### A5. Analyst estimate-revision breadth, aggregate only *(new 2026-09-06)*
+**Status:** new, coverage unverified.
+**Distinct from P2**, which is blocked because it needs analyst *identity* to build a graph.
+Revision direction and breadth are aggregates and may be obtainable on a free tier.
+**Before it can be ranked properly:** thirty minutes establishing whether any free source gives
+a point-in-time revision series. If not, it moves to the paid queue next to P2.
+
+### A6. Cross-sectional residual work in a second market *(new 2026-09-06)*
+**This corrects a likely misreading of Step 246, and the correction matters.** Step 246
+measured 35 multi-asset ETFs at 4.16 effective assets and international equity at **1.27**, and
+concluded international is near-redundant with US equity at weekly frequency. That is correct
+and it refutes international *index* diversification. It does **not** refute international
+*cross-sectional* work, because those are different quantities: a market-neutral cross-sectional
+book in Indonesia nets out the country factor, and its residual can be near-orthogonal to a US
+cross-sectional residual even when the two indices correlate 0.8. **Only asset correlation was
+measured; residual correlation was not.**
+**Data:** already on disk -- IDX80/LQ45/IDX30 point-in-time membership, fundamentals, extended
+prices, and a written protocol in `docs/INDONESIA_EQUITY_RESEARCH_V1.md`.
+**Depends on S4.** This means nothing while every book here is long-only.
+
 ### A4. 13D and 13G activist and large-stake filings  *(new 2026-09-06)*
 **Status:** never attempted. The best remaining free idea in this file.
 **Why it is different from everything closed so far:** every family tested to date is a
@@ -242,6 +262,7 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 | Cross-asset crisis trend | Rejected as a fixed blend | Step 205 |
 | Daily OHLCV alpha zoo | Rejected as a replacement | Step 200 |
 | Breadth accounting | Done. IR ceiling below 0.1; the finding that reframed everything after it | Step 245 |
+| **13D/13G activist events (was A4)** | **Closed.** 38,849 subject events, 2013-2026, sector-matched abnormal returns bootstrapped with clustering by filing month. Nothing clears for either form in either window. The strongest reading, 13D at 13 weeks recently, is **-2.13%** -- the wrong sign against a declared positive. The 13G control is flat at 20,000 events, so the absence is real rather than a broken pipeline. Caught mid-run: EDGAR relabelled `SC 13D` to `SCHEDULE 13D` in 2025 and the first parse silently lost two years. | Step 260 |
 | **13F institutional linkage (was A0)** | **Closed.** 110M holding rows, 73.4% identity match, manager cap declared before any signal. Every IC negative against a declared positive sign, none significant, at three caps and two horizons, and the sector-controlled column is equally flat so it is an absence rather than a sector effect. Mild evidence against buying P2. | Step 258 |
 | **10-K language change (was S1)** | **Inconclusive by construction, scope reduced.** Corpus of 9,754 filings acquired and parsed and kept. Cosine on word counts is degenerate (IQR 0.0020); jaccard is the usable measure. 10-Ks are annual and cluster in Q1, so eight years give nine cross-sections and the smallest establishable IC is ~0.110. **Only worth reviving as: extend the corpus to 2011, declare ONE measure and ONE horizon, judge on sub-period replication rather than a p-value.** | Step 255 |
 | **Earnings call transcripts (was S2)** | **Closed unstarted.** Audited: real, speaker-attributed, 2005-2026, but coverage is proportional to company size and age -- AAPL 84 transcripts, TXO zero. A cross-sectional signal on a source whose coverage tracks size is a selection problem before it is a signal. S1 showed the text channel cannot be established on annual data anyway. | Step 254 |

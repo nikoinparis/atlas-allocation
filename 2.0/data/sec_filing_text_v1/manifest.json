@@ -1,0 +1,16 @@
+{
+  "bytes_downloaded": 211079222,
+  "completed_at_utc": "2026-09-06T09:02:16.371222+00:00",
+  "computes_no_signal": true,
+  "documents_on_disk": 60,
+  "downloaded": 60,
+  "experiment": "sec_filing_text_v1",
+  "failed": 0,
+  "fair_access": "declared User-Agent with contact address; five requests a second against a permitted ten",
+  "live_trading_enabled": false,
+  "mean_document_bytes": 3517987,
+  "queue": "evidence/sec_language_change_readiness_v1/filing_text_acquisition_queue.csv",
+  "queue_rows_considered": 60,
+  "requests_per_second_cap": 5.0,
+  "skipped_already_present": 0
+}

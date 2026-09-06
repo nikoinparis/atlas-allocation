@@ -11607,3 +11607,79 @@ References:
 
 - `config/short_term_reversal_registry_v1.json`, `scripts/run_short_term_reversal_v1.py`
 - `evidence/short_term_reversal_v1/`, `data/clean_full_history_prices_v1/`
+
+## Step 251 — A research queue, and the archaeology that filled it
+
+The owner asked for a ranked, living queue after noticing that three of six strategies they
+proposed had already been tested and rejected here without anyone remembering. `docs/RESEARCH_QUEUE.md`
+is that file: S/A/B/C tiers, free and paid separated with nothing paid starting without explicit
+confirmation, an explicit blocker and data source on every item, and a `Closed` table so a dead
+idea is never re-proposed.
+
+Filling it meant searching 250 steps for threads that stopped for a reason and were never
+restarted. Five were found.
+
+**Genuinely lost, and free:**
+
+- **SEC 10-K language change** (Step 202). A hash-backed queue of 9,755 filings across 1,426
+  issuers, built and never used. Recorded at the time as "source-blocked rather than rejected";
+  the only blocker was that nobody ran the download. Now **S1**.
+
+**Lost, and blocked on money rather than merit:**
+
+- **Shared analyst coverage** (Step 205). Ali & Hirshleifer NBER 25201, read directly: a
+  value-weighted long-short earns 1.19% a month at t = 6.71, equal-weighted 2.10% at t = 11.88,
+  across 98% of market cap, with only 39% of links sharing an industry. The strongest effect
+  this project has ever identified, blocked on the IBES detail file because links need analyst
+  *identity*. Finnhub's free tier gives aggregate recommendation counts only, checked 2026-09-06.
+  Now **P2**.
+- **`ConsRecomm`** (Step 216), the single most orthogonal anomaly in the OSAP screen, blocked on
+  the same file.
+
+**Source-blocked with no free source in sight:**
+
+- **Single-stock Opening Range Breakout** (Step 209). The index and ETF version is rejected on
+  cost, and five-minute bars made it worse rather than better. The single-stock version needs
+  point-in-time intraday data across a broad universe that no free source supplies. Parked at
+  **C1** rather than left implicit.
+
+**Not lost after all, and worth recording so it is not re-found:**
+
+- Step 189 left eleven fundamental signals untested behind an XBRL per-file-open limit and wrote
+  "this program cannot claim to have tested the literature until they run." **Step 192 ran them.**
+  Twenty-one of twenty-two failed; low asset growth survived and Step 193 declined to freeze it
+  as an unusable portfolio. That thread is closed, and it now says so in the queue.
+
+Also parked with reasons rather than dismissals: VIX mean reversion, which is the volatility risk
+premium in a costume and needs the futures roll data Step 249 proved unobtainable free; and
+stochastic calculus, which is the mathematics for pricing and hedging derivatives rather than a
+source of equity alpha.
+
+## Step 252 — S1 unblocked: the filing text is being acquired
+
+`scripts/acquire_sec_filing_text_v1.py` does what Step 202 declined to fake. It refuses to start
+without `SEC_USER_AGENT` carrying a contact address, runs at five requests a second against a
+permitted ten, backs off sixty seconds on 403 and 429, stops after ten consecutive failures
+rather than hammering, hashes every document, and resumes from what is already on disk.
+
+A sixty-filing pilot ran clean: 0 failures, 4.4 requests a second, mean document **3.5 MB**.
+That extrapolates to **9,734 documents and about 2.2 GB gzipped**, roughly thirty-seven minutes.
+The bodies are gitignored as re-acquirable from EDGAR, in the same class as the other raw SEC
+caches; the index and its hashes stay tracked.
+
+One finding from the pilot that would have quietly ruined the signal. A naive tag-strip of a
+modern 10-K returns **XBRL context elements, not prose** -- the first several hundred "words"
+extracted from one filing were `us-gaap:AccumulatedOtherComprehensiveIncomeMember` and dates.
+Filings are inline XBRL now, and the hidden header block has to be removed before any text
+comparison. With `<ix:header>` and `<ix:hidden>` stripped, one 3.0 MB filing yields 78,782 words
+of real prose and the standard structure is present and findable: Item 1A Risk Factors, Item 7
+Management's Discussion. A year-over-year language comparison run on the unstripped text would
+have been comparing XBRL tag soup and would have produced a number.
+
+No signal computed. The acquisition is running; parsing and the causal comparison follow.
+
+References:
+
+- `docs/RESEARCH_QUEUE.md`
+- `scripts/acquire_sec_filing_text_v1.py`, `data/sec_filing_text_v1/`
+- `evidence/sec_language_change_readiness_v1/` (the queue Step 202 built)

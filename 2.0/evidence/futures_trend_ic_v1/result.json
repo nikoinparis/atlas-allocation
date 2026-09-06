@@ -1,0 +1,32 @@
+{
+  "assets": 41,
+  "bonferroni_threshold": 0.0042,
+  "builds_no_strategy": true,
+  "caveat": "an IC that clears a threshold on unadjusted front-month data is provisional until the roll repair exists, because roll gaps enter both the signal and the forward return",
+  "clearing_rows_positive_cross_sectional": 0,
+  "clearing_rows_positive_time_series": 0,
+  "comparison_baseline": {
+    "equity_book_cross_sectional_ic": 0.0263,
+    "equity_book_ic_t_stat": 0.91,
+    "source": "PROJECT_HISTORY Step 245"
+  },
+  "configurations_clearing_cross_sectional": 0,
+  "configurations_clearing_time_series": 15,
+  "declared_trials": 12,
+  "experiment": "futures_trend_ic_v1",
+  "live_trading_enabled": false,
+  "placebo": {
+    "draws": 200,
+    "mean": 0.00021966806677813227,
+    "p05": -0.01531443765123115,
+    "p95": 0.015155713291287396
+  },
+  "strategy_promotion_authorized": false,
+  "treatments_agree_in_sign_everywhere": false,
+  "verdict": "every one of the 15 clearing rows has a NEGATIVE information coefficient. Trend is not predictive on this data; short-horizon trend is significantly ANTI-predictive. That is either mean reversion or roll contamination, and an unadjusted front-month series cannot tell the two apart, because rolling through contango manufactures exactly this negative short-horizon autocorrelation",
+  "warnings": [
+    "clearing rows: cross-sectional 0 (0 positive), time-series 15 (0 positive)",
+    "WARNING: the four contamination treatments disagree in sign for at least one configuration, which the registry declared makes the measurement unusable there"
+  ],
+  "weeks": 1131
+}

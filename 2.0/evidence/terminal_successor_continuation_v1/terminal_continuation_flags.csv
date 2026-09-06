@@ -1,0 +1,457 @@
+register,cik10,company_name,sec_terminal_date,terminal_reason,weekly_observations_after,distinct_values_after,last_observation,probable_successor_continuation,continuation_kind,safe_to_treat_as_continuing
+sec_terminal_membership_v1,0001823593,TUSIMPLE HOLDINGS INC.,2024-01-29,form25_plus_form15_no_later_periodic,132,86,2026-09-04,True,probable_reorganisation,True
+sec_terminal_membership_v1,0001576914,MIX TELEMATICS LTD,2024-03-26,form25_plus_form15_no_later_periodic,52,1,2025-04-11,False,not_flagged,False
+sec_terminal_membership_v1,0000867773,SUNPOWER CORP,2024-08-06,bankruptcy_equity_termination,105,82,2026-09-04,True,probable_name_reuse_after_wipeout,False
+sec_terminal_membership_v1,0001110611,ON24 INC.,2026-04-01,completion_8k,0,0,,False,not_flagged,False
+sec_terminal_membership_v1,0001889956,"ONESTREAM, INC.",2026-04-01,completion_8k,0,0,,False,not_flagged,False
+sec_terminal_membership_v1,0001831840,"SEMRUSH HOLDINGS, INC.",2026-04-28,completion_8k,0,0,,False,not_flagged,False
+sec_terminal_membership_v1,0000858470,COTERRA ENERGY INC.,2026-05-07,completion_8k,0,0,,False,not_flagged,False
+sec_terminal_membership_v1,0000896429,"CANTALOUPE, INC.",2026-05-08,completion_8k,0,0,,False,not_flagged,False
+sec_terminal_membership_v1,0001005757,CSG SYSTEMS INTERNATIONAL INC,2026-05-14,completion_8k,0,0,,False,not_flagged,False
+sec_terminal_membership_v1,0001575828,EXPRO GROUP HOLDINGS N.V.,2026-07-14,form25_plus_form15_no_later_periodic,4,4,2026-09-04,True,probable_reorganisation,True
+sec_terminal_membership_v1,0001819974,"SKYWATER TECHNOLOGY, INC",2026-07-31,completion_8k,0,0,,False,not_flagged,False
+sec_terminal_membership_v1,0000712515,ELECTRONIC ARTS INC.,2026-08-04,completion_8k,0,0,,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001637761,SEASPINE HOLDINGS CORP,2023-01-05,completion_8k,187,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001576169,"BENEFITFOCUS, INC.",2023-01-24,completion_8k,184,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000794172,MERIDIAN BIOSCIENCE INC,2023-02-01,completion_8k,185,177,2026-09-04,True,probable_reorganisation,True
+sec_broad_terminal_membership_v2,0000091928,SOUTH JERSEY INDUSTRIES INC,2023-02-06,form25_plus_form15_no_later_periodic,182,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001637655,HORIZON GLOBAL CORP,2023-02-08,completion_8k,182,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001857951,WEBER INC.,2023-02-21,completion_8k,180,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001303313,"LHC GROUP, INC",2023-02-22,completion_8k,180,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001404123,1LIFE HEALTHCARE INC,2023-02-22,completion_8k,180,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001819881,PAYA HOLDINGS INC.,2023-02-22,completion_8k,180,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001385867,COUPA SOFTWARE INC,2023-02-28,completion_8k,179,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001077771,UMPQUA HOLDINGS CORP,2023-03-01,completion_8k,179,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001393066,RESOLUTE FOREST PRODUCTS INC.,2023-03-01,completion_8k,179,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001466538,COWEN INC.,2023-03-01,completion_8k,179,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001651094,"ELEVATE CREDIT, INC.",2023-03-01,form25_plus_form15_no_later_periodic,179,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001679082,MYOVANT SCIENCES LTD.,2023-03-10,completion_8k,177,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001713952,"VIVINT SMART HOME, INC.",2023-03-10,completion_8k,177,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001135185,ATLAS AIR WORLDWIDE HOLDINGS INC,2023-03-17,completion_8k,176,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001745041,"IAA, INC.",2023-03-21,completion_8k,176,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001704596,"EVO PAYMENTS, INC.",2023-03-24,completion_8k,175,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001374535,ALTRA INDUSTRIAL MOTION CORP.,2023-03-27,completion_8k,175,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001709401,"RUBIUS THERAPEUTICS, INC.",2023-03-28,form25_plus_form15_no_later_periodic,175,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001160951,"DUCK CREEK TECHNOLOGIES, INC.",2023-03-30,completion_8k,175,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001688852,SAFEHOLD INC.,2023-03-31,completion_8k,176,172,2026-09-04,True,probable_reorganisation,True
+sec_broad_terminal_membership_v2,0001751143,"ATLAS TECHNICAL CONSULTANTS, INC.",2023-04-19,completion_8k,174,3,2026-09-04,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001801754,"TREAN INSURANCE GROUP, INC.",2023-04-21,completion_8k,171,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001092662,"CHEMBIO DIAGNOSTICS, INC.",2023-04-27,completion_8k,171,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001180145,CARDIOVASCULAR SYSTEMS INC,2023-04-27,completion_8k,171,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001695357,"PROVENTION BIO, INC.",2023-04-27,completion_8k,171,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001564406,"OAK STREET HEALTH, INC.",2023-05-02,completion_8k,170,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001121142,MAXAR TECHNOLOGIES INC.,2023-05-03,completion_8k,170,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001640455,"JOUNCE THERAPEUTICS, INC.",2023-05-04,completion_8k,170,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001643269,"SUMO LOGIC, INC.",2023-05-15,completion_8k,168,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001604643,EVOQUA WATER TECHNOLOGIES CORP.,2023-05-24,completion_8k,167,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001378453,TRAVELCENTERS OF AMERICA INC. /MD/,2023-05-26,form25_plus_form15_no_later_periodic,166,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001575051,SISECAM RESOURCES LP,2023-05-26,completion_8k,166,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001784797,BROADMARK REALTY CAPITAL INC.,2023-05-31,completion_8k,166,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000055772,KIMBALL INTERNATIONAL INC,2023-06-01,completion_8k,166,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001273931,MONEYGRAM INTERNATIONAL INC,2023-06-01,completion_8k,166,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001739936,MOMENTIVE GLOBAL INC.,2023-06-02,completion_8k,165,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001038133,HESKA CORP,2023-06-13,completion_8k,164,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001324272,"RUTHS HOSPITALITY GROUP, INC.",2023-06-14,completion_8k,164,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001827075,CVENT HOLDING CORP.,2023-06-15,completion_8k,164,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001718852,"PROMETHEUS BIOSCIENCES, INC.",2023-06-16,completion_8k,163,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000077159,RANGER OIL CORP,2023-06-20,completion_8k,163,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001747748,QUALTRICS INTERNATIONAL INC.,2023-06-28,completion_8k,162,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000923571,US XPRESS ENTERPRISES INC,2023-07-05,completion_8k,163,3,2026-09-04,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001831617,"DIVERSEY HOLDINGS, LTD.",2023-07-05,completion_8k,161,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001410939,"IVERIC BIO, INC.",2023-07-11,completion_8k,160,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000944314,"LIFE STORAGE, INC.",2023-07-20,completion_8k,159,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000040888,"AEROJET ROCKETDYNE HOLDINGS, INC.",2023-07-28,completion_8k,157,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001494319,UNIVAR SOLUTIONS INC.,2023-08-01,completion_8k,157,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000077877,"PDC ENERGY, INC.",2023-08-07,completion_8k,156,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001435049,"CHINOOK THERAPEUTICS, INC.",2023-08-11,completion_8k,155,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001790982,ARCONIC CORP,2023-08-18,completion_8k,154,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001029800,URSTADT BIDDLE PROPERTIES INC,2023-08-21,completion_8k,154,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001543916,"FORGEROCK, INC.",2023-08-23,completion_8k,154,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001651052,FOCUS FINANCIAL PARTNERS INC.,2023-08-31,completion_8k,153,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001142596,NUVASIVE INC,2023-09-01,completion_8k,152,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001688476,NEXTIER OILFIELD SOLUTIONS INC.,2023-09-01,completion_8k,152,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001115128,QUOTIENT TECHNOLOGY INC.,2023-09-05,completion_8k,152,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001091907,WORLD WRESTLING ENTERTAINMENTINC,2023-09-12,completion_8k,151,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001568162,"NECESSITY RETAIL REIT, INC.",2023-09-12,completion_8k,151,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001178711,"PARATEK PHARMACEUTICALS, INC.",2023-09-21,completion_8k,150,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001810739,"RADIUS GLOBAL INFRASTRUCTURE, INC.",2023-09-21,completion_8k,150,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001126975,"MAGELLAN MIDSTREAM PARTNERS, L.P.",2023-09-25,completion_8k,149,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001358762,REATA PHARMACEUTICALS INC,2023-09-26,completion_8k,149,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001610950,"SYNEOS HEALTH, INC.",2023-09-28,completion_8k,149,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001492426,HORIZON THERAPEUTICS PUBLIC LTD CO,2023-10-06,completion_8k,147,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001719489,"KALEYRA, INC.",2023-10-10,completion_8k,147,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000935494,NATIONAL INSTRUMENTS CORP,2023-10-11,completion_8k,147,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000718877,"ACTIVISION BLIZZARD, INC.",2023-10-13,completion_8k,146,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001403431,"HERITAGE-CRYSTAL CLEAN, INC.",2023-10-17,completion_8k,146,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001095315,PFSWEB INC,2023-10-23,completion_8k,145,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001760717,SCIPLAY CORP,2023-10-23,completion_8k,145,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001534992,"FIESTA RESTAURANT GROUP, INC.",2023-10-30,completion_8k,144,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001144519,BUNGELTD,2023-11-01,completion_8k,146,146,2026-09-04,True,probable_reorganisation,True
+sec_broad_terminal_membership_v2,0000010254,EARTHSTONE ENERGY INC,2023-11-03,completion_8k,143,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001136352,CRESTWOOD EQUITY PARTNERS LP,2023-11-03,completion_8k,143,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001651561,"TABULA RASA HEALTHCARE, INC.",2023-11-06,completion_8k,143,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001644406,"HOSTESS BRANDS, INC.",2023-11-07,completion_8k,143,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000896841,"AVID TECHNOLOGY, INC.",2023-11-08,completion_8k,143,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001270073,"INTERCEPT PHARMACEUTICALS, INC.",2023-11-08,completion_8k,143,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001448056,"NEW RELIC, INC.",2023-11-08,completion_8k,143,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000708818,"NEXTGEN HEALTHCARE, INC.",2023-11-09,completion_8k,143,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001843762,"EQRX, INC.",2023-11-09,completion_8k,143,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001701114,"BLUE APRON HOLDINGS, INC.",2023-11-13,completion_8k,142,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000830524,CHASE CORP,2023-11-15,completion_8k,142,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001403256,"SCULPTOR CAPITAL MANAGEMENT, INC.",2023-11-17,completion_8k,141,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001124610,"VMWARE, INC.",2023-11-22,completion_8k,141,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001068875,"AVANTAX, INC.",2023-11-27,completion_8k,140,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001063344,HERSHA HOSPITALITY TRUST,2023-11-28,completion_8k,140,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001599489,VERITIV CORP,2023-11-30,completion_8k,140,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001102112,PACWEST BANCORP,2023-12-01,completion_8k,139,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001282977,GREENHILL & CO INC,2023-12-01,completion_8k,139,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001283140,HOLLY ENERGY PARTNERS LP,2023-12-01,form25_plus_form15_no_later_periodic,139,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001610682,USD PARTNERS LP,2023-12-01,form25_plus_form15_no_later_periodic,141,119,2026-09-04,True,probable_reorganisation,True
+sec_broad_terminal_membership_v2,0001465885,WESTERN ASSET MORTGAGE CAPITAL CORP,2023-12-06,completion_8k,139,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000023111,COMPUTER TASK GROUP INC,2023-12-13,completion_8k,138,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001060736,SEAGEN INC.,2023-12-14,completion_8k,138,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001057083,PC TEL INC,2023-12-15,completion_8k,137,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001723648,"LIVEVOX HOLDINGS, INC.",2023-12-22,completion_8k,136,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001209028,ARLINGTON ASSET INVESTMENT CORP.,2023-12-26,form25_plus_form15_no_later_periodic,136,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001801777,APPLIED MOLECULAR TRANSPORT INC.,2023-12-28,form25_plus_form15_no_later_periodic,136,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000842183,RPT REALTY,2024-01-03,completion_8k,137,126,2026-09-04,True,probable_reorganisation,True
+sec_broad_terminal_membership_v2,0000897429,"CHICO'S FAS, INC.",2024-01-05,completion_8k,134,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001031029,"STARTEK, INC.",2024-01-05,completion_8k,134,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001635650,GREEN PLAINS PARTNERS LP,2024-01-09,completion_8k,134,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001742924,LIVENT CORP.,2024-01-10,form25_plus_form15_no_later_periodic,134,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000315858,BLUEGREEN VACATIONS HOLDING CORP,2024-01-17,completion_8k,133,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001576263,"MIRATI THERAPEUTICS, INC.",2024-01-23,completion_8k,132,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001308606,"SPIRIT REALTY CAPITAL, INC.",2024-01-24,completion_8k,132,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001863105,"ENGAGESMART, INC.",2024-01-26,completion_8k,131,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000855654,"IMMUNOGEN, INC.",2024-02-12,completion_8k,129,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001719395,"EARGO, INC.",2024-02-16,completion_8k,128,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001826018,"ROVER GROUP, INC.",2024-02-27,completion_8k,127,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001475348,LUTHER BURBANK CORP,2024-03-01,completion_8k,126,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001574540,PHYSICIANS REALTY TRUST,2024-03-01,completion_8k,128,128,2026-09-04,True,probable_reorganisation,True
+sec_broad_terminal_membership_v2,0001856608,"SOVOS BRANDS, INC.",2024-03-12,completion_8k,125,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001353283,SPLUNK INC,2024-03-18,completion_8k,115,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001771917,"KARUNA THERAPEUTICS, INC.",2024-03-18,completion_8k,124,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001689923,"ALTERYX, INC.",2024-03-19,completion_8k,124,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001354327,"PGT INNOVATIONS, INC.",2024-03-28,completion_8k,123,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000741516,AMERICAN NATIONAL BANKSHARES INC.,2024-04-01,completion_8k,122,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000928022,CALLON PETROLEUM CO,2024-04-01,completion_8k,122,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001449488,CSI COMPRESSCO LP,2024-04-01,completion_8k,122,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001642453,"DASEKE, INC.",2024-04-02,completion_8k,122,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001676479,"CAPSTAR FINANCIAL HOLDINGS, INC.",2024-04-02,completion_8k,122,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001426332,NGM BIOPHARMACEUTICALS INC,2024-04-05,completion_8k,121,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000054381,KAMAN CORP,2024-04-19,completion_8k,119,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000811808,"SUMMIT FINANCIAL GROUP, INC.",2024-05-03,completion_8k,117,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001038357,PIONEER NATURAL RESOURCES CO,2024-05-03,completion_8k,117,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001823575,"ZEROFOX HOLDINGS, INC.",2024-05-13,completion_8k,116,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000893691,MASONITE INTERNATIONAL CORP,2024-05-15,completion_8k,116,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000809248,"CARROLS RESTAURANT GROUP, INC.",2024-05-16,completion_8k,116,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000846901,LAKELAND BANCORP INC,2024-05-16,completion_8k,116,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001059262,SP PLUS CORP,2024-05-16,completion_8k,116,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001811856,"VIEW, INC.",2024-05-24,bankruptcy_equity_termination,114,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001642545,"SHOCKWAVE MEDICAL, INC.",2024-05-31,completion_8k,113,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001110805,NUSTAR ENERGY L.P.,2024-06-03,form25_plus_form15_no_later_periodic,113,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001654151,"DECIPHERA PHARMACEUTICALS, INC.",2024-06-11,completion_8k,112,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001856430,SNAP ONE HOLDINGS CORP.,2024-06-14,completion_8k,111,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001838672,"ADTHEORENT HOLDING COMPANY, INC.",2024-06-21,completion_8k,110,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001118417,"MODEL N, INC.",2024-06-27,completion_8k,110,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001859285,HIRERIGHT HOLDINGS CORP,2024-06-28,completion_8k,109,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001820877,APARTMENT INCOME REIT CORP.,2024-07-01,completion_8k,109,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000701374,SIX FLAGS ENTERTAINMENT CORP,2024-07-02,form25_plus_form15_no_later_periodic,109,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000811532,CEDAR FAIR L P,2024-07-02,form25_plus_form15_no_later_periodic,111,111,2026-09-04,True,probable_reorganisation,True
+sec_broad_terminal_membership_v2,0000850460,ENCORE WIRE CORP,2024-07-02,completion_8k,109,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001437352,"EVERBRIDGE, INC.",2024-07-02,completion_8k,107,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001635984,"NATIONAL WESTERN LIFE GROUP, INC.",2024-07-09,completion_8k,108,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000075208,OVERSEAS SHIPHOLDING GROUP INC,2024-07-10,completion_8k,110,109,2026-09-04,True,probable_reorganisation,True
+sec_broad_terminal_membership_v2,0001340122,"CALUMET SPECIALTY PRODUCTS PARTNERS, L.P.",2024-07-10,completion_8k,110,110,2026-09-04,True,probable_reorganisation,True
+sec_broad_terminal_membership_v2,0000711772,CAMBRIDGE BANCORP,2024-07-15,completion_8k,107,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001814329,"ASTRA SPACE, INC.",2024-07-18,completion_8k,107,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001747009,EQUITRANS MIDSTREAM CORP,2024-07-22,completion_8k,106,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001017480,HIBBETT INC,2024-07-25,completion_8k,106,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000351817,"SILVERBOW RESOURCES, INC.",2024-07-30,completion_8k,105,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001524741,"U.S. SILICA HOLDINGS, INC.",2024-08-01,form25_plus_form15_no_later_periodic,105,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001549922,"SUMMIT MIDSTREAM PARTNERS, LP",2024-08-01,completion_8k,105,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001805387,"CEREVEL THERAPEUTICS HOLDINGS, INC.",2024-08-01,completion_8k,105,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001832433,FERGUSON PLC,2024-08-01,completion_8k,107,107,2026-09-04,True,probable_reorganisation,True
+sec_broad_terminal_membership_v2,0001753706,"WHOLE EARTH BRANDS, INC.",2024-08-05,completion_8k,104,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001679363,"MORPHIC HOLDING, INC.",2024-08-16,completion_8k,102,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000701288,ATRION CORP,2024-08-21,completion_8k,102,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000876378,"ASENSUS SURGICAL, INC.",2024-08-22,completion_8k,102,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000949039,"DIAMOND OFFSHORE DRILLING, INC.",2024-09-04,completion_8k,100,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001591587,"ASSETMARK FINANCIAL HOLDINGS, INC.",2024-09-05,completion_8k,100,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001397702,SILK ROAD MEDICAL INC,2024-09-17,completion_8k,98,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001172222,HAWAIIAN HOLDINGS INC,2024-09-18,completion_8k,98,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001560241,"G1 THERAPEUTICS, INC.",2024-09-18,completion_8k,98,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001253176,VAPOTHERM INC,2024-09-20,completion_8k,97,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001722438,"DOMA HOLDINGS, INC.",2024-09-27,completion_8k,96,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000007332,SOUTHWESTERN ENERGY CO,2024-10-01,completion_8k,96,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001835681,"POWERSCHOOL HOLDINGS, INC.",2024-10-01,completion_8k,96,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001085869,PERFICIENT INC,2024-10-02,completion_8k,96,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001364742,BLACKROCK INC.,2024-10-02,form25_plus_form15_no_later_periodic,98,98,2026-09-04,True,probable_reorganisation,True
+sec_broad_terminal_membership_v2,0001821393,"AARON'S COMPANY, INC.",2024-10-04,completion_8k,95,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000059440,VECTOR GROUP LTD,2024-10-07,completion_8k,95,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001524931,"CHUY'S HOLDINGS, INC.",2024-10-11,completion_8k,94,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001496963,"SQUARESPACE, INC.",2024-10-17,completion_8k,94,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000061398,TELLURIAN INC. /DE/,2024-10-21,form25_plus_form15_no_later_periodic,93,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001816233,"SHARECARE, INC.",2024-10-22,completion_8k,93,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001668673,"PETIQ, INC.",2024-10-25,completion_8k,92,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001645070,STERLING CHECK CORP.,2024-10-31,completion_8k,92,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000350868,"ITERIS, INC.",2024-11-01,completion_8k,91,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000861878,STERICYCLE INC,2024-11-04,completion_8k,91,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000884713,PRIMO WATER CORP /CN/,2024-11-12,form25_plus_form15_no_later_periodic,90,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001841804,"INSTRUCTURE HOLDINGS, INC.",2024-11-13,completion_8k,90,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001866550,"THOUGHTWORKS HOLDING, INC.",2024-11-13,completion_8k,90,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001603756,"AXONICS, INC.",2024-11-15,completion_8k,89,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000858655,HAYNES INTERNATIONAL INC,2024-11-21,completion_8k,89,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000101778,MARATHON OIL CORP,2024-11-22,completion_8k,88,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001305168,"ARC DOCUMENT SOLUTIONS, INC.",2024-11-22,completion_8k,88,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001337619,"ENVESTNET, INC.",2024-11-25,completion_8k,88,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001616318,VISTA OUTDOOR INC.,2024-11-27,completion_8k,88,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001293282,TECHTARGET INC,2024-12-03,completion_8k,89,88,2026-09-04,True,probable_reorganisation,True
+sec_broad_terminal_membership_v2,0001835591,VIZIO HOLDING CORP.,2024-12-03,completion_8k,87,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001596783,"CATALENT, INC.",2024-12-18,completion_8k,85,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001634997,"AVANGRID, INC.",2024-12-23,completion_8k,84,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001835256,"DUCKHORN PORTFOLIO, INC.",2024-12-26,completion_8k,84,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001304421,"CONSOLIDATED COMMUNICATIONS HOLDINGS, INC.",2024-12-27,completion_8k,83,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001564618,"INDEPENDENT BANK GROUP, INC.",2025-01-02,completion_8k,83,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001302028,"MANITEX INTERNATIONAL, INC.",2025-01-03,completion_8k,82,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001661460,"POSEIDA THERAPEUTICS, INC.",2025-01-08,completion_8k,82,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001037676,"ARCH RESOURCES, INC.",2025-01-15,completion_8k,81,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001620179,"EXELA TECHNOLOGIES, INC.",2025-01-17,form25_plus_form15_no_later_periodic,82,62,2026-09-04,True,probable_reorganisation,True
+sec_broad_terminal_membership_v2,0001366561,SMARTSHEET INC,2025-01-22,completion_8k,80,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000931584,UNIVERSAL STAINLESS & ALLOY PRODUCTS INC,2025-01-23,completion_8k,80,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000009984,BARNES GROUP INC,2025-01-27,completion_8k,81,81,2026-09-04,True,probable_reorganisation,True
+sec_broad_terminal_membership_v2,0001592000,"ENLINK MIDSTREAM, LLC",2025-01-31,completion_8k,78,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000920112,HEARTLAND FINANCIAL USA INC,2025-02-03,completion_8k,78,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001468666,SECUREWORKS CORP,2025-02-03,completion_8k,78,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000002178,"ADAMS RESOURCES & ENERGY, INC.",2025-02-05,form25_plus_form15_no_later_periodic,78,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000704562,"AVID BIOSERVICES, INC.",2025-02-05,completion_8k,78,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001313275,BRIGHTCOVE INC,2025-02-05,form25_plus_form15_no_later_periodic,78,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001479290,"REVANCE THERAPEUTICS, INC.",2025-02-06,completion_8k,78,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001621563,"SUMMIT MATERIALS, INC.",2025-02-11,form25_plus_form15_no_later_periodic,77,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001407623,RETAIL OPPORTUNITY INVESTMENTS CORP,2025-02-12,completion_8k,77,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001423774,ZUORA INC,2025-02-14,completion_8k,76,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001531048,"INARI MEDICAL, INC.",2025-02-19,completion_8k,76,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001731289,NIKOLA CORP,2025-02-19,bankruptcy_equity_termination,76,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001720671,"HASHICORP, INC.",2025-02-27,completion_8k,75,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000808326,EMCORE CORP,2025-02-28,completion_8k,74,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001138639,INFINERA CORP,2025-02-28,completion_8k,74,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001819394,"MATTERPORT, INC./DE",2025-02-28,completion_8k,74,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000946647,PREMIER FINANCIAL CORP,2025-03-03,completion_8k,74,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001458412,"CROSSFIRST BANKSHARES, INC.",2025-03-03,completion_8k,74,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001977303,ARCADIUM LITHIUM PLC,2025-03-06,completion_8k,74,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001897982,"ASPEN TECHNOLOGY, INC.",2025-03-12,completion_8k,73,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001162461,CUTERA INC,2025-03-20,form25_plus_form15_no_later_periodic,72,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001766363,"ENDEAVOR GROUP HOLDINGS, INC.",2025-03-24,completion_8k,71,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001830210,"BENSON HILL, INC.",2025-03-25,bankruptcy_equity_termination,71,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001701732,ALTAIR ENGINEERING INC.,2025-03-28,completion_8k,70,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001001902,INTEVAC INC,2025-03-31,completion_8k,70,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000807707,VOXX INTERNATIONAL CORP,2025-04-01,completion_8k,70,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000824410,SANDY SPRING BANCORP INC,2025-04-01,completion_8k,29,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001527508,PACTIV EVERGREEN INC.,2025-04-01,completion_8k,70,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001680379,"STERLING BANCORP, INC.",2025-04-01,completion_8k,29,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001567514,"INTRA-CELLULAR THERAPIES, INC.",2025-04-02,completion_8k,70,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001754820,"DESKTOP METAL, INC.",2025-04-02,completion_8k,70,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001444380,NEVRO CORP,2025-04-03,completion_8k,70,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000713425,"LOGILITY SUPPLY CHAIN SOLUTIONS, INC",2025-04-04,completion_8k,69,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000947559,FIRST BANCSHARES INC /MS/,2025-04-07,completion_8k,69,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001481646,"ACCOLADE, INC.",2025-04-08,completion_8k,69,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000894081,"AIR TRANSPORT SERVICES GROUP, INC.",2025-04-11,completion_8k,68,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001839439,"PAYCOR HCM, INC.",2025-04-14,completion_8k,68,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001828723,"ALTUS POWER, INC.",2025-04-16,completion_8k,68,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000891024,"PATTERSON COMPANIES, INC.",2025-04-17,completion_8k,68,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001807846,MONEYLION INC.,2025-04-17,completion_8k,68,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001452857,STEEL PARTNERS HOLDINGS L.P.,2025-04-21,form25_plus_form15_no_later_periodic,67,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001531978,"PARAGON 28, INC.",2025-04-21,completion_8k,67,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001868912,"ENFUSION, INC.",2025-04-21,completion_8k,29,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001124941,BEACON ROOFING SUPPLY INC,2025-04-29,completion_8k,66,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001606745,"LIBERTY TRIPADVISOR HOLDINGS, INC.",2025-04-29,completion_8k,66,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001378992,"BERRY GLOBAL GROUP, INC.",2025-04-30,completion_8k,66,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001874944,"VACASA, INC.",2025-05-01,completion_8k,66,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000842518,EVANS BANCORP INC,2025-05-05,completion_8k,65,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0002006191,LIONSGATE STUDIOS CORP.,2025-05-07,completion_8k,67,66,2026-09-04,True,probable_reorganisation,True
+sec_broad_terminal_membership_v2,0001860782,"2SEVENTY BIO, INC.",2025-05-13,completion_8k,64,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001564824,ALLAKOS INC.,2025-05-15,completion_8k,64,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001393612,DISCOVER FINANCIAL SERVICES,2025-05-19,completion_8k,63,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001828811,LI-CYCLE HOLDINGS CORP.,2025-05-19,bankruptcy_equity_termination,63,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000072333,NORDSTROM INC,2025-05-21,form25_plus_form15_no_later_periodic,63,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001412100,"MAIDEN HOLDINGS, LTD.",2025-05-28,form25_plus_form15_no_later_periodic,62,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000740663,FIRST OF LONG ISLAND CORP,2025-06-02,completion_8k,29,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001293971,"BLUEBIRD BIO, INC.",2025-06-02,completion_8k,61,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001339605,"H&E EQUIPMENT SERVICES, INC.",2025-06-02,completion_8k,61,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001692412,PLAYA HOTELS & RESORTS N.V.,2025-06-17,completion_8k,29,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001163302,UNITED STATES STEEL CORP,2025-06-18,completion_8k,59,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001741830,"KRONOS BIO, INC.",2025-06-20,completion_8k,58,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001721386,LANDSEA HOMES CORP,2025-06-25,completion_8k,58,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000743238,"SHYFT GROUP, INC.",2025-07-01,completion_8k,57,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001018399,ENTERPRISE BANCORP INC /MA/,2025-07-01,completion_8k,29,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001318568,EVERI HOLDINGS INC.,2025-07-01,completion_8k,57,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001382821,REDFIN CORP,2025-07-01,completion_8k,57,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001593548,"PLAYAGS, INC.",2025-07-01,form25_plus_form15_no_later_periodic,57,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001689731,"SOUTHERN STATES BANCSHARES, INC.",2025-07-01,completion_8k,57,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001773427,"SPRINGWORKS THERAPEUTICS, INC.",2025-07-01,completion_8k,57,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001782754,AZEK CO INC.,2025-07-01,completion_8k,57,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001043604,JUNIPER NETWORKS INC,2025-07-02,completion_8k,57,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001363829,ENSTAR GROUP LTD,2025-07-14,form25_plus_form15_no_later_periodic,55,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001723089,CHAMPIONX CORP,2025-07-16,completion_8k,55,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001013462,ANSYS INC,2025-07-17,completion_8k,29,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000004447,HESS CORP,2025-07-18,completion_8k,54,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001597264,BLUEPRINT MEDICINES CORP,2025-07-18,completion_8k,54,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000917491,FARO TECHNOLOGIES INC,2025-07-21,completion_8k,54,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001021162,TRIUMPH GROUP INC,2025-07-25,form25_plus_form15_no_later_periodic,53,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001840574,"VERVE THERAPEUTICS, INC.",2025-07-25,completion_8k,53,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001597553,"SAGE THERAPEUTICS, INC.",2025-07-31,completion_8k,53,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001620280,UNITI GROUP INC.,2025-08-01,completion_8k,54,52,2026-09-04,True,probable_reorganisation,True
+sec_broad_terminal_membership_v2,0001532961,"NV5 GLOBAL, INC.",2025-08-04,completion_8k,52,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001800347,"E2OPEN PARENT HOLDINGS, INC.",2025-08-04,completion_8k,29,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000813828,PARAMOUNT GLOBAL,2025-08-07,completion_8k,52,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000896262,AMEDISYS INC,2025-08-14,completion_8k,51,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000316253,ENZO BIOCHEM INC,2025-08-20,completion_8k,50,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001799208,"DUN & BRADSTREET HOLDINGS, INC.",2025-08-26,completion_8k,49,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001618921,"WALGREENS BOOTS ALLIANCE, INC.",2025-08-28,completion_8k,49,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001808865,"ITEOS THERAPEUTICS, INC.",2025-08-29,completion_8k,48,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001028918,PACIFIC PREMIER BANCORP INC,2025-09-02,completion_8k,48,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001854401,BRIDGE INVESTMENT GROUP HOLDINGS INC.,2025-09-02,completion_8k,48,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001728205,PIEDMONT LITHIUM INC.,2025-09-03,completion_8k,48,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001600438,GMS INC.,2025-09-04,completion_8k,48,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000850209,"FOOT LOCKER, INC.",2025-09-08,completion_8k,29,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001065837,SKECHERS USA INC,2025-09-12,completion_8k,46,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001431695,OLO INC.,2025-09-12,completion_8k,46,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001722964,"Y-MABS THERAPEUTICS, INC.",2025-09-16,completion_8k,46,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000877422,SPARTANNASH CO,2025-09-22,completion_8k,45,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001845022,"COUCHBASE, INC.",2025-09-24,completion_8k,45,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000933136,MR. COOPER GROUP INC.,2025-10-01,completion_8k,44,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001058867,GUARANTY BANCSHARES INC /TX/,2025-10-01,completion_8k,44,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001156388,BIG 5 SPORTING GOODS CORP,2025-10-02,completion_8k,29,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001657312,VERONA PHARMA PLC,2025-10-07,completion_8k,43,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001633932,ESSA PHARMA INC.,2025-10-09,completion_8k,43,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001858257,"AVIDXCHANGE HOLDINGS, INC.",2025-10-15,completion_8k,42,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001865187,"ARIS WATER SOLUTIONS, INC.",2025-10-15,completion_8k,44,44,2026-09-04,True,probable_reorganisation,True
+sec_broad_terminal_membership_v2,0001501570,"VERITEX HOLDINGS, INC.",2025-10-20,completion_8k,29,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001876588,ZIMVIE INC.,2025-10-20,completion_8k,41,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001550695,PERFORMANT HEALTHCARE INC,2025-10-21,completion_8k,41,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001195734,POTBELLY CORP,2025-10-23,completion_8k,41,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001834494,"MERIDIANLINK, INC.",2025-10-24,completion_8k,40,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001769617,"HARBORONE BANCORP, INC.",2025-10-28,form25_plus_form15_no_later_periodic,29,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001785173,"89BIO, INC.",2025-10-30,completion_8k,40,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001439095,MRC GLOBAL INC.,2025-11-06,completion_8k,39,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001819395,SONDER HOLDINGS INC.,2025-11-14,bankruptcy_equity_termination,37,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001868778,INFORMATICA INC.,2025-11-18,completion_8k,37,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000924717,SURMODICS INC,2025-11-19,completion_8k,37,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001837686,"VIMEO, INC.",2025-11-24,completion_8k,36,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001166388,VERINT SYSTEMS INC,2025-11-26,completion_8k,36,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000051644,"INTERPUBLIC GROUP OF COMPANIES, INC.",2025-11-28,form25_plus_form15_no_later_periodic,35,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001821160,GUILD HOLDINGS CO,2025-11-28,completion_8k,35,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001359841,HANESBRANDS INC.,2025-12-01,completion_8k,29,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001721741,"LAZYDAYS HOLDINGS, INC.",2025-12-01,bankruptcy_equity_termination,35,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001364885,"SPIRIT AEROSYSTEMS HOLDINGS, INC.",2025-12-08,completion_8k,34,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001392972,"PROS HOLDINGS, INC.",2025-12-09,completion_8k,34,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001501756,"ADVERUM BIOTECHNOLOGIES, INC.",2025-12-09,completion_8k,34,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001744659,"AKERO THERAPEUTICS, INC.",2025-12-09,completion_8k,34,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000800240,ODP CORP,2025-12-10,completion_8k,29,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001066605,HEIDRICK & STRUGGLES INTERNATIONAL INC,2025-12-10,completion_8k,29,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000055067,KELLANOVA,2025-12-11,completion_8k,34,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001050825,STEELCASE INC,2025-12-11,completion_8k,34,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000066756,ALLETE INC,2025-12-15,completion_8k,29,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001528129,"VITAL ENERGY, INC.",2025-12-15,completion_8k,33,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001705873,BERRY CORP (BRY),2025-12-18,completion_8k,33,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001605607,"PARAMOUNT GROUP, INC.",2025-12-19,completion_8k,32,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001842718,INTEGRAL AD SCIENCE HOLDING CORP.,2025-12-23,completion_8k,32,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001701051,"WIDEOPENWEST, INC.",2025-12-31,completion_8k,31,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000018349,SYNOVUS FINANCIAL CORP,2026-01-02,completion_8k,30,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001115055,PINNACLE FINANCIAL PARTNERS INC,2026-01-02,completion_8k,32,32,2026-09-04,True,probable_reorganisation,True
+sec_broad_terminal_membership_v2,0001442836,"MERSANA THERAPEUTICS, INC.",2026-01-06,completion_8k,30,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001398987,ANYWHERE REAL ESTATE INC.,2026-01-09,completion_8k,29,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001593222,"CITY OFFICE REIT, INC.",2026-01-09,completion_8k,29,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000852772,DENNY'S CORP,2026-01-16,completion_8k,28,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000020520,"FRONTIER COMMUNICATIONS PARENT, INC.",2026-01-20,completion_8k,28,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001327318,"TRUECAR, INC.",2026-01-22,completion_8k,28,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000912463,GUESS INC,2026-01-23,completion_8k,27,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001159167,IROBOT CORP,2026-01-26,bankruptcy_equity_termination,27,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001515816,"PLYMOUTH INDUSTRIAL REIT, INC.",2026-01-28,form25_plus_form15_no_later_periodic,27,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001808158,REPARE THERAPEUTICS INC.,2026-01-28,completion_8k,27,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001846510,SOHO HOUSE & CO INC.,2026-01-29,completion_8k,27,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001509589,"CIVITAS RESOURCES, INC.",2026-01-30,completion_8k,26,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000028412,COMERICA INC,2026-02-02,completion_8k,26,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001338749,POTLATCHDELTIC CORP,2026-02-02,completion_8k,26,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001435508,"FIRST SAVINGS FINANCIAL GROUP, INC.",2026-02-02,form25_plus_form15_no_later_periodic,26,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001687221,"REV GROUP, INC.",2026-02-02,form25_plus_form15_no_later_periodic,26,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001721947,JAMF HOLDING CORP.,2026-02-02,completion_8k,26,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001725057,"DAYFORCE, INC.",2026-02-04,completion_8k,26,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001820566,INSPIRATO INC,2026-02-04,completion_8k,26,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001733294,GENERATION BIO CO.,2026-02-09,completion_8k,25,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001029142,DYNAVAX TECHNOLOGIES CORP,2026-02-10,completion_8k,25,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001417398,"HILLENBRAND, INC.",2026-02-10,completion_8k,25,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001320695,"TREEHOUSE FOODS, INC.",2026-02-11,completion_8k,25,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001012477,AVADEL PHARMACEUTICALS PLC,2026-02-12,completion_8k,25,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000917470,OLYMPIC STEEL INC,2026-02-13,completion_8k,24,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001131554,SYNCHRONOSS TECHNOLOGIES INC,2026-02-13,completion_8k,24,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001412665,"MIDWESTONE FINANCIAL GROUP, INC.",2026-02-20,completion_8k,23,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001827821,"FORGE GLOBAL HOLDINGS, INC.",2026-03-02,completion_8k,22,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001851194,"VENTYX BIOSCIENCES, INC.",2026-03-04,completion_8k,22,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001475115,"EVENTBRITE, INC.",2026-03-10,completion_8k,21,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001540013,QUIPT HOME MEDICAL CORP.,2026-03-16,completion_8k,20,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001545654,"ALEXANDER & BALDWIN, INC.",2026-03-17,completion_8k,20,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001699838,"CONFLUENT, INC.",2026-03-17,completion_8k,20,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000039899,TEGNA INC,2026-03-20,completion_8k,19,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001124140,EXACT SCIENCES CORP,2026-03-23,completion_8k,19,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001372020,GREAT LAKES DREDGE & DOCK CORP,2026-04-01,completion_8k,18,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001413837,FIRST FOUNDATION INC.,2026-04-01,completion_8k,18,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000859737,HOLOGIC INC,2026-04-07,completion_8k,17,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001012100,SEALED AIR CORP/DE,2026-04-09,completion_8k,17,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001053352,HERITAGE COMMERCE CORP,2026-04-21,completion_8k,15,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000909108,DIAMOND HILL INVESTMENT GROUP INC,2026-04-22,completion_8k,15,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001845337,"DAY ONE BIOPHARMACEUTICALS, INC.",2026-04-23,completion_8k,15,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001178879,"AMICUS THERAPEUTICS, INC.",2026-04-27,completion_8k,14,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001786205,"ARCELLX, INC.",2026-04-28,completion_8k,14,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001071255,"GOLDEN ENTERTAINMENT, INC.",2026-04-30,completion_8k,14,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001756701,"LINKBANCORP, INC.",2026-05-01,completion_8k,13,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000351834,SUNOPTA INC.,2026-05-04,completion_8k,13,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001830188,"UNITED HOMES GROUP, INC.",2026-05-04,completion_8k,13,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000034563,FARMER BROTHERS CO,2026-05-05,completion_8k,13,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001600626,PEAKSTONE REALTY TRUST,2026-05-06,completion_8k,13,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001856236,"EUROPEAN WAX CENTER, INC.",2026-05-08,completion_8k,12,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001607939,"UDEMY, INC.",2026-05-11,completion_8k,12,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001743907,"SUN COUNTRY AIRLINES HOLDINGS, INC.",2026-05-13,completion_8k,12,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001492422,"APELLIS PHARMACEUTICALS, INC.",2026-05-14,completion_8k,12,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001129155,MARINE PRODUCTS CORP,2026-05-15,completion_8k,11,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001803737,"ENHABIT, INC.",2026-05-15,completion_8k,11,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001484565,SOLENO THERAPEUTICS INC,2026-05-18,completion_8k,11,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001853513,"MISTER CAR WASH, INC.",2026-05-19,completion_8k,11,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000924901,"VERIS RESIDENTIAL, INC.",2026-05-27,completion_8k,10,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000794619,AMERICAN WOODMARK CORP,2026-05-28,completion_8k,10,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001133470,CALAVO GROWERS INC,2026-05-29,completion_8k,9,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000045876,ENVIRI CORP,2026-06-01,completion_8k,11,11,2026-09-04,True,probable_reorganisation,True
+sec_broad_terminal_membership_v2,0000923139,FLUSHING FINANCIAL CORP,2026-06-01,completion_8k,9,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001489096,"THERMON GROUP HOLDINGS, INC.",2026-06-01,completion_8k,9,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000355019,FONAR CORP,2026-06-03,completion_8k,9,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000937556,MASIMO CORP,2026-06-10,completion_8k,8,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001408100,"KENNEDY-WILSON HOLDINGS, INC.",2026-06-16,completion_8k,7,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001802457,"ORIGIN MATERIALS, INC.",2026-06-23,form25_plus_form15_no_later_periodic,6,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001866368,"CLEARWATER ANALYTICS HOLDINGS, INC.",2026-06-25,completion_8k,6,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001127703,PROASSURANCE CORP,2026-06-26,completion_8k,5,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000034088,EXXON MOBIL CORP,2026-07-01,completion_8k,7,7,2026-09-04,True,probable_reorganisation,True
+sec_broad_terminal_membership_v2,0001274173,JANUS HENDERSON GROUP PLC,2026-07-01,form25_plus_form15_no_later_periodic,5,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001320414,SELECT MEDICAL HOLDINGS CORP,2026-07-01,completion_8k,5,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001473844,"STELLAR BANCORP, INC.",2026-07-01,completion_8k,5,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001567925,"SILA REALTY TRUST, INC.",2026-07-01,completion_8k,5,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001633931,TOPBUILD CORP,2026-07-01,completion_8k,5,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001808665,"ASSERTIO HOLDINGS, INC.",2026-07-07,form25_plus_form15_no_later_periodic,4,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001868726,"OLAPLEX HOLDINGS, INC.",2026-07-07,completion_8k,4,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001169445,"TRUBRIDGE, INC.",2026-07-09,completion_8k,4,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001434868,"ESPERION THERAPEUTICS, INC.",2026-07-13,completion_8k,3,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001175535,WHITESTONE REIT,2026-07-14,completion_8k,3,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001579214,"EMERALD HOLDING, INC.",2026-07-14,completion_8k,3,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001861560,"NUVALENT, INC.",2026-07-15,completion_8k,3,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000892553,CHART INDUSTRIES INC,2026-07-16,completion_8k,3,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001369568,"CATALYST PHARMACEUTICALS, INC.",2026-07-16,completion_8k,3,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001160791,GOLD RESOURCE CORP,2026-07-20,completion_8k,4,4,2026-09-04,True,probable_reorganisation,True
+sec_broad_terminal_membership_v2,0001855457,"KORE GROUP HOLDINGS, INC.",2026-07-21,completion_8k,2,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001493225,"NORTHFIELD BANCORP, INC.",2026-07-22,completion_8k,2,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001618563,NATIONAL STORAGE AFFILIATES TRUST,2026-07-22,completion_8k,2,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001562476,TAYLOR MORRISON HOME CORP,2026-07-24,completion_8k,1,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001141103,CROSS COUNTRY HEALTHCARE INC,2026-07-28,completion_8k,1,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001606498,"AVANOS MEDICAL, INC.",2026-07-30,completion_8k,1,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001806201,OPEN LENDING CORP,2026-07-30,completion_8k,1,1,2026-08-21,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001858681,"APOLLO GLOBAL MANAGEMENT, INC.",2026-07-31,form25_plus_form15_no_later_periodic,2,2,2026-09-04,False,not_flagged,False
+sec_broad_terminal_membership_v2,0000801337,WEBSTER FINANCIAL CORP,2026-08-20,completion_8k,0,0,,False,not_flagged,False
+sec_broad_terminal_membership_v2,0001611983,LIBERTY BROADBAND CORP,2026-08-21,completion_8k,0,0,,False,not_flagged,False

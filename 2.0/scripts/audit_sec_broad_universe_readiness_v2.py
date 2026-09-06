@@ -26,6 +26,20 @@ TERMINALS = ROOT / "evidence/sec_broad_terminal_membership_v2/sec_terminal_membe
 def arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--universe", default="")
+    # recent_membership_readiness.csv is hashed into the manifest of the pinned
+    # research panel, so a new quarterly vintage writes beside it rather than
+    # over it; the default keeps the sealed v2 path for reruns of that vintage.
+    parser.add_argument("--output-root", default=str(OUTPUT))
+    # `existing_execution_price` is read from a per-decision-row file built for
+    # the decision dates that existed when it was made, so every row of a newly
+    # added quarter reads False even for issuers priced in every prior quarter.
+    # The price source inventory is the list the panel builder actually draws
+    # from, so unioning it in makes this flag agree with what can be built.
+    parser.add_argument("--price-inventory", default="")
+    # The 2023 start was a scope choice for the recent window, not a data limit.
+    # Widening it exposes how much of the pre-2023 roster can actually be priced,
+    # which is the survivorship question rather than a coverage detail.
+    parser.add_argument("--recent-start", default="2023-01-01")
     return parser.parse_args()
 
 
@@ -43,8 +57,9 @@ def sha256(path: Path) -> str:
 def main() -> int:
     args = arguments()
     universe = Path(args.universe).resolve() if args.universe else latest_broad_vintage()
+    output = Path(args.output_root).resolve()
     membership = pd.read_csv(universe / "quarterly_membership.csv", dtype={"cik10": str}, parse_dates=["decision_at"])
-    recent = membership[membership["decision_at"] >= pd.Timestamp("2023-01-01", tz="UTC")].copy()
+    recent = membership[membership["decision_at"] >= pd.Timestamp(args.recent_start, tz="UTC")].copy()
     terminal_removed_rows = 0
     if TERMINALS.exists():
         terminals = pd.read_csv(TERMINALS, dtype={"cik10": str})
@@ -82,6 +97,9 @@ def main() -> int:
         attempted_price_ciks.update(frame["cik10"].astype(str))
         valid = frame["history_overlaps_eligible_interval"].astype(str).str.lower().eq("true")
         batch_price_ciks.update(frame.loc[valid, "cik10"].astype(str))
+    if args.price_inventory:
+        inventory = pd.read_csv(Path(args.price_inventory), dtype={"cik10": str})
+        batch_price_ciks.update(inventory["cik10"].astype(str))
     recent["batch_price_available"] = recent["cik10"].isin(batch_price_ciks)
     recent["validated_price_available"] = recent["existing_execution_price"] | recent["batch_price_available"]
     recent["batch_price_attempted"] = recent["cik10"].isin(attempted_price_ciks)
@@ -142,16 +160,16 @@ def main() -> int:
     issuers["priority"] = issuers["queue_status"].map(priority_order)
     issuers = issuers.sort_values(["priority", "sector", "last_recent_decision", "cik10"], ascending=[True, True, False, True])
 
-    OUTPUT.mkdir(parents=True, exist_ok=True)
-    recent.to_csv(OUTPUT / "recent_membership_readiness.csv", index=False)
-    sector.to_csv(OUTPUT / "sector_readiness.csv", index=False)
-    issuers.to_csv(OUTPUT / "issuer_acquisition_queue.csv", index=False)
+    output.mkdir(parents=True, exist_ok=True)
+    recent.to_csv(output / "recent_membership_readiness.csv", index=False)
+    sector.to_csv(output / "sector_readiness.csv", index=False)
+    issuers.to_csv(output / "issuer_acquisition_queue.csv", index=False)
     counts = issuers["queue_status"].value_counts().to_dict()
     result = {
         "experiment": "sec_broad_universe_readiness_v2",
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "universe_vintage": universe.name,
-        "recent_start": "2023-01-01",
+        "recent_start": args.recent_start,
         "recent_decisions": int(recent["decision_at"].nunique()),
         "recent_unique_ciks": int(recent["cik10"].nunique()),
         "sec_terminal_removed_decision_rows": terminal_removed_rows,
@@ -166,13 +184,13 @@ def main() -> int:
         "live_trading_enabled": False,
         "next_gate": "acquire and validate adjusted prices plus company facts, recover former identities, audit terminal outcomes, then require at least 95% decision-date coverage and missing-company stress tests",
         "artifact_sha256": {
-            "recent_membership_readiness": sha256(OUTPUT / "recent_membership_readiness.csv"),
-            "sector_readiness": sha256(OUTPUT / "sector_readiness.csv"),
-            "issuer_acquisition_queue": sha256(OUTPUT / "issuer_acquisition_queue.csv"),
+            "recent_membership_readiness": sha256(output / "recent_membership_readiness.csv"),
+            "sector_readiness": sha256(output / "sector_readiness.csv"),
+            "issuer_acquisition_queue": sha256(output / "issuer_acquisition_queue.csv"),
         },
     }
-    (OUTPUT / "result.json").write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
-    (OUTPUT / "report.md").write_text(
+    (output / "result.json").write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
+    (output / "report.md").write_text(
         "# Broad SEC universe readiness v2\n\n"
         f"The point-in-time broad universe has **{result['recent_unique_ciks']:,}** unique companies from 2023 onward "
         f"and **{result['latest_members']:,}** at the latest decision. Existing validated price coverage spans "

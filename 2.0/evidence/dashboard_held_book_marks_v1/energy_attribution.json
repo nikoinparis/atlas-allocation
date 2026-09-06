@@ -1,0 +1,74 @@
+{
+  "energy_symbols_classified": [
+    "BKV",
+    "EQT",
+    "HPK",
+    "MTDR",
+    "NOG",
+    "USO",
+    "XLE"
+  ],
+  "note": "arithmetic weekly weight-times-return contributions summed over the closed weeks; energy classification was fixed on 2026-09-02 after seeing the first three weeks and is held constant since, so it is a hypothesis about later weeks rather than a finding about the ones that produced it",
+  "rows": [
+    {
+      "energy_contrib": 0.05898141334905894,
+      "energy_share_of_gain": 1.0246316548588181,
+      "energy_weight": 0.5046502034762445,
+      "ex_energy": -0.0014178849636452898,
+      "ex_energy_sleeve_return": -0.0028623913315310966,
+      "strategy": "candidate-return-first-60-40-forward-v1",
+      "weeks_total": 0.05756352838541365
+    },
+    {
+      "energy_contrib": 0.03030517657569695,
+      "energy_share_of_gain": 0.6743277778479803,
+      "energy_weight": 0.2663950610428733,
+      "ex_energy": 0.014636137680126157,
+      "ex_energy_sleeve_return": 0.021410228109899725,
+      "strategy": "sec-cash-conversion-breadth20-dynamic-v1",
+      "weeks_total": 0.04494131425582311
+    },
+    {
+      "energy_contrib": 0.02889450992204165,
+      "energy_share_of_gain": 0.8161884125000016,
+      "energy_weight": 0.2383533329631514,
+      "ex_energy": 0.006507254522931515,
+      "ex_energy_sleeve_return": 0.006852290171497042,
+      "strategy": "sec-sector-ensemble-fragile-1.35x-v1",
+      "weeks_total": 0.035401764444973165
+    },
+    {
+      "energy_contrib": 0.03030517657569695,
+      "energy_share_of_gain": 0.8763164993679278,
+      "energy_weight": 0.2663950610428733,
+      "ex_energy": 0.00427727918949241,
+      "ex_energy_sleeve_return": 0.004581465897417273,
+      "strategy": "sec-residual-controlled-1.25x-5pct-v1",
+      "weeks_total": 0.03458245576518936
+    },
+    {
+      "energy_contrib": 0.021403340682993804,
+      "energy_share_of_gain": 0.8161884125000022,
+      "energy_weight": 0.1765580244171491,
+      "ex_energy": 0.004820188535504807,
+      "ex_energy_sleeve_return": 0.006852290171497013,
+      "strategy": "sec-sector-aware-signal-ensemble-v1",
+      "weeks_total": 0.02622352921849861
+    },
+    {
+      "energy_contrib": 0.014984052755572328,
+      "energy_share_of_gain": 1.0078981696882032,
+      "energy_weight": 0.2,
+      "ex_energy": -0.00011741919455723546,
+      "ex_energy_sleeve_return": -0.00014677399319654432,
+      "strategy": "sec-growth-survivorship-aware-v1",
+      "weeks_total": 0.014866633561015093
+    }
+  ],
+  "weeks": [
+    "2026-08-14",
+    "2026-08-21",
+    "2026-08-28",
+    "2026-09-04"
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "artifact_sha256": {
+    "weekly_adjusted_prices.csv.gz": "bd25c37df52d2bd0f845ea0be15c430a573d2f1e74fb51f3837ec7b21ded037a",
+    "weekly_returns.csv.gz": "b393138167ed75d4235cb8dd97ed5a4d9c798e31cad2a2a19cd674579a3ada22"
+  },
+  "cleaning_rules": {
+    "non_positive_prices": "set to missing",
+    "return_observations_masked": 144,
+    "weekly_return_cap": 2.0,
+    "weekly_return_floor": -0.95
+  },
+  "coverage_by_year": {
+    "2011": 1681,
+    "2012": 1742,
+    "2013": 1822,
+    "2014": 1923,
+    "2015": 2013,
+    "2016": 2066,
+    "2017": 2151,
+    "2018": 2250,
+    "2019": 2339,
+    "2020": 2492,
+    "2021": 2677,
+    "2022": 2710,
+    "2023": 2746,
+    "2024": 2788,
+    "2025": 2794,
+    "2026": 2821
+  },
+  "created_at_utc": "2026-09-05T10:16:58.820028+00:00",
+  "experiment": "broad_full_history_panel_v1",
+  "first_week": "2011-01-07",
+  "issuers": 2824,
+  "last_week": "2026-09-04",
+  "live_trading_enabled": false,
+  "reconciliation_against_sealed_panel": {
+    "basis": "weekly simple returns, invariant to the sealed panel's rebasing",
+    "cells_over_100bps": 487,
+    "cells_over_10bps": 753,
+    "compared_cells": 541252,
+    "median_absolute_gap": 1.1102230246251565e-16,
+    "overlap_weeks": 197,
+    "share_over_100bps": 0.0009,
+    "shared_issuers": 2824
+  },
+  "source_vintage": "20260905T100403Z-broad-full-history-v1",
+  "weeks": 818
+}

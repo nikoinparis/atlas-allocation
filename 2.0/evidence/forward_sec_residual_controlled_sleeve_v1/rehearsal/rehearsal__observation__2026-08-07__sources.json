@@ -1,0 +1,12 @@
+{
+  "decision_packet": "evidence/forward_sec_residual_controlled_sleeve_v1/rehearsal/rehearsal__decision__2026-07-31.json",
+  "decision_packet_sha256": "c74edb7fd65786ca946f21ceb99939e3382214b0eea2edb9185ea19541ecec7f",
+  "files": {
+    "data/broad_full_history_panel_v1/weekly_adjusted_prices.csv.gz": "bd25c37df52d2bd0f845ea0be15c430a573d2f1e74fb51f3837ec7b21ded037a",
+    "data/clean_weekly_prices_v2/weekly_adjusted_prices_clean.csv.gz": "09eac5ff70171dcad49eb75a27ce56f7d97f520bbdfc20fde68eb1186eceddb6",
+    "data/derived/20260808T212827Z-de103c2e063d6c4a/weekly_prices.csv": "040c02ad71468e8a744ebab16f43276f9c3e7aba6992d5a9989628d8c9facf45",
+    "scripts/build_residual_sleeve_observation_packet_v1.py": "e35c090668ce6d640f08e10abd9a1c8071e2c39ccf67d57197b690c47d76bd6c"
+  },
+  "manifest_type": "sec_residual_forward_observation_sources_v1",
+  "realization_date": "2026-08-07"
+}

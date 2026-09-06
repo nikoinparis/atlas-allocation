@@ -1,0 +1,46 @@
+{
+  "experiment": "sec_price_confirmed_filing_drift_v1",
+  "registered_before_results": true,
+  "research_hypothesis": "A positive standardized earnings surprise followed by an unusually strong, high-volume, high-close-location first full trading session after an SEC filing produces a 63-session post-filing drift that is distinct from either the filing signal or the price reaction alone.",
+  "universe": {
+    "forms": ["10-Q", "10-K"],
+    "minimum_prior_close": 5.0,
+    "minimum_trailing_20d_median_dollar_volume": 5000000.0,
+    "minimum_prior_observations": 63
+  },
+  "signal": {
+    "sue_rule": "event SUE must exceed the median of strictly earlier SUE observations in the same sector over the prior 365 calendar days",
+    "minimum_sector_history": 10,
+    "minimum_abnormal_close_to_close_return": 0.02,
+    "minimum_volume_multiple_vs_prior_63d_median": 1.5,
+    "minimum_close_location": 0.5,
+    "signal_session": "first complete trading session strictly after the conservative SEC fact availability date",
+    "entry_session": "next issuer trading-session open after the signal session"
+  },
+  "portfolio": {
+    "holding_sessions": 63,
+    "initial_weight_per_issuer": 0.02,
+    "maximum_concurrent_issuers": 50,
+    "maximum_sector_initial_weight": 0.2,
+    "unused_capacity": "cash",
+    "cost_bps_one_way": [0, 10, 25, 50, 100]
+  },
+  "falsification": {
+    "calendar_block_bootstrap_draws": 5000,
+    "calendar_block_length_sessions": 21,
+    "bootstrap_seed": 20260827,
+    "matched_signal_placebo_draws": 500,
+    "placebo_seed": 20260828,
+    "diagnostic_ablations": ["sue_only", "price_confirmation_only"],
+    "maximum_single_issuer_profit_share": 0.25,
+    "minimum_bootstrap_probability_positive": 0.95,
+    "minimum_placebo_percentile": 0.95
+  },
+  "multiple_testing": {
+    "primary_hypotheses_added": 1,
+    "diagnostic_ablations_not_selectable": true,
+    "project_wide_adjusted_significance_claim_authorized": false
+  },
+  "strategy_promotion_authorized": false,
+  "live_trading_enabled": false
+}

@@ -1,0 +1,60 @@
+{
+  "breadth": 20,
+  "cost_bps": 50,
+  "declared": {
+    "annualised_volatility": 0.2657029972589195,
+    "full_cagr": 0.3539636231820056,
+    "full_sharpe": 1.276086891484611,
+    "max_drawdown": -0.25508413018139964,
+    "recent_52w_annualised_volatility": 0.3346348807456956,
+    "recent_52w_cagr": 0.7831964103415223,
+    "recent_52w_max_drawdown": -0.2550841301813995,
+    "recent_52w_sharpe": 1.902066176467845
+  },
+  "declared_percentile_within_random_draws": {
+    "full_cagr": 0.925,
+    "full_sharpe": 0.97,
+    "max_drawdown": 0.675,
+    "recent_52w_cagr": 0.99
+  },
+  "declared_tiebreak": "cik10 ascending (oldest SEC registrant first)",
+  "draws": 200,
+  "experiment": "residual_sleeve_tiebreak_audit_v1",
+  "live_trading_enabled": false,
+  "mean_overlap_of_random_book_with_declared": 0.34315384615384614,
+  "median_tie_pool_at_twentieth_score": 59.0,
+  "panel": "data/sec_broad_research_panel_v3",
+  "random_tiebreak_quantiles": {
+    "full_cagr": {
+      "p05": 0.1564594481486177,
+      "p50": 0.26306231480520226,
+      "p95": 0.3619871962439052
+    },
+    "full_sharpe": {
+      "p05": 0.6604371220418951,
+      "p50": 0.9467222380310354,
+      "p95": 1.221799915659104
+    },
+    "max_drawdown": {
+      "p05": -0.3332452382342166,
+      "p50": -0.27184707828304655,
+      "p95": -0.2183339813124664
+    },
+    "recent_52w_cagr": {
+      "p05": 0.06448277396638522,
+      "p50": 0.2974042168392127,
+      "p95": 0.5776769289479253
+    }
+  },
+  "strategy_promotion_authorized": false,
+  "tie_pool_equal_weight": {
+    "annualised_volatility": 0.27366134156820976,
+    "full_cagr": 0.2998004686451692,
+    "full_sharpe": 1.0959721208134405,
+    "max_drawdown": -0.2429135452338539,
+    "recent_52w_annualised_volatility": 0.2850405620585786,
+    "recent_52w_cagr": 0.3589661290536814,
+    "recent_52w_max_drawdown": -0.1788686513231662,
+    "recent_52w_sharpe": 1.2183135974951322
+  }
+}

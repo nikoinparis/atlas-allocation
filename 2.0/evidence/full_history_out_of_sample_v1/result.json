@@ -1,0 +1,94 @@
+{
+  "coverage_bar": 0.9,
+  "decisions_admissible": 12,
+  "decisions_excluded": 46,
+  "excluded_decisions": [
+    "2012-04-01",
+    "2012-07-01",
+    "2012-10-01",
+    "2013-01-01",
+    "2013-04-01",
+    "2013-07-01",
+    "2013-10-01",
+    "2014-01-01",
+    "2014-04-01",
+    "2014-07-01",
+    "2014-10-01",
+    "2015-01-01",
+    "2015-04-01",
+    "2015-07-01",
+    "2015-10-01",
+    "2016-01-01",
+    "2016-04-01",
+    "2016-07-01",
+    "2016-10-01",
+    "2017-01-01",
+    "2017-04-01",
+    "2017-07-01",
+    "2017-10-01",
+    "2018-01-01",
+    "2018-04-01",
+    "2018-07-01",
+    "2018-10-01",
+    "2019-01-01",
+    "2019-04-01",
+    "2019-07-01",
+    "2019-10-01",
+    "2020-01-01",
+    "2020-04-01",
+    "2020-07-01",
+    "2020-10-01",
+    "2021-01-01",
+    "2021-04-01",
+    "2021-07-01",
+    "2021-10-01",
+    "2022-01-01",
+    "2022-04-01",
+    "2022-07-01",
+    "2022-10-01",
+    "2023-01-01",
+    "2023-04-01",
+    "2023-07-01"
+  ],
+  "experiment": "full_history_out_of_sample_v1",
+  "generated_at_utc": "2026-09-05T12:24:53.555932+00:00",
+  "live_trading_enabled": false,
+  "promotion_authorized": false,
+  "protocol": "full_history_out_of_sample_protocol_v2",
+  "trials_consumed": 0,
+  "verdicts": [
+    {
+      "beats_equal_weight": {
+        "adverse__2023-2026": false,
+        "adverse__full": false,
+        "base__2023-2026": false,
+        "base__full": false
+      },
+      "benchmark": "equal_weight_narrow",
+      "book": "cash_conversion_breadth20",
+      "passes_every_window_and_scenario": false
+    },
+    {
+      "beats_equal_weight": {
+        "adverse__2023-2026": true,
+        "adverse__full": true,
+        "base__2023-2026": true,
+        "base__full": true
+      },
+      "benchmark": "equal_weight_narrow",
+      "book": "growth_survivorship",
+      "passes_every_window_and_scenario": true
+    },
+    {
+      "beats_equal_weight": {
+        "adverse__2023-2026": true,
+        "adverse__full": true,
+        "base__2023-2026": true,
+        "base__full": true
+      },
+      "benchmark": "equal_weight_broad",
+      "book": "residual_momentum_breadth20",
+      "passes_every_window_and_scenario": true
+    }
+  ]
+}

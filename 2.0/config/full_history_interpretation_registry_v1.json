@@ -1,0 +1,42 @@
+{
+  "experiment": "full_history_interpretation_registry_v1",
+  "registered_at_utc": "2026-09-05",
+  "written_before": "the 2012-2022 out-of-sample run has produced any output; the acquisition chain is still executing",
+  "purpose": "Fix what each possible outcome means before the outcome exists. Step 222 found the cash-conversion control leg losing to an equal-weight version of its own universe in sample. The 2012-2022 run will either repeat that or contradict it, and both readings are available to be rationalised after the fact unless they are written down first.",
+  "what_is_being_tested": {
+    "strategies": ["cash_conversion_breadth20", "growth_survivorship"],
+    "why_only_these": "the residual sleeve draws on the broad panel, which does not reach before 2022-12 until the running extension completes",
+    "benchmark": "equal-weight portfolio of the same point-in-time universe, same schedule, same 50bps cost",
+    "scenarios": ["base", "adverse"],
+    "trials_consumed": 0,
+    "why_zero": "every parameter was frozen before this registry was written; nothing is searched"
+  },
+  "why_a_backward_test_is_informative": "The parameters were chosen on 2023-2026. Applying them to a period whose data played no part in choosing them tests whether the choice generalises. It cannot prove a strategy works, because the data still exists and can be re-examined, but it can show that a parameter set was fitted to one window.",
+  "predeclared_readings": {
+    "loses_in_both_windows": {
+      "meaning": "the strategy does not select. Fourteen years of underperforming an equal weighting of its own universe is not a regime effect.",
+      "consequence": "the control leg should not carry 80% of a composite whose forward clock is about to start, and the protocol needs revisiting before 2026-09-11 rather than after"
+    },
+    "loses_recently_but_wins_2012_2022": {
+      "meaning": "the in-sample failure is the anomaly, most plausibly because the recent window contained an unusually strong small-capitalisation and technology rally that an equal weighting of 500 names captures and a 20-name book does not",
+      "consequence": "the strategy is a regime bet rather than a dead signal, and must be labelled as one; this does NOT rehabilitate it, because a strategy that only works outside the current regime is not tradable now"
+    },
+    "wins_in_both_windows": {
+      "meaning": "the Step 222 finding is wrong and something in the in-sample comparison is broken",
+      "consequence": "find the defect before believing either result; do not report the favourable one and drop the other"
+    },
+    "coverage_too_low_to_decide": {
+      "meaning": "the earliest years cannot be priced well enough for the comparison to carry weight",
+      "consequence": "report the window that does clear the bar and state plainly which years were excluded and why; do not lower the bar again"
+    }
+  },
+  "forbidden_after_seeing_the_result": [
+    "changing the benchmark",
+    "changing the coverage bar",
+    "changing the cost assumption",
+    "restricting the window to a sub-period chosen because it is favourable",
+    "introducing a parameter variant not declared in breadth_first_signal_registry_v1 or here"
+  ],
+  "promotion_authority": "none",
+  "live_trading_enabled": false
+}

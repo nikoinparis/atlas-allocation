@@ -1,17 +1,17 @@
 {
   "authorization_gate": "complete remaining recent-priority Tiingo batches, then require >=95% coverage at every recent decision plus missing-company adverse sensitivity",
-  "created_at_utc": "2026-08-14T07:22:25.515816+00:00",
+  "created_at_utc": "2026-09-05T05:49:09.015456+00:00",
   "current_yahoo_ciks": 487,
-  "latest_decision_coverage": 0.9957446808510638,
-  "median_decision_coverage": 0.9633865531838912,
-  "minimum_decision_coverage": 0.9505703422053232,
-  "missing_company_decision_rows": 230,
+  "latest_decision_coverage": 0.9893162393162394,
+  "median_decision_coverage": 0.975609756097561,
+  "minimum_decision_coverage": 0.9524714828897338,
+  "missing_company_decision_rows": 211,
   "observed_coverage_gate_passed": true,
-  "recent_decisions": 14,
-  "recovered_yahoo_ciks": 56,
-  "sec_confirmed_acquisition_terminations": 332,
+  "recent_decisions": 15,
+  "recovered_yahoo_ciks": 58,
+  "sec_confirmed_acquisition_terminations": 381,
   "strategy_testing_authorized": false,
-  "unique_ciks_with_price_source": 676,
-  "unique_members": 636,
-  "validated_tiingo_ciks": 133
+  "unique_ciks_with_price_source": 701,
+  "unique_members": 641,
+  "validated_tiingo_ciks": 156
 }

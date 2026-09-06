@@ -1,0 +1,32 @@
+{
+  "precision": {
+    "v1": {
+      "correct": 44,
+      "n": 60,
+      "rate": 0.7333333333333333
+    },
+    "v2": {
+      "correct": 44,
+      "n": 60,
+      "rate": 0.7333333333333333
+    },
+    "v3": {
+      "correct": 48,
+      "n": 60,
+      "rate": 0.8
+    }
+  },
+  "precision_gate": 0.85,
+  "gate_met": false,
+  "labelling": "60 edges per version, hand-labelled against full sentence context, a different random seed for each version; the labeller also wrote the extractor, which is a stated bias risk",
+  "recall": {
+    "filings_with_edge": 83,
+    "of_filings": 1800,
+    "rate": 0.04611111111111111,
+    "implied_suppliers_per_year": 142.94444444444443,
+    "cf_benchmark_for_our_universe": 416.384,
+    "recall_vs_benchmark": 0.34329956108890936,
+    "usable_after_precision": 114.35555555555555
+  },
+  "verdict": "regex extraction plateaus at 80%; remaining errors are semantic, not syntactic; recall at ~34% of the curated benchmark is the larger gap"
+}

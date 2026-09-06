@@ -6,6 +6,7 @@ from __future__ import annotations
 import concurrent.futures
 import gzip
 import hashlib
+import argparse
 import json
 import sys
 from datetime import datetime, timezone
@@ -23,7 +24,15 @@ from systematic_trader.sec_point_in_time import flatten_companyfacts, quarterly_
 CONFIG_PATH = ROOT / "config/sec_growth_survivorship_retest_v1.json"
 PILOT_CONFIG = ROOT / "config/sec_fundamental_pilot_v1.json"
 MEMBERSHIP = ROOT / "evidence/combined_recent_price_panel_v1/classified_membership.csv"
-SUBMISSIONS = ROOT / "data/sec_historical_universe_vintages/20260813T095119Z-sec-historical-filers-v1/qualifying_submissions.csv"
+def _latest_submissions() -> Path:
+    """Newest narrow filer vintage; the pinned 2026-08-13 one predates the 2026Q2 archive."""
+    values = sorted(ROOT.glob("data/sec_historical_universe_vintages/*-sec-historical-filers-v1"))
+    if not values:
+        raise RuntimeError("no narrow SEC universe vintage found")
+    return values[-1] / "qualifying_submissions.csv"
+
+
+SUBMISSIONS = _latest_submissions()
 FACT_CACHE = ROOT / "data/sec_recent_companyfacts_cache_v1"
 TIINGO_AUDIT = ROOT / "evidence/tiingo_delisted_authenticated_probe_v1/candidate_audit.csv"
 TIINGO_TERMINALS = ROOT / "evidence/tiingo_terminal_outcomes_v1/terminal_outcomes.csv"
@@ -313,9 +322,15 @@ def metric_rows(name: str, scenario: str, cost: int, path: pd.DataFrame) -> list
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--membership", default=str(MEMBERSHIP))
+    parser.add_argument("--output-root", default=str(OUTPUT))
+    args = parser.parse_args()
+    output = Path(args.output_root).resolve()
+    output.mkdir(parents=True, exist_ok=True)
     config = json.loads(CONFIG_PATH.read_text())
     pilot = json.loads(PILOT_CONFIG.read_text())
-    membership = pd.read_csv(MEMBERSHIP, dtype={"cik10": str}, parse_dates=["decision_at"])
+    membership = pd.read_csv(Path(args.membership), dtype={"cik10": str}, parse_dates=["decision_at"])
     membership["tradable_member"] = membership["tradable_member"].astype(bool)
     decisions = sorted(membership["decision_at"].unique())
     inputs = build_factor_inputs(membership, decisions, pilot)
@@ -397,15 +412,15 @@ def main() -> int:
     missing_events = events[(events.scenario == "base") & (events.cost_bps == int(config["primary_cost_bps"])) & (events.missing > 0)]
 
     OUTPUT.mkdir(parents=True, exist_ok=True)
-    inputs.to_csv(OUTPUT / "quarterly_factor_inputs.csv", index=False)
-    scores.to_csv(OUTPUT / "growth_scores.csv", index=False)
-    choices.to_csv(OUTPUT / "portfolio_choices.csv", index=False)
-    pd.DataFrame(source_rows).to_csv(OUTPUT / "selected_price_sources.csv", index=False)
-    events.to_csv(OUTPUT / "rebalance_events.csv", index=False)
-    performance.to_csv(OUTPUT / "performance.csv", index=False)
-    prefix.to_csv(OUTPUT / "prefix_invariance.csv", index=False)
+    inputs.to_csv(output / "quarterly_factor_inputs.csv", index=False)
+    scores.to_csv(output / "growth_scores.csv", index=False)
+    choices.to_csv(output / "portfolio_choices.csv", index=False)
+    pd.DataFrame(source_rows).to_csv(output / "selected_price_sources.csv", index=False)
+    events.to_csv(output / "rebalance_events.csv", index=False)
+    performance.to_csv(output / "performance.csv", index=False)
+    prefix.to_csv(output / "prefix_invariance.csv", index=False)
     for key, path in paths.items():
-        path.rename_axis("Date").to_csv(OUTPUT / f"path_{key.replace('::', '__')}.csv")
+        path.rename_axis("Date").to_csv(output / f"path_{key.replace('::', '__')}.csv")
     checks = {
         "availability_strictly_before_decision": availability_pass,
         "deterministic_choices": determinism_pass,
@@ -436,8 +451,8 @@ def main() -> int:
         "strategy_replacement_authorized": False,
         "live_trading_enabled": False,
     }
-    (OUTPUT / "result.json").write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
-    (OUTPUT / "report.md").write_text(
+    (output / "result.json").write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
+    (output / "report.md").write_text(
         "# SEC growth survivorship-aware retest v1\n\n"
         f"The unchanged growth rule was tested across **{result['decisions']}** point-in-time quarterly decisions. "
         f"At 50-bps costs, the base scenario produced **{base.cagr:.2%} CAGR**, **{base.sharpe_zero_rf:.3f} Sharpe**, "

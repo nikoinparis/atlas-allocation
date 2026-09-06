@@ -1,0 +1,21 @@
+{
+  "breadth": 20,
+  "cost_bps": 50.0,
+  "experiment": "cash_conversion_sleeve_path_v1",
+  "first_week": "2023-01-06",
+  "generated_at_utc": "2026-09-05T07:37:40.991463+00:00",
+  "last_week": "2026-08-07",
+  "live_trading_enabled": false,
+  "peak_internal_weight": 0.09223486879025876,
+  "price_vintage_end": "2026-08-12",
+  "priced_issuers": 75,
+  "scenario": "base",
+  "selected_issuers": 78,
+  "unpriced_issuers": [
+    "0000351817",
+    "0000732834",
+    "0001628945"
+  ],
+  "weeks": 188,
+  "what_this_is": "the breadth-20 cash-conversion sleeve's own returns, the overlay's missing input"
+}

@@ -1,18 +1,18 @@
 {
-  "ciks_with_any_candidate_symbol": 1013,
-  "ciks_with_usable_single_symbol": 947,
-  "created_at_utc": "2026-08-13T10:04:35.021468+00:00",
-  "full_min_usable_coverage": 0.648062015503876,
-  "historical_ciks": 1281,
-  "latest_members": 540,
-  "latest_usable_coverage": 0.9296296296296296,
-  "legacy_symbol_vintage": "/project/data/sec_historical_identity_vintages/20260813T100124Z-sec-legacy-symbol-recovery-v1",
-  "multi_symbol_ciks": 42,
+  "ciks_with_any_candidate_symbol": 1017,
+  "ciks_with_usable_single_symbol": 952,
+  "created_at_utc": "2026-09-05T12:18:24.607439+00:00",
+  "full_min_usable_coverage": 0.6496124031007752,
+  "historical_ciks": 1285,
+  "latest_members": 536,
+  "latest_usable_coverage": 0.9309701492537313,
+  "legacy_symbol_vintage": "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/data/sec_historical_identity_vintages/20260813T100124Z-sec-legacy-symbol-recovery-v1",
+  "multi_symbol_ciks": 41,
   "overlapping_collision_pairs": 12,
   "price_probe_authorized": true,
-  "recent_min_usable_coverage": 0.9233644859813084,
+  "recent_min_usable_coverage": 0.9252336448598131,
   "source_counts": {
-    "current_sec_mapping": 573,
+    "current_sec_mapping": 577,
     "last_filing_inline_xbrl": 247,
     "last_filing_instance_xbrl": 193,
     "unresolved": 268
@@ -24,7 +24,7 @@
     "unresolved and ambiguous companies must never be silently removed"
   ],
   "strategy_testing_authorized": false,
-  "tagged_symbol_vintage": "/project/data/sec_historical_identity_vintages/20260813T095732Z-sec-symbol-recovery-v1",
-  "universe_vintage": "/project/data/sec_historical_universe_vintages/20260813T095119Z-sec-historical-filers-v1",
+  "tagged_symbol_vintage": "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/data/sec_historical_identity_vintages/20260813T095732Z-sec-symbol-recovery-v1",
+  "universe_vintage": "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/data/sec_historical_universe_vintages/20260905T055015Z-sec-historical-filers-v1",
   "unresolved_ciks": 268
 }

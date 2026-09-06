@@ -1,11 +1,11 @@
 {
-  "created_at_utc": "2026-08-14T07:11:28.165668+00:00",
-  "early_delistings": 118,
-  "known_terminal_reasons": 118,
+  "created_at_utc": "2026-09-05T12:18:42.976909+00:00",
+  "early_delistings": 206,
+  "known_terminal_reasons": 195,
   "required_sensitivity": [
     "base: liquidate at final observed close and hold cash until next decision",
     "adverse: apply -100% terminal return to every unresolved early delisting"
   ],
   "strategy_testing_authorized": false,
-  "terminal_returns_available": 118
+  "terminal_returns_available": 195
 }

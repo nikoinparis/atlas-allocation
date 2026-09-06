@@ -1,6 +1,6 @@
 import pandas as pd
 
-from systematic_trader.sec_historical_universe import build_membership, extract_trading_symbols, normalize_submissions, sic_sector
+from systematic_trader.sec_historical_universe import attach_current_tickers, build_membership, extract_trading_symbols, normalize_submissions, sic_sector
 
 
 GROUPS = {"technology": [[7370, 7379]], "energy": [[1311, 1311]]}
@@ -41,3 +41,72 @@ def test_membership_expires_stale_filers_instead_of_forward_filling_forever():
     filings = normalize_submissions(raw, GROUPS, ["10-K"], ["2-ACC"])
     membership = build_membership(filings, ["2020-04-01T00:00:00Z", "2021-07-01T00:00:00Z"], staleness_days=450)
     assert membership["decision_at"].dt.year.tolist() == [2020]
+
+
+def _membership(ciks: list[int]) -> pd.DataFrame:
+    return pd.DataFrame([
+        {"cik10": str(cik).zfill(10), "company_name_as_filed": f"CO {cik}", "sector": "technology"}
+        for cik in ciks
+    ])
+
+
+def _mapping(rows: list[tuple[int, str]]) -> pd.DataFrame:
+    return pd.DataFrame([{"cik": cik, "ticker": ticker, "exchange": "Nasdaq"} for cik, ticker in rows])
+
+
+def _prior(rows: list[tuple[int, str]]) -> pd.DataFrame:
+    return pd.DataFrame([
+        {"cik10": str(cik).zfill(10), "current_tickers": tickers, "current_exchanges": "Nasdaq"}
+        for cik, tickers in rows
+    ])
+
+
+def test_identity_survives_leaving_the_present_day_mapping():
+    """An issuer acquired today was still an unambiguous member in 2023."""
+    _, identities = attach_current_tickers(_membership([1, 2]), _mapping([(2, "TWO")]), _prior([(1, "ONE")]))
+    resolved = identities.set_index("cik10")
+    assert resolved.loc["0000000001", "current_tickers"] == "ONE"
+    assert resolved.loc["0000000001", "identity_status"] == "current_ticker_available"
+    assert bool(resolved.loc["0000000001", "identity_from_prior_vintage"]) is True
+
+
+def test_identity_survives_gaining_a_second_ticker_line():
+    """KLXE gaining a KLXER rights line must not un-resolve it back to 2023."""
+    _, identities = attach_current_tickers(
+        _membership([1]), _mapping([(1, "KLXE"), (1, "KLXER")]), _prior([(1, "KLXE")])
+    )
+    resolved = identities.set_index("cik10")
+    assert resolved.loc["0000000001", "current_tickers"] == "KLXE"
+    assert bool(resolved.loc["0000000001", "identity_from_prior_vintage"]) is True
+
+
+def test_a_worse_prior_resolution_never_overrides_a_better_current_one():
+    """GLP|GLP-PB becoming GLP is an improvement and must be allowed through."""
+    _, identities = attach_current_tickers(
+        _membership([1]), _mapping([(1, "GLP")]), _prior([(1, "GLP|GLP-PB")])
+    )
+    resolved = identities.set_index("cik10")
+    assert resolved.loc["0000000001", "current_tickers"] == "GLP"
+    assert bool(resolved.loc["0000000001", "identity_from_prior_vintage"]) is False
+
+
+def test_identity_resolution_is_monotone_when_the_mapping_shrinks():
+    """The regression guard for Steps 210-211: a rebuild may add identities, never remove one.
+
+    SEC overwrites company_tickers_exchange.json in place, so issuers leave it as they
+    are acquired. Resolving against only the present-day file silently deleted them from
+    decision blocks back to 2023 and rewrote a backtest universe.
+    """
+    members = _membership([1, 2, 3])
+    full = _mapping([(1, "ONE"), (2, "TWO"), (3, "THREE")])
+    _, first = attach_current_tickers(members, full)
+    carried = first.loc[first["current_tickers"].notna(), ["cik10", "current_tickers", "current_exchanges"]]
+
+    shrunk = _mapping([(2, "TWO")])
+    _, without_prior = attach_current_tickers(members, shrunk)
+    _, with_prior = attach_current_tickers(members, shrunk, carried)
+
+    assert int(without_prior["current_tickers"].notna().sum()) == 1, "the unguarded path still loses issuers"
+    assert set(with_prior.loc[with_prior["current_tickers"].notna(), "cik10"]) == set(
+        first.loc[first["current_tickers"].notna(), "cik10"]
+    )

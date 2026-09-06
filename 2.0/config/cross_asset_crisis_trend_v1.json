@@ -1,0 +1,43 @@
+{
+  "experiment": "cross_asset_crisis_trend_v1",
+  "registered_before_results": true,
+  "research_posture": "retrospective_challenger_only",
+  "hypothesis": "A fixed allocation to causal non-equity trend improves the five-sleeve portfolio's risk-adjusted outcome because its return drivers differ from the saved US-equity sleeves.",
+  "source_price_bundle": "ggg_causal_v2_027530550388432a",
+  "base_portfolio": {
+    "source": "dashboard/public/return-first-dashboard.json",
+    "excluded_strategy": "sec-growth-survivorship-aware-v1",
+    "remaining_strategy_weighting": "equal_weight"
+  },
+  "trend_sleeve": {
+    "assets": ["IEF", "TLT", "TIP", "LQD", "HYG", "GLD", "SLV", "USO", "DBA", "PDBC", "UUP"],
+    "cash_asset": "BIL",
+    "signal_lookbacks_weeks": [13, 26, 52],
+    "signal_rule": "mean of the three trailing simple returns is positive",
+    "volatility_lookback_weeks": 26,
+    "minimum_volatility_observations": 13,
+    "weighting": "inverse_volatility",
+    "maximum_asset_weight": 0.2,
+    "rebalance_every_weeks": 4,
+    "execution_delay_weeks": 1,
+    "long_only": true
+  },
+  "portfolio": {
+    "base_weight": 0.8,
+    "trend_weight": 0.2,
+    "financing": false
+  },
+  "cost_bps_one_way": [0, 10, 50, 100],
+  "robustness": {
+    "lookback_neighborhoods": [[8, 26, 52], [13, 26, 52], [13, 39, 65]],
+    "trend_weight_neighborhood": [0.1, 0.2, 0.3],
+    "leave_one_market_out": true,
+    "random_placebo_trials": 1000,
+    "random_seed": 20260827,
+    "prefix_invariance_cutoff": "2024-12-27"
+  },
+  "decision_rule": "The primary candidate is retained only if it improves Sharpe and Calmar versus the five-sleeve base without reducing CAGR by more than 5 percentage points; robustness variants are diagnostics and cannot replace the primary.",
+  "promotion_authorized": false,
+  "forward_clock_started": false,
+  "live_trading_enabled": false
+}

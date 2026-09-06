@@ -1,0 +1,11 @@
+{
+  "breadth_gate": 0.3,
+  "configurations_passing_breadth_gate": 2,
+  "cumulative_trial_warning": "These 10 stack on every configuration previously searched in this project. No result here may be reported without stating that.",
+  "declared_configurations": 6,
+  "experiment": "seasonal_momentum_breadth_v1",
+  "generated_at_utc": "2026-09-05T08:30:48.512281+00:00",
+  "live_trading_enabled": false,
+  "promotion_authorized": false,
+  "registry_sha256_note": "configurations fixed in config/breadth_first_signal_registry_v1.json before this ran"
+}

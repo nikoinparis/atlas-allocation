@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import concurrent.futures
 import gzip
 import hashlib
@@ -29,6 +30,12 @@ SUBMISSIONS = ROOT / "data/sec_broad_identity_cache_v2"
 PILOT = ROOT / "config/sec_fundamental_pilot_v1.json"
 PROGRAM = ROOT / "config/sec_return_improvement_program_v1.json"
 OUTPUT = ROOT / "data/sec_broad_panel_inputs_v2"
+
+# These inputs are the provenance of data/sec_broad_research_panel_v2, whose
+# manifest is pinned by the residual sleeve's forward protocol. Overwriting them
+# in place leaves that pin technically intact while making it unverifiable, so a
+# new quarterly vintage writes to its own directory and the default path refuses
+# to be rebuilt over.
 
 
 def sha256(path: Path) -> str:
@@ -230,14 +237,30 @@ def benchmark_returns(index: pd.DatetimeIndex) -> pd.DataFrame:
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output-root", default=str(OUTPUT),
+                        help="input vintage directory; defaults to the sealed v2 path")
+    parser.add_argument("--membership", default=str(MEMBERSHIP))
+    parser.add_argument("--weekly-start", default="2022-12-02",
+                        help="first Friday of the weekly price index")
+    parser.add_argument("--weekly-end", default="2026-08-21",
+                        help="last Friday of the weekly price index")
+    parser.add_argument("--experiment", default="sec_broad_panel_inputs_v2")
+    args = parser.parse_args()
+    output = Path(args.output_root).resolve()
+    if output == OUTPUT.resolve() and (output / "manifest.json").exists():
+        raise RuntimeError(
+            "data/sec_broad_panel_inputs_v2 already exists and is the provenance of the pinned "
+            "research panel; pass --output-root with a new vintage directory instead."
+        )
     gate = json.loads(GATE.read_text())
     if not gate.get("strategy_testing_authorized"):
         raise RuntimeError("broad research gate is not open")
-    membership = pd.read_csv(MEMBERSHIP, dtype={"cik10": str}, parse_dates=["decision_at", "available_at"])
+    membership = pd.read_csv(Path(args.membership), dtype={"cik10": str}, parse_dates=["decision_at", "available_at"])
     membership["cik10"] = membership.cik10.str.zfill(10)
     decisions = pd.DatetimeIndex(sorted(membership.decision_at.unique()))
     naive_decisions = decisions.tz_localize(None)
-    weekly_index = pd.date_range("2022-12-02", "2026-08-21", freq="W-FRI")
+    weekly_index = pd.date_range(args.weekly_start, args.weekly_end, freq="W-FRI")
     terminals = pd.read_csv(TERMINALS, dtype={"cik10": str})
     terminal_map = {row.cik10: pd.Timestamp(row.sec_terminal_date) for row in terminals.itertuples(index=False)}
     sources = price_sources()
@@ -245,9 +268,9 @@ def main() -> int:
     missing_sources = sorted(set(valid_ciks) - set(sources))
     if missing_sources:
         raise RuntimeError(f"validated CIKs without a price source: {missing_sources[:20]} ({len(missing_sources)} total)")
-    OUTPUT.mkdir(parents=True, exist_ok=True)
-    price_cache = OUTPUT / "weekly_adjusted_prices.csv.gz"
-    price_inventory_cache = OUTPUT / "price_source_inventory.csv"
+    output.mkdir(parents=True, exist_ok=True)
+    price_cache = output / "weekly_adjusted_prices.csv.gz"
+    price_inventory_cache = output / "price_source_inventory.csv"
     if price_cache.exists() and price_inventory_cache.exists():
         prices = pd.read_csv(price_cache, index_col=0, parse_dates=True)
         prices.index = pd.to_datetime(prices.index).tz_localize(None)
@@ -305,22 +328,22 @@ def main() -> int:
     features["available_at"] = features.decision_at - pd.Timedelta(nanoseconds=1)
     features = features[["decision_at", "available_at", "cik10", "residual_momentum", "trend_quality", "quality_momentum", "event_score"]]
 
-    features.to_csv(OUTPUT / "causal_features.csv.gz", index=False, compression="gzip")
-    prices.rename_axis("Date").to_csv(OUTPUT / "weekly_adjusted_prices.csv.gz", compression="gzip")
-    benchmark_returns(weekly_index).rename_axis("Date").to_csv(OUTPUT / "benchmark_weekly_returns.csv.gz", compression="gzip")
+    features.to_csv(output / "causal_features.csv.gz", index=False, compression="gzip")
+    prices.rename_axis("Date").to_csv(output / "weekly_adjusted_prices.csv.gz", compression="gzip")
+    benchmark_returns(weekly_index).rename_axis("Date").to_csv(output / "benchmark_weekly_returns.csv.gz", compression="gzip")
     inventory.extend(quality_inventory)
     inventory.extend([
         {"kind": "control", "cik10": "", "path": str(MEMBERSHIP), "sha256": sha256(MEMBERSHIP), "source": "audited_membership"},
         {"kind": "control", "cik10": "", "path": str(GATE), "sha256": sha256(GATE), "source": "research_gate"},
     ])
     inventory_frame = pd.DataFrame(inventory).drop_duplicates(["kind", "cik10", "path"]).sort_values(["kind", "cik10", "path"])
-    inventory_frame.to_csv(OUTPUT / "source_inventory.csv", index=False)
+    inventory_frame.to_csv(output / "source_inventory.csv", index=False)
     artifact_names = ["causal_features.csv.gz", "weekly_adjusted_prices.csv.gz", "benchmark_weekly_returns.csv.gz", "source_inventory.csv"]
     manifest = {
-        "experiment": "sec_broad_panel_inputs_v2",
+        "experiment": args.experiment,
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "gate_sha256": sha256(GATE),
-        "membership_sha256": sha256(MEMBERSHIP),
+        "membership_sha256": sha256(Path(args.membership)),
         "rows": int(len(features)),
         "decisions": int(features.decision_at.nunique()),
         "priced_ciks": int(prices.notna().any().sum()),
@@ -330,9 +353,9 @@ def main() -> int:
         "performance_evaluated": False,
         "strategy_promotion_authorized": False,
         "live_trading_enabled": False,
-        "artifact_sha256": {name: sha256(OUTPUT / name) for name in artifact_names},
+        "artifact_sha256": {name: sha256(output / name) for name in artifact_names},
     }
-    (OUTPUT / "manifest.json").write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n")
+    (output / "manifest.json").write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n")
     print(json.dumps(manifest, indent=2, sort_keys=True))
     return 0
 

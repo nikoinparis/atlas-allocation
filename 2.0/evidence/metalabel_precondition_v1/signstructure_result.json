@@ -1,0 +1,85 @@
+{
+  "fdr_pass": 0,
+  "bonferroni_cum_pass": 0,
+  "sign_consistency": [
+    {
+      "feature": "own_dd",
+      "pos": 0,
+      "neg": 7,
+      "mean_ic": -0.12317983632473631,
+      "sign_p": 0.015625
+    },
+    {
+      "feature": "own_ret_13w",
+      "pos": 0,
+      "neg": 7,
+      "mean_ic": -0.07547229214883866,
+      "sign_p": 0.015625
+    },
+    {
+      "feature": "own_ret_4w",
+      "pos": 1,
+      "neg": 6,
+      "mean_ic": -0.0599323782269278,
+      "sign_p": 0.125
+    },
+    {
+      "feature": "own_vol_13w",
+      "pos": 7,
+      "neg": 0,
+      "mean_ic": 0.15464300331314446,
+      "sign_p": 0.015625
+    },
+    {
+      "feature": "own_vol_ratio",
+      "pos": 5,
+      "neg": 2,
+      "mean_ic": 0.07153301979767082,
+      "sign_p": 0.453125
+    },
+    {
+      "feature": "uni_breadth",
+      "pos": 0,
+      "neg": 7,
+      "mean_ic": -0.12604529271085388,
+      "sign_p": 0.015625
+    },
+    {
+      "feature": "uni_dd",
+      "pos": 0,
+      "neg": 7,
+      "mean_ic": -0.1315170186181425,
+      "sign_p": 0.015625
+    },
+    {
+      "feature": "uni_disp",
+      "pos": 7,
+      "neg": 0,
+      "mean_ic": 0.08605972775223028,
+      "sign_p": 0.015625
+    },
+    {
+      "feature": "uni_ret_13w",
+      "pos": 0,
+      "neg": 7,
+      "mean_ic": -0.13809774236864272,
+      "sign_p": 0.015625
+    },
+    {
+      "feature": "uni_vol_13w",
+      "pos": 7,
+      "neg": 0,
+      "mean_ic": 0.08941527559286644,
+      "sign_p": 0.015625
+    },
+    {
+      "feature": "uni_vol_ratio",
+      "pos": 7,
+      "neg": 0,
+      "mean_ic": 0.08869518742015826,
+      "sign_p": 0.015625
+    }
+  ],
+  "mean_timing_gain_riskoff_low": -0.06550820104113686,
+  "mean_timing_gain_riskoff_high": 0.13360135468426956
+}

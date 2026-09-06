@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "protocol_version": "residual_tie_agnostic_companion_v1",
+  "frozen_at_utc": "2026-09-05T00:00:00Z",
+  "purpose": "Measure forward whether the residual sleeve's declared book beats the tie it was drawn from, or whether its in-sample advantage was the sort key.",
+  "modifies": "nothing",
+  "reads": "config/forward/sec_residual_controlled_sleeve_forward_v1.json, for its residual signal parameters and cadence only",
+  "background": "robust_rank winsorizes at the 5th and 95th percentiles and then ranks the clipped values, so residual_momentum's top block is one flat tie. At the twentieth score the median pool is 59 names for 20 slots, and top_weights resolves it with sort_values(['score','cik10']) -- lowest CIK, oldest registrant. Step 234 measured the declared book at the 99th percentile of 200 random tie-breaks on recent 52-week CAGR, sharing only 34.3% of its holdings with a random draw, while CIK number carries no forward predictive content inside the pool (mean rank correlation +0.008 over thirteen quarters, better than the pool mean in 6 of 13).",
+  "tracked_books": {
+    "declared_tiebreak": "the twenty names top_weights selects, lowest cik10 first; identical to the residual leg of the frozen protocol",
+    "tie_agnostic_pool": "every name tied at or above the twentieth score, equal weight; the reading of the same signal that makes no arbitrary choice",
+    "random_tiebreak_seeds": "twenty pre-declared seeds, 0 through 19, each shuffling within equal-score groups before the same greedy sector-capped walk"
+  },
+  "random_seeds": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
+  "seed_derivation": "numpy default_rng seeded with the first eight bytes of blake2b(f'{seed}|{execution_date}'), because Python randomizes str hashing per process and an irreproducible null is not a null",
+  "breadth": 20,
+  "maximum_issuer_weight": 0.2,
+  "maximum_sector_weight": 0.4,
+  "cost_bps_per_unit_turnover": 50.0,
+  "pricing": "weekly adjusted-price ratios keyed by cik10, narrow panel first and broad panel as fallback, so every tracked book is priced identically and the only difference between them is which names they hold",
+  "missing_price_policy": "equal weight across the priced members of each book, with the priced and roster counts recorded every week; a book is never silently padded with cash",
+  "cadence": "weekly, decided and realized in the same 21:00 UTC Friday windows as the protocol it accompanies",
+  "first_eligible_decision_date": "2026-09-11",
+  "required_untouched_weeks": 52,
+  "missed_snapshot_policy": "a missed weekly window cannot be backfilled from a later vintage",
+  "mutation_policy": "any change to the seeds, breadth, caps, cost, pricing sources or cadence creates a new protocol version and restarts its clock at zero",
+  "quarterly_dependency": "the book in force is the latest quarterly execution at or before the decision Friday, so this record needs a refreshed SEC panel vintage each quarter exactly as the main clock does; a stale panel holds a stale book and must be recorded as such",
+  "predeclared_interpretation": {
+    "if_declared_falls_inside_the_central_90_percent_of_the_seeds": "the in-sample 99th-percentile position was luck, and the residual sleeve's reported edge should be read as a property of the sort key rather than of residual momentum",
+    "if_declared_again_exceeds_the_95th_percentile_of_the_seeds": "the tie-break carries something the audit did not find, but this still authorizes nothing: CIK number showed no forward predictive content inside the pool, so a second favourable draw is evidence to investigate, not evidence to promote",
+    "if_the_tie_agnostic_pool_beats_the_declared_book": "the signal is real and the arbitrary selection was destroying it, which would argue for a new protocol version built on the pool rather than for adjusting the existing one",
+    "what_this_cannot_show": "nothing here speaks to whether the composite works, whether residual momentum has positive IC against a proper null, or whether any of it survives costs beyond the 50bps modelled"
+  },
+  "research_only": true,
+  "strategy_promotion_authorized": false,
+  "approved_for_live_trading": false,
+  "execution_enabled": false,
+  "live_trading_enabled": false
+}

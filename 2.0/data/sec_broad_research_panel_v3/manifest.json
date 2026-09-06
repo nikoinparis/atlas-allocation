@@ -1,0 +1,21 @@
+{
+  "artifact_sha256": {
+    "benchmark_weekly_returns.csv.gz": "8e434853e10c8eaff4a9fdb8346d7e3c2c5840d654d8d9885c96ab3f89e1fe3a",
+    "panel.csv.gz": "64d940d8058cc357384b469e5114886dca68518a693bb04297537d6f63e8c1b2",
+    "weekly_returns.csv.gz": "40aae760fcfc33520d2a5befe7dd3863d83e8ae98e25935d765090ac65ac4ea1"
+  },
+  "created_at_utc": "2026-09-05T04:58:48.384721+00:00",
+  "experiment": "sec_broad_research_panel_v3",
+  "live_trading_enabled": false,
+  "membership_sha256": "06a58b2e9b6aa5e0320e497aa28b6cc8ed140f5b2a5a2e32be798ba4f117e5f2",
+  "performance_evaluated": false,
+  "point_in_time_audit": {
+    "causal_timestamps": true,
+    "decisions": 15,
+    "explicit_missing_policy": true,
+    "issuers": 3436,
+    "rows": 43009
+  },
+  "source_manifest_sha256": "7803d76e8b0d53ff40be09d750b95e284fbcc5044221a6030f8d11d4d929069c",
+  "strategy_promotion_authorized": false
+}

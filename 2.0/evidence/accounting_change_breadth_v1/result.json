@@ -1,0 +1,54 @@
+{
+  "bonferroni_threshold": 0.005,
+  "configurations_passing": 0,
+  "cumulative_trial_warning": "These 10 stack on every configuration previously searched in this project. No result here may be reported without stating that.",
+  "declared_trials": 10,
+  "experiment": "accounting_change_breadth_v1",
+  "generated_at_utc": "2026-09-05T09:07:02.920826+00:00",
+  "live_trading_enabled": false,
+  "measured_as": "sector-neutral rank information coefficient; no backtest was run",
+  "promotion_authorized": false,
+  "results": [
+    {
+      "config": "B1",
+      "decisions": 10,
+      "mean_rank_ic": 0.02512926893004049,
+      "observations": 4612,
+      "p_value": 0.1802393106593354,
+      "passes_bonferroni": false,
+      "signal": "ChEQ",
+      "t_stat": 1.4527913251225015
+    },
+    {
+      "config": "B2",
+      "decisions": 10,
+      "mean_rank_ic": 0.007754813044748818,
+      "observations": 4645,
+      "p_value": 0.6334278072259534,
+      "passes_bonferroni": false,
+      "signal": "ChAssetTurnover",
+      "t_stat": 0.49357338496046493
+    },
+    {
+      "config": "B3",
+      "decisions": 10,
+      "mean_rank_ic": 0.027005942691867634,
+      "observations": 4660,
+      "p_value": 0.06749812552005396,
+      "passes_bonferroni": false,
+      "signal": "ChTax",
+      "t_stat": 2.0778670151397485
+    },
+    {
+      "config": "B4",
+      "decisions": 10,
+      "mean_rank_ic": 0.03765930644051978,
+      "observations": 2787,
+      "p_value": 0.12029813282131707,
+      "passes_bonferroni": false,
+      "signal": "ChInv",
+      "t_stat": 1.715995333330162
+    }
+  ],
+  "why_no_backtest": "rank information coefficient only; 11 quarterly observations cannot support a backtest and none will be run"
+}

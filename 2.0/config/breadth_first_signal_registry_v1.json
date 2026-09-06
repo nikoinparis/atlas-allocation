@@ -1,0 +1,46 @@
+{
+  "experiment": "breadth_first_signal_registry_v1",
+  "registered_at_utc": "2026-09-05",
+  "why_this_is_written_before_any_computation": "The project's chronic failure is searching until something looks good and counting the trials afterwards. These configurations are fixed now, before the signals exist. Anything tested beyond this list is a new trial and must be added to the cumulative count, not folded in silently.",
+  "origin": "Step 216. These are the anomalies most orthogonal to every strategy this project holds, from the OSAP screen, restricted to those computable from data already on disk.",
+  "declared_configuration_count": 10,
+  "data_feasibility_established_before_registration": {
+    "single_stock_weekly_panel": "3.8 years, 2022-12-02 to 2026-09-04, 3253 issuers",
+    "etf_weekly_panel": "21.6 years, 2005-01-07 to 2026-08-07, 35 funds",
+    "sec_quarterly_decisions": "15, of which 11 usable after a one-year year-over-year lag",
+    "consequence": "Seasonal momentum requires at least five years of history to produce one observation and is therefore not computable on the single-stock panel. It is registered on the ETF panel only. The accounting-change family has 11 quarterly observations, which cannot support a portfolio backtest, so it is registered as an information-coefficient measurement and explicitly not as a strategy test."
+  },
+  "family_a_seasonal_momentum": {
+    "universe": "etf_weekly_panel",
+    "definition": "Heston-Sadka same-calendar-month effect: mean return in the same calendar month across a declared window of prior years, ranked cross-sectionally, one-week execution delay",
+    "configurations": [
+      {"id": "A1", "years": [2, 5], "construction": "top_3_equal_long_only"},
+      {"id": "A2", "years": [2, 5], "construction": "top_5_equal_long_only"},
+      {"id": "A3", "years": [2, 5], "construction": "long_top_3_short_bottom_3"},
+      {"id": "A4", "years": [6, 10], "construction": "top_3_equal_long_only"},
+      {"id": "A5", "years": [6, 10], "construction": "top_5_equal_long_only"},
+      {"id": "A6", "years": [6, 10], "construction": "long_top_3_short_bottom_3"}
+    ]
+  },
+  "family_b_accounting_change": {
+    "universe": "sec_broad_research_panel_v3",
+    "definition": "Year-over-year change in a single accounting quantity, sector-neutral cross-sectional rank, measured against the panel's existing forward label",
+    "measured_as": "rank information coefficient only; 11 quarterly observations cannot support a backtest and none will be run",
+    "configurations": [
+      {"id": "B1", "signal": "ChEQ", "quantity": "StockholdersEquity"},
+      {"id": "B2", "signal": "ChAssetTurnover", "quantity": "Revenues/Assets"},
+      {"id": "B3", "signal": "ChTax", "quantity": "IncomeTaxExpenseBenefit"},
+      {"id": "B4", "signal": "ChInv", "quantity": "InventoryNet/Assets"}
+    ]
+  },
+  "gates": {
+    "primary_breadth_gate": "absolute correlation below 0.30 against every strategy this project already holds, measured on overlapping months. A configuration failing this is rejected regardless of its return.",
+    "secondary_significance_gate": "Bonferroni over the 10 declared trials, so p < 0.005 per test",
+    "gate_order": "breadth first, return second. A configuration that fails the breadth gate is not evaluated for return.",
+    "family_b_note": "Family B is expected to fail the significance gate on sample size alone. It is registered to measure, not to promote."
+  },
+  "cumulative_trial_accounting": "These 10 stack on every configuration previously searched in this project. No result here may be reported without stating that.",
+  "promotion_authority": "none. This registry measures and never authorises trading.",
+  "revision_policy": "Adding a configuration creates v2 and marks this version superseded rather than editing it.",
+  "live_trading_enabled": false
+}

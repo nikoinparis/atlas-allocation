@@ -1,0 +1,25 @@
+{
+  "by_form": {
+    "10-K": {
+      "filings": 150,
+      "with_edge": 19,
+      "yield": 0.12666666666666668,
+      "edges": 57
+    },
+    "10-Q": {
+      "filings": 507,
+      "with_edge": 29,
+      "yield": 0.05719921104536489,
+      "edges": 65
+    },
+    "other": {
+      "filings": 989,
+      "with_edge": 35,
+      "yield": 0.03538928210313448,
+      "edges": 81
+    }
+  },
+  "tenk_vs_tenq_ratio": 2.2144827586206897,
+  "projected_suppliers_per_year_10k_corpus": 392.6666666666667,
+  "projected_recall_vs_benchmark": 0.9430397581719439
+}

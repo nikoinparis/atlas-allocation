@@ -1,0 +1,109 @@
+{
+  "program": "intraday_opening_range_breakout_v1",
+  "classification": "rejected - the only variant with a gross edge earns less per session than one ETF round trip costs, and the finer-resolution check is negative on every instrument",
+  "status": "not promoted",
+  "registered_before_results": true,
+  "origin": "user request to evaluate the Opening Range Breakout strategy circulating publicly, in the intraday-momentum form popularised by Zarattini and Barbon (2023)",
+  "why_it_was_worth_testing": "CLAUDE.md section 2 names different time horizons as one of the few axes that can raise breadth rather than retune an existing family. Every other return source in this project decides weekly, so an hours-long holding period is a genuinely different axis and cannot mechanically inherit the weekly cross-sectional momentum exposure measured at an effective independent strategy count near 1.15.",
+  "sample": {
+    "instruments": 36,
+    "sessions_per_instrument": 730,
+    "start": "2023-10-04",
+    "end": "2026-09-01",
+    "opening_range_minutes": 60,
+    "resolution_limit_reason": "Yahoo serves 1h bars for about 730 days and 5m bars for only 60 days, so 60 minutes is the finest opening range with a usable history",
+    "regime_caveat": "the entire sample sits inside the 2023-2026 window PROJECT_HISTORY.md identifies as this project's most over-represented"
+  },
+  "results_equal_weight_sleeve": {
+    "orb_momentum": {
+      "0bps": {
+        "cagr": 0.0096376950149268,
+        "sharpe": 0.2391464006698209,
+        "max_drawdown": -0.0437179969373451,
+        "mean_session_bps": 0.4190018161235041,
+        "bootstrap_p_value_mean_le_zero": 0.328
+      },
+      "2bps": {
+        "cagr": -0.0391630415901127,
+        "sharpe": -0.8828511000199588,
+        "max_drawdown": -0.1231349503102227,
+        "mean_session_bps": -1.5468277120347915,
+        "bootstrap_p_value_mean_le_zero": 0.928
+      },
+      "5bps": {
+        "cagr": -0.1079935856970897,
+        "sharpe": -2.5658122512514567,
+        "max_drawdown": -0.2869630221116249,
+        "mean_session_bps": -4.495572004272237,
+        "bootstrap_p_value_mean_le_zero": 1.0
+      }
+    },
+    "orb_long_only": {
+      "0bps": {
+        "cagr": 0.0254748322480926,
+        "sharpe": 0.6085819627920329,
+        "max_drawdown": -0.0309132791064278,
+        "mean_session_bps": 1.0342010349319708,
+        "bootstrap_p_value_mean_le_zero": 0.1145
+      },
+      "2bps": {
+        "cagr": -0.0003835838464129,
+        "sharpe": 0.0121481766749549,
+        "max_drawdown": -0.0441177132004565,
+        "mean_session_bps": 0.0206263447819379,
+        "bootstrap_p_value_mean_le_zero": 0.527
+      },
+      "5bps": {
+        "cagr": -0.0379591457376026,
+        "sharpe": -0.8840831121171229,
+        "max_drawdown": -0.1209076342699052,
+        "mean_session_bps": -1.499735690443112,
+        "bootstrap_p_value_mean_le_zero": 0.964
+      }
+    },
+    "orb_breakout": {
+      "0bps": {
+        "cagr": 0.0504155380382869,
+        "sharpe": 1.3169704534242768,
+        "max_drawdown": -0.0344406065772332,
+        "mean_session_bps": 1.9804432876112217,
+        "bootstrap_p_value_mean_le_zero": 0.0025
+      },
+      "2bps": {
+        "cagr": 0.0047415292741093,
+        "sharpe": 0.1437567784667088,
+        "max_drawdown": -0.0414357958014031,
+        "mean_session_bps": 0.2161423526253549,
+        "bootstrap_p_value_mean_le_zero": 0.3875
+      },
+      "5bps": {
+        "cagr": -0.0600868124371162,
+        "sharpe": -1.6167002227139011,
+        "max_drawdown": -0.1671487726872572,
+        "mean_session_bps": -2.430309049853447,
+        "bootstrap_p_value_mean_le_zero": 0.9975
+      }
+    }
+  },
+  "falsification": {
+    "gross_edge_bps_per_session_best_variant": 1.9804,
+    "cost_of_one_etf_round_trip_bps": "1 to 2 for SPY or QQQ, materially more for DBA, PDBC, EWJ and VNQ",
+    "sign_shuffled_control_negative": true,
+    "random_sign_control_negative": true,
+    "leave_one_instrument_out_2bps_cagr_range": [
+      -0.0001730444699673,
+      0.0082724515976657
+    ],
+    "leave_one_instrument_out_verdict": "no instrument drives the result because there is no result to drive; every drop leaves the sleeve within half a percent of zero",
+    "calendar_year_persistence": "orb_breakout is positive in 2023 and 2025 and negative in 2024 and 2026 at 2bps",
+    "five_minute_resolution_check": "every variant on every one of SPY, QQQ, IWM and DIA is negative over the 60 overlapping sessions; the resolution the literature actually uses makes the result worse, not better",
+    "multiple_testing": "three variants were declared; only the 0bps orb_breakout p-value of 0.0025 survives a Bonferroni threshold of 0.0167, and 0bps is not a tradeable cost case"
+  },
+  "scope_of_the_rejection": "This rejects ORB as an index and sector ETF intraday rule at realistic costs. It does not test the single-stock version of the literature, which screens small caps on gaps and relative volume and requires point-in-time intraday data for a broad stock universe. No free source supplies that at usable history length, so that branch is source-blocked rather than tested.",
+  "leverage_note": "The headline figures circulating publicly are largely produced by applying this rule to TQQQ. Leverage multiplies the same signal rather than adding evidence, and CLAUDE.md section 2 already records that levering a correlated signal adds variance, not breadth.",
+  "breadth_gate": "not reached; the gate only applies to a sleeve with a positive net result",
+  "decision": "Reject as a return source. Keep the implementation and the negative evidence as the project's first intraday baseline and as the reference cost hurdle for any future higher-frequency proposal.",
+  "research_only": true,
+  "live_trading_enabled": false,
+  "promotion_authorized": false
+}

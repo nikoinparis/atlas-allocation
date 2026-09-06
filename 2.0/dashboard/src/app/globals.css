@@ -607,3 +607,37 @@ button.metric-card:hover { border-color: rgba(139,114,255,.38); transform: trans
 @media (max-width: 640px) {
   .step-example th, .step-example td { font-size: 11.5px; }
 }
+
+/* Forward record — untouched-evidence clocks, held-book marks, and data currency. */
+.forward-page { display: flex; flex-direction: column; gap: 16px; }
+.forward-clock-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(238px, 1fr)); gap: 14px; }
+.forward-clock { display: flex; flex-direction: column; gap: 10px; padding: 22px; }
+.forward-clock header { display: flex; align-items: center; gap: 8px; color: var(--text-tertiary); }
+.forward-clock header h3 { font-size: 12px; font-weight: 650; letter-spacing: -.01em; text-transform: capitalize; }
+.forward-clock > strong { font-size: 26px; letter-spacing: -.04em; }
+.forward-clock > strong small { margin-left: 5px; color: var(--text-tertiary); font-size: 11px; font-weight: 600; letter-spacing: 0; }
+.forward-clock-bar { overflow: hidden; height: 5px; border-radius: 999px; background: #22232d; }
+.forward-clock-bar i { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, #7187ff, #916fff); }
+.forward-observations { display: flex; flex-direction: column; gap: 5px; }
+.forward-observations li { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 11px; }
+.forward-observations li span { color: var(--text-tertiary); font-variant-numeric: tabular-nums; }
+.forward-observations li b { font-variant-numeric: tabular-nums; }
+.forward-empty { color: var(--text-secondary); font-size: 11px; line-height: 1.6; }
+.forward-registry, .forward-held, .forward-data { padding: 26px; }
+.forward-registry h3, .forward-held h3, .forward-data h3 { display: flex; align-items: center; gap: 8px; margin-top: 8px; font-size: 17px; letter-spacing: -.03em; }
+.forward-registry p, .forward-held > p, .forward-data p { margin-top: 10px; max-width: 900px; color: var(--text-secondary); font-size: 12px; line-height: 1.7; }
+.forward-registry ul { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.forward-registry li code { display: inline-block; padding: 4px 8px; border: 1px solid var(--border); border-radius: 7px; background: #191a22; color: #aeb9ff; font-size: 10px; }
+.forward-caution, .forward-attribution { display: flex; align-items: flex-start; gap: 9px; margin-top: 12px; padding: 12px 14px; border: 1px solid rgba(255,125,141,.26); border-radius: 11px; background: rgba(255,125,141,.07); color: #ffb3bc; font-size: 11px; line-height: 1.65; }
+.forward-attribution { border-color: rgba(255,176,90,.26); background: rgba(255,176,90,.07); color: #ffd0a0; }
+.forward-caution svg, .forward-attribution svg { flex: none; margin-top: 2px; }
+.forward-held-chart { height: 260px; margin-top: 16px; }
+.forward-table { margin-top: 14px; }
+.forward-table td small { color: var(--text-tertiary); font-size: 10px; }
+.forward-benchmark-row td { padding-top: 12px; color: var(--text-tertiary); font-size: 10.5px; }
+.forward-standalone { padding-left: 0; }
+.forward-topbar { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 22px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+.forward-topbar > a { display: inline-flex; align-items: center; gap: 6px; color: var(--text); font-size: 13px; font-weight: 650; letter-spacing: -.015em; }
+.forward-topbar > span { display: flex; gap: 16px; }
+.forward-topbar > span a { color: var(--text-tertiary); font-size: 11.5px; font-weight: 600; }
+.forward-topbar a:hover { color: #aeb9ff; }

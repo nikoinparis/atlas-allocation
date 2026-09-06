@@ -72,9 +72,13 @@ def main() -> int:
     early = candidates[candidates["audit_status"] == "validated_early_delisting_needs_terminal_audit"].copy()
     rows = []
     for row in early.to_dict("records"):
+        # Cached rows carry the absolute path of whichever container wrote them,
+        # which is /project/... for some vintages and /workspace/2.0/... for others.
         path = Path(str(row["price_file"]))
-        if str(path).startswith("/project/"):
-            path = ROOT / path.relative_to("/project")
+        for prefix in ("/project/", "/workspace/2.0/"):
+            if str(path).startswith(prefix):
+                path = ROOT / path.relative_to(prefix)
+                break
         frame = pd.read_csv(path, compression="gzip")
         frame["date"] = pd.to_datetime(frame["date"], utc=True, errors="coerce")
         frame = frame.sort_values("date").dropna(subset=["date"])

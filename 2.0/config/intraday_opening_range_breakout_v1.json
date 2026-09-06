@@ -1,0 +1,43 @@
+{
+  "experiment_id": "intraday-opening-range-breakout-v1",
+  "registered_at_utc": "2026-09-01",
+  "registered_before_any_result": true,
+  "motivation": "Every return source in this project decides weekly on a cross-section of US equities or ETFs. CLAUDE.md section 2 names 'different time horizons' as one of the few axes that can raise breadth rather than retune an existing family. An intraday rule is the cheapest available test of that axis: its holding period is hours, so its returns cannot mechanically inherit the weekly cross-sectional momentum exposure that Batch 03 measured at an effective independent strategy count near 1.15.",
+  "what_is_being_tested": "Opening Range Breakout, in the intraday-momentum form popularised by Zarattini and Barbon (2023). The claim under test is that the sign or breakout direction of the first period of the US cash session predicts the remainder of that session.",
+  "data_reality_that_shapes_the_design": {
+    "one_hour_bars": "Yahoo serves 1h bars for roughly 730 calendar days. This yields about 726 sessions from 2023-10-04, which is enough for a first statistical read but sits entirely inside the 2023-2026 regime that PROJECT_HISTORY.md repeatedly identifies as this project's most over-represented window.",
+    "five_minute_bars": "Yahoo serves 5m bars for 60 calendar days only, about 60 sessions. Too few to test standalone.",
+    "consequence": "The primary test uses a 60-minute opening range because that is the finest resolution with a usable history. This is a proxy for the 5-minute opening range used in the literature, and is labelled as such. The 5m window is used only as a resolution check on the overlapping 60 sessions, never as a separate result."
+  },
+  "universe": {
+    "source": "config/free_etf_universe.json plus DIA",
+    "rationale": "Reusing the already-registered free ETF universe avoids making a fresh instrument-selection decision that would itself be a fitted choice. DIA is added because it is a liquid, non-overlapping US large-cap wrapper.",
+    "excluded": "Leveraged ETFs are deliberately excluded from the primary test. The headline numbers in the ORB literature are largely produced by applying the rule to TQQQ, which multiplies the same signal rather than adding evidence about whether the signal exists."
+  },
+  "rules_declared_before_running": {
+    "opening_range": "the first 60-minute bar of the regular session, 09:30-10:30 ET",
+    "entry_time": "10:30 ET",
+    "exit_time": "16:00 ET close, every day, no overnight carry",
+    "variants": [
+      {"id": "orb_momentum", "rule": "long if the opening-range bar return is positive, short if negative, flat if exactly zero"},
+      {"id": "orb_long_only", "rule": "long if the opening-range bar return is positive, otherwise flat"},
+      {"id": "orb_breakout", "rule": "long if a later bar trades above the opening-range high before trading below its low, short in the mirror case, flat if neither is touched; entry at the touched level"}
+    ],
+    "no_fitted_parameter": "There is no lookback, threshold, stop, or filter to tune. The opening range length is set by the finest available data, not chosen by performance."
+  },
+  "cost_cases_bps_per_round_trip": [0, 1, 2, 5, 10],
+  "cost_note": "An intraday rule takes about 252 round trips per year against roughly 52 for the weekly books here, so cost sensitivity is the dominant risk and is reported first, not last.",
+  "controls_required_before_any_positive_claim": [
+    "sign-shuffled opening-range return, preserving the return distribution and destroying the signal",
+    "random-sign placebo at the same trade frequency",
+    "leave-one-instrument-out",
+    "calendar-year split",
+    "5-minute resolution check on the overlapping 60 sessions"
+  ],
+  "breadth_gate": {
+    "requirement": "Weekly aggregation of the intraday sleeve must be correlated below 0.3 with every saved dashboard strategy over their common weeks.",
+    "why": "A positive intraday result that correlates with the existing books adds variance, not breadth, and would be rejected under CLAUDE.md section 2 regardless of its Sharpe."
+  },
+  "promotion_authority": "none. This is a first-pass feasibility test on a short, single-regime sample. It cannot promote anything and cannot start a forward clock.",
+  "live_trading_enabled": false
+}

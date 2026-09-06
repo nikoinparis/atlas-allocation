@@ -1,0 +1,226 @@
+{
+  "anyStrategyPromoted": false,
+  "breadth": {
+    "betsNeededForInformationRatio025": 91,
+    "effectiveBetsPerYear": 8.5,
+    "effectiveIndependentStrategies": 1.57,
+    "measuredIn": "Step 245",
+    "plainEnglish": "The four displayed strategies correlate 0.93 to 0.97 with each other, so they are close to one bet held several times. The binding constraint on this portfolio is the number of genuinely independent bets it makes, not the size of any single return."
+  },
+  "clocks": [
+    {
+      "cumulativeReturn": 0.03002029190162947,
+      "observedWeeks": 3,
+      "promotionAuthorized": false,
+      "protocol": "breadth_confirmed_trend_return_ceiling_v3",
+      "requiredWeeks": 52,
+      "savedDecisions": 4,
+      "weekly": [
+        {
+          "netReturn": 0.007870624530397694,
+          "week": "2026-08-21"
+        },
+        {
+          "netReturn": -0.007214269605171532,
+          "week": "2026-08-28"
+        },
+        {
+          "netReturn": 0.02940308845290403,
+          "week": "2026-09-04"
+        }
+      ]
+    },
+    {
+      "cumulativeReturn": -0.0021668449827145775,
+      "observedWeeks": 3,
+      "promotionAuthorized": false,
+      "protocol": "covariance_minimum_variance_v1",
+      "requiredWeeks": 52,
+      "savedDecisions": 4,
+      "weekly": [
+        {
+          "netReturn": -0.004051813672142307,
+          "week": "2026-08-21"
+        },
+        {
+          "netReturn": -9.842514023529719e-05,
+          "week": "2026-08-28"
+        },
+        {
+          "netReturn": 0.0019912584332548887,
+          "week": "2026-09-04"
+        }
+      ]
+    },
+    {
+      "cumulativeReturn": 0.034727793837516785,
+      "observedWeeks": 3,
+      "promotionAuthorized": false,
+      "protocol": "past_only_consensus_selector_return_v1",
+      "requiredWeeks": 52,
+      "savedDecisions": 4,
+      "weekly": [
+        {
+          "netReturn": 0.02794378204652248,
+          "week": "2026-08-21"
+        },
+        {
+          "netReturn": -0.015084838052792482,
+          "week": "2026-08-28"
+        },
+        {
+          "netReturn": 0.022016548288114945,
+          "week": "2026-09-04"
+        }
+      ]
+    },
+    {
+      "cumulativeReturn": 0.01353230869316091,
+      "observedWeeks": 3,
+      "promotionAuthorized": false,
+      "protocol": "return_first_60_40_blend_v1",
+      "requiredWeeks": 52,
+      "savedDecisions": 4,
+      "weekly": [
+        {
+          "netReturn": -0.002215515303859796,
+          "week": "2026-08-21"
+        },
+        {
+          "netReturn": -0.0018794348280337658,
+          "week": "2026-08-28"
+        },
+        {
+          "netReturn": 0.01769548334778178,
+          "week": "2026-09-04"
+        }
+      ]
+    },
+    {
+      "cumulativeReturn": null,
+      "observedWeeks": 0,
+      "promotionAuthorized": false,
+      "protocol": "sec_residual_controlled_sleeve_v1",
+      "requiredWeeks": 52,
+      "savedDecisions": 0,
+      "weekly": []
+    }
+  ],
+  "closedFamilies": [
+    {
+      "name": "Risk-budgeted position sizing",
+      "step": 244,
+      "verdict": "Passed on one book, reversed on two others"
+    },
+    {
+      "name": "Multi-asset ETF universe",
+      "step": 246,
+      "verdict": "4.16 effective independent assets from 35; refuted on its premise"
+    },
+    {
+      "name": "Futures trend",
+      "step": 248,
+      "verdict": "No positive IC; the negative reading is ~40% roll artifact"
+    },
+    {
+      "name": "Futures roll repair by outlier detection",
+      "step": 249,
+      "verdict": "Weekly roll gaps are not outliers"
+    },
+    {
+      "name": "Short-term reversal",
+      "step": 250,
+      "verdict": "Bid-ask bounce; total loss at 100bps"
+    },
+    {
+      "name": "Earnings call transcripts",
+      "step": 254,
+      "verdict": "Coverage proportional to company size, a selection problem"
+    },
+    {
+      "name": "10-K language change",
+      "step": 255,
+      "verdict": "Nine annual cross-sections cannot establish an IC below 0.110"
+    },
+    {
+      "name": "PEAD / SUE (historical)",
+      "step": 256,
+      "verdict": "Recent strength is the window, not the signal; reopened forward"
+    },
+    {
+      "name": "Coskewness",
+      "step": 257,
+      "verdict": "Selected 2011-2019, evaluated 2020-2026; nothing clears"
+    },
+    {
+      "name": "Idiosyncratic skewness",
+      "step": 257,
+      "verdict": "Selected 2011-2019, evaluated 2020-2026; nothing clears"
+    },
+    {
+      "name": "Trend consistency",
+      "step": 257,
+      "verdict": "Selected 2011-2019, evaluated 2020-2026; nothing clears"
+    },
+    {
+      "name": "Sector dispersion",
+      "step": 257,
+      "verdict": "Selected 2011-2019, evaluated 2020-2026; nothing clears"
+    },
+    {
+      "name": "Volatility of volatility",
+      "step": 257,
+      "verdict": "Selected 2011-2019, evaluated 2020-2026; nothing clears"
+    },
+    {
+      "name": "Downside beta",
+      "step": 257,
+      "verdict": "Selected 2011-2019, evaluated 2020-2026; nothing clears"
+    },
+    {
+      "name": "Industry leader return",
+      "step": 257,
+      "verdict": "Most orthogonal candidate available; -0.0007 at t = -0.07"
+    },
+    {
+      "name": "13F institutional linkage",
+      "step": 258,
+      "verdict": "110M holdings, 73% match; every IC negative against a declared positive sign"
+    },
+    {
+      "name": "13D/13G activist events",
+      "step": 260,
+      "verdict": "38,849 events; nothing clears, and the 13G control is flat"
+    }
+  ],
+  "generatedAtUtc": "2026-09-06T19:48:04.606466+00:00",
+  "headline": {
+    "clocksPending": 3,
+    "clocksRunning": 4,
+    "closedFamilies": 17,
+    "totalUntouchedWeeks": 12,
+    "weeksRequiredEach": 52
+  },
+  "liveTradingEnabled": false,
+  "pending": [
+    {
+      "firstDecision": "2026-09-11",
+      "modifies": "nothing",
+      "protocol": "residual_tie_agnostic_companion_v1",
+      "purpose": "Measure forward whether the residual sleeve's declared book beats the tie it was drawn from, or whether its in-sample advantage was the sort key."
+    },
+    {
+      "firstDecision": "2026-08-28",
+      "modifies": "",
+      "protocol": "sec_residual_controlled_sleeve_forward_v1",
+      "purpose": ""
+    },
+    {
+      "firstDecision": "2026-09-11",
+      "modifies": "nothing",
+      "protocol": "sue_quarterly_forward_v1",
+      "purpose": "The owner's objection to Step 256 is fair and this is the answer to it. SUE measures +0.0053 at t=0.71 over fifteen years and +0.0316 at t=3.57 on the recent high-coverage window, and those two facts cannot be separated from history because the recent window is BOTH where the data is clean AND where every other strategy here was selected. The one thing that settles it is forward evidence, which by construction is neither. If SUE works now, it keeps working from here."
+    }
+  ],
+  "readMe": "Forward returns are realised weekly numbers read from hash-chained logs. A clock completing does not authorise promotion; it triggers a separately predeclared statistical review. No strategy here has ever traded."
+}

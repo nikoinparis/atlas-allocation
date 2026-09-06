@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "protocol_version": "sue_quarterly_forward_v1",
+  "frozen_at_utc": "2026-09-06T00:00:00Z",
+  "why_this_exists": "The owner's objection to Step 256 is fair and this is the answer to it. SUE measures +0.0053 at t=0.71 over fifteen years and +0.0316 at t=3.57 on the recent high-coverage window, and those two facts cannot be separated from history because the recent window is BOTH where the data is clean AND where every other strategy here was selected. The one thing that settles it is forward evidence, which by construction is neither. If SUE works now, it keeps working from here.",
+  "what_makes_it_worth_the_clock": "Step 253 measured the SUE book's correlation against the existing strategies at 0.002 and 0.008, the lowest this project has ever recorded, against a set that correlates 0.506 to 0.874 internally. A modest independent return stream is worth more to this portfolio than a large correlated one, because Step 245 put the binding constraint on breadth rather than on return.",
+  "signal": "standardized unexpected earnings, seasonal random walk on quarterly EPS scaled by the standard deviation of the previous eight surprises, computed only from Company Facts filed strictly before the decision",
+  "book": "equal weight, breadth 50, the fifty highest SUE among roster members priced at the decision",
+  "rebalance": "quarterly, on the first eligible Friday after each quarterly decision date",
+  "cost_bps_per_unit_turnover": 50.0,
+  "first_eligible_decision_date": "2026-09-11",
+  "required_untouched_weeks": 52,
+  "decision_snapshot_window": "observed at or after 21:00 UTC on the decision Friday and before 21:00 UTC the following Friday",
+  "missed_snapshot_policy": "a missed weekly window cannot be backfilled from a later vintage",
+  "mutation_policy": "any change to the signal, breadth, cost, cadence or universe creates a new protocol version and restarts its clock at zero",
+  "selection_status": "SUE was measured on the historical sample before this clock was frozen, and its historical record is explicitly weak: +0.0053 at t=0.71 over 2012-2026. This clock exists to test the recent-window claim, not to confirm a strong prior.",
+  "predeclared_reading": {
+    "what_would_support_the_owner_s_hypothesis": "52 untouched weeks with a positive mean excess over an equal weight of the same roster, and a correlation against the residual composite that stays below 0.3",
+    "what_would_refute_it": "a forward record indistinguishable from zero, which would mean the recent-window strength was the window rather than the signal",
+    "what_this_cannot_show": "nothing here speaks to whether SUE has a positive IC in general, only to whether this book earns anything from here",
+    "clock_completion_is_not_promotion": "52 weeks plus a separately predeclared statistical review, matching the gate list in README"
+  },
+  "runs_alongside": "sec_residual_controlled_sleeve_forward_v1 and equal_weight_benchmark_v1, and modifies neither",
+  "modifies": "nothing",
+  "research_only": true,
+  "strategy_promotion_authorized": false,
+  "approved_for_live_trading": false,
+  "execution_enabled": false,
+  "live_trading_enabled": false
+}

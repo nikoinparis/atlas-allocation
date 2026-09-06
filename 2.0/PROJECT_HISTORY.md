@@ -11969,3 +11969,92 @@ none of these worked then, and none works now.
 
 References: `config/untried_price_signal_registry_v1.json`, `scripts/run_untried_price_signals_v1.py`,
 `evidence/untried_price_signals_v1/`
+
+## Step 258 — A0 closed: the free linkage analogue does not reproduce the analyst effect
+
+The 13F acquisition completed clean: **53 archives, 2.95 GB, zero failures, 110,341,268 holding
+rows across 13,098 managers and 122,145 CUSIPs, filings from 2013-05-20 to 2026-05-29.**
+
+The identity gate, declared at 50% before anything was read, passed at **73.4%** -- 4,476 of
+6,098 panel issuers matched through normalised issuer names. Better than expected for a name
+join, and the reason it was gated at all is Steps 210 and 211.
+
+One amendment was made before any signal was computed and is recorded in the registry with its
+reason. The original design connected two issuers if any manager held both, which is vacuous on
+13F: the three largest managers hold 9,125, 9,112 and 7,539 names, so nearly every pair is
+connected through an index fund and the connected-portfolio return collapses to the market
+return. Managers were capped at 100 holdings, the closest analogue to Ali and Hirshleifer's
+analyst graph where each stock connects to about 86 others, and the measurement was run at 50
+and 250 as well with all three counted as declared trials rather than as a free search.
+
+### The result
+
+| cap | horizon | window | observations | IC | t | sector-controlled IC | t |
+|---|---|---|---|---|---|---|---|
+| 100 | 4w | select | 82 | -0.0177 | -1.56 | -0.0156 | -1.46 |
+| 100 | 4w | evaluate | 87 | -0.0044 | -0.28 | -0.0072 | -0.50 |
+| 100 | 13w | select | 26 | -0.0151 | -0.65 | -0.0154 | -0.75 |
+| 100 | 13w | evaluate | 26 | -0.0236 | -0.98 | -0.0176 | -0.75 |
+| 250 | 13w | evaluate | 26 | -0.0289 | -1.13 | -0.0224 | -0.92 |
+
+**Nothing clears in either window at any cap.** Every information coefficient is negative
+against a declared positive sign, none is significant, and the sector-controlled column is as
+flat as the raw one -- so this is not a sector effect being mistaken for a linkage effect, it is
+an absence.
+
+A0 closes. The shared-attention mechanism does not transmit through institutional co-ownership
+on this universe, at least not at quarterly resolution with a 45-day filing lag. P2, the paid
+IBES version of the same idea, remains a purchasing decision rather than a research one, and
+this result is mild evidence against paying for it: the free analogue of the mechanism shows
+nothing.
+
+Twelve candidate families have now closed since Step 244.
+
+References:
+
+- `config/institutional_linkage_registry_v1.json`, `scripts/acquire_sec_13f_datasets_v1.py`,
+  `scripts/build_13f_identity_map_v1.py`, `scripts/run_institutional_linkage_v1.py`
+- `evidence/institutional_linkage_v1/`
+
+## Step 259 — The owner's objection to Step 256 is fair, and it gets a clock rather than an argument
+
+The objection: SUE measures +0.0316 at t = 3.57 on the recent high-coverage window, and recent
+performance is what matters, so why is it closed?
+
+The answer Step 256 gave is that the recent window is **both** where the data is clean **and**
+where every other strategy in this project was selected, so "works now" and "was measured where
+we could measure" are the same set of dates and cannot be separated from history. That is a
+statement about what the historical record can settle, not a claim that recent performance is
+irrelevant.
+
+But the objection is fair in a way the closure did not honour: **there is a way to settle it, and
+this project already owns the machinery for it.** Forward evidence is by construction neither
+selected nor contaminated. If SUE works now, it keeps working from here.
+
+`config/forward/sue_quarterly_forward_v1.json` (sha256 `e99929ea5ce9c57ab8774386075d9396f47799036a6c3092c2041108f124d22f`)
+freezes the book -- equal weight, breadth 50, quarterly, 50bps -- with a first eligible decision
+of **2026-09-11**, the same Friday the residual composite's clock starts. It states
+`"modifies": "nothing"` and runs alongside the existing two records without touching either.
+
+Two things are written into it that matter more than the numbers.
+
+The selection status is honest about the prior: *"SUE was measured on the historical sample
+before this clock was frozen, and its historical record is explicitly weak: +0.0053 at t = 0.71
+over 2012-2026. This clock exists to test the recent-window claim, not to confirm a strong
+prior."* A forward clock started on a weak signal is a legitimate experiment; one started while
+pretending the signal is strong is not.
+
+And the reading is fixed in advance in both directions. Support means 52 untouched weeks with a
+positive mean excess over an equal weight of the same roster **and** a correlation against the
+residual composite staying below 0.3. Refutation means a forward record indistinguishable from
+zero, which would mean the recent-window strength was the window rather than the signal.
+
+The reason it is worth a clock at all is not its return. It is Step 253's correlation: **0.002
+against cash conversion and 0.008 against growth**, the lowest this project has recorded, against
+a set that correlates 0.506 to 0.874 internally. Step 245 put the binding constraint on breadth
+rather than on return, and a modest independent stream is worth more here than a large
+correlated one.
+
+Recorded in the queue as reopened-as-forward rather than closed.
+
+References: `config/forward/sue_quarterly_forward_v1.json`, Steps 253 and 256

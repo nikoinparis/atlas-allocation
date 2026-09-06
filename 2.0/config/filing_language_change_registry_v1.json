@@ -1,0 +1,38 @@
+{
+  "experiment": "filing_language_change_v1",
+  "declared_at_utc": "2026-09-06T00:00:00Z",
+  "queue_item": "S1 in docs/RESEARCH_QUEUE.md; source-blocked since Step 202 and unblocked in Step 252",
+  "question": "Does year-over-year change in 10-K language predict returns on this universe?",
+  "hypothesis_from_literature": "Cohen, Malloy and Nguyen, 'Lazy Prices'. Filings that change more from one year to the next predict LOWER subsequent returns, so the tradeable signal is similarity: high similarity long, low similarity short. The sign is declared here so a result of the opposite sign cannot later be reinterpreted as confirmation.",
+  "why_this_matters_here": "Every signal in this registry is a transform of prices or of reported numbers. Step 245 measured 1.57 effective independent strategies and Step 246 showed more assets of the same kind do not help. Filing prose is a different information channel, which is the only reason this is worth the acquisition cost.",
+  "data": {
+    "text": "data/sec_filing_text_v1/parsed (9,746 documents, iXBRL header and hidden blocks removed)",
+    "prices": "data/clean_full_history_prices_v1/weekly_adjusted_prices_clean.csv.gz",
+    "causality": "the comparison is available at the filing date of the newer 10-K; forward returns start from the first weekly close strictly after that date"
+  },
+  "declared_configurations": {
+    "similarity_measures": ["cosine_on_word_counts", "jaccard_on_word_sets"],
+    "sections": ["full", "item_7"],
+    "forward_horizon_weeks": [4, 13, 26],
+    "total_trials": 12
+  },
+  "bonferroni_threshold": 0.0042,
+  "notes_on_sections": "item_1a extraction is approximate: heading regexes over normalised text pick the longest properly terminated span, and the first attempt was wrong in a way that produced 39,025-word risk sections. item_7 and full are declared; item_1a is measured and reported but is not one of the twelve trials.",
+  "controls_that_must_pass": {
+    "causality": "no filing may enter a decision before its filing date; a prefix-invariance check must show that adding later filings does not change earlier signal values",
+    "placebo": "the same pipeline on shuffled similarity scores, to confirm the estimator returns zero",
+    "length_confound": "similarity correlates mechanically with document length. IC must be measured after controlling for the change in word count, because a signal that is really 'the filing got longer' is not a language signal",
+    "cost": "0, 10, 50 and 100 bps. Annual rebalancing means turnover is low, so this is expected to pass and is reported for completeness rather than as a hurdle",
+    "correlation": "against existing strategy paths. The entire case for this branch is orthogonality, so a correlated result is worthless even if profitable"
+  },
+  "interpretation_fixed_in_advance": {
+    "if_no_configuration_clears_bonferroni": "record as a negative result and close S1. The text channel was tested properly and did not pay on this universe.",
+    "if_the_sign_is_opposite_to_the_literature": "record it as a failed replication, not as a discovery. A reversed sign on a documented effect is more likely a construction error or a sample artifact than a new finding.",
+    "if_it_clears_and_survives_the_length_control": "a genuine candidate and the first non-price signal family in this project; it still enters at the bottom of the gate list with no forward evidence",
+    "if_it_clears_only_before_the_length_control": "reject; the signal is document length wearing a costume"
+  },
+  "cumulative_trial_warning": "These 12 stack on every configuration searched across 252 recorded steps.",
+  "no_promotion_possible_from_this_step": true,
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

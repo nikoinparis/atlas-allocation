@@ -1,16 +1,16 @@
 {
-  "bytes_downloaded": 211079222,
-  "completed_at_utc": "2026-09-06T09:02:16.371222+00:00",
+  "bytes_downloaded": 41694941787,
+  "completed_at_utc": "2026-09-06T09:42:37.992078+00:00",
   "computes_no_signal": true,
-  "documents_on_disk": 60,
-  "downloaded": 60,
+  "documents_on_disk": 9746,
+  "downloaded": 9694,
   "experiment": "sec_filing_text_v1",
-  "failed": 0,
+  "failed": 1,
   "fair_access": "declared User-Agent with contact address; five requests a second against a permitted ten",
   "live_trading_enabled": false,
-  "mean_document_bytes": 3517987,
+  "mean_document_bytes": 4301108,
   "queue": "evidence/sec_language_change_readiness_v1/filing_text_acquisition_queue.csv",
-  "queue_rows_considered": 60,
+  "queue_rows_considered": 9755,
   "requests_per_second_cap": 5.0,
-  "skipped_already_present": 0
+  "skipped_already_present": 60
 }

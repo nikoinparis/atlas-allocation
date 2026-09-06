@@ -135,3 +135,22 @@ The cheap answer is the one already used for the equal-weight benchmark: record 
 tie-agnostic pool book forward as a second measurement companion, touching nothing
 frozen. In 52 weeks that answers whether the tie-break was luck, at no cost to the
 clock. It is not built, because the owner has not asked for it.
+
+## Correction, 2026-09-05: this memo overstates the case against the control leg
+
+The memo above says the composite is "four fifths a leg that underperforms its universe"
+and treats Step 222 as settled. Steps 239 to 242 show it is not.
+
+- The panel that priced Step 222's benchmark carries 211 weekly returns above +100% and one
+  infinite, across 130 issuers. No strategy holds any of them; every equal-weight benchmark
+  holds all of them. The contamination sat only on the benchmark side, inflating it.
+- Re-measured with both legs priced from one file on one convention, the gap is **1.09
+  points**, not the 8.83 Step 222 reported. Of the difference, 0.74 points is the artifacts.
+- A thirteen-week block bootstrap puts the probability the strategy beats its universe at
+  **0.251**. That is a lean, not a result. Over the recent 52 weeks the control book is
+  *ahead* by eleven points.
+
+The decision to start the clock as declared is unchanged, because it never rested on the
+control leg being good -- it rested on not rebuilding a protocol around in-sample results.
+But nobody should read this memo as saying the control leg is known to be broken. It is not
+known to be anything, which is the reason for the clock.

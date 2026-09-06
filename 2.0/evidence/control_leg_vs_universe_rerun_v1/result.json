@@ -1,0 +1,59 @@
+{
+  "both_legs_priced_from_one_file_with_one_convention": true,
+  "cost_bps": 50.0,
+  "experiment": "control_leg_vs_universe_rerun_v1",
+  "findings": {
+    "repaired": {
+      "book_size_median": 10.0,
+      "bootstrap_blocks_weeks": 13,
+      "bootstrap_draws": 5000,
+      "cagr_gap_pp": -1.09,
+      "equal_weight_universe": {
+        "annualised_volatility": 0.21469290035912816,
+        "cagr": 0.2186946675517456,
+        "max_drawdown": -0.26139766173200407,
+        "recent_52w_return": 0.4024080166478088,
+        "sharpe": 1.0303630895208271,
+        "weeks": 190
+      },
+      "probability_strategy_beats_universe": 0.2514,
+      "strategy": {
+        "annualised_volatility": 0.24954353504621551,
+        "cagr": 0.2078341494051268,
+        "max_drawdown": -0.31426673258135074,
+        "recent_52w_return": 0.511435296788558,
+        "sharpe": 0.8815070490081204,
+        "weeks": 190
+      },
+      "universe_size_median": 479.0
+    },
+    "unrepaired": {
+      "book_size_median": 10.0,
+      "bootstrap_blocks_weeks": 13,
+      "bootstrap_draws": 5000,
+      "cagr_gap_pp": -1.83,
+      "equal_weight_universe": {
+        "annualised_volatility": 0.2174477443182045,
+        "cagr": 0.22616245022000503,
+        "max_drawdown": -0.2648301387092279,
+        "recent_52w_return": 0.4153061029122056,
+        "sharpe": 1.0483129894029908,
+        "weeks": 190
+      },
+      "probability_strategy_beats_universe": 0.2176,
+      "strategy": {
+        "annualised_volatility": 0.24954353504621551,
+        "cagr": 0.2078341494051268,
+        "max_drawdown": -0.31426673258135074,
+        "recent_52w_return": 0.511435296788558,
+        "sharpe": 0.8815070490081204,
+        "weeks": 190
+      },
+      "universe_size_median": 479.0
+    }
+  },
+  "live_trading_enabled": false,
+  "not_a_reproduction_of_step_222": "Step 222's exact universe, coverage bar and cost convention are not fully recorded; this is a fresh measurement of the same question",
+  "question": "does the cash-conversion breadth-20 book beat an equal weight of the universe it selects from",
+  "strategy_promotion_authorized": false
+}

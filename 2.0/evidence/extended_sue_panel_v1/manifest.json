@@ -1,0 +1,23 @@
+{
+  "created_at_utc": "2026-09-06T18:38:35.659743+00:00",
+  "decisions": 58,
+  "experiment": "extended_sue_panel_v1",
+  "issuers_in_roster": 6098,
+  "issuers_parsed_with_eps": 3472,
+  "issuers_with_companyfacts": 3565,
+  "live_trading_enabled": false,
+  "measures_no_returns": true,
+  "membership": "evidence/sec_broad_universe_readiness_full_v1/recent_membership_readiness.csv",
+  "rows": 131169,
+  "strategy_promotion_authorized": false,
+  "survivorship": {
+    "coverage_gap_pp": 36.63,
+    "mean_facts_coverage_before_2016": 0.5433066666666667,
+    "mean_facts_coverage_from_2020": 0.9096074074074075,
+    "why_it_matters": "Company Facts is a current pull, so an issuer that delisted before it is named by the historical roster and absent from the cache"
+  },
+  "window": [
+    "2012-04-01",
+    "2026-07-01"
+  ]
+}

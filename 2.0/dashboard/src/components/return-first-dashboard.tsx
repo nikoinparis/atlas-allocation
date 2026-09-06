@@ -87,7 +87,7 @@ type MetricKey = "annualized" | "sharpe" | "drawdown" | "winRate" | "evidence";
 type FormulaKey = "priceReturn" | "coreBlend" | "rankScore" | "sourceBlend" | "netReturn" | "equalFive" | "momentumGate" | "volatilityRatio" | "stockCap" | "turnover" | "baseLeader" | "cashSpread" | "equalTwenty" | "cashGate" | "netCost" | "signalBlend" | "sectorCap" | "outerGate" | "residualScore" | "controlledBlend" | "leverageFinancing" | "fragileLeverage" | "calendarDelta" | "annualized" | "sharpe" | "drawdown" | "winRate" | "cagr";
 type MethodStep = { number: string; label: string; title: string; description: string; formula: FormulaKey; note: string };
 type StrategyMethodology = { summary: string; cadence: string; universe: string; steps: MethodStep[] };
-export type DashboardViewName = "overview" | "performance" | "activity" | "rebalances" | "forward" | "survival" | "methodology" | "guardrails";
+export type DashboardViewName = "overview" | "performance" | "activity" | "rebalances" | "forward" | "research" | "survival" | "methodology" | "guardrails";
 
 const viewDetails: Record<DashboardViewName, { label: string; title: string; description: string; path: string }> = {
   overview: { label: "Overview", title: "Portfolio overview", description: "A clear read on performance, risk, and the portfolio’s latest systematic decision.", path: "/" },
@@ -95,6 +95,7 @@ const viewDetails: Record<DashboardViewName, { label: string; title: string; des
   activity: { label: "Daily activity", title: "Daily activity", description: "Inspect daily P&L, historical holdings, and every recorded change in the strategy book.", path: "/activity" },
   rebalances: { label: "Rebalances", title: "Rebalances", description: "Review recent portfolio changes, turnover, and the strategy’s forward-validation clock.", path: "/rebalances" },
   forward: { label: "Forward record", title: "Forward record", description: "See how much untouched forward evidence actually exists, and what the last decided books did on the weeks that have closed since.", path: "/forward" },
+  research: { label: "Research status", title: "Research status", description: "What the research programme is doing now: clocks running, clocks starting, and every candidate family that has been tested and closed.", path: "/research" },
   survival: { label: "Survival lab", title: "Real-world survival lab", description: "See which strategies survive modeled stress, what still fails, and why none is proven live yet.", path: "/survival" },
   methodology: { label: "How it works", title: "How the portfolio works", description: "Follow the selected strategy from raw evidence to target weights, costs, and the final recorded decision.", path: "/methodology" },
   guardrails: { label: "Guardrails", title: "Research guardrails", description: "Understand exactly what the simulation can do, what it cannot do, and how its evidence is controlled.", path: "/guardrails" },
@@ -546,6 +547,7 @@ function DashboardView({ data, strategies, survivalBundle, activeView, onStrateg
           <Link className={activeView === "activity" ? "active" : ""} href="/activity" onClick={() => setMobileMenuOpen(false)}><CalendarDays size={18} /><span>Daily activity</span></Link>
           <Link className={activeView === "rebalances" ? "active" : ""} href="/rebalances" onClick={() => setMobileMenuOpen(false)}><History size={18} /><span>Rebalances</span></Link>
           <Link className={activeView === "forward" ? "active" : ""} href="/forward" onClick={() => setMobileMenuOpen(false)}><Timer size={18} /><span>Forward record</span></Link>
+          <Link className={activeView === "research" ? "active" : ""} href="/research" onClick={() => setMobileMenuOpen(false)}><FlaskConical size={18} /><span>Research status</span></Link>
           <Link className={activeView === "survival" ? "active" : ""} href="/survival" onClick={() => setMobileMenuOpen(false)}><Siren size={18} /><span>Survival lab</span></Link>
           <Link className={activeView === "methodology" ? "active" : ""} href="/methodology" onClick={() => setMobileMenuOpen(false)}><Workflow size={18} /><span>How it works</span></Link>
           <Link className={activeView === "guardrails" ? "active" : ""} href="/guardrails" onClick={() => setMobileMenuOpen(false)}><ShieldCheck size={18} /><span>Guardrails</span></Link>

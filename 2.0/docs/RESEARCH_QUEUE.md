@@ -34,7 +34,7 @@ directions: good ideas do not get lost, and dead ideas do not get retried.
 
 ## S tier
 
-### S1. SEC 10-K language change
+### S1. SEC 10-K language change *(measured 2026-09-06; see below before continuing)*
 **Status:** source-blocked since Step 202, never unblocked. This is the lost item that prompted
 this file.
 **Why it matters:** the only genuinely orthogonal information source available for free. Every
@@ -47,6 +47,17 @@ across 1,413 issuers** with at least one year-over-year pair, hash-backed.
 stable comparable sections.
 **Prior art here:** `scripts/audit_sec_language_change_readiness_v1.py`,
 `evidence/sec_language_change_readiness_v1/`. The causal comparison is already registered.
+
+**Measured, Step 255.** 9,754 filings acquired and parsed, 8,327 pairs, 2019-2026. Zero of
+twelve configurations clear Bonferroni -- but the result is **inconclusive by construction**,
+not negative. Cosine on word counts is degenerate (interquartile range 0.0020 across the whole
+cross-section); jaccard is the right measure. And 10-K filings are annual and cluster in Q1, so
+eight years give nine cross-sections, at which the smallest establishable IC is about 0.110 --
+twice what any equity signal achieves. Best row: jaccard on Item 7 at 26 weeks, IC +0.0553,
+t = 2.00, surviving the length control at +0.0579.
+**To settle it:** extend the corpus to 2011 for roughly fifteen cross-sections, and declare
+*one* measure and *one* horizon in advance instead of twelve trials. The text is acquired and
+parsed, so this is a further download rather than a fresh start.
 
 ### S2. Earnings call transcripts
 **Status:** new, never attempted.

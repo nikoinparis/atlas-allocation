@@ -11097,3 +11097,100 @@ References:
 
 - `scripts/run_breadth_accounting_v1.py`, `evidence/breadth_accounting_v1/`
 - `scripts/measure_effective_bets_v1.py` (participation ratio, independence null, block bootstrap)
+
+## Step 246 — New asset classes, measured before built: the ETF universe is refuted on its own premise
+
+The owner chose `UPGRADE_CANDIDATES_V1` item 2 after Step 245. The premise is that new asset
+classes add breadth. Step 245's lesson is that this project searches for IC and never measures
+BR, so the premise was measured first and no strategy was built.
+`config/multi_asset_breadth_registry_v1.json` fixed the method and the meaning of each
+outcome before the run, including the outcome that arrived.
+
+The universe already existed: 35 ETFs, 1,126 weekly observations from 2005, spanning
+2008-2009 and 2020. Two strategies have been built on it before -- `run_multi_asset_breakout_v1`
+and `run_cross_asset_crisis_trend_v1` -- and both were rejected. Neither measured breadth.
+
+### 35 assets supply 4.16 independent ones
+
+| regime | assets | effective | share of nominal | independence null | median abs correlation |
+|---|---|---|---|---|---|
+| full 2005-2026 | 35 | **4.16** | 0.12 | 33.16 | 0.309 |
+| GFC 2008-2009 | 34 | 3.20 | 0.09 | 25.75 | 0.377 |
+| COVID 2020 | 35 | **2.41** | 0.07 | 21.00 | 0.603 |
+| recent 104w | 35 | 5.01 | 0.14 | 26.31 | 0.245 |
+| recent 52w | 35 | 4.49 | 0.13 | 21.00 | 0.376 |
+
+The equity book supplies **5.42** effective names. A thirty-five asset multi-asset universe is
+therefore *less* internally independent than a ten-name stock book, and it gets worse exactly
+when diversification is needed: 2.41 effective assets in 2020, with median pairwise
+correlation at 0.603.
+
+### Why: it is not really multi-asset
+
+| class | assets | effective |
+|---|---|---|
+| commodities | 6 | **2.79** |
+| government bonds | 5 | 2.29 |
+| US equity sector | 9 | 2.06 |
+| credit | 3 | 1.94 |
+| international equity | 5 | **1.27** |
+| US equity broad | 5 | **1.21** |
+
+Fourteen of the thirty-five assets are US equity slices contributing 1.21 and 2.06 effective
+between them, and five international equity funds contribute 1.27 -- international equity is
+very nearly a redundant copy of US equity at weekly frequency. One representative per class,
+seven assets, gives 3.00 effective, which is three quarters of what all thirty-five give.
+**The other twenty-eight assets buy 1.16 units of independence.**
+
+### Breadth projection
+
+Declared frequencies, plus weekly as a labelled post-hoc extension because it was not in the
+registry's list and excluding it would understate the best case:
+
+| rebalance | per year | trend persistence | independent share | projected breadth/yr | clears 91? |
+|---|---|---|---|---|---|
+| every 1w *(post-hoc)* | 52 | 0.883 | 0.117 | **25.4** | no |
+| every 2w *(post-hoc)* | 26 | 0.833 | 0.167 | 18.1 | no |
+| every 4w | 13 | 0.758 | 0.242 | 13.1 | no |
+| every 12w | 4 | 0.577 | 0.423 | 7.6 | no |
+| every 26w | 2 | 0.567 | 0.433 | 3.6 | no |
+| every 52w | 1 | 0.614 | 0.386 | 1.6 | no |
+
+Best realistic case **25.4 bets a year**, three times the equity book's 8.5 and still 3.6x
+short of the 91 that an IR of 0.25 requires at the measured IC. The absolute upper bound --
+weekly rebalancing with zero signal persistence, which is impossible for trend and would turn
+the whole book over every week -- is 217, which clears 91 and not the 362 for IR 0.50.
+
+Note where the gain comes from. Going from 8.5 to 25.4 is almost entirely **rebalancing more
+often**, not holding more independent things. The universe's asset count contributes nothing.
+
+### Verdict, against the pre-declared interpretation
+
+`if_effective_assets_below_8` was declared to mean **"refuted on its own premise; abandon
+rather than pursue with a strategy."** The measurement is 4.16. Recorded as refuted.
+
+### What this does not refute, stated precisely
+
+This tested thirty-five liquid ETFs, which is the cheap proxy for "new asset classes" and not
+the thing itself. It says nothing about a real futures universe -- rates across several points
+of several curves, a dozen currency crosses, softs, livestock, energy, metals -- which is
+structurally more diverse than a set where fourteen of thirty-five holdings are US equity
+wrappers. The two classes that carried what independence there was, commodities at 2.79 from
+six and government bonds at 2.29 from five, are precisely the classes an ETF panel represents
+most thinly.
+
+The constructive reading is that the path to breadth runs through **more instruments in the
+classes that are actually different**, not through more equity wrappers, and that a CTA-style
+futures panel is the next thing worth acquiring. That is a data acquisition problem, and this
+project has no futures data.
+
+Two days of measurement have replaced what would have been months of building a cross-asset
+strategy on a universe that cannot supply the breadth the strategy would need. That is the
+process working, and it is the second time in two steps that the answer arrived before the
+work rather than after it.
+
+References:
+
+- `config/multi_asset_breadth_registry_v1.json`, `scripts/run_multi_asset_breadth_measurement_v1.py`
+- `evidence/multi_asset_breadth_v1/`
+- Step 245 (the breadth accounting that set the 91 and 362 thresholds)

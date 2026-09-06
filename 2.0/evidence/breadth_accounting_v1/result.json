@@ -1,0 +1,111 @@
+{
+  "claims_no_alpha": true,
+  "cost_bps": 50.0,
+  "cross_strategy_breadth": {
+    "bootstrap_95_interval": [
+      1.382995313073662,
+      1.7771192643610068
+    ],
+    "effective_independent_strategies": 1.5688261562886774,
+    "independence_null": 2.968421052631579,
+    "nominal_strategies": 3,
+    "pairwise_correlations": {
+      "cash_conversion_breadth20|growth_top_five": 0.5061,
+      "cash_conversion_breadth20|sector_ensemble": 0.8736,
+      "growth_top_five|sector_ensemble": 0.5908
+    },
+    "strategies": [
+      "cash_conversion_breadth20",
+      "growth_top_five",
+      "sector_ensemble"
+    ],
+    "weeks": 189
+  },
+  "experiment": "breadth_accounting_v1",
+  "framework": "Grinold & Kahn, IR = IC x sqrt(BR); TC reported as realised IR over predicted",
+  "live_trading_enabled": false,
+  "per_strategy": {
+    "cash_conversion_breadth20": {
+      "breadth": {
+        "book_persistence_between_rebalances": 0.6076923076923076,
+        "breadth_effective_per_year": 8.53547880105853,
+        "breadth_lost_to_correlation_and_persistence": 0.7873,
+        "breadth_nominal_per_year": 40.137362637362635,
+        "effective_independent_names": 5.420660799963624,
+        "independent_share_of_each_rebalance": 0.39230769230769236,
+        "median_names_held": 10.0,
+        "rebalances": 14,
+        "rebalances_per_year": 4.013736263736264
+      },
+      "information_coefficient": {
+        "decisions": 15,
+        "ic_std": 0.11141688626089935,
+        "ic_t_stat": 0.9133528877557094,
+        "mean_ic": 0.02627507678564956,
+        "share_positive": 0.6
+      },
+      "predicted_information_ratio": 0.0767640602977421,
+      "realised": {
+        "mean_annual_excess": -0.0012372549345745414,
+        "realised_information_ratio": -0.007828147866905938,
+        "tracking_error": 0.1580520648830774,
+        "weeks": 190
+      },
+      "transfer_coefficient": -0.10197673021128861
+    },
+    "growth_top_five": {
+      "breadth": {
+        "book_persistence_between_rebalances": 0.3999999999999999,
+        "breadth_effective_per_year": 8.715592277661033,
+        "breadth_lost_to_correlation_and_persistence": 0.5657,
+        "breadth_nominal_per_year": 20.068681318681318,
+        "effective_independent_names": 3.619068661953702,
+        "independent_share_of_each_rebalance": 0.6000000000000001,
+        "median_names_held": 5.0,
+        "rebalances": 15,
+        "rebalances_per_year": 4.013736263736264
+      },
+      "information_coefficient": {
+        "decisions": 15,
+        "ic_std": 0.051084885077280186,
+        "ic_t_stat": -0.11376146338272253,
+        "mean_ic": -0.001500520597079367,
+        "share_positive": 0.6
+      },
+      "predicted_information_ratio": -0.004429864210390964,
+      "realised": {
+        "mean_annual_excess": 0.11792363492387244,
+        "realised_information_ratio": 0.4565528108510259,
+        "tracking_error": 0.258291334805408,
+        "weeks": 190
+      },
+      "transfer_coefficient": -103.06248434886726
+    },
+    "sector_ensemble": {
+      "breadth": {
+        "book_persistence_between_rebalances": 0.7094111034600469,
+        "breadth_effective_per_year": 8.362090938423297,
+        "breadth_lost_to_correlation_and_persistence": 0.9269,
+        "breadth_nominal_per_year": 114.39148351648352,
+        "effective_independent_names": 7.169469774204909,
+        "independent_share_of_each_rebalance": 0.2905888965399531,
+        "median_names_held": 28.5,
+        "rebalances": 14,
+        "rebalances_per_year": 4.013736263736264
+      },
+      "information_coefficient": {
+        "decisions": 0
+      },
+      "predicted_information_ratio": null,
+      "realised": {
+        "mean_annual_excess": 0.05351677875632381,
+        "realised_information_ratio": 0.39425573090160815,
+        "tracking_error": 0.13574128303458866,
+        "weeks": 189
+      },
+      "transfer_coefficient": null
+    }
+  },
+  "prices": "data/clean_corporate_action_prices_v1/weekly_adjusted_prices_clean.csv.gz",
+  "strategy_promotion_authorized": false
+}

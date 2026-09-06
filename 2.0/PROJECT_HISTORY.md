@@ -11000,3 +11000,100 @@ References:
 
 - `config/risk_budgeted_sizing_registry_v1.json`, `scripts/run_risk_budgeted_sizing_v1.py`
 - `evidence/risk_budgeted_sizing_v1/`
+
+## Step 245 — Breadth accounting: the construction has a ceiling far below what its backtests show
+
+`UPGRADE_CANDIDATES_V1` item 1, run at the owner's direction after declining to repoint the
+frozen protocol at the clean panel. `IR = IC x sqrt(BR)`. This project has spent 240 steps
+searching for IC and almost none measuring BR. Measured now, on repaired prices, for the
+three dashboard strategies with usable books.
+
+### The signals have no measurable information coefficient
+
+| strategy | mean IC | t | positive | decisions |
+|---|---|---|---|---|
+| cash conversion breadth-20 | **+0.0263** | +0.91 | 60% | 15 |
+| growth top five | **-0.0015** | -0.11 | 60% | 15 |
+| sector ensemble | not measurable, no per-issuer score file | | | |
+
+Fifteen quarterly decisions give a standard error near 0.013, so +0.026 is roughly one and a
+half standard errors from zero and -0.0015 is indistinguishable from it. Neither is skill
+that has been demonstrated.
+
+### Breadth is destroyed between the nominal count and the real one
+
+| strategy | names | rebalances/yr | nominal BR | effective names | book persistence | **effective BR** | lost |
+|---|---|---|---|---|---|---|---|
+| cash conversion | 10 | 4.01 | 40.1 | 5.42 | 61% | **8.5** | 78.7% |
+| growth top five | 5 | 4.01 | 20.1 | 3.62 | 40% | **8.7** | 56.6% |
+| sector ensemble | 28 | 4.01 | 114.4 | 7.17 | 71% | **8.4** | 92.7% |
+
+Two mechanisms, both large: holdings that move together, and books that barely change from
+quarter to quarter. The sector ensemble loses 93% of its nominal breadth.
+
+The striking part is the last column but one. **All three land on roughly 8.5 effective bets
+per year regardless of whether they hold five names or twenty-eight.** Holding more names in
+this universe does not buy breadth. That is a direct measurement of the ceiling CLAUDE.md
+has been asserting from correlation evidence, and it is worse than the nominal counts suggest.
+
+### The transfer coefficients say the returns are not coming from the signals
+
+| strategy | predicted IR = IC x sqrt(BR) | realised IR | transfer coefficient |
+|---|---|---|---|
+| cash conversion | +0.077 | -0.008 | -0.10 |
+| growth top five | **-0.004** | **+0.457** | **-103** |
+
+Growth's signal has an information coefficient of essentially zero and its portfolio earns
++11.79% a year over its own universe at an information ratio of 0.457. Those two facts cannot
+both be about stock selection. The return is coming from somewhere the model does not see,
+and the dashboard's own label for the strategy -- "142% Growth / Micron" -- names the most
+likely candidate. Cash conversion is the mirror image: a small positive IC that reaches the
+portfolio as nothing at all.
+
+### What the arithmetic forbids
+
+Taking the only positive IC measured, +0.0263, at the measured breadth of 8.5 per year:
+
+| target IR | breadth needed | multiple of what exists |
+|---|---|---|
+| 0.25 | 91 /yr | 11x |
+| 0.50 | 362 /yr | 43x |
+| 0.75 | 815 /yr | 96x |
+| 1.00 | 1,448 /yr | 170x |
+
+Or holding breadth at 8.5 and asking what IC would be required: an IR of 0.5 needs IC =
++0.171, where a strong equity signal is about +0.05.
+
+**Neither column is reachable by retuning this family.** The honest statement is not that
+these strategies have not worked yet; it is that the Fundamental Law says this construction
+has an IR ceiling below 0.1, and every backtest here showing far more than that is showing
+something other than skill. That is the single most useful number this project has produced,
+and it should have been computed before the 176th research step rather than the 245th.
+
+### Cross-strategy breadth
+
+| pair | correlation |
+|---|---|
+| cash conversion \| sector ensemble | **0.874** |
+| growth \| sector ensemble | 0.591 |
+| cash conversion \| growth | 0.506 |
+
+Effective independent strategies: **1.57**, 95% interval [1.38, 1.78], against a nominal
+three and an independence null of 2.97. Cash conversion and the sector ensemble are very
+nearly the same strategy at 0.874.
+
+### What this changes
+
+Nothing about the forward clock, which starts as declared on 2026-09-11 -- measuring what a
+frozen protocol does forward is unaffected by learning its expected IR is small.
+
+Everything about where effort should go. Raising breadth from 8.5 toward even 91 is not a
+parameter change; it requires positions whose returns are genuinely independent, which means
+different asset classes, different horizons, or many more uncorrelated names than this
+universe supplies. That is `UPGRADE_CANDIDATES_V1` item 2, and this measurement is the
+argument for it.
+
+References:
+
+- `scripts/run_breadth_accounting_v1.py`, `evidence/breadth_accounting_v1/`
+- `scripts/measure_effective_bets_v1.py` (participation ratio, independence null, block bootstrap)

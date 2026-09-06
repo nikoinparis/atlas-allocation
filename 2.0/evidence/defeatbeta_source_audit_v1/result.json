@@ -1,0 +1,67 @@
+{
+  "backing": "HuggingFace yahoo-finance-data dataset queried through DuckDB with cache_httpfs",
+  "caveats": [
+    "it is a Yahoo mirror and inherits Yahoo's quality problems; Steps 239-240 are the precedent for auditing a vendor panel before use",
+    "no options data",
+    "no stated rate limit or update SLA",
+    "symbol-keyed, so a symbol-to-cik10 map is needed to join the SEC universe"
+  ],
+  "data_update_time": "2026-09-06T05:25:08Z",
+  "experiment": "defeatbeta_source_audit_v1",
+  "feasibility": {
+    "chosen": "none yet; this is an audit and no acquisition was started",
+    "full_pull_estimate": "about 2,800 issuers x roughly 80 quarters at 1.4s each is around 87 hours of serial calls; not feasible through the per-ticker API",
+    "viable_paths": [
+      "query the underlying HuggingFace dataset in bulk rather than ticker by ticker",
+      "restrict to a declared subset, for example the 500 largest issuers over the last 40 quarters, about 8 hours"
+    ]
+  },
+  "live_trading_enabled": false,
+  "package": "defeatbeta-api 0.0.60, Apache-2.0",
+  "per_ticker_probe": {
+    "AAPL": {
+      "earliest": "2005-10-13",
+      "latest": "2026-07-30",
+      "seconds": 0.56,
+      "transcripts": 84
+    },
+    "AGX": {
+      "earliest": "2023-06-08",
+      "latest": "2026-09-02",
+      "seconds": 0.79,
+      "transcripts": 14
+    },
+    "GTLB": {
+      "earliest": "2021-12-06",
+      "latest": "2026-09-01",
+      "seconds": 0.93,
+      "transcripts": 20
+    },
+    "MU": {
+      "earliest": "2005-12-26",
+      "latest": "2026-06-24",
+      "seconds": 1.19,
+      "transcripts": 80
+    },
+    "PLTR": {
+      "earliest": "2020-11-16",
+      "latest": "2026-08-03",
+      "seconds": 0.87,
+      "transcripts": 24
+    },
+    "TXO": {
+      "earliest": "nan",
+      "latest": "nan",
+      "seconds": 0.82,
+      "transcripts": 0
+    }
+  },
+  "queue_item": "S2",
+  "strategy_promotion_authorized": false,
+  "transcripts": {
+    "causality_anchor": "report_date is supplied per transcript, so a filing-date equivalent exists",
+    "depth_example": "AAPL: 84 quarterly transcripts, 2005-10-13 to 2026-07-30",
+    "retrieval_seconds_per_transcript": 1.4,
+    "structure": "paragraph_number, speaker, content -- speaker-attributed, which allows management and analyst language to be separated"
+  }
+}

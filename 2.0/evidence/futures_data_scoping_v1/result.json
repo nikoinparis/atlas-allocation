@@ -1,0 +1,124 @@
+{
+  "artifact_sha256": {
+    "probe_prices.csv.gz": "9402cb3476138320fc219171e78641c68d1f0b67292aec50bcff20463d76461e"
+  },
+  "breadth": {
+    "by_class": {
+      "energy": 1.94,
+      "equity_index": 1.18,
+      "fx": 3.1,
+      "grains": 3.61,
+      "livestock": 2.42,
+      "metals": 2.32,
+      "rates": 1.3,
+      "softs": 4.58
+    },
+    "equity_stock_book_effective_names": 5.42,
+    "etf_median_abs_pairwise_correlation": 0.309,
+    "etf_universe_effective_assets": 4.16,
+    "futures_effective_assets": {
+      "minus_broken_6J": 13.05,
+      "pearson_excluding_weekly_moves_over_25pct": 13.21,
+      "pearson_raw": 12.51,
+      "spearman": 12.81
+    },
+    "futures_median_abs_pairwise_correlation": 0.113
+  },
+  "breadth_projection": {
+    "best": {
+      "breadth_per_year": 155.0,
+      "clears_362_for_ir_0.50": false,
+      "clears_91_for_ir_0.25": true,
+      "persistence": 0.774,
+      "rebalance": "weekly",
+      "signal": "4-week trend"
+    },
+    "configurations_clearing_91": [
+      "4w trend weekly",
+      "4w trend 2-weekly",
+      "12w trend weekly"
+    ],
+    "equity_book": 8.5,
+    "etf_best_case": 25.4
+  },
+  "builds_no_strategy": true,
+  "coverage": {
+    "classes": [
+      "equity_index",
+      "rates",
+      "fx",
+      "energy",
+      "metals",
+      "grains",
+      "softs",
+      "livestock"
+    ],
+    "daily_rows_each_approx": 6500,
+    "earliest": "1997-10-29",
+    "instruments": 41,
+    "latest": "2026-09-04"
+  },
+  "created_at_utc": "2026-09-06T05:32:15.806148+00:00",
+  "declared_trials": 0,
+  "experiment": "futures_data_scoping_v1",
+  "live_trading_enabled": false,
+  "purpose": "scope whether free futures data can supply the breadth Step 245 says is required, before building anything",
+  "quality": {
+    "adjustment": "unadjusted front-month; roll gaps enter as returns",
+    "broken_series": {
+      "6J=F": {
+        "annualised_volatility": 1.794,
+        "note": "a contract or quotation change, not a market; not repairable as a return series",
+        "worst_daily_move": 9.038
+      }
+    },
+    "clean": [
+      "ZT=F",
+      "ZF=F",
+      "ZN=F",
+      "6E=F",
+      "6C=F",
+      "6B=F",
+      "6A=F",
+      "6N=F",
+      "6M=F"
+    ],
+    "heavily_contaminated": [
+      "NG=F",
+      "HE=F",
+      "CL=F",
+      "ZO=F",
+      "PA=F",
+      "RB=F"
+    ]
+  },
+  "required_before_any_return_number": [
+    "seal an acquisition vintage",
+    "build the roll repair as Step 240 built the corporate-action repair",
+    "exclude or replace 6J",
+    "re-measure breadth on repaired data"
+  ],
+  "sources_evaluated": {
+    "nasdaq_data_link_CHRIS": {
+      "note": "no longer updated",
+      "status": "deprecated"
+    },
+    "paid_fallbacks": [
+      "CME DataMine continuous price series",
+      "Databento",
+      "Norgate Data"
+    ],
+    "stooq_free_csv": {
+      "note": "returns a JavaScript bot challenge rather than CSV; not usable without evading detection",
+      "status": "blocked"
+    },
+    "yahoo_via_yfinance": {
+      "note": "direct chart endpoint returns HTTP 429; yfinance handles cookie and crumb at about one request per second",
+      "status": "works",
+      "symbols_probed": 41,
+      "symbols_returned": 41
+    }
+  },
+  "strategy_promotion_authorized": false,
+  "verdict": "the premise of option 1 survives on futures where it failed on ETFs; the data is not usable until a roll repair exists"
+}

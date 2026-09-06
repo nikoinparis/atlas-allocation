@@ -11194,3 +11194,133 @@ References:
 - `config/multi_asset_breadth_registry_v1.json`, `scripts/run_multi_asset_breadth_measurement_v1.py`
 - `evidence/multi_asset_breadth_v1/`
 - Step 245 (the breadth accounting that set the 91 and 362 thresholds)
+
+## Step 247 — Scoping futures data: it exists, it is free, and it supplies the breadth the ETFs could not
+
+Step 246 refuted the ETF route on its own premise and named what it did not refute: a real
+futures panel. This scopes that, and for the first time in this session the answer is
+encouraging.
+
+### Sources
+
+| source | status |
+|---|---|
+| Nasdaq Data Link `CHRIS` | **deprecated**, no longer updated |
+| Stooq free CSV | **blocked**: returns a JavaScript bot challenge, not data. Not usable without evading detection, which is out of bounds |
+| Yahoo via `yfinance` | **works**: 41 of 41 symbols probed returned data |
+| CME DataMine, Databento, Norgate | paid, official, correctly roll-adjusted; the fallback if the free path fails on quality |
+
+Yahoo's direct chart endpoint returns HTTP 429 immediately; `yfinance`, which the project
+already uses for equities, handles the cookie and crumb and works at roughly one request per
+second.
+
+### Coverage: 41 instruments, 26 years, eight classes
+
+| class | instruments | earliest |
+|---|---|---|
+| equity index | ES NQ YM RTY | 2000 |
+| rates | ZT ZF ZN ZB | 2000 |
+| FX | 6E 6J 6B 6A 6C 6S 6N 6M | 2000 |
+| energy | CL NG HO RB BZ | 2000 |
+| metals | GC SI HG PL PA | 1997 |
+| grains | ZC ZW ZS ZM ZL ZO ZR | 1999 |
+| softs | KC CT SB CC OJ | 2000 |
+| livestock | LE HE GF | 2000 |
+
+Roughly 6,500 daily observations each, starting five years earlier than the ETF panel.
+
+### Quality: unadjusted front-month, and one series is broken
+
+These are front-month continuous series with **no roll adjustment**, so contract-to-contract
+gaps enter as returns. Measured directly, daily moves above 10% and 25%:
+
+| symbol | >10% days | >25% days | worst day | annual vol |
+|---|---|---|---|---|
+| **6J=F** | 2 | **2** | **+903.8%** | **179.4%** |
+| NG=F | 134 | 10 | 47.5% | 61.2% |
+| HE=F | 66 | 2 | 26.7% | 36.9% |
+| CL=F | 47 | 4 | **306.0%** | 77.3% |
+| ZO=F | 34 | 8 | 64.2% | 44.3% |
+| ZT=F | 0 | 0 | 1.0% | 1.6% |
+| 6E=F | 0 | 0 | 3.6% | 9.1% |
+
+The yen series is not repairable as a return series -- a 903.8% day and 179% annualised
+volatility is a contract or quotation change, not a market. Energy, livestock and oats carry
+heavy roll contamination. Rates and most FX are clean.
+
+This is Steps 239 and 240 again, in a new asset class, and this time the measurement arrives
+before the work rather than after it.
+
+### Breadth: 13.2 effective assets, against the ETFs' 4.16
+
+Weekly, 2005 onward, using the same participation-ratio estimator as Steps 245 and 246:
+
+| universe | assets | effective | share | median abs correlation |
+|---|---|---|---|---|
+| futures, Pearson, roll gaps included | 40 | 12.51 | 0.31 | 0.121 |
+| futures, Spearman, robust to gaps | 40 | 12.81 | 0.32 | 0.118 |
+| futures, excluding weekly moves >25% | 40 | **13.21** | 0.33 | 0.113 |
+| futures, minus the broken 6J | 39 | 13.05 | 0.33 | 0.113 |
+| **35-ETF universe (Step 246)** | 35 | **4.16** | 0.12 | 0.309 |
+| equity stock book (Step 245) | 10 | 5.42 | -- | -- |
+
+Three estimators agree within 0.7, so the answer does not depend on how the roll gaps are
+handled. **Futures supply 3.2 times the independence of the ETF universe**, and their median
+pairwise correlation is 0.118 against the ETFs' 0.309.
+
+Where it comes from is exactly where an ETF panel is thinnest:
+
+| class | assets | effective | share |
+|---|---|---|---|
+| softs | 5 | **4.58** | **0.92** |
+| grains | 7 | 3.61 | 0.52 |
+| FX | 8 | 3.10 | 0.39 |
+| livestock | 3 | 2.42 | 0.81 |
+| metals | 5 | 2.32 | 0.46 |
+| energy | 5 | 1.94 | 0.39 |
+| rates | 4 | 1.30 | 0.32 |
+| equity index | 3 | 1.18 | 0.39 |
+
+Coffee, cotton, sugar, cocoa and orange juice are very nearly five independent bets. Softs,
+grains and livestock together supply about 10.6 effective assets, and the ETF panel represents
+all three through DBA and PDBC.
+
+### Projected breadth clears the threshold
+
+| signal | rebalance | persistence | independent share | breadth/yr | clears 91 |
+|---|---|---|---|---|---|
+| 4-week trend | weekly | 0.774 | 0.226 | **155.0** | **yes** |
+| 4-week trend | 2-weekly | 0.670 | 0.330 | **113.3** | **yes** |
+| 12-week trend | weekly | 0.865 | 0.135 | **92.5** | **yes** |
+| 4-week trend | 4-weekly | 0.506 | 0.494 | 84.8 | no |
+| 26-week trend | weekly | 0.912 | 0.088 | 60.2 | no |
+| 52-week trend | 4-weekly | 0.876 | 0.124 | 21.3 | no |
+
+Three configurations clear the 91 that an IR of 0.25 requires at the equity book's measured
+IC. None clears the 362 for an IR of 0.50. The ETF universe's best case was 25.4 and the
+equity book is 8.5.
+
+Note what makes the difference: faster signals on more independent assets. A 52-week trend on
+futures still only reaches 42.9, which is below the ETF weekly case times four -- **breadth
+comes from signal turnover as much as from asset count, and the slow trend signals this
+project has favoured throw most of it away.**
+
+### Verdict
+
+The premise of option 1 survives on futures where it failed on ETFs. Free data covering 41
+instruments and 26 years exists, and it supplies 13.2 effective assets and a projected 155
+bets a year.
+
+It is not usable as it stands. Before any return computed on it means anything it needs a
+roll repair, 6J excluded or replaced, and the energy and livestock contamination handled --
+and an unadjusted front-month series cannot be perfectly repaired without contract-level data,
+which is where the paid sources earn their price. The honest sequence is: acquire and seal a
+vintage, build the roll repair the way Step 240 built the corporate-action repair, re-measure
+breadth on repaired data, and only then consider a strategy.
+
+Nothing here is a return estimate. No strategy has been built and none is proposed.
+
+References:
+
+- `evidence/futures_data_scoping_v1/`
+- Steps 245 and 246 (the breadth accounting and the ETF refutation this follows from)

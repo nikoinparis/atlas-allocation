@@ -164,34 +164,6 @@ publishes short interest free, twice monthly, per security.
 that has failed twelve times running. But it is genuinely orthogonal by measurement and the data
 is free and complete.
 
-### A10. Market-state classifier, and a strategy chosen per state  *(new 2026-09-06, owner's idea)*
-**Status:** never attempted in this form. `src/systematic_trader/markov_regime.py` exists and was
-used for position *scaling* in an earlier batch; it has never been used to *select* a strategy.
-**The idea, as the owner put it:** if strategies like ours thrive after April 2025 and not before,
-then somewhere before 2025 there is probably a different strategy that thrived in *that* state.
-Classify the market state, then hold whatever suits it.
-**Why it is a real idea:** Step 261 found all four strategies breaking in the same week, and Step
-262 found they were market-average before it. That is exactly the shape a regime story predicts.
-**Why it is also the most dangerous idea in this file, and must be built defensively:**
-- Fitting a regime model on the same data will produce a model that says "state 2 began April
-  2025" and assigns our strategies to it. That is relabelling the break we already found, not
-  predicting anything.
-- The test that matters is whether the classifier identifies the state **in real time, using only
-  past data**, not whether it labels history well. Almost every published regime model looks
-  excellent in-sample and fails this.
-- It multiplies the search space: N strategies x M states is a far larger set of trials than
-  anything attempted here, and the multiple-testing burden has to be declared up front.
-**How to build it so the answer means something, in order:**
-1. Fit the state model on 2011-2020 only. Never refit on later data.
-2. Ask it, causally, to label 2021-2026 week by week using only information available then.
-3. Check whether its 2025 transition is detected **at the time** or only in hindsight. If only in
-   hindsight, stop -- the classifier is a historian, not a signal.
-4. Only if it passes 3, test whether state-conditioned strategy selection beats holding everything.
-**Owner's second hypothesis, testable separately and more cheaply:** that some strategy thrived
-*before* April 2025 the way ours thrive after. That is a search over the rejected candidates in
-the Closed table restricted to the pre-break window, and it needs no new model at all. Worth doing
-first because it is one afternoon and it either supports the regime story or undermines it.
-
 ### B1. Volatility risk premium, reading first
 **Status:** `UPGRADE_CANDIDATES_V1` item 3, Tier 3, "needs Hull read properly before".
 **Why it is not higher:** selling option premium is selling insurance. Negatively skewed --
@@ -291,6 +263,7 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 | **Triple-barrier labelling (was A9)** | **Closed.** Zero of four barrier configurations beat the plain forward return; the widest is a tie, and 9-43% of observations touch no barrier and are labelled zero. Also weakens the Step 201 hypothesis that meta-labelling failed for want of a barrier target underneath it. | Step 265 |
 | **Feature importance MDA/MDI (was A7)** | **Done.** Model has modest held-out skill (+0.0337, positive in 86% of folds). Only residual momentum degrades it when shuffled (+0.0439, t=1.99). **Trend quality is 29.9% of MDI and -0.0059 of MDA** — the forest leans on it and it carries nothing. The feature that matters is the one Step 234 found picks twenty names from a tie of fifty-nine by lowest CIK. | Step 264 |
 | **Short interest (was A5)** | **First signal to survive both windows, and still not worth holding.** IC -0.0312 (t=-4.80) select, -0.0435 (t=-5.30) evaluate. But a long-only book returns 12.54% at 50bps against a market at 13.15%, with a -36.5% drawdown, and correlates +0.873 with the market. Near-zero against our own strategies, which is the breadth property we want. **Open as an exclusion filter, closed as a strategy.** | Step 263 |
+| **Market-state classifier (was A10)** | **Closed as not actionable.** States from market observables (dispersion, correlation, breadth, volatility), fit 2011-2020, never refit, labelled causally. **No observable shows a persistent state change at 2025-04-04** — three spike near it and all four sit *lower* after than before, so a spike that reverts is not a transition. Pre-declared stop condition triggered; state-conditioned selection not authorised. All four strategies also do *worse* in the state these observables identify, so these are not the states that explain the break. | Step 266 |
 | **Structural break tests (was A6)** | **Done, and it changed the reading of everything else.** All four strategies select the identical break week, 2025-04-04, scanning independently over 188-195 weeks. Mean return goes from 8-13% before to 80-105% after, betas near zero on both sides so it is not market exposure, and the market itself shows no break there. None clears Bonferroni 0.01 (p 0.022-0.038) so it is suggestive rather than established -- but four independent strategies do not pick the same week by chance, and it is the cleanest evidence yet that they are one bet. **Consequence: future tests should split at 2025-04-04, and no test in this project has ever asked what the strategies look like with those 75 weeks removed.** | Step 261 |
 | **13D/13G activist events (was A4)** | **Closed.** 38,849 subject events, 2013-2026, sector-matched abnormal returns bootstrapped with clustering by filing month. Nothing clears for either form in either window. The strongest reading, 13D at 13 weeks recently, is **-2.13%** -- the wrong sign against a declared positive. The 13G control is flat at 20,000 events, so the absence is real rather than a broken pipeline. Caught mid-run: EDGAR relabelled `SC 13D` to `SCHEDULE 13D` in 2025 and the first parse silently lost two years. | Step 260 |
 | **13F institutional linkage (was A0)** | **Closed.** 110M holding rows, 73.4% identity match, manager cap declared before any signal. Every IC negative against a declared positive sign, none significant, at three caps and two horizons, and the sector-controlled column is equally flat so it is an absence rather than a sector effect. Mild evidence against buying P2. | Step 258 |

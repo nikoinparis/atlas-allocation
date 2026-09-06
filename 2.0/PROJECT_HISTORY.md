@@ -10923,3 +10923,80 @@ decision to start the clock is unchanged -- it never rested on the control leg b
 but the memo overstates the case against it and should be read with this attached.
 
 References: `scripts/rerun_control_leg_vs_universe_v1.py`, `evidence/control_leg_vs_universe_rerun_v1/`
+
+## Step 243 — The clean panel is built, and it changes the benchmark rather than the strategies
+
+`data/sec_broad_research_panel_v4_clean` is materialized from the repaired prices, with
+features recomputed rather than carried over -- momentum and trend were computed from the
+dirty series in v3, so swapping only the price file would have left them stale. Hash
+verified, 15 decisions, 43,009 rows, 3,235 priced CIKs.
+
+| | v3 | v4 clean |
+|---|---|---|
+| infinite weekly returns | 1 | **0** |
+| weekly returns above +100% | 210 | **124** |
+| worst weekly return | +2,938% | **+465%** |
+| equal-weight full CAGR | 19.35% | **16.09%** |
+| equal-weight recent 52w | 32.37% | **22.29%** |
+| residual_momentum tie pool at the 20th score | 61 | 63 |
+
+The tie pool does not move, and should not have: Step 234's defect is in `robust_rank`'s
+winsorize-then-rank ordering, not in the data. The panel repair and the tie defect are
+independent problems and fixing one was never going to fix the other.
+
+The pinned v2 panel is untouched and its protocol pins still verify.
+
+## Step 244 — Risk-budgeted sizing: five of five pass, and then fail the moment a second book is tried
+
+The first of `UPGRADE_CANDIDATES_V1`'s not-yet-tried items to actually be run. Item 5, risk
+budgeting instead of equal weighting, chosen because it claims no new alpha -- the selection
+is untouched, only the weights change -- and goes straight at the concentration problem.
+Six configurations declared in `config/risk_budgeted_sizing_registry_v1.json` before the run,
+all causal: every volatility estimate uses returns strictly before the week it sizes.
+
+On the cash-conversion book, at 50bps, from repaired prices:
+
+| id | sizing | CAGR | Sharpe | vol | maxDD | recent 52w | Sharpe @100bps |
+|---|---|---|---|---|---|---|---|
+| S0 | equal weight (control) | 20.78% | 0.882 | 24.95% | -31.43% | **+51.14%** | 0.815 |
+| S1 | inverse volatility 26w | 23.51% | 1.021 | 23.37% | -28.33% | +38.93% | 0.938 |
+| S2 | inverse volatility 52w | 23.48% | 1.020 | 23.39% | -27.92% | +41.09% | 0.939 |
+| S3 | inverse variance 52w | **24.08%** | **1.050** | 23.12% | **-26.16%** | +33.84% | **0.959** |
+| S4 | ERC diagonal 52w | 23.48% | 1.020 | 23.39% | -27.92% | +41.09% | 0.939 |
+| S5 | inverse vol capped 15% | 23.77% | 1.025 | 23.54% | -27.99% | +41.44% | 0.947 |
+
+**All five pass every declared criterion.** Higher Sharpe, no worse drawdown, holds at
+100bps. Five for five is the shape of a result that is about to fall over, and it does.
+
+First, three of the five are the same thing. Diagonal equal-risk-contribution *is* inverse
+volatility, so S2 and S4 are identical by construction and S1 differs only in lookback. The
+five configurations are about two distinct methods, and declaring them as five was my error
+in the registry, not a finding.
+
+Second, and fatal: the gain does not generalize. The same inverse-variance sizing, same
+code, same prices, applied to the other two dashboard books:
+
+| book | equal-weight Sharpe | inverse-variance Sharpe | gain | P(gain > 0) |
+|---|---|---|---|---|
+| cash conversion | 0.882 | 1.050 | +0.169 | **0.647** |
+| growth top five | 0.974 | 0.961 | -0.013 | 0.381 |
+| sector ensemble | 1.071 | 0.936 | **-0.134** | **0.040** |
+
+It helps on one book, insignificantly (0.647 is a coin flip with a lean); it does nothing on
+the second; and on the third it does significant *harm*. **Rejected.**
+
+The methodological lesson is about the registry rather than the strategy. My declared success
+criteria -- improves Sharpe, no worse drawdown, holds at 100bps -- were all satisfiable on a
+single book, and a criterion that a single book can satisfy is not a test of a construction
+rule that is supposed to apply to any book. The criteria should have required the gain to
+hold across every book available before the run, and did not. Recorded so the next registry
+in this project asks for generalization up front.
+
+Worth keeping in view: even where it "works", risk sizing traded 17 points of recent return
+(+51.14% to +33.84%) for 0.17 of Sharpe. That is the trade on offer, and it is not obviously
+the right one for this owner.
+
+References:
+
+- `config/risk_budgeted_sizing_registry_v1.json`, `scripts/run_risk_budgeted_sizing_v1.py`
+- `evidence/risk_budgeted_sizing_v1/`

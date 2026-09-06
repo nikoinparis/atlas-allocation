@@ -1,0 +1,72 @@
+{
+  "book_under_test": "evidence/sec_cash_conversion_breadth_dynamic_v1/best_portfolio_choices.csv",
+  "configurations_passing": 5,
+  "control": {
+    "annualised_volatility__0bps": 0.2484149182963776,
+    "annualised_volatility__100bps": 0.25095173019764594,
+    "annualised_volatility__50bps": 0.24954353504621551,
+    "cagr__0bps": 0.22676496844551486,
+    "cagr__100bps": 0.18910269029239735,
+    "cagr__50bps": 0.2078341494051268,
+    "lookback_weeks": NaN,
+    "max_drawdown__0bps": -0.3046135207661729,
+    "max_drawdown__100bps": -0.3260467801267094,
+    "max_drawdown__50bps": -0.31426673258135074,
+    "recent_52w_return__0bps": 0.5283233956745621,
+    "recent_52w_return__100bps": 0.4946646379176478,
+    "recent_52w_return__50bps": 0.511435296788558,
+    "sharpe__0bps": 0.9472084147796079,
+    "sharpe__100bps": 0.8154877801678927,
+    "sharpe__50bps": 0.8815070490081204
+  },
+  "cumulative_trial_warning": "These 5 stack on every configuration searched in this project. Nothing here may be reported without saying so.",
+  "declared_trials": 5,
+  "experiment": "risk_budgeted_sizing_v1",
+  "live_trading_enabled": false,
+  "prices": "data/clean_corporate_action_prices_v1/weekly_adjusted_prices_clean.csv.gz",
+  "registry_sha256_note": "configurations fixed in config/risk_budgeted_sizing_registry_v1.json before this ran",
+  "strategy_promotion_authorized": false,
+  "verdicts": [
+    {
+      "does_not_worsen_drawdown": true,
+      "holds_at_100bps": true,
+      "id": "S1",
+      "improves_sharpe": true,
+      "passes_declared_criteria": true,
+      "sharpe_gain_at_50bps": 0.1398385837623709
+    },
+    {
+      "does_not_worsen_drawdown": true,
+      "holds_at_100bps": true,
+      "id": "S2",
+      "improves_sharpe": true,
+      "passes_declared_criteria": true,
+      "sharpe_gain_at_50bps": 0.13806433395783968
+    },
+    {
+      "does_not_worsen_drawdown": true,
+      "holds_at_100bps": true,
+      "id": "S3",
+      "improves_sharpe": true,
+      "passes_declared_criteria": true,
+      "sharpe_gain_at_50bps": 0.16865909262377687
+    },
+    {
+      "does_not_worsen_drawdown": true,
+      "holds_at_100bps": true,
+      "id": "S4",
+      "improves_sharpe": true,
+      "passes_declared_criteria": true,
+      "sharpe_gain_at_50bps": 0.13806433395783968
+    },
+    {
+      "does_not_worsen_drawdown": true,
+      "holds_at_100bps": true,
+      "id": "S5",
+      "improves_sharpe": true,
+      "passes_declared_criteria": true,
+      "sharpe_gain_at_50bps": 0.14318818570719938
+    }
+  ],
+  "weeks": 190
+}

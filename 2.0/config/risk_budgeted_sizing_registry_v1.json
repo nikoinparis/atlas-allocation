@@ -1,0 +1,33 @@
+{
+  "experiment": "risk_budgeted_sizing_v1",
+  "declared_at_utc": "2026-09-05T00:00:00Z",
+  "question": "Does sizing the same book by risk rather than equally improve return per unit of risk?",
+  "why_this_and_not_a_new_signal": "UPGRADE_CANDIDATES_V1 item 5. This claims no new alpha: the selection is untouched, only the weighting changes. Its overfitting risk is therefore far lower than a signal search, and it addresses the concentration problem that CLAUDE.md rule 5 names as this project's most chronic failure.",
+  "book_under_test": "evidence/sec_cash_conversion_breadth_dynamic_v1/best_portfolio_choices.csv",
+  "prices": "data/clean_corporate_action_prices_v1/weekly_adjusted_prices_clean.csv.gz",
+  "declared_configurations": [
+    {"id": "S0", "sizing": "equal_weight", "role": "incumbent control"},
+    {"id": "S1", "sizing": "inverse_volatility", "lookback_weeks": 26},
+    {"id": "S2", "sizing": "inverse_volatility", "lookback_weeks": 52},
+    {"id": "S3", "sizing": "inverse_variance", "lookback_weeks": 52},
+    {"id": "S4", "sizing": "equal_risk_contribution_diagonal", "lookback_weeks": 52},
+    {"id": "S5", "sizing": "inverse_volatility_capped", "lookback_weeks": 52, "maximum_issuer_weight": 0.15}
+  ],
+  "declared_trials": 5,
+  "bonferroni_threshold": 0.01,
+  "primary_metric": "Sharpe ratio net of 50bps, full window",
+  "success_criteria": {
+    "must_improve_sharpe_over_equal_weight": true,
+    "must_not_worsen_max_drawdown": true,
+    "must_hold_at_100bps": "a sizing gain that needs zero cost is a turnover artifact, not a gain",
+    "must_be_causal": "every volatility estimate uses only returns strictly before the week it sizes"
+  },
+  "interpretation_fixed_in_advance": {
+    "if_no_configuration_improves_sharpe": "record as a negative result; equal weighting is not obviously improvable on this book and the concentration problem needs a different tool",
+    "if_one_improves_but_fails_at_100bps": "reject; the gain is turnover",
+    "if_one_improves_and_holds": "a candidate for a NEW protocol version, never an edit to a frozen one, and it inherits the whole gate list"
+  },
+  "cumulative_trial_warning": "These 5 stack on every configuration searched in this project. Nothing here may be reported without saying so.",
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

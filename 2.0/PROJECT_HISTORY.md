@@ -11421,3 +11421,105 @@ References:
 
 - `config/futures_trend_ic_registry_v1.json`, `scripts/run_futures_trend_ic_v1.py`
 - `evidence/futures_trend_ic_v1/`
+
+## Step 249 — The roll repair fails, and a natural experiment answers the question instead
+
+Step 248 left futures trend inconclusive: a significantly negative short-horizon IC that
+could be mean reversion or an artifact of rolling through contango. This built the repair and
+found the repair does not work, then answered the question a different way.
+
+### The repair, and why it barely moved
+
+`scripts/build_futures_roll_repair_v1.py` flags weeks whose return exceeds k robust standard
+deviations of that instrument's own trailing history and sets them to missing -- missing, not
+zero, because a fabricated flat week is the mistake Step 236 refused to make. The scale is a
+trailing median absolute deviation rather than a standard deviation, because a plain sigma is
+inflated by the very outliers being detected and a 2,938% week would raise the threshold
+enough to hide itself.
+
+k was chosen on a golden master and not on the outcome. Nine futures have an ETF proxy
+tracking the same underlying -- ES/SPY, GC/GLD, CL/USO, ZB/TLT and so on -- and a good repair
+must raise the correlation between a future and its proxy.
+
+| k | cells flagged | share | mean proxy correlation | improvement | proxies improved |
+|---|---|---|---|---|---|
+| 4 | 459 | 1.04% | 0.9258 | **-0.00100** | 1/9 |
+| **6** | 126 | 0.28% | 0.9303 | **+0.00349** | **2/9** |
+| 8 | 34 | 0.08% | 0.9291 | +0.00223 | 1/9 |
+| 10 | 15 | 0.03% | 0.9267 | -0.00013 | 0/9 |
+
+Baseline mean proxy correlation 0.9269. The best repair available raises it by **0.0035** and
+improves **two of nine** proxies, the gains confined to ZB at +0.0247 and ZC at +0.0139 while
+ES, CL, GC, SI, NQ and RTY all get very slightly worse. Being more aggressive makes it worse
+outright.
+
+The reason is worth stating because it kills the whole approach: **weekly roll gaps are not
+outliers.** Step 247 found large *daily* jumps, but weekly aggregation already absorbs most of
+a roll, and what survives is a modest gap indistinguishable by magnitude from an ordinary
+week. A magnitude detector cannot find a discontinuity that is not large. Rolls are systematic
+in *timing*, not in size, and timing is exactly what unadjusted front-month data does not
+record.
+
+Recorded as a failed method, kept for the negative evidence.
+
+### The natural experiment that worked instead
+
+The ETF panel is roll-free by construction -- GLD, USO, SPY and TLT are real securities with
+clean total returns -- and covers the same asset classes over the same window. So the question
+"is the negative IC real or is it the rolls" can be asked directly: run the identical
+measurement on clean data.
+
+At the three configurations that were significant in futures:
+
+| | futures | clean ETFs |
+|---|---|---|
+| mean time-series IC | -0.0343 | **-0.0204** |
+| same sign | -- | **yes, all three** |
+| significant | yes (p 0.0000 to 0.0018) | **no** (p 0.18, 0.20, 0.92) |
+
+The sign replicates on roll-free data at about sixty percent of the magnitude and loses
+significance. The honest reading is that **rolls explain roughly forty percent of the negative
+short-horizon IC and not all of it**; the remainder is consistent with ordinary short-term
+reversal, which is a documented effect, measured here on only 35 assets and therefore
+underpowered.
+
+Step 248's verdict stands with that refinement. Futures trend has no positive IC. It is not
+purely an artifact, and it is not established as a signal either.
+
+### An incidental result that must not be oversold
+
+The same run, on the clean ETF panel, shows a strong positive **cross-sectional** IC at long
+lookbacks:
+
+| lookback | horizon | cross-sectional IC | t |
+|---|---|---|---|
+| 26w | 1w | +0.0290 | +2.34 |
+| **52w** | **1w** | **+0.0501** | **+4.00** |
+| 52w | 2w | +0.0592 | +3.44 |
+| 52w | 4w | +0.0615 | +2.48 |
+
+Four things about this, in order of importance.
+
+It was **not pre-registered**. It was run as a discriminator for Step 248's question and this
+fell out of it. Treating it as a finding would be exactly the behaviour this project exists to
+prevent.
+
+It is **not a discovery**. Twelve-month cross-sectional momentum is the most published
+anomaly in finance. Finding it is a sanity check passing, not an edge.
+
+Its real value is as **validation of the estimator**. The placebo said the pipeline returns
+zero on noise, at +0.00022. This says it returns a strong positive when a known real effect is
+present, at t = 4.00. Together they mean the negative futures reading is informative rather
+than a broken measurement, which is what Step 248 could not establish on its own.
+
+And for scale: the equity book's cross-sectional IC was +0.0263 at t = 0.91. **A plain
+twelve-month momentum sort across 35 ETFs measures roughly twice the IC at four times the
+t-statistic of the fundamental strategy this project has spent 249 steps building.** That is
+not a recommendation to trade it -- it is the same slow-signal family the breadth accounting
+already capped at 8.5 bets a year, and Step 246 measured these 35 ETFs at 4.16 effective
+assets. It is a comment on where the effort has gone.
+
+References:
+
+- `scripts/build_futures_roll_repair_v1.py`, `data/futures_roll_repaired_v1/`
+- `evidence/futures_trend_ic_v1/`, Step 248

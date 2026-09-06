@@ -10703,3 +10703,110 @@ References:
 - `config/forward/residual_tie_agnostic_companion_v1.json`
 - `scripts/record_residual_tie_agnostic_companion_forward_v1.py`
 - `PROJECT_HISTORY.md` Step 234 (the tie-break audit this settles forward)
+
+## Step 238 — Auditing the dashboard, and finding no strategy on it can be rebuilt from its own artifacts
+
+The owner asked for the incumbent audit and for every displayed strategy to be checked
+for realism. `scripts/audit_dashboard_strategy_realism_v1.py` runs five checks on all six:
+leverage honesty, window length, tie structure at the selection cutoff, leave-one-out, and
+a random-book null.
+
+The tie defect from Step 234 does not spread. `trend_quality_scores` and
+`sector_neutral_quality_scores` both blend several `_row_ranks` outputs, and a sum of ranks
+breaks ties, so their median pool at the cutoff is exactly the number of slots. Measured
+directly: cash conversion 20 candidates for 20 slots, growth 5 for 5. `residual_momentum`
+is the only score in the codebase that returns a single winsorized rank, and it is the only
+one with the defect. That is a narrower finding than feared and it is worth stating plainly.
+
+Leverage is the second check and it is where the dashboard's headline numbers come from.
+The saved paths are unlevered; the displayed figures apply a multiplier to them.
+
+| displayed | unlevered recent 52w | levered | unlevered maxDD | levered maxDD |
+|---|---|---|---|---|
+| 150.86% Residual 1.25x @ 5% | 110.65% | 147.98% | -18.69% | -23.35% |
+| 174.97% Fragile 1.35x @ 6% | 124.20% | 185.77% | -21.80% | -29.19% |
+
+Leverage adds 4.7 and 7.4 points of drawdown respectively. It is disclosed in the strategy
+name, which is honest, but the headline a reader remembers is the levered one.
+
+Every SEC strategy on the dashboard starts 2023-01-06 and runs 3.62 years. Every "CAGR" on
+it is a single-regime number. The one exception is the ETF incumbent at 1,127 weeks, and it
+is the one already graded `historically_fragile`.
+
+The leave-one-out and random-book checks could not be completed, and the reason is the
+finding. Rebuilding each strategy's path from its own saved book and the research panel
+produces a series with **essentially zero correlation to the path the strategy reports**:
+0.001 for cash conversion, -0.119 for growth, -0.023 for the sector ensemble. Testing
+execution lags of zero through three weeks moves nothing. The first version of this audit
+would have reported leave-one-out and null percentiles computed on those broken
+reconstructions; they are now gated behind an explicit reconstruction check that must pass
+first, and it does not pass for any of the three.
+
+This is the same class of problem as Step 213, where the control leg's target weights
+turned out to exist nowhere the repository could regenerate. It is now known to be general:
+**no strategy displayed on the dashboard can be independently reproduced from the artifacts
+committed here.** The saved paths are internally consistent -- they correlate 0.74 to 0.97
+with each other, as related equity strategies should -- so this is a statement about
+artifact completeness, not evidence the strategies are wrong. But it means the project's
+headline numbers currently rest on paths that no second implementation has ever checked.
+
+References:
+
+- `scripts/audit_dashboard_strategy_realism_v1.py`, `evidence/dashboard_strategy_realism_audit_v1/`
+
+## Step 239 — The panel benchmark is inflated by unadjusted reverse splits, and only the benchmark is
+
+Chasing the zero correlations above produced a `inf` where the equal-weight return of the
+whole panel should have been. That is not a number a benchmark can produce, and the cause
+is real.
+
+Both `sec_broad_research_panel_v2` -- the panel the frozen forward protocol pins -- and v3
+carry **one infinite cell and 211 weekly returns above +100%, across 130 issuers**. The
+worst are not plausible moves:
+
+    2026-07-31  0001655210  +2,938%
+    2025-10-17  0001620179  +2,709%
+    2026-07-24  0001643953  +2,531%
+    2023-12-01  0001922446  +inf   (a division by a zero prior price)
+
+These are unadjusted reverse splits, not returns.
+
+The asymmetry is what matters. **No displayed strategy holds any of the extreme names**, and
+it never would: they are penny-stock artifacts no fundamental or momentum factor selects.
+Two held issuers have a single week above +100% each -- +109% and +130% -- both plausible
+single-name events, neither an artifact. But every *equal-weight benchmark* holds all 130.
+
+Priced on the panel-wide equal-weight benchmark:
+
+| | full CAGR | recent 52w CAGR |
+|---|---|---|
+| with the artifacts, as every benchmark here has used it | 19.35% | 32.37% |
+| with cells above 100%/week dropped | 13.44% | 18.02% |
+| **inflation** | **5.91pp** | **14.35pp** |
+
+Nearly half the recent-year return of the benchmark is thirteen bad cells.
+
+The direction is the uncomfortable part. The defect sits only on the benchmark side, so it
+biases every benchmark-relative conclusion in this project **against its own strategies**.
+That includes Step 222, the finding that the control leg loses to equal-weighting its own
+universe, which is the single most damaging result on record here and the reason
+`FORWARD_CLOCK_DECISION_V1.md` describes the composite as four fifths a leg that
+underperforms.
+
+Recomputing that comparison directly, on the control's own scored universe with the
+artifacts removed, gives the control 39.18% full and 111.08% recent against the universe's
+19.72% and 35.26% -- the opposite sign to Step 222. That is **not** a refutation: this
+recomputation uses a different universe definition, coverage treatment and cost convention
+than Step 222 did, and the two are not comparable as they stand. What it establishes is
+that the result is setup-sensitive and that its benchmark side is contaminated in a known
+direction. Step 222 must be re-run against a cleaned panel before it is cited again, and
+until then it should be treated as unresolved rather than as settled.
+
+Nothing was changed to "fix" the panels. Dropping cells changes a pinned artifact and the
+right repair is a corporate-action adjustment at acquisition time, not a filter at use time.
+Recorded as a defect with its magnitude measured.
+
+References:
+
+- `scripts/audit_panel_return_artifacts_v1.py`, `evidence/panel_return_artifact_audit_v1/`
+- Step 222 (the benchmark-relative finding now in question)

@@ -12190,3 +12190,58 @@ results split elsewhere should be re-read with 2025-04-04 in mind.
 
 References: `config/structural_break_registry_v1.json`, `scripts/run_structural_break_tests_v1.py`,
 `evidence/structural_break_v1/`
+
+## Step 262 — With the surge removed, every strategy matches or loses to equal-weighting the market
+
+Step 261 found all four strategies breaking in the same week and noted that no test here had ever
+asked what they look like with the post-break stretch removed. This is that test.
+
+### Before the break: 2023-01 to 2025-04, 117 weeks
+
+| strategy | CAGR | Sharpe | annual vol | max drawdown |
+|---|---|---|---|---|
+| sector ensemble | **11.23%** | 0.643 | 19.59% | -21.32% |
+| residual composite | 7.59% | 0.535 | 16.12% | -18.69% |
+| cash conversion b20 | 8.15% | 0.497 | 19.74% | -20.93% |
+| growth top five | **-12.33%** | -0.240 | 32.42% | -36.62% |
+| **equal-weight market, same weeks** | **11.14%** | **0.637** | 19.56% | **-16.72%** |
+
+Read the last row against the first four. **The best strategy in this project, over its first two
+and a quarter years, returned 11.23% at a Sharpe of 0.643 against a market that returned 11.14%
+at a Sharpe of 0.637 with a shallower drawdown.** That is a dead heat with equal-weighting, at
+identical volatility and worse downside. Two of the four lost to it outright and growth lost
+12.33% a year while the market gained 11.14%.
+
+### After the break: 71 to 75 weeks
+
+| strategy | CAGR | Sharpe | max drawdown |
+|---|---|---|---|
+| sector ensemble | 126.14% | 3.398 | -8.71% |
+| residual composite | 114.96% | 3.572 | -11.12% |
+| cash conversion b20 | 118.42% | 3.120 | -10.43% |
+| growth top five | 165.39% | 2.723 | -19.22% |
+| equal-weight market | 28.27% | 1.480 | -7.92% |
+
+### What this establishes
+
+The headline CAGRs of 33% to 45% are an average of **117 weeks of nothing and 71 weeks of
+everything**. Before April 2025 this project had four strategies that could not beat holding its
+own universe equally weighted. After it, they returned four to six times the market.
+
+Three readings are available and this test cannot separate them:
+
+- the strategies found something real in 2025 that was not there before
+- something changed in the market that these particular constructions happen to capture
+- the post-break stretch is a run of luck of the kind a 71-week window can produce, and the
+  strategies were correctly measured as market-average for the two years before it
+
+What the test does settle is that **every backtest in this project was computed on a sample
+containing that surge**, and that the pre-surge evidence is much weaker than any headline number
+suggests. The forward clocks starting on 2026-09-11 fall entirely after the break, so they will
+be measuring the post-break regime, whatever it turns out to be. That is worth stating before the
+first observation rather than after.
+
+No strategy was created, improved or promoted by this step. It explains the numbers already on
+the dashboard.
+
+References: `evidence/structural_break_v1/pre_break_performance.csv`, Step 261

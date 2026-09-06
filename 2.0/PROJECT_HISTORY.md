@@ -11762,3 +11762,47 @@ References:
 
 - `scripts/run_pead_sue_standalone_v1.py`, `evidence/pead_sue_standalone_v1/`
 - `evidence/point_in_time_fundamental_branches_v1/` (Step 201's feature panel)
+
+## Step 254 — S2 audited: the transcripts are real, and the coverage is not flat
+
+`defeatbeta-api` 0.0.60, Apache-2.0, installs and works. It queries a HuggingFace mirror of
+Yahoo data through DuckDB, and the data it returned was stamped 2026-09-06.
+
+The transcripts are better than expected in structure and worse than expected in reach.
+
+**Structure.** `get_transcript` returns a frame of `paragraph_number, speaker, content`. Apple's
+2026 Q3 call came back as 108 paragraphs with the speaker named on each. Speaker attribution
+matters more than it sounds: it makes management language separable from analyst questions,
+which is the distinction most of the literature on call text turns on. A `report_date` is
+supplied per transcript, so there is a causality anchor equivalent to a filing date.
+
+**Reach.** Coverage tracks company age and size rather than being uniform:
+
+| ticker | transcripts | earliest | latest |
+|---|---|---|---|
+| AAPL | 84 | 2005-10-13 | 2026-07-30 |
+| MU | 80 | 2005-12-26 | 2026-06-24 |
+| PLTR | 24 | 2020-11-16 | 2026-08-03 |
+| GTLB | 20 | 2021-12-06 | 2026-09-01 |
+| AGX | 14 | 2023-06-08 | 2026-09-02 |
+| **TXO** | **0** | -- | -- |
+
+That is the problem to name up front. A cross-sectional signal across 2,800 issuers built on a
+source whose coverage is proportional to size and age is a selection problem before it is a
+signal, and it would tilt any book toward large established names for reasons that have nothing
+to do with the signal. The 10-K branch does not have this defect: every filer files.
+
+**Feasibility.** Retrieval runs at roughly 0.6 to 1.4 seconds per transcript. Two thousand eight
+hundred issuers at about eighty quarters each is on the order of **87 hours** of serial calls,
+which is not a pull worth starting through the per-ticker API. Two viable paths exist -- query
+the underlying HuggingFace dataset in bulk rather than ticker by ticker, or declare a subset
+such as the largest 500 issuers over 40 quarters, roughly eight hours. **Neither was started.**
+This is an audit and it stops here deliberately: S1 is the same signal family on a source with
+complete coverage, and its result should decide whether a transcript pull is worth eight hours.
+
+Recorded with the Yahoo-mirror caveat that Steps 239 and 240 earned: a vendor panel is audited
+before use in this project, not after.
+
+References:
+
+- `evidence/defeatbeta_source_audit_v1/`

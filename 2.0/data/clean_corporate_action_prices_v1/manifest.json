@@ -1,0 +1,73 @@
+{
+  "artifact_sha256": {
+    "weekly_adjusted_prices_clean.csv.gz": "ef912abbd13dd0dc367dd27912b3960ad0ddc7c028590a47fe5ceefd78fd00e0",
+    "weekly_returns_clean.csv.gz": "89bbfc5e6010a04e570c7b6fc64e1ebdaea182440699544a94b59479009a4d19"
+  },
+  "created_at_utc": "2026-09-06T02:11:59.482778+00:00",
+  "experiment": "corporate_action_clean_prices_v1",
+  "live_trading_enabled": false,
+  "modifies_existing_panels": false,
+  "repairs": {
+    "after__equal_weight_cagr": 0.16090176101957643,
+    "after__equal_weight_recent_52w": 0.22285158070336486,
+    "after__infinite_returns": 0,
+    "after__returns_above_100pct": 124,
+    "after__worst_weekly_return": 4.647058823529412,
+    "before__equal_weight_cagr": 0.19347579895065192,
+    "before__equal_weight_recent_52w": 0.32374077842873206,
+    "before__infinite_returns": 0,
+    "before__returns_above_100pct": 210,
+    "before__worst_weekly_return": 29.375669192737746,
+    "cells_removed_total": 9039,
+    "input_cells": 623124,
+    "input_issuers": 3253,
+    "jump_ratio": 5.0,
+    "max_legitimate_jumps": 1,
+    "non_positive_cells_removed": 52,
+    "non_positive_issuers": [
+      "0001922446"
+    ],
+    "output_cells": 614085,
+    "output_issuers": 3246,
+    "price_floor": 1.0,
+    "quarantined_count": 7,
+    "quarantined_issuers": [
+      "0000827871",
+      "0001519061",
+      "0001620179",
+      "0001621227",
+      "0001655210",
+      "0001819404",
+      "0001828852"
+    ],
+    "share_of_cells_removed": 0.014506,
+    "single_jump_issuers_kept": [
+      "0000827187",
+      "0000908311",
+      "0000921299",
+      "0001069530",
+      "0001159167",
+      "0001346830",
+      "0001599298",
+      "0001604464",
+      "0001610682",
+      "0001643953",
+      "0001658551",
+      "0001662774",
+      "0001728117",
+      "0001819142",
+      "0001821586",
+      "0001825024",
+      "0001835856",
+      "0001885522",
+      "0001891101",
+      "0001901799",
+      "0001922446"
+    ],
+    "sub_floor_cells_removed": 7622,
+    "sub_floor_issuers_touched": 169
+  },
+  "source_prices": "data/sec_broad_panel_inputs_v3/weekly_adjusted_prices.csv.gz",
+  "source_sha256": "588e12dc99d105df87d392a5dc0ca69098ea0b78dede6c74c868e2a209289f1f",
+  "strategy_promotion_authorized": false
+}

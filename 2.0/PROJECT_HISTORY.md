@@ -10810,3 +10810,116 @@ References:
 
 - `scripts/audit_panel_return_artifacts_v1.py`, `evidence/panel_return_artifact_audit_v1/`
 - Step 222 (the benchmark-relative finding now in question)
+
+## Step 240 — Repairing the prices instead of filtering the returns, and an ordering bug that hid the worst defect
+
+`scripts/build_corporate_action_clean_prices_v1.py` fixes Step 239's defect where it lives.
+Filtering outlier returns at use time would have hidden the cause and silently changed the
+meaning of every artifact built on top, so the repair is applied to prices and written to a
+new file. No existing panel is modified.
+
+Three defects, three repairs:
+
+- **Non-positive prices.** 52 cells in one issuer, CIK 0001922446. A price of zero is not a
+  price and it produced the single infinite return in both panels. Set to missing.
+- **Sub-investable prices.** Below a dollar a quoted return is mostly tick quantization:
+  0001620179 goes 0.0003 to 0.0043 and reads as +1,333%. 7,622 cells across 169 issuers,
+  set to missing for the weeks they are below the floor, which removes the name from the
+  universe rather than inventing a return for it.
+- **Interleaved identities.** A genuine split moves a price once. CIK 0001655210 oscillates
+  between $0.55 and $17 for months -- 0.559, then 16.98, then 0.538, then 13.47. That is two
+  securities in one column and there is no way to know which weeks belong to which, so the
+  whole column is quarantined rather than patched. Seven issuers.
+
+An ordering bug in the first version is worth recording because it inverts the result.
+Applying the price floor before detecting jumps deletes the low side of an oscillating
+column, the jumps disappear, and a column that is two securities sails through looking
+clean. The first run quarantined **zero** issuers. Quarantine now runs first, on the prices
+as they arrived, and finds all seven.
+
+| | before | after |
+|---|---|---|
+| issuers | 3,253 | 3,246 |
+| worst weekly return | +2,938% | +465% |
+| returns above +100% | 210 | 124 |
+| equal-weight full CAGR | 19.35% | **16.09%** |
+| equal-weight recent 52w | 32.37% | **22.29%** |
+
+1.45% of cells removed. The remaining 124 large weeks survive the floor and are plausible
+single-name events rather than artifacts.
+
+References: `scripts/build_corporate_action_clean_prices_v1.py`, `data/clean_corporate_action_prices_v1/`
+
+## Step 241 — Correcting Step 238: the artifacts were sufficient and my rebuild was a week out
+
+Step 238 concluded that **no strategy displayed on the dashboard can be independently
+reproduced from the artifacts committed here**, on correlations of 0.001, -0.119 and -0.023
+between saved paths and from-definition rebuilds. That conclusion was wrong, and the error
+was mine.
+
+Sweeping the date-labelling offset as well as the execution offset finds the match
+immediately. Shifting the rebuilt series by one week takes the cash-conversion sleeve from
+-0.026 to **+0.904**. The two are different things and only one of them was swept: moving
+the execution date barely touches a book that rebalances fourteen times in 188 weeks, while
+relabelling the same weekly return with a different Friday moves the correlation by 0.93.
+
+`scripts/reproduce_dashboard_strategy_independently_v1.py` is now a real second
+implementation -- the simulation loop is written from the definition rather than reused from
+`sec_tournament_rehearsal` -- and it reports the whole alignment curve rather than a single
+number, because a harness that cannot distinguish "the artifacts are wrong" from "my
+alignment is wrong" is not a harness.
+
+| strategy | correlation | rebuilt CAGR | reference CAGR | reproduced |
+|---|---|---|---|---|
+| cash conversion breadth-20 sleeve | 0.904 | 21.67% | 22.61% | yes |
+| growth top five | 0.984 | 26.86% | 31.48% | yes |
+| sector ensemble stock leg | 0.747 | 14.15% | 42.74% | no |
+
+Two of three reproduce. The third is expected to fail as specified: its reference sits under
+a strategy-level allocator that the stock leg alone cannot reproduce, and that was written
+into the target's note before the run.
+
+Two things survive the correction and both matter. There is a genuine **one-week
+date-labelling discrepancy** between the saved paths and a from-definition rebuild, which
+means any comparison between two series produced by different code paths in this project may
+be a week out -- including the overlay that compares the cash-conversion sleeve's trailing
+eleven-week return against the leader's. And a reproduction at 0.90 with a 0.9-point CAGR
+gap is a match, not an identity; the residual is real and unexplained.
+
+References: `scripts/reproduce_dashboard_strategy_independently_v1.py`, `evidence/independent_reproduction_v1/`
+
+## Step 242 — Step 222 re-run: the direction holds, the magnitude does not
+
+With both legs priced from one file, on one convention, over one window:
+
+| prices | strategy CAGR | universe CAGR | gap | recent 52w strategy | recent 52w universe | P(strategy wins) |
+|---|---|---|---|---|---|---|
+| repaired | 20.78% | 21.87% | **-1.09pp** | +51.14% | +40.24% | 0.251 |
+| unrepaired | 20.78% | 22.62% | -1.83pp | +51.14% | +41.53% | 0.218 |
+
+Three readings, in order of importance.
+
+**Step 222's direction survives.** The control book does underperform an equal weight of the
+479-name universe it selects from. My Step 239 remark that a direct recomputation gave the
+opposite sign was itself wrong -- that calculation did not match conventions between the two
+legs, and this one does. Recorded as a correction.
+
+**Step 222's magnitude does not survive.** Step 222 reported 17.72% against 26.55%, a gap of
+8.83 points. Measured with matched conventions the gap is **1.09 points**, an eighth of it.
+Of the difference between the repaired and unrepaired runs, 0.74 points is the corporate
+action artifacts, exactly the direction Step 239 predicted: the contamination sat on the
+benchmark side and inflated it.
+
+**Neither version is statistically established.** A thirteen-week block bootstrap puts the
+probability that the strategy beats its universe at **0.251** on repaired prices. That is a
+lean toward underperformance, not a finding. And over the recent 52 weeks the strategy is
+ahead by eleven points.
+
+The practical consequence is for `FORWARD_CLOCK_DECISION_V1.md`, which describes the
+composite as "four fifths a leg that underperforms" and treats that as established. It is
+not established. It is a one-point lean at 75% confidence on a 3.6-year single-regime window,
+with the benchmark side of the original measurement now known to have been inflated. The
+decision to start the clock is unchanged -- it never rested on the control leg being good --
+but the memo overstates the case against it and should be read with this attached.
+
+References: `scripts/rerun_control_leg_vs_universe_v1.py`, `evidence/control_leg_vs_universe_rerun_v1/`

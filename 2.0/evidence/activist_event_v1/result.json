@@ -1,0 +1,165 @@
+{
+  "bonferroni_threshold": 0.00833,
+  "by_form": {
+    "SC 13D": 3241,
+    "SC 13G": 35608
+  },
+  "declared_trials": 6,
+  "events_parsed": 170045,
+  "experiment": "activist_event_v1",
+  "live_trading_enabled": false,
+  "queue_item": "A4",
+  "rows": [
+    {
+      "bootstrap_p": 0.118,
+      "clears_bonferroni": false,
+      "events": 1473,
+      "form": "SC 13D",
+      "horizon_weeks": 1,
+      "mean_abnormal_return": 0.0029294239305337486,
+      "median_abnormal_return": -0.0008684067118337468,
+      "months": 84,
+      "share_positive": 0.48404616429056346,
+      "window": "select"
+    },
+    {
+      "bootstrap_p": 0.1232,
+      "clears_bonferroni": false,
+      "events": 1613,
+      "form": "SC 13D",
+      "horizon_weeks": 1,
+      "mean_abnormal_return": -0.003983112149071784,
+      "median_abnormal_return": -0.004851534145421832,
+      "months": 80,
+      "share_positive": 0.46931184128952264,
+      "window": "evaluate"
+    },
+    {
+      "bootstrap_p": 0.838,
+      "clears_bonferroni": false,
+      "events": 14107,
+      "form": "SC 13G",
+      "horizon_weeks": 1,
+      "mean_abnormal_return": 6.92058428198988e-05,
+      "median_abnormal_return": -0.0016958251204186592,
+      "months": 84,
+      "share_positive": 0.47522506557028427,
+      "window": "select"
+    },
+    {
+      "bootstrap_p": 0.9856,
+      "clears_bonferroni": false,
+      "events": 20437,
+      "form": "SC 13G",
+      "horizon_weeks": 1,
+      "mean_abnormal_return": -4.814528835062797e-05,
+      "median_abnormal_return": -0.0022451266344583054,
+      "months": 80,
+      "share_positive": 0.47780985467534376,
+      "window": "evaluate"
+    },
+    {
+      "bootstrap_p": 0.5928,
+      "clears_bonferroni": false,
+      "events": 1472,
+      "form": "SC 13D",
+      "horizon_weeks": 4,
+      "mean_abnormal_return": 0.0019184156236328551,
+      "median_abnormal_return": -0.004947149967296172,
+      "months": 84,
+      "share_positive": 0.4741847826086957,
+      "window": "select"
+    },
+    {
+      "bootstrap_p": 0.6192,
+      "clears_bonferroni": false,
+      "events": 1590,
+      "form": "SC 13D",
+      "horizon_weeks": 4,
+      "mean_abnormal_return": -0.002702908417786601,
+      "median_abnormal_return": -0.012514593162212373,
+      "months": 80,
+      "share_positive": 0.45031446540880504,
+      "window": "evaluate"
+    },
+    {
+      "bootstrap_p": 0.4644,
+      "clears_bonferroni": false,
+      "events": 14100,
+      "form": "SC 13G",
+      "horizon_weeks": 4,
+      "mean_abnormal_return": 0.0011032455869398796,
+      "median_abnormal_return": -0.0039783715836484435,
+      "months": 84,
+      "share_positive": 0.4735460992907801,
+      "window": "select"
+    },
+    {
+      "bootstrap_p": 0.7836,
+      "clears_bonferroni": false,
+      "events": 19900,
+      "form": "SC 13G",
+      "horizon_weeks": 4,
+      "mean_abnormal_return": -0.000867736330010892,
+      "median_abnormal_return": -0.009578858549135871,
+      "months": 80,
+      "share_positive": 0.4617085427135678,
+      "window": "evaluate"
+    },
+    {
+      "bootstrap_p": 0.5976,
+      "clears_bonferroni": false,
+      "events": 1466,
+      "form": "SC 13D",
+      "horizon_weeks": 13,
+      "mean_abnormal_return": -0.003924259480309048,
+      "median_abnormal_return": -0.02334634561894644,
+      "months": 84,
+      "share_positive": 0.4481582537517053,
+      "window": "select"
+    },
+    {
+      "bootstrap_p": 0.0164,
+      "clears_bonferroni": false,
+      "events": 1558,
+      "form": "SC 13D",
+      "horizon_weeks": 13,
+      "mean_abnormal_return": -0.02126170535936455,
+      "median_abnormal_return": -0.04649181284093856,
+      "months": 78,
+      "share_positive": 0.4165596919127086,
+      "window": "evaluate"
+    },
+    {
+      "bootstrap_p": 0.1988,
+      "clears_bonferroni": false,
+      "events": 14082,
+      "form": "SC 13G",
+      "horizon_weeks": 13,
+      "mean_abnormal_return": 0.003219693130639419,
+      "median_abnormal_return": -0.008371955233807848,
+      "months": 84,
+      "share_positive": 0.47450646215026276,
+      "window": "select"
+    },
+    {
+      "bootstrap_p": 0.7976,
+      "clears_bonferroni": false,
+      "events": 19247,
+      "form": "SC 13G",
+      "horizon_weeks": 13,
+      "mean_abnormal_return": -0.002160109033877635,
+      "median_abnormal_return": -0.018918578291753363,
+      "months": 78,
+      "share_positive": 0.4554995583727334,
+      "window": "evaluate"
+    }
+  ],
+  "strategy_promotion_authorized": false,
+  "subject_events_in_panel": 38849,
+  "verdict": "neither 13D nor 13G clears in either window. A4 closes. Thirteen families, and the event shape fails too.",
+  "window": [
+    "2013-01-02",
+    "2026-09-04"
+  ]
+}

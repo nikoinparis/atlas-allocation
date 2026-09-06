@@ -12058,3 +12058,65 @@ correlated one.
 Recorded in the queue as reopened-as-forward rather than closed.
 
 References: `config/forward/sue_quarterly_forward_v1.json`, Steps 253 and 256
+
+## Step 260 — A4 closed: the event shape fails too, and EDGAR renamed the form mid-sample
+
+Queue item A4, and the first non-earnings **event** signal this project has tested. Twelve
+families had closed since Step 244 and eleven of them were continuous cross-sectional scores --
+one failure repeated rather than twelve independent ones -- so the point of A4 was to test a
+different shape, not a different input.
+
+### The identity trick that made it cheap
+
+Each Schedule 13D is indexed twice, once under the filer's CIK and once under the subject
+company's, with the same accession. Verified on accession `0001839882-24-000053` -- indexed under
+both 127 Capital (filer) and Rimini Street (subject) -- **before** the registry was written.
+Matching index CIKs against the roster therefore isolates subject-company rows with no header
+fetching and no name matching, avoiding about three hours of requests and a name join of the kind
+Steps 210 and 211 taught this project to distrust.
+
+### The bug that would have truncated the answer
+
+The first parse found **zero events after 2024-12-17** and reported a clean-looking table anyway.
+EDGAR relabelled these forms around 2025: `SC 13D` became `SCHEDULE 13D`. In 2026Q2 the index
+carries 572 `SCHEDULE 13D` and 2,116 `SCHEDULE 13D/A` against 19 rows under the old label. The
+regex matched only the old one, so the evaluation window lost nearly two years -- including the
+most recent period -- **without erroring**.
+
+Same class of failure as the 13F URL rename in Step 258, caught the same way: by checking whether
+the parsed data looked like the raw data rather than trusting the parse. Fixed to accept both
+labels, which took the sample from 30,784 to **38,849 subject events** and extended the window
+from 2024-12-17 to 2026-09-04.
+
+### The result
+
+38,849 subject events -- 3,241 13D and 35,608 13G -- across 2013-01-02 to 2026-09-04. Abnormal
+return is the subject's return minus its own sector's, bootstrapped with clustering by filing
+month because activist filings arrive in waves.
+
+| form | window | horizon | events | mean abnormal | share positive | p |
+|---|---|---|---|---|---|---|
+| 13D | select | 1w | 1,473 | +0.29% | 48.4% | 0.118 |
+| 13D | evaluate | 1w | 1,613 | -0.40% | 46.9% | 0.123 |
+| 13D | select | 13w | 1,466 | -0.39% | 44.8% | 0.598 |
+| **13D** | **evaluate** | **13w** | 1,558 | **-2.13%** | 41.7% | **0.016** |
+| 13G | evaluate | 1w | 20,437 | -0.00% | 47.8% | 0.986 |
+| 13G | evaluate | 13w | 19,247 | -0.22% | 45.6% | 0.798 |
+
+**Nothing clears the Bonferroni threshold of 0.00833 in either window, for either form.** The
+strongest reading in the table is 13D at thirteen weeks recently, at -2.13% and p = 0.016 -- and
+it points the *opposite* way to the declared positive sign, so under the pre-declared rules it is
+a failed replication rather than a discovery, and it does not clear correction in any case.
+
+The 13G control behaves exactly as a null should: flat everywhere, at 20,000 events. That is
+worth stating because it means the pipeline can measure something when something is there -- the
+absence in the 13D rows is an absence, not a broken measurement.
+
+A4 closes. **Thirteen families since Step 244, and the event shape fails alongside the score
+shape.** The published 13D announcement effect does not survive on this universe with a
+sector-matched benchmark, in either half of the sample.
+
+References:
+
+- `config/activist_event_registry_v1.json`, `scripts/acquire_edgar_form_index_v1.py`,
+  `scripts/run_activist_event_study_v1.py`, `evidence/activist_event_v1/`

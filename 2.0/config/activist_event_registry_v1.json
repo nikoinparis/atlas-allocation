@@ -1,0 +1,46 @@
+{
+  "experiment": "activist_event_v1",
+  "declared_at_utc": "2026-09-06T00:00:00Z",
+  "queue_item": "A4",
+  "question": "Do Schedule 13D filings -- someone crossing 5% ownership with intent to influence -- predict the subject company's subsequent returns?",
+  "why_this_shape_and_not_another_score": "Twelve families have closed since Step 244 and eleven were continuous cross-sectional scores: a number every stock carries every week. That is not twelve unrelated failures, it is one failure repeated. A 13D is a discrete EVENT with a filing date, and events fail for different reasons than scores do. This is the first non-earnings event signal this project has tested.",
+  "hypothesis_from_literature": "Brav, Jiang, Partnoy and Thomas find abnormal returns of roughly 7% around 13D announcements, persisting rather than reversing. The declared sign is POSITIVE. A negative result is a failed replication, not a discovery.",
+  "the_control_that_makes_this_worth_running": {
+    "design": "Schedule 13G is the same 5% threshold filed by PASSIVE holders with no intent to influence. Same disclosure, same threshold, same filing mechanics, different intent.",
+    "why_it_matters": "If the effect is about activism, 13D shows it and 13G does not. If both show it, the signal is 'a large holder appeared', which is an attention or liquidity effect rather than an activism effect. If neither shows it, the family closes cleanly. This is a far stronger control than a random-signal placebo because it holds the filing mechanics fixed."
+  },
+  "data": {
+    "source": "SEC EDGAR quarterly form indexes, https://www.sec.gov/Archives/edgar/full-index/YYYY/QTRn/form.idx",
+    "coverage": "2013Q1 to 2026Q3, matching the clean price panel",
+    "cost": "free, roughly 1 MB per quarter",
+    "identity": "verified before writing this: each 13D is indexed TWICE, once under the filer's CIK and once under the subject company's CIK, with the same accession. Matching index CIKs against the panel roster therefore isolates subject-company rows with no header fetching and no name matching. Confirmed on accession 0001839882-24-000053, indexed under both 127 Capital (filer) and Rimini Street (subject).",
+    "why_that_matters": "the alternative was fetching 52,000 filing headers to find the subject company, about three hours of requests, and a name join of the kind that Steps 210-211 taught this project to distrust"
+  },
+  "causality": "the filing date in the index is the point-in-time anchor; returns are measured strictly after it",
+  "design": {
+    "event_windows_weeks": [1, 4, 13],
+    "abnormal_return": "subject return minus the equal-weight return of its own sector over the same window",
+    "forms": {"treatment": "SC 13D", "control": "SC 13G"},
+    "amendments_excluded": "SC 13D/A and SC 13G/A are excluded; an amendment is not a new event",
+    "selection_window": ["2013-01-01", "2019-12-31"],
+    "evaluation_window": ["2020-01-01", "2026-09-04"],
+    "declared_trials": 6,
+    "bonferroni_threshold": 0.00833,
+    "statistics": "event cohorts, not weekly cross-sectional ICs. Mean abnormal return per event with a bootstrap over events, clustered by filing month because activist filings cluster in time."
+  },
+  "interpretation_fixed_in_advance": {
+    "if_13d_clears_and_13g_does_not_in_both_windows": "an activism effect, the first event signal and the first genuinely different shape to survive here; it still enters at the bottom of the gate list",
+    "if_both_13d_and_13g_clear": "not activism. A large holder appearing is an attention or liquidity effect, and it should be labelled that way rather than sold as an activist signal",
+    "if_13d_clears_only_in_selection": "in-sample; record and close",
+    "if_neither_clears": "A4 closes. Thirteen families, and the event shape fails too.",
+    "always": "an abnormal return around an event is not a strategy. The events are few and lumpy, so any survivor needs a tradeable book, a capacity estimate and costs before it means anything."
+  },
+  "known_limitations_declared_up_front": [
+    "13D events are few relative to a 2,800-name universe, so a book built on them is concentrated and lumpy by construction",
+    "the filing deadline is short but not instantaneous, so some of the move may precede the filing and be unavailable",
+    "the subject company must be in the price panel to be measured, which excludes the smallest targets"
+  ],
+  "cumulative_trial_warning": "These 6 stack on every configuration searched across 259 recorded steps.",
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

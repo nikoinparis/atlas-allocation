@@ -75,9 +75,13 @@ adds 0.021 of Sharpe, because its own Sharpe is 0.568. `IR = IC x sqrt(BR)` is a
 breadth bought with an unskilled leg pays for itself in lost IC.
 **Screening what is already on disk is finished** (Step 277): 691 saved paths, one distinct
 object clears both gates, and it is a sector ETF.
-**What is already known not to work:** continuous cross-sectional scores over US equity have
-failed twelve times running (see Closed). The shape that has never been properly tested here is
-a signal whose *input* is neither a price nor a reported financial ratio.
+**What is already known not to work, now in two directions:** continuous cross-sectional scores
+over US equity have failed twelve times running, AND adding a different *asset class* does not
+help, because every liquid domain measured here collapses to a handful of effective bets —
+multi-asset ETFs 4.16 of 35 (Step 246), crypto 3.09 of 20 (Step 285), SEC equity books 5-7 of
+10-28 (Step 245). **A third source has to be a different information channel with skill of its
+own, not a different pile of correlated prices.** That rules out the remaining asset-class
+ideas and leaves the information-channel ones.
 
 ### S3. Regenerate the valuation score panel each quarter *(new 2026-09-06)*
 **Status:** operational, not research, and it will silently break the clock if missed.
@@ -269,3 +273,4 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 | **Breadth repair by construction (was A2)** | **Closed as noise.** Five constructions on two books attacking 61-71% persistence and 5-7 effective names. One of eight raised breadth and Sharpe together (de-persistence on cash conversion, bets 8.6->15.6, Sharpe 0.878->1.007) and the same intervention *lowered* Sharpe on valuation. Paired block bootstrap p=0.632 and p=0.426 against a Bonferroni bar of 0.0063; the two books move opposite directions by -2.07% and +2.05%. **Kept:** sector caps *reduce* effective independent names on both books (7.39->4.30, 6.39->3.99), so these books are not concentrated because they are sector-concentrated -- the premise of the intervention is backwards. | Step 279 |
 | **Valuation panel quarterly refresh (was S3)** | **Done and defect fixed.** The builder loaded a stale checkpoint, passed ten validation checks, and re-emitted the same fourteen quarters. Guarded on membership vintage; panel now runs to 2026-07-01. | Step 278 |
 | **FINRA daily short-sale volume (was S2a)** | **Closed on all three gates.** Pre-registered before download; 922 trading days, 487 issuers x 192 weeks. IC **+0.00383** (t=0.82, p=0.396) against a declared NEGATIVE sign — refuted. Declared book -28.07% CAGR at 50bps and -14.36% at 0bps, so wrong-signed rather than cost-killed. The reverse side returns 25.86% at Sharpe 1.178 and **does not rescue it**: the sign was declared, the IC behind it is insignificant, and it correlates **+0.886 with an equal weighting of its own universe** — market beta with a tilt. Distinct from Step 263's short *interest*. | Step 282 |
+| **Crypto as a third asset class (new 2026-09-07)** | **Closed on both gates, both configurations.** Equal-weight 20 coins: Sharpe 0.238, corr +0.332 to valuation. Momentum top-5: Sharpe 0.374, corr +0.300. Momentum doubles return and does not move Sharpe because it buys it with vol (71.9% vs 62.3%). **Effective independent coins 3.09 of 20** — crypto's cross-section has no more breadth than the multi-asset ETF universe did (4.16 of 35). Test was survivorship-biased *in crypto's favour* and still failed. | Step 285 |

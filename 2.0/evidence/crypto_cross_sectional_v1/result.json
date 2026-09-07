@@ -1,0 +1,61 @@
+{
+  "breadth": 5,
+  "configurations_declared": 2,
+  "configurations_passing_both_gates": [],
+  "cost_bps": 50.0,
+  "effective_independent_coins": 3.094797120414831,
+  "live_trading_enabled": false,
+  "lookback_weeks": 12,
+  "mean_pairwise_correlation": 0.5263649550654116,
+  "results": {
+    "baseline_equal_weight": {
+      "both_gates": false,
+      "cagr": 0.14816561717667254,
+      "correlation_vs_growth": 0.027658440065972265,
+      "correlation_vs_valuation": 0.33204662986852734,
+      "gate_1_orthogonality": false,
+      "gate_2_standalone_skill": false,
+      "max_drawdown": -0.7123832998931714,
+      "sharpe": 0.237806254790407,
+      "volatility": 0.6230518087392606,
+      "weeks": 188
+    },
+    "momentum_top5": {
+      "both_gates": false,
+      "cagr": 0.26902752189680457,
+      "correlation_vs_growth": 0.03843264202698643,
+      "correlation_vs_valuation": 0.3000898813981934,
+      "gate_1_orthogonality": false,
+      "gate_2_standalone_skill": false,
+      "max_drawdown": -0.7543538745245721,
+      "sharpe": 0.3741494980075826,
+      "volatility": 0.7190375059419494,
+      "weeks": 188
+    }
+  },
+  "strategy_promotion_authorized": false,
+  "survivorship_contaminated": true,
+  "survivorship_note": "Universe is twenty coins alive today, tested backward. Dead coins are absent. The bias runs upward, so a negative result is trustworthy and a positive one is not established.",
+  "universe": [
+    "BTC-USD",
+    "ETH-USD",
+    "SOL-USD",
+    "XRP-USD",
+    "ADA-USD",
+    "AVAX-USD",
+    "LINK-USD",
+    "DOT-USD",
+    "LTC-USD",
+    "BCH-USD",
+    "DOGE-USD",
+    "TRX-USD",
+    "XLM-USD",
+    "ATOM-USD",
+    "ETC-USD",
+    "XMR-USD",
+    "ALGO-USD",
+    "VET-USD",
+    "FIL-USD",
+    "HBAR-USD"
+  ]
+}

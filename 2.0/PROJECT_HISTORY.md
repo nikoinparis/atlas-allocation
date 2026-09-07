@@ -13477,3 +13477,56 @@ that did not start.
 Also removed two tracked zero-byte files at the repository root, `-d` and
 `2026-09-04T20:57:03`, which are a shell invocation from 2026-09-04 that captured a flag
 and a timestamp as filenames and committed them.
+
+## Step 285 — 2026-09-07 — Crypto closed, and a pattern across three domains becomes visible
+
+**What this accomplished: it closed the largest free domain change available, and it
+turned three separate findings into one explanation.**
+
+The owner's reasoning for continuing to search is sound and worth restating, because it is
+correct: 1.0 produced a mediocre strategy on ETFs, 2.0 produced a better one on SEC single
+names, and the step between them was a change of **data domain**, not a better signal.
+Every one of the twelve families closed since has been a new signal on the same domain.
+Crypto is the largest domain change still obtainable for free.
+
+Two configurations declared before running, gates from Step 277 — correlation below 0.30
+against both legs AND standalone Sharpe at or above 1.0, both required.
+
+| configuration | CAGR | Sharpe | vol | maxDD | vs valuation | vs growth | gates |
+|---|---|---|---|---|---|---|---|
+| equal-weight, 20 coins | 14.82% | **0.238** | 62.3% | -71.24% | **+0.332** | +0.028 | FAIL / FAIL |
+| momentum top 5 of 20, 12w | 26.90% | **0.374** | 71.9% | -75.44% | **+0.300** | +0.038 | FAIL / FAIL |
+
+Momentum roughly doubles the return and does not move the Sharpe, because it buys the
+return with volatility: 71.9% against 62.3%. Neither configuration is orthogonal enough
+either — both sit at or above 0.30 against the valuation book.
+
+**And the test was biased in crypto's favour.** The universe is twenty coins alive today,
+tested backward; coins that died are absent entirely. That is the present-day ticker list
+filtered backward that CLAUDE.md rule 4 forbids, it is not fixable with free data, and it
+runs upward. The asymmetry was declared in the script before the numbers existed: a
+negative result here is trustworthy, a positive one would only have been "not established".
+The result is negative, so it stands.
+
+**The structural finding is the important one.** Effective independent coins: **3.09 of
+20**, mean pairwise correlation **+0.526**. Put beside the other two domains this project
+has measured:
+
+| domain | nominal | effective independent |
+|---|---|---|
+| multi-asset ETFs (Step 246) | 35 | **4.16** |
+| crypto (this step) | 20 | **3.09** |
+| SEC equity books (Step 245) | 10-28 held | **5-7** |
+
+Three domains, three measurements, one answer: everything liquid and free collapses to a
+handful of effective bets. This is not three coincidences. Liquid assets share macro
+factors, and buying more names inside any one of them does not buy independence. It is the
+same result Step 277 reached from the other direction when XLE supplied real breadth and
+bought 0.021 of Sharpe.
+
+**What this implies for the search, stated plainly.** The remaining free candidates that
+are *asset classes* are very unlikely to work, because the failure is a property of liquid
+asset classes rather than of any particular one. A third source, if it exists, has to be a
+different **information channel with skill of its own** rather than a different pile of
+correlated prices. That is a narrower and more honest target than "there must be something
+out there", and it is still not nothing.

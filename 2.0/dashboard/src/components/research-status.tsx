@@ -23,6 +23,14 @@ type Candidate = {
   blendedWithGrowth: Record<string, string | number>;
   measuredIn: string;
 };
+type DistinctCount = {
+  displayed: number; distinct: number; finding: string; whyItMatters: string; measuredIn: string;
+};
+type Reproducibility = {
+  asOf: string; savedBook: string; reproducesFromSavedBook: string;
+  reproducesFromPublishedHoldings: string; frozenManifest: string;
+  note: string; harness: string; documentation: string;
+};
 type BeforeAfter = { strategy: string; window: string; weeks: number; cagr: number; sharpe: number; maxDrawdown: number };
 
 type ResearchStatus = {
@@ -44,6 +52,8 @@ type ResearchStatus = {
     plainEnglish: string;
   };
   candidate: Candidate;
+  distinctStrategyCount: DistinctCount;
+  reproducibility: Reproducibility;
   structuralBreak: { date: string; note: string; beforeAfter: BeforeAfter[]; measuredIn: string };
   clocks: Clock[];
   pending: Pending[];
@@ -117,6 +127,31 @@ export function ResearchStatus() {
           </p>
         </div>
       </div>
+
+      <h3>How many strategies are actually here</h3>
+      <div className="callout">
+        <div>
+          <strong>
+            {data.distinctStrategyCount.displayed} displayed,{" "}
+            {data.distinctStrategyCount.distinct} distinct
+          </strong>
+          <p>{data.distinctStrategyCount.finding}</p>
+          <p><em>{data.distinctStrategyCount.whyItMatters}</em></p>
+        </div>
+      </div>
+
+      <h3>Can they be rebuilt?</h3>
+      <table className="data-table">
+        <tbody>
+          <tr><td>saved book</td><td className="mono">{data.reproducibility.savedBook}</td></tr>
+          <tr><td>reproduces from saved book</td>
+              <td className="mono">{data.reproducibility.reproducesFromSavedBook}</td></tr>
+          <tr><td>reproduces from published holdings</td>
+              <td className="mono">{data.reproducibility.reproducesFromPublishedHoldings}</td></tr>
+          <tr><td>frozen manifest</td><td className="mono">{data.reproducibility.frozenManifest}</td></tr>
+        </tbody>
+      </table>
+      <p>{data.reproducibility.note} See <code>{data.reproducibility.documentation}</code>.</p>
 
       <h3>Research candidate</h3>
       <div className="callout">

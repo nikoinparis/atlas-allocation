@@ -13420,3 +13420,36 @@ passed neither when both were required at once, on a sign fixed in advance.
 and exited non-zero. All 37 are US market holidays — MLK, Presidents, Good Friday,
 Memorial, Juneteenth, July 4, Labor, Thanksgiving, Christmas, New Year. Reclassified; the
 run now reports 922 files, 0 failures, 37 days with no file published.
+
+## Step 283 — 2026-09-06 — Pre-flighted Friday's clock start, and put the duplication on the dashboard
+
+**What this accomplished: it removed the risk of losing an unbackfillable week, and it
+made the dashboard state a finding against itself.**
+
+**The pre-flight.** Six clocks start on 2026-09-11 and every protocol says a missed week
+cannot be backfilled. Between 2026-09-05 and today this repository changed code that runs
+inside that sequence — the composite builder now saves a dated book, the valuation panel
+gained a quarter, one recorder was written that did not exist, and a derived blend recorder
+was added — and none of it had ever been executed as one sequence.
+
+`scripts/preflight_forward_clock_v1.py` checks everything checkable while the window is
+still shut: every script imports, every protocol parses and forbids execution, every log
+is empty and hash-verifiable, every panel reaches 2026-09-04, the composite book builds and
+sums to one, and the blend recorder is a clean no-op rather than an error. **30 of 30
+checks pass.**
+
+Two results worth naming. The valuation book now resolves to the **2026-07-01 block at 72
+days old**, against 163 before the panel was repaired in Step 278 — so the book will
+actually rebalance on Friday rather than holding an April selection for a year. And all
+twenty of its names are priced at the decision, which is the defect the Step 276 rehearsal
+caught when it was eighteen of twenty.
+
+**The dashboard now states its own duplication.** The research page carries a
+`6 displayed, 4 distinct` section explaining that the Sector-Aware Signal Ensemble is its
+predecessor in 165 of 188 weeks and that its 1.35x form is the same book again, and a
+reproducibility table showing 6 of 6 with a saved book and a frozen manifest, 5 of 6
+reproducing from that book, 6 of 6 from published holdings.
+
+Nothing was removed. A negative result is a record, and deleting the strategy would destroy
+the evidence that produced the finding — CLAUDE.md rule 9. Labelling it is the correction;
+deletion would have been a second error.

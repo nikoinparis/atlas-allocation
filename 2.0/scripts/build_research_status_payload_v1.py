@@ -150,6 +150,35 @@ def main() -> int:
             "beforeAfter": before_after(),
             "measuredIn": "Steps 261 and 262",
         },
+        "distinctStrategyCount": {
+            "displayed": 6,
+            "distinct": 4,
+            "finding": (
+                "The dashboard displays six strategies. Step 281 established that two of them "
+                "are one object: the Sector-Aware Signal Ensemble's published path is identical "
+                "to its own predecessor in 165 of 188 weeks and totals 261.99% against that "
+                "path's 259.99%, so the sector-aware overlay is worth about 0.08 points a year "
+                "on a 42.74% CAGR. Its 1.35x form is the same book again at higher leverage."),
+            "whyItMatters": (
+                "Counting them separately overstates how many independent bets this project "
+                "holds, which is the illusion Step 245 measured as an effective 1.15 strategies "
+                "and Step 277 restated as breadth without skill. Nothing has been removed: a "
+                "negative result is a record, not a mistake to delete."),
+            "measuredIn": "Step 281",
+        },
+        "reproducibility": {
+            "asOf": "2026-09-06",
+            "savedBook": "6 of 6",
+            "reproducesFromSavedBook": "5 of 6",
+            "reproducesFromPublishedHoldings": "6 of 6",
+            "frozenManifest": "6 of 6",
+            "note": (
+                "Every dashboard strategy can now be rebuilt and repriced. The one that does "
+                "not reproduce from a long-form book is the ETF 60/40, whose book is a wide "
+                "date-by-symbol matrix; its published holdings reprice at +0.988."),
+            "harness": "scripts/audit_dashboard_reproducibility_v1.py",
+            "documentation": "docs/STRATEGY_REPRODUCTION_V1.md",
+        },
         "candidate": {
             "name": "Valuation, earnings yield, breadth 20",
             "status": "candidate on a forward clock — no forward evidence yet",

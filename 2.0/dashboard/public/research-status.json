@@ -132,6 +132,15 @@
       "requiredWeeks": 52,
       "savedDecisions": 0,
       "weekly": []
+    },
+    {
+      "cumulativeReturn": null,
+      "observedWeeks": 0,
+      "promotionAuthorized": false,
+      "protocol": "valuation_growth_5050_blend_v1",
+      "requiredWeeks": 52,
+      "savedDecisions": 0,
+      "weekly": []
     }
   ],
   "closedFamilies": [
@@ -221,9 +230,16 @@
       "verdict": "38,849 events; nothing clears, and the 13G control is flat"
     }
   ],
-  "generatedAtUtc": "2026-09-07T01:17:23.319171+00:00",
+  "distinctStrategyCount": {
+    "displayed": 6,
+    "distinct": 4,
+    "finding": "The dashboard displays six strategies. Step 281 established that two of them are one object: the Sector-Aware Signal Ensemble's published path is identical to its own predecessor in 165 of 188 weeks and totals 261.99% against that path's 259.99%, so the sector-aware overlay is worth about 0.08 points a year on a 42.74% CAGR. Its 1.35x form is the same book again at higher leverage.",
+    "measuredIn": "Step 281",
+    "whyItMatters": "Counting them separately overstates how many independent bets this project holds, which is the illusion Step 245 measured as an effective 1.15 strategies and Step 277 restated as breadth without skill. Nothing has been removed: a negative result is a record, not a mistake to delete."
+  },
+  "generatedAtUtc": "2026-09-07T06:58:51.243568+00:00",
   "headline": {
-    "clocksPending": 4,
+    "clocksPending": 5,
     "clocksRunning": 4,
     "closedFamilies": 17,
     "totalUntouchedWeeks": 12,
@@ -254,9 +270,25 @@
       "modifies": "nothing",
       "protocol": "valuation_earnings_yield_forward_v1",
       "purpose": "Step 274 revived the valuation family by widening the book that originally failed a concentration gate. It is the first candidate in this project to pass a gate it previously failed, and the only one whose correlation against every existing strategy is near zero. Historical evidence is where every candidate here has died, so this goes on a clock rather than into the dashboard."
+    },
+    {
+      "firstDecision": "2026-09-11",
+      "modifies": "nothing",
+      "protocol": "valuation_growth_5050_blend_forward_v1",
+      "purpose": "Step 275 found that blending the revived valuation book with any of the three unlevered dashboard strategies beat both components on Sharpe in nine of nine weight combinations, because the correlation between them is near zero. That result was produced by nine undeclared weights on a window already searched to death, so it is not evidence. This freezes one weight before any forward data exists, so that the forward record can be evidence."
     }
   ],
   "readMe": "Forward returns are realised weekly numbers read from hash-chained logs. A clock completing does not authorise promotion; it triggers a separately predeclared statistical review. No strategy here has ever traded.",
+  "reproducibility": {
+    "asOf": "2026-09-06",
+    "documentation": "docs/STRATEGY_REPRODUCTION_V1.md",
+    "frozenManifest": "6 of 6",
+    "harness": "scripts/audit_dashboard_reproducibility_v1.py",
+    "note": "Every dashboard strategy can now be rebuilt and repriced. The one that does not reproduce from a long-form book is the ETF 60/40, whose book is a wide date-by-symbol matrix; its published holdings reprice at +0.988.",
+    "reproducesFromPublishedHoldings": "6 of 6",
+    "reproducesFromSavedBook": "5 of 6",
+    "savedBook": "6 of 6"
+  },
   "structuralBreak": {
     "beforeAfter": [
       {

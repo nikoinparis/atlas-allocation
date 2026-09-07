@@ -1,32 +1,71 @@
 {
-  "schema_version": 1,
-  "experiment": "valuation_out_of_sample_v1",
-  "registered_at_utc": "2026-09-07T00:00:00Z",
-  "registered_before_any_result_existed": true,
-
-  "why_this_exists": "Every fundamental panel in this project begins 2023-01-01, so every strategy on the dashboard was selected on 2023-2026 and not one has ever been evaluated on a period it was not chosen on. That is a data limit rather than a decision, and it is the single largest unaddressed weakness in 286 steps of work. Step 286 showed the fix is cheap when the method forces it: a long warmup buys an out-of-sample window at no cost in selection.",
-
-  "what_is_being_tested": "The earnings-yield valuation book, rebuilt from SEC Financial Statement Data Sets for 2012-2022 using the same construction that was frozen for the forward clock: breadth 20, equal weight, quarterly, 50bps, ranked on earnings yield.",
-  "why_this_signal_and_not_the_others": "It is the one that goes on a forward clock on 2026-09-11 and it is the growth-uncorrelated half of the frozen 50/50 blend. Rebuilding all dashboard signals to 2012 means redoing survivorship-safe universe construction for eleven extra years; rebuilding one is tractable, and this is the one whose answer changes what happens on Friday.",
-
-  "the_construction_is_fixed_in_advance": "Breadth 20, equal weight, quarterly rebalance executed at the first weekly close strictly after the decision, 50bps on turnover, earnings yield ranked cross-sectionally. These are the frozen values from config/forward/valuation_earnings_yield_forward_v1.json and NONE of them will be varied. If the out-of-sample result is poor, the finding is that the in-sample result was selection, not that a different breadth should be tried.",
-
+  "approved_for_live_trading": false,
   "declared_outcomes": {
-    "supports_the_book": "positive excess over an equal weighting of its own scored universe in 2012-2022, in the same direction as the 2023-2026 result",
+    "inconclusive": "coverage too thin to build at least 24 quarterly decisions with 20 priceable names each",
     "refutes_the_book": "excess at or below zero over 2012-2022, which would mean the +14.5 and +10.7 point excesses measured in-sample are a property of the selection window rather than of earnings yield",
-    "inconclusive": "coverage too thin to build at least 24 quarterly decisions with 20 priceable names each"
+    "supports_the_book": "positive excess over an equal weighting of its own scored universe in 2012-2022, in the same direction as the 2023-2026 result"
   },
-  "no_gate_is_being_applied_here": "This is a validation, not a candidate search. There is nothing to pass or fail beyond the declared outcomes above, and no version of this experiment produces a new strategy.",
-
+  "execution_enabled": false,
+  "experiment": "valuation_out_of_sample_v1",
+  "extended_2026_09_07": {
+    "constructions_frozen": "Taken verbatim from config/sec_growth_survivorship_retest_v1.json and config/sec_independent_fundamental_discovery_v1.json. No feature, breadth, weighting or minimum will be varied. If a signal fails out of sample the finding is that its in-sample result was selection.",
+    "declared_outcomes": {
+      "refutes": "anything less, which includes a positive but negligible excess -- the trap the Step 287 verdict function fell into",
+      "supports": "excess over its own scored universe retains at least a quarter of the in-sample edge AND the book beats that universe on Sharpe"
+    },
+    "no_new_strategy_can_come_out_of_this": true,
+    "signals_added": {
+      "balance_sheet_quality": {
+        "minimum_features": 2,
+        "negative": [
+          "debt_to_assets",
+          "liabilities_to_assets"
+        ],
+        "positive": [
+          "cash_to_assets",
+          "equity_to_assets"
+        ],
+        "sector_neutral": true,
+        "top_n": 20
+      },
+      "cash_conversion_breadth20": {
+        "features": [
+          "operating_cash_flow_margin",
+          "free_cash_flow_margin",
+          "cash_conversion_spread"
+        ],
+        "minimum_features": 2,
+        "sector_neutral": true,
+        "top_n": 20
+      },
+      "growth_top5": {
+        "features": [
+          "revenue__yoy_growth",
+          "net_income__yoy_growth",
+          "operating_cash_flow__yoy_growth"
+        ],
+        "minimum_features": 2,
+        "sector_neutral": true,
+        "top_n": 5
+      }
+    },
+    "this_is_a_validation_not_a_search": true,
+    "why": "Step 287 found earnings yield keeps 3% of its in-sample excess out of sample and lands with a Sharpe below its own universe. That result is only interpretable if the other dashboard signals get the same test, because otherwise it reads as one signal being weak rather than as a property of the window everything here was selected on."
+  },
   "known_weaknesses_declared_up_front": [
     "The 2012-2022 universe will be rebuilt from FSDS filer rosters rather than from the existing classified_membership file, so it is a different universe construction than the in-sample book used and the two are not perfectly comparable. The comparison that matters is each period's book against ITS OWN scored universe, not one period's CAGR against the other's.",
     "Price coverage for 2012-2022 comes from the existing panels which begin 2011-01-07, so the first year of FSDS data has limited price history behind it.",
     "Delisted issuers are the survivorship risk. The FSDS roster is point-in-time by construction, which helps, but any issuer with no price series is invisible and that absence is not random."
   ],
-
+  "live_trading_enabled": false,
+  "no_gate_is_being_applied_here": "This is a validation, not a candidate search. There is nothing to pass or fail beyond the declared outcomes above, and no version of this experiment produces a new strategy.",
+  "registered_at_utc": "2026-09-07T00:00:00Z",
+  "registered_before_any_result_existed": true,
   "research_only": true,
+  "schema_version": 1,
   "strategy_promotion_authorized": false,
-  "approved_for_live_trading": false,
-  "execution_enabled": false,
-  "live_trading_enabled": false
+  "the_construction_is_fixed_in_advance": "Breadth 20, equal weight, quarterly rebalance executed at the first weekly close strictly after the decision, 50bps on turnover, earnings yield ranked cross-sectionally. These are the frozen values from config/forward/valuation_earnings_yield_forward_v1.json and NONE of them will be varied. If the out-of-sample result is poor, the finding is that the in-sample result was selection, not that a different breadth should be tried.",
+  "what_is_being_tested": "The earnings-yield valuation book, rebuilt from SEC Financial Statement Data Sets for 2012-2022 using the same construction that was frozen for the forward clock: breadth 20, equal weight, quarterly, 50bps, ranked on earnings yield.",
+  "why_this_exists": "Every fundamental panel in this project begins 2023-01-01, so every strategy on the dashboard was selected on 2023-2026 and not one has ever been evaluated on a period it was not chosen on. That is a data limit rather than a decision, and it is the single largest unaddressed weakness in 286 steps of work. Step 286 showed the fix is cheap when the method forces it: a long warmup buys an out-of-sample window at no cost in selection.",
+  "why_this_signal_and_not_the_others": "It is the one that goes on a forward clock on 2026-09-11 and it is the growth-uncorrelated half of the frozen 50/50 blend. Rebuilding all dashboard signals to 2012 means redoing survivorship-safe universe construction for eleven extra years; rebuilding one is tractable, and this is the one whose answer changes what happens on Friday."
 }

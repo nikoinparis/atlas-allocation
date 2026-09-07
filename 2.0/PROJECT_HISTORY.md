@@ -13699,3 +13699,66 @@ closed at the gate, which cost one acquisition and no backtest.
 constraint is the SEC filer name being unmatchable to an English Wikipedia title, not the
 pageview data, which fetched cleanly with zero failures. A ticker-based or Wikidata-based
 join would likely clear 60% where opensearch on the filed company name does not.
+
+## Step 289 — 2026-09-07 — None of the dashboard's fundamental signals survive out of sample
+
+**What this accomplished: it tested every fundamental signal on the dashboard against a
+period it was not selected on, and all four failed. This is the most consequential result
+in the project's record.**
+
+Step 287 did earnings yield. This does the other three, with every construction taken
+verbatim from the config that froze it — features, minimum feature count, breadth, equal
+weighting, sector-neutral ranking — and none varied. The universe is restricted to the same
+38 SIC codes the in-sample roster covers, because this project's SEC panel is a
+**technology-and-energy** universe rather than the whole market, and testing these signals
+on all filers would be testing a different strategy that happened to share a name.
+
+**39 quarterly decisions, 509 weeks, 2013-2022, 509 issuers, median 295-335 scored.**
+
+| signal | book CAGR | universe CAGR | excess | in sample | retained | Sharpe beats universe |
+|---|---|---|---|---|---|---|
+| growth top 5 | **-0.54%** | 14.87% | **-15.41pp** | +11.8pp | **-131%** | no |
+| cash conversion breadth 20 | 15.82% | 14.74% | **+1.08pp** | +10pp | **11%** | yes |
+| balance sheet quality | 6.19% | 13.70% | **-7.50pp** | +10pp | **-75%** | no |
+| earnings yield (Step 287) | 12.84% | 12.46% | **+0.38pp** | +14.5pp | **3%** | no |
+
+**Zero of four.** And two of the four did not merely weaken — they **inverted**. The growth
+top-five book, the one Micron dominates in sample, **lost 15.4 points a year to its own
+scored universe** over 2013-2022. Ranking on revenue, net income and operating cash flow
+growth and holding the best five was materially worse than holding all 300 names it scored.
+Balance-sheet quality did the same thing at -7.5 points.
+
+Cash conversion is the only one with a positive excess and a Sharpe above its universe, and
+it retains 11% of its in-sample edge — which is a difference of degree from noise, not of
+kind.
+
+**What this means, stated plainly.** The dashboard's headline numbers are a property of the
+2023-2026 window. That was always the stated risk — CLAUDE.md rule 6 demands regime testing
+and the project has said for 289 steps that everything was selected on one window — but
+until today it was an untested worry rather than a measured fact, because no fundamental
+panel here reached back before 2023. It is now a measured fact for all four signals.
+
+**This does not mean the strategies are worthless and it does not stop Friday's clock.** It
+means the honest prior for every one of them is much closer to zero excess than to the
++10 to +14.5 points their manifests record, and that the forward clocks are now the only
+evidence that could change that. Which is exactly what forward clocks are for. The 50/50
+blend's case was never the valuation leg's return — Step 275 said in its own words that the
+value is breadth rather than return — and the correlation argument is untouched by this
+result.
+
+**Honest limits of this test, three of them.** The 2013-2022 universe is rebuilt from FSDS
+filer rosters rather than the `classified_membership` file, so the two windows use
+differently-built universes; that is why every comparison here is a book against ITS OWN
+scored universe in the SAME window rather than one window's CAGR against another's. The
+in-sample excess figures used as denominators are exact for earnings yield (+14.5pp,
+Step 274) and growth (+11.79pp, Step 245) but are round approximations of +10pp for cash
+conversion and balance-sheet quality, so their "retained" percentages should be read as
+indicative rather than precise. And 509 issuers is a thinner universe than the in-sample
+roster's, which cuts both ways.
+
+**What would change the reading.** A signal that fails out of sample but works forward is
+possible — regimes change, and 2013-2022 is not 2026. That is an argument for running the
+clocks, not for discounting this result. The reverse dodge, that 2013-2022 is "the wrong
+regime" and only the recent window counts, is the argument that would have justified every
+one of the thirteen families already closed here, and it should be refused for the same
+reason.

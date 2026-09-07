@@ -1,0 +1,77 @@
+{
+  "constructions_frozen": true,
+  "cost_bps": 50.0,
+  "live_trading_enabled": false,
+  "results": {
+    "balance_sheet_quality": {
+      "book": {
+        "cagr": 0.061936891536667815,
+        "max_drawdown": -0.5149579910534103,
+        "sharpe": 0.2642622258674122,
+        "volatility": 0.23437663606051395
+      },
+      "book_sharpe_beats_universe": false,
+      "decisions": 39,
+      "excess_cagr": -0.07504425431825168,
+      "excess_retained_share": -0.7504425431825168,
+      "in_sample_excess": 0.1,
+      "median_scored": 335,
+      "supports": false,
+      "universe": {
+        "cagr": 0.1369811458549195,
+        "max_drawdown": -0.38444543585225865,
+        "sharpe": 0.6264872333693,
+        "volatility": 0.21864954073880102
+      },
+      "weeks": 509
+    },
+    "cash_conversion_breadth20": {
+      "book": {
+        "cagr": 0.15820670718866725,
+        "max_drawdown": -0.3270915415581892,
+        "sharpe": 0.6976984955943473,
+        "volatility": 0.226755121571383
+      },
+      "book_sharpe_beats_universe": true,
+      "decisions": 39,
+      "excess_cagr": 0.010843998058720938,
+      "excess_retained_share": 0.10843998058720938,
+      "in_sample_excess": 0.1,
+      "median_scored": 295,
+      "supports": false,
+      "universe": {
+        "cagr": 0.1473627091299463,
+        "max_drawdown": -0.385081224800501,
+        "sharpe": 0.6731545524546949,
+        "volatility": 0.21891363371543746
+      },
+      "weeks": 509
+    },
+    "growth_top5": {
+      "book": {
+        "cagr": -0.005425397777374719,
+        "max_drawdown": -0.6338218028552103,
+        "sharpe": -0.015033368696713074,
+        "volatility": 0.3608903557697576
+      },
+      "book_sharpe_beats_universe": false,
+      "decisions": 39,
+      "excess_cagr": -0.15409477003622574,
+      "excess_retained_share": -1.3069955049722284,
+      "in_sample_excess": 0.1179,
+      "median_scored": 300,
+      "supports": false,
+      "universe": {
+        "cagr": 0.14866937225885102,
+        "max_drawdown": -0.3905782898039024,
+        "sharpe": 0.6860372543551494,
+        "volatility": 0.21670743289093672
+      },
+      "weeks": 509
+    }
+  },
+  "strategy_promotion_authorized": false,
+  "supported": [],
+  "universe": "tech+energy SIC codes from the in-sample roster",
+  "window": "2013-2022"
+}

@@ -37,6 +37,15 @@ data/sec_filing_text_v1/parsed/
 data/sec_13f_datasets_v1/
 data/edgar_form_index_v1/
 data/finra_short_interest_v1/
+# Raw FINRA daily short-sale volume, 922 files / 324MB, re-acquired by
+# scripts/acquire_finra_short_volume_v1.py. The derived signal lives in
+# evidence/finra_short_volume_v1/ and is kept.
+data/finra_short_volume_v1/
+# Raw SEC Form 4 quarterly archives, 48 files / 498MB, re-acquired by
+# scripts/acquire_sec_form4_history_v1.py. The derived purchase panel is
+# data/form4_purchase_panel_v1/insider_purchases.csv.gz at 8MB and IS tracked,
+# because it is the artifact any reproduction actually needs.
+data/sec_form4_history_v1/
 # 556 MB derived intermediate, regenerable from the 13F archives in one command
 evidence/institutional_linkage_v1/holdings.parquet
 data/sec_historical_identity_cache/

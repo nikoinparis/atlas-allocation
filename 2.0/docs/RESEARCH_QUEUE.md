@@ -59,7 +59,33 @@ t = 2.00, surviving the length control at +0.0579.
 *one* measure and *one* horizon in advance instead of twelve trials. The text is acquired and
 parsed, so this is a further download rather than a fresh start.
 
-## S tier
+### S2. A third independent return source — anything that is not price and not a filing ratio *(new 2026-09-06)*
+**Status:** the standing top priority, and deliberately not a specific idea.
+**Why it is S and everything else is not:** Step 275 took the effective number of independent
+bets from about 1.15 to about 2 by adding valuation next to growth, and that single step did
+more for risk-adjusted return than 270 steps of retuning. `IR ≈ IC × √BR` says a third genuinely
+independent source is worth another ~22% on IR *at unchanged IC* — no better signal required.
+Nothing else in this file has that property.
+**The screen to apply to any candidate before building it:** correlate its return stream against
+the valuation book and the residual composite. Below 0.3 against both, build it. Above, it is a
+third copy of something already held, whatever it is called.
+**What is already known not to work:** continuous cross-sectional scores over US equity have
+failed twelve times running (see Closed). The shape that has never been properly tested here is
+a signal whose *input* is neither a price nor a reported financial ratio.
+
+### S3. Regenerate the valuation score panel each quarter *(new 2026-09-06)*
+**Status:** operational, not research, and it will silently break the clock if missed.
+The panel ends at 2026-04-01, so the forward book is 163 days stale at its first decision and
+will never rebalance until `run_sec_survivorship_valuation_discovery_v1.py` is re-run. Fifty-two
+weeks of a frozen April book is not the quarterly strategy that was backtested.
+**Check:** `score_block_age_days` in the decision log. Above ~120, the refresh was missed.
+
+### S4. Measure the leg correlation forward, and stop the blend if it fails *(new 2026-09-06)*
+**Status:** running from 2026-09-11 as `valuation_growth_5050_blend_forward_v1`.
+The entire Step 275 result rests on one number measured on the same searched window as
+everything else. `status.json` flags `correlation_refuted` above 0.5. **This is the first thing
+to read when the clock has enough weeks — before any Sharpe.**
+
 
 ## A tier
 
@@ -123,48 +149,6 @@ measured; residual correlation was not.**
 **Data:** already on disk -- IDX80/LQ45/IDX30 point-in-time membership, fundamentals, extended
 prices, and a written protocol in `docs/INDONESIA_EQUITY_RESEARCH_V1.md`.
 **Depends on S4.** This means nothing while every book here is long-only.
-
-### A5. Analyst estimate-revision breadth, aggregate only *(new 2026-09-06)*
-**Status:** new, coverage unverified.
-**Distinct from P2**, which is blocked because it needs analyst *identity* to build a graph.
-Revision direction and breadth are aggregates and may be obtainable on a free tier.
-**Before it can be ranked properly:** thirty minutes establishing whether any free source gives
-a point-in-time revision series. If not, it moves to the paid queue next to P2.
-
-### A6. Cross-sectional residual work in a second market *(new 2026-09-06)*
-**This corrects a likely misreading of Step 246, and the correction matters.** Step 246
-measured 35 multi-asset ETFs at 4.16 effective assets and international equity at **1.27**, and
-concluded international is near-redundant with US equity at weekly frequency. That is correct
-and it refutes international *index* diversification. It does **not** refute international
-*cross-sectional* work, because those are different quantities: a market-neutral cross-sectional
-book in Indonesia nets out the country factor, and its residual can be near-orthogonal to a US
-cross-sectional residual even when the two indices correlate 0.8. **Only asset correlation was
-measured; residual correlation was not.**
-**Data:** already on disk -- IDX80/LQ45/IDX30 point-in-time membership, fundamentals, extended
-prices, and a written protocol in `docs/INDONESIA_EQUITY_RESEARCH_V1.md`.
-**Depends on S4.** This means nothing while every book here is long-only.
-
-### A4. 13D and 13G activist and large-stake filings  *(new 2026-09-06)*
-**Status:** never attempted. The best remaining free idea in this file.
-**Why it is different from everything closed so far:** every family tested to date is a
-*continuous* cross-sectional score -- a number every stock has every week. A 13D is a **discrete
-event**: someone crossed 5% ownership with intent to influence. Events and scores fail for
-different reasons, and this project has never tested an event-driven signal that was not
-earnings.
-**Data:** SEC EDGAR, free, full history. Forms SC 13D, SC 13D/A, SC 13G. Filing date is the
-point-in-time anchor and the deadline is short, so the lag problem that may have killed A0 is
-much smaller here.
-**Design note before starting:** the sample is small -- a few thousand 13Ds a year across the
-whole market -- so this is an event study with cohort dates, not a weekly cross-sectional IC.
-Different statistics, and the registry has to say so up front.
-
-### A5. FINRA short interest  *(new 2026-09-06)*
-**Status:** never attempted. `IO_ShortInterest` sat in the OSAP screen's most-orthogonal band at
-0.0033 against every existing strategy, and was named in A1 without a data source. FINRA
-publishes short interest free, twice monthly, per security.
-**Why it ranks below A4:** it is another continuous cross-sectional score, which is the shape
-that has failed twelve times running. But it is genuinely orthogonal by measurement and the data
-is free and complete.
 
 ### B1. Volatility risk premium, reading first
 **Status:** `UPGRADE_CANDIDATES_V1` item 3, Tier 3, "needs Hull read properly before".

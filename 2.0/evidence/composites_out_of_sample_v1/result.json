@@ -1,0 +1,51 @@
+{
+  "live_trading_enabled": false,
+  "note": "Composites rebuilt at the score and allocator level from their own frozen rules, not by blending finished return series.",
+  "reconstructed_from_frozen_rules": true,
+  "results": {
+    "residual_composite": {
+      "book": {
+        "cagr": 0.11894671215874619,
+        "max_drawdown": -0.3680268054519612,
+        "sharpe": 0.5344122684215943,
+        "volatility": 0.22257481571308152
+      },
+      "book_sharpe_beats_universe": false,
+      "excess_cagr": -0.01522823315958588,
+      "overlay_active_share": 0.43794579172610554,
+      "retained": -0.1522823315958588,
+      "supports": false,
+      "universe": {
+        "cagr": 0.13417494531833207,
+        "max_drawdown": -0.31975123720390264,
+        "sharpe": 0.7039208511488423,
+        "volatility": 0.1906108408343783
+      },
+      "weeks": 509
+    },
+    "sector_ensemble_stock_leg": {
+      "book": {
+        "cagr": 0.14968675587274483,
+        "max_drawdown": -0.3503626973506455,
+        "sharpe": 0.6791506147483801,
+        "volatility": 0.22040288652054385
+      },
+      "book_sharpe_beats_universe": true,
+      "decisions": 39,
+      "excess_cagr": 0.0013997626258928086,
+      "median_scored": 293,
+      "retained": 0.013997626258928086,
+      "supports": false,
+      "universe": {
+        "cagr": 0.14828699324685202,
+        "max_drawdown": -0.3845092503546589,
+        "sharpe": 0.6779167696833748,
+        "volatility": 0.2187392315373912
+      },
+      "weeks": 509
+    }
+  },
+  "strategy_promotion_authorized": false,
+  "supported": [],
+  "window": "2013-2022"
+}

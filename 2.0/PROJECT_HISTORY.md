@@ -13762,3 +13762,60 @@ clocks, not for discounting this result. The reverse dodge, that 2013-2022 is "t
 regime" and only the recent window counts, is the argument that would have justified every
 one of the thirteen families already closed here, and it should be refused for the same
 reason.
+
+## Step 290 — 2026-09-07 — The allocators do not rescue the composites either: nought of six
+
+**What this accomplished: it finished the out-of-sample audit of everything on the
+dashboard.**
+
+Step 289 tested the four fundamental signals. Both composites are built from those signals
+plus an allocator, so the open question was whether the allocators add something the parts
+lack. A composite genuinely can beat its components — that is what an allocator is for —
+so it was worth measuring rather than assuming in either direction.
+
+Rebuilt from the frozen rules at the score and allocator level, not by blending finished
+return series, because blending two books' returns is a different portfolio from blending
+their scores and picking once.
+
+| composite | book CAGR | universe CAGR | excess | retained | Sharpe beats universe |
+|---|---|---|---|---|---|
+| sector ensemble stock leg (0.9 CC + 0.1 BSQ) | 14.97% | 14.83% | **+0.14pp** | 1% | yes, 0.679 vs 0.678 |
+| residual composite | 11.89% | 13.42% | **-1.52pp** | -15% | **no, 0.534 vs 0.704** |
+
+**Nought of two, and with Step 289 that is nought of six.**
+
+The residual composite is the dashboard's headline strategy, the one whose clock starts on
+2026-09-11, and the growth leg of the frozen 50/50 blend. Out of sample it **underperforms
+its own scored universe on both return and risk-adjusted return.** Its 11-week overlay was
+active in **43.8% of weeks**, so the allocator was doing substantial work and still left the
+composite behind a simple hold of everything it scored.
+
+The sector ensemble's stock leg lands within a rounding error of its universe on both
+measures — +0.14 points and a Sharpe difference of 0.001. That is not an edge, it is the
+universe with extra turnover.
+
+**The complete out-of-sample record for the dashboard, 2013-2022:**
+
+| strategy | excess over its own universe | in sample |
+|---|---|---|
+| growth top 5 | **-15.41pp** | +11.8pp |
+| balance sheet quality | **-7.50pp** | +10pp |
+| residual composite | **-1.52pp** | ~+10pp |
+| earnings yield | +0.38pp | +14.5pp |
+| sector ensemble stock leg | +0.14pp | ~+10pp |
+| cash conversion breadth 20 | +1.08pp | +10pp |
+
+Nothing retains more than 11% of its in-sample edge and three of six have the wrong sign.
+
+**The decision this supports, and it is the owner's to make.** Fourteen signal families are
+closed, three domains have been measured and collapse to a handful of effective bets, and
+now every incumbent fails the only genuinely out-of-sample test this project has ever been
+able to run. Adding a fifteenth candidate has a poor prior. What has never been tried is
+letting a clock finish: six start on 2026-09-11 and not one strategy here has a single week
+of forward evidence. The bottleneck stopped being the search some time ago.
+
+**What this does not establish.** That these strategies cannot work forward. Regimes change
+and 2013-2022 is not 2026, which is an argument for running the clocks rather than for
+discounting this result. The symmetric dodge — that the old window is "the wrong regime" and
+only recent data counts — would have rescued every one of the fourteen closed families and
+is refused for the same reason.

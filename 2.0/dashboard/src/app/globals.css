@@ -641,3 +641,10 @@ button.metric-card:hover { border-color: rgba(139,114,255,.38); transform: trans
 .forward-topbar > span { display: flex; gap: 16px; }
 .forward-topbar > span a { color: var(--text-tertiary); font-size: 11.5px; font-weight: 600; }
 .forward-topbar a:hover { color: #aeb9ff; }
+
+/* The dashboard reporting a finding against its own headline numbers should not
+   look like a neutral note. */
+.callout-warning {
+  border-left: 3px solid #b45309;
+  background: color-mix(in srgb, #b45309 6%, transparent);
+}

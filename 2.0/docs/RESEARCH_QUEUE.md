@@ -30,6 +30,22 @@ directions: good ideas do not get lost, and dead ideas do not get retried.
 
 ---
 
+## Standing decision, 2026-09-07: the search is paused, the clocks are the work
+
+Fourteen signal families are closed. Three domains have been measured and every one
+collapses to a handful of effective bets — multi-asset ETFs 4.16 of 35, crypto 3.09 of 20,
+the SEC equity books 5-7 of 10-28. And Steps 287, 289 and 290 tested **every strategy on
+the dashboard** on a period it was not selected on: **nought of six survive**, nothing
+retains more than 11% of its in-sample edge, and three of six have the wrong sign.
+
+Adding a fifteenth candidate has a poor prior. What has never once been tried in 290 steps
+is **letting a clock finish**. Six start on 2026-09-11 and not one strategy here has a
+single week of forward evidence.
+
+**So the queue below is paused rather than closed.** Nothing in it is wrong; it is simply
+not the binding constraint. Re-open it when there is forward evidence to compare a new
+candidate against, or if a clock produces a result that points somewhere specific.
+
 # FREE QUEUE
 
 ## S tier

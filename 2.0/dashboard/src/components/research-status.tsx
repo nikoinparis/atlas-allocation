@@ -23,6 +23,11 @@ type Candidate = {
   blendedWithGrowth: Record<string, string | number>;
   measuredIn: string;
 };
+type OutOfSampleRow = { strategy: string; excess: number; inSample: number };
+type OutOfSample = {
+  headline: string; window: string; finding: string;
+  rows: OutOfSampleRow[]; whatItMeans: string; measuredIn: string;
+};
 type DistinctCount = {
   displayed: number; distinct: number; finding: string; whyItMatters: string; measuredIn: string;
 };
@@ -52,6 +57,7 @@ type ResearchStatus = {
     plainEnglish: string;
   };
   candidate: Candidate;
+  outOfSample: OutOfSample;
   distinctStrategyCount: DistinctCount;
   reproducibility: Reproducibility;
   structuralBreak: { date: string; note: string; beforeAfter: BeforeAfter[]; measuredIn: string };
@@ -125,6 +131,32 @@ export function ResearchStatus() {
             independent strategies, {data.breadth.effectiveBetsPerYear} independent bets a year, against
             roughly {data.breadth.betsNeededForInformationRatio025} needed for an information ratio of 0.25.
           </p>
+        </div>
+      </div>
+
+      <h3>Out-of-sample test: {data.outOfSample.headline}</h3>
+      <div className="callout callout-warning">
+        <div>
+          <strong>{data.outOfSample.window}</strong>
+          <p>{data.outOfSample.finding}</p>
+          <table className="data-table">
+            <thead>
+              <tr><th>strategy</th><th>excess out of sample</th><th>in sample</th><th>retained</th></tr>
+            </thead>
+            <tbody>
+              {data.outOfSample.rows.map((row) => (
+                <tr key={row.strategy}>
+                  <td>{row.strategy}</td>
+                  <td className="mono">{percent(row.excess)}</td>
+                  <td className="mono">{percent(row.inSample)}</td>
+                  <td className="mono">
+                    {row.inSample ? `${Math.round((row.excess / row.inSample) * 100)}%` : "—"}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p><em>{data.outOfSample.whatItMeans}</em></p>
         </div>
       </div>
 

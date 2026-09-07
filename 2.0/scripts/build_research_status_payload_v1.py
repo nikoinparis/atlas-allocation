@@ -150,6 +150,33 @@ def main() -> int:
             "beforeAfter": before_after(),
             "measuredIn": "Steps 261 and 262",
         },
+        "outOfSample": {
+            "headline": "Nought of six",
+            "window": "2013-2022, 39 quarterly decisions, 509 weeks",
+            "finding": (
+                "Every fundamental signal and both composites on this dashboard were rebuilt "
+                "from their own frozen configs and tested on a period they were not selected "
+                "on. None retains more than 11% of its in-sample edge and three of six have "
+                "the wrong sign. This was possible for the first time on 2026-09-07, because "
+                "no fundamental panel here reached back before 2023 until SEC Financial "
+                "Statement Data Sets were acquired for 2012-2022."),
+            "rows": [
+                {"strategy": "Growth top five", "excess": -0.1541, "inSample": 0.118},
+                {"strategy": "Balance sheet quality", "excess": -0.0750, "inSample": 0.10},
+                {"strategy": "Residual composite", "excess": -0.0152, "inSample": 0.10},
+                {"strategy": "Earnings yield", "excess": 0.0038, "inSample": 0.145},
+                {"strategy": "Sector ensemble stock leg", "excess": 0.0014, "inSample": 0.10},
+                {"strategy": "Cash conversion breadth 20", "excess": 0.0108, "inSample": 0.10},
+            ],
+            "whatItMeans": (
+                "The headline returns on this dashboard are a property of the 2023-2026 window. "
+                "That was always the stated risk; until now it was an untested worry rather "
+                "than a measured fact. It does not establish that these strategies cannot work "
+                "forward -- which is what the clocks are for -- but the honest prior for every "
+                "one of them is near-zero excess, not the ten to fourteen points their "
+                "manifests record."),
+            "measuredIn": "Steps 287, 289, 290",
+        },
         "distinctStrategyCount": {
             "displayed": 6,
             "distinct": 4,

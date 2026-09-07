@@ -13177,3 +13177,91 @@ That makes eight.
 **Consequence for the queue.** S2 stands and is now better specified: a third source must
 clear 0.3 correlation against both legs *and* stand up alone at something near a 1.0
 Sharpe. Screening what is already on disk is finished.
+
+## Step 278 — 2026-09-06 — The valuation panel was a silent no-op, and the dashboard's headline strategy is its least checkable
+
+**What this accomplished: it found two defects and produced the recreation documentation
+the owner asked for.**
+
+**Defect one: "regenerate the panel" did nothing.** Re-running
+`run_sec_survivorship_valuation_discovery_v1.py` to pick up the 2026-07-01 quarter loaded
+an Aug-14 checkpoint, reported ten passing validation checks, and emitted the identical
+fourteen quarters it started with. Both upstream inputs — membership and fundamentals —
+already carried 2026-07-01; only the cache did not, and nothing compared the two. A cache
+that cannot tell it is stale turns a quarterly refresh into a no-op that looks like a
+success. Guarded on the membership vintage; the panel now carries **15 quarters through
+2026-07-01**, 7,469 tradable rows and 603 CIKs, up from 7,035 and 598. The valuation
+clock will now rebalance on Friday instead of holding an April book for 52 weeks.
+
+**The reproducibility audit**, written to `docs/STRATEGY_REPRODUCTION_V1.md`:
+
+| strategy | book reprices | holdings reprice | priced | manifest |
+|---|---|---|---|---|
+| SEC Growth Top-Five | +0.984 | +0.961 | 93.6% | no |
+| Dynamic Breadth-20 | +0.904 | +0.855 | 69.3% | no |
+| Sector-Aware Ensemble | +0.747 | +0.740 | 76.2% | no |
+| Sector Ensemble 1.35x | +0.747 | +0.920 | 84.8% | no |
+| ETF Return-First 60/40 | not checked | not checked | — | yes |
+| **Residual-Controlled 1.25x** | **no saved book** | **+0.493** | **45.6%** | yes |
+
+Two of six reproduce from a saved book, three of six from published holdings, two of six
+have a frozen manifest.
+
+**The headline strategy is the worst documented one.** Residual-Controlled 1.25x is the
+dashboard leader, the strategy whose forward clock starts 2026-09-11, and the growth leg
+of the 50/50 blend frozen in Step 276 — and it has no saved book, with under half its
+weight priceable because it mixes SEC equities with ETFs and no flat ETF panel exists
+here. That is not evidence it is wrong. It is evidence that **less than half of it has
+ever been independently checked**, which is worse than a known problem because nobody
+knew.
+
+**Defect two, and it is mine.** Writing this audit I swept the execution offset but not
+the date-labelling shift, got correlations near −0.02 across all six strategies, and was
+one step from reporting that not a single dashboard strategy could be rebuilt. That is
+**Step 238's bug exactly** — same repository, same author, five days later, and Step 241
+exists solely to withdraw the first instance of it. The audit now delegates to
+`reproduce_dashboard_strategy_independently_v1.py` rather than reimplementing it, and the
+documentation leads with the trap rather than burying it. Ninth verdict-function failure
+of the same family.
+
+## Step 279 — 2026-09-06 — A2 closed: breadth repair is noise
+
+**What this accomplished: it closed an idea that has sat in the queue since Step 245.**
+
+Five constructions on two books, all declared before running, attacking the 61–71%
+persistence and the 5–7 effective names three different ways.
+
+**valuation (earnings yield)**
+
+| intervention | indep names | persistence | bets/yr | CAGR | Sharpe |
+|---|---|---|---|---|---|
+| baseline | 7.39 | 47.9% | 15.6 | 38.58% | 1.726 |
+| sector cap 3 | 4.30 | 50.0% | 8.7 | 37.32% | 1.474 |
+| breadth 40 | 8.70 | 53.8% | 16.3 | 29.89% | 1.372 |
+| de-persist | 7.41 | 30.4% | 21.0 | 35.71% | 1.588 |
+
+**fundamental (cash conversion)**
+
+| intervention | indep names | persistence | bets/yr | CAGR | Sharpe |
+|---|---|---|---|---|---|
+| baseline | 6.39 | 66.8% | 8.6 | 19.75% | 0.878 |
+| sector cap 3 | 3.99 | 52.4% | 7.7 | 14.94% | 0.624 |
+| breadth 40 | 7.73 | 70.7% | 9.2 | 16.78% | 0.785 |
+| de-persist | 6.66 | 42.1% | 15.6 | 22.31% | 1.007 |
+
+One of eight raised breadth and Sharpe together: de-persistence on cash conversion, bets
+8.6 to 15.6 and Sharpe 0.878 to 1.007. **The identical intervention lowered Sharpe on
+valuation, 1.726 to 1.588.** Paired moving-block bootstrap on the weekly difference:
+**p = 0.632** for the winner and **p = 0.426** for the loser, against a Bonferroni bar of
+0.0063 at eight trials. The two books move in opposite directions by nearly the same
+magnitude, −2.07% and +2.05% annualised. That is what noise looks like.
+
+**One finding worth keeping, because it is the opposite of the premise.** Capping at three
+names per sector *reduced* effective independent names on both books — 7.39 to 4.30 and
+6.39 to 3.99. Forcing sector spread pushes the book down the score ranking into worse
+names that happen to co-move more, so the intuition behind the intervention is backwards:
+these books are not concentrated because they are sector-concentrated.
+
+A2 is closed. The breadth number is real and measured; it is not repairable by
+construction, which leaves Step 277's conclusion standing — the only lever left is a new
+return source with skill of its own.

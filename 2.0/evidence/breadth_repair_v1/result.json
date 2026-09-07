@@ -1,0 +1,21 @@
+{
+  "books": [
+    "valuation",
+    "fundamental"
+  ],
+  "count_raised_both": 1,
+  "count_tested": 8,
+  "interventions_declared_before_running": [
+    "baseline",
+    "sector_cap",
+    "wide",
+    "depersist",
+    "combined"
+  ],
+  "note": "Step 277: breadth bought at the cost of IC pays nothing. An intervention that raises effective bets while lowering Sharpe is a failure.",
+  "raised_breadth_and_sharpe_together": [
+    "fundamental/depersist"
+  ],
+  "step_245_baseline_effective_bets": 8.5,
+  "this_is_construction_not_a_new_signal": true
+}

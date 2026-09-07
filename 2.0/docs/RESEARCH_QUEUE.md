@@ -108,15 +108,6 @@ whether the free sources cover it.
 failed 10/10 and 0/4. Expect the same and run them anyway; that is what a pre-registered
 screen is for.
 
-### A2. Fix breadth destruction in the existing books
-**Status:** measured in Step 245, never acted on.
-**The number:** the equity books carry 61-71% persistence between quarterly rebalances and 5-7
-effective independent names out of 10-28 held. Nominal breadth 40-114 per year collapses to
-**8.5**.
-**Why it matters:** the breadth term is squared-rooted in `IR = IC x sqrt(BR)`, so this is the
-cheapest available lever on risk-adjusted return, and it needs no new signal or data.
-**Ceiling:** realistically 40-60 bets a year, still short of the 91 an IR of 0.25 needs. Worth
-doing, will not be sufficient alone.
 
 ### A3. Formal regime model
 **Status:** `UPGRADE_CANDIDATES_V1` item 7, never attempted. Note
@@ -274,3 +265,5 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 
 *Last updated 2026-09-06. Update this file in the same commit as the work it describes.*
 | Valuation family revival | REVIVED. Widening to breadth 20 fixes the concentration failure; near-zero correlation to all four incumbents; 9 of 9 blends beat both components on Sharpe. On a clock from 2026-09-11. | 274, 275 |
+| **Breadth repair by construction (was A2)** | **Closed as noise.** Five constructions on two books attacking 61-71% persistence and 5-7 effective names. One of eight raised breadth and Sharpe together (de-persistence on cash conversion, bets 8.6->15.6, Sharpe 0.878->1.007) and the same intervention *lowered* Sharpe on valuation. Paired block bootstrap p=0.632 and p=0.426 against a Bonferroni bar of 0.0063; the two books move opposite directions by -2.07% and +2.05%. **Kept:** sector caps *reduce* effective independent names on both books (7.39->4.30, 6.39->3.99), so these books are not concentrated because they are sector-concentrated -- the premise of the intervention is backwards. | Step 279 |
+| **Valuation panel quarterly refresh (was S3)** | **Done and defect fixed.** The builder loaded a stale checkpoint, passed ten validation checks, and re-emitted the same fourteen quarters. Guarded on membership vintage; panel now runs to 2026-07-01. | Step 278 |

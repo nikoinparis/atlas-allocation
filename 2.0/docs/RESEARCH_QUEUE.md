@@ -60,25 +60,6 @@ t = 2.00, surviving the length control at +0.0579.
 parsed, so this is a further download rather than a fresh start.
 
 
-### S2b. Form 4 insiders, split routine vs opportunistic *(new 2026-09-07)*
-**Status:** the best remaining free candidate, and the clearest case of "the same idea done
-properly" rather than a new idea.
-**What was already done and rejected:** Steps 125-126 tested Form 4 insider purchases as a
-fixed-weight sleeve and then as a causal overlay, and rejected on concentration. The sample was
-**2,560 filings across 362 issuers** and every insider trade was treated the same way.
-**What was never done:** Cohen, Malloy and Pomorski's routine-versus-opportunistic split. Most
-insider trades are routine — the same executive trading the same month every year on a schedule
-— and carry no information. The opportunistic remainder is where the documented alpha is.
-Pooling the two is how you get a diluted signal that then fails on concentration, which is
-exactly what Steps 125-126 report.
-**Why it fits the sharpened target:** it is an information channel with a mechanism for real
-skill (insiders know things), not another pile of correlated prices. Step 285 ruled out the
-asset-class route; this is the other kind.
-**Machinery that already exists:** `scripts/acquire_sec_form4_bulk_v1.py` plus three analysis
-scripts. Free, SEC, full history.
-**Cost:** a bulk acquisition job, hours not weeks. **Declare the routine/opportunistic rule and
-one horizon before testing** — the split is the hypothesis, not a parameter to sweep.
-*Recorded from general knowledge of the CMP paper, not from a read of the text this session.*
 
 ### S2. A third independent return source — anything that is not price and not a filing ratio *(new 2026-09-06)*
 **Status:** the standing top priority, and deliberately not a specific idea.
@@ -294,3 +275,4 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 | **Valuation panel quarterly refresh (was S3)** | **Done and defect fixed.** The builder loaded a stale checkpoint, passed ten validation checks, and re-emitted the same fourteen quarters. Guarded on membership vintage; panel now runs to 2026-07-01. | Step 278 |
 | **FINRA daily short-sale volume (was S2a)** | **Closed on all three gates.** Pre-registered before download; 922 trading days, 487 issuers x 192 weeks. IC **+0.00383** (t=0.82, p=0.396) against a declared NEGATIVE sign — refuted. Declared book -28.07% CAGR at 50bps and -14.36% at 0bps, so wrong-signed rather than cost-killed. The reverse side returns 25.86% at Sharpe 1.178 and **does not rescue it**: the sign was declared, the IC behind it is insignificant, and it correlates **+0.886 with an equal weighting of its own universe** — market beta with a tilt. Distinct from Step 263's short *interest*. | Step 282 |
 | **Crypto as a third asset class (new 2026-09-07)** | **Closed on both gates, both configurations.** Equal-weight 20 coins: Sharpe 0.238, corr +0.332 to valuation. Momentum top-5: Sharpe 0.374, corr +0.300. Momentum doubles return and does not move Sharpe because it buys it with vol (71.9% vs 62.3%). **Effective independent coins 3.09 of 20** — crypto's cross-section has no more breadth than the multi-asset ETF universe did (4.16 of 35). Test was survivorship-biased *in crypto's favour* and still failed. | Step 285 |
+| **Form 4 opportunistic insiders (was S2b)** | **Refuted on sign; the split itself untested.** 667,153 purchases, 10,579 issuers, 2011-2026 — 260x the 2,560 filings that rejected this in Steps 125-126. Opportunistic IC **-0.0188, t=-4.87, p=0.0005** against a declared POSITIVE sign, so refuted rather than flipped. Sharpe 0.485, correlation +0.711 to valuation: gates 1-3 fail. **Gate 4 was UNTESTABLE** — routine purchases reach a median of 13 issuers per 4-week window and never the 30 the IC needs, so CMP's actual claim was never tested. Size control: negative in all five price quintiles. **Reviving it needs the full market, not the survivorship-aware roster; the classification rate is the binding constraint.** | Step 286 |

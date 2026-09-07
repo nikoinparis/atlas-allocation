@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "experiment": "form4_opportunistic_v1",
+  "registered_at_utc": "2026-09-07T00:00:00Z",
+  "registered_before_any_result_existed": true,
+  "registered_before_the_data_was_acquired": true,
+
+  "why_this_exists": "Steps 125 and 126 tested Form 4 insider purchases as a fixed-weight sleeve and then as a causal overlay, and rejected on concentration. Every insider trade was pooled together across 2,560 filings and 362 issuers. Cohen, Malloy and Pomorski's routine-versus-opportunistic split was never applied. Most insider trades are routine -- the same officer trading the same calendar month every year on a schedule, for liquidity or compensation reasons -- and carry no information. Pooling them with the opportunistic remainder dilutes the signal, which is a known way to produce exactly the diluted, concentration-fragile result Steps 125-126 report.",
+
+  "why_it_fits_the_target": "Step 285 measured three domains -- multi-asset ETFs at 4.16 effective of 35, crypto at 3.09 of 20, SEC equity books at 5-7 of 10-28 -- and concluded that every liquid asset class collapses to a handful of effective bets, so a third return source has to be a different information channel with skill of its own rather than another pile of correlated prices. Insider trading is an information channel with an explicit mechanism: the insider knows something the price does not.",
+
+  "routine_definition": "An insider-issuer pair is ROUTINE as of a decision date if that insider transacted in the same calendar month in EACH of the three prior calendar years. Every other transaction by that insider is OPPORTUNISTIC. The classification uses only transactions dated strictly before the decision date, so an insider can move from unclassified to routine over time but never retroactively.",
+  "this_definition_is_the_hypothesis": "The routine/opportunistic rule is declared here as a fixed hypothesis, not a parameter to sweep. No variant of the three-year, same-calendar-month rule will be tried. If the declared rule fails, the family closes; it does not get retuned into a rule that passes.",
+
+  "signal": {
+    "transaction_scope": "open-market PURCHASES only, non-derivative, SEC transaction code P",
+    "aggregation": "per issuer, the count of distinct opportunistic insider purchasers in the trailing 4 weeks",
+    "cross_sectional_transform": "rank within the tradable universe each week",
+    "lag": "a transaction enters the signal only on or after its SEC filing date, never its transaction date, because the filing date is when the market could have known"
+  },
+  "declared_sign": "POSITIVE. Opportunistic insider buying is hypothesised to predict HIGHER forward returns. A negative result of similar magnitude refutes the hypothesis and must be reported as such rather than reinterpreted as a contrarian signal.",
+  "declared_horizon_weeks": 4,
+  "declared_configurations": {"breadth": [20], "cost_bps": [50.0], "side": ["long the most opportunistically bought"]},
+  "trials_declared_here": 1,
+
+  "the_comparison_that_is_the_actual_test": "OPPORTUNISTIC must beat ROUTINE. Both are built and reported. If routine performs as well as opportunistic, the split adds nothing, the finding is that Steps 125-126 were right for the right reason, and the family closes. A result where both legs work equally is a REFUTATION of this experiment's premise, not a success with a bonus control.",
+
+  "gates": {
+    "gate_1_orthogonality": "absolute correlation below 0.30 against BOTH the valuation earnings-yield book and the residual composite growth leg",
+    "gate_2_standalone_skill": "Sharpe at or above 1.0 net of 50bps",
+    "gate_3_significance": "information coefficient clears a moving-block bootstrap at p < 0.05 with the declared positive sign",
+    "gate_4_the_split_pays": "opportunistic beats routine on both information coefficient and Sharpe",
+    "all_four_required": true
+  },
+  "why_gate_2_exists": "Step 277. XLE cleared orthogonality, raised effective independent bets from 2.00 to 2.88, and bought 0.021 of Sharpe, because its own Sharpe is 0.568. IR = IC x sqrt(BR) is a product and breadth bought with an unskilled leg pays nothing.",
+
+  "windows": {
+    "classification_warmup": "2011-2016, used only to establish routine patterns and never scored",
+    "primary_test": "2017-01-01 to 2026-09-04",
+    "regime_split_required": "report 2017-2019, 2020, 2021-2022, and post-2025-04-04 separately, per CLAUDE.md rule 6"
+  },
+  "why_the_window_is_longer_than_usual": "Every strategy on this project's dashboard was selected on 2023-2026 and none has out-of-sample evidence. The routine rule needs three years of history to classify anything, so this experiment has to reach back regardless -- which makes a genuinely longer test window free rather than expensive. That is a property of this idea worth using, not a cost.",
+
+  "known_weaknesses_declared_up_front": [
+    "Insider purchases are rare and clustered, so the effective sample is far smaller than the filing count suggests, and Steps 125-126 already died on concentration. Leave-one-issuer-out is mandatory, not optional.",
+    "The universe is the survivorship-aware SEC roster, so issuers absent from that roster are invisible here even if insiders bought them.",
+    "Small-capitalisation issuers dominate insider-purchase counts, so any result must be checked against a size control before being believed."
+  ],
+
+  "data_source": {"publisher": "SEC", "dataset": "Insider Transactions Data Sets, quarterly form345", "cost": "free"},
+  "research_only": true,
+  "strategy_promotion_authorized": false,
+  "approved_for_live_trading": false,
+  "execution_enabled": false,
+  "live_trading_enabled": false
+}

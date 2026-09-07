@@ -1,0 +1,17 @@
+{
+  "archives_read": 62,
+  "archives_skipped": [],
+  "counted_by": "distinct owner, not by filing",
+  "distinct_issuers": 10579,
+  "distinct_owners": 57223,
+  "filing_lag_days": {
+    "median": 2.0,
+    "over_10_days_share": 0.08859586931333592,
+    "p90": 7.0
+  },
+  "first_filing": "2011-01-03",
+  "keyed_on": "filing date, not transaction date",
+  "last_filing": "2026-06-30",
+  "output": "data/form4_purchase_panel_v1/insider_purchases.csv.gz",
+  "purchase_rows": 667153
+}

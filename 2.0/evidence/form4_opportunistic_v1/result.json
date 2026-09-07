@@ -1,0 +1,47 @@
+{
+  "all_gates_passed": false,
+  "breadth": 20,
+  "cost_bps": 50.0,
+  "gate_1_orthogonality": false,
+  "gate_2_standalone_skill": false,
+  "gate_3_significance": false,
+  "gate_4_split_beats_routine": false,
+  "horizon_weeks": 4,
+  "live_trading_enabled": false,
+  "results": {
+    "opportunistic": {
+      "cagr": 0.12076890511613092,
+      "correlation_vs_growth": 0.018697288728019793,
+      "correlation_vs_valuation": 0.7114592904376853,
+      "ic": -0.018809725236320376,
+      "ic_weeks": 498,
+      "max_drawdown": -0.44491896342357906,
+      "p_value": 0.0005,
+      "post_break_cagr": 0.1422658013778746,
+      "pre_break_cagr": 0.11706109818397281,
+      "rows": 226427,
+      "sharpe": 0.48505797827009517,
+      "t_stat": -4.870687025226897,
+      "volatility": 0.24897828821791504
+    },
+    "routine": {
+      "cagr": 0.06665297723423436,
+      "correlation_vs_growth": -0.06816870698620017,
+      "correlation_vs_valuation": 0.5696735061268182,
+      "ic": NaN,
+      "ic_weeks": 0,
+      "max_drawdown": -0.39503571337395915,
+      "p_value": NaN,
+      "post_break_cagr": 0.2609852714738303,
+      "pre_break_cagr": 0.03596529922228764,
+      "rows": 18647,
+      "sharpe": 0.34309296119460386,
+      "t_stat": NaN,
+      "volatility": 0.19427089673351966
+    }
+  },
+  "routine_share": 0.07608722263479602,
+  "strategy_promotion_authorized": false,
+  "test_start": "2017-01-01",
+  "trials_declared": 1
+}

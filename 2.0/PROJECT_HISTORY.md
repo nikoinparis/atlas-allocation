@@ -13530,3 +13530,78 @@ asset classes rather than of any particular one. A third source, if it exists, h
 different **information channel with skill of its own** rather than a different pile of
 correlated prices. That is a narrower and more honest target than "there must be something
 out there", and it is still not nothing.
+
+## Step 286 — 2026-09-07 — Form 4 opportunistic insiders: refuted on sign, and the split could not be tested
+
+**What this accomplished: it closed the best remaining free candidate on 260 times the
+data that rejected it the first time, and it recorded exactly which part of the hypothesis
+went untested rather than claiming a clean kill.**
+
+Pre-registered in `config/form4_opportunistic_registry_v1.json` **before the history was
+downloaded**: one signal, one horizon of four weeks, breadth 20, 50bps, a declared POSITIVE
+sign, and four gates. The routine rule — an insider who transacted the same calendar month
+in each of the three prior years — was declared as a fixed hypothesis, not a parameter to
+sweep.
+
+**The data.** Acquired 48 quarters back to 2011Q1 to add to the 14 already cached, all 62
+parsed with none skipped: **667,153 open-market purchases, 10,579 issuers, 57,223
+insiders, 2011-01-03 to 2026-06-30.** Steps 125-126 rejected this family on **2,560
+filings across 362 issuers**. Within the tradable universe: 245,074 purchases, 2,669
+issuers, 23,030 insiders.
+
+Keyed throughout on the **filing** date, not the transaction date. Median lag is two days
+as Form 4's deadline implies, but 8.9% of filings land more than ten days after the trade,
+and using the transaction date would leak. Purchases counted by **distinct owner**, not by
+filing, because one officer splitting a buy across five filings is one insider buying —
+counting filings is how a single person becomes a "cluster", which is the concentration
+failure Steps 125-126 died on.
+
+| | opportunistic | routine |
+|---|---|---|
+| purchases | 226,427 | 18,647 |
+| information coefficient | **-0.01881** | not computable |
+| t | **-4.87** | — |
+| p | **0.0005** | — |
+| CAGR | 12.08% | 6.67% |
+| Sharpe | 0.485 | 0.343 |
+| max drawdown | -44.49% | -39.50% |
+| correlation vs valuation | **+0.711** | +0.570 |
+
+| gate | verdict |
+|---|---|
+| 1 orthogonality below 0.30 | **FAIL** — +0.711 against valuation |
+| 2 standalone Sharpe ≥ 1.0 | **FAIL** — 0.485 |
+| 3 significant with declared sign | **FAIL** — significant, wrong sign |
+| 4 opportunistic beats routine | **UNTESTABLE** |
+
+**The sign is refuted, decisively.** The declared hypothesis was that opportunistic insider
+buying predicts higher forward returns. The measured IC is **-0.0188 at t = -4.87, p =
+0.0005** — significant, and in the opposite direction. The registry says in advance that a
+result of this shape "must be reported as such rather than reinterpreted as a contrarian
+signal", so it is closed rather than flipped.
+
+**The size control the registry demanded, run.** Opportunistic IC within price quintiles:
+-0.0125, -0.0145, **-0.0284**, -0.0061, -0.0083, significant only in the middle quintile at
+t = -3.31. Negative everywhere, weaker within quintiles than the pooled -0.0188, so part of
+the pooled effect is cross-quintile composition and part is real — and in no quintile is it
+the positive sign that was declared.
+
+**Gate 4 was not failed. It was never testable, and that distinction is the honest part of
+this record.** Routine purchases reach a **median of 13 issuers per four-week window, a
+maximum of 22, and 30 on none of 505 weeks**, so the routine information coefficient is NaN
+throughout. Cohen, Malloy and Pomorski's actual claim — that opportunistic beats routine —
+was therefore never put to the test here. Only 7.6% of purchases classified routine against
+the paper's roughly 20%, because this universe is 2,669 survivorship-screened issuers
+rather than the whole market, and a three-consecutive-year rule is strict on a thin panel.
+
+So the correct closure is narrow and should be recorded as such: **the opportunistic leg is
+refuted in this universe on a significant wrong-signed IC, and the routine comparison could
+not be made at this breadth.** Anyone reviving it needs the full market rather than the
+survivorship-aware roster, and should expect the classification rate to be the binding
+constraint.
+
+**One thing worth keeping.** This is the first family here tested on a window that is not
+2023-2026 — 505 weeks from 2017 — and it was free rather than chosen, because the routine
+rule needs three years of history before it can classify anything. The longer window did
+not rescue the signal, but the precedent is useful: a method that forces a long warmup buys
+an out-of-sample window at no cost in selection.

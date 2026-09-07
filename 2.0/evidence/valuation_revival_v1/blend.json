@@ -1,0 +1,110 @@
+[
+  {
+    "growth": "residual_composite",
+    "valuation_weight": 0.25,
+    "cagr": 0.39526177627304215,
+    "sharpe": 2.1413038487884752,
+    "maxdd": -0.16018406083329773,
+    "beats_both": true,
+    "pre_break_cagr": 0.1229458768517937,
+    "pre_break_sharpe": 0.8765119317417825,
+    "post_break_sharpe": 3.9497005896758495,
+    "growth_alone_pre_break_cagr": 0.0792862740982263
+  },
+  {
+    "growth": "residual_composite",
+    "valuation_weight": 0.35,
+    "cagr": 0.38898654821293954,
+    "sharpe": 2.1868801969986498,
+    "maxdd": -0.16205819791312515,
+    "beats_both": true,
+    "pre_break_cagr": 0.13967858223937957,
+    "pre_break_sharpe": 0.986728202793141,
+    "post_break_sharpe": 3.972637061902455,
+    "growth_alone_pre_break_cagr": 0.0792862740982263
+  },
+  {
+    "growth": "residual_composite",
+    "valuation_weight": 0.5,
+    "cagr": 0.3776373486533471,
+    "sharpe": 2.1294962741530923,
+    "maxdd": -0.16551313011007596,
+    "beats_both": true,
+    "pre_break_cagr": 0.1639097878487612,
+    "pre_break_sharpe": 1.0949242219502981,
+    "post_break_sharpe": 3.740705591893546,
+    "growth_alone_pre_break_cagr": 0.0792862740982263
+  },
+  {
+    "growth": "sector_ensemble",
+    "valuation_weight": 0.25,
+    "cagr": 0.43187544614761353,
+    "sharpe": 2.145361667784369,
+    "maxdd": -0.17926732203535056,
+    "beats_both": true,
+    "pre_break_cagr": 0.1513221764327093,
+    "pre_break_sharpe": 0.9802833023674743,
+    "post_break_sharpe": 3.85207443841501,
+    "growth_alone_pre_break_cagr": 0.11228048111694666
+  },
+  {
+    "growth": "sector_ensemble",
+    "valuation_weight": 0.35,
+    "cagr": 0.42056488143054827,
+    "sharpe": 2.2417399059063707,
+    "maxdd": -0.16563109283288613,
+    "beats_both": true,
+    "pre_break_cagr": 0.1655576232285414,
+    "pre_break_sharpe": 1.1094782063484114,
+    "post_break_sharpe": 3.946993596773532,
+    "growth_alone_pre_break_cagr": 0.11228048111694666
+  },
+  {
+    "growth": "sector_ensemble",
+    "valuation_weight": 0.5,
+    "cagr": 0.4010895578841136,
+    "sharpe": 2.2449403012990157,
+    "maxdd": -0.16429142832397947,
+    "beats_both": true,
+    "pre_break_cagr": 0.1853192208193386,
+    "pre_break_sharpe": 1.2365256798691253,
+    "post_break_sharpe": 3.8209742294877285,
+    "growth_alone_pre_break_cagr": 0.11228048111694666
+  },
+  {
+    "growth": "cash_conversion",
+    "valuation_weight": 0.25,
+    "cagr": 0.39963982681537935,
+    "sharpe": 1.9674966344380096,
+    "maxdd": -0.17536214278228945,
+    "beats_both": true,
+    "pre_break_cagr": 0.1273965345852619,
+    "pre_break_sharpe": 0.8409731762299212,
+    "post_break_sharpe": 3.548279094917659,
+    "growth_alone_pre_break_cagr": 0.08147401253142572
+  },
+  {
+    "growth": "cash_conversion",
+    "valuation_weight": 0.35,
+    "cagr": 0.3928933889900075,
+    "sharpe": 2.0749135086113646,
+    "maxdd": -0.16212524237756998,
+    "beats_both": true,
+    "pre_break_cagr": 0.14456209052213098,
+    "pre_break_sharpe": 0.9815200802857516,
+    "post_break_sharpe": 3.655796717069162,
+    "growth_alone_pre_break_cagr": 0.08147401253142572
+  },
+  {
+    "growth": "cash_conversion",
+    "valuation_weight": 0.5,
+    "cagr": 0.3801473392834813,
+    "sharpe": 2.1147411140364487,
+    "maxdd": -0.16151476785372143,
+    "beats_both": true,
+    "pre_break_cagr": 0.16889070101366177,
+    "pre_break_sharpe": 1.1371279351916237,
+    "post_break_sharpe": 3.594822191039261,
+    "growth_alone_pre_break_cagr": 0.08147401253142572
+  }
+]

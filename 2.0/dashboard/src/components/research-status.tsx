@@ -17,6 +17,12 @@ type Clock = {
 
 type Pending = { protocol: string; firstDecision: string; purpose: string; modifies: string };
 type Closed = { name: string; verdict: string; step: number };
+type Candidate = {
+  name: string; status: string; why_it_is_here: string; what_it_is_not: string;
+  historical: Record<string, number>;
+  blendedWithGrowth: Record<string, string | number>;
+  measuredIn: string;
+};
 type BeforeAfter = { strategy: string; window: string; weeks: number; cagr: number; sharpe: number; maxDrawdown: number };
 
 type ResearchStatus = {
@@ -37,6 +43,7 @@ type ResearchStatus = {
     measuredIn: string;
     plainEnglish: string;
   };
+  candidate: Candidate;
   structuralBreak: { date: string; note: string; beforeAfter: BeforeAfter[]; measuredIn: string };
   clocks: Clock[];
   pending: Pending[];
@@ -107,6 +114,39 @@ export function ResearchStatus() {
             Measured in {data.breadth.measuredIn}: {data.breadth.effectiveIndependentStrategies} effective
             independent strategies, {data.breadth.effectiveBetsPerYear} independent bets a year, against
             roughly {data.breadth.betsNeededForInformationRatio025} needed for an information ratio of 0.25.
+          </p>
+        </div>
+      </div>
+
+      <h3>Research candidate</h3>
+      <div className="callout">
+        <div>
+          <strong>{data.candidate.name}</strong> — {data.candidate.status}
+          <p>{data.candidate.why_it_is_here}</p>
+          <p><em>{data.candidate.what_it_is_not}</em></p>
+          <table className="data-table">
+            <thead><tr><th>Window</th><th>Return / yr</th><th>Sharpe</th><th>Max drawdown</th></tr></thead>
+            <tbody>
+              <tr><td>full</td><td className="mono">{percent(data.candidate.historical.fullCagr)}</td>
+                  <td className="mono">{data.candidate.historical.fullSharpe.toFixed(3)}</td>
+                  <td className="mono">{percent(data.candidate.historical.fullMaxDrawdown)}</td></tr>
+              <tr><td>before {data.structuralBreak.date}</td>
+                  <td className="mono">{percent(data.candidate.historical.preBreakCagr)}</td>
+                  <td className="mono">{data.candidate.historical.preBreakSharpe.toFixed(3)}</td><td>—</td></tr>
+              <tr><td>after {data.structuralBreak.date}</td>
+                  <td className="mono">{percent(data.candidate.historical.postBreakCagr)}</td>
+                  <td className="mono">{data.candidate.historical.postBreakSharpe.toFixed(3)}</td><td>—</td></tr>
+            </tbody>
+          </table>
+          <p>
+            <strong>Blended with growth:</strong> {String(data.candidate.blendedWithGrowth.note)} Best is{" "}
+            {String(data.candidate.blendedWithGrowth.best)}: Sharpe{" "}
+            {Number(data.candidate.blendedWithGrowth.sharpeBefore).toFixed(3)} to{" "}
+            {Number(data.candidate.blendedWithGrowth.sharpeAfter).toFixed(3)}, volatility{" "}
+            {percent(Number(data.candidate.blendedWithGrowth.volatilityBefore))} to{" "}
+            {percent(Number(data.candidate.blendedWithGrowth.volatilityAfter))}, drawdown{" "}
+            {percent(Number(data.candidate.blendedWithGrowth.maxDrawdownBefore))} to{" "}
+            {percent(Number(data.candidate.blendedWithGrowth.maxDrawdownAfter))}.
           </p>
         </div>
       </div>

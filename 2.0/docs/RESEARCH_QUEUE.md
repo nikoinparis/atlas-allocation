@@ -284,3 +284,4 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 ---
 
 *Last updated 2026-09-06. Update this file in the same commit as the work it describes.*
+| Valuation family revival | REVIVED. Widening to breadth 20 fixes the concentration failure; near-zero correlation to all four incumbents; 9 of 9 blends beat both components on Sharpe. On a clock from 2026-09-11. | 274, 275 |

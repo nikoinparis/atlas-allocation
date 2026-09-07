@@ -13022,3 +13022,46 @@ Recorded as the first genuine candidate of this stretch, and as a candidate rath
 
 References: `config/valuation_revival_registry_v1.json`, `scripts/run_valuation_revival_v1.py`,
 `evidence/valuation_revival_v1/`, `config/forward/valuation_earnings_yield_forward_v1.json`
+
+## Step 275 — 2026-09-06 — The valuation book goes on the dashboard, and blending is the first thing that has ever improved an existing strategy
+
+**What this accomplished: it improved the existing strategies.** Not by returning more —
+the valuation book returns less than all four of them — but by being uncorrelated with
+them. This is the first step in 275 that has moved a live candidate's risk-adjusted
+return, and the mechanism is arithmetic rather than a fitted result.
+
+Added the breadth-20 earnings-yield book to the dashboard's research page as a candidate,
+labelled `no forward evidence yet`, alongside the blend result below.
+
+**Blend of the valuation book with each of the three unlevered dashboard strategies,
+three weights each, nine combinations:**
+
+| combination | CAGR | Sharpe | vol | maxDD |
+|---|---|---|---|---|
+| residual_composite alone | 40.64% | 1.856 | 19.4% | -18.69% |
+| valuation alone | 32.36% | 1.366 | 22.4% | -18.52% |
+| 35% valuation + 65% residual_composite | 38.90% | 2.187 | 15.6% | -16.21% |
+| sector_ensemble alone | 45.41% | 1.795 | 22.3% | -21.32% |
+| 35% valuation + 65% sector_ensemble | 42.06% | 2.242 | 16.3% | -16.56% |
+| 50% valuation + 50% sector_ensemble | 40.11% | 2.245 | 15.6% | -16.43% |
+| cash_conversion alone | 41.03% | 1.620 | 22.9% | -20.93% |
+| 50% valuation + 50% cash_conversion | 38.01% | 2.115 | 15.9% | -16.15% |
+
+**Nine of nine blends beat both of their components on Sharpe.** Volatility falls from
+roughly 22% to roughly 16% in every case and maximum drawdown improves in every case,
+which is what near-zero correlation is supposed to do and what nothing else this project
+has built has managed. The pre-break half improves too: 35/65 with the sector ensemble
+returns 16.56% a year before 2025-04-04 against the sector ensemble's own 11.23%, so
+this is not purely a post-break artifact.
+
+**What this is not.** The nine weights were not pre-registered, so they are nine more
+trials on a window already searched to death, and the correct reading of "the best weight
+is 35% or 50%" is "anything between a quarter and a half works", not "0.35 is the
+number". Both components were selected on the same 2023-2026 window and neither has a
+single week of forward evidence. Blending two overfit strategies produces an overfit
+blend; what survives that objection is only the volatility reduction, because that
+follows from the correlation matrix rather than from the returns.
+
+The honest summary is that the valuation book's value is breadth, exactly as CLAUDE.md
+section 2 predicted it would have to be, and the way to bank it is to run both clocks
+forward and blend the forward records — not to promote a backtested blend.

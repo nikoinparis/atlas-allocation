@@ -7,6 +7,34 @@
     "measuredIn": "Step 245",
     "plainEnglish": "The four displayed strategies correlate 0.93 to 0.97 with each other, so they are close to one bet held several times. The binding constraint on this portfolio is the number of genuinely independent bets it makes, not the size of any single return."
   },
+  "candidate": {
+    "blendedWithGrowth": {
+      "best": "35% valuation with 65% sector ensemble",
+      "maxDrawdownAfter": -0.1656,
+      "maxDrawdownBefore": -0.2132,
+      "note": "Nine of nine blends beat BOTH components on Sharpe. That is arithmetic rather than a fitted result: near-zero correlation reduces portfolio volatility whatever the returns do.",
+      "sharpeAfter": 2.242,
+      "sharpeBefore": 1.795,
+      "volatilityAfter": 0.163,
+      "volatilityBefore": 0.223
+    },
+    "historical": {
+      "distinctIssuers": 109,
+      "fullCagr": 0.3256,
+      "fullMaxDrawdown": -0.1852,
+      "fullSharpe": 1.379,
+      "postBreakCagr": 0.4783,
+      "postBreakSharpe": 1.817,
+      "preBreakCagr": 0.2361,
+      "preBreakSharpe": 1.081,
+      "topIssuerShareOfPositiveContribution": 0.0664
+    },
+    "measuredIn": "Step 274",
+    "name": "Valuation, earnings yield, breadth 20",
+    "status": "candidate on a forward clock \u2014 no forward evidence yet",
+    "what_it_is_not": "A discovery. Earnings yield is one of the oldest documented anomalies in finance, and the search behind this was sixteen configurations on a panel already searched ninety ways, on the same window every strategy here was selected on.",
+    "why_it_is_here": "It is the only strategy this project has built whose correlation against every existing strategy is near zero: -0.022, +0.006, -0.029, +0.116. It also passes the concentration gate the original ten-name version failed, holds 109 distinct issuers, and its worst single-name removal costs 2.01 points of 32.56."
+  },
   "clocks": [
     {
       "cumulativeReturn": 0.03002029190162947,
@@ -193,9 +221,9 @@
       "verdict": "38,849 events; nothing clears, and the 13G control is flat"
     }
   ],
-  "generatedAtUtc": "2026-09-06T23:31:44.818382+00:00",
+  "generatedAtUtc": "2026-09-07T01:17:23.319171+00:00",
   "headline": {
-    "clocksPending": 3,
+    "clocksPending": 4,
     "clocksRunning": 4,
     "closedFamilies": 17,
     "totalUntouchedWeeks": 12,
@@ -220,6 +248,12 @@
       "modifies": "nothing",
       "protocol": "sue_quarterly_forward_v1",
       "purpose": "The owner's objection to Step 256 is fair and this is the answer to it. SUE measures +0.0053 at t=0.71 over fifteen years and +0.0316 at t=3.57 on the recent high-coverage window, and those two facts cannot be separated from history because the recent window is BOTH where the data is clean AND where every other strategy here was selected. The one thing that settles it is forward evidence, which by construction is neither. If SUE works now, it keeps working from here."
+    },
+    {
+      "firstDecision": "2026-09-11",
+      "modifies": "nothing",
+      "protocol": "valuation_earnings_yield_forward_v1",
+      "purpose": "Step 274 revived the valuation family by widening the book that originally failed a concentration gate. It is the first candidate in this project to pass a gate it previously failed, and the only one whose correlation against every existing strategy is near zero. Historical evidence is where every candidate here has died, so this goes on a clock rather than into the dashboard."
     }
   ],
   "readMe": "Forward returns are realised weekly numbers read from hash-chained logs. A clock completing does not authorise promotion; it triggers a separately predeclared statistical review. No strategy here has ever traded.",

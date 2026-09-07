@@ -59,6 +59,7 @@ t = 2.00, surviving the length control at +0.0579.
 *one* measure and *one* horizon in advance instead of twelve trials. The text is acquired and
 parsed, so this is a further download rather than a fresh start.
 
+
 ### S2. A third independent return source — anything that is not price and not a filing ratio *(new 2026-09-06)*
 **Status:** the standing top priority, and deliberately not a specific idea.
 **Why it is S and everything else is not:** Step 275 took the effective number of independent
@@ -267,3 +268,4 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 | Valuation family revival | REVIVED. Widening to breadth 20 fixes the concentration failure; near-zero correlation to all four incumbents; 9 of 9 blends beat both components on Sharpe. On a clock from 2026-09-11. | 274, 275 |
 | **Breadth repair by construction (was A2)** | **Closed as noise.** Five constructions on two books attacking 61-71% persistence and 5-7 effective names. One of eight raised breadth and Sharpe together (de-persistence on cash conversion, bets 8.6->15.6, Sharpe 0.878->1.007) and the same intervention *lowered* Sharpe on valuation. Paired block bootstrap p=0.632 and p=0.426 against a Bonferroni bar of 0.0063; the two books move opposite directions by -2.07% and +2.05%. **Kept:** sector caps *reduce* effective independent names on both books (7.39->4.30, 6.39->3.99), so these books are not concentrated because they are sector-concentrated -- the premise of the intervention is backwards. | Step 279 |
 | **Valuation panel quarterly refresh (was S3)** | **Done and defect fixed.** The builder loaded a stale checkpoint, passed ten validation checks, and re-emitted the same fourteen quarters. Guarded on membership vintage; panel now runs to 2026-07-01. | Step 278 |
+| **FINRA daily short-sale volume (was S2a)** | **Closed on all three gates.** Pre-registered before download; 922 trading days, 487 issuers x 192 weeks. IC **+0.00383** (t=0.82, p=0.396) against a declared NEGATIVE sign — refuted. Declared book -28.07% CAGR at 50bps and -14.36% at 0bps, so wrong-signed rather than cost-killed. The reverse side returns 25.86% at Sharpe 1.178 and **does not rescue it**: the sign was declared, the IC behind it is insignificant, and it correlates **+0.886 with an equal weighting of its own universe** — market beta with a tilt. Distinct from Step 263's short *interest*. | Step 282 |

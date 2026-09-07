@@ -1,0 +1,23 @@
+{
+  "all_gates_passed": false,
+  "block_bootstrap_p": 0.3964,
+  "book_cagr": -0.2807140645522409,
+  "book_max_drawdown": -0.7396498893783825,
+  "book_sharpe": -1.2030014992106024,
+  "book_volatility": 0.23334473376503911,
+  "correlation_vs_growth": -0.0009612878942026123,
+  "correlation_vs_valuation": 0.6813116596067558,
+  "declared_sign": "negative",
+  "experiment": "finra_short_volume_v1",
+  "gate_1_orthogonality": false,
+  "gate_2_standalone_skill": false,
+  "gate_3_significance": false,
+  "issuers": 487,
+  "live_trading_enabled": false,
+  "mean_information_coefficient": 0.0038282348160178638,
+  "observed_sign_matches": false,
+  "strategy_promotion_authorized": false,
+  "t_stat": 0.8172515019263584,
+  "trials_declared": 1,
+  "weeks": 192
+}

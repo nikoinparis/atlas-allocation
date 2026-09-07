@@ -13368,3 +13368,55 @@ now say this first, before anything else about the strategy.
 Reproduction now stands at **5 of 6 from a saved book**, 6 of 6 from published holdings,
 6 of 6 with a frozen manifest. The remaining one is the ETF 60/40, whose book is a wide
 date-by-symbol matrix rather than long-form weights; its holdings reprice at +0.988.
+
+## Step 282 — 2026-09-06 — FINRA short-sale volume closed: the declared side is wrong-signed and the other side is beta
+
+**What this accomplished: it closed the best remaining free candidate for a third
+independent return source, and it did so without rescuing it by reversing the sign.**
+
+Pre-registered in `config/finra_short_volume_registry_v1.json` **before any data was
+downloaded**: one signal, one horizon, breadth 20, 50bps, a declared NEGATIVE sign, and
+three gates all required. Acquired 922 trading days of FINRA consolidated daily
+short-sale volume, 2023-01-03 to 2026-09-04, free and published by the venue. Panel: 487
+issuers x 192 weeks.
+
+This is distinct from Step 263, which tested short *interest* — reported open positions,
+twice monthly. This is short *volume*, the share of executed volume marked short, daily.
+Different mechanism, different cadence. The queue's own caveat on this idea was to declare
+which of the two is being tested and not run both and pick, and that is what the registry
+does.
+
+| gate | result |
+|---|---|
+| information coefficient | **+0.00383**, t = +0.82, block-bootstrap **p = 0.396** |
+| declared sign | NEGATIVE — observed **POSITIVE. REFUTED.** |
+| book, long the 20 least-shorted, 50bps | **-28.07% CAGR**, Sharpe -1.203, maxDD -73.96% |
+| gate 1 orthogonality | **FAIL** — +0.681 vs valuation |
+| gate 2 standalone skill | **FAIL** |
+| gate 3 significance with sign | **FAIL** |
+
+**The declared book loses at zero cost too** — -14.36% CAGR at 0bps against -28.07% at
+50bps — so this is the signal being wrong-signed, not turnover eating a real edge. Weekly
+turnover is 66.8%, which the cost model then doubles the damage of.
+
+**The other side looks good and does not rescue it, for three separate reasons.** Long the
+20 *most*-shorted returns 25.86% at 50bps with Sharpe 1.178. The registry says in advance
+that a positive result "must be reported as such rather than reinterpreted as a contrarian
+signal", and that is the first reason. The second is that the cross-sectional IC behind it
+is **insignificant at p = 0.396**, so the book is not supported by the signal it is
+supposedly built on — the same transfer-coefficient anomaly Step 245 found, where growth's
+IC is -0.0015 while it earns +11.79% a year. The third is decisive on its own: the
+most-shorted book correlates **+0.886 with an equal weighting of its own universe** and
++0.788 with the valuation book. It returns +8.03% over that universe while being 89% the
+same thing. **It is market beta with a tilt, not an independent return source**, and it
+fails gate 1 by a wider margin than the declared side did.
+
+S2a is closed. The three-gate structure did its job: a candidate that would have passed a
+single orthogonality screen in one direction and a single return screen in the other
+passed neither when both were required at once, on a sign fixed in advance.
+
+**One acquisition defect, fixed.** FINRA answers a date with no file with **HTTP 403, not
+404**. The fetcher classified 403 as a failure, so a complete download reported 37 failures
+and exited non-zero. All 37 are US market holidays — MLK, Presidents, Good Friday,
+Memorial, Juneteenth, July 4, Labor, Thanksgiving, Christmas, New Year. Reclassified; the
+run now reports 922 files, 0 failures, 37 days with no file published.

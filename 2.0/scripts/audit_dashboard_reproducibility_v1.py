@@ -74,6 +74,8 @@ STRATEGIES = {
     "sec-sector-aware-signal-ensemble-v1": {
         "book": "evidence/sec_sector_aware_signal_ensemble_v1/selected_stock_target_weights.csv",
         "date_column": "rebalance_at", "weight_column": "intended_weight",
+        "allocator": "evidence/sec_sector_aware_signal_ensemble_v1/selected_strategy_target_weights.csv",
+        "leader_path": "evidence/sec_signal_neighborhood_ensemble_v1/selected_path__50bps.csv",
         "reference": "evidence/sec_sector_aware_signal_ensemble_v1/selected_path__50bps.csv",
         "rebuild_script": "scripts/run_sec_sector_aware_signal_ensemble_v1.py",
         "manifest": "config/strategies/sec_sector_aware_signal_ensemble_v1.json",
@@ -96,6 +98,8 @@ STRATEGIES = {
     "sec-sector-ensemble-fragile-1.35x-v1": {
         "book": "evidence/sec_sector_aware_signal_ensemble_v1/selected_stock_target_weights.csv",
         "date_column": "rebalance_at", "weight_column": "intended_weight",
+        "allocator": "evidence/sec_sector_aware_signal_ensemble_v1/selected_strategy_target_weights.csv",
+        "leader_path": "evidence/sec_signal_neighborhood_ensemble_v1/selected_path__50bps.csv",
         "reference": "evidence/sec_sector_aware_signal_ensemble_v1/selected_path__50bps.csv",
         "rebuild_script": "scripts/run_sec_sector_aware_signal_ensemble_v1.py",
         "manifest": "config/strategies/sec_sector_ensemble_fragile_1_35x_v1.json",
@@ -140,6 +144,16 @@ def ticker_to_cik() -> dict[str, str]:
     # collisions are rare and the alternative is dropping the name entirely.
     return (frame.groupby("ticker_used").cik10
             .agg(lambda v: v.value_counts().index[0]).to_dict())
+
+
+def as_naive(frame):
+    """Drop tz. Three sources here index three different ways and pandas refuses
+    to join naive with aware, so normalise once at every join instead of guessing
+    which side carries a timezone."""
+    idx = pd.to_datetime(frame.index)
+    out = frame.copy()
+    out.index = idx.tz_localize(None) if idx.tz is not None else idx
+    return out
 
 
 def reprice_published_holdings(records: list[dict], symbol_map: dict[str, str]) -> dict:
@@ -254,6 +268,15 @@ def audit_one(name: str, spec: dict) -> dict:
         return row
 
     reference = load_series(spec["reference"])
+    # The sector ensemble's saved stock weights are only its cash_conversion
+    # sleeve, which averages 22.2% of the strategy. The other 77.8% is a separate
+    # "leader" path. Step 278 called the allocator missing; it was never missing --
+    # selected_strategy_target_weights.csv has been saved all along and the audit
+    # was pointed at the stock leg. Reprice both legs and combine per the allocator.
+    allocator = None
+    if spec.get("allocator") and (ROOT / spec["allocator"]).exists():
+        allocator = pd.read_csv(ROOT / spec["allocator"], parse_dates=["Date"]).set_index("Date")
+    leader = load_series(spec["leader_path"]) if spec.get("leader_path") else None
     frame = pd.read_csv(ROOT / spec["book"], dtype={"cik10": str})
     frame = frame.rename(columns={spec["date_column"]: "decision_at",
                                   spec["weight_column"]: "weight"})
@@ -281,7 +304,14 @@ def audit_one(name: str, spec: dict) -> dict:
             if aligned.empty:
                 continue
             rebuilt = known_good.simulate(aligned, returns, 50.0)
-            joined = pd.concat({"a": rebuilt, "b": reference}, axis=1, sort=True).dropna()
+            if allocator is not None and leader is not None:
+                # All three sources index differently on tz; normalise to naive.
+                combined = pd.concat({"s": as_naive(rebuilt), "l": as_naive(leader)},
+                                     axis=1).join(as_naive(allocator)).dropna()
+                if len(combined) >= 40:
+                    rebuilt = combined.leader * combined.l + combined.cash_conversion * combined.s
+            joined = pd.concat({"a": as_naive(rebuilt), "b": as_naive(reference)},
+                               axis=1, sort=True).dropna()
             joined = joined[joined.a.ne(0.0) | joined.b.ne(0.0)]
             if len(joined) < 40:
                 continue

@@ -1,7 +1,17 @@
 {
   "approved_for_live_trading": false,
   "book": {
-    "note": "identical to the underlying; leverage is applied to the path, not the selection"
+    "allocator": "evidence/sec_sector_aware_signal_ensemble_v1/selected_strategy_target_weights.csv (columns: leader, cash_conversion)",
+    "allocator_mean_weights": {
+      "cash_conversion": 0.222,
+      "leader": 0.778
+    },
+    "cadence": "quarterly selection, weekly allocator",
+    "cash_conversion_leg": "evidence/sec_sector_aware_signal_ensemble_v1/selected_stock_target_weights.csv",
+    "execution": "first weekly close strictly after the decision",
+    "leader_leg": "evidence/sec_signal_neighborhood_ensemble_v1/selected_path__50bps.csv",
+    "structure": "two legs combined weekly by a saved allocator",
+    "weeks_100pct_leader": "101 of 188"
   },
   "book_artifact": "evidence/sec_sector_aware_signal_ensemble_v1/selected_stock_target_weights.csv",
   "book_artifact_sha256": "51be7923d5344ada42c8730c5d09ca178763812588b70938456c504cae25d47e",
@@ -12,9 +22,10 @@
   "forward_evidence": "none. No strategy in this project has been promoted or traded.",
   "frozen_at_utc": "2026-09-06T00:00:00Z",
   "known_weaknesses": [
-    "Inherits every weakness of the underlying, including the unsaved allocator, and multiplies its drawdowns by 1.35.",
-    "Its dashboard label already calls it a return ceiling: the five-issuer and bootstrap gates failed.",
-    "Leverage adds no breadth. CLAUDE.md section 2: levering a correlated signal amplifies return and fragility together."
+    "THIS STRATEGY IS ITS OWN PREDECESSOR. Its published path is identical to sec_signal_neighborhood_ensemble_v1/selected_path__50bps.csv in 165 of 188 weeks, differs by more than 1bp in 19 weeks, and totals 261.99% against that path's 259.99% -- about 0.08 points a year of a 42.74% CAGR. The sector-aware overlay, which is the entire premise of the strategy, contributes approximately nothing. Measured in Step 281.",
+    "It is therefore NOT a distinct sixth strategy on the dashboard, and neither is its 1.35x form. Counting them separately overstates how many independent things this project holds, which is the exact illusion Step 245 and Step 277 are about.",
+    "Its own result.json records all_falsification_checks_passed: false.",
+    "Inherits all of the above and multiplies drawdowns by 1.35. Leverage adds no breadth."
   ],
   "leverage": 1.35,
   "live_trading_enabled": false,
@@ -29,8 +40,9 @@
   "underlying": "sec_sector_aware_signal_ensemble_v1",
   "universe": "Inherited from the underlying strategy",
   "verification_as_of_2026_09_06": {
-    "book_reprices_to_published_path": 0.7471572005836723,
+    "book_reprices_to_published_path": 0.888,
     "harness": "scripts/audit_dashboard_reproducibility_v1.py",
+    "note": "Rose from +0.747 to +0.888 once both legs were priced. Step 278 called the allocator missing; it was never missing -- it was saved as selected_strategy_target_weights.csv and the audit was pointed at the stock leg.",
     "published_holdings_reprice": 0.9676733715669107,
     "weight_priced": 0.9677328457446808
   },

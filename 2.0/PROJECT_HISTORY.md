@@ -13321,3 +13321,50 @@ its saved book at +0.747 and has since Step 241. Its published holdings reprice 
 so the arithmetic is sound and what is missing is an allocator above the saved stock leg
 that was never saved. Its manifest says exactly that instead of implying the file
 describes the whole strategy.
+
+## Step 281 — 2026-09-06 — The sector ensemble's allocator was never missing, and the strategy is its own predecessor
+
+**What this accomplished: it explained a number open since Step 241, and it removed a
+strategy from the dashboard's effective count.**
+
+**The allocator was never missing.** Step 278 reported that whatever sits above the saved
+stock leg "is not saved anywhere". It is, and always was:
+`selected_strategy_target_weights.csv`, written by line 184 of the ensemble script since
+the run that produced it. The audit was pointed at `selected_stock_target_weights.csv`,
+which is only one of two legs. Three steps described this as an unsaved component; nobody
+opened the directory listing. Repricing both legs takes the reproduction from **+0.747 to
++0.888**, above the bar.
+
+The structure: a weekly allocator splitting between a `leader` leg and a `cash_conversion`
+leg, averaging **77.8% / 22.2%**, sitting at 100% leader in **101 of 188 weeks**. The
+saved stock weights are the 22.2% sleeve. Pricing them alone and comparing to the whole
+strategy is why the number was 0.747, and it was a property of the harness rather than of
+the strategy.
+
+**Then the part that matters.** The `leader` leg is
+`sec_signal_neighborhood_ensemble_v1/selected_path__50bps.csv`, and that path alone
+correlates **+0.9999** with the published sector-ensemble path. Compared directly:
+
+| | value |
+|---|---|
+| weeks identical to the predecessor | **165 of 188** |
+| weeks differing by more than 1bp | **19** |
+| max weekly difference | 0.00178 |
+| total return, sector-aware | +261.99% |
+| total return, predecessor | +259.99% |
+
+**The sector-aware overlay contributes about 2 points of 260% over three and a half
+years — roughly 0.08 points a year on a 42.74% CAGR.** The premise of the strategy is
+that sector awareness improves the ensemble. It does not measurably do so, and this was
+knowable from the first run.
+
+**Consequence for the dashboard.** "Sector-Aware Signal Ensemble" and "Sector Ensemble
+1.35x" are not two strategies, and arguably not one: they are a predecessor plus rounding,
+shown twice at different leverage. The dashboard presents six strategies; the number of
+distinct objects is smaller, which is the same illusion Step 245 measured as an effective
+1.15 independent strategies and Step 277 restated as breadth without skill. Both manifests
+now say this first, before anything else about the strategy.
+
+Reproduction now stands at **5 of 6 from a saved book**, 6 of 6 from published holdings,
+6 of 6 with a frozen manifest. The remaining one is the ETF 60/40, whose book is a wide
+date-by-symbol matrix rather than long-form weights; its holdings reprice at +0.988.

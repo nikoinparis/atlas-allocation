@@ -8,6 +8,8 @@ from src.systematic_trader.raw_signals import reconstruct_five_signals
 
 
 ROOT = Path(__file__).resolve().parents[1]
+LEGACY_PANEL = ROOT.parent / "1.0/data/01_data_hub/weekly_returns.csv"
+
 SCRIPT = ROOT / "scripts/rebuild_raw_signals_and_strategy.py"
 spec = importlib.util.spec_from_file_location("rebuild_raw_signals_and_strategy", SCRIPT)
 module = importlib.util.module_from_spec(spec)
@@ -19,6 +21,10 @@ spec.loader.exec_module(module)
 class RawSignalRebuildTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
+        # See test_strategy_scoreboard.py: 1.0's data hub is a regenerable cache
+        # that is not in the repository, so this cannot run from a fresh checkout.
+        if not LEGACY_PANEL.is_file():
+            raise unittest.SkipTest(f"legacy 1.0 panel not present: {LEGACY_PANEL}")
         cls.result = module.build()
 
     def test_all_signal_components_are_checked(self):

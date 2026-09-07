@@ -13453,3 +13453,27 @@ reproducing from that book, 6 of 6 from published holdings.
 Nothing was removed. A negative result is a record, and deleting the strategy would destroy
 the evidence that produced the finding — CLAUDE.md rule 9. Labelling it is the correction;
 deletion would have been a second error.
+
+## Step 284 — 2026-09-07 — The test suite tells the truth again
+
+**What this accomplished: it fixed the reporting, not the code under test.**
+
+`pytest -q` at the repository root did not run. It collected the vendored Riskfolio-Lib
+and skfolio sources out of `evidence/` — third-party code kept as research records, not
+tests of this project — and died on their imports before executing one of ours. Scoped
+collection to `tests/` in `pyproject.toml`.
+
+Under that, 16 tests **errored on every run** because `1.0/data/01_data_hub/` is a
+regenerable cache that is not in the repository, so they cannot run from a fresh checkout
+at all. They now skip with the reason stated. This is a reporting fix and it matters more
+than it sounds: sixteen permanent errors mean nobody reads the test report, and a report
+nobody reads is where a real failure hides. Rebuilding 1.0 was the alternative and
+CLAUDE.md treats 1.0 as historical reference that is not to be worked on without
+instruction, so skipping honestly is the correct action rather than the convenient one.
+
+**532 passed, 16 skipped, 0 errors.** Before: 532 passed, 16 errors, and a root invocation
+that did not start.
+
+Also removed two tracked zero-byte files at the repository root, `-d` and
+`2026-09-04T20:57:03`, which are a shell invocation from 2026-09-04 that captured a flag
+and a timestamp as filenames and committed them.

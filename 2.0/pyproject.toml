@@ -1,0 +1,8 @@
+
+[tool.pytest.ini_options]
+# `pytest -q` at the repository root collected the vendored Riskfolio-Lib and
+# skfolio suites out of evidence/ and died on their imports before running a
+# single test of ours. Those directories are third-party source kept as research
+# records, not tests of this project.
+testpaths = ["tests"]
+norecursedirs = ["evidence", "data", "dashboard", ".venv", "1.0"]

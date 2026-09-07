@@ -5,6 +5,8 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+LEGACY_PANEL = ROOT.parent / "1.0/data/01_data_hub/weekly_returns.csv"
+
 SCRIPT = ROOT / "scripts/rebuild_trend_quality_strategy.py"
 spec = importlib.util.spec_from_file_location("rebuild_trend_quality_strategy", SCRIPT)
 module = importlib.util.module_from_spec(spec)
@@ -16,6 +18,15 @@ spec.loader.exec_module(module)
 class TrendQualityRebuildTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
+        # 1.0's data hub is a regenerable cache and is not in the repository, so
+        # these tests cannot run from a fresh checkout. They errored on every run
+        # rather than skipping, and sixteen permanent errors are worse than
+        # sixteen skips: nobody reads a test report that is always red, which is
+        # exactly how a real failure hides. CLAUDE.md treats 1.0 as historical
+        # reference and forbids adding work there without instruction, so the fix
+        # is to skip honestly and say what is missing, not to rebuild 1.0.
+        if not LEGACY_PANEL.is_file():
+            raise unittest.SkipTest(f"legacy 1.0 panel not present: {LEGACY_PANEL}")
         cls.result = module.build()
 
     def test_all_five_signal_lags_reconcile(self):

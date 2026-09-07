@@ -190,7 +190,21 @@ def main() -> int:
     inputs["decision_time"] = pd.to_datetime(inputs.decision_time, utc=True)
     panel_checkpoint = OUTPUT / "normalized_valuation_panel_basis_v2.csv"
     source_checkpoint = OUTPUT / "price_source_audit.csv"
+    # The checkpoint is keyed to a membership vintage and nothing used to check that.
+    # Re-running this script on 2026-09-06 to pick up the new 2026-07-01 quarter
+    # reloaded an Aug-14 checkpoint, reported ten passing validation checks, and
+    # produced the identical fourteen quarters it started with. A cache that cannot
+    # tell it is stale turns "regenerate the panel" into a silent no-op, which is
+    # worse than not caching at all because the run looks like it succeeded.
+    latest_membership = membership[membership.tradable_member].decision_at.max()
+    checkpoint_is_current = False
     if panel_checkpoint.exists() and source_checkpoint.exists():
+        head = pd.read_csv(panel_checkpoint, usecols=["decision_at"], parse_dates=["decision_at"])
+        checkpoint_is_current = head.decision_at.max() >= latest_membership
+        if not checkpoint_is_current:
+            print(f"checkpoint covers decisions through {head.decision_at.max().date()} but membership "
+                  f"reaches {latest_membership.date()}; rebuilding the panel")
+    if checkpoint_is_current:
         panel = pd.read_csv(panel_checkpoint, dtype={"cik10": str}, low_memory=False, parse_dates=["decision_at", "decision_time", "price_date", "shares_outstanding__period_end", "shares_outstanding__available_at", "diluted_shares__period_end", "diluted_shares__available_at"])
         source_audit = pd.read_csv(source_checkpoint, dtype={"cik10": str})
     else:

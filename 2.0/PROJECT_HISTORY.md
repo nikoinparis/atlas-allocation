@@ -12775,3 +12775,88 @@ No strategy created or improved. Both experiments closed.
 
 References: `config/short_interest_filter_registry_v1.json`, `scripts/run_short_interest_filter_v1.py`,
 `scripts/run_selection_sizing_v1.py`, `evidence/short_interest_filter_v1/`, `evidence/selection_sizing_v1/`
+
+## Step 271 — Macro state is the first thing that flags April 2025, and conditioning on it still does not pay
+
+The last untried family of state variable, and the first to detect anything. Unlike A10, which
+used observables computed from our own price panel, these are what macro people actually watch and
+none is derived from anything this project built: the yield curve slope, the Chicago Fed's
+financial conditions index, policy stance against the front of the curve, the broad dollar, VIX and
+its term structure, and a high-yield-over-treasuries credit proxy. Fit on 2005-2020, never refit,
+causally labelled.
+
+### Two observables pass the test that everything else failed
+
+| observable | year before break | max near break | after break | level shift | detects |
+|---|---|---|---|---|---|
+| **policy stance** | 0.523 | 0.988 | 0.832 | **+0.309** | **yes** |
+| **dollar (13-week change)** | 0.234 | 0.965 | 0.752 | **+0.518** | **yes** |
+| curve slope | 0.995 | 0.995 | 0.995 | -0.000 | no |
+| financial conditions | 0.992 | 0.993 | 0.993 | +0.001 | no |
+| VIX | 0.794 | 0.973 | 0.614 | -0.179 | no |
+| credit proxy | 0.056 | 0.892 | 0.047 | -0.009 | no |
+
+**Policy stance and the dollar both shift persistently at 2025-04-04.** After Steps 266, 267 and
+269 all failed the same test, this is the first state variable in the project to flag the break
+causally.
+
+The likely explanation is worth stating because it is checkable and dateable: **April 2025 is the
+tariff shock.** A trade-policy regime change moving the dollar and the policy-versus-front-end
+spread is exactly what one would predict, and it is the first concrete answer to the owner's
+question of whether an event caused the break rather than a statistical accident.
+
+And all four strategies earn more in the high-probability state: growth +43.2 points, residual
++24.2, cash conversion +17.4, sector ensemble +4.4.
+
+### And conditioning on it still does not pay
+
+| conditioning on | strategy | unconditional Sharpe | switched | sized 0.5-1.5 | sized max drawdown |
+|---|---|---|---|---|---|
+| policy stance | sector ensemble | 1.795 | 1.372 | **1.546** | **-31.2%** |
+| policy stance | residual composite | 1.839 | 1.658 | 1.730 | -27.6% |
+| dollar | sector ensemble | 1.795 | 1.522 | 1.731 | -22.9% |
+| dollar | residual composite | 1.839 | 1.855 | **1.872** | -19.5% |
+| consensus | sector ensemble | 1.795 | 1.013 | 1.734 | -23.1% |
+
+Switching is uniformly worse. Sizing is roughly flat at best -- one configuration out of twelve
+improves Sharpe by 0.033 -- and **drawdowns get materially worse**, from -21.8% to -31.2% in the
+policy-stance case.
+
+Same shape as A13 and for the same reason: the low state still returns twelve to thirty-six
+percent a year, so sizing down forfeits real money, and the financing and turnover of doing it
+consume what is left.
+
+**The state is real, detectable and correctly signed, and it is still not tradeable.** That is now
+the third independent confirmation of the same pattern, and at some point the pattern is the
+finding: this portfolio's returns are not conditionable on anything measured so far.
+
+## Step 272 — Clustering the saved paths: 1.85 independent strategies out of eighteen
+
+Unsupervised learning used for structure-finding rather than prediction, which Step 264 established
+is where it helps here.
+
+Of 710 saved return paths, only **18** have complete coverage over a common window once daily and
+weekly series are aligned and gaps are excluded -- the filter is strict and that is the main
+limitation of this result. On those eighteen:
+
+| | |
+|---|---|
+| median pairwise correlation | **0.594** |
+| share of pairs above 0.5 | 52.9% |
+| share of pairs above 0.8 | **45.8%** |
+| **effective independent strategies** | **1.85 of 18** (10.3% of nominal) |
+
+At a 0.7-correlation cut the eighteen paths fall into **three clusters with eleven of them in the
+largest**. At 0.5 it is two clusters with twelve in the largest.
+
+Step 245 measured 1.57 effective independent strategies among the four on the dashboard. This says
+the same thing at four and a half times the sample: **the breadth problem is not a property of the
+four displayed strategies, it is a property of the whole research programme.** Nearly half of all
+pairs correlate above 0.8, which is what happens when a library is built by varying parameters
+within one family.
+
+The eighteen-path limitation is real and the number should be read as directional. The direction
+is unambiguous and matches every previous measurement.
+
+References: `scripts/run_macro_state_v1.py`, `evidence/macro_state_v1/`,
+`scripts/run_strategy_clustering_v1.py`, `evidence/strategy_clustering_v1/`

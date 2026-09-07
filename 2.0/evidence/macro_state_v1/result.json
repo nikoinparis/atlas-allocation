@@ -1,0 +1,112 @@
+{
+  "detection": [
+    {
+      "detects_transition": false,
+      "fit_weeks": 834,
+      "level_shift": -9.624730770096956e-05,
+      "observable": "curve_slope",
+      "probability_after_break": 0.9947134830114358,
+      "probability_max_near_break": 0.9948047242142252,
+      "probability_pre_break_year": 0.9948097303191368
+    },
+    {
+      "detects_transition": false,
+      "fit_weeks": 834,
+      "level_shift": 0.0007591425044082278,
+      "observable": "financial_conditions",
+      "probability_after_break": 0.9926380422219658,
+      "probability_max_near_break": 0.9926416605687334,
+      "probability_pre_break_year": 0.9918788997175576
+    },
+    {
+      "detects_transition": true,
+      "fit_weeks": 834,
+      "level_shift": 0.3086239397278373,
+      "observable": "policy_stance",
+      "probability_after_break": 0.8319849618951245,
+      "probability_max_near_break": 0.9881111295942668,
+      "probability_pre_break_year": 0.5233610221672872
+    },
+    {
+      "detects_transition": true,
+      "fit_weeks": 769,
+      "level_shift": 0.5180479452557026,
+      "observable": "dollar",
+      "probability_after_break": 0.7521667859481025,
+      "probability_max_near_break": 0.9651692329442967,
+      "probability_pre_break_year": 0.23411884069239983
+    },
+    {
+      "detects_transition": false,
+      "fit_weeks": 834,
+      "level_shift": -0.17911524229856435,
+      "observable": "vix",
+      "probability_after_break": 0.6143517351307505,
+      "probability_max_near_break": 0.9733114419684936,
+      "probability_pre_break_year": 0.7934669774293148
+    },
+    {
+      "detects_transition": false,
+      "fit_weeks": 754,
+      "level_shift": 0.045075537969435475,
+      "observable": "vix_term_slope",
+      "probability_after_break": 0.08306689676180151,
+      "probability_max_near_break": 0.824109808622482,
+      "probability_pre_break_year": 0.03799135879236604
+    },
+    {
+      "detects_transition": false,
+      "fit_weeks": 703,
+      "level_shift": -0.008501865090101868,
+      "observable": "credit_proxy",
+      "probability_after_break": 0.04702508156978314,
+      "probability_max_near_break": 0.8918708025305904,
+      "probability_pre_break_year": 0.05552694665988501
+    }
+  ],
+  "experiment": "macro_state_v1",
+  "fit_window_end": "2020-12-31",
+  "live_trading_enabled": false,
+  "never_refit": true,
+  "observables": [
+    "curve_slope",
+    "financial_conditions",
+    "policy_stance",
+    "dollar",
+    "vix",
+    "vix_term_slope",
+    "credit_proxy"
+  ],
+  "strategy_by_macro_state": [
+    {
+      "difference": 0.043676692021622984,
+      "return_high_macro_state": 0.40366988849177676,
+      "return_low_macro_state": 0.3599931964701538,
+      "strategy": "sector_ensemble",
+      "weeks": 188
+    },
+    {
+      "difference": 0.24223188051899222,
+      "return_high_macro_state": 0.47654813797941276,
+      "return_low_macro_state": 0.2343162574604205,
+      "strategy": "residual_composite",
+      "weeks": 193
+    },
+    {
+      "difference": 0.17367369241007494,
+      "return_high_macro_state": 0.4445614393103752,
+      "return_low_macro_state": 0.27088774690030026,
+      "strategy": "cash_conversion_b20",
+      "weeks": 188
+    },
+    {
+      "difference": 0.43147183375224146,
+      "return_high_macro_state": 0.5539116567601241,
+      "return_low_macro_state": 0.12243982300788263,
+      "strategy": "growth_top_five",
+      "weeks": 188
+    }
+  ],
+  "strategy_promotion_authorized": false,
+  "verdict": "policy_stance, dollar detect a persistent transition at the break"
+}

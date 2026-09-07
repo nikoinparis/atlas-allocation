@@ -1,0 +1,123 @@
+{
+  "best_pre_break": [
+    {
+      "path": "evidence/ggg_execution_aware_batch_53/best_unqualified_candidate_weights.csv",
+      "post_return": 9.799876666454473,
+      "post_sharpe": 5.883311974057003,
+      "pre_return": 14.636794582511857,
+      "pre_sharpe": 6.83825064973841
+    },
+    {
+      "path": "evidence/sec_fragility_exposure_daily_audit_v1/common_daily_paths.csv",
+      "post_return": 0.42239188328783245,
+      "post_sharpe": 1.3448264633605256,
+      "pre_return": 0.6549909113749178,
+      "pre_sharpe": 1.6184538888833417
+    },
+    {
+      "path": "evidence/sec_fragility_exposure_daily_audit_v1/daily_path__cash_only_1.00x.csv",
+      "post_return": 0.42239188328783245,
+      "post_sharpe": 1.3448264633605256,
+      "pre_return": 0.6549909113749178,
+      "pre_sharpe": 1.6184538888833417
+    },
+    {
+      "path": "evidence/sec_fragility_exposure_daily_audit_v1/daily_path__fixed_1.50x.csv",
+      "post_return": 0.42239188328783245,
+      "post_sharpe": 1.3448264633605256,
+      "pre_return": 0.6549909113749178,
+      "pre_sharpe": 1.6184538888833417
+    },
+    {
+      "path": "evidence/sec_fragility_exposure_daily_audit_v1/daily_path__fixed_2.00x.csv",
+      "post_return": 0.42239188328783245,
+      "post_sharpe": 1.3448264633605256,
+      "pre_return": 0.6549909113749178,
+      "pre_sharpe": 1.6184538888833417
+    },
+    {
+      "path": "evidence/sec_fragility_exposure_daily_audit_v1/daily_path__vol35_cap1.75x.csv",
+      "post_return": 0.42239188328783245,
+      "post_sharpe": 1.3448264633605256,
+      "pre_return": 0.6549909113749178,
+      "pre_sharpe": 1.6184538888833417
+    },
+    {
+      "path": "evidence/sec_fragility_exposure_daily_audit_v1/daily_source_alpha_path.csv",
+      "post_return": 0.42239188328783245,
+      "post_sharpe": 1.3448264633605256,
+      "pre_return": 0.6549909113749178,
+      "pre_sharpe": 1.6184538888833417
+    },
+    {
+      "path": "evidence/point_in_time_fundamental_branches_v1/weekly_paths.csv",
+      "post_return": 0.2573816469825663,
+      "post_sharpe": 1.2936715833184864,
+      "pre_return": 0.19946447184450328,
+      "pre_sharpe": 1.3676339120050975
+    },
+    {
+      "path": "evidence/daily_ohlcv_alpha_zoo_v1/weekly_paths.csv",
+      "post_return": 0.18154018163277708,
+      "post_sharpe": 1.3654431352751366,
+      "pre_return": 0.2180465939331281,
+      "pre_sharpe": 1.1948114462151465
+    },
+    {
+      "path": "evidence/sec_growth_incumbent_sleeve_blend_v1/path__adverse__buy_and_drift__growth_00__50bps.csv",
+      "post_return": 0.653373264399276,
+      "post_sharpe": 2.6412213509954574,
+      "pre_return": 0.2013413609615468,
+      "pre_sharpe": 1.1224038197875128
+    },
+    {
+      "path": "evidence/sec_growth_incumbent_sleeve_blend_v1/path__adverse__quarterly_target_reset__growth_00__50bps.csv",
+      "post_return": 0.653373264399276,
+      "post_sharpe": 2.6412213509954574,
+      "pre_return": 0.2013413609615468,
+      "pre_sharpe": 1.1224038197875128
+    },
+    {
+      "path": "evidence/sec_growth_incumbent_sleeve_blend_v1/path__base__buy_and_drift__growth_00__50bps.csv",
+      "post_return": 0.653373264399276,
+      "post_sharpe": 2.6412213509954574,
+      "pre_return": 0.2013413609615468,
+      "pre_sharpe": 1.1224038197875128
+    },
+    {
+      "path": "evidence/sec_growth_incumbent_sleeve_blend_v1/path__base__quarterly_target_reset__growth_00__50bps.csv",
+      "post_return": 0.653373264399276,
+      "post_sharpe": 2.6412213509954574,
+      "pre_return": 0.2013413609615468,
+      "pre_sharpe": 1.1224038197875128
+    },
+    {
+      "path": "evidence/sec_survivorship_valuation_discovery_v1/best_path_adverse_50bps.csv",
+      "post_return": 0.8469900566639241,
+      "post_sharpe": 1.5149904039927755,
+      "pre_return": 0.6226106924697445,
+      "pre_sharpe": 1.1153307149434666
+    },
+    {
+      "path": "evidence/sec_survivorship_valuation_discovery_v1/best_path_base_50bps.csv",
+      "post_return": 0.8469900566639241,
+      "post_sharpe": 1.5149904039927755,
+      "pre_return": 0.6226106924697445,
+      "pre_sharpe": 1.1153307149434666
+    }
+  ],
+  "break_date": "2025-04-04",
+  "experiment": "pre_break_strategy_search_v1",
+  "live_trading_enabled": false,
+  "market_post_break_annualised": 0.2656163930154671,
+  "market_pre_break_annualised": 0.14553639643136654,
+  "multiple_testing_note": "710 paths searched; the best pre-break performer is the best of 710 and is a hypothesis, never a strategy",
+  "p_value": 1.2245344784833634e-06,
+  "paths_compared": 710,
+  "queue_item": "A12",
+  "rank_correlation_pre_vs_post": 0.1808928575408849,
+  "share_beating_market_pre_break": 0.21267605633802816,
+  "strategy_promotion_authorized": false,
+  "t_stat": 4.893982857395013,
+  "verdict": "pre-break and post-break performance are essentially unrelated across 710 paths (rank correlation +0.181, p=0.0000). Doing well before says nothing about doing well after, which supports neither a clean two-state story nor a single-regime one -- it is what you would see if both periods were mostly noise around different means."
+}

@@ -1,0 +1,239 @@
+{
+  "comparison": [
+    {
+      "abs_ic_improved": false,
+      "abs_t_improved": false,
+      "fracdiff_ic": 0.001771658948481422,
+      "fracdiff_t": 0.18029170382167367,
+      "horizon": 4,
+      "lookback": 4,
+      "plain_ic": -0.005714031763577367,
+      "plain_t": -0.7811324990918193
+    },
+    {
+      "abs_ic_improved": false,
+      "abs_t_improved": false,
+      "fracdiff_ic": -0.0020330187441206828,
+      "fracdiff_t": -0.1314828264190835,
+      "horizon": 13,
+      "lookback": 4,
+      "plain_ic": -0.013969364383361287,
+      "plain_t": -1.2155017996795063
+    },
+    {
+      "abs_ic_improved": true,
+      "abs_t_improved": true,
+      "fracdiff_ic": 0.0035140523990573767,
+      "fracdiff_t": 0.3548947302440558,
+      "horizon": 4,
+      "lookback": 13,
+      "plain_ic": 0.0017761291852319344,
+      "plain_t": 0.19692618727100217
+    },
+    {
+      "abs_ic_improved": false,
+      "abs_t_improved": false,
+      "fracdiff_ic": -0.003670985930609169,
+      "fracdiff_t": -0.22085090882399036,
+      "horizon": 13,
+      "lookback": 13,
+      "plain_ic": 0.014492484752333128,
+      "plain_t": 1.2327351061698237
+    },
+    {
+      "abs_ic_improved": false,
+      "abs_t_improved": false,
+      "fracdiff_ic": 0.0028277405317044435,
+      "fracdiff_t": 0.28811832424934347,
+      "horizon": 4,
+      "lookback": 26,
+      "plain_ic": 0.008008587840172238,
+      "plain_t": 0.8127866314481694
+    },
+    {
+      "abs_ic_improved": false,
+      "abs_t_improved": false,
+      "fracdiff_ic": -0.006827945669318467,
+      "fracdiff_t": -0.390521588822579,
+      "horizon": 13,
+      "lookback": 26,
+      "plain_ic": 0.009060025240359017,
+      "plain_t": 0.7744546725409673
+    },
+    {
+      "abs_ic_improved": false,
+      "abs_t_improved": false,
+      "fracdiff_ic": 0.0023809427019624643,
+      "fracdiff_t": 0.24248151529990244,
+      "horizon": 4,
+      "lookback": 52,
+      "plain_ic": 0.01427909105969928,
+      "plain_t": 1.3362929703059059
+    },
+    {
+      "abs_ic_improved": false,
+      "abs_t_improved": false,
+      "fracdiff_ic": -0.009190998602613763,
+      "fracdiff_t": -0.5219146404950021,
+      "horizon": 13,
+      "lookback": 52,
+      "plain_ic": 0.017686381282170212,
+      "plain_t": 1.1774220023684816
+    }
+  ],
+  "configurations_improved": 1,
+  "experiment": "fracdiff_features_v1",
+  "issuers": 2231,
+  "live_trading_enabled": false,
+  "matched_configurations": 8,
+  "order": 0.3,
+  "queue_item": "A11",
+  "strategy_promotion_authorized": false,
+  "table": [
+    {
+      "horizon": 4,
+      "input": "plain_returns",
+      "lookback": 4,
+      "mean_ic": -0.005714031763577367,
+      "observations": 203,
+      "p_value": 0.43563906878755687,
+      "t_stat": -0.7811324990918193
+    },
+    {
+      "horizon": 4,
+      "input": "fractional_0.3",
+      "lookback": 4,
+      "mean_ic": 0.001771658948481422,
+      "observations": 173,
+      "p_value": 0.8571358125489374,
+      "t_stat": 0.18029170382167367
+    },
+    {
+      "horizon": 13,
+      "input": "plain_returns",
+      "lookback": 4,
+      "mean_ic": -0.013969364383361287,
+      "observations": 61,
+      "p_value": 0.2289359018419425,
+      "t_stat": -1.2155017996795063
+    },
+    {
+      "horizon": 13,
+      "input": "fractional_0.3",
+      "lookback": 4,
+      "mean_ic": -0.0020330187441206828,
+      "observations": 52,
+      "p_value": 0.8959106974298898,
+      "t_stat": -0.1314828264190835
+    },
+    {
+      "horizon": 4,
+      "input": "plain_returns",
+      "lookback": 13,
+      "mean_ic": 0.0017761291852319344,
+      "observations": 200,
+      "p_value": 0.8440862795086301,
+      "t_stat": 0.19692618727100217
+    },
+    {
+      "horizon": 4,
+      "input": "fractional_0.3",
+      "lookback": 13,
+      "mean_ic": 0.0035140523990573767,
+      "observations": 171,
+      "p_value": 0.7231083472384161,
+      "t_stat": 0.3548947302440558
+    },
+    {
+      "horizon": 13,
+      "input": "plain_returns",
+      "lookback": 13,
+      "mean_ic": 0.014492484752333128,
+      "observations": 61,
+      "p_value": 0.2224830074562698,
+      "t_stat": 1.2327351061698237
+    },
+    {
+      "horizon": 13,
+      "input": "fractional_0.3",
+      "lookback": 13,
+      "mean_ic": -0.003670985930609169,
+      "observations": 51,
+      "p_value": 0.8261079119807863,
+      "t_stat": -0.22085090882399036
+    },
+    {
+      "horizon": 4,
+      "input": "plain_returns",
+      "lookback": 26,
+      "mean_ic": 0.008008587840172238,
+      "observations": 197,
+      "p_value": 0.41732655793147216,
+      "t_stat": 0.8127866314481694
+    },
+    {
+      "horizon": 4,
+      "input": "fractional_0.3",
+      "lookback": 26,
+      "mean_ic": 0.0028277405317044435,
+      "observations": 167,
+      "p_value": 0.7736155840835478,
+      "t_stat": 0.28811832424934347
+    },
+    {
+      "horizon": 13,
+      "input": "plain_returns",
+      "lookback": 26,
+      "mean_ic": 0.009060025240359017,
+      "observations": 60,
+      "p_value": 0.44175454968291317,
+      "t_stat": 0.7744546725409673
+    },
+    {
+      "horizon": 13,
+      "input": "fractional_0.3",
+      "lookback": 26,
+      "mean_ic": -0.006827945669318467,
+      "observations": 50,
+      "p_value": 0.6978435753172151,
+      "t_stat": -0.390521588822579
+    },
+    {
+      "horizon": 4,
+      "input": "plain_returns",
+      "lookback": 52,
+      "mean_ic": 0.01427909105969928,
+      "observations": 191,
+      "p_value": 0.1830516774570614,
+      "t_stat": 1.3362929703059059
+    },
+    {
+      "horizon": 4,
+      "input": "fractional_0.3",
+      "lookback": 52,
+      "mean_ic": 0.0023809427019624643,
+      "observations": 161,
+      "p_value": 0.8087176248383492,
+      "t_stat": 0.24248151529990244
+    },
+    {
+      "horizon": 13,
+      "input": "plain_returns",
+      "lookback": 52,
+      "mean_ic": 0.017686381282170212,
+      "observations": 58,
+      "p_value": 0.24392010397334285,
+      "t_stat": 1.1774220023684816
+    },
+    {
+      "horizon": 13,
+      "input": "fractional_0.3",
+      "lookback": 52,
+      "mean_ic": -0.009190998602613763,
+      "observations": 48,
+      "p_value": 0.6041809056631222,
+      "t_stat": -0.5219146404950021
+    }
+  ],
+  "verdict": "the fractionally differenced input gives a larger absolute t-statistic in 1 of 8 matched configurations. It is not the better input on this panel, so the memory it preserves is not the memory these signals needed, and Step 265's result stands as a property of the series rather than a usable improvement."
+}

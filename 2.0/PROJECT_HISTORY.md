@@ -12500,3 +12500,123 @@ No strategy was created or improved. This closes one route to explaining the bre
 
 References: `config/market_state_registry_v1.json`, `scripts/run_market_state_v1.py`,
 `evidence/market_state_v1/`
+
+## Step 267 — A12: nothing worked before April 2025 either, which is not the answer the regime story needed
+
+The owner's second hypothesis and the prior question A10 skipped: if our four strategies were
+market-average until April 2025 and excellent after, was there a strategy among the ones already
+built and rejected that was excellent *before* it?
+
+710 saved return paths with at least 60 pre-break and 40 post-break weeks. The honest test is not
+"find the best pre-break path" -- with 710 candidates the best will look wonderful by chance. It
+is the rank correlation between pre-break and post-break performance across all of them, which is
+one number over the whole set and needs no correction.
+
+| | |
+|---|---|
+| paths compared | 710 |
+| market before the break | 14.55% |
+| market after the break | 26.56% |
+| **paths beating the market before the break** | **21.3%** |
+| **rank correlation, pre-break Sharpe vs post-break Sharpe** | **+0.181** (p = 0.0000) |
+
+### The correlation is weakly POSITIVE, and that is the answer
+
+A two-state story predicts a **negative** correlation: different things work in different regimes,
+so pre-break winners should be post-break losers. The measured correlation is **+0.181** --
+weakly positive and significantly so. Things that worked before tended to keep working, less
+strongly than a single-regime story would predict but in the same direction.
+
+The pre-declared reading called anything between -0.2 and +0.2 "essentially unrelated", and the
+script reported that. It is more precise to say **weakly positive, which is evidence against the
+two-state story rather than neutral on it**, and that correction is recorded here.
+
+### And the sharper finding is the 21.3%
+
+**Only one path in five of everything this project has ever built beat a simple equal weight of
+the market before April 2025.** So the April 2025 break is not "regime A favoured a strategy we
+did not build, regime B favours the ones we did". It is closer to: **nothing here worked, and then
+four correlated things worked at once.**
+
+That is a worse answer than the regime story would have been, and it is the one the data gives.
+
+### One entry to distrust rather than celebrate
+
+The top pre-break path shows a Sharpe of 6.84 and 14.6% annualised. A Sharpe near seven is not a
+tradeable result, it is a diagnostic series that slipped through the return-series filter --
+almost certainly an execution-audit residual rather than a portfolio. Recorded so nobody mines it
+later.
+
+### What this leaves
+
+A10 could not find the states from market observables. A12 says the states probably are not there
+to find: the same things worked, weakly, on both sides of a break where the market itself went
+from 14.6% to 26.6%. The remaining explanation for April 2025 is not a regime -- it is that four
+highly correlated strategies, all built on the same universe with the same family of signals, had
+a good seventeen months together.
+
+No strategy created or improved. This closes the regime thread's cheaper half and weakens the
+thread as a whole.
+
+References: `scripts/run_pre_break_strategy_search_v1.py`, `evidence/pre_break_strategy_search_v1/`
+
+## Step 268 — A11 fails, and short interest as a filter is the first improvement to an existing book
+
+### A11: fractional differencing does not help the signals
+
+Step 265 established that order-0.3 differencing keeps 0.856 of the price level's memory against
+0.050 for plain returns. This tested whether that memory is the memory the signals needed.
+
+| lookback | horizon | plain IC | plain t | fracdiff IC | fracdiff t | better? |
+|---|---|---|---|---|---|---|
+| 13 | 4 | 0.0018 | 0.20 | 0.0035 | 0.35 | **yes** |
+| 26 | 13 | 0.0091 | 0.77 | -0.0068 | -0.39 | no |
+| 52 | 4 | 0.0143 | 1.34 | 0.0024 | 0.24 | no |
+| 52 | 13 | 0.0177 | 1.18 | -0.0092 | -0.52 | no |
+
+**One of eight configurations improves**, and several flip sign. Step 265's result stands as a
+true property of the series and not as a usable improvement: the memory fractional differencing
+preserves is not the memory these particular signals were using. A11 closes.
+
+### Short interest as an exclusion filter: it helps, modestly
+
+Step 263 closed short interest as a strategy and left it open as a screen. Applying it as an
+exclusion on the existing books, at 50bps:
+
+| book | variant | CAGR | Sharpe | max drawdown |
+|---|---|---|---|---|
+| cash conversion | as built | 11.79% | 0.563 | -31.86% |
+| cash conversion | **drop top 20% most shorted** | **13.92%** | **0.618** | -31.86% |
+| cash conversion | drop top 10% most shorted | 13.28% | 0.607 | -31.86% |
+| growth | as built | 32.06% | 0.944 | -30.69% |
+| growth | drop top 20% | 32.06% | 0.944 | -30.69% |
+| sector ensemble | as built | 20.12% | 0.929 | -22.99% |
+| sector ensemble | **drop top 10% most shorted** | **23.62%** | **1.036** | -23.38% |
+
+Two of three books improve: cash conversion by 2.1 points of CAGR and 0.055 of Sharpe, the sector
+ensemble by 3.5 points and 0.107. Growth is unchanged because a five-name book rarely holds
+anything the filter removes.
+
+**This is the first improvement to an existing strategy found in this entire stretch**, and it
+comes with four caveats that matter more than the numbers.
+
+It was **not pre-registered**. It is six trials -- three books by two thresholds -- that were not
+declared, run after seeing that the underlying signal had a real information coefficient. On this
+project's own rules that makes it a hypothesis and not a result.
+
+The window is 2023-2026, the same window every strategy here was selected on and the one Step 262
+showed contains a structural break at April 2025.
+
+The gains are small enough to be noise on 188 weeks, and the drawdowns barely move, which is what
+you would expect from removing a handful of names.
+
+And the direction is right for the wrong reason to be confident: the underlying IC is negative and
+strong (t = -5.30 out of sample), so *some* benefit from excluding the most-shorted names is
+expected. The question is whether it is worth the operational cost of a twice-monthly screen on a
+book of eight to twenty-six names, and that is not answered here.
+
+**Recorded as a candidate for a pre-registered test, not as an improvement to adopt.** The proper
+version declares the books, the thresholds and the window before running, and reports the result
+whichever way it goes.
+
+References: `scripts/run_fracdiff_features_v1.py`, `evidence/fracdiff_features_v1/`, Step 263

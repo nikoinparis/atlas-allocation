@@ -59,6 +59,19 @@ t = 2.00, surviving the length control at +0.0579.
 *one* measure and *one* horizon in advance instead of twelve trials. The text is acquired and
 parsed, so this is a further download rather than a fresh start.
 
+## S tier
+
+### S4. Short-interest exclusion filter, properly pre-registered  *(new 2026-09-06)*
+**Status:** an undeclared post-hoc run improved two of three books — cash conversion 11.79% to
+13.92% CAGR, sector ensemble 20.12% to 23.62% with Sharpe 0.929 to 1.036. **That run does not
+count**: six trials, undeclared, on the same 2023-2026 window everything else was selected on.
+**Why it is S and not A:** it is the only thing in this file that has ever *improved* an existing
+book, the underlying signal has a genuine out-of-sample IC of -0.0435 at t = -5.30, and the data
+is already on disk. It deserves one clean pre-registered test.
+**What the registry must declare before running:** which books, which thresholds, which window,
+the cost of a twice-monthly screen on an eight-to-twenty-six name book, and the reading of every
+outcome. Report it whichever way it goes.
+
 ## A tier
 
 ### A1. The three near-zero-correlation OSAP anomalies that need no new data
@@ -263,6 +276,8 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 | **Triple-barrier labelling (was A9)** | **Closed.** Zero of four barrier configurations beat the plain forward return; the widest is a tie, and 9-43% of observations touch no barrier and are labelled zero. Also weakens the Step 201 hypothesis that meta-labelling failed for want of a barrier target underneath it. | Step 265 |
 | **Feature importance MDA/MDI (was A7)** | **Done.** Model has modest held-out skill (+0.0337, positive in 86% of folds). Only residual momentum degrades it when shuffled (+0.0439, t=1.99). **Trend quality is 29.9% of MDI and -0.0059 of MDA** — the forest leans on it and it carries nothing. The feature that matters is the one Step 234 found picks twenty names from a tie of fifty-nine by lowest CIK. | Step 264 |
 | **Short interest (was A5)** | **First signal to survive both windows, and still not worth holding.** IC -0.0312 (t=-4.80) select, -0.0435 (t=-5.30) evaluate. But a long-only book returns 12.54% at 50bps against a market at 13.15%, with a -36.5% drawdown, and correlates +0.873 with the market. Near-zero against our own strategies, which is the breadth property we want. **Open as an exclusion filter, closed as a strategy.** | Step 263 |
+| **Fractional differencing of features (was A11)** | **Closed.** Order-0.3 differencing keeps 0.856 of the price level's memory against 0.050 for plain returns, but only 1 of 8 signal configurations improves and several flip sign. The memory it preserves is not the memory these signals used. Step 265's finding stands as a property of the series, not a usable improvement. | Step 268 |
+| **Pre-break strategy search (was A12)** | **Closed, and it weakens the regime thread.** 710 saved paths compared either side of 2025-04-04. A two-state story predicts a *negative* rank correlation between pre- and post-break performance; measured **+0.181 (p=0.0000)** — weakly positive. And **only 21.3% of everything this project has ever built beat the market before April 2025.** The break is not "a different strategy suited the earlier regime" — nothing worked, then four correlated things worked at once. | Step 267 |
 | **Market-state classifier (was A10)** | **Closed as not actionable.** States from market observables (dispersion, correlation, breadth, volatility), fit 2011-2020, never refit, labelled causally. **No observable shows a persistent state change at 2025-04-04** — three spike near it and all four sit *lower* after than before, so a spike that reverts is not a transition. Pre-declared stop condition triggered; state-conditioned selection not authorised. All four strategies also do *worse* in the state these observables identify, so these are not the states that explain the break. | Step 266 |
 | **Structural break tests (was A6)** | **Done, and it changed the reading of everything else.** All four strategies select the identical break week, 2025-04-04, scanning independently over 188-195 weeks. Mean return goes from 8-13% before to 80-105% after, betas near zero on both sides so it is not market exposure, and the market itself shows no break there. None clears Bonferroni 0.01 (p 0.022-0.038) so it is suggestive rather than established -- but four independent strategies do not pick the same week by chance, and it is the cleanest evidence yet that they are one bet. **Consequence: future tests should split at 2025-04-04, and no test in this project has ever asked what the strategies look like with those 75 weeks removed.** | Step 261 |
 | **13D/13G activist events (was A4)** | **Closed.** 38,849 subject events, 2013-2026, sector-matched abnormal returns bootstrapped with clustering by filing month. Nothing clears for either form in either window. The strongest reading, 13D at 13 weeks recently, is **-2.13%** -- the wrong sign against a declared positive. The 13G control is flat at 20,000 events, so the absence is real rather than a broken pipeline. Caught mid-run: EDGAR relabelled `SC 13D` to `SCHEDULE 13D` in 2025 and the first parse silently lost two years. | Step 260 |

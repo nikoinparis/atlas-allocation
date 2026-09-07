@@ -12620,3 +12620,77 @@ version declares the books, the thresholds and the window before running, and re
 whichever way it goes.
 
 References: `scripts/run_fracdiff_features_v1.py`, `evidence/fracdiff_features_v1/`, Step 263
+
+## Step 269 — A13: selection-paying is real, our strategies are genuinely exposed to it, and it is not tradeable
+
+Framing 2 of the classifier idea, and the one that survived A10's failure. A10 asked what state
+the *market* is in and failed on every observable. This asks whether stock selection is being
+*rewarded*, measured from eight generic characteristics -- momentum at two horizons, volatility,
+price, beta, downside deviation, maximum weekly return and return skew -- none of which is a
+strategy in this registry and none of which was chosen by looking at what worked here. That is
+what keeps it non-circular.
+
+The index is the mean absolute information coefficient of those eight against the next four weeks
+of return, weekly, over 762 weeks. High means the cross-section is separable by ordinary
+characteristics, whoever is choosing.
+
+### Test 2, the deciding one, fails
+
+| | index level | causal state probability |
+|---|---|---|
+| fit window 2011-2020 | 0.1029 | -- |
+| year before the break | **0.0787** | 0.775 |
+| after the break | 0.0969 | **0.648** |
+
+**The index does not shift persistently at 2025-04-04.** It was *lower* in the year before the
+break and recovered afterwards without establishing a new level, and the causal probability went
+down rather than up. Under the reading declared before the run, that closes the regime thread for
+good rather than for now: **April 2025 was not selection starting to pay.**
+
+### Test 3, however, passes clearly, and this is new
+
+| strategy | return when selection pays | when it does not | difference |
+|---|---|---|---|
+| sector ensemble | **53.2%** | 23.2% | **+30.0pp** |
+| residual composite | 47.4% | 23.7% | +23.6pp |
+| cash conversion b20 | 47.0% | 24.5% | +22.5pp |
+| growth top five | 43.9% | 23.8% | +20.1pp |
+
+All four, same direction, differences of twenty to thirty points. This is the first conditioning
+variable in this project that relates to strategy performance **in the direction it should**.
+A10's market-state probability had the sign backwards on all four; this one does not.
+
+### Test 4 fails, and the reason is the useful part
+
+| strategy | unconditional | conditional after costs | Sharpe unconditional | Sharpe conditional |
+|---|---|---|---|---|
+| sector ensemble | 38.2% | **21.7%** | 1.709 | 1.378 |
+| residual composite | 35.5% | 18.8% | 1.839 | 1.372 |
+| cash conversion | 35.8% | 18.7% | 1.560 | 1.128 |
+| growth top five | 33.8% | 17.1% | 0.948 | 0.661 |
+
+**Conditioning makes every strategy worse, in return and in Sharpe.** Thirty-five switches over
+the window is not the problem -- the cost of switching is small. The problem is that the low state
+still returns **23 to 25 percent a year**. Sitting out of it forfeits real money, and the
+difference between the states is one of degree rather than of sign.
+
+That is the constructive finding. A conditioning variable is only tradeable by *exiting* when the
+bad state is actually bad. Here it is merely less good, so the only expression that could work is
+sizing up in the good state rather than sitting out of the bad one -- which is leverage, carries
+all of leverage's fragility, and is a different proposition that this registry does not authorise.
+
+### Where this leaves the classifier idea
+
+Three framings have now been tested. Classify the market: failed, sign backwards. Find a strategy
+that suited the earlier regime: failed, nothing worked before either. Classify whether selection
+is paying: the relationship is real and correctly signed, it does not explain April 2025, and it
+cannot be traded by switching.
+
+The honest summary of the whole thread is that **April 2025 remains unexplained**, and the best
+available explanation is still Step 267's: four highly correlated strategies had a good seventeen
+months together.
+
+No strategy created or improved.
+
+References: `config/selection_paying_registry_v1.json`, `scripts/run_selection_paying_v1.py`,
+`evidence/selection_paying_v1/`

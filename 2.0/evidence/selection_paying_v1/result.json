@@ -1,0 +1,80 @@
+{
+  "detects_transition": false,
+  "experiment": "selection_paying_v1",
+  "index_in_fit_window": 0.10292948235154879,
+  "index_mean": 0.10867737374630575,
+  "index_post_break": 0.0968938591199598,
+  "index_pre_break_year": 0.07865622603414414,
+  "live_trading_enabled": false,
+  "probability_max_near_break": 0.8312222172288147,
+  "probability_post_break": 0.6475790711649259,
+  "probability_pre_break_year": 0.7753631769290193,
+  "queue_item": "A13",
+  "strategy_by_index": [
+    {
+      "difference": 0.29972647781822986,
+      "return_when_it_does_not": 0.2319683035718503,
+      "return_when_selection_pays": 0.5316947813900802,
+      "strategy": "sector_ensemble",
+      "weeks": 188
+    },
+    {
+      "difference": 0.23629630652534728,
+      "return_when_it_does_not": 0.23726866732254442,
+      "return_when_selection_pays": 0.4735649738478917,
+      "strategy": "residual_composite",
+      "weeks": 193
+    },
+    {
+      "difference": 0.224918004560416,
+      "return_when_it_does_not": 0.24526559082512964,
+      "return_when_selection_pays": 0.47018359538554566,
+      "strategy": "cash_conversion_b20",
+      "weeks": 188
+    },
+    {
+      "difference": 0.20059903094771886,
+      "return_when_it_does_not": 0.23787622441014394,
+      "return_when_selection_pays": 0.4384752553578628,
+      "strategy": "growth_top_five",
+      "weeks": 188
+    }
+  ],
+  "strategy_promotion_authorized": false,
+  "switching": [
+    {
+      "conditional_return_after_costs": 0.21744313537589122,
+      "conditional_sharpe": 1.3779357061211357,
+      "strategy": "sector_ensemble",
+      "switches": 35,
+      "unconditional_return": 0.3818315424809653,
+      "unconditional_sharpe": 1.7084927218280432
+    },
+    {
+      "conditional_return_after_costs": 0.18840537559273368,
+      "conditional_sharpe": 1.3718923875158637,
+      "strategy": "residual_composite",
+      "switches": 35,
+      "unconditional_return": 0.35480465398800215,
+      "unconditional_sharpe": 1.8390506803731623
+    },
+    {
+      "conditional_return_after_costs": 0.18668754237362395,
+      "conditional_sharpe": 1.1275500927568411,
+      "strategy": "cash_conversion_b20",
+      "switches": 35,
+      "unconditional_return": 0.35772459310533766,
+      "unconditional_sharpe": 1.5601687597772844
+    },
+    {
+      "conditional_return_after_costs": 0.17083337235978246,
+      "conditional_sharpe": 0.6614134025098283,
+      "strategy": "growth_top_five",
+      "switches": 35,
+      "unconditional_return": 0.3381757398840034,
+      "unconditional_sharpe": 0.9477775536579246
+    }
+  ],
+  "verdict": "the selection-paying index does NOT shift persistently at 2025-04-04 (pre-break year 0.775, post-break 0.648). April 2025 was not selection starting to pay, and the pre-declared reading closes the regime thread for good rather than for now.",
+  "weeks": 762
+}

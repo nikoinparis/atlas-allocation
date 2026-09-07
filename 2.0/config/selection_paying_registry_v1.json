@@ -1,0 +1,35 @@
+{
+  "experiment": "selection_paying_v1",
+  "declared_at_utc": "2026-09-06T00:00:00Z",
+  "queue_item": "A13",
+  "question": "Is cross-sectional stock selection paying in a given week, and does that vary in a way anything can be conditioned on?",
+  "how_this_differs_from_A10": "A10 asked what state the MARKET is in, using dispersion, correlation, breadth and volatility, and failed: no observable showed a persistent shift at 2025-04-04 and all four strategies did worse in the state it identified. This asks a different question -- not what the market is doing, but whether picking stocks is being REWARDED -- and it is measured from a fixed basket of generic characteristics rather than from anything this project built.",
+  "why_it_is_not_circular": "The index is the mean absolute information coefficient across eight generic characteristics that exist in any equity textbook -- momentum at two horizons, volatility, price level, beta, downside deviation, maximum weekly return, and return skew. None of them is a strategy in this registry and none was selected by looking at what worked here. If many unrelated characteristics all predict returns in a week, selection is paying that week whoever is doing it. Our strategies are then tested against that index rather than used to build it.",
+  "the_index": {
+    "definition": "for each week, rank every issuer on each of eight characteristics known strictly before that week, compute the rank correlation of each with the next four weeks of return, and take the mean of the absolute values",
+    "interpretation": "high means the cross-section is separable by ordinary characteristics; low means it is not, whoever is choosing",
+    "characteristics": ["momentum_4w", "momentum_52w", "volatility_13w", "log_price", "beta_52w", "downside_deviation_26w", "max_weekly_return_13w", "return_skew_52w"],
+    "skip": "one week between every characteristic and the forward return, as in Step 257 and 250"
+  },
+  "protocol": {
+    "fit_window": ["2011-01-01", "2020-12-31"],
+    "never_refit": true,
+    "state_model": "two-state Gaussian Markov on the index, using the project's existing causal_stress_probabilities so the probability for week t uses only observations through t-1"
+  },
+  "tests_declared_in_advance": {
+    "1_does_the_index_have_states": "does a two-state model on the index separate periods, or is it one noisy series",
+    "2_does_it_move_at_the_break": "the causal probability must show a persistent level shift at 2025-04-04, defined as in Step 266: a spike above 0.5 AND a post-break mean above 0.5 AND a shift of more than 0.2 versus the prior year. A transient spike is not a transition.",
+    "3_do_our_strategies_care": "do the four dashboard strategies return materially more when the causal index probability is high",
+    "4_is_it_tradeable": "does conditioning exposure on the causal probability beat holding the strategy unconditionally, after 50bps on the extra turnover the switching creates"
+  },
+  "interpretation_fixed_in_advance": {
+    "if_the_index_does_not_move_at_the_break": "then April 2025 was not selection starting to pay, and the regime thread closes for good rather than for now",
+    "if_it_moves_and_strategies_do_not_care": "the index measures something real that our strategies are not exposed to, which is itself informative and would mean they are not selection strategies in the sense this measures",
+    "if_it_moves_and_strategies_care_and_conditioning_pays": "the first conditioning rule in this project with a non-circular basis, and it still enters at the bottom of the gate list with no forward evidence",
+    "always": "an index that explains the past is not a signal. Test 2 is causal on purpose, and failing it stops the rest."
+  },
+  "declared_trials": 4,
+  "bonferroni_threshold": 0.0125,
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

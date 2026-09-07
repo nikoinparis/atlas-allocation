@@ -12694,3 +12694,84 @@ No strategy created or improved.
 
 References: `config/selection_paying_registry_v1.json`, `scripts/run_selection_paying_v1.py`,
 `evidence/selection_paying_v1/`
+
+## Step 270 — S4 closes as noise, and sizing helps in exactly the period that no longer exists
+
+### S4: the pre-registered short-interest filter finds nothing
+
+Step 268's undeclared run showed cash conversion improving 11.79% to 13.92% and the sector
+ensemble 20.12% to 23.62%. This is the clean version: books, thresholds, windows and readings
+declared first, and a **paired** bootstrap on the weekly difference because filtered and
+unfiltered books share almost every holding.
+
+| book | threshold | window | base CAGR | filtered CAGR | paired p |
+|---|---|---|---|---|---|
+| cash conversion | 0.80 | full | 11.79% | 13.92% | **0.309** |
+| cash conversion | 0.90 | full | 11.79% | 13.28% | 0.370 |
+| sector ensemble | 0.80 | full | 20.12% | 21.15% | 0.748 |
+| **sector ensemble** | **0.90** | full | 20.12% | **23.62%** | **0.0136** |
+| growth | either | full | 32.06% | 32.06% | -- |
+
+**Nothing clears the Bonferroni threshold of 0.00833.** The one configuration that clears an
+uncorrected five percent, the sector ensemble at 0.90, gives 0.132 and 0.182 in the two
+sub-periods. Growth is untouched at both thresholds because a five-name book rarely holds anything
+the filter removes.
+
+The paired test is what killed it. Step 268 compared two nearly identical series without pairing,
+which made a small consistent difference look larger than the noise around it. **S4 closes and
+Step 268's numbers are recorded as noise**, which is what its own caveats predicted.
+
+One display bug: for configurations where the filter never fires the difference is exactly zero,
+and the bootstrap reports p = 0.0000 for an all-zero series because both tail counts are zero.
+Those rows are correctly excluded from the verdict, which requires a positive mean, but the p
+column is wrong for them and should not be read.
+
+### Option 2: sizing by the selection-paying probability
+
+Step 269 found the relationship real and switching value-destroying because the low state still
+returns 23 to 25 percent. The remaining expression is sizing, and it is leverage, so it was tested
+with caps declared and the drawdown reported alongside the return.
+
+Full window, caps 0.5 to 1.5:
+
+| strategy | base Sharpe | sized Sharpe | base maxDD | sized maxDD |
+|---|---|---|---|---|
+| sector ensemble | 1.709 | **1.762** | -21.80% | **-17.85%** |
+| residual composite | 1.839 | 1.860 | -18.69% | -16.31% |
+| cash conversion | 1.560 | 1.569 | -23.26% | -19.07% |
+| growth top five | 0.948 | **1.010** | -37.24% | -34.74% |
+
+Eight of eight leveraged configurations improve Sharpe **and reduce drawdown**, which is unusual
+enough for leverage to deserve suspicion. The suspicion is warranted:
+
+| caps | pre-break Sharpe gain | post-break Sharpe gain |
+|---|---|---|
+| 0.5-1.5 | **+0.196** (range +0.136 to +0.234) | **-0.308** (range -0.379 to -0.197) |
+| 0.75-1.25 | +0.106 | -0.146 |
+
+**Sizing helps consistently before April 2025 and hurts consistently after it**, in all four
+strategies and both leveraged caps. The full-window gain is an average of a real benefit and a
+real cost, and it exists only because the pre-break period is longer.
+
+Under the pre-declared reading -- a gain must hold in both sub-periods -- this is rejected.
+
+### The part worth keeping
+
+The pre-break improvement is not small and it is unanimous: **+0.14 to +0.23 of Sharpe across four
+strategies and two cap settings, in the 117 weeks when those strategies were returning 8 to 13
+percent against a market at 14.6.** That is precisely the period where they needed help, and the
+index would have provided it.
+
+What it did not do is help during the surge, and it could not: A13 established that the index does
+not shift at April 2025, so through the surge it kept advising smaller positions at moments when
+everything was working.
+
+The honest reading is that the selection-paying index is a **volatility-and-opportunity timing
+tool that works in ordinary conditions and is actively wrong in a melt-up.** That is a coherent
+description rather than a failure to explain, and it is the first thing in this thread that
+describes the two periods differently in a way the data supports.
+
+No strategy created or improved. Both experiments closed.
+
+References: `config/short_interest_filter_registry_v1.json`, `scripts/run_short_interest_filter_v1.py`,
+`scripts/run_selection_sizing_v1.py`, `evidence/short_interest_filter_v1/`, `evidence/selection_sizing_v1/`

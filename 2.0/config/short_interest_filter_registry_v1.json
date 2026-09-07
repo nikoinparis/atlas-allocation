@@ -1,0 +1,28 @@
+{
+  "experiment": "short_interest_filter_v1",
+  "declared_at_utc": "2026-09-06T00:00:00Z",
+  "queue_item": "S4",
+  "question": "Does excluding the most heavily shorted names improve an existing book, on a test declared before it runs?",
+  "why_it_needs_redoing": "Step 268 found cash conversion improving 11.79% to 13.92% and the sector ensemble 20.12% to 23.62%. That run does not count: six trials, undeclared, executed after seeing the underlying signal had a real information coefficient, on the same 2023-2026 window every strategy here was selected on. This is the clean version.",
+  "underlying_signal": "FINRA days-to-cover, whose out-of-sample IC is -0.0435 at t=-5.30 over 2023-2026 (Step 263). The sign is negative, so excluding the most shorted is the direction the signal supports and is declared here in advance.",
+  "declared_books": ["cash_conversion_b20", "growth_top_five", "sector_ensemble"],
+  "declared_thresholds": [0.80, 0.90],
+  "declared_trials": 6,
+  "bonferroni_threshold": 0.00833,
+  "windows": {
+    "note": "the books only exist from 2023-01, and Step 261 found a structural break at 2025-04-04 inside that. Both sub-periods are reported so a result that lives entirely in one is visible.",
+    "full": ["2023-01-01", "2026-09-04"],
+    "pre_break": ["2023-01-01", "2025-04-03"],
+    "post_break": ["2025-04-04", "2026-09-04"]
+  },
+  "significance": "paired moving-block bootstrap on the weekly difference between filtered and unfiltered returns, 5000 draws, 13-week blocks, because the two series share almost all their holdings and an unpaired test would be far too conservative",
+  "operational_cost_declared": "the screen requires a twice-monthly check against FINRA data on a book of eight to twenty-six names. Turnover created by the filter is charged at 50bps like any other turnover; the human cost of running it is not modelled and is a reason to require a real improvement rather than a marginal one.",
+  "interpretation_fixed_in_advance": {
+    "if_no_book_improves_significantly": "S4 closes and Step 268's numbers are recorded as noise",
+    "if_improvement_exists_only_after_the_break": "reject: it lives entirely in the seventeen months Step 262 showed contain all of these strategies' performance, and cannot be distinguished from that",
+    "if_improvement_holds_in_both_sub_periods_and_clears_correction": "the first verified improvement to an existing strategy in this project; it would still need forward evidence before anything changes",
+    "always": "an improvement to a strategy that has never been proven is an improvement to nothing yet. None of these books has forward evidence."
+  },
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

@@ -61,17 +61,6 @@ parsed, so this is a further download rather than a fresh start.
 
 ## S tier
 
-### S4. Short-interest exclusion filter, properly pre-registered  *(new 2026-09-06)*
-**Status:** an undeclared post-hoc run improved two of three books — cash conversion 11.79% to
-13.92% CAGR, sector ensemble 20.12% to 23.62% with Sharpe 0.929 to 1.036. **That run does not
-count**: six trials, undeclared, on the same 2023-2026 window everything else was selected on.
-**Why it is S and not A:** it is the only thing in this file that has ever *improved* an existing
-book, the underlying signal has a genuine out-of-sample IC of -0.0435 at t = -5.30, and the data
-is already on disk. It deserves one clean pre-registered test.
-**What the registry must declare before running:** which books, which thresholds, which window,
-the cost of a twice-monthly screen on an eight-to-twenty-six name book, and the reading of every
-outcome. Report it whichever way it goes.
-
 ## A tier
 
 ### A1. The three near-zero-correlation OSAP anomalies that need no new data
@@ -277,6 +266,8 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 | **Feature importance MDA/MDI (was A7)** | **Done.** Model has modest held-out skill (+0.0337, positive in 86% of folds). Only residual momentum degrades it when shuffled (+0.0439, t=1.99). **Trend quality is 29.9% of MDI and -0.0059 of MDA** — the forest leans on it and it carries nothing. The feature that matters is the one Step 234 found picks twenty names from a tie of fifty-nine by lowest CIK. | Step 264 |
 | **Short interest (was A5)** | **First signal to survive both windows, and still not worth holding.** IC -0.0312 (t=-4.80) select, -0.0435 (t=-5.30) evaluate. But a long-only book returns 12.54% at 50bps against a market at 13.15%, with a -36.5% drawdown, and correlates +0.873 with the market. Near-zero against our own strategies, which is the breadth property we want. **Open as an exclusion filter, closed as a strategy.** | Step 263 |
 | **Fractional differencing of features (was A11)** | **Closed.** Order-0.3 differencing keeps 0.856 of the price level's memory against 0.050 for plain returns, but only 1 of 8 signal configurations improves and several flip sign. The memory it preserves is not the memory these signals used. Step 265's finding stands as a property of the series, not a usable improvement. | Step 268 |
+| **Short-interest filter, pre-registered (was S4)** | **Closed as noise.** Nothing clears Bonferroni under a *paired* bootstrap; the best configuration gives p=0.0136 on the full window and 0.132/0.182 in the sub-periods. Step 268's apparent improvement came from comparing two nearly identical series without pairing. | Step 270 |
+| **Selection-paying sizing (option 2)** | **Rejected, with a finding kept.** Eight of eight leveraged configurations improve Sharpe and reduce drawdown on the full window — but sizing helps **+0.14 to +0.23 Sharpe before April 2025** and hurts **-0.20 to -0.38 after**, unanimously. The full-window gain is an average of a real benefit and a real cost. **Kept:** the index is a timing tool that works in ordinary conditions and is actively wrong in a melt-up, which is the first description of the two periods this thread has produced that the data supports. | Step 270 |
 | **Selection-paying classifier (A13)** | **Closed as not tradeable, but the relationship is real.** An index of whether eight generic characteristics predict returns, over 762 weeks. It does **not** shift at 2025-04-04 (probability 0.775 before, 0.648 after), so April 2025 was not selection starting to pay — this closes the regime thread. But all four strategies earn 20-30pp more when the index is high, the first conditioning variable here with the *correct* sign. Conditioning still destroys value because the low state still returns 23-25%: the difference is degree, not sign, so the only expression is sizing up in the good state, which is leverage. | Step 269 |
 | **Pre-break strategy search (was A12)** | **Closed, and it weakens the regime thread.** 710 saved paths compared either side of 2025-04-04. A two-state story predicts a *negative* rank correlation between pre- and post-break performance; measured **+0.181 (p=0.0000)** — weakly positive. And **only 21.3% of everything this project has ever built beat the market before April 2025.** The break is not "a different strategy suited the earlier regime" — nothing worked, then four correlated things worked at once. | Step 267 |
 | **Market-state classifier (was A10)** | **Closed as not actionable.** States from market observables (dispersion, correlation, breadth, volatility), fit 2011-2020, never refit, labelled causally. **No observable shows a persistent state change at 2025-04-04** — three spike near it and all four sit *lower* after than before, so a spike that reverts is not a transition. Pre-declared stop condition triggered; state-conditioned selection not authorised. All four strategies also do *worse* in the state these observables identify, so these are not the states that explain the break. | Step 266 |

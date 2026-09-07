@@ -1,0 +1,70 @@
+{
+  "bundles_read": [
+    {
+      "directory": "20260808T212827Z-de103c2e063d6c4a",
+      "latest_observation_date": "2026-08-07",
+      "observed_at_utc": "2026-08-08T21:28:27.021963+00:00",
+      "prices_sha256": "834397e422125ebb69f69f821c37780fa76906eb406a7bd1f6ed7fa65037f7b3",
+      "symbols": 35
+    },
+    {
+      "directory": "20260809T002313Z-0d8632e2cf759918",
+      "latest_observation_date": "2026-08-07",
+      "observed_at_utc": "2026-08-09T00:23:13.111528+00:00",
+      "prices_sha256": "e03695c8bddd5fcda5940065213dc85a7700a0587d190df6cd4b9e3d8298d5b5",
+      "symbols": 35
+    },
+    {
+      "directory": "20260812T035702Z-0c1bf62d74413e2a",
+      "latest_observation_date": "2026-08-11",
+      "observed_at_utc": "2026-08-12T03:57:02.610168+00:00",
+      "prices_sha256": "1b7e5870aefc2cfd8afa90fa72add40517e769b529565ed4e93b27715ed2376e",
+      "symbols": 35
+    },
+    {
+      "directory": "20260814T220630Z-6807cd7f14ae66bb",
+      "latest_observation_date": "2026-08-14",
+      "observed_at_utc": "2026-08-14T22:06:30.846717+00:00",
+      "prices_sha256": "f72e2f7ba91fcd1090e3a6585bf6b4b140777432d2651c9151e1e7fb7d4993cd",
+      "symbols": 35
+    },
+    {
+      "directory": "20260821T213726Z-5ea7a9e5e4ce214c",
+      "latest_observation_date": "2026-08-21",
+      "observed_at_utc": "2026-08-21T21:37:26.713684+00:00",
+      "prices_sha256": "44123405237189eeda1fef569416be6bab901901d3cfcf6cf16b119fa0b9749f",
+      "symbols": 35
+    },
+    {
+      "directory": "20260902T045003Z-9b57ef73a2709ddd",
+      "latest_observation_date": "2026-09-01",
+      "observed_at_utc": "2026-09-02T04:50:03.074193+00:00",
+      "prices_sha256": "d84c344bb4136000ea31bb71a777ea00fe849ca7511c4f43a574568a78052608",
+      "symbols": 35
+    },
+    {
+      "directory": "20260904T210521Z-5e7a46a61108ec76",
+      "latest_observation_date": "2026-09-04",
+      "observed_at_utc": "2026-09-04T21:05:21.206740+00:00",
+      "prices_sha256": "abcf065d3b32582acb439144dd8c0b7b9ddc07b32d634ca8c991b2a119324ea5",
+      "symbols": 35
+    }
+  ],
+  "declared_use": "verification of dashboard strategy arithmetic only (Step 278)",
+  "first_week": "1993-01-29",
+  "last_week": "2026-09-04",
+  "output": "data/etf_weekly_panel_v1/weekly_adjusted_prices.csv.gz",
+  "output_sha256": "3ea4bb05574aee4a1d7cfd7ef9fc7bb589d132ecaa1d301488c55f2fed3e3efb",
+  "point_in_time": false,
+  "survivorship_safe": false,
+  "symbols": 35,
+  "thinnest_symbols": {
+    "BIL": 1006,
+    "HYG": 1013,
+    "MBB": 1017,
+    "PDBC": 618,
+    "VEA": 998
+  },
+  "weeks": 1754,
+  "why_not": "The source bundles declare point_in_time_prices false, corporate_actions false and vintage_revisions false. Every row is the provider's current view of history. Fit for repricing a book already chosen; not fit for choosing one."
+}

@@ -1,11 +1,11 @@
 {
   "audited": 6,
   "match_threshold": 0.85,
-  "reproduced_from_published_holdings": 3,
-  "reproduced_from_saved_book": 2,
+  "reproduced_from_published_holdings": 6,
+  "reproduced_from_saved_book": 3,
   "strategies_on_dashboard": 6,
   "what_reproduction_here_does_and_does_not_show": "It shows the saved weights reprice to the published path. It does NOT show the weights could be derived again from raw data, which is what a frozen manifest is for.",
-  "with_frozen_manifest": 2,
+  "with_frozen_manifest": 6,
   "with_rebuild_script": 5,
-  "with_saved_book": 5
+  "with_saved_book": 6
 }

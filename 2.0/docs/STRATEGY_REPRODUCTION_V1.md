@@ -21,30 +21,41 @@ the arithmetic is honest. Only 3 means the strategy is reproducible.
 
 ## Where it stands
 
-| strategy | book reprices | holdings reprice | priced | manifest |
+| strategy | book reprices | holdings reprice | weight priced | manifest |
 |---|---|---|---|---|
-| SEC Growth Top-Five | **+0.984** | **+0.961** | 93.6% | no |
-| Dynamic Breadth-20 (cash conversion) | **+0.904** | **+0.855** | 69.3% | no |
-| Sector-Aware Signal Ensemble | +0.747 | +0.740 | 76.2% | no |
-| Sector Ensemble 1.35x | +0.747 | **+0.920** | 84.8% | no |
-| ETF Return-First 60/40 | not checked | not checked | — | **yes** |
-| **Residual-Controlled 1.25x** | **no saved book** | **+0.493** | 45.6% | **yes** |
+| SEC Growth Top-Five | **+0.984** | **+0.961** | 93.1% | yes |
+| Dynamic Breadth-20 (cash conversion) | **+0.904** | **+0.973** | 97.7% | yes |
+| Sector-Aware Signal Ensemble | +0.747 | **+0.968** | 97.6% | yes |
+| Sector Ensemble 1.35x | +0.747 | **+0.968** | 96.8% | yes |
+| ETF Return-First 60/40 | wide matrix | **+0.988** | 100.0% | yes |
+| Residual-Controlled 1.25x | **+0.853** | **+0.926** | 81.0% | yes |
 
-Two of six reproduce cleanly from a saved book. Three of six reproduce from the
-holdings the dashboard itself publishes. Two of six have a frozen manifest.
+**All six now carry a saved book and a frozen manifest, and all six reproduce from the
+holdings the dashboard publishes**, at correlations of +0.926 to +0.988 with 81% to 100%
+of portfolio weight priced. Three of six also reproduce from a saved long-form book.
 
-## The one that matters most is the worst documented
+This was not the state on the morning of 2026-09-06. Then it was two of six reproducing
+from a book, two of six with a manifest, and the headline strategy repricing at +0.493
+with under half its weight priceable. Three things closed the gap: a flat ETF weekly
+panel assembled from the vintage store, a dated book saved for the residual composite,
+and manifests written for the four strategies that had none.
 
-**Residual-Controlled 1.25x is the dashboard's headline strategy, the one whose forward
-clock starts 2026-09-11, and the one blended into the 50/50 protocol — and it has no
-saved book at all.** Its published holdings reprice at +0.493 with only 45.6% of weight
-priceable, because the book mixes SEC equities with ETFs and there is no flat ETF price
-panel in this repository; ETF prices live in the vintage store under `data/vintages`.
+## What is still not settled
 
-That number is not evidence the strategy is wrong. It is evidence that **less than half
-of it can currently be checked**, which is a different and more fixable problem. Until
-an ETF panel is assembled and a dated book is saved, the honest statement is that this
-strategy's arithmetic has not been independently verified.
+**The sector ensemble reprices from its saved book at only +0.747, and has since Step
+241.** Its published holdings reprice at +0.968, so the strategy's arithmetic is sound —
+what is missing is the allocator sitting above the saved stock leg, which is not saved
+anywhere. Its manifest says so in `known_weaknesses` rather than implying the file
+describes the whole strategy. The same applies to its 1.35x form.
+
+**The ETF 60/40's book is a wide date-by-symbol matrix**, not long-form dated weights, so
+the book-reprice column does not apply to it. Its holdings reprice at +0.988.
+
+**The ETF panel is not point-in-time.** `data/etf_weekly_panel_v1` is assembled from
+vintage bundles whose own manifests declare `point_in_time_prices: false`. It is fit for
+repricing a book already chosen, which is all it is used for here. It is not fit for
+choosing one, and any strategy work on it inherits a revision problem this project spent
+Steps 219-240 removing from the equity panels.
 
 ## Recreating each one
 
@@ -78,8 +89,20 @@ the least verified — the two are unrelated.**
 ### Residual-Controlled 1.25x — `sec-residual-controlled-1.25x-5pct-v1`
     ./.venv/bin/python scripts/build_control_composite_book_v1.py --decision-date <Friday>
 Manifest: `config/forward/sec_residual_controlled_sleeve_forward_v1.json`.
-Reference path: `evidence/sec_residual_controlled_sleeve_v1/candidate_path.csv`.
-No dated book is saved. See above.
+Book: `evidence/control_composite_book_v1/books.csv` — 79 dated books, 2023-01-06 to
+2026-07-31, one per rebalance, saved by the builder itself and never rewritten once
+written. Reproduces at +0.853.
+
+Backfilling those books found a real defect. An unpriced cash-conversion slot was routed
+to cash, but a growth name with no ticker mapping was **dropped outright**, so eight 2023
+decisions produced books summing to 0.92 and the builder aborted. Aborting was correct
+and the missing 8% had never been chased. Unmapped growth weight now goes to cash the
+same as the other leg, and every saved book sums to exactly 1.0.
+
+### The ETF price panel these checks depend on
+    ./.venv/bin/python scripts/build_etf_weekly_panel_v1.py
+35 symbols, 1,754 weeks, 1993-2026, flattened from seven vintage bundles whose
+`prices.csv` hashes are each verified against their manifest. Not point-in-time.
 
 ## The trap that will waste your afternoon
 

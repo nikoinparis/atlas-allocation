@@ -52,6 +52,9 @@ GROWTH_SHARE_OF_LEADER = 0.4
 CASH = "cash::USD"
 
 
+BOOKS = ROOT / "evidence/control_composite_book_v1"
+
+
 def read_path(path: Path) -> pd.DataFrame:
     frame = pd.read_csv(path)
     column = "Date" if "Date" in frame else frame.columns[0]
@@ -121,10 +124,22 @@ def build(decision: pd.Timestamp) -> dict[str, object]:
 
     tickers = ticker_map()
     book: dict[str, float] = {}
+    # A growth name with no ticker mapping used to be dropped outright while an
+    # unpriced cash-conversion slot was routed to cash. That asymmetry silently
+    # removed weight rather than holding it: on eight 2023 decisions the book
+    # summed to 0.92 and the run aborted. Aborting was the right behaviour and
+    # the missing 8% was never chased. Route it to cash, the same as the other
+    # leg, so an unmapped name is held rather than deleted.
+    unmapped_growth = 0.0
     for row in gbook.itertuples(index=False):
         symbol = tickers.get(row.cik10)
+        share = leader_share * GROWTH_SHARE_OF_LEADER * float(row.intended_weight)
         if symbol:
-            book[symbol] = book.get(symbol, 0.0) + leader_share * GROWTH_SHARE_OF_LEADER * float(row.intended_weight)
+            book[symbol] = book.get(symbol, 0.0) + share
+        else:
+            unmapped_growth += share
+    if unmapped_growth:
+        book[CASH] = book.get(CASH, 0.0) + unmapped_growth
     for symbol, weight in ebook.items():
         book[symbol] = book.get(symbol, 0.0) + leader_share * (1.0 - GROWTH_SHARE_OF_LEADER) * float(weight)
 
@@ -147,6 +162,7 @@ def build(decision: pd.Timestamp) -> dict[str, object]:
         "growth_quarter": str(gquarter.date()),
         "overlay_allocation_to_cash_conversion": allocation,
         "unpriced_cash_conversion_slots": unpriced,
+        "unmapped_growth_weight_to_cash": float(unmapped_growth),
         "selection_cik10s": sorted(picked.cik10.tolist()),
         "weights": {k: float(v) for k, v in sorted(book.items())},
     }
@@ -158,6 +174,38 @@ def main() -> int:
     parser.add_argument("--verify", default="", help="strategy_id in dashboard_last_books_v1 to assert against")
     args = parser.parse_args()
     result = build(pd.Timestamp(args.decision_date))
+
+    # Save the book. Step 278 found this strategy -- the dashboard leader, the
+    # clock that starts 2026-09-11, and the growth leg of the frozen 50/50 blend
+    # -- was the only one on the dashboard with no dated weights saved anywhere.
+    # It could be rebuilt on demand and never was, so nothing could check it.
+    # Append-only by decision date: a book already written is never rewritten,
+    # because a decision that changes after the fact is not a decision.
+    BOOKS.mkdir(parents=True, exist_ok=True)
+    rows = pd.DataFrame(
+        [{"decision_at": result["decision_date"], "symbol": symbol, "weight": weight}
+         for symbol, weight in result["weights"].items()]
+    ).sort_values("symbol")
+    dated = BOOKS / f"book__{result['decision_date']}.csv"
+    if dated.exists():
+        existing = pd.read_csv(dated)
+        if not existing.set_index("symbol").weight.round(12).equals(
+                rows.set_index("symbol").weight.round(12)):
+            raise SystemExit(
+                f"a different book is already saved for {result['decision_date']}; "
+                "refusing to overwrite a recorded decision")
+        result["book_saved"] = "unchanged"
+    else:
+        rows.to_csv(dated, index=False)
+        result["book_saved"] = str(dated.relative_to(ROOT))
+
+    ledger = BOOKS / "books.csv"
+    history = pd.read_csv(ledger) if ledger.exists() else pd.DataFrame(columns=rows.columns)
+    history = history[history.decision_at.astype(str) != result["decision_date"]]
+    pd.concat([history, rows], ignore_index=True).sort_values(
+        ["decision_at", "symbol"]).to_csv(ledger, index=False)
+    result["book_ledger"] = str(ledger.relative_to(ROOT))
+    result["book_names"] = int(len(rows))
 
     if args.verify:
         # The dashboard book is deliberately not the reference. It drops Dynatrace and

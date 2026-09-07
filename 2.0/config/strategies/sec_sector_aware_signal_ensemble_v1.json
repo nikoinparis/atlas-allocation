@@ -1,0 +1,38 @@
+{
+  "approved_for_live_trading": false,
+  "book": {
+    "cadence": "quarterly",
+    "execution": "first weekly close strictly after the decision",
+    "weighting": "ensemble-selected"
+  },
+  "book_artifact": "evidence/sec_sector_aware_signal_ensemble_v1/selected_stock_target_weights.csv",
+  "book_artifact_sha256": "51be7923d5344ada42c8730c5d09ca178763812588b70938456c504cae25d47e",
+  "cost_bps_per_unit_turnover": 50.0,
+  "dashboard_id": "sec-sector-aware-signal-ensemble-v1",
+  "display_name": "Sector-Aware Signal Ensemble",
+  "execution_enabled": false,
+  "forward_evidence": "none. No strategy in this project has been promoted or traded.",
+  "frozen_at_utc": "2026-09-06T00:00:00Z",
+  "known_weaknesses": [
+    "THE SAVED BOOK IS INCOMPLETE. It reprices to the published path at only +0.747, below the 0.85 bar, and has done since Step 241. The saved stock leg reprices; whatever allocator sits above it is not saved anywhere, so this manifest cannot fully describe the strategy and says so rather than pretending otherwise.",
+    "Its own result.json records that the falsification gates failed."
+  ],
+  "live_trading_enabled": false,
+  "mutation_policy": "Any change to the signal, universe, breadth, weighting, cadence, cost model or data treatment creates a new version and restarts any clock it carries.",
+  "one_line": "A sector-aware ensemble over the SEC signal families, with an allocator above a selected stock leg.",
+  "promoted": false,
+  "rebuild": "./.venv/bin/python scripts/run_sec_sector_aware_signal_ensemble_v1.py",
+  "reference_path": "evidence/sec_sector_aware_signal_ensemble_v1/selected_path__50bps.csv",
+  "signal": "Ensemble across signal families; see scripts/run_sec_sector_aware_signal_ensemble_v1.py",
+  "status": "frozen_research_description",
+  "strategy_promotion_authorized": false,
+  "strategy_version": "sec_sector_aware_signal_ensemble_v1",
+  "universe": "Point-in-time tradable members of the quarterly SEC filer roster",
+  "verification_as_of_2026_09_06": {
+    "book_reprices_to_published_path": 0.7471572005836723,
+    "harness": "scripts/audit_dashboard_reproducibility_v1.py",
+    "published_holdings_reprice": 0.968148479172267,
+    "weight_priced": 0.976098404255318
+  },
+  "what_this_file_is": "A description of what the strategy IS, written so it can be rebuilt without reading the script that happened to produce it. A rebuild script says what was run; this says what the thing is. Step 278 found four of six dashboard strategies had neither."
+}

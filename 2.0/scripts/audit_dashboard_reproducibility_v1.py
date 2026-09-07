@@ -46,8 +46,15 @@ MATCH = 0.85
 PRICES = {
     "narrow": "data/clean_weekly_prices_v2/weekly_adjusted_prices_clean.csv.gz",
     "full_history": "data/clean_full_history_prices_v1/weekly_adjusted_prices_clean.csv.gz",
-    "etf": "data/free_etf_snapshot/weekly_adjusted_prices.csv.gz",
+    "etf": "data/etf_weekly_panel_v1/weekly_adjusted_prices.csv.gz",
+    "broad": "data/broad_full_history_panel_v1/weekly_adjusted_prices.csv.gz",
 }
+
+# Two dashboard books hold both SEC equities and ETFs, so neither panel alone can
+# price them. Step 278 dropped those weeks and reported nothing; this joins the
+# two panels side by side instead. The ETF half is not point-in-time and is used
+# for verification only -- see evidence/etf_weekly_panel_v1/result.json.
+COMBINED = ("full_history", "etf", "broad")
 
 STRATEGIES = {
     "sec-growth-survivorship-aware-v1": {
@@ -55,21 +62,21 @@ STRATEGIES = {
         "date_column": "decision_at", "weight_column": "intended_weight",
         "reference": "evidence/sec_growth_survivorship_retest_v1/path_growth__base__50bps.csv",
         "rebuild_script": "scripts/run_sec_growth_survivorship_retest_v1.py",
-        "manifest": None,
+        "manifest": "config/strategies/sec_growth_survivorship_aware_v1.json",
     },
     "sec-cash-conversion-breadth20-dynamic-v1": {
         "book": "evidence/sec_cash_conversion_breadth_dynamic_v1/best_portfolio_choices.csv",
         "date_column": "decision_at", "weight_column": "intended_weight",
         "reference": "evidence/cash_conversion_sleeve_path_v1/sleeve_path__base__50bps__breadth20.csv",
         "rebuild_script": "scripts/build_cash_conversion_sleeve_path_v1.py",
-        "manifest": None,
+        "manifest": "config/strategies/sec_cash_conversion_breadth20_dynamic_v1.json",
     },
     "sec-sector-aware-signal-ensemble-v1": {
         "book": "evidence/sec_sector_aware_signal_ensemble_v1/selected_stock_target_weights.csv",
         "date_column": "rebalance_at", "weight_column": "intended_weight",
         "reference": "evidence/sec_sector_aware_signal_ensemble_v1/selected_path__50bps.csv",
         "rebuild_script": "scripts/run_sec_sector_aware_signal_ensemble_v1.py",
-        "manifest": None,
+        "manifest": "config/strategies/sec_sector_aware_signal_ensemble_v1.json",
     },
     "candidate-return-first-60-40-forward-v1": {
         "book": "evidence/forward_return_first_60_40_blend_v1/frozen_weights.csv",
@@ -79,8 +86,9 @@ STRATEGIES = {
         "manifest": "config/forward/return_first_60_40_blend_v1.json",
     },
     "sec-residual-controlled-1.25x-5pct-v1": {
-        "book": None,
-        "date_column": None, "weight_column": None,
+        "book": "evidence/control_composite_book_v1/books.csv",
+        "date_column": "decision_at", "weight_column": "weight",
+        "symbol_column": "symbol",
         "reference": "evidence/sec_residual_controlled_sleeve_v1/candidate_path.csv",
         "rebuild_script": "scripts/build_control_composite_book_v1.py",
         "manifest": "config/forward/sec_residual_controlled_sleeve_forward_v1.json",
@@ -90,7 +98,7 @@ STRATEGIES = {
         "date_column": "rebalance_at", "weight_column": "intended_weight",
         "reference": "evidence/sec_sector_aware_signal_ensemble_v1/selected_path__50bps.csv",
         "rebuild_script": "scripts/run_sec_sector_aware_signal_ensemble_v1.py",
-        "manifest": None,
+        "manifest": "config/strategies/sec_sector_ensemble_fragile_1_35x_v1.json",
         "note": "the 1.35x levered presentation of the sector ensemble; the underlying book is the same",
     },
 }
@@ -146,12 +154,24 @@ def reprice_published_holdings(records: list[dict], symbol_map: dict[str, str]) 
     """
     dates = pd.to_datetime([r["date"] for r in records], utc=True)
     published = pd.Series([float(r["netReturn"]) for r in records], index=dates).sort_index()
+    sources = dict(PRICES)
+    loaded = [load_returns(PRICES[k]) for k in COMBINED]
+    loaded = [f for f in loaded if f is not None]
+    if len(loaded) > 1:
+        joined_panel = loaded[0]
+        for extra in loaded[1:]:
+            new = [c for c in extra.columns if c not in joined_panel.columns]
+            joined_panel = joined_panel.join(extra[new], how="outer")
+        sources["sec_plus_etf_plus_broad"] = joined_panel
     best = None
-    for source, relative in PRICES.items():
-        returns = load_returns(relative)
+    for source, relative in sources.items():
+        returns = relative if isinstance(relative, pd.DataFrame) else load_returns(relative)
         if returns is None:
             continue
-        rows, covered_total, held_total = [], 0, 0
+        # Coverage as a share of portfolio WEIGHT, not a count of holding rows.
+        # Counting rows treats a 0.5% position and a 20% position as equal and
+        # reported the residual composite at 51.2% when 83% of its weight prices.
+        rows, covered_weight, total_weight = [], 0.0, 0.0
         for record in records:
             week = pd.Timestamp(record["date"], tz="UTC")
             if week not in returns.index:
@@ -161,16 +181,16 @@ def reprice_published_holdings(records: list[dict], symbol_map: dict[str, str]) 
             for holding in record.get("holdings", []):
                 symbol = str(holding["symbol"])
                 weight = float(holding["weight"])
-                held_total += 1
+                total_weight += weight
                 if symbol == "cash::USD":
                     weight_seen += weight
-                    covered_total += 1
+                    covered_weight += weight
                     continue
                 key = symbol if symbol in row.index else symbol_map.get(symbol.upper())
                 if key is not None and key in row.index and pd.notna(row[key]):
                     gross += weight * float(row[key])
                     weight_seen += weight
-                    covered_total += 1
+                    covered_weight += weight
             # Two dashboard books mix SEC equities with ETFs, and there is no flat
             # ETF price panel here -- ETF prices live in the vintage store. Dropping
             # any week whose weight is not fully covered silently discarded those
@@ -192,11 +212,25 @@ def reprice_published_holdings(records: list[dict], symbol_map: dict[str, str]) 
         shift = max(labels, key=lambda k: labels[k])
         cand = {"price_source": source, "correlation": labels[shift], "label_shift": shift,
                 "weeks": len(joined),
-                "symbol_coverage": covered_total / held_total if held_total else 0.0,
+                "symbol_coverage": covered_weight / total_weight if total_weight else 0.0,
                 "rebuilt_cagr": known_good.compound(joined.a),
                 "published_cagr": known_good.compound(joined.b)}
-        if best is None or cand["correlation"] > best["correlation"]:
+        # Rank by coverage among sources that clear the bar, not by correlation.
+        # Ranking by correlation alone reported the residual composite at 51.2%
+        # coverage because a thin panel happened to correlate marginally better,
+        # which reads as "half of it cannot be checked" when a combined panel
+        # prices 83% of it just as well.
+        if best is None:
             best = cand
+        else:
+            cand_ok = cand["correlation"] >= MATCH
+            best_ok = best["correlation"] >= MATCH
+            if cand_ok and not best_ok:
+                best = cand
+            elif cand_ok == best_ok:
+                key = "symbol_coverage" if cand_ok else "correlation"
+                if cand[key] > best[key]:
+                    best = cand
     return best or {}
 
 
@@ -223,6 +257,13 @@ def audit_one(name: str, spec: dict) -> dict:
     frame = pd.read_csv(ROOT / spec["book"], dtype={"cik10": str})
     frame = frame.rename(columns={spec["date_column"]: "decision_at",
                                   spec["weight_column"]: "weight"})
+    # The residual composite's book is keyed by ticker; every other book here is
+    # keyed by cik10, and so is every SEC price panel. Map it once rather than
+    # teaching the pricing path two conventions.
+    if spec.get("symbol_column"):
+        mapping = ticker_to_cik()
+        frame["cik10"] = frame[spec["symbol_column"]].astype(str).str.upper().map(mapping)
+        frame.loc[frame.cik10.isna(), "cik10"] = frame.loc[frame.cik10.isna(), spec["symbol_column"]]
     frame["decision_at"] = pd.to_datetime(frame.decision_at, utc=True, errors="coerce")
     frame = frame.dropna(subset=["decision_at", "cik10", "weight"])
     best = None

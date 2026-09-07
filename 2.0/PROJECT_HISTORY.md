@@ -13265,3 +13265,59 @@ these books are not concentrated because they are sector-concentrated.
 A2 is closed. The breadth number is real and measured; it is not repairable by
 construction, which leaves Step 277's conclusion standing — the only lever left is a new
 return source with skill of its own.
+
+## Step 280 — 2026-09-06 — Every dashboard strategy is now saved, described, and repriced
+
+**What this accomplished: it closed the documentation gap Step 278 found, and found two
+more defects on the way.**
+
+|  | morning of 2026-09-06 | after |
+|---|---|---|
+| saved book | 5 of 6 | **6 of 6** |
+| reproduces from saved book | 2 of 6 | **3 of 6** |
+| reproduces from published holdings | 3 of 6 | **6 of 6** |
+| frozen manifest | 2 of 6 | **6 of 6** |
+
+Holdings now reprice at +0.926 to +0.988 with 81% to 100% of portfolio weight priced.
+The headline strategy moved from +0.493 at 45.6% to **+0.853 from a saved book and
++0.926 from published holdings at 81.0%**.
+
+**Three pieces of work.**
+
+*The ETF panel.* `data/etf_weekly_panel_v1` — 35 symbols, 1,754 weeks, 1993-2026,
+flattened from seven vintage bundles with every `prices.csv` hash checked against its
+manifest. Two dashboard books mix SEC equities with ETFs and no flat ETF panel existed,
+which is the whole reason the headline strategy looked unverifiable. **The panel is not
+point-in-time** — the bundles declare `point_in_time_prices: false` — and it is declared
+for verification only. Repricing a book already chosen is safe; choosing one with it is
+not, and that restriction is written into the panel's own result.json.
+
+*The residual composite's book.* The builder now saves a dated book on every run,
+append-only, refusing to overwrite a decision already recorded. Backfilled 79 books,
+2023-01-06 to 2026-07-31. **2022-12-02 fails and should: there is no quarterly selection
+before it, and the dashboard holds cash that week.**
+
+*Manifests* for the four strategies that had none, in `config/strategies/`. A rebuild
+script says what was run; a manifest says what the thing is. Each carries its verification
+numbers as of today and a `known_weaknesses` list that names the real problems rather than
+describing the strategy as if it had none.
+
+**Defect one, found by the backfill.** The composite builder routed an unpriced
+cash-conversion slot to cash but **dropped a growth name with no ticker mapping
+outright**. Eight 2023 decisions produced books summing to 0.92 and the builder aborted —
+correct behaviour, and the missing 8% had never been chased in the year since. Fixed;
+unmapped growth weight now goes to cash the same as the other leg, and all 79 books sum
+to exactly 1.0.
+
+**Defect two, mine, in the audit.** Coverage was reported as a count of holding rows
+rather than a share of portfolio weight, which treats a 0.5% position and a 20% position
+as equal and reported the residual composite at 51.2% when 83% of its weight prices. The
+panel-selection rule also ranked by correlation alone, so a thin panel that correlated
+marginally better won over a fuller one. Both fixed; coverage is now weight-based and
+selection prefers coverage among panels that clear the bar.
+
+**Still open, and named rather than smoothed over.** The sector ensemble reprices from
+its saved book at +0.747 and has since Step 241. Its published holdings reprice at +0.968,
+so the arithmetic is sound and what is missing is an allocator above the saved stock leg
+that was never saved. Its manifest says exactly that instead of implying the file
+describes the whole strategy.

@@ -1,0 +1,29 @@
+{
+  "experiment": "valuation_revival_v1",
+  "declared_at_utc": "2026-09-06T00:00:00Z",
+  "question": "Does the valuation family survive being widened enough to pass the concentration gate it originally failed?",
+  "why_it_is_worth_reviving": "Step 273 found valuation is the only genuinely separate thing this project has built -- cross-family correlation +0.486 against a within-growth correlation of +0.954 -- and that it returned 62.34% at Sharpe 1.115 in the 117 weeks when the growth book returned 8.15% at 0.497. It was set aside for concentration, not for returns: `sales_yield__top10` failed the concentration gate while passing the replacement-return gate.",
+  "the_specific_fix": "the rejected book held ten names. This widens it to twenty, thirty and fifty with issuer and sector caps, which is the direct answer to the reason it was rejected. If the return is a property of ten names it will not survive; if it is a property of the signal it should.",
+  "source": "evidence/sec_survivorship_valuation_discovery_v1/factor_scores.csv, the survivorship-aware panel whose validation checks all passed",
+  "excluded": "sec_split_normalized_valuation_pilot is excluded entirely. Step 118 states it uses today's surviving 20 companies, and Step 273's blended Sharpe of 2.07 was carried by it and has been withdrawn.",
+  "declared_configurations": {
+    "breadth": [10, 20, 30, 50],
+    "maximum_issuer_weight": [0.20, 0.10],
+    "cost_bps": [50, 100],
+    "total_trials": 16
+  },
+  "bonferroni_threshold": 0.003125,
+  "gates_that_must_pass": {
+    "concentration": "no single issuer may contribute more than 10% of total positive contribution -- the gate the original failed",
+    "return_at_50bps": "must beat an equal weight of its own scored universe over the full window",
+    "both_sub_periods": "must beat that universe both before and after 2025-04-04, because Step 262 showed all of this project's performance lives after the break and a result confined there is indistinguishable from it",
+    "leave_one_out": "removing the single most important issuer must not remove more than half the excess return"
+  },
+  "interpretation_fixed_in_advance": {
+    "if_widening_destroys_the_return": "the valuation result was ten names and the family closes properly rather than lingering",
+    "if_it_survives_at_breadth_20_or_more_and_passes_concentration": "the first strategy in this project to pass a gate it previously failed, and the only orthogonal one; it would still need forward evidence",
+    "always": "16 declared trials on a panel already searched 90 ways in the original discovery. The cumulative burden is large and any survivor is a candidate for a forward clock, not a conclusion."
+  },
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

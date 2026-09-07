@@ -12945,3 +12945,80 @@ That is the first structural answer this project has produced to why nothing imp
 portfolio: **everything built since has been a variation on the cluster that was already winning.**
 
 References: `scripts/run_performance_timeline_clustering_v1.py`, `evidence/performance_timeline_v1/`
+
+## Step 274 — The valuation family survives being widened, and it is the first real candidate this project has produced
+
+Step 273 found valuation is the only genuinely separate thing here and that it was set aside for
+concentration rather than for returns: `sales_yield__top10` passed the replacement-return gate and
+failed the concentration gate. Ten names was the reason. This widens the book, which is the direct
+answer to why it was rejected.
+
+Sixteen configurations declared before the run: breadth 10, 20, 30 and 50, issuer caps of 0.20 and
+0.10, at 50 and 100bps. The family that carried the panel is **earnings yield**, not the sales
+yield the original selected.
+
+### All sixteen pass, and it degrades gracefully
+
+| breadth | cost | top-issuer share | CAGR | universe CAGR | excess | pre-break excess | post-break excess | Sharpe |
+|---|---|---|---|---|---|---|---|---|
+| 10 | 50 | 9.95% | 35.33% | 19.29% | **+16.04pp** | +13.35 | +21.06 | 1.254 |
+| **20** | **50** | **6.64%** | **32.56%** | 19.29% | **+13.26pp** | **+14.49** | **+10.74** | **1.379** |
+| 30 | 50 | 4.67% | 28.77% | 19.29% | +9.48pp | +8.42 | +11.38 | 1.257 |
+| 50 | 50 | 3.13% | 25.10% | 19.29% | +5.80pp | +4.93 | +7.40 | 1.178 |
+
+**Every configuration passes concentration and beats its own scored universe in both sub-periods.**
+The excess decays smoothly with breadth -- 16.0, 13.3, 9.5, 5.8 -- which is what a real signal does
+as it is diluted, rather than the cliff a ten-name artifact would show.
+
+### The breadth-20 book, examined properly
+
+| | |
+|---|---|
+| full window, 50bps | **32.56% CAGR, Sharpe 1.379, max drawdown -18.52%**, 192 weeks |
+| before 2025-04-04 | **23.61% CAGR at Sharpe 1.081** |
+| after 2025-04-04 | 47.83% at Sharpe 1.817 |
+| top issuer's share of positive contribution | **6.64%** against a 10% gate |
+| distinct issuers held | **109** |
+| leave-one-out, worst removal | 32.56% to 30.55%, a cost of **2.01 points** |
+
+| correlation with | |
+|---|---|
+| cash conversion | **-0.022** |
+| growth top five | **+0.006** |
+| sector ensemble | **-0.029** |
+| residual composite | +0.116 |
+
+Four things here are unlike anything else this project has produced. It works in **both**
+sub-periods rather than only after the break. It passes the concentration gate the original failed.
+Its worst single-name removal costs two points of thirty-two, against a project history where
+Micron, GitLab, Qualys and others each independently explained an entire result. And its
+correlation against every existing strategy is **within 0.12 of zero**, where the existing four
+correlate 0.93 to 0.97 with each other.
+
+### What it is not
+
+It is a rediscovery of earnings yield, which is one of the oldest documented anomalies in finance.
+Finding it is a sanity check passing, not a discovery, and that framing matters for how much
+weight it can carry.
+
+The search behind it is large: sixteen configurations declared here on a panel the original
+discovery searched ninety ways, on the same 2023-2026 window every strategy in this project was
+selected on. That is the cumulative burden and it is the reason this goes on a clock rather than
+onto the dashboard.
+
+`config/forward/valuation_earnings_yield_forward_v1.json`
+(sha256 `c98dde5cab2a4e12b3be889cfe875ac718d7c2f26fa9c2ee32eb462c5a707052`) freezes it at breadth 20,
+quarterly, 50bps, first eligible decision **2026-09-11** alongside the other four clocks. It states
+`"modifies": "nothing"`, records the full historical record including the search size, and declares
+what would refute it: a forward record indistinguishable from its own universe would mean the
+excess was the search.
+
+**The second condition in that protocol matters more than the first.** Interesting means a positive
+excess *and* a correlation against the residual composite staying below 0.3. Step 245 put the
+binding constraint on breadth, and a modest independent return is worth more here than a large
+correlated one.
+
+Recorded as the first genuine candidate of this stretch, and as a candidate rather than a result.
+
+References: `config/valuation_revival_registry_v1.json`, `scripts/run_valuation_revival_v1.py`,
+`evidence/valuation_revival_v1/`, `config/forward/valuation_earnings_yield_forward_v1.json`

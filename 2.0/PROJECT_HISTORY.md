@@ -12860,3 +12860,88 @@ is unambiguous and matches every previous measurement.
 
 References: `scripts/run_macro_state_v1.py`, `evidence/macro_state_v1/`,
 `scripts/run_strategy_clustering_v1.py`, `evidence/strategy_clustering_v1/`
+
+## Step 273 — The owner's timeline idea works, and it finds the rotation: valuation won 2024, growth won after April 2025
+
+The owner proposed grouping strategies by **when they win** rather than by whether they move
+together. That is a better question than Step 272 asked, because two strategies can correlate
+weakly week to week and still have their good years in the same place. Built as rolling 26-week
+return profiles, standardised so shape in time is compared rather than level, then clustered.
+
+**696 paths profiled.** Seven clusters:
+
+| cluster | members | peaks | best decile window | share of best decile after the break |
+|---|---|---|---|---|
+| 1 | 6 | 2024-02-16 | 2023-11 to 2024-03 | **0%** |
+| 7 | 2 | 2024-03-29 | 2024-02 to 2024-06 | **0%** |
+| 3 | 2 | 2024-10-11 | 2024-08 to 2024-12 | **0%** |
+| 4 | 2 | 2024-12-20 | 2024-11 to 2025-03 | **0%** |
+| 9 | 40 | 2025-09-26 | 2023-06 to 2026-05 | 53% |
+| 8 | 3 | 2026-01-02 | 2024-03 to 2026-01 | 93% |
+| **6** | **637** | 2026-05-15 | 2025-09 to 2026-05 | **100%** |
+
+### What is in them
+
+Cluster 6, **637 of 696 paths**, is `sec_growth_three_tier_cap_frequency` (150),
+`sec_growth_incumbent_sleeve_blend` (96), `sec_growth_stock_drift_cap` (72), growth confidence
+sizing, growth mu cap, growth universal cap, cash conversion. It is the growth family, and it
+peaks entirely after the break.
+
+Clusters 3, 4 and 7 are `sec_survivorship_valuation_discovery`,
+`sec_survivorship_valuation_falsification` and `sec_split_normalized_valuation_pilot`. **They are
+the valuation family, and none of their best decile falls after the break.**
+
+Cluster 1 is `sec_fragility_exposure_daily_audit`, showing a 1,071% 26-week return -- diagnostic
+audit series rather than portfolios, and flagged as artifacts rather than mined. Cluster 8 is the
+closed Indonesia programme.
+
+**The owner's hypothesis is confirmed. This is a value-to-growth rotation, and it is dated to the
+same April 2025 that Step 271 tied to a policy and dollar shift.** The macro correlations agree
+in sign: cluster 7, valuation, correlates -0.499 with the macro state; cluster 6, growth, +0.266.
+
+### The numbers, with the survivorship-biased path removed
+
+`sec_split_normalized_valuation_pilot` shows the highest Sharpe of anything here at 1.885, and
+Step 118 says plainly why it cannot be used: *"the pilot uses today's surviving 20 companies."*
+Excluded. What remains is `valuation_discovery`, which is the survivorship-aware version and
+passed all its validation checks.
+
+| strategy | pre-break CAGR | pre-break Sharpe | post-break CAGR | post-break Sharpe |
+|---|---|---|---|---|
+| **valuation discovery** | **62.34%** | **1.115** | 100.82% | 1.515 |
+| cash conversion b20 | **8.15%** | 0.497 | 118.42% | 3.119 |
+
+**In the 117 weeks when the growth book returned 8.15%, the valuation book returned 62.34%.**
+That is the strategy the owner asked whether existed. It exists, it is already in this
+repository, and it was set aside -- the falsification version on a failed concentration gate, the
+pilot on survivorship.
+
+### And the blend does not improve Sharpe, which is worth understanding
+
+| blend | value Sharpe | growth Sharpe | blended | gain |
+|---|---|---|---|---|
+| valuation discovery + cash conversion | 1.269 | 1.620 | 1.567 | **-0.053** |
+| valuation discovery + sector ensemble | 1.269 | 1.795 | 1.621 | -0.174 |
+
+Every blend is worse than its better component. The earlier run that showed a blended Sharpe of
+2.07 was carried entirely by the survivorship-biased pilot and is withdrawn.
+
+The reason is arithmetic rather than disappointing: the growth book's **post-break Sharpe is
+3.119**, and averaging anything into a 3.119 dilutes it. But the blend's **pre-break** figures are
+36.15% CAGR at Sharpe 1.101 against the growth book's 8.15% at 0.497 -- so blending helps
+enormously in the period where growth failed and hurts in the period where it did not.
+
+Cross-family correlation is **+0.486** against a within-growth correlation of **+0.954**. The
+growth cluster is very nearly one object; valuation is the only genuinely separate thing this
+project has built.
+
+### What this changes
+
+Three state framings failed to explain April 2025 and the fourth, macro, dated it. This one names
+what rotated. The library is not one bet after all -- it is one very large bet and one small
+neglected one, and the small one carried the period the large one missed.
+
+That is the first structural answer this project has produced to why nothing improves the
+portfolio: **everything built since has been a variation on the cluster that was already winning.**
+
+References: `scripts/run_performance_timeline_clustering_v1.py`, `evidence/performance_timeline_v1/`

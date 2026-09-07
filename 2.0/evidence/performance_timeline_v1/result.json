@@ -1,0 +1,114 @@
+{
+  "clusters": [
+    {
+      "best_decile_window": "2023-11-03 to 2024-03-01",
+      "cluster": 1,
+      "correlation_with_macro_state": -0.21089192379862376,
+      "example_members": [
+        "evidence/sec_fragility_exposure_daily_audit_v1/common_daily_paths.csv",
+        "evidence/sec_fragility_exposure_daily_audit_v1/daily_path__cash_only_1.00x.csv",
+        "evidence/sec_fragility_exposure_daily_audit_v1/daily_path__fixed_1.50x.csv"
+      ],
+      "median_26w_return": 1.9022978421412213,
+      "members": 6,
+      "peak_26w_return": 10.71153445934555,
+      "peak_week": "2024-02-16",
+      "share_of_best_decile_after_2025_04": 0.0
+    },
+    {
+      "best_decile_window": "2024-08-16 to 2024-12-27",
+      "cluster": 3,
+      "correlation_with_macro_state": 0.009766882870241324,
+      "example_members": [
+        "evidence/sec_survivorship_valuation_falsification_v1/best_path_50bps.csv",
+        "evidence/sec_survivorship_valuation_falsification_v1/best_path_excluding_split_affected_50bps.csv"
+      ],
+      "median_26w_return": 0.14205712911180746,
+      "members": 2,
+      "peak_26w_return": 1.6486036525945187,
+      "peak_week": "2024-10-11",
+      "share_of_best_decile_after_2025_04": 0.0
+    },
+    {
+      "best_decile_window": "2024-11-22 to 2025-03-07",
+      "cluster": 4,
+      "correlation_with_macro_state": 0.24014320587797464,
+      "example_members": [
+        "evidence/sec_survivorship_valuation_discovery_v1/best_path_adverse_50bps.csv",
+        "evidence/sec_survivorship_valuation_discovery_v1/best_path_base_50bps.csv"
+      ],
+      "median_26w_return": 0.23625971004236468,
+      "members": 2,
+      "peak_26w_return": 3.902901757812457,
+      "peak_week": "2024-12-20",
+      "share_of_best_decile_after_2025_04": 0.0
+    },
+    {
+      "best_decile_window": "2025-09-26 to 2026-05-15",
+      "cluster": 6,
+      "correlation_with_macro_state": 0.26571078552885485,
+      "example_members": [
+        "evidence/cross_asset_crisis_trend_v1/weekly_paths.csv",
+        "evidence/formal_markov_regime_scaling_v1/primary_path.csv",
+        "evidence/indonesia_dynamic_breadth_challenger_v1/20260822T094300Z-predeclared-v1/daily_paths.csv"
+      ],
+      "median_26w_return": 0.10335101275893264,
+      "members": 637,
+      "peak_26w_return": 0.6425501855039365,
+      "peak_week": "2026-05-15",
+      "share_of_best_decile_after_2025_04": 1.0
+    },
+    {
+      "best_decile_window": "2024-02-23 to 2024-06-07",
+      "cluster": 7,
+      "correlation_with_macro_state": -0.49909010080518423,
+      "example_members": [
+        "evidence/daily_ohlcv_alpha_zoo_v1/weekly_paths.csv",
+        "evidence/sec_split_normalized_valuation_pilot_v1/best_factor_path_50bps.csv"
+      ],
+      "median_26w_return": 0.1354515137771538,
+      "members": 2,
+      "peak_26w_return": 0.5186485707156784,
+      "peak_week": "2024-03-29",
+      "share_of_best_decile_after_2025_04": 0.0
+    },
+    {
+      "best_decile_window": "2024-03-29 to 2026-01-16",
+      "cluster": 8,
+      "correlation_with_macro_state": -0.16995396431777826,
+      "example_members": [
+        "evidence/indonesia_fundamental_momentum_v1/20260822T231317Z-predeclared-v1/daily_paths.csv",
+        "evidence/indonesia_fundamental_momentum_v2/20260822T231615Z-predeclared-v2/daily_paths.csv",
+        "evidence/indonesia_fundamental_momentum_v2/20260822T231841Z-corrected-gates-v2/daily_paths.csv"
+      ],
+      "median_26w_return": 0.023818642044589833,
+      "members": 3,
+      "peak_26w_return": 0.3547834944624819,
+      "peak_week": "2026-01-02",
+      "share_of_best_decile_after_2025_04": 0.9333333333333333
+    },
+    {
+      "best_decile_window": "2023-06-02 to 2026-05-15",
+      "cluster": 9,
+      "correlation_with_macro_state": -0.2429263192779477,
+      "example_members": [
+        "evidence/cash_conversion_sleeve_path_v1/sleeve_path__base__50bps__breadth20.csv",
+        "evidence/point_in_time_fundamental_branches_v1/weekly_paths.csv",
+        "evidence/sec_cash_conversion_breadth20_daily_execution_audit_v1/daily_cash_conversion_path_primary.csv"
+      ],
+      "median_26w_return": 0.0909193852825349,
+      "members": 40,
+      "peak_26w_return": 0.4242535673738056,
+      "peak_week": "2025-09-26",
+      "share_of_best_decile_after_2025_04": 0.5333333333333333
+    }
+  ],
+  "experiment": "performance_timeline_v1",
+  "live_trading_enabled": false,
+  "paths_profiled": 696,
+  "question": "do different strategies win in different periods, or does the library have one good period",
+  "rolling_window_weeks": 26,
+  "share_of_clusters_peaking_after_the_break": 0.42857142857142855,
+  "strategy_promotion_authorized": false,
+  "verdict": "clusters peak in [2024, 2025, 2026] -- distinct groups win in distinct periods, which is the first evidence here of regimes with different winners"
+}

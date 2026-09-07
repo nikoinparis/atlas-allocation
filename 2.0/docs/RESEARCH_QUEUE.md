@@ -60,6 +60,26 @@ t = 2.00, surviving the length control at +0.0579.
 parsed, so this is a further download rather than a fresh start.
 
 
+### S2b. Form 4 insiders, split routine vs opportunistic *(new 2026-09-07)*
+**Status:** the best remaining free candidate, and the clearest case of "the same idea done
+properly" rather than a new idea.
+**What was already done and rejected:** Steps 125-126 tested Form 4 insider purchases as a
+fixed-weight sleeve and then as a causal overlay, and rejected on concentration. The sample was
+**2,560 filings across 362 issuers** and every insider trade was treated the same way.
+**What was never done:** Cohen, Malloy and Pomorski's routine-versus-opportunistic split. Most
+insider trades are routine — the same executive trading the same month every year on a schedule
+— and carry no information. The opportunistic remainder is where the documented alpha is.
+Pooling the two is how you get a diluted signal that then fails on concentration, which is
+exactly what Steps 125-126 report.
+**Why it fits the sharpened target:** it is an information channel with a mechanism for real
+skill (insiders know things), not another pile of correlated prices. Step 285 ruled out the
+asset-class route; this is the other kind.
+**Machinery that already exists:** `scripts/acquire_sec_form4_bulk_v1.py` plus three analysis
+scripts. Free, SEC, full history.
+**Cost:** a bulk acquisition job, hours not weeks. **Declare the routine/opportunistic rule and
+one horizon before testing** — the split is the hypothesis, not a parameter to sweep.
+*Recorded from general knowledge of the CMP paper, not from a read of the text this session.*
+
 ### S2. A third independent return source — anything that is not price and not a filing ratio *(new 2026-09-06)*
 **Status:** the standing top priority, and deliberately not a specific idea.
 **Why it is S and everything else is not:** Step 275 took the effective number of independent

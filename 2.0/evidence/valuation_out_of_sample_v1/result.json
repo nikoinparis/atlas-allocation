@@ -1,0 +1,32 @@
+{
+  "book": {
+    "cagr": 0.12844314698725467,
+    "max_drawdown": -0.38200669985181046,
+    "sharpe": 0.5790206594355075,
+    "volatility": 0.22182826276436332
+  },
+  "book_sharpe_beats_universe": false,
+  "breadth": 20,
+  "construction_frozen": true,
+  "cost_bps": 50.0,
+  "decisions_built": 43,
+  "excess_cagr": 0.0038355666814489098,
+  "excess_retained_share_of_in_sample": 0.026452184009992483,
+  "in_sample_excess_post_break": 0.107,
+  "in_sample_excess_pre_break": 0.145,
+  "live_trading_enabled": false,
+  "median_scored_issuers": 1315,
+  "strategy_promotion_authorized": false,
+  "universe": {
+    "cagr": 0.12460758030580577,
+    "max_drawdown": -0.3947278427247173,
+    "sharpe": 0.6493989467735752,
+    "volatility": 0.1918814019100226
+  },
+  "verdict": "REFUTES the book: the excess shrinks to +0.38%, 3% of the in-sample +14.5pp, and the book's Sharpe is BELOW its own universe. A positive sign at this magnitude is noise, not evidence.",
+  "weeks": 561,
+  "window": [
+    "2012-04-06",
+    "2022-12-30"
+  ]
+}

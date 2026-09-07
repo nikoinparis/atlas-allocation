@@ -46,6 +46,15 @@ data/finra_short_volume_v1/
 # data/form4_purchase_panel_v1/insider_purchases.csv.gz at 8MB and IS tracked,
 # because it is the artifact any reproduction actually needs.
 data/sec_form4_history_v1/
+# Raw SEC Financial Statement Data Sets, 44 quarters / 3.94GB, re-acquired by
+# scripts/acquire_sec_fsds_history_v1.py. Derived artifacts under
+# evidence/valuation_out_of_sample_v1/ are kept.
+data/sec_fsds_history_v1/
+# Wikipedia pageview JSON, one file per issuer, re-acquired by
+# scripts/acquire_wikipedia_attention_v1.py. The mapping.csv beside it IS tracked
+# because it is the audit record for a fuzzy join and cannot be regenerated
+# identically -- Wikipedia search results move.
+data/wikipedia_attention_v1/views/
 # 556 MB derived intermediate, regenerable from the 13F archives in one command
 evidence/institutional_linkage_v1/holdings.parquet
 data/sec_historical_identity_cache/

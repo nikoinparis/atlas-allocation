@@ -13605,3 +13605,97 @@ constraint.
 rule needs three years of history before it can classify anything. The longer window did
 not rescue the signal, but the precedent is useful: a method that forces a long warmup buys
 an out-of-sample window at no cost in selection.
+
+## Step 287 — 2026-09-07 — The valuation book's edge does not survive out of sample
+
+**What this accomplished: it tested a dashboard signal on a period it was not selected on
+for the first time in this project, and the signal failed.**
+
+Every fundamental panel here begins 2023-01-01, so every strategy on the dashboard was
+selected on 2023-2026 and none had ever been evaluated outside it. That is a data limit,
+not a choice. Acquiring SEC Financial Statement Data Sets for 2012-2022 — 44 quarters,
+3.94GB, no failures — lifts it for one signal.
+
+The signal chosen is the one that matters most: **earnings yield, the book that goes on a
+forward clock on 2026-09-11 and is the growth-uncorrelated half of the 50/50 blend frozen
+in Step 276.** Construction frozen in advance to the clock's own values: breadth 20, equal
+weight, quarterly, 50bps. Nothing was varied.
+
+Point-in-time by construction — a filing enters only from its `filed` date, never its
+period end, so a 10-K for December 2015 filed in March 2016 is invisible to a January 2016
+decision.
+
+**43 quarterly decisions, 561 weeks, 2012-04-06 to 2022-12-30, median 1,315 scored issuers.**
+
+| | CAGR | Sharpe | max drawdown |
+|---|---|---|---|
+| earnings-yield book | 12.84% | **0.579** | -38.20% |
+| its own scored universe | 12.46% | **0.649** | -39.47% |
+| **excess** | **+0.38pp** | | |
+
+In sample the same construction earned **+14.5pp** before the break and **+10.7pp** after,
+over its own scored universe. Out of sample the excess is **+0.38pp — three per cent of
+it — and the book's Sharpe is BELOW the universe it selects from.** Ranking on earnings
+yield and holding the top twenty produced a worse risk-adjusted result than holding
+everything it scored.
+
+**The honest reading: the valuation book's measured edge is a property of the 2023-2026
+window.** It is the same conclusion this project has reached about a dozen other families,
+arrived at this time through a genuinely out-of-sample window rather than through a
+falsification test on the selection window.
+
+**This does not stop Friday's clock; it is the reason the clock exists.** The forward
+protocol says in its own text that "forward evidence is mandatory and the historical record
+never advances this clock". What changes is the expectation: the honest prior for the
+valuation leg is now much closer to zero excess than to the +14.5pp its own manifest
+records, and the 50/50 blend's diversification case — which rested on correlation, not on
+the valuation leg's return — is the part that survives this. Step 275's own words were that
+the blend's value is breadth rather than return; that reading is now the only one available.
+
+**Ninth verdict-function failure, mine, caught before reporting.** The first version of the
+verdict asked only whether the excess was positive and printed **"SUPPORTS the book"** for
++0.38pp against an in-sample +14.5pp, while the book's Sharpe sat below its own universe.
+Corrected to require that the out-of-sample excess retain at least a quarter of the
+in-sample edge and that the book beat its universe on Sharpe. Nine times now, always the
+same shape: a check that asks whether a number cleared a bar without asking whether the
+number could mean anything.
+
+**Declared limitations, from the registry, unchanged by the result.** The 2012-2022 universe
+is rebuilt from FSDS filer rosters rather than the `classified_membership` file, so the two
+windows use differently-built universes — which is precisely why the comparison made is
+each period's book against ITS OWN scored universe rather than one period's CAGR against
+the other's.
+
+## Step 288 — 2026-09-07 — Wikipedia attention: closed at the mapping gate, before any return was measured
+
+**What this accomplished: it closed a candidate on a precondition rather than on a
+backtest, which is the cheapest possible closure.**
+
+Pre-registered before acquisition with four gates, the fourth being that at least 60% of
+the tradable universe must map to a Wikipedia article passing a name-token check. That gate
+existed because this is the first experiment here whose identity join is fuzzy rather than
+exact — every other panel joins on cik10 — and a signal built on bad name matches measures
+noise while looking like data.
+
+**Gate 4 failed: 353 of 603 issuers, 58.5%, against the declared 60%.**
+
+The token check earned its place. Rejected matches include `COHU INC -> "Corfu incident"`,
+`TRANSCAT INC -> "Translation"` and `CALAMP CORP -> "Calamphoreus"`, a genus of spider.
+Without the check these would have become three issuers' attention signals.
+
+It also had a real bug: requiring tokens longer than two characters rejected
+`HP INC -> "HP Inc."`, a correct match, along with every other two-letter company name.
+Fixed **after seeing the gate fail**, which makes the correction post-hoc, and it is
+recorded as such — both mappings are kept, `mapping__as_declared.csv` and `mapping.csv`.
+
+**With the correction the rate is 59.2%. The gate still fails.**
+
+So the return test was never run. The declared protocol requires all four gates and the
+precondition for measuring anything at all was not met, and moving a threshold from 60% to
+59% after seeing 59.2% is the goalpost-moving this project exists to avoid. The candidate is
+closed at the gate, which cost one acquisition and no backtest.
+
+**What a revival would need**, recorded so it starts from the real obstacle: the binding
+constraint is the SEC filer name being unmatchable to an English Wikipedia title, not the
+pageview data, which fetched cleanly with zero failures. A ticker-based or Wikidata-based
+join would likely clear 60% where opensearch on the filed company name does not.

@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "experiment": "wikipedia_attention_v1",
+  "registered_at_utc": "2026-09-07T00:00:00Z",
+  "registered_before_any_result_existed": true,
+  "registered_before_the_data_was_acquired": true,
+
+  "why_this_exists": "Step 285 ruled out asset-class diversification: multi-asset ETFs give 4.16 effective assets of 35, crypto 3.09 of 20, the SEC equity books 5-7 of 10-28. Every liquid domain collapses, so a third return source has to be a different information channel. Retail attention is such a channel and Wikipedia pageviews are a direct, free, daily measurement of it, published by Wikimedia rather than inferred from prices.",
+  "distinct_from_everything_closed": "Thirteen families are closed here. Twelve were transforms of price or of reported financials; the thirteenth, Form 4, was an insider-action channel. None measured attention, and pageviews are neither a price transform nor a filing ratio.",
+
+  "signal": {
+    "definition": "abnormal attention = log of this week's pageviews divided by the trailing 8-week median, per issuer",
+    "why_a_ratio_and_not_a_level": "The level is a size and fame proxy -- Apple will always outrank a small industrial -- so a level signal would be a slow-moving size bet wearing an attention label. The ratio measures a change in attention against that issuer's own baseline, which is the quantity the hypothesis is about.",
+    "cross_sectional_transform": "rank within the tradable universe each week",
+    "lag": "week W's attention is used for a decision at the close of week W, predicting week W+1. Pageviews are published next day, so this is causal with a margin."
+  },
+  "declared_sign": "NEGATIVE. A spike in retail attention is hypothesised to predict LOWER forward returns, following the attention-induced-buying-then-reversal reading of Barber and Odean. A positive result of similar magnitude refutes the hypothesis and must be reported as such rather than reinterpreted.",
+  "declared_horizon_weeks": 1,
+  "declared_configurations": {"breadth": [20], "cost_bps": [50.0], "side": ["long the least abnormally attended"]},
+  "trials_declared_here": 1,
+
+  "gates": {
+    "gate_1_orthogonality": "absolute correlation below 0.30 against BOTH the valuation earnings-yield book and the growth leg",
+    "gate_2_standalone_skill": "Sharpe at or above 1.0 net of 50bps",
+    "gate_3_significance": "information coefficient clears a moving-block bootstrap at p < 0.05 with the declared sign",
+    "gate_4_mapping_quality": "at least 60% of the tradable universe maps to a Wikipedia article that passes the name-token check, because a signal built on a bad name match is measuring the wrong companies",
+    "all_four_required": true
+  },
+  "why_gate_2_exists": "Step 277: XLE cleared orthogonality, raised effective bets from 2.00 to 2.88, and bought 0.021 of Sharpe. IR = IC x sqrt(BR) is a product.",
+  "why_gate_4_exists": "This is the first experiment here whose identity mapping is fuzzy rather than exact. Every other panel joins on cik10. Matching a company name to a Wikipedia article by search can silently return an article about a different company, a person, or a place, and a signal built on that measures noise while looking like data. The mapping is therefore a gate, not a preprocessing step, and every accepted match is written to disk for audit.",
+
+  "known_weaknesses_declared_up_front": [
+    "English Wikipedia only, so non-US-listed or foreign-domiciled issuers are under-covered.",
+    "Pageview history begins 2015-07-01, so the test window is shorter than Form 4's.",
+    "Attention concentrates in large and newsworthy names, so a size control is mandatory before believing any result, exactly as it was for Form 4.",
+    "A company whose article is also a common word or a person's name will attract unrelated traffic; the name-token check reduces but does not remove this."
+  ],
+
+  "data_source": {"publisher": "Wikimedia Foundation", "endpoints": ["en.wikipedia.org/w/api.php opensearch", "wikimedia.org/api/rest_v1/metrics/pageviews"], "cost": "free"},
+  "research_only": true,
+  "strategy_promotion_authorized": false,
+  "approved_for_live_trading": false,
+  "execution_enabled": false,
+  "live_trading_enabled": false
+}

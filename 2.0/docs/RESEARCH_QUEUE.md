@@ -66,9 +66,14 @@ bets from about 1.15 to about 2 by adding valuation next to growth, and that sin
 more for risk-adjusted return than 270 steps of retuning. `IR ≈ IC × √BR` says a third genuinely
 independent source is worth another ~22% on IR *at unchanged IC* — no better signal required.
 Nothing else in this file has that property.
-**The screen to apply to any candidate before building it:** correlate its return stream against
-the valuation book and the residual composite. Below 0.3 against both, build it. Above, it is a
-third copy of something already held, whatever it is called.
+**The screen to apply to any candidate before building it, both halves required:** correlate its
+return stream against the valuation book and the residual composite -- below 0.3 against both --
+**and** check it stands up alone at something near a 1.0 Sharpe. Step 277 established the second
+half the hard way: XLE clears the correlation gate, raises effective bets from 2.00 to 2.88, and
+adds 0.021 of Sharpe, because its own Sharpe is 0.568. `IR = IC x sqrt(BR)` is a product, and
+breadth bought with an unskilled leg pays for itself in lost IC.
+**Screening what is already on disk is finished** (Step 277): 691 saved paths, one distinct
+object clears both gates, and it is a sector ETF.
 **What is already known not to work:** continuous cross-sectional scores over US equity have
 failed twelve times running (see Closed). The shape that has never been properly tested here is
 a signal whose *input* is neither a price nor a reported financial ratio.

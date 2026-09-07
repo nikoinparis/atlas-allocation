@@ -13122,3 +13122,58 @@ if the panel is never regenerated the book never rebalances, and 52 weeks of a f
 April book is not the quarterly strategy that was backtested. Added to the runbook as a
 quarterly step, and every decision record carries `score_block_age_days` so the staleness
 shows up in the log instead of being assumed away.
+
+## Step 277 — 2026-09-06 — The saved-path library is exhausted, and breadth without skill does not pay
+
+**What this accomplished: it closed a search and corrected a belief I have been repeating
+all session.** Valuation was found by clustering the saved return paths, so the obvious
+next move was to screen the same library for a *third* leg uncorrelated with both. There
+isn't one, and the exercise showed why the breadth argument as I have been stating it is
+incomplete.
+
+**The screen.** All 691 usable saved paths correlated against the valuation book and the
+growth sleeve. 19 clear 0.3 against both. Six clear a minimum standalone bar of 10% CAGR
+and 0.5 Sharpe — and all six are the same object under six filenames: **XLE, the energy
+sector ETF**, at three cost levels in two directories, unchanged by cost because it is a
+buy-and-hold benchmark rather than a strategy.
+
+So the answer to "what else is in here that is independent" is: one sector ETF, and
+nothing else. The library is exhausted. A third leg has to come from data this project
+does not yet hold.
+
+**Then the part that matters more.** Adding XLE to the two-leg blend:
+
+| book | CAGR | Sharpe | vol | maxDD |
+|---|---|---|---|---|
+| valuation alone | 31.58% | 1.405 | 22.5% | -18.52% |
+| growth sleeve alone | 33.20% | 0.929 | 35.7% | -36.62% |
+| XLE alone | 13.17% | 0.568 | 23.2% | -17.71% |
+| 50/50 valuation + growth sleeve | 35.35% | 1.671 | 21.2% | -24.63% |
+| ...plus 10% XLE | 33.40% | 1.692 | 19.7% | -23.40% |
+| ...plus 20% XLE | 31.37% | 1.686 | 18.6% | -22.16% |
+| ...plus 33% XLE | 28.58% | 1.619 | 17.7% | -20.57% |
+
+Effective independent bets go from **2.000 to 2.880**, a 44% increase in breadth. Sharpe
+goes from **1.671 to 1.692**, an increase of 1.3%, and then falls as the weight rises.
+
+**This corrects something I have been saying all session.** I have repeatedly cited
+`IR = IC x sqrt(BR)` as though breadth were the lever and IC were fixed. It is a product.
+XLE supplies genuine breadth — the participation ratio is not lying — and it buys almost
+nothing, because its own Sharpe is 0.568 against the blend's 1.671. Diluting a skilled
+book with an unskilled one lowers IC by about as much as it raises sqrt(BR). The correct
+statement is that a third leg must be *both* uncorrelated *and* of comparable standalone
+quality, and "uncorrelated" alone was never sufficient. Step 275's blend worked because
+valuation is uncorrelated **and** carries a 1.4 Sharpe of its own.
+
+**Two defects found and fixed in the screen itself, both the same failure.** A
+`candidate_weights.csv` matched the filename filter, was read as a return series, and
+produced a 33,532% CAGR at Sharpe 294 with zero drawdown that passed the correlation gate
+untouched. And `pick_growth` matched a substring and returned
+`path_growth__adverse__50bps.csv` — the adverse stress scenario — reporting the growth leg
+at 22.48% instead of 33.20%. Both are the failure this project keeps finding: a check that
+asks whether a number cleared a bar without asking whether the number could mean anything.
+That makes eight.
+
+**Consequence for the queue.** S2 stands and is now better specified: a third source must
+clear 0.3 correlation against both legs *and* stand up alone at something near a 1.0
+Sharpe. Screening what is already on disk is finished.

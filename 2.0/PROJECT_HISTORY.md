@@ -13065,3 +13065,60 @@ follows from the correlation matrix rather than from the returns.
 The honest summary is that the valuation book's value is breadth, exactly as CLAUDE.md
 section 2 predicted it would have to be, and the way to bank it is to run both clocks
 forward and blend the forward records — not to promote a backtested blend.
+
+## Step 276 — 2026-09-06 — The 50/50 blend is frozen, and the valuation clock had no recorder
+
+**What this accomplished: it found a defect and closed it, and it pre-registered the
+first blend this project has ever put on a clock.**
+
+**The defect.** Step 274 froze `valuation_earnings_yield_forward_v1.json` and the runbook
+was told five clocks would start on 2026-09-11. There was no
+`record_valuation_earnings_yield_forward_v1.py`. Four clocks would have started, the
+valuation clock's first week would have passed unrecorded, and the protocol's own
+`missed_snapshot_policy` makes that week unbackfillable. Freezing a protocol is not the
+same as being able to run it, and nothing in the process checked the difference.
+
+Built the recorder, and rehearsed it against the decision it will actually make on
+2026-09-11 using only data that already exists. The rehearsal caught a second defect:
+restricting the book to names present as panel *columns* let two of twenty names in with
+no price at the decision. They would have been held at 5% each and silently dropped at
+realization, so the book would have been eighteen names wearing a twenty-name label.
+Filtering on a real price at the decision week fixes it — 20 of 20 priced afterwards.
+
+**The pre-registration.** `valuation_growth_5050_blend_forward_v1.json`, weight fixed at
+0.5, first decision 2026-09-11, 52 weeks required.
+
+Two things about it are deliberate and both cost something.
+
+*The weight is 0.5, not the argmax.* Step 275's sweep peaked at 0.35 and 0.50 for the
+sector ensemble (Sharpe 2.242 and 2.245) and at 0.35 for the residual composite (2.187).
+That is a flat optimum, and the honest reading is that anything between a quarter and a
+half works. Declaring the argmax would import the nine-point search into the clock;
+declaring 0.5 imports nothing, because it is the only weight with no free parameter.
+
+*The pair is the second-best one.* The strongest blend was valuation with the sector
+ensemble at Sharpe 2.245, against 2.129 for valuation with the residual composite. The
+sector ensemble is not on a forward clock and this protocol does not start one for it,
+because starting a clock today for the leg that happened to blend best is precisely the
+selection this project keeps dying of. The residual composite was already running for
+its own reasons, so it is the leg that can be verified. The blend that gets checked is
+deliberately not the blend that looked best.
+
+The blend record is derived, not observed: it reads both legs' hash-chained logs,
+verifies both chains, and appends one record per shared realization date pinning both
+source hashes. It cannot advance when either leg is missing and it cannot be recomputed
+from a later vintage.
+
+**What it is testing is not what it looks like it is testing.** The clock is not asking
+whether the blend returns more — it returns *less* than its growth leg in all nine
+combinations, and buys Sharpe and drawdown with CAGR. It is asking whether the near-zero
+leg correlation is real. That correlation was measured on the same searched window as
+everything else, the entire Step 275 result rests on it, and it is the part most likely
+to be false forward. `status.json` flags `correlation_refuted` above 0.5.
+
+**Also recorded, because it will otherwise be forgotten:** the valuation score panel ends
+at the 2026-04-01 block, so the first decision holds a book 163 days stale. Causal, but
+if the panel is never regenerated the book never rebalances, and 52 weeks of a frozen
+April book is not the quarterly strategy that was backtested. Added to the runbook as a
+quarterly step, and every decision record carries `score_block_age_days` so the staleness
+shows up in the log instead of being assumed away.

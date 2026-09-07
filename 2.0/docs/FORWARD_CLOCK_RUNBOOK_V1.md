@@ -51,6 +51,14 @@ refused, correctly, and the fix is to rebuild it, not to edit it.
     ./.venv/bin/python scripts/record_residual_tie_agnostic_companion_forward_v1.py \
         --decision-date 2026-09-11
 
+    # 6. The valuation clock and the derived 50/50 blend. The blend observes
+    #    nothing of its own: it reads the valuation and residual logs and can
+    #    only advance on weeks both legs recorded, so it produces nothing today
+    #    and its first record arrives with the first realization on 09-18.
+    ./.venv/bin/python scripts/record_valuation_earnings_yield_forward_v1.py \
+        --decision-date 2026-09-11
+    ./.venv/bin/python scripts/record_valuation_growth_5050_blend_forward_v1.py
+
 Step 3's `--verify` returns a non-zero exit status when the reconstruction does not
 reproduce the reference. Note the trap found on 2026-09-05: it *also* returns non-zero
 when the audit reference does not cover the selection quarter at all, reporting
@@ -75,7 +83,10 @@ when the audit reference does not cover the selection quarter at all, reporting
     ./.venv/bin/python scripts/record_equal_weight_benchmark_forward_v1.py \
         --decision-date <that Friday> --realize
     ./.venv/bin/python scripts/record_residual_tie_agnostic_companion_forward_v1.py \
+        --decision-date <that Friday>
+    ./.venv/bin/python scripts/record_valuation_earnings_yield_forward_v1.py \
         --decision-date <that Friday> --realize
+    ./.venv/bin/python scripts/record_valuation_growth_5050_blend_forward_v1.py --realize
 
 A realization needs security-level total returns for every held name. An unpriced
 holding is an error, not a zero: the recorder refuses the packet rather than quietly
@@ -126,3 +137,28 @@ exist. It records 22 books every week on identical prices -- the declared one, t
 tie pool, and twenty pre-declared random tie-breaks -- so the only difference between
 the series is which names each holds. If the declared book lands inside the central 90%
 of the seeds over 52 weeks, its in-sample 99th-percentile position was luck.
+
+## Quarterly, and easy to forget: refresh the valuation score panel
+
+`evidence/sec_survivorship_valuation_discovery_v1/factor_scores.csv` ends at the
+2026-04-01 block. The valuation clock holds whatever block is latest at or before the
+decision, so on 2026-09-11 it holds a book chosen from April data — causal, and 163 days
+stale. If the panel is never refreshed the book never rebalances, and 52 weeks of a
+frozen April book is not the quarterly strategy that was backtested. Regenerate it with
+
+    ./.venv/bin/python scripts/run_sec_survivorship_valuation_discovery_v1.py
+
+when a new quarter's filings are in, and let the next Friday's decision pick the new
+block up on its own. The recorder writes `score_block_at` and `score_block_age_days`
+into every decision record, so the staleness is visible in the log; check it rather
+than assuming the refresh happened.
+
+## What the blend clock is actually testing
+
+`valuation_growth_5050_blend_forward_v1` is not testing whether the blend returns more.
+It is testing whether the near-zero correlation between the two legs is real. That
+correlation was measured on the same searched 2023-2026 window as everything else here,
+the whole Step 275 result rests on it, and it is the part most likely to be false
+forward. `status.json` carries `realized_leg_correlation` and flags
+`correlation_refuted` above 0.5. If that flag comes up true, the blend is not a
+diversification benefit and the 52 weeks are done regardless of what the Sharpe says.

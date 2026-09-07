@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "protocol_version": "valuation_growth_5050_blend_forward_v1",
+  "frozen_at_utc": "2026-09-06T00:00:00Z",
+  "why_this_exists": "Step 275 found that blending the revived valuation book with any of the three unlevered dashboard strategies beat both components on Sharpe in nine of nine weight combinations, because the correlation between them is near zero. That result was produced by nine undeclared weights on a window already searched to death, so it is not evidence. This freezes one weight before any forward data exists, so that the forward record can be evidence.",
+  "weight": "exactly 0.5 on each leg, rebalanced to 0.5/0.5 at every weekly realization",
+  "why_this_weight": "0.5 is the only weight with no free parameter to fit. Step 275's nine-point sweep peaked at 0.35 and 0.50 for the sector ensemble (Sharpe 2.242 and 2.245) and at 0.35 for the residual composite (2.187), which is a flat optimum: the correct reading is that anything between a quarter and a half works, not that the argmax means anything. Declaring the argmax would import the search into the clock. Declaring 0.5 imports nothing.",
+  "leg_a": {
+    "protocol": "valuation_earnings_yield_forward_v1",
+    "log": "evidence/forward_valuation_earnings_yield_v1/observations.jsonl"
+  },
+  "leg_b": {
+    "protocol": "sec_residual_controlled_sleeve_forward_v1",
+    "log": "evidence/forward_sec_residual_controlled_sleeve_v1/observations.jsonl",
+    "leverage_leg": "unlevered_1.00x"
+  },
+  "why_not_the_better_looking_pair": "Step 275's strongest blend was valuation with the sector ensemble at Sharpe 2.245, not valuation with the residual composite at 2.129. The sector ensemble is not on a forward clock and this protocol will not start one for it, because a clock started today for the leg that happened to blend best is exactly the selection this project keeps dying of. The residual composite is the growth leg that was already running for its own reasons, so it is the leg that can be verified. The blend that gets checked is deliberately not the blend that looked best.",
+  "derivation": "this protocol observes nothing of its own. Each week it reads both legs' hash-chained observation logs, verifies both chains, requires both to carry the same realization date, and appends a record pinning both source record hashes. It cannot advance when either leg is missing and it cannot be recomputed from a later vintage.",
+  "missed_snapshot_policy": "if either leg misses its window, the blend misses that week too and it is left missed",
+  "mutation_policy": "any change to the weight, the legs, or the rebalance rule creates a new protocol version and restarts its clock at zero",
+  "first_eligible_decision_date": "2026-09-11",
+  "required_untouched_weeks": 52,
+  "historical_record_stated_honestly": {
+    "declared_pair_50_50": "37.76% CAGR, Sharpe 2.129, max drawdown -16.55%, against the residual composite alone at 40.64% and Sharpe 1.856 and the valuation book alone at 32.36% and Sharpe 1.366",
+    "return_is_given_up": "the blend returns less than its growth leg in every one of the nine combinations. It buys Sharpe and drawdown with CAGR.",
+    "before_2025_04_04": "16.39% CAGR at Sharpe 1.095, against the residual composite's own 7.93%",
+    "the_only_part_that_is_not_fitted": "the volatility reduction from roughly 22% to roughly 16%, which follows from the correlation matrix rather than from the returns. The Sharpe improvement is partly that arithmetic and partly the same overfit window both legs were selected on, and this protocol cannot separate the two. The forward record can."
+  },
+  "what_would_make_this_interesting": "52 untouched weeks in which the blend's realized Sharpe exceeds both legs' realized Sharpes, and the realized correlation between the legs stays below 0.3. The correlation condition is the real test: it is the assumption the whole result rests on, it was measured on the same searched window as everything else, and it is the thing most likely to be false forward.",
+  "what_would_refute_it": "a realized leg correlation above 0.5, which would mean the near-zero historical correlation was an artifact of the window and the diversification benefit does not exist",
+  "selection_status": "the legs were both selected on the 2023-2026 window and neither has any forward evidence. Blending two strategies selected on one window produces a blend selected on that window. This protocol fixes the weight so that at least the weight is not also fitted.",
+  "runs_alongside": "valuation_earnings_yield_forward_v1 and sec_residual_controlled_sleeve_forward_v1, and modifies neither",
+  "modifies": "nothing",
+  "research_only": true,
+  "strategy_promotion_authorized": false,
+  "approved_for_live_trading": false,
+  "execution_enabled": false,
+  "live_trading_enabled": false
+}

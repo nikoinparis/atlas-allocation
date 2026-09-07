@@ -1,0 +1,31 @@
+{
+  "blend_performance_metrics": {
+    "observations": 0
+  },
+  "blend_sharpe_beats_both_legs": null,
+  "clock_complete": false,
+  "correlation_refutation_threshold": 0.5,
+  "correlation_refuted": false,
+  "derived_not_observed": true,
+  "execution_enabled": false,
+  "forward_protocol_sha256": "a1da77916e5a6142c85314c3fd640c763b32587b11f7ee37aad4d74dccdf33ea",
+  "generated_at_utc": "2026-09-07T02:42:15.048999+00:00",
+  "growth_leg_performance_metrics": {
+    "observations": 0
+  },
+  "latest_realization_date": null,
+  "legs_were_selected_on_the_same_window": true,
+  "live_trading_enabled": false,
+  "observation_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "promotion_authorized": false,
+  "protocol_version": "valuation_growth_5050_blend_forward_v1",
+  "realized_leg_correlation": null,
+  "remaining_weeks": 52,
+  "required_weeks": 52,
+  "valuation_leg_performance_metrics": {
+    "observations": 0
+  },
+  "weeks_available_growth": 0,
+  "weeks_available_valuation": 0,
+  "weeks_shared_and_recorded": 0
+}

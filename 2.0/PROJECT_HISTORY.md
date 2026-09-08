@@ -13819,3 +13819,87 @@ and 2013-2022 is not 2026, which is an argument for running the clocks rather th
 discounting this result. The symmetric dodge — that the old window is "the wrong regime" and
 only recent data counts — would have rescued every one of the fourteen closed families and
 is refused for the same reason.
+
+## Step 291 — 2026-09-08 — WITHDRAWN: Step 275's blend result is an artifact of a one-week date offset
+
+**What this accomplished: it found a data defect that invalidates the central positive
+result of the last week, three days before that result was due to start a forward clock.**
+
+It came out of an unrelated question. Asked what else to try, I tested whether every
+strategy here correlates because every book is long-only and therefore carries market
+beta. The regression said the opposite: growth, cash conversion and the sector ensemble
+have betas of **-0.12, -0.09 and -0.06 against SPY with R-squared of 0.002**.
+
+A long-only equity book cannot have zero beta to the equity market. That is not a finding,
+it is a broken measurement, and the asymmetry said where to look: the valuation book — the
+one I built myself in Step 274 directly from the price panel — regresses normally at beta
+**+1.17, R-squared 0.55**. The three inherited paths do not.
+
+**Sweeping the date-labelling shift resolves it completely.**
+
+| path | as dated | shifted +1 week |
+|---|---|---|
+| growth top five | beta -0.12, R2 0.00 | **beta +1.48, R2 0.35** |
+| cash conversion | beta -0.09, R2 0.00 | **beta +1.10, R2 0.51** |
+| sector ensemble | beta -0.06, R2 0.00 | **beta +1.30, R2 0.69** |
+| valuation breadth 20 | **beta +1.17, R2 0.55** | beta -0.14, R2 0.01 |
+
+**The three incumbent return paths are stamped one week earlier than the price panel they
+were priced from.** The valuation path is not. Every analysis in this project that joined
+these series to anything else *by date* without correcting for it has compared a correctly
+dated series against three misdated ones.
+
+**What this destroys.** Step 275 measured the valuation book's correlation against the
+incumbents at +0.006, -0.030 and -0.026 and concluded it was the first genuinely
+independent return source this project had ever produced. Aligned:
+
+| against | Step 275 as-dated | aligned |
+|---|---|---|
+| growth top five | +0.006 | **+0.566** |
+| cash conversion | -0.030 | **+0.774** |
+| sector ensemble | -0.026 | **+0.692** |
+
+The near-zero correlations were the offset, not a property of the strategy. Correlating a
+correctly dated weekly series against one shifted by a week gives approximately zero by
+construction, which is exactly what was measured and exactly what was believed.
+
+And the blend result falls with it:
+
+| | correlation | valuation Sharpe | ensemble Sharpe | 50/50 Sharpe | beats both |
+|---|---|---|---|---|---|
+| as dated | -0.026 | 1.405 | 1.912 | 2.482 | **yes** |
+| aligned | **+0.692** | 1.354 | 1.849 | **1.760** | **no** |
+
+**"Nine of nine blends beat both components on Sharpe" is withdrawn.** Aligned, the 50/50
+blend does not beat either component. The diversification benefit reported in Step 275, and
+the entire stated rationale of the `valuation_growth_5050_blend_forward_v1` protocol frozen
+in Step 276, rest on a defect.
+
+**What it does not destroy.** The incumbents' correlations *against each other* are
+unaffected, because all three carry the same offset and it cancels: 0.525, 0.719, 0.740 —
+still one bet wearing three names. Step 289 and Step 290's out-of-sample results are
+unaffected: every book there was rebuilt from FSDS and priced against the panel inside a
+single script, with no cross-series date join. The forward recorders are unaffected for the
+same reason — they price a book against the panel directly.
+
+The gate-1 orthogonality checks that closed crypto, FINRA short-sale volume and Form 4
+compared each candidate against the valuation book *and* the growth path. The valuation
+comparison was sound; the growth comparison understated the true correlation. All three
+were closed on multiple failing gates including that one, so correcting it makes those
+closures more secure rather than less, but the specific growth correlations quoted in
+Steps 282, 285 and 286 are understated and should not be requoted.
+
+**Tenth verdict-function-class failure, and the most expensive.** The pattern is identical
+to Steps 238, 241 and 278: a date-labelling offset that produces a confident number nobody
+can distinguish from a real one. Step 278's reproduction harness already swept label shifts
+and silently absorbed this exact offset — it reported the best-aligned correlation and never
+flagged that a shift had been necessary. A harness that corrects a defect without reporting
+it hides the defect. It should have printed the shift it chose, and now does not need to
+because this record exists, but the lesson is that silent correction is not correction.
+
+**Consequence for 2026-09-11, which is three days away.** The blend protocol is frozen and
+must not be edited in place. It should be superseded: its `what_would_refute_it` clause
+already names a realized leg correlation above 0.5 as refutation, and the aligned historical
+correlation is 0.692 — the protocol is refuted by its own declared standard before it starts.
+Recommend it does not start, and that the two component clocks run alone. That is the
+owner's decision to make, not mine, and it is in the action list.

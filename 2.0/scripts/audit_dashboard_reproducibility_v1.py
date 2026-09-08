@@ -345,6 +345,16 @@ def audit_one(name: str, spec: dict) -> dict:
         return row
     row.update({f"match_{k}": v for k, v in best.items()})
     row["best_correlation"] = best["correlation"]
+    row["label_shift_required"] = int(best.get("label_shift", 0))
+    # Step 291: this harness silently absorbed a one-week offset for months. It
+    # reported the best-aligned correlation and never said a shift had been
+    # needed, so the offset stayed invisible until an unrelated beta regression
+    # exposed it. A harness that corrects a defect without reporting it hides the
+    # defect. Announce it once per strategy, on the result actually chosen.
+    if row["label_shift_required"] != 0:
+        print(f"    NOTE {name}: reproduces only after a {row['label_shift_required']:+d} week "
+              f"label shift. The saved path and the price panel disagree about what a date "
+              f"means -- see src/systematic_trader/return_conventions.py")
     row["reproduced"] = bool(best["correlation"] >= MATCH)
     row["blocked_by"] = None if row["reproduced"] else "book reprices but does not match the published path"
     return row

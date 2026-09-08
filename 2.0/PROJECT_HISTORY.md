@@ -13903,3 +13903,78 @@ already names a realized leg correlation above 0.5 as refutation, and the aligne
 correlation is 0.692 — the protocol is refuted by its own declared standard before it starts.
 Recommend it does not start, and that the two component clocks run alone. That is the
 owner's decision to make, not mine, and it is in the action list.
+
+## Step 292 — 2026-09-08 — Root cause of the date offset, fixed at the source
+
+**What this accomplished: it found the single line responsible for Step 291, made the
+convention explicit instead of implicit, and re-ran everything the offset touched.**
+
+**The root cause is one line inherited by an entire family.** Line 285 of
+`run_sec_growth_survivorship_retest_v1.py`:
+
+    returns = series.pct_change().shift(-1).iloc[:-1].fillna(0.0)
+
+`pct_change()` gives the return of the week *ending* at D; `.shift(-1)` restates it as the
+return of the week *following* D. That is a **forward-return convention** and it is a
+reasonable one — it puts a decision and its consequence on the same row.
+
+The problem is who inherits it. `build_cash_conversion_sleeve_path_v1`,
+`run_sec_sector_aware_signal_ensemble_v1`, `run_sec_cluster_aware_cash_sleeve_v1` and
+`run_sec_signal_neighborhood_ensemble_v1` all `import run_sec_growth_survivorship_retest_v1
+as base`. The whole SEC strategy family carries the forward convention. The valuation
+revival script does not import it — I wrote it standalone against the price panel, so it
+carries week-ending. **Nothing on either artifact recorded which convention it held**, and
+every cross-family join compared week t against week t+1.
+
+Neither convention is wrong. Mixing them silently is.
+
+**The fix: `src/systematic_trader/return_conventions.py`.** A registry naming each artifact
+family's convention, a `to_week_ending` restatement, a `load_aligned` loader that every
+cross-series join should use, and a `detect_convention` that infers the answer from data by
+asking which labelling gives a long-only equity book a sane market beta. It **raises rather
+than guessing** when an artifact is unregistered and no benchmark is supplied — guessing is
+what Step 275 did.
+
+Detection agrees with the registry on all four dashboard books, independently:
+
+| book | registry | detected | beta | R2 |
+|---|---|---|---|---|
+| growth top five | forward | forward | 1.475 | 0.346 |
+| cash conversion | forward | forward | 1.104 | 0.506 |
+| sector ensemble | forward | forward | 1.298 | 0.686 |
+| valuation breadth 20 | week ending | week ending | 1.168 | 0.545 |
+
+**The aligned correlation matrix, which is the number that matters:**
+
+| | growth | cash conv | ensemble | valuation |
+|---|---|---|---|---|
+| growth | 1.000 | 0.523 | 0.740 | **0.566** |
+| cash conversion | 0.523 | 1.000 | 0.717 | **0.774** |
+| sector ensemble | 0.740 | 0.717 | 1.000 | **0.692** |
+| valuation | 0.566 | 0.774 | 0.692 | 1.000 |
+
+**Effective independent bets: 1.690 of 4.** The unaligned computation gave 2.394, so the
+offset was *inflating* apparent diversification by about 40%. The aligned figure sits close
+to Batch 03's original measurement of ≈1.15 for the trend family, and CLAUDE.md section 2's
+statement that breadth near one is this project's real ceiling is now true of the current
+dashboard as well as the old one. There has never been a second independent bet here.
+
+**The three closed candidates, re-checked.** Their gate-1 correlations against the growth
+leg were understated by the offset, exactly as Step 291 predicted:
+
+| candidate | vs valuation | vs growth (as reported) | vs growth (aligned) | gate 1 |
+|---|---|---|---|---|
+| crypto momentum top 5 | 0.295 | 0.038 | **0.239** | now PASSES |
+| FINRA short-sale volume | 0.682 | -0.001 | **0.587** | FAILS, harder |
+| Form 4 opportunistic | 0.712 | 0.019 | **0.453** | FAILS, harder |
+
+All three closures stand. Crypto momentum newly clears gate 1 but was closed on gate 2 —
+a standalone Sharpe of 0.374 against the 1.0 required — and that is untouched. The specific
+growth correlations quoted in Steps 282, 285 and 286 are superseded by this table.
+
+**The harness now says when it corrects something.**
+`audit_dashboard_reproducibility_v1.py` swept label shifts and reported the best-aligned
+correlation without ever mentioning that a shift had been necessary, which is how an offset
+survived from Step 278 to Step 291 inside a tool built to catch exactly this. It now prints,
+once per strategy, that a shift was required and points at the conventions module. Growth,
+cash conversion and the residual composite each need -1.

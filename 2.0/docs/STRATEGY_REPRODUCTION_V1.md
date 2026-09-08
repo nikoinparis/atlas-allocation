@@ -104,6 +104,20 @@ same as the other leg, and every saved book sums to exactly 1.0.
 35 symbols, 1,754 weeks, 1993-2026, flattened from seven vintage bundles whose
 `prices.csv` hashes are each verified against their manifest. Not point-in-time.
 
+## Before anything else: two date conventions live in this repository
+
+`src/systematic_trader/return_conventions.py` is not optional reading if you are joining
+two return series by date.
+
+The whole SEC strategy family inherits a **forward-return** convention from line 285 of
+`run_sec_growth_survivorship_retest_v1.py` — the value at D is what you earn over the week
+*following* D. Standalone scripts written against the price panel use **week-ending** — the
+value at D is the week *ending* at D. Neither is wrong; mixing them cost this project a
+withdrawn headline result (Step 291), because correlating a correctly dated series against
+one shifted by a week gives approximately zero by construction.
+
+Use `load_aligned()`. It raises rather than guessing for unregistered artifacts.
+
 ## The trap that will waste your afternoon
 
 Reproduction requires sweeping **two** offsets that are easy to conflate:

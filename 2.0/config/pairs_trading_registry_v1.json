@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "experiment": "pairs_trading_v1",
+  "registered_at_utc": "2026-09-08T00:00:00Z",
+  "registered_before_any_result_existed": true,
+
+  "why_this_exists": "Every strategy in 292 steps of this project is long-only. Step 292 measured the four dashboard books at 1.690 effective independent bets of four, with pairwise correlations of 0.52 to 0.77, and fourteen closed families have failed the orthogonality gate against them. A long-short book removes the market factor by construction instead of hoping a new signal happens to be orthogonal to it. This is a change of structure, not another signal on the same structure.",
+
+  "the_rule_is_adopted_verbatim_not_invented": "Gatev, Goetzmann and Rouwenhorst (2006), 'Pairs Trading: Performance of a Relative-Value Arbitrage Rule'. Twelve-month formation on normalised cumulative price series, pairs ranked by minimum sum of squared deviations, top twenty taken, six-month trading period, position opened when the spread exceeds two formation-period standard deviations and closed on convergence to zero or at the end of the trading period. Adopting a published rule unchanged is the strongest pre-registration available here: there is nothing left to fit. Recorded from general knowledge of the paper, not from a read of the text.",
+
+  "declared_configurations": {
+    "formation_weeks": [52], "trading_weeks": [26], "pairs": [20],
+    "entry_sigma": [2.0], "cost_bps_per_leg": [50.0], "annual_borrow_bps": [100.0]
+  },
+  "trials_declared_here": 1,
+  "nothing_will_be_swept": "No variant of formation length, pair count, entry threshold or exit rule will be tried. If the declared configuration fails, the family closes. A sweep over these parameters on ~180,000 candidate pairs would be the largest multiple-testing exercise in this project's history and its output would not be interpretable.",
+
+  "the_multiple_testing_problem_stated_plainly": "With roughly 600 tradable issuers there are about 180,000 candidate pairs. Selecting twenty of them is a search over 180,000 hypotheses. This is an order of magnitude larger than any search this project has previously run, and it is why the design below relies on disjoint formation and trading windows plus a placebo rather than on a significance test of the selected pairs, which would be meaningless.",
+
+  "causality": {
+    "formation_and_trading_are_disjoint": "Pairs are chosen using only the 52 weeks before a trading period begins and are then held fixed for the following 26 weeks. No pair is chosen using data from the period it trades in.",
+    "entry_threshold_from_formation_only": "The two-sigma band is the formation window's spread standard deviation, never the trading window's.",
+    "universe_is_point_in_time": "An issuer enters the candidate set for a formation window only if it has a complete price history across that window as of its start."
+  },
+
+  "declared_sign": "POSITIVE. The convergence trade is hypothesised to earn a positive return net of costs. A negative result refutes it and will be reported as such rather than inverted into a divergence strategy.",
+
+  "gates": {
+    "gate_1_orthogonality": "absolute correlation below 0.30 against BOTH the valuation book and the growth leg, using src/systematic_trader/return_conventions.load_aligned so the Step 291 offset cannot recur",
+    "gate_2_standalone_skill": "Sharpe at or above 1.0 net of 50bps per leg and 100bps annual borrow",
+    "gate_3_beats_a_random_pair_placebo": "the declared book must beat a control of randomly chosen pairs, run 200 times, at the 95th percentile of the control distribution",
+    "gate_4_market_neutrality_is_real": "absolute market beta below 0.30 against SPY -- a long-short book that still carries beta is not delivering the structural benefit this experiment exists to test",
+    "all_four_required": true
+  },
+  "why_gate_3_is_the_important_one": "Any selection of twenty pairs from 180,000 will look good in the window it was selected from. The random-pair placebo is the only control that measures whether the SSD selection rule carries information rather than whether pairs trading looks profitable on a searched sample.",
+  "why_gate_4_exists": "The entire argument for this experiment is that a long-short structure removes the market factor. If the realised book still carries market beta, it has not done the one thing it was built to do, and its low correlation to the long-only books would be arithmetic rather than diversification.",
+
+  "known_weaknesses_declared_up_front": [
+    "Borrow is modelled as a flat 100bps annual charge on the short leg. Real borrow is name-specific, time-varying, and worst exactly on the names a convergence trade wants to short. This assumption is optimistic and any result should be read as an upper bound.",
+    "The universe is the survivorship-aware panel, so issuers that delisted mid-trade are absent, and a pair that would have blown up on a delisting is invisible. This biases upward.",
+    "Weekly data is coarse for a convergence trade; the published rule is daily. This is a limitation of the free data here, not a choice, and it means a negative result is more trustworthy than a positive one.",
+    "No short-sale feasibility check. Some names in this universe would be hard or impossible to borrow."
+  ],
+
+  "research_only": true,
+  "strategy_promotion_authorized": false,
+  "approved_for_live_trading": false,
+  "execution_enabled": false,
+  "live_trading_enabled": false
+}

@@ -13978,3 +13978,69 @@ correlation without ever mentioning that a shift had been necessary, which is ho
 survived from Step 278 to Step 291 inside a tool built to catch exactly this. It now prints,
 once per strategy, that a shift was required and points at the conventions module. Growth,
 cash conversion and the residual composite each need -1.
+
+## Step 293 — 2026-09-08 — Pairs trading: the structure works, the signal does not
+
+**What this accomplished: it closed the fifteenth family, and it is the first closure that
+leaves something behind worth building on.**
+
+The first market-neutral structure attempted in 293 steps. Pre-registered before running,
+with the rule taken verbatim from Gatev, Goetzmann and Rouwenhorst (2006) — 52-week
+formation on normalised prices, minimum sum of squared deviations, top twenty pairs, 26-week
+disjoint trading window, two-sigma entry, convergence exit. Adopting a published rule
+unchanged leaves nothing to fit, and nothing was swept.
+
+**Scale of the selection problem, stated before the result:** 2,810 names, roughly **3.9
+million candidate pairs**, of which the rule picks twenty. That is an order of magnitude
+beyond any search this project has run, which is why the design rests on disjoint
+formation/trading windows and a random-pair placebo rather than on a significance test of
+the chosen pairs, which would be meaningless at that size.
+
+| gate | result |
+|---|---|
+| 1 orthogonality below 0.30 | **PASS** — +0.030 vs valuation, -0.044 vs growth |
+| 2 standalone Sharpe ≥ 1.0 | **FAIL** — -0.555 |
+| 3 beats a random-pair placebo | **FAIL** |
+| 4 market beta below 0.30 | **PASS** — -0.009, R2 0.001 |
+
+**Cost ladder (CLAUDE.md rule 7):**
+
+| cost/leg | borrow | CAGR | Sharpe | vol | maxDD |
+|---|---|---|---|---|---|
+| 0 | 0 | **-0.30%** | **-0.079** | 3.8% | -12.92% |
+| 10 | 0 | -0.61% | -0.160 | 3.8% | -13.13% |
+| 50 | 100 | -2.11% | -0.555 | 3.8% | -26.63% |
+| 100 | 100 | -3.62% | -0.945 | 3.8% | -41.40% |
+
+**It loses money at zero cost.** This is not a strategy that costs killed; there was nothing
+there to kill. Costs then make it considerably worse.
+
+**And it is worse than random.** The 200-run random-pair placebo — identical in every
+respect except that pairs are drawn at random from the same eligible set — averages a Sharpe
+of **-0.117** against the declared book's **-0.555**, with a 95th percentile of +0.204.
+Minimum-distance selection did not merely fail to add information, it **subtracted** it.
+That is not explained by the well-documented post-2000 decay of pairs returns, which would
+push both toward zero. A plausible mechanism is that minimum SSD over a formation window
+selects pairs that happened to co-move, some of that is luck, and luck reverts — so the rule
+systematically picks pairs about to diverge.
+
+**What this leaves behind, and it is the useful part.** Gates 1 and 4 passed. This is the
+**first structure in this project that is genuinely orthogonal to the existing books
+(+0.030, -0.044) and genuinely market-neutral (beta -0.009, R2 0.001)**. Fourteen previous
+families failed the orthogonality gate; this one cleared it comfortably, and cleared it *by
+construction* rather than by hoping a signal happened to be uncorrelated. Step 292 measured
+the four dashboard books at 1.690 effective independent bets, all long-only, all carrying
+beta between 1.10 and 1.48. A long-short book does not share that factor and cannot.
+
+So the conclusion is narrower and more useful than "pairs trading does not work here": **the
+market-neutral structure is the right direction and the GGR convergence rule is the wrong
+occupant of it.** A long-short book with a signal that has actual skill would clear gates 1
+and 4 the same way and would then be tested on gates 2 and 3, where every long-only
+candidate has been failing gate 1 before it ever got that far.
+
+**Declared limitations, unchanged by the result.** Weekly data against GGR's daily — a
+convergence trade may open and close inside a week this panel cannot see, and the registry
+said in advance that this makes a negative result more trustworthy than a positive one.
+Borrow modelled flat at 100bps when real borrow is name-specific and worst on exactly the
+names a convergence trade wants to short, so the cost ladder is optimistic. No short-sale
+feasibility check. The survivorship-aware panel hides pairs that blew up on a delisting.

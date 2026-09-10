@@ -88,7 +88,15 @@ data/broad_full_history_price_vintages/
 data/yahoo_recent_current_sec_price_vintages/
 data/sec_broad_recent_tail_vintages/
 data/osap_vintages/
-data/vintages/
+# data/vintages/ is NOT ignored. It was, and that was a mistake: these are
+# point-in-time snapshots recording what a provider said on a given date, and a
+# vintage you can re-download is not a vintage. Four bundles predating the rule
+# were tracked and three later ones were silently not, so a fresh clone would
+# have been missing the snapshot the ETF panel is built from. ~43MB each, well
+# under GitHub's per-file limit, and they are the reason this repository can
+# reproduce itself. The re-downloadable Form 4 bulk vintages are ignored below;
+# despite the name those ARE re-fetchable from SEC and were verified so.
+
 
 # Indonesia program data. The program is closed and rejected (see
 # PROJECT_HISTORY and research_registry); its code, configs and evidence are

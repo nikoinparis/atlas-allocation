@@ -24,9 +24,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 REPO = ROOT.parent
 
+# Deliberately NOT in this list: .venv and dashboard/node_modules. They are
+# rebuildable in principle -- requirements.txt and package-lock.json pin both --
+# but the forward clock runs on a fixed weekly deadline and a missed window
+# cannot be backfilled. An environment that has to be reinstalled before the run
+# is a broken environment at the moment it matters. They cost 1.15GB and they
+# stay. Delete them by hand if the machine is being retired.
 REBUILDABLE = [
-    (".venv", "Python environment", "pip install -r requirements.txt"),
-    ("dashboard/node_modules", "npm packages", "npm install"),
     ("dashboard/.next", "Next.js build output", "npm run build"),
     ("dashboard/public/return-first-dashboard.json.full", "untrimmed payload copy",
      "scripts/build_*.py then trim_dashboard_payload_v1.py"),
@@ -44,6 +48,11 @@ REBUILDABLE = [
     ("data/finra_short_interest_v1", "FINRA short interest", "its acquire_* script"),
     ("data/sec_broad_identity_cache_v2", "identity resolution cache", "its acquire_* script"),
     ("data/sec_broad_tiingo_cache_v2", "Tiingo price cache", "its acquire_* script"),
+    # Named like a vintage, but verified re-downloadable on 2026-09-10: SEC still
+    # serves 2023q1_form345.zip and every quarter after it. The name misled an
+    # earlier pass of this script into calling it irreplaceable.
+    ("data/sec_form4_bulk_vintages", "Form 4 quarterly archives 2023-2026",
+     "acquire_sec_form4_bulk_v1.py"),
     ("evidence/institutional_linkage_v1/holdings.parquet", "556MB derived 13F table",
      "run_institutional_linkage_v1.py"),
 ]
@@ -54,9 +63,12 @@ VENDORED = [
 ]
 
 PRESERVED = [
+    (".venv", "Python environment -- kept so the forward clock runs without a reinstall"),
+    ("dashboard/node_modules", "npm packages -- kept so the dashboard runs without a reinstall"),
+    ("requirements.txt", "83 pinned packages, so another machine can rebuild the environment"),
+    ("dashboard/package-lock.json", "npm lockfile, same reason"),
     ("data/vintages", "ETF point-in-time snapshots -- CANNOT be re-downloaded"),
     ("data/sec_pilot_price_vintages", "price vintages -- CANNOT be re-downloaded"),
-    ("data/sec_form4_bulk_vintages", "Form 4 vintages -- CANNOT be re-downloaded"),
     ("data/clean_full_history_prices_v1", "the panel the forward clocks price against"),
     ("data/clean_weekly_prices_v2", "narrow weekly panel, used by the clocks"),
     ("data/broad_full_history_panel_v1", "broad weekly panel"),

@@ -14044,3 +14044,40 @@ said in advance that this makes a negative result more trustworthy than a positi
 Borrow modelled flat at 100bps when real borrow is name-specific and worst on exactly the
 names a convergence trade wants to short, so the cost ladder is optimistic. No short-sale
 feasibility check. The survivorship-aware panel hides pairs that blew up on a delisting.
+
+## Step 294 — 2026-09-10 — The 50/50 blend clock is superseded before it starts
+
+**What this accomplished: it stopped a 52-week measurement of a question already answered,
+one day before it would have begun.**
+
+Owner decision, 2026-09-10. `valuation_growth_5050_blend_forward_v1` **will not start.** No
+decision or observation was ever recorded against it.
+
+The protocol was frozen in Step 276 on one claim: that its two legs were nearly uncorrelated,
+so the blend bought diversification rather than return. Step 291 established that the claim
+was an artifact — the valuation path is week-ending, the growth path is forward-indexed, and
+joining them by date compared week t against week t+1. Aligned, the legs correlate **+0.692**,
+not -0.026, and the 50/50 blend lands at Sharpe **1.760** against components of 1.354 and
+1.849. It beats neither.
+
+**It is refuted by its own declared standard.** The frozen protocol's `what_would_refute_it`
+clause reads: *"a realized leg correlation above 0.5, which would mean the near-zero
+historical correlation was an artifact of the window and the diversification benefit does not
+exist."* The aligned historical correlation is 0.692. Running the clock would spend 52 weeks
+confirming what the protocol itself says would refute it.
+
+**The frozen file is untouched.** `config/forward/valuation_growth_5050_blend_forward_v1.json`
+is left byte-for-byte as frozen, per the rule that a frozen manifest is versioned rather than
+edited. The decision lives beside it in a sibling `.SUPERSEDED.json` carrying the frozen
+file's sha256, so the record cannot drift from the file it refers to.
+
+**Three operational changes so it cannot start by habit.** The two blend commands are removed
+from both Friday sequences in the runbook and replaced with an explicit do-not-run note; the
+section explaining what the blend was going to test is kept, relabelled as a record rather
+than an instruction; and the pre-flight now actively checks that **no blend records exist**
+and that the supersession is on disk. Pre-flight: **29 of 29 pass.**
+
+**Five clocks start on 2026-09-11**, not six: the residual composite, the equal-weight
+benchmark, the tie-agnostic companion, SUE quarterly, and valuation earnings yield. All five
+are unaffected by Step 291 — the forward recorders price a book against the panel inside a
+single script and perform no cross-series date join, which is the only place the offset lives.

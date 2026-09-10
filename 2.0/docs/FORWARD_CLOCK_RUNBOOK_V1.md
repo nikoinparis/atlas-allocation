@@ -51,13 +51,14 @@ refused, correctly, and the fix is to rebuild it, not to edit it.
     ./.venv/bin/python scripts/record_residual_tie_agnostic_companion_forward_v1.py \
         --decision-date 2026-09-11
 
-    # 6. The valuation clock and the derived 50/50 blend. The blend observes
-    #    nothing of its own: it reads the valuation and residual logs and can
-    #    only advance on weeks both legs recorded, so it produces nothing today
-    #    and its first record arrives with the first realization on 09-18.
+    # 6. The valuation clock. The 50/50 blend that used to sit here WILL NOT
+    #    START -- owner decision, 2026-09-10, see
+    #    config/forward/valuation_growth_5050_blend_forward_v1.SUPERSEDED.json.
+    #    Its rationale was a leg correlation of -0.026 that Step 291 showed to be
+    #    a date-offset artifact; aligned it is +0.692, and the frozen protocol's
+    #    own refutation clause names 0.5. Do not run the blend recorder.
     ./.venv/bin/python scripts/record_valuation_earnings_yield_forward_v1.py \
         --decision-date 2026-09-11
-    ./.venv/bin/python scripts/record_valuation_growth_5050_blend_forward_v1.py
 
 Step 3's `--verify` returns a non-zero exit status when the reconstruction does not
 reproduce the reference. Note the trap found on 2026-09-05: it *also* returns non-zero
@@ -86,7 +87,6 @@ when the audit reference does not cover the selection quarter at all, reporting
         --decision-date <that Friday>
     ./.venv/bin/python scripts/record_valuation_earnings_yield_forward_v1.py \
         --decision-date <that Friday> --realize
-    ./.venv/bin/python scripts/record_valuation_growth_5050_blend_forward_v1.py --realize
 
 A realization needs security-level total returns for every held name. An unpriced
 holding is an error, not a zero: the recorder refuses the packet rather than quietly
@@ -153,7 +153,20 @@ block up on its own. The recorder writes `score_block_at` and `score_block_age_d
 into every decision record, so the staleness is visible in the log; check it rather
 than assuming the refresh happened.
 
-## What the blend clock is actually testing
+## The blend clock: superseded before it started, 2026-09-10
+
+**Do not run `record_valuation_growth_5050_blend_forward_v1.py`.** It was frozen in Step 276
+on the strength of a near-zero leg correlation, and Step 291 showed that correlation was a
+one-week date-labelling artifact. Aligned, the legs correlate **+0.692** and the blend beats
+neither component. The frozen protocol's own `what_would_refute_it` names a leg correlation
+above 0.5, so it is refuted on its own terms before its first decision.
+
+The frozen file is left byte-for-byte unchanged; the decision lives in
+`valuation_growth_5050_blend_forward_v1.SUPERSEDED.json` beside it.
+
+The section below is kept as the record of what it was going to test.
+
+### What the blend clock was going to test
 
 `valuation_growth_5050_blend_forward_v1` is not testing whether the blend returns more.
 It is testing whether the near-zero correlation between the two legs is real. That

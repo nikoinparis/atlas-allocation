@@ -69,7 +69,6 @@ def main() -> int:
         "scripts/record_equal_weight_benchmark_forward_v1.py",
         "scripts/record_residual_tie_agnostic_companion_forward_v1.py",
         "scripts/record_valuation_earnings_yield_forward_v1.py",
-        "scripts/record_valuation_growth_5050_blend_forward_v1.py",
     ]
     for relative in scripts:
         exists = (ROOT / relative).is_file()
@@ -84,7 +83,6 @@ def main() -> int:
         "config/forward/residual_tie_agnostic_companion_v1.json",
         "config/forward/sue_quarterly_forward_v1.json",
         "config/forward/valuation_earnings_yield_forward_v1.json",
-        "config/forward/valuation_growth_5050_blend_forward_v1.json",
     ]
     for relative in protocols:
         path = ROOT / relative
@@ -103,7 +101,6 @@ def main() -> int:
         "benchmark": "evidence/forward_equal_weight_benchmark_v1/decisions.jsonl",
         "companion": "evidence/forward_residual_tie_agnostic_companion_v1/decisions.jsonl",
         "valuation": "evidence/forward_valuation_earnings_yield_v1/decisions.jsonl",
-        "blend": "evidence/forward_valuation_growth_5050_blend_v1/observations.jsonl",
     }
     for name, relative in logs.items():
         path = ROOT / relative
@@ -168,18 +165,29 @@ def main() -> int:
     except Exception as error:                       # noqa: BLE001
         check("composite book builder runs and sums to 1", False, f"{type(error).__name__}: {error}")
 
-    # 7. The blend recorder is a no-op today and says so rather than erroring.
+    # 7. The blend must NOT have started. Owner decision 2026-09-10: superseded
+    #    before its first decision because its rationale was the Step 291 date
+    #    offset. A record here would mean it ran by habit, which is the failure
+    #    this check exists to catch.
+    blend_log = ROOT / "evidence/forward_valuation_growth_5050_blend_v1/observations.jsonl"
+    started = blend_log.is_file() and blend_log.stat().st_size > 0
+    check("superseded blend clock has NOT started", not started,
+          "records exist -- it ran despite being superseded" if started else "")
+    superseded = ROOT / "config/forward/valuation_growth_5050_blend_forward_v1.SUPERSEDED.json"
+    check("blend supersession is recorded", superseded.is_file())
+
+    # 8. The blend recorder still runs cleanly if invoked, but must not be.
     try:
         import subprocess
         run = subprocess.run([str(ROOT / ".venv/bin/python"),
                               str(ROOT / "scripts/record_valuation_growth_5050_blend_forward_v1.py")],
                              capture_output=True, text=True, cwd=ROOT, timeout=300)
         body = json.loads(run.stdout) if run.returncode == 0 else {}
-        check("blend recorder is a clean no-op today",
+        check("blend recorder would still be a clean no-op if run",
               run.returncode == 0 and body.get("weeks_shared_and_recorded") == 0,
               (run.stderr.strip().splitlines() or [""])[-1][:100] if run.returncode else "")
     except Exception as error:                       # noqa: BLE001
-        check("blend recorder is a clean no-op today", False, f"{type(error).__name__}: {error}")
+        check("blend recorder would still be a clean no-op if run", False, f"{type(error).__name__}: {error}")
 
     failed = [c for c in CHECKS if not c[1]]
     width = max(len(c[0]) for c in CHECKS)

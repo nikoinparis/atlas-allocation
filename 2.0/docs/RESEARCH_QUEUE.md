@@ -117,6 +117,64 @@ to read when the clock has enough weeks — before any Sharpe.**
 
 ## A tier
 
+### A7. Put an existing signal into the long-short structure *(new 2026-09-10, ranks above everything below)*
+**Status:** the direct consequence of Step 293 and the cheapest untried thing here.
+**Why it outranks every new data source:** Step 293 showed a market-neutral book clears the
+orthogonality gate **by construction** (+0.030 / -0.044) and carries no market beta (-0.009,
+R2 0.001). That is the gate fourteen families died on before they ever reached a skill test.
+Every signal in this project has only ever been tested long-only.
+**The test:** cash conversion long the top decile, short the bottom, market-neutral. It is the
+only signal that survived Step 289 out of sample with a positive excess AND a Sharpe above its
+universe (+1.08pp, 11% retained). Does the structure rescue a weak-but-real signal?
+**Cost:** nothing. No acquisition, no new universe, data already on disk.
+
+### A8. EU short-selling registers *(new 2026-09-10, owner-proposed)*
+**Status:** never attempted. Free, daily, from ESMA and national regulators.
+**Why it is genuinely better than what closed in Step 263:** FINRA short interest is an
+anonymous aggregate. The EU registers name the **holder** and the **position size** for every
+net short above 0.5% of issued capital. That is the identity dimension 13F lacked for shorts,
+and it is a positioning channel rather than a price transform.
+**The blocker, and it is large:** our universe is US tech and energy. Overlap with EU issuers
+is approximately zero. Using this means building a European universe from scratch — point-in-
+time membership, price panel, survivorship treatment. That is the biggest infrastructure job
+on this list, larger than the FSDS acquisition was.
+**Rank:** the signal is plausible; the cost is a whole new market.
+
+### A9. CFTC Commitments of Traders *(new 2026-09-10, owner-proposed)*
+**Status:** never attempted. Free, weekly, published Fridays. Commercial vs large-speculator
+vs small-trader positioning in futures.
+**Why it is real data:** it is genuine positioning, not a price transform, and it is one of the
+few free datasets that is neither a price nor a filing ratio.
+**The blocker:** it describes **futures**, and this project's futures work is closed — Step 248
+found every significant trend IC negative, Step 249 found the roll repair did not work. There
+is no futures book to express a COT signal in. Using it instead as a macro-state conditioner
+for the equity books runs straight into Step 271, which found conditioning destroys value even
+when the state variable is correctly identified.
+**Rank:** real orthogonal data with no vehicle to trade it in. Revisit only if a futures book
+ever exists.
+
+### A10. Form ADV Schedule D, Section 7.B.(1) *(new 2026-09-10, owner-proposed)*
+**Status:** never attempted. Free, from SEC IAPD.
+**What it actually contains** — per private fund: gross asset value, fund type, and the fund's
+service providers (auditor, prime broker, custodian, administrator, marketer). A
+service-provider network plus adviser AUM. *The owner referenced item "7.8.1"; that
+sub-numbering could not be verified against SEC's own Form ADV documentation on 2026-09-10, so
+this entry describes Section 7.B.(1) generally and the specific item should be pinned down
+before any work starts.*
+**The blocker:** it is about **advisers**, not securities. Getting from an adviser to a
+tradable signal requires 13F to map holdings, and 13F is closed — Step 258, every IC negative
+against a declared positive at three caps and two horizons. Filing is annual, so the frequency
+is wrong for anything but a slow flows proxy.
+**Rank:** low for direct alpha. The one angle that is not obviously dead is adviser AUM change
+as a capital-flows signal, which is still bounded by the 13F linkage failure.
+
+### A11. Schedule 13D — ALREADY CLOSED, do not re-propose
+Closed in Step 260. 38,849 subject events 2013-2026, sector-matched abnormal returns
+bootstrapped with clustering by filing month. Nothing cleared for either form in either
+window; the strongest reading was 13D at 13 weeks recently at **-2.13%**, the wrong sign
+against a declared positive. The 13G control was flat at 20,000 events, so the absence is real
+rather than a broken pipeline.
+
 ### A1. The three near-zero-correlation OSAP anomalies that need no new data
 **Status:** identified in Step 216, never tested.
 **Which:** `EBM` (enterprise book-to-market, correlation 0.0018 against our strategies),

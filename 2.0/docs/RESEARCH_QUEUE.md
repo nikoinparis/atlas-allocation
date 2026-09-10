@@ -50,6 +50,29 @@ candidate against, or if a clock produces a result that points somewhere specifi
 
 ## S tier
 
+### S6. Drop the sector restriction from the fundamental universe *(new 2026-09-10)*
+**Status:** the one genuine gap left in free US equity data, found 2026-09-10 while answering
+"what about more data for more breadth".
+**The number:** SEC 10-K/10-Q filers in sample quarters number **8,510**. Our tech-and-energy
+SIC restriction keeps **1,524 of them, 17.9%**. The fundamental signals have only ever been
+measured on about **509 issuers**. Dropping the restriction and using FSDS filer rosters
+directly — which the Step 289 machinery already does — would price roughly **2,616** of them,
+a five-fold deeper cross-section, for free.
+**Why this is NOT the breadth play that has already failed:** it does not add a correlated
+return stream, which is what Step 277's XLE and Step 279's breadth repair did and why they
+paid nothing. It adds *names to the cross-section*, which is statistical power and
+implementation capacity. A true IC of 0.03 is far easier to detect and to harvest across 2,616
+names than 509, and Step 296's own power note says the current samples cannot resolve an
+effect that size.
+**The honest counter, recorded up front:** Step 298 measured eight price-signal families on the
+full 2,810-name panel and found nothing, so a wide universe did not rescue *price* signals.
+Fundamentals have never been tested wide, which is the whole point — but the prior from the
+price side is not encouraging.
+**Cost:** free. The FSDS data is on disk, the point-in-time roster machinery exists, and the
+monotonicity screen is built and guarded. This is a rerun of Step 296 on a wider universe, not
+new infrastructure.
+**Run the screen first, before any book is built** — CLAUDE.md section 2.
+
 
 ### S1. SEC 10-K language change — extend the corpus to 2011  *(reduced scope)*
 **Status:** source-blocked since Step 202, never unblocked. This is the lost item that prompted

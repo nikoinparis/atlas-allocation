@@ -1,0 +1,98 @@
+Phase 3.5 attribution — holdout = 2024-04-19 onward
+
+=== full_history  [2006-06-30 .. 2026-04-10]  n=1033 ===
+version                                                    ann_ret    ann_vol     sharpe     max_dd     calmar      cvar5
+A (production)                                              0.0742     0.0807      0.929    -0.1398      0.531    -0.0269
+F (shadow)                                                  0.0739     0.0804      0.928    -0.1367      0.540    -0.0268
+H1 (A1g-only)                                               0.0763     0.0809      0.950    -0.1445      0.528    -0.0271
+H2 (C1a-only)                                               0.0743     0.0804      0.932    -0.1386      0.536    -0.0268
+H3 (Combo1)                                                 0.0763     0.0806      0.954    -0.1419      0.538    -0.0270
+
+=== pre_holdout  [2006-06-30 .. 2024-04-12]  n=929 ===
+version                                                    ann_ret    ann_vol     sharpe     max_dd     calmar      cvar5
+A (production)                                              0.0657     0.0815      0.822    -0.1398      0.470    -0.0275
+F (shadow)                                                  0.0653     0.0812      0.821    -0.1367      0.478    -0.0274
+H1 (A1g-only)                                               0.0681     0.0815      0.849    -0.1445      0.471    -0.0277
+H2 (C1a-only)                                               0.0657     0.0812      0.824    -0.1386      0.474    -0.0274
+H3 (Combo1)                                                 0.0681     0.0812      0.852    -0.1419      0.480    -0.0275
+
+=== holdout  [2024-04-19 .. 2026-04-10]  n=104 ===
+version                                                    ann_ret    ann_vol     sharpe     max_dd     calmar      cvar5
+A (production)                                              0.1537     0.0729      2.002    -0.0566      2.714    -0.0204
+F (shadow)                                                  0.1536     0.0723      2.014    -0.0553      2.777    -0.0203
+H1 (A1g-only)                                               0.1526     0.0743      1.951    -0.0600      2.544    -0.0210
+H2 (C1a-only)                                               0.1544     0.0728      2.013    -0.0561      2.752    -0.0204
+H3 (Combo1)                                                 0.1530     0.0743      1.957    -0.0596      2.566    -0.0209
+
+=== Deltas vs A (per window) ===
+  window = full_history
+    F (shadow)                                               dSharpe=-0.0008  dRet=-0.0004  dDD=+0.0030  dCvar=+0.0001  dCalmar=+0.0090
+    H1 (A1g-only)                                            dSharpe=+0.0214  dRet=+0.0020  dDD=-0.0048  dCvar=-0.0002  dCalmar=-0.0034
+    H2 (C1a-only)                                            dSharpe=+0.0030  dRet=+0.0000  dDD=+0.0012  dCvar=+0.0001  dCalmar=+0.0047
+    H3 (Combo1)                                              dSharpe=+0.0253  dRet=+0.0021  dDD=-0.0022  dCvar=-0.0001  dCalmar=+0.0065
+  window = pre_holdout
+    F (shadow)                                               dSharpe=-0.0017  dRet=-0.0004  dDD=+0.0030  dCvar=+0.0001  dCalmar=+0.0075
+    H1 (A1g-only)                                            dSharpe=+0.0266  dRet=+0.0024  dDD=-0.0048  dCvar=-0.0002  dCalmar=+0.0009
+    H2 (C1a-only)                                            dSharpe=+0.0019  dRet=-0.0000  dDD=+0.0012  dCvar=+0.0001  dCalmar=+0.0037
+    H3 (Combo1)                                              dSharpe=+0.0298  dRet=+0.0024  dDD=-0.0022  dCvar=-0.0000  dCalmar=+0.0094
+  window = holdout
+    F (shadow)                                               dSharpe=+0.0124  dRet=-0.0001  dDD=+0.0013  dCvar=+0.0002  dCalmar=+0.0635
+    H1 (A1g-only)                                            dSharpe=-0.0504  dRet=-0.0011  dDD=-0.0033  dCvar=-0.0005  dCalmar=-0.1696
+    H2 (C1a-only)                                            dSharpe=+0.0111  dRet=+0.0007  dDD=+0.0005  dCvar=+0.0001  dCalmar=+0.0381
+    H3 (Combo1)                                              dSharpe=-0.0448  dRet=-0.0007  dDD=-0.0030  dCvar=-0.0005  dCalmar=-0.1471
+
+=== Deltas vs F (per window) ===
+  window = full_history
+    A (production)                                           dSharpe=+0.0008  dRet=+0.0004  dDD=-0.0030  dCvar=-0.0001  dCalmar=-0.0090
+    H1 (A1g-only)                                            dSharpe=+0.0222  dRet=+0.0024  dDD=-0.0078  dCvar=-0.0003  dCalmar=-0.0125
+    H2 (C1a-only)                                            dSharpe=+0.0038  dRet=+0.0004  dDD=-0.0018  dCvar=+0.0000  dCalmar=-0.0043
+    H3 (Combo1)                                              dSharpe=+0.0261  dRet=+0.0024  dDD=-0.0052  dCvar=-0.0002  dCalmar=-0.0026
+  window = pre_holdout
+    A (production)                                           dSharpe=+0.0017  dRet=+0.0004  dDD=-0.0030  dCvar=-0.0001  dCalmar=-0.0075
+    H1 (A1g-only)                                            dSharpe=+0.0283  dRet=+0.0028  dDD=-0.0078  dCvar=-0.0003  dCalmar=-0.0066
+    H2 (C1a-only)                                            dSharpe=+0.0037  dRet=+0.0003  dDD=-0.0018  dCvar=+0.0000  dCalmar=-0.0038
+    H3 (Combo1)                                              dSharpe=+0.0315  dRet=+0.0027  dDD=-0.0052  dCvar=-0.0001  dCalmar=+0.0019
+  window = holdout
+    A (production)                                           dSharpe=-0.0124  dRet=+0.0001  dDD=-0.0013  dCvar=-0.0002  dCalmar=-0.0635
+    H1 (A1g-only)                                            dSharpe=-0.0628  dRet=-0.0010  dDD=-0.0047  dCvar=-0.0007  dCalmar=-0.2331
+    H2 (C1a-only)                                            dSharpe=-0.0013  dRet=+0.0008  dDD=-0.0008  dCvar=-0.0001  dCalmar=-0.0254
+    H3 (Combo1)                                              dSharpe=-0.0572  dRet=-0.0006  dDD=-0.0043  dCvar=-0.0006  dCalmar=-0.2107
+
+=== Deltas vs Combo1 (per window) ===
+  window = full_history
+    A (production)                                           dSharpe=-0.0253  dRet=-0.0021  dDD=+0.0022  dCvar=+0.0001  dCalmar=-0.0065
+    F (shadow)                                               dSharpe=-0.0261  dRet=-0.0024  dDD=+0.0052  dCvar=+0.0002  dCalmar=+0.0026
+    H1 (A1g-only)                                            dSharpe=-0.0038  dRet=-0.0000  dDD=-0.0026  dCvar=-0.0001  dCalmar=-0.0099
+    H2 (C1a-only)                                            dSharpe=-0.0223  dRet=-0.0020  dDD=+0.0034  dCvar=+0.0002  dCalmar=-0.0018
+  window = pre_holdout
+    A (production)                                           dSharpe=-0.0298  dRet=-0.0024  dDD=+0.0022  dCvar=+0.0000  dCalmar=-0.0094
+    F (shadow)                                               dSharpe=-0.0315  dRet=-0.0027  dDD=+0.0052  dCvar=+0.0001  dCalmar=-0.0019
+    H1 (A1g-only)                                            dSharpe=-0.0032  dRet=+0.0000  dDD=-0.0026  dCvar=-0.0001  dCalmar=-0.0085
+    H2 (C1a-only)                                            dSharpe=-0.0278  dRet=-0.0024  dDD=+0.0034  dCvar=+0.0001  dCalmar=-0.0057
+  window = holdout
+    A (production)                                           dSharpe=+0.0448  dRet=+0.0007  dDD=+0.0030  dCvar=+0.0005  dCalmar=+0.1471
+    F (shadow)                                               dSharpe=+0.0572  dRet=+0.0006  dDD=+0.0043  dCvar=+0.0006  dCalmar=+0.2107
+    H1 (A1g-only)                                            dSharpe=-0.0056  dRet=-0.0005  dDD=-0.0003  dCvar=-0.0001  dCalmar=-0.0225
+    H2 (C1a-only)                                            dSharpe=+0.0559  dRet=+0.0014  dDD=+0.0035  dCvar=+0.0006  dCalmar=+0.1852
+
+=== Holdout block bootstrap vs A (13w blocks, 2000 iter) ===
+  improved_phase2b_combo_abc_sharpe_vs_A                        n=104  mean_d=+0.0075  CI95=[-0.0147,+0.0292]  P(t>b)=0.756
+  improved_phase2b_combo_abc_ann_return_vs_A                    n=104  mean_d=-0.0001  CI95=[-0.0011,+0.0011]  P(t>b)=0.358
+  improved_phase2b_combo_abc_max_dd_vs_A                        n=104  mean_d=+0.0005  CI95=[-0.0008,+0.0013]  P(t>b)=0.577
+  improved_phase3_1_a1_state_gated_sharpe_vs_A                  n=104  mean_d=-0.0360  CI95=[-0.1638,+0.0575]  P(t>b)=0.265
+  improved_phase3_1_a1_state_gated_ann_return_vs_A              n=104  mean_d=+0.0003  CI95=[-0.0051,+0.0066]  P(t>b)=0.530
+  improved_phase3_1_a1_state_gated_max_dd_vs_A                  n=104  mean_d=-0.0007  CI95=[-0.0042,+0.0028]  P(t>b)=0.527
+  improved_phase3_1_c1_widened_sharpe_vs_A                      n=104  mean_d=+0.0035  CI95=[-0.0094,+0.0178]  P(t>b)=0.692
+  improved_phase3_1_c1_widened_ann_return_vs_A                  n=104  mean_d=+0.0002  CI95=[-0.0006,+0.0012]  P(t>b)=0.648
+  improved_phase3_1_c1_widened_max_dd_vs_A                      n=104  mean_d=+0.0001  CI95=[-0.0005,+0.0006]  P(t>b)=0.541
+  improved_phase3_1_combo_c1a_a1g_sharpe_vs_A                   n=104  mean_d=-0.0360  CI95=[-0.1629,+0.0547]  P(t>b)=0.258
+  improved_phase3_1_combo_c1a_a1g_ann_return_vs_A               n=104  mean_d=+0.0004  CI95=[-0.0046,+0.0065]  P(t>b)=0.539
+  improved_phase3_1_combo_c1a_a1g_max_dd_vs_A                   n=104  mean_d=-0.0007  CI95=[-0.0039,+0.0023]  P(t>b)=0.520
+
+=== Holdout block bootstrap vs Combo1 (H1, H2 only) ===
+  improved_phase3_1_a1_state_gated_sharpe_vs_Combo1             n=104  mean_d=-0.0000  CI95=[-0.0113,+0.0102]  P(t>b)=0.500
+  improved_phase3_1_a1_state_gated_ann_return_vs_Combo1         n=104  mean_d=-0.0001  CI95=[-0.0010,+0.0007]  P(t>b)=0.406
+  improved_phase3_1_a1_state_gated_max_dd_vs_Combo1             n=104  mean_d=+0.0000  CI95=[-0.0003,+0.0005]  P(t>b)=0.515
+  improved_phase3_1_c1_widened_sharpe_vs_Combo1                 n=104  mean_d=+0.0395  CI95=[-0.0544,+0.1677]  P(t>b)=0.757
+  improved_phase3_1_c1_widened_ann_return_vs_Combo1             n=104  mean_d=-0.0002  CI95=[-0.0065,+0.0053]  P(t>b)=0.477
+  improved_phase3_1_c1_widened_max_dd_vs_Combo1                 n=104  mean_d=+0.0008  CI95=[-0.0027,+0.0044]  P(t>b)=0.476

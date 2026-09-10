@@ -1,0 +1,31 @@
+# Track B Verification
+
+| check | passed | detail |
+| --- | --- | --- |
+| exists:data/research/track_b_aggressive/track_b_benchmark_returns.csv | True | data/research/track_b_aggressive/track_b_benchmark_returns.csv |
+| exists:data/research/track_b_aggressive/track_b_benchmark_weights.csv | True | data/research/track_b_aggressive/track_b_benchmark_weights.csv |
+| exists:data/research/track_b_aggressive/track_b_benchmark_metrics.csv | True | data/research/track_b_aggressive/track_b_benchmark_metrics.csv |
+| exists:data/research/track_b_aggressive/track_b_candidate_returns.csv | True | data/research/track_b_aggressive/track_b_candidate_returns.csv |
+| exists:data/research/track_b_aggressive/track_b_candidate_weights.csv | True | data/research/track_b_aggressive/track_b_candidate_weights.csv |
+| exists:data/research/track_b_aggressive/track_b_candidate_metrics.csv | True | data/research/track_b_aggressive/track_b_candidate_metrics.csv |
+| exists:data/research/track_b_aggressive/track_b_candidate_manifest.json | True | data/research/track_b_aggressive/track_b_candidate_manifest.json |
+| exists:data/research/track_b_aggressive/track_b_experiment_registry.csv | True | data/research/track_b_aggressive/track_b_experiment_registry.csv |
+| exists:data/research/track_b_aggressive/track_b_cost_sensitivity.csv | True | data/research/track_b_aggressive/track_b_cost_sensitivity.csv |
+| exists:data/research/track_b_aggressive/track_b_state_metrics.csv | True | data/research/track_b_aggressive/track_b_state_metrics.csv |
+| exists:data/research/track_b_aggressive/track_b_rolling_origin_metrics.csv | True | data/research/track_b_aggressive/track_b_rolling_origin_metrics.csv |
+| exists:data/research/track_b_aggressive/track_b_return_attribution.csv | True | data/research/track_b_aggressive/track_b_return_attribution.csv |
+| exists:data/research/track_b_aggressive/track_b_state_contribution.csv | True | data/research/track_b_aggressive/track_b_state_contribution.csv |
+| exists:data/research/track_b_aggressive/track_b_shortlist.csv | True | data/research/track_b_aggressive/track_b_shortlist.csv |
+| exists:docs/research/track_b_aggressive/track_b_predeclared_experiment_plan.md | True | docs/research/track_b_aggressive/track_b_predeclared_experiment_plan.md |
+| exists:docs/research/track_b_aggressive/track_b_benchmark_comparison.md | True | docs/research/track_b_aggressive/track_b_benchmark_comparison.md |
+| exists:docs/research/track_b_aggressive/track_b_return_attribution.md | True | docs/research/track_b_aggressive/track_b_return_attribution.md |
+| exists:docs/research/track_b_aggressive/track_b_higher_return_research_report.md | True | docs/research/track_b_aggressive/track_b_higher_return_research_report.md |
+| candidate_count_12 | True | 12 |
+| benchmark_count_7 | True | 7 |
+| all_candidates_prefixed | True |  |
+| registry_research_only | True |  |
+| registry_not_promoted | True |  |
+| manifest_no_production_write | True | False |
+| track_a_baseline_present | True |  |
+| production_pin_unchanged | True | improved_frontier_phase5_fragility_guard |
+| no_track_b_mandate_promotion | True | mandate hits are research observations only |

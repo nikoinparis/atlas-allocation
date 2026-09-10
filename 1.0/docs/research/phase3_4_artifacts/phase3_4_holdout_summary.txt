@@ -1,0 +1,76 @@
+Phase 3.4 holdout = 2024-04-19 onward
+
+=== full_history  [2006-06-30 .. 2026-04-10]  n=1033 ===
+version                                                         ann_ret    ann_vol     sharpe     max_dd     calmar      cvar5
+improved_phase2b_regime_confidence_boost                         0.0742     0.0807      0.929    -0.1398      0.531    -0.0269
+improved_phase2b_combo_abc                                       0.0739     0.0804      0.928    -0.1367      0.540    -0.0268
+improved_phase3_1_combo_c1a_a1g                                  0.0763     0.0806      0.954    -0.1419      0.538    -0.0270
+improved_phase3_4_combo_fragile_guard                            0.0760     0.0806      0.950    -0.1419      0.535    -0.0270
+improved_phase3_4_combo_tilt_dampened                            0.0763     0.0806      0.953    -0.1419      0.538    -0.0270
+improved_phase3_4_combo_fragile_guard_tilt_dampened              0.0760     0.0806      0.950    -0.1419      0.535    -0.0270
+
+=== pre_holdout  [2006-06-30 .. 2024-04-12]  n=929 ===
+version                                                         ann_ret    ann_vol     sharpe     max_dd     calmar      cvar5
+improved_phase2b_regime_confidence_boost                         0.0657     0.0815      0.822    -0.1398      0.470    -0.0275
+improved_phase2b_combo_abc                                       0.0653     0.0812      0.821    -0.1367      0.478    -0.0274
+improved_phase3_1_combo_c1a_a1g                                  0.0681     0.0812      0.852    -0.1419      0.480    -0.0275
+improved_phase3_4_combo_fragile_guard                            0.0677     0.0812      0.848    -0.1419      0.477    -0.0275
+improved_phase3_4_combo_tilt_dampened                            0.0680     0.0812      0.852    -0.1419      0.479    -0.0276
+improved_phase3_4_combo_fragile_guard_tilt_dampened              0.0677     0.0812      0.848    -0.1419      0.477    -0.0276
+
+=== holdout  [2024-04-19 .. 2026-04-10]  n=104 ===
+version                                                         ann_ret    ann_vol     sharpe     max_dd     calmar      cvar5
+improved_phase2b_regime_confidence_boost                         0.1537     0.0729      2.002    -0.0566      2.714    -0.0204
+improved_phase2b_combo_abc                                       0.1536     0.0723      2.014    -0.0553      2.777    -0.0203
+improved_phase3_1_combo_c1a_a1g                                  0.1530     0.0743      1.957    -0.0596      2.566    -0.0209
+improved_phase3_4_combo_fragile_guard                            0.1530     0.0743      1.957    -0.0596      2.566    -0.0209
+improved_phase3_4_combo_tilt_dampened                            0.1530     0.0743      1.957    -0.0596      2.566    -0.0209
+improved_phase3_4_combo_fragile_guard_tilt_dampened              0.1530     0.0743      1.957    -0.0596      2.566    -0.0209
+
+=== Deltas vs A (sharpe / ann_ret / max_dd) ===
+  window = full_history
+    improved_phase2b_combo_abc                                    dSharpe=-0.0008  dRet=-0.0004  dDD=+0.0030  dCvar=+0.0001  dCalmar=+0.0090
+    improved_phase3_1_combo_c1a_a1g                               dSharpe=+0.0253  dRet=+0.0021  dDD=-0.0022  dCvar=-0.0001  dCalmar=+0.0065
+    improved_phase3_4_combo_fragile_guard                         dSharpe=+0.0218  dRet=+0.0017  dDD=-0.0022  dCvar=-0.0001  dCalmar=+0.0042
+    improved_phase3_4_combo_tilt_dampened                         dSharpe=+0.0246  dRet=+0.0021  dDD=-0.0022  dCvar=-0.0001  dCalmar=+0.0064
+    improved_phase3_4_combo_fragile_guard_tilt_dampened           dSharpe=+0.0211  dRet=+0.0017  dDD=-0.0022  dCvar=-0.0001  dCalmar=+0.0041
+  window = pre_holdout
+    improved_phase2b_combo_abc                                    dSharpe=-0.0017  dRet=-0.0004  dDD=+0.0030  dCvar=+0.0001  dCalmar=+0.0075
+    improved_phase3_1_combo_c1a_a1g                               dSharpe=+0.0298  dRet=+0.0024  dDD=-0.0022  dCvar=-0.0000  dCalmar=+0.0094
+    improved_phase3_4_combo_fragile_guard                         dSharpe=+0.0259  dRet=+0.0020  dDD=-0.0022  dCvar=-0.0000  dCalmar=+0.0069
+    improved_phase3_4_combo_tilt_dampened                         dSharpe=+0.0291  dRet=+0.0024  dDD=-0.0022  dCvar=-0.0001  dCalmar=+0.0094
+    improved_phase3_4_combo_fragile_guard_tilt_dampened           dSharpe=+0.0252  dRet=+0.0020  dDD=-0.0022  dCvar=-0.0001  dCalmar=+0.0068
+  window = holdout
+    improved_phase2b_combo_abc                                    dSharpe=+0.0124  dRet=-0.0001  dDD=+0.0013  dCvar=+0.0002  dCalmar=+0.0635
+    improved_phase3_1_combo_c1a_a1g                               dSharpe=-0.0448  dRet=-0.0007  dDD=-0.0030  dCvar=-0.0005  dCalmar=-0.1471
+    improved_phase3_4_combo_fragile_guard                         dSharpe=-0.0448  dRet=-0.0007  dDD=-0.0030  dCvar=-0.0005  dCalmar=-0.1471
+    improved_phase3_4_combo_tilt_dampened                         dSharpe=-0.0448  dRet=-0.0007  dDD=-0.0030  dCvar=-0.0005  dCalmar=-0.1471
+    improved_phase3_4_combo_fragile_guard_tilt_dampened           dSharpe=-0.0448  dRet=-0.0007  dDD=-0.0030  dCvar=-0.0005  dCalmar=-0.1471
+
+=== Deltas vs Combo1 (T* only) ===
+  window = full_history
+    improved_phase3_4_combo_fragile_guard                         dSharpe=-0.0035  dRet=-0.0003  dDD=-0.0000  dCvar=+0.0000  dCalmar=-0.0023
+    improved_phase3_4_combo_tilt_dampened                         dSharpe=-0.0007  dRet=-0.0000  dDD=+0.0000  dCvar=-0.0000  dCalmar=-0.0000
+    improved_phase3_4_combo_fragile_guard_tilt_dampened           dSharpe=-0.0042  dRet=-0.0003  dDD=+0.0000  dCvar=-0.0000  dCalmar=-0.0023
+  window = pre_holdout
+    improved_phase3_4_combo_fragile_guard                         dSharpe=-0.0039  dRet=-0.0004  dDD=-0.0000  dCvar=+0.0000  dCalmar=-0.0025
+    improved_phase3_4_combo_tilt_dampened                         dSharpe=-0.0007  dRet=-0.0000  dDD=+0.0000  dCvar=-0.0000  dCalmar=-0.0000
+    improved_phase3_4_combo_fragile_guard_tilt_dampened           dSharpe=-0.0046  dRet=-0.0004  dDD=+0.0000  dCvar=-0.0000  dCalmar=-0.0026
+  window = holdout
+    improved_phase3_4_combo_fragile_guard                         dSharpe=+0.0000  dRet=+0.0000  dDD=+0.0000  dCvar=+0.0000  dCalmar=+0.0000
+    improved_phase3_4_combo_tilt_dampened                         dSharpe=+0.0000  dRet=+0.0000  dDD=+0.0000  dCvar=+0.0000  dCalmar=+0.0000
+    improved_phase3_4_combo_fragile_guard_tilt_dampened           dSharpe=+0.0000  dRet=+0.0000  dDD=+0.0000  dCvar=+0.0000  dCalmar=+0.0000
+
+=== Holdout block bootstrap vs A (13w blocks, 2000 iter) ===
+  improved_phase3_1_combo_c1a_a1g_sharpe_vs_A              n=104  mean_d=-0.0360  CI95=[-0.1629,+0.0547]  P(t>b)=0.258
+  improved_phase3_1_combo_c1a_a1g_ann_return_vs_A          n=104  mean_d=+0.0004  CI95=[-0.0046,+0.0065]  P(t>b)=0.539
+  improved_phase3_1_combo_c1a_a1g_max_dd_vs_A              n=104  mean_d=-0.0007  CI95=[-0.0039,+0.0023]  P(t>b)=0.520
+  improved_phase3_4_combo_fragile_guard_sharpe_vs_A        n=104  mean_d=-0.0360  CI95=[-0.1629,+0.0547]  P(t>b)=0.258
+  improved_phase3_4_combo_fragile_guard_ann_return_vs_A    n=104  mean_d=+0.0004  CI95=[-0.0046,+0.0065]  P(t>b)=0.539
+  improved_phase3_4_combo_fragile_guard_max_dd_vs_A        n=104  mean_d=-0.0007  CI95=[-0.0039,+0.0023]  P(t>b)=0.520
+  improved_phase3_4_combo_tilt_dampened_sharpe_vs_A        n=104  mean_d=-0.0360  CI95=[-0.1629,+0.0547]  P(t>b)=0.258
+  improved_phase3_4_combo_tilt_dampened_ann_return_vs_A    n=104  mean_d=+0.0004  CI95=[-0.0046,+0.0065]  P(t>b)=0.539
+  improved_phase3_4_combo_tilt_dampened_max_dd_vs_A        n=104  mean_d=-0.0007  CI95=[-0.0039,+0.0023]  P(t>b)=0.520
+  improved_phase3_4_combo_fragile_guard_tilt_dampened_sharpe_vs_A  n=104  mean_d=-0.0360  CI95=[-0.1629,+0.0547]  P(t>b)=0.258
+  improved_phase3_4_combo_fragile_guard_tilt_dampened_ann_return_vs_A  n=104  mean_d=+0.0004  CI95=[-0.0046,+0.0065]  P(t>b)=0.539
+  improved_phase3_4_combo_fragile_guard_tilt_dampened_max_dd_vs_A  n=104  mean_d=-0.0007  CI95=[-0.0039,+0.0023]  P(t>b)=0.520

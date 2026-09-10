@@ -1,0 +1,29 @@
+# Track A Dashboard Packaging Verification
+
+- Production candidate: `improved_frontier_phase5_fragility_guard`
+- Passed hard checks: `True`
+
+| check | status | hard | detail |
+| --- | --- | --- | --- |
+| exists:data/05_layer3_portfolio_construction/production_candidate_summary.csv | PASS | True | path=data/05_layer3_portfolio_construction/production_candidate_summary.csv |
+| exists:data/05_layer3_portfolio_construction/production_candidate_state_summary.csv | PASS | True | path=data/05_layer3_portfolio_construction/production_candidate_state_summary.csv |
+| exists:data/05_layer3_portfolio_construction/production_candidate_exposure_summary.csv | PASS | True | path=data/05_layer3_portfolio_construction/production_candidate_exposure_summary.csv |
+| exists:data/05_layer3_portfolio_construction/portfolio_version_returns_improved_frontier_phase5_fragility_guard.csv | PASS | True | path=data/05_layer3_portfolio_construction/portfolio_version_returns_improved_frontier_phase5_fragility_guard.csv |
+| exists:data/05_layer3_portfolio_construction/portfolio_version_weights_improved_frontier_phase5_fragility_guard.csv | PASS | True | path=data/05_layer3_portfolio_construction/portfolio_version_weights_improved_frontier_phase5_fragility_guard.csv |
+| exists:data/05_layer3_portfolio_construction/portfolio_version_sleeve_weights_improved_frontier_phase5_fragility_guard.csv | PASS | True | path=data/05_layer3_portfolio_construction/portfolio_version_sleeve_weights_improved_frontier_phase5_fragility_guard.csv |
+| exists:public/production-candidate-dashboard-bundle.json | PASS | True | path=public/production-candidate-dashboard-bundle.json |
+| exists:public/dashboard-summary.json | PASS | True | path=public/dashboard-summary.json |
+| exists:public/dashboard-timeseries.json | PASS | True | path=public/dashboard-timeseries.json |
+| exists:public/dashboard-state-summary.json | PASS | True | path=public/dashboard-state-summary.json |
+| exists:public/dashboard-exposures.json | PASS | True | path=public/dashboard-exposures.json |
+| bundle_registry_current_pin | PASS | True | bundle=improved_frontier_phase5_fragility_guard |
+| bundle_candidate_matches_registry | PASS | True | bundle=improved_frontier_phase5_fragility_guard, registry=improved_frontier_phase5_fragility_guard |
+| bundle_required_versions | PASS | True | versions=['improved_frontier_phase5_fragility_guard', 'improved_phase2b_combo_abc', 'improved_phase2b_regime_confidence_boost'] |
+| dashboard_bundle_fresh | PASS | True | oldest_bundle_mtime=1781381171.723054, newest_source_mtime=1779516790.645321 |
+| summary_metrics_match_canonical | PASS | True | max_diff=8.771e-15 |
+| no_active_dashboard_data_json_dependency | PASS | True | none |
+
+## Outputs
+
+- `data/research/track_a_production_hardening/dashboard_packaging_verification.csv`
+- `data/research/track_a_production_hardening/dashboard_packaging_verification.json`

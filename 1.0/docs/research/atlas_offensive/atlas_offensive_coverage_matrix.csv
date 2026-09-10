@@ -1,0 +1,37 @@
+taxonomy_domain,mandate_sections,coverage_depth,catalog_location,external_search_ids,notes
+atlas_historical_audit,7-9,deep,existing_research_registry.csv,R01-R03,All ~60 branches classified with retest verdicts
+defensive_constraints,10,deep,defensive_constraint_audit.csv,R02,18 constraints with locations and retest plans
+candidate_identities_a_j,11,deep,blueprint Part III,n/a,All 10 architectures assessed
+momentum_trend,17,deep,strategy_catalog.csv,Q01 Q12,Full family with internal cross-references
+reversal_mean_reversion,18,deep,strategy_catalog.csv,Q11,Strong internal evidence (focused_reversal IC 0.407)
+value_quality_carry_defensive,19,deep,strategy_catalog.csv,Q12,Requires fundamentals data purchase
+fundamental_equity_alpha,20,medium,strategy_catalog.csv,Q15,Estimate-data quality is binding constraint
+event_driven,21,medium,strategy_catalog.csv,Q15 Q22 Q23,PEAD/merger arb/index effect statuses verified
+statistical_arbitrage,22,deep,strategy_catalog.csv,Q11,Decay documented; residual/cluster variants prioritized
+systematic_macro,23,deep,strategy_catalog.csv,Q10 Q24-cluster,Builds on internal macro classifier arc
+futures_managed_futures,24,deep,strategy_catalog.csv + market_catalog.csv,Q01 Q10,Micro-futures feasibility verified
+fixed_income_credit,25,medium,strategy_catalog.csv,none-dedicated,ETF-level only; single-bond infeasible retail - gap register
+currencies,26,medium,strategy_catalog.csv,Q10,Via futures; lower priority (weak recent carry evidence)
+commodities,27,medium,strategy_catalog.csv,Q10,Micro universe limits cross-section width
+options_volatility,28,deep,strategy_catalog.csv + Runs 13-16,Q02 Q06 Q17 Q28,Full independent domain treatment; data purchase gated
+microstructure_short_horizon,29,medium,strategy_catalog.csv,Q03 Q19,Overnight/daily feasible; sub-minute documented infeasible
+alternative_risk_premia_multistrat,30,deep,Runs 44 + blueprint Part III C,Q12,Target end-state architecture
+alternative_data,31,medium,data_catalog.csv,Q08 Q24,Free tier mapped; institutional tier documented as Tier 6
+portfolio_capital_allocation_alpha,32,deep,strategy_catalog.csv + Runs 42-44,Q20 Q25 Q27,Kelly/concentration/leverage program defined
+classical_models,33-34,deep,model_catalog.csv,Q04 Q18,Complete with Atlas-fit verdicts
+frontier_ai_sequence,35,medium,model_catalog.csv,Q07,TSFM reality check applied
+cross_sectional_relational,36,medium,model_catalog.csv,Q14,GNN baseline-sensitivity documented
+representation_ssl,37,medium,model_catalog.csv,Q07,Tied to analog-retrieval internal result
+generative_models,38,compact,model_catalog.csv,none-dedicated,Stress-testing use only; gap register for alpha use
+llm_multimodal,39,medium,model_catalog.csv,Q08,Priced-in risk explicitly addressed
+rl_sequential,40,medium,model_catalog.csv,Q09,OOS failure evidence; execution-RL only
+decision_focused,41,medium,model_catalog.csv,Q25,Active 2024-25 evidence
+automated_discovery,42,medium,model_catalog.csv + Run 34,Q18,Overfit-factory safeguards specified
+math_transfers_43_54,43-54,medium,math_transfer_catalog.csv,Q21,26 transfers with executable experiments
+markets_universe,55,deep,market_catalog.csv,Q05 Q10 Q13 Q16,17 markets assessed
+data_architecture,56,deep,data_catalog.csv,Q05 Q06 Q19 Q24,20 datasets classified by cost
+infrastructure,57,medium,blueprint Part VIII,Q26,LEAN/local hybrid recommended
+targets_horizons_evaluation,58-60,deep,blueprint Part IX,Q18,Return-first metric set defined
+validation_governance,61-64,deep,blueprint Part X,Q18 Q20,Extends existing Phase D stack
+run_program,65-68,deep,future_run_registry.csv,all,47 runs sequenced with dependencies
+prioritization_scoring,69-70,deep,strategy_catalog tier column + blueprint Part XII,all,6-tier system applied throughout

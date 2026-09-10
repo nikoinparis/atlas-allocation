@@ -4,8 +4,7 @@
     {
       "name": "portfolio-dashboard",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
-      "cwd": "2.0/dashboard",
+      "runtimeArgs": ["--prefix", "2.0/dashboard", "run", "dev"],
       "port": 3000
     }
   ]

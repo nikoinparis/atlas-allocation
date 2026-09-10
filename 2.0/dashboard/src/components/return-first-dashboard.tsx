@@ -52,9 +52,16 @@ type DashboardPayload = {
   };
   records: StrategyRecord[];
   dailyRecords: DailyRecord[];
+  // Per-symbol price history is NOT in the bundle. It lives in
+  // public/prices/<strategy id>.json and is fetched for the selected strategy
+  // only. Carrying all six strategies' prices made the bundle 184MB, which the
+  // browser HTTP cache refused to write -- the page reported "Research snapshot
+  // unavailable" on data that was perfectly valid. This field is populated at
+  // runtime by the parent, so every view below still reads data.assetPrices.
   assetPrices: Record<string, AssetPrice[]>;
 };
-type DashboardBundle = { strategies: DashboardPayload[] };
+type BundledPayload = Omit<DashboardPayload, "assetPrices">;
+type DashboardBundle = { strategies: BundledPayload[] };
 type SurvivalTest = { id: string; label: string; passed: boolean; status: "pass" | "fail"; value: number; threshold: number; points: number };
 type SurvivalStrategy = {
   id: string;
@@ -323,7 +330,21 @@ export function ReturnFirstDashboard({ initialView = "overview" }: { initialView
   const [bundle, setBundle] = useState<DashboardBundle | null>(null);
   const [survivalBundle, setSurvivalBundle] = useState<SurvivalBundle | null>(null);
   const [activeStrategy, setActiveStrategy] = useState("sec-residual-controlled-1.25x-5pct-v1");
+  const [assetPrices, setAssetPrices] = useState<Record<string, AssetPrice[]>>({});
   const [error, setError] = useState(false);
+
+  // One strategy's prices at a time. The charts guard with `?? []`, so the page
+  // renders immediately and the drill-down fills in when this lands; a failure
+  // here costs the stock chart, not the dashboard.
+  useEffect(() => {
+    let cancelled = false;
+    setAssetPrices({});
+    fetch(`/prices/${activeStrategy}.json`)
+      .then((response) => (response.ok ? response.json() as Promise<Record<string, AssetPrice[]>> : {}))
+      .then((payload) => { if (!cancelled) setAssetPrices(payload); })
+      .catch(() => { if (!cancelled) setAssetPrices({}); });
+    return () => { cancelled = true; };
+  }, [activeStrategy]);
 
   useEffect(() => {
     fetch("/return-first-dashboard.json")
@@ -352,11 +373,13 @@ export function ReturnFirstDashboard({ initialView = "overview" }: { initialView
   if (initialView === "forward") return <ForwardStandalone />;
   if (error) return <main className="loading-state"><span>PORTFOLIO OPTIMIZER</span><h1>Research snapshot unavailable</h1><p>Rebuild the dashboard snapshot and refresh this page.</p></main>;
   if (!bundle) return <main className="loading-state"><span>PORTFOLIO OPTIMIZER</span><h1>Loading the research book…</h1></main>;
-  const data = bundle.strategies.find((item) => item.strategy.id === activeStrategy) ?? bundle.strategies[0];
+  const selectedPayload = bundle.strategies.find((item) => item.strategy.id === activeStrategy) ?? bundle.strategies[0];
+  // Re-attach the lazily fetched prices so every view below is unchanged.
+  const data: DashboardPayload = { ...selectedPayload, assetPrices };
   return <DashboardView key={`${data.strategy.id}-${initialView}`} data={data} strategies={bundle.strategies} survivalBundle={survivalBundle} activeView={initialView} onStrategyChange={changeStrategy} />;
 }
 
-function DashboardView({ data, strategies, survivalBundle, activeView, onStrategyChange }: { data: DashboardPayload; strategies: DashboardPayload[]; survivalBundle: SurvivalBundle | null; activeView: DashboardViewName; onStrategyChange: (id: string) => void }) {
+function DashboardView({ data, strategies, survivalBundle, activeView, onStrategyChange }: { data: DashboardPayload; strategies: BundledPayload[]; survivalBundle: SurvivalBundle | null; activeView: DashboardViewName; onStrategyChange: (id: string) => void }) {
   const latest = data.records.at(-1)!;
   const latestDay = data.dailyRecords.at(-1)!;
   const firstHoldoutRecord = data.dailyRecords.find((row) => row.date > data.strategy.retrospectiveHoldout.start)?.date ?? data.strategy.retrospectiveHoldout.start;

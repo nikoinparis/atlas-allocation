@@ -1,0 +1,156 @@
+{
+  "bonferroni_bar": 0.0038461538461538464,
+  "clearing_bonferroni": [],
+  "horizon_weeks": 13,
+  "live_trading_enabled": false,
+  "no_strategy_can_come_out_of_this": true,
+  "positive_ic_and_monotonic": [],
+  "results": {
+    "IN 2023-2026 | balance_sheet_quality": {
+      "bootstrap_p": 0.7205,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": -0.05005839148990443,
+      "decile_spread_per_period": -0.012756625842286807,
+      "decisions": 14,
+      "inconclusive": false,
+      "mean_ic": -0.009050197757346574,
+      "monotonicity": -0.14112554112554113,
+      "t_stat": -0.4276135198991628
+    },
+    "IN 2023-2026 | cash_conversion": {
+      "bootstrap_p": 0.64425,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": -0.13578974868124338,
+      "decile_spread_per_period": -0.035827249185916,
+      "decisions": 14,
+      "inconclusive": false,
+      "mean_ic": 0.017356648821939498,
+      "monotonicity": -0.017316017316017368,
+      "t_stat": 0.6703824703961503
+    },
+    "IN 2023-2026 | composite_value": {
+      "bootstrap_p": 0.334,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": -0.0230543218087923,
+      "decile_spread_per_period": -0.005814089658316669,
+      "decisions": 14,
+      "inconclusive": false,
+      "mean_ic": 0.028727415230292125,
+      "monotonicity": 0.006926406926406904,
+      "t_stat": 1.1201341993699578
+    },
+    "IN 2023-2026 | earnings_yield": {
+      "bootstrap_p": 0.1195,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": -0.0987913955729739,
+      "decile_spread_per_period": -0.025669422216151615,
+      "decisions": 14,
+      "inconclusive": false,
+      "mean_ic": 0.03436346478978673,
+      "monotonicity": 0.024242424242424215,
+      "t_stat": 1.0564093510130097
+    },
+    "IN 2023-2026 | free_cash_flow_yield": {
+      "bootstrap_p": 0.6445,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": -0.09369111761939775,
+      "decile_spread_per_period": -0.024293812527524796,
+      "decisions": 14,
+      "inconclusive": false,
+      "mean_ic": 0.02324721725515738,
+      "monotonicity": -0.0017316017316017388,
+      "t_stat": 0.779251215585917
+    },
+    "IN 2023-2026 | profitability": {
+      "bootstrap_p": 0.23325,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": -0.10060737873391157,
+      "decile_spread_per_period": -0.026160625501761715,
+      "decisions": 14,
+      "inconclusive": false,
+      "mean_ic": 0.03165681933526041,
+      "monotonicity": -0.07965367965367964,
+      "t_stat": 1.0203390262049692
+    },
+    "IN 2023-2026 | quality_acceleration": {
+      "bootstrap_p": 0.16825,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": 0.020749290171981016,
+      "decile_spread_per_period": 0.005147441745279894,
+      "decisions": 13,
+      "inconclusive": false,
+      "mean_ic": 0.023567991492056333,
+      "monotonicity": 0.035897435897435895,
+      "t_stat": 1.1323608729821757
+    },
+    "IN 2023-2026 | quality_at_reasonable_price": {
+      "bootstrap_p": 0.177,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": -0.09934332975574356,
+      "decile_spread_per_period": -0.025818635699676445,
+      "decisions": 14,
+      "inconclusive": false,
+      "mean_ic": 0.03024101686675631,
+      "monotonicity": -0.08484848484848484,
+      "t_stat": 1.1282559432565218
+    },
+    "IN 2023-2026 | sales_yield": {
+      "bootstrap_p": 0.7365,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": 0.14535160168090488,
+      "decile_spread_per_period": 0.03451003282571701,
+      "decisions": 14,
+      "inconclusive": false,
+      "mean_ic": 0.006860143090852708,
+      "monotonicity": 0.16969696969696965,
+      "t_stat": 0.28611684152731265
+    },
+    "IN 2023-2026 | shareholder_discipline": {
+      "bootstrap_p": 0.231,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": -0.053260701317597414,
+      "decile_spread_per_period": -0.01358969377998786,
+      "decisions": 14,
+      "inconclusive": false,
+      "mean_ic": 0.028403325412382833,
+      "monotonicity": -0.037229437229437216,
+      "t_stat": 0.8719895286699717
+    },
+    "OOS 2013-2022 | balance_sheet_quality": {
+      "bootstrap_p": 0.96025,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": -0.0005685866441111909,
+      "decile_spread_per_period": -0.00014217697959420696,
+      "decisions": 39,
+      "inconclusive": false,
+      "mean_ic": 0.0008250893326582304,
+      "monotonicity": -0.0017094017094016918,
+      "t_stat": 0.0647160188196339
+    },
+    "OOS 2013-2022 | cash_conversion_breadth20": {
+      "bootstrap_p": 0.10825,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": 0.023354754235216157,
+      "decile_spread_per_period": 0.005788238788309861,
+      "decisions": 39,
+      "inconclusive": false,
+      "mean_ic": 0.027160927945520497,
+      "monotonicity": 0.010101010101010091,
+      "t_stat": 1.782139307049791
+    },
+    "OOS 2013-2022 | growth_top5": {
+      "bootstrap_p": 0.65125,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": -0.054909246708963355,
+      "decile_spread_per_period": -0.014019380466010959,
+      "decisions": 39,
+      "inconclusive": false,
+      "mean_ic": -0.005339248820986057,
+      "monotonicity": -0.052991452991452984,
+      "t_stat": -0.40019116199024474
+    }
+  },
+  "signals_measured": 13,
+  "strategy_promotion_authorized": false,
+  "this_is_a_diagnostic_not_a_search": true
+}

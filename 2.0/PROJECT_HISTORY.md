@@ -14142,3 +14142,64 @@ books — and both times there was no return underneath. **The structure is soun
 project does not currently have a signal worth putting in it.** That is a more precise
 statement of the problem than fifteen closed families, and it says the next thing to look for
 is a signal with demonstrated *cross-sectional* skill, not another return stream.
+
+## Step 296 — 2026-09-10 — No signal in this project has measurable cross-sectional skill
+
+**What this accomplished: it explains Steps 245, 289 and 295 with one measurement.**
+
+Thirteen signals — three rebuilt from FSDS for 2013-2022 and ten from the saved factor score
+panels for 2023-2026 — measured three beta-neutral ways at a 13-week horizon, the cadence the
+books actually rebalance at. A diagnostic, not a search; nothing here can become a strategy.
+
+| signal | n | mean IC | t | p | decile spread | monotone |
+|---|---|---|---|---|---|---|
+| OOS growth top 5 | 39 | -0.0053 | -0.40 | 0.651 | -5.49% | -0.05 |
+| OOS cash conversion | 39 | +0.0272 | +1.78 | 0.108 | +2.34% | +0.01 |
+| OOS balance sheet quality | 39 | +0.0008 | +0.06 | 0.960 | -0.06% | -0.00 |
+| IN earnings yield | 14 | +0.0344 | +1.06 | 0.120 | **-9.88%** | +0.02 |
+| IN profitability | 14 | +0.0317 | +1.02 | 0.233 | **-10.06%** | -0.08 |
+| IN quality at reasonable price | 14 | +0.0302 | +1.13 | 0.177 | **-9.93%** | -0.08 |
+| IN composite value | 14 | +0.0287 | +1.12 | 0.334 | -2.31% | +0.01 |
+| IN shareholder discipline | 14 | +0.0284 | +0.87 | 0.231 | -5.33% | -0.04 |
+| IN quality acceleration | 13 | +0.0236 | +1.13 | 0.168 | +2.07% | +0.04 |
+| IN free cash flow yield | 14 | +0.0232 | +0.78 | 0.645 | **-9.37%** | -0.00 |
+| IN cash conversion | 14 | +0.0174 | +0.67 | 0.644 | **-13.58%** | -0.02 |
+| IN sales yield | 14 | +0.0069 | +0.29 | 0.737 | +14.54% | +0.17 |
+| IN balance sheet quality | 14 | -0.0091 | -0.43 | 0.721 | -5.01% | -0.14 |
+
+**Nought of thirteen clear Bonferroni at 0.0038.** The best p is 0.108.
+
+**The monotonicity column is the finding, and it is the one that does not depend on
+statistical power.** Every signal sits within ±0.17 of zero, most within ±0.05. A signal with
+genuine cross-sectional content orders its deciles: decile ten beats nine beats eight. None
+of these order anything. Whatever separation exists at the extremes is not a ranking, it is
+noise at the tails.
+
+**Six signals have a positive information coefficient and a negative decile spread at the
+same time.** Earnings yield measures IC +0.0344 and a decile spread of **-9.88%**; cash
+conversion in sample measures +0.0174 and **-13.58%**. Those two statements cannot both
+describe a real signal — a positive rank correlation with a negative top-minus-bottom spread
+is what noise looks like when it is measured two ways. It is the same internal contradiction
+Step 245 recorded as a transfer coefficient of -103 and nobody chased.
+
+**This explains three earlier results at once.** Step 245 measured an IC of +0.026 at t=0.91
+and could not reconcile it with books returning double digits. Step 289 found nought of six
+signals surviving out of sample. Step 295 found that neutralising the market removed ninety
+per cent of cash conversion's return. All three follow from one fact: **the top-twenty books
+were never winning on ranking ability.** They won on market beta and on holding a handful of
+names that went up. There was never cross-sectional skill to lose.
+
+**The honest limit of this test, and it is a real one.** The in-sample window has only 13-14
+quarterly decisions. With an observed dispersion of individual-decision ICs around 0.10, a
+true IC of 0.03 would need roughly a hundred decisions — about twenty-five years — to reach
+t=3. **This test cannot detect a realistic fundamental IC in fourteen quarters, and a null
+there is weak evidence.** The out-of-sample window at 39 decisions is better but still
+underpowered for significance. This is precisely why the monotonicity measure carries the
+weight here: it asks about the *shape* of the relationship rather than its significance, and
+a signal that ordered its deciles would show it at any sample size.
+
+**Consequence.** CLAUDE.md section 2 says the ceiling is breadth, and this project has spent
+296 steps trying to raise breadth. The measurement says the binding constraint is the other
+term. `IR = IC x sqrt(BR)` with an IC indistinguishable from zero gives an IR
+indistinguishable from zero at any breadth, and the market-neutral structure validated in
+Steps 293 and 295 is a correct piece of machinery with nothing to drive it.

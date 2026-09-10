@@ -116,6 +116,8 @@ This is the only source of evidence the project has left that has not already be
 ## Repository layout
 
 ```
+1.0/             the legacy ETF project this began as -- docs, reports and
+                 source kept as the origin record; its data is superseded by 2.0
 2.0/
   dashboard/     Next.js research dashboard (the deployed site)
   scripts/       acquisition, construction, testing and audit scripts
@@ -140,7 +142,12 @@ re-downloadable from SEC EDGAR, FINRA and public price sources. `rebuild_all_dat
 re-acquires them; `--core` fetches only what the dashboard and the forward clocks read.
 
 Point-in-time vintage snapshots **cannot** be re-downloaded, because they record what a source
-said on a given date. Those are preserved.
+said on a given date. Those are preserved in the repository, which is why a clone is around
+400MB rather than a few tens of megabytes: the alternative was a repository that cannot
+reproduce its own point-in-time claims.
+
+`scripts/slim_repository.py` shows what is safe to remove and what is not, with a restore
+command for every path. It defaults to a dry run.
 
 ## Honest limits
 

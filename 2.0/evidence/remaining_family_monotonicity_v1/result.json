@@ -1,0 +1,66 @@
+{
+  "bonferroni_bar": 0.0035714285714285718,
+  "clearing_bonferroni": [
+    "filing_language_jaccard"
+  ],
+  "completes": "the audit begun in Step 298",
+  "horizon_rule": "each signal at its own decision cadence: 13 weeks quarterly, 4 weeks weekly",
+  "live_trading_enabled": false,
+  "monotonic_above_half": [],
+  "results": {
+    "filing_language_jaccard": {
+      "bootstrap_p": 0.003,
+      "clears_bonferroni": true,
+      "decile_spread_annualised": -0.007997968065357242,
+      "deciles_interpretable": true,
+      "decisions": 29,
+      "horizon": 13,
+      "inconclusive": false,
+      "mean_ic": 0.030301529636287267,
+      "monotonicity": 0.11473354231974922,
+      "nonzero_density": 1.0,
+      "t_stat": 2.569414507587162
+    },
+    "fractional_differentiation": {
+      "bootstrap_p": 0.7473333333333333,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": -0.2003470008510213,
+      "deciles_interpretable": true,
+      "decisions": 189,
+      "horizon": 4,
+      "inconclusive": false,
+      "mean_ic": -0.0024956243192694196,
+      "monotonicity": -0.15491422158088825,
+      "nonzero_density": 1.0,
+      "t_stat": -0.29570607590158404
+    },
+    "institutional_ownership_change": {
+      "bootstrap_p": 0.5636666666666666,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": -0.004298695207229253,
+      "deciles_interpretable": true,
+      "decisions": 62,
+      "horizon": 13,
+      "inconclusive": false,
+      "mean_ic": 0.003321337846380418,
+      "monotonicity": -0.008406647116324535,
+      "nonzero_density": 0.9821777800593163,
+      "t_stat": 0.5087222058105167
+    },
+    "sue_pead": {
+      "bootstrap_p": 0.5266666666666666,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": 0.008739343003356215,
+      "deciles_interpretable": true,
+      "decisions": 57,
+      "horizon": 13,
+      "inconclusive": false,
+      "mean_ic": 0.004761715738077572,
+      "monotonicity": 0.06772993088782561,
+      "nonzero_density": 0.978005666882873,
+      "t_stat": 0.684252198149274
+    }
+  },
+  "strategy_promotion_authorized": false,
+  "this_is_a_diagnostic_not_a_search": true
+}

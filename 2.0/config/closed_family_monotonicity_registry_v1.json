@@ -1,18 +1,39 @@
 {
-  "schema_version": 1,
+  "approved_for_live_trading": false,
+  "declared_horizon_weeks": 4,
+  "execution_enabled": false,
   "experiment": "closed_family_monotonicity_v1",
+  "extended_2026_09_10": {
+    "density_guard_applies": "a signal non-zero in under 50% of cells cannot be read on deciles, per Step 298",
+    "expected_limitation": "filing language is annual and clusters in Q1, so it yields roughly nine cross-sections. Step 255 already established that the smallest IC establishable on that sample is about 0.110. It will almost certainly return too few decisions to measure, and that is a property of annual data rather than a result.",
+    "families_added": {
+      "filing_language_jaccard": "evidence/filing_language_change_v1/similarity.csv, 8,327 filings; jaccard is the measure Step 255 found usable after cosine proved degenerate",
+      "fractional_differentiation": "recomputed from the price panel at order 0.3, the order Step 268 found retains 0.856 of the price level's memory",
+      "institutional_ownership_change": "rebuilt from evidence/institutional_linkage_v1/holdings.parquet, 110.3M holding rows, as quarter-on-quarter change in aggregate 13F value per issuer",
+      "sue_pead": "evidence/extended_sue_panel_v1/sue_panel.csv.gz, 131,169 issuer-quarter scores"
+    },
+    "horizon_rule": "each signal is measured at ITS OWN decision cadence -- 13 weeks for quarterly signals, 4 weeks for weekly ones -- declared as a uniform rule and applied without variation. The first pass used a single 4-week horizon for comparability among weekly price families; imposing that on a quarterly signal would understate it, and imposing a quarterly horizon on a weekly one would do the reverse.",
+    "no_strategy_can_come_out_of_this": true,
+    "still_a_diagnostic": true,
+    "why": "The first pass declared four families out of scope because their raw cross-sectional scores were never saved. Three turn out to be recoverable from disk and the fourth is computable from the price panel, so the audit can be completed rather than left with a hole in it. Recording the extension rather than quietly widening the original run."
+  },
+  "live_trading_enabled": false,
+  "measurements": [
+    "rank information coefficient",
+    "top-minus-bottom decile spread",
+    "decile monotonicity"
+  ],
+  "multiple_testing": "Eleven signals. Bonferroni at 0.05 gives a per-signal bar of 0.0045, stacked on top of every configuration already searched across 297 steps.",
+  "no_strategy_can_come_out_of_this": true,
   "registered_at_utc": "2026-09-10T00:00:00Z",
   "registered_before_any_result_existed": true,
-  "why_this_exists": "Step 296 found no signal on the dashboard orders its deciles, and CLAUDE.md section 2 was rewritten to demand that measurement before anything is built. The fifteen closed families were judged before that rule existed -- mostly as top-N books or on aggregate information coefficients, neither of which distinguishes ranking skill from market beta. This asks retrospectively whether any of them had cross-sectional content the original test could not have seen.",
-  "what_this_can_and_cannot_do": "It can find a family closed for the wrong reason. It cannot re-open one: a family that shows monotonicity here would need its own pre-registered test on a fresh window before it is anything more than a lead. Most likely outcome, stated in advance, is that it confirms the closures.",
+  "research_only": true,
+  "schema_version": 1,
   "signals_covered": "the eight price families from Step 257, plus short interest (Step 263), FINRA short-sale volume (Step 282) and Form 4 opportunistic purchases (Step 286). Families whose raw cross-sectional scores were never saved and cannot be cheaply rebuilt -- 13F linkage, PEAD/SUE, 10-K language, fractional differentiation -- are out of scope and that is recorded rather than worked around.",
-  "declared_horizon_weeks": 4,
-  "why_one_horizon": "These families were originally tested at several different horizons. A single declared horizon makes the eleven comparable to each other and to Step 296; it also means a family that only worked at its own native horizon could be understated here. That trade is accepted deliberately and no second horizon will be tried.",
-  "measurements": ["rank information coefficient", "top-minus-bottom decile spread", "decile monotonicity"],
-  "multiple_testing": "Eleven signals. Bonferroni at 0.05 gives a per-signal bar of 0.0045, stacked on top of every configuration already searched across 297 steps.",
+  "strategy_promotion_authorized": false,
   "the_measure_that_matters": "monotonicity. A signal whose deciles do not order themselves has no cross-sectional content whatever its extremes did, and unlike a significance test it does not depend on having many decisions.",
   "this_is_a_diagnostic_not_a_search": true,
-  "no_strategy_can_come_out_of_this": true,
-  "research_only": true, "strategy_promotion_authorized": false,
-  "approved_for_live_trading": false, "execution_enabled": false, "live_trading_enabled": false
+  "what_this_can_and_cannot_do": "It can find a family closed for the wrong reason. It cannot re-open one: a family that shows monotonicity here would need its own pre-registered test on a fresh window before it is anything more than a lead. Most likely outcome, stated in advance, is that it confirms the closures.",
+  "why_one_horizon": "These families were originally tested at several different horizons. A single declared horizon makes the eleven comparable to each other and to Step 296; it also means a family that only worked at its own native horizon could be understated here. That trade is accepted deliberately and no second horizon will be tried.",
+  "why_this_exists": "Step 296 found no signal on the dashboard orders its deciles, and CLAUDE.md section 2 was rewritten to demand that measurement before anything is built. The fifteen closed families were judged before that rule existed -- mostly as top-N books or on aggregate information coefficients, neither of which distinguishes ranking skill from market beta. This asks retrospectively whether any of them had cross-sectional content the original test could not have seen."
 }

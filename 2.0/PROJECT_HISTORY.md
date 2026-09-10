@@ -14310,3 +14310,51 @@ step would have reported Form 4 as clearing the bar.
 
 Found the way these things get found here: a number that could not mean what it appeared to
 mean, checked instead of reported.
+
+## Step 299 — 2026-09-10 — The audit is complete: nineteen families, none with cross-sectional content
+
+**What this accomplished: it closed the hole Step 298 left, and finished the retrospective
+audit of every closed family in the project.**
+
+Step 298 declared four families out of scope because their raw cross-sectional scores were
+never saved. Three turned out to be recoverable from disk and the fourth computable, so the
+audit gets finished rather than left with a gap. Each is measured at **its own decision
+cadence** — 13 weeks for quarterly signals, 4 for weekly — declared as a uniform rule.
+
+| family | horizon | n | density | mean IC | t | p | decile spread | monotone |
+|---|---|---|---|---|---|---|---|---|
+| SUE / PEAD | 13w | 57 | 97.8% | +0.0048 | +0.68 | 0.527 | +0.87% | +0.07 |
+| **10-K language, jaccard** | 13w | 29 | 100% | **+0.0303** | **+2.57** | **0.0030** | **-0.80%** | +0.11 |
+| 13F ownership change | 13w | 62 | 98.2% | +0.0033 | +0.51 | 0.564 | -0.43% | -0.01 |
+| fractional differencing | 4w | 189 | 100% | -0.0025 | -0.30 | 0.747 | -20.03% | -0.15 |
+
+Rebuilt from 131,169 SUE issuer-quarters, 8,327 filings, **110.3 million 13F holding rows**
+aggregated into quarter-on-quarter ownership change and lagged to the 45-day filing deadline
+rather than the period end, and fractional differencing recomputed at order 0.3.
+
+**Nought of four order their deciles.** With Step 298 that is **nought of fourteen** signals
+audited, and with Step 296's thirteen dashboard signals, the finding is uniform across
+everything this project has ever built.
+
+**One clears the bar, and a concern I raised about it did not survive checking.** 10-K
+language jaccard clears Bonferroni at p=0.0030. My first suspicion was that forward-filling
+an annual signal onto a weekly grid had manufactured 29 dependent decisions out of 8 years —
+so I tested it, and it was **mostly wrong**: only 2 of 30 samples repeat the previous
+quarter's vector, because the 8,327 filings arrive across 29 quarterly cohorts rather than
+clustering into 8 annual ones. The cross-section genuinely refreshes. The p-value is not
+inflated that way and the concern is recorded as raised, tested, and not upheld.
+
+It fails on three other grounds instead. Its **decile spread is -0.80% against a positive IC
+of +0.0303** — the same self-contradiction Step 296 found in six signals, Step 298 found in
+trend consistency, and Step 245 recorded as a transfer coefficient of -103. Its
+**monotonicity is +0.11**, so it does not order its deciles. And **Step 255 already
+established that the smallest IC establishable on this sample is about 0.110** — the measured
++0.0303 is a quarter of that, which is to say below the resolution of the data it comes from.
+Step 255's closure stands and its scope reduction was right.
+
+**Three times in this session a result cleared a significance bar and dissolved on
+inspection**: Form 4 at p=0.0000 was a presence test on a 93.3%-zero signal, trend
+consistency at p=0.0017 had a negative decile spread, and 10-K language at p=0.0030 sits
+below its own data's resolution. All three would have been reported as findings by a process
+that stopped at the p-value. The decile spread and monotonicity columns caught all three, and
+that is the argument for the screen CLAUDE.md now mandates.

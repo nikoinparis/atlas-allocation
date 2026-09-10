@@ -1,0 +1,147 @@
+{
+  "bonferroni_bar": 0.004545454545454546,
+  "clearing_bonferroni": [
+    "trend_consistency",
+    "form4_opportunistic"
+  ],
+  "density_guard": "a signal non-zero in under 50% of cells cannot be read on deciles",
+  "families_measured": 10,
+  "horizon_weeks": 4,
+  "live_trading_enabled": false,
+  "monotonic_above_half": [],
+  "no_strategy_can_come_out_of_this": true,
+  "out_of_scope": [
+    "13F linkage",
+    "PEAD/SUE",
+    "10-K language",
+    "fractional differentiation"
+  ],
+  "out_of_scope_reason": "raw cross-sectional scores were never saved and cannot be cheaply rebuilt",
+  "results": {
+    "coskewness": {
+      "bootstrap_p": 0.007333333333333333,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": -0.07259961731306519,
+      "deciles_interpretable": true,
+      "decisions": 197,
+      "inconclusive": false,
+      "mean_ic": -0.01692785883514726,
+      "monotonicity": -0.10967543454853097,
+      "nonzero_density": 1.0,
+      "t_stat": -2.507637314303204
+    },
+    "downside_beta": {
+      "bootstrap_p": 0.19633333333333333,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": 0.13033137295719888,
+      "deciles_interpretable": true,
+      "decisions": 189,
+      "inconclusive": false,
+      "mean_ic": 0.011783119370473992,
+      "monotonicity": 0.0948853615520282,
+      "nonzero_density": 0.9999880033566608,
+      "t_stat": 1.09456014359577
+    },
+    "form4_opportunistic": {
+      "bootstrap_p": 0.0,
+      "clears_bonferroni": true,
+      "decile_spread_annualised": 0.03766123492193163,
+      "deciles_interpretable": false,
+      "decisions": 203,
+      "inconclusive": false,
+      "mean_ic": 0.014344439181926032,
+      "monotonicity": 0.06268568033273915,
+      "nonzero_density": 0.07034996578482824,
+      "t_stat": 3.7816249893905733
+    },
+    "idiosyncratic_skewness": {
+      "bootstrap_p": 0.07866666666666666,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": 0.03435956788666661,
+      "deciles_interpretable": true,
+      "decisions": 191,
+      "inconclusive": false,
+      "mean_ic": -0.007237877150494269,
+      "monotonicity": 0.06939552594002854,
+      "nonzero_density": 1.0,
+      "t_stat": -1.7051978139511728
+    },
+    "ind_ret_big": {
+      "bootstrap_p": 0.9186666666666666,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": -0.015300752108296178,
+      "deciles_interpretable": true,
+      "decisions": 200,
+      "inconclusive": false,
+      "mean_ic": 0.0017863897125060414,
+      "monotonicity": 0.03,
+      "nonzero_density": 1.0,
+      "t_stat": 0.11558694781194533
+    },
+    "residual_reversal_skip1": {
+      "bootstrap_p": 0.7286666666666667,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": 0.002879284418937589,
+      "deciles_interpretable": true,
+      "decisions": 197,
+      "inconclusive": false,
+      "mean_ic": -0.0023651173723291514,
+      "monotonicity": -0.01758471413643827,
+      "nonzero_density": 0.7685547404408615,
+      "t_stat": -0.3648380480076446
+    },
+    "sector_dispersion": {
+      "bootstrap_p": 0.5986666666666667,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": 0.03705633364839622,
+      "deciles_interpretable": true,
+      "decisions": 200,
+      "inconclusive": false,
+      "mean_ic": -0.00900023518163573,
+      "monotonicity": -0.009818181818181813,
+      "nonzero_density": 1.0,
+      "t_stat": -0.5828304307893152
+    },
+    "short_sale_volume": {
+      "bootstrap_p": 0.795,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": -0.0006052203997690686,
+      "deciles_interpretable": true,
+      "decisions": 47,
+      "inconclusive": false,
+      "mean_ic": 0.002854900303637511,
+      "monotonicity": -0.05016118633139909,
+      "nonzero_density": 1.0,
+      "t_stat": 0.33256641304354234
+    },
+    "trend_consistency": {
+      "bootstrap_p": 0.0016666666666666668,
+      "clears_bonferroni": true,
+      "decile_spread_annualised": -0.018456012870503247,
+      "deciles_interpretable": true,
+      "decisions": 197,
+      "inconclusive": false,
+      "mean_ic": 0.016268984495920027,
+      "monotonicity": 0.05792954930010768,
+      "nonzero_density": 0.9997521928382029,
+      "t_stat": 2.1957452132593187
+    },
+    "volatility_of_volatility": {
+      "bootstrap_p": 0.08033333333333334,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": 0.13486988269893763,
+      "deciles_interpretable": true,
+      "decisions": 195,
+      "inconclusive": false,
+      "mean_ic": -0.017809439450871267,
+      "monotonicity": 0.07661227661227661,
+      "nonzero_density": 1.0,
+      "t_stat": -1.6889432790720236
+    }
+  },
+  "sparse_deciles_not_interpretable": [
+    "form4_opportunistic"
+  ],
+  "strategy_promotion_authorized": false,
+  "this_is_a_diagnostic_not_a_search": true
+}

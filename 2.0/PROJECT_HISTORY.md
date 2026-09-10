@@ -14254,3 +14254,59 @@ table, as a warning callout carrying the six most telling rows, what it means, a
 limit. That page now states three findings against its own headline numbers: six strategies
 displayed and four distinct, nought of six surviving out of sample, and nought of thirteen
 signals with cross-sectional skill. Typecheck and `next build` clean, `/research` prerenders.
+
+## Step 298 — 2026-09-10 — The closed families stay closed, and the screen found a flaw in itself
+
+**What this accomplished: it audited fifteen closures against a test that did not exist when
+they were made, confirmed all of them, and found a defect in the screen CLAUDE.md now
+mandates — by nearly reporting a spurious result with it.**
+
+Ten families rebuilt and measured at a 4-week horizon: the eight price families from Step
+257, FINRA short-sale volume from Step 282, and Form 4 opportunistic purchases from Step 286.
+Out of scope and recorded rather than worked around: 13F linkage, PEAD/SUE, 10-K language and
+fractional differentiation never saved raw cross-sectional scores.
+
+| family | n | density | mean IC | t | p | decile spread | monotone |
+|---|---|---|---|---|---|---|---|
+| coskewness | 197 | 100% | -0.0169 | -2.51 | 0.0073 | -7.26% | -0.11 |
+| downside beta | 189 | 100% | +0.0118 | +1.09 | 0.196 | +13.03% | +0.09 |
+| volatility of volatility | 195 | 100% | -0.0178 | -1.69 | 0.080 | +13.49% | +0.08 |
+| idiosyncratic skewness | 191 | 100% | -0.0072 | -1.71 | 0.079 | +3.44% | +0.07 |
+| **form 4 opportunistic** | 203 | **7.0%** | +0.0143 | +3.78 | **0.0000** | +3.77% | +0.06 |
+| **trend consistency** | 197 | 100% | +0.0163 | +2.20 | **0.0017** | **-1.85%** | +0.06 |
+| short-sale volume | 47 | 100% | +0.0029 | +0.33 | 0.795 | -0.06% | -0.05 |
+| ind ret big | 200 | 100% | +0.0018 | +0.12 | 0.919 | -1.53% | +0.03 |
+| residual reversal skip1 | 197 | 76.9% | -0.0024 | -0.36 | 0.729 | +0.29% | -0.02 |
+| sector dispersion | 200 | 100% | -0.0090 | -0.58 | 0.599 | +3.71% | -0.01 |
+
+**Nought of ten order their deciles.** Monotonicity is within ±0.11 for every family, which
+is the same picture Step 296 found for the dashboard signals. **All fifteen closures stand.**
+
+**Two families clear Bonferroni and neither survives inspection.**
+
+*Form 4 opportunistic* clears at p=0.0000, t=+3.78 — and Step 286 measured the same family at
+**-0.0188, t=-4.87**. A sign flip is a red flag on the measurement, not a discovery, and the
+cause is that the two are different questions. The signal is **exactly zero in 93.3% of
+cells**: a typical week has 78 names with a purchase against 2,591 without. Ranking across the
+whole universe therefore asks *did anyone buy at all* — a presence test — while Step 286
+declared and tested *among names with purchases, does more buying predict more return*. Run
+side by side on identical weeks: presence **+0.01434 at t=+3.78**, intensity **-0.00857 at
+t=-1.34**. Both are real. Step 286 tested the one it declared, and its closure is unaffected.
+
+*Trend consistency* is dense and clears at p=0.0017 with an IC of +0.0163 — while its decile
+spread is **-1.85%**. A positive rank correlation alongside a negative top-minus-bottom spread
+cannot both describe a real signal. It is the identical contradiction Step 296 found in six
+signals and Step 245 recorded as a transfer coefficient of -103. It is the closest thing to a
+lead in this table and it is still noise.
+
+**The defect in the screen, which matters more than the audit.** CLAUDE.md section 2 was
+rewritten in Step 297 to require rank IC, decile spread and decile monotonicity before any
+signal is built on. **Deciles are meaningless on a sparse signal** — with 93.3% zeros, nine of
+ten deciles are ties at zero, the spread degenerates into a presence test, and the
+monotonicity number is uninterpretable rather than merely low. The screen now computes
+non-zero density, refuses to count a signal as monotonic below 50% density, and prints
+`SPARSE: deciles degenerate, IC is a presence test` next to the row. Without that guard this
+step would have reported Form 4 as clearing the bar.
+
+Found the way these things get found here: a number that could not mean what it appeared to
+mean, checked instead of reported.

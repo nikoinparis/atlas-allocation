@@ -120,7 +120,11 @@ delivering betas of −0.009 and +0.007 — and found nothing to drive it.
 cross-sectional skill BEFORE anything is built around a signal.** The screen is cheap and
 takes an afternoon: rank IC at the intended horizon, top-minus-bottom decile spread, and
 **decile monotonicity**, all on a window the signal was not chosen on. Monotonicity is the
-one that matters most and the one this project went 296 steps without measuring — a signal
+one that matters most and the one this project went 296 steps without measuring.
+**Check density first: a signal that is zero in most cells cannot be read on deciles at
+all** — nine of ten deciles become ties at zero, the spread degenerates into a presence
+test, and the monotonicity number is uninterpretable rather than low. Step 298 nearly
+reported Form 4 insider purchases as clearing the bar on a signal that is 93.3% zeros — a signal
 whose deciles do not order themselves has no cross-sectional content, whatever its top
 decile did. Several of the fifteen closed families would have been closed in an afternoon
 rather than a session by running it first.

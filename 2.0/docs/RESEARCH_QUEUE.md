@@ -117,16 +117,6 @@ to read when the clock has enough weeks — before any Sharpe.**
 
 ## A tier
 
-### A7. Put an existing signal into the long-short structure *(new 2026-09-10, ranks above everything below)*
-**Status:** the direct consequence of Step 293 and the cheapest untried thing here.
-**Why it outranks every new data source:** Step 293 showed a market-neutral book clears the
-orthogonality gate **by construction** (+0.030 / -0.044) and carries no market beta (-0.009,
-R2 0.001). That is the gate fourteen families died on before they ever reached a skill test.
-Every signal in this project has only ever been tested long-only.
-**The test:** cash conversion long the top decile, short the bottom, market-neutral. It is the
-only signal that survived Step 289 out of sample with a positive excess AND a Sharpe above its
-universe (+1.08pp, 11% retained). Does the structure rescue a weak-but-real signal?
-**Cost:** nothing. No acquisition, no new universe, data already on disk.
 
 ### A8. EU short-selling registers *(new 2026-09-10, owner-proposed)*
 **Status:** never attempted. Free, daily, from ESMA and national regulators.
@@ -352,3 +342,4 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 | **Crypto as a third asset class (new 2026-09-07)** | **Closed on both gates, both configurations.** Equal-weight 20 coins: Sharpe 0.238, corr +0.332 to valuation. Momentum top-5: Sharpe 0.374, corr +0.300. Momentum doubles return and does not move Sharpe because it buys it with vol (71.9% vs 62.3%). **Effective independent coins 3.09 of 20** — crypto's cross-section has no more breadth than the multi-asset ETF universe did (4.16 of 35). Test was survivorship-biased *in crypto's favour* and still failed. | Step 285 |
 | **Form 4 opportunistic insiders (was S2b)** | **Refuted on sign; the split itself untested.** 667,153 purchases, 10,579 issuers, 2011-2026 — 260x the 2,560 filings that rejected this in Steps 125-126. Opportunistic IC **-0.0188, t=-4.87, p=0.0005** against a declared POSITIVE sign, so refuted rather than flipped. Sharpe 0.485, correlation +0.711 to valuation: gates 1-3 fail. **Gate 4 was UNTESTABLE** — routine purchases reach a median of 13 issuers per 4-week window and never the 30 the IC needs, so CMP's actual claim was never tested. Size control: negative in all five price quintiles. **Reviving it needs the full market, not the survivorship-aware roster; the classification rate is the binding constraint.** | Step 286 |
 | **Pairs trading, GGR rule verbatim (was S5)** | **Closed on gates 2 and 3, but gates 1 and 4 PASSED.** 3.9M candidate pairs, top 20 by minimum SSD, disjoint 52w formation / 26w trading. Loses money at **zero cost** (-0.30%, Sharpe -0.079), so costs did not kill it -- there was nothing there. **Worse than a 200-run random-pair placebo** (-0.555 vs -0.117 mean), so minimum-distance selection subtracts information rather than adding it. **Kept, and it matters:** this is the first structure here that is genuinely orthogonal (+0.030 / -0.044) and genuinely market-neutral (beta -0.009, R2 0.001), and it clears those *by construction* rather than by hoping. The structure is the right direction; the GGR rule is the wrong occupant of it. | Step 293 |
+| **Long-short cash conversion (was A7)** | **Closed on gate 3, the hypothesis.** Same top-20 long leg as the frozen book, bottom-20 short, 100% gross. Out of sample the long-short earns 1.59% at Sharpe 0.157 against its own long-only twin's 16.65% and 0.705; in sample -4.57% against 19.97%. Market beta +0.007 and orthogonality both PASS, as Step 293 predicted they would by construction. **The finding that matters:** neutralising the market removed ~90% of the return, so cash conversion's +1.08pp out-of-sample excess — the one positive in Step 289's nought-of-six — was substantially beta, not selection. Leave-one-short-out clean across 112 names (worst -0.58pp). **Together with Step 293: the structure is sound and there is no signal here worth putting in it.** | Step 295 |

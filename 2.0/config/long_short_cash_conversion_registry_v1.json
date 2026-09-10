@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "experiment": "long_short_cash_conversion_v1",
+  "registered_at_utc": "2026-09-10T00:00:00Z",
+  "registered_before_any_result_existed": true,
+
+  "why_this_exists": "Step 293 built the first market-neutral book in this project and it cleared the orthogonality gate by construction -- correlation +0.030 to valuation and -0.044 to growth, market beta -0.009 with R2 0.001. That is the gate fourteen families died on before they ever reached a skill test. The signal in it, GGR pair convergence, had no skill. This experiment puts the reverse case: a signal with at least some demonstrated skill into the structure that removes the market factor.",
+
+  "why_cash_conversion_specifically": "Step 289 tested all four dashboard signals out of sample on 2013-2022. Cash conversion is the ONLY one with both a positive excess over its own scored universe (+1.08pp) and a Sharpe above that universe (0.698 against 0.673). It retains 11% of its in-sample edge, which is weak, but the other three retained 3%, -75% and -131%. It is the only surviving candidate for 'a weak but real signal', and the question this experiment asks is whether the structure rescues one.",
+
+  "the_structure": {
+    "long_leg": "the same top 20 by cash-conversion score that the frozen long-only book holds, so the long leg is identical and the experiment isolates exactly what the short leg adds",
+    "short_leg": "the bottom 20 by the same score, same sector-neutral ranking",
+    "weighting": "50% gross long and 50% gross short, so total gross exposure is 100% and the book is directly comparable to the long-only version's 100%, rather than the 200% a conventional 100/100 dollar-neutral book would carry",
+    "cadence": "quarterly, executed at the first weekly close strictly after the decision, matching the frozen long-only book"
+  },
+  "the_signal_is_unchanged": "operating_cash_flow_margin, free_cash_flow_margin and cash_conversion_spread, minimum two features available, ranked sector-neutrally. Taken verbatim from config/sec_independent_fundamental_discovery_v1.json. No feature, minimum or ranking change will be tried; the structure is the only variable.",
+
+  "declared_configurations": {"breadth_per_leg": [20], "cost_bps_per_leg": [50.0], "annual_borrow_bps": [100.0]},
+  "trials_declared_here": 1,
+  "nothing_will_be_swept": "Not breadth, not the long/short split, not the cadence. If the declared configuration fails, the finding is that the structure does not rescue this signal.",
+
+  "windows": {
+    "out_of_sample": "2013-2022, built from SEC Financial Statement Data Sets, the window the signal was NOT selected on",
+    "in_sample": "2023-2026, the window every dashboard strategy was selected on",
+    "both_reported_separately": "Per CLAUDE.md rule 6. The out-of-sample window is the one that decides this; the in-sample window is reported so the comparison to the frozen book is visible, not because it is evidence."
+  },
+
+  "declared_sign": "POSITIVE. The long-short book is hypothesised to earn a positive return net of costs and borrow. A negative result refutes it and will be reported as such rather than inverted.",
+
+  "gates": {
+    "gate_1_orthogonality": "absolute correlation below 0.30 against BOTH the valuation book and the growth leg, measured with src/systematic_trader/return_conventions.load_aligned so the Step 291 offset cannot recur",
+    "gate_2_standalone_skill": "Sharpe at or above 1.0 out of sample, net of 50bps per leg and 100bps annual borrow",
+    "gate_3_beats_its_own_long_only_version": "the long-short book must beat the long-only book of the IDENTICAL signal on Sharpe, out of sample. This is the actual hypothesis: if the structure does not improve the same signal, it has added cost and complexity for nothing.",
+    "gate_4_market_neutrality_is_real": "absolute market beta below 0.30 against SPY",
+    "all_four_required": true
+  },
+  "why_gate_3_is_the_hypothesis": "Gates 1 and 4 are close to guaranteed by construction -- Step 293 showed a long-short book clears both trivially. Passing them proves only that the arithmetic works. Gate 3 is the only one that can fail informatively, and it is the whole experiment.",
+
+  "known_weaknesses_declared_up_front": [
+    "Borrow is a flat 100bps annual charge. Real borrow is name-specific and is worst on exactly the low-quality names a bottom-decile short leg wants, so this is optimistic and the result is an upper bound.",
+    "No short-sale feasibility check. Some bottom-decile names in this universe would be hard or impossible to borrow, and the ones that are hardest to borrow are plausibly the ones with the most short alpha.",
+    "The 2013-2022 universe is rebuilt from FSDS filer rosters, a different construction from the in-sample roster, which is why each window's book is compared to its own universe and to its own long-only twin rather than across windows.",
+    "Shorting introduces unbounded loss on a single name, which no long-only book here has ever carried. Leave-one-issuer-out on the SHORT leg is mandatory, not optional."
+  ],
+
+  "research_only": true,
+  "strategy_promotion_authorized": false,
+  "approved_for_live_trading": false,
+  "execution_enabled": false,
+  "live_trading_enabled": false
+}

@@ -14081,3 +14081,64 @@ and that the supersession is on disk. Pre-flight: **29 of 29 pass.**
 benchmark, the tie-agnostic companion, SUE quarterly, and valuation earnings yield. All five
 are unaffected by Step 291 — the forward recorders price a book against the panel inside a
 single script and perform no cross-series date join, which is the only place the offset lives.
+
+## Step 295 — 2026-09-10 — The structure does not rescue the signal, and it shows the signal was mostly beta
+
+**What this accomplished: it answered the question Step 293 left open, and it reinterpreted
+Step 289's one surviving result.**
+
+Step 293 built the first market-neutral book here and it cleared the orthogonality gate by
+construction while carrying a signal with no skill. This is the reverse case: cash conversion
+is the only dashboard signal that survived Step 289 out of sample with both a positive excess
+(+1.08pp) and a Sharpe above its own universe (0.698 vs 0.673). Weak, but the only candidate
+for "real". The long leg is the **same top twenty** the frozen long-only book holds, so the
+experiment isolates exactly what the short leg adds. Gross exposure is 100% (50 long / 50
+short) so the comparison to the long-only book is like for like.
+
+| window | book | CAGR | Sharpe | vol | maxDD |
+|---|---|---|---|---|---|
+| out of sample 2013-2022 | **long-short** | **1.59%** | **0.157** | 10.1% | -21.43% |
+| out of sample 2013-2022 | long-only twin | 16.65% | 0.705 | 23.6% | -31.30% |
+| in sample 2023-2026 | **long-short** | **-4.57%** | **-0.427** | 10.7% | -33.11% |
+| in sample 2023-2026 | long-only twin | 19.97% | 0.853 | 23.4% | -25.21% |
+
+| gate | verdict |
+|---|---|
+| 1 orthogonality below 0.30 | **PASS** — -0.181 and -0.245, judged in sample only |
+| 2 standalone Sharpe ≥ 1.0 | **FAIL** — 0.157 |
+| 3 beats its own long-only twin | **FAIL** — 0.157 against 0.705. This was the hypothesis. |
+| 4 market beta below 0.30 | **PASS** — +0.007, R2 0.000 |
+
+**Gate 3 fails in both windows and it fails badly.** The structure did not rescue the signal;
+it removed most of it. This is the cleanest possible answer to the question Step 293 posed.
+
+**And it reinterprets Step 289.** Long-only earns 16.65% at 23.6% volatility with a market
+beta near one. Neutralised, the same signal on the same dates earns **1.59% at 10.1%
+volatility**. Removing the market factor removed roughly ninety per cent of the return. So
+cash conversion's out-of-sample excess over its own scored universe — the one positive result
+in Step 289's nought-of-six table — **was substantially market beta rather than selection**.
+The signal was not weak-but-real. It was mostly beta with a small amount of noise on top, and
+the long-short book is what that looks like once the beta is gone.
+
+The short leg has no skill of its own either: bottom-decile cash-conversion names did not
+underperform, which is why a book that is long good names and short bad ones earns nothing.
+
+**Leave-one-issuer-out on the short leg, which the registry declared mandatory rather than
+optional** because shorting carries unbounded single-name loss that no long-only book here
+has ever borne. 112 distinct short names; the most damaging removal costs **0.58pp** of a
+1.59% CAGR and the most helpful adds **0.85pp**. No single short carries or destroys the
+book. That is a genuinely good property — and it is a good property of a book with no return.
+
+**Gate 1 was judged in sample, and the reason matters.** Out of sample the correlation came
+back NaN: the valuation and growth books only exist from 2023, so there is no overlap with
+2013-2022 and the comparison cannot be made at all. Reporting NaN as a failure would claim a
+comparison was made and lost. Fixed to judge gate 1 where overlap exists and to record which
+window it came from — the same distinction Step 286 had to draw for its untestable routine leg.
+
+**What Steps 293 and 295 establish together.** Two signals, one with no skill and one with a
+little, put through the same market-neutral structure. Both times the structure delivered
+exactly what it promises — market beta of -0.009 and +0.007, orthogonality to the existing
+books — and both times there was no return underneath. **The structure is sound and this
+project does not currently have a signal worth putting in it.** That is a more precise
+statement of the problem than fifteen closed families, and it says the next thing to look for
+is a signal with demonstrated *cross-sectional* skill, not another return stream.

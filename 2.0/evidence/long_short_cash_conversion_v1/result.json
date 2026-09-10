@@ -1,0 +1,61 @@
+{
+  "all_gates_passed": false,
+  "annual_borrow_bps": 100.0,
+  "breadth_per_leg": 20,
+  "cost_bps_per_leg": 50.0,
+  "gate_1_orthogonality": false,
+  "gate_2_standalone_skill": false,
+  "gate_3_beats_long_only": false,
+  "gate_4_market_neutral": true,
+  "gates_judged_on": "out_of_sample_2013_2022",
+  "gross_exposure": "100% (50 long / 50 short)",
+  "live_trading_enabled": false,
+  "results": {
+    "in_sample_2023_2026": {
+      "beats_long_only": false,
+      "correlation_vs_growth": -0.24540779058995263,
+      "correlation_vs_valuation": -0.1805552107395376,
+      "decisions": 14,
+      "long_only": {
+        "cagr": 0.19965997939051294,
+        "max_drawdown": -0.2521139353035683,
+        "sharpe": 0.8533520687618816,
+        "volatility": 0.23397140137035963
+      },
+      "long_short": {
+        "cagr": -0.045664209750745255,
+        "max_drawdown": -0.331050557756273,
+        "sharpe": -0.4266418532741515,
+        "volatility": 0.10703171618139946
+      },
+      "market_beta": -0.15204694162416055,
+      "market_r2": 0.03926790577563544,
+      "median_scored": 481,
+      "weeks": 179
+    },
+    "out_of_sample_2013_2022": {
+      "beats_long_only": false,
+      "correlation_vs_growth": NaN,
+      "correlation_vs_valuation": NaN,
+      "decisions": 39,
+      "long_only": {
+        "cagr": 0.16649286894300008,
+        "max_drawdown": -0.3129624426845916,
+        "sharpe": 0.7052213944319492,
+        "volatility": 0.23608595861886594
+      },
+      "long_short": {
+        "cagr": 0.015850434772064714,
+        "max_drawdown": -0.21430944544817232,
+        "sharpe": 0.1570509432304173,
+        "volatility": 0.1009254350596911
+      },
+      "market_beta": 0.00749770377204886,
+      "market_r2": 0.00015174965627606785,
+      "median_scored": 295,
+      "weeks": 509
+    }
+  },
+  "strategy_promotion_authorized": false,
+  "trials_declared": 1
+}

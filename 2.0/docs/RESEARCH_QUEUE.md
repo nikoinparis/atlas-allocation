@@ -50,29 +50,6 @@ candidate against, or if a clock produces a result that points somewhere specifi
 
 ## S tier
 
-### S6. Drop the sector restriction from the fundamental universe *(new 2026-09-10)*
-**Status:** the one genuine gap left in free US equity data, found 2026-09-10 while answering
-"what about more data for more breadth".
-**The number:** SEC 10-K/10-Q filers in sample quarters number **8,510**. Our tech-and-energy
-SIC restriction keeps **1,524 of them, 17.9%**. The fundamental signals have only ever been
-measured on about **509 issuers**. Dropping the restriction and using FSDS filer rosters
-directly — which the Step 289 machinery already does — would price roughly **2,616** of them,
-a five-fold deeper cross-section, for free.
-**Why this is NOT the breadth play that has already failed:** it does not add a correlated
-return stream, which is what Step 277's XLE and Step 279's breadth repair did and why they
-paid nothing. It adds *names to the cross-section*, which is statistical power and
-implementation capacity. A true IC of 0.03 is far easier to detect and to harvest across 2,616
-names than 509, and Step 296's own power note says the current samples cannot resolve an
-effect that size.
-**The honest counter, recorded up front:** Step 298 measured eight price-signal families on the
-full 2,810-name panel and found nothing, so a wide universe did not rescue *price* signals.
-Fundamentals have never been tested wide, which is the whole point — but the prior from the
-price side is not encouraging.
-**Cost:** free. The FSDS data is on disk, the point-in-time roster machinery exists, and the
-monotonicity screen is built and guarded. This is a rerun of Step 296 on a wider universe, not
-new infrastructure.
-**Run the screen first, before any book is built** — CLAUDE.md section 2.
-
 
 ### S1. SEC 10-K language change — extend the corpus to 2011  *(reduced scope)*
 **Status:** source-blocked since Step 202, never unblocked. This is the lost item that prompted
@@ -369,3 +346,4 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 | **Cross-sectional skill screen (new 2026-09-10)** | **Nought of thirteen.** Every signal on disk measured three beta-neutral ways at a 13-week horizon. No signal clears Bonferroni 0.0038 (best p=0.108), and **monotonicity is within ±0.17 of zero for all thirteen** — none of them orders its deciles. Six show a positive IC alongside a *negative* decile spread, which is what noise looks like measured twice. Explains Step 245's transfer coefficient of -103, Step 289's nought-of-six, and Step 295's ninety-per-cent beta at once: the books never won on ranking ability. **Honest limit:** 13-14 in-sample decisions cannot detect an IC of 0.03; the monotonicity result carries the weight because it measures shape, not significance. | Step 296 |
 | **Closed-family monotonicity audit (new 2026-09-10)** | **All fifteen closures stand.** Ten families rebuilt and measured; nought order their deciles, monotonicity within ±0.11 for every one. Two clear Bonferroni and neither survives: Form 4 is **93.3% zeros** so its p=0.0000 is a *presence* test, not the intensity question Step 286 declared and measured at -0.0086/t=-1.34; trend consistency has a positive IC with a **negative** decile spread, the same contradiction as Step 245's -103 transfer coefficient. **Kept:** the screen needed a density guard, added after it nearly reported a spurious result — a signal non-zero in under 50% of cells cannot be read on deciles. | Step 298 |
 | **Remaining closed families audited (new 2026-09-10)** | **Audit complete: nought of fourteen order their deciles.** SUE/PEAD, 10-K language, 13F ownership change and fractional differencing rebuilt from 131k SUE quarters, 8,327 filings, 110.3M 13F rows and the price panel. Only 10-K language clears Bonferroni (p=0.0030) and it fails three other ways: decile spread **-0.80%** against a positive IC, monotonicity +0.11, and an effect a quarter the size of the ~0.110 Step 255 established as the minimum establishable on that sample. A suspicion that forward-filling inflated its n was tested and **not upheld** — 2 of 30 samples repeat, not most. All nineteen closures stand. | Step 299 |
+| **Wide-universe skill screen (was S6)** | **Closed, and it closes the depth argument.** Universe from 509 issuers / 2 sectors to **2,681 / 69**, names scored per decision from ~300 to **1,583-2,085**, universe the only variable. Nought of three clear Bonferroni; nought of three order their deciles (-0.05, -0.07, -0.12). **The signals got weaker with more names** — cash conversion +0.0272 to +0.0180, balance sheet +0.0008 to **-0.0175**. **The null is now properly powered:** detecting a true IC of 0.03 at t=3 needs 38 decisions and there are 39, where Step 296 would have needed ~100. "More data for more breadth" is refuted in both readings — as breadth in Steps 246/277/279/285, as depth here. | Step 300 |

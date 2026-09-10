@@ -1,0 +1,53 @@
+{
+  "bonferroni_bar": 0.016666666666666666,
+  "clearing_bonferroni": [],
+  "horizon_weeks": 13,
+  "issuers_priceable": 2681,
+  "live_trading_enabled": false,
+  "median_names_scored": {
+    "balance_sheet_quality": 2085,
+    "cash_conversion_breadth20": 1583,
+    "growth_top5": 1909
+  },
+  "monotonic_above_half": [],
+  "narrow_run_reference": "Step 296, 509 issuers, 2 sectors",
+  "only_variable_changed": "the universe",
+  "results": {
+    "balance_sheet_quality": {
+      "bootstrap_p": 0.092,
+      "decile_spread_annualised": -0.02395830262674037,
+      "deciles_interpretable": true,
+      "decisions": 39,
+      "inconclusive": false,
+      "mean_ic": -0.017493039805451305,
+      "monotonicity": -0.1229215229215229,
+      "nonzero_density": 0.9958789548739516,
+      "t_stat": -2.003159319668587
+    },
+    "cash_conversion_breadth20": {
+      "bootstrap_p": 0.09575,
+      "decile_spread_annualised": -0.029285917742924328,
+      "deciles_interpretable": true,
+      "decisions": 39,
+      "inconclusive": false,
+      "mean_ic": 0.01801150298406492,
+      "monotonicity": -0.0725718725718725,
+      "nonzero_density": 1.0,
+      "t_stat": 1.8329480406735832
+    },
+    "growth_top5": {
+      "bootstrap_p": 0.3645,
+      "decile_spread_annualised": -0.03561769247946833,
+      "deciles_interpretable": true,
+      "decisions": 39,
+      "inconclusive": false,
+      "mean_ic": -0.004373505179553636,
+      "monotonicity": -0.05174825174825175,
+      "nonzero_density": 1.0,
+      "t_stat": -0.8140865708113721
+    }
+  },
+  "sectors": 69,
+  "strategy_promotion_authorized": false,
+  "this_is_a_diagnostic_not_a_search": true
+}

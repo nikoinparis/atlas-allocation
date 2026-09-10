@@ -1,38 +1,49 @@
 {
-  "schema_version": 1,
-  "experiment": "cross_sectional_skill_v1",
-  "registered_at_utc": "2026-09-10T00:00:00Z",
-  "registered_before_any_result_existed": true,
-
-  "why_this_exists": "Step 295 found that neutralising the market took cash conversion from 16.65% to 1.59% -- roughly ninety per cent of its out-of-sample return was market beta rather than selection. Every signal in this project has only ever been judged on whether its top twenty beat a benchmark, and market beta alone can do that. Not one has been judged on whether the BOTTOM of its ranking underperforms, which is what cross-sectional skill actually means. This measures it, for every signal on disk, on both windows.",
-
-  "what_is_measured": {
-    "rank_information_coefficient": "Spearman correlation between a signal's cross-sectional rank at a decision and the following 13-week return, averaged over decisions. This is the direct measure of cross-sectional skill and is beta-neutral: adding a constant market return to every name does not change the ranking.",
-    "decile_spread": "annualised return of the top decile minus the bottom decile, equally weighted. Beta-neutral by construction because both legs carry the same market exposure.",
-    "monotonicity": "Spearman correlation between decile number and decile mean return, across all ten deciles. A signal with genuine content should order the deciles, not merely separate the extremes -- a top decile that wins while deciles two through nine are unordered is a concentration effect, not skill."
-  },
+  "approved_for_live_trading": false,
   "declared_horizon_weeks": 13,
-  "why_13": "The books rebalance quarterly, so a quarter is the horizon at which the signal is actually used. One horizon is declared and no other will be tried.",
-
-  "windows": {
-    "out_of_sample_2013_2022": "rebuilt from SEC Financial Statement Data Sets; the window no signal here was selected on",
-    "in_sample_2023_2026": "the saved factor score panels; the window every signal was selected on"
+  "execution_enabled": false,
+  "experiment": "cross_sectional_skill_v1",
+  "extended_S6_2026_09_10": {
+    "bonferroni": "0.05/3 = 0.0167 for this run, stacked on every configuration searched across 299 steps",
+    "declared_reading": {
+      "changes_the_picture": "a signal that orders its deciles on the wide universe when it did not on the narrow one -- monotonicity above 0.5 with interpretable deciles",
+      "confirms_the_picture": "monotonicity still near zero, which would mean the narrow universe was not the constraint and the signals have no cross-sectional content anywhere",
+      "either_way": "this is a diagnostic. No strategy comes out of it."
+    },
+    "sectors_without_the_restriction": "SIC two-digit major group, taken from the filing itself, so sector-neutral ranking still works market-wide and stays point-in-time. The previous run mapped 38 hand-picked SIC codes to two sectors.",
+    "signals": [
+      "growth_top5",
+      "cash_conversion_breadth20",
+      "balance_sheet_quality"
+    ],
+    "the_counter_recorded_before_running": "Step 298 measured eight price-signal families on the full 2,810-name panel and found nothing, so a wide universe did not rescue price signals. The prior here is not encouraging and saying so first is the point.",
+    "the_only_variable_changed": "the universe. Same three signals, same features, same minimum feature counts, same sector-neutral ranking, same 13-week horizon, same density guard, same measurements. If the answer changes, it is the universe and nothing else.",
+    "trials_declared_here": 3,
+    "why": "The fundamental signals have only ever been measured on ~509 issuers because the SEC roster was built for technology and energy. SEC 10-K/10-Q filers number 8,510 in sample quarters and roughly 2,616 of them can be priced from the panel on disk. Step 296's own power note says 13-14 quarterly decisions cannot resolve an IC of 0.03; a five-fold deeper cross-section is the one free change that affects that."
   },
-
-  "multiple_testing": "Thirteen signals across two windows. Bonferroni at 0.05 over the thirteen signals gives a per-signal bar of 0.0038, and that is the bar reported. This stacks on top of every configuration already searched in this project across 295 steps, so a single signal clearing it is the survivor of a far larger cumulative search and will be described that way.",
-
-  "this_is_a_diagnostic_not_a_search": "No strategy can come out of this. The output is a measurement of whether any signal on disk has ever had cross-sectional content. A signal that scores well here is not thereby a candidate; it would be a reason to construct one and test it under its own pre-registration.",
-  "no_gates": "There is nothing to pass or fail. A signal with an information coefficient indistinguishable from zero in both windows has no cross-sectional skill, and that is a finding rather than a failure.",
-
   "known_weaknesses_declared_up_front": [
     "The 2013-2022 universe is rebuilt from FSDS filer rosters and the 2023-2026 universe is the saved membership roster; they are differently built and the two windows' absolute levels are not directly comparable. Each window is read on its own.",
     "The universe is technology and energy only, so a signal that works broadly may not show here, and vice versa.",
     "Overlapping 13-week forward windows on a weekly grid make successive observations dependent; the bootstrap is a moving block for exactly this reason and the t-statistic alone should not be trusted."
   ],
-
+  "live_trading_enabled": false,
+  "multiple_testing": "Thirteen signals across two windows. Bonferroni at 0.05 over the thirteen signals gives a per-signal bar of 0.0038, and that is the bar reported. This stacks on top of every configuration already searched in this project across 295 steps, so a single signal clearing it is the survivor of a far larger cumulative search and will be described that way.",
+  "no_gates": "There is nothing to pass or fail. A signal with an information coefficient indistinguishable from zero in both windows has no cross-sectional skill, and that is a finding rather than a failure.",
+  "registered_at_utc": "2026-09-10T00:00:00Z",
+  "registered_before_any_result_existed": true,
   "research_only": true,
+  "schema_version": 1,
   "strategy_promotion_authorized": false,
-  "approved_for_live_trading": false,
-  "execution_enabled": false,
-  "live_trading_enabled": false
+  "this_is_a_diagnostic_not_a_search": "No strategy can come out of this. The output is a measurement of whether any signal on disk has ever had cross-sectional content. A signal that scores well here is not thereby a candidate; it would be a reason to construct one and test it under its own pre-registration.",
+  "what_is_measured": {
+    "decile_spread": "annualised return of the top decile minus the bottom decile, equally weighted. Beta-neutral by construction because both legs carry the same market exposure.",
+    "monotonicity": "Spearman correlation between decile number and decile mean return, across all ten deciles. A signal with genuine content should order the deciles, not merely separate the extremes -- a top decile that wins while deciles two through nine are unordered is a concentration effect, not skill.",
+    "rank_information_coefficient": "Spearman correlation between a signal's cross-sectional rank at a decision and the following 13-week return, averaged over decisions. This is the direct measure of cross-sectional skill and is beta-neutral: adding a constant market return to every name does not change the ranking."
+  },
+  "why_13": "The books rebalance quarterly, so a quarter is the horizon at which the signal is actually used. One horizon is declared and no other will be tried.",
+  "why_this_exists": "Step 295 found that neutralising the market took cash conversion from 16.65% to 1.59% -- roughly ninety per cent of its out-of-sample return was market beta rather than selection. Every signal in this project has only ever been judged on whether its top twenty beat a benchmark, and market beta alone can do that. Not one has been judged on whether the BOTTOM of its ranking underperforms, which is what cross-sectional skill actually means. This measures it, for every signal on disk, on both windows.",
+  "windows": {
+    "in_sample_2023_2026": "the saved factor score panels; the window every signal was selected on",
+    "out_of_sample_2013_2022": "rebuilt from SEC Financial Statement Data Sets; the window no signal here was selected on"
+  }
 }

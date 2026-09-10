@@ -14358,3 +14358,59 @@ consistency at p=0.0017 had a negative decile spread, and 10-K language at p=0.0
 below its own data's resolution. All three would have been reported as findings by a process
 that stopped at the p-value. The decile spread and monotonicity columns caught all three, and
 that is the argument for the screen CLAUDE.md now mandates.
+
+## Step 300 — 2026-09-10 — S6: the narrow universe was not the constraint
+
+**What this accomplished: it converted Step 296's weak null into a powered one, and the
+answer did not change.**
+
+Step 296 measured cross-sectional skill on ~509 issuers and carried an honest caveat: 13-14
+quarterly decisions cannot resolve an information coefficient of 0.03, so its null was weak
+evidence. S6 removes the restriction that caused it. **The universe is the only variable** —
+same three signals, same features, same minimum feature counts, same sector-neutral ranking,
+same 13-week horizon, same density guard, same measurements. Sector becomes the SIC two-digit
+major group taken from the filing itself, so ranking stays sector-neutral and point-in-time
+where the previous run mapped 38 hand-picked codes onto two sectors.
+
+| | narrow (Step 296) | wide (this step) |
+|---|---|---|
+| priceable issuers | 509 | **2,681** |
+| sectors | 2 | **69** |
+| names scored per decision | ~300 | **1,583 – 2,085** |
+
+| signal | mean IC | t | p | decile spread | monotone | narrow IC / monotone |
+|---|---|---|---|---|---|---|
+| growth top 5 | -0.0044 | -0.81 | 0.365 | -3.56% | **-0.05** | -0.0053 / -0.05 |
+| cash conversion | +0.0180 | +1.83 | 0.096 | -2.93% | **-0.07** | +0.0272 / +0.01 |
+| balance sheet quality | -0.0175 | -2.00 | 0.092 | -2.40% | **-0.12** | +0.0008 / -0.00 |
+
+**Nought of three clear Bonferroni. Nought of three order their deciles.**
+
+**The test now has the power Step 296 lacked, and this is the point of the step.** With
+per-decision IC dispersion of 0.061 and 39 decisions, detecting a true IC of 0.03 at t=3
+requires **38 decisions — and there are 39**. Step 296 on the narrow universe would have
+needed roughly a hundred. **The null is no longer weak evidence; it is a properly powered
+null**, and it says these signals have no cross-sectional content at a resolution that would
+have shown one.
+
+**The signals got weaker, not stronger, with more names.** Cash conversion fell from +0.0272
+to +0.0180. Balance-sheet quality flipped from +0.0008 to **-0.0175**. Every decile spread is
+negative. If the narrow universe had been hiding a real effect, five times the cross-section
+and eight times the sectors would have surfaced it; instead the estimates moved toward and
+past zero, which is what happens when a small positive number was noise.
+
+**S6 is closed, and it closes the wider question with it.** "More data for more breadth" has
+now been refuted in both of its readings. As *breadth* — more correlated return streams — it
+failed in Steps 246, 277, 279 and 285. As *depth* — more names in the cross-section, which
+was the better version of the idea and the one worth testing — it fails here, on the free US
+equity fundamental data this project has. The honest prior recorded before running was that
+Step 298 had already found nothing on the full 2,810-name price panel; that prior held.
+
+**Where this leaves the search.** Nineteen closed families, all audited, none with decile
+content, on a properly powered test across 2,681 issuers and 69 sectors. Free US equity data
+— price, fundamental, event, positioning, text, network — has been searched about as far as
+this project can search it. What remains untried is a different market, a different frequency,
+or paid data, and each of those is a decision rather than a script.
+
+**Five clocks start tomorrow.** That is the only source of genuinely new information this
+project has, and no clock here has ever been allowed to finish.

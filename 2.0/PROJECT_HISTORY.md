@@ -14203,3 +14203,54 @@ a signal that ordered its deciles would show it at any sample size.
 term. `IR = IC x sqrt(BR)` with an IC indistinguishable from zero gives an IR
 indistinguishable from zero at any breadth, and the market-neutral structure validated in
 Steps 293 and 295 is a correct piece of machinery with nothing to drive it.
+
+## Step 297 — 2026-09-10 — Section 2 of CLAUDE.md rewritten, and the dashboard carries the finding
+
+**What this accomplished: it changed the project's operating doctrine to match its own
+evidence, and put the finding where it contradicts the headline numbers.**
+
+**CLAUDE.md section 2 previously named breadth as the binding constraint**, citing Batch
+03's ≈1.15 effective independent strategies, and instructed every session to prefer
+breadth-increasing proposals. That framing directed roughly fifty steps of work. It was half
+right.
+
+The rewrite keeps the Fundamental Law framing and everything still true about breadth —
+Batch 03's 1.15, Step 292's 1.690 of four once the date offset was corrected, Step 246's
+4.16 effective assets of 35 ETFs, Step 285's 3.09 of 20 crypto assets, and the conclusion
+that every liquid domain collapses because liquid assets share macro factors.
+
+What it adds is the other term. Step 296 measured IC three beta-neutral ways across all
+thirteen signals on disk and found none clearing Bonferroni and, more decisively, **none
+ordering its deciles** — monotonicity within ±0.17 of zero for every one, with six showing a
+positive IC alongside a negative decile spread.
+
+**The doctrine change: `IR = IC x sqrt(BR)` is a product, so an IC indistinguishable from
+zero yields an IR indistinguishable from zero at any breadth. Breadth work cannot pay until
+there is skill to multiply.** Two experiments already demonstrated this and were not read
+that way at the time: Step 277 raised effective bets from 2.00 to 2.88 with XLE and bought
+0.021 of Sharpe, and Step 279 closed breadth repair by construction as noise. Steps 293 and
+295 then built a working market-neutral structure and found nothing to drive it.
+
+**The new default posture replaces breadth-first with skill-first:** demand evidence of
+cross-sectional skill *before* anything is built around a signal — rank IC at the intended
+horizon, decile spread, and **decile monotonicity**, on a window the signal was not chosen
+on. Monotonicity is named as the one that matters most and the one this project went 296
+steps without measuring. Several of the fifteen closed families would have died in an
+afternoon rather than a session.
+
+Breadth guidance is kept rather than deleted: low-correlation sources are still preferred
+over retuned variants, it is simply not where the binding constraint is, and a
+breadth-raising proposal without evidence of skill is now to be described as unlikely to
+move anything. The leverage warning is kept and extended — levering a signal with no
+cross-sectional skill multiplies a number that is already zero.
+
+**Step 296's honest limit travels with the finding, in the doctrine and on the dashboard:**
+13–14 quarterly decisions cannot detect a true IC of 0.03, which needs roughly a hundred
+decisions, so the significance null is weak evidence and the monotonicity result is the
+robust part.
+
+**The dashboard's research page now leads with it**, above the nought-of-six out-of-sample
+table, as a warning callout carrying the six most telling rows, what it means, and the power
+limit. That page now states three findings against its own headline numbers: six strategies
+displayed and four distinct, nought of six surviving out of sample, and nought of thirteen
+signals with cross-sectional skill. Typecheck and `next build` clean, `/research` prerenders.

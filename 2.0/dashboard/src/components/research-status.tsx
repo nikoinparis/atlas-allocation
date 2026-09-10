@@ -23,6 +23,11 @@ type Candidate = {
   blendedWithGrowth: Record<string, string | number>;
   measuredIn: string;
 };
+type SkillRow = { signal: string; ic: number; spread: number; monotone: number };
+type CrossSectionalSkill = {
+  headline: string; window: string; finding: string;
+  rows: SkillRow[]; whatItMeans: string; honestLimit: string; measuredIn: string;
+};
 type OutOfSampleRow = { strategy: string; excess: number; inSample: number };
 type OutOfSample = {
   headline: string; window: string; finding: string;
@@ -57,6 +62,7 @@ type ResearchStatus = {
     plainEnglish: string;
   };
   candidate: Candidate;
+  crossSectionalSkill: CrossSectionalSkill;
   outOfSample: OutOfSample;
   distinctStrategyCount: DistinctCount;
   reproducibility: Reproducibility;
@@ -131,6 +137,31 @@ export function ResearchStatus() {
             independent strategies, {data.breadth.effectiveBetsPerYear} independent bets a year, against
             roughly {data.breadth.betsNeededForInformationRatio025} needed for an information ratio of 0.25.
           </p>
+        </div>
+      </div>
+
+      <h3>Cross-sectional skill: {data.crossSectionalSkill.headline}</h3>
+      <div className="callout callout-warning">
+        <div>
+          <strong>{data.crossSectionalSkill.window}</strong>
+          <p>{data.crossSectionalSkill.finding}</p>
+          <table className="data-table">
+            <thead>
+              <tr><th>signal</th><th>rank IC</th><th>decile spread</th><th>monotonicity</th></tr>
+            </thead>
+            <tbody>
+              {data.crossSectionalSkill.rows.map((row) => (
+                <tr key={row.signal}>
+                  <td>{row.signal}</td>
+                  <td className="mono">{row.ic >= 0 ? "+" : ""}{row.ic.toFixed(4)}</td>
+                  <td className="mono">{percent(row.spread)}</td>
+                  <td className="mono">{row.monotone >= 0 ? "+" : ""}{row.monotone.toFixed(2)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p><em>{data.crossSectionalSkill.whatItMeans}</em></p>
+          <p><strong>Honest limit:</strong> {data.crossSectionalSkill.honestLimit}</p>
         </div>
       </div>
 

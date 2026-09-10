@@ -230,6 +230,52 @@
       "verdict": "38,849 events; nothing clears, and the 13G control is flat"
     }
   ],
+  "crossSectionalSkill": {
+    "finding": "Every signal on disk was measured three beta-neutral ways: rank information coefficient, top-minus-bottom decile spread, and decile monotonicity. None clears Bonferroni. More decisively, none orders its deciles -- monotonicity sits within 0.17 of zero for all thirteen. Six show a positive information coefficient alongside a negative decile spread, which cannot both describe a real signal.",
+    "headline": "Nought of thirteen",
+    "honestLimit": "The in-sample window has 13-14 quarterly decisions and cannot detect a true information coefficient of 0.03 -- that needs roughly a hundred decisions. The significance null is weak evidence. The monotonicity result carries the weight because it measures the shape of the relationship rather than its significance, and would show at any sample size.",
+    "measuredIn": "Step 296",
+    "rows": [
+      {
+        "ic": 0.0344,
+        "monotone": 0.02,
+        "signal": "Earnings yield",
+        "spread": -0.0988
+      },
+      {
+        "ic": 0.0317,
+        "monotone": -0.08,
+        "signal": "Profitability",
+        "spread": -0.1006
+      },
+      {
+        "ic": 0.0272,
+        "monotone": 0.01,
+        "signal": "Cash conversion (out of sample)",
+        "spread": 0.0234
+      },
+      {
+        "ic": 0.0174,
+        "monotone": -0.02,
+        "signal": "Cash conversion (in sample)",
+        "spread": -0.1358
+      },
+      {
+        "ic": -0.0053,
+        "monotone": -0.05,
+        "signal": "Growth top five (out of sample)",
+        "spread": -0.0549
+      },
+      {
+        "ic": -0.0091,
+        "monotone": -0.14,
+        "signal": "Balance sheet quality (in sample)",
+        "spread": -0.0501
+      }
+    ],
+    "whatItMeans": "The top-N books on this dashboard were never winning on ranking ability. They won on market beta and on holding a few names that went up. This explains the out-of-sample failure above, the transfer coefficient of -103 measured in Step 245, and Step 295's finding that neutralising the market took cash conversion from 16.65% to 1.59%. IR = IC x sqrt(BR) is a product, and an IC indistinguishable from zero gives an IR indistinguishable from zero at any breadth.",
+    "window": "13-week horizon, both windows, Bonferroni bar p < 0.0038"
+  },
   "distinctStrategyCount": {
     "displayed": 6,
     "distinct": 4,
@@ -237,7 +283,7 @@
     "measuredIn": "Step 281",
     "whyItMatters": "Counting them separately overstates how many independent bets this project holds, which is the illusion Step 245 measured as an effective 1.15 strategies and Step 277 restated as breadth without skill. Nothing has been removed: a negative result is a record, not a mistake to delete."
   },
-  "generatedAtUtc": "2026-09-07T10:14:14.636166+00:00",
+  "generatedAtUtc": "2026-09-10T11:37:02.984408+00:00",
   "headline": {
     "clocksPending": 5,
     "clocksRunning": 4,

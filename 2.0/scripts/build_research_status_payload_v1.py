@@ -150,6 +150,40 @@ def main() -> int:
             "beforeAfter": before_after(),
             "measuredIn": "Steps 261 and 262",
         },
+        "crossSectionalSkill": {
+            "headline": "Nought of thirteen",
+            "window": "13-week horizon, both windows, Bonferroni bar p < 0.0038",
+            "finding": (
+                "Every signal on disk was measured three beta-neutral ways: rank information "
+                "coefficient, top-minus-bottom decile spread, and decile monotonicity. None "
+                "clears Bonferroni. More decisively, none orders its deciles -- monotonicity "
+                "sits within 0.17 of zero for all thirteen. Six show a positive information "
+                "coefficient alongside a negative decile spread, which cannot both describe a "
+                "real signal."),
+            "rows": [
+                {"signal": "Earnings yield", "ic": 0.0344, "spread": -0.0988, "monotone": 0.02},
+                {"signal": "Profitability", "ic": 0.0317, "spread": -0.1006, "monotone": -0.08},
+                {"signal": "Cash conversion (out of sample)", "ic": 0.0272, "spread": 0.0234, "monotone": 0.01},
+                {"signal": "Cash conversion (in sample)", "ic": 0.0174, "spread": -0.1358, "monotone": -0.02},
+                {"signal": "Growth top five (out of sample)", "ic": -0.0053, "spread": -0.0549, "monotone": -0.05},
+                {"signal": "Balance sheet quality (in sample)", "ic": -0.0091, "spread": -0.0501, "monotone": -0.14},
+            ],
+            "whatItMeans": (
+                "The top-N books on this dashboard were never winning on ranking ability. They "
+                "won on market beta and on holding a few names that went up. This explains the "
+                "out-of-sample failure above, the transfer coefficient of -103 measured in Step "
+                "245, and Step 295's finding that neutralising the market took cash conversion "
+                "from 16.65% to 1.59%. IR = IC x sqrt(BR) is a product, and an IC "
+                "indistinguishable from zero gives an IR indistinguishable from zero at any "
+                "breadth."),
+            "honestLimit": (
+                "The in-sample window has 13-14 quarterly decisions and cannot detect a true "
+                "information coefficient of 0.03 -- that needs roughly a hundred decisions. The "
+                "significance null is weak evidence. The monotonicity result carries the weight "
+                "because it measures the shape of the relationship rather than its significance, "
+                "and would show at any sample size."),
+            "measuredIn": "Step 296",
+        },
         "outOfSample": {
             "headline": "Nought of six",
             "window": "2013-2022, 39 quarterly decisions, 509 weeks",

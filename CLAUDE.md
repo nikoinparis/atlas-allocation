@@ -76,38 +76,71 @@ research candidate that passed X but has not yet Y" — not "this works."
 
 ## 2. What "help me get more return without overfitting" actually means here
 
-The user's real constraint, based on the project's own evidence, is **not** a shortage
-of backtested return — it's a shortage of *independent* return. `PROJECT_HISTORY.md`
-Batch 03 measured the "10 diverse candidates" from the trend/momentum family at
-pairwise correlations of 0.84–0.98 and an effective independent strategy count of
-**≈1.15**. That number is the real ceiling on this project's current risk-adjusted
-return, and no amount of retuning the same signal family raises it.
+**Updated 2026-09-10 after Step 296. The previous version of this section named breadth as
+the binding constraint and directed roughly fifty steps of work at raising it. That was
+half right, and the missing half is the more important one.**
 
-This maps directly to the Fundamental Law of Active Management (Grinold & Kahn):
+The Fundamental Law of Active Management (Grinold & Kahn) still frames it:
 
     IR ≈ IC × sqrt(BR)
 
-where IC is the skill (information coefficient) of a signal and BR is *breadth* — the
-number of genuinely independent bets made per year. A portfolio built from many highly
-correlated variants of the same signal has breadth close to 1, no matter how many
-"candidates" are in the registry. The only ways to durably raise expected risk-adjusted
-return are: (a) find a signal with genuinely higher IC (rare, and this project's
-falsification record suggests skepticism is warranted every time one seems to appear),
-or (b) increase breadth with signals that are actually uncorrelated with what's already
-here — different asset classes, different information sources, different time
-horizons, different markets/regimes — not more parameter sweeps of momentum or
-SEC-fundamentals-cash-conversion.
+where IC is the skill of a signal and BR is *breadth*, the number of genuinely independent
+bets per year. **Both terms have now been measured in this project, and both are near
+zero — but they are not equally binding.**
 
-**Default posture: prefer breadth-increasing proposals (new, low-correlation return
-sources) over return-chasing proposals (retuned variants of an existing family).** When
-the user or a batch proposes the latter, it's fine to build and test it, but say clearly
-that it is unlikely to move the real ceiling, and quantify the correlation to existing
-candidates before calling it a new source of edge.
+**Breadth is low and has proven unraisable here.** Batch 03 measured the trend/momentum
+family at pairwise correlations of 0.84–0.98 and ≈1.15 effective independent strategies.
+Step 292 measured the current four dashboard books at **1.690 effective bets of four**,
+correlations 0.52–0.77, once a date-labelling offset was corrected. Step 246 found 35
+multi-asset ETFs give 4.16 effective assets; Step 285 found 20 crypto assets give 3.09.
+Every liquid domain collapses, because liquid assets share macro factors.
 
-Leverage is not an exception to this: levering an existing correlated signal amplifies
-both its return and its fragility (the project's own 2.00x leverage path carried a
-CSCV-estimated 37% overfitting probability and 85.9% deflated-Sharpe confidence — not
-compelling, and it doesn't add breadth, only variance).
+**IC is indistinguishable from zero, and that is the binding term.** Step 296 measured all
+thirteen signals on disk three beta-neutral ways at the cadence the books actually
+rebalance. **None clears Bonferroni. More decisively, none orders its deciles** —
+monotonicity sits within ±0.17 of zero for every signal, and six show a positive
+information coefficient alongside a *negative* top-minus-bottom decile spread, which is
+what noise looks like when measured twice.
+
+This explains the rest of the record at once. Step 245's transfer coefficient of −103.
+Step 289's nought-of-six out-of-sample failure. Step 295, where neutralising the market
+took cash conversion from 16.65% to 1.59% — ninety per cent of the return was beta. **The
+top-N books were never winning on ranking ability. They won on market beta and on holding
+a few names that went up.**
+
+**The consequence for how to prioritise.** `IR = IC × sqrt(BR)` is a product. An IC
+indistinguishable from zero yields an IR indistinguishable from zero *at any breadth*, so
+breadth work cannot pay until there is skill to multiply. Two experiments confirm this
+directly: Step 277 added XLE, which raised effective bets from 2.00 to 2.88 and bought
+0.021 of Sharpe because its own Sharpe was 0.568; Step 279 closed breadth repair by
+construction as noise. Steps 293 and 295 built a working market-neutral structure —
+delivering betas of −0.009 and +0.007 — and found nothing to drive it.
+
+**Default posture, replacing the previous breadth-first rule: demand evidence of
+cross-sectional skill BEFORE anything is built around a signal.** The screen is cheap and
+takes an afternoon: rank IC at the intended horizon, top-minus-bottom decile spread, and
+**decile monotonicity**, all on a window the signal was not chosen on. Monotonicity is the
+one that matters most and the one this project went 296 steps without measuring — a signal
+whose deciles do not order themselves has no cross-sectional content, whatever its top
+decile did. Several of the fifteen closed families would have been closed in an afternoon
+rather than a session by running it first.
+
+Breadth still matters and low-correlation sources are still preferred over retuned
+variants of an existing family — that part of the old guidance stands. It is simply not
+where the binding constraint currently is, and a proposal that raises breadth without
+evidence of skill should be described as unlikely to move anything.
+
+**One honest limit on Step 296, which must travel with the finding.** The in-sample window
+has 13–14 quarterly decisions, and detecting a true IC of 0.03 at that dispersion needs
+roughly a hundred decisions — about twenty-five years. The significance null is therefore
+weak evidence. The monotonicity result is the robust part, because it measures the *shape*
+of the relationship rather than its significance and would show at any sample size.
+
+Leverage is not an exception to any of this: levering an existing correlated signal
+amplifies both its return and its fragility (the project's own 2.00x leverage path carried
+a CSCV-estimated 37% overfitting probability and 85.9% deflated-Sharpe confidence — not
+compelling, and it doesn't add breadth, only variance). Levering a signal with no
+cross-sectional skill multiplies a number that is already zero.
 
 ## 3. Using the reference books
 

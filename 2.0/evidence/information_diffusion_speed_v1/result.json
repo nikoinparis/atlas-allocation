@@ -1,0 +1,43 @@
+{
+  "blockers_found_first": [
+    "Indonesian prices on disk are daily only",
+    "IDX endpoints return HTTP 403 behind an AWS WAF challenge"
+  ],
+  "live_trading_enabled": false,
+  "measures": [
+    "own-return autocorrelation lags 1-5",
+    "Hou-Moskowitz delay"
+  ],
+  "results": {
+    "absolute_reading": "97.1% of the response is contemporaneous; the market is fast, not slow",
+    "comparison_invalid_because": "US side is 35 ETFs, Indonesian side is 157 single stocks",
+    "comparison_valid": false,
+    "indonesia_idx": {
+      "autocorrelation": {
+        "1": 0.005831985351556223,
+        "2": -0.007879070268433349,
+        "3": 0.022612978701014644,
+        "4": 0.006081238167982555,
+        "5": 0.009952894345545762
+      },
+      "days": 2469,
+      "delay": 0.0291018379896216,
+      "stocks": 157
+    },
+    "us_etf": {
+      "autocorrelation": {
+        "1": -0.05946979254019345,
+        "2": -0.015095516552191596,
+        "3": -0.004531620935283127,
+        "4": -0.010894889359843923,
+        "5": -0.005844762514060713
+      },
+      "days": 8458,
+      "delay": 0.06971949836231181,
+      "stocks": 35
+    }
+  },
+  "strategy_promotion_authorized": false,
+  "this_is_a_diagnostic_not_a_search": true,
+  "why": "tests the premise behind the non-machine-read information idea before building a disclosure pipeline"
+}

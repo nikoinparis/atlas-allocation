@@ -14709,3 +14709,56 @@ would have been a broad price download plus a delisting treatment — the part t
 Indonesia closure called genuinely hard — in service of a test that could not have resolved
 the effect it was looking for. **A12 is closed as permanently blocked rather than parked,
 because parking implies waiting for something that could arrive.**
+
+## Step 306 — 2026-09-12 — The latency premise does not hold, and the comparison I built to test it was invalid
+
+**What this accomplished: it tested the precondition of the last untried idea before building
+anything for it, and it caught my own comparison being worthless.**
+
+Step 301's third structural asymmetry was **non-machine-read information**: IDX and OJK
+disclosures are not parsed in microseconds the way SEC EDGAR is, so a pipeline that ingests on
+publication and acts within minutes might have a window.
+
+**Two blockers surfaced before any test.** Indonesian prices on disk carry **one timestamp per
+day**, so same-day reaction speed cannot be measured at all. And IDX's endpoints return **HTTP
+403** behind an AWS WAF challenge — the same challenge the earlier scrape's saved "headers"
+file turned out to contain — so a disclosure feed needs headless-browser automation. That is a
+real build, which is exactly why its premise was worth testing first.
+
+**The premise: does information reach Indonesian prices slowly?** Measured two ways on 157
+stocks over 2,469 trading days, 2016-2026.
+
+| measure | Indonesia |
+|---|---|
+| own-return autocorrelation, lag 1 | **+0.0058** |
+| lags 2-5 | -0.0079, +0.0226, +0.0061, +0.0100 |
+| Hou-Moskowitz delay | **0.0291** |
+
+**A delay of 0.029 means 97.1% of the price response to market information arrives
+contemporaneously and 2.9% arrives late.** Hou and Moskowitz report US large caps near
+0.02-0.05 and small caps 0.10-0.20 on this measure — recorded from general knowledge of the
+2005 paper, not a read of it — which puts Indonesia in the **liquid, fast** band, not the slow
+one. The lag-1 autocorrelation of +0.006 is economically nil.
+
+**The premise is not supported, and the US comparison I built to test it is invalid.** The
+script first printed "premise NOT supported" from a comparison of Indonesia against US daily
+data. The only US daily data on disk is **35 ETFs**. An ETF is a basket arbitraged against its
+holdings: it incorporates market information mechanically and near-instantly, and its negative
+lag-1 autocorrelation (-0.0595) is bid-ask bounce rather than reversal. **Comparing 157 single
+stocks to 35 baskets measures the difference between instruments, not between markets.** No US
+daily single-stock panel exists here — `clean_full_history_prices_v1` is weekly.
+
+The comparison is kept in the script and printed, labelled invalid, because deleting it would
+hide that it was attempted. The conclusion rests instead on Indonesia's absolute level, which
+needs no comparison to read: **a market where 97% of the response is contemporaneous is not
+one where disclosures sit unread for minutes.**
+
+**What this closes.** The third and last of Step 301's structural asymmetries. Capacity-
+constrained markets closed in Step 302, holding period in Step 303, and information latency
+here. All three made testable predictions, which is what made the framework worth having, and
+all three failed.
+
+**What would still be needed to test the idea directly**, recorded so a revival starts from
+the real obstacle rather than the idea: intraday Indonesian prices, which nothing free
+supplies at length, and a disclosure feed behind a WAF that requires browser automation. The
+premise failing means neither is worth acquiring.

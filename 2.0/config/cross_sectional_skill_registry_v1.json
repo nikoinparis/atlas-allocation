@@ -21,6 +21,24 @@
     "trials_declared_here": 3,
     "why": "The fundamental signals have only ever been measured on ~509 issuers because the SEC roster was built for technology and energy. SEC 10-K/10-Q filers number 8,510 in sample quarters and roughly 2,616 of them can be priced from the panel on disk. Step 296's own power note says 13-14 quarterly decisions cannot resolve an IC of 0.03; a five-fold deeper cross-section is the one free change that affects that."
   },
+  "extended_S8_2026_09_11": {
+    "bonferroni": "0.05/6 = 0.0083, stacked on every configuration searched across 302 steps",
+    "declared_reading": {
+      "closes_the_horizon_argument": "monotonicity near zero at long horizons too, which would mean holding period is not the missing ingredient",
+      "inconclusive": "fewer than 12 usable decisions at a horizon",
+      "worth_pursuing": "monotonicity above 0.5 with interpretable deciles at 52 or 104 weeks, where every shorter horizon gave within 0.17 of zero"
+    },
+    "horizons_added": [
+      52,
+      104
+    ],
+    "the_measure_that_decides": "monotonicity, again, because it reads the shape of the relationship rather than its significance and does not depend on having many independent windows",
+    "the_overlap_problem_stated_before_running": "A 104-week horizon on a 2013-2022 window cannot give many independent observations. Quarterly decisions at that horizon overlap seven subsequent ones; taking only non-overlapping decisions would leave about five. Neither is a real sample. The screen therefore uses overlapping decisions with a block bootstrap sized to the HORIZON rather than the four weeks used in earlier screens, and the effective sample is far smaller than n. The significance test will be badly underpowered and that is declared here rather than discovered afterwards.",
+    "this_is_a_diagnostic_not_a_search": true,
+    "trials_declared_here": 6,
+    "universe": "the wide one from Step 300, 2,681 priceable filers across 69 SIC major groups, because few decisions makes per-decision precision matter more, and a 2,000-name cross-section measures an IC far better than a 500-name one",
+    "why": "Every skill screen in this project used 4 or 13 weeks. The one structural asymmetry that favours a small operator is holding period -- a fund that underperforms for three years loses its capital and an individual with no redemptions does not -- and it has never been tested. Value and quality effects are documented to work over years and fail over quarters, so every horizon tried here sits where they are weakest."
+  },
   "known_weaknesses_declared_up_front": [
     "The 2013-2022 universe is rebuilt from FSDS filer rosters and the 2023-2026 universe is the saved membership roster; they are differently built and the two windows' absolute levels are not directly comparable. Each window is read on its own.",
     "The universe is technology and energy only, so a signal that works broadly may not show here, and vice versa.",

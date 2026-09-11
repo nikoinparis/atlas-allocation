@@ -1,0 +1,107 @@
+{
+  "bonferroni_bar": 0.008333333333333333,
+  "clearing_bonferroni": [
+    "cash_conversion_breadth20 @ 104w"
+  ],
+  "horizons": [
+    52,
+    104
+  ],
+  "live_trading_enabled": false,
+  "monotonic_above_half": [],
+  "overlap_declared_before_running": true,
+  "results": {
+    "balance_sheet_quality @ 104w": {
+      "block_decisions": 8,
+      "bootstrap_p": 0.42925,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": -0.004775668780140019,
+      "decile_spread_over_horizon": -0.009528530547982531,
+      "deciles_interpretable": true,
+      "decisions": 39,
+      "inconclusive": false,
+      "mean_ic": -0.01775011022055962,
+      "median_names": 2094,
+      "monotonicity": 0.03993783993783996,
+      "non_overlapping_equivalent": 4,
+      "t_stat": -1.9810081810963496
+    },
+    "balance_sheet_quality @ 52w": {
+      "block_decisions": 4,
+      "bootstrap_p": 0.2165,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": -0.0002527259970445117,
+      "decile_spread_over_horizon": -0.0002527259970444804,
+      "deciles_interpretable": true,
+      "decisions": 39,
+      "inconclusive": false,
+      "mean_ic": -0.02097348923556264,
+      "median_names": 2094,
+      "monotonicity": -0.007925407925407923,
+      "non_overlapping_equivalent": 9,
+      "t_stat": -2.0669829758759777
+    },
+    "cash_conversion_breadth20 @ 104w": {
+      "block_decisions": 8,
+      "bootstrap_p": 0.00525,
+      "clears_bonferroni": true,
+      "decile_spread_annualised": -0.036516041022356505,
+      "decile_spread_over_horizon": -0.07169866079276656,
+      "deciles_interpretable": true,
+      "decisions": 39,
+      "inconclusive": false,
+      "mean_ic": 0.03911063473863384,
+      "median_names": 1588,
+      "monotonicity": -0.15866355866355866,
+      "non_overlapping_equivalent": 4,
+      "t_stat": 4.873944519005189
+    },
+    "cash_conversion_breadth20 @ 52w": {
+      "block_decisions": 4,
+      "bootstrap_p": 0.06325,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": -0.04870222062933416,
+      "decile_spread_over_horizon": -0.0487022206293342,
+      "deciles_interpretable": true,
+      "decisions": 39,
+      "inconclusive": false,
+      "mean_ic": 0.028118662987329974,
+      "median_names": 1588,
+      "monotonicity": -0.06635586635586636,
+      "non_overlapping_equivalent": 9,
+      "t_stat": 2.8059886547814847
+    },
+    "growth_top5 @ 104w": {
+      "block_decisions": 8,
+      "bootstrap_p": 0.05925,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": 0.0030911772224813117,
+      "decile_spread_over_horizon": 0.006191909821583259,
+      "deciles_interpretable": true,
+      "decisions": 39,
+      "inconclusive": false,
+      "mean_ic": 0.02004831902137374,
+      "median_names": 1915,
+      "monotonicity": 0.0679098679098679,
+      "non_overlapping_equivalent": 4,
+      "t_stat": 3.682230934463361
+    },
+    "growth_top5 @ 52w": {
+      "block_decisions": 4,
+      "bootstrap_p": 0.602,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": -0.009778895674090626,
+      "decile_spread_over_horizon": -0.00977889567409067,
+      "deciles_interpretable": true,
+      "decisions": 39,
+      "inconclusive": false,
+      "mean_ic": 0.0042294874972264316,
+      "median_names": 1915,
+      "monotonicity": -0.016006216006216014,
+      "non_overlapping_equivalent": 9,
+      "t_stat": 0.6964118376194461
+    }
+  },
+  "strategy_promotion_authorized": false,
+  "this_is_a_diagnostic_not_a_search": true
+}

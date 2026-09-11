@@ -50,27 +50,6 @@ candidate against, or if a clock produces a result that points somewhere specifi
 
 ## S tier
 
-### S8. Run the skill screen at a horizon institutions cannot hold *(new 2026-09-11)*
-**Status:** the clearest untested cell left, found by auditing this project's own horizons.
-**The gap:** every cross-sectional skill screen run here used **4 or 13 weeks** — Steps 296,
-298, 299, 300 and 302 without exception. Longer horizons appear in the codebase only as signal
-*lookbacks* (52-week momentum), never as the forward window being predicted. The price panel
-holds **15.7 years**, so 52- and 104-week horizons are testable today at no acquisition cost.
-**Why it is the right place to look, structurally:** Step 301 established that a small operator
-cannot compete on speed, market making, breadth or data. The one asymmetry that genuinely
-favours the small side is **holding period**. A fund that underperforms for three years loses
-its capital; an individual with no redemptions does not. That is not a data advantage or a
-speed advantage — it is a constraint the incumbents have and we do not, which is the only kind
-of edge worth looking for after 302 steps.
-**It also fits the evidence.** Value and quality effects are documented to work over years and
-to fail over quarters, and every horizon tested here sits inside the window where they are
-known to be weakest.
-**Run the monotonicity screen first**, density guard on, both windows, before any book.
-**Honest prior:** a 104-week horizon on a 15.7-year panel yields few independent observations,
-so the significance test will be badly underpowered and the monotonicity measure will again
-carry the weight. Overlapping windows must be handled with a block bootstrap sized to the
-horizon, not the 4-week blocks used so far.
-
 
 ### S1. SEC 10-K language change — extend the corpus to 2011  *(reduced scope)*
 **Status:** source-blocked since Step 202, never unblocked. This is the lost item that prompted
@@ -369,3 +348,4 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 | **Remaining closed families audited (new 2026-09-10)** | **Audit complete: nought of fourteen order their deciles.** SUE/PEAD, 10-K language, 13F ownership change and fractional differencing rebuilt from 131k SUE quarters, 8,327 filings, 110.3M 13F rows and the price panel. Only 10-K language clears Bonferroni (p=0.0030) and it fails three other ways: decile spread **-0.80%** against a positive IC, monotonicity +0.11, and an effect a quarter the size of the ~0.110 Step 255 established as the minimum establishable on that sample. A suspicion that forward-filling inflated its n was tested and **not upheld** — 2 of 30 samples repeat, not most. All nineteen closures stand. | Step 299 |
 | **Wide-universe skill screen (was S6)** | **Closed, and it closes the depth argument.** Universe from 509 issuers / 2 sectors to **2,681 / 69**, names scored per decision from ~300 to **1,583-2,085**, universe the only variable. Nought of three clear Bonferroni; nought of three order their deciles (-0.05, -0.07, -0.12). **The signals got weaker with more names** — cash conversion +0.0272 to +0.0180, balance sheet +0.0008 to **-0.0175**. **The null is now properly powered:** detecting a true IC of 0.03 at t=3 needs 38 decisions and there are 39, where Step 296 would have needed ~100. "More data for more breadth" is refuted in both readings — as breadth in Steps 246/277/279/285, as depth here. | Step 300 |
 | **Indonesian cross-sectional, price signals (was S7)** | **Same answer as the US.** Point-in-time IDX80 roster, 157 tickers against an 80-name index so exits are present, 97 monthly decisions, median 79 names. Nought of four clear Bonferroni; **nought of four order their deciles** (+0.01 to +0.04). Low volatility shows IC +0.0281 with a **-9.92%** decile spread and the size proxy a negative IC with **+14.21%** -- the same two-measurements-disagreeing signature seen in every US family. **Honest limit:** 79-name cross-sections measure each decision's IC imprecisely, so detecting a true IC of 0.03 would need 205-517 decisions against 97; the significance null is underpowered and the monotonicity result carries the weight. **Not closed:** Indonesian *fundamental* signals, because no usable fundamental file is on disk. Step 301's capacity-constraint argument made a testable prediction and it did not hold on price signals. | Step 302 |
+| **Long-horizon skill screen (was S8)** | **Closed. Long horizons hold nothing short ones lack.** 52 and 104 weeks on the wide universe, 1,588-2,094 names per decision. Nought of six order their deciles (-0.16 to +0.07). One clears Bonferroni -- cash conversion at 104w, IC +0.0391, p=0.0053 -- and fails three ways: it rests on **four independent observations**, its decile spread is **-3.65%/yr against a positive IC**, and its monotonicity is **-0.16**. **Kept as a method note:** t-statistics climb with horizon (2.81 to 4.87) purely from overlap; the horizon-sized block bootstrap is far more conservative, and reading the t instead would have manufactured three discoveries. Closes the holding-period argument, the strongest of Step 301's three structural asymmetries. | Step 303 |

@@ -14534,3 +14534,62 @@ matches nothing, and returns a confident empty answer. Eleventh recorded measure
 the prediction it made was testable, which is the point. It predicted that a less-arbitraged
 market might hold what the US does not. On price signals, in the one such market available,
 it does not.
+
+## Step 303 — 2026-09-12 — Long horizons do not reveal what short ones hid
+
+**What this accomplished: it tested the last structural asymmetry a small operator has, and
+the asymmetry does not pay.**
+
+Every skill screen in this project used 4 or 13 weeks. Step 301 argued that the one advantage
+a small operator holds over a fund is **holding period** — a fund that underperforms for three
+years loses its capital, an individual with no redemptions does not — and that value and
+quality effects are documented to work over years and fail over quarters. That made a testable
+prediction. This tests it at 52 and 104 weeks, on the wide universe: **2,694 priceable filers,
+69 SIC major groups, 1,588-2,094 names scored per decision.**
+
+| signal @ horizon | n | **indep** | mean IC | t | p | spread/yr | monotone |
+|---|---|---|---|---|---|---|---|
+| growth top 5 @ 52w | 39 | 9 | +0.0042 | +0.70 | 0.602 | -0.98% | **-0.02** |
+| cash conversion @ 52w | 39 | 9 | +0.0281 | +2.81 | 0.063 | -4.87% | **-0.07** |
+| balance sheet @ 52w | 39 | 9 | -0.0210 | -2.07 | 0.217 | -0.03% | **-0.01** |
+| growth top 5 @ 104w | 39 | 4 | +0.0200 | +3.68 | 0.059 | +0.31% | **+0.07** |
+| **cash conversion @ 104w** | 39 | **4** | **+0.0391** | **+4.87** | **0.0053** | **-3.65%** | **-0.16** |
+| balance sheet @ 104w | 39 | 4 | -0.0178 | -1.98 | 0.429 | -0.48% | **+0.04** |
+
+**Nought of six order their deciles.** Monotonicity spans -0.16 to +0.07, the same band every
+horizon from one week to thirteen produced. That is now **33 signal-horizon combinations across
+five markets and six horizons with no cross-sectional content in any of them.**
+
+**One clears Bonferroni and it should not be believed.** Cash conversion at 104 weeks measures
+an IC of +0.0391 at t=+4.87, p=0.0053. Three things disqualify it.
+
+It rests on **four independent observations.** The `indep` column is n divided by the
+horizon's overlap, and it is the honest sample size: 39 quarterly decisions at a two-year
+horizon are 39 heavily overlapping views of about four non-overlapping periods. A
+two-decade-spanning claim built on four windows is an anecdote with a t-statistic attached.
+
+Its **decile spread is -3.65% a year against a positive information coefficient.** Two
+measurements of the same signal disagreeing in sign, which has now appeared in the US
+fundamentals, the US price families, the text signal, the Indonesian price signals and here.
+
+And its **monotonicity is -0.16** — it does not order its deciles, so whatever the extremes
+did is not a ranking.
+
+**A methodological note on the rising t-statistics.** They climb with horizon: 2.81 at 52
+weeks, 4.87 at 104. That is overlap inflating apparent precision, not signal strengthening.
+The block bootstrap was sized to the horizon for exactly this reason and its p-values are far
+more conservative than the t-statistics imply — 0.0633 where t is 2.81, 0.0592 where t is
+3.68. **Reading the t-statistic here instead of the bootstrap would have produced three
+"discoveries" from overlapping windows.** The declared design anticipated this and said so
+before any number existed.
+
+**What this closes.** The holding-period argument. It was the strongest of the three
+structural asymmetries Step 301 identified, the other two being capacity-constrained markets
+(closed in Step 302) and non-machine-read information (untested). Long horizons do not contain
+what short ones lack.
+
+**One operational note.** The screen failed on first run because Step 300's FSDS data had been
+deleted in the repository cleanup — it was correctly classified as re-downloadable and
+correctly removed. `acquire_sec_fsds_history_v1.py` restored all 44 quarters and 3.94GB with
+zero problems in about twenty minutes. **The rebuild path is verified rather than assumed**,
+which is the first time that has been true of anything in this repository.

@@ -50,6 +50,27 @@ candidate against, or if a clock produces a result that points somewhere specifi
 
 ## S tier
 
+### S8. Run the skill screen at a horizon institutions cannot hold *(new 2026-09-11)*
+**Status:** the clearest untested cell left, found by auditing this project's own horizons.
+**The gap:** every cross-sectional skill screen run here used **4 or 13 weeks** — Steps 296,
+298, 299, 300 and 302 without exception. Longer horizons appear in the codebase only as signal
+*lookbacks* (52-week momentum), never as the forward window being predicted. The price panel
+holds **15.7 years**, so 52- and 104-week horizons are testable today at no acquisition cost.
+**Why it is the right place to look, structurally:** Step 301 established that a small operator
+cannot compete on speed, market making, breadth or data. The one asymmetry that genuinely
+favours the small side is **holding period**. A fund that underperforms for three years loses
+its capital; an individual with no redemptions does not. That is not a data advantage or a
+speed advantage — it is a constraint the incumbents have and we do not, which is the only kind
+of edge worth looking for after 302 steps.
+**It also fits the evidence.** Value and quality effects are documented to work over years and
+to fail over quarters, and every horizon tested here sits inside the window where they are
+known to be weakest.
+**Run the monotonicity screen first**, density guard on, both windows, before any book.
+**Honest prior:** a 104-week horizon on a 15.7-year panel yields few independent observations,
+so the significance test will be badly underpowered and the monotonicity measure will again
+carry the weight. Overlapping windows must be handled with a block bootstrap sized to the
+horizon, not the 4-week blocks used so far.
+
 
 ### S1. SEC 10-K language change — extend the corpus to 2011  *(reduced scope)*
 **Status:** source-blocked since Step 202, never unblocked. This is the lost item that prompted

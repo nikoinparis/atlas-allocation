@@ -117,22 +117,6 @@ to read when the clock has enough weeks — before any Sharpe.**
 
 ## A tier
 
-### A12. Broad IDX price history — the one acquisition that would change a test's power *(new 2026-09-12)*
-**Status:** blocked on data, and the block is now one named thing rather than four vague ones.
-**What exists:** Indonesian fundamentals for **983 companies**, 24 quarterly snapshots
-2019-2026, from IDX's official Financial Data and Ratio report. Assets, liabilities, equity and
-debt-to-equity confirmed by accounting identity (Step 304).
-**What is missing:** prices. The panel covers **159** tickers because it was built for IDX80,
-so a screen today runs on 157 names over ~20 decisions — a fifth of Step 302's decisions.
-Step 302's power arithmetic needed 205-517. Running it as-is produces a null nobody should
-believe.
-**Why this acquisition is different from the others parked here:** it changes *power*, not
-scope. 983 names against 157 is deciles of 98 against deciles of 15, and Step 300 showed what
-a wide cross-section does for per-decision precision.
-**Cost:** an acquisition script against a broad Indonesian price source, plus a survivorship
-treatment for delisted names — the part the original Indonesia closure flagged and the part
-that is genuinely hard.
-
 
 ### A8. EU short-selling registers *(new 2026-09-10, owner-proposed)*
 **Status:** never attempted. Free, daily, from ESMA and national regulators.
@@ -365,3 +349,4 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 | **Wide-universe skill screen (was S6)** | **Closed, and it closes the depth argument.** Universe from 509 issuers / 2 sectors to **2,681 / 69**, names scored per decision from ~300 to **1,583-2,085**, universe the only variable. Nought of three clear Bonferroni; nought of three order their deciles (-0.05, -0.07, -0.12). **The signals got weaker with more names** — cash conversion +0.0272 to +0.0180, balance sheet +0.0008 to **-0.0175**. **The null is now properly powered:** detecting a true IC of 0.03 at t=3 needs 38 decisions and there are 39, where Step 296 would have needed ~100. "More data for more breadth" is refuted in both readings — as breadth in Steps 246/277/279/285, as depth here. | Step 300 |
 | **Indonesian cross-sectional, price signals (was S7)** | **Same answer as the US.** Point-in-time IDX80 roster, 157 tickers against an 80-name index so exits are present, 97 monthly decisions, median 79 names. Nought of four clear Bonferroni; **nought of four order their deciles** (+0.01 to +0.04). Low volatility shows IC +0.0281 with a **-9.92%** decile spread and the size proxy a negative IC with **+14.21%** -- the same two-measurements-disagreeing signature seen in every US family. **Honest limit:** 79-name cross-sections measure each decision's IC imprecisely, so detecting a true IC of 0.03 would need 205-517 decisions against 97; the significance null is underpowered and the monotonicity result carries the weight. **Not closed:** Indonesian *fundamental* signals, because no usable fundamental file is on disk. Step 301's capacity-constraint argument made a testable prediction and it did not hold on price signals. | Step 302 |
 | **Long-horizon skill screen (was S8)** | **Closed. Long horizons hold nothing short ones lack.** 52 and 104 weeks on the wide universe, 1,588-2,094 names per decision. Nought of six order their deciles (-0.16 to +0.07). One clears Bonferroni -- cash conversion at 104w, IC +0.0391, p=0.0053 -- and fails three ways: it rests on **four independent observations**, its decile spread is **-3.65%/yr against a positive IC**, and its monotonicity is **-0.16**. **Kept as a method note:** t-statistics climb with horizon (2.81 to 4.87) purely from overlap; the horizon-sized block bootstrap is far more conservative, and reading the t instead would have manufactured three discoveries. Closes the holding-period argument, the strongest of Step 301's three structural asymmetries. | Step 303 |
+| **Broad IDX price acquisition (was A12)** | **Closed as permanently blocked. Do not acquire.** Coverage and survivorship are fine -- Yahoo gives 23/25 live names >200 bars, and only 24 of 983 tickers ever disappear (2.4% attrition, ~1.2% residual blind spot). The obstacle is calendar time. Indonesian fundamentals start 2021-03, giving **22 usable quarterly decisions** against the **84-397** needed. **Corrects a Step 304 error:** a first pass claimed 900 names would cut the requirement to 17-45 and "close the arithmetic". That assumed all per-decision IC variance is sampling error; decomposing Step 302's dispersions shows sampling is 0.115 and true time variation 0.086-0.196, and only the first shrinks with names. 79→900 names improves dispersion by 12%, not 240%. Monthly snapshots do not help either -- companies file quarterly, so monthly rows repeat. Reaching 84 decisions needs ~21 years; it will be 2040. | Step 305 |

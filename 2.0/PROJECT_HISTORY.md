@@ -14651,3 +14651,61 @@ showed what a wide cross-section does for precision.
 Indonesia programme carried before Step 302, and it is worth being precise that this time the
 block is narrower and named: not "local history, benchmark, cost and forward gates" but one
 thing, broad IDX price history.
+
+## Step 305 — 2026-09-12 — Scoping A12: do not buy the broad IDX prices
+
+**What this accomplished: it killed a planned acquisition before any of it was downloaded,
+and it corrected an error I made one step earlier.**
+
+Step 304 recorded Indonesian fundamentals as blocked on one thing — broad IDX price history —
+and implied that acquiring it would make the test real. This scopes that acquisition. **It
+would not.**
+
+**Coverage and survivorship are fine, which was the expected obstacle.** Yahoo Finance, the
+existing source, gives **23 of 25** currently-listed sampled names more than 200 daily bars.
+Survivorship exposure is far smaller than the original Indonesia closure implied: across 24
+snapshots the universe **grows monotonically from 727 names in 2021-03 to 959 in 2026-06**,
+almost entirely IPOs, and only **24 of 983 tickers ever disappear** — 2.4% attrition. Yahoo
+recovers about half of a delisted sample, leaving a residual blind spot near **1.2%** of the
+universe. That is small, and more importantly it is now measured rather than feared.
+
+**The obstacle is calendar time, and no acquisition fixes it.**
+
+| | |
+|---|---|
+| usable snapshots (≥200 rows) | **22**, 2021-03 to 2026-06 |
+| names per decision if broadly priced | 828 – 959 |
+| decisions needed for a true IC of 0.03 at t=3 | **84 – 397** |
+
+**I got this wrong in the previous step's framing and the correction is the point.** My first
+calculation said a 900-name cross-section would cut the decisions needed by eleven times, to
+roughly 17-45, and that 22 available "closes the arithmetic for the first time". That assumed
+**all** per-decision IC variance is cross-sectional sampling error. It is not. Decomposing
+Step 302's measured dispersions at 79 names:
+
+| signal | sd @ 79 | sampling component | true time variation | sd @ 900 | decisions needed |
+|---|---|---|---|---|---|
+| momentum 12-1 | 0.227 | 0.115 | **0.196** | 0.199 | **397** |
+| low volatility | 0.211 | 0.115 | **0.177** | 0.181 | **326** |
+| short-term reversal | 0.185 | 0.115 | **0.145** | 0.149 | **222** |
+| size proxy | 0.143 | 0.115 | **0.086** | 0.092 | **84** |
+
+The sampling component vanishes with more names; **the true time variation in the information
+coefficient does not, and it dominates.** Going from 79 to 900 names takes the dispersion from
+0.227 to 0.199 — a 12% improvement, not the 240% my first pass implied. The decisions needed
+fall from 205-517 to 84-397, against **22 available**. The gap is a factor of four to eighteen.
+
+**Nor does sampling more often fix it.** The IDX report publishes monthly, so monthly snapshots
+are obtainable — but companies file quarterly, and a monthly snapshot of a quarterly filing
+repeats its predecessor. That is the same dependence Step 299 had to check when an annual 10-K
+signal was forward-filled onto a weekly grid: more rows, not more information.
+
+**Verdict: do not acquire.** Indonesian fundamental history begins in 2021. Reaching 84
+decisions needs about twenty-one years of quarterly data. The constraint is that the data does
+not exist yet, and it will be 2040 before it does.
+
+**What this cost and what it saved.** The scoping took one step. The acquisition it prevented
+would have been a broad price download plus a delisting treatment — the part the original
+Indonesia closure called genuinely hard — in service of a test that could not have resolved
+the effect it was looking for. **A12 is closed as permanently blocked rather than parked,
+because parking implies waiting for something that could arrive.**

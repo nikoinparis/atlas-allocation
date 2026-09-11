@@ -50,6 +50,20 @@ candidate against, or if a clock produces a result that points somewhere specifi
 
 ## S tier
 
+### S7. Indonesian cross-sectional equity — the one candidate that fits the constraint *(new 2026-09-11)*
+**Status:** data, membership and a written protocol are already on disk
+(`docs/INDONESIA_EQUITY_RESEARCH_V1.md`). Parked since A6 because it needed shorting; Steps
+293 and 295 built and validated the long-short machinery, so the blocker is gone.
+**Why it now outranks everything else free:** Step 301 established that the edge at this scale,
+if one exists, lives where institutional capacity constraints bite -- markets too small for a
+multi-billion-dollar firm to bother with. Indonesia is that; US large-cap technology is the
+opposite. Every one of the nineteen closed families was tested in the most crowded, most
+arbitraged cross-section available.
+**Run the monotonicity screen FIRST**, before any book is built (CLAUDE.md section 2), with the
+density guard from Step 298. If the deciles do not order, it closes in an afternoon.
+**Honest prior:** thin liquidity, wide spreads, and a borrow market that may not exist for the
+short leg. The cost ladder and a short-sale feasibility check are not optional here.
+
 
 ### S1. SEC 10-K language change — extend the corpus to 2011  *(reduced scope)*
 **Status:** source-blocked since Step 202, never unblocked. This is the lost item that prompted

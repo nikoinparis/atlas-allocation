@@ -14414,3 +14414,61 @@ or paid data, and each of those is a decision rather than a script.
 
 **Five clocks start tomorrow.** That is the only source of genuinely new information this
 project has, and no clock here has ever been allowed to finish.
+
+## Step 301 — 2026-09-11 — Why the comparison to Jane Street and Citadel was the wrong frame
+
+**What this accomplished: it explained the project's position rather than producing a
+result, and it says what kind of edge is and is not reachable from here.**
+
+The question was how firms like Jane Street and Citadel earn what they earn, and whether
+something in it is transferable. Researched rather than asserted, and the answer is that
+they are mostly not doing the thing this project has been doing.
+
+**Jane Street and Citadel Securities are market makers.** Jane Street booked **$39.6bn of
+net trading revenue in 2025**, accounts for **more than 10% of North American equity
+trading**, and leads in ETFs. Citadel Securities is the counterparty to a large share of US
+retail order flow. That revenue is the bid-ask spread captured across enormous volume, not
+a forecast that turned out to be right. The inputs are exchange memberships, co-location,
+sub-millisecond infrastructure, regulatory capital, and a **$45bn equity base** that lets
+them warehouse risk for days rather than flatten by the close. **None of it is a signal, and
+none of it is reachable with free data on a laptop.** Comparing a research project to a
+market maker is comparing a forecast to a toll booth.
+
+**Citadel the hedge fund is a different business and the more relevant comparison — but the
+lesson from it is not what it looks like.** Their edge is almost certainly not a higher
+information coefficient. Published estimates of institutional equity ICs sit in the same
+0.02-0.05 band this project has been measuring. Their edge is **breadth**, and the
+Fundamental Law makes the requirement explicit:
+
+| IC | bets/yr for IR 0.5 | for IR 1.0 | for IR 2.0 |
+|---|---|---|---|
+| 0.02 | 625 | 2,500 | 10,000 |
+| 0.03 | 278 | 1,111 | 4,444 |
+| 0.05 | 100 | 400 | 1,600 |
+| 0.10 | 25 | 100 | 400 |
+
+**This project measured an IC indistinguishable from zero and a breadth of 1.69 of 4.** Even
+granting an IC of 0.03 — better than anything measured here — an information ratio of 1.0
+would need **1,111 independent bets a year**. Step 246 found 35 ETFs give 4.16 effective
+assets and Step 285 found 20 crypto assets give 3.09. The gap is three orders of magnitude,
+and it is not closeable by finding a better signal.
+
+**So the honest reframing.** The question "why can't we find alpha like they do" contains a
+false premise. They are not finding a better signal; they are running thousands of small
+ones at once, across asset classes, geographies and horizons a laptop cannot reach, or they
+are market making, which is not forecasting at all. A retail-scale operation on free data
+competing on cross-sectional US equity signal is competing in the one place where capacity
+constraints bind least for the incumbents and most for the entrant.
+
+**What this does not say.** It does not say no edge exists at this scale. It says the edge,
+if any, is where institutional capacity constraints bite: markets too small to be worth a
+multi-billion-dollar firm's attention, horizons too long for career risk, or structures with
+no signal in them at all. The Indonesian panel already on disk is the one candidate here that
+fits that description, and Steps 293 and 295 built the long-short machinery it was blocked on.
+
+**And the finding that is already banked.** Nineteen families closed, every incumbent failed
+out of sample, and the process that produced those verdicts — pre-registration, declared
+signs, forward clocks, the monotonicity screen, ten recorded measurement defects — is the
+durable output. A research process that correctly kills what does not work is worth more than
+a backtest that looks good, and this one has now been tested against its own results 301
+times.

@@ -117,6 +117,22 @@ to read when the clock has enough weeks — before any Sharpe.**
 
 ## A tier
 
+### A12. Broad IDX price history — the one acquisition that would change a test's power *(new 2026-09-12)*
+**Status:** blocked on data, and the block is now one named thing rather than four vague ones.
+**What exists:** Indonesian fundamentals for **983 companies**, 24 quarterly snapshots
+2019-2026, from IDX's official Financial Data and Ratio report. Assets, liabilities, equity and
+debt-to-equity confirmed by accounting identity (Step 304).
+**What is missing:** prices. The panel covers **159** tickers because it was built for IDX80,
+so a screen today runs on 157 names over ~20 decisions — a fifth of Step 302's decisions.
+Step 302's power arithmetic needed 205-517. Running it as-is produces a null nobody should
+believe.
+**Why this acquisition is different from the others parked here:** it changes *power*, not
+scope. 983 names against 157 is deciles of 98 against deciles of 15, and Step 300 showed what
+a wide cross-section does for per-decision precision.
+**Cost:** an acquisition script against a broad Indonesian price source, plus a survivorship
+treatment for delisted names — the part the original Indonesia closure flagged and the part
+that is genuinely hard.
+
 
 ### A8. EU short-selling registers *(new 2026-09-10, owner-proposed)*
 **Status:** never attempted. Free, daily, from ESMA and national regulators.

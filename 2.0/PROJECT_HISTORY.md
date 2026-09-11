@@ -14593,3 +14593,61 @@ deleted in the repository cleanup — it was correctly classified as re-download
 correctly removed. `acquire_sec_fsds_history_v1.py` restored all 44 quarters and 3.94GB with
 zero problems in about twenty minutes. **The rebuild path is verified rather than assumed**,
 which is the first time that has been true of anything in this repository.
+
+## Step 304 — 2026-09-12 — The Indonesian fundamental vintages are real, and the binding constraint is prices
+
+**What this accomplished: it established that the last untested cell in the free-data grid
+contains genuine data, and identified exactly what would be needed to test it properly.**
+
+Step 302 closed Indonesian *price* signals and left fundamentals untested because an earlier
+scan found "0 usable files". That scan was wrong: it globbed for `*.csv` and the data is
+**JSON**. Of the directory's 32MB, 29MB is a vendored Go binary (`idxlens`) and its tarball;
+the data is the remaining 3MB.
+
+**What is actually there.** 24 snapshots of IDX's official *Financial Data and Ratio of
+Listed Companies* report, **2019-12 through 2026-06**, quarterly from 2021. **983 distinct
+tickers**, up to 960 rows per snapshot, 26 fields per row covering sector, industry, ticker,
+reporting period, balance sheet and six ratios.
+
+**The columns are unlabelled, so they were decoded by identity rather than guessed.** The
+scraped header file turned out to be an AWS WAF challenge response, not column names.
+
+| test | result |
+|---|---|
+| `col11 = col12 + col13` | median relative error **0.00000** across all 960 rows |
+| `col22 = col12 / col13` | median relative error **0.0036** |
+
+The first is the accounting identity, so col11/12/13 are **total assets, total liabilities
+and total equity**. The second makes col22 **debt-to-equity**. Sector, industry, ticker,
+company and period sit at fixed positions 1, 3, 4, 5 and 7. The remaining ratio columns did
+not match any simple relation among the fields present and are probably computed on
+trailing-twelve-month figures; they are left undecoded rather than assumed.
+
+**The binding constraint is prices, not fundamentals.**
+
+| | count |
+|---|---|
+| companies with fundamentals | **983** |
+| tickers in the Indonesian price panel | **159** |
+| usable overlap | **157** |
+
+The price panel was built for IDX80 research and covers the index and its exits. A
+fundamental screen today would therefore run on about **157 names over roughly 20 quarterly
+decisions** — double Step 302's 79-name cross-section but a fifth of its 97 decisions.
+
+**That is not enough, and Step 302's own power arithmetic says so.** Detecting a true IC of
+0.03 on 79-name cross-sections needed 205-517 decisions. A wider cross-section improves
+per-decision precision, but 20 decisions is an order of magnitude short whichever way the
+trade-off falls. **Running the screen on what is on disk would produce a null nobody should
+believe**, which is the failure mode this project has spent 304 steps avoiding.
+
+**What would make it a real test.** Prices for the broader IDX market — 983 names rather than
+159. That is a genuine acquisition rather than a rerun, and it is the first time in many steps
+that acquiring data would materially change a test's power rather than just its scope: 983
+names against 157 is the difference between deciles of 15 and deciles of 98, and Step 300
+showed what a wide cross-section does for precision.
+
+**So this is recorded as blocked on data, not as a null.** That is the same status the
+Indonesia programme carried before Step 302, and it is worth being precise that this time the
+block is narrower and named: not "local history, benchmark, cost and forward gates" but one
+thing, broad IDX price history.

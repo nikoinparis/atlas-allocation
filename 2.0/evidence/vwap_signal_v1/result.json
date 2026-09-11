@@ -1,0 +1,62 @@
+{
+  "bonferroni_bar": 0.01,
+  "correlation_with_short_term_reversal": {
+    "vwap_band_1sd": 0.597707883464291,
+    "vwap_band_2sd": 0.45348129706935514,
+    "vwap_band_3sd": 0.2915502183273659,
+    "vwap_deviation": 0.7674713247326466
+  },
+  "horizon_weeks": 4,
+  "live_trading_enabled": false,
+  "market": "Indonesia IDX80 daily (the only panel here carrying volume)",
+  "results": {
+    "short_term_reversal_4w": {
+      "bootstrap_p": 0.339,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": 0.07105383547999211,
+      "deciles_interpretable": true,
+      "decisions": 97,
+      "inconclusive": false,
+      "mean_ic": 0.017413459421329824,
+      "median_names": 79,
+      "monotonicity": 0.02842861605748204,
+      "t_stat": 0.9166700291858154
+    },
+    "vwap_band_1sd": {
+      "bootstrap_p": 0.53225,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": -0.08740824218805576,
+      "deciles_interpretable": true,
+      "decisions": 87,
+      "inconclusive": false,
+      "mean_ic": -0.013413724041311458,
+      "median_names": 43,
+      "monotonicity": -0.04172762103796586,
+      "t_stat": -0.5637627641843875
+    },
+    "vwap_band_2sd": {
+      "decisions": 7,
+      "inconclusive": true
+    },
+    "vwap_band_3sd": {
+      "decisions": 1,
+      "inconclusive": true
+    },
+    "vwap_deviation": {
+      "bootstrap_p": 0.28725,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": 0.026804321221428618,
+      "deciles_interpretable": true,
+      "decisions": 97,
+      "inconclusive": false,
+      "mean_ic": 0.017682212233009916,
+      "median_names": 79,
+      "monotonicity": 0.036676038737894406,
+      "t_stat": 0.9212693606202348
+    }
+  },
+  "strategy_promotion_authorized": false,
+  "this_is_a_diagnostic_not_a_search": true,
+  "why_this_market": "the US weekly panel carries prices without volume, so VWAP is not computable there",
+  "window_days": 20
+}

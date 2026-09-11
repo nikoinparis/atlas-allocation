@@ -14762,3 +14762,59 @@ all three failed.
 the real obstacle rather than the idea: intraday Indonesian prices, which nothing free
 supplies at length, and a disclosure feed behind a WAF that requires browser automation. The
 premise failing means neither is worth acquiring.
+
+## Step 307 — 2026-09-12 — VWAP was genuinely untried, and it is short-term reversal relabelled
+
+**What this accomplished: it answered an untried-family question with a measurement instead of
+an opinion, and showed the family is one already closed twice.**
+
+The owner asked whether VWAP and standard-deviation-band strategies had been tried. **Almost
+not.** VWAP appears once in 306 steps, and only to record that the free ETF snapshot *had* no
+VWAP so a typical-price proxy was substituted. Bollinger bands were rejected in Step 49 for
+zero signal coverage. So the family was genuinely open.
+
+**It is only computable where volume exists.** The US weekly panel carries prices without
+volume; the Indonesian daily panel carries volume in 83.5% of cells. That is where it ran —
+159 tickers, 2,469 days, 2016-2026.
+
+| signal | n | names | mean IC | t | p | decile spread | monotone |
+|---|---|---|---|---|---|---|---|
+| VWAP deviation | 97 | 79 | **+0.0177** | +0.92 | 0.287 | +2.68% | **+0.04** |
+| VWAP band, 1σ | 87 | 43 | -0.0134 | -0.56 | 0.532 | -8.74% | **-0.04** |
+| VWAP band, 2σ | **7** | — | — | — | — | — | too few decisions |
+| VWAP band, 3σ | **1** | — | — | — | — | — | too few decisions |
+| short-term reversal, 4w | 97 | 79 | **+0.0174** | +0.92 | 0.339 | +7.11% | **+0.03** |
+
+**The last row is the finding.** VWAP deviation measures an IC of **+0.0177** and short-term
+reversal **+0.0174**, with the **identical t-statistic of 0.92**. Their cross-sectional
+correlation is **+0.767**.
+
+That is not a coincidence and the mechanism is arithmetic: price above its own recent
+volume-weighted average means recent buying, which is the same fact a positive trailing return
+records. **VWAP deviation is short-term reversal wearing a different name** — a family closed
+in Step 250 on bid-ask bounce (0 of 9 configurations survived a skip-week, total loss at
+100bps) and closed again for Indonesia in Step 302 at monotonicity +0.01.
+
+Correlation falls as the band widens — 0.767, 0.598, 0.453, 0.292 for the raw deviation and
+the 1σ, 2σ and 3σ bands — so a wide band is *less* like reversal. But that is the wrong
+consolation, because of the next point.
+
+**The bands fail for a structural reason, not a performance one.** Requiring price to sit two
+standard deviations from its VWAP leaves so few names that a cross-section cannot be formed:
+the 2σ band produced **7 usable decisions** and the 3σ band **one**. At 79 names per period
+there is nothing left to rank. That is a statement about breadth, not about whether the idea
+works — and it is the same wall Step 49's Bollinger rejection hit when it found zero signal
+coverage. A band strategy needs either a far larger universe or intraday frequency, and this
+project has neither.
+
+**Neither VWAP form orders its deciles**: +0.04 and -0.04. That is the 35th and 36th
+signal-horizon combination measured across five markets with no cross-sectional content.
+
+**On the MIT Sloan "Quant Bible" that prompted the question.** It is an **interview
+preparation guide**, not strategy research: probability and regression fundamentals at
+undergraduate level, two consulting-style case studies, a market-making section that teaches
+how to quote a bid-ask when an interviewer trades against you on trivia questions, and a
+firm-by-firm question bank for Jane Street, Citadel, Optiver, SIG and others. Nothing in it is
+a technique this project has not already used at a higher level — the block bootstrap,
+Bonferroni accounting, decile monotonicity and delay measures built here are past its scope.
+It is a genuinely good document for getting a quant job and not a source of strategy ideas.

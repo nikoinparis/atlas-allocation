@@ -14885,3 +14885,58 @@ family closed twice.
 inside an f-string without interpolating it, so the Step 307 reference values printed as raw
 source rather than values. The correlations themselves are computed and stored correctly in
 result.json.
+
+## Step 309 — 2026-09-11 — The clock window opened and the sequence stalled on a hardcoded vintage
+
+**What this accomplished: it ran the first decision for real, got three quarters of the way,
+and found a gap the pre-flight was never designed to see.**
+
+The window opened at 21:00 UTC and the sequence was run live rather than rehearsed.
+
+**Completed.** Fresh Yahoo SEC prices acquired (vintage
+`20260911T210012Z-yahoo-recent-current-sec-v1`, 492 symbols). ETF snapshot acquired
+(`20260911T210159Z-58f914bec084b574`) and **it carries 2026-09-11**, so today's data exists.
+The cash-conversion sleeve path rebuilt. The growth sleeve retest ran with all validation
+checks passing including prefix-invariance.
+
+**Two blockers hit and cleared.** Podman was down, and its machine is named
+`portfolio-optimizer-sandbox` rather than the default the error message suggests. And
+`data/sec_recent_companyfacts_cache_v1` was **deleted by the repository cleanup as
+re-downloadable** — correctly classified, and genuinely needed by the growth retest.
+Re-acquired in about nine minutes, 1,206 files. That is the second time the cleanup has cost
+a re-download and the second time the rebuild path has worked.
+
+**The blocker that stops here.** `build_control_composite_book_v1.py` refuses:
+
+> 2026-09-11 is not in the sleeve return paths, which end 2026-08-07; the sleeves must be
+> simulated forward first
+
+The sleeve paths end 2026-08-07 and re-running their builders does not extend them, because
+**line 42 of `run_sec_growth_survivorship_retest_v1.py` hardcodes its price source to a single
+vintage**:
+
+    BENCHMARK_PRICES = ROOT / "data/sec_pilot_price_vintages/20260813T070329Z-sec-pilot-prices/prices.csv"
+
+That vintage was captured on 2026-08-13 and its data ends 2026-08-07 — exactly where the path
+stops. **Acquiring fresh prices cannot move it.** The script was written for a one-off
+backtest, and the runbook's step 2 assumes acquiring prices extends the sleeve paths, which it
+does not.
+
+**The pre-flight passed 29 of 29 and could not have caught this.** It verifies that scripts
+import, protocols forbid execution, logs are empty and hash-verifiable, panels reach
+2026-09-04, and the composite book builds *for a past date*. It never asks whether the sleeve
+paths can reach **the decision date itself**. That is a real coverage gap in a tool built
+specifically to prevent a wasted window.
+
+**What it is not.** Not a pin violation: all seven `pinned_files_sha256` entries still match,
+and neither the retest script nor the price vintage is among them. So updating the vintage
+would not break the protocol's integrity check.
+
+**Why it is nevertheless the owner's decision.** The mutation policy reads *"any formula,
+weight, cost, financing, timing, data-policy, or pinned-file change creates a new protocol
+version and restarts its clock at zero."* Repointing a hardcoded price vintage is arguably
+normal weekly operation rather than a data-policy change — the clock is defined as weekly and
+needs the decision Friday's prices — but it is arguably the latter, and getting that wrong
+either restarts a clock that did not need restarting or advances one that should have been
+versioned. **The window stays open until 2026-09-18 21:00 UTC**, so there are seven days to
+decide rather than seven minutes.

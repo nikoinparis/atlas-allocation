@@ -14818,3 +14818,70 @@ firm-by-firm question bank for Jane Street, Citadel, Optiver, SIG and others. No
 a technique this project has not already used at a higher level — the block bootstrap,
 Bonferroni accounting, decile monotonicity and delay measures built here are past its scope.
 It is a genuinely good document for getting a quant job and not a source of strategy ideas.
+
+## Step 308 — 2026-09-12 — VWAP, given every chance, on 2,763 US issuers
+
+**What this accomplished: it gave a family the fair trial its first test could not, fixed the
+data gap that had made it untestable for 307 steps, and closed it on the evidence.**
+
+Step 307 closed VWAP on 79 Indonesian names, and two of its failures deserved separating. The
+deviation signal correlating +0.767 with short-term reversal is a finding about the signal.
+The **bands** failing was not: a two-sigma filter left 7 usable decisions and a three-sigma
+filter left one, because at 79 names nothing survives the filter. That is starvation, not
+refutation.
+
+**The data gap, closed.** VWAP had never been computable on US data in 307 steps because the
+weekly panel carries prices without volume. Acquired daily close and volume for the panel's
+issuers via SEC's own `company_tickers.json` at 98% mapping: **2,748 of 2,810 issuers with
+more than 500 volume days, 97.8% overlap, 3,946 days, 2011-2026, zero failed batches.**
+Survivorship exposure is 2.2% and measured rather than assumed.
+
+**Split consistency checked rather than trusted**, as the registry required: 0.0096% of daily
+price ratios fall outside [0.55, 1.8]. Raw close and volume are both unadjusted so the VWAP
+built from them is internally consistent, and the deviation — a ratio — is split-neutral.
+Forward returns come from the project's own split-adjusted panel.
+
+| signal | n | names | mean IC | t | p | decile spread | monotone |
+|---|---|---|---|---|---|---|---|
+| VWAP deviation | 203 | 2,208 | +0.0052 | +0.70 | 0.473 | +1.85% | **+0.01** |
+| VWAP band 1σ | 203 | 1,146 | -0.0016 | -0.23 | 0.819 | +1.54% | **+0.00** |
+| VWAP band 2σ | 202 | **392** | -0.0080 | -1.00 | 0.334 | +2.30% | **-0.01** |
+| VWAP band 3σ | 161 | **116** | -0.0128 | -1.19 | 0.283 | +4.57% | **-0.02** |
+| short-term reversal | 202 | 2,208 | +0.0041 | +0.58 | 0.584 | +1.44% | **+0.02** |
+
+**The bands got their breadth** — 392 names at two sigma against 3 in Indonesia, and 161-203
+decisions against 7 and 1. The structural objection is gone and the idea was tested properly.
+**Nought of four clears Bonferroni and nought of four orders its deciles.**
+
+**The duplication holds at scale.** Correlation with short-term reversal: **+0.741** for the
+deviation against +0.767 on 79 Indonesian names, then +0.557, +0.416, +0.254 for the 1, 2 and
+3 sigma bands against +0.598, +0.453, +0.292. Two markets, thirty-five times the universe,
+and the same answer: **price above its own volume-weighted average is the fact a positive
+trailing return records.** Short-term reversal is closed in Step 250 on bid-ask bounce and in
+Step 302 at monotonicity +0.01.
+
+**The cost ladder, and the one number that looked promising.**
+
+| cost | CAGR | Sharpe | maxDD |
+|---|---|---|---|
+| 0 bps | **16.74%** | 0.703 | -39.85% |
+| 10 bps | 15.33% | 0.643 | -40.02% |
+| 50 bps | 9.81% | 0.410 | -42.23% |
+| 100 bps | 3.26% | 0.135 | -50.09% |
+
+16.74% at zero cost is not nothing, and it sits against a **negative** information coefficient
+of -0.0080 — the contradiction that has marked every false positive in this project. Resolved
+by decomposition: the book carries **market beta +1.030 with R-squared 0.752**, returns 16.74%
+against its own equal-weight universe's **14.60%**, and its **Sharpe of 0.703 is BELOW the
+universe's 0.728**. It is the market with more turnover. At the declared 50bps it returns
+9.81% against that universe's 14.60%.
+
+**Closed.** Given volume it never had, a universe thirty-five times larger, bands with real
+breadth, a split-consistency check, a cost ladder and a beta decomposition, VWAP does not
+order its deciles, does not beat its universe risk-adjusted, and is 74% correlated with a
+family closed twice.
+
+**One cosmetic defect, no effect on any number.** The comparison print embedded a dict literal
+inside an f-string without interpolating it, so the Step 307 reference values printed as raw
+source rather than values. The correlations themselves are computed and stored correctly in
+result.json.

@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "experiment": "vwap_wide_universe_v1",
+  "registered_at_utc": "2026-09-12T00:00:00Z",
+  "registered_before_any_result_existed": true,
+  "registered_before_the_volume_data_was_acquired": true,
+
+  "why_this_exists": "Step 307 tested VWAP on the only panel here carrying volume -- 79 Indonesian names -- and it failed two ways that deserve separating. The deviation signal correlated +0.767 with short-term reversal and matched its information coefficient almost exactly, which is a finding about the signal. But the BANDS failed structurally rather than on merit: a two-sigma filter left 7 usable decisions and a three-sigma filter left one, because at 79 names nothing survives. That is a statement about universe size, not about whether the idea works, and it deserves a fair trial on a universe where the filter leaves something to rank.",
+
+  "what_changes_from_step_307": {
+    "universe": "2,763 US issuers, from the survivorship-aware price panel joined to SEC's own company_tickers.json at 98% coverage, against 79 Indonesian names",
+    "band_feasibility": "a two-sigma filter keeps roughly 138 names here, giving deciles of about 13, where Indonesia kept 3",
+    "volume": "acquired for this experiment; the US weekly panel carries prices without volume, which is why VWAP had never been computable on it"
+  },
+  "what_does_not_change": "the VWAP definition, the 20-day window, the horizon, the mean-reversion sign convention, and the measurements. Only the universe changes, so a different answer is the universe and nothing else.",
+
+  "signals_declared": {
+    "vwap_deviation": "(close - 20-day volume-weighted average price) / VWAP, negated so the signal is mean-reverting",
+    "vwap_band_1sd": "the deviation expressed in its own 20-day standard deviations, zero inside the band",
+    "vwap_band_2sd": "same at two standard deviations",
+    "vwap_band_3sd": "same at three standard deviations"
+  },
+  "declared_sign": "MEAN REVERSION. A stock far above its own VWAP is hypothesised to fall. A result of the opposite sign refutes the hypothesis and will be reported as such rather than reinterpreted as momentum.",
+  "declared_horizon_weeks": 4,
+  "trials_declared_here": 4,
+  "bonferroni": "0.05/4 = 0.0125, stacked on every configuration searched across 307 steps",
+
+  "the_comparison_that_decides_whether_this_is_a_new_family": "cross-sectional correlation against short-term reversal, measured the same way as Step 307. Price above its own volume-weighted average means recent buying, which is the fact a positive trailing return records. If the correlation stays high on a 2,763-name universe, VWAP deviation is short-term reversal relabelled everywhere and not only in Indonesia, and short-term reversal is closed twice already -- Step 250 on bid-ask bounce and Step 302 at monotonicity +0.01.",
+
+  "measurements": ["rank information coefficient", "top-minus-bottom decile spread", "decile monotonicity", "cost ladder at 0, 10, 50 and 100 bps"],
+  "why_a_cost_ladder_is_mandatory_here": "a band strategy trades on every band crossing and its turnover is far above a quarterly book's. CLAUDE.md rule 7 requires the ladder as a matter of course, and Step 250 killed short-term reversal at 100bps after it survived at zero.",
+  "the_measure_that_decides": "monotonicity with the Step 298 density guard. Band signals are zero for most names by construction, so their density will be low and their decile statistics must be read as a filtered subset rather than a ranking of the whole universe.",
+
+  "known_weaknesses_declared_up_front": [
+    "SEC's company_tickers.json maps CIKs to CURRENT tickers, so an issuer that delisted or changed symbol may get no volume. The price panel is survivorship-aware and the volume overlay may not be, which biases the tested subset toward survivors. The overlap will be measured and reported rather than assumed small.",
+    "Yahoo daily volume is unadjusted for splits in some vintages; VWAP formed from split-inconsistent price and volume would be wrong. A split-consistency check is part of the build, not an afterthought.",
+    "A 20-day VWAP on daily bars is a coarse approximation of the intraday VWAP a real execution desk uses. This tests the signal, not the execution benchmark."
+  ],
+
+  "declared_reading": {
+    "worth_pursuing": "monotonicity above 0.5 with interpretable deciles AND a correlation with short-term reversal below 0.5 AND survival of the 50bps cost rung",
+    "closes_it": "monotonicity near zero, or a correlation with short-term reversal that confirms Step 307's +0.767 at scale",
+    "inconclusive": "fewer than 20 usable decisions at a band, which would mean even 2,763 names is too few and the band idea needs intraday frequency rather than a wider universe"
+  },
+  "research_only": true, "strategy_promotion_authorized": false,
+  "approved_for_live_trading": false, "execution_enabled": false, "live_trading_enabled": false
+}

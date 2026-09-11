@@ -1,0 +1,13 @@
+{
+  "batches_failed": 0,
+  "caveat": "SEC's map is of CURRENT tickers, so delisted or renamed issuers get no volume and the tested subset tilts toward survivors",
+  "columns_returned": 2763,
+  "days": 3946,
+  "first_day": "2011-01-03",
+  "issuers_with_over_500_volume_days": 2748,
+  "last_day": "2026-09-11",
+  "live_trading_enabled": false,
+  "panel_issuers": 2810,
+  "survivorship_overlap": 0.9779359430604982,
+  "tickers_requested": 2763
+}

@@ -1,0 +1,62 @@
+{
+  "bonferroni_bar": 0.0125,
+  "clearing_bonferroni": [],
+  "horizon_weeks": 4,
+  "live_trading_enabled": false,
+  "market": "Indonesia IDX80",
+  "monotonic_above_half": [],
+  "point_in_time_membership": true,
+  "results": {
+    "low_volatility_26w": {
+      "bootstrap_p": 0.12925,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": -0.09918928345642153,
+      "deciles_interpretable": true,
+      "decisions": 97,
+      "inconclusive": false,
+      "mean_ic": 0.02805391898580436,
+      "median_names": 79,
+      "monotonicity": 0.006935332708528588,
+      "t_stat": 1.3133024524473087
+    },
+    "momentum_12_1": {
+      "bootstrap_p": 0.57725,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": 0.0830744476927261,
+      "deciles_interpretable": true,
+      "decisions": 97,
+      "inconclusive": false,
+      "mean_ic": 0.012742839353088436,
+      "median_names": 79,
+      "monotonicity": 0.03667603873789439,
+      "t_stat": 0.5455909998578846
+    },
+    "short_term_reversal_4w": {
+      "bootstrap_p": 0.3825,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": 0.0168165762942174,
+      "deciles_interpretable": true,
+      "decisions": 97,
+      "inconclusive": false,
+      "mean_ic": 0.015394047018493331,
+      "median_names": 79,
+      "monotonicity": 0.00943455170259294,
+      "t_stat": 0.819669725692497
+    },
+    "size_proxy": {
+      "bootstrap_p": 0.59325,
+      "clears_bonferroni": false,
+      "decile_spread_annualised": 0.14214190632870127,
+      "deciles_interpretable": true,
+      "decisions": 97,
+      "inconclusive": false,
+      "mean_ic": -0.007694158435018974,
+      "median_names": 79,
+      "monotonicity": 0.025929397063417688,
+      "t_stat": -0.5313439764007214
+    }
+  },
+  "strategy_promotion_authorized": false,
+  "survivorship_note": "roster holds 157 tickers against an 80-name index so exits are present; an issuer that left AND lost price coverage is still invisible and that absence is not random",
+  "this_is_a_diagnostic_not_a_search": true
+}

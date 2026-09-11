@@ -50,20 +50,6 @@ candidate against, or if a clock produces a result that points somewhere specifi
 
 ## S tier
 
-### S7. Indonesian cross-sectional equity — the one candidate that fits the constraint *(new 2026-09-11)*
-**Status:** data, membership and a written protocol are already on disk
-(`docs/INDONESIA_EQUITY_RESEARCH_V1.md`). Parked since A6 because it needed shorting; Steps
-293 and 295 built and validated the long-short machinery, so the blocker is gone.
-**Why it now outranks everything else free:** Step 301 established that the edge at this scale,
-if one exists, lives where institutional capacity constraints bite -- markets too small for a
-multi-billion-dollar firm to bother with. Indonesia is that; US large-cap technology is the
-opposite. Every one of the nineteen closed families was tested in the most crowded, most
-arbitraged cross-section available.
-**Run the monotonicity screen FIRST**, before any book is built (CLAUDE.md section 2), with the
-density guard from Step 298. If the deciles do not order, it closes in an afternoon.
-**Honest prior:** thin liquidity, wide spreads, and a borrow market that may not exist for the
-short leg. The cost ladder and a short-sale feasibility check are not optional here.
-
 
 ### S1. SEC 10-K language change — extend the corpus to 2011  *(reduced scope)*
 **Status:** source-blocked since Step 202, never unblocked. This is the lost item that prompted
@@ -361,3 +347,4 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 | **Closed-family monotonicity audit (new 2026-09-10)** | **All fifteen closures stand.** Ten families rebuilt and measured; nought order their deciles, monotonicity within ±0.11 for every one. Two clear Bonferroni and neither survives: Form 4 is **93.3% zeros** so its p=0.0000 is a *presence* test, not the intensity question Step 286 declared and measured at -0.0086/t=-1.34; trend consistency has a positive IC with a **negative** decile spread, the same contradiction as Step 245's -103 transfer coefficient. **Kept:** the screen needed a density guard, added after it nearly reported a spurious result — a signal non-zero in under 50% of cells cannot be read on deciles. | Step 298 |
 | **Remaining closed families audited (new 2026-09-10)** | **Audit complete: nought of fourteen order their deciles.** SUE/PEAD, 10-K language, 13F ownership change and fractional differencing rebuilt from 131k SUE quarters, 8,327 filings, 110.3M 13F rows and the price panel. Only 10-K language clears Bonferroni (p=0.0030) and it fails three other ways: decile spread **-0.80%** against a positive IC, monotonicity +0.11, and an effect a quarter the size of the ~0.110 Step 255 established as the minimum establishable on that sample. A suspicion that forward-filling inflated its n was tested and **not upheld** — 2 of 30 samples repeat, not most. All nineteen closures stand. | Step 299 |
 | **Wide-universe skill screen (was S6)** | **Closed, and it closes the depth argument.** Universe from 509 issuers / 2 sectors to **2,681 / 69**, names scored per decision from ~300 to **1,583-2,085**, universe the only variable. Nought of three clear Bonferroni; nought of three order their deciles (-0.05, -0.07, -0.12). **The signals got weaker with more names** — cash conversion +0.0272 to +0.0180, balance sheet +0.0008 to **-0.0175**. **The null is now properly powered:** detecting a true IC of 0.03 at t=3 needs 38 decisions and there are 39, where Step 296 would have needed ~100. "More data for more breadth" is refuted in both readings — as breadth in Steps 246/277/279/285, as depth here. | Step 300 |
+| **Indonesian cross-sectional, price signals (was S7)** | **Same answer as the US.** Point-in-time IDX80 roster, 157 tickers against an 80-name index so exits are present, 97 monthly decisions, median 79 names. Nought of four clear Bonferroni; **nought of four order their deciles** (+0.01 to +0.04). Low volatility shows IC +0.0281 with a **-9.92%** decile spread and the size proxy a negative IC with **+14.21%** -- the same two-measurements-disagreeing signature seen in every US family. **Honest limit:** 79-name cross-sections measure each decision's IC imprecisely, so detecting a true IC of 0.03 would need 205-517 decisions against 97; the significance null is underpowered and the monotonicity result carries the weight. **Not closed:** Indonesian *fundamental* signals, because no usable fundamental file is on disk. Step 301's capacity-constraint argument made a testable prediction and it did not hold on price signals. | Step 302 |

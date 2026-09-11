@@ -14472,3 +14472,65 @@ signs, forward clocks, the monotonicity screen, ten recorded measurement defects
 durable output. A research process that correctly kills what does not work is worth more than
 a backtest that looks good, and this one has now been tested against its own results 301
 times.
+
+## Step 302 — 2026-09-11 — Indonesia gives the same answer as the US
+
+**What this accomplished: it tested Step 301's own hypothesis and refuted it, on the one
+market this project had left.**
+
+Step 301 argued that an edge at this scale lives where institutional capacity constraints
+bite, and that all nineteen closed families had been tested on the most arbitraged
+cross-section on earth. Indonesia was the candidate. It is now tested.
+
+**The earlier Indonesia closure was not a null.** The programme was recorded as "rejected or
+inconclusive because local inactive/delisted history, benchmark, cost, and forward gates
+remain open" — a closure on data gates. Cross-sectional skill had never been measured.
+
+**The data is better than the closure implied.** Point-in-time membership with
+`effective_from`, `effective_to` and `available_at`, spanning 2019-02 to 2026-08, holding
+**157 distinct tickers against an 80-name index** — names that left are present, so the
+roster is survivorship-aware. Prices run 2016-2026. **97 monthly decisions, median 79 names.**
+
+| signal | n | names | mean IC | t | p | decile spread | monotone |
+|---|---|---|---|---|---|---|---|
+| momentum 12-1 | 97 | 79 | +0.0127 | +0.55 | 0.577 | +8.31% | **+0.04** |
+| low volatility 26w | 97 | 79 | +0.0281 | +1.31 | 0.129 | **-9.92%** | **+0.01** |
+| short-term reversal 4w | 97 | 79 | +0.0154 | +0.82 | 0.383 | +1.68% | **+0.01** |
+| size proxy | 97 | 79 | -0.0077 | -0.53 | 0.593 | **+14.21%** | **+0.03** |
+
+**Nought of four clear Bonferroni. Nought of four order their deciles.** Monotonicity is
++0.01 to +0.04 — the same picture as all 27 US signals, whose monotonicity sat within ±0.17
+of zero.
+
+And the same self-contradiction appears: low volatility measures a **positive IC of +0.0281
+alongside a decile spread of -9.92%**, and the size proxy a **negative IC with a +14.21%
+spread**. Two measurements of the same signal disagreeing in sign is what noise looks like,
+and it has now shown up in the US fundamental signals, the US price families, the text
+signal, and here.
+
+**The test has power.** Per-decision IC dispersion ranges 0.143 to 0.227 across the four, so
+detecting a true IC of 0.03 at t=3 needs 205 to 515 decisions against the 97 available. That
+is **weaker than the US wide-universe run**, where 39 decisions sufficed because 2,000-name
+cross-sections measure each decision's IC far more precisely than 79-name ones do. So the
+significance null here is genuinely underpowered and should not be leaned on. The
+monotonicity result is again the robust part: it measures shape rather than significance.
+
+**What this closes and what it does not.** It closes Indonesian *price* signals. Fundamentals
+were not tested because no usable Indonesian fundamental file is on disk, so a valuation or
+quality signal in that market remains genuinely untested rather than refuted. Costs were not
+modelled at all, and Indonesian spreads are wide enough that a positive result would have
+needed the full ladder before meaning anything — that caveat costs nothing here because
+nothing was positive.
+
+**One defect, found and fixed before it became a result.** The first run returned **zero
+usable decisions on all four signals**. The roster carries both `ticker` (`AALI`) and
+`vendor_ticker` (`AALI.JK`) and the price panel is keyed on the vendor form; joining on
+`ticker` overlapped **zero of 157** names. Every decision silently dropped and the output
+read "too few decisions to measure", which is indistinguishable from "this market has no
+data" unless someone checks. Same class as the Step 291 date offset: a key that looks right,
+matches nothing, and returns a confident empty answer. Eleventh recorded measurement defect.
+
+**Where this leaves Step 301's argument.** The capacity-constraint reasoning was sound and
+the prediction it made was testable, which is the point. It predicted that a less-arbitraged
+market might hold what the US does not. On price signals, in the one such market available,
+it does not.

@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "experiment": "indonesia_monotonicity_v1",
+  "registered_at_utc": "2026-09-11T00:00:00Z",
+  "registered_before_any_result_existed": true,
+
+  "why_this_exists": "Step 301 established that an edge at this scale, if one exists, lives where institutional capacity constraints bite rather than in the most arbitraged cross-section on earth. All nineteen closed families were tested on US equities. Indonesia is the one market already on disk that fits the other description.",
+  "what_the_earlier_closure_actually_said": "The Indonesia/IDX80 programme was recorded as 'rejected or inconclusive because local inactive/delisted history, benchmark, cost, and forward gates remain open'. That is a closure on DATA GATES, not a measured null -- cross-sectional skill was never tested. This tests it.",
+
+  "data_and_its_limits": {
+    "membership": "data/indonesia_idx80_extended_history_vintages, point-in-time with effective_from, effective_to and available_at. 2019-02-01 to 2026-08-03, 157 distinct tickers against an 80-name index, so names that LEFT the index are present and the roster is survivorship-aware.",
+    "prices": "data/indonesia_idx80_extended_price_vintages, 2016-08-22 to 2026-08-21, 159 tickers",
+    "fundamentals": "none usable on disk, so this is a price-signal screen only and no valuation or quality signal is tested",
+    "known_gap": "the inactive/delisted price supplement is 516KB and may not cover every exit. An issuer that left the index AND lost price coverage is invisible, and that absence is not random -- it biases upward."
+  },
+
+  "signals_declared": {
+    "momentum_12_1": "52-week return excluding the most recent 4 weeks -- the protocol's own primary signal",
+    "low_volatility_26w": "negative of 26-week return volatility -- the protocol's own secondary signal",
+    "short_term_reversal_4w": "negative of the trailing 4-week return, as a control from a family closed on US data in Step 250",
+    "size_proxy": "negative of the trailing 52-week median price, a crude small-size tilt, as a second control"
+  },
+  "trials_declared_here": 4,
+  "bonferroni": "0.05/4 = 0.0125, stacked on every configuration searched across 301 steps",
+
+  "declared_horizon_weeks": 4,
+  "decision_cadence": "monthly, matching the protocol's declared monthly decisions",
+  "measurements": ["rank information coefficient", "top-minus-bottom decile spread", "decile monotonicity"],
+  "the_measure_that_matters": "monotonicity, with the Step 298 density guard. A signal whose deciles do not order themselves has no cross-sectional content whatever its extremes did.",
+
+  "declared_reading": {
+    "worth_pursuing": "monotonicity above 0.5 with interpretable deciles AND a rank IC clearing Bonferroni with a consistent decile spread sign",
+    "closes_it": "monotonicity near zero, as every US signal has shown",
+    "inconclusive": "fewer than 20 usable decisions, or a universe too thin to form ten deciles"
+  },
+  "this_is_a_diagnostic_not_a_search": true,
+  "no_strategy_can_come_out_of_this": "A signal that scores here earns its own pre-registered test with a cost ladder and a short-sale feasibility check, not a book.",
+
+  "known_weaknesses_declared_up_front": [
+    "About 80 names per period gives deciles of 8, which is thin. Decile statistics on 8 names are noisy and the monotonicity measure is the more robust of the three for that reason.",
+    "Indonesian equities carry wide spreads and thin liquidity; nothing here models cost, and a positive result would need the full cost ladder before it meant anything.",
+    "Roughly 90 monthly decisions over 2019-2026 is better than the 13-14 Step 296 warned about but still modest.",
+    "The window includes the 2020 crash and a commodity cycle that dominates Indonesian large caps; a single-regime result should be labelled as one."
+  ],
+
+  "research_only": true, "strategy_promotion_authorized": false,
+  "approved_for_live_trading": false, "execution_enabled": false, "live_trading_enabled": false
+}

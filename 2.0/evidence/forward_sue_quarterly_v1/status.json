@@ -1,0 +1,22 @@
+{
+  "clock_complete": false,
+  "decision_log_sha256": "72257d28397f1e2846f3506bcd72f628cf717751cd89c573ad51e5bd49bab324",
+  "execution_enabled": false,
+  "forward_protocol_sha256": "e99929ea5ce9c57ab8774386075d9396f47799036a6c3092c2041108f124d22f",
+  "generated_at_utc": "2026-09-18T03:01:11.294287+00:00",
+  "latest_decision_date": "2026-09-11",
+  "latest_realization_date": null,
+  "latest_score_block_at": "2026-07-01",
+  "live_trading_enabled": false,
+  "observation_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "observed_weeks": 0,
+  "performance_metrics": {
+    "observations": 0
+  },
+  "promotion_authorized": false,
+  "protocol_version": "sue_quarterly_forward_v1",
+  "remaining_weeks": 52,
+  "required_weeks": 52,
+  "saved_decisions": 1,
+  "selection_contaminated": true
+}

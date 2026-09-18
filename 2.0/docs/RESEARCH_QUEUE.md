@@ -121,20 +121,37 @@ compared week t against week t+1. **Aligned, the legs correlate +0.692, not −0
 The clock refuted itself against its own declared standard before it started, which is the
 cheapest possible outcome. The frozen file is unchanged and the supersession is recorded.
 
-### S8. Write the SUE recorder, and refresh its panel *(new 2026-09-18, Step 311)*
-**Blocker:** neither exists. `sue_quarterly_forward_v1` was frozen 2026-09-06 with a first
-eligible decision date of 2026-09-11, and on that date it had **no recorder script and no
-evidence directory** — it is referenced only by the pre-flight. Its panel
-(`evidence/extended_sue_panel_v1`) ends **2026-07-01**, so it could not have priced the book
-even if a recorder had existed.
-**Why it still matters:** Step 253 measured SUE's correlation against the existing books at
-0.002 and 0.008, the lowest this project has ever recorded against a set that correlates
-0.506–0.874 internally. That is the whole reason the clock was frozen.
-**Cost of delay:** a later start, not lost evidence — the clock has not begun, so nothing is
-unbackfillable yet. Every week it stays unwritten is a week further from 52.
-**Two jobs:** extend the SUE panel past 2026-07-01, then write
-`record_sue_quarterly_forward_v1.py` to the pattern of the three recorders that started
-cleanly on 2026-09-11. See [[S3]] — the same quarterly-regeneration problem.
+### S10. Re-acquire the Company Facts cache *(new 2026-09-18, Step 312)*
+**Blocker:** none, only time. `scripts/acquire_sec_recent_companyfacts_v1.py`, free from SEC.
+`data/sec_recent_companyfacts_cache_v1` holds 1,206 files where the SUE panel was built from
+about 3,565 issuers. Everything derived from it — the SUE panel, the fundamental signal panel,
+the growth survivorship retest — is currently **not reproducible from a fresh clone**, which
+is the one property the repository cleanup was supposed to guarantee.
+**Check afterwards:** `build_extended_sue_panel_v1.py` should run without tripping its own
+guard, and reproduce 131,169 rows.
+
+### S11. Write the four missing forward recorders *(new 2026-09-18, Step 313)*
+Only one of six dashboard strategies is under a running clock, and it is the one with the
+lowest backtested return. The audit in Step 313 lists every frozen protocol against its
+recorder. In eligibility order:
+1. `sec_cash_conversion_breadth20_challenger_v1` — eligible since **2026-08-21**, no recorder.
+   Four windows already gone. This is the cheapest of the four and the most overdue.
+2. `sec-sector-ensemble-fragile-1.35x-v1`, `sec-sector-aware-signal-ensemble-v1`,
+   `sec-growth-survivorship-aware-v1` — on the dashboard at 53%, 43% and 32% CAGR, with **no
+   frozen protocol at all**. Freezing a config for each is an afternoon; the recorder is a day.
+**Why it matters more than any backtest in this queue:** Step 310 showed these books are
+1.30–1.75 beta with market R² of 0.60–0.76, and Step 289 showed nought of six beat their own
+universe out of sample. A forward clock is the only instrument that settles that, and it cannot
+settle what it is not measuring.
+
+### S12. Extend the full-history price lineage weekly *(new 2026-09-18, Step 312)*
+There are two panel lineages and the weekly routine maintains only one.
+`clean_weekly_prices_v2` reaches 2026-09-11 via `extend_weekly_price_panel_v2.py`;
+`broad_full_history_panel_v1` and `clean_full_history_prices_v1` end **2026-09-04** and are
+rebuilt from a full re-acquisition instead. The valuation, equal-weight-benchmark and
+tie-agnostic-companion clocks all read the second lineage, so their realizations fail until it
+is extended. Either add it to the weekly routine or make the recorders read the maintained
+panel — the first is safer, since changing a recorder's price source is a protocol mutation.
 
 ### S9. Fix the two defects in the forward-clock pre-flight *(new 2026-09-18, Step 311)*
 The pre-flight is the tool that is supposed to stop a window being wasted, and it has now
@@ -330,6 +347,7 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 
 | item | verdict | where |
 |---|---|---|
+| **Write the SUE recorder (was S8)** | **Done, and the panel half was my own error.** `record_sue_quarterly_forward_v1.py` written; clock running at one decision, 2026-09-11, fifty names, block 2026-07-01. The panel is quarterly and was never stale. The attempt found that repository slimming had deleted two thirds of the Company Facts cache — the rebuild produced 20,279 rows against 131,169 and exited zero; git recovered it, and the builder now fails closed below 90% of the prior issuer count. | Step 312 |
 | Opening Range Breakout, index/ETF | Rejected on the cost hurdle; five-minute bars made it worse | Step 209 |
 | Short-term reversal | Bid-ask bounce; 0 of 9 survive skip-1; total loss at 100bps | Step 250 |
 | The 22-signal literature screen | All eleven price signals negative; the sample rewarded volatility, not selection | Steps 189, 192 |

@@ -15046,3 +15046,128 @@ decision already saved for that date. The check is not idempotent. That is a def
 test, not in the clock — but it sits alongside the Step 309 finding that the pre-flight never
 verifies sleeve paths reach the *decision* date, and both should be fixed before the tool is
 trusted as a gate.
+
+## Step 312 — 2026-09-18 — The SUE recorder, and a "refresh" that destroyed the panel it refreshed
+
+**What this was for.** `sue_quarterly_forward_v1` was frozen on 2026-09-06 and reached its
+first eligible decision date on 2026-09-11 with no recorder written. This writes it.
+`scripts/record_sue_quarterly_forward_v1.py` follows
+`record_valuation_earnings_yield_forward_v1.py`, the one quarterly clock here that has started
+cleanly. **The clock is running: one decision at 2026-09-11, fifty names, equal weight, score
+block 2026-07-01 aged 72 days, turnover 0.5 from cash.**
+
+**First, a correction to Step 311.** I wrote that the SUE panel "ends 2026-07-01, so it could
+not have priced a 2026-09-11 book even with a recorder written in time." That was wrong, and it
+was wrong in a way I should have caught: the panel is **quarterly**, its decision dates come
+from the quarterly membership roster, and 2026-07-01 is the *current* block — the next one is
+2026-10-01. The valuation earnings-yield clock I started the same night runs on exactly the
+same 2026-07-01 block and started without difficulty. The only real blocker was the missing
+recorder.
+
+**Then the part worth recording properly.** Acting on "refresh its panel," I re-ran
+`build_extended_sue_panel_v1.py`. It completed, printed a manifest, and reported success:
+
+| | on disk before | after the "refresh" |
+| --- | --- | --- |
+| rows | 131,169 | **20,279** |
+| issuers with Company Facts | 3,565 | **603** |
+| issuers parsed with EPS | 3,472 | **591** |
+| mean facts coverage from 2020 | 90.96% | **15.16%** |
+| names in the 2026-07-01 block | 2,582 | **456** |
+
+**The repository slimming deleted two thirds of the Company Facts cache.** It is gitignored and
+re-acquirable from SEC, which is why it was dropped, and that was a reasonable call — but
+`data/sec_recent_companyfacts_cache_v1` now holds 1,206 files where the panel was built from
+about 3,565 issuers, and the builder read the thinned cache as a smaller universe rather than
+as a missing input. It overwrote a good panel with a degraded one and exited zero.
+
+**Recovered only because the panel is committed.** `git checkout` restored all 131,169 rows.
+Had it been gitignored like its own input, an irreplaceable artifact would have been destroyed
+by a command whose stated purpose was to refresh it.
+
+**The builder now fails closed.** A rebuild that parses EPS for fewer than 90% of the issuers
+the panel on disk used raises and writes nothing, naming the cache and the re-acquisition
+script. Verified: the same command now refuses with *"parsed EPS for 591 issuers where the
+panel on disk used 3472"* and leaves the panel untouched. `--limit-issuers` bypasses it for
+deliberate subset runs.
+
+**A weakness in the frozen SUE design, recorded and not fixed.** The 2026-07-01 block's SUE
+ranges from −33.5 to +31.2, and the selected top fifty run **4.5 to 31.2**. A SUE of 31 is not
+a 31-sigma earnings surprise; it is a near-zero denominator, since SUE divides by the standard
+deviation of the previous eight surprises. The frozen protocol declares the book as "the fifty
+highest SUE" with no winsorisation, so that is what was recorded. **Adding a filter now would
+be a protocol mutation and would restart the clock at zero**, so it stays as declared and the
+concern travels with the result. If the clock fails, this is the first thing to look at.
+
+**Also found: the three clocks started last night depend on a price panel nobody extended.**
+`clean_full_history_prices_v1` and `broad_full_history_panel_v1` end **2026-09-04**, a separate
+lineage from `clean_weekly_prices_v2` (2026-09-11) that the weekly extender maintains. The
+valuation, equal-weight-benchmark and tie-agnostic-companion clocks all read the older
+lineage, so their decisions were taken on 2026-09-04 tradability and their realizations next
+Friday will fail unless it is extended. A fresh full-history vintage is being acquired.
+
+## Step 313 — 2026-09-18 — The forward clocks are not testing the dashboard strategies
+
+**What this was for.** The owner asked why the forward record is grouped into
+"breadth confirmed, past only and the others" when the expectation was that the clocks test the
+strategies on the dashboard. The expectation is reasonable and the answer is that they do not.
+
+**One of six.**
+
+| dashboard strategy | CAGR shown | forward clock |
+| --- | --- | --- |
+| sector ensemble 1.35x | 53.22% | **none** |
+| residual-controlled 1.25x | 49.28% | frozen, **never started** (Step 309 blocker) |
+| sector-aware ensemble | 42.74% | **none** |
+| cash conversion b20 | 38.62% | challenger frozen, eligible 2026-08-21, **no recorder** |
+| growth top-five | 31.70% | **none** |
+| ETF 60/40 | 12.60% | `return_first_60_40_blend_v1`, running, 4/52 |
+
+**The clock with the lowest backtested return is the only one being tested forward.** The five
+carrying 31–53% CAGRs are either unclocked or clocked and idle. The other six running clocks —
+breadth-confirmed trend, past-only consensus, covariance minimum variance, equal-weight
+benchmark, tie-agnostic companion, valuation earnings yield — test *older or adjacent*
+candidates that the dashboard does not display.
+
+**Why it happened, plainly.** Clocks were frozen when a candidate looked interesting, and the
+recorder was written separately, later, by hand. Writing a recorder is a day's work and
+freezing a config is an afternoon's, so configs accumulated faster than machinery. A full audit
+of `config/forward/` against `evidence/forward_*/`:
+
+| frozen protocol | eligible from | recorder | decisions |
+| --- | --- | --- | --- |
+| breadth_confirmed_trend_return_ceiling_v3 | 2026-08-14 | yes | 5 |
+| covariance_minimum_variance_v1 | 2026-08-14 | yes | 5 |
+| past_only_consensus_selector_return_v1 | 2026-08-14 | yes | 5 |
+| return_first_60_40_blend_v1 | 2026-08-14 | yes | 5 |
+| **sec_cash_conversion_breadth20_challenger_v1** | **2026-08-21** | **NO** | **0** |
+| sec_residual_controlled_sleeve_forward_v1 | 2026-08-28 | yes | 0 (blocked) |
+| residual_tie_agnostic_companion_v1 | 2026-09-11 | yes | 1 |
+| sue_quarterly_forward_v1 | 2026-09-11 | yes (Step 312) | 1 |
+| valuation_earnings_yield_forward_v1 | 2026-09-11 | yes | 1 |
+| equal_weight_benchmark_v1 | — | yes | 1 |
+| six `sec_growth_*` ladders and challengers | — | NO | 0 |
+
+**Four weeks of forward evidence, against the market in the same weeks.** This is the first
+positive forward excess this project has recorded, and it is four observations.
+
+| week | SPY | breadth trend | covariance minvar | past-only consensus | 60/40 |
+| --- | --- | --- | --- | --- | --- |
+| 2026-08-21 | −1.37% | +0.79% | −0.41% | +2.79% | −0.22% |
+| 2026-08-28 | +0.47% | −0.72% | −0.01% | −1.51% | −0.19% |
+| 2026-09-04 | +0.11% | +2.94% | +0.20% | +2.20% | +1.77% |
+| 2026-09-11 | −0.77% | +2.40% | −0.89% | +1.69% | +1.19% |
+| **cumulative** | **−1.55%** | **+5.48%** | **−1.11%** | **+5.22%** | **+2.56%** |
+| **excess** | — | **+7.03pp** | +0.44pp | **+6.77pp** | **+4.12pp** |
+
+**This is not evidence and must not be reported as though it were.** Four weekly observations
+at roughly 2–3% weekly tracking volatility put a cumulative standard deviation near 5
+percentage points, so +7.03pp is about 1.4 sigma — the kind of number that appears by chance
+more often than not across four books. The protocols require 52 untouched weeks each precisely
+so that this arithmetic is not attempted at four. It is recorded because it is the real
+forward record and because a negative stretch must be recorded on the same terms.
+
+**What it means for the dashboard strategies: nothing has changed and nothing can yet.** Their
+49% and 53% CAGRs remain in-sample, remain beta (Step 310: betas of 1.30–1.75, market R² of
+0.60–0.76, growth top-five at **−0.74% alpha**), and remain nought-for-six out of sample
+(Step 289). **The forward record cannot speak to them because it is not measuring them.**

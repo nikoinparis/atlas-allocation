@@ -128,8 +128,6 @@ def main() -> int:
     cover = pd.DataFrame(coverage)
     out = ROOT / args.output
     out.mkdir(parents=True, exist_ok=True)
-    panel.to_csv(out / "sue_panel.csv.gz", index=False, compression="gzip")
-    cover.to_csv(out / "coverage_by_decision.csv", index=False)
 
     early = cover[cover.decision_at < "2016-01-01"]
     late = cover[cover.decision_at >= "2020-01-01"]
@@ -155,6 +153,33 @@ def main() -> int:
         "live_trading_enabled": False,
         "strategy_promotion_authorized": False,
     }
+    # Fail closed rather than overwrite a better panel with a worse one.
+    #
+    # On 2026-09-18 this script was re-run to "refresh" the panel and produced
+    # 20,279 rows against the 131,169 already on disk, because the repository
+    # slimming had deleted two thirds of the Company Facts cache -- 603 issuers
+    # resolved where 3,565 had before, and mean coverage from 2020 fell from
+    # 90.96% to 15.16%. It wrote the degraded panel out and reported success. The
+    # panel was recoverable only because it happens to be committed.
+    #
+    # A rebuild that resolves materially fewer issuers than the last one is
+    # evidence that an input is missing, not that the universe shrank.
+    existing = out / "manifest.json"
+    if existing.is_file() and not args.limit_issuers:
+        before = json.loads(existing.read_text())
+        had = int(before.get("issuers_parsed_with_eps") or 0)
+        now = len(parsed)
+        if had and now < 0.9 * had:
+            raise SystemExit(
+                f"refusing to overwrite: this rebuild parsed EPS for {now} issuers where the "
+                f"panel on disk used {had}. The Company Facts cache at {CACHE.relative_to(ROOT)} "
+                f"is probably incomplete -- re-acquire it with "
+                f"scripts/acquire_sec_recent_companyfacts_v1.py before rebuilding. "
+                f"Pass --limit-issuers to bypass this for a deliberate subset run."
+            )
+
+    panel.to_csv(out / "sue_panel.csv.gz", index=False, compression="gzip")
+    cover.to_csv(out / "coverage_by_decision.csv", index=False)
     (out / "manifest.json").write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n")
     print(json.dumps(manifest, indent=2, sort_keys=True))
     print("\ncoverage by decision (first 6 and last 6):")

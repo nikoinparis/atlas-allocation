@@ -13,7 +13,8 @@ import {
 import { ForwardTracker } from "@/components/forward-tracker";
 import { SurvivalLab, type SurvivalBundlePayload } from "@/components/survival-lab";
 import { deepMethodology, deepFormulas } from "@/components/methodology";
-import { ArrowUpRight, CalendarDays, ChevronLeft, ChevronRight, FlaskConical, Gauge, History, Info, Menu, PanelLeftClose, PieChart, Settings2, ShieldCheck, Siren, Timer, TrendingUp, Workflow, X } from "lucide-react";
+import { StrategyMetrics } from "@/components/strategy-metrics";
+import { ArrowUpRight, CalendarDays, ChevronLeft, ChevronRight, FlaskConical, Gauge, History, Info, Menu, PanelLeftClose, PieChart, Ruler, Settings2, ShieldCheck, Siren, Timer, TrendingUp, Workflow, X } from "lucide-react";
 import { type MouseEvent, useEffect, useMemo, useState } from "react";
 
 type Holding = { symbol: string; weight: number | null; change: number | null };
@@ -94,7 +95,7 @@ type MetricKey = "annualized" | "sharpe" | "drawdown" | "winRate" | "evidence";
 type FormulaKey = "priceReturn" | "coreBlend" | "rankScore" | "sourceBlend" | "netReturn" | "equalFive" | "momentumGate" | "volatilityRatio" | "stockCap" | "turnover" | "baseLeader" | "cashSpread" | "equalTwenty" | "cashGate" | "netCost" | "signalBlend" | "sectorCap" | "outerGate" | "residualScore" | "controlledBlend" | "leverageFinancing" | "fragileLeverage" | "calendarDelta" | "annualized" | "sharpe" | "drawdown" | "winRate" | "cagr";
 type MethodStep = { number: string; label: string; title: string; description: string; formula: FormulaKey; note: string };
 type StrategyMethodology = { summary: string; cadence: string; universe: string; steps: MethodStep[] };
-export type DashboardViewName = "overview" | "performance" | "activity" | "rebalances" | "forward" | "research" | "survival" | "methodology" | "guardrails";
+export type DashboardViewName = "overview" | "performance" | "metrics" | "activity" | "rebalances" | "forward" | "research" | "survival" | "methodology" | "guardrails";
 
 const viewDetails: Record<DashboardViewName, { label: string; title: string; description: string; path: string }> = {
   overview: { label: "Overview", title: "Portfolio overview", description: "A clear read on performance, risk, and the portfolio’s latest systematic decision.", path: "/" },
@@ -103,6 +104,7 @@ const viewDetails: Record<DashboardViewName, { label: string; title: string; des
   rebalances: { label: "Rebalances", title: "Rebalances", description: "Review recent portfolio changes, turnover, and the strategy’s forward-validation clock.", path: "/rebalances" },
   forward: { label: "Forward record", title: "Forward record", description: "See how much untouched forward evidence actually exists, and what the last decided books did on the weeks that have closed since.", path: "/forward" },
   research: { label: "Research status", title: "Research status", description: "What the research programme is doing now: clocks running, clocks starting, and every candidate family that has been tested and closed.", path: "/research" },
+  metrics: { label: "Strategy metrics", title: "Strategy metrics", description: "Return, risk, drawdown and market-exposure figures for every strategy on this dashboard, each with a plain-language explanation of what it measures and what it cannot tell you.", path: "/metrics" },
   survival: { label: "Survival lab", title: "Real-world survival lab", description: "See which strategies survive modeled stress, what still fails, and why none is proven live yet.", path: "/survival" },
   methodology: { label: "How it works", title: "How the portfolio works", description: "Follow the selected strategy from raw evidence to target weights, costs, and the final recorded decision.", path: "/methodology" },
   guardrails: { label: "Guardrails", title: "Research guardrails", description: "Understand exactly what the simulation can do, what it cannot do, and how its evidence is controlled.", path: "/guardrails" },
@@ -371,6 +373,7 @@ export function ReturnFirstDashboard({ initialView = "overview" }: { initialView
   // strategy bundle would make the one page that answers "what has actually happened since?"
   // the slowest and most failure-prone page in the app, so it renders on its own.
   if (initialView === "forward") return <ForwardStandalone />;
+  if (initialView === "metrics") return <StrategyMetrics />;
   if (error) return <main className="loading-state"><span>PORTFOLIO OPTIMIZER</span><h1>Research snapshot unavailable</h1><p>Rebuild the dashboard snapshot and refresh this page.</p></main>;
   if (!bundle) return <main className="loading-state"><span>PORTFOLIO OPTIMIZER</span><h1>Loading the research book…</h1></main>;
   const selectedPayload = bundle.strategies.find((item) => item.strategy.id === activeStrategy) ?? bundle.strategies[0];
@@ -567,6 +570,7 @@ function DashboardView({ data, strategies, survivalBundle, activeView, onStrateg
         <nav>
           <Link className={activeView === "overview" ? "active" : ""} href="/" onClick={() => setMobileMenuOpen(false)}><Gauge size={18} /><span>Overview</span></Link>
           <Link className={activeView === "performance" ? "active" : ""} href="/performance" onClick={() => setMobileMenuOpen(false)}><PieChart size={18} /><span>Performance</span></Link>
+          <Link className={activeView === "metrics" ? "active" : ""} href="/metrics" onClick={() => setMobileMenuOpen(false)}><Ruler size={18} /><span>Strategy metrics</span></Link>
           <Link className={activeView === "activity" ? "active" : ""} href="/activity" onClick={() => setMobileMenuOpen(false)}><CalendarDays size={18} /><span>Daily activity</span></Link>
           <Link className={activeView === "rebalances" ? "active" : ""} href="/rebalances" onClick={() => setMobileMenuOpen(false)}><History size={18} /><span>Rebalances</span></Link>
           <Link className={activeView === "forward" ? "active" : ""} href="/forward" onClick={() => setMobileMenuOpen(false)}><Timer size={18} /><span>Forward record</span></Link>

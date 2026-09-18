@@ -14940,3 +14940,55 @@ needs the decision Friday's prices — but it is arguably the latter, and gettin
 either restarts a clock that did not need restarting or advances one that should have been
 versioned. **The window stays open until 2026-09-18 21:00 UTC**, so there are seven days to
 decide rather than seven minutes.
+
+## Step 310 — 2026-09-18 — The metrics people quote, and the two that decide
+
+**What this was for.** The owner asked to see win rate, PnL, Calmar "and all the other stuff"
+on the dashboard, with an explanation of what each one means. That is the right instinct: a
+single trailing return is the easiest number in finance to mislead yourself with. It is also
+an opportunity, because the honest version of that page ends with the two rows that overturn
+the rest of it.
+
+`2.0/scripts/build_dashboard_metrics_v1.py` computes twenty metrics per strategy from the
+records already in `return-first-dashboard.json`, plus a plain-language glossary entry for
+each, and writes `dashboard/public/strategy-metrics.json`. It depends on nothing from the
+blocked refresh chain of Step 309. `/metrics` renders them in five groups — what it made,
+what it cost to hold, reward per unit of pain, how it got there, and **what it actually
+was** — with every metric name a button that opens its explanation underneath.
+
+| strategy | CAGR | Sharpe | Calmar | win % | PF | max DD | beta | R² | alpha |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| residual-controlled 1.25x | 49.28% | 2.043 | 2.11 | 59.6% | 1.91 | −23.35% | 1.30 | 0.60 | +15.87% |
+| sector ensemble 1.35x | 53.22% | 1.762 | 1.82 | 61.7% | 1.78 | −29.24% | 1.75 | 0.68 | +9.22% |
+| sector-aware ensemble | 42.74% | 1.912 | 1.96 | 62.8% | 1.87 | −21.80% | 1.30 | 0.69 | +9.26% |
+| cash conversion b20 | 38.62% | 1.677 | 1.80 | 60.8% | 1.75 | −21.47% | 1.34 | 0.69 | +7.81% |
+| growth top-five | 31.70% | 0.882 | 0.87 | 53.7% | 1.42 | −36.50% | 1.57 | 0.39 | **−0.74%** |
+| ETF 60/40 | 12.60% | 0.663 | 0.29 | 56.3% | 1.31 | −44.10% | 0.94 | 0.76 | +2.32% |
+
+**What the numbers say.** Every book carries a beta above one; four carry 1.30 or more, and
+the market explains 60–76% of their week-to-week variance. Growth top-five turns a 31.70%
+CAGR into an alpha of **minus 0.74%** — the entire return is 1.57x of a market that went up,
+and the leverage cost more than the picking earned. This is Step 295's finding (market
+neutralisation took cash conversion from 16.65% to 1.59%) appearing a second way, from an
+independent calculation, on the dashboard's own published records.
+
+**I reproduced the Step 291 defect in the first version of this script and caught it on the
+output.** Regressing each series on SPY by joining on date gave betas of 0.23 / 1.75 / −0.09
+/ −0.10 / 1.34 / −0.06 at R² of 0.00–0.02 — impossible for long-only equity books — and
+alphas of 36–39% that were pure misalignment. Four of the six series in the payload are
+FORWARD-indexed and two are WEEK_ENDING; I had written `return_conventions.py` in Step 292
+for exactly this and then failed to use it. The fix calls `detect_convention` per series and
+shifts before joining. **The betas are the check that caught it:** a long-only equity book
+whose R² against the market is 0.01 is not a finding, it is a bug.
+
+**Honest limits, recorded on the page itself.** The records end **2026-08-07**; refreshing
+them needs the same hardcoded-vintage decision that stalled Step 309. Alpha is a single-factor
+CAPM intercept, not a Fama-French or industry-neutral alpha, so part of what it shows is
+size and sector exposure rather than selection. Costs are the per-strategy figures already in
+the payload, not a re-run cost model. None of these metrics is an out-of-sample result — Step
+289 remains the out-of-sample record, and it is nought of six.
+
+**Side effect worth recording.** `.data-table`, `.mono`, `.muted` and `.callout` were used
+throughout `research-status.tsx` but had **no CSS rules at all**, so the research page had
+been rendering raw unstyled HTML tables on a dark canvas. Defining them for the metrics page
+fixed that page too.

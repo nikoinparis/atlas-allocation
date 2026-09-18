@@ -1,7 +1,7 @@
 {
   "backtestsEndAt": "2026-08-07",
-  "dataThrough": "2026-09-04",
-  "generatedAtUtc": "2026-09-06T19:41:25.415000+00:00",
+  "dataThrough": "2026-09-11",
+  "generatedAtUtc": "2026-09-18T02:49:12.340074+00:00",
   "heldBooks": {
     "attributionNote": "arithmetic weekly weight-times-return contributions summed over the closed weeks; energy classification was fixed on 2026-09-02 after seeing the first three weeks and is held constant since, so it is a hypothesis about later weeks rather than a finding about the ones that produced it",
     "benchmarks": {
@@ -236,17 +236,18 @@
     "whatThisIsNot": "This is not a forward observation of any strategy. No strategy decided these weeks: each book last decided on 2026-08-07 and nothing rebalanced it since."
   },
   "issuersPricedNewWeek": {
-    "2026-08-28": 2812,
-    "2026-09-04": 2809
+    "2026-08-28": 2810,
+    "2026-09-04": 2807,
+    "2026-09-11": 2804
   },
   "liveTradingEnabled": false,
   "panelReconciliation": {
     "basis": "weekly simple returns over the overlapping weeks",
-    "cells_over_100bps": 367,
+    "cells_over_100bps": 372,
     "cells_over_10bps": 531,
-    "compared_cells": 30452,
-    "max_absolute_return_gap": 27.375669192737746,
-    "median_absolute_return_gap": 0.0,
+    "compared_cells": 30395,
+    "max_absolute_return_gap": 17.00000145519156,
+    "median_absolute_return_gap": 1.1102230246251565e-16,
     "overlap_weeks": [
       "2026-06-05",
       "2026-06-12",
@@ -266,7 +267,7 @@
   "protocols": [
     {
       "executionEnabled": false,
-      "latestRealization": "2026-09-04",
+      "latestRealization": "2026-09-11",
       "observations": [
         {
           "decisionDate": "2026-08-14",
@@ -285,15 +286,21 @@
           "netReturn": 0.02940308845290403,
           "realizationDate": "2026-09-04",
           "turnover": null
+        },
+        {
+          "decisionDate": "2026-09-04",
+          "netReturn": 0.02401225593199448,
+          "realizationDate": "2026-09-11",
+          "turnover": null
         }
       ],
-      "observedWeeks": 3,
+      "observedWeeks": 4,
       "protocol": "breadth_confirmed_trend_return_ceiling_v3",
       "requiredWeeks": 52
     },
     {
       "executionEnabled": false,
-      "latestRealization": "2026-09-04",
+      "latestRealization": "2026-09-11",
       "observations": [
         {
           "decisionDate": "2026-08-14",
@@ -312,15 +319,21 @@
           "netReturn": 0.0019912584332548887,
           "realizationDate": "2026-09-04",
           "turnover": 0.18333333333333332
+        },
+        {
+          "decisionDate": "2026-09-04",
+          "netReturn": -0.008926843271075492,
+          "realizationDate": "2026-09-11",
+          "turnover": 0.0
         }
       ],
-      "observedWeeks": 3,
+      "observedWeeks": 4,
       "protocol": "covariance_minimum_variance_v1",
       "requiredWeeks": 52
     },
     {
       "executionEnabled": false,
-      "latestRealization": "2026-09-04",
+      "latestRealization": "2026-09-11",
       "observations": [
         {
           "decisionDate": "2026-08-14",
@@ -339,15 +352,21 @@
           "netReturn": 0.022016548288114945,
           "realizationDate": "2026-09-04",
           "turnover": null
+        },
+        {
+          "decisionDate": "2026-09-04",
+          "netReturn": 0.016859223731109818,
+          "realizationDate": "2026-09-11",
+          "turnover": null
         }
       ],
-      "observedWeeks": 3,
+      "observedWeeks": 4,
       "protocol": "past_only_consensus_selector_return_v1",
       "requiredWeeks": 52
     },
     {
       "executionEnabled": false,
-      "latestRealization": "2026-09-04",
+      "latestRealization": "2026-09-11",
       "observations": [
         {
           "decisionDate": "2026-08-14",
@@ -366,9 +385,15 @@
           "netReturn": 0.01769548334778178,
           "realizationDate": "2026-09-04",
           "turnover": null
+        },
+        {
+          "decisionDate": "2026-09-04",
+          "netReturn": 0.011940520425217845,
+          "realizationDate": "2026-09-11",
+          "turnover": null
         }
       ],
-      "observedWeeks": 3,
+      "observedWeeks": 4,
       "protocol": "return_first_60_40_blend_v1",
       "requiredWeeks": 52
     },
@@ -377,7 +402,39 @@
       "latestRealization": null,
       "observations": [],
       "observedWeeks": 0,
+      "protocol": "equal_weight_benchmark_v1",
+      "requiredWeeks": 52
+    },
+    {
+      "executionEnabled": false,
+      "latestRealization": null,
+      "observations": [],
+      "observedWeeks": 0,
+      "protocol": "residual_tie_agnostic_companion_v1",
+      "requiredWeeks": 52
+    },
+    {
+      "executionEnabled": false,
+      "latestRealization": null,
+      "observations": [],
+      "observedWeeks": 0,
       "protocol": "sec_residual_controlled_sleeve_v1",
+      "requiredWeeks": 52
+    },
+    {
+      "executionEnabled": false,
+      "latestRealization": null,
+      "observations": [],
+      "observedWeeks": 0,
+      "protocol": "valuation_earnings_yield_v1",
+      "requiredWeeks": 52
+    },
+    {
+      "executionEnabled": false,
+      "latestRealization": null,
+      "observations": [],
+      "observedWeeks": 0,
+      "protocol": "valuation_growth_5050_blend_v1",
       "requiredWeeks": 52
     }
   ],

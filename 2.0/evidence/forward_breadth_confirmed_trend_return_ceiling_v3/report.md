@@ -3,10 +3,10 @@
 Protocol: `breadth_confirmed_trend_return_ceiling_v3_forward`
 
 - Decision basis: **held frozen book** (the pinned source bundle ends 2026-08-07).
-- Saved forward decisions: **4**.
-- Realized weeks: **3/52**.
-- Latest decision: **2026-09-04**.
-- Latest realization: **2026-09-04**.
+- Saved forward decisions: **5**.
+- Realized weeks: **4/52**.
+- Latest decision: **2026-09-11**.
+- Latest realization: **2026-09-11**.
 - Records written after their window: **5**.
 - Execution enabled: **no**.
 

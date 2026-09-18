@@ -14992,3 +14992,57 @@ the payload, not a re-run cost model. None of these metrics is an out-of-sample 
 throughout `research-status.tsx` but had **no CSS rules at all**, so the research page had
 been rendering raw unstyled HTML tables on a dark canvas. Defining them for the metrics page
 fixed that page too.
+
+## Step 311 — 2026-09-18 — Seven clocks now carry a 2026-09-11 decision
+
+**What this was for.** The 2026-09-11 decision window closes at 21:00 UTC today and nothing
+had been recorded in it. A missed weekly window cannot be backfilled from a later vintage, so
+the week would have been lost outright.
+
+**Podman was the actual blocker, not the protocol.** The guarded cycle acquires its weekly
+vintage inside a container so the snapshot is hermetic and reproducible. The sandbox VM was
+down; the cycle failed closed with a connection error rather than falling back to an
+unsandboxed download, which is the correct behaviour. Starting the machine was sufficient.
+
+**Four running clocks advanced from four decisions to five**, all now at decision date
+2026-09-11 with the realization recorded:
+
+| clock | weeks | cumulative |
+| --- | --- | --- |
+| breadth_confirmed_trend_return_ceiling_v3 | 4/52 | +5.48% |
+| past_only_consensus_selector_return_v1 | 4/52 | +5.22% |
+| return_first_60_40_blend_v1 | 4/52 | +2.56% |
+| covariance_minimum_variance_v1 | 4/52 | −1.11% |
+
+Each recorder reported `late records 5` — the decision was written inside its window but after
+the decision Friday, which the protocol permits and the log records honestly.
+
+**Three clocks were started at zero**, each verified independent of the blocked growth sleeve:
+`equal_weight_benchmark_v1`, `residual_tie_agnostic_companion_v1`, and
+`valuation_earnings_yield_v1`. All three have one decision and no realization yet. The
+tie-agnostic companion's first decision records a declared-versus-random-tiebreak overlap of
+1.00 against the pool and a mean of 0.32 against the twenty random seeds — which is the whole
+point of that clock, and it will only mean something after 52 weeks.
+
+**Two clocks could not start, for different and both legitimate reasons.**
+
+`sec_residual_controlled_sleeve_forward_v1` is still blocked on Step 309's hardcoded price
+vintage, which remains an owner decision rather than a technical one.
+
+`sue_quarterly_forward_v1` reached its first eligible decision date today and **has no
+recorder at all** — it is referenced only by the pre-flight, has no evidence directory, and
+its panel ends **2026-07-01**, so it could not have priced a 2026-09-11 book even with a
+recorder written in time. A clock was frozen on 2026-09-06 without the machinery to run it.
+The cost is a delayed start, not lost evidence, because the clock has not begun.
+
+**The weekly panel now reaches 2026-09-11** with 2,804 issuers priced (2,810 at 08-28, 2,807
+at 09-04). Overlap reconciliation against the prior vintage compared 30,395 cells with a
+median absolute return gap of 1.1e-16 and 372 cells over 100bps — the usual delisting and
+corporate-action tail, and existing cells are never rewritten.
+
+**One honest note on the pre-flight.** It now fails 1 of 29, and the failure is its own: it
+smoke-tests the composite book builder for 2026-07-31 and the builder refuses to overwrite a
+decision already saved for that date. The check is not idempotent. That is a defect in the
+test, not in the clock — but it sits alongside the Step 309 finding that the pre-flight never
+verifies sleeve paths reach the *decision* date, and both should be fixed before the tool is
+trusted as a gate.

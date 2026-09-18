@@ -37,12 +37,12 @@
   },
   "clocks": [
     {
-      "cumulativeReturn": 0.03002029190162947,
-      "observedWeeks": 3,
+      "cumulativeReturn": 0.05475340276591889,
+      "observedWeeks": 4,
       "promotionAuthorized": false,
       "protocol": "breadth_confirmed_trend_return_ceiling_v3",
       "requiredWeeks": 52,
-      "savedDecisions": 4,
+      "savedDecisions": 5,
       "weekly": [
         {
           "netReturn": 0.007870624530397694,
@@ -55,16 +55,20 @@
         {
           "netReturn": 0.02940308845290403,
           "week": "2026-09-04"
+        },
+        {
+          "netReturn": 0.02401225593199448,
+          "week": "2026-09-11"
         }
       ]
     },
     {
-      "cumulativeReturn": -0.0021668449827145775,
-      "observedWeeks": 3,
+      "cumulativeReturn": -0.011074345168236688,
+      "observedWeeks": 4,
       "promotionAuthorized": false,
       "protocol": "covariance_minimum_variance_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 4,
+      "savedDecisions": 5,
       "weekly": [
         {
           "netReturn": -0.004051813672142307,
@@ -77,16 +81,29 @@
         {
           "netReturn": 0.0019912584332548887,
           "week": "2026-09-04"
+        },
+        {
+          "netReturn": -0.008926843271075492,
+          "week": "2026-09-11"
         }
       ]
     },
     {
-      "cumulativeReturn": 0.034727793837516785,
-      "observedWeeks": 3,
+      "cumulativeReturn": null,
+      "observedWeeks": 0,
+      "promotionAuthorized": false,
+      "protocol": "equal_weight_benchmark_v1",
+      "requiredWeeks": 52,
+      "savedDecisions": 1,
+      "weekly": []
+    },
+    {
+      "cumulativeReturn": 0.05217250121462125,
+      "observedWeeks": 4,
       "promotionAuthorized": false,
       "protocol": "past_only_consensus_selector_return_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 4,
+      "savedDecisions": 5,
       "weekly": [
         {
           "netReturn": 0.02794378204652248,
@@ -99,16 +116,29 @@
         {
           "netReturn": 0.022016548288114945,
           "week": "2026-09-04"
+        },
+        {
+          "netReturn": 0.016859223731109818,
+          "week": "2026-09-11"
         }
       ]
     },
     {
-      "cumulativeReturn": 0.01353230869316091,
-      "observedWeeks": 3,
+      "cumulativeReturn": null,
+      "observedWeeks": 0,
+      "promotionAuthorized": false,
+      "protocol": "residual_tie_agnostic_companion_v1",
+      "requiredWeeks": 52,
+      "savedDecisions": 1,
+      "weekly": []
+    },
+    {
+      "cumulativeReturn": 0.025634411926729772,
+      "observedWeeks": 4,
       "promotionAuthorized": false,
       "protocol": "return_first_60_40_blend_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 4,
+      "savedDecisions": 5,
       "weekly": [
         {
           "netReturn": -0.002215515303859796,
@@ -121,6 +151,10 @@
         {
           "netReturn": 0.01769548334778178,
           "week": "2026-09-04"
+        },
+        {
+          "netReturn": 0.011940520425217845,
+          "week": "2026-09-11"
         }
       ]
     },
@@ -131,6 +165,15 @@
       "protocol": "sec_residual_controlled_sleeve_v1",
       "requiredWeeks": 52,
       "savedDecisions": 0,
+      "weekly": []
+    },
+    {
+      "cumulativeReturn": null,
+      "observedWeeks": 0,
+      "promotionAuthorized": false,
+      "protocol": "valuation_earnings_yield_v1",
+      "requiredWeeks": 52,
+      "savedDecisions": 1,
       "weekly": []
     },
     {
@@ -283,12 +326,12 @@
     "measuredIn": "Step 281",
     "whyItMatters": "Counting them separately overstates how many independent bets this project holds, which is the illusion Step 245 measured as an effective 1.15 strategies and Step 277 restated as breadth without skill. Nothing has been removed: a negative result is a record, not a mistake to delete."
   },
-  "generatedAtUtc": "2026-09-10T22:01:27.357578+00:00",
+  "generatedAtUtc": "2026-09-18T02:49:12.432557+00:00",
   "headline": {
-    "clocksPending": 5,
+    "clocksPending": 4,
     "clocksRunning": 4,
     "closedFamilies": 17,
-    "totalUntouchedWeeks": 12,
+    "totalUntouchedWeeks": 16,
     "weeksRequiredEach": 52
   },
   "liveTradingEnabled": false,
@@ -332,12 +375,6 @@
     "window": "2013-2022, 39 quarterly decisions, 509 weeks"
   },
   "pending": [
-    {
-      "firstDecision": "2026-09-11",
-      "modifies": "nothing",
-      "protocol": "residual_tie_agnostic_companion_v1",
-      "purpose": "Measure forward whether the residual sleeve's declared book beats the tie it was drawn from, or whether its in-sample advantage was the sort key."
-    },
     {
       "firstDecision": "2026-08-28",
       "modifies": "",

@@ -1,7 +1,12 @@
 {
-  "blockers": [],
-  "checks_passed": 29,
+  "blockers": [
+    {
+      "check": "composite book builder runs and sums to 1",
+      "detail": "a different book is already saved for 2026-07-31; refusing to overwrite a recorded decision"
+    }
+  ],
+  "checks_passed": 28,
   "checks_total": 29,
   "decision_date": "2026-09-11",
-  "ready": true
+  "ready": false
 }

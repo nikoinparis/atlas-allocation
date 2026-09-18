@@ -108,12 +108,46 @@ will never rebalance until `run_sec_survivorship_valuation_discovery_v1.py` is r
 weeks of a frozen April book is not the quarterly strategy that was backtested.
 **Check:** `score_block_age_days` in the decision log. Above ~120, the refresh was missed.
 
-### S4. Measure the leg correlation forward, and stop the blend if it fails *(new 2026-09-06)*
-**Status:** running from 2026-09-11 as `valuation_growth_5050_blend_forward_v1`.
-The entire Step 275 result rests on one number measured on the same searched window as
-everything else. `status.json` flags `correlation_refuted` above 0.5. **This is the first thing
-to read when the clock has enough weeks — before any Sharpe.**
+### S4. Measure the leg correlation forward, and stop the blend if it fails — CLOSED, do not restart
+**Status corrected 2026-09-18 (Step 311).** This entry said "running from 2026-09-11". It is
+not running and never will. `valuation_growth_5050_blend_forward_v1` was **superseded on
+2026-09-10, before its first decision**, and its own record reads *"WILL NOT START. No decision
+or observation was ever recorded against it."*
+**Why:** the protocol's entire rationale was a near-zero correlation between its two legs, and
+Step 291 established that correlation was an artifact of a one-week date-labelling offset — the
+valuation path is week-ending, the growth path is forward-indexed, and joining them by date
+compared week t against week t+1. **Aligned, the legs correlate +0.692, not −0.026**, and the
+50/50 blend lands at Sharpe 1.760 against components of 1.354 and 1.849. It beats neither.
+The clock refuted itself against its own declared standard before it started, which is the
+cheapest possible outcome. The frozen file is unchanged and the supersession is recorded.
 
+### S8. Write the SUE recorder, and refresh its panel *(new 2026-09-18, Step 311)*
+**Blocker:** neither exists. `sue_quarterly_forward_v1` was frozen 2026-09-06 with a first
+eligible decision date of 2026-09-11, and on that date it had **no recorder script and no
+evidence directory** — it is referenced only by the pre-flight. Its panel
+(`evidence/extended_sue_panel_v1`) ends **2026-07-01**, so it could not have priced the book
+even if a recorder had existed.
+**Why it still matters:** Step 253 measured SUE's correlation against the existing books at
+0.002 and 0.008, the lowest this project has ever recorded against a set that correlates
+0.506–0.874 internally. That is the whole reason the clock was frozen.
+**Cost of delay:** a later start, not lost evidence — the clock has not begun, so nothing is
+unbackfillable yet. Every week it stays unwritten is a week further from 52.
+**Two jobs:** extend the SUE panel past 2026-07-01, then write
+`record_sue_quarterly_forward_v1.py` to the pattern of the three recorders that started
+cleanly on 2026-09-11. See [[S3]] — the same quarterly-regeneration problem.
+
+### S9. Fix the two defects in the forward-clock pre-flight *(new 2026-09-18, Step 311)*
+The pre-flight is the tool that is supposed to stop a window being wasted, and it has now
+failed in both directions in two consecutive weeks.
+1. **It does not check that sleeve paths reach the decision date.** Step 309 lost a window to a
+   hardcoded price vintage while the pre-flight passed 29 of 29. It verifies panels reach a
+   past date and that the composite book builds *for a past date*; it never asks about the
+   decision Friday itself.
+2. **Its composite-book check is not idempotent.** It smoke-tests the builder for 2026-07-31,
+   the builder correctly refuses to overwrite a decision already saved for that date, and the
+   pre-flight reports a blocker that is its own test, not the clock's. It now fails 1 of 29
+   every run for this reason, which trains the reader to ignore the failure line.
+Both are small. A gate nobody trusts is worse than no gate.
 
 ## A tier
 

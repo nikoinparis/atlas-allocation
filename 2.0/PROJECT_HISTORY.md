@@ -15171,3 +15171,49 @@ forward record and because a negative stretch must be recorded on the same terms
 49% and 53% CAGRs remain in-sample, remain beta (Step 310: betas of 1.30–1.75, market R² of
 0.60–0.76, growth top-five at **−0.74% alpha**), and remain nought-for-six out of sample
 (Step 289). **The forward record cannot speak to them because it is not measuring them.**
+
+## Step 314 — 2026-09-18 — The full-history price lineage, and a bar that had not closed yet
+
+**What this was for.** Step 312 found that the three clocks started on 2026-09-11 read a price
+lineage nobody extends weekly. This extends it, and finds a second defect on the way.
+
+`broad_full_history_panel_v1` and `clean_full_history_prices_v1` ended **2026-09-04** while
+`clean_weekly_prices_v2` had already reached 2026-09-11, because the two are maintained by
+different routes: the second lineage is extended incrementally each week, the first is rebuilt
+from a full re-acquisition. A fresh vintage was acquired — 3,235 symbols requested, **2,817
+returned**, 418 empty and listed in full, an 87.08% return rate, the shortfall being delisted
+issuers Yahoo no longer serves.
+
+**The first rebuild produced a panel ending 2026-09-18, and that was wrong.** It is Friday
+03:00 UTC as this runs; the US market has not opened. `resample("W-FRI").last()` labelled
+Thursday's closes with Friday's date, giving **2,787 issuers carrying 2026-09-17 prices under
+a 2026-09-18 header**. A recorder realizing that week would have marked the book one trading
+day early and nothing in the record would have said so. Thirty-four of the 2,787 cells matched
+the prior week, so the bar was full of real, distinct, wrongly-dated prices rather than
+obviously empty.
+
+**This is Step 291 again with a smaller number on it.** That defect was a one-*week* labelling
+offset and it cost a withdrawn result. The other lineage's extender already guards against this
+— it records `last_closed_friday_at_build` — and this builder did not.
+
+`build_broad_full_history_panel_v1.py` now drops any trailing bar whose Friday has not reached
+21:00 UTC and records both `last_closed_friday_at_build` and `weeks_dropped_as_unclosed`.
+Verified: *"dropped 1 bar(s) for weeks that have not closed: ['2026-09-18']"*, and the panel
+ends 2026-09-11.
+
+**The lineage now reaches 2026-09-11**: 2,817 issuers in, 2,804 out after corporate-action
+cleaning, 1.06% of cells removed, 13 issuers quarantined. Reconciliation against the sealed
+panel over 198 overlapping weeks compared 543,187 cells at a median absolute gap of 2.2e-16
+with 0.07% over 100bps.
+
+**One honest note on the SUE decision recorded in Step 312.** It was taken before this rebuild,
+so its tradability screen used the 2026-09-04 bar rather than 2026-09-11. That is causal —
+2026-09-04 prices are known on 2026-09-11 — and all fifty selected names were priced, so the
+book is sound. It is recorded here because the decision log pins the price hash it used and
+that hash no longer matches the file on disk, which is the intended behaviour of a pinned
+record rather than a fault.
+
+**All eight hash chains verify** after the rebuild: breadth-confirmed trend, covariance
+minimum variance, past-only consensus and the 60/40 blend at five decisions and four
+observations each; equal-weight benchmark, tie-agnostic companion, SUE quarterly and valuation
+earnings yield at one decision each.

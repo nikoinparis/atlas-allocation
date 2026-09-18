@@ -144,14 +144,15 @@ recorder. In eligibility order:
 universe out of sample. A forward clock is the only instrument that settles that, and it cannot
 settle what it is not measuring.
 
-### S12. Extend the full-history price lineage weekly *(new 2026-09-18, Step 312)*
-There are two panel lineages and the weekly routine maintains only one.
-`clean_weekly_prices_v2` reaches 2026-09-11 via `extend_weekly_price_panel_v2.py`;
-`broad_full_history_panel_v1` and `clean_full_history_prices_v1` end **2026-09-04** and are
-rebuilt from a full re-acquisition instead. The valuation, equal-weight-benchmark and
-tie-agnostic-companion clocks all read the second lineage, so their realizations fail until it
-is extended. Either add it to the weekly routine or make the recorders read the maintained
-panel — the first is safer, since changing a recorder's price source is a protocol mutation.
+### S12. Extend the full-history price lineage weekly — half done *(updated 2026-09-18, Step 314)*
+**Done:** the lineage was re-acquired and rebuilt and now reaches 2026-09-11, so the valuation,
+equal-weight-benchmark, tie-agnostic-companion and SUE clocks can realize.
+`build_broad_full_history_panel_v1.py` now drops trailing bars whose Friday has not closed —
+the first rebuild stamped Thursday's closes with Friday's date across 2,787 issuers.
+**Still open:** it is still a manual full re-acquisition, not part of the weekly routine, and it
+takes several minutes over ~3,200 symbols. Either add it to the weekly sequence or give this
+lineage an incremental extender like `extend_weekly_price_panel_v2.py`. Changing which panel a
+recorder reads is a protocol mutation, so fix the lineage, not the recorders.
 
 ### S9. Fix the two defects in the forward-clock pre-flight *(new 2026-09-18, Step 311)*
 The pre-flight is the tool that is supposed to stop a window being wasted, and it has now

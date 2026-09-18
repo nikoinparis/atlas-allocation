@@ -20,7 +20,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-from datetime import datetime, timezone
+from datetime import date, datetime, time, timedelta, timezone
 from pathlib import Path
 
 import numpy as np
@@ -63,6 +63,29 @@ def main() -> int:
 
     daily = pd.DataFrame(series)
     weekly = daily.resample("W-FRI").last()
+
+    # Drop a trailing bar whose Friday has not closed yet.
+    #
+    # `resample("W-FRI").last()` happily labels a partial week with its Friday. Run
+    # on a Friday morning UTC, this stamps Thursday's close as "the week ending
+    # Friday" -- on 2026-09-18 that was 2,787 issuers carrying Thursday's prices
+    # under Friday's date. A forward recorder realizing that week would mark the
+    # book a day early and never know. This project has already lost a result to a
+    # one-week labelling offset (Step 291); a one-day one is the same failure with
+    # a smaller number on it.
+    #
+    # The weekly extender for the other price lineage already records
+    # `last_closed_friday_at_build` for this reason. This does the same.
+    now = datetime.now(timezone.utc)
+    cutoff = now - timedelta(days=(now.weekday() - 4) % 7)
+    last_closed = cutoff.date()
+    if now < datetime.combine(last_closed, time(21, 0), tzinfo=timezone.utc):
+        last_closed -= timedelta(days=7)
+    dropped = [str(w.date()) for w in weekly.index if w.date() > last_closed]
+    if dropped:
+        weekly = weekly.loc[[w for w in weekly.index if w.date() <= last_closed]]
+        print(f"dropped {len(dropped)} bar(s) for weeks that have not closed: {dropped}", flush=True)
+
     returns = weekly.pct_change()
     # Implausible weekly moves are masked in the return series only. The level series is
     # left as reported: a level is a fact about a price, while a return outside
@@ -103,6 +126,8 @@ def main() -> int:
         "weeks": int(weekly.shape[0]),
         "first_week": str(weekly.index[0].date()),
         "last_week": str(weekly.index[-1].date()),
+        "last_closed_friday_at_build": str(last_closed),
+        "weeks_dropped_as_unclosed": dropped,
         "cleaning_rules": {"non_positive_prices": "set to missing",
                            "weekly_return_cap": RETURN_CAP, "weekly_return_floor": RETURN_FLOOR,
                            "return_observations_masked": adjusted},

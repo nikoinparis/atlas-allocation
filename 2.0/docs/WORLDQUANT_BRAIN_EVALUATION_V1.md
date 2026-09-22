@@ -187,8 +187,9 @@ pass on the most important finding this project has produced.
 Both outcomes are worth having:
 
 - **The ladders are flat on BRAIN too.** The Step 296–308 null is now replicated on
-  independent, professionally-constructed, point-in-time data with ~4× the decisions and
-  ~5× the cross-section, through someone else's backtester. That is close to as strong as
+  independent, professionally-constructed, point-in-time data with ~5× the cross-section,
+  through someone else's backtester. **Not with more decisions — see the correction
+  below.** That is close to as strong as
   this finding can get, and it closes the "maybe our panel was wrong" objection permanently.
 - **A ladder orders itself on BRAIN.** That is the first genuine lead in 312 steps — and
   the immediate next question is *not* "trade it," it is "is this a real signal we missed,
@@ -360,3 +361,90 @@ and test it under its own pre-registration, not a candidate.
   only a submission's forward accrual is genuinely untouched, and that record belongs to
   WorldQuant.
 - It cannot count its own multiple testing, and must say so.
+
+---
+
+# Run log
+
+## 2026-09-22 — Phase 0 and the production forms, partial
+
+**Correction to this document: the in-sample window is far shorter than assumed.**
+An earlier draft claimed BRAIN supplies "a decade-plus" and "~4× the decisions." The
+simulator's own IS summary shows a **TRAIN period of 2019–2022 — four years**, roughly
+**16 quarterly decisions** against Step 296's 13–14. On the decision-count axis BRAIN buys
+this project almost nothing. Separate TEST / IS / OS tabs exist and may extend the total
+span; that has not been established yet and must be before any power claim is repeated.
+
+**Two consequences, both of which the plan survives.**
+1. The real gain is **cross-sectional depth**, not calendar length: ~3,000 scored names
+   against the 509 the fundamental signals have always used. Step 300 decomposed
+   per-decision IC dispersion into a sampling component of 0.115 and true time variation of
+   0.086–0.196, and only the first shrinks with names — so this improves per-decision
+   precision and does nothing for the number of decisions.
+2. **The significance null is underpowered here too**, exactly as it was in Steps 296, 302
+   and 303. Monotonicity carries the weight, because it reads the shape of the relationship
+   rather than its significance. The experiment is unchanged; the framing is.
+
+**A further honest limit: 2019–2022 is not an untouched window.** Step 300's wide-universe
+screen ran 2013–2022, so BRAIN's TRAIN period sits *inside* ground this project has already
+covered. What is independent is the data construction, the vendor, the universe and the
+backtester — not the calendar. This is a replication on independent *data*, not on an
+independent *period*.
+
+### Field ids — resolved and unresolved
+
+Confirmed to exist and parse: `assets`, `assets_curr`, `capex`, `cash`, `cash_st`,
+`cashflow`, `cashflow_op`, `cogs`, `current_ratio`, `debt`, `debt_lt`, `debt_st`, `ebit`,
+`ebitda`, `sales`, `equity`, `liabilities`. Instrument coverage reads **50%** across the
+fundamental fields with 100% date coverage — above the 50% density floor, but only just,
+and it should be treated as the binding caveat on every reading below.
+
+**`net_income` does not exist.** The simulator rejects it: *"Attempted to use unknown
+variable net_income."* This blocks `cash_conversion` (which needs it for the cash-conversion
+spread) and `growth` (which needs it for one of three growth legs). Resolve with
+`--find-field <dataset> income` before re-running either.
+
+### Results so far
+
+| signal | neutralization | Sharpe | returns | turnover | status |
+|---|---|---|---|---|---|
+| `group_rank(cashflow_op / sales, sector)` (smoke test) | — | 0.64 | 6.64% | 2.46% | pipeline confirmed |
+| `balance_sheet_quality` | (confirm) | **−1.47** | **−10.38%** | 2.56% | ran; **wrong sign** |
+| `cash_conversion` | — | — | — | — | blocked on `net_income` |
+| `growth` | — | — | — | — | blocked on `net_income` |
+
+### balance_sheet_quality: refuted on sign, and the trap that comes next
+
+Sharpe −1.47, returns −10.38%, and **negative in all four years** (−1.84, −1.30, −2.03,
+−1.22). That consistency is not a noise pattern.
+
+The declared sign for this signal is **positive**: more cash, more equity, less debt, fewer
+liabilities should rank higher. BRAIN's data says the opposite, consistently, on a
+four-year window.
+
+**This is a refutation of the declared hypothesis. It is not the discovery of an inverted
+one.** Community guidance around BRAIN explicitly encourages flipping a negative Sharpe
+("a Sharpe of −1.8 is a good alpha with a minus sign missing"). For this project that
+advice is poison: post-hoc sign flipping doubles the search space for free and converts
+every refutation into a discovery. The project has held this line before and must hold it
+here — Step 286 recorded Form 4 opportunistic insiders as *"refuted on sign, rather than
+flipped"* at IC −0.0188, and Step 282 refused to rescue FINRA short volume from a −28% book
+by reversing it, because *"the sign was declared, the IC behind it is insignificant."*
+
+Three readings remain open and the decile ladder separates them:
+
+1. **Real inverted content.** Low-quality, levered balance sheets outperformed. Plausible on
+   2019–2022 specifically, which contains the 2020 crash and the 2020–21 junk-and-leverage
+   recovery — a regime, not an edge (CLAUDE.md §6). An inverted signal would need its own
+   pre-registration on a window not used to find the inversion.
+2. **A definition difference.** Our `debt` is a sum of three SEC tags
+   (`LongTermDebtNoncurrent`, `LongTermDebt`, `DebtCurrent`); BRAIN exposes `debt`,
+   `debt_lt` and `debt_st` separately and their aggregation is unknown. Same for
+   `liabilities` and `equity`. A sign this strong from a ratio this simple deserves the
+   definitions checked before it is believed in either direction.
+3. **Concentration.** A strong Sharpe from the extremes with an unordered middle is what
+   Step 296 found six times over: positive IC alongside a negative decile spread, which is
+   noise measured twice.
+
+**Nothing is concluded until the ladder runs.** Record the neutralization setting used —
+the table above cannot be read without it.

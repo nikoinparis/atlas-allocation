@@ -25,6 +25,7 @@ Credentials come from a JSON file (default ~/.worldquant_brain.json):
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import statistics
 import sys
@@ -41,7 +42,9 @@ FIELDS = {
     "sales": "sales",
     "cashflow_op": "cashflow_op",
     "capex": "capex",
-    "net_income": "net_income",
+    # REJECTED by the simulator on 2026-09-22: "unknown variable net_income".
+    # Find the real id with --find-field income, then set it here.
+    "net_income": "net_income",  # <-- STILL WRONG, must be replaced
     "assets": "assets",
     "equity": "equity",
     "liabilities": "liabilities",
@@ -238,20 +241,66 @@ def monotonicity(returns_by_decile: dict[int, float]) -> float:
     return statistics.correlation([float(d) for d in present], ranks)
 
 
-def audit_fields(session: requests.Session, dataset: str) -> int:
-    response = session.get(f"{API}/data-fields",
-                           params={"dataset.id": dataset, "region": BASE_SETTINGS["region"],
-                                   "universe": BASE_SETTINGS["universe"],
-                                   "delay": BASE_SETTINGS["delay"], "limit": 200})
-    if response.status_code != 200:
-        print(f"data-fields failed: {response.status_code} {response.text[:400]}")
-        return 1
-    print(f"{'id':32} {'coverage':>9}  description")
-    for field in response.json().get("results", []):
-        print(f"{field.get('id', ''):32} {str(field.get('coverage', '')):>9}  "
-              f"{str(field.get('description', ''))[:70]}")
-    print("\nDENSITY GUARD: a field below 50% coverage cannot be read on deciles at all.")
-    print("Step 298 nearly reported a discovery on a signal that was 93.3% zeros.")
+def _paged(session: requests.Session, url: str, params: dict) -> list[dict]:
+    """Walk an offset-paginated BRAIN collection to exhaustion."""
+    rows, offset = [], 0
+    while True:
+        response = session.get(url, params=dict(params, limit=50, offset=offset))
+        if response.status_code != 200:
+            raise SystemExit(f"{url} -> {response.status_code} {response.text[:400]}")
+        payload = response.json()
+        batch = payload.get("results", [])
+        rows.extend(batch)
+        offset += len(batch)
+        if not batch or offset >= int(payload.get("count", 0)):
+            return rows
+
+
+def list_datasets(session: requests.Session) -> int:
+    params = {"region": BASE_SETTINGS["region"], "universe": BASE_SETTINGS["universe"],
+              "delay": BASE_SETTINGS["delay"], "instrumentType": "EQUITY"}
+    for row in _paged(session, f"{API}/data-sets", params):
+        print(f"{row.get('id', ''):28} {str(row.get('name', ''))[:70]}")
+    return 0
+
+
+def dump_fields(session: requests.Session, dataset: str, output: Path) -> int:
+    """Download a dataset's whole field dictionary to CSV.
+
+    45 pages of web UI is not a reference you can work from. This is, and committing it
+    means the field ids stop being the thing that blocks every future session.
+    """
+    params = {"dataset.id": dataset, "region": BASE_SETTINGS["region"],
+              "universe": BASE_SETTINGS["universe"], "delay": BASE_SETTINGS["delay"],
+              "instrumentType": "EQUITY"}
+    rows = _paged(session, f"{API}/data-fields", params)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    with output.open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.writer(handle)
+        writer.writerow(["id", "description", "type", "coverage", "userCount", "alphaCount"])
+        for row in rows:
+            writer.writerow([row.get("id", ""), row.get("description", ""),
+                             row.get("type", ""), row.get("coverage", ""),
+                             row.get("userCount", ""), row.get("alphaCount", "")])
+    print(f"{len(rows)} fields -> {output}")
+    thin = [r.get("id") for r in rows
+            if isinstance(r.get("coverage"), (int, float)) and r["coverage"] < 0.5]
+    if thin:
+        print(f"DENSITY GUARD: {len(thin)} field(s) below 50% coverage, unreadable on "
+              f"deciles: {', '.join(map(str, thin[:12]))}")
+    return 0
+
+
+def find_field(session: requests.Session, dataset: str, needle: str) -> int:
+    params = {"dataset.id": dataset, "region": BASE_SETTINGS["region"],
+              "universe": BASE_SETTINGS["universe"], "delay": BASE_SETTINGS["delay"],
+              "instrumentType": "EQUITY"}
+    needle = needle.lower()
+    for row in _paged(session, f"{API}/data-fields", params):
+        blob = f"{row.get('id', '')} {row.get('description', '')}".lower()
+        if needle in blob:
+            print(f"{row.get('id', ''):28} cov={str(row.get('coverage', '')):>6}  "
+                  f"{str(row.get('description', ''))[:60]}")
     return 0
 
 
@@ -268,8 +317,12 @@ def main() -> int:
                         help="offline: dump every expression for copy-paste, then exit")
     parser.add_argument("--score-manual", type=Path, metavar="FILE",
                         help="offline: score decile returns typed in from the web UI")
-    parser.add_argument("--audit-fields", metavar="DATASET_ID",
-                        help="Phase 0: list a dataset's fields and coverage, then exit")
+    parser.add_argument("--list-datasets", action="store_true",
+                        help="Phase 0: list available datasets, then exit")
+    parser.add_argument("--dump-fields", metavar="DATASET_ID",
+                        help="Phase 0: download a dataset's whole field dictionary to CSV")
+    parser.add_argument("--find-field", nargs=2, metavar=("DATASET_ID", "TEXT"),
+                        help="Phase 0: search a dataset's fields by id or description")
     parser.add_argument("--output", type=Path,
                         default=Path(__file__).resolve().parents[1]
                         / "evidence/worldquant_brain_decile_ladder_v1")
@@ -282,8 +335,14 @@ def main() -> int:
 
     session = login(args.credentials)
 
-    if args.audit_fields:
-        return audit_fields(session, args.audit_fields)
+    if args.list_datasets:
+        return list_datasets(session)
+    if args.dump_fields:
+        return dump_fields(session, args.dump_fields,
+                           Path(__file__).resolve().parents[1]
+                           / f"data/worldquant_brain_fields/{args.dump_fields}.csv")
+    if args.find_field:
+        return find_field(session, args.find_field[0], args.find_field[1])
 
     args.output.mkdir(parents=True, exist_ok=True)
     summary: dict[str, dict] = {}

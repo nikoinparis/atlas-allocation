@@ -1,0 +1,887 @@
+id,description,type,coverage,alphaCount
+assets,Assets - Total,MATRIX,0.5,181613
+assets_curr,Current Assets - Total,MATRIX,0.5,17295
+bookvalue_ps,Book Value Per Share,MATRIX,0.5,11261
+capex,Capital Expenditures,MATRIX,0.5,32930
+cash,Cash,MATRIX,0.5,15065
+cash_st,Cash and Short-Term Investments,MATRIX,0.5,9668
+cashflow,Cashflow (Annual),MATRIX,0.5,11516
+cashflow_dividends,Cash Dividends (Cash Flow),MATRIX,0.5,6916
+cashflow_fin,Financing Activities - Net Cash Flow,MATRIX,0.5,8370
+cashflow_invst,Investing Activities - Net Cash Flow,MATRIX,0.5,5324
+cashflow_op,Operating Activities - Net Cash Flow,MATRIX,0.5,27528
+cogs,Cost of Goods Sold,MATRIX,0.5,11620
+current_ratio,Current Ratio,MATRIX,0.5,7270
+debt,Debt,MATRIX,0.5,33247
+debt_lt,Long-Term Debt - Total,MATRIX,0.5,18560
+debt_st,Debt in Current Liabilities,MATRIX,0.5,11855
+depre_amort,Depreciation and Amortization - Total,MATRIX,0.5,5632
+ebit,Earnings Before Interest and Taxes,MATRIX,0.5,23678
+ebitda,Earnings Before Interest,MATRIX,0.5,24359
+employee,Employees,MATRIX,0.5,5778
+enterprise_value,Enterprise Value,MATRIX,0.5,49121
+eps,Earnings Per Share (Basic) - Including Extraordinary Items,MATRIX,0.5,18458
+equity,Common/Ordinary Equity - Total,MATRIX,0.5,32077
+fnd6_acdo,Current Assets of Discontinued Operations,MATRIX,0.5,17239
+fnd6_acodo,Other Current Assets Excl Discontinued Operations,MATRIX,0.5,3629
+fnd6_acox,Current Assets - Other - Sundry,MATRIX,0.5,3238
+fnd6_acqgdwl,Acquired Assets - Goodwill,MATRIX,0.5,1459
+fnd6_acqintan,Acquired Assets - Intangibles,MATRIX,0.5,778
+fnd6_adesinda_curcd,ISO Currency Code - Company Annual Market,MATRIX,0.5,6873
+fnd6_aldo,Long-term Assets of Discontinued Operations,MATRIX,0.5,1601
+fnd6_am,Amortization of Intangibles,MATRIX,0.5,1830
+fnd6_aodo,Other Assets excluding Discontinued Operations,MATRIX,0.5,1098
+fnd6_aox,Assets - Other - Sundry,MATRIX,0.5,1515
+fnd6_aqc,Acquisitions,MATRIX,0.5,1823
+fnd6_aqi,Acquisitions - Income Contribution,MATRIX,0.5,367
+fnd6_aqs,Acquisitions - Sales Contribution,MATRIX,0.5,450
+fnd6_beta,beta,MATRIX,0.5,770
+fnd6_capxs,Capital Expenditures,VECTOR,0.5,185
+fnd6_capxv,"Capital Expend Property, Plant and Equipment Schd V",MATRIX,0.5,2214
+fnd6_caxts,Cost and Expenses - Total,VECTOR,0.5,139
+fnd6_ceql,Common Equity - Liquidation Value,MATRIX,0.5,2231
+fnd6_ch,Cash,MATRIX,0.5,2216
+fnd6_ci,Comprehensive Income - Total,MATRIX,0.5,2240
+fnd6_cibegni,Comp Inc - Beginning Net Income,MATRIX,0.5,985
+fnd6_cicurr,Comp Inc - Currency Trans Adj,MATRIX,0.5,2893
+fnd6_cidergl,Comp Inc - Derivative Gains/Losses,MATRIX,0.5,1349
+fnd6_cik,nonimportant technical code,MATRIX,0.5,2321
+fnd6_cimii,Comprehensive Income - Noncontrolling Interest,MATRIX,0.5,612
+fnd6_ciother,Comp. Inc. - Other Adj.,MATRIX,0.5,5567
+fnd6_cipen,Comprehensive Income - Minimum Pension Adjustment,MATRIX,0.5,1075
+fnd6_cisecgl,Comp Inc - Securities Gains/Losses,MATRIX,0.5,1922
+fnd6_citotal,Comprehensive Income - Parent,MATRIX,0.5,744
+fnd6_city,the city where a company's corporate headquarters or home office is located,MATRIX,0.5,2431
+fnd6_cld2,Capitalized Leases - Due in 2nd Year,MATRIX,0.5,2714
+fnd6_cld3,Capitalized Leases - Due in 3rd Year,MATRIX,0.5,2494
+fnd6_cld4,Capitalized Leases - Due in 4th Year,MATRIX,0.5,2094
+fnd6_cld5,Capitalized Leases - Due in 5th Year,MATRIX,0.5,1347
+fnd6_cogss,Cost of Goods Sold,VECTOR,0.5,302
+fnd6_cptmfmq_actq,Current Assets - Total,MATRIX,0.5,800
+fnd6_cptmfmq_atq,Assets - Total,MATRIX,0.5,1472
+fnd6_cptmfmq_ceqq,Common/Ordinary Equity - Total,MATRIX,0.5,1356
+fnd6_cptmfmq_dlttq,Long-Term Debt - Total,MATRIX,0.5,1633
+fnd6_cptmfmq_dpq,Depreciation and Amortization - Total,MATRIX,0.5,1009
+fnd6_cptmfmq_lctq,Current Liabilities - Total,MATRIX,0.5,1732
+fnd6_cptmfmq_oibdpq,Operating Income Before Depreciation - Quarterly,MATRIX,0.5,1335
+fnd6_cptmfmq_opepsq,Earnings Per Share from Operations,MATRIX,0.5,1387
+fnd6_cptmfmq_saleq,Sales/Turnover (Net),MATRIX,0.5,1096
+fnd6_cptnewqeventv110_actq,Current Assets - Total,VECTOR,0.5,72
+fnd6_cptnewqeventv110_apq,Accounts Payable/Creditors - Trade,VECTOR,0.5,428
+fnd6_cptnewqeventv110_atq,Assets - Total,VECTOR,0.5,89
+fnd6_cptnewqeventv110_ceqq,Common/Ordinary Equity - Total,VECTOR,0.5,70
+fnd6_cptnewqeventv110_dlttq,Long-Term Debt - Total,VECTOR,0.5,629
+fnd6_cptnewqeventv110_dpq,Depreciation and Amortization - Total,VECTOR,0.5,179
+fnd6_cptnewqeventv110_epsf12,Earnings Per Share (Diluted) - Excluding Extraordinary Items - 12 Months Moving,VECTOR,0.5,96
+fnd6_cptnewqeventv110_epsfxq,Earnings Per Share (Diluted) - Excluding Extraordinary items,VECTOR,0.5,72
+fnd6_cptnewqeventv110_epsx12,Earnings Per Share (Basic) - Excluding Extraordinary Items - 12 Months Moving,VECTOR,0.5,193
+fnd6_cptnewqeventv110_lctq,Current Liabilities - Total,VECTOR,0.5,888
+fnd6_cptnewqeventv110_ltq,Liabilities - Total,VECTOR,0.5,273
+fnd6_cptnewqeventv110_nopiq,Non-Operating Income (Expense) - Total,VECTOR,0.5,424
+fnd6_cptnewqeventv110_oeps12,Earnings Per Share from Operations - 12 Months Moving,VECTOR,0.5,146
+fnd6_cptnewqeventv110_oiadpq,Operating Income After Depreciation - Quarterly,VECTOR,0.5,79
+fnd6_cptnewqeventv110_oibdpq,Operating Income Before Depreciation - Quarterly,VECTOR,0.5,79
+fnd6_cptnewqeventv110_opepsq,Earnings Per Share from Operations,VECTOR,0.5,65
+fnd6_cptnewqeventv110_rectq,Receivables - Total,VECTOR,0.5,194
+fnd6_cptnewqeventv110_req,Retained Earnings,VECTOR,0.5,38
+fnd6_cptnewqeventv110_saleq,Sales/Turnover (Net),VECTOR,0.5,485
+fnd6_cptnewqv1300_actq,Current Assets - Total,MATRIX,0.5,634
+fnd6_cptnewqv1300_apq,Accounts Payable/Creditors - Trade,MATRIX,0.5,1252
+fnd6_cptnewqv1300_atq,Assets - Total,MATRIX,0.5,1053
+fnd6_cptnewqv1300_ceqq,Common/Ordinary Equity - Total,MATRIX,0.5,891
+fnd6_cptnewqv1300_dlttq,Long-Term Debt - Total,MATRIX,0.5,1367
+fnd6_cptnewqv1300_dpq,Depreciation and Amortization - Total,MATRIX,0.5,976
+fnd6_cptnewqv1300_epsf12,Earnings Per Share (Diluted) - Excluding Extraordinary Items - 12 Months Moving,MATRIX,0.5,1015
+fnd6_cptnewqv1300_epsfxq,Earnings Per Share (Diluted) - Excluding Extraordinary items,MATRIX,0.5,1097
+fnd6_cptnewqv1300_epsx12,Earnings Per Share (Basic) - Excluding Extraordinary Items - 12 Months Moving,MATRIX,0.5,873
+fnd6_cptnewqv1300_lctq,Current Liabilities - Total,MATRIX,0.5,1068
+fnd6_cptnewqv1300_ltq,Liabilities - Total,MATRIX,0.5,931
+fnd6_cptnewqv1300_nopiq,Non-Operating Income (Expense) - Total,MATRIX,0.5,1335
+fnd6_cptnewqv1300_oeps12,Earnings Per Share from Operations - 12 Months Moving,MATRIX,0.5,1123
+fnd6_cptnewqv1300_oiadpq,Operating Income After Depreciation - Quarterly,MATRIX,0.5,1684
+fnd6_cptnewqv1300_oibdpq,Operating Income Before Depreciation - Quarterly,MATRIX,0.5,1272
+fnd6_cptnewqv1300_opepsq,Earnings Per Share from Operations,MATRIX,0.5,995
+fnd6_cptnewqv1300_rectq,Receivables - Total,MATRIX,0.5,1099
+fnd6_cptnewqv1300_req,Retained Earnings,MATRIX,0.5,522
+fnd6_cptnewqv1300_saleq,Sales/Turnover (Net),MATRIX,0.5,701
+fnd6_cptrank_gvkeymap,"technical code for a company, no need to use it for research",MATRIX,0.5,124
+fnd6_cshpri,Common Shares Used to Calculate Earnings Per Share - Basic,MATRIX,0.5,800
+fnd6_cshr,Common/Ordinary Shareholders,MATRIX,0.5,673
+fnd6_cshtr,Common Shares Traded - Annual,MATRIX,0.5,4298
+fnd6_cshtrq,Common Shares Traded - Quarter,MATRIX,0.5,1322
+fnd6_cstkcv,Common Stock-Carrying Value,MATRIX,0.5,795
+fnd6_cstkcvq,Common Stock-Carrying Value,MATRIX,0.5,1123
+fnd6_curcddv,ISO Currency Code - Dividend,VECTOR,0.5,14
+fnd6_currencya_curcd,ISO Currency Code - Company Annual Market,MATRIX,0.5,5410
+fnd6_currencyqv1300_curcd,ISO Currency Code - Company Annual Market,MATRIX,0.5,2001
+fnd6_dc,Deferred Charges,MATRIX,0.5,1121
+fnd6_dclo,Debt - Capitalized Lease Obligations,MATRIX,0.5,1130
+fnd6_dcpstk,Convertible Debt and Preferred Stock,MATRIX,0.5,895
+fnd6_dcvsr,Debt - Senior Convertible,MATRIX,0.5,796
+fnd6_dcvsub,Debt - Subordinated Convertible,MATRIX,0.5,797
+fnd6_dcvt,Debt - Convertible,MATRIX,0.5,1089
+fnd6_dd,Debt - Debentures,MATRIX,0.5,770
+fnd6_dd1,Long-Term Debt Due in 1 Year,MATRIX,0.5,2029
+fnd6_dd1q,Long-Term Debt Due in 1 Year,MATRIX,0.5,1846
+fnd6_dd2,Debt Due in 2nd Year,MATRIX,0.5,724
+fnd6_dd3,Debt Due in 3rd Year,MATRIX,0.5,1411
+fnd6_dd4,Debt Due in 4th Year,MATRIX,0.5,443
+fnd6_dd5,Debt Due in 5th Year,MATRIX,0.5,416
+fnd6_dilavx,Dilution Available - Excluding Extraordinary Items,MATRIX,0.5,550
+fnd6_divd,Cash Dividends - Daily,VECTOR,0.5,11
+fnd6_dlcch,Current Debt - Changes,MATRIX,0.5,322
+fnd6_dltis,Long-Term Debt - Issuance,MATRIX,0.5,941
+fnd6_dlto,Debt - Long-Term - Other,MATRIX,0.5,3373
+fnd6_dltp,Long-Term Debt - Tied to Prime,MATRIX,0.5,429
+fnd6_dltr,Long-Term Debt - Reduction,MATRIX,0.5,1801
+fnd6_dm,Debt - Mortgages & Other Secured,MATRIX,0.5,3159
+fnd6_dn,Debt - Notes,MATRIX,0.5,639
+fnd6_donr,Nonrecurring Disc Operations,MATRIX,0.5,754
+fnd6_dps,Depreciation and Amortization,VECTOR,0.5,221
+fnd6_dpvieb,Depreciation (Accumulated) - Ending Balance (Schedule VI),MATRIX,0.5,599
+fnd6_drc,Deferred Revenue - Current,MATRIX,0.5,9756
+fnd6_drlt,Deferred Revenue - Long-term,MATRIX,0.5,10571
+fnd6_ds,Debt - Subordinated,MATRIX,0.5,4329
+fnd6_dudd,Debt - Unamortized Debt Discount and Other,MATRIX,0.5,899
+fnd6_dvpa,Preferred Dividends in Arrears,MATRIX,0.5,1334
+fnd6_dvrated,Indicated Annual Dividend Rate - Daily,VECTOR,0.5,32
+fnd6_dxd2,Debt (excl Capitalized Leases) - Due in 2nd Year,MATRIX,0.5,306
+fnd6_dxd3,Debt (excl Capitalized Leases) - Due in 3rd Year,MATRIX,0.5,544
+fnd6_dxd4,Debt (excl Capitalized Leases) - Due in 4th Year,MATRIX,0.5,488
+fnd6_dxd5,Debt (excl Capitalized Leases) - Due in 5th Year,MATRIX,0.5,342
+fnd6_ein,Employer Identification Number code for the company,MATRIX,0.5,5820
+fnd6_emps,Employees,VECTOR,0.5,647
+fnd6_esopct,Common ESOP Obligation - Total,MATRIX,0.5,622
+fnd6_esopnr,Preferred ESOP Obligation - Non-Redeemable,MATRIX,0.5,894
+fnd6_esopr,Preferred ESOP Obligation - Redeemable,MATRIX,0.5,893
+fnd6_esubc,Equity in Net Loss - Earnings,MATRIX,0.5,543
+fnd6_esubs,Equity in Earnings,VECTOR,0.5,44
+fnd6_eventv110_aqdq,Acquisition/Merger Diluted EPS Effect,VECTOR,0.5,9
+fnd6_eventv110_aqepsq,Acquisition/Merger Basic EPS Effect,VECTOR,0.5,21
+fnd6_eventv110_cstkcvq,Common Stock - Carrying Value,VECTOR,0.5,500
+fnd6_eventv110_dd1q,Long Term Debt Due in 1 Year,VECTOR,0.5,319
+fnd6_eventv110_dtedq,Extinguishment of Debt Diluted EPS Effect,VECTOR,0.5,586
+fnd6_eventv110_dteepsq,Extinguishment of Debt Basic EPS Effect,VECTOR,0.5,880
+fnd6_eventv110_gdwlid12,Impairments Diluted EPS - 12mm,VECTOR,0.5,46
+fnd6_eventv110_gdwlidq,Impairment of Goodwill Diluted EPS Effect,VECTOR,0.5,20
+fnd6_eventv110_gdwlieps12,Impairment of Goodwill Basic EPS Effect 12MM,VECTOR,0.5,52
+fnd6_eventv110_gdwliepsq,Impairment of Goodwill Basic EPS Effect,VECTOR,0.5,12
+fnd6_eventv110_gldq,Gain/Loss Diluted EPS Effect,VECTOR,0.5,153
+fnd6_eventv110_glepsq,Gain/Loss Basic EPS Effect,VECTOR,0.5,77
+fnd6_eventv110_npq,Notes Payable,VECTOR,0.5,858
+fnd6_eventv110_nrtxtdq,Nonrecurring Income Taxes Diluted EPS Effect,VECTOR,0.5,28
+fnd6_eventv110_nrtxtepsq,Nonrecurring Income Taxes Basic EPS Effect,VECTOR,0.5,11
+fnd6_eventv110_optdrq,Dividend Rate - Assumption (%),VECTOR,0.5,383
+fnd6_eventv110_optlifeq,Life of Options - Assumption (# yrs),VECTOR,0.5,2214
+fnd6_eventv110_optvolq,Volatility - Assumption (%),VECTOR,0.5,3227
+fnd6_eventv110_pncd12,Core Pension Adjustment Diluted EPS Effect 12MM,VECTOR,0.5,35
+fnd6_eventv110_pncdq,Core Pension Adjustment Diluted EPS Effect,VECTOR,0.5,42
+fnd6_eventv110_pnceps12,Core Pension Adjustment Basic EPS Effect 12MM,VECTOR,0.5,67
+fnd6_eventv110_pncepsq,Core Pension Adjustment Basic EPS Effect,VECTOR,0.5,36
+fnd6_eventv110_pncidq,Core Pension Interest Adjustment Diluted EPS Effect,VECTOR,0.5,8
+fnd6_eventv110_pncwidq,Core Pension w/o Interest Adjustment Diluted EPS Effect,VECTOR,0.5,5
+fnd6_eventv110_pncwiepsq,Core Pension w/o Interest Adjustment Basic EPS Effect,VECTOR,0.5,14
+fnd6_eventv110_setdq,Settlement (Litigation/Insurance) Diluted EPS Effect,VECTOR,0.5,86
+fnd6_eventv110_setepsq,Settlement (Litigation/Insurance) Basic EPS Effect,VECTOR,0.5,245
+fnd6_eventv110_spced12,S&P Core Earnings EPS Diluted 12MM,VECTOR,0.5,46
+fnd6_eventv110_spidq,Other Special Items Diluted EPS Effect,VECTOR,0.5,17
+fnd6_eventv110_spiepsq,Other Special Items Basic EPS Effect,VECTOR,0.5,11
+fnd6_eventv110_txdbcaq,Current Deferred Tax Asset,VECTOR,0.5,94
+fnd6_eventv110_txdbclq,Current Deferred Tax Liability,VECTOR,0.5,474
+fnd6_eventv110_wddq,Writedowns Diluted EPS Effect,VECTOR,0.5,13
+fnd6_eventv110_wdepsq,Writedowns Basic EPS Effect,VECTOR,0.5,58
+fnd6_eventv110_xaccq,Accrued Expenses,VECTOR,0.5,280
+fnd6_exre,Exchange Rate Effect,MATRIX,0.5,2218
+fnd6_fatb,"Plant, Property and Equipment at Cost - Buildings",MATRIX,0.5,652
+fnd6_fatc,"Plant, Property and Equipment at Cost - Construction in Progress",MATRIX,0.5,656
+fnd6_fate,"Plant, Property and Equipment at Cost - Machinery & Equipment",MATRIX,0.5,744
+fnd6_fatl,"Property, Plant, and Equipment - Leases at Cost",MATRIX,0.5,5290
+fnd6_fatn,"Property, Plant, and Equipment - Natural Resources at Cost",MATRIX,0.5,301
+fnd6_fato,"Plant, Property and Equipment at Cost - Other",MATRIX,0.5,1566
+fnd6_fatp,"Plant, Property and Equipment at Cost - Land & Improvements",MATRIX,0.5,571
+fnd6_fiao,Financing Activities - Other,MATRIX,0.5,645
+fnd6_fic,identifies the country in which the company is incorporated or legally registered,MATRIX,0.5,1292
+fnd6_fopo,Funds from Operations - Other,MATRIX,0.5,13801
+fnd6_fopox,Funds from Operations - Other excluding Option Tax Benefit,MATRIX,0.5,2919
+fnd6_fyrc,"Unimportant technical code, please ignore for research purposes",MATRIX,0.5,1777
+fnd6_gdwls,Goodwill,VECTOR,0.5,63
+fnd6_ias,Identifiable (Total) Assets,VECTOR,0.5,97
+fnd6_ibmii,Income before Extraordinary Items and Noncontrolling Interests,MATRIX,0.5,860
+fnd6_ibs,Income before Extraordinary Items,VECTOR,0.5,38
+fnd6_idesindq_curcd,ISO Currency Code - Company Annual Market,MATRIX,0.5,4235
+fnd6_idit,Interest and Related Income - Total,MATRIX,0.5,859
+fnd6_iints,Interest Income,VECTOR,0.5,31
+fnd6_incorp,Incorporated,MATRIX,0.5,1688
+fnd6_intan,Intangible Assets - Total,MATRIX,0.5,1027
+fnd6_intc,Interest Capitalized,MATRIX,0.5,2529
+fnd6_intpn,Interest Paid - Net,MATRIX,0.5,535
+fnd6_intseg,Intersegment Eliminations,VECTOR,0.5,512
+fnd6_invfg,Inventories - Finished Goods,MATRIX,0.5,497
+fnd6_invo,Inventories - Other,MATRIX,0.5,393
+fnd6_invrm,Inventories - Raw Materials,MATRIX,0.5,628
+fnd6_invwip,Inventories - Work In Process,MATRIX,0.5,612
+fnd6_itcb,Investment Tax Credit (Balance Sheet),MATRIX,0.5,716
+fnd6_itci,Investment Tax Credit (Income Account),MATRIX,0.5,2457
+fnd6_ivaco,Investing Activities - Other,MATRIX,0.5,9900
+fnd6_ivaeq,Investment and Advances - Equity,MATRIX,0.5,698
+fnd6_ivaeqs,Investments at Equity,VECTOR,0.5,85
+fnd6_ivao,Investment and Advances - Other,MATRIX,0.5,758
+fnd6_ivch,Increase in Investments,MATRIX,0.5,345
+fnd6_ivst,Short-Term Investments - Total,MATRIX,0.5,578
+fnd6_ivstch,Short-Term Investments - Change,MATRIX,0.5,462
+fnd6_lcox,Current Liabilities - Other - Sundry,MATRIX,0.5,3423
+fnd6_lcoxdr,Current Liabilities - Other - Excluding Deferred Revenue,MATRIX,0.5,2526
+fnd6_lifr,LIFO Reserve,MATRIX,0.5,1561
+fnd6_lno,Liabilities Netting & Other Adjustments,MATRIX,0.5,287
+fnd6_loc,string for locating the Headquarters of the company,MATRIX,0.5,1556
+fnd6_lol2,Liabilities Level 2 (Observable),MATRIX,0.5,369
+fnd6_loxdr,Liabilities - Other - Excluding Deferred Revenue,MATRIX,0.5,2905
+fnd6_lqpl1,Liabilities Level 1 (Quoted Prices),MATRIX,0.5,363
+fnd6_lul3,Liabilities Level 3 (Unobservable),MATRIX,0.5,359
+fnd6_mfma1_aoloch,Assets and Liabilities - Other - Net Change,MATRIX,0.5,1071
+fnd6_mfma1_apalch,Accounts Payable and Accrued Liabilities - Increase/(Decrease),MATRIX,0.5,659
+fnd6_mfma1_at,Assets - Total,MATRIX,0.5,1475
+fnd6_mfma1_capx,Capital Expenditures,MATRIX,0.5,671
+fnd6_mfma1_csho,Common Shares Outstanding,MATRIX,0.5,1007
+fnd6_mfma1_dp,Depreciation and Amortization,MATRIX,0.5,512
+fnd6_mfma1_dpc,Depreciation and Amortization (Cash Flow),MATRIX,0.5,735
+fnd6_mfma1_invch,Mortgages - Decrease (Increase),MATRIX,0.5,784
+fnd6_mfma2_oancf,Operating Activities - Net Cash Flow,MATRIX,0.5,911
+fnd6_mfma2_opeps,Earnings Per Share from Operations,MATRIX,0.5,1172
+fnd6_mfma2_recch,Accounts Receivable - Decrease (Increase),MATRIX,0.5,654
+fnd6_mfma2_revt,Revenue - Total,MATRIX,0.5,1329
+fnd6_mfma2_txach,Income Taxes - Accrued - Increase/(Decrease),MATRIX,0.5,488
+fnd6_mfmq_cheq,Cash and Short-Term Investments,MATRIX,0.5,634
+fnd6_mfmq_cogsq,Cost of Goods Sold,MATRIX,0.5,548
+fnd6_mfmq_cshprq,Common Shares Used to Calculate Earnings Per Share - Basic,MATRIX,0.5,1277
+fnd6_mfmq_dlcq,Debt in Current Liabilities,MATRIX,0.5,520
+fnd6_mfmq_ibcomq,Income Before Extraordinary Items - Available for Common,MATRIX,0.5,535
+fnd6_mfmq_mibtq,Noncontrolling Interests - Total - Balance Sheet - Quarterly,MATRIX,0.5,350
+fnd6_mfmq_piq,Pretax Income,MATRIX,0.5,761
+fnd6_mibn,Noncontrolling Interests - Nonredeemable - Balance Sheet,MATRIX,0.5,942
+fnd6_mibt,Noncontrolling Interests - Total - Balance Sheet,MATRIX,0.5,737
+fnd6_mkvalt,Market Value - Total,MATRIX,0.5,423
+fnd6_mkvaltq,Market Value - Total,MATRIX,0.5,171
+fnd6_mrc1,Rental Commitments - Minimum - 1st Year,MATRIX,0.5,1905
+fnd6_mrc2,Rental Commitments - Minimum - 2nd Year,MATRIX,0.5,2352
+fnd6_mrc3,Rental Commitments - Minimum - 3rd Year,MATRIX,0.5,1801
+fnd6_mrc4,Rental Commitments - Minimum - 4th Year,MATRIX,0.5,2031
+fnd6_mrc5,Rental Commitments - Minimum - 5th Year,MATRIX,0.5,2329
+fnd6_mrct,Rental Commitments - Minimum - 5-Year Total,MATRIX,0.5,1846
+fnd6_mrcta,Thereafter Portion of Leases,MATRIX,0.5,5935
+fnd6_msa,Marketable Securities Adjustment,MATRIX,0.5,1424
+fnd6_naicss,NAICS Code,VECTOR,0.5,2052
+fnd6_newa1v1300_aco,Current Assets - Other - Total,MATRIX,0.5,1614
+fnd6_newa1v1300_acominc,Accumulated Other Comprehensive Income (Loss),MATRIX,0.5,968
+fnd6_newa1v1300_act,Current Assets - Total,MATRIX,0.5,1927
+fnd6_newa1v1300_ano,Assets Netting & Other Adjustments,MATRIX,0.5,395
+fnd6_newa1v1300_ao,Assets - Other,MATRIX,0.5,598
+fnd6_newa1v1300_aocidergl,Accum Other Comp Inc - Derivatives Unrealized Gain/Loss,MATRIX,0.5,334
+fnd6_newa1v1300_aociother,Accum Other Comp Inc - Other Adjustments,MATRIX,0.5,440
+fnd6_newa1v1300_aocipen,Accum Other Comp Inc - Min Pension Liab Adj,MATRIX,0.5,498
+fnd6_newa1v1300_aol2,Assets Level 2 (Observable),MATRIX,0.5,256
+fnd6_newa1v1300_aoloch,Assets and Liabilities - Other - Net Change,MATRIX,0.5,852
+fnd6_newa1v1300_ap,Accounts Payable - Trade,MATRIX,0.5,783
+fnd6_newa1v1300_apalch,Accounts Payable and Accrued Liabilities - Increase/(Decrease),MATRIX,0.5,765
+fnd6_newa1v1300_aqpl1,Assets Level 1 (Quoted Prices),MATRIX,0.5,220
+fnd6_newa1v1300_at,Assets - Total,MATRIX,0.5,1476
+fnd6_newa1v1300_aul3,Assets Level 3 (Unobservable),MATRIX,0.5,419
+fnd6_newa1v1300_bkvlps,Book Value Per Share,MATRIX,0.5,989
+fnd6_newa1v1300_caps,Capital Surplus/Share Premium Reserve,MATRIX,0.5,603
+fnd6_newa1v1300_capx,Capital Expenditures,MATRIX,0.5,952
+fnd6_newa1v1300_ceq,Common/Ordinary Equity - Total,MATRIX,0.5,943
+fnd6_newa1v1300_ceqt,Common Equity - Tangible,MATRIX,0.5,500
+fnd6_newa1v1300_che,Cash and Short-Term Investments,MATRIX,0.5,525
+fnd6_newa1v1300_chech,Cash and Cash Equivalents - Increase/(Decrease),MATRIX,0.5,713
+fnd6_newa1v1300_cogs,Cost of Goods Sold,MATRIX,0.5,812
+fnd6_newa1v1300_cshfd,Common Shares Used to Calc Earnings Per Share - Fully Diluted,MATRIX,0.5,923
+fnd6_newa1v1300_cshi,Common Shares Issued,MATRIX,0.5,249
+fnd6_newa1v1300_csho,Common Shares Outstanding,MATRIX,0.5,570
+fnd6_newa1v1300_cstk,Common/Ordinary Stock (Capital),MATRIX,0.5,891
+fnd6_newa1v1300_dcom,Deferred Compensation,MATRIX,0.5,1258
+fnd6_newa1v1300_dlc,Debt in Current Liabilities - Total,MATRIX,0.5,1583
+fnd6_newa1v1300_dltt,Long-Term Debt - Total,MATRIX,0.5,1714
+fnd6_newa1v1300_dp,Depreciation and Amortization,MATRIX,0.5,471
+fnd6_newa1v1300_dpact,"Depreciation, Depletion and Amortization (Accumulated)",MATRIX,0.5,392
+fnd6_newa1v1300_dpc,Depreciation and Amortization (Cash Flow),MATRIX,0.5,763
+fnd6_newa1v1300_dv,Cash Dividends (Cash Flow),MATRIX,0.5,504
+fnd6_newa1v1300_dvc,Dividends Common/Ordinary,MATRIX,0.5,672
+fnd6_newa1v1300_dvt,Dividends - Total,MATRIX,0.5,346
+fnd6_newa1v1300_ebit,Earnings Before Interest and Taxes,MATRIX,0.5,459
+fnd6_newa1v1300_ebitda,Earnings Before Interest,MATRIX,0.5,511
+fnd6_newa1v1300_emp,Employees,MATRIX,0.5,870
+fnd6_newa1v1300_epsfi,Earnings Per Share (Diluted) - Including Extraordinary Items,MATRIX,0.5,873
+fnd6_newa1v1300_epsfx,Earnings Per Share (Diluted) - Excluding Extraordinary Items,MATRIX,0.5,746
+fnd6_newa1v1300_epspi,Earnings Per Share (Basic) - Including Extraordinary Items,MATRIX,0.5,666
+fnd6_newa1v1300_epspx,Earnings Per Share (Basic) - Excluding Extraordinary Items,MATRIX,0.5,511
+fnd6_newa1v1300_fca,Foreign Exchange Income (Loss),MATRIX,0.5,322
+fnd6_newa1v1300_fincf,Financing Activities - Net Cash Flow,MATRIX,0.5,1015
+fnd6_newa1v1300_gdwl,Goodwill,MATRIX,0.5,492
+fnd6_newa1v1300_gp,Gross Profit (Loss),MATRIX,0.5,2874
+fnd6_newa1v1300_ib,Income Before Extraordinary Items,MATRIX,0.5,404
+fnd6_newa1v1300_ibadj,Income Before Extraordinary Items - Adjusted for Common Stock Equivalents,MATRIX,0.5,361
+fnd6_newa1v1300_ibc,Income Before Extraordinary Items (Cash Flow),MATRIX,0.5,783
+fnd6_newa1v1300_ibcom,Income Before Extraordinary Items - Available for Common,MATRIX,0.5,282
+fnd6_newa1v1300_icapt,Invested Capital - Total,MATRIX,0.5,507
+fnd6_newa1v1300_intano,Other Intangibles,MATRIX,0.5,541
+fnd6_newa1v1300_invch,Mortgages - Decrease (Increase),MATRIX,0.5,672
+fnd6_newa1v1300_invt,Inventories - Total,MATRIX,0.5,644
+fnd6_newa1v1300_ivncf,Investing Activities - Net Cash Flow,MATRIX,0.5,529
+fnd6_newa1v1300_lco,Current Liabilities - Other - Total,MATRIX,0.5,902
+fnd6_newa1v1300_lct,Current Liabilities - Total,MATRIX,0.5,1269
+fnd6_newa1v1300_lo,Liabilities - Other - Total,MATRIX,0.5,1476
+fnd6_newa1v1300_lse,Liabilities and Stockholders Equity - Total,MATRIX,0.5,630
+fnd6_newa1v1300_lt,Liabilities - Total,MATRIX,0.5,926
+fnd6_newa2v1300_mib,Minority Interest (Balance Sheet),MATRIX,0.5,912
+fnd6_newa2v1300_mii,Noncontrolling Interest (Income Account),MATRIX,0.5,688
+fnd6_newa2v1300_ni,Net Income (Loss),MATRIX,0.5,2056
+fnd6_newa2v1300_nopi,Nonoperating Income (Expense),MATRIX,0.5,392
+fnd6_newa2v1300_oancf,Operating Activities - Net Cash Flow,MATRIX,0.5,921
+fnd6_newa2v1300_oiadp,Operating Income After Depreciation,MATRIX,0.5,1373
+fnd6_newa2v1300_oibdp,Operating Income Before Depreciation,MATRIX,0.5,3262
+fnd6_newa2v1300_opeps,Earnings Per Share from Operations,MATRIX,0.5,857
+fnd6_newa2v1300_optexd,Options - Exercised (-),MATRIX,0.5,1827
+fnd6_newa2v1300_pi,Pretax Income,MATRIX,0.5,449
+fnd6_newa2v1300_ppegt,"Property, Plant and Equipment - Total (Gross)",MATRIX,0.5,817
+fnd6_newa2v1300_ppent,"Property, Plant and Equipment - Total (Net)",MATRIX,0.5,7570
+fnd6_newa2v1300_prsho,Redeem Pfd Shares Outs (000),MATRIX,0.5,2500
+fnd6_newa2v1300_rdip,In Process R&D Expense,MATRIX,0.5,869
+fnd6_newa2v1300_rdipa,In-Process R&D Expense After-tax,MATRIX,0.5,1189
+fnd6_newa2v1300_rdipd,In Process R&D Expense Diluted EPS Effect,MATRIX,0.5,2510
+fnd6_newa2v1300_rdipeps,In Process R&D Expense Basic EPS Effect,MATRIX,0.5,4282
+fnd6_newa2v1300_re,Retained Earnings,MATRIX,0.5,558
+fnd6_newa2v1300_recch,Accounts Receivable - Decrease (Increase),MATRIX,0.5,497
+fnd6_newa2v1300_rect,Receivables - Total,MATRIX,0.5,681
+fnd6_newa2v1300_reuna,Retained Earnings - Unadjusted,MATRIX,0.5,668
+fnd6_newa2v1300_revt,Revenue - Total,MATRIX,0.5,964
+fnd6_newa2v1300_sale,Sales/Turnover (Net),MATRIX,0.5,820
+fnd6_newa2v1300_seq,Stockholders Equity - Parent,MATRIX,0.5,1060
+fnd6_newa2v1300_seqo,Other Stockholders' Equity Adjustments,MATRIX,0.5,927
+fnd6_newa2v1300_spced,S&P Core Earnings EPS Diluted,MATRIX,0.5,213
+fnd6_newa2v1300_spceeps,S&P Core Earnings EPS Basic,MATRIX,0.5,271
+fnd6_newa2v1300_spi,Special Items,MATRIX,0.5,642
+fnd6_newa2v1300_stkco,Stock Compensation Expense,MATRIX,0.5,636
+fnd6_newa2v1300_tstk,Treasury Stock - Total (All Capital),MATRIX,0.5,273
+fnd6_newa2v1300_tstkn,Treasury Stock - Number of Common Shares,MATRIX,0.5,257
+fnd6_newa2v1300_txach,Income Taxes - Accrued - Increase/(Decrease),MATRIX,0.5,252
+fnd6_newa2v1300_txdb,Deferred Taxes - Balance Sheet,MATRIX,0.5,453
+fnd6_newa2v1300_txditc,Deferred Taxes and Investment Tax Credit,MATRIX,0.5,417
+fnd6_newa2v1300_txp,Income Taxes Payable,MATRIX,0.5,403
+fnd6_newa2v1300_txt,Income Taxes - Total,MATRIX,0.5,559
+fnd6_newa2v1300_wcap,Working Capital (Balance Sheet),MATRIX,0.5,534
+fnd6_newa2v1300_xidoc,Extraordinary Items and Discontinued Operations (Cash Flow),MATRIX,0.5,1849
+fnd6_newa2v1300_xint,Interest and Related Expense - Total,MATRIX,0.5,769
+fnd6_newa2v1300_xoptd,Implied Option EPS Diluted,MATRIX,0.5,132
+fnd6_newa2v1300_xopteps,Implied Option EPS Basic,MATRIX,0.5,30
+fnd6_newa2v1300_xrd,Research and Development Expense,MATRIX,0.5,602
+fnd6_newa2v1300_xsga,"Selling, General and Administrative Expense",MATRIX,0.5,3062
+fnd6_newq_xoptdqp,Implied Option EPS Diluted Preliminary,MATRIX,0.5,9
+fnd6_newq_xoptepsqp,Implied Option EPS Basic Preliminary,MATRIX,0.5,22
+fnd6_newq_xoptqp,Implied Option Expense Preliminary,MATRIX,0.5,22
+fnd6_newqeventv110_acchgq,Accounting Changes - Cumulative Effect,VECTOR,0.5,523
+fnd6_newqeventv110_acomincq,Accumulated Other Comprehensive Income (Loss),VECTOR,0.5,100
+fnd6_newqeventv110_acoq,Current Assets - Other - Total,VECTOR,0.5,118
+fnd6_newqeventv110_altoq,Other Long-term Assets,VECTOR,0.5,337
+fnd6_newqeventv110_ancq,Non-Current Assets - Total,VECTOR,0.5,34
+fnd6_newqeventv110_anoq,Assets Netting & Other Adjustments,VECTOR,0.5,190
+fnd6_newqeventv110_aociderglq,Accumulated Other Comprehensive Income - Derivatives Unrealized Gain/Loss,VECTOR,0.5,421
+fnd6_newqeventv110_aociotherq,Accum Other Comp Inc - Other Adjustments,VECTOR,0.5,90
+fnd6_newqeventv110_aocipenq,Accum Other Comp Inc - Min Pension Liab Adj,VECTOR,0.5,82
+fnd6_newqeventv110_aocisecglq,Accum. Other Comp. Inc. - Unreal G/L Ret. Int. in Sec. Assets,VECTOR,0.5,506
+fnd6_newqeventv110_aol2q,Assets Level 2 (Observable),VECTOR,0.5,96
+fnd6_newqeventv110_aoq,Assets - Other - Total,VECTOR,0.5,189
+fnd6_newqeventv110_aqaq,Acquisition/Merger After-Tax,VECTOR,0.5,30
+fnd6_newqeventv110_aqpl1q,Assets Level 1 (Quoted Prices),VECTOR,0.5,237
+fnd6_newqeventv110_aqpq,Acquisition/Merger Pretax,VECTOR,0.5,25
+fnd6_newqeventv110_aul3q,Assets Level 3 (Unobservable),VECTOR,0.5,35
+fnd6_newqeventv110_capsq,Capital Surplus/Share Premium Reserve,VECTOR,0.5,164
+fnd6_newqeventv110_cheq,Cash and Short-Term Investments,VECTOR,0.5,625
+fnd6_newqeventv110_chq,Cash,VECTOR,0.5,430
+fnd6_newqeventv110_cibegniq,Comp Inc - Beginning Net Income,VECTOR,0.5,74
+fnd6_newqeventv110_cicurrq,Comp Inc - Currency Trans Adj,VECTOR,0.5,87
+fnd6_newqeventv110_ciderglq,Comprehensive Income - Derivative Gains/Losses,VECTOR,0.5,30
+fnd6_newqeventv110_cimiiq,Comprehensive Income - Noncontrolling Interest,VECTOR,0.5,41
+fnd6_newqeventv110_ciotherq,Comprehensive Income - Other Adjustments,VECTOR,0.5,114
+fnd6_newqeventv110_cipenq,Comp Inc - Minimum Pension Adj,VECTOR,0.5,73
+fnd6_newqeventv110_ciq,Comprehensive Income - Total,VECTOR,0.5,94
+fnd6_newqeventv110_cisecglq,Comp Inc - Securities Gains/Losses,VECTOR,0.5,48
+fnd6_newqeventv110_citotalq,Comprehensive Income - Parent,VECTOR,0.5,57
+fnd6_newqeventv110_cogsq,Cost of Goods Sold,VECTOR,0.5,549
+fnd6_newqeventv110_csh12q,Common Shares Used to Calculate Earnings Per Share - 12 Months Moving,VECTOR,0.5,88
+fnd6_newqeventv110_cshfdq,Common Shares for Diluted EPS,VECTOR,0.5,59
+fnd6_newqeventv110_cshiq,Common Shares Issued,VECTOR,0.5,340
+fnd6_newqeventv110_cshopq,Total Shares Repurchased - Quarter,VECTOR,0.5,863
+fnd6_newqeventv110_cshoq,Common Shares Outstanding,VECTOR,0.5,73
+fnd6_newqeventv110_cshprq,Common Shares Used to Calculate Earnings Per Share - Basic,VECTOR,0.5,91
+fnd6_newqeventv110_cstkeq,Common Stock Equivalents - Dollar Savings,VECTOR,0.5,792
+fnd6_newqeventv110_cstkq,Common/Ordinary Stock (Capital),VECTOR,0.5,50
+fnd6_newqeventv110_dcomq,Deferred Compensation,VECTOR,0.5,415
+fnd6_newqeventv110_diladq,Dilution Adjustment,VECTOR,0.5,923
+fnd6_newqeventv110_dilavq,Dilution Available - Excluding Extraordinary Items,VECTOR,0.5,78
+fnd6_newqeventv110_dlcq,Debt in Current Liabilities,VECTOR,0.5,521
+fnd6_newqeventv110_doq,Discontinued Operations,VECTOR,0.5,24
+fnd6_newqeventv110_dpactq,"Depreciation, Depletion and Amortization (Accumulated)",VECTOR,0.5,83
+fnd6_newqeventv110_drcq,Deferred Revenue - Current,VECTOR,0.5,1354
+fnd6_newqeventv110_drltq,Deferred Revenue - Long-term,VECTOR,0.5,3372
+fnd6_newqeventv110_dteaq,Extinguishment of Debt After-tax,VECTOR,0.5,528
+fnd6_newqeventv110_dtepq,Extinguishment of Debt Pretax,VECTOR,0.5,381
+fnd6_newqeventv110_dvpq,Dividends - Preferred/Preference,VECTOR,0.5,72
+fnd6_newqeventv110_epsfiq,Earnings Per Share (Diluted) - Including Extraordinary Items,VECTOR,0.5,62
+fnd6_newqeventv110_epspiq,Earnings Per Share (Basic) - Including Extraordinary Items,VECTOR,0.5,53
+fnd6_newqeventv110_epspxq,Earnings Per Share (Basic) - Excluding Extraordinary Items,VECTOR,0.5,60
+fnd6_newqeventv110_esopctq,Common ESOP Obligation - Total,VECTOR,0.5,77
+fnd6_newqeventv110_esopnrq,Preferred ESOP Obligation - Non-Redeemable,VECTOR,0.5,117
+fnd6_newqeventv110_esoprq,Preferred ESOP Obligation - Redeemable,VECTOR,0.5,918
+fnd6_newqeventv110_esoptq,Preferred ESOP Obligation - Total,VECTOR,0.5,163
+fnd6_newqeventv110_fcaq,Foreign Exchange Income (Loss),VECTOR,0.5,30
+fnd6_newqeventv110_gdwlamq,Amortization of Goodwill,VECTOR,0.5,21
+fnd6_newqeventv110_gdwlia12,Impairments of Goodwill After-Tax - 12MM,VECTOR,0.5,44
+fnd6_newqeventv110_gdwliaq,Impairment of Goodwill After-tax,VECTOR,0.5,18
+fnd6_newqeventv110_gdwlipq,Impairment of Goodwill Pretax,VECTOR,0.5,33
+fnd6_newqeventv110_gdwlq,Goodwill (net),VECTOR,0.5,120
+fnd6_newqeventv110_glaq,Gain/Loss After-Tax,VECTOR,0.5,38
+fnd6_newqeventv110_glcea12,Gain/Loss on Sale (Core Earnings Adjusted) After-tax 12MM,VECTOR,0.5,243
+fnd6_newqeventv110_glceaq,Gain/Loss on Sale (Core Earnings Adjusted) After-tax,VECTOR,0.5,71
+fnd6_newqeventv110_glced12,Gain/Loss on Sale (Core Earnings Adjusted) Diluted EPS Effect 12MM,VECTOR,0.5,118
+fnd6_newqeventv110_glcedq,Gain/Loss on Sale (Core Earnings Adjusted) Diluted EPS,VECTOR,0.5,197
+fnd6_newqeventv110_glceeps12,Gain/Loss on Sale (Core Earnings Adjusted) Basic EPS Effect 12MM,VECTOR,0.5,53
+fnd6_newqeventv110_glceepsq,Gain/Loss on Sale (Core Earnings Adjusted) Basic EPS Effect,VECTOR,0.5,325
+fnd6_newqeventv110_glcepq,Gain/Loss on Sale (Core Earnings Adjusted) Pretax,VECTOR,0.5,148
+fnd6_newqeventv110_glpq,Gain/Loss Pretax,VECTOR,0.5,19
+fnd6_newqeventv110_hedgeglq,Gain/Loss on Ineffective Hedges,VECTOR,0.5,18
+fnd6_newqeventv110_ibadj12,Income Before Extra Items - Adj for Common Stock Equivalents - 12MM,VECTOR,0.5,14
+fnd6_newqeventv110_ibadjq,Income Before Extraordinary Items - Adjusted for Common Stock Equivalents,VECTOR,0.5,33
+fnd6_newqeventv110_ibcomq,Income Before Extraordinary Items - Available for Common,VECTOR,0.5,33
+fnd6_newqeventv110_ibmiiq,Income before Extraordinary Items and Noncontrolling Interests,VECTOR,0.5,112
+fnd6_newqeventv110_ibq,Income Before Extraordinary Items,VECTOR,0.5,39
+fnd6_newqeventv110_icaptq,Invested Capital - Total - Quarterly,VECTOR,0.5,126
+fnd6_newqeventv110_intanoq,Other Intangibles,VECTOR,0.5,436
+fnd6_newqeventv110_intanq,Intangible Assets - Total,VECTOR,0.5,121
+fnd6_newqeventv110_invfgq,Inventory - Finished Goods,VECTOR,0.5,40
+fnd6_newqeventv110_invoq,Inventory - Other,VECTOR,0.5,65
+fnd6_newqeventv110_invrmq,Inventory - Raw Materials,VECTOR,0.5,79
+fnd6_newqeventv110_invtq,Inventories - Total,VECTOR,0.5,237
+fnd6_newqeventv110_invwipq,Inventory - Work in Process,VECTOR,0.5,38
+fnd6_newqeventv110_ivltq,Total Long-term Investments,VECTOR,0.5,63
+fnd6_newqeventv110_ivstq,Short-Term Investments - Total,VECTOR,0.5,121
+fnd6_newqeventv110_lcoq,Current Liabilities - Other - Total,VECTOR,0.5,212
+fnd6_newqeventv110_lltq,Long-Term Liabilities (Total),VECTOR,0.5,37
+fnd6_newqeventv110_lnoq,Liabilities Netting & Other Adjustments,VECTOR,0.5,51
+fnd6_newqeventv110_lol2q,Liabilities Level 2 (Observable),VECTOR,0.5,29
+fnd6_newqeventv110_loq,Liabilities - Other,VECTOR,0.5,239
+fnd6_newqeventv110_loxdrq,Liabilities - Other - Excluding Deferred Revenue,VECTOR,0.5,201
+fnd6_newqeventv110_lqpl1q,Liabilities Level 1 (Quoted Prices),VECTOR,0.5,73
+fnd6_newqeventv110_lseq,Liabilities and Stockholders' Equity - Total,VECTOR,0.5,80
+fnd6_newqeventv110_ltmibq,Liabilities - Total and Noncontrolling Interest,VECTOR,0.5,339
+fnd6_newqeventv110_lul3q,Liabilities Level 3 (Unobservable),VECTOR,0.5,142
+fnd6_newqeventv110_mibnq,NonRedeemable Noncontrolling Interest (Balance Sheet) - Quarterly,VECTOR,0.5,84
+fnd6_newqeventv110_mibq,Noncontrolling Interest - Redeemable - Balance Sheet,VECTOR,0.5,44
+fnd6_newqeventv110_mibtq,Noncontrolling Interests - Total - Balance Sheet - Quarterly,VECTOR,0.5,25
+fnd6_newqeventv110_miiq,Noncontrolling Interest - Income Account,VECTOR,0.5,36
+fnd6_newqeventv110_msaq,Accum Other Comp Inc - Marketable Security Adjustments,VECTOR,0.5,244
+fnd6_newqeventv110_nrtxtq,Nonrecurring Income Taxes - After-tax,VECTOR,0.5,33
+fnd6_newqeventv110_oepf12,Earnings Per Share - Diluted - from Operations - 12MM,VECTOR,0.5,141
+fnd6_newqeventv110_oepsxq,Earnings Per Share - Diluted - from Operations,VECTOR,0.5,57
+fnd6_newqeventv110_optfvgrq,Options - Fair Value of Options Granted,VECTOR,0.5,481
+fnd6_newqeventv110_optrfrq,Risk Free Rate - Assumption (%),VECTOR,0.5,2489
+fnd6_newqeventv110_piq,Pretax Income,VECTOR,0.5,120
+fnd6_newqeventv110_pnc12,Pension Core Adjustment - 12mm,VECTOR,0.5,28
+fnd6_newqeventv110_pnciapq,Core Pension Interest Adjustment After-tax Preliminary,VECTOR,0.5,14
+fnd6_newqeventv110_pnciaq,Core Pension Interest Adjustment After-tax,VECTOR,0.5,8
+fnd6_newqeventv110_pncidpq,Core Pension Interest Adjustment Diluted EPS Effect Preliminary,VECTOR,0.5,8
+fnd6_newqeventv110_pnciepspq,Core Pension Interest Adjustment Basic EPS Effect Preliminary,VECTOR,0.5,21
+fnd6_newqeventv110_pnciepsq,Core Pension Interest Adjustment Basic EPS Effect,VECTOR,0.5,11
+fnd6_newqeventv110_pncippq,Core Pension Interest Adjustment Pretax Preliminary,VECTOR,0.5,6
+fnd6_newqeventv110_pncipq,Core Pension Interest Adjustment Pretax,VECTOR,0.5,8
+fnd6_newqeventv110_pncpd12,Core Pension Adjustment 12MM Diluted EPS Effect Preliminary,VECTOR,0.5,49
+fnd6_newqeventv110_pncpdq,Core Pension Adjustment Diluted EPS Effect Preliminary,VECTOR,0.5,31
+fnd6_newqeventv110_pncpeps12,Core Pension Adjustment 12MM Basic EPS Effect Preliminary,VECTOR,0.5,31
+fnd6_newqeventv110_pncpepsq,Core Pension Adjustment Basic EPS Effect Preliminary,VECTOR,0.5,53
+fnd6_newqeventv110_pncpq,Core Pension Adjustment Preliminary,VECTOR,0.5,65
+fnd6_newqeventv110_pncq,Core Pension Adjustment,VECTOR,0.5,20
+fnd6_newqeventv110_pncwiapq,Core Pension w/o Interest Adjustment After-tax Preliminary,VECTOR,0.5,11
+fnd6_newqeventv110_pncwiaq,Core Pension w/o Interest Adjustment After-tax,VECTOR,0.5,5
+fnd6_newqeventv110_pncwidpq,Core Pension w/o Interest Adjustment Diluted EPS Effect Preliminary,VECTOR,0.5,6
+fnd6_newqeventv110_pncwiepq,Core Pension Without Interest Adjustment Basic EPS Effect Preliminary,VECTOR,0.5,7
+fnd6_newqeventv110_pncwippq,Core Pension w/o Interest Adjustment Pretax Preliminary,VECTOR,0.5,4
+fnd6_newqeventv110_pncwipq,Core Pension Without Interest Adjustment Pretax,VECTOR,0.5,18
+fnd6_newqeventv110_pnrshoq,Nonred Pfd Shares Outs (000) - Quarterly,VECTOR,0.5,467
+fnd6_newqeventv110_ppegtq,"Property, Plant and Equipment - Total (Gross) - Quarterly",VECTOR,0.5,66
+fnd6_newqeventv110_ppentq,Property Plant and Equipment - Total (Net),VECTOR,0.5,150
+fnd6_newqeventv110_prcaq,Core Post-Retirement Adjustment,VECTOR,0.5,17
+fnd6_newqeventv110_prcd12,Core Post Retirement Adjustment Diluted EPS Effect 12 MM,VECTOR,0.5,7
+fnd6_newqeventv110_prcdq,Core Post-Retirement Adjustment Diluted EPS Effect,VECTOR,0.5,13
+fnd6_newqeventv110_prce12,Core Post Retirement Adjustment 12MM,VECTOR,0.5,33
+fnd6_newqeventv110_prceps12,Core Post Retirement Adjustment Basic EPS Effect 12MM,VECTOR,0.5,8
+fnd6_newqeventv110_prcepsq,Core Post-Retirement Adjustment Basic EPS Effect,VECTOR,0.5,4
+fnd6_newqeventv110_prcpd12,Core Post-Retirement Adjustment 12MM Diluted EPS Effect Preliminary,VECTOR,0.5,9
+fnd6_newqeventv110_prcpdq,Core Post Retirement Adjustment Diluted EPS Effect Preliminary,VECTOR,0.5,26
+fnd6_newqeventv110_prcpeps12,Core Post-Retirement Adjustment 12MM Basic EPS Effect Preliminary,VECTOR,0.5,5
+fnd6_newqeventv110_prcpepsq,Core Post-Retirement Adjustment Basic EPS Effect Preliminary,VECTOR,0.5,18
+fnd6_newqeventv110_prcpq,Core Post-Retirement Adjustment Preliminary,VECTOR,0.5,27
+fnd6_newqeventv110_prcraq,Repurchase Price - Average per share,VECTOR,0.5,1246
+fnd6_newqeventv110_prshoq,Redeem Pfd Shares Outs (000),VECTOR,0.5,84
+fnd6_newqeventv110_pstknq,Preferred/Preference Stock - Nonredeemable,VECTOR,0.5,1421
+fnd6_newqeventv110_pstkq,Preferred/Preference Stock (Capital) - Total,VECTOR,0.5,225
+fnd6_newqeventv110_pstkrq,Preferred/Preference Stock - Redeemable,VECTOR,0.5,90
+fnd6_newqeventv110_rcaq,Restructuring Cost After-tax,VECTOR,0.5,15
+fnd6_newqeventv110_rcdq,Restructuring Cost Diluted EPS Effect,VECTOR,0.5,12
+fnd6_newqeventv110_rcepsq,Restructuring Cost Basic EPS Effect,VECTOR,0.5,13
+fnd6_newqeventv110_rcpq,Restructuring Cost Pretax,VECTOR,0.5,79
+fnd6_newqeventv110_rdipaq,In Process R&D Expense After-tax,VECTOR,0.5,154
+fnd6_newqeventv110_rdipdq,In-Process R&D Expense Diluted EPS Effect,VECTOR,0.5,290
+fnd6_newqeventv110_rdipepsq,In-Process R&D Expense Basic EPS Effect,VECTOR,0.5,411
+fnd6_newqeventv110_rdipq,In Process R&D,VECTOR,0.5,368
+fnd6_newqeventv110_recdq,Receivables - Estimated Doubtful,VECTOR,0.5,256
+fnd6_newqeventv110_rectaq,Accum Other Comp Inc - Cumulative Translation Adjustments,VECTOR,0.5,46
+fnd6_newqeventv110_rectoq,Receivables - Current Other incl. Tax Refunds,VECTOR,0.5,327
+fnd6_newqeventv110_rectrq,Receivables - Trade,VECTOR,0.5,453
+fnd6_newqeventv110_reunaq,Unadjusted Retained Earnings,VECTOR,0.5,41
+fnd6_newqeventv110_revtq,Revenue - Total,VECTOR,0.5,484
+fnd6_newqeventv110_rrpq,Reversal - Restructuring/Acquisition Pretax,VECTOR,0.5,17
+fnd6_newqeventv110_seqoq,Other Stockholders' Equity Adjustments,VECTOR,0.5,180
+fnd6_newqeventv110_seqq,Stockholders' Equity - Total - Quarterly,VECTOR,0.5,104
+fnd6_newqeventv110_seta12,Settlement (Litigation/Insurance) After Tax - 12mm,VECTOR,0.5,27
+fnd6_newqeventv110_setaq,Settlement (Litigation/Insurance) After-tax,VECTOR,0.5,13
+fnd6_newqeventv110_setd12,Settlement (Litigation/Insurance) Diluted EPS Effect 12MM,VECTOR,0.5,131
+fnd6_newqeventv110_seteps12,Settlement (Litigation/Insurance) Basic EPS Effect 12MM,VECTOR,0.5,174
+fnd6_newqeventv110_setpq,Settlement (Litigation/Insurance) Pretax,VECTOR,0.5,46
+fnd6_newqeventv110_spce12,S&P Core Earnings 12MM,VECTOR,0.5,112
+fnd6_newqeventv110_spcedpq,S&P Core Earnings EPS Diluted - Preliminary,VECTOR,0.5,39
+fnd6_newqeventv110_spcedq,S&P Core Earnings EPS Diluted,VECTOR,0.5,66
+fnd6_newqeventv110_spceeps12,S&P Core Earnings EPS Basic 12MM,VECTOR,0.5,39
+fnd6_newqeventv110_spceepsp12,S&P Core 12MM EPS - Basic - Preliminary,VECTOR,0.5,40
+fnd6_newqeventv110_spceepspq,S&P Core Earnings EPS Basic - Preliminary,VECTOR,0.5,43
+fnd6_newqeventv110_spceepsq,S&P Core Earnings EPS Basic,VECTOR,0.5,81
+fnd6_newqeventv110_spcep12,S&P Core Earnings 12MM - Preliminary,VECTOR,0.5,259
+fnd6_newqeventv110_spcepd12,S&P Core Earnings 12MM EPS Diluted - Preliminary,VECTOR,0.5,37
+fnd6_newqeventv110_spcepq,S&P Core Earnings - Preliminary,VECTOR,0.5,79
+fnd6_newqeventv110_spceq,S&P Core Earnings,VECTOR,0.5,89
+fnd6_newqeventv110_spioaq,Other Special Items After-tax,VECTOR,0.5,236
+fnd6_newqeventv110_spiopq,Other Special Items Pretax,VECTOR,0.5,26
+fnd6_newqeventv110_spiq,Special Items,VECTOR,0.5,54
+fnd6_newqeventv110_stkcoq,Stock Compensation Expense,VECTOR,0.5,576
+fnd6_newqeventv110_stkcpaq,After-tax stock compensation,VECTOR,0.5,175
+fnd6_newqeventv110_teqq,Stockholders' Equity - Total - Quarterly,VECTOR,0.5,151
+fnd6_newqeventv110_tfvaq,Total Fair Value Assets,VECTOR,0.5,58
+fnd6_newqeventv110_tfvceq,Total Fair Value Changes including Earnings,VECTOR,0.5,12
+fnd6_newqeventv110_tfvlq,Total Fair Value Liabilities,VECTOR,0.5,98
+fnd6_newqeventv110_tstknq,Treasury Stock - Number of Common Shares,VECTOR,0.5,121
+fnd6_newqeventv110_tstkq,Treasury Stock - Total (All Capital),VECTOR,0.5,1846
+fnd6_newqeventv110_txdbaq,Deferred Tax Asset - Long Term,VECTOR,0.5,30
+fnd6_newqeventv110_txdbq,Deferred Taxes - Balance Sheet,VECTOR,0.5,19
+fnd6_newqeventv110_txdiq,Income Taxes - Deferred,VECTOR,0.5,25
+fnd6_newqeventv110_txditcq,Deferred Taxes and Investment Tax Credit,VECTOR,0.5,30
+fnd6_newqeventv110_txpq,Income Taxes Payable,VECTOR,0.5,33
+fnd6_newqeventv110_txtq,Income Taxes - Total,VECTOR,0.5,29
+fnd6_newqeventv110_txwq,Excise Taxes,VECTOR,0.5,88
+fnd6_newqeventv110_wcapq,Working Capital (Balance Sheet),VECTOR,0.5,85
+fnd6_newqeventv110_wdaq,Writedowns After-tax,VECTOR,0.5,48
+fnd6_newqeventv110_wdpq,Writedowns Pretax,VECTOR,0.5,859
+fnd6_newqeventv110_xidoq,Extraordinary Items and Discontinued Operations,VECTOR,0.5,307
+fnd6_newqeventv110_xintq,Interest and Related Expense - Total,VECTOR,0.5,187
+fnd6_newqeventv110_xiq,Extraordinary Items,VECTOR,0.5,31
+fnd6_newqeventv110_xoprq,Operating Expense - Total,VECTOR,0.5,67
+fnd6_newqeventv110_xopt12,Implied Option Expense - 12mm,VECTOR,0.5,34
+fnd6_newqeventv110_xoptd12,Implied Option EPS Diluted 12MM,VECTOR,0.5,58
+fnd6_newqeventv110_xoptd12p,Implied Option 12MM EPS Diluted Preliminary,VECTOR,0.5,47
+fnd6_newqeventv110_xoptdq,Implied Option EPS Diluted,VECTOR,0.5,47
+fnd6_newqeventv110_xoptdqp,Implied Option EPS Diluted Preliminary,VECTOR,0.5,67
+fnd6_newqeventv110_xopteps12,Implied Option EPS Basic 12MM,VECTOR,0.5,56
+fnd6_newqeventv110_xoptepsp12,Implied Option 12MM EPS Basic Preliminary,VECTOR,0.5,39
+fnd6_newqeventv110_xoptepsq,Implied Option EPS Basic,VECTOR,0.5,70
+fnd6_newqeventv110_xoptepsqp,Implied Option EPS Basic Preliminary,VECTOR,0.5,47
+fnd6_newqeventv110_xoptq,Implied Option Expense,VECTOR,0.5,69
+fnd6_newqeventv110_xoptqp,Implied Option Expense Preliminary,VECTOR,0.5,32
+fnd6_newqeventv110_xrdq,Research and Development Expense,VECTOR,0.5,517
+fnd6_newqeventv110_xsgaq,"Selling, General and Administrative Expenses",VECTOR,0.5,52
+fnd6_newqv1300_acomincq,Accumulated Other Comprehensive Income (Loss),MATRIX,0.5,1597
+fnd6_newqv1300_acoq,Current Assets - Other - Total,MATRIX,0.5,435
+fnd6_newqv1300_altoq,Other Long-term Assets,MATRIX,0.5,485
+fnd6_newqv1300_ancq,Non-Current Assets - Total,MATRIX,0.5,1732
+fnd6_newqv1300_anoq,Assets Netting & Other Adjustments,MATRIX,0.5,282
+fnd6_newqv1300_aociderglq,Accum Other Comp Inc - Derivatives Unrealized Gain/Loss,MATRIX,0.5,374
+fnd6_newqv1300_aociotherq,Accumulated Other Comprehensive Income - Other Adjustments,MATRIX,0.5,743
+fnd6_newqv1300_aocipenq,Accum Other Comp Inc - Min Pension Liab Adj,MATRIX,0.5,312
+fnd6_newqv1300_aocisecglq,Accum Other Comp Inc - Unreal G/L Ret Int in Sec Assets,MATRIX,0.5,847
+fnd6_newqv1300_aol2q,Assets Level 2 (Observable),MATRIX,0.5,389
+fnd6_newqv1300_aoq,Assets - Other - Total,MATRIX,0.5,700
+fnd6_newqv1300_aqpl1q,Assets Level 1 (Quoted Prices),MATRIX,0.5,328
+fnd6_newqv1300_aul3q,Assets Level 3 (Unobservable),MATRIX,0.5,236
+fnd6_newqv1300_capsq,Capital Surplus/Share Premium Reserve,MATRIX,0.5,1076
+fnd6_newqv1300_chq,Cash,MATRIX,0.5,389
+fnd6_newqv1300_cibegniq,Comp Inc - Beginning Net Income,MATRIX,0.5,449
+fnd6_newqv1300_cicurrq,Comp Inc - Currency Trans Adj,MATRIX,0.5,282
+fnd6_newqv1300_ciderglq,Comp Inc - Derivative Gains/Losses,MATRIX,0.5,265
+fnd6_newqv1300_cimiiq,Comprehensive Income - Noncontrolling Interest,MATRIX,0.5,159
+fnd6_newqv1300_ciotherq,Comp Inc - Other Adj,MATRIX,0.5,819
+fnd6_newqv1300_cipenq,Comp Inc - Minimum Pension Adj,MATRIX,0.5,740
+fnd6_newqv1300_ciq,Comprehensive Income - Total,MATRIX,0.5,488
+fnd6_newqv1300_cisecglq,Comp Inc - Securities Gains/Losses,MATRIX,0.5,680
+fnd6_newqv1300_citotalq,Comprehensive Income - Parent,MATRIX,0.5,389
+fnd6_newqv1300_cogsq,Cost of Goods Sold,MATRIX,0.5,543
+fnd6_newqv1300_csh12q,Common Shares Used to Calculate Earnings Per Share - 12 Months Moving,MATRIX,0.5,584
+fnd6_newqv1300_cshfdq,Common Shares for Diluted EPS,MATRIX,0.5,927
+fnd6_newqv1300_cshiq,Common Shares Issued,MATRIX,0.5,661
+fnd6_newqv1300_cshopq,Total Shares Repurchased - Quarter,MATRIX,0.5,166
+fnd6_newqv1300_cshoq,Common Shares Outstanding,MATRIX,0.5,338
+fnd6_newqv1300_cshprq,Common Shares Used to Calculate Earnings Per Share - Basic,MATRIX,0.5,650
+fnd6_newqv1300_cstkq,Common/Ordinary Stock (Capital),MATRIX,0.5,500
+fnd6_newqv1300_dcomq,Deferred Compensation,MATRIX,0.5,921
+fnd6_newqv1300_dilavq,Dilution Available - Excluding Extraordinary Items,MATRIX,0.5,692
+fnd6_newqv1300_dlcq,Debt in Current Liabilities,MATRIX,0.5,723
+fnd6_newqv1300_dpactq,"Depreciation, Depletion and Amortization (Accumulated)",MATRIX,0.5,326
+fnd6_newqv1300_drcq,Deferred Revenue - Current,MATRIX,0.5,1828
+fnd6_newqv1300_drltq,Deferred Revenue - Long-term,MATRIX,0.5,6412
+fnd6_newqv1300_epsfiq,Earnings Per Share (Diluted) - Including Extraordinary Items,MATRIX,0.5,738
+fnd6_newqv1300_epspiq,Earnings Per Share (Basic) - Including Extraordinary Items,MATRIX,0.5,437
+fnd6_newqv1300_epspxq,Earnings Per Share (Basic) - Excluding Extraordinary Items,MATRIX,0.5,553
+fnd6_newqv1300_esopnrq,Preferred ESOP Obligation - Non-Redeemable,MATRIX,0.5,1070
+fnd6_newqv1300_esoprq,Preferred ESOP Obligation - Redeemable,MATRIX,0.5,1307
+fnd6_newqv1300_fcaq,Foreign Exchange Income (Loss),MATRIX,0.5,80
+fnd6_newqv1300_gdwlq,Goodwill (net),MATRIX,0.5,561
+fnd6_newqv1300_glcea12,Gain/Loss on Sale (Core Earnings Adjusted) After-tax 12MM,MATRIX,0.5,53
+fnd6_newqv1300_glced12,Gain/Loss on Sale (Core Earnings Adjusted) Diluted EPS Effect 12MM,MATRIX,0.5,20
+fnd6_newqv1300_glceeps12,Gain/Loss on Sale (Core Earnings Adjusted) Basic EPS Effect 12MM,MATRIX,0.5,35
+fnd6_newqv1300_ibadj12,Income Before Extra Items - Adj for Common Stock Equivalents - 12MM,MATRIX,0.5,688
+fnd6_newqv1300_ibadjq,Income Before Extraordinary Items - Adjusted for Common Stock Equivalents,MATRIX,0.5,398
+fnd6_newqv1300_ibcomq,Income Before Extraordinary Items - Available for Common,MATRIX,0.5,354
+fnd6_newqv1300_ibmiiq,Income before Extraordinary Items and Noncontrolling Interests,MATRIX,0.5,704
+fnd6_newqv1300_ibq,Income Before Extraordinary Items,MATRIX,0.5,458
+fnd6_newqv1300_icaptq,Invested Capital - Total - Quarterly,MATRIX,0.5,752
+fnd6_newqv1300_intanoq,Other Intangibles,MATRIX,0.5,1040
+fnd6_newqv1300_intanq,Intangible Assets - Total,MATRIX,0.5,627
+fnd6_newqv1300_invfgq,Inventory - Finished Goods,MATRIX,0.5,438
+fnd6_newqv1300_invoq,Inventory - Other,MATRIX,0.5,495
+fnd6_newqv1300_invrmq,Inventory - Raw Materials,MATRIX,0.5,303
+fnd6_newqv1300_invtq,Inventories - Total,MATRIX,0.5,771
+fnd6_newqv1300_invwipq,Inventory - Work in Process,MATRIX,0.5,389
+fnd6_newqv1300_ivltq,Total Long-term Investments,MATRIX,0.5,1120
+fnd6_newqv1300_ivstq,Short-Term Investments - Total,MATRIX,0.5,131
+fnd6_newqv1300_lcoq,Current Liabilities - Other - Total,MATRIX,0.5,1904
+fnd6_newqv1300_lltq,Long-Term Liabilities (Total),MATRIX,0.5,2834
+fnd6_newqv1300_lnoq,Liabilities Netting & Other Adjustments,MATRIX,0.5,114
+fnd6_newqv1300_lol2q,Liabilities Level 2 (Observable),MATRIX,0.5,175
+fnd6_newqv1300_loq,Liabilities - Other,MATRIX,0.5,320
+fnd6_newqv1300_loxdrq,Liabilities - Other - Excluding Deferred Revenue,MATRIX,0.5,455
+fnd6_newqv1300_lqpl1q,Liabilities Level 1 (Quoted Prices),MATRIX,0.5,429
+fnd6_newqv1300_lseq,Liabilities and Stockholders' Equity - Total,MATRIX,0.5,609
+fnd6_newqv1300_ltmibq,Liabilities - Total and Noncontrolling Interest,MATRIX,0.5,519
+fnd6_newqv1300_lul3q,Liabilities Level 3 (Unobservable),MATRIX,0.5,583
+fnd6_newqv1300_mibnq,Non-Redeemable Noncontrolling Interest (Balance Sheet) - Quarterly,MATRIX,0.5,182
+fnd6_newqv1300_mibtq,Noncontrolling Interests - Total - Balance Sheet - Quarterly,MATRIX,0.5,152
+fnd6_newqv1300_miiq,Noncontrolling Interest - Income Account,MATRIX,0.5,499
+fnd6_newqv1300_msaq,Accumulated Other Comprehensive Income - Marketable Security Adjustments,MATRIX,0.5,463
+fnd6_newqv1300_oepf12,Earnings Per Share - Diluted - from Operations - 12MM,MATRIX,0.5,960
+fnd6_newqv1300_oepsxq,Earnings Per Share - Diluted - from Operations,MATRIX,0.5,564
+fnd6_newqv1300_optfvgrq,Options - Fair Value of Options Granted,MATRIX,0.5,761
+fnd6_newqv1300_optrfrq,Risk-Free Rate - Assumption (%),MATRIX,0.5,196
+fnd6_newqv1300_piq,Pretax Income,MATRIX,0.5,534
+fnd6_newqv1300_pncq,Core Pension Adjustment,MATRIX,0.5,16
+fnd6_newqv1300_ppegtq,"Property, Plant and Equipment - Total (Gross) - Quarterly",MATRIX,0.5,469
+fnd6_newqv1300_ppentq,Property Plant and Equipment - Total (Net),MATRIX,0.5,761
+fnd6_newqv1300_prcaq,Core Post Retirement Adjustment,MATRIX,0.5,10
+fnd6_newqv1300_prcdq,Core Post Retirement Adjustment Diluted EPS Effect,MATRIX,0.5,21
+fnd6_newqv1300_prcepsq,Core Post Retirement Adjustment Basic EPS Effect,MATRIX,0.5,29
+fnd6_newqv1300_prcraq,Repurchase Price - Average per share,MATRIX,0.5,253
+fnd6_newqv1300_rcpq,Restructuring Cost Pretax,MATRIX,0.5,148
+fnd6_newqv1300_rdipaq,In Process R&D Expense After-tax,MATRIX,0.5,174
+fnd6_newqv1300_rdipdq,In Process R&D Expense Diluted EPS Effect,MATRIX,0.5,317
+fnd6_newqv1300_rdipepsq,In-Process R&D Expense Basic EPS Effect,MATRIX,0.5,131
+fnd6_newqv1300_rdipq,In Process R&D,MATRIX,0.5,2865
+fnd6_newqv1300_recdq,Receivables - Estimated Doubtful,MATRIX,0.5,1124
+fnd6_newqv1300_rectaq,Accum Other Comp Inc - Cumulative Translation Adjustments,MATRIX,0.5,620
+fnd6_newqv1300_rectoq,Receivables - Current Other incl Tax Refunds,MATRIX,0.5,384
+fnd6_newqv1300_rectrq,Receivables - Trade,MATRIX,0.5,511
+fnd6_newqv1300_reunaq,Unadjusted Retained Earnings,MATRIX,0.5,929
+fnd6_newqv1300_revtq,Revenue - Total,MATRIX,0.5,662
+fnd6_newqv1300_seqoq,Other Stockholders' Equity Adjustments,MATRIX,0.5,2669
+fnd6_newqv1300_seqq,Stockholders' Equity - Total - Quarterly,MATRIX,0.5,718
+fnd6_newqv1300_spcedpq,S&P Core Earnings EPS Diluted - Preliminary,MATRIX,0.5,279
+fnd6_newqv1300_spcedq,S&P Core Earnings EPS Diluted,MATRIX,0.5,21
+fnd6_newqv1300_spceepsp12,S&P Core 12MM EPS - Basic - Preliminary,MATRIX,0.5,17
+fnd6_newqv1300_spceepspq,S&P Core Earnings EPS Basic - Preliminary,MATRIX,0.5,122
+fnd6_newqv1300_spceepsq,S&P Core Earnings EPS Basic,MATRIX,0.5,9
+fnd6_newqv1300_spcep12,S&P Core Earnings 12MM - Preliminary,MATRIX,0.5,9
+fnd6_newqv1300_spcepd12,S&P Core Earnings 12MM EPS Diluted - Preliminary,MATRIX,0.5,38
+fnd6_newqv1300_spcepq,S&P Core Earnings - Preliminary,MATRIX,0.5,248
+fnd6_newqv1300_spceq,S&P Core Earnings,MATRIX,0.5,11
+fnd6_newqv1300_spiq,Special Items,MATRIX,0.5,197
+fnd6_newqv1300_stkcoq,Stock Compensation Expense,MATRIX,0.5,644
+fnd6_newqv1300_stkcpaq,After-tax stock compensation,MATRIX,0.5,279
+fnd6_newqv1300_teqq,Stockholders' Equity - Total - Quarterly,MATRIX,0.5,1189
+fnd6_newqv1300_tfvaq,Total Fair Value Assets,MATRIX,0.5,241
+fnd6_newqv1300_tfvceq,Total Fair Value Changes including Earnings,MATRIX,0.5,87
+fnd6_newqv1300_tfvlq,Total Fair Value Liabilities,MATRIX,0.5,200
+fnd6_newqv1300_tstknq,Treasury Stock - Number of Common Shares,MATRIX,0.5,510
+fnd6_newqv1300_tstkq,Treasury Stock - Total (All Capital),MATRIX,0.5,234
+fnd6_newqv1300_txdbaq,Deferred Tax Asset - Long Term,MATRIX,0.5,364
+fnd6_newqv1300_txdbq,Deferred Taxes - Balance Sheet,MATRIX,0.5,117
+fnd6_newqv1300_txdiq,Income Taxes - Deferred,MATRIX,0.5,229
+fnd6_newqv1300_txditcq,Deferred Taxes and Investment Tax Credit,MATRIX,0.5,539
+fnd6_newqv1300_txpq,Income Taxes Payable,MATRIX,0.5,431
+fnd6_newqv1300_txtq,Income Taxes - Total,MATRIX,0.5,562
+fnd6_newqv1300_txwq,Excise Taxes,MATRIX,0.5,988
+fnd6_newqv1300_wcapq,Working Capital (Balance Sheet),MATRIX,0.5,264
+fnd6_newqv1300_xintq,Interest and Related Expense - Total,MATRIX,0.5,558
+fnd6_newqv1300_xoprq,Operating Expense - Total,MATRIX,0.5,1125
+fnd6_newqv1300_xoptdq,Implied Option EPS Diluted,MATRIX,0.5,10
+fnd6_newqv1300_xoptepsq,Implied Option EPS Basic,MATRIX,0.5,21
+fnd6_newqv1300_xoptq,Implied Option Expense,MATRIX,0.5,100
+fnd6_newqv1300_xrdq,Research and Development Expense,MATRIX,0.5,851
+fnd6_newqv1300_xsgaq,"Selling, General and Administrative Expenses",MATRIX,0.5,937
+fnd6_niadj,Net Income Adjusted for Common/Ordinary Stock (Capital) Equivalents,MATRIX,0.5,1714
+fnd6_nis,Net Income (Loss),VECTOR,0.5,52
+fnd6_nopio,Nonoperating Income (Expense) - Other,MATRIX,0.5,645
+fnd6_nopxs,Nonoperating Income (Expense) - excluding Interest,VECTOR,0.5,49
+fnd6_np,Notes Payable - Short-Term Borrowings,MATRIX,0.5,402
+fnd6_npq,Notes Payable,MATRIX,0.5,498
+fnd6_nxints,Net Interest Income (Expense),VECTOR,0.5,38
+fnd6_obs,Order Backlog,VECTOR,0.5,73
+fnd6_ocaxs,Other Costs and Expenses,VECTOR,0.5,15
+fnd6_oelim,Other Eliminations (Income),VECTOR,0.5,139
+fnd6_oiadps,Operating Income after Depreciation,VECTOR,0.5,287
+fnd6_oibdps,Operating Income before Depreciation,VECTOR,0.5,85
+fnd6_oprepsx,Earnings Per Share - Diluted - from Operations,MATRIX,0.5,1011
+fnd6_ops,Operating Profit (Loss),VECTOR,0.5,118
+fnd6_optca,Options - Cancelled (-),MATRIX,0.5,2064
+fnd6_optdr,Dividend Rate - Assumption (%),MATRIX,0.5,1300
+fnd6_optdrq,Dividend Rate - Assumption (%),MATRIX,0.5,183
+fnd6_optex,Options Exercisable (000),MATRIX,0.5,1228
+fnd6_optfvgr,Options - Fair Value of Options Granted,MATRIX,0.5,687
+fnd6_optgr,Options - Granted,MATRIX,0.5,794
+fnd6_optlife,Life of Options - Assumption (# yrs),MATRIX,0.5,881
+fnd6_optlifeq,Life of Options - Assumption (# yrs),MATRIX,0.5,284
+fnd6_optosby,Options Outstanding - Beginning of Year,MATRIX,0.5,844
+fnd6_optosey,Options Outstanding - End of Year,MATRIX,0.5,810
+fnd6_optprcby,Options Outstanding Beginning of Year - Price,MATRIX,0.5,695
+fnd6_optprcca,Options Cancelled - Price,MATRIX,0.5,616
+fnd6_optprcex,Options Exercised - Price,MATRIX,0.5,827
+fnd6_optprcey,Options Outstanding End of Year - Price,MATRIX,0.5,615
+fnd6_optprcgr,Options Granted - Price,MATRIX,0.5,684
+fnd6_optprcwa,Options Exercisable - Weighted Avg Price,MATRIX,0.5,679
+fnd6_optrfr,Risk-Free Rate - Assumption (%),MATRIX,0.5,808
+fnd6_optvol,Volatility - Assumption (%),MATRIX,0.5,1020
+fnd6_optvolq,Volatility - Assumption (%),MATRIX,0.5,273
+fnd6_pidom,Pretax Income - Domestic,MATRIX,0.5,388
+fnd6_pifo,Pretax Income - Foreign,MATRIX,0.5,2638
+fnd6_pncdq,Core Pension Adjustment Diluted EPS Effect,MATRIX,0.5,24
+fnd6_pncepsq,Core Pension Adjustment Basic EPS Effect,MATRIX,0.5,37
+fnd6_pnrsho,Nonred Pfd Shares Outs (000),MATRIX,0.5,971
+fnd6_ppents,"Property, Plant & Equipment",VECTOR,0.5,2799
+fnd6_ppeveb,"Property, Plant, and Equipment - Ending Balance (Schedule V)",MATRIX,0.5,571
+fnd6_prcc,Price Close - Annual,MATRIX,0.5,924
+fnd6_prccq,Price Close - Quarter,MATRIX,0.5,666
+fnd6_prch,Price High - Annual,MATRIX,0.5,538
+fnd6_prchq,Price High - Quarter,MATRIX,0.5,599
+fnd6_prcl,Price Low - Annual,MATRIX,0.5,867
+fnd6_prclq,Price Low - Quarter,MATRIX,0.5,648
+fnd6_prstkc,Purchase of Common and Preferred Stock,MATRIX,0.5,477
+fnd6_pstkc,Preferred Stock - Convertible,MATRIX,0.5,754
+fnd6_pstkl,Preferred Stock - Liquidating Value,MATRIX,0.5,371
+fnd6_pstkrv,Preferred Stock - Redemption Value,MATRIX,0.5,447
+fnd6_ptis,Pretax Income,VECTOR,0.5,87
+fnd6_rank,SP rank with the following meaning: // 0----invalid rank //1----A+//2----A//3----A-//4----B+//5----B//6----B-//7----C+//8----C//9----C-,MATRIX,0.5,606
+fnd6_ranks,Ranking,VECTOR,0.5,2672
+fnd6_rds,Research and Development,VECTOR,0.5,63
+fnd6_rea,Retained Earnings - Restatement,MATRIX,0.5,6043
+fnd6_reajo,Retained Earnings - Other Adjustments,MATRIX,0.5,823
+fnd6_recco,Receivables - Current - Other,MATRIX,0.5,881
+fnd6_recd,Receivables - Estimated Doubtful,MATRIX,0.5,5433
+fnd6_recta,Retained Earnings - Cumulative Translation Adjustment,MATRIX,0.5,1364
+fnd6_rectr,Receivables - Trade,MATRIX,0.5,896
+fnd6_revts,Total Revenues,VECTOR,0.5,211
+fnd6_sales,Net Sales,VECTOR,0.5,317
+fnd6_salexg,Export Sales,VECTOR,0.5,11
+fnd6_sics,SIC Code,VECTOR,0.5,947
+fnd6_siv,Sale of Investments,MATRIX,0.5,461
+fnd6_snms,Segment Name,VECTOR,0.5,278
+fnd6_spce,S&P Core Earnings,MATRIX,0.5,134
+fnd6_spis,Special Items,VECTOR,0.5,132
+fnd6_sppe,Sale of Property,MATRIX,0.5,467
+fnd6_sppiv,"Sale of Property, Plant and Equipment and Investments - Gain (Loss)",MATRIX,0.5,473
+fnd6_sstk,Sale of Common and Preferred Stock,MATRIX,0.5,1935
+fnd6_state,integer for identifying the state of the company,MATRIX,0.5,2029
+fnd6_stkcpa,After-tax stock compensation,MATRIX,0.5,384
+fnd6_stype,Segment Type,VECTOR,0.5,1512
+fnd6_teq,Stockholders' Equity - Total,MATRIX,0.5,2159
+fnd6_tfva,Total Fair Value Assets,MATRIX,0.5,413
+fnd6_tfvce,Total Fair Value Changes including Earnings,MATRIX,0.5,91
+fnd6_tfvl,Total Fair Value Liabilities,MATRIX,0.5,314
+fnd6_tlcf,Tax Loss Carry Forward,MATRIX,0.5,599
+fnd6_tstkc,Treasury Stock - Common,MATRIX,0.5,556
+fnd6_txbco,Excess Tax Benefit Stock Options - Cash Flow Operating,MATRIX,0.5,2107
+fnd6_txbcof,Excess Tax Benefit of Stock Options - Cash Flow Financing,MATRIX,0.5,921
+fnd6_txc,Income Taxes - Current,MATRIX,0.5,525
+fnd6_txdba,Deferred Tax Asset - Long Term,MATRIX,0.5,394
+fnd6_txdbca,Deferred Tax Asset - Current,MATRIX,0.5,640
+fnd6_txdbcl,Deferred Tax Liability - Current,MATRIX,0.5,155
+fnd6_txdbclq,Current Deferred Tax Liability,MATRIX,0.5,4067
+fnd6_txdc,Deferred Taxes (Cash Flow),MATRIX,0.5,596
+fnd6_txdfed,Deferred Taxes - Federal,MATRIX,0.5,489
+fnd6_txdfo,Deferred Taxes - Foreign,MATRIX,0.5,330
+fnd6_txdi,Income Taxes - Deferred,MATRIX,0.5,479
+fnd6_txds,Deferred Taxes - State,MATRIX,0.5,275
+fnd6_txfed,Income Taxes - Federal,MATRIX,0.5,317
+fnd6_txfo,Income Taxes - Foreign,MATRIX,0.5,1374
+fnd6_txndb,Net Deferred Tax Asset (Liab) - Total,MATRIX,0.5,448
+fnd6_txndba,Net Deferred Tax Asset,MATRIX,0.5,430
+fnd6_txndbl,Net Deferred Tax Liability,MATRIX,0.5,499
+fnd6_txndbr,Deferred Tax Residual,MATRIX,0.5,1228
+fnd6_txo,Income Taxes - Other,MATRIX,0.5,2051
+fnd6_txpd,Income Taxes Paid,MATRIX,0.5,696
+fnd6_txr,Income Tax Refund,MATRIX,0.5,918
+fnd6_txs,Income Taxes - State,MATRIX,0.5,373
+fnd6_txts,Income Taxes,VECTOR,0.5,170
+fnd6_txtubadjust,Other Unrecognized Tax Benefit Adjustment,MATRIX,0.5,383
+fnd6_txtubbegin,Unrecog. Tax Benefits - Beg of Year,MATRIX,0.5,542
+fnd6_txtubend,Unrecog. Tax Benefits - End of Year,MATRIX,0.5,647
+fnd6_txtubposdec,Decrease - Current Tax Positions,MATRIX,0.5,826
+fnd6_txtubposinc,Increase - Current Tax Positions,MATRIX,0.5,380
+fnd6_txtubpospdec,Decrease - Prior Tax Positions,MATRIX,0.5,523
+fnd6_txtubpospinc,Increase - Prior Tax Positions,MATRIX,0.5,251
+fnd6_txtubsettle,Settlements with Tax Authorities,MATRIX,0.5,460
+fnd6_txtubsoflimit,Lapse of Statute of Limitations,MATRIX,0.5,588
+fnd6_txtubtxtr,Impact on Effective Tax Rate,MATRIX,0.5,302
+fnd6_txtubxintbs,Interest & Penalties Accrued - B/S,MATRIX,0.5,242
+fnd6_txtubxintis,Interest & Penalties Recognized - I/S,MATRIX,0.5,170
+fnd6_txw,Excise Taxes,MATRIX,0.5,1150
+fnd6_txws,Excise Taxes,VECTOR,0.5,258
+fnd6_weburl,WEB URL code for the company,MATRIX,0.5,2363
+fnd6_xacc,Accrued Expenses,MATRIX,0.5,1403
+fnd6_xaccq,Accrued Expenses,MATRIX,0.5,894
+fnd6_xad,Advertising Expense,MATRIX,0.5,1210
+fnd6_xidos,Extraordinary Items and Discontinued Operations,VECTOR,0.5,159
+fnd6_xintopt,Implied Option Expense,MATRIX,0.5,75
+fnd6_xints,Interest Expense,VECTOR,0.5,157
+fnd6_xopr,Operating Expenses - Total,MATRIX,0.5,1655
+fnd6_xpp,Prepaid Expenses,MATRIX,0.5,682
+fnd6_xpr,Pension and Retirement Expense,MATRIX,0.5,518
+fnd6_xrent,Rental Expense,MATRIX,0.5,3839
+fnd6_xsgas,"Selling, General & Administrative",VECTOR,0.5,47
+fnd6_zipcode,ZIP code related to the company,MATRIX,0.5,2756
+goodwill,Goodwill (net),MATRIX,0.5,15909
+income,Net Income,MATRIX,0.5,15876
+income_beforeextra,Income Before Extraordinary Items,MATRIX,0.5,7288
+income_tax,Income Taxes - Total,MATRIX,0.5,7884
+interest_expense,Interest and Related Expense - Total,MATRIX,0.5,2925
+inventory,Inventories - Total,MATRIX,0.5,9714
+inventory_turnover,Inventory Turnover,MATRIX,0.5,7058
+invested_capital,Invested Capital - Total - Quarterly,MATRIX,0.5,6157
+liabilities,Liabilities - Total,MATRIX,0.5,76631
+liabilities_curr,Current Liabilities - Total,MATRIX,0.5,13925
+operating_expense,Operating Expense - Total,MATRIX,0.5,11567
+operating_income,Operating Income After Depreciation - Quarterly,MATRIX,0.5,80157
+ppent,Property Plant and Equipment - Total (Net),MATRIX,0.5,10682
+pretax_income,Pretax Income,MATRIX,0.5,8058
+rd_expense,Research And Development (Quarterly),MATRIX,0.5,4049
+receivable,Receivables - Total,MATRIX,0.5,9231
+retained_earnings,Retained Earnings,MATRIX,0.5,7960
+return_assets,Return on Assets,MATRIX,0.5,8081
+return_equity,Return on Equity,MATRIX,0.5,9918
+revenue,Revenue - Total,MATRIX,0.5,17057
+sales,Sales/Turnover (Net),MATRIX,0.5,44169
+sales_growth,Growth in Sales (Quarterly),MATRIX,0.5,9084
+sales_ps,Sales per Share (Quarterly),MATRIX,0.5,6776
+sga_expense,"Selling, General and Administrative Expenses",MATRIX,0.5,8394
+working_capital,Working Capital (Balance Sheet),MATRIX,0.5,6426

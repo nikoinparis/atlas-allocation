@@ -44,9 +44,18 @@ FIELDS = {
     "sales": "sales",
     "cashflow_op": "cashflow_op",
     "capex": "capex",
-    # REJECTED by the simulator on 2026-09-22: "unknown variable net_income".
-    # Find the real id with --find-field income, then set it here.
-    "net_income": "net_income",  # <-- STILL WRONG, must be replaced
+    # RESOLVED 2026-09-22 (Phase 0, fundamental6.csv). `net_income` does not exist; the
+    # field is `income`, whose description is exactly "Net Income" -- and it is the ONLY
+    # field in the dataset with that exact description. MATRIX, coverage 0.5, 15,876 alphas,
+    # on the same bare-id convention as sales/assets/equity/debt/cash/capex/cashflow_op.
+    #
+    # This is a RESOLUTION, not a substitution: `income` IS net income, so cash_conversion
+    # still measures cash conversion. `ebit`/`ebitda` were deliberately NOT used, because
+    # those would change what the signal measures while keeping its name.
+    #
+    # Caveat carried forward, same class as the open `debt`/`liabilities` question: this is
+    # Compustat NI, and our SEC panel sums the `NetIncomeLoss` tag. Close, not proven equal.
+    "net_income": "income",
     "assets": "assets",
     "equity": "equity",
     "liabilities": "liabilities",

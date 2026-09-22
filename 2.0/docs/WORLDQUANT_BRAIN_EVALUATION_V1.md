@@ -605,3 +605,67 @@ nine are unordered", and applies a 0.5 bar at line 164 — yet that exact shape 
 its own implementation. Nothing measured has ever come near 0.5, so this has never mattered;
 it would matter on the first positive result, which is the worst time to discover it. Queue
 item **S14**.
+
+## 2026-09-22 — Phase 0 completed; `net_income` resolved to `income`
+
+Phase 0 ran clean from the macOS setup script. **No `INCOMPLETE` banner**, so no dataset was
+skipped and the field dictionaries are complete. Fourteen datasets are visible; five were
+dumped to `data/worldquant_brain_fields/` and committed.
+
+| dataset | name | fields |
+|---|---|---|
+| `fundamental6` | Company Fundamental Data for Equity | 886 |
+| `fundamental2` | Report Footnotes | 766 |
+| `analyst4` | Analyst Estimate Data for Equity | 1,324 |
+| `model16` / `model51` | Fundamental Scores / Systematic Risk Metrics | 24 / 16 |
+
+### A trap in Phase 0's own console output, recorded so nobody falls into it
+
+The `--phase0` concept summary prints **at most eight hits per concept**, and `analyst4` is
+walked first with 1,324 fields, so **every concept's visible hits were `analyst4` estimate
+fields** — `anl4_cfo_mean` ("Cash Flow From Operations — mean of estimations"),
+`anl4_capex_value`, `adj_net_income_avg`, and so on. Those are **analyst consensus estimates,
+not reported fundamentals.** Building these signals on them would not be a field-id fix; it
+would silently swap reported facts for forward-looking consensus, with an obvious lookahead
+question attached.
+
+**The console output was not evidence of what exists.** The committed CSVs were, and the
+answer was in `fundamental6` all along. The eight-hit cap should be raised and the concept
+summary should sort fundamental datasets first; until then, read the CSV, not the terminal.
+
+### The resolution
+
+**`net_income` → `income`.** Description exactly `Net Income`; MATRIX; coverage 0.5; 15,876
+alphas. It is the **only** field in `fundamental6` whose description is exactly "Net Income".
+It follows the same bare-id convention as every other field these signals use — all nine now
+confirmed present in one dataset, all MATRIX, all at coverage 0.5:
+
+| our concept | BRAIN id | BRAIN description | coverage |
+|---|---|---|---|
+| sales | `sales` | Sales/Turnover (Net) | 0.5 |
+| cashflow_op | `cashflow_op` | Operating Activities - Net Cash Flow | 0.5 |
+| capex | `capex` | Capital Expenditures | 0.5 |
+| **net_income** | **`income`** | **Net Income** | **0.5** |
+| assets | `assets` | Assets - Total | 0.5 |
+| equity | `equity` | Common/Ordinary Equity - Total | 0.5 |
+| liabilities | `liabilities` | Liabilities - Total | 0.5 |
+| debt | `debt` | Debt | 0.5 |
+| cash | `cash` | Cash | 0.5 |
+
+**This is a resolution, not a substitution, and the distinction is the whole point.** `income`
+*is* net income, so `cash_conversion` still measures cash conversion and `growth` still
+measures earnings growth. `ebit` and `ebitda` were deliberately not used: they would have
+changed what the signal measures while keeping its name, which is the construction drift this
+project has been bitten by twice. Declared here before any simulation, as required.
+
+**Caveat carried forward.** This is Compustat's Net Income; our SEC panel sums the
+`NetIncomeLoss` tag. Close, not proven identical — the same class of open question as `debt`
+(described only as "Debt") and `liabilities`, which is one of the three live readings on
+`balance_sheet_quality`'s wrong sign.
+
+**Density.** Every field sits at exactly 0.5 instrument coverage — right on the floor CLAUDE.md
+§2 sets, clearing it but only just. This is the binding caveat on every number that follows,
+and it is a property of the whole `fundamental6` dataset rather than of any one signal.
+
+`cash_conversion` and `growth` are unblocked. All three signals plus the `control_size`
+negative control now resolve to complete expressions.

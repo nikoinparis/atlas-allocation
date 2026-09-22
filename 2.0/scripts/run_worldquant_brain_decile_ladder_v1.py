@@ -6,8 +6,10 @@ Steps 296/298/299/300 replicates on data this project does not own.
 
 Read `docs/WORLDQUANT_BRAIN_EVALUATION_V1.md` before running. In particular:
 
-  * Phase 0 (field-id confirmation and the density audit) comes first. The field ids below
-    are the commonly-cited ones and are UNVERIFIED. Run --audit-fields and fix them.
+  * Phase 0 comes first and is one command: `--phase0`. It downloads every relevant
+    dataset's field dictionary to CSV and resolves the nine field ids our signals need.
+    The ids hard-coded below are UNVERIFIED -- `net_income` is already known WRONG,
+    rejected by the simulator on 2026-09-22 as an unknown variable.
   * A BRAIN Sharpe is not evidence here. Monotonicity is. Every signal measured in this
     project sits within +/-0.17 of zero; the declared bar is monotonicity above 0.5 with
     interpretable deciles.
@@ -181,9 +183,13 @@ def login(credentials: Path) -> requests.Session:
     session = requests.Session()
     session.auth = HTTPBasicAuth(creds["email"], creds["password"])
     response = session.post(f"{API}/authentication")
-    if response.status_code != 201:
-        raise SystemExit(f"authentication failed: {response.status_code} {response.text[:400]}")
-    return session
+    if response.status_code == 201:
+        return session
+    if response.status_code == 401 and "persona" in response.text.lower():
+        raise SystemExit(
+            "BRAIN wants biometric/persona verification before it will issue an API session.\n"
+            "Complete it once in the browser at platform.worldquantbrain.com, then re-run.")
+    raise SystemExit(f"authentication failed: {response.status_code} {response.text[:400]}")
 
 
 def simulate(session: requests.Session, expression: str, neutralization: str,
@@ -239,6 +245,85 @@ def monotonicity(returns_by_decile: dict[int, float]) -> float:
     for position, index in enumerate(order):
         ranks[index] = float(position + 1)
     return statistics.correlation([float(d) for d in present], ranks)
+
+
+CONCEPTS = {
+    "sales":       ("sales", "revenue", "net sales", "total revenue"),
+    "cashflow_op": ("operating activities", "cash flow from operations", "cashflow_op"),
+    "capex":       ("capital expenditure", "capex"),
+    "net_income":  ("net income", "income - net", "net profit", "earnings"),
+    "assets":      ("assets - total", "total assets"),
+    "equity":      ("stockholders equity", "shareholders equity", "common equity", "equity"),
+    "liabilities": ("liabilities - total", "total liabilities", "liabilities"),
+    "cash":        ("cash", "cash and short-term"),
+    "debt":        ("debt", "long-term debt", "total debt"),
+}
+
+
+def phase0(session: requests.Session, root: Path) -> int:
+    """One command: dump every fundamental dataset's fields and resolve our nine concepts.
+
+    Exists because 45 pages of web UI is not a reference, and because one unknown field id
+    (`net_income`, rejected 2026-09-22) already cost a round of simulations.
+    """
+    out = root / "data/worldquant_brain_fields"
+    out.mkdir(parents=True, exist_ok=True)
+    params = {"region": BASE_SETTINGS["region"], "universe": BASE_SETTINGS["universe"],
+              "delay": BASE_SETTINGS["delay"], "instrumentType": "EQUITY"}
+
+    datasets = _paged(session, f"{API}/data-sets", params)
+    with (out / "_datasets.csv").open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.writer(handle)
+        writer.writerow(["id", "name", "category", "fieldCount", "alphaCount"])
+        for row in datasets:
+            writer.writerow([row.get("id", ""), row.get("name", ""),
+                             (row.get("category") or {}).get("name", ""),
+                             row.get("fieldCount", ""), row.get("alphaCount", "")])
+    print(f"{len(datasets)} datasets -> {out / '_datasets.csv'}\n")
+
+    wanted = [d for d in datasets
+              if any(k in f"{d.get('id','')} {d.get('name','')}".lower()
+                     for k in ("fundamental", "company", "analyst", "model"))]
+    if not wanted:
+        wanted = datasets[:5]
+
+    fields: list[tuple[str, dict]] = []
+    for dataset in wanted:
+        did = dataset.get("id", "")
+        try:
+            rows = _paged(session, f"{API}/data-fields", dict(params, **{"dataset.id": did}))
+        except SystemExit as error:                      # one bad dataset must not stop Phase 0
+            print(f"  {did}: skipped ({error})")
+            continue
+        with (out / f"{did}.csv").open("w", newline="", encoding="utf-8") as handle:
+            writer = csv.writer(handle)
+            writer.writerow(["id", "description", "type", "coverage", "alphaCount"])
+            for row in rows:
+                writer.writerow([row.get("id", ""), row.get("description", ""),
+                                 row.get("type", ""), row.get("coverage", ""),
+                                 row.get("alphaCount", "")])
+        fields.extend((did, row) for row in rows)
+        print(f"  {did}: {len(rows)} fields -> {out / f'{did}.csv'}")
+
+    print("\n" + "=" * 78)
+    print("PASTE EVERYTHING BELOW THIS LINE BACK INTO THE CONVERSATION")
+    print("=" * 78)
+    for concept, needles in CONCEPTS.items():
+        print(f"\n--- {concept} ---")
+        hits = []
+        for dataset_id, row in fields:
+            blob = f"{row.get('id','')} {row.get('description','')}".lower()
+            if any(n in blob for n in needles):
+                hits.append((dataset_id, row))
+        if not hits:
+            print("  NO MATCH -- this concept may not exist on the platform")
+        for dataset_id, row in hits[:8]:
+            print(f"  {row.get('id',''):26} cov={str(row.get('coverage','')):>7}  "
+                  f"[{dataset_id}]  {str(row.get('description',''))[:52]}")
+    print("\n" + "=" * 78)
+    print("DENSITY GUARD: a field below 50% coverage cannot be read on deciles at all.")
+    print("=" * 78)
+    return 0
 
 
 def _paged(session: requests.Session, url: str, params: dict) -> list[dict]:
@@ -317,6 +402,9 @@ def main() -> int:
                         help="offline: dump every expression for copy-paste, then exit")
     parser.add_argument("--score-manual", type=Path, metavar="FILE",
                         help="offline: score decile returns typed in from the web UI")
+    parser.add_argument("--phase0", action="store_true",
+                        help="one command: dump every relevant dataset's fields to CSV "
+                             "and resolve the nine field ids our signals need")
     parser.add_argument("--list-datasets", action="store_true",
                         help="Phase 0: list available datasets, then exit")
     parser.add_argument("--dump-fields", metavar="DATASET_ID",
@@ -335,6 +423,8 @@ def main() -> int:
 
     session = login(args.credentials)
 
+    if args.phase0:
+        return phase0(session, Path(__file__).resolve().parents[1])
     if args.list_datasets:
         return list_datasets(session)
     if args.dump_fields:

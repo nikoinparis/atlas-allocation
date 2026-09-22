@@ -669,3 +669,75 @@ and it is a property of the whole `fundamental6` dataset rather than of any one 
 
 `cash_conversion` and `growth` are unblocked. All three signals plus the `control_size`
 negative control now resolve to complete expressions.
+
+## 2026-09-22 — the true window, and the four production forms at SUBINDUSTRY
+
+### The window: 2019-01-01 to 2023-12-31. Five years, not four.
+
+Read off `settings` on alpha `N1arrQYp`, not inferred from a summary tab:
+
+```
+"startDate": "2019-01-01", "endDate": "2023-12-31", "simulationMode": "FULL"
+```
+
+**This corrects the earlier run-log entry**, which recorded "a TRAIN period of 2019–2022 —
+four years, roughly 16 quarterly decisions." It is **five years and roughly 20 quarterly
+decisions**. Still nowhere near the ~100 decisions needed to detect a true IC of 0.03, so the
+conclusion that BRAIN buys cross-sectional depth rather than decisions is unchanged — the
+count was simply wrong and is now right.
+
+**There are no separate TEST / IS / OS tabs.** The earlier entry speculated they "exist and
+may extend the total span". On the alpha record the `os`, `train`, `test` and `prod` blocks
+are all **null** for an unsubmitted alpha; only `is` is populated. The entire five-year span
+is in-sample, and the only genuinely untouched record on the platform remains a submission's
+forward accrual. Nothing here is out-of-sample.
+
+**One year is new ground.** Step 300's wide-universe screen ran 2013–2022, so 2019–2022
+overlaps it; **2023 does not**. Four of five years sit inside previously covered calendar.
+This stays a replication on independent *data*, with one year of independent *period* — a
+weaker claim than a clean out-of-sample window and it should not be described as one.
+
+### The four production forms, neutralization SUBINDUSTRY, delay 1, TOP3000
+
+Now recorded with the neutralization stated, which the previous `balance_sheet_quality` entry
+could not be read without.
+
+| signal | Sharpe | returns | turnover | fitness | drawdown | long / short |
+|---|---|---|---|---|---|---|
+| `cash_conversion` | 0.48 | 4.63% | 2.51% | 0.29 | 31.11% | 1484 / 1559 |
+| `balance_sheet_quality` | **−1.17** | **−7.77%** | 2.46% | −0.92 | 42.48% | 1516 / 1551 |
+| `growth` | **1.27** | 8.35% | 4.26% | 1.04 | 12.67% | 1581 / 1489 |
+| `control_size` *(negative control)* | **0.86** | **8.57%** | 2.13% | 0.71 | 25.61% | 1544 / 1527 |
+
+**The cross-section is confirmed.** ~3,045 names carry a position in every book, against the
+509 these signals have always used. That was the stated reason to come here and it is real.
+
+**`balance_sheet_quality`'s wrong sign survives proper neutralization.** −1.17 at SUBINDUSTRY
+against −1.47 at the unrecorded setting. It is not a neutralization artefact. It stays
+**refuted on sign, not flipped** — the ladder now decides between inverted content, a
+definition difference, and extremes-only concentration.
+
+### The number that matters most here is the negative control's, and it is not flattering
+
+**`control_size` — `group_rank(assets, sector)`, a pure size tilt with no skill in it
+whatever — returns 8.57%, the highest return of the four.** Read everything else against that
+baseline rather than against zero:
+
+- `cash_conversion` at 4.63% returns **barely half the trivial control**, on a worse drawdown.
+- `growth` at 8.35% returns **slightly less than the control**. Its higher Sharpe (1.27 vs
+  0.86) comes from a much smaller drawdown (12.67% vs 25.61%) — that is a **volatility**
+  difference, not a return one.
+
+**`growth` clears BRAIN's submission bar (Sharpe ≥ 1.25, fitness ≥ 1.0) and this changes
+nothing.** Guardrail 1 was declared before any number was seen: the scoreboard is not the
+evidence, because it is the same instrument that produced eleven years of headline numbers
+here that all died. Three things must be said in the same breath as that 1.27:
+
+1. **It does not beat the no-skill control on return.** A size tilt earned more.
+2. **2019–2023 is the best imaginable window for a growth signal** — it contains the 2020–21
+   growth/momentum regime in full. CLAUDE.md §6: a strategy that works in one regime is a
+   regime bet, not an edge.
+3. **`growth` is the one signal built on `ts_delta(x, 250)` over forward-filled quarterly
+   fields**, the construction the plan flagged as the most fragile of the three.
+
+Whether any of this is skill is decided by the decile ladder, not by this table.

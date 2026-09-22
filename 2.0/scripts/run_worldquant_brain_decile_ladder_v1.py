@@ -567,6 +567,54 @@ def find_field(session: requests.Session, dataset: str, needle: str) -> int:
     return 0
 
 
+def try_expression(session: requests.Session, expression: str, neutralization: str,
+                   group: str) -> int:
+    """Simulate one arbitrary expression, and ALWAYS print its decile ladder beside it.
+
+    Exists so that trying an idea on BRAIN cannot be done scoreboard-first. The Sharpe and
+    fitness are printed because they are what the platform reports, but the ladder is printed
+    underneath every time, unrequested, because it is the thing that separates a ranking
+    signal from a concentration effect -- and BRAIN does not report it.
+
+    `growth` is the standing example: Sharpe 1.27 and fitness 1.04 clear BRAIN's submission
+    bar, while `group_rank(assets, sector)` -- ranking companies by size, no skill in it --
+    returned MORE (8.57% against 8.35%). A number here means nothing until it is read against
+    that control and against its own ladder.
+    """
+    print(f"expression: {expression}\nneutralization: {neutralization}\n", flush=True)
+    result = simulate(session, expression, neutralization)
+    if "error" in result:
+        print(f"FAILED: {result['error']}")
+        return 1
+    stats = result["alpha"].get("is", {})
+    print(f"  alpha_id  {result['alpha_id']}")
+    for key in ("sharpe", "returns", "turnover", "fitness", "drawdown", "margin",
+                "longCount", "shortCount"):
+        print(f"  {key:10} {stats.get(key)}")
+    print(f"  window    {(result['alpha'].get('settings') or {}).get('startDate')}"
+          f" .. {(result['alpha'].get('settings') or {}).get('endDate')}")
+
+    print("\n--- decile ladder (neutralization NONE, long-only, 10 simulations) ---",
+          flush=True)
+    ladder: dict[int, float] = {}
+    for decile in range(1, 11):
+        band = (f"if_else(rank({expression}) > {-1.0 if decile == 1 else (decile - 1) / 10.0}, 1, 0)"
+                f" - if_else(rank({expression}) > {decile / 10.0}, 1, 0)")
+        step = simulate(session, band, "NONE")
+        if "error" in step:
+            print(f"  decile {decile:2d}: {step['error']}", flush=True)
+            ladder[decile] = float("nan")
+            continue
+        ladder[decile] = statistic(step["alpha"], "returns")
+        print(f"  decile {decile:2d}: returns {ladder[decile]:+.4f}", flush=True)
+
+    print()
+    report("your expression", ladder_shape(ladder))
+    print("\nBRAIN's Sharpe is not the evidence here; the ladder is. Bar declared in "
+          "advance: monotonicity above 0.5, AND middle-8 above 0.5.")
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -580,6 +628,11 @@ def main() -> int:
                         help="offline: dump every expression for copy-paste, then exit")
     parser.add_argument("--score-manual", type=Path, metavar="FILE",
                         help="offline: score decile returns typed in from the web UI")
+    parser.add_argument("--try-expression", metavar="FASTEXPR",
+                        help="simulate one arbitrary expression and print its decile ladder "
+                             "beneath the scoreboard, always")
+    parser.add_argument("--neutralization", default="SUBINDUSTRY",
+                        help="neutralization for --try-expression (default SUBINDUSTRY)")
     parser.add_argument("--phase0", action="store_true",
                         help="one command: dump every relevant dataset's fields to CSV "
                              "and resolve the nine field ids our signals need")
@@ -602,6 +655,8 @@ def main() -> int:
 
     session = login(args.credentials)
 
+    if args.try_expression:
+        return try_expression(session, args.try_expression, args.neutralization, args.group)
     if args.phase0:
         return phase0(session, Path(__file__).resolve().parents[1])
     if args.list_datasets:

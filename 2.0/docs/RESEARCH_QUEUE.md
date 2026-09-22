@@ -167,6 +167,37 @@ failed in both directions in two consecutive weeks.
    every run for this reason, which trains the reader to ignore the failure line.
 Both are small. A gate nobody trusts is worse than no gate.
 
+### S13. Replicate the skill null on WorldQuant BRAIN data *(new 2026-09-22, owner-proposed)*
+**Status:** scoped, nothing run, no account yet. Plan in
+`docs/WORLDQUANT_BRAIN_EVALUATION_V1.md`; runner in
+`scripts/run_worldquant_brain_decile_ladder_v1.py` (unvalidated against the live API).
+**Data:** free. BRAIN supplies point-in-time fundamentals and prices on ~3,000 US names over
+a decade-plus, delisted names included, through someone else's backtester.
+**What it is for -- and it is not a strategy search.** The Step 296-308 null is this
+project's most important finding and it carries four honest weaknesses: 13-14 quarterly
+decisions, a panel we built, a universe we restricted, and a construction-error history
+(Steps 291, 312). BRAIN removes all four at once, for nothing. Both outcomes pay: a flat
+ladder replicates the null on independent data and closes the "maybe our panel was wrong"
+objection permanently; an ordered ladder is the first lead in 312 steps and immediately
+raises the more useful question of which panel is wrong.
+**The measurement is ours, not theirs.** BRAIN reports Sharpe, fitness, turnover -- it does
+**not** report rank IC, decile spread or monotonicity. Reading its scoreboard would be a
+regression to the pre-Step-296 way of evaluating that produced 337% CAGRs which all died.
+The experiment is ten long-only decile alphas per signal plus a spread and a production
+form, 36 simulations, and monotonicity computed off-platform. **Declared bar: above 0.5.**
+**Blocker:** an account, and Phase 0 -- confirm the real field ids and run the density guard
+before any decile is read. Step 298 nearly reported a discovery on a 93.3%-zero signal.
+**Why S and not A:** no data purchase, no new pipeline, bounded at about a day, and it
+attacks the stated weakness of the finding everything else now rests on.
+**Prior, stated plainly:** nought of thirteen, nought of fourteen closed families, nought of
+six out-of-sample, nought of three on the wide universe, nought of four in Indonesia, nought
+of six at long horizons. It is unlikely to order its deciles. Expecting otherwise is how
+sessions get burned here.
+**Three things it cannot do:** satisfy the cost gate (returns appear to be gross; verify),
+produce anything tradeable (their data never leaves the platform), or count its own
+multiple testing -- BRAIN is the largest uncountable search this project has ever touched,
+so a pass there is *weaker* evidence than a pass here, not stronger.
+
 ## A tier
 
 
@@ -387,7 +418,7 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 
 ---
 
-*Last updated 2026-09-06. Update this file in the same commit as the work it describes.*
+*Last updated 2026-09-22. Update this file in the same commit as the work it describes.*
 | Valuation family revival | REVIVED. Widening to breadth 20 fixes the concentration failure; near-zero correlation to all four incumbents; 9 of 9 blends beat both components on Sharpe. On a clock from 2026-09-11. | 274, 275 |
 | **Breadth repair by construction (was A2)** | **Closed as noise.** Five constructions on two books attacking 61-71% persistence and 5-7 effective names. One of eight raised breadth and Sharpe together (de-persistence on cash conversion, bets 8.6->15.6, Sharpe 0.878->1.007) and the same intervention *lowered* Sharpe on valuation. Paired block bootstrap p=0.632 and p=0.426 against a Bonferroni bar of 0.0063; the two books move opposite directions by -2.07% and +2.05%. **Kept:** sector caps *reduce* effective independent names on both books (7.39->4.30, 6.39->3.99), so these books are not concentrated because they are sector-concentrated -- the premise of the intervention is backwards. | Step 279 |
 | **Valuation panel quarterly refresh (was S3)** | **Done and defect fixed.** The builder loaded a stale checkpoint, passed ten validation checks, and re-emitted the same fourteen quarters. Guarded on membership vintage; panel now runs to 2026-07-01. | Step 278 |

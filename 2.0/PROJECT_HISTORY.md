@@ -15217,3 +15217,53 @@ record rather than a fault.
 minimum variance, past-only consensus and the 60/40 blend at five decisions and four
 observations each; equal-weight benchmark, tie-agnostic companion, SUE quarterly and valuation
 earnings yield at one decision each.
+
+## Step 315 — 2026-09-22 — WorldQuant BRAIN scoped as a replication instrument, nothing run
+
+**No simulation was run, no account exists, and no result is claimed.** This step is scoping
+only, recorded so the reasoning is not re-derived later.
+
+The owner asked how WorldQuant BRAIN works and what it would take to test this project's
+strategies on their data. BRAIN is a free hosted simulator: you write a cross-sectional
+expression in a vectorised DSL over their point-in-time panel, their engine neutralises it,
+turns it into a long-short book across ~3,000 names, and scores it on Sharpe, fitness
+(`Sharpe × sqrt(|returns| / max(turnover, 0.125))`), turnover and drawdown. Submission
+thresholds are commonly documented as Sharpe ≥ 1.25, fitness ≥ 1.0, turnover 1–70%,
+self-correlation < 0.7 — unverified against the platform, which was egress-blocked from this
+session.
+
+**The reading that matters is that BRAIN's scoreboard is the wrong instrument here and its
+data is the right one.** Reading a BRAIN Sharpe would be a return to exactly the pre-Step-296
+way of evaluating that produced eleven years of headline numbers which all died. But the
+platform's *data* removes, at zero cost, all four stated weaknesses of the Step 296–308 null:
+13–14 quarterly decisions, a panel we built, a universe we restricted, and a
+construction-error history (Steps 291, 312). Neutralisation — which Step 295 needed a whole
+step to establish as the thing that took cash conversion from 16.65% to 1.59% — is a settings
+field there, applied before scoring.
+
+So the proposed use is **replication of our own null on data we do not own**, not a search.
+BRAIN does not report rank IC, decile spread or monotonicity, so the experiment is ten
+long-only decile alphas per signal plus a spread and a production form, 36 simulations, with
+monotonicity computed off-platform against the bar already declared in
+`cross_sectional_skill_registry_v1`: above 0.5, where every signal measured here sits within
+±0.17 of zero.
+
+**Four hazards recorded before any run.** (1) BRAIN is the largest uncountable search this
+project has touched — unlimited simulations, a shared in-sample window, circulated templates
+— so a pass there is *weaker* evidence than a pass here, and CLAUDE.md §1.3's requirement to
+report the cumulative N cannot be met. (2) Quarterly fundamentals on a daily grid give ~52
+independent decisions against ~3,250 daily observations, so any implied t-statistic is
+inflated in exactly the way Step 303 recorded. (3) Returns appear to be gross with turnover
+entering only through fitness, so the cost gate is not satisfied there. (4) Nothing is
+portable — their data does not leave the platform.
+
+Written: `docs/WORLDQUANT_BRAIN_EVALUATION_V1.md`,
+`scripts/run_worldquant_brain_decile_ladder_v1.py` (syntax-checked only; the API is blocked
+from this environment, so no call in it has ever executed), and queue item S13. A frozen
+pre-registration config is deliberately **not** written yet — it belongs in the same commit
+as the decision to run, not before it.
+
+**Prior stated up front:** nought of thirteen, nought of fourteen closed families, nought of
+six out-of-sample, nought of three on the wide universe, nought of four in Indonesia, nought
+of six at long horizons. These three signals are unlikely to order their deciles on BRAIN
+either, and that outcome is the valuable one.

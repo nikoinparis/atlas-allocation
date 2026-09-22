@@ -15267,3 +15267,114 @@ as the decision to run, not before it.
 six out-of-sample, nought of three on the wide universe, nought of four in Indonesia, nought
 of six at long horizons. These three signals are unlikely to order their deciles on BRAIN
 either, and that outcome is the valuable one.
+
+## Step 316 — 2026-09-22 — The BRAIN run did not happen, and the measurement that would have read it was broken
+
+The session was set up to run the WorldQuant BRAIN decile ladder end to end: credentials,
+Phase 0, resolve `net_income`, re-run the three production forms at SUBINDUSTRY, establish
+the true window, then the ladder. **None of it ran.** What the session produced instead is a
+defect report on the harness, and the defect is in the one number the experiment turns on.
+
+**Blocked at task 1, and the blocker is mundane.** `~/.worldquant_brain.json` does not
+exist. `setup_worldquant_brain.ps1`, written for this purpose last step, is Windows
+PowerShell; this machine is Darwin with no `pwsh`. Creating the file means typing the account
+password, which is the owner's to do. A macOS/Linux equivalent is now written —
+`scripts/setup_worldquant_brain.sh`, password read with `read -s`, passed to python on stdin
+rather than argv so `ps` cannot see it, written with `json.dumps` so special characters
+round-trip (verified against a throwaway file with a dummy value), `chmod 600`, own venv
+because macOS's system python refuses a bare `pip install`.
+
+**The defect. `monotonicity()` returned +1.000 for a perfectly flat decile ladder.** It
+ranked tied returns with a stable ordinal sort, so equal values received ranks in ascending
+decile order and Spearman read a flawless staircase out of nothing. The same +1.000 came back
+for nine tied deciles plus one large top decile — the concentration shape CLAUDE.md records
+Step 296 finding six times over.
+
+Both of those are the outcomes this experiment exists to detect, and **the flat one is the
+outcome this project predicted and wanted.** Had the run proceeded as shipped, the expected
+result — the Step 296–308 null replicating on data we do not own — would have been reported
+as the strongest possible evidence of cross-sectional skill, on the finding everything else
+here now rests on. That is the third construction error of this class in the record, after
+Step 291 and Step 312's cache deletion, and the first to sit inside a *measurement* rather
+than a data path.
+
+BRAIN displays returns to two decimals of a percent; at that precision a flat ladder with
+realistic dispersion shows four to six exact ties in ten, and `--score-manual` — the
+fallback path this run was told to use if the API broke — is fed by exactly those displayed
+values. Whether the API returns full-precision floats is untested; if it does, the old code
+would have been correct there, because the defect bites only on ties. That is not much
+comfort: ties are likeliest precisely when the ladder is flat.
+
+Fixed with midranks and a NaN return at zero dispersion, since Spearman is undefined there
+and the honest report for a dead-flat ladder is "no ordering", never +1.
+
+**A consequence for the declared bar, found while fixing it.** With correct midranks, pure
+concentration still scores **+0.522** — it clears the 0.5 bar on nine tied deciles and one
+big top decile. The headline number alone cannot separate an ordering from a concentration
+effect, which is the distinction the whole exercise depends on. The bar was always written as
+"above 0.5 **with interpretable deciles**"; that qualifier is now a computation rather than a
+judgement call. `ladder_shape()` reports `monotonicity_middle_8` (deciles 2–9 alone — a real
+ordering orders its middle), dispersion, distinct-value count and the extremes' share of the
+spread; `verdict()` returns `ORDERS ITS DECILES` (full ladder and middle eight must both clear, in
+the same direction), `CONCENTRATION in the extremes`, `flat — replicates the null`,
+`INVERTED — refutes the declared sign`, or `DEGENERATE`. The `INVERTED` reading puts guardrail
+2 in the code: an inverted ladder is not flat and saying so would be inaccurate, but it is a
+refutation, not a discovery with the sign flipped — the string says so, so nobody has to
+remember Step 286 and Step 282 at the moment they are least inclined to. Declared in the evaluation doc **before any
+BRAIN number exists**, which is the only time it can honestly be declared.
+
+**Two corrections to Step 315.** (1) `api.worldquantbrain.com` is **not** egress-blocked from
+this environment; `POST /authentication` returns a clean `HTTP/2 401`. Step 315 and the
+evaluation doc both said otherwise and both are corrected. (2) BRAIN rate-limits at **50
+requests per minute** — every response carries `ratelimit-limit: 50`, and a second
+unauthenticated call one second later returned `429`. Phase 0 walks several datasets fifty
+rows to a page, so it would have hit this, and the runner had no 429 handling: `_paged` raised
+on any non-200 and `phase0` caught it per-dataset as a quiet "skipped", producing a field
+dictionary that looked complete and was not. Now retried with backoff, and Phase 0 prints a
+loud `INCOMPLETE` banner stating that a `NO MATCH` is not evidence of absence while any
+dataset failed.
+
+Three smaller repairs, all pre-run: `_paged` no longer treats a missing `count` as zero (it
+returned after one page of fifty, silently truncating); `--find-field all <text>` sweeps every
+dataset, because Phase 0's CSV dump only covers datasets whose name looks fundamental;
+`net_income`'s search needles widened, since Compustat-derived descriptions rarely say "net
+income".
+
+**`net_income` was not substituted and remains unresolved.** The owner's instruction was
+explicit that `ebit` or `ebitda` must not be quietly swapped in, because that changes what
+`cash_conversion` measures while still calling it cash conversion. It is untouched.
+`cash_conversion` and `growth` stay blocked on it.
+
+**Nothing was measured, so nothing is concluded.** `balance_sheet_quality` sits where Step 315
+left it — Sharpe −1.47, refuted on sign rather than flipped, neutralization still unrecorded,
+its three readings (inverted content, definition difference, concentration) still open.
+The true TEST/IS/OS window is still unestablished; 2019–2022 stands uncorrected. **S13 stays
+open in the research queue rather than moving to `Closed`** — the instruction for this session
+said to close it, but closing an item whose experiment never ran would record planned work as
+complete, which CLAUDE.md §10 forbids. Its blocker line now names the credential step and the
+rate limit.
+
+The honest summary: a session that intended to produce a result produced a repaired
+instrument instead. Given that the instrument would have converted this project's expected and
+most valuable outcome into a false discovery, that is the better trade — but it is not the
+experiment, and the experiment is still waiting on one password.
+
+**Did the defect contaminate the central finding? No — checked, not assumed.** The obvious
+next question is whether the thirteen dashboard signals and fourteen closed families were
+scored with the same broken ranker. They were not. `run_cross_sectional_skill_v1.py:73`
+computes monotonicity through pandas' `corr(method="spearman")`, which uses scipy's average
+ranks. Run on the same three shapes it returns NaN for a dead-flat ladder, +0.5222 for
+concentration and +1.0000 for a true ordering — so the Step 296–308 null is unaffected, and
+the defect lived only in the new, never-executed BRAIN runner. The corrected runner now
+agrees with the established implementation to four decimals, which is the cross-check that
+matters: the replication will measure monotonicity the same way the thing it replicates did.
+
+**One thing that check did surface, and it is not BRAIN-specific.**
+`run_cross_sectional_skill_v1.py`'s docstring claims monotonicity is what catches "a top
+decile that wins while two through nine are unordered". It does not, quite: that shape scores
+**+0.522** on its own implementation, above the 0.5 bar the same script applies at line 164.
+The project's standing screen therefore shares the gap the BRAIN runner's `ladder_shape()`
+just closed. No result is invalidated by this — every measured signal sits within ±0.17 of
+zero and nothing has ever approached 0.5 from either direction, so the gap has never been
+load-bearing. But it would be the moment anything positive appeared, which is precisely when
+it would be least welcome. Logged as queue item S14.

@@ -154,31 +154,75 @@ def print_expressions(signals: list[str], group: str) -> int:
     return 0
 
 
+def verdict(shape: dict) -> str:
+    """The declared reading, applied to a ladder. Declared before any number was seen.
+
+    NaN is not "flat" -- it means the ladder was degenerate (every decile identical, or too
+    few present to score) and carries no information either way. Saying so is the honest
+    report; the previous code would have called a dead-flat ladder a perfect ordering.
+    """
+    mono, middle = shape["monotonicity"], shape["monotonicity_middle_8"]
+    if mono != mono:
+        return "DEGENERATE -- ladder carries no ordering information, not readable"
+    if mono <= -0.5:
+        # An inverted ladder is not flat and must not be reported as such. It refutes the
+        # declared sign. It is NOT re-read as a discovery with the sign flipped: Step 286
+        # recorded Form 4 as "refuted on sign, rather than flipped" and Step 282 refused to
+        # rescue a -28% book by reversing it. Post-hoc flipping doubles the search space for
+        # free and turns every refutation into a discovery.
+        return ("INVERTED -- refutes the declared sign. NOT flipped; a sign-flipped variant "
+                "is a new hypothesis needing its own pre-registration and window.")
+    if mono <= 0.5:
+        return "flat -- replicates the null"
+    # Past here the full ladder is positively ordered, so the middle eight must order in the
+    # SAME direction. A positive ladder sitting on a negative middle is incoherent, not clean.
+    if middle != middle or middle <= 0.5:
+        return "CONCENTRATION in the extremes, not an ordering -- middle eight do not order"
+    return "ORDERS ITS DECILES -- clears the declared bar"
+
+
+def report(signal: str, shape: dict) -> None:
+    print(f"{signal:24} monotonicity {shape['monotonicity']:+.3f}  "
+          f"middle-8 {shape['monotonicity_middle_8']:+.3f}  "
+          f"top-minus-bottom {shape['top_minus_bottom']:+.4f}  "
+          f"dispersion {shape['decile_dispersion']:.4f}  "
+          f"distinct {shape['distinct_values']}/10\n"
+          f"{'':24} {verdict(shape)}")
+
+
 def score_manual(path: Path) -> int:
     """Score decile returns typed in from the web UI.
 
     Input JSON: {"<signal>": {"1": 0.0123, "2": -0.004, ... "10": 0.031}, ...}
     Returns as decimals (0.0123 = 1.23%), read off each decile alpha's `returns` stat.
+
+    Note this path is the one most exposed to tie-induced artefacts, because the values are
+    whatever the web UI displayed -- rounded. See _midranks.
     """
     raw = json.loads(path.read_text())
     summary = {}
     for signal, deciles in raw.items():
         ladder = {int(k): float(v) for k, v in deciles.items()}
-        mono = monotonicity(ladder)
-        top, bottom = ladder.get(10, float("nan")), ladder.get(1, float("nan"))
-        summary[signal] = {"monotonicity": mono, "top_minus_bottom": top - bottom,
-                           "decile_returns": ladder}
-        verdict = "ORDERS ITS DECILES" if mono > 0.5 else "flat -- replicates the null"
-        print(f"{signal:24} monotonicity {mono:+.3f}  "
-              f"top-minus-bottom {top - bottom:+.4f}   {verdict}")
-    print("\nBar declared in advance: monotonicity above 0.5 with interpretable deciles.")
+        shape = dict(ladder_shape(ladder), decile_returns=ladder)
+        summary[signal] = shape
+        report(signal, shape)
+    print("\nBar declared in advance: monotonicity above 0.5 WITH interpretable deciles.")
     print("Every signal measured in this project sits within +/-0.17 of zero.")
-    print("A positive spread with a flat ladder is a concentration effect, not skill.")
+    print("A positive spread with a flat ladder is a concentration effect, not skill --")
+    print("nine tied deciles plus one large top decile scores about +0.52 on the headline")
+    print("number alone, which is why middle-8 is reported beside it and both must clear.")
     print(json.dumps(summary, indent=2, sort_keys=True))
     return 0
 
 
 def login(credentials: Path) -> requests.Session:
+    if not credentials.exists():
+        raise SystemExit(
+            f"No credentials at {credentials}.\n"
+            "On macOS/Linux run:  bash 2.0/scripts/setup_worldquant_brain.sh\n"
+            "On Windows run:      powershell -ExecutionPolicy Bypass -File "
+            "2.0\\scripts\\setup_worldquant_brain.ps1\n"
+            "Both prompt for the password without echoing it.")
     creds = json.loads(credentials.read_text())
     session = requests.Session()
     session.auth = HTTPBasicAuth(creds["email"], creds["password"])
@@ -229,29 +273,91 @@ def statistic(alpha: dict, name: str) -> float:
     return float((alpha.get("is") or {}).get(name, float("nan")))
 
 
+def _midranks(values: list[float]) -> list[float]:
+    """Average ranks, so tied values share a rank instead of being ordered by position.
+
+    This is not a refinement. Ordinal ranking of ties is what made a PERFECTLY FLAT ladder
+    report monotonicity +1.000 -- `sorted` is stable, so equal returns were handed ranks in
+    ascending decile order and Spearman read a flawless staircase out of nothing. BRAIN
+    displays returns to two decimals of a percent, and at that precision a flat ladder shows
+    four to six exact ties out of ten, so this fired on real numbers, and hardest on the
+    --score-manual path where the values are typed in from the web UI exactly as displayed.
+    """
+    order = sorted(range(len(values)), key=lambda i: values[i])
+    ranks = [0.0] * len(values)
+    position = 0
+    while position < len(order):
+        stop = position
+        while stop + 1 < len(order) and values[order[stop + 1]] == values[order[position]]:
+            stop += 1
+        shared = (position + stop) / 2.0 + 1.0
+        for index in order[position:stop + 1]:
+            ranks[index] = shared
+        position = stop + 1
+    return ranks
+
+
 def monotonicity(returns_by_decile: dict[int, float]) -> float:
     """Spearman correlation between decile index and decile mean return.
 
     The measure that decides. It reads the shape of the relationship rather than its
     significance, so it does not depend on having many independent windows -- which matters
     because quarterly fundamentals on a daily grid give ~52 independent decisions, not 3,250.
+
+    Returns NaN when every decile carries the same return: Spearman is undefined at zero
+    variance, and the honest report for a dead-flat ladder is "no ordering", never +1.
     """
     present = sorted(d for d in returns_by_decile if returns_by_decile[d] == returns_by_decile[d])
     if len(present) < 8:
         return float("nan")
     values = [returns_by_decile[d] for d in present]
-    order = sorted(range(len(values)), key=lambda i: values[i])
-    ranks = [0.0] * len(values)
-    for position, index in enumerate(order):
-        ranks[index] = float(position + 1)
+    if len(set(values)) == 1:
+        return float("nan")
+    ranks = _midranks(values)
+    if len(set(ranks)) == 1:
+        return float("nan")
     return statistics.correlation([float(d) for d in present], ranks)
+
+
+def ladder_shape(returns_by_decile: dict[int, float]) -> dict:
+    """Separate a genuine ordering from a concentration effect in the extremes.
+
+    CLAUDE.md records the shape six times over: a large top-minus-bottom spread sitting on
+    an unordered middle is noise measured twice, not skill. Monotonicity over the full ten
+    cannot tell those apart on its own -- nine tied deciles plus one large top decile still
+    scores about +0.58 with correct midranks, which clears the declared 0.5 bar on pure
+    concentration. So the middle eight are scored separately, and the declared reading is
+    "above 0.5 WITH interpretable deciles", not the headline number alone.
+    """
+    present = {d: v for d, v in returns_by_decile.items() if v == v}
+    values = list(present.values())
+    middle = {d: v for d, v in present.items() if 2 <= d <= 9}
+    top, bottom = present.get(10, float("nan")), present.get(1, float("nan"))
+    spread = top - bottom
+    inner = (present.get(9, float("nan")) - present.get(2, float("nan")))
+    return {
+        "monotonicity": monotonicity(returns_by_decile),
+        "monotonicity_middle_8": monotonicity(middle) if len(middle) >= 8 else float("nan"),
+        "top_minus_bottom": spread,
+        "inner_spread_d9_minus_d2": inner,
+        "distinct_values": len(set(values)),
+        "decile_dispersion": statistics.pstdev(values) if len(values) > 1 else float("nan"),
+        "extremes_share_of_spread": (
+            1.0 - inner / spread if spread == spread and inner == inner and spread != 0
+            else float("nan")),
+    }
 
 
 CONCEPTS = {
     "sales":       ("sales", "revenue", "net sales", "total revenue"),
     "cashflow_op": ("operating activities", "cash flow from operations", "cashflow_op"),
     "capex":       ("capital expenditure", "capex"),
-    "net_income":  ("net income", "income - net", "net profit", "earnings"),
+    # Deliberately wide. `net_income` was rejected by the simulator as an unknown variable
+    # on 2026-09-22 and is the single blocker on two of three signals, so this errs toward
+    # false positives -- a human picks from the hits, and missing the field costs a session.
+    "net_income":  ("net income", "income - net", "net profit", "earnings",
+                    "income before extraordinary", "income (loss)", "netincome",
+                    "profit after tax", "bottom line"),
     "assets":      ("assets - total", "total assets"),
     "equity":      ("stockholders equity", "shareholders equity", "common equity", "equity"),
     "liabilities": ("liabilities - total", "total liabilities", "liabilities"),
@@ -288,12 +394,14 @@ def phase0(session: requests.Session, root: Path) -> int:
         wanted = datasets[:5]
 
     fields: list[tuple[str, dict]] = []
+    skipped: list[str] = []
     for dataset in wanted:
         did = dataset.get("id", "")
         try:
             rows = _paged(session, f"{API}/data-fields", dict(params, **{"dataset.id": did}))
         except SystemExit as error:                      # one bad dataset must not stop Phase 0
-            print(f"  {did}: skipped ({error})")
+            print(f"  {did}: SKIPPED ({error})")
+            skipped.append(did)
             continue
         with (out / f"{did}.csv").open("w", newline="", encoding="utf-8") as handle:
             writer = csv.writer(handle)
@@ -323,21 +431,60 @@ def phase0(session: requests.Session, root: Path) -> int:
     print("\n" + "=" * 78)
     print("DENSITY GUARD: a field below 50% coverage cannot be read on deciles at all.")
     print("=" * 78)
+    if skipped:
+        print("\n" + "!" * 78)
+        print(f"INCOMPLETE: {len(skipped)} dataset(s) failed and were skipped: "
+              f"{', '.join(skipped)}")
+        print("A 'NO MATCH' above is NOT evidence the concept is absent while this is set.")
+        print("Re-run --phase0, or sweep with --find-field all <text>, before concluding.")
+        print("!" * 78)
     return 0
+
+
+def _get(session: requests.Session, url: str, params: dict,
+         attempts: int = 6) -> requests.Response:
+    """GET with backoff on 429.
+
+    BRAIN rate-limits at 50 requests per minute (`ratelimit-limit: 50` on every response,
+    confirmed live on 2026-09-22, and a second unauthenticated call one second later came
+    back 429). Phase 0 walks several datasets at 50 rows a page, so it WILL hit this. Without
+    a retry the walk aborts mid-dictionary, and in phase0 the failure is caught per-dataset
+    and printed as "skipped" -- which yields a field dictionary that looks complete and is
+    not. That is precisely how a field gets declared non-existent when it was merely on the
+    far side of a rate limit.
+    """
+    for attempt in range(attempts):
+        response = session.get(url, params=params)
+        if response.status_code != 429:
+            return response
+        pause = float(response.headers.get("Retry-After")
+                      or response.headers.get("ratelimit-reset") or 15.0)
+        pause = min(max(pause, 1.0), 90.0) * (1.0 + 0.5 * attempt)
+        print(f"    rate-limited, sleeping {pause:.0f}s "
+              f"(attempt {attempt + 1}/{attempts})", flush=True)
+        time.sleep(pause)
+    return response
 
 
 def _paged(session: requests.Session, url: str, params: dict) -> list[dict]:
     """Walk an offset-paginated BRAIN collection to exhaustion."""
     rows, offset = [], 0
     while True:
-        response = session.get(url, params=dict(params, limit=50, offset=offset))
+        response = _get(session, url, dict(params, limit=50, offset=offset))
         if response.status_code != 200:
             raise SystemExit(f"{url} -> {response.status_code} {response.text[:400]}")
         payload = response.json()
         batch = payload.get("results", [])
         rows.extend(batch)
         offset += len(batch)
-        if not batch or offset >= int(payload.get("count", 0)):
+        if not batch:
+            return rows
+        # Only trust `count` when the response actually carries one. The previous form
+        # defaulted it to 0, so a response without `count` returned after a single page of
+        # 50 and looked like a complete dictionary -- which is how a field gets declared
+        # non-existent when it was merely on page two.
+        total = payload.get("count")
+        if isinstance(total, int) and offset >= total:
             return rows
 
 
@@ -377,15 +524,37 @@ def dump_fields(session: requests.Session, dataset: str, output: Path) -> int:
 
 
 def find_field(session: requests.Session, dataset: str, needle: str) -> int:
-    params = {"dataset.id": dataset, "region": BASE_SETTINGS["region"],
-              "universe": BASE_SETTINGS["universe"], "delay": BASE_SETTINGS["delay"],
-              "instrumentType": "EQUITY"}
+    """Search one dataset's fields, or every dataset when given the id `all`.
+
+    The `all` sweep exists because Phase 0's CSV dump is restricted to datasets whose name
+    looks fundamental, and a field that lives outside that filter would read as "does not
+    exist on the platform" when it merely lives somewhere unexpected.
+    """
+    base = {"region": BASE_SETTINGS["region"], "universe": BASE_SETTINGS["universe"],
+            "delay": BASE_SETTINGS["delay"], "instrumentType": "EQUITY"}
+    if dataset == "all":
+        targets = [d.get("id", "") for d in _paged(session, f"{API}/data-sets", base)]
+        print(f"sweeping {len(targets)} datasets for {needle!r}\n")
+    else:
+        targets = [dataset]
+
     needle = needle.lower()
-    for row in _paged(session, f"{API}/data-fields", params):
-        blob = f"{row.get('id', '')} {row.get('description', '')}".lower()
-        if needle in blob:
-            print(f"{row.get('id', ''):28} cov={str(row.get('coverage', '')):>6}  "
-                  f"{str(row.get('description', ''))[:60]}")
+    hits = 0
+    for target in targets:
+        try:
+            rows = _paged(session, f"{API}/data-fields", dict(base, **{"dataset.id": target}))
+        except SystemExit as error:               # one bad dataset must not stop the sweep
+            print(f"  {target}: skipped ({error})")
+            continue
+        for row in rows:
+            blob = f"{row.get('id', '')} {row.get('description', '')}".lower()
+            if needle in blob:
+                hits += 1
+                print(f"{row.get('id', ''):28} cov={str(row.get('coverage', '')):>6}  "
+                      f"[{target}]  {str(row.get('description', ''))[:56]}")
+    if not hits:
+        print(f"no field matches {needle!r}. If this was `all`, the concept is not exposed.")
+    print("\nDENSITY GUARD: below 50% coverage a field cannot be read on deciles at all.")
     return 0
 
 
@@ -410,7 +579,8 @@ def main() -> int:
     parser.add_argument("--dump-fields", metavar="DATASET_ID",
                         help="Phase 0: download a dataset's whole field dictionary to CSV")
     parser.add_argument("--find-field", nargs=2, metavar=("DATASET_ID", "TEXT"),
-                        help="Phase 0: search a dataset's fields by id or description")
+                        help="Phase 0: search a dataset's fields by id or description; "
+                             "pass DATASET_ID=all to sweep every dataset")
     parser.add_argument("--output", type=Path,
                         default=Path(__file__).resolve().parents[1]
                         / "evidence/worldquant_brain_decile_ladder_v1")
@@ -467,11 +637,10 @@ def main() -> int:
                       f"returns {statistic(result['alpha'], 'returns'):+.4f} "
                       f"turnover {statistic(result['alpha'], 'turnover'):.4f}", flush=True)
 
-        mono = monotonicity(ladder)
-        top, bottom = ladder.get(10, float("nan")), ladder.get(1, float("nan"))
-        summary[signal] = {"monotonicity": mono, "decile_returns": ladder,
-                           "top_minus_bottom": top - bottom, "checks": records}
-        print(f"  MONOTONICITY {mono:+.3f}   top-minus-bottom {top - bottom:+.4f}", flush=True)
+        shape = ladder_shape(ladder)
+        summary[signal] = dict(shape, decile_returns=ladder, checks=records)
+        print("  ---", flush=True)
+        report(signal, shape)
 
     (args.output / "summary.json").write_text(json.dumps(summary, indent=2, sort_keys=True))
 

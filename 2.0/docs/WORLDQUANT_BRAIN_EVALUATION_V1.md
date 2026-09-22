@@ -97,9 +97,14 @@ Everything above is scriptable. Base `https://api.worldquantbrain.com`:
 - `GET /alphas/{id}/recordsets/pnl` → the daily PnL series
 - `GET /data-fields?dataset.id=…` → the field dictionary
 
-**Note for this session:** `api.worldquantbrain.com` is blocked by this environment's
-egress proxy (403 on CONNECT). Any script written here is unvalidated against the live API
-and must be run from the owner's own machine.
+**Note, corrected 2026-09-22 (later session):** an earlier draft recorded
+`api.worldquantbrain.com` as blocked by this environment's egress proxy (403 on CONNECT).
+**That is no longer true** — `POST /authentication` returns a clean `HTTP/2 401`. The runner
+can execute from here as soon as credentials exist. Two live facts established while
+unauthenticated: the rate limit is **50 requests per minute** (`ratelimit-limit: 50`, and a
+second call one second later returned `429`), and the auth endpoint advertises
+`www-authenticate: Bearer`. No authenticated call has ever executed, so everything past the
+login remains unvalidated.
 
 ---
 
@@ -448,3 +453,155 @@ Three readings remain open and the decile ladder separates them:
 
 **Nothing is concluded until the ladder runs.** Record the neutralization setting used —
 the table above cannot be read without it.
+
+## 2026-09-22 (later session) — blocked at credentials; a defect found in the deciding measurement
+
+**Nothing was simulated. No decile ladder exists. `net_income` is still unresolved and was
+not substituted.** What follows is what was established without an account, and it includes
+a defect in the harness that would have corrupted the result had the run proceeded.
+
+### The blocker, plainly
+
+`~/.worldquant_brain.json` does not exist, and there is no runnable path to create it on
+this machine. `setup_worldquant_brain.ps1` is Windows PowerShell; this machine is Darwin
+and has neither `pwsh` nor `powershell`. Creating the credential file requires typing the
+account password, which is the owner's to do, not this session's.
+
+Tasks 2–6 — Phase 0, the `net_income` resolution, the SUBINDUSTRY re-runs, the true window,
+and the ladder itself — all require a live session and none of them ran.
+
+A macOS/Linux equivalent is now written: `scripts/setup_worldquant_brain.sh`. It reads the
+password with `read -s` (never echoed, never in shell history), passes it to python on
+**stdin rather than argv** so it is not visible to `ps`, writes it with `json.dumps` so
+quotes, backslashes and non-ASCII round-trip exactly (verified on a throwaway file with a
+dummy value), `chmod 600`s the result, and builds its own venv because macOS's system python
+is externally managed and refuses a bare `pip install`. It then runs Phase 0.
+
+### Two corrections to this document
+
+**1. The API is no longer egress-blocked from this environment.** Part 1 states
+`api.worldquantbrain.com` is "blocked by this environment's egress proxy (403 on CONNECT)",
+and Step 315 repeats it. That is now false. `POST /authentication` returns a clean
+`HTTP/2 401` with `www-authenticate: Bearer` and full CORS headers. The runner can execute
+from here the moment credentials exist.
+
+**2. BRAIN rate-limits at 50 requests per minute, and Phase 0 will hit it.** Every response
+carries `ratelimit-limit: 50` and `x-ratelimit-limit-minute: 50`; a second unauthenticated
+call one second later came back `429`. Phase 0 walks several datasets 50 rows to a page, so
+this is not hypothetical. The runner had no 429 handling: `_paged` raised on any non-200,
+and `phase0` caught that per-dataset and printed "skipped" — so **a rate-limited Phase 0
+would have produced a field dictionary that looked complete and was not**, which is exactly
+how `net_income` gets declared non-existent when it is merely on the far side of a limit.
+
+### The defect: a flat ladder reported monotonicity +1.000
+
+This is the finding of the session.
+
+`monotonicity()` ranked tied decile returns with a stable ordinal sort, so equal values were
+handed ranks in ascending decile order. Spearman then read a flawless staircase out of
+nothing. Measured on the shipped code:
+
+| ladder shape | shipped code | corrected |
+|---|---|---|
+| perfect ascending | +1.000 | +1.000 |
+| perfect descending | −1.000 | −1.000 |
+| **dead flat, all ten equal** | **+1.000** | **NaN — degenerate** |
+| **nine tied + large top decile (concentration)** | **+1.000** | +0.522, middle-8 NaN |
+
+The two rows in bold are the two outcomes this experiment was built to detect. A dead-flat
+ladder is the **predicted and valuable** result — the null replicating on independent data —
+and the harness would have reported it as the strongest possible discovery. The
+concentration shape is the one CLAUDE.md records Step 296 finding six times over, and it
+would have reported the same.
+
+**How likely were exact ties?** BRAIN displays returns to two decimals of a percent. At that
+precision a genuinely flat ladder with realistic dispersion shows **four to six exact ties
+out of ten** (simulated). The `--score-manual` path — the fallback this run was told to use
+if the API broke — is fed by exactly those displayed values, so it was the most exposed.
+Whether the API returns full-precision floats is **unknown and untested**, and if it does,
+the old code would have been correct on that path; the defect bites only where values tie.
+That does not soften it, because ties are likeliest precisely when the ladder is flat.
+
+Fixed with average (midrank) ranks, plus NaN on zero variance, because Spearman is undefined
+at zero dispersion and the honest report for a dead-flat ladder is "no ordering", never +1.
+
+### A consequence for the declared bar
+
+With correct midranks, **pure concentration — nine tied deciles and one large top decile —
+scores +0.522, which clears the declared 0.5 bar.** The headline number alone cannot
+separate an ordering from a concentration effect. The bar was always stated as "above 0.5
+**with interpretable deciles**"; that qualifier is now operationalised rather than left to
+judgement. `ladder_shape()` reports, beside the headline:
+
+- `monotonicity_middle_8` — the same statistic over deciles 2–9 only. A real ordering orders
+  its middle; a concentration effect leaves it flat or undefined.
+- `decile_dispersion`, `distinct_values`, and `extremes_share_of_spread`.
+
+`verdict()` returns one of **five** readings, and the fifth carries guardrail 2 into the
+code rather than leaving it to the person reading the output:
+
+| reading | condition |
+|---|---|
+| `ORDERS ITS DECILES` | full ladder > 0.5 **and** middle-8 > 0.5, same direction |
+| `CONCENTRATION in the extremes` | full ladder > 0.5, middle-8 does not clear |
+| `flat — replicates the null` | −0.5 ≤ monotonicity ≤ 0.5 |
+| `INVERTED — refutes the declared sign` | monotonicity ≤ −0.5 |
+| `DEGENERATE` | NaN — zero dispersion, or too few deciles scored |
+
+`INVERTED` exists because an inverted ladder is **not flat** and reporting it as flat would be
+inaccurate — but it is a refutation of the declared sign, **not a discovery with the sign
+flipped**. Step 286 recorded Form 4 as "refuted on sign, rather than flipped" and Step 282
+refused to rescue a −28% book by reversing it. The string says so, so nobody has to remember.
+This is also the reading `balance_sheet_quality` may land in once its ladder runs.
+
+All of this is declared here **before any BRAIN number exists**, which is the only time it can
+honestly be declared.
+
+### Other repairs, all pre-run
+
+- `_paged` no longer treats a missing `count` as zero. It previously returned after a single
+  page of 50 when the field was absent, silently truncating a dictionary.
+- `--find-field all <text>` sweeps every dataset. Phase 0's CSV dump is restricted to
+  datasets whose name looks fundamental, so a field outside that filter would read as absent.
+- `net_income`'s search needles widened (`income before extraordinary`, `income (loss)`,
+  `profit after tax`, …); Compustat-derived descriptions rarely say "net income".
+- Phase 0 now prints a loud `INCOMPLETE` banner naming skipped datasets, and states that a
+  `NO MATCH` is not evidence of absence while any dataset failed.
+- `login()` fails with instructions instead of a `FileNotFoundError` traceback.
+
+### Status of each task
+
+| # | task | status |
+|---|---|---|
+| 1 | credentials | **blocked** — owner must run `setup_worldquant_brain.sh` |
+| 2 | Phase 0 | not run — no session |
+| 3 | resolve `net_income` | **unresolved, not substituted**; `cash_conversion` and `growth` still blocked |
+| 4 | three production forms at SUBINDUSTRY | not run |
+| 5 | true TEST/IS/OS window | not established — 2019–2022 stands uncorrected |
+| 6 | decile ladder | **not run — there is no result** |
+| 7 | record honestly | done, including everything above |
+
+`balance_sheet_quality` at Sharpe −1.47 remains where the previous entry left it: refuted on
+sign, not flipped, with its neutralization still unrecorded and its three readings still
+open. Nothing in this session touched it.
+
+### Was the central finding scored with the same broken ranker? No — verified
+
+Checked rather than assumed, because it is the first thing this defect calls into question.
+`scripts/run_cross_sectional_skill_v1.py:73` — the Step 296 screen behind "nought of thirteen"
+— computes monotonicity with pandas' `corr(method="spearman")`, i.e. scipy's **average** ranks.
+Run on the three shapes above it returns NaN (dead flat), +0.5222 (concentration) and +1.0000
+(true ordering). The Step 296–308 null is therefore unaffected; the defect existed only in the
+BRAIN runner, which had never executed.
+
+The corrected runner now matches that implementation to four decimals. That is the important
+part: the replication will measure monotonicity the same way the finding it replicates did,
+rather than through a second convention that would confound a disagreement about data with a
+disagreement about arithmetic.
+
+**But the +0.5222 is a project-wide gap, not a BRAIN one.** `run_cross_sectional_skill_v1.py`
+documents monotonicity as the thing that catches "a top decile that wins while two through
+nine are unordered", and applies a 0.5 bar at line 164 — yet that exact shape scores 0.522 on
+its own implementation. Nothing measured has ever come near 0.5, so this has never mattered;
+it would matter on the first positive result, which is the worst time to discover it. Queue
+item **S14**.

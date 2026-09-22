@@ -167,10 +167,22 @@ failed in both directions in two consecutive weeks.
    every run for this reason, which trains the reader to ignore the failure line.
 Both are small. A gate nobody trusts is worse than no gate.
 
-### S13. Replicate the skill null on WorldQuant BRAIN data *(new 2026-09-22, owner-proposed)*
-**Status:** scoped, nothing run, no account yet. Plan in
-`docs/WORLDQUANT_BRAIN_EVALUATION_V1.md`; runner in
-`scripts/run_worldquant_brain_decile_ladder_v1.py` (unvalidated against the live API).
+### S13. Replicate the skill null on WorldQuant BRAIN data *(new 2026-09-22, owner-proposed; updated 2026-09-22, Step 316)*
+**Status: STILL OPEN — no simulation has ever run.** Step 316 was set up to run it end to end
+and got no further than the credential file. It is deliberately **not** in `Closed`: closing an
+item whose experiment never ran would record planned work as complete (CLAUDE.md §10).
+Plan in `docs/WORLDQUANT_BRAIN_EVALUATION_V1.md`; runner in
+`scripts/run_worldquant_brain_decile_ladder_v1.py` (offline paths tested, everything past
+login still unvalidated).
+**What Step 316 did buy.** The runner's `monotonicity()` returned **+1.000 for a perfectly
+flat ladder** — it ordinal-ranked ties, so equal decile returns produced a perfect staircase.
+The flat ladder is this experiment's *expected* outcome, so the harness would have converted
+the predicted null into a maximal false discovery. Fixed with midranks plus NaN at zero
+dispersion. Pure concentration still scores +0.522 and clears the 0.5 bar, so the "with
+interpretable deciles" qualifier is now computed: `monotonicity_middle_8` over deciles 2–9
+must clear too. Also fixed: 429 backoff (BRAIN allows 50 req/min and Phase 0 would have hit
+it, silently truncating the field dictionary), a pagination bug that returned after one page
+of fifty when `count` was absent, and `--find-field all`.
 **Data:** free. BRAIN supplies point-in-time fundamentals and prices on ~3,000 US names over
 a decade-plus, delisted names included, through someone else's backtester.
 **What it is for -- and it is not a strategy search.** The Step 296-308 null is this
@@ -185,8 +197,16 @@ raises the more useful question of which panel is wrong.
 regression to the pre-Step-296 way of evaluating that produced 337% CAGRs which all died.
 The experiment is ten long-only decile alphas per signal plus a spread and a production
 form, 36 simulations, and monotonicity computed off-platform. **Declared bar: above 0.5.**
-**Blocker:** an account, and Phase 0 -- confirm the real field ids and run the density guard
-before any decile is read. Step 298 nearly reported a discovery on a 93.3%-zero signal.
+**Blocker, in order.** (1) **Credentials** — `~/.worldquant_brain.json` does not exist and
+only the owner can create it. On macOS/Linux: `bash 2.0/scripts/setup_worldquant_brain.sh`
+(prompts hidden, writes mode 600, then runs Phase 0 itself). The `.ps1` is Windows-only and
+this machine is Darwin, which is exactly what stopped Step 316. (2) **`net_income` is still
+unresolved** and was deliberately not substituted — swapping in `ebit`/`ebitda` would change
+what `cash_conversion` measures while still calling it cash conversion. It blocks two of the
+three signals; resolve with `--find-field all income`. (3) Phase 0's density guard before any
+decile is read — Step 298 nearly reported a discovery on a 93.3%-zero signal.
+**Not a blocker any more:** the API is reachable from the work environment; the "egress-blocked"
+note in the evaluation doc and Step 315 was stale and is corrected.
 **Why S and not A:** no data purchase, no new pipeline, bounded at about a day, and it
 attacks the stated weakness of the finding everything else now rests on.
 **Prior, stated plainly:** nought of thirteen, nought of fourteen closed families, nought of
@@ -197,6 +217,31 @@ sessions get burned here.
 produce anything tradeable (their data never leaves the platform), or count its own
 multiple testing -- BRAIN is the largest uncountable search this project has ever touched,
 so a pass there is *weaker* evidence than a pass here, not stronger.
+
+### S14. The 0.5 monotonicity bar does not exclude concentration — close the gap project-wide *(new 2026-09-22, Step 316)*
+**Status:** open, not started. Found while repairing the BRAIN runner, but it is not a BRAIN
+issue.
+**The gap.** `scripts/run_cross_sectional_skill_v1.py` documents monotonicity as the statistic
+that catches "a top decile that wins while two through nine are unordered", and applies a 0.5
+bar at line 164. That exact shape — nine tied deciles plus one large top decile — scores
+**+0.5222** on its own implementation, so it clears the bar it was meant to fail. The screen
+behind "nought of thirteen" and "nought of fourteen closed families" therefore cannot, on the
+headline number alone, separate an ordering from a concentration effect.
+**Why this invalidates nothing today.** Every signal ever measured here sits within ±0.17 of
+zero and nothing has approached 0.5 from either direction, so the gap has never been
+load-bearing. It becomes load-bearing on the first positive result — which is exactly when it
+would be least welcome and least likely to be questioned.
+**The fix is small and already prototyped.** `ladder_shape()` in
+`scripts/run_worldquant_brain_decile_ladder_v1.py` reports `monotonicity_middle_8` (deciles
+2–9 alone — a real ordering orders its middle), dispersion, distinct-value count and the
+extremes' share of the spread, and `verdict()` requires both the full ladder and the middle
+eight to clear. Port that to `run_cross_sectional_skill_v1.py` and the other monotonicity
+screens (`run_long_horizon_skill_v1.py`, `run_wide_universe_skill_v1.py`,
+`run_indonesia_monotonicity_v1.py`, `run_vwap_wide_universe_v1.py`).
+**Do NOT re-score old results and call them new findings.** Re-scoring is a consistency check
+on a null, not a new measurement, and every affected number is already near zero.
+**Data:** none — this is arithmetic on results that already exist.
+**Blocker:** nothing. Half a day.
 
 ## A tier
 

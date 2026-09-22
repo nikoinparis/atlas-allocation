@@ -263,55 +263,84 @@ point-in-time panels is a data finding before it is a signal finding.
 
 ## The expressions
 
+**Syntax correction, 2026-09-22.** An earlier draft of this document used semicolon-separated
+statements with variable assignment (`ocf_margin = ...;`) and compound booleans (`&&`). Both
+are unsafe: FastExpr's multi-statement form is not reliably documented at every account tier,
+and its boolean operators are function-style (`and`, `or`, `less`, `greater`) rather than C
+style. Everything below is a **single inlined expression using only `>`**. Verbose beats
+clever when a parse error costs a simulation slot.
+
+Generate them ready to paste with:
+
+```
+python scripts/run_worldquant_brain_decile_ladder_v1.py --print-expressions
+```
+
 Direct translations of `build_dashboard_signals_out_of_sample_v1.py::SIGNALS`. Our scoring
 is a sector-neutral mean of percentile-ranked features, which is exactly
 `group_rank(x, sector)` averaged — the mapping is close to one-to-one. **Field ids
 unverified; confirm in Phase 0.**
 
-```python
+```
 # cash_conversion_breadth20
-ocf_margin = cashflow_op / sales;
-fcf_margin = (cashflow_op - capex) / sales;
-spread     = ocf_margin - (net_income / sales);
-(group_rank(ocf_margin, sector) + group_rank(fcf_margin, sector) + group_rank(spread, sector)) / 3
+(group_rank(cashflow_op / sales, sector)
+ + group_rank((cashflow_op - capex) / sales, sector)
+ + group_rank(cashflow_op / sales - net_income / sales, sector)) / 3
 
 # balance_sheet_quality
-( group_rank(cash / assets,        sector)
-+ group_rank(equity / assets,      sector)
-- group_rank(debt / assets,        sector)
-- group_rank(liabilities / assets, sector) ) / 4
+(group_rank(cash / assets, sector) + group_rank(equity / assets, sector)
+ - group_rank(debt / assets, sector) - group_rank(liabilities / assets, sector)) / 4
 
-# growth_top5   (YoY, ~250 trading days)
-g_rev = ts_delta(sales,          250) / abs(ts_delay(sales,          250));
-g_ni  = ts_delta(net_income,     250) / abs(ts_delay(net_income,     250));
-g_ocf = ts_delta(cashflow_op,    250) / abs(ts_delay(cashflow_op,    250));
-(group_rank(g_rev, sector) + group_rank(g_ni, sector) + group_rank(g_ocf, sector)) / 3
+# growth_top5
+(group_rank(ts_delta(sales, 250) / abs(ts_delay(sales, 250)), sector)
+ + group_rank(ts_delta(net_income, 250) / abs(ts_delay(net_income, 250)), sector)
+ + group_rank(ts_delta(cashflow_op, 250) / abs(ts_delay(cashflow_op, 250)), sector)) / 3
 ```
 
-Decile wrapper — substitute the signal for `SIG`, and `k` for the decile:
+**Decile k**, as the difference of two step functions rather than a compound condition —
+`(rank > lo) - (rank > hi)` is exactly the indicator for the half-open band:
 
-```python
-sig = SIG;
-r = rank(sig);
-if_else(r > (k-1)/10 && r <= k/10, 1, 0)
+```
+if_else(rank(SIG) > <lo>, 1, 0) - if_else(rank(SIG) > <hi>, 1, 0)
 ```
 
-Long-short spread form:
+with `lo = (k-1)/10`, `hi = k/10`, and `lo = -1` for decile 1 so that both terms propagate
+NaN identically (`rank()` can return exactly 0 for the minimum name, which `> 0` would drop).
 
-```python
-sig = SIG;
-r = rank(sig);
-if_else(r > 0.9, 1, if_else(r < 0.1, -1, 0))
+**Top-minus-bottom spread:**
+
+```
+if_else(rank(SIG) > 0.9, 1, 0) - if_else(rank(SIG) > 0.1, 0, 1)
 ```
 
-Two deliberate differences from our implementation, recorded so they are not discovered later:
+### Quarterly fields are fine — and do not build TTM with ts_sum
+
+Our panel uses trailing-four-quarter figures for the flow items (`qtrs == 4`). If BRAIN
+exposes only quarterly variants, use them directly and record the difference:
+
+- **margins** are ratios, so quarterly numerator over quarterly denominator is a valid
+  margin — noisier than TTM, not wrong;
+- **YoY growth** over ~250 trading days compares a quarter against the same quarter a year
+  earlier, which is what our `.shift(4)` does;
+- **balance-sheet ratios** are stock over stock and never had the question.
+
+**Do not reach for `ts_sum(sales, 250)` to synthesise TTM.** Fundamental fields are step
+functions forward-filled on a daily grid, so that sums one forward-filled value ~250 times
+rather than four quarters. This is the kind of silent construction error that cost Steps 291
+and 312.
+
+### Three deliberate differences from our implementation
+
+Recorded so they are not discovered later and mistaken for bugs:
 
 - we group by a hand-built SIC→sector map over 69 major groups; BRAIN groups by its own
-  `sector` / `industry` / `subindustry` classification. Not identical. Start with `sector`
-  as the closest analogue, and note it as a construction difference, not a bug.
+  classification. Start with `sector` as the closest analogue.
 - our `minimum: 2` rule (score only names with at least two non-null features) has no direct
   FastExpr equivalent. BRAIN's `nanHandling` governs it instead. This is precisely why
   Phase 0's density audit comes first.
+- our books are weekly top-N long-only; BRAIN's decile alphas are daily-rebalanced
+  equal-weight baskets. The ladder measures the signal's ranking content, which is the
+  question — it does not reproduce the book.
 
 ## Pre-registration
 

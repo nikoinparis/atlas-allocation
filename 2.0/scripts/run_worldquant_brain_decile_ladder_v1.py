@@ -50,13 +50,21 @@ FIELDS = {
 }
 
 # Direct translations of build_dashboard_signals_out_of_sample_v1.py::SIGNALS.
+#
+# Written as SINGLE inlined expressions on purpose. FastExpr's multi-statement /
+# variable-assignment form is not reliably documented at every account tier, and a parser
+# rejection costs a simulation slot. Verbose beats clever here.
+#
+# Quarterly (not trailing-four-quarter) fields are fine for all three signals: margins are
+# ratios so quarterly/quarterly is a valid margin, YoY growth over ~250 trading days
+# compares a quarter against the same quarter a year earlier, and balance-sheet ratios are
+# stock/stock. Do NOT try to build TTM with ts_sum -- these fields are step functions on a
+# daily grid, so ts_sum(x, 250) sums the same forward-filled value ~250 times.
 SIGNALS = {
     "cash_conversion": (
-        "ocf_margin = {cashflow_op} / {sales};"
-        "fcf_margin = ({cashflow_op} - {capex}) / {sales};"
-        "spread = ocf_margin - ({net_income} / {sales});"
-        "(group_rank(ocf_margin, {g}) + group_rank(fcf_margin, {g})"
-        " + group_rank(spread, {g})) / 3"
+        "(group_rank({cashflow_op} / {sales}, {g})"
+        " + group_rank(({cashflow_op} - {capex}) / {sales}, {g})"
+        " + group_rank({cashflow_op} / {sales} - {net_income} / {sales}, {g})) / 3"
     ),
     "balance_sheet_quality": (
         "(group_rank({cash} / {assets}, {g}) + group_rank({equity} / {assets}, {g})"
@@ -64,13 +72,13 @@ SIGNALS = {
         " - group_rank({liabilities} / {assets}, {g})) / 4"
     ),
     "growth": (
-        "g_rev = ts_delta({sales}, 250) / abs(ts_delay({sales}, 250));"
-        "g_ni = ts_delta({net_income}, 250) / abs(ts_delay({net_income}, 250));"
-        "g_ocf = ts_delta({cashflow_op}, 250) / abs(ts_delay({cashflow_op}, 250));"
-        "(group_rank(g_rev, {g}) + group_rank(g_ni, {g}) + group_rank(g_ocf, {g})) / 3"
+        "(group_rank(ts_delta({sales}, 250) / abs(ts_delay({sales}, 250)), {g})"
+        " + group_rank(ts_delta({net_income}, 250) / abs(ts_delay({net_income}, 250)), {g})"
+        " + group_rank(ts_delta({cashflow_op}, 250) / abs(ts_delay({cashflow_op}, 250)), {g}))"
+        " / 3"
     ),
-    # Negative control: raw size should be flat once grouped. If this ladder orders itself,
-    # the harness is measuring something other than the signal and nothing else is readable.
+    # Negative control: raw size, flat once grouped. If this ladder orders itself, the
+    # harness is measuring something other than the signal and nothing else is readable.
     "control_size": "group_rank({assets}, {g})",
 }
 
@@ -96,17 +104,73 @@ def body(signal: str, group: str) -> str:
 def decile_alpha(signal: str, group: str, decile: int) -> str:
     """Long-only, equal-weight on one decile. Run with neutralization NONE.
 
+    Built as the difference of two step functions rather than a compound condition:
+    (rank > lo) - (rank > hi) is exactly the indicator for the half-open band, and uses only
+    a single `>` comparison per term. FastExpr's boolean operators are function-style
+    (`and`, `less`, `greater`) rather than `&&`, so compound conditions are avoided entirely.
+
+    The lower edge for decile 1 is -1 rather than 0 so that both terms propagate NaN
+    identically; rank() can return exactly 0 for the minimum name, which `> 0` would drop.
+
     All ten deciles carry the same long-only market exposure, so comparing across them is
     beta-neutral in the sense cross_sectional_skill_registry_v1 defines.
     """
-    lo, hi = (decile - 1) / 10.0, decile / 10.0
-    return f"sig = {body(signal, group)};r = rank(sig);if_else(r > {lo} && r <= {hi}, 1, 0)"
+    lo = -1.0 if decile == 1 else (decile - 1) / 10.0
+    hi = decile / 10.0
+    sig = body(signal, group)
+    return (f"if_else(rank({sig}) > {lo}, 1, 0)"
+            f" - if_else(rank({sig}) > {hi}, 1, 0)")
 
 
 def spread_alpha(signal: str, group: str) -> str:
     """Top decile minus bottom decile, as a dollar-neutral book."""
-    return (f"sig = {body(signal, group)};r = rank(sig);"
-            "if_else(r > 0.9, 1, if_else(r < 0.1, -1, 0))")
+    sig = body(signal, group)
+    return (f"if_else(rank({sig}) > 0.9, 1, 0)"
+            f" - if_else(rank({sig}) > 0.1, 0, 1)")
+
+
+def print_expressions(signals: list[str], group: str) -> int:
+    """Dump every expression for copy-paste into the web simulator.
+
+    Offline. The web UI is the sane way to do the first pass -- you see parse errors
+    immediately instead of spending a simulation slot to discover one.
+    """
+    for signal in signals:
+        print(f"\n{'=' * 78}\n{signal}\n{'=' * 78}")
+        print("\n-- production form (neutralization SUBINDUSTRY) --")
+        print(body(signal, group))
+        print("\n-- decile ladder (neutralization NONE, one simulation each) --")
+        for decile in range(1, 11):
+            print(f"\n[decile {decile}]")
+            print(decile_alpha(signal, group, decile))
+        print("\n-- top-minus-bottom spread (neutralization NONE) --")
+        print(spread_alpha(signal, group))
+    print("\nField ids above are UNVERIFIED. Confirm them on the Data tab first.")
+    return 0
+
+
+def score_manual(path: Path) -> int:
+    """Score decile returns typed in from the web UI.
+
+    Input JSON: {"<signal>": {"1": 0.0123, "2": -0.004, ... "10": 0.031}, ...}
+    Returns as decimals (0.0123 = 1.23%), read off each decile alpha's `returns` stat.
+    """
+    raw = json.loads(path.read_text())
+    summary = {}
+    for signal, deciles in raw.items():
+        ladder = {int(k): float(v) for k, v in deciles.items()}
+        mono = monotonicity(ladder)
+        top, bottom = ladder.get(10, float("nan")), ladder.get(1, float("nan"))
+        summary[signal] = {"monotonicity": mono, "top_minus_bottom": top - bottom,
+                           "decile_returns": ladder}
+        verdict = "ORDERS ITS DECILES" if mono > 0.5 else "flat -- replicates the null"
+        print(f"{signal:24} monotonicity {mono:+.3f}  "
+              f"top-minus-bottom {top - bottom:+.4f}   {verdict}")
+    print("\nBar declared in advance: monotonicity above 0.5 with interpretable deciles.")
+    print("Every signal measured in this project sits within +/-0.17 of zero.")
+    print("A positive spread with a flat ladder is a concentration effect, not skill.")
+    print(json.dumps(summary, indent=2, sort_keys=True))
+    return 0
 
 
 def login(credentials: Path) -> requests.Session:
@@ -200,12 +264,21 @@ def main() -> int:
     parser.add_argument("--group", default="sector",
                         help="BRAIN grouping; our panel uses a hand-built SIC major-group map, "
                              "so this is a construction difference, not an equivalence")
+    parser.add_argument("--print-expressions", action="store_true",
+                        help="offline: dump every expression for copy-paste, then exit")
+    parser.add_argument("--score-manual", type=Path, metavar="FILE",
+                        help="offline: score decile returns typed in from the web UI")
     parser.add_argument("--audit-fields", metavar="DATASET_ID",
                         help="Phase 0: list a dataset's fields and coverage, then exit")
     parser.add_argument("--output", type=Path,
                         default=Path(__file__).resolve().parents[1]
                         / "evidence/worldquant_brain_decile_ladder_v1")
     args = parser.parse_args()
+
+    if args.print_expressions:
+        return print_expressions(args.signals, args.group)
+    if args.score_manual:
+        return score_manual(args.score_manual)
 
     session = login(args.credentials)
 

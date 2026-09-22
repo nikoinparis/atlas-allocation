@@ -243,6 +243,29 @@ on a null, not a new measurement, and every affected number is already near zero
 **Data:** none — this is arithmetic on results that already exist.
 **Blocker:** nothing. Half a day.
 
+### S15. The decile ladder at NONE cannot separate an ordering from a beta ordering *(new 2026-09-22, Step 316)*
+**Status:** open, blocking interpretation of the only ladder that has ever cleared the bar.
+**The hole.** `WORLDQUANT_BRAIN_EVALUATION_V1.md` asserts that ten long-only decile baskets
+"all carry the same long-only market exposure, so comparing across them is beta-neutral in
+exactly the sense the Step 296 registry defines." **That assertion is untested and probably
+false.** Decile 1 of `cash_conversion` is cash-burning companies, which are higher beta than
+decile 10 by construction. The 2019-2023 window contains 2022, when exactly those names were
+destroyed. So a monotone ladder is consistent with a beta ordering and with a skill ordering,
+and the run as designed cannot tell them apart.
+**Why it matters now.** `cash_conversion` scored monotonicity **+0.939**, middle-8 **+0.905**,
+still +0.917 with decile 1 removed -- the first ladder in 315 steps to clear the declared bar.
+Eighty per cent of its spread is decile 1 alone; the other nine deciles drift ~5pp across a
+31-41% band. Whether that residual drift is skill or beta is unresolved.
+**The test is cheap and decisive.** Re-run the same ten decile alphas at
+`neutralization = MARKET`, and again at `SUBINDUSTRY`. If the ordering survives market
+neutralisation, it is not a beta ordering. If it collapses, it was -- which is the Step 295
+finding (cash conversion 16.65% -> 1.59% once beta was removed) reappearing on someone else's
+data, and would be a clean replication rather than a lead.
+**Also needed:** per-decile beta, and per-year decile returns to see whether the whole
+ordering is 2022. Neither is in the current harness.
+**Data:** free, ~20 simulations, about an hour of wall clock.
+**Blocker:** nothing.
+
 ## A tier
 
 

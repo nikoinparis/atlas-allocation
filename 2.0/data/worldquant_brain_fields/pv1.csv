@@ -1,0 +1,25 @@
+id,description,type,coverage,userCount,alphaCount
+adjfactor,Adjustment factor applied to historical prices and dividends to account for splits and other corporate actions,MATRIX,1.0,525,1975
+adv20,Average daily volume in past 20 days,MATRIX,1.0,24223,131992
+cap,Daily market capitalization (in millions),MATRIX,1.0,41440,464043
+close,Daily close price,MATRIX,1.0,66480,719595
+country,Country grouping,GROUP,1.0,4220,24404
+currency,Currency,GROUP,1.0,1894,5335
+cusip,CUSIP Value,SYMBOL,1.0,117,208
+dividend,Dividend,MATRIX,1.0,5549,14773
+exchange,Exchange grouping,GROUP,1.0,3405,52583
+high,Daily high price,MATRIX,1.0,18876,74645
+industry,Industry grouping,GROUP,1.0,38872,378091
+isin,ISIN Value,SYMBOL,1.0,0,0
+low,Daily low price,MATRIX,1.0,17782,65017
+market,Market grouping,GROUP,1.0,24609,229582
+open,Daily open price,MATRIX,1.0,17996,82048
+returns,Daily returns,MATRIX,1.0,46721,489372
+sector,Sector grouping,GROUP,1.0,33733,488376
+sedol,Sedol,SYMBOL,1.0,247,429
+sharesout,Daily outstanding shares (in millions),MATRIX,1.0,8559,37047
+split,Stock split ratio,MATRIX,1.0,4480,21646
+subindustry,Subindustry grouping,GROUP,1.0,41488,428328
+ticker,Ticker,SYMBOL,1.0,161,357
+volume,Daily volume,MATRIX,1.0,47742,445489
+vwap,Daily volume weighted average price,MATRIX,1.0,23853,86986

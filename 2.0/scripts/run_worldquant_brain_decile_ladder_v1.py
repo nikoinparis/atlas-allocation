@@ -61,6 +61,13 @@ FIELDS = {
     "liabilities": "liabilities",
     "debt": "debt",
     "cash": "cash",
+    # pv1, coverage 1.0 (confirmed 2026-09-22, data/worldquant_brain_fields/pv1.csv).
+    # `cap` is daily market capitalisation in millions; `sharesout` daily shares in millions.
+    # The valuation ratios below pair a 1.0-coverage denominator with a 0.5-coverage
+    # numerator, so they inherit 0.5 -- the same density floor as everything else here.
+    "cap": "cap",
+    "sharesout": "sharesout",
+    "operating_income": "operating_income",
 }
 
 # Direct translations of build_dashboard_signals_out_of_sample_v1.py::SIGNALS.
@@ -94,6 +101,41 @@ SIGNALS = {
     # Negative control: raw size, flat once grouped. If this ladder orders itself, the
     # harness is measuring something other than the signal and nothing else is readable.
     "control_size": "group_rank({assets}, {g})",
+
+    # ---- the five valuation families from the survivorship valuation panel -------------
+    # Translated from run_sec_split_normalized_valuation_pilot_v1.py:114-137, which defines
+    # them exactly: each yield is <fundamental> / market_cap, made sector-neutral, and the
+    # two blends are unweighted means of their sector-neutral components. `sector_neutral`
+    # there is a sector-wise rank, which is `group_rank(x, sector)` here.
+    #
+    # NOT ported, deliberately: `profitability`, `quality_acceleration` and
+    # `shareholder_discipline`. Their family NAMES appear in
+    # evidence/sec_independent_fundamental_discovery_v1/result.json but their feature
+    # composition is nowhere in the repo, and inventing it would be exactly the silent
+    # construction drift that CLAUDE.md records being bitten by twice.
+    "earnings_yield": "group_rank({net_income} / {cap}, {g})",
+    "sales_yield": "group_rank({sales} / {cap}, {g})",
+    "free_cash_flow_yield": "group_rank(({cashflow_op} - {capex}) / {cap}, {g})",
+    "composite_value": (
+        "(group_rank({net_income} / {cap}, {g})"
+        " + group_rank({sales} / {cap}, {g})"
+        " + group_rank(({cashflow_op} - {capex}) / {cap}, {g})) / 3"
+    ),
+    # All eight components of quality_at_reasonable_price, in the pilot's own order:
+    # the three yields, operating margin, operating cash flow margin, cash/assets,
+    # equity/assets, and negative dilution (the NEGATIVE of YoY diluted share growth, so
+    # that buying back stock scores high -- the sign is declared here, not discovered).
+    "quality_at_reasonable_price": (
+        "(group_rank({net_income} / {cap}, {g})"
+        " + group_rank({sales} / {cap}, {g})"
+        " + group_rank(({cashflow_op} - {capex}) / {cap}, {g})"
+        " + group_rank({operating_income} / {sales}, {g})"
+        " + group_rank({cashflow_op} / {sales}, {g})"
+        " + group_rank({cash} / {assets}, {g})"
+        " + group_rank({equity} / {assets}, {g})"
+        " + group_rank(-ts_delta({sharesout}, 250) / abs(ts_delay({sharesout}, 250)), {g}))"
+        " / 8"
+    ),
 }
 
 BASE_SETTINGS = {
@@ -628,6 +670,12 @@ def main() -> int:
                         help="offline: dump every expression for copy-paste, then exit")
     parser.add_argument("--score-manual", type=Path, metavar="FILE",
                         help="offline: score decile returns typed in from the web UI")
+    parser.add_argument("--ladder-neutralization", default="NONE",
+                        help="neutralization for the decile ladder. NONE is the default and "
+                             "is long-only, so all ten deciles carry market beta -- which is "
+                             "exactly why a monotone ladder at NONE cannot be distinguished "
+                             "from a beta ordering (queue item S15). Re-run at MARKET to "
+                             "separate them: if the ordering survives it is not beta.")
     parser.add_argument("--try-expression", metavar="FASTEXPR",
                         help="simulate one arbitrary expression and print its decile ladder "
                              "beneath the scoreboard, always")
@@ -668,7 +716,12 @@ def main() -> int:
     if args.find_field:
         return find_field(session, args.find_field[0], args.find_field[1])
 
+    if args.ladder_neutralization != "NONE":
+        args.output = args.output.with_name(
+            f"{args.output.name}_{args.ladder_neutralization.lower()}")
     args.output.mkdir(parents=True, exist_ok=True)
+    print(f"ladder neutralization: {args.ladder_neutralization}   -> {args.output}",
+          flush=True)
     summary: dict[str, dict] = {}
 
     for signal in args.signals:
@@ -680,7 +733,8 @@ def main() -> int:
         records: dict[str, dict] = {}
 
         for decile in range(1, 11):
-            result = simulate(session, decile_alpha(signal, args.group, decile), "NONE")
+            result = simulate(session, decile_alpha(signal, args.group, decile),
+                              args.ladder_neutralization)
             if "error" in result:
                 print(f"  decile {decile:2d}: {result['error']}", flush=True)
                 ladder[decile] = float("nan")
@@ -690,7 +744,8 @@ def main() -> int:
             records[f"decile_{decile}"] = result["alpha"].get("is", {})
             print(f"  decile {decile:2d}: returns {returns:+.4f}", flush=True)
 
-        spread = simulate(session, spread_alpha(signal, args.group), "NONE")
+        spread = simulate(session, spread_alpha(signal, args.group),
+                          args.ladder_neutralization)
         production = simulate(session, body(signal, args.group), "SUBINDUSTRY")
         for label, result in (("spread", spread), ("production", production)):
             if "error" in result:

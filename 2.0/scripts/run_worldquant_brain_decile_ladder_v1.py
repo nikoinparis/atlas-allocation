@@ -68,6 +68,12 @@ FIELDS = {
     "cap": "cap",
     "sharesout": "sharesout",
     "operating_income": "operating_income",
+    # For shareholder_discipline and quality_acceleration. No bare-id equivalents exist, so
+    # these are the Compustat-style ids from fundamental6, all MATRIX at coverage 0.5.
+    "shares_diluted": "fnd6_newqv1300_cshfdq",     # Common Shares for Diluted EPS
+    "stock_comp": "fnd6_newqv1300_stkcoq",         # Stock Compensation Expense
+    "shares_repurchased": "fnd6_newqv1300_cshopq", # Total Shares Repurchased - Quarter
+    "repurchase_price": "fnd6_newqv1300_prcraq",   # Repurchase Price - Average per share
 }
 
 # Direct translations of build_dashboard_signals_out_of_sample_v1.py::SIGNALS.
@@ -125,6 +131,40 @@ SIGNALS = {
     # the three yields, operating margin, operating cash flow margin, cash/assets,
     # equity/assets, and negative dilution (the NEGATIVE of YoY diluted share growth, so
     # that buying back stock scores high -- the sign is declared here, not discovered).
+    # ---- the three fundamental families, recovered 2026-09-23 --------------------------
+    # Defined in config/sec_independent_fundamental_discovery_v1.json, not invented. An
+    # earlier note in this file claimed their composition was "nowhere in the repo" -- that
+    # was wrong; the grep behind it only searched scripts/, and the config holds them.
+    #
+    # THREE DECLARED CONSTRUCTION DIFFERENCES, so they are not mistaken for bugs later:
+    #  1. `repurchases_to_revenue` is a DOLLAR ratio in our panel. BRAIN exposes shares
+    #     repurchased and average repurchase price separately, so the dollar amount is
+    #     reconstructed as their product. That is a reconstruction, not the same field.
+    #  2. `*_change` in our panel is a quarter-on-quarter .diff() per company. On BRAIN's
+    #     daily grid the analogue is ts_delta(x, 63) -- about one quarter of trading days.
+    #  3. our `minimum_features` rule (score only names with >= N non-null features) has no
+    #     FastExpr equivalent; nanHandling governs it instead. Same caveat as the other three.
+    "profitability": (
+        "(group_rank({operating_income} / {sales}, {g})"
+        " + group_rank({net_income} / {sales}, {g})"
+        " + group_rank({cashflow_op} / {sales}, {g})"
+        " + group_rank(({cashflow_op} - {capex}) / {sales}, {g})) / 4"
+    ),
+    "shareholder_discipline": (
+        "(group_rank({shares_repurchased} * {repurchase_price} / {sales}, {g})"
+        " - group_rank(ts_delta({shares_diluted}, 250)"
+        " / abs(ts_delay({shares_diluted}, 250)), {g})"
+        " - group_rank({stock_comp} / {sales}, {g})) / 3"
+    ),
+    "quality_acceleration": (
+        "(group_rank(ts_delta({operating_income} / {sales}, 63), {g})"
+        " + group_rank(ts_delta({cashflow_op} / {sales}, 63), {g})"
+        " + group_rank(ts_delta(({cashflow_op} - {capex}) / {sales}, 63), {g})"
+        " + group_rank(ts_delta({equity} / {assets}, 63), {g})"
+        " - group_rank(ts_delta({debt} / {assets}, 63), {g})"
+        " - group_rank(ts_delta({shares_diluted}, 250)"
+        " / abs(ts_delay({shares_diluted}, 250)), {g})) / 6"
+    ),
     "quality_at_reasonable_price": (
         "(group_rank({net_income} / {cap}, {g})"
         " + group_rank({sales} / {cap}, {g})"
@@ -266,6 +306,22 @@ def score_manual(path: Path) -> int:
     return 0
 
 
+def relogin(session: requests.Session) -> bool:
+    """Re-authenticate an expired session in place.
+
+    BRAIN sessions expire after a few hours. The 2026-09-22 overnight run logged in once and
+    then ran for four hours, so from one simulation onward every call came back
+    401 "Incorrect authentication credentials" -- two whole signals produced zero data and the
+    log filled with what looked like a credentials problem but was a clock.
+    The auth is already on the session (HTTPBasicAuth), so this just asks for a new cookie.
+    """
+    try:
+        response = session.post(f"{API}/authentication", timeout=HTTP_TIMEOUT)
+    except requests.RequestException:
+        return False
+    return response.status_code == 201
+
+
 def login(credentials: Path) -> requests.Session:
     if not credentials.exists():
         raise SystemExit(
@@ -287,11 +343,31 @@ def login(credentials: Path) -> requests.Session:
     raise SystemExit(f"authentication failed: {response.status_code} {response.text[:400]}")
 
 
+# requests defaults to NO socket timeout. On 2026-09-22 a poll hung on
+# api.worldquantbrain.com and took the whole valuation run down with a ReadTimeout
+# traceback after only one of five signals -- and because summary.json was written at the
+# very end, the completed ladder was lost with it. Both are fixed: every call below carries
+# a timeout, a tripped call is caught and retried rather than raised, and the summary is
+# written after each signal.
+HTTP_TIMEOUT = (15, 120)          # (connect, read) seconds
+
+
 def simulate(session: requests.Session, expression: str, neutralization: str,
              timeout: int = 900) -> dict:
     settings = dict(BASE_SETTINGS, neutralization=neutralization)
     payload = {"type": "REGULAR", "settings": settings, "regular": expression}
-    response = session.post(f"{API}/simulations", json=payload)
+    try:
+        response = session.post(f"{API}/simulations", json=payload, timeout=HTTP_TIMEOUT)
+    except requests.RequestException as error:
+        return {"error": f"POST failed: {type(error).__name__}"}
+    if response.status_code == 401:
+        print("    session expired, re-authenticating", flush=True)
+        if not relogin(session):
+            return {"error": "401 and re-authentication failed"}
+        try:
+            response = session.post(f"{API}/simulations", json=payload, timeout=HTTP_TIMEOUT)
+        except requests.RequestException as error:
+            return {"error": f"POST failed after relogin: {type(error).__name__}"}
     if response.status_code != 201:
         return {"error": f"{response.status_code} {response.text[:400]}"}
     location = response.headers.get("Location", "").rstrip("/")
@@ -300,7 +376,17 @@ def simulate(session: requests.Session, expression: str, neutralization: str,
 
     deadline = time.time() + timeout
     while time.time() < deadline:
-        poll = session.get(location)
+        try:
+            poll = session.get(location, timeout=HTTP_TIMEOUT)
+        except requests.RequestException:
+            # A hung or dropped poll is not a dead simulation -- BRAIN is still running it.
+            # Wait and ask again rather than losing the run.
+            time.sleep(10.0)
+            continue
+        if poll.status_code == 401:
+            if not relogin(session):
+                return {"error": "401 while polling and re-authentication failed"}
+            continue
         if poll.status_code != 200:
             time.sleep(5.0)
             continue
@@ -310,7 +396,10 @@ def simulate(session: requests.Session, expression: str, neutralization: str,
             alpha_id = state.get("alpha")
             if not alpha_id:
                 return {"error": f"complete without alpha id: {state}"}
-            alpha = session.get(f"{API}/alphas/{alpha_id}")
+            try:
+                alpha = session.get(f"{API}/alphas/{alpha_id}", timeout=HTTP_TIMEOUT)
+            except requests.RequestException as error:
+                return {"error": f"alpha fetch failed: {type(error).__name__}"}
             if alpha.status_code != 200:
                 return {"error": f"alpha fetch {alpha.status_code}"}
             return {"alpha_id": alpha_id, "alpha": alpha.json()}
@@ -505,7 +594,11 @@ def _get(session: requests.Session, url: str, params: dict,
     far side of a rate limit.
     """
     for attempt in range(attempts):
-        response = session.get(url, params=params)
+        try:
+            response = session.get(url, params=params, timeout=HTTP_TIMEOUT)
+        except requests.RequestException:
+            time.sleep(10.0)
+            continue
         if response.status_code != 429:
             return response
         pause = float(response.headers.get("Retry-After")
@@ -760,6 +853,9 @@ def main() -> int:
         summary[signal] = dict(shape, decile_returns=ladder, checks=records)
         print("  ---", flush=True)
         report(signal, shape)
+        # Written per signal. A crash in signal four must not discard signals one to three.
+        (args.output / "summary.json").write_text(
+            json.dumps(summary, indent=2, sort_keys=True))
 
     (args.output / "summary.json").write_text(json.dumps(summary, indent=2, sort_keys=True))
 

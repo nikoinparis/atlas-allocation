@@ -809,9 +809,14 @@ def main() -> int:
     if args.find_field:
         return find_field(session, args.find_field[0], args.find_field[1])
 
-    if args.ladder_neutralization != "NONE":
-        args.output = args.output.with_name(
-            f"{args.output.name}_{args.ladder_neutralization.lower()}")
+    # Tag the output by BOTH neutralization and the signal set. Successive runs at the same
+    # neutralization previously wrote the same summary.json, so the 2026-09-23 valuation
+    # results were overwritten by the run that followed them and had to be recovered from a
+    # scratch log that no longer existed.
+    tag = args.ladder_neutralization.lower()
+    if len(args.signals) <= 6:
+        tag += "_" + "_".join(sorted(s[:12] for s in args.signals))
+    args.output = args.output.with_name(f"{args.output.name}_{tag}")
     args.output.mkdir(parents=True, exist_ok=True)
     print(f"ladder neutralization: {args.ladder_neutralization}   -> {args.output}",
           flush=True)

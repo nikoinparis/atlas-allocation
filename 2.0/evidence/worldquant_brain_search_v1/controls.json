@@ -20,5 +20,49 @@
       "9": -0.0028,
       "10": -0.0003
     }
+  },
+  "DE-SIZE VALIDATION cap within cap-buckets": {
+    "expression": "group_rank(cap, bucket(rank(cap), buckets=5))",
+    "monotonicity": 0.2,
+    "monotonicity_middle_8": 0.09523809523809523,
+    "top_minus_bottom": 0.038000000000000006,
+    "inner_spread_d9_minus_d2": 0.0149,
+    "distinct_values": 10,
+    "decile_dispersion": 0.01941661401995724,
+    "extremes_share_of_spread": 0.6078947368421053,
+    "decile_returns": {
+      "1": -0.0461,
+      "2": -0.0118,
+      "3": 0.0027,
+      "4": 0.0097,
+      "5": 0.0352,
+      "6": 0.0072,
+      "7": 0.0056,
+      "8": 0.0026,
+      "9": 0.0031,
+      "10": -0.0081
+    }
+  },
+  "BEST CANDIDATE     twitter sentiment 20d": {
+    "expression": "group_rank(ts_mean(snt_social_value, 20), sector)",
+    "monotonicity": 0.5636363636363636,
+    "monotonicity_middle_8": 0.5714285714285714,
+    "top_minus_bottom": 0.0211,
+    "inner_spread_d9_minus_d2": 0.0021000000000000003,
+    "distinct_values": 10,
+    "decile_dispersion": 0.018599247296597784,
+    "extremes_share_of_spread": 0.9004739336492891,
+    "decile_returns": {
+      "1": 0.0064,
+      "2": 0.0036,
+      "3": -0.0296,
+      "4": -0.0172,
+      "5": -0.0317,
+      "6": 0.0149,
+      "7": 0.008,
+      "8": 0.0124,
+      "9": 0.0057,
+      "10": 0.0275
+    }
   }
 }

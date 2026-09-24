@@ -167,57 +167,6 @@ failed in both directions in two consecutive weeks.
    every run for this reason, which trains the reader to ignore the failure line.
 Both are small. A gate nobody trusts is worse than no gate.
 
-### S13. Replicate the skill null on WorldQuant BRAIN data *(new 2026-09-22, owner-proposed; updated 2026-09-22, Step 316)*
-**Status: STILL OPEN — no simulation has ever run.** Step 316 was set up to run it end to end
-and got no further than the credential file. It is deliberately **not** in `Closed`: closing an
-item whose experiment never ran would record planned work as complete (CLAUDE.md §10).
-Plan in `docs/WORLDQUANT_BRAIN_EVALUATION_V1.md`; runner in
-`scripts/run_worldquant_brain_decile_ladder_v1.py` (offline paths tested, everything past
-login still unvalidated).
-**What Step 316 did buy.** The runner's `monotonicity()` returned **+1.000 for a perfectly
-flat ladder** — it ordinal-ranked ties, so equal decile returns produced a perfect staircase.
-The flat ladder is this experiment's *expected* outcome, so the harness would have converted
-the predicted null into a maximal false discovery. Fixed with midranks plus NaN at zero
-dispersion. Pure concentration still scores +0.522 and clears the 0.5 bar, so the "with
-interpretable deciles" qualifier is now computed: `monotonicity_middle_8` over deciles 2–9
-must clear too. Also fixed: 429 backoff (BRAIN allows 50 req/min and Phase 0 would have hit
-it, silently truncating the field dictionary), a pagination bug that returned after one page
-of fifty when `count` was absent, and `--find-field all`.
-**Data:** free. BRAIN supplies point-in-time fundamentals and prices on ~3,000 US names over
-a decade-plus, delisted names included, through someone else's backtester.
-**What it is for -- and it is not a strategy search.** The Step 296-308 null is this
-project's most important finding and it carries four honest weaknesses: 13-14 quarterly
-decisions, a panel we built, a universe we restricted, and a construction-error history
-(Steps 291, 312). BRAIN removes all four at once, for nothing. Both outcomes pay: a flat
-ladder replicates the null on independent data and closes the "maybe our panel was wrong"
-objection permanently; an ordered ladder is the first lead in 312 steps and immediately
-raises the more useful question of which panel is wrong.
-**The measurement is ours, not theirs.** BRAIN reports Sharpe, fitness, turnover -- it does
-**not** report rank IC, decile spread or monotonicity. Reading its scoreboard would be a
-regression to the pre-Step-296 way of evaluating that produced 337% CAGRs which all died.
-The experiment is ten long-only decile alphas per signal plus a spread and a production
-form, 36 simulations, and monotonicity computed off-platform. **Declared bar: above 0.5.**
-**Blocker, in order.** (1) **Credentials** — `~/.worldquant_brain.json` does not exist and
-only the owner can create it. On macOS/Linux: `bash 2.0/scripts/setup_worldquant_brain.sh`
-(prompts hidden, writes mode 600, then runs Phase 0 itself). The `.ps1` is Windows-only and
-this machine is Darwin, which is exactly what stopped Step 316. (2) **`net_income` is still
-unresolved** and was deliberately not substituted — swapping in `ebit`/`ebitda` would change
-what `cash_conversion` measures while still calling it cash conversion. It blocks two of the
-three signals; resolve with `--find-field all income`. (3) Phase 0's density guard before any
-decile is read — Step 298 nearly reported a discovery on a 93.3%-zero signal.
-**Not a blocker any more:** the API is reachable from the work environment; the "egress-blocked"
-note in the evaluation doc and Step 315 was stale and is corrected.
-**Why S and not A:** no data purchase, no new pipeline, bounded at about a day, and it
-attacks the stated weakness of the finding everything else now rests on.
-**Prior, stated plainly:** nought of thirteen, nought of fourteen closed families, nought of
-six out-of-sample, nought of three on the wide universe, nought of four in Indonesia, nought
-of six at long horizons. It is unlikely to order its deciles. Expecting otherwise is how
-sessions get burned here.
-**Three things it cannot do:** satisfy the cost gate (returns appear to be gross; verify),
-produce anything tradeable (their data never leaves the platform), or count its own
-multiple testing -- BRAIN is the largest uncountable search this project has ever touched,
-so a pass there is *weaker* evidence than a pass here, not stronger.
-
 ### S14. The 0.5 monotonicity bar does not exclude concentration — close the gap project-wide *(new 2026-09-22, Step 316)*
 **Status:** open, not started. Found while repairing the BRAIN runner, but it is not a BRAIN
 issue.
@@ -243,28 +192,32 @@ on a null, not a new measurement, and every affected number is already near zero
 **Data:** none — this is arithmetic on results that already exist.
 **Blocker:** nothing. Half a day.
 
-### S15. The decile ladder at NONE cannot separate an ordering from a beta ordering *(new 2026-09-22, Step 316)*
-**Status:** open, blocking interpretation of the only ladder that has ever cleared the bar.
-**The hole.** `WORLDQUANT_BRAIN_EVALUATION_V1.md` asserts that ten long-only decile baskets
-"all carry the same long-only market exposure, so comparing across them is beta-neutral in
-exactly the sense the Step 296 registry defines." **That assertion is untested and probably
-false.** Decile 1 of `cash_conversion` is cash-burning companies, which are higher beta than
-decile 10 by construction. The 2019-2023 window contains 2022, when exactly those names were
-destroyed. So a monotone ladder is consistent with a beta ordering and with a skill ordering,
-and the run as designed cannot tell them apart.
-**Why it matters now.** `cash_conversion` scored monotonicity **+0.939**, middle-8 **+0.905**,
-still +0.917 with decile 1 removed -- the first ladder in 315 steps to clear the declared bar.
-Eighty per cent of its spread is decile 1 alone; the other nine deciles drift ~5pp across a
-31-41% band. Whether that residual drift is skill or beta is unresolved.
-**The test is cheap and decisive.** Re-run the same ten decile alphas at
-`neutralization = MARKET`, and again at `SUBINDUSTRY`. If the ordering survives market
-neutralisation, it is not a beta ordering. If it collapses, it was -- which is the Step 295
-finding (cash conversion 16.65% -> 1.59% once beta was removed) reappearing on someone else's
-data, and would be a clean replication rather than a lead.
-**Also needed:** per-decile beta, and per-year decile returns to see whether the whole
-ordering is 2022. Neither is in the current harness.
-**Data:** free, ~20 simulations, about an hour of wall clock.
-**Blocker:** nothing.
+### S16. Stress-test the 1.0 ETF allocator — BRAIN cannot do it *(new 2026-09-24, owner-asked, Step 317)*
+**Status:** open, not started. The owner asked on 2026-09-24 whether 1.0's strategies had been
+tested on BRAIN. They had not, and they cannot be.
+**Why BRAIN is the wrong instrument — three structural reasons, not a lack of effort.**
+(1) 1.0 trades ETFs (SPY, QQQ, IWM, TLT, GLD, HYG, LQD, EEM, USO, the XL* sector set); BRAIN's
+USA/TOP3000 is individual common stock and all fourteen datasets visible to the account are
+`instrumentType: EQUITY`. (2) 1.0 is a time-series regime allocator — rotate defensive when the
+macro regime turns — while BRAIN converts a cross-sectional score over ~3,000 names into a
+dollar-neutral long-short book with no cash position and no timing dimension, so "go defensive"
+has no expression in the language. (3) Ten deciles over 12–35 ETFs gives one to three assets per
+decile, so monotonicity — the statistic that decides everything here — cannot be constructed.
+Step 246 already put 35 multi-asset ETFs at 4.16 effective assets.
+**What the real test looks like.** A multi-asset backtester on our own data, and the gates that
+suit a timing strategy rather than a cross-sectional one: regime-conditional performance
+(2008–09, 2020, 2022 separately), turnover and cost stress at 0/10/50/100bps, a
+buy-and-hold-60/40 benchmark, and a placebo where the regime classifier is fed shuffled labels.
+Monotonicity does not apply; the analogue is whether the allocator's regime calls beat a random
+allocator with the same turnover.
+**Why it is worth doing.** 1.0 is the one completed body of work here that was never put through
+the Step 296-onward falsification machinery, because that machinery was built for
+cross-sectional stock signals and 1.0 is neither. It may be the largest untested claim in the
+repo. The owner's intuition that it is "more defensive, more long term" is plausible and
+unverified — which is exactly the combination this project exists to attack.
+**Data:** free, already on disk in `1.0/`.
+**Blocker:** nothing, but read CLAUDE.md §4 first — 1.0 is marked historical reference and this
+item is the explicit instruction that unblocks touching it.
 
 ## A tier
 
@@ -505,3 +458,5 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 | **Non-machine-read information / disclosure latency (Step 301 asymmetry 3)** | **Closed on its premise.** Direct test blocked twice over -- Indonesian prices on disk are daily only, and IDX endpoints return HTTP 403 behind an AWS WAF challenge needing browser automation. So the premise was tested instead: Hou-Moskowitz delay on 157 Indonesian stocks over 2,469 days is **0.0291**, meaning **97.1% of the price response to market information arrives contemporaneously**; lag-1 own-return autocorrelation is **+0.006**, economically nil. That is the liquid, fast band, not a market where disclosures sit unread. **Correction kept in the record:** the US comparison I built was invalid -- 157 single stocks against 35 ETFs, which are baskets that incorporate information mechanically -- so the conclusion rests on Indonesia's absolute level, which needs no comparison. Closes the last of Step 301's three asymmetries; the other two fell in Steps 302 and 303. | Step 306 |
 | **VWAP and standard-deviation bands (new 2026-09-12)** | **Closed. It is short-term reversal relabelled.** Genuinely untried before this -- VWAP appeared once in 306 steps, only to note the data lacked it. Computable only on Indonesian daily data (the US panel has prices without volume). VWAP deviation measures IC **+0.0177** against short-term reversal's **+0.0174**, the identical t of 0.92, and the two correlate **+0.767** cross-sectionally; price above its own VWAP is the same fact as a positive trailing return. Reversal is closed twice already (Steps 250, 302). **The bands fail structurally, not on performance:** the 2σ band leaves 7 usable decisions and the 3σ band one, because at 79 names nothing survives the filter -- the same wall Step 49's Bollinger rejection hit. Neither form orders its deciles (+0.04, -0.04). | Step 307 |
 | **VWAP, wide US universe (new 2026-09-12)** | **Closed after a fair trial.** Acquired the US daily volume that had made VWAP untestable for 307 steps: 2,748 of 2,810 issuers, 97.8% overlap, 3,946 days, zero failed batches. Bands got real breadth -- **392 names at 2σ against 3 in Indonesia** -- so Step 307's structural objection is gone. Nought of four clears Bonferroni; nought of four orders its deciles (-0.02 to +0.01). Duplication holds at 35x the universe: correlation with short-term reversal **+0.741** against Indonesia's +0.767. The 2σ band's 16.74% at 0bps is beta -- market beta **+1.030**, R² 0.752, and a Sharpe of **0.703 against its own universe's 0.728** -- and falls to 9.81% at the declared 50bps. | Step 308 |
+| **Replicate the skill null on WorldQuant BRAIN data (was S13)** | **Closed — the null replicated on data we do not own.** Fifteen constructions, four datasets, twelve families, ~200 simulations; zero with cross-sectional skill above a coverage-matched no-skill control. The strongest find, Ravenpack `mean_news_impact_projection`, scored Sharpe **1.44** market-neutral against monotonicity **+0.042** with a negative middle-eight — all of its spread was decile one. BRAIN removed all four stated weaknesses of the Step 296–308 null at once (our panel, our universe, our construction-error history, our backtester) and returned the same answer on a ~6× cross-section. Nothing submitted; 0 submitted alphas is correct. | Step 317 |
+| **Decile ladder at NONE cannot separate an ordering from a beta ordering (was S15)** | **Closed, and the hypothesis was wrong.** MARKET neutralization leaves monotonicity bit-identical (+0.939 → +0.939): it shifts decile levels without reordering them, and monotonicity is scale-free. It removes ~44% of the *spread*, near-identically across three different signals, which is one shared exposure rather than three. The real finding came from elsewhere — `group_rank(cap, sector)` is flat at **+0.091** while `group_rank(assets, sector)` is **+0.867**, so a control must match the candidate's coverage or it measures a different universe. | Step 317 |

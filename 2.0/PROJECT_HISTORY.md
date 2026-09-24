@@ -15378,3 +15378,105 @@ just closed. No result is invalidated by this — every measured signal sits wit
 zero and nothing has ever approached 0.5 from either direction, so the gap has never been
 load-bearing. But it would be the moment anything positive appeared, which is precisely when
 it would be least welcome. Logged as queue item S14.
+
+## Step 317 — 2026-09-24 — The BRAIN replication ran, and a Sharpe of 1.44 had monotonicity of 0.042
+
+Step 316 recorded a session that got as far as the credential file and no further. This is the
+run itself: Phase 0, the field resolution, the production forms, the true window, four decile
+ladder batches and a search phase the owner directed afterwards. Roughly 200 simulations.
+
+**The headline, and it is the reason this project measures what it measures.** The strongest
+thing found anywhere on BRAIN was `mean_news_impact_projection` — Ravenpack's projected market
+impact of news — at **Sharpe 1.44 market-neutral**, on 100%-coverage data, on the least
+contaminated dataset available. That clears BRAIN's submission bar. Its decile ladder reads
+**monotonicity +0.042, middle-eight −0.214**, against a flat control at +0.091. The entire
++11.6pp top-minus-bottom spread is decile one, which loses 10.4% a year; the other nine deciles
+sit between +0.9% and +3.7% in no order at all. Smoothing it to a tradeable speed made it
+*worse* (+0.006), and de-sizing it changed nothing (+0.055), which is what de-sizing something
+with no ordering should do.
+
+Had the scoreboard been read, 1.44 would have been the find of the project. This is the
+cleanest demonstration the record now contains of why Sharpe is not the evidence here, and it
+was produced by following that rule rather than by arguing for it.
+
+**`net_income` resolved without substitution.** It does not exist; the field is `income`,
+description exactly "Net Income", the only field in `fundamental6` with that description, on
+the same bare-id convention as the other eight. A resolution, not a substitution — `ebit` and
+`ebitda` were declined because they would have changed what `cash_conversion` measures while
+keeping its name. Declared in the run log before any simulation.
+
+A trap recorded alongside it: Phase 0's console summary prints at most eight hits per concept
+and walks `analyst4`'s 1,324 fields first, so every concept's visible hits were analyst
+*consensus estimate* fields — `anl4_cfo_mean` is "mean of estimations", not reported operating
+cash flow. Taking those would have swapped reported facts for forward-looking consensus with a
+lookahead question attached. The committed CSVs were the evidence; the terminal was not.
+
+**The window, corrected from the alpha record's own settings:** 2019-01-01 to 2023-12-31. Five
+years, ~20 quarterly decisions, not the four years and ~16 an earlier draft recorded. The `os`,
+`train`, `test` and `prod` blocks are all null on an unsubmitted alpha, so there are no separate
+out-of-sample tabs and the whole span is in-sample. 2023 sits outside Step 300's 2013–2022
+window; the other four years do not. Independent data, one year of independent period, not a
+clean out-of-sample window.
+
+**Ten of twelve fundamental families measured, zero above their control.** `cash_conversion`
++0.939, `growth` +0.855, `sales_yield` +0.988, `earnings_yield` +0.891,
+`free_cash_flow_yield` +0.879, `quality_acceleration` +0.648, `profitability` +0.442,
+`shareholder_discipline` +0.139 with a negative middle-eight, `balance_sheet_quality` −0.927.
+`composite_value` and `quality_at_reasonable_price` were lost to a bug and are recorded as
+unmeasured rather than as results. `growth` clears BRAIN's bar at Sharpe 1.27 / fitness 1.04
+and returns **less than the no-skill control** (8.35% against 8.57%); its better Sharpe is a
+drawdown difference.
+
+**A correction to make plainly, because it was asserted broadly before it was checked.** The
+claim "a decile ladder orders itself at +0.83 to +0.87 on no signal at all" is **wrong and
+retracted**. `group_rank(assets, sector)` at coverage 0.5 gives +0.867; `group_rank(cap,
+sector)` at coverage 1.0 gives **+0.091** — flat. A no-skill ranking at full coverage does not
+order itself. The +0.867 is specific to `assets`, most likely because its ladder ranks only the
+half of the universe carrying fundamental data and that membership is not random, mixing an
+asset-size ordering with a has-coverage ordering. This rescues no fundamental signal — they all
+share that coverage, so `assets` stays their comparator and none beats it — but it establishes
+that **a control must match the candidate's coverage or it is measuring a different universe.**
+Second time coverage patterns have been informative in their own right, after Step 298's
+93.3%-zero signal.
+
+**Four defects found by running, all fixed.** `monotonicity()` returned **+1.000 for a
+perfectly flat ladder** (ordinal ranking of ties) — the single most dangerous bug in the set,
+since the flat ladder was the predicted outcome; fixed with midranks and NaN at zero
+dispersion, and verified to agree with `run_cross_sectional_skill_v1.py`'s pandas Spearman to
+four decimals, which also confirmed the Step 296 null was never contaminated by it. `requests`
+carried no socket timeout, so one hung poll killed a five-signal run after one signal.
+`summary.json` was written only at the end, so that crash discarded the completed ladder too.
+The session token expired mid-run and every later call returned 401 because the script logged
+in once and never re-authenticated. Output directories were tagged by neutralization only, so
+successive runs overwrote one another — which is how two valuation results were lost.
+
+**Also established.** BRAIN rate-limits at 50 requests a minute. There is no data export at any
+level (`/data-fields/{id}/data` and `/data-sets/{id}/export` both 404), so nothing here is
+portable and a BRAIN result is a hypothesis for our panel, never a result on it. `news18`'s
+"does not support event inputs" rejection was a field-naming discovery, not an operator problem:
+every field exists twice, a per-story VECTOR stream and a daily aggregate under a `mean_`
+prefix, and `vec_avg(equity_sentiment_score)` returns statistics identical to
+`mean_equity_sentiment_score`. Dataset `userCount` is a usable measure of platform
+contamination — 86,751 on `fundamental6` against 6,299 on `socialmedia8` — though it pointed at
+`univ1`, which turned out to be six universe-membership fields and no alpha source at all.
+
+**1.0 was asked about and cannot be tested here.** It trades ETFs; BRAIN's TOP3000 is common
+stock and all fourteen visible datasets are `instrumentType: EQUITY`. It is a time-series regime
+allocator; BRAIN converts a cross-sectional score into a dollar-neutral long-short book with no
+cash position and no timing dimension. And ten deciles over 12–35 ETFs gives one to three
+assets per decile, so the deciding measurement cannot be built — Step 246 already put 35
+multi-asset ETFs at 4.16 effective assets. Testing 1.0 adversarially needs a multi-asset
+backtester on our own data; logged as S16.
+
+**Verdict. Fifteen constructions, four datasets, twelve families, zero with cross-sectional
+skill above a coverage-matched no-skill control.** BRAIN removed all four stated weaknesses of
+the Step 296–308 null simultaneously — a panel we built, a universe we restricted, a
+construction-error history, our own backtester — and returned the same answer on a ~6×
+cross-section. The null replicates on data this project does not own. That was the declared
+expected outcome, it is the valuable one, and it closes the "maybe our panel was wrong"
+objection permanently.
+
+Nothing was submitted. The account holds 0 submitted alphas against ~200 simulations, which is
+the correct number. `submission_authorized` stays false in
+`config/worldquant_brain_search_v1.json`, the pre-registration written when the owner directed
+a search, before any search result existed.

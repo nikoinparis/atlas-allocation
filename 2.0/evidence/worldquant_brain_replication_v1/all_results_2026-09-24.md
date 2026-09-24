@@ -157,3 +157,83 @@ the cumulative ledger, not free.**
 
 **Nothing above is a candidate yet.** These are production-form Sharpes, which guardrail 1
 declares is not the evidence. No ladder has been run on any news field.
+
+# The news ladders, 2026-09-24 — Sharpe 1.44, monotonicity +0.042
+
+The strongest construction found anywhere in this exercise, laddered against a control that
+is genuinely flat and coverage-matched. `group_rank(cap, sector)` = **+0.091 / −0.119**.
+
+| decile | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| raw | **−10.41%** | +1.95% | +1.96% | +0.91% | +1.49% | +1.59% | +3.68% | +0.90% | +1.80% | +1.15% |
+| smoothed 10d | **−12.05%** | +0.20% | +1.60% | +2.29% | +2.20% | +3.77% | +0.97% | +1.50% | +0.51% | −0.96% |
+
+| construction | monotonicity | middle-8 | d10−d1 | distinct | excess over control |
+|---|---|---|---|---|---|
+| `news_impact_RAW` | **+0.042** | **−0.214** | +11.56pp | 10/10 | **−0.049** |
+| `news_impact_smoothed_10d` | **+0.006** | −0.095 | +11.09pp | 10/10 | **−0.085** |
+| `news_impact_DESIZED` (within cap quintiles) | **+0.055** | −0.119 | +11.74pp | 10/10 | **−0.036** |
+
+**Sharpe 1.44 and monotonicity +0.042.** All three ladders are flat, all three middle-eights
+are **negative**, and all three sit **below a flat control**.
+
+The whole +11.6pp spread is decile 1. The signal finds the worst-news names — they lose
+10–12% a year — and orders the remaining ninety per cent of the cross-section not at all.
+That is content at one extreme with noise everywhere else: the shape CLAUDE.md records Step
+296 finding six times over, and the reason monotonicity rather than Sharpe is the deciding
+statistic here.
+
+**Three things this result settles.**
+
+1. **The scoreboard would have called this the find of the project.** Sharpe 1.44
+   market-neutral clears BRAIN's 1.25 bar. The ladder says short-side concentration. This is
+   the cleanest demonstration in the whole exercise of why guardrail 1 exists, and it was
+   produced by following it rather than by arguing for it.
+2. **Smoothing made it worse, not better** (+0.042 → +0.006). The turnover problem and the
+   skill problem were never trading off against each other — there was no skill to preserve.
+   The earlier worry that "slowing it down might kill the signal" had the causality backwards.
+3. **De-sizing changed nothing** (+0.042 → +0.055), which is what de-sizing a signal with no
+   ordering should do. The bucket method is fine; there was simply nothing to remove.
+
+Separately, the arithmetic already closed submission for this field before the ladder ran:
+`fitness = Sharpe × sqrt(|returns| / max(turnover, 0.125))` = 1.44 × sqrt(0.046/1.067) =
+**0.30** against a bar of 1.0. Reaching 1.0 at that Sharpe and return needs turnover ≤ 9.5%
+against an actual 107%.
+
+# 1.0 was not tested, and cannot be tested on BRAIN
+
+Asked directly on 2026-09-24 whether the legacy 1.0 ETF strategies had been tried here. They
+had not, and three structural reasons make it impossible rather than merely undone:
+
+1. **Wrong instruments.** 1.0 trades ETFs — SPY, QQQ, IWM, TLT, GLD, HYG, LQD, EEM, USO and
+   the XL* sector set. BRAIN's USA/TOP3000 is individual common stock, and all fourteen
+   datasets visible to this account are `instrumentType: EQUITY`.
+2. **Wrong strategy shape.** 1.0 is a time-series regime allocator — rotate defensive when the
+   macro regime turns. BRAIN's engine converts a *cross-sectional score over ~3,000 names*
+   into a dollar-neutral long-short book. It has no cash position and no timing dimension, so
+   "go defensive" has no expression in the language.
+3. **The deciding measurement is unconstructible there.** Ten deciles over 12–35 ETFs gives
+   one to three assets per decile. Step 246 already found 35 multi-asset ETFs supply
+   **4.16 effective assets**, so the breadth is not there either.
+
+Testing 1.0 adversarially is a real and open piece of work. It needs a multi-asset backtester
+on our own data, not BRAIN. Logged as queue item **S16**.
+
+# Final tally
+
+**Fifteen constructions. Four datasets. Twelve signal families. Zero with cross-sectional
+skill above a coverage-matched no-skill control.**
+
+| family group | best monotonicity | its control | cleared? |
+|---|---|---|---|
+| fundamentals (coverage 0.5) | `sales_yield` +0.988 | `assets` +0.867 | marginal, and it is sales÷market-cap |
+| news sentiment (coverage 1.0) | `news_impact` +0.055 | `cap` +0.091 | **no** |
+| social sentiment (coverage 1.0) | Sharpe 0.38 best | `cap` +0.091 | not laddered — Sharpe below control |
+
+BRAIN removed all four stated weaknesses of the Step 296–308 null at once — a panel we built,
+a universe we restricted, a construction-error history, and our own backtester — and returned
+the same answer on a ~6× cross-section. **The null replicates.** That was the declared expected
+outcome and it is the valuable one.
+
+Nothing was submitted. `submission_authorized` remains `false`. The account holds 0 submitted
+alphas against ~200 simulations run, which is the correct number.

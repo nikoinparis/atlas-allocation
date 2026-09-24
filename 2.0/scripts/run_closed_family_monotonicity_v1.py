@@ -29,6 +29,7 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+import decile_shape as ds
 sys.path.insert(0, str(ROOT / "scripts"))
 
 REGISTRY = ROOT / "config/closed_family_monotonicity_registry_v1.json"
@@ -69,6 +70,7 @@ def measure(signal: pd.DataFrame, forward: pd.DataFrame, rng) -> dict:
     density = float((signal.notna() & (signal != 0)).sum().sum()
                     / max(1, signal.notna().sum().sum()))
     ics, spreads, monos = [], [], []
+    monos_mid = []
     weeks = [w for w in signal.index[::HORIZON] if w in forward.index]
     for week in weeks:
         pair = pd.DataFrame({"s": signal.loc[week], "f": forward.loc[week]}).dropna()
@@ -84,6 +86,8 @@ def measure(signal: pd.DataFrame, forward: pd.DataFrame, rng) -> dict:
             continue
         spreads.append(float(means.iloc[-1] - means.iloc[0]))
         monos.append(float(pd.Series(means.index).corr(pd.Series(means.to_numpy()), method="spearman")))
+        # S14: the middle eight, so a concentration effect cannot pass as an ordering.
+        monos_mid.append(ds.middle_monotonicity(means))
     ics = np.array([x for x in ics if np.isfinite(x)])
     if len(ics) < 20:
         return {"decisions": int(len(ics)), "inconclusive": True}
@@ -103,6 +107,8 @@ def measure(signal: pd.DataFrame, forward: pd.DataFrame, rng) -> dict:
             "deciles_interpretable": bool(density >= 0.50),
             "decile_spread_annualised": float((1 + spread) ** periods - 1) if np.isfinite(spread) else float("nan"),
             "monotonicity": float(np.mean(monos)) if monos else float("nan"),
+            "monotonicity_middle_8": (float(np.nanmean(monos_mid))
+                                      if monos_mid else float("nan")),
             "inconclusive": False}
 
 
@@ -142,7 +148,7 @@ def main() -> int:
 
     print(f"\nclosed-family monotonicity, {HORIZON}-week horizon, Bonferroni p < {BONFERRONI:.4f}\n")
     print(f"{'family':30s} {'n':>4s} {'dens':>6s} {'mean IC':>9s} {'t':>7s} {'p':>8s} "
-          f"{'decile spread':>14s} {'monotone':>9s}")
+          f"{'decile spread':>14s} {'monotone':>9s} {'mid-8':>8s}")
     for name, r in sorted(results.items(), key=lambda kv: -abs(kv[1].get("monotonicity", 0) or 0)):
         if r.get("inconclusive"):
             print(f"{name:30s} {r['decisions']:>4d}   too few decisions to measure")
@@ -157,7 +163,7 @@ def main() -> int:
     usable = {k: v for k, v in results.items() if not v.get("inconclusive")}
     clearing = [k for k, v in usable.items() if v["clears_bonferroni"]]
     monotone = [k for k, v in usable.items()
-                if abs(v["monotonicity"]) > 0.5 and v["deciles_interpretable"]]
+                if ds.clears(v["monotonicity"], v.get("monotonicity_middle_8", float("nan"))) and v["deciles_interpretable"]]
     sparse = [k for k, v in usable.items() if not v["deciles_interpretable"]]
     print(f"\nfamilies measured: {len(usable)}")
     print(f"clearing Bonferroni {BONFERRONI:.4f}: {len(clearing)}" + (f" -- {clearing}" if clearing else ""))

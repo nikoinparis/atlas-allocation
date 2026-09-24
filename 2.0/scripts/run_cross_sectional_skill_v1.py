@@ -33,6 +33,7 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+import decile_shape as ds
 sys.path.insert(0, str(ROOT / "scripts"))
 import build_dashboard_signals_out_of_sample_v1 as oos
 
@@ -57,6 +58,7 @@ def forward_returns(returns: pd.DataFrame, week: pd.Timestamp, horizon: int) -> 
 def measure(pairs: list[tuple[pd.Series, pd.Series]], rng: np.random.Generator) -> dict:
     """pairs is a list of (score, forward return) aligned Series, one per decision."""
     ics, spreads, monos = [], [], []
+    monos_mid = []
     for score, forward in pairs:
         both = pd.concat({"s": score, "f": forward}, axis=1).dropna()
         if len(both) < 30:
@@ -71,6 +73,8 @@ def measure(pairs: list[tuple[pd.Series, pd.Series]], rng: np.random.Generator) 
             continue
         spreads.append(float(means.iloc[-1] - means.iloc[0]))
         monos.append(float(pd.Series(means.index).corr(pd.Series(means.to_numpy()), method="spearman")))
+        # S14: the middle eight, so a concentration effect cannot pass as an ordering.
+        monos_mid.append(ds.middle_monotonicity(means))
     ics = np.array([x for x in ics if np.isfinite(x)])
     if len(ics) < 8:
         return {"decisions": int(len(ics)), "inconclusive": True}
@@ -90,6 +94,8 @@ def measure(pairs: list[tuple[pd.Series, pd.Series]], rng: np.random.Generator) 
         "decile_spread_per_period": spread,
         "decile_spread_annualised": float((1.0 + spread) ** periods - 1.0) if np.isfinite(spread) else float("nan"),
         "monotonicity": float(np.mean(monos)) if monos else float("nan"),
+            "monotonicity_middle_8": (float(np.nanmean(monos_mid))
+                                      if monos_mid else float("nan")),
         "inconclusive": False,
     }
 
@@ -148,7 +154,7 @@ def main() -> int:
 
     print(f"cross-sectional skill, {HORIZON}-week horizon, Bonferroni bar p < {BONFERRONI:.4f}\n")
     print(f"{'signal':40s} {'n':>4s} {'mean IC':>9s} {'t':>7s} {'p':>8s} "
-          f"{'decile spread':>14s} {'monotone':>9s}")
+          f"{'decile spread':>14s} {'monotone':>9s} {'mid-8':>8s}")
     for name, r in results.items():
         if r.get("inconclusive"):
             print(f"{name:40s} {r['decisions']:>4d}   too few decisions to measure")
@@ -156,12 +162,13 @@ def main() -> int:
         flag = " *" if r["clears_bonferroni"] else ""
         print(f"{name:40s} {r['decisions']:>4d} {r['mean_ic']:+9.4f} {r['t_stat']:+7.2f} "
               f"{r['bootstrap_p']:8.4f} {r['decile_spread_annualised']:+13.2%} "
-              f"{r['monotonicity']:+9.2f}{flag}")
+              f"{r['monotonicity']:+9.2f}"
+              f"{r.get('monotonicity_middle_8', float('nan')):+9.2f}{flag}")
 
     usable = {k: v for k, v in results.items() if not v.get("inconclusive")}
     clearing = [k for k, v in usable.items() if v["clears_bonferroni"]]
     positive_and_monotone = [k for k, v in usable.items()
-                             if v["mean_ic"] > 0 and v["monotonicity"] > 0.5]
+                             if v["mean_ic"] > 0 and ds.clears(v["monotonicity"], v.get("monotonicity_middle_8", float("nan")))]
     print(f"\nsignals measured: {len(usable)}")
     print(f"clearing Bonferroni {BONFERRONI:.4f}: {len(clearing)}"
           + (f" -- {clearing}" if clearing else ""))

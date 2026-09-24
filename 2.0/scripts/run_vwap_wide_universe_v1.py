@@ -31,6 +31,7 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+import decile_shape as ds
 
 REGISTRY = ROOT / "config/vwap_wide_universe_registry_v1.json"
 OUTPUT = ROOT / "evidence/vwap_wide_universe_v1"
@@ -50,6 +51,7 @@ def load(path: Path) -> pd.DataFrame:
 
 def measure(pairs, rng) -> dict:
     ics, spreads, monos, widths, density = [], [], [], [], []
+    monos_mid = []
     for score, forward in pairs:
         both = pd.concat({"s": score, "f": forward}, axis=1).dropna()
         if len(both) < 60:
@@ -65,6 +67,8 @@ def measure(pairs, rng) -> dict:
             continue
         spreads.append(float(means.iloc[-1] - means.iloc[0]))
         monos.append(float(pd.Series(means.index).corr(pd.Series(means.to_numpy()), method="spearman")))
+        # S14: the middle eight, so a concentration effect cannot pass as an ordering.
+        monos_mid.append(ds.middle_monotonicity(means))
     ics = np.array([x for x in ics if np.isfinite(x)])
     if len(ics) < 20:
         return {"decisions": int(len(ics)), "inconclusive": True}
@@ -83,6 +87,8 @@ def measure(pairs, rng) -> dict:
             "clears_bonferroni": bool(p < BONFERRONI),
             "decile_spread_annualised": float((1 + spread) ** periods - 1) if np.isfinite(spread) else float("nan"),
             "monotonicity": float(np.mean(monos)) if monos else float("nan"),
+            "monotonicity_middle_8": (float(np.nanmean(monos_mid))
+                                      if monos_mid else float("nan")),
             "inconclusive": False}
 
 
@@ -174,7 +180,7 @@ def main() -> int:
 
     print(f"VWAP on {len(shared)} US issuers, {HORIZON}-week horizon, Bonferroni p < {BONFERRONI:.4f}\n")
     print(f"{'signal':26s} {'n':>4s} {'names':>6s} {'mean IC':>9s} {'t':>7s} {'p':>8s} "
-          f"{'decile spread':>14s} {'monotone':>9s}")
+          f"{'decile spread':>14s} {'monotone':>9s} {'mid-8':>8s}")
     for name, r in results.items():
         if r.get("inconclusive"):
             print(f"{name:26s} {r['decisions']:>4d}   too few decisions")

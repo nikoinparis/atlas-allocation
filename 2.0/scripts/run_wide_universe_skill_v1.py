@@ -32,6 +32,11 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parent))
+import decile_shape as ds
+
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "scripts"))
@@ -115,7 +120,7 @@ def main() -> int:
 
     print(f"wide-universe skill, {HORIZON}-week horizon, Bonferroni p < {BONFERRONI:.4f}\n")
     print(f"{'signal':30s} {'n':>4s} {'names':>7s} {'mean IC':>9s} {'t':>7s} {'p':>8s} "
-          f"{'decile spread':>14s} {'monotone':>9s}")
+          f"{'decile spread':>14s} {'monotone':>9s} {'mid-8':>8s}")
     for name, r in results.items():
         if r.get("inconclusive"):
             print(f"{name:30s} {r['decisions']:>4d}   too few decisions")
@@ -129,7 +134,7 @@ def main() -> int:
 
     usable = {k: v for k, v in results.items() if not v.get("inconclusive")}
     monotone = [k for k, v in usable.items()
-                if abs(v["monotonicity"]) > 0.5 and v["deciles_interpretable"]]
+                if ds.clears(v["monotonicity"], v.get("monotonicity_middle_8", float("nan"))) and v["deciles_interpretable"]]
     clearing = [k for k, v in usable.items() if v["bootstrap_p"] < BONFERRONI]
     print(f"\nsignals measured: {len(usable)}")
     print(f"clearing Bonferroni {BONFERRONI:.4f}: {len(clearing)}" + (f" -- {clearing}" if clearing else ""))

@@ -1,0 +1,166 @@
+id,description,type,coverage,userCount,alphaCount
+primary_sector_focused_company_count,Number of companies primarily focused in a given sector.,MATRIX,0.3508,223,267
+pv13_1l_scibr,grouping fields,GROUP,0.9385,1469,3487
+pv13_2l_scibr,grouping fields,GROUP,0.9385,229,401
+pv13_3l_scibr,grouping fields,GROUP,0.9385,956,1705
+pv13_4l_scibr,grouping fields,GROUP,0.9385,558,806
+pv13_5l_scibr,grouping fields,GROUP,0.9385,711,1052
+pv13_6l_scibr,grouping fields,GROUP,0.9385,513,792
+pv13_com_page_rank,the PageRank of competitors,MATRIX,0.9051,1653,2838
+pv13_com_rk_au,the HITS authority score of competitors,MATRIX,0.9051,1876,3374
+pv13_custretsig_retsig,Sign of customer return,MATRIX,0.9276,2184,5240
+pv13_di_5l,grouping fields,GROUP,1.0,11,12
+pv13_di_6l,grouping fields,GROUP,1.0,8,12
+pv13_h2_min2_1k_sector,Grouping fields for top 1000,GROUP,0.3681,1078,2026
+pv13_h2_sector,grouping fields,GROUP,1.0,1327,2958
+pv13_h_f1_sector,grouping fields,GROUP,0.9989,1617,5446
+pv13_h_f3_sector,grouping fields,GROUP,0.9989,276,811
+pv13_h_min10_all_sector,grouping fields,GROUP,0.9995,271,941
+pv13_h_min10_top3000_sector,grouping fields,GROUP,1.0,362,997
+pv13_h_min20_top3000_sector,grouping fields,GROUP,1.0,342,1088
+pv13_h_min22_1000_sector,Grouping fields for top 1000,GROUP,0.3673,553,1255
+pv13_h_min24_500_sector,Grouping fields for top 500,GROUP,0.186,532,930
+pv13_h_min2_3000_sector,grouping fields,GROUP,1.0,3917,21339
+pv13_h_min2_focused_pureplay_3000_sector,grouping fields,GROUP,1.0,2659,12261
+pv13_h_min2_focused_sector,Grouping fields for top 200,GROUP,0.1832,912,1628
+pv13_h_min30_3000_mapped_sector,grouping fields,GROUP,1.0,184,551
+pv13_h_min51_f3_sector,grouping fields,GROUP,0.9989,180,772
+pv13_h_min52_1k_sector,Grouping fields for top 1000,GROUP,0.3673,615,1132
+pv13_h_min52_3000_sector,grouping fields,GROUP,1.0,151,505
+pv13_h_min5_3000_sector,grouping fields,GROUP,1.0,208,655
+pv13_h_min5_500_sector,Grouping fields,GROUP,0.1832,173,291
+pv13_hierarchy23_513_sector,grouping fields,GROUP,0.9933,94,116
+pv13_hierarchy23_sector,grouping fields,GROUP,1.0,882,1361
+pv13_hierarchy2_513_sector,grouping fields,GROUP,0.9933,85,93
+pv13_hierarchy2_min2_1k_513_sector,grouping fields,GROUP,0.3548,11,11
+pv13_hierarchy_f1_513_sector,grouping fields,GROUP,0.9929,50,68
+pv13_hierarchy_f2_513_sector,grouping fields,GROUP,0.9929,53,58
+pv13_hierarchy_f2_sector,grouping fields,GROUP,1.0,77,93
+pv13_hierarchy_f3_513_sector,grouping fields,GROUP,0.9929,31,36
+pv13_hierarchy_f4_513_sector,grouping fields,GROUP,0.9929,36,40
+pv13_hierarchy_f4_sector,grouping fields,GROUP,1.0,93,114
+pv13_hierarchy_min100_2000_513_sector,grouping fields,GROUP,0.6945,51,58
+pv13_hierarchy_min100_corr21_513_sector,grouping fields,GROUP,0.6299,30,37
+pv13_hierarchy_min100_corr21_sector,grouping fields,GROUP,0.4817,34,39
+pv13_hierarchy_min10_1000_513_sector,grouping fields,GROUP,0.3539,20,20
+pv13_hierarchy_min10_2k_513_sector,grouping fields,GROUP,0.6945,52,58
+pv13_hierarchy_min10_2k_sector,grouping fields,GROUP,0.7196,111,172
+pv13_hierarchy_min10_3k_all_sector,grouping fields,GROUP,1.0,50,82
+pv13_hierarchy_min10_513_sector,grouping fields,GROUP,0.6945,63,80
+pv13_hierarchy_min10_industry_3000_513_sector,grouping fields,GROUP,0.9929,51,66
+pv13_hierarchy_min10_industry_3000_sector,grouping fields,GROUP,1.0,66,95
+pv13_hierarchy_min10_sector,grouping fields,GROUP,0.7036,105,129
+pv13_hierarchy_min10_sector_3000_513_sector,grouping fields,GROUP,0.9929,35,59
+pv13_hierarchy_min10_sector_3000_sector,grouping fields,GROUP,1.0,57,71
+pv13_hierarchy_min10_top3000_513_sector,grouping fields,GROUP,0.9929,36,55
+pv13_hierarchy_min20_3k_513_sector,grouping fields,GROUP,0.9929,40,43
+pv13_hierarchy_min20_3k_sector,grouping fields,GROUP,1.0,57,75
+pv13_hierarchy_min20_513_sector,grouping fields,GROUP,0.6945,26,27
+pv13_hierarchy_min20_f3_513_sector,grouping fields,GROUP,0.9929,60,64
+pv13_hierarchy_min20_sector,grouping fields,GROUP,0.7036,40,42
+pv13_hierarchy_min20_top3000_513_sector,grouping fields,GROUP,0.9929,37,40
+pv13_hierarchy_min22_1000_513_sector,grouping fields,GROUP,0.3539,12,12
+pv13_hierarchy_min22_513_sector,grouping fields,GROUP,0.6945,17,17
+pv13_hierarchy_min22_sector,grouping fields,GROUP,0.7196,43,55
+pv13_hierarchy_min25_513_sector,grouping fields,GROUP,0.6945,24,29
+pv13_hierarchy_min25_sector,grouping fields,GROUP,0.7196,52,57
+pv13_hierarchy_min2_1000_513_sector,grouping fields,GROUP,0.3539,21,24
+pv13_hierarchy_min2_3000_513_sector,grouping fields,GROUP,0.9929,48,65
+pv13_hierarchy_min2_513_sector,grouping fields,GROUP,0.6945,26,26
+pv13_hierarchy_min2_focused_only_513_sector,grouping fields,GROUP,0.6945,23,24
+pv13_hierarchy_min2_focused_only_sector,grouping fields,GROUP,0.7036,742,1313
+pv13_hierarchy_min2_focused_pureplay_3000_513_sector,grouping fields,GROUP,0.9929,314,425
+pv13_hierarchy_min2_focused_pureplay_513_sector,grouping fields,GROUP,0.6945,29,35
+pv13_hierarchy_min2_focused_pureplay_sector,grouping fields,GROUP,0.7196,53,63
+pv13_hierarchy_min2_pureplay_only_513_sector,grouping fields,GROUP,0.6945,113,160
+pv13_hierarchy_min2_pureplay_only_sector,grouping fields,GROUP,0.7036,868,1425
+pv13_hierarchy_min2_sector,grouping fields,GROUP,0.7196,103,146
+pv13_hierarchy_min30_3000_513_sector,grouping fields,GROUP,0.9929,33,55
+pv13_hierarchy_min30_3000_mapped_513_sector,grouping fields,GROUP,0.9929,32,36
+pv13_hierarchy_min30_513_sector,grouping fields,GROUP,0.6945,20,24
+pv13_hierarchy_min30_sector,grouping fields,GROUP,0.7196,47,54
+pv13_hierarchy_min40_3000_513_sector,grouping fields,GROUP,0.9929,35,38
+pv13_hierarchy_min50_f3_513_sector,grouping fields,GROUP,0.9929,68,78
+pv13_hierarchy_min51_f1_513_sector,grouping fields,GROUP,0.9929,24,28
+pv13_hierarchy_min51_f1_sector,grouping fields,GROUP,0.9989,122,155
+pv13_hierarchy_min51_f2_513_sector,grouping fields,GROUP,0.9929,39,43
+pv13_hierarchy_min51_f2_sector,grouping fields,GROUP,1.0,77,101
+pv13_hierarchy_min51_f3_513_sector,grouping fields,GROUP,0.9929,21,29
+pv13_hierarchy_min51_f4_513_sector,grouping fields,GROUP,0.9929,58,65
+pv13_hierarchy_min51_f4_sector,grouping fields,GROUP,1.0,74,90
+pv13_hierarchy_min52_1k_513_sector,grouping fields,GROUP,0.3539,22,23
+pv13_hierarchy_min52_2k_513_sector,grouping fields,GROUP,0.6945,15,15
+pv13_hierarchy_min52_2k_sector,grouping fields,GROUP,0.7196,55,61
+pv13_hierarchy_min52_513_sector,grouping fields,GROUP,0.9929,56,65
+pv13_hierarchy_min52_sector,grouping fields,GROUP,1.0,77,90
+pv13_hierarchy_min54_3000_sector,grouping fields,GROUP,1.0,82,95
+pv13_hierarchy_min5_1000_513_sector,grouping fields,GROUP,0.3539,27,28
+pv13_hierarchy_min5_3000_513_sector,grouping fields,GROUP,0.9929,72,79
+pv13_hierarchy_min5_513_sector,grouping fields,GROUP,0.6945,18,19
+pv13_hierarchy_min5_corr21_1000_513_sector,grouping fields,GROUP,0.3539,19,19
+pv13_hierarchy_min5_f3g2_sector,grouping fields,GROUP,1.0,75,93
+pv13_hierarchy_min5_sector,grouping fields,GROUP,0.7196,47,53
+pv13_hierarchy_sector,grouping fields,GROUP,1.0,139,198
+pv13_hierarchys32_513_sector,grouping fields,GROUP,0.9933,34,37
+pv13_hierarchys32_sector,grouping fields,GROUP,1.0,102,120
+pv13_new_1l_scibr,grouping fields,GROUP,0.9896,914,1556
+pv13_new_2l_scibr,grouping fields,GROUP,0.9896,116,141
+pv13_new_3l_scibr,grouping fields,GROUP,0.9896,94,111
+pv13_new_4l_scibr,grouping fields,GROUP,0.9896,119,158
+pv13_new_5l_scibr,grouping fields,GROUP,0.9896,134,177
+pv13_new_6l_scibr,grouping fields,GROUP,0.9896,143,244
+pv13_ompetitorgraphrank_hub_rank,the HITS hub score of competitors,MATRIX,0.9051,1312,2129
+pv13_r2_liquid_min10_sector,grouping fields,GROUP,0.1833,309,688
+pv13_r2_liquid_min2_sector,grouping fields,GROUP,0.1833,95,123
+pv13_r2_liquid_min5_sector,grouping fields,GROUP,0.1833,128,188
+pv13_r2_min10_1000_sector,grouping fields,GROUP,0.3674,123,270
+pv13_r2_min10_3000_sector,grouping fields,GROUP,1.0,225,685
+pv13_r2_min20_1000_sector,grouping fields,GROUP,0.3674,125,294
+pv13_r2_min20_3000_sector,grouping fields,GROUP,1.0,3178,12537
+pv13_r2_min2_1000_sector,grouping fields,GROUP,0.3674,104,242
+pv13_r2_min2_3000_sector,grouping fields,GROUP,1.0,3952,20649
+pv13_r2_min5_1000_sector,grouping fields,GROUP,0.3674,97,228
+pv13_r2_min5_3000_sector,grouping fields,GROUP,1.0,250,884
+pv13_rcsed_6l,grouping fields,GROUP,1.0,3,3
+pv13_revere_city,City code,MATRIX,0.9382,1053,1930
+pv13_revere_company_total,Total number of companies in the sector,MATRIX,0.3508,639,797
+pv13_revere_comproduct_company,Company product,MATRIX,0.4078,67,79
+pv13_revere_country,Country code,MATRIX,0.9573,897,1631
+pv13_revere_index_cap,Company market capitalization,MATRIX,0.8495,1273,2147
+pv13_revere_index_value,Value of specified index for the date,MATRIX,0.8603,503,653
+pv13_revere_key_sector_total,Number of key focus sectors for the company,MATRIX,0.9334,2720,4800
+pv13_revere_level,Level of the sector within the hierarchy,MATRIX,0.6205,525,764
+pv13_revere_parent,Code of parent sector,MATRIX,0.6205,447,571
+pv13_revere_term,"Indicates when a sector is the terminal sector (i.e., no sub-sectors)",MATRIX,0.4115,212,344
+pv13_revere_term_sector_total,Number of terminal sectors for the company,MATRIX,0.9334,1385,3528
+pv13_revere_zipcode,Zip code,MATRIX,0.9328,590,1381
+pv13_reveremap,Mapping data,MATRIX,0.9924,1872,4436
+pv13_rha2_min10_1000_513_sector,grouping fields,GROUP,0.3539,11,11
+pv13_rha2_min10_3000_513_sector,grouping fields,GROUP,0.9933,64,71
+pv13_rha2_min10_513_sector,grouping fields,GROUP,0.6959,18,21
+pv13_rha2_min10_sector,grouping fields,GROUP,0.722,68,80
+pv13_rha2_min20_3000_513_sector,grouping fields,GROUP,0.9933,50,60
+pv13_rha2_min20_513_sector,grouping fields,GROUP,0.6959,33,37
+pv13_rha2_min20_sector,grouping fields,GROUP,0.722,83,92
+pv13_rha2_min2_1000_513_sector,grouping fields,GROUP,0.3539,23,25
+pv13_rha2_min2_3000_513_sector,grouping fields,GROUP,0.9933,46,52
+pv13_rha2_min2_513_sector,grouping fields,GROUP,0.6959,19,19
+pv13_rha2_min2_sector,grouping fields,GROUP,0.722,1000,1858
+pv13_rha2_min30_3000_513_sector,grouping fields,GROUP,0.993,35,45
+pv13_rha2_min40_3000_513_sector,grouping fields,GROUP,0.993,52,56
+pv13_rha2_min5_1000_513_sector,grouping fields,GROUP,0.3539,17,18
+pv13_rha2_min5_3000_513_sector,grouping fields,GROUP,0.9933,34,35
+pv13_rha2_min5_513_sector,grouping fields,GROUP,0.6959,43,45
+pv13_rha2_min5_sector,grouping fields,GROUP,0.722,1065,2058
+pv13_ustomergraphrank_auth_rank,the HITS authority score of customers,MATRIX,0.7906,603,850
+pv13_ustomergraphrank_hub_rank,the HITS hub score of customers,MATRIX,0.7906,850,1292
+pv13_ustomergraphrank_page_rank,the PageRank of customers,MATRIX,0.7906,853,1266
+rel_num_all,number of the companies whose product overlapped with the instrument,MATRIX,0.9939,2767,6417
+rel_num_comp,number of the instrument's competitors,MATRIX,0.8902,1594,2784
+rel_num_cust,number of the instrument's customers,MATRIX,0.5068,1186,2902
+rel_num_part,number of the instrument's partners,MATRIX,0.7837,3123,8116
+rel_ret_all,Averaged one-day return of the companies whose product overlapped with the instrument,MATRIX,0.9613,2664,4682
+rel_ret_comp,Averaged one-day return of the competing companies,MATRIX,0.8228,3316,5810
+rel_ret_cust,averaged one-day-return of the instrument's customers,MATRIX,0.4921,397,860
+rel_ret_part,Averaged one-day return of the instrument's partners,MATRIX,0.7097,2519,5529
+single_sector_pureplay_company_count,Number of companies exclusively operating in a single sector.,MATRIX,0.3508,45,58

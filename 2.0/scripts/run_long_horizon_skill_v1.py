@@ -37,6 +37,7 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+import decile_shape as ds
 sys.path.insert(0, str(ROOT / "scripts"))
 import build_dashboard_signals_out_of_sample_v1 as oos
 import run_wide_universe_skill_v1 as wide
@@ -48,6 +49,7 @@ BONFERRONI = 0.05 / 6
 
 def measure(pairs, horizon: int, rng) -> dict:
     ics, spreads, monos, widths = [], [], [], []
+    monos_mid = []
     for score, forward in pairs:
         both = pd.concat({"s": score, "f": forward}, axis=1).dropna()
         if len(both) < 100:
@@ -63,6 +65,8 @@ def measure(pairs, horizon: int, rng) -> dict:
             continue
         spreads.append(float(means.iloc[-1] - means.iloc[0]))
         monos.append(float(pd.Series(means.index).corr(pd.Series(means.to_numpy()), method="spearman")))
+        # S14: the middle eight, so a concentration effect cannot pass as an ordering.
+        monos_mid.append(ds.middle_monotonicity(means))
     ics = np.array([x for x in ics if np.isfinite(x)])
     if len(ics) < 12:
         return {"decisions": int(len(ics)), "inconclusive": True}
@@ -90,6 +94,8 @@ def measure(pairs, horizon: int, rng) -> dict:
         "decile_spread_over_horizon": spread,
         "decile_spread_annualised": float((1 + spread) ** (1 / years) - 1) if np.isfinite(spread) and spread > -1 else float("nan"),
         "monotonicity": float(np.mean(monos)) if monos else float("nan"),
+            "monotonicity_middle_8": (float(np.nanmean(monos_mid))
+                                      if monos_mid else float("nan")),
         "deciles_interpretable": True, "inconclusive": False,
     }
 
@@ -135,7 +141,7 @@ def main() -> int:
 
     print(f"long-horizon skill, Bonferroni p < {BONFERRONI:.4f}\n")
     print(f"{'signal @ horizon':36s} {'n':>4s} {'indep':>6s} {'names':>6s} {'mean IC':>9s} "
-          f"{'t':>7s} {'p':>8s} {'spread/yr':>11s} {'monotone':>9s}")
+          f"{'t':>7s} {'p':>8s} {'spread/yr':>11s} {'monotone':>9s} {'mid-8':>8s}")
     for name, r in results.items():
         if r.get("inconclusive"):
             print(f"{name:36s} {r['decisions']:>4d}   too few decisions to measure")
@@ -144,10 +150,11 @@ def main() -> int:
         print(f"{name:36s} {r['decisions']:>4d} {r['non_overlapping_equivalent']:>6d} "
               f"{r['median_names']:>6d} {r['mean_ic']:+9.4f} {r['t_stat']:+7.2f} "
               f"{r['bootstrap_p']:8.4f} {r['decile_spread_annualised']:+10.2%} "
-              f"{r['monotonicity']:+9.2f}{flag}")
+              f"{r['monotonicity']:+9.2f}"
+              f"{r.get('monotonicity_middle_8', float('nan')):+9.2f}{flag}")
 
     usable = {k: v for k, v in results.items() if not v.get("inconclusive")}
-    monotone = [k for k, v in usable.items() if abs(v["monotonicity"]) > 0.5]
+    monotone = [k for k, v in usable.items() if ds.clears(v["monotonicity"], v.get("monotonicity_middle_8", float("nan")))]
     clearing = [k for k, v in usable.items() if v["clears_bonferroni"]]
     print(f"\nmeasured: {len(usable)} of {len(results)}")
     print(f"clearing Bonferroni {BONFERRONI:.4f}: {len(clearing)}" + (f" -- {clearing}" if clearing else ""))

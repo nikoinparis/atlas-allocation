@@ -15655,3 +15655,115 @@ the conclusion is about the thesis, not the implementation.
 Written: `docs/LEGACY_1_0_REGIME_PLACEBO_V1.md`,
 `scripts/run_legacy_1_0_regime_placebo_v1.py`, evidence in
 `evidence/legacy_1_0_regime_placebo_v1/`. Nothing promoted, nothing traded.
+
+## Step 320 — 2026-09-24 — Three LLM trading papers reviewed; none implemented, one idea queued
+
+The owner brought three papers and asked whether they could be implemented. Each was read
+from its arXiv text (abstract and HTML body) before being judged; nothing was run.
+
+**HARLF** (Coriat & Benhamou, arXiv 2507.18560). Hierarchical RL — PPO/SAC/DDPG/TD3 base agents,
+meta-agents, a super-agent — over 14 country indices and three commodities, monthly, with
+FinBERT sentiment on ~10 Google News articles per asset per month. Train 2003–2017, test
+2018–2024, 26% annualised, Sharpe 1.2. Transaction costs are explicitly excluded; no significance
+test, confidence interval or leave-one-out; hyperparameter selection is not described. It is a
+multi-asset timing allocator, which Steps 318–319 just refuted in this project's own 1.0, on a
+universe too narrow to read on deciles. Google News historical search is not point-in-time. News
+sentiment already reached Sharpe 1.44 on BRAIN with monotonicity +0.042 (Step 317). Closed unstarted.
+
+**Automate Strategy Finding with LLM** (arXiv 2409.06289). GPT-4o generates ~100 seed formulaic
+alphas in nine categories, a multi-agent filter keeps those above a confidence threshold, weights
+are optimised dynamically. SSE50 test Jan 2023–Jan 2024, +53.17%; S&P 500 +93.61% in H1 2021.
+The categories are families this project has already closed. The central defect is one the
+project's rule 2 names: **the test windows lie inside the generating model's training data**, so
+the factor author had read the outcome. No multiple-testing correction. Closed unstarted.
+
+**TradingAgents** (arXiv 2412.20138). A simulated trading firm of LLM agents — fundamental,
+sentiment, news and technical analysts, bull/bear researchers, trader, risk team. Tested on a
+handful of mega-caps, 2024-01-01 to 2024-03-29: AAPL +26.62%, Sharpe 8.21, max drawdown 0.91%.
+About sixty trading days per name, single-name time series, costs not disclosed, run count not
+stated; the authors say three months was a budget limit (~11 LLM and 20+ tool calls per
+decision). A Sharpe of 8 on sixty days is not evidence of anything. Its test window does sit after
+its models' cutoffs, which is the one thing it does right, and it points at the only honest way
+to test any LLM trader: forward. Queued as C4 — forward-only, pre-registered, read on the decile
+ladder, spend requiring owner sign-off, and behind the standing clocks-first decision.
+
+**The general lesson, recorded so it is applied to every future LLM proposal:** an LLM backtest
+over any period before the model's knowledge cutoff is contaminated by memorisation, whatever the
+code does to restrict its inputs. For a model with a mid-2026 cutoff, the clean backtest window
+today is roughly three months long. Nothing implemented, nothing promoted, nothing traded.
+
+## Step 320 — 2026-09-24 — S14 closed, and it caught a +0.358 the same week it shipped
+
+Two pieces of work, and the second tested the first on live data by accident.
+
+**S14 — the 0.5 monotonicity bar did not exclude concentration, and now does.**
+`run_cross_sectional_skill_v1.py` documented monotonicity as the statistic catching "a top
+decile that wins while two through nine are unordered" and applied a 0.5 bar. It did not catch
+that shape: nine tied deciles plus one large top decile scores **+0.522** on its own
+pandas/scipy Spearman, above the bar it was meant to fail. Step 317 then produced the case in
+the wild — BRAIN's `mean_news_impact_projection` at Sharpe 1.44, clearing BRAIN's submission
+bar, with full-ladder monotonicity **+0.042** and middle-eight **−0.214**.
+
+Written `scripts/decile_shape.py`, one shared implementation verified against five shapes
+including the real BRAIN ladder, and ported into **all seven** screens that compute
+monotonicity — the queue item named five. Every pass/fail decision now runs through
+`ds.clears()`, which requires the full ladder **and** the middle eight to clear in the **same
+direction**. The old `abs(monotonicity) > 0.5` passed both a pure concentration effect and a
+positive ladder sitting on a negative middle.
+
+Re-ran `run_cross_sectional_skill_v1` end to end as a consistency check: 13 signals, 0 clearing
+Bonferroni, 0 monotonic above 0.5 — **identical verdict**, so the fix invalidates nothing.
+Middle-eight values land between −0.122 and +0.161, consistent with the full ladder. A
+consistency check on a null, not a new measurement, exactly as the queue item required.
+
+**The search on genuinely orthogonal data, and why those datasets were chosen.** Every signal
+that has died in this project is a firm-level *characteristic* — a margin, a yield, a
+balance-sheet ratio, a sentiment level — and characteristics correlate with size, value or
+quality, which is why they kept tying their controls. So the targets were signals that are not
+characteristics at all, on the least-trodden datasets available:
+
+- `pv13.rel_ret_all` (coverage 0.96, 18,671 users) — averaged one-day return of companies whose
+  product overlaps this one. A **relationship** signal across product-overlap links, no
+  market-cap denominator and no accounting input. The Cohen–Frazzini customer-momentum family.
+- `option9.pcr_oi_30` (coverage 0.98) — put/call open interest, positioning from another market.
+- `option8.historical_volatility_20` — included deliberately as a **size-linked comparator**.
+
+Signs declared before any ladder ran: peer spillover positive, put/call negative, low-vol
+negative.
+
+| candidate | full ladder | middle-8 | excess over cap control | turnover |
+|---|---|---|---|---|
+| `rel_ret_all` peer spillover | **+0.358** | **+0.071** | +0.267 | 131% |
+| peer spillover, 5d smoothed | −0.236 | +0.238 | −0.327 | 57% |
+| `pcr_oi_30` options positioning | −0.188 | −0.476 | −0.279 | 18% |
+| `historical_volatility_20` (comparator) | −0.006 | −0.119 | −0.097 | 15% |
+
+**`rel_ret_all` produced +0.358 — the highest non-size-contaminated full-ladder reading anything
+in this exercise has returned, a +0.267 excess over the flat `cap` control. Its middle eight is
++0.071.** The ordering is entirely in the extremes. **Without the S14 port finished hours
+earlier, that +0.358 would have read as the first genuine lead in 320 steps.** The gap closed
+on live data in the same session it was closed in code, which is the strongest argument for the
+fix that could have been produced.
+
+Two supporting reads. The **low-volatility comparator came back flat at −0.006**, confirming the
+harness is not simply re-reading size on these coverage-0.98 datasets — so peer spillover's
++0.358 was not a size artefact either, it just is not an ordering. And `pcr_oi` came back
+**negative against its declared sign**, which is a refutation and is not flipped (guardrail 2,
+as with Form 4 at Step 286 and FINRA short volume at Step 282).
+
+**Running total: nineteen constructions, six datasets, twelve families, zero clearing a
+coverage-matched control.**
+
+**Recommendation, recorded as a judgement rather than a result: stop searching BRAIN.** The
+platform has now been given fundamentals, valuation, news sentiment, social sentiment, options
+positioning, volatility and relationship data. It removed all four stated weaknesses of the
+Step 296–308 null and returned the same answer every time. Continuing is the behaviour
+CLAUDE.md §0 describes, and anything found now would be the survivor of a search whose size
+cannot be counted on datasets carrying up to 90,051 users.
+
+**The genuine lead from this session is not a cross-sectional signal.** Step 319 found that
+1.0's regime classifier **identified all three crises correctly** — 2008 at 100%, 2020 at 84%,
+2022 at 87% — and made +15.05% in the GFC against a static blend's −19.23%. Its failure was the
+*response*: in 2022 the stock/bond hedge broke and defensive-into-bonds lost 28.9%. A working
+stress detector whose only defect is what it buys is a materially more promising asset than a
+thirty-third cross-sectional characteristic. Logged as S18.

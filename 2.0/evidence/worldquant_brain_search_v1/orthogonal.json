@@ -1,0 +1,349 @@
+{
+  "peer_spillover_rel_ret": {
+    "expression": "group_rank(rel_ret_all, sector)",
+    "production": {
+      "pnl": 1383661,
+      "bookSize": 20000000,
+      "longCount": 1567,
+      "shortCount": 1555,
+      "turnover": 1.3083,
+      "returns": 0.028,
+      "drawdown": 0.1694,
+      "margin": 4.3e-05,
+      "sharpe": 0.31,
+      "fitness": 0.05,
+      "startDate": "2019-01-01",
+      "checks": [
+        {
+          "name": "LOW_SHARPE",
+          "result": "FAIL",
+          "limit": 1.25,
+          "value": 0.31
+        },
+        {
+          "name": "LOW_FITNESS",
+          "result": "FAIL",
+          "limit": 1.0,
+          "value": 0.05
+        },
+        {
+          "name": "LOW_TURNOVER",
+          "result": "PASS",
+          "limit": 0.01,
+          "value": 1.3083
+        },
+        {
+          "name": "HIGH_TURNOVER",
+          "result": "FAIL",
+          "limit": 0.7,
+          "value": 1.3083
+        },
+        {
+          "name": "CONCENTRATED_WEIGHT",
+          "result": "FAIL"
+        },
+        {
+          "name": "LOW_SUB_UNIVERSE_SHARPE",
+          "result": "FAIL",
+          "limit": 0.13,
+          "value": -0.47
+        },
+        {
+          "name": "SELF_CORRELATION",
+          "result": "PENDING"
+        },
+        {
+          "name": "MATCHES_COMPETITION",
+          "result": "PASS",
+          "competitions": [
+            {
+              "id": "challenge",
+              "name": "Challenge"
+            }
+          ]
+        }
+      ]
+    },
+    "monotonicity": 0.3575757575757576,
+    "monotonicity_middle_8": 0.07142857142857142,
+    "top_minus_bottom": 0.014400000000000001,
+    "inner_spread_d9_minus_d2": 0.0037,
+    "distinct_values": 10,
+    "decile_dispersion": 0.015486135734908176,
+    "extremes_share_of_spread": 0.7430555555555556,
+    "decile_returns": {
+      "1": -0.0158,
+      "2": -0.0033,
+      "3": -0.0071,
+      "4": 0.0108,
+      "5": -0.0137,
+      "6": 0.0401,
+      "7": 0.0041,
+      "8": -0.0125,
+      "9": 0.0004,
+      "10": -0.0014
+    },
+    "excess_over_cap_control": 0.2665757575757576
+  },
+  "peer_spillover_smoothed": {
+    "expression": "group_rank(ts_mean(rel_ret_all, 5), sector)",
+    "production": {
+      "pnl": -166651,
+      "bookSize": 20000000,
+      "longCount": 1570,
+      "shortCount": 1570,
+      "turnover": 0.5716,
+      "returns": -0.0034,
+      "drawdown": 0.1551,
+      "margin": -1.2e-05,
+      "sharpe": -0.08,
+      "fitness": -0.01,
+      "startDate": "2019-01-01",
+      "checks": [
+        {
+          "name": "LOW_SHARPE",
+          "result": "FAIL",
+          "limit": 1.25,
+          "value": -0.08
+        },
+        {
+          "name": "LOW_FITNESS",
+          "result": "FAIL",
+          "limit": 1.0,
+          "value": -0.01
+        },
+        {
+          "name": "LOW_TURNOVER",
+          "result": "PASS",
+          "limit": 0.01,
+          "value": 0.5716
+        },
+        {
+          "name": "HIGH_TURNOVER",
+          "result": "PASS",
+          "limit": 0.7,
+          "value": 0.5716
+        },
+        {
+          "name": "CONCENTRATED_WEIGHT",
+          "result": "PASS"
+        },
+        {
+          "name": "LOW_SUB_UNIVERSE_SHARPE",
+          "result": "PASS",
+          "limit": -0.03,
+          "value": -0.03
+        },
+        {
+          "name": "SELF_CORRELATION",
+          "result": "PENDING"
+        },
+        {
+          "name": "MATCHES_COMPETITION",
+          "result": "PASS",
+          "competitions": [
+            {
+              "id": "challenge",
+              "name": "Challenge"
+            }
+          ]
+        }
+      ]
+    },
+    "monotonicity": -0.23636363636363636,
+    "monotonicity_middle_8": 0.23809523809523808,
+    "top_minus_bottom": -0.0351,
+    "inner_spread_d9_minus_d2": -0.0028000000000000004,
+    "distinct_values": 10,
+    "decile_dispersion": 0.018628107794405744,
+    "extremes_share_of_spread": 0.9202279202279202,
+    "decile_returns": {
+      "1": 0.0133,
+      "2": -0.0166,
+      "3": -0.0155,
+      "4": 0.0025,
+      "5": -0.0037,
+      "6": 0.0164,
+      "7": 0.0388,
+      "8": 0.0116,
+      "9": -0.0194,
+      "10": -0.0218
+    },
+    "excess_over_cap_control": -0.32736363636363636
+  },
+  "options_positioning_pcr": {
+    "expression": "group_rank(-pcr_oi_30, sector)",
+    "production": {
+      "pnl": 690331,
+      "bookSize": 20000000,
+      "longCount": 1557,
+      "shortCount": 1570,
+      "turnover": 0.1752,
+      "returns": 0.014,
+      "drawdown": 0.106,
+      "margin": 0.000159,
+      "sharpe": 0.33,
+      "fitness": 0.09,
+      "startDate": "2019-01-01",
+      "checks": [
+        {
+          "name": "LOW_SHARPE",
+          "result": "FAIL",
+          "limit": 1.25,
+          "value": 0.33
+        },
+        {
+          "name": "LOW_FITNESS",
+          "result": "FAIL",
+          "limit": 1.0,
+          "value": 0.09
+        },
+        {
+          "name": "LOW_TURNOVER",
+          "result": "PASS",
+          "limit": 0.01,
+          "value": 0.1752
+        },
+        {
+          "name": "HIGH_TURNOVER",
+          "result": "PASS",
+          "limit": 0.7,
+          "value": 0.1752
+        },
+        {
+          "name": "CONCENTRATED_WEIGHT",
+          "result": "FAIL"
+        },
+        {
+          "name": "LOW_SUB_UNIVERSE_SHARPE",
+          "result": "FAIL",
+          "limit": 0.14,
+          "value": -0.21
+        },
+        {
+          "name": "SELF_CORRELATION",
+          "result": "PENDING"
+        },
+        {
+          "name": "MATCHES_COMPETITION",
+          "result": "PASS",
+          "competitions": [
+            {
+              "id": "challenge",
+              "name": "Challenge"
+            }
+          ]
+        }
+      ]
+    },
+    "monotonicity": -0.18787878787878787,
+    "monotonicity_middle_8": -0.47619047619047616,
+    "top_minus_bottom": 0.0558,
+    "inner_spread_d9_minus_d2": -0.0052,
+    "distinct_values": 10,
+    "decile_dispersion": 0.02341115973205941,
+    "extremes_share_of_spread": 1.093189964157706,
+    "decile_returns": {
+      "1": -0.064,
+      "2": 0.0045,
+      "3": 0.0161,
+      "4": 0.0221,
+      "5": -0.0002,
+      "6": 0.012,
+      "7": 0.0201,
+      "8": -0.0011,
+      "9": -0.0007,
+      "10": -0.0082
+    },
+    "excess_over_cap_control": -0.27887878787878784
+  },
+  "low_volatility_COMPARATOR": {
+    "expression": "group_rank(-historical_volatility_20, sector)",
+    "production": {
+      "pnl": 1502639,
+      "bookSize": 20000000,
+      "longCount": 1561,
+      "shortCount": 1578,
+      "turnover": 0.1508,
+      "returns": 0.0304,
+      "drawdown": 0.5192,
+      "margin": 0.000403,
+      "sharpe": 0.16,
+      "fitness": 0.07,
+      "startDate": "2019-01-01",
+      "checks": [
+        {
+          "name": "LOW_SHARPE",
+          "result": "FAIL",
+          "limit": 1.25,
+          "value": 0.16
+        },
+        {
+          "name": "LOW_FITNESS",
+          "result": "FAIL",
+          "limit": 1.0,
+          "value": 0.07
+        },
+        {
+          "name": "LOW_TURNOVER",
+          "result": "PASS",
+          "limit": 0.01,
+          "value": 0.1508
+        },
+        {
+          "name": "HIGH_TURNOVER",
+          "result": "PASS",
+          "limit": 0.7,
+          "value": 0.1508
+        },
+        {
+          "name": "CONCENTRATED_WEIGHT",
+          "result": "FAIL",
+          "date": "2023-12-04",
+          "limit": 0.1,
+          "value": 0.50002
+        },
+        {
+          "name": "LOW_SUB_UNIVERSE_SHARPE",
+          "result": "FAIL",
+          "limit": 0.07,
+          "value": -0.05
+        },
+        {
+          "name": "SELF_CORRELATION",
+          "result": "PENDING"
+        },
+        {
+          "name": "MATCHES_COMPETITION",
+          "result": "PASS",
+          "competitions": [
+            {
+              "id": "challenge",
+              "name": "Challenge"
+            }
+          ]
+        }
+      ]
+    },
+    "monotonicity": -0.006060606060606061,
+    "monotonicity_middle_8": -0.11904761904761904,
+    "top_minus_bottom": 0.124,
+    "inner_spread_d9_minus_d2": 0.0206,
+    "distinct_values": 10,
+    "decile_dispersion": 0.058835366914807286,
+    "extremes_share_of_spread": 0.8338709677419355,
+    "decile_returns": {
+      "1": -0.1596,
+      "2": -0.0062,
+      "3": 0.0303,
+      "4": 0.0529,
+      "5": 0.0514,
+      "6": 0.0124,
+      "7": 0.0292,
+      "8": 0.0164,
+      "9": 0.0144,
+      "10": -0.0356
+    },
+    "excess_over_cap_control": -0.09706060606060606
+  }
+}

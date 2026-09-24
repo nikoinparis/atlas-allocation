@@ -167,30 +167,27 @@ failed in both directions in two consecutive weeks.
    every run for this reason, which trains the reader to ignore the failure line.
 Both are small. A gate nobody trusts is worse than no gate.
 
-### S14. The 0.5 monotonicity bar does not exclude concentration — close the gap project-wide *(new 2026-09-22, Step 316)*
-**Status:** open, not started. Found while repairing the BRAIN runner, but it is not a BRAIN
-issue.
-**The gap.** `scripts/run_cross_sectional_skill_v1.py` documents monotonicity as the statistic
-that catches "a top decile that wins while two through nine are unordered", and applies a 0.5
-bar at line 164. That exact shape — nine tied deciles plus one large top decile — scores
-**+0.5222** on its own implementation, so it clears the bar it was meant to fail. The screen
-behind "nought of thirteen" and "nought of fourteen closed families" therefore cannot, on the
-headline number alone, separate an ordering from a concentration effect.
-**Why this invalidates nothing today.** Every signal ever measured here sits within ±0.17 of
-zero and nothing has approached 0.5 from either direction, so the gap has never been
-load-bearing. It becomes load-bearing on the first positive result — which is exactly when it
-would be least welcome and least likely to be questioned.
-**The fix is small and already prototyped.** `ladder_shape()` in
-`scripts/run_worldquant_brain_decile_ladder_v1.py` reports `monotonicity_middle_8` (deciles
-2–9 alone — a real ordering orders its middle), dispersion, distinct-value count and the
-extremes' share of the spread, and `verdict()` requires both the full ladder and the middle
-eight to clear. Port that to `run_cross_sectional_skill_v1.py` and the other monotonicity
-screens (`run_long_horizon_skill_v1.py`, `run_wide_universe_skill_v1.py`,
-`run_indonesia_monotonicity_v1.py`, `run_vwap_wide_universe_v1.py`).
-**Do NOT re-score old results and call them new findings.** Re-scoring is a consistency check
-on a null, not a new measurement, and every affected number is already near zero.
-**Data:** none — this is arithmetic on results that already exist.
-**Blocker:** nothing. Half a day.
+### S18. What to hold in detected stress when bonds do not hedge *(new 2026-09-24, Step 320)*
+**Status:** open. This is the one genuinely promising lead this project currently has, and it is
+not a cross-sectional signal.
+**What Step 319 established.** 1.0's regime classifier **identifies crises correctly** — 2008 at
+100% stress, 2020 at 84%, 2022 at 87% — and the regime strategy made **+15.05%** through the GFC
+against a static 60/40's −19.23%. The calls were right. The **response** was wrong: in 2022 the
+stock/bond hedge broke, TLT fell with equities, and defensive-into-bonds lost 28.9% against the
+static blend's 20.6%. Cash defense fixes 2022 (−8.58%) and gives the best drawdown tested
+(−17.39% vs 60/40's −29.80%) but is de-risking rather than timing, and still fails its placebo
+at p = 0.19.
+**The question, stated precisely.** Given a stress signal that fires correctly, is there a
+defensive allocation that works across BOTH 2008 (where duration rallied) and 2022 (where it did
+not)? Candidates that are not duration: cash, gold, short-duration credit, managed futures /
+trend, and a simple equity de-gross. Each is obtainable from free daily ETF data.
+**Why this is better than another signal hunt.** Nineteen BRAIN constructions, twelve families,
+and every dashboard signal have now failed to order a cross-section. A detector that works and a
+response that does not is a different and more tractable problem than skill that is not there.
+**Declared in advance:** the placebo remains the test — block-shuffled regime labels, real must
+beat the shuffled 95th percentile — and any candidate defense must clear it in BOTH 2008 and
+2022, not on the full sample where 2008 alone can carry it.
+**Data:** free. **Blocker:** nothing.
 
 ## A tier
 
@@ -336,6 +333,16 @@ VIX is not tradeable. The tradeable expressions are VIX futures and VXX/UVXY, wh
 severe roll decay -- and Step 247 established we cannot get clean futures roll data for free.
 Underneath, this is B1 wearing a costume.
 
+### C4. LLM-agent stock scores, forward-only *(new 2026-09-24, Step 320, from TradingAgents)*
+The one defensible piece of the three LLM papers reviewed in Step 320. **An LLM backtest
+before the model's training cutoff is lookahead by construction** — the model has read what
+happened next — so the only clean test is forward: score a fixed, pre-registered universe weekly
+with an agent pipeline, freeze the prompt and model version, and read the scores on the S14
+decile ladder as weeks accumulate. Free data (filings, prices); **paid in API spend** (TradingAgents
+makes ~31 calls per name per decision, so 100 names weekly is ~3,100 calls a week). **Blocked on:**
+the 2026-09-07 standing decision (clocks before new search), and on sample size — Step 296's limit
+applies, a real IC of 0.03 needs years of weekly decisions to show. Needs owner sign-off on spend.
+
 ---
 
 # PAID QUEUE -- nothing here starts without the owner confirming the spend
@@ -435,3 +442,6 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 | **Decile ladder at NONE cannot separate an ordering from a beta ordering (was S15)** | **Closed, and the hypothesis was wrong.** MARKET neutralization leaves monotonicity bit-identical (+0.939 → +0.939): it shifts decile levels without reordering them, and monotonicity is scale-free. It removes ~44% of the *spread*, near-identically across three different signals, which is one shared exposure rather than three. The real finding came from elsewhere — `group_rank(cap, sector)` is flat at **+0.091** while `group_rank(assets, sector)` is **+0.867**, so a control must match the candidate's coverage or it measures a different universe. | Step 317 |
 | **Stress-test the 1.0 ETF allocator (was S16)** | **Closed — it does not survive its own criteria.** 32 variants (phase2…phasezz), falsified entirely from 1.0's own recorded output with nothing re-run. Every benchmark prints **HRP** (Sharpe 0.9251, drawdown −10.86%, turnover 0.0062) and then tests only against Equal Weight / Inverse Vol, excluding the strongest baseline it printed. With HRP included: **0/32** clear the reports' own +0.05 Sharpe bar, **31/32** are worse on drawdown, **31/32** are below HRP at the default 5bp cost, **30/30** are below it with one week of rebalance delay. Return over HRP is proportional to volatility over HRP (mean gap −0.023), so the candidates are HRP at 1.7–1.9× exposure. Best variant is +0.0413 Sharpe = **0.16 standard errors** over 21.3 years. 29 of 32 realism audits claim a {0,5,10,25,50}bp grid and print only {0,5,10}. 31 of 32 flag their own hidden concentration (two sleeves, ~10% of book, 44–56% of risk) and override it. The defensible conclusion is that HRP on the 7-sleeve panel is the right answer. | Step 318 |
 | **1.0 regime classifier — shuffled-label placebo and regime splits (was S17)** | **Closed — refuted as an allocation edge, one real finding preserved.** Randomised labels do as well as real ones at every persistence setting from 3-week to 46-week regimes (p = 0.41–0.83), and in the best cash-defense form (p = 0.19). Static 60/40 (Sharpe +0.5492) beats every regime variant. **But the classifier identified all three crises correctly** (2008 100%, 2020 84%, 2022 87%) and made +15.05% in the GFC against a static blend's −19.23% — the calls were right and the *trade* was wrong: in 2022 the stock/bond hedge broke and defensive-into-bonds lost 28.9%. Cash defense fixes 2022 and gives the best drawdown tested (−17.39%), but that is de-risking, not timing. Also established: **`1.0/data/` was never committed**, so all 32 benchmarks, 35 realism audits and 3 classifier versions are unreproducible. | Step 319 |
+| **HARLF — hierarchical RL + FinBERT news sentiment (arXiv 2507.18560, new 2026-09-24)** | **Closed unstarted.** 14 country indices and commodities, monthly: a multi-asset timing allocator, the design Steps 318–319 just refuted in 1.0, and too few assets for a decile ladder (Step 246: 35 ETFs = 4.16 effective). Reported 26%/Sharpe 1.2 is at **zero cost**, no significance test, no leave-one-out, 4 algorithms × 5 seeds × a 3-tier stack with unstated selection. Its sentiment is ~10 Google News articles per asset per month — not point-in-time, and news sentiment already failed monotonicity on BRAIN (Ravenpack, +0.042). | Step 320 |
+| **LLM formulaic-alpha mining (arXiv 2409.06289, new 2026-09-24)** | **Closed unstarted.** GPT-4o writes ~100 seed alphas in nine categories — momentum, reversion, value, quality, liquidity, volatility: every one a family already closed here, and ~200 BRAIN constructions found none with skill. Its SSE50 test (Jan 2023–Jan 2024) sits almost entirely **inside GPT-4o's training window**, so the generator knew the outcome; S&P 500 results (+93.6% in H1 2021) are years inside it. No multiple-testing correction. An LLM as a hypothesis source adds no data and no breadth. | Step 320 |
+| **The 0.5 monotonicity bar does not exclude concentration (was S14)** | **Closed — ported to all seven screens, not the five named.** `scripts/decile_shape.py` is now the single implementation; every pass/fail runs through `ds.clears()`, requiring full ladder AND middle eight to clear in the same direction. Verified by re-running the Step 296 screen: 13 signals, 0 clearing, identical verdict, so nothing is invalidated. **It earned its keep the same day:** the `pv13` peer-spillover search returned full-ladder **+0.358** — the highest non-size-contaminated reading in the project — with middle-eight **+0.071**. Under the old bar that would have read as the first genuine lead in 320 steps. | Step 320 |

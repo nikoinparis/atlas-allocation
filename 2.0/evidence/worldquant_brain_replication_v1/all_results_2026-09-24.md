@@ -83,3 +83,77 @@ build, through a backtester it did not write, with a ~6× cross-section (3,045 n
 **The one genuinely new thing, which could not have been produced at home:** a decile ladder
 on long-only baskets orders itself at +0.83 to +0.87 *on no signal at all*. Every monotonicity
 this project has ever read needs that calibration point beside it.
+
+---
+
+# Correction, 2026-09-24: the control depends on coverage, and `cap` is flat
+
+An earlier version of this file, and several statements made while producing it, generalised
+the `control_size` result to *"a decile ladder on long-only baskets orders itself at +0.83 to
++0.87 on no signal at all."* **That generalisation is wrong and is retracted.**
+
+Measured market-neutral, ten clean deciles each:
+
+| no-skill ranking | coverage | monotonicity | middle-8 |
+|---|---|---|---|
+| `group_rank(assets, sector)` | **0.5** | **+0.867** | +0.905 |
+| `group_rank(cap, sector)` | **1.0** | **+0.091** | −0.119 |
+
+A no-skill ranking at full coverage is **flat**. The +0.867 is specific to `assets`, not a
+property of decile ladders.
+
+**The likely mechanism, stated as a hypothesis rather than a finding.** `assets` sits at 0.5
+instrument coverage, so its ladder ranks only the half of the universe carrying fundamental
+data, and which companies carry that data is not random. The `assets` ladder therefore mixes
+an asset-size ordering with a has-fundamental-coverage ordering. `cap` has no such hole.
+
+**What this does and does not change.**
+
+- It does **not** rescue any fundamental signal. `cash_conversion`, `growth`, the valuation
+  families and the three recovered families are all built from coverage-0.5 `fundamental6`
+  fields with the same NaN pattern as `assets`. `assets` remains the correct comparator for
+  them, and none of them beats it. The replication of the null stands.
+- It does mean **the right control is whichever no-skill ranking shares the candidate's
+  coverage.** For a coverage-0.5 fundamental signal that is `assets` at +0.867. For a
+  coverage-1.0 field — the news and social sentiment fields — it is `cap` at +0.091.
+- It makes the news18 bar both far more achievable and far more meaningful, because +0.091
+  is a genuinely flat baseline rather than a contaminated one.
+
+**Recorded as a lesson rather than a number:** a control must match the candidate's coverage,
+or it is not measuring the same universe. This project has now been caught twice by coverage
+patterns being informative in their own right — Step 298's 93.3%-zero signal, and this.
+
+# Ravenpack (news18) unblocked, 2026-09-24
+
+The `group_rank does not support event inputs` rejection was never an operator problem.
+news18 publishes every sentiment field **twice**: a per-story `VECTOR` stream, and a
+daily-aggregated `MATRIX` under a `mean_` prefix. 71 MATRIX fields, ten at coverage 1.0.
+
+`equity_sentiment_score` (VECTOR, rejected) → `mean_equity_sentiment_score` (MATRIX, works).
+
+Verified that the convention is exactly aggregation: `vec_avg(equity_sentiment_score)` and
+`mean_equity_sentiment_score` return **identical** statistics (Sharpe 0.70, returns 3.87%,
+turnover 0.9581). Either route works; the `mean_` fields are the cheaper one.
+
+## First pass, MARKET-neutral, coverage 1.0, on a dataset with 8,996 users
+
+| construction | Sharpe | returns | turnover | submittable? |
+|---|---|---|---|---|
+| `mean_news_impact_projection` | **1.44** | 4.60% | 107% | **no — over the 70% cap** |
+| `mean_equity_sentiment × mean_entity_relevance` | 1.18 | 4.16% | 102% | no |
+| `mean_earnings_evaluation_sentiment` | 0.76 | 4.39% | 99% | no |
+| `mean_equity_sentiment_score` | 0.70 | 3.87% | 96% | no |
+| `mean_event_novelty_score` | 0.70 | 2.30% | 107% | no |
+
+Sharpe 1.44 market-neutral is the highest figure produced anywhere in this exercise, and
+**every one of these is untradeable as written.** News sentiment turns over daily, so the book
+churns essentially completely. `scl12_sentiment` already showed what the fix costs: smoothing
+to 20 days dropped turnover from 111% to 14% and took Sharpe from +0.42 to **−0.19**.
+
+The binding question is therefore not whether a news signal has content — it plainly has some
+— but whether any of it survives being slowed to a tradeable speed. Six smoothing/decay
+configurations are being measured, and that parameter search is declared: **six trials, into
+the cumulative ledger, not free.**
+
+**Nothing above is a candidate yet.** These are production-form Sharpes, which guardrail 1
+declares is not the evidence. No ladder has been run on any news field.

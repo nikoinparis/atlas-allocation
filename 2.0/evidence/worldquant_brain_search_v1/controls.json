@@ -1,0 +1,24 @@
+{
+  "TRUE SIZE CONTROL  group_rank(cap, sector)": {
+    "expression": "group_rank(cap, sector)",
+    "monotonicity": 0.09090909090909091,
+    "monotonicity_middle_8": -0.11904761904761904,
+    "top_minus_bottom": 0.0235,
+    "inner_spread_d9_minus_d2": -0.0062,
+    "distinct_values": 10,
+    "decile_dispersion": 0.017053178589342223,
+    "extremes_share_of_spread": 1.2638297872340425,
+    "decile_returns": {
+      "1": -0.0238,
+      "2": 0.0034,
+      "3": -0.031,
+      "4": 0.0335,
+      "5": 0.0106,
+      "6": 0.0056,
+      "7": 0.0089,
+      "8": -0.004,
+      "9": -0.0028,
+      "10": -0.0003
+    }
+  }
+}

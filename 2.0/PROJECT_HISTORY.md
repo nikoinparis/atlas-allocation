@@ -15767,3 +15767,79 @@ cannot be counted on datasets carrying up to 90,051 users.
 *response*: in 2022 the stock/bond hedge broke and defensive-into-bonds lost 28.9%. A working
 stress detector whose only defect is what it buys is a materially more promising asset than a
 thirty-third cross-sectional characteristic. Logged as S18.
+
+## Step 321 — 2026-09-24 — S18: the defence choice matters enormously, the timing does not
+
+S17 left one live question: given a stress signal that fires correctly, is there a defensive
+allocation that works in **both** 2008 (where duration rallied) and 2022 (where it crashed)?
+Two bars were declared before any number existed — beat static 60/40 in the GFC **and** in
+2022, and beat the 95th percentile of block-shuffled regime labels. Nine defensive legs were
+searched, and that count goes in the ledger.
+
+| defence held during stress | Sharpe | maxDD | GFC | COVID | 2022 | both crises | placebo p |
+|---|---|---|---|---|---|---|---|
+| `SHY`+`GLD` half each | **+0.6489** | −21.09% | +18.46% | −2.43% | −3.25% | **yes** | 0.137 |
+| `GLD` gold | +0.6235 | −27.73% | **+24.13%** | −0.38% | −1.30% | **yes** | 0.153 |
+| `SHY` short duration | +0.5361 | −17.96% | +9.35% | −4.94% | −5.62% | **yes** | 0.206 |
+| `IEF` intermediate | +0.5306 | −18.99% | +15.55% | −2.85% | −13.68% | **yes** | 0.237 |
+| cash | +0.4819 | −18.78% | 0.00% | −6.01% | −2.86% | **yes** | 0.217 |
+| `TLT` long duration | +0.3965 | −33.71% | +13.98% | −0.14% | **−26.19%** | no | 0.496 |
+| `DBC` commodities | +0.3960 | −59.41% | −18.42% | −12.34% | +8.20% | no | 0.389 |
+| static 60/40 reference | +0.5624 | −29.42% | −18.36% | +3.27% | −20.06% | — | — |
+
+**Six of nine clear the both-crises bar, so S18's question has a real answer: gold and short
+duration survive both crises where long duration does not.** The GFC-to-2022 swing between
+`TLT` (+13.98% then −26.19%) and `GLD` (+24.13% then −1.30%) is roughly 25 percentage points in
+2022 alone. The defence choice is enormously consequential.
+
+**Zero of nine clear the placebo.** The best is 0.137. Randomised regime labels holding the same
+defensive assets do about as well as the real ones. The diversification is doing the work; the
+detection is not.
+
+### The test that decides whether any of 1.0 is needed
+
+If random timing does as well as real timing, a **static** blend holding the same assets with no
+regime machinery at all should match or beat the timed version. It does:
+
+| allocation | Sharpe | annual | maxDD | GFC | COVID | 2022 |
+|---|---|---|---|---|---|---|
+| **STATIC equal SPY/GLD/SHY** | **+0.7804** | +4.36% | **−20.87%** | **−2.42%** | +3.71% | −6.49% |
+| STATIC 50/25/25 SPY/GLD/IEF | +0.7507 | +4.87% | −25.30% | −10.67% | +3.01% | −11.15% |
+| regime-timed SPY→GLD+SHY | +0.6489 | +5.41% | −21.09% | +18.46% | −2.43% | −3.25% |
+| STATIC 60/40 SPY/TLT | +0.5624 | +4.16% | −29.42% | −18.36% | +3.27% | −20.06% |
+
+**A naive equal-weight three-asset blend, with no timing of any kind, beats every regime-timed
+variant and the classic 60/40.** Taken with Step 318 (HRP beats all 32 allocator phases) and
+Step 319 (shuffled labels beat real ones), the through-line across all three steps is the same:
+**1.0's value was diversification, never timing.** Thirty-two allocator phases and three
+classifier versions sit on top of an effect that equal-weighting three assets captures for free.
+
+### The caveat, which matters and is not buried
+
+Split in half, the blend's advantage is **not evenly earned**:
+
+| blend | 2005–2015 | 2016–2026 | full |
+|---|---|---|---|
+| equal SPY/GLD/SHY | Sh +0.574, DD −20.9% | Sh **+1.017**, DD −13.2% | +0.777 |
+| 60/40 SPY/TLT | Sh +0.587, DD −29.4% | Sh +0.566, DD −26.5% | +0.574 |
+
+**In the first half it ties 60/40 on Sharpe (+0.574 against +0.587).** The entire Sharpe edge
+comes from 2016–2026. What *is* consistent across both halves is the drawdown: −20.9% and
+−13.2% against 60/40's −29.4% and −26.5%.
+
+Leave-one-out on the full sample: removing `GLD` costs **−0.179** of Sharpe, removing `SPY`
+costs −0.190, removing `SHY` costs −0.062. Gold is load-bearing but not uniquely so, which
+argues the effect is genuine diversification rather than a single-asset bet — though gold's
+2005–2026 run contains two exceptional stretches and a period-specific component cannot be
+ruled out.
+
+**So the honest claim is narrow and worth stating exactly.** This is a finding *about 1.0's
+machinery*, not a promoted allocation. Equal-weighting three assets beats 21 years of allocator
+and classifier work; its consistent advantage is drawdown, not return; its Sharpe edge is
+concentrated in one half of the sample; and thirteen configurations were searched to find it,
+all in-sample, with no untouched forward record. Nothing is promoted and nothing is traded.
+
+**What this closes.** S18 is answered: there is a defence that survives both crises, and it does
+not need the detector. With Steps 318, 319 and 321 together, 1.0 is now fully falsified — the
+allocator, the classifier, and the response — and the one positive result inside it (correct
+crisis identification) is established as unnecessary rather than merely insufficient.

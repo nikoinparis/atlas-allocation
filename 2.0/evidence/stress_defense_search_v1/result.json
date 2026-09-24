@@ -1,0 +1,176 @@
+{
+  "benchmark": {
+    "stats": {
+      "sharpe": 0.5623637059875223,
+      "ann_return": 0.04164567754214231,
+      "max_drawdown": -0.2942431339515319
+    },
+    "windows": {
+      "GFC": -0.18358097982848198,
+      "COVID": 0.03272582211461583,
+      "Rates2022": -0.20057889848309607
+    }
+  },
+  "results": {
+    "cash": {
+      "stats": {
+        "sharpe": 0.4818914980270672,
+        "ann_return": 0.03446365851666453,
+        "max_drawdown": -0.18781417126145739
+      },
+      "windows": {
+        "GFC": 0.0,
+        "COVID": -0.06008555821461514,
+        "Rates2022": -0.028618583703717504
+      },
+      "both_crises": true,
+      "placebo_p": 0.21733333333333332,
+      "placebo_p95": 0.5821709868012512,
+      "beats_placebo": false,
+      "clears": false
+    },
+    "TLT_long_duration": {
+      "stats": {
+        "sharpe": 0.3964777100329415,
+        "ann_return": 0.038557430770444635,
+        "max_drawdown": -0.3371257101371554
+      },
+      "windows": {
+        "GFC": 0.1398077294986979,
+        "COVID": -0.0014350028607944543,
+        "Rates2022": -0.2618624894299071
+      },
+      "both_crises": false,
+      "placebo_p": 0.496,
+      "placebo_p95": 0.6092389557714012,
+      "beats_placebo": false,
+      "clears": false
+    },
+    "IEF_intermediate": {
+      "stats": {
+        "sharpe": 0.5305786910962459,
+        "ann_return": 0.04155203384560689,
+        "max_drawdown": -0.18989975604773301
+      },
+      "windows": {
+        "GFC": 0.15548387747388825,
+        "COVID": -0.028498643127177314,
+        "Rates2022": -0.13681746963836472
+      },
+      "both_crises": true,
+      "placebo_p": 0.23666666666666666,
+      "placebo_p95": 0.645761548336532,
+      "beats_placebo": false,
+      "clears": false
+    },
+    "SHY_short_duration": {
+      "stats": {
+        "sharpe": 0.5361304399276963,
+        "ann_return": 0.03858027515302409,
+        "max_drawdown": -0.1796134889067591
+      },
+      "windows": {
+        "GFC": 0.09348542264099335,
+        "COVID": -0.0494234720615222,
+        "Rates2022": -0.05622008063674422
+      },
+      "both_crises": true,
+      "placebo_p": 0.206,
+      "placebo_p95": 0.6299466477445981,
+      "beats_placebo": false,
+      "clears": false
+    },
+    "GLD_gold": {
+      "stats": {
+        "sharpe": 0.6234559691896098,
+        "ann_return": 0.06971252452647098,
+        "max_drawdown": -0.2772769020406911
+      },
+      "windows": {
+        "GFC": 0.24132767444208936,
+        "COVID": -0.003827950279276293,
+        "Rates2022": -0.012962182357657337
+      },
+      "both_crises": true,
+      "placebo_p": 0.15333333333333332,
+      "placebo_p95": 0.6920782354194045,
+      "beats_placebo": false,
+      "clears": false
+    },
+    "SHY_GLD_half": {
+      "stats": {
+        "sharpe": 0.6488797722262534,
+        "ann_return": 0.05414639983974754,
+        "max_drawdown": -0.2109455226591873
+      },
+      "windows": {
+        "GFC": 0.18460605594799762,
+        "COVID": -0.024271547062421406,
+        "Rates2022": -0.032539433941751406
+      },
+      "both_crises": true,
+      "placebo_p": 0.13666666666666666,
+      "placebo_p95": 0.7160593992585739,
+      "beats_placebo": false,
+      "clears": false
+    },
+    "DBC_commodities": {
+      "stats": {
+        "sharpe": 0.3960296832693119,
+        "ann_return": 0.04909560514594188,
+        "max_drawdown": -0.5940859440041326
+      },
+      "windows": {
+        "GFC": -0.18420772100687466,
+        "COVID": -0.12340320533980753,
+        "Rates2022": 0.08197826764778138
+      },
+      "both_crises": false,
+      "placebo_p": 0.38866666666666666,
+      "placebo_p95": 0.5174163915177606,
+      "beats_placebo": false,
+      "clears": false
+    },
+    "UUP_dollar": {
+      "stats": {
+        "sharpe": 0.39099908253213994,
+        "ann_return": 0.031654144779335966,
+        "max_drawdown": -0.3650357766553505
+      },
+      "windows": {
+        "GFC": 0.009212610300618707,
+        "COVID": -0.050693652909251874,
+        "Rates2022": 0.05995908944239425
+      },
+      "both_crises": true,
+      "placebo_p": 0.504,
+      "placebo_p95": 0.5894497560641725,
+      "beats_placebo": false,
+      "clears": false
+    },
+    "degross_half_equity": {
+      "stats": {
+        "sharpe": 0.5396028567404929,
+        "ann_return": 0.04572491089005039,
+        "max_drawdown": -0.31524577095369577
+      },
+      "windows": {
+        "GFC": -0.19569431505345702,
+        "COVID": -0.052016375440603446,
+        "Rates2022": -0.09490866596765013
+      },
+      "both_crises": false,
+      "placebo_p": 0.14133333333333334,
+      "placebo_p95": 0.5694707931570454,
+      "beats_placebo": false,
+      "clears": false
+    }
+  },
+  "winners": [],
+  "candidates_searched": 9,
+  "seed": 20260924,
+  "bars": [
+    "beat 60/40 in BOTH GFC and 2022",
+    "beat block-shuffled 95th percentile"
+  ]
+}

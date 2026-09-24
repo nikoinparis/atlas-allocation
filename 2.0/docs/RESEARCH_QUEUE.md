@@ -167,28 +167,6 @@ failed in both directions in two consecutive weeks.
    every run for this reason, which trains the reader to ignore the failure line.
 Both are small. A gate nobody trusts is worse than no gate.
 
-### S18. What to hold in detected stress when bonds do not hedge *(new 2026-09-24, Step 320)*
-**Status:** open. This is the one genuinely promising lead this project currently has, and it is
-not a cross-sectional signal.
-**What Step 319 established.** 1.0's regime classifier **identifies crises correctly** — 2008 at
-100% stress, 2020 at 84%, 2022 at 87% — and the regime strategy made **+15.05%** through the GFC
-against a static 60/40's −19.23%. The calls were right. The **response** was wrong: in 2022 the
-stock/bond hedge broke, TLT fell with equities, and defensive-into-bonds lost 28.9% against the
-static blend's 20.6%. Cash defense fixes 2022 (−8.58%) and gives the best drawdown tested
-(−17.39% vs 60/40's −29.80%) but is de-risking rather than timing, and still fails its placebo
-at p = 0.19.
-**The question, stated precisely.** Given a stress signal that fires correctly, is there a
-defensive allocation that works across BOTH 2008 (where duration rallied) and 2022 (where it did
-not)? Candidates that are not duration: cash, gold, short-duration credit, managed futures /
-trend, and a simple equity de-gross. Each is obtainable from free daily ETF data.
-**Why this is better than another signal hunt.** Nineteen BRAIN constructions, twelve families,
-and every dashboard signal have now failed to order a cross-section. A detector that works and a
-response that does not is a different and more tractable problem than skill that is not there.
-**Declared in advance:** the placebo remains the test — block-shuffled regime labels, real must
-beat the shuffled 95th percentile — and any candidate defense must clear it in BOTH 2008 and
-2022, not on the full sample where 2008 alone can carry it.
-**Data:** free. **Blocker:** nothing.
-
 ## A tier
 
 
@@ -445,3 +423,4 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 | **HARLF — hierarchical RL + FinBERT news sentiment (arXiv 2507.18560, new 2026-09-24)** | **Closed unstarted.** 14 country indices and commodities, monthly: a multi-asset timing allocator, the design Steps 318–319 just refuted in 1.0, and too few assets for a decile ladder (Step 246: 35 ETFs = 4.16 effective). Reported 26%/Sharpe 1.2 is at **zero cost**, no significance test, no leave-one-out, 4 algorithms × 5 seeds × a 3-tier stack with unstated selection. Its sentiment is ~10 Google News articles per asset per month — not point-in-time, and news sentiment already failed monotonicity on BRAIN (Ravenpack, +0.042). | Step 320 |
 | **LLM formulaic-alpha mining (arXiv 2409.06289, new 2026-09-24)** | **Closed unstarted.** GPT-4o writes ~100 seed alphas in nine categories — momentum, reversion, value, quality, liquidity, volatility: every one a family already closed here, and ~200 BRAIN constructions found none with skill. Its SSE50 test (Jan 2023–Jan 2024) sits almost entirely **inside GPT-4o's training window**, so the generator knew the outcome; S&P 500 results (+93.6% in H1 2021) are years inside it. No multiple-testing correction. An LLM as a hypothesis source adds no data and no breadth. | Step 320 |
 | **The 0.5 monotonicity bar does not exclude concentration (was S14)** | **Closed — ported to all seven screens, not the five named.** `scripts/decile_shape.py` is now the single implementation; every pass/fail runs through `ds.clears()`, requiring full ladder AND middle eight to clear in the same direction. Verified by re-running the Step 296 screen: 13 signals, 0 clearing, identical verdict, so nothing is invalidated. **It earned its keep the same day:** the `pv13` peer-spillover search returned full-ladder **+0.358** — the highest non-size-contaminated reading in the project — with middle-eight **+0.071**. Under the old bar that would have read as the first genuine lead in 320 steps. | Step 320 |
+| **What to hold in detected stress when bonds do not hedge (was S18)** | **Closed — the defence choice matters enormously, the timing does not.** Nine defensive legs searched against two bars declared in advance. **Six clear the both-crises bar** — gold and short duration survive 2008 AND 2022 where long duration does not (`TLT` +13.98% then −26.19%; `GLD` +24.13% then −1.30%). **Zero clear the placebo**, best p = 0.137: randomised regime labels holding the same assets do as well. The decisive follow-up: a **STATIC equal-weight SPY/GLD/SHY blend with no timing at all** scores Sharpe **+0.7804**, maxDD −20.87%, beating every regime-timed variant (+0.6489) and 60/40 (+0.5624). With Steps 318 and 319 the through-line is that 1.0's value was diversification, never timing. **Caveat carried:** in 2005–2015 the blend ties 60/40 on Sharpe (+0.574 vs +0.587); the whole Sharpe edge is 2016–2026, and only the drawdown advantage holds in both halves. Thirteen configurations searched, in-sample, nothing promoted. | Step 321 |

@@ -15572,3 +15572,86 @@ Written: `docs/LEGACY_1_0_FALSIFICATION_V1.md`, and the extracted benchmark tabl
 `evidence/legacy_1_0_falsification_v1/allocator_benchmarks_extracted.json`. Nothing promoted,
 nothing traded. Preserved per CLAUDE.md §9 — a failed reproduction is as valuable a record as a
 passing one.
+
+## Step 319 — 2026-09-24 — S17: the regime calls were right and the trade was wrong
+
+S16 falsified 1.0's allocator from its own recorded output. This tests the separate claim
+underneath it — whether the regime calls carry information — and finds one real thing inside a
+refutation.
+
+**A reproducibility finding that constrains everything else. `1.0/data/` does not exist and was
+never committed to git** — not gitignored, absent from the repository's whole history. Every 1.0
+script depends on it; `build_macro_regime_classifier_v3.py` dies on a missing
+`01_data_hub/weekly_prices.csv` and `allocator_benchmark_audit.py` on the missing sleeve returns.
+**None of 1.0's 32 allocator benchmarks, 35 realism audits or 3 classifier versions can be
+re-executed or verified.** The placebo S17 asked for cannot be run on 1.0's own data. What was
+done instead is a reconstruction of the documented design on public data, testing the thesis
+rather than reproducing the numbers, and it is labelled as such everywhere.
+
+**The classifier's own recorded history, before any test was run.** V1: "promising dev spread,
+**holdout failed**". V2: "PC2 became semantically unreliable (captured Fed policy rather than
+financial conditions)". V3: financial conditions is a "clearly labeled proxy — NOT true NFCI".
+All three marked research-only. And a line that matters more than the three verdicts: **"Hard
+requirement: 2008, March 2020, and late 2022 must classify as stress/tightening."** A classifier
+required to reproduce known crises cannot then be credited for identifying them — its
+performance in those windows is circular by construction.
+
+**The placebo, bar declared before running: real-label Sharpe must exceed the shuffled 95th
+percentile.** The shuffle permutes whole regime *episodes* rather than individual weeks, so the
+null has the identical number and length of regimes and differs only in when they fall — an iid
+shuffle would destroy persistence and flatter the real labels for reasons unrelated to
+information.
+
+**Refuted at every persistence setting**, 3-week to 46-week median regimes, so this is not a
+strawman of a trigger-happy classifier:
+
+| smoothing | median regime | real Sharpe | shuffled mean | shuffled 95th | p |
+|---|---|---|---|---|---|
+| 1w | 3w | +0.2796 | +0.3909 | +0.5959 | 0.83 |
+| 4w | 13w | +0.3976 | +0.3847 | +0.5842 | 0.43 |
+| 8w | 15w | +0.3805 | +0.3807 | +0.5970 | 0.47 |
+| 13w | 20w | +0.4001 | +0.3854 | +0.5925 | 0.41 |
+| 26w | 46w | +0.3396 | +0.3784 | +0.5786 | 0.60 |
+
+At every setting the real labels sit essentially at the median of their own placebo. A static
+60/40 (Sharpe +0.5492) beats every regime variant.
+
+**The interesting part, and CLAUDE.md §6 requires it while none of 1.0's 32 reports contains it.**
+
+| window | regime→TLT | static 60/40 | SPY | classified stress |
+|---|---|---|---|---|
+| GFC 2007-10→2009-06 | **+15.05%** | −19.23% | −39.91% | 100.0% |
+| COVID 2020 | −2.47% | +5.35% | −1.95% | 84.1% |
+| Rate shock 2022 | **−28.90%** | −20.55% | −16.97% | 86.7% |
+
+**2008–09 is a genuine, large success** — 15% made while a static blend lost 19% and equities
+lost 40%. **2020 and 2022, the two crises after the design period, both failed.** And the
+mechanism is exact: the classifier identified all three as stress (100%, 84%, 87%), so **the
+regime calls were correct and the response was wrong.** In 2008 the defensive asset rallied; in
+2022 the stock/bond hedge broke and TLT fell with equities, so going defensive into bonds lost
+28.9% against the static blend's 20.6%. Knowing it is stressful does not tell you what to hold,
+and what worked in the crisis the model was built around is what broke in the next one.
+
+**Given the fairest possible shot — cash instead of bonds, since 1.0 had a cash unlock and
+structural-defense sleeves.** Cash fixes 2022 (−8.58% against −28.90%) and gives **the best
+maximum drawdown of anything tested, −17.39% against 60/40's −29.80%**. That is real and worth
+saying. It still fails: placebo p = **0.19**, real +0.4732 against a shuffled 95th of +0.5685,
+and Sharpe below static 60/40. The drawdown advantage is bought by sitting in cash a third of
+the time — **de-risking, not timing** — which is the same verdict S16 reached about the
+allocator. 1.0's machinery makes risk-budget choices, not skilled ones.
+
+**Verdict: the regime thesis is refuted as an allocation edge, with one real finding preserved
+inside it.** The classifier identified all three crises correctly, which is the part of 1.0 that
+could transfer. What it cannot do is say what to own instead, and the 2008 answer was wrong by
+2022.
+
+**Three things this does not settle**, recorded so they are not mistaken for closed. 1.0's actual
+seven-sleeve allocator was never run and cannot be — a richer defensive basket (gold, short
+duration, managed futures) might behave differently in 2022, which is untested rather than
+refuted. The reconstruction uses market-observable inputs only, omitting V3's growth PCA, though
+V1's holdout failure is 1.0's own verdict on that path. And two assets are not seven sleeves —
+the conclusion is about the thesis, not the implementation.
+
+Written: `docs/LEGACY_1_0_REGIME_PLACEBO_V1.md`,
+`scripts/run_legacy_1_0_regime_placebo_v1.py`, evidence in
+`evidence/legacy_1_0_regime_placebo_v1/`. Nothing promoted, nothing traded.

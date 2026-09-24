@@ -1,0 +1,15 @@
+CLAUDE.md section 6 requires this split. None of 1.0's 32 benchmark reports contains one.
+
+The classifier's docstring states a HARD REQUIREMENT that 2008, March 2020 and late 2022
+classify as stress. If it earns its keep anywhere it must be here.
+
+window              regime ret  60/40 ret   SPY ret  regime DD  60/40 DD  %stress
+----------------------------------------------------------------------------------
+GFC 2008-09            +15.05%    -19.23%   -39.91%    -25.42%   -29.80%   100.0%
+COVID 2020              -2.47%     +5.35%    -1.95%    -12.89%   -17.06%    84.1%
+Rate shock 2022        -28.90%    -20.55%   -16.97%    -36.28%   -24.82%    86.7%
+Full sample           +290.32%   +359.35%  +599.52%    -37.47%   -29.80%    32.9%
+
+  GFC 2008-09        regime BEATS static 60/40 by 34.28%
+  COVID 2020         regime LOSES TO static 60/40 by 7.82%
+  Rate shock 2022    regime LOSES TO static 60/40 by 8.35%

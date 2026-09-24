@@ -1,0 +1,13 @@
+Fairer test: 1.0 had a cash unlock and structural-defense sleeves. In 2022 the
+stock/bond hedge broke -- TLT fell with equities -- so a TLT-only defense is harsher
+than 1.0's actual design. Testing CASH as the defensive asset.
+
+variant            Sharpe   ann ret    max DD     2008-09     2020      2022
+----------------------------------------------------------------------------
+regime->TLT       +0.4002    +4.09%   -37.47%     +15.05%   -2.47%   -28.90%
+regime->CASH      +0.4732    +3.62%   -17.39%      +0.00%   -7.92%    -8.58%
+static 60/40      +0.5492    +4.30%   -29.80%     -19.23%   +5.35%   -20.55%
+
+PLACEBO on the CASH variant (its best form):
+  real +0.4732   shuffled mean +0.3756  95th +0.5685  p-value 0.1900
+  VERDICT: refuted -- randomised labels do as well

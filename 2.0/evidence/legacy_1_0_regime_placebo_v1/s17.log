@@ -1,0 +1,29 @@
+weeks: 1999  2006-12-23 -> 2026-04-06
+stress weeks: 661 (33.1%)
+
+regime episodes: 135  median length 3w
+
+=== REAL regime labels ===
+  sharpe         0.2796
+  ann_return     0.0277
+  ann_vol        0.0992
+  max_drawdown   -0.4478
+  turnover       0.0670
+  weeks          1999
+
+=== benchmarks that ignore the regime entirely ===
+  always_SPY     sharpe +0.4516  return +0.0585  maxDD -0.5461
+  always_TLT     sharpe +0.1997  return +0.0202  maxDD -0.4783
+  static_60_40   sharpe +0.5520  return +0.0432  maxDD -0.2980
+
+=== PLACEBO: 2000 block-shuffled label sets ===
+  shuffled Sharpe: mean +0.3865  sd 0.1180
+                   5th +0.2055   median +0.3758   95th +0.5934   max +0.9502
+
+  REAL labels:     +0.2796
+  bar declared before the run: must exceed the 95th percentile (+0.5934)
+  empirical p-value: 0.8245  (1649 of 2000 shuffles did as well)
+
+  VERDICT: REFUTED -- randomised labels do as well. The regime calls carry no information the allocator can use, and 32 phases were tuning on noise.
+
+written: /Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/evidence/legacy_1_0_regime_placebo_v1/result.json

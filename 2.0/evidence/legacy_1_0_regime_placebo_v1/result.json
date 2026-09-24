@@ -1,0 +1,38 @@
+{
+  "real": {
+    "sharpe": 0.2795649971330064,
+    "ann_return": 0.02772166233575343,
+    "ann_vol": 0.09915999005613894,
+    "max_drawdown": -0.4477761561009591,
+    "turnover": 0.0670335167583792,
+    "weeks": 1999
+  },
+  "benchmarks": {
+    "always_SPY": {
+      "sharpe": 0.45155799407554326,
+      "ann_return": 0.058543510640846036,
+      "max_drawdown": -0.5461300831657838
+    },
+    "always_TLT": {
+      "sharpe": 0.19966525320306083,
+      "ann_return": 0.020166177765558253,
+      "max_drawdown": -0.47826766820599753
+    },
+    "static_60_40": {
+      "sharpe": 0.5519703169724792,
+      "ann_return": 0.043192577490730924,
+      "max_drawdown": -0.2979861942486398
+    }
+  },
+  "placebo": {
+    "n": 2000,
+    "mean": 0.38647606378360416,
+    "sd": 0.1179578754585406,
+    "p95": 0.5934458656727569,
+    "max": 0.950195305878605,
+    "p_value": 0.8245
+  },
+  "verdict": "REFUTED -- randomised labels do as well. The regime calls carry no information the allocator can use, and 32 phases were tuning on noise.",
+  "seed": 20260924,
+  "bar_declared_before_run": "real Sharpe must exceed shuffled 95th percentile"
+}

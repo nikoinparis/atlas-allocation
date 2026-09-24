@@ -192,25 +192,6 @@ on a null, not a new measurement, and every affected number is already near zero
 **Data:** none — this is arithmetic on results that already exist.
 **Blocker:** nothing. Half a day.
 
-### S17. The 1.0 regime classifier itself — shuffled-label placebo and regime splits *(new 2026-09-24, Step 318)*
-**Status:** open. S16 falsified 1.0's *allocator* from its own recorded output without re-running
-anything. These two tests cannot be done that way — they need the code path executed.
-**What S16 could not reach.** (1) **No regime-conditional split exists in any of the 32 benchmark
-reports** — no 2008–09, no 2020, no 2022 broken out, which CLAUDE.md §6 requires of everything.
-A regime allocator that is never measured inside a regime is the sharpest gap in 1.0. (2) **The
-shuffled-label placebo was never run.** Feed the classifier randomised regime labels, keep the
-allocator identical, and confirm performance collapses. If it does not, the regime calls carry no
-information and 32 phases were tuning an allocator on noise. This is the decisive test for the
-whole 1.0 thesis and it is one afternoon.
-**Why it still matters after S16.** S16 showed the allocator does not beat HRP. It did NOT show
-the regime classifier is worthless — those are different claims. The classifier could carry real
-macro information that the allocator wastes. That is worth knowing either way, and it is the only
-part of 1.0 that could transfer to 2.0.
-**Declared in advance:** the placebo is the test that decides. A classifier whose shuffled-label
-version performs comparably is refuted, and no sign-flip or reparameterisation rescues it.
-**Data:** free, on disk in `1.0/`. **Blocker:** nothing; needs `1.0/scripts` re-executed, and
-CLAUDE.md §4 read first.
-
 ## A tier
 
 
@@ -453,3 +434,4 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 | **Replicate the skill null on WorldQuant BRAIN data (was S13)** | **Closed — the null replicated on data we do not own.** Fifteen constructions, four datasets, twelve families, ~200 simulations; zero with cross-sectional skill above a coverage-matched no-skill control. The strongest find, Ravenpack `mean_news_impact_projection`, scored Sharpe **1.44** market-neutral against monotonicity **+0.042** with a negative middle-eight — all of its spread was decile one. BRAIN removed all four stated weaknesses of the Step 296–308 null at once (our panel, our universe, our construction-error history, our backtester) and returned the same answer on a ~6× cross-section. Nothing submitted; 0 submitted alphas is correct. | Step 317 |
 | **Decile ladder at NONE cannot separate an ordering from a beta ordering (was S15)** | **Closed, and the hypothesis was wrong.** MARKET neutralization leaves monotonicity bit-identical (+0.939 → +0.939): it shifts decile levels without reordering them, and monotonicity is scale-free. It removes ~44% of the *spread*, near-identically across three different signals, which is one shared exposure rather than three. The real finding came from elsewhere — `group_rank(cap, sector)` is flat at **+0.091** while `group_rank(assets, sector)` is **+0.867**, so a control must match the candidate's coverage or it measures a different universe. | Step 317 |
 | **Stress-test the 1.0 ETF allocator (was S16)** | **Closed — it does not survive its own criteria.** 32 variants (phase2…phasezz), falsified entirely from 1.0's own recorded output with nothing re-run. Every benchmark prints **HRP** (Sharpe 0.9251, drawdown −10.86%, turnover 0.0062) and then tests only against Equal Weight / Inverse Vol, excluding the strongest baseline it printed. With HRP included: **0/32** clear the reports' own +0.05 Sharpe bar, **31/32** are worse on drawdown, **31/32** are below HRP at the default 5bp cost, **30/30** are below it with one week of rebalance delay. Return over HRP is proportional to volatility over HRP (mean gap −0.023), so the candidates are HRP at 1.7–1.9× exposure. Best variant is +0.0413 Sharpe = **0.16 standard errors** over 21.3 years. 29 of 32 realism audits claim a {0,5,10,25,50}bp grid and print only {0,5,10}. 31 of 32 flag their own hidden concentration (two sleeves, ~10% of book, 44–56% of risk) and override it. The defensible conclusion is that HRP on the 7-sleeve panel is the right answer. | Step 318 |
+| **1.0 regime classifier — shuffled-label placebo and regime splits (was S17)** | **Closed — refuted as an allocation edge, one real finding preserved.** Randomised labels do as well as real ones at every persistence setting from 3-week to 46-week regimes (p = 0.41–0.83), and in the best cash-defense form (p = 0.19). Static 60/40 (Sharpe +0.5492) beats every regime variant. **But the classifier identified all three crises correctly** (2008 100%, 2020 84%, 2022 87%) and made +15.05% in the GFC against a static blend's −19.23% — the calls were right and the *trade* was wrong: in 2022 the stock/bond hedge broke and defensive-into-bonds lost 28.9%. Cash defense fixes 2022 and gives the best drawdown tested (−17.39%), but that is de-risking, not timing. Also established: **`1.0/data/` was never committed**, so all 32 benchmarks, 35 realism audits and 3 classifier versions are unreproducible. | Step 319 |

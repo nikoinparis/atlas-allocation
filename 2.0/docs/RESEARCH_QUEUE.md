@@ -192,32 +192,24 @@ on a null, not a new measurement, and every affected number is already near zero
 **Data:** none — this is arithmetic on results that already exist.
 **Blocker:** nothing. Half a day.
 
-### S16. Stress-test the 1.0 ETF allocator — BRAIN cannot do it *(new 2026-09-24, owner-asked, Step 317)*
-**Status:** open, not started. The owner asked on 2026-09-24 whether 1.0's strategies had been
-tested on BRAIN. They had not, and they cannot be.
-**Why BRAIN is the wrong instrument — three structural reasons, not a lack of effort.**
-(1) 1.0 trades ETFs (SPY, QQQ, IWM, TLT, GLD, HYG, LQD, EEM, USO, the XL* sector set); BRAIN's
-USA/TOP3000 is individual common stock and all fourteen datasets visible to the account are
-`instrumentType: EQUITY`. (2) 1.0 is a time-series regime allocator — rotate defensive when the
-macro regime turns — while BRAIN converts a cross-sectional score over ~3,000 names into a
-dollar-neutral long-short book with no cash position and no timing dimension, so "go defensive"
-has no expression in the language. (3) Ten deciles over 12–35 ETFs gives one to three assets per
-decile, so monotonicity — the statistic that decides everything here — cannot be constructed.
-Step 246 already put 35 multi-asset ETFs at 4.16 effective assets.
-**What the real test looks like.** A multi-asset backtester on our own data, and the gates that
-suit a timing strategy rather than a cross-sectional one: regime-conditional performance
-(2008–09, 2020, 2022 separately), turnover and cost stress at 0/10/50/100bps, a
-buy-and-hold-60/40 benchmark, and a placebo where the regime classifier is fed shuffled labels.
-Monotonicity does not apply; the analogue is whether the allocator's regime calls beat a random
-allocator with the same turnover.
-**Why it is worth doing.** 1.0 is the one completed body of work here that was never put through
-the Step 296-onward falsification machinery, because that machinery was built for
-cross-sectional stock signals and 1.0 is neither. It may be the largest untested claim in the
-repo. The owner's intuition that it is "more defensive, more long term" is plausible and
-unverified — which is exactly the combination this project exists to attack.
-**Data:** free, already on disk in `1.0/`.
-**Blocker:** nothing, but read CLAUDE.md §4 first — 1.0 is marked historical reference and this
-item is the explicit instruction that unblocks touching it.
+### S17. The 1.0 regime classifier itself — shuffled-label placebo and regime splits *(new 2026-09-24, Step 318)*
+**Status:** open. S16 falsified 1.0's *allocator* from its own recorded output without re-running
+anything. These two tests cannot be done that way — they need the code path executed.
+**What S16 could not reach.** (1) **No regime-conditional split exists in any of the 32 benchmark
+reports** — no 2008–09, no 2020, no 2022 broken out, which CLAUDE.md §6 requires of everything.
+A regime allocator that is never measured inside a regime is the sharpest gap in 1.0. (2) **The
+shuffled-label placebo was never run.** Feed the classifier randomised regime labels, keep the
+allocator identical, and confirm performance collapses. If it does not, the regime calls carry no
+information and 32 phases were tuning an allocator on noise. This is the decisive test for the
+whole 1.0 thesis and it is one afternoon.
+**Why it still matters after S16.** S16 showed the allocator does not beat HRP. It did NOT show
+the regime classifier is worthless — those are different claims. The classifier could carry real
+macro information that the allocator wastes. That is worth knowing either way, and it is the only
+part of 1.0 that could transfer to 2.0.
+**Declared in advance:** the placebo is the test that decides. A classifier whose shuffled-label
+version performs comparably is refuted, and no sign-flip or reparameterisation rescues it.
+**Data:** free, on disk in `1.0/`. **Blocker:** nothing; needs `1.0/scripts` re-executed, and
+CLAUDE.md §4 read first.
 
 ## A tier
 
@@ -460,3 +452,4 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 | **VWAP, wide US universe (new 2026-09-12)** | **Closed after a fair trial.** Acquired the US daily volume that had made VWAP untestable for 307 steps: 2,748 of 2,810 issuers, 97.8% overlap, 3,946 days, zero failed batches. Bands got real breadth -- **392 names at 2σ against 3 in Indonesia** -- so Step 307's structural objection is gone. Nought of four clears Bonferroni; nought of four orders its deciles (-0.02 to +0.01). Duplication holds at 35x the universe: correlation with short-term reversal **+0.741** against Indonesia's +0.767. The 2σ band's 16.74% at 0bps is beta -- market beta **+1.030**, R² 0.752, and a Sharpe of **0.703 against its own universe's 0.728** -- and falls to 9.81% at the declared 50bps. | Step 308 |
 | **Replicate the skill null on WorldQuant BRAIN data (was S13)** | **Closed — the null replicated on data we do not own.** Fifteen constructions, four datasets, twelve families, ~200 simulations; zero with cross-sectional skill above a coverage-matched no-skill control. The strongest find, Ravenpack `mean_news_impact_projection`, scored Sharpe **1.44** market-neutral against monotonicity **+0.042** with a negative middle-eight — all of its spread was decile one. BRAIN removed all four stated weaknesses of the Step 296–308 null at once (our panel, our universe, our construction-error history, our backtester) and returned the same answer on a ~6× cross-section. Nothing submitted; 0 submitted alphas is correct. | Step 317 |
 | **Decile ladder at NONE cannot separate an ordering from a beta ordering (was S15)** | **Closed, and the hypothesis was wrong.** MARKET neutralization leaves monotonicity bit-identical (+0.939 → +0.939): it shifts decile levels without reordering them, and monotonicity is scale-free. It removes ~44% of the *spread*, near-identically across three different signals, which is one shared exposure rather than three. The real finding came from elsewhere — `group_rank(cap, sector)` is flat at **+0.091** while `group_rank(assets, sector)` is **+0.867**, so a control must match the candidate's coverage or it measures a different universe. | Step 317 |
+| **Stress-test the 1.0 ETF allocator (was S16)** | **Closed — it does not survive its own criteria.** 32 variants (phase2…phasezz), falsified entirely from 1.0's own recorded output with nothing re-run. Every benchmark prints **HRP** (Sharpe 0.9251, drawdown −10.86%, turnover 0.0062) and then tests only against Equal Weight / Inverse Vol, excluding the strongest baseline it printed. With HRP included: **0/32** clear the reports' own +0.05 Sharpe bar, **31/32** are worse on drawdown, **31/32** are below HRP at the default 5bp cost, **30/30** are below it with one week of rebalance delay. Return over HRP is proportional to volatility over HRP (mean gap −0.023), so the candidates are HRP at 1.7–1.9× exposure. Best variant is +0.0413 Sharpe = **0.16 standard errors** over 21.3 years. 29 of 32 realism audits claim a {0,5,10,25,50}bp grid and print only {0,5,10}. 31 of 32 flag their own hidden concentration (two sleeves, ~10% of book, 44–56% of risk) and override it. The defensible conclusion is that HRP on the 7-sleeve panel is the right answer. | Step 318 |

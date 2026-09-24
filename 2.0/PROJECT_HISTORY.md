@@ -15480,3 +15480,95 @@ Nothing was submitted. The account holds 0 submitted alphas against ~200 simulat
 the correct number. `submission_authorized` stays false in
 `config/worldquant_brain_search_v1.json`, the pre-registration written when the owner directed
 a search, before any search result existed.
+
+## Step 318 — 2026-09-24 — 1.0 tested properly: 32 variants, zero beat the baseline their own reports printed
+
+Queue item S16, at the owner's explicit instruction (CLAUDE.md §4 marks `1.0/` as historical
+reference not to be touched without one). **No backtest was re-run.** Every number below is
+1.0's own recorded output, re-read against a baseline its reports print but do not test against.
+
+**1.0 is an ETF regime allocator** over 7 sleeves — SPY, QQQ, IWM, TLT, GLD, HYG, LQD, EEM, USO
+and the XL* sector set — across 1109 weeks, 2005-01-14 to 2026-04-10, monthly rebalance,
+long-only, 5bp half-spread default. It cannot be tested on BRAIN: common-stock universe, no cash
+position or timing dimension in the engine, and ten deciles over 12–35 ETFs gives one to three
+assets per decile so monotonicity cannot be constructed.
+
+**The search size is in the filenames: 32 allocator variants**, phase2 through phasezz, each with
+a benchmark report, each named "improved", each concluding the extra complexity is justified.
+
+**The finding.** Every benchmark prints six internal allocators including **HRP** — standard,
+parameter-free — and then asks whether the candidate beats "the best simple baseline (Equal
+Weight / Inverse Vol)" by more than 0.05 Sharpe. **HRP is the strongest of the three baselines
+and is the one excluded from the test.** On the identical panel HRP returns Sharpe 0.9251, 4.19%
+annual, max drawdown −10.86%, turnover 0.0062. Applying the reports' own bar with HRP included:
+
+- candidate Sharpe above HRP: **17/32**, a coin flip
+- candidate beats HRP by more than 0.05, the reports' own bar: **0/32**
+- candidate max drawdown *worse* than HRP: **31/32**
+- candidate turnover: **9× to 18×** HRP's
+
+**The defensive claim is inverted.** 1.0 was described as the more defensive, longer-term work.
+Thirty-one of thirty-two variants draw down deeper than a parameter-free baseline. The sole
+exception, `phasebb_w1cap_060_hrp_7sleeve`, is the variant built on HRP.
+
+**The extra return is bought entirely with extra risk.** Across all 32, mean(return multiple over
+HRP − volatility multiple over HRP) = **−0.023, sd 0.066** — indistinguishable from zero. The
+candidates are HRP at roughly 1.7–1.9× exposure, reproducible by leverage at a thirteenth of the
+turnover. Thirty-two phases of regime-conditioning amount to a risk-budget choice, and CLAUDE.md
+§2 already states what that buys: amplified return, amplified fragility, no breadth.
+
+**Statistically the best variant is nothing.** `phase3_high_breadth_calm_us_offense` at Sharpe
+0.9664 is **+0.0413 over HRP**. Over 21.3 years the standard error of an annualised Sharpe is
+0.2623, so that edge is **0.16 standard errors** — for a single comparison, before correcting for
+32 of them. (32 independent draws would be expected to produce a best of ~+0.69 from selection
+alone; the variants are heavily nested so their effective count is far below 32 and that figure
+overstates the correction. The conclusion does not need it.)
+
+**At the project's own default cost, 31 of 32 lose to HRP.** From 1.0's own realism audits rather
+than its benchmarks: at 5bp the candidates run Sharpe 0.775–0.836 against HRP's 0.9251, and
+**with a one-week rebalance delay they fall to 0.64–0.73 — 30 of 30 below HRP**, 0.20 to 0.28
+Sharpe behind. One week of execution delay costs more than the entire claimed edge.
+
+**Three sensitivity grids claim more levels than they print.** All 32 realism audits state
+"Half-spread varied across {0, 5, 10, 25, 50} bps". **Three print the 25bp and 50bp rows;
+twenty-nine print only 0, 5, 10** and then conclude "candidate survives doubled-cost scenario"
+where doubled means 10bp. Same for rebalance delay ({0,1,5} weeks claimed, 5 printed in three)
+and turnover threshold. Verified directly on the files, not inferred. It matters: `phasebb`,
+which does print the full grid, falls from Sharpe **0.9623 at 5bp to 0.6713 at 50bp**, while
+HRP's annual cost drag is 0.0001 against the candidates' 0.0007–0.0011, so the gap widens with
+cost rather than narrowing. CLAUDE.md §7's 0/10/50/100bps is not satisfied.
+
+**1.0 flagged its own chronic failure mode 31 times and shipped anyway.** Thirty-one of
+thirty-two benchmarks contain a "Hidden concentration flagged" section reporting that
+`taa_10m_sma` holds 11.5% of the book and 56.0% of the risk, and `dual_momentum_topn` 9.2% and
+44.0%. Two sleeves at a tenth of the book each carry the whole risk budget. CLAUDE.md §5 names
+concentration as this project's most chronic recurring failure mode; here it is measured,
+printed, labelled, and then overridden by a verdict that the complexity is justified.
+
+**What 1.0 did well, and it is worth saying.** The instrumentation is genuinely good — better
+than 2.0 had at the same stage. Cost sensitivity, rebalance-delay sensitivity,
+turnover-threshold sensitivity, risk-contribution decomposition, six baseline allocators, a
+concentration detector, and honest warnings about missing volume data. **The failure is not
+measurement, it is that the conclusions ignore the measurements.** The HRP row is printed and
+excluded. The concentration is detected and overridden. The harsher cost levels are declared run
+and not shown. Each verdict is locally defensible; the aggregate is a 32-variant search that
+never cleared a parameter-free allocator.
+
+**Verdict.** 1.0's allocator work does not survive its own criteria. The defensible conclusion
+from the same evidence is that **HRP on the 7-sleeve panel is the right answer** — Sharpe 0.9251,
+drawdown −10.86%, turnover 0.0062 — and that 32 phases added turnover, drawdown and complexity
+without adding risk-adjusted return. If more return is wanted the honest route is explicit,
+disclosed leverage on HRP.
+
+**Three things this does not test, recorded so they are not mistaken for settled.** The regime
+classifier itself — whether the macro calls have skill is separate from whether the allocator
+beats HRP, and **no regime-conditional split (2008–09, 2020, 2022) exists in any of the 32
+reports**, which CLAUDE.md §6 requires. A shuffled-label placebo, the decisive test for a regime
+allocator, was never run and cannot be reconstructed from the reports — it needs the code
+re-executed. And there is no out-of-sample: the 1109-week panel is the window all 32 variants
+were selected on.
+
+Written: `docs/LEGACY_1_0_FALSIFICATION_V1.md`, and the extracted benchmark table at
+`evidence/legacy_1_0_falsification_v1/allocator_benchmarks_extracted.json`. Nothing promoted,
+nothing traded. Preserved per CLAUDE.md §9 — a failed reproduction is as valuable a record as a
+passing one.

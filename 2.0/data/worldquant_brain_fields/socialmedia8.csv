@@ -1,0 +1,5 @@
+id,description,type,coverage,userCount,alphaCount
+snt_social_value,Z-score of sentiment,MATRIX,1.0,3555,7044
+snt_social_value_fast_d1,Z-score of sentiment,MATRIX,0.9998,1110,1712
+snt_social_volume,Normalized tweet volume,MATRIX,1.0,3307,6813
+snt_social_volume_fast_d1,Normalized tweet volume,MATRIX,0.9998,1223,1736

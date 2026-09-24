@@ -1,0 +1,122 @@
+id,description,type,coverage,userCount,alphaCount
+composite_sentiment_score_2,A combined sentiment score for a news story using multiple analysis techniques.,VECTOR,1.0,59,73
+corporate_action_sentiment,A sentiment score for news stories about corporate action announcements.,VECTOR,1.0,62,73
+earnings_evaluation_sentiment,A sentiment score for news stories about earnings evaluations.,VECTOR,1.0,45,75
+editorial_commentary_sentiment_2,A sentiment score for short commentary and editorials on equity markets.,VECTOR,1.0,27,41
+entity_country_iso_code_4,The two-letter ISO code representing the country associated with the entity.,VECTOR,1.0,73,81
+equity_sentiment_score,A sentiment score indicating the tone of news about global equities.,VECTOR,1.0,36,59
+event_end_date_utc,The UTC date when the event concludes.,VECTOR,0.842,188,248
+event_end_date_utc_fast_d1,The UTC date when the event concludes.,VECTOR,0.9496,266,379
+event_end_time_utc,The UTC timestamp when the event concludes.,VECTOR,0.9507,21,26
+event_novelty_score_2,A score indicating how new or unique a news event is within a 24-hour window.,VECTOR,1.0,26,30
+event_sentiment_score,A granular score representing the sentiment of a news event.,VECTOR,1.0,44,52
+event_start_date_utc,The UTC date when the event begins.,VECTOR,0.9507,209,262
+event_start_time_utc,The UTC timestamp when the event begins.,VECTOR,0.842,11,12
+event_start_time_utc_fast_d1,The UTC timestamp when the event begins.,VECTOR,0.8403,38,48
+global_event_novelty_score_2,A score indicating how novel an event is across all news providers within a 24-hour window.,VECTOR,1.0,18,24
+global_novelty_chain_elapsed_ms,Milliseconds elapsed between the first and current event in a global novelty chain.,VECTOR,1.0,156,166
+mean_composite_sentiment_score,The average composite sentiment score for news stories.,MATRIX,1.0,144,203
+mean_corporate_action_sentiment,The average sentiment score for news about corporate action announcements.,MATRIX,1.0,57,79
+mean_earnings_evaluation_sentiment,The average sentiment score for earnings evaluation news stories.,MATRIX,1.0,96,118
+mean_editorial_commentary_sentiment,The average sentiment score for editorials and commentary on equity markets.,MATRIX,1.0,69,80
+mean_entity_relevance_score,The average relevance score indicating how central an entity is to news stories.,MATRIX,1.0,63,87
+mean_equity_sentiment_score,The average sentiment score for news about global equities.,MATRIX,1.0,106,131
+mean_event_novelty_score,The average novelty score for events over a specified period.,MATRIX,1.0,78,97
+mean_event_sentiment_score,The average sentiment score for events over a specified period.,MATRIX,1.0,62,84
+mean_merger_acquisition_sentiment,"The average sentiment score for news about mergers, acquisitions, and takeovers.",MATRIX,1.0,167,329
+mean_news_impact_projection,The average projected market impact score for news flashes.,MATRIX,1.0,235,366
+merger_acquisition_sentiment,"A sentiment score for news stories about mergers, acquisitions, and takeovers.",VECTOR,1.0,48,55
+news_impact_projection_score,A score representing the projected market impact of a news flash.,VECTOR,1.0,76,85
+novelty_chain_elapsed_ms,Milliseconds elapsed between the first and current event in a novelty chain.,VECTOR,1.0,139,151
+nws18_acb,News sentiment specializing in corporate action announcements,VECTOR,0.903,212,575
+nws18_bam,"Mergers and acquisitions sentiment indicator (e.g., -1 negative, 0 neutral, +1 positive)",VECTOR,1.0,490,1183
+nws18_bam_fast_d1,"Mergers and acquisitions sentiment indicator (e.g., -1 negative, 0 neutral, +1 positive)",VECTOR,0.8633,62,80
+nws18_bee,"Earnings evaluation score indicating positive, neutral, or negative assessment (-1, 0, +1)",VECTOR,1.0,294,577
+nws18_bee_fast_d1,"Earnings evaluation score indicating positive, neutral, or negative assessment (-1, 0, +1)",VECTOR,1.0,20,23
+nws18_ber,Earnings Release Indicator flag for earnings release events,VECTOR,1.0,292,651
+nws18_ber_fast_d1,Earnings Release Indicator flag for earnings release events,VECTOR,0.8633,7,10
+nws18_event_relevance,Integer from 0 to 100 indicating the event’s relevance within the story,VECTOR,1.0,563,1018
+nws18_event_relevance_fast_d1,Integer from 0 to 100 indicating the event’s relevance within the story,VECTOR,0.8607,42,56
+nws18_event_similarity_days,"Number of days since a similar event was last detected within the past 365 days, up to 5 decimals",VECTOR,0.8999,378,727
+nws18_ghc_lna,Change in analyst recommendation,VECTOR,0.903,691,1660
+nws18_nip,"Narrative impact score in [-1, 1] estimating the news item’s short-term market impact (e.g., next two hours)",VECTOR,0.903,383,1383
+nws18_qcm,News sentiment of relevant news with high confidence,VECTOR,1.0,351,760
+nws18_qep,"Equities sentiment polarity score derived from positive/negative words in news (typically -1, 0, +1)",VECTOR,1.0,331,1035
+nws18_qep_fast_d1,"Equities sentiment polarity score derived from positive/negative words in news (typically -1, 0, +1)",VECTOR,0.8633,10,12
+nws18_qmb,"Editorials and commentary score indicating stance or sentiment (-1, 0, +1)",VECTOR,1.0,188,527
+nws18_qmb_fast_d1,"Editorials and commentary score indicating stance or sentiment (-1, 0, +1)",VECTOR,1.0,12,18
+nws18_relevance,Score from 0 to 100 indicating how strongly the entity is related to the story higher is more relevant,VECTOR,1.0,335,755
+nws18_relevance_fast_d1,Score from 0 to 100 indicating how strongly the entity is related to the story higher is more relevant,VECTOR,0.8633,45,53
+nws18_ssc,"Granular sentiment score from -1.00 to +1.00 for the story, combining multiple sentiment analysis techniques",VECTOR,1.0,374,841
+nws18_ssc_fast_d1,"Granular sentiment score from -1.00 to +1.00 for the story, combining multiple sentiment analysis techniques",VECTOR,0.8633,20,29
+nws18_sse,Continuous sentiment score between -1.00 and +1.00 for the entity-event,VECTOR,0.8999,187,436
+reporting_period_end_date_utc,The UTC date marking the end of the reporting period for the event.,VECTOR,0.9986,36,38
+reporting_period_end_date_utc_fast_d1,The UTC date marking the end of the reporting period for the event.,VECTOR,0.9983,62,71
+reporting_period_end_time_utc,The UTC timestamp marking the end of the reporting period for the event.,VECTOR,0.9986,141,192
+reporting_period_end_time_utc_fast_d1,The UTC timestamp marking the end of the reporting period for the event.,VECTOR,0.9983,185,268
+reporting_period_start_date_utc,The UTC date marking the beginning of the reporting period for the event.,VECTOR,0.8895,89,148
+reporting_period_start_time_utc,The UTC timestamp marking the beginning of the reporting period for the event.,VECTOR,0.9986,97,133
+reporting_period_start_time_utc_fast_d1,The UTC timestamp marking the beginning of the reporting period for the event.,VECTOR,0.9983,139,195
+rp_css_assets,Composite sentiment score of assets news,MATRIX,0.5,664,1248
+rp_css_business,Composite sentiment score of business-related news,MATRIX,0.5,1384,4019
+rp_css_credit,Composite sentiment score of credit news,MATRIX,0.5,220,398
+rp_css_credit_ratings,Composite sentiment score of credit ratings news,MATRIX,0.5,423,1363
+rp_css_dividends,Composite sentiment score of dividends news,MATRIX,0.5,104,215
+rp_css_earnings,Composite sentiment score of earnings news,MATRIX,0.5,919,2043
+rp_css_equity,Composite sentiment score of equity action news,MATRIX,0.5,496,1117
+rp_css_insider,Composite sentiment score of insider trading news,MATRIX,0.5,323,660
+rp_css_inverstor,Composite sentiment score of investor relations news,MATRIX,0.5,793,1969
+rp_css_labor,Composite sentiment score of labor issues news,MATRIX,0.5,297,565
+rp_css_legal,Composite sentiment score of legal news,MATRIX,0.5,206,326
+rp_css_marketing,Composite sentiment score of marketing news,MATRIX,0.5,250,691
+rp_css_mna,Composite sentiment score of mergers and acquisitions-related news,MATRIX,0.5,286,669
+rp_css_partner,Composite sentiment score of partnership news,MATRIX,0.5,649,1141
+rp_css_price,Composite sentiment score of stock price news,MATRIX,0.5,772,1467
+rp_css_product,Composite sentiment score of product and service-related news,MATRIX,0.5,501,927
+rp_css_ptg,Composite sentiment score of price target news,MATRIX,0.5,646,1067
+rp_css_ratings,Composite sentiment score of analyst ratings-related news,MATRIX,0.5,1322,2460
+rp_css_revenue,Composite sentiment score of revenue news,MATRIX,0.5,683,1357
+rp_css_society,Composite sentiment score of society-related news,MATRIX,0.5,126,190
+rp_css_technical,Composite sentiment score based on technical analysis,MATRIX,0.5,278,367
+rp_ess_assets,Event sentiment score of assets news,MATRIX,0.5,481,730
+rp_ess_business,Event sentiment score of business-related news,MATRIX,0.5,317,944
+rp_ess_credit,Event sentiment score of credit news,MATRIX,0.5,153,225
+rp_ess_credit_ratings,Event sentiment score of credit ratings news,MATRIX,0.5,351,446
+rp_ess_dividends,Event sentiment score of dividends news,MATRIX,0.5,77,124
+rp_ess_earnings,Event sentiment score of earnings news,MATRIX,0.5,750,1687
+rp_ess_equity,Event sentiment score of equity action news,MATRIX,0.5,405,695
+rp_ess_insider,Event sentiment score of insider trading news,MATRIX,0.5,358,641
+rp_ess_labor,Event sentiment score of labor issues news,MATRIX,0.5,275,498
+rp_ess_legal,Event sentiment score of legal news,MATRIX,0.5,455,624
+rp_ess_mna,Event sentiment score of mergers and acquisitions-related news,MATRIX,0.5,664,1363
+rp_ess_partner,Event sentiment score of partnership news,MATRIX,0.5,978,2056
+rp_ess_price,Event sentiment score of stock price news,MATRIX,0.5,585,1176
+rp_ess_product,Event sentiment score of product and service-related news,MATRIX,0.5,831,1365
+rp_ess_ptg,Event sentiment score of price target news,MATRIX,0.5,288,452
+rp_ess_ratings,Event sentiment score of analyst ratings-related news,MATRIX,0.5,1121,2270
+rp_ess_revenue,Event sentiment score of revenue news,MATRIX,0.5,490,858
+rp_ess_society,Event sentiment score of society-related news,MATRIX,0.5,156,248
+rp_ess_technical,Event sentiment score based on technical analysis,MATRIX,0.5,227,307
+rp_nip_assets,News impact projection of assets news,MATRIX,0.5,488,900
+rp_nip_business,News impact projection of business-related news,MATRIX,0.5,432,1220
+rp_nip_credit,News impact projection of credit news,MATRIX,0.5,311,521
+rp_nip_credit_ratings,News impact projection of credit ratings news,MATRIX,0.5,93,175
+rp_nip_dividends,News impact projection of dividends news,MATRIX,0.5,93,165
+rp_nip_earnings,News impact projection of earnings news,MATRIX,0.5,560,1316
+rp_nip_equity,News impact projection of equity action news,MATRIX,0.5,401,870
+rp_nip_insider,News impact projection of insider trading news,MATRIX,0.5,380,786
+rp_nip_inverstor,News impact projection of investor relations news,MATRIX,0.5,896,2547
+rp_nip_labor,News impact projection of labor issues news,MATRIX,0.5,155,344
+rp_nip_legal,News impact projection of legal news,MATRIX,0.5,114,215
+rp_nip_marketing,News impact projection of marketing news,MATRIX,0.5,162,519
+rp_nip_mna,News impact projection of mergers and acquisitions-related news,MATRIX,0.5,241,524
+rp_nip_partner,News impact projection of partnership news,MATRIX,0.5,232,448
+rp_nip_price,News impact projection of stock price news,MATRIX,0.5,367,734
+rp_nip_product,News impact projection of product and service-related news,MATRIX,0.5,466,941
+rp_nip_ptg,News impact projection of price target news,MATRIX,0.5,351,587
+rp_nip_ratings,News impact projection of analyst ratings-related news,MATRIX,0.5,1210,2159
+rp_nip_revenue,News impact projection of revenue news,MATRIX,0.5,394,710
+rp_nip_society,News impact projection of society-related news,MATRIX,0.5,81,164
+rp_nip_technical,News impact projection based on technical analysis,MATRIX,0.5,78,173
+story_event_record_count,The total number of event records published for a news story.,VECTOR,0.903,40,51
+story_event_record_count_fast_d1,The total number of event records published for a news story.,VECTOR,1.0,38,55

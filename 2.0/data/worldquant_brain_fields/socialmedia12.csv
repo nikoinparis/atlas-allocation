@@ -1,0 +1,19 @@
+id,description,type,coverage,userCount,alphaCount
+scl12_alltype_buzzvec,sentiment volume,VECTOR,0.9525,684,1009
+scl12_alltype_sentvec,sentiment,VECTOR,0.9525,132,264
+scl12_alltype_typevec,instrument type index,VECTOR,0.9525,123,194
+scl12_buzz,relative sentiment volume,MATRIX,1.0,16779,26104
+scl12_buzz_fast_d1,relative sentiment volume,MATRIX,0.9756,352,549
+scl12_buzzvec,Vector representing the volume of social media sentiment/mentions related to the instrument,VECTOR,1.0,2827,4658
+scl12_sentiment,sentiment,MATRIX,1.0,1945,4493
+scl12_sentiment_fast_d1,sentiment,MATRIX,0.9756,395,617
+scl12_sentvec,Vector representing the sentiment score (bullish/bearish/neutral) derived from social media data for the instrument,VECTOR,1.0,575,1053
+scl12_typevec,Vector containing the type indices identifying the categories of instruments in the dataset,VECTOR,1.0,339,654
+snt_buzz,"Negative relative sentiment volume measure for current day, with missing values filled as 0",MATRIX,1.0,3892,10546
+snt_buzz_bfl,"Negative relative sentiment volume measure for current day, with missing values filled as 1",MATRIX,1.0,3405,7221
+snt_buzz_bfl_fast_d1,"Negative relative sentiment volume measure for current day, with missing values filled as 1",MATRIX,0.9998,240,282
+snt_buzz_fast_d1,"Negative relative sentiment volume measure for current day, with missing values filled as 0",MATRIX,0.9769,285,331
+snt_buzz_ret,negative return of relative sentiment volume,MATRIX,1.0,2100,4450
+snt_buzz_ret_fast_d1,negative return of relative sentiment volume,MATRIX,0.9769,137,192
+snt_value,"Negative sentiment score/indicator for current day, with missing values filled as 0",MATRIX,1.0,1257,3255
+snt_value_fast_d1,"Negative sentiment score/indicator for current day, with missing values filled as 0",MATRIX,0.9769,723,895

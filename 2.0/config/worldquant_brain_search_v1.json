@@ -1,0 +1,93 @@
+{
+  "experiment": "worldquant_brain_search_v1",
+  "created_at_utc": "2026-09-24",
+  "supersedes_posture_of": "worldquant_brain_replication_v1 (the diagnostic, now complete)",
+
+  "_what_changed": [
+    "The replication is DONE: ten of twelve families measured, zero beat a no-skill size",
+    "control. That phase was pre-registered as a diagnostic, not a search, and it stayed one.",
+    "The owner has now explicitly directed a SEARCH on BRAIN with the goal of a submission.",
+    "That is a different activity under different rules and it is recorded as such here",
+    "rather than allowed to blur into the diagnostic's record."
+  ],
+
+  "registered_before_any_search_result_existed": true,
+  "this_is_a_search_not_a_diagnostic": true,
+  "strategy_promotion_authorized": false,
+  "submission_authorized": false,
+  "_submission_note": "Authorization for an actual BRAIN submission is a separate, explicit owner decision, made after a candidate clears the bars below. Nothing in this file authorizes one.",
+
+  "the_bar": {
+    "primary": "decile monotonicity must EXCEED control_size, not 0.5",
+    "control_size_monotonicity_market_neutral": 0.867,
+    "control_size_middle_8_market_neutral": 0.905,
+    "_why": [
+      "group_rank(assets, sector) -- ranking companies by total assets, no skill in it --",
+      "orders its deciles at +0.867 market-neutral on 10/10 clean deciles. Four of the ten",
+      "families measured clear the declared 0.5 bar and ALL FOUR clear it by roughly the",
+      "margin the control does. The highest, sales_yield at +0.988, is the most mechanically",
+      "size-linked construction in the set. Scoring against 0.5 rediscovers size; scoring",
+      "against the control does not."
+    ],
+    "also_required": [
+      "middle-8 monotonicity clears too, in the same direction (extremes-only is concentration)",
+      "the de-sized variant survives -- a signal whose edge vanishes once size is ranked out was size",
+      "the de-sizing method is itself validated: a de-sized control_size must go FLAT",
+      "density: the underlying fields at >= 0.5 coverage, and 1.0 preferred"
+    ],
+    "explicitly_NOT_the_bar": [
+      "BRAIN Sharpe >= 1.25 and fitness >= 1.0. `growth` clears both and returns LESS than",
+      "the no-skill control (8.35% vs 8.57%). The scoreboard is the instrument that produced",
+      "eleven years of headline numbers here that all died."
+    ]
+  },
+
+  "sign_discipline": {
+    "no_post_hoc_sign_flipping": true,
+    "_note": "Every candidate's sign is declared with the expression, before its ladder runs. A negative result is a refutation, not a discovery with the sign flipped. Held for Form 4 (Step 286) and FINRA short volume (Step 282); held for balance_sheet_quality here at -0.927; holds for anything found now."
+  },
+
+  "multiple_testing": {
+    "cumulative_count_starts_now": true,
+    "simulations_already_spent_on_the_diagnostic": 119,
+    "_honest_limit": [
+      "BRAIN cannot count its own multiple testing and neither can we. Unlimited simulations,",
+      "a fixed in-sample window shared by every user, and circulated templates. fundamental6",
+      "has 86,751 users; pv1 has 90,051. Anything found on those is the survivor of a search",
+      "whose size is not merely uncounted but uncountable. A pass here is therefore WEAKER",
+      "evidence than a pass on our own data, not stronger, and must be described that way.",
+      "This is why the search targets the least-trodden datasets available."
+    ],
+    "dataset_contamination_by_userCount": {
+      "pv1": 90051, "fundamental6": 86751, "analyst4": 47968,
+      "socialmedia12": 23683, "option9": 21728, "pv13": 18671,
+      "news18": 8996, "socialmedia8": 6299, "model16": 4621
+    }
+  },
+
+  "why_sentiment_first": [
+    "coverage 1.0 rather than the fundamentals' 0.5, which removes the binding density caveat",
+    "on every number the diagnostic produced",
+    "socialmedia8 has 6,299 users and news18 8,996, against fundamental6's 86,751",
+    "a z-scored sentiment level is structurally far less size-linked than a ratio whose",
+    "denominator IS market cap -- sales_yield at +0.988 shows how easily that recovers size"
+  ],
+
+  "what_a_pass_would_and_would_not_mean": {
+    "would_mean": "a hypothesis worth rebuilding and retesting on OUR panel, under its own pre-registration",
+    "would_not_mean": [
+      "a tradeable strategy -- BRAIN's data never leaves the platform (verified: no export",
+      "endpoint at any level, /data-fields/{id}/data and /data-sets/{id}/export both 404)",
+      "anything about our books, which are weekly long-only top-5..20 against BRAIN's",
+      "daily ~3000-name dollar-neutral subindustry-neutral truncated book",
+      "satisfaction of the cost gate -- BRAIN returns appear gross; 0/10/50/100bps stays ours"
+    ]
+  },
+
+  "kill_conditions": [
+    "de-sized control_size does NOT go flat -> the de-sizing method is broken, nothing readable",
+    "a candidate's edge disappears when de-sized -> it was size, record and close it",
+    "monotonicity below control_size -> not a candidate, whatever its Sharpe",
+    "field coverage below 0.5 -> not measurable on deciles at all"
+  ]
+}

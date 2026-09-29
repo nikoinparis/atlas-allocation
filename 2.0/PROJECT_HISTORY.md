@@ -15909,3 +15909,32 @@ once energy is removed"; none is now). Both are now computed from the payload.
 References: `evidence/weekly_forward_cycles/2026-09-25-20260929T124333Z-81a9ffa4edc55edb/`,
 `evidence/dashboard_held_book_marks_v1/`, `data/broad_full_history_panel_v1/manifest.json`,
 `docs/RESEARCH_QUEUE.md` S19.
+
+## Step 323 — 2026-09-29 — A what-if replay: $10,000 in every strategy, marked daily
+
+**What this was for.** The owner asked why missed weeks cannot be filled in, and to see simply
+what each strategy would have made if it had been run live from its start. It explained
+something and made no new strategy.
+
+`scripts/build_paper_replay_v1.py` writes `evidence/paper_replay_v1/{daily_nav.csv,summary.json}`.
+It marks $10,000 per strategy on Yahoo dividend-adjusted daily closes, using only books decided
+before the days they are marked on: the six dashboard strategies hold their 2026-08-07 book as a
+drifting buy-and-hold position, and the six clocks follow their logged target weights, paying each
+record's modeled cost, with the missed 2026-09-18 decision treated as "kept the previous book".
+It reads the forward logs and never writes to them.
+
+**Verified against the official record:** at 2026-09-11 the four ETF clocks' replay equals their
+hash-chained cumulative returns to the basis point (+5.48%, +5.22%, +2.56%, −1.11%). The dashboard
+books differ from the Step 322 weekly marks by 0.1–0.7pp because those marks re-weight to the
+original weights every week and the replay lets positions drift, as a live account would.
+
+**Through 2026-09-28:** growth top-five $10,720, ETF 60/40 $10,675, cash conversion $10,490,
+sector 1.35x $10,354, residual 1.25x $10,278, sector-aware $10,272; QQQ $10,197, SPY $9,926 over
+the same days. Clocks: breadth trend $10,484, 60/40 blend $10,242, past-only consensus $10,090,
+SUE $10,008 (from 09-11), minimum variance $9,726, valuation earnings yield $9,475 (from 09-11).
+
+**What the missed week hid.** Past-only consensus (100% XLE) reads +5.22% on its clock because the
+clock stopped at 2026-09-11; the replay shows it at +0.81% by 2026-09-25. The gap in the official
+record happened to fall on this book's worst stretch. That is the argument for the replay as a
+view, and it is also the argument for the rule that the official log is never backfilled: a log
+that can be filled in after the fact can be filled in selectively.

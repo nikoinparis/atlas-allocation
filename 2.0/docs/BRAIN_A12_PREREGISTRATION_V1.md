@@ -157,6 +157,40 @@ and rough cost); and whether the traded form could be run by an individual (shor
 the five channels has a free point-in-time history**; all five could be collected forward from
 free snapshots, which gives no history for years.
 
+## Addendum 1 — 2026-09-29, written mid-run, BEFORE any control ladder existed
+
+**Declared honestly as written after data was seen.** The density probes had run (H1a 26.1%
+and all three H5 variants 0.3% non-zero: UNREADABLE, not substituted), and the H1b and H1c
+ladders had come back visibly ordered (decile 1 about −8%, decile 10 about +7%). No control
+ladder and no score had been computed; one H2 decile had landed. (A first commit of this
+addendum, d367260, carried only the runner change because the doc edits failed to save; it is
+recorded here rather than rewritten. Between that failed save and this one, H1c decile 10's
+yearly returns were read — 2019 −0.2%, 2020 +6.4%, 2021 +23.7%, 2022 +8.9%, 2023 −5.4% — so
+test 3 below is no longer blind for that one decile; it is a read-out, not a gate, and is
+unchanged by it.)
+
+These additions can only **kill** H1, never promote it. They are the adversarial pass CLAUDE.md
+§1 requires and were not in the original plan, which is a deviation and is reported as one.
+
+1. **Momentum control** — the obvious alternative explanation. Analysts revise after prices
+   move, so revision breadth may be price momentum relabelled (momentum is closed here, Steps
+   189/192/257). Ladder on
+   `group_rank(ts_sum(returns, 63) + 0 * <H1 raw breadth>, sector)` — 63-day past return on H1's
+   exact mask. 10 simulations.
+2. **Momentum-neutral revision breadth** — the decisive test. H1c's inner signal ranked within
+   past-return quintiles: `group_rank(<H1c inner>, bucket(rank(ts_sum(returns, 63)), buckets=5))`.
+   If revision breadth has content beyond momentum this still orders its deciles (> 0.5 full
+   and middle-8); if it goes flat, H1 was momentum. 10 simulations.
+3. **Backfill check** — `analyst4`'s revision fields were created on BRAIN on 2022-07-01, so
+   2019 to mid-2022 is vendor history loaded after the fact and may not be point-in-time.
+   From the yearly-stats already fetched (no new simulations): report 2023 — the only year
+   collected entirely after the field went live — separately. A signal that orders strongly
+   in 2019-2021 and not in 2023 is flagged as possibly backfill-contaminated.
+
+New maximum: 157 run or scheduled + 20 here + ≤30 conditional de-sized = **207**, inside the
+registered 241. Bar for H1 to remain a lead: all six original bars **and** test 2 reads
+ORDERS ITS DECILES. Test 1 is reported, not a gate (a control can order itself).
+
 ## Honest limits, stated before the run
 
 - In-sample on the platform (the window is expected to be 2019-2023; read off the first alpha).

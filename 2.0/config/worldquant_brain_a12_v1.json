@@ -142,6 +142,17 @@
     "window": "In-sample on the platform (expected 2019-01-01 to 2023-12-31, read off the first alpha record). The hypotheses were chosen from literature published 2002-2010 on pre-2006 samples and were never measured by this project, so the window is post-publication for every one of them; it is NOT an untouched window."
   },
 
+  "addendum_1_mid_run": {
+    "written": "2026-09-29, after density probes and the H1b/H1c ladders were seen (visibly ordered), before any control ladder or score",
+    "can_only_kill": true,
+    "momentum_control_M1": "group_rank(ts_sum(returns, 63) + 0 * ((vec_avg(anl4_basicconafv110_pu) - vec_avg(anl4_basicconafv110_down)) / vec_avg(anl4_basicconafv110_numest)), sector)",
+    "momentum_neutral_H1c": "group_rank(ts_mean((vec_avg(anl4_basicconafv110_pu) - vec_avg(anl4_basicconafv110_down)) / vec_avg(anl4_basicconafv110_numest), 63), bucket(rank(ts_sum(returns, 63)), buckets=5))",
+    "backfill_check": "yearly-stats: report 2023 (collected after the fields went live on 2022-07-01) separately from 2019-2021",
+    "extra_simulations": 20,
+    "new_maximum_total": 207,
+    "h1_lead_additionally_requires": "momentum_neutral_H1c reads ORDERS ITS DECILES"
+  },
+
   "what_a_pass_would_and_would_not_mean": {
     "would_mean": "this BRAIN data channel is worth pricing and rebuilding on our own panel under its own pre-registration",
     "would_not_mean": "a tradeable strategy; BRAIN data cannot be exported (verified Step 317) and BRAIN's book is a daily dollar-neutral ~3,000-name long-short that a small account cannot run"

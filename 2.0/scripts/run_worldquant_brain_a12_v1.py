@@ -283,6 +283,18 @@ def phase_controls(config: dict, workers: int, only: list[str] | None = None) ->
     return 0
 
 
+def phase_addendum(config: dict, workers: int) -> int:
+    """Addendum 1 (kill-only): momentum control and momentum-neutral H1c on H1's mask."""
+    spec = config["addendum_1_mid_run"]
+    ladder_n = config["settings"]["ladder_neutralization"]
+    jobs = []
+    for label, key in (("addendum_M1_momentum", "momentum_control_M1"),
+                       ("addendum_H1c_momentum_neutral", "momentum_neutral_H1c")):
+        jobs.extend((f"{label}_d{d:02d}", band(spec[key], d), ladder_n) for d in range(1, 11))
+    run_jobs(jobs, workers)
+    return 0
+
+
 def phase_desize(config: dict, workers: int, names: list[str]) -> int:
     if len(names) > config["budget"]["conditional_desized_ladders_max"]:
         raise SystemExit("more de-sized ladders than the registered budget allows")
@@ -489,7 +501,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--phase", required=True,
-                        choices=["probes", "ladders", "controls", "desize", "score"])
+                        choices=["probes", "ladders", "controls", "addendum", "desize", "score"])
     parser.add_argument("--workers", type=int, default=3)
     parser.add_argument("--only", nargs="*", help="restrict --phase ladders to these variants")
     parser.add_argument("--desize", nargs="*", default=[], help="variants for --phase desize")
@@ -503,6 +515,8 @@ def main() -> int:
         return phase_ladders(config, args.workers, args.only)
     if args.phase == "controls":
         return phase_controls(config, args.workers, args.only)
+    if args.phase == "addendum":
+        return phase_addendum(config, args.workers)
     if args.phase == "desize":
         return phase_desize(config, args.workers, args.desize)
     return phase_score(config, args.draws)

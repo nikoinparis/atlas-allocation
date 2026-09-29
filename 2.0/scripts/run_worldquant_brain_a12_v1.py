@@ -128,7 +128,10 @@ def simulate(expression: str, neutralization: str, timeout: int = 1800) -> dict:
             continue
         state = poll.json()
         status = state.get("status")
-        if status == "COMPLETE":
+        # WARNING with an alpha id is a finished simulation carrying a notice -- found on the
+        # controls, where `cap + 0 * <field>` trips BRAIN's unit check ("Incompatible unit for
+        # input of add"). The first run treated it as still running and timed out after 30 min.
+        if status == "COMPLETE" or (status == "WARNING" and state.get("alpha")):
             break
         if status in {"FAILED", "ERROR"}:
             return {"error": f"{status}: {json.dumps(state)[:600]}"}
@@ -136,6 +139,10 @@ def simulate(expression: str, neutralization: str, timeout: int = 1800) -> dict:
     else:
         return {"error": f"timed out: {json.dumps(state)[:300]}"}
 
+    return fetch_alpha(state, expression, neutralization)
+
+
+def fetch_alpha(state: dict, expression: str, neutralization: str) -> dict:
     alpha_id = state.get("alpha")
     if not alpha_id:
         return {"error": f"complete without alpha id: {json.dumps(state)[:300]}"}
@@ -151,7 +158,33 @@ def simulate(expression: str, neutralization: str, timeout: int = 1800) -> dict:
             break
         time.sleep(4.0)
     return {"alpha_id": alpha_id, "is": record.get("is"), "settings": record.get("settings"),
-            "expression": expression, "neutralization": neutralization, "yearly": yearly}
+            "expression": expression, "neutralization": neutralization, "yearly": yearly,
+            "status": state.get("status"), "message": state.get("message")}
+
+
+def recover(label: str, expression: str, neutralization: str) -> dict | None:
+    """A cached error that names a simulation id may have finished after we stopped waiting.
+    Fetch it rather than re-simulate: a re-simulation would be a second, uncounted trial."""
+    import re
+    path = SIMS / f"{label}.json"
+    if not path.exists():
+        return None
+    data = json.loads(path.read_text())
+    match = re.search(r'"id": "([A-Za-z0-9]{12,})"', data.get("error", ""))
+    if not match:
+        return None
+    poll = _request("GET", f"{L.API}/simulations/{match.group(1)}")
+    if poll is None or poll.status_code != 200 or not poll.text:
+        return None
+    state = poll.json()
+    if not state.get("alpha"):
+        return None
+    result = fetch_alpha(state, expression, neutralization)
+    if "error" in result:
+        return None
+    result["label"], result["recovered_from_timeout"] = label, True
+    path.write_text(json.dumps(result, indent=2, sort_keys=True))
+    return result
 
 
 # ---------------------------------------------------------------------------- cache
@@ -167,7 +200,7 @@ def cached(label: str) -> dict | None:
 def run_jobs(jobs: list[tuple[str, str, str]], workers: int) -> dict[str, dict]:
     """jobs: (label, expression, neutralization). Cached labels are skipped."""
     SIMS.mkdir(parents=True, exist_ok=True)
-    results = {label: cached(label) for label, _, _ in jobs}
+    results = {label: cached(label) or recover(label, e, n) for label, e, n in jobs}
     todo = [job for job in jobs if results[job[0]] is None]
     print(f"{len(jobs)} jobs, {len(jobs) - len(todo)} cached, {len(todo)} to run", flush=True)
 

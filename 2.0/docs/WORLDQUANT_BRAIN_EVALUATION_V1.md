@@ -741,3 +741,18 @@ here that all died. Three things must be said in the same breath as that 1.27:
    fields**, the construction the plan flagged as the most fragile of the three.
 
 Whether any of this is skill is decided by the decile ladder, not by this table.
+
+## 2026-09-30 — correction from Step 326: `bucket(rank(x), buckets=5)` was a no-op
+
+BRAIN's `bucket` takes `buckets` as a **string of boundaries** (`buckets="2,5,6,7,10"`) or
+`range="0, 1, 0.1"`. `buckets=5` is one boundary at 5 on a 0-1 rank, so every name lands in one
+group and `group_rank(x, bucket(...))` is a plain universe-wide rank. Step 317's
+`news_impact_DESIZED` (+0.055) and its "cap within cap-buckets" de-size validation (+0.200) were
+therefore **not de-sized**. Step 317's conclusion stands, because the raw ladder was already flat and
+a no-op cannot manufacture an ordering. The claim that de-sizing "changed nothing, which is what
+de-sizing a signal with no ordering should do" is withdrawn. Use `range="0,1,0.2"` for quintile
+groups. A12 (Step 326) found the defect and re-ran with the correct form.
+
+A12 itself — five new channels, two in-sample candidates that do not hold in 2023 — is written
+up in `PROJECT_HISTORY.md` Step 326 and `docs/BRAIN_A12_PREREGISTRATION_V1.md`; evidence is in
+`evidence/worldquant_brain_a12_v1/`.

@@ -1,4 +1,5 @@
 {
+  "bar_6_desized_full_above_0.5": true,
   "bars": {
     "1_orders_its_deciles": true,
     "2_beats_control": true,
@@ -12,6 +13,7 @@
   "control_full": -0.07878787878787878,
   "control_middle_8": -0.2619047619047619,
   "control_scored_names_mean": 3054.9,
+  "control_used": "C3",
   "decile_dispersion": 0.05633175037223679,
   "decile_returns": {
     "1": -0.1583,
@@ -39,7 +41,66 @@
   ],
   "declared_sign": "positive: call IV above put IV ranks high",
   "density": null,
-  "desized": null,
+  "desized": {
+    "decile_dispersion": 0.05760854450513396,
+    "decile_returns": {
+      "1": -0.1626,
+      "2": -0.0091,
+      "3": 0.0094,
+      "4": 0.0029,
+      "5": 0.0092,
+      "6": 0.0348,
+      "7": 0.0081,
+      "8": 0.0383,
+      "9": 0.0476,
+      "10": 0.0388
+    },
+    "decile_share_of_scored": [
+      0.1153,
+      0.0868,
+      0.0995,
+      0.0998,
+      0.1013,
+      0.0998,
+      0.0998,
+      0.0998,
+      0.0998,
+      0.0997
+    ],
+    "distinct_values": 10,
+    "extremes_share_of_spread": 0.7184707050645481,
+    "inner_spread_d9_minus_d2": 0.0567,
+    "missing": [],
+    "monotonicity": 0.8666666666666667,
+    "monotonicity_middle_8": 0.7619047619047619,
+    "permutation_p": 0.0011699941500292498,
+    "scored_names_mean": 3131.1,
+    "tie_check_passed": true,
+    "top_minus_bottom": 0.2014,
+    "verdict": "ORDERS ITS DECILES -- clears the declared bar",
+    "yearly": {
+      "2019": {
+        "monotonicity": 0.8787878787878788,
+        "top_minus_bottom": 0.10859999999999999
+      },
+      "2020": {
+        "monotonicity": 0.5272727272727272,
+        "top_minus_bottom": 0.1002
+      },
+      "2021": {
+        "monotonicity": 0.5393939393939394,
+        "top_minus_bottom": 0.3924
+      },
+      "2022": {
+        "monotonicity": 0.4666666666666667,
+        "top_minus_bottom": 0.4224
+      },
+      "2023": {
+        "monotonicity": 0.1393939393939394,
+        "top_minus_bottom": -0.0266
+      }
+    }
+  },
   "distinct_values": 10,
   "expression": "group_rank(implied_volatility_call_90 - implied_volatility_put_90, sector)",
   "extremes_share_of_spread": 0.7372549019607844,

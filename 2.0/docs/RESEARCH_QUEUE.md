@@ -179,15 +179,28 @@ Both are small. A gate nobody trusts is worse than no gate.
 ## A tier
 
 
-### A12. WorldQuant BRAIN as an external judge, not just a replication instrument *(new 2026-09-29, owner question)*
-**Free (BRAIN account already exists, Steps 315-317). Blocker: none technical; needs a declared trial budget.**
-The owner wants a result that would get a quant firm's attention. BRAIN is the one place where a
-firm evaluates submissions on *its* data, *its* costs and *its* out-of-sample window, and pays
-consultants for alphas that pass. That makes it the cleanest external falsification this project
-can get: we cannot overfit their holdout. Scope: pick five hypotheses from families NOT closed
-here, pre-register them, run the Step 296 skill screen (IC, decile spread, monotonicity, density
-first) on BRAIN before submitting anything, and record the submission outcome whatever it is.
-Step 317 is the warning that travels with this: a BRAIN Sharpe of 1.44 came with monotonicity 0.042.
+### A14. Out-of-window test of revision breadth and the call-put IV spread *(new 2026-09-30, Step 326)*
+**The first two signals in this project to order their deciles, in-sample only.** On BRAIN,
+H1c (63-day analyst revision breadth) read +0.964 / middle-8 +0.929, and it survives
+momentum-neutral (+0.997) and de-sized (+0.988) forms. H4b (90-day call-minus-put IV) read
++0.952 / +0.905, de-sized +0.830. **Both lose it in 2023**, the only year BRAIN collected these
+fields live (they were created 2022-05 and 2022-07; earlier years are loaded history). H1c 2023
+spread −4.0pp, H4b +1.1pp.
+**What settles it:** the same ladders on 2024-2026. Two routes. (1) Check whether BRAIN lets a
+simulation's start and end dates move past 2023. It is untested; the settings object carries
+them. That route is free. (2) A paid point-in-time estimates or IV history (Zacks through Nasdaq
+Data Link, ORATS, CBOE DataShop; prices not checked). **Pre-register one construction per
+signal, exactly as in Step 326, before looking.** Also start free forward collection now (daily
+analyst up/down tables, option chains), because it costs nothing and history only accrues forward.
+**Tradability is already a problem:** H4b turns over 79% a day; H1c needs ~1,500 shorts.
+
+### B5. Recommendation changes, rebuilt for event fields *(new 2026-09-30, Step 326)*
+Step 326's H5 was **unmeasured, not refuted**. It came in at 0.3% non-zero because `vec_avg` of a
+VECTOR (event) field exists only on event days, so `ts_delta` is almost always zero or empty. Needs a
+construction that carries the last value forward (e.g. `ts_backfill`), declared in a new
+pre-registration before any simulation. It is the P2 `ConsRecomm` purchase question in miniature.
+Finnhub's free tier gives aggregate recommendation counts, so a positive result would be the
+rare case with a free route.
 
 ### A8. EU short-selling registers *(new 2026-09-10, owner-proposed)*
 **Status:** never attempted. Free, daily, from ESMA and national regulators.
@@ -274,6 +287,8 @@ mechanisms. Declare which one, and one horizon, before testing -- do not test bo
 Revision direction and breadth are aggregates and may be obtainable on a free tier.
 **Before it can be ranked properly:** thirty minutes establishing whether any free source gives
 a point-in-time revision series. If not, it moves to the paid queue next to P2.
+**Step 326:** measured on BRAIN; it orders its deciles 2019-2023 but not in 2023 (see A14). The
+free-source question is still open and is now the binding one.
 
 ### A6. Cross-sectional residual work in a second market *(new 2026-09-06)*
 **This corrects a likely misreading of Step 246, and the correction matters.** Step 246
@@ -445,6 +460,7 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 | **Non-machine-read information / disclosure latency (Step 301 asymmetry 3)** | **Closed on its premise.** Direct test blocked twice over -- Indonesian prices on disk are daily only, and IDX endpoints return HTTP 403 behind an AWS WAF challenge needing browser automation. So the premise was tested instead: Hou-Moskowitz delay on 157 Indonesian stocks over 2,469 days is **0.0291**, meaning **97.1% of the price response to market information arrives contemporaneously**; lag-1 own-return autocorrelation is **+0.006**, economically nil. That is the liquid, fast band, not a market where disclosures sit unread. **Correction kept in the record:** the US comparison I built was invalid -- 157 single stocks against 35 ETFs, which are baskets that incorporate information mechanically -- so the conclusion rests on Indonesia's absolute level, which needs no comparison. Closes the last of Step 301's three asymmetries; the other two fell in Steps 302 and 303. | Step 306 |
 | **VWAP and standard-deviation bands (new 2026-09-12)** | **Closed. It is short-term reversal relabelled.** Genuinely untried before this -- VWAP appeared once in 306 steps, only to note the data lacked it. Computable only on Indonesian daily data (the US panel has prices without volume). VWAP deviation measures IC **+0.0177** against short-term reversal's **+0.0174**, the identical t of 0.92, and the two correlate **+0.767** cross-sectionally; price above its own VWAP is the same fact as a positive trailing return. Reversal is closed twice already (Steps 250, 302). **The bands fail structurally, not on performance:** the 2σ band leaves 7 usable decisions and the 3σ band one, because at 79 names nothing survives the filter -- the same wall Step 49's Bollinger rejection hit. Neither form orders its deciles (+0.04, -0.04). | Step 307 |
 | **VWAP, wide US universe (new 2026-09-12)** | **Closed after a fair trial.** Acquired the US daily volume that had made VWAP untestable for 307 steps: 2,748 of 2,810 issuers, 97.8% overlap, 3,946 days, zero failed batches. Bands got real breadth -- **392 names at 2σ against 3 in Indonesia** -- so Step 307's structural objection is gone. Nought of four clears Bonferroni; nought of four orders its deciles (-0.02 to +0.01). Duplication holds at 35x the universe: correlation with short-term reversal **+0.741** against Indonesia's +0.767. The 2σ band's 16.74% at 0bps is beta -- market beta **+1.030**, R² 0.752, and a Sharpe of **0.703 against its own universe's 0.728** -- and falls to 9.81% at the declared 50bps. | Step 308 |
+| **WorldQuant BRAIN as an external judge (was A12)** | **Two in-sample candidates, zero confirmed; three hypotheses closed.** Five new channels pre-registered, 226 simulations. Revision breadth (H1c +0.964/+0.929, momentum-neutral +0.997, de-sized +0.988) and call-put IV spread (H4b +0.952/+0.905, de-sized +0.830) passed every registered gate. **Neither holds in 2023**, the only year the fields were collected live; earlier years are loaded history. Dispersion flat; IV smirk flat, with its middle-8 against the declared sign; recommendation changes unmeasured (0.3% density, construction). **Bug: `bucket(rank(x), buckets=5)` is a single group**, which voids Step 317's de-sizing read. Neither signal is tradeable by us as run (79%/day turnover; ~1,500 shorts). Nothing submitted. Continued as A14/B5. | Step 326 |
 | **Replicate the skill null on WorldQuant BRAIN data (was S13)** | **Closed — the null replicated on data we do not own.** Fifteen constructions, four datasets, twelve families, ~200 simulations; zero with cross-sectional skill above a coverage-matched no-skill control. The strongest find, Ravenpack `mean_news_impact_projection`, scored Sharpe **1.44** market-neutral against monotonicity **+0.042** with a negative middle-eight — all of its spread was decile one. BRAIN removed all four stated weaknesses of the Step 296–308 null at once (our panel, our universe, our construction-error history, our backtester) and returned the same answer on a ~6× cross-section. Nothing submitted; 0 submitted alphas is correct. | Step 317 |
 | **Decile ladder at NONE cannot separate an ordering from a beta ordering (was S15)** | **Closed, and the hypothesis was wrong.** MARKET neutralization leaves monotonicity bit-identical (+0.939 → +0.939): it shifts decile levels without reordering them, and monotonicity is scale-free. It removes ~44% of the *spread*, near-identically across three different signals, which is one shared exposure rather than three. The real finding came from elsewhere — `group_rank(cap, sector)` is flat at **+0.091** while `group_rank(assets, sector)` is **+0.867**, so a control must match the candidate's coverage or it measures a different universe. | Step 317 |
 | **Stress-test the 1.0 ETF allocator (was S16)** | **Closed — it does not survive its own criteria.** 32 variants (phase2…phasezz), falsified entirely from 1.0's own recorded output with nothing re-run. Every benchmark prints **HRP** (Sharpe 0.9251, drawdown −10.86%, turnover 0.0062) and then tests only against Equal Weight / Inverse Vol, excluding the strongest baseline it printed. With HRP included: **0/32** clear the reports' own +0.05 Sharpe bar, **31/32** are worse on drawdown, **31/32** are below HRP at the default 5bp cost, **30/30** are below it with one week of rebalance delay. Return over HRP is proportional to volatility over HRP (mean gap −0.023), so the candidates are HRP at 1.7–1.9× exposure. Best variant is +0.0413 Sharpe = **0.16 standard errors** over 21.3 years. 29 of 32 realism audits claim a {0,5,10,25,50}bp grid and print only {0,5,10}. 31 of 32 flag their own hidden concentration (two sleeves, ~10% of book, 44–56% of risk) and override it. The defensible conclusion is that HRP on the 7-sleeve panel is the right answer. | Step 318 |

@@ -1,17 +1,19 @@
 {
+  "bar_6_desized_full_above_0.5": null,
   "bars": {
     "1_orders_its_deciles": false,
-    "2_beats_control": false,
+    "2_beats_control": true,
     "3_tie_check": false,
     "4_bonferroni_conservative": false,
     "5_regime_4_of_5": false
   },
-  "beats_control_both": false,
+  "beats_control_both": true,
   "bh_fdr_pass": false,
   "control": "C2",
-  "control_full": 0.04242424242424243,
-  "control_middle_8": 0.35714285714285715,
-  "control_scored_names_mean": 2262.4,
+  "control_full": 0.091,
+  "control_middle_8": -0.119,
+  "control_scored_names_mean": "~3140 (full universe)",
+  "control_used": "reference full-coverage cap control (C2 unreadable: ties)",
   "decile_dispersion": 0.011208786731845692,
   "decile_returns": {
     "1": 0.0,

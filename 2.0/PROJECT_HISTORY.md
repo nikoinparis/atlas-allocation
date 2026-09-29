@@ -15972,3 +15972,132 @@ guard; the tie-agnostic companion already had it, so that was three.
 **Not done: the schedule.** A daily launchd job (07:00 and 19:00 WIB) was written but its
 installation was refused by the session's permission policy as unauthorised persistence. That is
 the right default for a background job, and it is left to the owner.
+
+## Step 326 — 2026-09-29 — A12: five new channels on BRAIN; two order their deciles in-sample, and the only live-data year does not confirm either
+
+**What this was for.** The owner asked whether WorldQuant BRAIN's richer data — analyst
+estimates, recommendations, option prices — shows cross-sectional skill that this project's
+free data never could, and whether anything found there could be used here. It was a
+pre-registered search for a **new signal**. It produced **two in-sample research candidates**,
+**one bug found** (in this run and in Step 317), and **three closed hypotheses**. It promoted
+nothing and submitted nothing.
+
+**Pre-registered before any simulation** (`docs/BRAIN_A12_PREREGISTRATION_V1.md`,
+`config/worldquant_brain_a12_v1.json`, commit 02b4d46): five channels not in the Closed table,
+three variants each, signs inside the expressions, coverage-matched cap controls, a density
+probe on the zero-prone variants, and six bars. Settings: USA / TOP3000 / delay 1 /
+truncation 0.08 / pasteurization and nanHandling ON. Ladders MARKET-neutral, production forms
+SUBINDUSTRY. Window read off the alpha records: **2019-01-01 to 2023-12-31, all in-sample**.
+
+**The order things happened in, stated plainly because it matters.** The density probes ran
+first. The H1b and H1c ladders came back **visibly ordered before any control or other ladder
+existed**, and *only then* was Addendum 1 written (a momentum control, a momentum-neutral H1c,
+and a 2023 read-out). It was declared kill-only, but it was written after seeing H1's first
+result, and one decile's yearly numbers were read before its text was saved. Addendum 2
+(below) was written after all 197 earlier simulations had been scored.
+
+| hyp | channel | readable variants | best full / middle-8 | verdict |
+|---|---|---|---|---|
+| H1 | analyst revision breadth (`analyst4` up/down counts) | 2 of 3 (raw 26.1% non-zero) | H1c **+0.964 / +0.929** | ORDERS ITS DECILES (b and c) |
+| H2 | analyst forecast dispersion | 1 of 3 (a, b fail ties) | H2c −0.006 / +0.095 | flat |
+| H3 | options IV smirk | 3 of 3 | −0.32 to −0.42 / **−0.67 to −0.74** | flat; middle-8 against the declared sign |
+| H4 | call-minus-put IV spread | 3 of 3 | H4b **+0.952 / +0.905** | H4b ORDERS; H4a, H4c CONCENTRATION |
+| H5 | recommendation changes | **0 of 3** (0.3% non-zero) | — | UNREADABLE |
+
+**The two that ordered, and every gate they went through.**
+
+- **H1c** — 63-day mean of (up − down revisions) / estimates. Deciles −7.7% … +6.6% a year in
+  excess of the rest of the universe, spread +14.3pp. Beats the control (+0.091 / −0.119),
+  permutation p 1.5e-5, positive monotonicity in 5 of 5 years. **Momentum-neutral (ranked within
+  63-day-return quintiles): +0.997 / +0.994. De-sized (within cap quintiles): +0.988 / +0.976.**
+  It is not price momentum and not size.
+- **H4b** — 90-day ATM call IV minus put IV. Deciles −15.8% … +4.6%, spread +20.4pp. Beats C3
+  (−0.079 / −0.262), p 5.5e-5, 5 of 5 years. **De-sized: +0.830 / +0.905.**
+
+**And the reason neither is believed yet: 2023.** `analyst4`'s revision fields went live on BRAIN
+on 2022-07-01 and `option8`'s on 2022-05-01. So 2019 to mid-2022 is vendor history **loaded after
+the fact**, and 2023 is the only year collected live. In 2023:
+
+| | 2019 | 2020 | 2021 | 2022 | **2023** |
+|---|---|---|---|---|---|
+| H1c spread | −3.8pp | +13.7 | **+49.4** | +16.5 | **−4.0** |
+| H1c momentum-neutral, mono | +0.16 | +0.92 | +1.00 | +0.98 | **−0.04** |
+| H1c de-sized, mono | +0.31 | +0.58 | +0.99 | +0.84 | **−0.64** |
+| H4b spread | +11.3 | +11.5 | +40.4 | +36.8 | **+1.1** |
+| H4b de-sized, mono | +0.73 | +0.81 | +0.78 | +0.37 | **+0.35** |
+
+**H1c does not work in the one live year**, and a third of its five-year spread is 2021 alone. That
+is what backfill contamination looks like, and it is also what a 2020-22 regime looks like; this
+data cannot separate them. H4b keeps a weak positive ordering in 2023 on a spread that shrinks
+from ~+37pp to +1pp. Addendum 1 made the 2023 read a read-out rather than a gate, so the six bars
+say "lead". The honest label is: **two in-sample research candidates that passed every registered
+gate and have no out-of-window confirmation.** Neither is a strategy.
+
+**Bug found — `bucket(rank(x), buckets=5)` is one group.** BRAIN's `buckets` takes a *string of
+boundaries*, so `buckets=5` puts every name in one bucket and `group_rank` becomes a plain universe
+rank. Caught because H1c "de-sized by size quintiles" and H1c "momentum-neutral by return
+quintiles" came back **identical to four decimals**. This voided Addendum 1's momentum test and the
+registered de-sizing bar, so they were re-declared and re-run with `range="0,1,0.2"` (Addendum 2,
+commit 3f55324). The corrected ladders differ from the no-op ones, so the grouping is live. **It
+also voids Step 317's `news_impact_DESIZED` (+0.055) and that step's de-size validation.** Step
+317's conclusion does not change, because the raw ladder was flat (+0.042) and a no-op cannot create
+an ordering. But the sentence "de-sizing changed nothing, which is what de-sizing a signal with no
+ordering should do" described a no-op.
+
+**Three other defects, all in my own harness.**
+1. **C1 and C2 are unreadable.** They fail their own tie check: the `cap + 0 * <field>` mask sat on
+   H1's raw vector field, which exists only on update days, and on `eps_std`, which is sparse in
+   history. H1 and H2c were read instead against the Step 317 full-coverage cap control, which
+   is coverage-matched in practice because they score ~3,140 names, the whole universe. The
+   momentum control M1 used the same broken mask and is also unreadable, with one decile lost to a
+   failed POST. C3 is clean.
+2. The poller waited for `COMPLETE`, but BRAIN returns `WARNING` (a harmless unit notice on
+   `cap + 0*x`) together with a finished alpha. Three control simulations sat 30 minutes each;
+   they were recovered by simulation id rather than re-run.
+3. H5's construction is the likely cause of its 0.3% density, not the data: `vec_avg` of an event
+   (VECTOR) field is present only on event days, so a daily `ts_delta` is almost always zero or
+   empty. **H5 is recorded as unmeasured, not as refuted.** H1's raw variant failed the same way at
+   26.1%, and smoothing (H1b, H1c) repaired it.
+
+**Multiple testing.** The account held 302 simulations before this step and 528 after it: **226
+here**, inside the registered maximum of 241 and above Addendum 1's 207, which Addendum 2 declared.
+Counting every simulation as a trial, Bonferroni 0.05/528 = 9.5e-5; H1c (1.5e-5) and H4b (5.5e-5)
+still clear it. Constructions: 19 before this step + 15 + 5 addendum ladders. BH-FDR passes H1b,
+H1c, H4a, H4b and H4c. Two caveats go with those numbers:
+- the permutation test treats the ten decile returns as exchangeable, so it measures shape, not
+  sampling error;
+- BRAIN's shared window has an uncountable platform-wide search behind it (`anl4_basicconafv110_pu`
+  alone has 1,736 users).
+
+Both effects are **published, decades-old anomalies** (Chan-Jegadeesh-Lakonishok 1996 for
+revisions; Cremers-Weinbaum 2010 for the IV spread) and **widely used commercially**, which makes
+them plausible and makes them not a discovery.
+
+**Can we use either?**
+- **Data.** Neither has a free point-in-time history.
+  - Revision counts: IBES (WRDS, institutional only) or FactSet at institution pricing. Zacks
+    estimates through Nasdaq Data Link is the nearest individual-accessible product. Pricing and
+    point-in-time quality were not checked.
+  - Option IVs: OptionMetrics (institutional), ORATS, CBOE DataShop, or raw Polygon chains with
+    our own IV computation. These are paid, with prices not checked this session.
+  - Both can be **collected forward for free** (daily analyst up/down tables and option chains
+    from free web sources), but that gives no history for years.
+- **Trading.**
+  - **H1c** turns over 4.9% of the book a day: roughly 1.2% a year at 10bps and 6.1% at 50bps,
+    against a BRAIN return of 6.96% (BRAIN Sharpe 1.03, fitness 0.77; not evidence). The book is
+    ~1,500 shorts: impossible at small size, and a long-only top decile reintroduces the market
+    beta that Step 295 showed dominates.
+  - **H4b** turns over **79% a day**, which is above BRAIN's own 70% cap: roughly 20% a year at
+    10bps and ~100% at 50bps. The ordering is concentrated in decile 1 (−15.8%), which is where
+    hard-to-borrow names sit. Shorting those is the costly or impossible part, and the literature
+    attributes much of this effect to borrow fees.
+
+  **Neither is tradeable by us as run.**
+
+**Submission.** Nothing was submitted; the account shows 0 active alphas. Neither passes BRAIN's
+own checks (H1c fitness 0.77 < 1.0; H4b turnover 79% > 70%), so there is nothing to recommend
+submitting as-is. A submission's forward record is the only genuinely untouched data BRAIN offers.
+Making either submittable would need a new, pre-registered construction, and that is the owner's
+call.
+
+**What would settle it:** data outside 2019-2023. Queued as A14.

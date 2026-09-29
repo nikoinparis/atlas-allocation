@@ -1,4 +1,5 @@
 {
+  "bar_6_desized_full_above_0.5": true,
   "bars": {
     "1_orders_its_deciles": true,
     "2_beats_control": true,
@@ -9,9 +10,10 @@
   "beats_control_both": true,
   "bh_fdr_pass": true,
   "control": "C1",
-  "control_full": 0.8545454545454545,
-  "control_middle_8": 0.8809523809523809,
-  "control_scored_names_mean": 1407.5,
+  "control_full": 0.091,
+  "control_middle_8": -0.119,
+  "control_scored_names_mean": "~3140 (full universe)",
+  "control_used": "reference full-coverage cap control (C1 unreadable: ties)",
   "decile_dispersion": 0.04572955280778503,
   "decile_returns": {
     "1": -0.0766,
@@ -68,7 +70,66 @@
     },
     "zero_names": 103
   },
-  "desized": null,
+  "desized": {
+    "decile_dispersion": 0.04976244467467409,
+    "decile_returns": {
+      "1": -0.0813,
+      "2": -0.0468,
+      "3": -0.0517,
+      "4": -0.0184,
+      "5": -0.0225,
+      "6": 0.0105,
+      "7": 0.0241,
+      "8": 0.053,
+      "9": 0.0594,
+      "10": 0.0736
+    },
+    "decile_share_of_scored": [
+      0.1,
+      0.1,
+      0.1,
+      0.0997,
+      0.1,
+      0.0997,
+      0.0997,
+      0.0997,
+      0.0997,
+      0.1
+    ],
+    "distinct_values": 10,
+    "extremes_share_of_spread": 0.31439638476436405,
+    "inner_spread_d9_minus_d2": 0.1062,
+    "missing": [],
+    "monotonicity": 0.9757575757575757,
+    "monotonicity_middle_8": 0.9523809523809523,
+    "permutation_p": 9.999950000249999e-06,
+    "scored_names_mean": 3139.5,
+    "tie_check_passed": true,
+    "top_minus_bottom": 0.15489999999999998,
+    "verdict": "ORDERS ITS DECILES -- clears the declared bar",
+    "yearly": {
+      "2019": {
+        "monotonicity": 0.24848484848484848,
+        "top_minus_bottom": -0.020099999999999996
+      },
+      "2020": {
+        "monotonicity": 0.4909090909090909,
+        "top_minus_bottom": 0.1582
+      },
+      "2021": {
+        "monotonicity": 0.9878787878787879,
+        "top_minus_bottom": 0.5075000000000001
+      },
+      "2022": {
+        "monotonicity": 0.9030303030303031,
+        "top_minus_bottom": 0.2013
+      },
+      "2023": {
+        "monotonicity": -0.44242424242424244,
+        "top_minus_bottom": -0.067
+      }
+    }
+  },
   "distinct_values": 10,
   "expression": "group_rank(ts_mean((vec_avg(anl4_basicconafv110_pu) - vec_avg(anl4_basicconafv110_down)) / vec_avg(anl4_basicconafv110_numest), 63), sector)",
   "extremes_share_of_spread": 0.28871758934828307,

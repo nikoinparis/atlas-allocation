@@ -1,0 +1,149 @@
+{
+  "experiment": "worldquant_brain_a12_v1",
+  "queue_item": "A12",
+  "created_at_utc": "2026-09-29",
+  "registered_before_any_result_existed": true,
+  "_registration_note": "Written and committed before the first A12 simulation. Field ids verified live (GET /data-fields/{id}, no simulation) the same day; see evidence/worldquant_brain_a12_v1/field_verification.json. Human-readable version: docs/BRAIN_A12_PREREGISTRATION_V1.md.",
+  "this_is_a_search_not_a_diagnostic": true,
+  "strategy_promotion_authorized": false,
+  "submission_authorized": false,
+  "_submission_note": "Simulations only. Nothing is submitted to BRAIN for checks or to the consultant program. Submission acts on the owner's account and is the owner's decision.",
+
+  "settings": {
+    "region": "USA", "universe": "TOP3000", "delay": 1, "decay": 0, "truncation": 0.08,
+    "pasteurization": "ON", "nanHandling": "ON", "unitHandling": "VERIFY",
+    "ladder_neutralization": "MARKET",
+    "production_neutralization": "SUBINDUSTRY",
+    "density_probe_neutralization": "MARKET",
+    "_delay0": "forbidden",
+    "_why_market_ladder": "Matches worldquant_brain_search_v1, where the full-coverage cap control measured +0.091 / middle-8 -0.119. A MARKET-neutral decile alpha is that decile's return in excess of the rest of the scored universe, so the ladder carries no market beta."
+  },
+
+  "budget": {
+    "hypotheses": 5,
+    "variants_per_hypothesis_max": 3,
+    "alphas": 15,
+    "density_probes": 6,
+    "production_forms": 15,
+    "ladder_simulations": 150,
+    "control_ladders": 4,
+    "control_simulations": 40,
+    "conditional_desized_ladders_max": 3,
+    "conditional_desized_simulations_max": 30,
+    "maximum_total_simulations": 241,
+    "no_substitution": "If a hypothesis dies on field resolution, parse failure or density, that is recorded as its result and no replacement hypothesis is run.",
+    "parse_failure_rule": "One syntax-only correction is permitted per expression (same fields, same sign, same horizon); it is recorded. A second failure ends that variant."
+  },
+
+  "hypotheses": {
+    "H1_revision_breadth": {
+      "channel": "analyst estimate revisions (queue A5; never measured in this project)",
+      "sign": "positive: more upward than downward revisions ranks high",
+      "fields": ["anl4_basicconafv110_pu", "anl4_basicconafv110_down", "anl4_basicconafv110_numest"],
+      "field_interpretation_risk": "BRAIN describes these only as 'number of upper/lower estimations' and 'number of forecasts counted'. Interpreted as the vendor's (believed FactSet) consensus up/down revision counts for the annual period. The counting window is not documented. If 'upper' instead means estimates above consensus, this becomes an estimate-skew measure with no stated prior. Recorded before running, not after.",
+      "variants": {
+        "H1a_raw": "group_rank((vec_avg(anl4_basicconafv110_pu) - vec_avg(anl4_basicconafv110_down)) / vec_avg(anl4_basicconafv110_numest), sector)",
+        "H1b_mean21": "group_rank(ts_mean((vec_avg(anl4_basicconafv110_pu) - vec_avg(anl4_basicconafv110_down)) / vec_avg(anl4_basicconafv110_numest), 21), sector)",
+        "H1c_mean63": "group_rank(ts_mean((vec_avg(anl4_basicconafv110_pu) - vec_avg(anl4_basicconafv110_down)) / vec_avg(anl4_basicconafv110_numest), 63), sector)"
+      },
+      "density_probe_on": ["H1a_raw", "H1b_mean21", "H1c_mean63"],
+      "control": "C1"
+    },
+    "H2_forecast_dispersion": {
+      "channel": "analyst disagreement (Diether, Malloy & Scherbina 2002)",
+      "sign": "negative: high dispersion ranks LOW",
+      "fields": ["anl4_fs_detail_estimates_basic_af_v4_nd_eps_std", "anl4_fs_detail_estimates_basic_af_v4_nd_eps_mean", "anl4_afv4_eps_high", "anl4_afv4_eps_low", "close"],
+      "variants": {
+        "H2a_std_over_absmean": "group_rank(-(anl4_fs_detail_estimates_basic_af_v4_nd_eps_std / abs(anl4_fs_detail_estimates_basic_af_v4_nd_eps_mean)), sector)",
+        "H2b_std_over_price": "group_rank(-(anl4_fs_detail_estimates_basic_af_v4_nd_eps_std / close), sector)",
+        "H2c_range_over_price": "group_rank(-((anl4_afv4_eps_high - anl4_afv4_eps_low) / close), sector)"
+      },
+      "density_probe_on": [],
+      "control": "C2"
+    },
+    "H3_iv_skew": {
+      "channel": "options-implied volatility smirk (Xing, Zhang & Zhao 2010)",
+      "sign": "negative: a steeper smirk (OTM-put IV above OTM-call IV) ranks LOW",
+      "fields": ["implied_volatility_mean_skew_30", "implied_volatility_mean_skew_90"],
+      "field_interpretation": "BRAIN: mean IV at 90% strikes minus mean IV at 110% strikes. Higher = steeper downside smirk. Taken from the description; the numeric convention cannot be checked without a simulation and is not checked.",
+      "variants": {
+        "H3a_skew30": "group_rank(-implied_volatility_mean_skew_30, sector)",
+        "H3b_skew90": "group_rank(-implied_volatility_mean_skew_90, sector)",
+        "H3c_skew30_mean20": "group_rank(-ts_mean(implied_volatility_mean_skew_30, 20), sector)"
+      },
+      "density_probe_on": [],
+      "control": "C3"
+    },
+    "H4_call_put_iv_spread": {
+      "channel": "options-implied put-call parity deviation / implied borrow cost (Cremers & Weinbaum 2010; Bali & Hovakimian 2009)",
+      "sign": "positive: call IV above put IV ranks high",
+      "fields": ["implied_volatility_call_30", "implied_volatility_put_30", "implied_volatility_call_90", "implied_volatility_put_90"],
+      "variants": {
+        "H4a_spread30": "group_rank(implied_volatility_call_30 - implied_volatility_put_30, sector)",
+        "H4b_spread90": "group_rank(implied_volatility_call_90 - implied_volatility_put_90, sector)",
+        "H4c_spread30_change20": "group_rank((implied_volatility_call_30 - implied_volatility_put_30) - ts_mean(implied_volatility_call_30 - implied_volatility_put_30, 20), sector)"
+      },
+      "density_probe_on": [],
+      "control": "C3"
+    },
+    "H5_recommendation_change": {
+      "channel": "sell-side recommendation changes (Jegadeesh, Kim, Krische & Lee 2004; queue P2's ConsRecomm)",
+      "sign": "positive: consensus moving toward buy ranks high",
+      "fields": ["anl4_buy", "anl4_under", "anl4_total_rec"],
+      "variants": {
+        "H5a_change21": "group_rank(ts_delta((vec_avg(anl4_buy) - vec_avg(anl4_under)) / vec_avg(anl4_total_rec), 21), sector)",
+        "H5b_change63": "group_rank(ts_delta((vec_avg(anl4_buy) - vec_avg(anl4_under)) / vec_avg(anl4_total_rec), 63), sector)",
+        "H5c_change126": "group_rank(ts_delta((vec_avg(anl4_buy) - vec_avg(anl4_under)) / vec_avg(anl4_total_rec), 126), sector)"
+      },
+      "density_probe_on": ["H5a_change21", "H5b_change63", "H5c_change126"],
+      "control": "C4"
+    }
+  },
+
+  "controls": {
+    "_why": "Step 317: a control must MATCH THE CANDIDATE'S COVERAGE. group_rank(assets, sector) at coverage 0.5 ordered +0.867; group_rank(cap, sector) at coverage 1.0 was flat at +0.091. Each control ranks market cap within sector on exactly the NaN mask of its hypothesis's first variant, so it scores the same names. Verified after the run by comparing scored-name counts (long+short), not assumed.",
+    "C1": "group_rank(cap + 0 * ((vec_avg(anl4_basicconafv110_pu) - vec_avg(anl4_basicconafv110_down)) / vec_avg(anl4_basicconafv110_numest)), sector)",
+    "C2": "group_rank(cap + 0 * (anl4_fs_detail_estimates_basic_af_v4_nd_eps_std / abs(anl4_fs_detail_estimates_basic_af_v4_nd_eps_mean)), sector)",
+    "C3": "group_rank(cap + 0 * implied_volatility_mean_skew_30, sector)",
+    "C4": "group_rank(cap + 0 * ts_delta((vec_avg(anl4_buy) - vec_avg(anl4_under)) / vec_avg(anl4_total_rec), 21), sector)",
+    "reference_full_coverage_cap_control": {"expression": "group_rank(cap, sector)", "monotonicity": 0.091, "middle_8": -0.119, "source": "evidence/worldquant_brain_search_v1/controls.json"}
+  },
+
+  "density_guard": {
+    "probe_expression": "if_else(abs(<variant>) > 0, 1, 0), neutralization MARKET",
+    "reading": "longCount = names with a non-zero, non-NaN signal; shortCount = names at exactly zero. Density = longCount / 3000 (share of the TOP3000 universe with a usable non-zero value), also reported as longCount / (longCount + shortCount).",
+    "bar": "density >= 0.50 of the universe, else UNREADABLE and no ladder is run for that variant",
+    "applies_to": "variants whose construction can produce exact zeros (H1, H5). The level variants (H2, H3, H4) are continuous; BRAIN field coverage 0.67 to 0.97 already clears the floor, and their ladders carry the tie check below.",
+    "tie_check_every_ladder": "each decile's longCount must lie between 5% and 15% of that decile alpha's (longCount + shortCount); otherwise the ladder is UNREADABLE (ties) and is not scored"
+  },
+
+  "reading": {
+    "evidence": "decile monotonicity (full ladder AND middle eight), top-minus-bottom spread (d10 - d1), against the coverage-matched control",
+    "not_evidence": "BRAIN Sharpe, fitness, turnover, returns of the production form. Reported, never used to decide.",
+    "verdict_strings": "run_worldquant_brain_decile_ladder_v1.verdict(): ORDERS ITS DECILES / CONCENTRATION / flat / INVERTED / DEGENERATE",
+    "lead_requires_all_of": [
+      "verdict ORDERS ITS DECILES (full > 0.5 and middle-8 > 0.5, same direction, positive in the declared sign)",
+      "full > its control's full AND middle-8 > its control's middle-8",
+      "ladder passes the tie check",
+      "joint permutation p (P[full >= obs and middle-8 >= obs] over random orderings of the ten decile returns, 200,000 draws) below Bonferroni 0.05 / cumulative trials",
+      "full-ladder monotonicity > 0 in at least 4 of the 5 calendar years (yearly-stats recordset, no extra simulations)",
+      "if all the above hold: one de-sized ladder, group_rank(<inner signal>, bucket(rank(cap), buckets=5)), must still read > 0.5 full ladder"
+    ],
+    "sign_discipline": "The sign is inside every expression and never changes. INVERTED is a refutation, not a discovery with the sign flipped (guardrail 2).",
+    "multiple_testing": {
+      "prior_simulations_on_account_at_registration": 302,
+      "prior_constructions_step_317_and_320": 19,
+      "a12_constructions": 15,
+      "bonferroni_denominator_conservative": "302 + 15 = 317 (every prior simulation counted as a trial)",
+      "bonferroni_denominator_constructions": "19 + 15 = 34",
+      "fdr": "Benjamini-Hochberg at q = 0.05 over the 15 A12 permutation p-values, reported alongside",
+      "platform_caveat": "BRAIN's shared in-sample window has been searched by thousands of users; that search is uncountable and makes any pass weaker evidence than the same pass on our own data."
+    },
+    "window": "In-sample on the platform (expected 2019-01-01 to 2023-12-31, read off the first alpha record). The hypotheses were chosen from literature published 2002-2010 on pre-2006 samples and were never measured by this project, so the window is post-publication for every one of them; it is NOT an untouched window."
+  },
+
+  "what_a_pass_would_and_would_not_mean": {
+    "would_mean": "this BRAIN data channel is worth pricing and rebuilding on our own panel under its own pre-registration",
+    "would_not_mean": "a tradeable strategy; BRAIN data cannot be exported (verified Step 317) and BRAIN's book is a daily dollar-neutral ~3,000-name long-short that a small account cannot run"
+  }
+}

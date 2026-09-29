@@ -1,0 +1,173 @@
+{
+  "anl4_basicconafv110_pu": {
+    "dataset": "analyst4",
+    "type": "VECTOR",
+    "description": "The number of upper estimations",
+    "coverage": 0.7343,
+    "userCount": 1736,
+    "alphaCount": 3188,
+    "dateCreated": "2022-07-01"
+  },
+  "anl4_basicconafv110_down": {
+    "dataset": "analyst4",
+    "type": "VECTOR",
+    "description": "Number of lower estimations",
+    "coverage": 0.7343,
+    "userCount": 88,
+    "alphaCount": 188,
+    "dateCreated": "2022-07-01"
+  },
+  "anl4_basicconafv110_numest": {
+    "dataset": "analyst4",
+    "type": "VECTOR",
+    "description": "The number of forecasts counted in aggregation",
+    "coverage": 0.7343,
+    "userCount": 580,
+    "alphaCount": 753,
+    "dateCreated": "2022-07-01"
+  },
+  "anl4_fs_detail_estimates_basic_af_v4_nd_eps_std": {
+    "dataset": "analyst4",
+    "type": "MATRIX",
+    "description": "Earnings per share (EPS) standard deviation of analyst estimates",
+    "coverage": 0.6729,
+    "userCount": 31,
+    "alphaCount": 57,
+    "dateCreated": "2026-03-01"
+  },
+  "anl4_fs_detail_estimates_basic_af_v4_nd_eps_mean": {
+    "dataset": "analyst4",
+    "type": "MATRIX",
+    "description": "Earnings per share (EPS) consensus mean of analyst estimates for the annual period",
+    "coverage": 0.9918,
+    "userCount": 156,
+    "alphaCount": 315,
+    "dateCreated": "2026-03-01"
+  },
+  "anl4_afv4_eps_high": {
+    "dataset": "analyst4",
+    "type": "MATRIX",
+    "description": "Earnings per share - The highest estimation",
+    "coverage": 1.0,
+    "userCount": 1056,
+    "alphaCount": 1710,
+    "dateCreated": "2025-11-01"
+  },
+  "anl4_afv4_eps_low": {
+    "dataset": "analyst4",
+    "type": "MATRIX",
+    "description": "Earnings per share - The lowest estimation for annual frequency",
+    "coverage": 1.0,
+    "userCount": 686,
+    "alphaCount": 1034,
+    "dateCreated": "2025-11-01"
+  },
+  "implied_volatility_mean_skew_30": {
+    "dataset": "option8",
+    "type": "MATRIX",
+    "description": "Skew steepness for the implied volatility duration of 30 calendar days by subtracting the mean implied volatility of the call and put options with strikes at 110% of the money from the mean implied volatility of the call and put options with strikes at 90% of the money",
+    "coverage": 0.9508,
+    "userCount": 952,
+    "alphaCount": 1424,
+    "dateCreated": "2022-05-01"
+  },
+  "implied_volatility_mean_skew_90": {
+    "dataset": "option8",
+    "type": "MATRIX",
+    "description": "Skew steepness for the implied volatility duration of 90 calendar days by subtracting the mean implied volatility of the call and put options with strikes at 110% of the money from the mean implied volatility of the call and put options with strikes at 90% of the money",
+    "coverage": 0.9508,
+    "userCount": 1267,
+    "alphaCount": 1813,
+    "dateCreated": "2022-05-01"
+  },
+  "implied_volatility_call_30": {
+    "dataset": "option8",
+    "type": "MATRIX",
+    "description": "Implied volatility of the at-the-money call for the stock with an expiration 30 calendar days from the measurement date",
+    "coverage": 0.9729,
+    "userCount": 4205,
+    "alphaCount": 10079,
+    "dateCreated": "2022-05-01"
+  },
+  "implied_volatility_put_30": {
+    "dataset": "option8",
+    "type": "MATRIX",
+    "description": "Implied volatility of the at-the-money put for the stock with an expiration 30 calendar days from the measurement date",
+    "coverage": 0.9727,
+    "userCount": 3420,
+    "alphaCount": 8683,
+    "dateCreated": "2022-05-01"
+  },
+  "implied_volatility_call_90": {
+    "dataset": "option8",
+    "type": "MATRIX",
+    "description": "Implied volatility of the at-the-money call for the stock with an expiration 90 calendar days from the measurement date",
+    "coverage": 0.9729,
+    "userCount": 3530,
+    "alphaCount": 9549,
+    "dateCreated": "2022-05-01"
+  },
+  "implied_volatility_put_90": {
+    "dataset": "option8",
+    "type": "MATRIX",
+    "description": "Implied volatility of the at-the-money put for the stock with an expiration 90 calendar days from the measurement date",
+    "coverage": 0.9727,
+    "userCount": 3605,
+    "alphaCount": 9663,
+    "dateCreated": "2022-05-01"
+  },
+  "anl4_buy": {
+    "dataset": "analyst4",
+    "type": "VECTOR",
+    "description": "The number of recommendations to long the instrument",
+    "coverage": 0.6243,
+    "userCount": 485,
+    "alphaCount": 679,
+    "dateCreated": "2022-08-01"
+  },
+  "anl4_under": {
+    "dataset": "analyst4",
+    "type": "VECTOR",
+    "description": "The number of Underweight recommendations",
+    "coverage": 0.6243,
+    "userCount": 101,
+    "alphaCount": 136,
+    "dateCreated": "2022-08-01"
+  },
+  "anl4_total_rec": {
+    "dataset": "analyst4",
+    "type": "VECTOR",
+    "description": "The total number of recommendations",
+    "coverage": 0.6243,
+    "userCount": 1695,
+    "alphaCount": 2648,
+    "dateCreated": "2022-08-01"
+  },
+  "anl4_hold": {
+    "dataset": "analyst4",
+    "type": "VECTOR",
+    "description": "The number of recommendations not clear about short or long the instrument",
+    "coverage": 0.6243,
+    "userCount": 882,
+    "alphaCount": 988,
+    "dateCreated": "2022-08-01"
+  },
+  "close": {
+    "dataset": "pv1",
+    "type": "MATRIX",
+    "description": "Daily close price",
+    "coverage": 1.0,
+    "userCount": 67197,
+    "alphaCount": 725317,
+    "dateCreated": "2023-07-01"
+  },
+  "cap": {
+    "dataset": "pv1",
+    "type": "MATRIX",
+    "description": "Daily market capitalization (in millions)",
+    "coverage": 1.0,
+    "userCount": 41964,
+    "alphaCount": 466280,
+    "dateCreated": "2023-07-01"
+  }
+}

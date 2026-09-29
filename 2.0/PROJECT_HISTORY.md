@@ -15938,3 +15938,14 @@ clock stopped at 2026-09-11; the replay shows it at +0.81% by 2026-09-25. The ga
 record happened to fall on this book's worst stretch. That is the argument for the replay as a
 view, and it is also the argument for the rule that the official log is never backfilled: a log
 that can be filled in after the fact can be filled in selectively.
+
+## Step 324 — 2026-09-29 — The replay is on the dashboard
+
+`/replay` ("What-if replay" in the sidebar) renders `dashboard/public/paper-replay.json`, which
+`scripts/build_paper_replay_v1.py` now writes alongside its evidence files: one chart per start
+date (dashboard strategies from 2026-08-07, ETF clocks from 2026-08-14, stock clocks from
+2026-09-11) so every line starts at the same $10,000, SPY and QQQ drawn over the same days, a
+summary table, and a day-by-day profit table for whichever strategy is selected. The page states
+on its face that it is a replay computed after the fact and not forward evidence. Production
+build verified; pushed so the deployed dashboard carries it. Re-run the script after each Friday
+cycle to extend it.

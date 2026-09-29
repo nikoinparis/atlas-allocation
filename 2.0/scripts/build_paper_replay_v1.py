@@ -31,6 +31,8 @@ OUTPUT = ROOT / "evidence/paper_replay_v1"
 NOTIONAL = 10_000.0
 FINANCING_ANNUAL = 0.05          # the levered books' own stated rate on borrowed cash
 BENCHMARKS = ["SPY", "QQQ"]
+ETF_CLOCKS = {"breadth_confirmed_trend_return_ceiling_v3", "past_only_consensus_selector_return_v1",
+              "return_first_60_40_blend_v1", "covariance_minimum_variance_v1"}
 
 DASHBOARD_LABELS = {
     "sec-residual-controlled-1.25x-5pct-v1": "Residual-Controlled 1.25x",
@@ -112,6 +114,39 @@ def replay(plan, closes: pd.DataFrame, end: pd.Timestamp) -> tuple[pd.DataFrame,
     return pd.DataFrame(rows), sorted(unpriced)
 
 
+def write_dashboard_payload(daily: pd.DataFrame, summary: list[dict], closes: pd.DataFrame, end: pd.Timestamp) -> None:
+    """One group per shared start date, so every line in a chart starts at the same $10,000."""
+    rows = {row["strategy"]: row for row in summary if row["kind"] != "benchmark"}
+    groups = []
+    for start in sorted({row["start"] for row in rows.values()}):
+        members = [key for key, row in rows.items() if row["start"] == start]
+        kind = "dashboard" if all(k in DASHBOARD_LABELS for k in members) else "clocks"
+        strategies = []
+        for key in sorted(members, key=lambda k: -rows[k]["final_value"]):
+            frame = daily[daily["strategy"] == key]
+            strategies.append({
+                **{k: v for k, v in rows[key].items() if k != "strategy"}, "id": key,
+                "daily": [{"date": start, "nav": NOTIONAL, "pnl": 0.0, "ret": 0.0}] + [
+                    {"date": r.date, "nav": round(r.nav, 2), "pnl": round(r.daily_pnl, 2), "ret": r.daily_return}
+                    for r in frame.itertuples()],
+            })
+        benchmarks = {}
+        for symbol in BENCHMARKS:
+            window = closes[symbol].loc[start:end].dropna()
+            benchmarks[symbol] = [{"date": d.strftime("%Y-%m-%d"), "nav": round(NOTIONAL * v / window.iloc[0], 2)} for d, v in window.items()]
+        title = ("Dashboard strategies" if kind == "dashboard"
+                 else "ETF clocks" if all(k in ETF_CLOCKS for k in members) else "Stock clocks")
+        groups.append({"id": f"{kind}-{start}", "title": title, "start": start, "strategies": strategies, "benchmarks": benchmarks})
+    payload = {
+        "generatedAtUtc": datetime.now(timezone.utc).isoformat(), "through": str(end.date()), "notional": NOTIONAL,
+        "whatThisIs": "A what-if replay: $10,000 in each strategy, marked on every trading day since its start, using only books decided before the days they are marked on.",
+        "whatThisIsNot": "Forward evidence. It is computed after the fact, so it cannot prove nothing was chosen with hindsight, and it is never written into the hash-chained forward logs.",
+        "method": "Dashboard strategies hold their 2026-08-07 book unchanged, drifting with prices; their weekly sleeve and leverage overlays are not replayed. Clocks follow the target weights in their decision logs and pay each record's modeled cost. The missed 2026-09-18 decision keeps the previous book, as a live account would. Levered books pay 5% a year on borrowed cash. Prices are Yahoo daily closes, dividend-adjusted.",
+        "groups": groups,
+    }
+    (ROOT / "dashboard/public/paper-replay.json").write_text(json.dumps(payload, separators=(",", ":")) + "\n")
+
+
 def main() -> int:
     OUTPUT.mkdir(parents=True, exist_ok=True)
     end = last_closed_session(datetime.now(timezone.utc))
@@ -163,6 +198,7 @@ def main() -> int:
         "through": str(end.date()), "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "strategies": summary,
     }, indent=2) + "\n")
+    write_dashboard_payload(daily, summary, closes, end)
     for row in summary:
         print(f"{row['label']:36s} {row['start']} -> {row['end']}  ${row['final_value']:>9,.0f}  {row['total_return']:+.2%}"
               + (f"  worst day {row['worst_day']:+.2%}  unpriced {row['unpriced_held_as_cash']}" if 'worst_day' in row else ""))

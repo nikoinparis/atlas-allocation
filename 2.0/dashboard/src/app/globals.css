@@ -698,3 +698,17 @@ button.metric-card:hover { border-color: rgba(139,114,255,.38); transform: trans
 .data-table th .metric-col { display: block; text-transform: none; letter-spacing: -.01em; font-size: 11px; color: var(--text); }
 .data-table th small { display: block; margin-top: 3px; font-size: 9px; font-weight: 600; letter-spacing: .04em; color: var(--text-tertiary); }
 .metrics-footnote { display: flex; flex-direction: column; gap: 10px; }
+
+/* What-if replay */
+.replay-groups { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 12px; }
+.replay-groups button { padding: 7px 12px; border: 1px solid #393c4b; border-radius: 9px; background: transparent; color: var(--text-secondary); font-size: 12px; cursor: pointer; }
+.replay-groups button.active { border-color: #3987e5; background: rgba(57,135,229,.12); color: var(--text-primary); }
+.replay-groups button small { margin-left: 4px; color: var(--text-tertiary); }
+.replay-legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 11px; color: var(--text-secondary); }
+.replay-legend span { display: inline-flex; align-items: center; gap: 5px; }
+.replay-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; }
+.replay-legend i.dashed { width: 14px; height: 0; border-radius: 0; border-top: 2px dashed #8b8d9b; }
+.replay-chart { height: 320px; margin: 12px 0 8px; }
+.replay-daily { max-height: 420px; overflow-y: auto; }
+.forward-table tr.selected td { background: rgba(57,135,229,.08); }
+@media (max-width: 580px) { .replay-chart { height: 240px; } .replay-daily { max-height: 320px; } }

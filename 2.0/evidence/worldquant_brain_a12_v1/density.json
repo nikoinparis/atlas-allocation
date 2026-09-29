@@ -1,0 +1,182 @@
+{
+  "H1a_raw": {
+    "density_of_universe": 0.2613,
+    "nonzero_names": 784,
+    "nonzero_share_of_scored": 0.2503,
+    "readable": false,
+    "reason": "UNREADABLE: only 26.1% of the universe carries a non-zero value",
+    "yearly": {
+      "2019": {
+        "long": 785,
+        "short": 2326
+      },
+      "2020": {
+        "long": 812,
+        "short": 2292
+      },
+      "2021": {
+        "long": 750,
+        "short": 2404
+      },
+      "2022": {
+        "long": 776,
+        "short": 2357
+      },
+      "2023": {
+        "long": 801,
+        "short": 2357
+      }
+    },
+    "zero_names": 2348
+  },
+  "H1b_mean21": {
+    "density_of_universe": 0.9477,
+    "nonzero_names": 2843,
+    "nonzero_share_of_scored": 0.9054,
+    "readable": true,
+    "reason": "density >= 0.50",
+    "yearly": {
+      "2019": {
+        "long": 2827,
+        "short": 284
+      },
+      "2020": {
+        "long": 2836,
+        "short": 269
+      },
+      "2021": {
+        "long": 2811,
+        "short": 343
+      },
+      "2022": {
+        "long": 2873,
+        "short": 284
+      },
+      "2023": {
+        "long": 2868,
+        "short": 302
+      }
+    },
+    "zero_names": 297
+  },
+  "H1c_mean63": {
+    "density_of_universe": 1.0123,
+    "nonzero_names": 3037,
+    "nonzero_share_of_scored": 0.9672,
+    "readable": true,
+    "reason": "density >= 0.50",
+    "yearly": {
+      "2019": {
+        "long": 3025,
+        "short": 86
+      },
+      "2020": {
+        "long": 2993,
+        "short": 112
+      },
+      "2021": {
+        "long": 3019,
+        "short": 135
+      },
+      "2022": {
+        "long": 3076,
+        "short": 81
+      },
+      "2023": {
+        "long": 3069,
+        "short": 101
+      }
+    },
+    "zero_names": 103
+  },
+  "H5a_change21": {
+    "density_of_universe": 0.003,
+    "nonzero_names": 9,
+    "nonzero_share_of_scored": 0.0029,
+    "readable": false,
+    "reason": "UNREADABLE: only 0.3% of the universe carries a non-zero value",
+    "yearly": {
+      "2019": {
+        "long": 9,
+        "short": 3101
+      },
+      "2020": {
+        "long": 10,
+        "short": 3054
+      },
+      "2021": {
+        "long": 9,
+        "short": 3144
+      },
+      "2022": {
+        "long": 9,
+        "short": 3098
+      },
+      "2023": {
+        "long": 9,
+        "short": 3136
+      }
+    },
+    "zero_names": 3108
+  },
+  "H5b_change63": {
+    "density_of_universe": 0.0033,
+    "nonzero_names": 10,
+    "nonzero_share_of_scored": 0.0032,
+    "readable": false,
+    "reason": "UNREADABLE: only 0.3% of the universe carries a non-zero value",
+    "yearly": {
+      "2019": {
+        "long": 10,
+        "short": 3076
+      },
+      "2020": {
+        "long": 10,
+        "short": 3081
+      },
+      "2021": {
+        "long": 12,
+        "short": 3142
+      },
+      "2022": {
+        "long": 9,
+        "short": 3073
+      },
+      "2023": {
+        "long": 9,
+        "short": 3135
+      }
+    },
+    "zero_names": 3102
+  },
+  "H5c_change126": {
+    "density_of_universe": 0.0033,
+    "nonzero_names": 10,
+    "nonzero_share_of_scored": 0.0032,
+    "readable": false,
+    "reason": "UNREADABLE: only 0.3% of the universe carries a non-zero value",
+    "yearly": {
+      "2019": {
+        "long": 10,
+        "short": 3101
+      },
+      "2020": {
+        "long": 11,
+        "short": 3094
+      },
+      "2021": {
+        "long": 10,
+        "short": 3131
+      },
+      "2022": {
+        "long": 10,
+        "short": 3084
+      },
+      "2023": {
+        "long": 9,
+        "short": 3123
+      }
+    },
+    "zero_names": 3107
+  }
+}

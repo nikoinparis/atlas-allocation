@@ -15843,3 +15843,69 @@ all in-sample, with no untouched forward record. Nothing is promoted and nothing
 not need the detector. With Steps 318, 319 and 321 together, 1.0 is now fully falsified — the
 allocator, the classifier, and the response — and the one positive result inside it (correct
 crisis identification) is established as unnecessary rather than merely insufficient.
+
+## Step 322 — 2026-09-29 — The 2026-09-25 decision recorded on all eight clocks; the 2026-09-18 week is lost
+
+**What this was for.** The owner asked for the forward week to be run for every strategy and the
+dashboard brought up to date. It advanced the clocks and refreshed the data. It made no new
+strategy and changed no existing one.
+
+**The 2026-09-18 window was missed, on every clock.** The last recorded decision was 2026-09-11.
+Nothing ran between 2026-09-18 21:00 UTC and 2026-09-25 21:00 UTC, so under every protocol's
+`missed_snapshot_policy` the 2026-09-18 decision and the realization of the 2026-09-11 decision are
+gone for good. The four ETF clocks confirm this mechanically: the covariance recorder found no
+snapshot inside the 09-18 realization window and left the 09-11 decision unrealized. The
+equal-weight, tie-agnostic, valuation and SUE recorders would *not* have refused a backfilled
+`--decision-date 2026-09-18`, because they check only that a window has opened. That was not run,
+and the missing upper bound is queued as S19.
+
+**Recorded, in the 2026-09-25 window (open until 2026-10-02 21:00 UTC):** decisions for all eight
+running clocks, all eight hash chains verified, all sharing last decision date 2026-09-25. Realized
+weeks are unchanged: 4/52 for the four ETF clocks, 0/52 for the four stock-level clocks, whose
+first realization is now due 2026-10-02 against the 2026-09-25 decision.
+
+| clock | realized | cumulative (unchanged since Step 311) |
+| --- | --- | --- |
+| breadth_confirmed_trend_return_ceiling_v3 | 4/52 | +5.48% |
+| past_only_consensus_selector_return_v1 | 4/52 | +5.22% |
+| return_first_60_40_blend_v1 | 4/52 | +2.56% |
+| covariance_minimum_variance_v1 | 4/52 | −1.11% |
+
+**Data brought forward to 2026-09-25.** `clean_weekly_prices_v2` extended by two weeks (2,805
+issuers). Full-history lineage re-acquired (vintage `20260929T125011Z`, 2,811 of 3,235 symbols
+returned) and rebuilt, with the unclosed 2026-10-02 bar correctly dropped. Reconciliation: 548,144
+overlapping cells, median gap 2.2e-16, 0.07% over 100bps. Corporate-action cleaning removed 1.07%
+of cells and quarantined 13 issuers, the same as Step 314. **One operator error, reverted:**
+`build_corporate_action_clean_prices_v1.py` was first run with its defaults, which read a different
+input and overwrite the committed `data/clean_corporate_action_prices_v1`. That was restored with
+`git checkout` before anything read it, and the script was re-run with the `--prices`/`--output`
+pair the clocks need.
+
+**The six dashboard strategies, held books marked to 2026-09-25.** Their backtests still stop at
+2026-08-07 (Step 309's hardcoded-vintage decision is still open), so what exists is the
+2026-08-07 book of each, held unrebalanced for seven closed weeks. This is not a forward
+observation of any strategy.
+
+| book | held 7w | vs SPY | vs QQQ | up weeks | worst week | from energy | ex-energy |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| growth top-five | +8.93% | +8.93pp | +5.85pp | 4/7 | −7.01% | −1.96% | +11.34% |
+| ETF 60/40 | +7.26% | +7.26pp | +4.18pp | 4/7 | −0.22% | +4.85% | +2.27% |
+| cash conversion b20 | +5.91% | +5.91pp | +2.83pp | 5/7 | −1.46% | +1.43% | +4.42% |
+| sector ensemble 1.35x | +4.35% | +4.35pp | +1.27pp | 4/7 | −2.34% | +1.14% | +3.42% |
+| residual-controlled 1.25x | +4.02% | +4.02pp | +0.94pp | 4/7 | −2.69% | +1.43% | +2.83% |
+| sector-aware ensemble | +3.33% | +3.33pp | +0.26pp | 4/7 | −1.72% | +0.84% | +2.53% |
+
+Benchmarks over the same weeks: SPY +0.00%, QQQ +3.08%, XLK +4.54%, equal-weight issuer
+universe −5.14%. All six are positive. **Against QQQ, which is the fair comparison for
+tech-heavy, beta-1.3-to-1.75 books, three of six lead by about a point or less.** The biggest
+winner is five names with a −7.01% single week, and 2026-09-25 alone contributed +6.84% of its
++8.93%. Seven weeks at these volatilities is roughly ±5–8pp of noise, so none of this separates
+from chance, and none of it touches Step 289's nought-of-six out-of-sample record.
+
+**Dashboard.** `forward-tracker.json` and `research-status.json` rebuilt. The forward page had two
+hardcoded sentences that the new data made false ("Same three weeks", and "Two books are negative
+once energy is removed"; none is now). Both are now computed from the payload.
+
+References: `evidence/weekly_forward_cycles/2026-09-25-20260929T124333Z-81a9ffa4edc55edb/`,
+`evidence/dashboard_held_book_marks_v1/`, `data/broad_full_history_panel_v1/manifest.json`,
+`docs/RESEARCH_QUEUE.md` S19.

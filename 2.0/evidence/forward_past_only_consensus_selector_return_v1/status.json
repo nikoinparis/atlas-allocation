@@ -4,11 +4,11 @@
   "candidate": "candidate-past-only-consensus-selector-return-v1",
   "clock_complete": false,
   "decision_basis": "held_frozen_book",
-  "decision_log_head": "7ea065612422a38d0aabac414e869de157d95f815828746d5d27d6126272d7f1",
-  "decision_log_sha256": "541eb0bde3892b13d55a9958f76f904439329de2fb9be2f23bacd64bd734893a",
+  "decision_log_head": "a1ad3c63ccf7465195f41b17c6f960a331b9b777b58455a45231765f1de30efe",
+  "decision_log_sha256": "ce69b65301785a8349ff723ac59e5fde488ef1b87e977586936807ccd9fd2f42",
   "execution_enabled": false,
-  "generated_at_utc": "2026-09-18T02:27:02.277473+00:00",
-  "latest_decision_date": "2026-09-11",
+  "generated_at_utc": "2026-09-29T12:44:33.055175+00:00",
+  "latest_decision_date": "2026-09-25",
   "latest_realization_date": "2026-09-11",
   "limitation": "The pinned source bundle ends 2026-08-07, so no fresh strategy decision can be produced without changing its hash and voiding the pin. Every forward decision under this protocol holds the last decided book unchanged, which tests the book rather than the rule and decays as a test of the rule.",
   "live_trading_enabled": false,
@@ -36,6 +36,6 @@
   "records_written_after_their_window": 5,
   "remaining_weeks": 48,
   "required_weeks": 52,
-  "saved_decisions": 5,
+  "saved_decisions": 6,
   "source_bundle_data_through": "2026-08-07"
 }

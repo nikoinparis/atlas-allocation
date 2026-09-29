@@ -42,7 +42,7 @@
       "promotionAuthorized": false,
       "protocol": "breadth_confirmed_trend_return_ceiling_v3",
       "requiredWeeks": 52,
-      "savedDecisions": 5,
+      "savedDecisions": 6,
       "weekly": [
         {
           "netReturn": 0.007870624530397694,
@@ -68,7 +68,7 @@
       "promotionAuthorized": false,
       "protocol": "covariance_minimum_variance_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 5,
+      "savedDecisions": 6,
       "weekly": [
         {
           "netReturn": -0.004051813672142307,
@@ -94,7 +94,7 @@
       "promotionAuthorized": false,
       "protocol": "equal_weight_benchmark_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 1,
+      "savedDecisions": 2,
       "weekly": []
     },
     {
@@ -103,7 +103,7 @@
       "promotionAuthorized": false,
       "protocol": "past_only_consensus_selector_return_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 5,
+      "savedDecisions": 6,
       "weekly": [
         {
           "netReturn": 0.02794378204652248,
@@ -129,7 +129,7 @@
       "promotionAuthorized": false,
       "protocol": "residual_tie_agnostic_companion_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 1,
+      "savedDecisions": 2,
       "weekly": []
     },
     {
@@ -138,7 +138,7 @@
       "promotionAuthorized": false,
       "protocol": "return_first_60_40_blend_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 5,
+      "savedDecisions": 6,
       "weekly": [
         {
           "netReturn": -0.002215515303859796,
@@ -173,7 +173,7 @@
       "promotionAuthorized": false,
       "protocol": "sue_quarterly_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 1,
+      "savedDecisions": 2,
       "weekly": []
     },
     {
@@ -182,7 +182,7 @@
       "promotionAuthorized": false,
       "protocol": "valuation_earnings_yield_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 1,
+      "savedDecisions": 2,
       "weekly": []
     },
     {
@@ -335,7 +335,7 @@
     "measuredIn": "Step 281",
     "whyItMatters": "Counting them separately overstates how many independent bets this project holds, which is the illusion Step 245 measured as an effective 1.15 strategies and Step 277 restated as breadth without skill. Nothing has been removed: a negative result is a record, not a mistake to delete."
   },
-  "generatedAtUtc": "2026-09-18T03:08:26.001303+00:00",
+  "generatedAtUtc": "2026-09-29T12:59:44.640829+00:00",
   "headline": {
     "clocksPending": 4,
     "clocksRunning": 4,

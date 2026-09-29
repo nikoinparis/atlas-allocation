@@ -144,6 +144,21 @@ recorder. In eligibility order:
 universe out of sample. A forward clock is the only instrument that settles that, and it cannot
 settle what it is not measuring.
 
+### S19. The 2026-09-18 week was lost; automate the whole Friday sequence, and close the upper window bound *(new 2026-09-29, Step 322)*
+**Free. Blocker: nobody ran it.** No clock recorded anything in `[2026-09-18 21:00, 2026-09-25 21:00)`,
+so every clock permanently lost the 09-11 realization and the 09-18 decision. That is the third
+lapsed week in this project's forward record, and each one was an operator gap rather than a code one.
+Two concrete fixes. (1) A scheduled job that runs the full sequence — guarded cycle, three frozen-book
+recorders, `extend_weekly_price_panel_v2`, full-history re-acquisition + `build_broad_full_history_panel_v1`
++ `build_corporate_action_clean_prices_v1 --prices data/broad_full_history_panel_v1/weekly_adjusted_prices.csv.gz --output data/clean_full_history_prices_v1`,
+the four stock-level recorders, `mark_last_books_to_market_v1`, `build_held_book_attribution_v1`, and
+the two payload builders — every Saturday, with a failure alert. (2) The equal-weight, tie-agnostic,
+valuation and SUE recorders check only that a window has *opened*, not that it has not *closed*:
+asked today for `--decision-date 2026-09-18` they would accept a backfill that every protocol
+forbids. It was not run. Add the `< window_start + 7 days` check; that is a guard, not a protocol change.
+Also: `build_corporate_action_clean_prices_v1.py`'s defaults write to `data/clean_corporate_action_prices_v1`
+from a different input, not to the panel the clocks read — easy to run wrong (it was, once, and was reverted).
+
 ### S12. Extend the full-history price lineage weekly — half done *(updated 2026-09-18, Step 314)*
 **Done:** the lineage was re-acquired and rebuilt and now reaches 2026-09-11, so the valuation,
 equal-weight-benchmark, tie-agnostic-companion and SUE clocks can realize.

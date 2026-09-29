@@ -77,6 +77,9 @@ export function ForwardTracker({ positionSpotlight }: { positionSpotlight: (even
   if (!payload) return <article className="panel"><span className="section-kicker">FORWARD EVIDENCE</span><h2>Loading the forward record&hellip;</h2></article>;
 
   const totalObserved = payload.protocols.reduce((sum, row) => sum + row.observedWeeks, 0);
+  const heldRows = payload.heldBooks.strategies;
+  const energyDominated = heldRows.filter((row) => row.cumulativeReturn > 0 && row.energyContribution >= row.cumulativeReturn / 2).length;
+  const negativeExEnergy = heldRows.filter((row) => row.exEnergyContribution < 0).length;
   const heldChart = payload.heldBooks.strategies.map((row) => ({
     name: row.label,
     total: row.cumulativeReturn,
@@ -156,7 +159,7 @@ export function ForwardTracker({ positionSpotlight }: { positionSpotlight: (even
               <YAxis tickFormatter={(value) => `${(Number(value) * 100).toFixed(0)}%`} tick={{ fontSize: 10, fill: "#8b8d9b" }} width={44} />
               <Tooltip
                 contentStyle={{ background: "rgba(19,20,27,.97)", border: "1px solid #393c4b", borderRadius: 10 }}
-                formatter={(value, name) => [pct(Number(value)), name === "total" ? "Three-week return" : name]}
+                formatter={(value, name) => [pct(Number(value)), name === "total" ? "Held return" : name]}
                 labelStyle={{ color: "#aaaab4" }}
               />
               <Bar dataKey="total" radius={[5, 5, 0, 0]} isAnimationActive={false}>
@@ -179,16 +182,17 @@ export function ForwardTracker({ positionSpotlight }: { positionSpotlight: (even
                 <td className={row.exEnergyContribution >= 0 ? "gain" : "loss"}>{pct(row.exEnergyContribution)}</td>
               </tr>
             ))}
-            <tr className="forward-benchmark-row"><td colSpan={5}>Same three weeks — {Object.entries(payload.heldBooks.benchmarks).map(([key, value]) => `${key.replace(/_/g, " ")} ${pct(value)}`).join(" · ")}</td></tr>
+            <tr className="forward-benchmark-row"><td colSpan={5}>Same {payload.heldBooks.weeks.length} weeks — {Object.entries(payload.heldBooks.benchmarks).map(([key, value]) => `${key.replace(/_/g, " ")} ${pct(value)}`).join(" · ")}</td></tr>
           </tbody>
         </table>
         <p className="forward-attribution">
           <Flame size={14} />
           <span>
-            Energy supplied most or all of every positive result here. Two books are negative once energy is
-            removed. Five of the six hold the same energy instruments, which is the correlated-bet problem this
-            project has measured before, not five independent confirmations. The energy grouping was made after
-            seeing the result, so treat it as a diagnostic rather than a test.
+            {energyDominated} of {heldRows.length} books got at least half of their held return from energy, and{" "}
+            {negativeExEnergy === 0 ? "none is" : `${negativeExEnergy} ${negativeExEnergy === 1 ? "is" : "are"}`} negative
+            once energy is removed. Most of the six hold the same energy instruments, which is the correlated-bet
+            problem this project has measured before, not independent confirmations. The energy grouping was made
+            after seeing the first three weeks, so treat it as a diagnostic rather than a test.
           </span>
         </p>
       </article>

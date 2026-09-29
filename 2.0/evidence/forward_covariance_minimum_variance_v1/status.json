@@ -2,15 +2,15 @@
   "anchor_sha256": "50ad3576b789565d06d06546b8348736346a8a4e31d16ff0a6ee88f089933bbb",
   "approved_for_live_trading": false,
   "clock_complete": false,
-  "decision_log_head": "22ff3681e1b6323aad28c20cea2d3681e89d482c0b46071982e44b537088bbb2",
-  "decision_log_sha256": "071ce2e3a71a157fb2afbd69ec59b24f40c906bfc457f0b242997ab6d3d25ded",
+  "decision_log_head": "e57070e2a3e8da0b9ef6fe54465fb40d4197d8a74e63531a176eacde328d2c9e",
+  "decision_log_sha256": "0d0b1ab3d67131bd857f00168d793f2d1f79faff8a7cc960c5220806426d895d",
   "execution_enabled": false,
   "final": false,
   "forward_protocol_sha256": "7a55cea00f0e33aeef353b26e3c79d24791f89574cd4249a24d941235d743ca2",
-  "generated_at_utc": "2026-09-18T02:26:46.027519+00:00",
-  "latest_available_snapshot_id": "20260918T022602Z-57bf5160a902caf3",
-  "latest_available_snapshot_observed_at_utc": "2026-09-18T02:26:02.610299+00:00",
-  "latest_decision_date": "2026-09-11",
+  "generated_at_utc": "2026-09-29T12:44:06.038123+00:00",
+  "latest_available_snapshot_id": "20260929T124333Z-81a9ffa4edc55edb",
+  "latest_available_snapshot_observed_at_utc": "2026-09-29T12:43:33.424514+00:00",
+  "latest_decision_date": "2026-09-25",
   "latest_realization_date": "2026-09-11",
   "observation_log_head": "f5a214aac8bdd9c5de7fe63dd54685a098c1aa3be84263e2ed55274c375fd6cc",
   "observation_log_sha256": "1a3339e548517b4fb411925b610bd6c949f9207065dc24ed520171e659348bde",
@@ -34,5 +34,5 @@
   "portfolio_version": "covariance_minimum_variance_v1",
   "remaining_weeks": 48,
   "required_weeks": 52,
-  "saved_decisions": 5
+  "saved_decisions": 6
 }

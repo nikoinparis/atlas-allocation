@@ -1,14 +1,14 @@
 {
   "backtestsEndAt": "2026-08-07",
-  "dataThrough": "2026-09-11",
-  "generatedAtUtc": "2026-09-18T03:08:25.907161+00:00",
+  "dataThrough": "2026-09-25",
+  "generatedAtUtc": "2026-09-29T12:59:44.509077+00:00",
   "heldBooks": {
     "attributionNote": "arithmetic weekly weight-times-return contributions summed over the closed weeks; energy classification was fixed on 2026-09-02 after seeing the first three weeks and is held constant since, so it is a hypothesis about later weeks rather than a finding about the ones that produced it",
     "benchmarks": {
-      "QQQ": -0.005629098597988769,
-      "SPY": -0.003970213492805796,
-      "XLK": -0.0036708114961179206,
-      "equal_weight_issuer_universe": -0.005906129627588408
+      "QQQ": 0.030767396387616275,
+      "SPY": 6.963286861561002e-06,
+      "XLK": 0.04537450415268762,
+      "equal_weight_issuer_universe": -0.05135931080512235
     },
     "costTreatment": "no turnover occurs in a held book, so no trading cost is charged; the two levered books are charged their own stated 5% annual financing on the borrowed portion",
     "energySymbols": [
@@ -23,180 +23,10 @@
     "strategies": [
       {
         "bookAsOf": "2026-08-07",
-        "cumulativeReturn": 0.058090224684396174,
-        "energyContribution": 0.05898141334905894,
-        "energyWeight": 0.5046502034762445,
-        "exEnergyContribution": -0.0014178849636452898,
-        "grossExposure": 0.9999999999999998,
-        "id": "candidate-return-first-60-40-forward-v1",
-        "label": "ETF Incumbent 60/40",
-        "namesInBook": 3,
-        "namesPriced": 3,
-        "weeks": [
-          {
-            "cumulative": 0.0439629951695255,
-            "netReturn": 0.0439629951695254,
-            "weekEnding": "2026-08-14"
-          },
-          {
-            "cumulative": 0.0416500791770642,
-            "netReturn": -0.0022155153038597,
-            "weekEnding": "2026-08-21"
-          },
-          {
-            "cumulative": 0.0396923657396346,
-            "netReturn": -0.0018794348280337,
-            "weekEnding": "2026-08-28"
-          },
-          {
-            "cumulative": 0.0580902246843961,
-            "netReturn": 0.0176954833477817,
-            "weekEnding": "2026-09-04"
-          }
-        ]
-      },
-      {
-        "bookAsOf": "2026-08-07",
-        "cumulativeReturn": 0.044946644224487686,
-        "energyContribution": 0.03030517657569695,
-        "energyWeight": 0.2663950610428733,
-        "exEnergyContribution": 0.014636137680126157,
-        "grossExposure": 0.95,
-        "id": "sec-cash-conversion-breadth20-dynamic-v1",
-        "label": "Cash-Conversion Breadth-20",
-        "namesInBook": 26,
-        "namesPriced": 26,
-        "weeks": [
-          {
-            "cumulative": 0.0394771075414519,
-            "netReturn": 0.0394771075414519,
-            "weekEnding": "2026-08-14"
-          },
-          {
-            "cumulative": 0.024346043166751,
-            "netReturn": -0.0145564190542766,
-            "weekEnding": "2026-08-21"
-          },
-          {
-            "cumulative": 0.0313845637412326,
-            "netReturn": 0.0068712332335684,
-            "weekEnding": "2026-08-28"
-          },
-          {
-            "cumulative": 0.0449466442244876,
-            "netReturn": 0.0131493925350794,
-            "weekEnding": "2026-09-04"
-          }
-        ]
-      },
-      {
-        "bookAsOf": "2026-08-07",
-        "cumulativeReturn": 0.03381497495337915,
-        "energyContribution": 0.02889450992204165,
-        "energyWeight": 0.2383533329631514,
-        "exEnergyContribution": 0.006507254522931515,
-        "grossExposure": 1.187999999999999,
-        "id": "sec-sector-ensemble-fragile-1.35x-v1",
-        "label": "Fragile Sector Ensemble 1.35x",
-        "namesInBook": 29,
-        "namesPriced": 29,
-        "weeks": [
-          {
-            "cumulative": 0.0470573206825835,
-            "netReturn": 0.0470573206825835,
-            "weekEnding": "2026-08-14"
-          },
-          {
-            "cumulative": 0.0225307009598412,
-            "netReturn": -0.0234243333562227,
-            "weekEnding": "2026-08-21"
-          },
-          {
-            "cumulative": 0.034690841676495,
-            "netReturn": 0.0118922010901377,
-            "weekEnding": "2026-08-28"
-          },
-          {
-            "cumulative": 0.0338149749533791,
-            "netReturn": -0.0008465008946022,
-            "weekEnding": "2026-09-04"
-          }
-        ]
-      },
-      {
-        "bookAsOf": "2026-08-07",
-        "cumulativeReturn": 0.03273347092610224,
-        "energyContribution": 0.03030517657569695,
-        "energyWeight": 0.2663950610428733,
-        "exEnergyContribution": 0.00427727918949241,
-        "grossExposure": 1.1999999999999997,
-        "id": "sec-residual-controlled-1.25x-5pct-v1",
-        "label": "Residual-Controlled 1.25x",
-        "namesInBook": 44,
-        "namesPriced": 44,
-        "weeks": [
-          {
-            "cumulative": 0.0480331627264762,
-            "netReturn": 0.0480331627264762,
-            "weekEnding": "2026-08-14"
-          },
-          {
-            "cumulative": 0.0198223979735896,
-            "netReturn": -0.0269178168747026,
-            "weekEnding": "2026-08-21"
-          },
-          {
-            "cumulative": 0.0172863700315022,
-            "netReturn": -0.002486734893376,
-            "weekEnding": "2026-08-28"
-          },
-          {
-            "cumulative": 0.0327334709261022,
-            "netReturn": 0.015184614037561,
-            "weekEnding": "2026-09-04"
-          }
-        ]
-      },
-      {
-        "bookAsOf": "2026-08-07",
-        "cumulativeReturn": 0.025761678249010656,
-        "energyContribution": 0.021403340682993804,
-        "energyWeight": 0.1765580244171491,
-        "exEnergyContribution": 0.004820188535504807,
-        "grossExposure": 0.8799999999999993,
-        "id": "sec-sector-aware-signal-ensemble-v1",
-        "label": "Sector-Aware Signal Ensemble",
-        "namesInBook": 29,
-        "namesPriced": 29,
-        "weeks": [
-          {
-            "cumulative": 0.0349911777135945,
-            "netReturn": 0.0349911777135946,
-            "weekEnding": "2026-08-14"
-          },
-          {
-            "cumulative": 0.0171712637813985,
-            "netReturn": -0.0172174549077433,
-            "weekEnding": "2026-08-21"
-          },
-          {
-            "cumulative": 0.0262677663583705,
-            "netReturn": 0.0089429409784496,
-            "weekEnding": "2026-08-28"
-          },
-          {
-            "cumulative": 0.0257616782490106,
-            "netReturn": -0.0004931345658022,
-            "weekEnding": "2026-09-04"
-          }
-        ]
-      },
-      {
-        "bookAsOf": "2026-08-07",
-        "cumulativeReturn": 0.009314076789780135,
-        "energyContribution": 0.014984052755572328,
+        "cumulativeReturn": 0.0892622301810928,
+        "energyContribution": -0.019560921443227457,
         "energyWeight": 0.2,
-        "exEnergyContribution": -0.00011741919455723546,
+        "exEnergyContribution": 0.11337481351256662,
         "grossExposure": 1.0,
         "id": "sec-growth-survivorship-aware-v1",
         "label": "Growth / Micron",
@@ -222,6 +52,266 @@
             "cumulative": 0.0093140767897801,
             "netReturn": 0.0229770161221568,
             "weekEnding": "2026-09-04"
+          },
+          {
+            "cumulative": -0.0069427444690807,
+            "netReturn": -0.0161068012749482,
+            "weekEnding": "2026-09-11"
+          },
+          {
+            "cumulative": 0.019535147304428,
+            "netReturn": 0.0266630062124191,
+            "weekEnding": "2026-09-18"
+          },
+          {
+            "cumulative": 0.0892622301810928,
+            "netReturn": 0.0683910535708531,
+            "weekEnding": "2026-09-25"
+          }
+        ]
+      },
+      {
+        "bookAsOf": "2026-08-07",
+        "cumulativeReturn": 0.0726028317036449,
+        "energyContribution": 0.04852945430628869,
+        "energyWeight": 0.5046502034762445,
+        "exEnergyContribution": 0.022732317995829573,
+        "grossExposure": 0.9999999999999998,
+        "id": "candidate-return-first-60-40-forward-v1",
+        "label": "ETF Incumbent 60/40",
+        "namesInBook": 3,
+        "namesPriced": 3,
+        "weeks": [
+          {
+            "cumulative": 0.0439629901388212,
+            "netReturn": 0.0439629901388212,
+            "weekEnding": "2026-08-14"
+          },
+          {
+            "cumulative": 0.0416501047505402,
+            "netReturn": -0.0022154859991477,
+            "weekEnding": "2026-08-21"
+          },
+          {
+            "cumulative": 0.0396923824688613,
+            "netReturn": -0.0018794432725062,
+            "weekEnding": "2026-08-28"
+          },
+          {
+            "cumulative": 0.0580902488165628,
+            "netReturn": 0.0176954901833692,
+            "weekEnding": "2026-09-04"
+          },
+          {
+            "cumulative": 0.070724415280474,
+            "netReturn": 0.0119405376602251,
+            "weekEnding": "2026-09-11"
+          },
+          {
+            "cumulative": 0.069493578738119,
+            "netReturn": -0.0011495362623561,
+            "weekEnding": "2026-09-18"
+          },
+          {
+            "cumulative": 0.0726028317036449,
+            "netReturn": 0.0029072198537128,
+            "weekEnding": "2026-09-25"
+          }
+        ]
+      },
+      {
+        "bookAsOf": "2026-08-07",
+        "cumulativeReturn": 0.05906260761529181,
+        "energyContribution": 0.014306551854034451,
+        "energyWeight": 0.2663950610428733,
+        "exEnergyContribution": 0.04423814763717589,
+        "grossExposure": 0.95,
+        "id": "sec-cash-conversion-breadth20-dynamic-v1",
+        "label": "Cash-Conversion Breadth-20",
+        "namesInBook": 26,
+        "namesPriced": 26,
+        "weeks": [
+          {
+            "cumulative": 0.0394771070670714,
+            "netReturn": 0.0394771070670713,
+            "weekEnding": "2026-08-14"
+          },
+          {
+            "cumulative": 0.024346049868084,
+            "netReturn": -0.0145564121577244,
+            "weekEnding": "2026-08-21"
+          },
+          {
+            "cumulative": 0.0313845687241847,
+            "netReturn": 0.0068712315110768,
+            "weekEnding": "2026-08-28"
+          },
+          {
+            "cumulative": 0.0449992711667792,
+            "netReturn": 0.0132004131683256,
+            "weekEnding": "2026-09-04"
+          },
+          {
+            "cumulative": 0.0349957085756691,
+            "netReturn": -0.0095727938450527,
+            "weekEnding": "2026-09-11"
+          },
+          {
+            "cumulative": 0.044490181441549,
+            "netReturn": 0.0091734417710252,
+            "weekEnding": "2026-09-18"
+          },
+          {
+            "cumulative": 0.0590626076152918,
+            "netReturn": 0.0139517119764884,
+            "weekEnding": "2026-09-25"
+          }
+        ]
+      },
+      {
+        "bookAsOf": "2026-08-07",
+        "cumulativeReturn": 0.04349387988948572,
+        "energyContribution": 0.011398959104466854,
+        "energyWeight": 0.2383533329631514,
+        "exEnergyContribution": 0.03416663044948022,
+        "grossExposure": 1.187999999999999,
+        "id": "sec-sector-ensemble-fragile-1.35x-v1",
+        "label": "Fragile Sector Ensemble 1.35x",
+        "namesInBook": 29,
+        "namesPriced": 29,
+        "weeks": [
+          {
+            "cumulative": 0.0470573209852265,
+            "netReturn": 0.0470573209852265,
+            "weekEnding": "2026-08-14"
+          },
+          {
+            "cumulative": 0.0225307040834057,
+            "netReturn": -0.0234243306553097,
+            "weekEnding": "2026-08-21"
+          },
+          {
+            "cumulative": 0.0346908443338278,
+            "netReturn": 0.0118922005978513,
+            "weekEnding": "2026-08-28"
+          },
+          {
+            "cumulative": 0.0339290024536864,
+            "netReturn": -0.000736299044602,
+            "weekEnding": "2026-09-04"
+          },
+          {
+            "cumulative": 0.0169564566967093,
+            "netReturn": -0.0164155814535605,
+            "weekEnding": "2026-09-11"
+          },
+          {
+            "cumulative": 0.0301299498399829,
+            "netReturn": 0.0129538418843064,
+            "weekEnding": "2026-09-18"
+          },
+          {
+            "cumulative": 0.0434938798894857,
+            "netReturn": 0.0129730526246504,
+            "weekEnding": "2026-09-25"
+          }
+        ]
+      },
+      {
+        "bookAsOf": "2026-08-07",
+        "cumulativeReturn": 0.04019143718988283,
+        "energyContribution": 0.014306551854034451,
+        "energyWeight": 0.2663950610428733,
+        "exEnergyContribution": 0.028265712255040643,
+        "grossExposure": 1.1999999999999997,
+        "id": "sec-residual-controlled-1.25x-5pct-v1",
+        "label": "Residual-Controlled 1.25x",
+        "namesInBook": 44,
+        "namesPriced": 44,
+        "weeks": [
+          {
+            "cumulative": 0.0480331630580541,
+            "netReturn": 0.0480331630580541,
+            "weekEnding": "2026-08-14"
+          },
+          {
+            "cumulative": 0.0198224043962285,
+            "netReturn": -0.0269178110542891,
+            "weekEnding": "2026-08-21"
+          },
+          {
+            "cumulative": 0.0172863757339865,
+            "netReturn": -0.002486735583872,
+            "weekEnding": "2026-08-28"
+          },
+          {
+            "cumulative": 0.0327902911698521,
+            "netReturn": 0.0152404630649647,
+            "weekEnding": "2026-09-04"
+          },
+          {
+            "cumulative": 0.0216261409353033,
+            "netReturn": -0.0108096971185728,
+            "weekEnding": "2026-09-11"
+          },
+          {
+            "cumulative": 0.0219449448851898,
+            "netReturn": 0.0003120553959148,
+            "weekEnding": "2026-09-18"
+          },
+          {
+            "cumulative": 0.0401914371898828,
+            "netReturn": 0.0178546725007216,
+            "weekEnding": "2026-09-25"
+          }
+        ]
+      },
+      {
+        "bookAsOf": "2026-08-07",
+        "cumulativeReturn": 0.03334090594733108,
+        "energyContribution": 0.008443673410716192,
+        "energyWeight": 0.1765580244171491,
+        "exEnergyContribution": 0.025308615147763096,
+        "grossExposure": 0.8799999999999993,
+        "id": "sec-sector-aware-signal-ensemble-v1",
+        "label": "Sector-Aware Signal Ensemble",
+        "namesInBook": 29,
+        "namesPriced": 29,
+        "weeks": [
+          {
+            "cumulative": 0.0349911779377747,
+            "netReturn": 0.0349911779377746,
+            "weekEnding": "2026-08-14"
+          },
+          {
+            "cumulative": 0.0171712660724012,
+            "netReturn": -0.017217452907067,
+            "weekEnding": "2026-08-21"
+          },
+          {
+            "cumulative": 0.0262677682989433,
+            "netReturn": 0.008942940613793,
+            "weekEnding": "2026-08-28"
+          },
+          {
+            "cumulative": 0.0258454554528206,
+            "netReturn": -0.000411503565802,
+            "weekEnding": "2026-09-04"
+          },
+          {
+            "cumulative": 0.0135088566832797,
+            "netReturn": -0.0120257868316973,
+            "weekEnding": "2026-09-11"
+          },
+          {
+            "cumulative": 0.0233696305308499,
+            "netReturn": 0.0097293415667227,
+            "weekEnding": "2026-09-18"
+          },
+          {
+            "cumulative": 0.033340905947331,
+            "netReturn": 0.0097435717447552,
+            "weekEnding": "2026-09-25"
           }
         ]
       }
@@ -230,22 +320,27 @@
       "2026-08-14",
       "2026-08-21",
       "2026-08-28",
-      "2026-09-04"
+      "2026-09-04",
+      "2026-09-11",
+      "2026-09-18",
+      "2026-09-25"
     ],
     "whatThisIs": "the last decided book of each dashboard strategy, held unchanged and marked to market",
     "whatThisIsNot": "This is not a forward observation of any strategy. No strategy decided these weeks: each book last decided on 2026-08-07 and nothing rebalanced it since."
   },
   "issuersPricedNewWeek": {
-    "2026-08-28": 2810,
-    "2026-09-04": 2807,
-    "2026-09-11": 2804
+    "2026-08-28": 2804,
+    "2026-09-04": 2805,
+    "2026-09-11": 2802,
+    "2026-09-18": 2799,
+    "2026-09-25": 2801
   },
   "liveTradingEnabled": false,
   "panelReconciliation": {
     "basis": "weekly simple returns over the overlapping weeks",
-    "cells_over_100bps": 372,
-    "cells_over_10bps": 531,
-    "compared_cells": 30395,
+    "cells_over_100bps": 369,
+    "cells_over_10bps": 525,
+    "compared_cells": 30347,
     "max_absolute_return_gap": 17.00000145519156,
     "median_absolute_return_gap": 1.1102230246251565e-16,
     "overlap_weeks": [

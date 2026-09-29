@@ -2,10 +2,10 @@
 
 Portfolio: `covariance_minimum_variance_v1`
 
-- Saved forward decisions: **5**.
+- Saved forward decisions: **6**.
 - Untouched realized weeks: **4/52**.
 - Remaining required weeks: **48**.
-- Latest decision: **2026-09-11**.
+- Latest decision: **2026-09-25**.
 - Latest realization: **2026-09-11**.
 - Execution enabled: **no**.
 

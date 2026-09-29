@@ -272,11 +272,11 @@ def phase_ladders(config: dict, workers: int, only: list[str] | None) -> int:
     return 0
 
 
-def phase_controls(config: dict, workers: int) -> int:
+def phase_controls(config: dict, workers: int, only: list[str] | None = None) -> int:
     ladder_n = config["settings"]["ladder_neutralization"]
     jobs = []
     for cid, expression in config["controls"].items():
-        if not cid.startswith("C"):
+        if not cid.startswith("C") or (only and cid not in only):
             continue
         jobs.extend((f"control_{cid}_d{d:02d}", band(expression, d), ladder_n) for d in range(1, 11))
     run_jobs(jobs, workers)
@@ -380,6 +380,8 @@ def phase_score(config: dict, draws: int) -> int:
 
     controls = {}
     for cid in (c for c in config["controls"] if c.startswith("C")):
+        if not cached(f"control_{cid}_d01"):
+            continue                    # a control is only run when a hypothesis it serves is readable
         controls[cid] = score_prefix(f"control_{cid}", draws)
         controls[cid]["expression"] = config["controls"][cid]
         print(f"control {cid}: full {controls[cid]['monotonicity']:+.3f} "
@@ -500,7 +502,7 @@ def main() -> int:
     if args.phase == "ladders":
         return phase_ladders(config, args.workers, args.only)
     if args.phase == "controls":
-        return phase_controls(config, args.workers)
+        return phase_controls(config, args.workers, args.only)
     if args.phase == "desize":
         return phase_desize(config, args.workers, args.desize)
     return phase_score(config, args.draws)

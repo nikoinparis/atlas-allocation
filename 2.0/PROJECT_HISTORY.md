@@ -15949,3 +15949,26 @@ summary table, and a day-by-day profit table for whichever strategy is selected.
 on its face that it is a replay computed after the fact and not forward evidence. Production
 build verified; pushed so the deployed dashboard carries it. Re-run the script after each Friday
 cycle to extend it.
+
+## Step 325 — 2026-09-29 — S19: one command for the whole week, and the backfill door closed
+
+**What this was for.** Three weekly windows have lapsed, each because nobody ran the sequence or
+somebody ran one of its four parts. This fixes the operator gap. It made no strategy.
+
+`scripts/run_full_friday_cycle_v1.py` works out the open decision Friday, checks every clock's
+log, and runs only what is missing: Podman, the guarded cycle, the frozen-book recorders, both
+price lineages (with the corrected `--prices`/`--output` for the corporate-action cleaner that
+Step 322 got wrong once), the four stock recorders (`--realize` only when the prior decision
+exists; the tie-agnostic recorder is called once per Friday because it is not idempotent), the
+held-book marks, the replay, both payloads, and a hash-chain check. It refuses to record if
+either price panel does not yet reach the Friday. Verified: a no-op for 2026-09-25, and a
+dry-run for 2026-10-02 printing the full 16-step plan.
+
+**The closed-window guard.** The equal-weight, valuation and SUE recorders checked only that a
+window had opened. They now refuse `--decision-date 2026-09-18` with *"window closed; a missed
+window is not backfillable"*, verified on all three. Step 322 said four recorders lacked the
+guard; the tie-agnostic companion already had it, so that was three.
+
+**Not done: the schedule.** A daily launchd job (07:00 and 19:00 WIB) was written but its
+installation was refused by the session's permission policy as unauthorised persistence. That is
+the right default for a background job, and it is left to the owner.

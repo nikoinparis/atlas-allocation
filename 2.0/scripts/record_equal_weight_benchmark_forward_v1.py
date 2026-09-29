@@ -110,6 +110,8 @@ def main() -> int:
         raise ForwardEvidenceError("decision predates the frozen boundary")
     if now < window_start(day):
         raise ForwardEvidenceError(f"the {day} window opens at 21:00 UTC that day; it is {now.isoformat()}")
+    if now >= window_start(day) + timedelta(days=7):
+        raise ForwardEvidenceError(f"the {day} window closed; a missed window is not backfillable")
 
     OUTPUT.mkdir(parents=True, exist_ok=True)
     decisions_path, observations_path = OUTPUT / "decisions.jsonl", OUTPUT / "observations.jsonl"

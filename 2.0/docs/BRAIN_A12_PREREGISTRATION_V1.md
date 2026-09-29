@@ -199,3 +199,27 @@ ORDERS ITS DECILES. Test 1 is reported, not a gate (a control can order itself).
   the weight.
 - Three of five hypotheses share `analyst4` and two share `option8`; they are five hypotheses,
   not five independent datasets.
+
+## Addendum 2 — 2026-09-30, after 197 simulations were scored, BEFORE any corrected run
+
+**A defect voided two gates.** `bucket(rank(x), buckets=5)` — the de-sizing form copied from
+Step 317 — is a **single group**. BRAIN's `buckets` argument is a *string of boundaries*
+(`buckets="2,5,6,7,10"`, or `range="0, 1, 0.1"`), so one boundary at 5 on a 0-1 rank puts every
+name in one bucket and `group_rank` becomes a plain universe-wide rank. Found because H1c
+"de-sized by size quintiles" and H1c "momentum-neutral by return quintiles" came back with
+**identical decile returns to four decimals**. Voided: Addendum 1 test 2 (momentum-neutral
+H1c), bar 6 (de-sizing) for H1c and H4b, and Step 317's `news_impact_DESIZED` read and its
+de-size validation.
+
+Known at the time of writing: H1c and H4b met bars 1-5; H1c's momentum-neutral v1 and both
+v1 de-sized ladders are no-op readings. Corrected, kill-only re-runs with `range="0,1,0.2"`
+(quintile groups):
+
+- momentum-neutral H1c v2 — H1c's inner signal ranked within 63-day-return quintiles
+- de-sized H1c v2 — within market-cap quintiles
+- de-sized H4b v2 — within market-cap quintiles
+
+Each v2 ladder must differ from its v1 no-op ladder, or the grouping is still inert and the test
+is void. Gates: H1c stays a lead only if both H1c v2 ladders read ORDERS ITS DECILES; H4b only
+if its v2 ladder does. +30 simulations: 227 in total, above Addendum 1's 207, **inside the
+original 241**.

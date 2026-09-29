@@ -328,6 +328,17 @@ def phase_addendum(config: dict, workers: int) -> int:
     return 0
 
 
+def phase_addendum2(config: dict, workers: int) -> int:
+    """Addendum 2: the corrected-grouping re-runs (bucket range, not buckets=5)."""
+    spec = config["addendum_2_bucket_syntax"]
+    ladder_n = config["settings"]["ladder_neutralization"]
+    jobs = []
+    for key in ("momentum_neutral_H1c_v2", "desized_H1c_v2", "desized_H4b_v2"):
+        jobs.extend((f"addendum2_{key}_d{d:02d}", band(spec[key], d), ladder_n) for d in range(1, 11))
+    run_jobs(jobs, workers)
+    return 0
+
+
 def phase_desize(config: dict, workers: int, names: list[str]) -> int:
     if len(names) > config["budget"]["conditional_desized_ladders_max"]:
         raise SystemExit("more de-sized ladders than the registered budget allows")
@@ -527,7 +538,9 @@ def phase_score(config: dict, draws: int) -> int:
         writer.writerows(rows)
     (OUT / "controls.json").write_text(json.dumps(controls, indent=2, sort_keys=True, default=str))
     addendum = {}
-    for prefix in ("addendum_M1_momentum", "addendum_H1c_momentum_neutral"):
+    for prefix in ("addendum_M1_momentum", "addendum_H1c_momentum_neutral",
+                   "addendum2_momentum_neutral_H1c_v2", "addendum2_desized_H1c_v2",
+                   "addendum2_desized_H4b_v2", "H1c_mean63_desized", "H4b_spread90_desized"):
         if cached(f"{prefix}_d10") or cached(f"{prefix}_d01"):
             addendum[prefix] = score_prefix(prefix, draws)
             a = addendum[prefix]
@@ -554,7 +567,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--phase", required=True,
-                        choices=["probes", "ladders", "controls", "addendum", "desize", "score"])
+                        choices=["probes", "ladders", "controls", "addendum", "addendum2", "desize", "score"])
     parser.add_argument("--workers", type=int, default=3)
     parser.add_argument("--only", nargs="*", help="restrict --phase ladders to these variants")
     parser.add_argument("--desize", nargs="*", default=[], help="variants for --phase desize")
@@ -570,6 +583,8 @@ def main() -> int:
         return phase_controls(config, args.workers, args.only)
     if args.phase == "addendum":
         return phase_addendum(config, args.workers)
+    if args.phase == "addendum2":
+        return phase_addendum2(config, args.workers)
     if args.phase == "desize":
         return phase_desize(config, args.workers, args.desize)
     return phase_score(config, args.draws)

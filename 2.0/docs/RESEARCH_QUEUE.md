@@ -185,6 +185,16 @@ Both are small. A gate nobody trusts is worse than no gate.
 ## A tier
 
 
+### A12. WorldQuant BRAIN as an external judge, not just a replication instrument *(new 2026-09-29, owner question)*
+**Free (BRAIN account already exists, Steps 315-317). Blocker: none technical; needs a declared trial budget.**
+The owner wants a result that would get a quant firm's attention. BRAIN is the one place where a
+firm evaluates submissions on *its* data, *its* costs and *its* out-of-sample window, and pays
+consultants for alphas that pass. That makes it the cleanest external falsification this project
+can get: we cannot overfit their holdout. Scope: pick five hypotheses from families NOT closed
+here, pre-register them, run the Step 296 skill screen (IC, decile spread, monotonicity, density
+first) on BRAIN before submitting anything, and record the submission outcome whatever it is.
+Step 317 is the warning that travels with this: a BRAIN Sharpe of 1.44 came with monotonicity 0.042.
+
 ### A8. EU short-selling registers *(new 2026-09-10, owner-proposed)*
 **Status:** never attempted. Free, daily, from ESMA and national regulators.
 **Why it is genuinely better than what closed in Step 263:** FINRA short interest is an
@@ -283,6 +293,16 @@ measured; residual correlation was not.**
 **Data:** already on disk -- IDX80/LQ45/IDX30 point-in-time membership, fundamentals, extended
 prices, and a written protocol in `docs/INDONESIA_EQUITY_RESEARCH_V1.md`.
 **Depends on S4.** This means nothing while every book here is long-only.
+
+### B4. Intraday momentum: the first half-hour predicts the last half-hour *(new 2026-09-29)*
+**Paid data for a real test (free Yahoo intraday history is 60 days at 5m, 730 days at 1h).**
+Gao, Han, Li and Zhou (JFE 2018) report that SPY's first 30-minute return predicts its last 30
+minutes, strongest on high-volatility days. Distinct from Opening Range Breakout (closed, Step 209)
+and short-term reversal (closed, Step 250): one instrument, one trade a day, timing not selection.
+Why B not A: it is a single-asset timing signal, so breadth is ~1 bet a day with tiny IC, and the
+edge must clear the spread on every trade; published 2018, so post-publication decay is the prior.
+Cheap first look on 730 days of hourly bars is not the right bar (10:30 and 15:30 are not the
+first and last half-hours); needs 1-minute SPY history (e.g. Polygon, ~$30-80/month).
 
 ### B1. Volatility risk premium, reading first
 **Status:** `UPGRADE_CANDIDATES_V1` item 3, Tier 3, "needs Hull read properly before".

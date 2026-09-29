@@ -1,0 +1,103 @@
+{
+  "addendum_H1c_momentum_neutral": {
+    "decile_dispersion": 0.04977884691312164,
+    "decile_returns": {
+      "1": -0.0813,
+      "2": -0.0468,
+      "3": -0.0517,
+      "4": -0.0185,
+      "5": -0.0225,
+      "6": 0.0104,
+      "7": 0.0241,
+      "8": 0.053,
+      "9": 0.0594,
+      "10": 0.0737
+    },
+    "decile_share_of_scored": [
+      0.1,
+      0.1,
+      0.1,
+      0.0997,
+      0.1,
+      0.0997,
+      0.0997,
+      0.0997,
+      0.0997,
+      0.1
+    ],
+    "distinct_values": 10,
+    "extremes_share_of_spread": 0.31483870967741934,
+    "inner_spread_d9_minus_d2": 0.1062,
+    "missing": [],
+    "monotonicity": 0.9757575757575757,
+    "monotonicity_middle_8": 0.9523809523809523,
+    "permutation_p": 9.999950000249999e-06,
+    "scored_names_mean": 3139.5,
+    "tie_check_passed": true,
+    "top_minus_bottom": 0.155,
+    "verdict": "ORDERS ITS DECILES -- clears the declared bar",
+    "yearly": {
+      "2019": {
+        "monotonicity": 0.24848484848484848,
+        "top_minus_bottom": -0.019999999999999997
+      },
+      "2020": {
+        "monotonicity": 0.4909090909090909,
+        "top_minus_bottom": 0.1582
+      },
+      "2021": {
+        "monotonicity": 0.9878787878787879,
+        "top_minus_bottom": 0.5075000000000001
+      },
+      "2022": {
+        "monotonicity": 0.9030303030303031,
+        "top_minus_bottom": 0.2013
+      },
+      "2023": {
+        "monotonicity": -0.44242424242424244,
+        "top_minus_bottom": -0.067
+      }
+    }
+  },
+  "addendum_M1_momentum": {
+    "decile_dispersion": 0.1098131544437591,
+    "decile_returns": {
+      "1": -0.3121,
+      "2": 0.0025,
+      "3": -0.0047,
+      "4": NaN,
+      "5": 0.0062,
+      "6": 0.0175,
+      "7": 0.011,
+      "8": 0.0736,
+      "9": 0.0824,
+      "10": -0.0348
+    },
+    "decile_share_of_scored": [
+      0.1551,
+      0.1818,
+      0.5466,
+      0.0,
+      0.818,
+      0.0366,
+      0.0525,
+      0.0669,
+      0.0891,
+      0.0996
+    ],
+    "distinct_values": 9,
+    "extremes_share_of_spread": 0.711864406779661,
+    "inner_spread_d9_minus_d2": 0.0799,
+    "missing": [
+      "addendum_M1_momentum_d04"
+    ],
+    "monotonicity": 0.5340489990004038,
+    "monotonicity_middle_8": NaN,
+    "permutation_p": NaN,
+    "scored_names_mean": 1340.2,
+    "tie_check_passed": false,
+    "top_minus_bottom": 0.2773,
+    "verdict": "INCOMPLETE -- deciles missing",
+    "yearly": {}
+  }
+}

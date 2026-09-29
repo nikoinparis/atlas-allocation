@@ -1,39 +1,52 @@
 {
-  "alpha_id": "xAbKjQJb",
-  "expression": "if_else(rank(group_rank(-(anl4_fs_detail_estimates_basic_af_v4_nd_eps_std / abs(anl4_fs_detail_estimates_basic_af_v4_nd_eps_mean)), sector)) > -1.0, 1, 0) - if_else(rank(group_rank(-(anl4_fs_detail_estimates_basic_af_v4_nd_eps_std / abs(anl4_fs_detail_estimates_basic_af_v4_nd_eps_mean)), sector)) > 0.1, 1, 0)",
+  "alpha_id": "1YZqpqxJ",
+  "expression": "if_else(rank(group_rank(cap + 0 * (anl4_fs_detail_estimates_basic_af_v4_nd_eps_std / abs(anl4_fs_detail_estimates_basic_af_v4_nd_eps_mean)), sector)) > 0.8, 1, 0) - if_else(rank(group_rank(cap + 0 * (anl4_fs_detail_estimates_basic_af_v4_nd_eps_std / abs(anl4_fs_detail_estimates_basic_af_v4_nd_eps_mean)), sector)) > 0.9, 1, 0)",
   "is": {
-    "bookSize": 0,
+    "bookSize": 20000000,
     "checks": [
       {
         "limit": 1.25,
         "name": "LOW_SHARPE",
         "result": "FAIL",
-        "value": 0.0
+        "value": -0.03
       },
       {
         "limit": 1.0,
         "name": "LOW_FITNESS",
-        "result": "ERROR"
+        "result": "FAIL",
+        "value": -0.0
       },
       {
         "limit": 0.01,
         "name": "LOW_TURNOVER",
-        "result": "FAIL",
-        "value": 0.0
+        "result": "PASS",
+        "value": 0.035
       },
       {
         "limit": 0.7,
         "name": "HIGH_TURNOVER",
         "result": "PASS",
-        "value": 0.0
+        "value": 0.035
       },
       {
         "name": "CONCENTRATED_WEIGHT",
-        "result": "FAIL"
+        "result": "PASS"
       },
       {
+        "limit": -0.01,
         "name": "LOW_SUB_UNIVERSE_SHARPE",
-        "result": "ERROR"
+        "result": "FAIL",
+        "value": -0.07
+      },
+      {
+        "message": "Incompatible unit for input of \"add\" at index 1, expected \"Unit[CSPrice:1,CSShare:1]\", found \"Unit[]\"",
+        "name": "UNITS",
+        "result": "WARNING"
+      },
+      {
+        "message": "Incompatible unit for input of \"add\" at index 1, expected \"Unit[CSPrice:1,CSShare:1]\", found \"Unit[]\"",
+        "name": "UNITS",
+        "result": "WARNING"
       },
       {
         "name": "SELF_CORRELATION",
@@ -50,21 +63,21 @@
         "result": "PASS"
       }
     ],
-    "drawdown": 0.0,
-    "fitness": null,
-    "longCount": 0,
-    "margin": 0.0,
-    "pnl": 0,
-    "returns": 0.0,
-    "sharpe": 0.0,
-    "shortCount": 0,
+    "drawdown": 0.1961,
+    "fitness": -0.0,
+    "longCount": 313,
+    "margin": -8e-05,
+    "pnl": -69106,
+    "returns": -0.0014,
+    "sharpe": -0.03,
+    "shortCount": 2826,
     "startDate": "2019-01-01",
-    "turnover": 0.0
+    "turnover": 0.035
   },
-  "label": "H2a_std_over_absmean_d01",
-  "message": null,
+  "label": "control_C2_d09",
+  "message": "Incompatible unit for input of \"add\" at index 1, expected \"Unit[CSPrice:1,CSShare:1]\", found \"Unit[]\"; Incompatible unit for input of \"add\" at index 1, expected \"Unit[CSPrice:1,CSShare:1]\", found \"Unit[]\". <linkToCommonErrorMessages>Learn more</linkToCommonErrorMessages>",
   "neutralization": "MARKET",
-  "seconds": 147.1,
+  "seconds": 127.7,
   "settings": {
     "decay": 0,
     "delay": 1,
@@ -84,77 +97,77 @@
     "universe": "TOP3000",
     "visualization": false
   },
-  "status": "COMPLETE",
+  "status": "WARNING",
   "yearly": {
     "records": [
       [
         "2019",
-        0.0,
+        330806.0,
         20000000,
-        0,
-        0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0,
+        311,
+        2800,
+        0.0346,
+        0.83,
+        0.0328,
+        0.0443,
+        0.001899,
+        0.43,
         "IS"
       ],
       [
         "2020",
-        0.0,
+        -843322.0,
         20000000,
-        0,
-        0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0,
+        310,
+        2795,
+        0.0377,
+        -1.45,
+        -0.0913,
+        0.102,
+        -0.004841,
+        -1.24,
         "IS"
       ],
       [
         "2021",
-        0.0,
+        -189189.0,
         20000000,
-        0,
-        0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0,
+        315,
+        2839,
+        0.0354,
+        -0.37,
+        -0.0188,
+        0.0643,
+        -0.001062,
+        -0.14,
         "IS"
       ],
       [
         "2022",
-        0.0,
+        215609.0,
         20000000,
-        0,
-        0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0,
+        315,
+        2842,
+        0.035,
+        0.47,
+        0.0215,
+        0.0378,
+        0.001227,
+        0.19,
         "IS"
       ],
       [
         "2023",
-        0.0,
+        396125.0,
         20000000,
-        0,
-        0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0,
+        317,
+        2854,
+        0.0325,
+        0.8,
+        0.0396,
+        0.0405,
+        0.00244,
+        0.45,
         "IS"
       ]
     ],

@@ -1,0 +1,153 @@
+{
+  "bars": {
+    "1_orders_its_deciles": false,
+    "2_beats_control": false,
+    "3_tie_check": false,
+    "4_bonferroni_conservative": false,
+    "5_regime_4_of_5": false
+  },
+  "beats_control_both": false,
+  "bh_fdr_pass": false,
+  "control": "C2",
+  "control_full": 0.04242424242424243,
+  "control_middle_8": 0.35714285714285715,
+  "control_scored_names_mean": 2262.4,
+  "decile_dispersion": 0.011208786731845692,
+  "decile_returns": {
+    "1": 0.0,
+    "2": -0.0082,
+    "3": 0.0072,
+    "4": 0.001,
+    "5": -0.0279,
+    "6": 0.0139,
+    "7": -0.0054,
+    "8": 0.0101,
+    "9": 0.0041,
+    "10": 0.0041
+  },
+  "decile_share_of_scored": [
+    0.0,
+    0.3892,
+    0.4375,
+    0.0097,
+    0.0688,
+    0.0997,
+    0.0997,
+    0.1,
+    0.0997,
+    0.1
+  ],
+  "declared_sign": "negative: high dispersion ranks LOW",
+  "density": null,
+  "desized": null,
+  "distinct_values": 9,
+  "expression": "group_rank(-(anl4_fs_detail_estimates_basic_af_v4_nd_eps_std / abs(anl4_fs_detail_estimates_basic_af_v4_nd_eps_mean)), sector)",
+  "extremes_share_of_spread": -2.0,
+  "fields": [
+    "anl4_fs_detail_estimates_basic_af_v4_nd_eps_std",
+    "anl4_fs_detail_estimates_basic_af_v4_nd_eps_mean",
+    "anl4_afv4_eps_high",
+    "anl4_afv4_eps_low",
+    "close"
+  ],
+  "hypothesis": "H2_forecast_dispersion",
+  "inner_spread_d9_minus_d2": 0.012300000000000002,
+  "lead_before_desizing": false,
+  "missing": [],
+  "monotonicity": 0.37690143708164003,
+  "monotonicity_middle_8": 0.35714285714285715,
+  "permutation_p": 0.08904455477722611,
+  "production_alpha_id": "N1VXWVae",
+  "production_not_evidence": {
+    "bookSize": 20000000,
+    "checks": [
+      {
+        "limit": 1.25,
+        "name": "LOW_SHARPE",
+        "result": "FAIL",
+        "value": 0.38
+      },
+      {
+        "limit": 1.0,
+        "name": "LOW_FITNESS",
+        "result": "FAIL",
+        "value": 0.15
+      },
+      {
+        "limit": 0.01,
+        "name": "LOW_TURNOVER",
+        "result": "PASS",
+        "value": 0.0393
+      },
+      {
+        "limit": 0.7,
+        "name": "HIGH_TURNOVER",
+        "result": "PASS",
+        "value": 0.0393
+      },
+      {
+        "name": "CONCENTRATED_WEIGHT",
+        "result": "PASS"
+      },
+      {
+        "limit": 0.16,
+        "name": "LOW_SUB_UNIVERSE_SHARPE",
+        "result": "FAIL",
+        "value": -0.19
+      },
+      {
+        "name": "SELF_CORRELATION",
+        "result": "PENDING"
+      },
+      {
+        "competitions": [
+          {
+            "id": "challenge",
+            "name": "Challenge"
+          }
+        ],
+        "name": "MATCHES_COMPETITION",
+        "result": "PASS"
+      }
+    ],
+    "drawdown": 0.1673,
+    "fitness": 0.15,
+    "longCount": 1239,
+    "margin": 0.000945,
+    "pnl": 918217,
+    "returns": 0.0186,
+    "sharpe": 0.38,
+    "shortCount": 1741,
+    "startDate": "2019-01-01",
+    "turnover": 0.0393
+  },
+  "scored_names_mean": 2262.5,
+  "status": "UNREADABLE (ties)",
+  "tie_check_passed": false,
+  "top_minus_bottom": 0.0041,
+  "variant": "H2a_std_over_absmean",
+  "verdict": "flat -- replicates the null",
+  "yearly": {
+    "2019": {
+      "monotonicity": -0.09090909090909091,
+      "top_minus_bottom": -0.0125
+    },
+    "2020": {
+      "monotonicity": -0.6442202750968413,
+      "top_minus_bottom": -0.1413
+    },
+    "2021": {
+      "monotonicity": 0.44242424242424244,
+      "top_minus_bottom": 0.0884
+    },
+    "2022": {
+      "monotonicity": 0.6484848484848484,
+      "top_minus_bottom": 0.0869
+    },
+    "2023": {
+      "monotonicity": -0.11515151515151516,
+      "top_minus_bottom": -0.0146
+    }
+  },
+  "years_positive": "2/5"
+}

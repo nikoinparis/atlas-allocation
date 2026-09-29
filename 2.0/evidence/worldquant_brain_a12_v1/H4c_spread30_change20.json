@@ -1,0 +1,155 @@
+{
+  "bars": {
+    "1_orders_its_deciles": false,
+    "2_beats_control": true,
+    "3_tie_check": true,
+    "4_bonferroni_conservative": false,
+    "5_regime_4_of_5": true
+  },
+  "beats_control_both": true,
+  "bh_fdr_pass": true,
+  "control": "C3",
+  "control_full": -0.07878787878787878,
+  "control_middle_8": -0.2619047619047619,
+  "control_scored_names_mean": 3054.9,
+  "decile_dispersion": 0.0361056796086156,
+  "decile_returns": {
+    "1": -0.0999,
+    "2": -0.01,
+    "3": 0.0181,
+    "4": -0.0038,
+    "5": 0.0125,
+    "6": 0.0133,
+    "7": 0.0206,
+    "8": 0.025,
+    "9": 0.0066,
+    "10": 0.0349
+  },
+  "decile_share_of_scored": [
+    0.1162,
+    0.0858,
+    0.0995,
+    0.0998,
+    0.1013,
+    0.0998,
+    0.0998,
+    0.0998,
+    0.0998,
+    0.0997
+  ],
+  "declared_sign": "positive: call IV above put IV ranks high",
+  "density": null,
+  "desized": null,
+  "distinct_values": 10,
+  "expression": "group_rank((implied_volatility_call_30 - implied_volatility_put_30) - ts_mean(implied_volatility_call_30 - implied_volatility_put_30, 20), sector)",
+  "extremes_share_of_spread": 0.8768545994065282,
+  "fields": [
+    "implied_volatility_call_30",
+    "implied_volatility_put_30",
+    "implied_volatility_call_90",
+    "implied_volatility_put_90"
+  ],
+  "hypothesis": "H4_call_put_iv_spread",
+  "inner_spread_d9_minus_d2": 0.0166,
+  "lead_before_desizing": false,
+  "missing": [],
+  "monotonicity": 0.7333333333333333,
+  "monotonicity_middle_8": 0.47619047619047616,
+  "permutation_p": 0.010074949625251874,
+  "production_alpha_id": "0mrbAA52",
+  "production_not_evidence": {
+    "bookSize": 20000000,
+    "checks": [
+      {
+        "limit": 1.25,
+        "name": "LOW_SHARPE",
+        "result": "FAIL",
+        "value": 1.24
+      },
+      {
+        "limit": 1.0,
+        "name": "LOW_FITNESS",
+        "result": "FAIL",
+        "value": 0.25
+      },
+      {
+        "limit": 0.01,
+        "name": "LOW_TURNOVER",
+        "result": "PASS",
+        "value": 0.9416
+      },
+      {
+        "limit": 0.7,
+        "name": "HIGH_TURNOVER",
+        "result": "FAIL",
+        "value": 0.9416
+      },
+      {
+        "date": "2023-12-04",
+        "limit": 0.1,
+        "name": "CONCENTRATED_WEIGHT",
+        "result": "FAIL",
+        "value": 0.5
+      },
+      {
+        "limit": 0.54,
+        "name": "LOW_SUB_UNIVERSE_SHARPE",
+        "result": "FAIL",
+        "value": -0.11
+      },
+      {
+        "name": "SELF_CORRELATION",
+        "result": "PENDING"
+      },
+      {
+        "competitions": [
+          {
+            "id": "challenge",
+            "name": "Challenge"
+          }
+        ],
+        "name": "MATCHES_COMPETITION",
+        "result": "PASS"
+      }
+    ],
+    "drawdown": 0.0293,
+    "fitness": 0.25,
+    "longCount": 1497,
+    "margin": 8e-05,
+    "pnl": 1859273,
+    "returns": 0.0376,
+    "sharpe": 1.24,
+    "shortCount": 1566,
+    "startDate": "2019-01-01",
+    "turnover": 0.9416
+  },
+  "scored_names_mean": 3131.1,
+  "status": "scored",
+  "tie_check_passed": true,
+  "top_minus_bottom": 0.1348,
+  "variant": "H4c_spread30_change20",
+  "verdict": "CONCENTRATION in the extremes, not an ordering -- middle eight do not order",
+  "yearly": {
+    "2019": {
+      "monotonicity": 0.6727272727272727,
+      "top_minus_bottom": 0.1226
+    },
+    "2020": {
+      "monotonicity": 0.37690143708164003,
+      "top_minus_bottom": 0.11399999999999999
+    },
+    "2021": {
+      "monotonicity": 0.5636363636363636,
+      "top_minus_bottom": 0.26849999999999996
+    },
+    "2022": {
+      "monotonicity": 0.5515151515151515,
+      "top_minus_bottom": 0.17880000000000001
+    },
+    "2023": {
+      "monotonicity": 0.18787878787878787,
+      "top_minus_bottom": -0.006999999999999999
+    }
+  },
+  "years_positive": "5/5"
+}

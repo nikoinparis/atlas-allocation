@@ -1,0 +1,180 @@
+{
+  "bars": {
+    "1_orders_its_deciles": true,
+    "2_beats_control": false,
+    "3_tie_check": true,
+    "4_bonferroni_conservative": false,
+    "5_regime_4_of_5": false
+  },
+  "beats_control_both": false,
+  "bh_fdr_pass": true,
+  "control": "C1",
+  "control_full": 0.8545454545454545,
+  "control_middle_8": 0.8809523809523809,
+  "control_scored_names_mean": 1407.5,
+  "decile_dispersion": 0.039911708808318395,
+  "decile_returns": {
+    "1": -0.0877,
+    "2": -0.0015,
+    "3": -0.0274,
+    "4": -0.0115,
+    "5": -0.0055,
+    "6": -0.0109,
+    "7": 0.0185,
+    "8": 0.0319,
+    "9": 0.0184,
+    "10": 0.0742
+  },
+  "decile_share_of_scored": [
+    0.1146,
+    0.0854,
+    0.0997,
+    0.0997,
+    0.1,
+    0.0997,
+    0.0997,
+    0.1,
+    0.0997,
+    0.1
+  ],
+  "declared_sign": "positive: more upward than downward revisions ranks high",
+  "density": {
+    "density_of_universe": 0.9477,
+    "nonzero_names": 2843,
+    "nonzero_share_of_scored": 0.9054,
+    "readable": true,
+    "reason": "density >= 0.50",
+    "yearly": {
+      "2019": {
+        "long": 2827,
+        "short": 284
+      },
+      "2020": {
+        "long": 2836,
+        "short": 269
+      },
+      "2021": {
+        "long": 2811,
+        "short": 343
+      },
+      "2022": {
+        "long": 2873,
+        "short": 284
+      },
+      "2023": {
+        "long": 2868,
+        "short": 302
+      }
+    },
+    "zero_names": 297
+  },
+  "desized": null,
+  "distinct_values": 10,
+  "expression": "group_rank(ts_mean((vec_avg(anl4_basicconafv110_pu) - vec_avg(anl4_basicconafv110_down)) / vec_avg(anl4_basicconafv110_numest), 21), sector)",
+  "extremes_share_of_spread": 0.8770846201358864,
+  "fields": [
+    "anl4_basicconafv110_pu",
+    "anl4_basicconafv110_down",
+    "anl4_basicconafv110_numest"
+  ],
+  "hypothesis": "H1_revision_breadth",
+  "inner_spread_d9_minus_d2": 0.0199,
+  "lead_before_desizing": false,
+  "missing": [],
+  "monotonicity": 0.8303030303030303,
+  "monotonicity_middle_8": 0.6666666666666666,
+  "permutation_p": 0.0023199884000579996,
+  "production_alpha_id": "1YZq6EVW",
+  "production_not_evidence": {
+    "bookSize": 20000000,
+    "checks": [
+      {
+        "limit": 1.25,
+        "name": "LOW_SHARPE",
+        "result": "FAIL",
+        "value": 0.68
+      },
+      {
+        "limit": 1.0,
+        "name": "LOW_FITNESS",
+        "result": "FAIL",
+        "value": 0.39
+      },
+      {
+        "limit": 0.01,
+        "name": "LOW_TURNOVER",
+        "result": "PASS",
+        "value": 0.1088
+      },
+      {
+        "limit": 0.7,
+        "name": "HIGH_TURNOVER",
+        "result": "PASS",
+        "value": 0.1088
+      },
+      {
+        "name": "CONCENTRATED_WEIGHT",
+        "result": "PASS"
+      },
+      {
+        "limit": 0.29,
+        "name": "LOW_SUB_UNIVERSE_SHARPE",
+        "result": "FAIL",
+        "value": 0.16
+      },
+      {
+        "name": "SELF_CORRELATION",
+        "result": "PENDING"
+      },
+      {
+        "competitions": [
+          {
+            "id": "challenge",
+            "name": "Challenge"
+          }
+        ],
+        "name": "MATCHES_COMPETITION",
+        "result": "PASS"
+      }
+    ],
+    "drawdown": 0.1112,
+    "fitness": 0.39,
+    "longCount": 1516,
+    "margin": 0.000748,
+    "pnl": 2012981,
+    "returns": 0.0407,
+    "sharpe": 0.68,
+    "shortCount": 1545,
+    "startDate": "2019-01-01",
+    "turnover": 0.1088
+  },
+  "scored_names_mean": 3139.5,
+  "status": "scored",
+  "tie_check_passed": true,
+  "top_minus_bottom": 0.1619,
+  "variant": "H1b_mean21",
+  "verdict": "ORDERS ITS DECILES -- clears the declared bar",
+  "yearly": {
+    "2019": {
+      "monotonicity": 0.18787878787878787,
+      "top_minus_bottom": 0.1174
+    },
+    "2020": {
+      "monotonicity": -0.2606060606060606,
+      "top_minus_bottom": 0.052099999999999994
+    },
+    "2021": {
+      "monotonicity": 0.9878787878787879,
+      "top_minus_bottom": 0.4073
+    },
+    "2022": {
+      "monotonicity": 0.8787878787878788,
+      "top_minus_bottom": 0.1899
+    },
+    "2023": {
+      "monotonicity": -0.07878787878787878,
+      "top_minus_bottom": 0.0381
+    }
+  },
+  "years_positive": "3/5"
+}

@@ -448,6 +448,16 @@ def phase_score(config: dict, draws: int) -> int:
             record["production_not_evidence"] = (production or {}).get("is")
             record["production_alpha_id"] = (production or {}).get("alpha_id")
             control = controls[spec["control"]]
+            record["control_used"] = spec["control"]
+            if not control["tie_check_passed"]:
+                # A control that fails its own tie check cannot be read (C1's mask sits on the raw
+                # vector field, which is present only on update days). Fall back to the reference
+                # full-coverage cap control, which is coverage-matched in practice only when the
+                # candidate scores ~the whole universe -- recorded, not hidden.
+                ref = config["controls"]["reference_full_coverage_cap_control"]
+                control = {"monotonicity": ref["monotonicity"], "monotonicity_middle_8": ref["middle_8"],
+                           "scored_names_mean": "~3140 (full universe)"}
+                record["control_used"] = f"reference full-coverage cap control ({spec['control']} unreadable: ties)"
             record["control_full"] = control["monotonicity"]
             record["control_middle_8"] = control["monotonicity_middle_8"]
             record["control_scored_names_mean"] = control["scored_names_mean"]
@@ -475,6 +485,8 @@ def phase_score(config: dict, draws: int) -> int:
             record["lead_before_desizing"] = all(record["bars"].values())
             desized = score_prefix(f"{name}_desized", draws) if cached(f"{name}_desized_d01") else None
             record["desized"] = desized
+            record["bar_6_desized_full_above_0.5"] = (None if desized is None else
+                                                      bool(desized["monotonicity"] > 0.5))
         results[name] = record
         (OUT / f"{name}.json").write_text(json.dumps(record, indent=2, sort_keys=True, default=str))
 
@@ -490,7 +502,7 @@ def phase_score(config: dict, draws: int) -> int:
             "monotonicity": _f(record.get("monotonicity")),
             "middle_8": _f(record.get("monotonicity_middle_8")),
             "top_minus_bottom": _f(record.get("top_minus_bottom")),
-            "control": record["control"], "control_full": _f(record.get("control_full")),
+            "control": record.get("control_used", record["control"]), "control_full": _f(record.get("control_full")),
             "control_middle_8": _f(record.get("control_middle_8")),
             "beats_control_both": record.get("beats_control_both", ""),
             "permutation_p": _f(record.get("permutation_p"), 6),
@@ -514,6 +526,14 @@ def phase_score(config: dict, draws: int) -> int:
         writer.writeheader()
         writer.writerows(rows)
     (OUT / "controls.json").write_text(json.dumps(controls, indent=2, sort_keys=True, default=str))
+    addendum = {}
+    for prefix in ("addendum_M1_momentum", "addendum_H1c_momentum_neutral"):
+        if cached(f"{prefix}_d10") or cached(f"{prefix}_d01"):
+            addendum[prefix] = score_prefix(prefix, draws)
+            a = addendum[prefix]
+            print(f"{prefix:32} mono {_f(a['monotonicity'])} mid8 {_f(a['monotonicity_middle_8'])} "
+                  f"ties_ok {a['tie_check_passed']} p {_f(a['permutation_p'], 6)} | {a['verdict'][:60]}")
+    (OUT / "addendum.json").write_text(json.dumps(addendum, indent=2, sort_keys=True, default=str))
     window = next((c.get("settings") for c in (cached(p.stem) for p in SIMS.glob("*.json")) if c), {})
     (OUT / "run_meta.json").write_text(json.dumps({
         "window": {"start": (window or {}).get("startDate"), "end": (window or {}).get("endDate")},

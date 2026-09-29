@@ -1,0 +1,45 @@
+{
+  "bh_fdr_pass": false,
+  "control": "C4",
+  "declared_sign": "positive: consensus moving toward buy ranks high",
+  "density": {
+    "density_of_universe": 0.0033,
+    "nonzero_names": 10,
+    "nonzero_share_of_scored": 0.0032,
+    "readable": false,
+    "reason": "UNREADABLE: only 0.3% of the universe carries a non-zero value",
+    "yearly": {
+      "2019": {
+        "long": 10,
+        "short": 3076
+      },
+      "2020": {
+        "long": 10,
+        "short": 3081
+      },
+      "2021": {
+        "long": 12,
+        "short": 3142
+      },
+      "2022": {
+        "long": 9,
+        "short": 3073
+      },
+      "2023": {
+        "long": 9,
+        "short": 3135
+      }
+    },
+    "zero_names": 3102
+  },
+  "expression": "group_rank(ts_delta((vec_avg(anl4_buy) - vec_avg(anl4_under)) / vec_avg(anl4_total_rec), 63), sector)",
+  "fields": [
+    "anl4_buy",
+    "anl4_under",
+    "anl4_total_rec"
+  ],
+  "hypothesis": "H5_recommendation_change",
+  "status": "UNREADABLE (density)",
+  "variant": "H5b_change63",
+  "verdict": "UNREADABLE: only 0.3% of the universe carries a non-zero value"
+}

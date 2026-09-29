@@ -1,0 +1,45 @@
+{
+  "bh_fdr_pass": false,
+  "control": "C1",
+  "declared_sign": "positive: more upward than downward revisions ranks high",
+  "density": {
+    "density_of_universe": 0.2613,
+    "nonzero_names": 784,
+    "nonzero_share_of_scored": 0.2503,
+    "readable": false,
+    "reason": "UNREADABLE: only 26.1% of the universe carries a non-zero value",
+    "yearly": {
+      "2019": {
+        "long": 785,
+        "short": 2326
+      },
+      "2020": {
+        "long": 812,
+        "short": 2292
+      },
+      "2021": {
+        "long": 750,
+        "short": 2404
+      },
+      "2022": {
+        "long": 776,
+        "short": 2357
+      },
+      "2023": {
+        "long": 801,
+        "short": 2357
+      }
+    },
+    "zero_names": 2348
+  },
+  "expression": "group_rank((vec_avg(anl4_basicconafv110_pu) - vec_avg(anl4_basicconafv110_down)) / vec_avg(anl4_basicconafv110_numest), sector)",
+  "fields": [
+    "anl4_basicconafv110_pu",
+    "anl4_basicconafv110_down",
+    "anl4_basicconafv110_numest"
+  ],
+  "hypothesis": "H1_revision_breadth",
+  "status": "UNREADABLE (density)",
+  "variant": "H1a_raw",
+  "verdict": "UNREADABLE: only 26.1% of the universe carries a non-zero value"
+}

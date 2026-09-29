@@ -1,39 +1,42 @@
 {
-  "alpha_id": "xAbKjQJb",
-  "expression": "if_else(rank(group_rank(-(anl4_fs_detail_estimates_basic_af_v4_nd_eps_std / abs(anl4_fs_detail_estimates_basic_af_v4_nd_eps_mean)), sector)) > -1.0, 1, 0) - if_else(rank(group_rank(-(anl4_fs_detail_estimates_basic_af_v4_nd_eps_std / abs(anl4_fs_detail_estimates_basic_af_v4_nd_eps_mean)), sector)) > 0.1, 1, 0)",
+  "alpha_id": "6XKnrlXO",
+  "expression": "if_else(rank(group_rank(ts_mean((vec_avg(anl4_basicconafv110_pu) - vec_avg(anl4_basicconafv110_down)) / vec_avg(anl4_basicconafv110_numest), 63), bucket(rank(ts_sum(returns, 63)), buckets=5))) > -1.0, 1, 0) - if_else(rank(group_rank(ts_mean((vec_avg(anl4_basicconafv110_pu) - vec_avg(anl4_basicconafv110_down)) / vec_avg(anl4_basicconafv110_numest), 63), bucket(rank(ts_sum(returns, 63)), buckets=5))) > 0.1, 1, 0)",
   "is": {
-    "bookSize": 0,
+    "bookSize": 20000000,
     "checks": [
       {
         "limit": 1.25,
         "name": "LOW_SHARPE",
         "result": "FAIL",
-        "value": 0.0
+        "value": -0.93
       },
       {
         "limit": 1.0,
         "name": "LOW_FITNESS",
-        "result": "ERROR"
+        "result": "FAIL",
+        "value": -0.75
       },
       {
         "limit": 0.01,
         "name": "LOW_TURNOVER",
-        "result": "FAIL",
-        "value": 0.0
+        "result": "PASS",
+        "value": 0.0336
       },
       {
         "limit": 0.7,
         "name": "HIGH_TURNOVER",
         "result": "PASS",
-        "value": 0.0
+        "value": 0.0336
       },
       {
         "name": "CONCENTRATED_WEIGHT",
-        "result": "FAIL"
+        "result": "PASS"
       },
       {
+        "limit": -0.4,
         "name": "LOW_SUB_UNIVERSE_SHARPE",
-        "result": "ERROR"
+        "result": "PASS",
+        "value": -0.16
       },
       {
         "name": "SELF_CORRELATION",
@@ -50,21 +53,21 @@
         "result": "PASS"
       }
     ],
-    "drawdown": 0.0,
-    "fitness": null,
-    "longCount": 0,
-    "margin": 0.0,
-    "pnl": 0,
-    "returns": 0.0,
-    "sharpe": 0.0,
-    "shortCount": 0,
+    "drawdown": 0.4929,
+    "fitness": -0.75,
+    "longCount": 314,
+    "margin": -0.00484,
+    "pnl": -4022494,
+    "returns": -0.0813,
+    "sharpe": -0.93,
+    "shortCount": 2826,
     "startDate": "2019-01-01",
-    "turnover": 0.0
+    "turnover": 0.0336
   },
-  "label": "H2a_std_over_absmean_d01",
+  "label": "addendum_H1c_momentum_neutral_d01",
   "message": null,
   "neutralization": "MARKET",
-  "seconds": 147.1,
+  "seconds": 126.4,
   "settings": {
     "decay": 0,
     "delay": 1,
@@ -89,72 +92,72 @@
     "records": [
       [
         "2019",
-        0.0,
+        367653.0,
         20000000,
-        0,
-        0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0,
+        311,
+        2800,
+        0.0371,
+        0.65,
+        0.0365,
+        0.057,
+        0.001966,
+        0.35,
         "IS"
       ],
       [
         "2020",
-        0.0,
+        -694126.0,
         20000000,
-        0,
-        0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0,
+        311,
+        2794,
+        0.0383,
+        -0.78,
+        -0.0751,
+        0.1489,
+        -0.003927,
+        -0.6,
         "IS"
       ],
       [
         "2021",
-        0.0,
+        -2829827.0,
         20000000,
-        0,
-        0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0,
+        315,
+        2838,
+        0.0312,
+        -2.84,
+        -0.2807,
+        0.3475,
+        -0.017972,
+        -4.26,
         "IS"
       ],
       [
         "2022",
-        0.0,
+        -1016735.0,
         20000000,
-        0,
-        0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0,
+        316,
+        2841,
+        0.0311,
+        -1.02,
+        -0.1013,
+        0.1578,
+        -0.006521,
+        -0.92,
         "IS"
       ],
       [
         "2023",
-        0.0,
+        144367.0,
         20000000,
-        0,
-        0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0,
+        317,
+        2853,
+        0.0307,
+        0.19,
+        0.0144,
+        0.0861,
+        0.000941,
+        0.06,
         "IS"
       ]
     ],

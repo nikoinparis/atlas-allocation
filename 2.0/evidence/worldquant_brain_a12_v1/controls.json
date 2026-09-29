@@ -1,0 +1,185 @@
+{
+  "C1": {
+    "decile_dispersion": 0.09910355644476136,
+    "decile_returns": {
+      "1": -0.3163,
+      "2": 0.0013,
+      "3": -0.0048,
+      "4": -0.039,
+      "5": 0.002,
+      "6": 0.0166,
+      "7": 0.0042,
+      "8": 0.0215,
+      "9": 0.0504,
+      "10": 0.0052
+    },
+    "decile_share_of_scored": [
+      0.1551,
+      0.1818,
+      0.5466,
+      0.7203,
+      0.818,
+      0.0366,
+      0.0525,
+      0.0669,
+      0.0891,
+      0.0996
+    ],
+    "distinct_values": 10,
+    "expression": "group_rank(cap + 0 * ((vec_avg(anl4_basicconafv110_pu) - vec_avg(anl4_basicconafv110_down)) / vec_avg(anl4_basicconafv110_numest)), sector)",
+    "extremes_share_of_spread": 0.8472783825816486,
+    "inner_spread_d9_minus_d2": 0.0491,
+    "missing": [],
+    "monotonicity": 0.8545454545454545,
+    "monotonicity_middle_8": 0.8809523809523809,
+    "permutation_p": 0.00046999765001174993,
+    "scored_names_mean": 1407.5,
+    "tie_check_passed": false,
+    "top_minus_bottom": 0.3215,
+    "verdict": "ORDERS ITS DECILES -- clears the declared bar",
+    "yearly": {
+      "2019": {
+        "monotonicity": 0.15151515151515152,
+        "top_minus_bottom": 0.0432
+      },
+      "2020": {
+        "monotonicity": -0.15151515151515152,
+        "top_minus_bottom": -0.2087
+      },
+      "2021": {
+        "monotonicity": 0.6442202750968413,
+        "top_minus_bottom": 0.0432
+      },
+      "2022": {
+        "monotonicity": 0.7333333333333333,
+        "top_minus_bottom": 0.1449
+      },
+      "2023": {
+        "monotonicity": 0.17021355223041806,
+        "top_minus_bottom": -0.0129
+      }
+    }
+  },
+  "C2": {
+    "decile_dispersion": 0.014992481449046385,
+    "decile_returns": {
+      "1": 0.0,
+      "2": -0.0084,
+      "3": 0.0086,
+      "4": -0.0433,
+      "5": -0.0132,
+      "6": -0.0019,
+      "7": 0.0165,
+      "8": -0.0051,
+      "9": -0.0014,
+      "10": -0.0023
+    },
+    "decile_share_of_scored": [
+      0.0,
+      0.3892,
+      0.4375,
+      0.0097,
+      0.0685,
+      0.0997,
+      0.0997,
+      0.1,
+      0.0997,
+      0.1
+    ],
+    "distinct_values": 10,
+    "expression": "group_rank(cap + 0 * (anl4_fs_detail_estimates_basic_af_v4_nd_eps_std / abs(anl4_fs_detail_estimates_basic_af_v4_nd_eps_mean)), sector)",
+    "extremes_share_of_spread": 4.0434782608695645,
+    "inner_spread_d9_minus_d2": 0.006999999999999999,
+    "missing": [],
+    "monotonicity": 0.04242424242424243,
+    "monotonicity_middle_8": 0.35714285714285715,
+    "permutation_p": 0.16903415482922585,
+    "scored_names_mean": 2262.4,
+    "tie_check_passed": false,
+    "top_minus_bottom": -0.0023,
+    "verdict": "flat -- replicates the null",
+    "yearly": {
+      "2019": {
+        "monotonicity": 0.23636363636363636,
+        "top_minus_bottom": 0.0283
+      },
+      "2020": {
+        "monotonicity": -0.47242820173768363,
+        "top_minus_bottom": -0.1879
+      },
+      "2021": {
+        "monotonicity": 0.06666666666666667,
+        "top_minus_bottom": 0.0507
+      },
+      "2022": {
+        "monotonicity": 0.6,
+        "top_minus_bottom": 0.0718
+      },
+      "2023": {
+        "monotonicity": 0.3575757575757576,
+        "top_minus_bottom": 0.008
+      }
+    }
+  },
+  "C3": {
+    "decile_dispersion": 0.027799827337593303,
+    "decile_returns": {
+      "1": -0.0626,
+      "2": 0.0053,
+      "3": 0.0272,
+      "4": 0.012,
+      "5": 0.0472,
+      "6": 0.0257,
+      "7": 0.0081,
+      "8": 0.0192,
+      "9": -0.0048,
+      "10": -0.0069
+    },
+    "decile_share_of_scored": [
+      0.1359,
+      0.104,
+      0.0947,
+      0.0996,
+      0.1013,
+      0.0998,
+      0.0998,
+      0.0998,
+      0.0998,
+      0.0997
+    ],
+    "distinct_values": 10,
+    "expression": "group_rank(cap + 0 * implied_volatility_mean_skew_30, sector)",
+    "extremes_share_of_spread": 1.1813285457809695,
+    "inner_spread_d9_minus_d2": -0.0101,
+    "missing": [],
+    "monotonicity": -0.07878787878787878,
+    "monotonicity_middle_8": -0.2619047619047619,
+    "permutation_p": 0.5386573067134665,
+    "scored_names_mean": 3054.9,
+    "tie_check_passed": true,
+    "top_minus_bottom": 0.0557,
+    "verdict": "flat -- replicates the null",
+    "yearly": {
+      "2019": {
+        "monotonicity": 0.8666666666666667,
+        "top_minus_bottom": 0.046400000000000004
+      },
+      "2020": {
+        "monotonicity": -0.6484848484848484,
+        "top_minus_bottom": -0.139
+      },
+      "2021": {
+        "monotonicity": 0.4303030303030303,
+        "top_minus_bottom": 0.2072
+      },
+      "2022": {
+        "monotonicity": 0.7212121212121212,
+        "top_minus_bottom": 0.1473
+      },
+      "2023": {
+        "monotonicity": 0.2727272727272727,
+        "top_minus_bottom": -0.003599999999999999
+      }
+    }
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "experiment": "worldquant_brain_a15_v1",
+  "queue_item": "A15 (includes B5)",
+  "created_at_utc": "2026-09-30",
+  "registered_before_any_result_existed": true,
+  "_registration_note": "Written and committed before the first A15 simulation. Field ids resolved from data/worldquant_brain_fields/*.csv and verified live (GET /data-fields/{id}, no simulation) the same day; see evidence/worldquant_brain_a15_v1/field_verification.json. Human-readable version: docs/BRAIN_A15_PREREGISTRATION_V1.md. If the two disagree, this JSON is the registration.",
+  "this_is_a_search_not_a_diagnostic": true,
+  "strategy_promotion_authorized": false,
+  "submission_authorized": false,
+  "_submission_note": "Simulations only. Nothing is submitted. Submission acts on the owner's account and is the owner's decision.",
+  "holdout_design": {
+    "train_years": ["2019", "2020", "2021", "2022"],
+    "holdout_year": "2023",
+    "train_ladder": "per decile, the mean of BRAIN's yearly-stats `returns` over 2019-2022 (the four IS rows). Every choice -- readability, train bars, which variant is 'best', which hypotheses get kill tests -- uses only this and the 2019-2022 yearly counts.",
+    "blindness": "The runner never prints or scores a full-window (2019-2023) statistic or a 2023 row before --phase holdout, and --phase holdout refuses to run unless docs/BRAIN_A15_TRAIN_FREEZE_V1.md is committed in git with no uncommitted changes. Density probes read longCount/shortCount only (counts, not performance).",
+    "holdout_read": "ONCE, after the freeze file is committed: (a) full-window ladder of the frozen best variant, (b) its 2023-only ladder, (c) 2023 rows of its kill-test ladders and control. Read-outs for non-frozen variants are reported but cannot pass.",
+    "field_liveness": "2023 is a live-data holdout only for fields BRAIN created (dateCreated) on or before 2022-12-31. For later-created fields 2023 is a holdout for OUR selection but is loaded vendor history like the other years. pv1 fields (cap, close, returns) show dateCreated 2023-07-01, a catalogue re-listing date; prices are point-in-time by nature and are not treated as backfill risk.",
+    "testPeriod_not_used": "Step 327 found testPeriod only carves a slice out of the fixed 2019-2023 window. yearly-stats already give the 2023 row per simulation, so testPeriod is left at its default and is not relied on."
+  },
+  "settings": {
+    "region": "USA",
+    "universe": "TOP3000",
+    "delay": 1,
+    "decay": 0,
+    "truncation": 0.08,
+    "pasteurization": "ON",
+    "nanHandling": "ON",
+    "unitHandling": "VERIFY",
+    "ladder_neutralization": "MARKET",
+    "production_neutralization": "SUBINDUSTRY",
+    "density_probe_neutralization": "MARKET",
+    "_delay0": "forbidden"
+  },
+  "budget": {
+    "hypotheses": 5,
+    "variants_per_hypothesis_max": 3,
+    "alphas": 15,
+    "density_probes": 15,
+    "production_forms_max": 15,
+    "ladder_simulations_max": 150,
+    "control_ladders_max": 5,
+    "control_simulations_max": 50,
+    "conditional_kill_hypotheses_max": 3,
+    "conditional_kill_simulations_max": 60,
+    "syntax_correction_allowance": 10,
+    "maximum_total_simulations": 300,
+    "no_substitution": "A hypothesis that dies on parse failure, field resolution or density is recorded as that result. No replacement hypothesis or variant is run, and none is added after any result is seen.",
+    "parse_failure_rule": "One syntax-only correction per expression (same fields, same sign, same horizon), recorded, counted as a trial. A second failure ends that variant.",
+    "stop_rule": "The batch stops at this budget whatever it finds."
+  },
+  "hypotheses": {
+    "H1_recommendation_change": {
+      "queue": "B5 -- Step 326's H5 rebuilt for event fields (was 0.3% dense because vec_avg of a VECTOR field exists only on event days)",
+      "channel": "sell-side recommendation changes (Jegadeesh, Kim, Krische & Lee 2004)",
+      "sign": "positive: consensus moving toward buy ranks high",
+      "fields": ["anl4_buy", "anl4_under", "anl4_total_rec"],
+      "fields_created": "2022-08-01 (all three): 2023 is a live-data holdout",
+      "construction_change_vs_a12": "the net-buy share is carried forward with ts_backfill(., 252) before any change is taken; variant c uses last_diff_value (the most recent change within 126 days) instead of a fixed-lag change. Horizons 63/126 replace A12's 21/63/126 because a 21-day change of a carried-forward monthly-ish series is mostly zero by construction.",
+      "variants": {
+        "H1a_delta63": "group_rank(ts_delta(ts_backfill((vec_avg(anl4_buy) - vec_avg(anl4_under)) / vec_avg(anl4_total_rec), 252), 63), sector)",
+        "H1b_delta126": "group_rank(ts_delta(ts_backfill((vec_avg(anl4_buy) - vec_avg(anl4_under)) / vec_avg(anl4_total_rec), 252), 126), sector)",
+        "H1c_lastchange126": "group_rank(ts_backfill((vec_avg(anl4_buy) - vec_avg(anl4_under)) / vec_avg(anl4_total_rec), 252) - last_diff_value(ts_backfill((vec_avg(anl4_buy) - vec_avg(anl4_under)) / vec_avg(anl4_total_rec), 252), 126), sector)"
+      },
+      "control": "C1",
+      "outside_source": "Finnhub /stock/recommendation (free tier: monthly strongBuy/buy/hold/sell/strongSell counts with history)"
+    },
+    "H2_earnings_announcement_premium": {
+      "channel": "predictable earnings-announcement timing: stocks earn a premium in the days before and at a scheduled announcement (Frazzini & Lamont 2007; Barber, De George, Lehavy & Trueman 2013). Timing, not surprise -- PEAD/SUE (closed, Steps 253/256) is about the size of the surprise.",
+      "sign": "positive: closeness to the expected next announcement (about 63 trading days after the last) ranks high",
+      "fields": ["anl4_bac1actualqfv110_actual", "anl4_fs_actuals_basic_qf_nd_sales_value"],
+      "fields_created": "anl4_bac1actualqfv110_actual 2022-07-01 (live holdout, variants a and b); anl4_fs_actuals_basic_qf_nd_sales_value 2026-03-01 (variant c: 2023 is a selection holdout only)",
+      "construction": "days since the quarterly announced-actuals value last changed = days since the last announcement. -abs(d - target) peaks on the expected date.",
+      "interpretation_risk": "days_from_last_change counts grid days (assumed trading days). A quarter where the averaged actuals do not change reads as a missed announcement. A restatement reads as an announcement. Recorded now.",
+      "variants": {
+        "H2a_eadist63": "group_rank(-abs(days_from_last_change(ts_backfill(vec_avg(anl4_bac1actualqfv110_actual), 126)) - 63), sector)",
+        "H2b_eadist58": "group_rank(-abs(days_from_last_change(ts_backfill(vec_avg(anl4_bac1actualqfv110_actual), 126)) - 58), sector)",
+        "H2c_salesdist63": "group_rank(-abs(days_from_last_change(ts_backfill(anl4_fs_actuals_basic_qf_nd_sales_value, 126)) - 63), sector)"
+      },
+      "control": "C2",
+      "outside_source": "SEC EDGAR 8-K Item 2.02 filing dates (free, point-in-time, full history); Nasdaq/Yahoo earnings calendars (free, forward)"
+    },
+    "H3_analyst_coverage_change": {
+      "channel": "analyst attention: a year-on-year rise in the number of analysts covering a firm lowers information asymmetry and precedes higher returns; coverage losses precede price falls (Kelly & Ljungqvist 2012; Irvine 2003). Different from A12's H1, which used the estimate count only as a denominator for revision direction.",
+      "sign": "positive: coverage increase ranks high",
+      "fields": ["anl4_basicconafv110_numest", "anl4_basicconqfv110_numest", "anl4_total_rec"],
+      "fields_created": "2022-07-01 / 2022-07-01 / 2022-08-01: live holdout for all three",
+      "construction": "log(1 + N) - log(1 + N 252 days earlier), N carried forward. Year-on-year so the annual-period fiscal roll compares the same position in the year.",
+      "variants": {
+        "H3a_numest_af_yoy": "group_rank(log(1 + ts_backfill(vec_avg(anl4_basicconafv110_numest), 126)) - log(1 + ts_delay(ts_backfill(vec_avg(anl4_basicconafv110_numest), 126), 252)), sector)",
+        "H3b_numest_qf_yoy": "group_rank(log(1 + ts_backfill(vec_avg(anl4_basicconqfv110_numest), 126)) - log(1 + ts_delay(ts_backfill(vec_avg(anl4_basicconqfv110_numest), 126), 252)), sector)",
+        "H3c_totalrec_yoy": "group_rank(log(1 + ts_backfill(vec_avg(anl4_total_rec), 252)) - log(1 + ts_delay(ts_backfill(vec_avg(anl4_total_rec), 252), 252)), sector)"
+      },
+      "control": "C3",
+      "outside_source": "Finnhub recommendation-trend history (analyst counts per month, free); Yahoo analyst counts (free snapshots, forward only)"
+    },
+    "H4_long_term_growth_forecast": {
+      "channel": "analysts' long-term growth forecasts are over-extrapolated; high-LTG stocks underperform (La Porta 1996; Dechow & Sloan 1997). Expectation LEVEL, not revision (A12 H1) or disagreement (A12 H2).",
+      "sign": "negative: high long-term growth forecast ranks LOW",
+      "fields": ["anl4_basicconltv110_mean"],
+      "fields_created": "2022-07-01: live holdout",
+      "interpretation_risk": "BRAIN describes the field only as 'Mean of estimations' in the long-term ('lt') consensus family; the item is carried in anl4_bac1conltv110_item and is not filterable here. Interpreted as the consensus long-term EPS growth rate, which is the standard long-term consensus item. If the family mixes other long-term items, vec_avg blends them and this hypothesis is mis-specified. Recorded before any run, not after.",
+      "variants": {
+        "H4a_ltg_sector": "group_rank(-ts_backfill(vec_avg(anl4_basicconltv110_mean), 252), sector)",
+        "H4b_ltg_industry": "group_rank(-ts_backfill(vec_avg(anl4_basicconltv110_mean), 252), industry)",
+        "H4c_ltg_subindustry": "group_rank(-ts_backfill(vec_avg(anl4_basicconltv110_mean), 252), subindustry)"
+      },
+      "variant_note": "b and c are a grouping-neighbourhood check of a, not new ideas.",
+      "control": "C4",
+      "outside_source": "Yahoo 'next 5 years' growth estimate (free, snapshot only -- no history); IBES/Zacks LTG history is paid"
+    },
+    "H5_implied_minus_realized_vol": {
+      "channel": "the stock-level volatility risk premium: when option-implied volatility sits far above realized volatility, the stock subsequently underperforms (Bali & Hovakimian 2009). Different from A12's H3 (smirk: OTM put vs OTM call) and H4 (ATM call vs put IV) -- this is the level of implied volatility against realized.",
+      "sign": "negative: high implied-minus-realized ranks LOW",
+      "fields": ["implied_volatility_mean_30", "historical_volatility_30", "implied_volatility_mean_90", "historical_volatility_90"],
+      "fields_created": "2022-05-01 (all): live holdout",
+      "known_confound": "correlates with the volatility level (low volatility is closed; Step 320 historical_volatility_20 read -0.006) and with A12's H4 (both contain the put side). The control, de-sized and momentum-neutral kill tests read it; no volatility-neutral test is budgeted.",
+      "variants": {
+        "H5a_ivrv30": "group_rank(-(implied_volatility_mean_30 - historical_volatility_30), sector)",
+        "H5b_ivrv90": "group_rank(-(implied_volatility_mean_90 - historical_volatility_90), sector)",
+        "H5c_ivrv30_mean21": "group_rank(-ts_mean(implied_volatility_mean_30 - historical_volatility_30, 21), sector)"
+      },
+      "control": "C5",
+      "outside_source": "free forward collection already running (Step 327, Yahoo near-ATM IVs) plus free daily prices for realized vol; historical IV is paid (ORATS, CBOE DataShop, OptionMetrics)"
+    }
+  },
+  "considered_and_dropped_before_any_simulation": {
+    "management_guidance_news": "anl4_fs_guidances_basic_qf_nd_eps_value coverage 0.29, sales guidance 0.33: below the 0.5 density floor on coverage alone.",
+    "street_minus_gaap_exclusions (Doyle, Lundholm & Soliman 2003)": "fields resolve (non-GAAP actual 0.78, GAAP actual 0.96) but were created on BRAIN 2026-03-01, so 2023 could not be a live holdout; H4 (LTG) with 2022-07 fields preferred.",
+    "dividend-month premium (Hartzmark & Solomon 2013)": "pv1 `dividend` semantics (pulse on ex-date vs carried value) cannot be established without simulations, and non-payers would form one tie block; not registered.",
+    "LTG via anl4_fs_detail_estimate_1qf_v4_nd_epsr_*": "described as 'EPS growth rate' in one row and as GAAP EPS in its siblings -- a reported-EPS field, not LTG."
+  },
+  "controls": {
+    "_why": "Step 317: a control must match the candidate's coverage. Each control ranks market cap within sector on exactly the NaN mask of its hypothesis's variant-a INNER signal (carried forward, so it is not the event-day-only mask that made A12's C1 unreadable).",
+    "C1": "group_rank(cap + 0 * ts_delta(ts_backfill((vec_avg(anl4_buy) - vec_avg(anl4_under)) / vec_avg(anl4_total_rec), 252), 63), sector)",
+    "C2": "group_rank(cap + 0 * days_from_last_change(ts_backfill(vec_avg(anl4_bac1actualqfv110_actual), 126)), sector)",
+    "C3": "group_rank(cap + 0 * (log(1 + ts_backfill(vec_avg(anl4_basicconafv110_numest), 126)) - log(1 + ts_delay(ts_backfill(vec_avg(anl4_basicconafv110_numest), 126), 252))), sector)",
+    "C4": "group_rank(cap + 0 * ts_backfill(vec_avg(anl4_basicconltv110_mean), 252), sector)",
+    "C5": "group_rank(cap + 0 * (implied_volatility_mean_30 - historical_volatility_30), sector)",
+    "fallback": "If a control fails its own tie check it is unreadable; the hypothesis is then compared with the reference full-coverage cap control (Step 317: +0.091 / -0.119, full window) only if the variant scores >= 90% of the universe, else bar T2/P1 is recorded as UNTESTABLE and the variant cannot pass.",
+    "run_rule": "A control is run only if at least one variant of its hypothesis is readable."
+  },
+  "density_guard": {
+    "probe_expression": "if_else(abs(<INNER signal of the variant, i.e. without the outer group_rank>) > 0, 1, 0) at MARKET",
+    "correction_vs_a12": "A12 probed the group_rank-wrapped expression. group_rank maps a block of tied raw zeros to one shared rank that is generally non-zero, so that probe could count exact zeros as non-zero. A15 probes the raw inner signal.",
+    "bar": "longCount / 3000 >= 0.50, else UNREADABLE: no ladder, no production form, no replacement",
+    "tie_check_every_ladder": "each decile's longCount between 5% and 15% of (longCount + shortCount), averaged over the 2019-2022 yearly rows; otherwise UNREADABLE (ties)"
+  },
+  "train_bars": {
+    "_all_computed_on_2019_2022_only": true,
+    "T1": "train ladder verdict ORDERS ITS DECILES (full > 0.5 and middle-8 > 0.5, same direction, declared sign)",
+    "T2": "train full > control's train full AND train middle-8 > control's train middle-8",
+    "T3": "tie check passes",
+    "T4": "monotonicity > 0 in at least 3 of the 4 train years",
+    "T5": "train permutation p (joint full and middle-8, 200,000 random orderings of the ten decile returns) < 0.05 / (528 + 300) = 6.04e-5",
+    "best_variant_rule": "Per hypothesis, among readable variants passing T1-T5, the one with the largest (train full + train middle-8); ties broken by lower 2019-2022 mean yearly turnover of its production form. If none passes T1-T5, the variant with the largest (train full + train middle-8) is frozen for the record and CANNOT pass.",
+    "kill_tests": "For each hypothesis whose frozen best variant passes T1-T5 (at most 3, taken in order of train full + middle-8 if more qualify): K1 de-sized = group_rank(<inner>, bucket(rank(cap), range=\"0,1,0.2\")); K2 momentum-neutral = group_rank(<inner>, bucket(rank(ts_sum(returns, 63)), range=\"0,1,0.2\")). Each must read ORDERS ITS DECILES on its train ladder. Each kill ladder must differ from the raw ladder (grouping-live check, Step 326 bug).",
+    "freeze": "docs/BRAIN_A15_TRAIN_FREEZE_V1.md committed with the frozen best variant per hypothesis and its train numbers, and the kill tests' train numbers, BEFORE --phase holdout"
+  },
+  "pass_requires_all_of": [
+    "T1-T5 and K1-K2 on 2019-2022",
+    "P1: full-window (2019-2023) ladder of the frozen variant reads ORDERS ITS DECILES, beats its control on full AND middle-8, passes the tie check, and its full-window permutation p < 0.05 / (cumulative simulations on the account after A15)",
+    "P2: 2023-only ladder monotonicity > 0 AND 2023 top-minus-bottom (d10 - d1) > 0"
+  ],
+  "reading": {
+    "evidence": "decile monotonicity (full and middle-8) and top-minus-bottom spread, train and holdout separately, against the coverage-matched control",
+    "not_evidence": "BRAIN Sharpe, fitness, turnover, returns of the production form -- read only after the freeze, reported, never used to decide (turnover is used only as the declared tie-break and for tradability)",
+    "sign_discipline": "The sign is inside every expression and never changes. INVERTED refutes; it is never flipped.",
+    "multiple_testing": {
+      "prior_simulations_on_account_at_registration": 528,
+      "verified": "GET /users/self/alphas count = 528, active = 0, on 2026-09-30 before any A15 simulation",
+      "a15_maximum": 300,
+      "train_bonferroni_denominator": 828,
+      "final_bonferroni_denominator": "528 + A15 simulations actually run",
+      "fdr": "Benjamini-Hochberg q = 0.05 over A15's readable variants' full-window permutation p-values, reported alongside",
+      "platform_caveat": "The 2019-2023 window has been searched by thousands of BRAIN users (field userCounts up to 2,257 here); that search is uncountable."
+    }
+  }
+}

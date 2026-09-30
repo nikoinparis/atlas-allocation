@@ -1,0 +1,362 @@
+{
+  "anl4_buy": {
+    "dataset": "analyst4",
+    "type": "VECTOR",
+    "description": "The number of recommendations to long the instrument",
+    "coverage_TOP3000": 0.6243,
+    "userCount": 485,
+    "alphaCount": 679,
+    "dateCreated": "2022-08-01",
+    "http": 200
+  },
+  "anl4_under": {
+    "dataset": "analyst4",
+    "type": "VECTOR",
+    "description": "The number of Underweight recommendations",
+    "coverage_TOP3000": 0.6243,
+    "userCount": 101,
+    "alphaCount": 136,
+    "dateCreated": "2022-08-01",
+    "http": 200
+  },
+  "anl4_total_rec": {
+    "dataset": "analyst4",
+    "type": "VECTOR",
+    "description": "The total number of recommendations",
+    "coverage_TOP3000": 0.6243,
+    "userCount": 1695,
+    "alphaCount": 2648,
+    "dateCreated": "2022-08-01",
+    "http": 200
+  },
+  "anl4_fs_actuals_basic_qf_nd_sales_value": {
+    "dataset": "analyst4",
+    "type": "MATRIX",
+    "description": "Actual sales/revenue for the quarter, expressed in millions of the stated currency",
+    "coverage_TOP3000": 0.9858,
+    "userCount": 32,
+    "alphaCount": 42,
+    "dateCreated": "2026-03-01",
+    "http": 200
+  },
+  "anl4_fs_actuals_basic_qf_nd_eps_value": {
+    "dataset": "analyst4",
+    "type": "MATRIX",
+    "description": "Actual earnings per share for the quarter",
+    "coverage_TOP3000": 0.9868,
+    "userCount": 124,
+    "alphaCount": 177,
+    "dateCreated": "2026-03-01",
+    "http": 200
+  },
+  "anl4_afv4_eps_number": {
+    "dataset": "analyst4",
+    "type": "MATRIX",
+    "description": "Earnings per share - number of estimations for annual frequency",
+    "coverage_TOP3000": 1.0,
+    "userCount": 546,
+    "alphaCount": 843,
+    "dateCreated": "2025-11-01",
+    "http": 200
+  },
+  "anl4_qfv4_eps_number": {
+    "dataset": "analyst4",
+    "type": "MATRIX",
+    "description": "Earnings per share - number of estimations",
+    "coverage_TOP3000": 1.0,
+    "userCount": 1271,
+    "alphaCount": 1857,
+    "dateCreated": "2025-11-01",
+    "http": 200
+  },
+  "anl4_fs_actuals_advanced_qf_nd_eps_nongaap_value": {
+    "dataset": "analyst4",
+    "type": "MATRIX",
+    "description": "Non-GAAP earnings per share actual value",
+    "coverage_TOP3000": 0.7769,
+    "userCount": 43,
+    "alphaCount": 48,
+    "dateCreated": "2026-03-01",
+    "http": 200
+  },
+  "anl4_fs_actuals_advanced_qf_nd_epsr_value": {
+    "dataset": "analyst4",
+    "type": "MATRIX",
+    "description": "Reported earnings per share, actual value",
+    "coverage_TOP3000": 0.9642,
+    "userCount": 22,
+    "alphaCount": 35,
+    "dateCreated": "2026-03-01",
+    "http": 200
+  },
+  "anl4_afv4_eps_mean": {
+    "dataset": "analyst4",
+    "type": "MATRIX",
+    "description": "Earnings per share - mean of estimations for annual frequency",
+    "coverage_TOP3000": 1.0,
+    "userCount": 1096,
+    "alphaCount": 2611,
+    "dateCreated": "2025-11-01",
+    "http": 200
+  },
+  "anl4_fs_detail_estimates_advanced_af_nd_epsr_mean": {
+    "dataset": "analyst4",
+    "type": "MATRIX",
+    "description": "Mean of analyst estimates of reported (GAAP) earnings per share for the annual period",
+    "coverage_TOP3000": 0.9088,
+    "userCount": 118,
+    "alphaCount": 168,
+    "dateCreated": "2026-03-01",
+    "http": 200
+  },
+  "implied_volatility_mean_30": {
+    "dataset": "option8",
+    "type": "MATRIX",
+    "description": "The average of IvCall30 and IvPut30",
+    "coverage_TOP3000": 0.9688,
+    "userCount": 1882,
+    "alphaCount": 3475,
+    "dateCreated": "2022-05-01",
+    "http": 200
+  },
+  "implied_volatility_mean_90": {
+    "dataset": "option8",
+    "type": "MATRIX",
+    "description": "The average of IvCall90 and IvPut90",
+    "coverage_TOP3000": 0.9688,
+    "userCount": 2257,
+    "alphaCount": 4352,
+    "dateCreated": "2022-05-01",
+    "http": 200
+  },
+  "historical_volatility_30": {
+    "dataset": "option8",
+    "type": "MATRIX",
+    "description": "Historical close-to-close volatility for approximately 30 calendar days",
+    "coverage_TOP3000": 0.9807,
+    "userCount": 1214,
+    "alphaCount": 2321,
+    "dateCreated": "2022-05-01",
+    "http": 200
+  },
+  "historical_volatility_90": {
+    "dataset": "option8",
+    "type": "MATRIX",
+    "description": "Historical close-to-close volatility for approximately 90 calendar days",
+    "coverage_TOP3000": 0.9803,
+    "userCount": 1099,
+    "alphaCount": 2360,
+    "dateCreated": "2022-05-01",
+    "http": 200
+  },
+  "anl4_fs_guidances_basic_qf_nd_eps_value": {
+    "dataset": "analyst4",
+    "type": "MATRIX",
+    "description": "Current EPS guidance value",
+    "coverage_TOP3000": 0.2928,
+    "userCount": 28,
+    "alphaCount": 36,
+    "dateCreated": "2026-03-01",
+    "http": 200
+  },
+  "anl4_fs_guidances_basic_qf_nd_sales_value": {
+    "dataset": "analyst4",
+    "type": "MATRIX",
+    "description": "Current Sales guidance value",
+    "coverage_TOP3000": 0.3271,
+    "userCount": 11,
+    "alphaCount": 13,
+    "dateCreated": "2026-03-01",
+    "http": 200
+  },
+  "anl4_detailltv4_est": {
+    "dataset": "analyst4",
+    "type": "VECTOR",
+    "description": "Long term estimation value",
+    "coverage_TOP3000": 1.0,
+    "userCount": 32,
+    "alphaCount": 36,
+    "dateCreated": "2025-11-01",
+    "http": 200
+  },
+  "anl4_fs_detail_estimate_1qf_v4_nd_epsr_mean": {
+    "dataset": "analyst4",
+    "type": "MATRIX",
+    "description": "Mean estimated EPS growth rate",
+    "coverage_TOP3000": 0.8623,
+    "userCount": 94,
+    "alphaCount": 171,
+    "dateCreated": "2026-03-01",
+    "http": 200
+  },
+  "dividend": {
+    "dataset": "pv1",
+    "type": "MATRIX",
+    "description": "Dividend",
+    "coverage_TOP3000": 1.0,
+    "userCount": 5630,
+    "alphaCount": 14879,
+    "dateCreated": "2023-07-01",
+    "http": 200
+  },
+  "cap": {
+    "dataset": "pv1",
+    "type": "MATRIX",
+    "description": "Daily market capitalization (in millions)",
+    "coverage_TOP3000": 1.0,
+    "userCount": 41964,
+    "alphaCount": 466280,
+    "dateCreated": "2023-07-01",
+    "http": 200
+  },
+  "close": {
+    "dataset": "pv1",
+    "type": "MATRIX",
+    "description": "Daily close price",
+    "coverage_TOP3000": 1.0,
+    "userCount": 67197,
+    "alphaCount": 725317,
+    "dateCreated": "2023-07-01",
+    "http": 200
+  },
+  "returns": {
+    "dataset": "pv1",
+    "type": "MATRIX",
+    "description": "Daily returns",
+    "coverage_TOP3000": 1.0,
+    "userCount": 47359,
+    "alphaCount": 493324,
+    "dateCreated": "2023-07-01",
+    "http": 200
+  },
+  "sector": {
+    "dataset": "pv1",
+    "type": "GROUP",
+    "description": "Sector grouping",
+    "coverage_TOP3000": 1.0,
+    "userCount": 34103,
+    "alphaCount": 491725,
+    "dateCreated": "2023-07-01",
+    "http": 200
+  },
+  "anl4_basicqfv4_actual": {
+    "dataset": "analyst4",
+    "type": "VECTOR",
+    "description": "Announced financial data",
+    "coverage_TOP3000": 0.9972,
+    "userCount": 73,
+    "alphaCount": 81,
+    "dateCreated": "2025-11-01",
+    "http": 200
+  },
+  "anl4_basicafv4_actual": {
+    "dataset": "analyst4",
+    "type": "VECTOR",
+    "description": "Announced financial data for the annual period.",
+    "coverage_TOP3000": 0.915,
+    "userCount": 67,
+    "alphaCount": 80,
+    "dateCreated": "2025-11-01",
+    "http": 200
+  },
+  "anl4_basicconltv110_mean": {
+    "dataset": "analyst4",
+    "type": "VECTOR",
+    "description": "Mean of estimations",
+    "coverage_TOP3000": 0.7004,
+    "userCount": 66,
+    "alphaCount": 96,
+    "dateCreated": "2022-07-01",
+    "http": 200
+  },
+  "anl4_basicconltv110_numest": {
+    "dataset": "analyst4",
+    "type": "VECTOR",
+    "description": "The number of forecasts counted in aggregation",
+    "coverage_TOP3000": 0.7004,
+    "userCount": 1391,
+    "alphaCount": 1803,
+    "dateCreated": "2022-07-01",
+    "http": 200
+  },
+  "anl4_bac1conltv110_item": {
+    "dataset": "analyst4",
+    "type": "VECTOR",
+    "description": "Financial item",
+    "coverage_TOP3000": 0.7004,
+    "userCount": 32,
+    "alphaCount": 39,
+    "dateCreated": "2022-07-01",
+    "http": 200
+  },
+  "anl4_basicconafv110_numest": {
+    "dataset": "analyst4",
+    "type": "VECTOR",
+    "description": "The number of forecasts counted in aggregation",
+    "coverage_TOP3000": 0.7343,
+    "userCount": 580,
+    "alphaCount": 753,
+    "dateCreated": "2022-07-01",
+    "http": 200
+  },
+  "anl4_basicconqfv110_numest": {
+    "dataset": "analyst4",
+    "type": "VECTOR",
+    "description": "The number of forecasts counted in aggregation",
+    "coverage_TOP3000": 0.7262,
+    "userCount": 1201,
+    "alphaCount": 1534,
+    "dateCreated": "2022-07-01",
+    "http": 200
+  },
+  "anl4_basicqfv4_maxguidance": {
+    "dataset": "analyst4",
+    "type": "VECTOR",
+    "description": "Max guidance value",
+    "coverage_TOP3000": 0.4814,
+    "userCount": 829,
+    "alphaCount": 883,
+    "dateCreated": "2025-11-01",
+    "http": 200
+  },
+  "anl4_bac1actualqfv110_actual": {
+    "dataset": "analyst4",
+    "type": "VECTOR",
+    "description": "Announced financial data",
+    "coverage_TOP3000": 0.647,
+    "userCount": 135,
+    "alphaCount": 170,
+    "dateCreated": "2022-07-01",
+    "http": 200
+  },
+  "anl4_bac1actualqfv110_item": {
+    "dataset": "analyst4",
+    "type": "VECTOR",
+    "description": "Financial item",
+    "coverage_TOP3000": 0.6641,
+    "userCount": 157,
+    "alphaCount": 202,
+    "dateCreated": "2022-07-01",
+    "http": 200
+  },
+  "anl4_mark": {
+    "dataset": "analyst4",
+    "type": "VECTOR",
+    "description": "Recommendation consensus score",
+    "coverage_TOP3000": 0.6243,
+    "userCount": 433,
+    "alphaCount": 816,
+    "dateCreated": "2022-08-01",
+    "http": 200
+  },
+  "anl4_hold": {
+    "dataset": "analyst4",
+    "type": "VECTOR",
+    "description": "The number of recommendations not clear about short or long the instrument",
+    "coverage_TOP3000": 0.6243,
+    "userCount": 882,
+    "alphaCount": 988,
+    "dateCreated": "2022-08-01",
+    "http": 200
+  }
+}

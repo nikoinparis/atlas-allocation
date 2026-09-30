@@ -16101,3 +16101,34 @@ Making either submittable would need a new, pre-registered construction, and tha
 call.
 
 **What would settle it:** data outside 2019-2023. Queued as A14.
+
+## Step 327 — 2026-09-30 — BRAIN cannot see past 2023, so the A14 data starts being collected now
+
+**What this was for.** Step 326 left two in-sample candidates (H1c analyst revision breadth, H4b
+call-minus-put IV) that weaken in 2023, the only year BRAIN collected their fields live. The free
+way to settle them was to simulate 2024-2026 on BRAIN. This checks that, and starts the fallback.
+It closed a route and started a data record; it made no strategy.
+
+**BRAIN cannot simulate past 2023.** The `OPTIONS /simulations` schema lists every settable key
+(`decay, delay, instrumentType, language, lookback, nanHandling, neutralization, pasteurization,
+region, selectionHandling, selectionLimit, simulationMode, testPeriod, truncation, unitHandling,
+universe, visualization`). There is no start or end date. `testPeriod` accepts P0Y0M0D to P6Y0M0D
+and carves a test slice out of the same window, and every one of the account's 528 simulations
+reports `startDate` 2019-01-01 and `endDate` 2023-12-31. No simulation was spent on this.
+
+**Free forward collection started.** `scripts/collect_forward_signal_data_v1.py` snapshots, per
+US session and per S&P 500 member: Yahoo's analyst up/down revision counts over 7 and 30 days for
+0q/+1q/0y/+1y with analyst counts and EPS-trend drift, and the eight strikes either side of spot
+for the expirations nearest 30 and 90 days, calls and puts, with bid, ask, volume, open interest
+and implied volatility. It never overwrites a session, and it is committed rather than cached
+because a past session cannot be re-fetched. First session 2026-09-29: revisions for 501/503,
+options for 502/503, no failures, 29,022 option rows, about 0.8MB compressed, 5.5 minutes.
+`run_full_friday_cycle_v1.py` now calls it first on every scheduled run (07:00 and 19:00 WIB),
+commits and pushes a new session, and never lets a collection failure block the clock.
+
+**What this is and is not.** It is a proxy for BRAIN's fields, not the same data: Yahoo's 30-day
+counts rather than the IBES-style `anl4` revision fields, S&P 500 rather than TOP3000, and Yahoo's
+IV rather than BRAIN's vendor surface. A forward read needs roughly twelve monthly cross-sections,
+so nothing can be said before late 2027, and the proxy constructions must be pre-registered
+before the first read. At about 0.8MB a session the record grows ~200MB a year in git; if that
+becomes a problem, move it to Git LFS rather than stop collecting.

@@ -186,9 +186,13 @@ momentum-neutral (+0.997) and de-sized (+0.988) forms. H4b (90-day call-minus-pu
 +0.952 / +0.905, de-sized +0.830. **Both lose it in 2023**, the only year BRAIN collected these
 fields live (they were created 2022-05 and 2022-07; earlier years are loaded history). H1c 2023
 spread −4.0pp, H4b +1.1pp.
-**What settles it:** the same ladders on 2024-2026. Two routes. (1) Check whether BRAIN lets a
-simulation's start and end dates move past 2023. It is untested; the settings object carries
-them. That route is free. (2) A paid point-in-time estimates or IV history (Zacks through Nasdaq
+**What settles it:** the same ladders on 2024-2026. Two routes. (1) ~~Check whether BRAIN lets a
+simulation's dates move past 2023~~ — **checked 2026-09-30, Step 327: it does not.** The POST
+settings schema has no start or end date; `testPeriod` (P0Y–P6Y) only splits the fixed
+2019-01-01…2023-12-31 window. (3) **Free forward collection is running** from session 2026-09-29
+(`collect_forward_signal_data_v1.py`, S&P 500, daily via the scheduled job) — a proxy, not BRAIN's
+fields: Yahoo's 7/30-day up/down revision counts, and near-ATM 30/90-day option IVs. First honest read
+needs roughly 12 monthly cross-sections; pre-register the proxy constructions before the first read. (2) A paid point-in-time estimates or IV history (Zacks through Nasdaq
 Data Link, ORATS, CBOE DataShop; prices not checked). **Pre-register one construction per
 signal, exactly as in Step 326, before looking.** Also start free forward collection now (daily
 analyst up/down tables, option chains), because it costs nothing and history only accrues forward.

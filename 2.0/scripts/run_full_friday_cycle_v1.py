@@ -114,6 +114,34 @@ def pending(friday: str) -> dict[str, list[str]]:
     return todo
 
 
+def collect_forward_signals(args: argparse.Namespace) -> None:
+    """Daily, independent of the Friday clock: snapshot analyst revisions and near-ATM options.
+
+    This data has no free history, so a missed session is lost the same way a missed clock
+    week is. It runs before the clock check so the daily scheduler collects every session, and
+    a failure here is reported but never blocks the clock.
+    """
+    folder = ROOT / "data/forward_signal_collection_v1"
+    before = {p.parent.name for p in folder.glob("*/manifest.json")} if folder.exists() else set()
+    done = subprocess.run([PYTHON, "scripts/collect_forward_signal_data_v1.py"], cwd=ROOT,
+                          capture_output=True, text=True, check=False)
+    summary = (done.stdout.strip().splitlines() or ["no output"])[-1]
+    print(f"forward signal collection: {summary}")
+    if done.returncode != 0:
+        if args.notify:
+            notify("Portfolio Optimizer data collection", f"FAILED: {(done.stderr or summary)[-200:]}")
+        return
+    after = {p.parent.name for p in folder.glob("*/manifest.json")}
+    new = sorted(after - before)
+    if new and args.commit:
+        git = ["/usr/bin/git", "-C", str(REPO)]
+        subprocess.run([*git, "add", "2.0/data/forward_signal_collection_v1"], check=False)
+        subprocess.run([*git, "commit", "-q", "-m", f"Forward signal collection: session {new[-1]} (automated)\n\n"
+                        "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"], check=False)
+        if args.push:
+            subprocess.run([*git, "push", "-q", "origin", "HEAD:main"], check=False)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--dry-run", action="store_true", help="print the plan, run nothing")
@@ -123,6 +151,8 @@ def main() -> int:
     args = parser.parse_args()
 
     now = datetime.now(timezone.utc)
+    if not args.dry_run:
+        collect_forward_signals(args)
     friday = str(latest_decision_friday(now))
     todo = pending(friday)
     print(f"decision Friday {friday}; window closes {friday} + 7d 21:00 UTC; "

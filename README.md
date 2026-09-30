@@ -1,5 +1,10 @@
 # Portfolio Optimizer
 
+<p align="center">
+  <a href="media/launch.mp4"><img src="media/launch.webp" alt="20-second video: the dashboard shows +150.9%, and the research explains why none of it is an edge" width="820"></a>
+  <br><sub><a href="media/launch.mp4">Watch with sound (MP4, 20s)</a></sub>
+</p>
+
 A systematic equity research project, run as an adversarial process: every idea is
 pre-registered, tested against a declared null, and killed when it fails.
 

@@ -1,0 +1,16 @@
+hypothesis,variant,status,density,train_full,train_middle_8,train_top_minus_bottom,train_years_positive,control_train_full,control_train_middle_8,train_permutation_p,passes_train,verdict_train
+H1_recommendation_change,H1a_delta63,scored,0.6927,+0.636,+0.452,+0.133,3/4,-0.321,-0.738,0.0243149,False,"CONCENTRATION in the extremes, not an ordering -- middle eight do not order"
+H1_recommendation_change,H1b_delta126,scored,0.7783,+0.830,+0.667,+0.166,3/4,-0.321,-0.738,0.00240999,False,ORDERS ITS DECILES -- clears the declared bar
+H1_recommendation_change,H1c_lastchange126,scored,0.936,+0.697,+0.905,+0.126,4/4,-0.321,-0.738,0.000929995,False,ORDERS ITS DECILES -- clears the declared bar
+H2_earnings_announcement_premium,H2a_eadist63,scored,0.8767,+0.758,+0.714,+0.112,4/4,-0.042,-0.357,0.00495998,False,ORDERS ITS DECILES -- clears the declared bar
+H2_earnings_announcement_premium,H2b_eadist58,scored,0.9767,+0.806,+0.714,+0.106,4/4,-0.042,-0.357,0.00314498,False,ORDERS ITS DECILES -- clears the declared bar
+H2_earnings_announcement_premium,H2c_salesdist63,scored,0.9393,+0.927,+0.952,+0.103,4/4,-0.042,-0.357,3.49998e-05,True,ORDERS ITS DECILES -- clears the declared bar
+H3_analyst_coverage_change,H3a_numest_af_yoy,scored,0.8437,+0.467,+0.619,+0.077,4/4,-0.018,-0.143,0.0288749,False,flat -- replicates the null
+H3_analyst_coverage_change,H3b_numest_qf_yoy,scored,0.843,+0.248,+0.190,+0.065,3/4,-0.018,-0.143,0.177444,False,flat -- replicates the null
+H3_analyst_coverage_change,H3c_totalrec_yoy,UNREADABLE (ties),0.758,+0.297,+0.310,+0.020,2/4,-0.018,-0.143,0.124079,False,flat -- replicates the null
+H4_long_term_growth_forecast,H4a_ltg_sector,scored,1.014,-0.224,-0.548,+0.033,2/4,+0.030,-0.310,0.725906,False,flat -- replicates the null
+H4_long_term_growth_forecast,H4b_ltg_industry,scored,1.014,-0.055,-0.214,+0.036,2/4,+0.030,-0.310,0.506167,False,flat -- replicates the null
+H4_long_term_growth_forecast,H4c_ltg_subindustry,scored,1.014,+0.067,-0.214,+0.027,2/4,+0.030,-0.310,0.403083,False,flat -- replicates the null
+H5_implied_minus_realized_vol,H5a_ivrv30,scored,0.9373,-0.321,-0.762,+0.140,3/4,-0.370,-0.833,0.822446,False,flat -- replicates the null
+H5_implied_minus_realized_vol,H5b_ivrv90,scored,0.9373,-0.297,-0.714,+0.139,2/4,-0.370,-0.833,0.802331,False,flat -- replicates the null
+H5_implied_minus_realized_vol,H5c_ivrv30_mean21,scored,0.9743,+0.406,+0.690,+0.119,3/4,-0.370,-0.833,0.0217199,False,flat -- replicates the null

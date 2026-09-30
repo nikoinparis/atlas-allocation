@@ -1,0 +1,1883 @@
+{
+  "best": {
+    "H1_recommendation_change": {
+      "can_pass": false,
+      "passes_train": false,
+      "variant": "H1c_lastchange126"
+    },
+    "H2_earnings_announcement_premium": {
+      "can_pass": true,
+      "passes_train": true,
+      "variant": "H2c_salesdist63"
+    },
+    "H3_analyst_coverage_change": {
+      "can_pass": false,
+      "passes_train": false,
+      "variant": "H3a_numest_af_yoy"
+    },
+    "H4_long_term_growth_forecast": {
+      "can_pass": false,
+      "passes_train": false,
+      "variant": "H4c_ltg_subindustry"
+    },
+    "H5_implied_minus_realized_vol": {
+      "can_pass": false,
+      "passes_train": false,
+      "variant": "H5c_ivrv30_mean21"
+    }
+  },
+  "bonferroni_train_bar": 6.0386473429951696e-05,
+  "controls": {
+    "C1": {
+      "decile_dispersion": 0.03564930267550826,
+      "decile_returns": {
+        "1": -0.09997500000000001,
+        "2": 0.02322500000000001,
+        "3": 0.031325000000000006,
+        "4": 0.0098,
+        "5": 0.026425,
+        "6": 0.0049,
+        "7": 0.016075,
+        "8": 0.008799999999999999,
+        "9": 0.000874999999999999,
+        "10": -0.007575000000000002
+      },
+      "decile_share_of_scored": [
+        0.1059,
+        0.0939,
+        0.0998,
+        0.0999,
+        0.0999,
+        0.0998,
+        0.0999,
+        0.0999,
+        0.0999,
+        0.1
+      ],
+      "distinct_values": 10,
+      "extremes_share_of_spread": 1.241883116883117,
+      "inner_spread_d9_minus_d2": -0.02235000000000001,
+      "missing": [],
+      "monotonicity": -0.3212121212121212,
+      "monotonicity_middle_8": -0.7380952380952381,
+      "permutation_p": 0.8215008924955375,
+      "scored_names_mean": 3131.5,
+      "tie_check_passed": true,
+      "top_minus_bottom": 0.09240000000000001,
+      "verdict": "flat -- replicates the null",
+      "yearly": {
+        "2019": {
+          "monotonicity": 0.7575757575757576,
+          "top_minus_bottom": 0.1244
+        },
+        "2020": {
+          "monotonicity": -0.9151515151515152,
+          "top_minus_bottom": -0.2965
+        },
+        "2021": {
+          "monotonicity": 0.45454545454545453,
+          "top_minus_bottom": 0.2758
+        },
+        "2022": {
+          "monotonicity": 0.8545454545454545,
+          "top_minus_bottom": 0.26589999999999997
+        }
+      }
+    },
+    "C2": {
+      "decile_dispersion": 0.02010107335442563,
+      "decile_returns": {
+        "1": -0.019575,
+        "2": 0.030449999999999998,
+        "3": -0.036074999999999996,
+        "4": 0.0349,
+        "5": 0.00515,
+        "6": -0.0008999999999999998,
+        "7": 0.0056749999999999995,
+        "8": -0.0095,
+        "9": -0.002700000000000001,
+        "10": -0.007325000000000002
+      },
+      "decile_share_of_scored": [
+        0.1,
+        0.0999,
+        0.0999,
+        0.0998,
+        0.1008,
+        0.0991,
+        0.0998,
+        0.0999,
+        0.0999,
+        0.1
+      ],
+      "distinct_values": 10,
+      "extremes_share_of_spread": 3.7061224489795923,
+      "inner_spread_d9_minus_d2": -0.03315,
+      "missing": [],
+      "monotonicity": -0.04242424242424243,
+      "monotonicity_middle_8": -0.35714285714285715,
+      "permutation_p": 0.5305273473632632,
+      "scored_names_mean": 3131.6,
+      "tie_check_passed": true,
+      "top_minus_bottom": 0.012249999999999997,
+      "verdict": "flat -- replicates the null",
+      "yearly": {
+        "2019": {
+          "monotonicity": 0.8303030303030303,
+          "top_minus_bottom": 0.0863
+        },
+        "2020": {
+          "monotonicity": -0.9636363636363636,
+          "top_minus_bottom": -0.4666
+        },
+        "2021": {
+          "monotonicity": 0.28484848484848485,
+          "top_minus_bottom": 0.1517
+        },
+        "2022": {
+          "monotonicity": 0.696969696969697,
+          "top_minus_bottom": 0.2776
+        }
+      }
+    },
+    "C3": {
+      "decile_dispersion": 0.03334915712952878,
+      "decile_returns": {
+        "1": -0.06842500000000001,
+        "2": -0.0019249999999999962,
+        "3": 0.045125000000000005,
+        "4": 0.023325,
+        "5": 0.060300000000000006,
+        "6": 0.03285,
+        "7": 0.024125,
+        "8": 0.019525,
+        "9": 0.0044500000000000026,
+        "10": -0.003225000000000002
+      },
+      "decile_share_of_scored": [
+        0.1488,
+        0.0734,
+        0.0984,
+        0.0999,
+        0.0999,
+        0.0998,
+        0.0999,
+        0.0999,
+        0.0999,
+        0.1
+      ],
+      "distinct_values": 10,
+      "extremes_share_of_spread": 0.9022239263803682,
+      "inner_spread_d9_minus_d2": 0.006374999999999999,
+      "missing": [],
+      "monotonicity": -0.01818181818181818,
+      "monotonicity_middle_8": -0.14285714285714285,
+      "permutation_p": 0.45204273978630105,
+      "scored_names_mean": 3086.4,
+      "tie_check_passed": true,
+      "top_minus_bottom": 0.06520000000000001,
+      "verdict": "flat -- replicates the null",
+      "yearly": {
+        "2019": {
+          "monotonicity": 0.7454545454545455,
+          "top_minus_bottom": 0.1333
+        },
+        "2020": {
+          "monotonicity": -0.9030303030303031,
+          "top_minus_bottom": -0.3698
+        },
+        "2021": {
+          "monotonicity": 0.18787878787878787,
+          "top_minus_bottom": 0.16110000000000002
+        },
+        "2022": {
+          "monotonicity": 0.8181818181818182,
+          "top_minus_bottom": 0.3362
+        }
+      }
+    },
+    "C4": {
+      "decile_dispersion": 0.03008113414168422,
+      "decile_returns": {
+        "1": -0.07289999999999999,
+        "2": 0.04375,
+        "3": -0.01685,
+        "4": 0.0222,
+        "5": 0.026625000000000003,
+        "6": -0.008849999999999998,
+        "7": 0.014775000000000002,
+        "8": -0.0026000000000000016,
+        "9": -0.0004000000000000019,
+        "10": -0.0055750000000000036
+      },
+      "decile_share_of_scored": [
+        0.1,
+        0.0999,
+        0.0999,
+        0.0999,
+        0.0999,
+        0.0998,
+        0.0999,
+        0.0999,
+        0.0999,
+        0.1
+      ],
+      "distinct_values": 10,
+      "extremes_share_of_spread": 1.6557742294838471,
+      "inner_spread_d9_minus_d2": -0.04415,
+      "missing": [],
+      "monotonicity": 0.030303030303030304,
+      "monotonicity_middle_8": -0.30952380952380953,
+      "permutation_p": 0.45390273048634755,
+      "scored_names_mean": 3131.6,
+      "tie_check_passed": true,
+      "top_minus_bottom": 0.067325,
+      "verdict": "flat -- replicates the null",
+      "yearly": {
+        "2019": {
+          "monotonicity": 0.793939393939394,
+          "top_minus_bottom": 0.1149
+        },
+        "2020": {
+          "monotonicity": -0.9393939393939394,
+          "top_minus_bottom": -0.376
+        },
+        "2021": {
+          "monotonicity": 0.21212121212121213,
+          "top_minus_bottom": 0.26280000000000003
+        },
+        "2022": {
+          "monotonicity": 0.8181818181818182,
+          "top_minus_bottom": 0.2676
+        }
+      }
+    },
+    "C5": {
+      "decile_dispersion": 0.053951519962369916,
+      "decile_returns": {
+        "1": -0.14782499999999998,
+        "2": 0.057499999999999996,
+        "3": 0.035025,
+        "4": 0.0327,
+        "5": 0.03695,
+        "6": 0.009675,
+        "7": 0.0097,
+        "8": 0.011624999999999998,
+        "9": -0.002675000000000001,
+        "10": -0.008600000000000003
+      },
+      "decile_share_of_scored": [
+        0.1207,
+        0.0821,
+        0.0994,
+        0.0997,
+        0.1008,
+        0.0998,
+        0.0999,
+        0.0999,
+        0.0998,
+        0.0999
+      ],
+      "distinct_values": 10,
+      "extremes_share_of_spread": 1.4322140420183156,
+      "inner_spread_d9_minus_d2": -0.060175,
+      "missing": [],
+      "monotonicity": -0.3696969696969697,
+      "monotonicity_middle_8": -0.8333333333333334,
+      "permutation_p": 0.8593157034214829,
+      "scored_names_mean": 3122.9,
+      "tie_check_passed": true,
+      "top_minus_bottom": 0.139225,
+      "verdict": "flat -- replicates the null",
+      "yearly": {
+        "2019": {
+          "monotonicity": 0.9030303030303031,
+          "top_minus_bottom": 0.1062
+        },
+        "2020": {
+          "monotonicity": -0.6484848484848484,
+          "top_minus_bottom": -0.1845
+        },
+        "2021": {
+          "monotonicity": 0.07878787878787878,
+          "top_minus_bottom": 0.35609999999999997
+        },
+        "2022": {
+          "monotonicity": 0.6606060606060606,
+          "top_minus_bottom": 0.2791
+        }
+      }
+    }
+  },
+  "kill_tests_for": [
+    "H2_earnings_announcement_premium"
+  ],
+  "train_years": [
+    "2019",
+    "2020",
+    "2021",
+    "2022"
+  ],
+  "variants": {
+    "H1a_delta63": {
+      "bars": {
+        "T1_orders": false,
+        "T2_beats_control": true,
+        "T3_tie_check": true,
+        "T4_3_of_4_years": true,
+        "T5_bonferroni_train": false
+      },
+      "control": "C1",
+      "control_scored_names_mean": 3131.5,
+      "control_train_full": -0.3212121212121212,
+      "control_train_middle_8": -0.7380952380952381,
+      "decile_dispersion": 0.04895632083806952,
+      "decile_returns": {
+        "1": -0.09645000000000001,
+        "2": -0.030175,
+        "3": -0.006724999999999999,
+        "4": 0.012875,
+        "5": 0.07632499999999999,
+        "6": -0.0485,
+        "7": 0.010074999999999997,
+        "8": 0.059675,
+        "9": 0.02145,
+        "10": 0.037000000000000005
+      },
+      "decile_share_of_scored": [
+        0.1059,
+        0.094,
+        0.0999,
+        0.1,
+        0.1,
+        0.0974,
+        0.1023,
+        0.0997,
+        0.0999,
+        0.1
+      ],
+      "density": {
+        "density_of_universe": 0.6927,
+        "nonzero_names": 2078,
+        "nonzero_share_of_scored": 0.662,
+        "readable": true,
+        "reason": "density >= 0.50",
+        "yearly_counts": {
+          "2019": {
+            "nonzero": 2093,
+            "zero": 1017
+          },
+          "2020": {
+            "nonzero": 2095,
+            "zero": 1009
+          },
+          "2021": {
+            "nonzero": 2093,
+            "zero": 1061
+          },
+          "2022": {
+            "nonzero": 2052,
+            "zero": 1105
+          },
+          "2023": {
+            "nonzero": 2059,
+            "zero": 1111
+          }
+        },
+        "zero_names": 1061
+      },
+      "distinct_values": 10,
+      "expression": "group_rank(ts_delta(ts_backfill((vec_avg(anl4_buy) - vec_avg(anl4_under)) / vec_avg(anl4_total_rec), 252), 63), sector)",
+      "extremes_share_of_spread": 0.6131509928812289,
+      "hypothesis": "H1_recommendation_change",
+      "inner_spread_d9_minus_d2": 0.051625000000000004,
+      "missing": [],
+      "monotonicity": 0.6363636363636364,
+      "monotonicity_middle_8": 0.4523809523809524,
+      "passes_train": false,
+      "permutation_p": 0.024314878425607873,
+      "scored_names_mean": 3131.6,
+      "status": "scored",
+      "tie_check_passed": true,
+      "top_minus_bottom": 0.13345,
+      "train_turnover_production_2019_2022": 0.07919999999999999,
+      "train_years_positive": "3/4",
+      "variant": "H1a_delta63",
+      "verdict": "CONCENTRATION in the extremes, not an ordering -- middle eight do not order",
+      "yearly": {
+        "2019": {
+          "monotonicity": 0.5227987675648555,
+          "top_minus_bottom": 0.102
+        },
+        "2020": {
+          "monotonicity": -0.23636363636363636,
+          "top_minus_bottom": -0.0377
+        },
+        "2021": {
+          "monotonicity": 0.6121212121212121,
+          "top_minus_bottom": 0.31320000000000003
+        },
+        "2022": {
+          "monotonicity": 0.696969696969697,
+          "top_minus_bottom": 0.1563
+        }
+      }
+    },
+    "H1b_delta126": {
+      "bars": {
+        "T1_orders": true,
+        "T2_beats_control": true,
+        "T3_tie_check": true,
+        "T4_3_of_4_years": true,
+        "T5_bonferroni_train": false
+      },
+      "control": "C1",
+      "control_scored_names_mean": 3131.5,
+      "control_train_full": -0.3212121212121212,
+      "control_train_middle_8": -0.7380952380952381,
+      "decile_dispersion": 0.047590413688052766,
+      "decile_returns": {
+        "1": -0.102825,
+        "2": -0.043125,
+        "3": -0.03605,
+        "4": 0.025249999999999998,
+        "5": 0.033975,
+        "6": 0.018475,
+        "7": 0.00415,
+        "8": 0.04605,
+        "9": 0.028275,
+        "10": 0.063125
+      },
+      "decile_share_of_scored": [
+        0.1306,
+        0.0694,
+        0.0999,
+        0.0999,
+        0.0995,
+        0.1003,
+        0.0999,
+        0.0999,
+        0.0999,
+        0.1
+      ],
+      "density": {
+        "density_of_universe": 0.7783,
+        "nonzero_names": 2335,
+        "nonzero_share_of_scored": 0.7436,
+        "readable": true,
+        "reason": "density >= 0.50",
+        "yearly_counts": {
+          "2019": {
+            "nonzero": 2356,
+            "zero": 755
+          },
+          "2020": {
+            "nonzero": 2345,
+            "zero": 760
+          },
+          "2021": {
+            "nonzero": 2313,
+            "zero": 840
+          },
+          "2022": {
+            "nonzero": 2328,
+            "zero": 829
+          },
+          "2023": {
+            "nonzero": 2333,
+            "zero": 837
+          }
+        },
+        "zero_names": 805
+      },
+      "distinct_values": 10,
+      "expression": "group_rank(ts_delta(ts_backfill((vec_avg(anl4_buy) - vec_avg(anl4_under)) / vec_avg(anl4_total_rec), 252), 126), sector)",
+      "extremes_share_of_spread": 0.5697499246761073,
+      "hypothesis": "H1_recommendation_change",
+      "inner_spread_d9_minus_d2": 0.07139999999999999,
+      "missing": [],
+      "monotonicity": 0.8303030303030303,
+      "monotonicity_middle_8": 0.6666666666666666,
+      "passes_train": false,
+      "permutation_p": 0.00240998795006025,
+      "scored_names_mean": 3131.7,
+      "status": "scored",
+      "tie_check_passed": true,
+      "top_minus_bottom": 0.16595,
+      "train_turnover_production_2019_2022": 0.0594,
+      "train_years_positive": "3/4",
+      "variant": "H1b_delta126",
+      "verdict": "ORDERS ITS DECILES -- clears the declared bar",
+      "yearly": {
+        "2019": {
+          "monotonicity": 0.5151515151515151,
+          "top_minus_bottom": 0.12029999999999999
+        },
+        "2020": {
+          "monotonicity": -0.22424242424242424,
+          "top_minus_bottom": -0.11449999999999999
+        },
+        "2021": {
+          "monotonicity": 0.8787878787878788,
+          "top_minus_bottom": 0.42810000000000004
+        },
+        "2022": {
+          "monotonicity": 0.8424242424242424,
+          "top_minus_bottom": 0.2299
+        }
+      }
+    },
+    "H1c_lastchange126": {
+      "bars": {
+        "T1_orders": true,
+        "T2_beats_control": true,
+        "T3_tie_check": true,
+        "T4_3_of_4_years": true,
+        "T5_bonferroni_train": false
+      },
+      "control": "C1",
+      "control_scored_names_mean": 3131.5,
+      "control_train_full": -0.3212121212121212,
+      "control_train_middle_8": -0.7380952380952381,
+      "decile_dispersion": 0.05326025863624772,
+      "decile_returns": {
+        "1": -0.13135,
+        "2": -0.047825000000000006,
+        "3": -0.011074999999999998,
+        "4": 0.013349999999999999,
+        "5": 0.029224999999999998,
+        "6": 0.02475,
+        "7": 0.0537,
+        "8": 0.04145,
+        "9": 0.049575,
+        "10": -0.0052000000000000015
+      },
+      "decile_share_of_scored": [
+        0.1166,
+        0.0835,
+        0.0999,
+        0.0999,
+        0.0999,
+        0.0998,
+        0.0998,
+        0.0999,
+        0.0999,
+        0.1
+      ],
+      "density": {
+        "density_of_universe": 0.936,
+        "nonzero_names": 2808,
+        "nonzero_share_of_scored": 0.8946,
+        "readable": true,
+        "reason": "density >= 0.50",
+        "yearly_counts": {
+          "2019": {
+            "nonzero": 2691,
+            "zero": 419
+          },
+          "2020": {
+            "nonzero": 2769,
+            "zero": 336
+          },
+          "2021": {
+            "nonzero": 2788,
+            "zero": 365
+          },
+          "2022": {
+            "nonzero": 2889,
+            "zero": 268
+          },
+          "2023": {
+            "nonzero": 2902,
+            "zero": 268
+          }
+        },
+        "zero_names": 331
+      },
+      "distinct_values": 10,
+      "expression": "group_rank(ts_backfill((vec_avg(anl4_buy) - vec_avg(anl4_under)) / vec_avg(anl4_total_rec), 252) - last_diff_value(ts_backfill((vec_avg(anl4_buy) - vec_avg(anl4_under)) / vec_avg(anl4_total_rec), 252), 126), sector)",
+      "extremes_share_of_spread": 0.22790328973444296,
+      "hypothesis": "H1_recommendation_change",
+      "inner_spread_d9_minus_d2": 0.09740000000000001,
+      "missing": [],
+      "monotonicity": 0.696969696969697,
+      "monotonicity_middle_8": 0.9047619047619048,
+      "passes_train": false,
+      "permutation_p": 0.0009299953500232498,
+      "scored_names_mean": 3131.0,
+      "status": "scored",
+      "tie_check_passed": true,
+      "top_minus_bottom": 0.12614999999999998,
+      "train_turnover_production_2019_2022": 0.071225,
+      "train_years_positive": "4/4",
+      "variant": "H1c_lastchange126",
+      "verdict": "ORDERS ITS DECILES -- clears the declared bar",
+      "yearly": {
+        "2019": {
+          "monotonicity": 0.45454545454545453,
+          "top_minus_bottom": 0.0336
+        },
+        "2020": {
+          "monotonicity": 0.01818181818181818,
+          "top_minus_bottom": -0.0945
+        },
+        "2021": {
+          "monotonicity": 0.41818181818181815,
+          "top_minus_bottom": 0.3645
+        },
+        "2022": {
+          "monotonicity": 0.6,
+          "top_minus_bottom": 0.20099999999999998
+        }
+      }
+    },
+    "H2a_eadist63": {
+      "bars": {
+        "T1_orders": true,
+        "T2_beats_control": true,
+        "T3_tie_check": true,
+        "T4_3_of_4_years": true,
+        "T5_bonferroni_train": false
+      },
+      "control": "C2",
+      "control_scored_names_mean": 3131.6,
+      "control_train_full": -0.04242424242424243,
+      "control_train_middle_8": -0.35714285714285715,
+      "decile_dispersion": 0.04482809359096146,
+      "decile_returns": {
+        "1": -0.07747499999999999,
+        "2": -0.0010499999999999997,
+        "3": -0.0336,
+        "4": -0.006,
+        "5": -0.0647,
+        "6": 0.038650000000000004,
+        "7": 0.04869999999999999,
+        "8": 0.01675,
+        "9": 0.05852500000000001,
+        "10": 0.0345
+      },
+      "decile_share_of_scored": [
+        0.0999,
+        0.1003,
+        0.0998,
+        0.0999,
+        0.1014,
+        0.0999,
+        0.1004,
+        0.1002,
+        0.1002,
+        0.1
+      ],
+      "density": {
+        "density_of_universe": 0.8767,
+        "nonzero_names": 2630,
+        "nonzero_share_of_scored": 0.9947,
+        "readable": true,
+        "reason": "density >= 0.50",
+        "yearly_counts": {
+          "2019": {
+            "nonzero": 1993,
+            "zero": 9
+          },
+          "2020": {
+            "nonzero": 2595,
+            "zero": 15
+          },
+          "2021": {
+            "nonzero": 2702,
+            "zero": 14
+          },
+          "2022": {
+            "nonzero": 2664,
+            "zero": 14
+          },
+          "2023": {
+            "nonzero": 2534,
+            "zero": 14
+          }
+        },
+        "zero_names": 14
+      },
+      "distinct_values": 10,
+      "expression": "group_rank(-abs(days_from_last_change(ts_backfill(vec_avg(anl4_bac1actualqfv110_actual), 126)) - 63), sector)",
+      "extremes_share_of_spread": 0.4679615985711095,
+      "hypothesis": "H2_earnings_announcement_premium",
+      "inner_spread_d9_minus_d2": 0.05957500000000001,
+      "missing": [],
+      "monotonicity": 0.7575757575757576,
+      "monotonicity_middle_8": 0.7142857142857143,
+      "passes_train": false,
+      "permutation_p": 0.004959975200123999,
+      "scored_names_mean": 3118.5,
+      "status": "scored",
+      "tie_check_passed": true,
+      "top_minus_bottom": 0.11197499999999999,
+      "train_turnover_production_2019_2022": 0.138675,
+      "train_years_positive": "4/4",
+      "variant": "H2a_eadist63",
+      "verdict": "ORDERS ITS DECILES -- clears the declared bar",
+      "yearly": {
+        "2019": {
+          "monotonicity": 0.006060606060606061,
+          "top_minus_bottom": -0.037599999999999995
+        },
+        "2020": {
+          "monotonicity": 0.8666666666666667,
+          "top_minus_bottom": 0.3428
+        },
+        "2021": {
+          "monotonicity": 0.4666666666666667,
+          "top_minus_bottom": 0.0463
+        },
+        "2022": {
+          "monotonicity": 0.793939393939394,
+          "top_minus_bottom": 0.0964
+        }
+      }
+    },
+    "H2b_eadist58": {
+      "bars": {
+        "T1_orders": true,
+        "T2_beats_control": true,
+        "T3_tie_check": true,
+        "T4_3_of_4_years": true,
+        "T5_bonferroni_train": false
+      },
+      "control": "C2",
+      "control_scored_names_mean": 3131.6,
+      "control_train_full": -0.04242424242424243,
+      "control_train_middle_8": -0.35714285714285715,
+      "decile_dispersion": 0.04418587698575191,
+      "decile_returns": {
+        "1": -0.074775,
+        "2": -0.005825,
+        "3": -0.03415,
+        "4": -0.008775000000000002,
+        "5": -0.061274999999999996,
+        "6": 0.028849999999999997,
+        "7": 0.049850000000000005,
+        "8": 0.02555,
+        "9": 0.0632,
+        "10": 0.030900000000000004
+      },
+      "decile_share_of_scored": [
+        0.1,
+        0.1002,
+        0.1,
+        0.1,
+        0.1011,
+        0.0998,
+        0.1006,
+        0.1005,
+        0.1001,
+        0.1
+      ],
+      "density": {
+        "density_of_universe": 0.9767,
+        "nonzero_names": 2930,
+        "nonzero_share_of_scored": 0.9905,
+        "readable": true,
+        "reason": "density >= 0.50",
+        "yearly_counts": {
+          "2019": {
+            "nonzero": 2253,
+            "zero": 20
+          },
+          "2020": {
+            "nonzero": 2916,
+            "zero": 29
+          },
+          "2021": {
+            "nonzero": 2964,
+            "zero": 27
+          },
+          "2022": {
+            "nonzero": 2890,
+            "zero": 28
+          },
+          "2023": {
+            "nonzero": 2952,
+            "zero": 28
+          }
+        },
+        "zero_names": 28
+      },
+      "distinct_values": 10,
+      "expression": "group_rank(-abs(days_from_last_change(ts_backfill(vec_avg(anl4_bac1actualqfv110_actual), 126)) - 58), sector)",
+      "extremes_share_of_spread": 0.3468180742843624,
+      "hypothesis": "H2_earnings_announcement_premium",
+      "inner_spread_d9_minus_d2": 0.069025,
+      "missing": [],
+      "monotonicity": 0.806060606060606,
+      "monotonicity_middle_8": 0.7142857142857143,
+      "passes_train": false,
+      "permutation_p": 0.0031449842750786248,
+      "scored_names_mean": 3118.6,
+      "status": "scored",
+      "tie_check_passed": true,
+      "top_minus_bottom": 0.10567499999999999,
+      "train_turnover_production_2019_2022": 0.142175,
+      "train_years_positive": "4/4",
+      "variant": "H2b_eadist58",
+      "verdict": "ORDERS ITS DECILES -- clears the declared bar",
+      "yearly": {
+        "2019": {
+          "monotonicity": 0.17575757575757575,
+          "top_minus_bottom": -0.089
+        },
+        "2020": {
+          "monotonicity": 0.8787878787878788,
+          "top_minus_bottom": 0.3382
+        },
+        "2021": {
+          "monotonicity": 0.4909090909090909,
+          "top_minus_bottom": 0.0623
+        },
+        "2022": {
+          "monotonicity": 0.7090909090909091,
+          "top_minus_bottom": 0.1112
+        }
+      }
+    },
+    "H2c_salesdist63": {
+      "bars": {
+        "T1_orders": true,
+        "T2_beats_control": true,
+        "T3_tie_check": true,
+        "T4_3_of_4_years": true,
+        "T5_bonferroni_train": true
+      },
+      "control": "C2",
+      "control_scored_names_mean": 3131.6,
+      "control_train_full": -0.04242424242424243,
+      "control_train_middle_8": -0.35714285714285715,
+      "decile_dispersion": 0.04053612154609763,
+      "decile_returns": {
+        "1": -0.07442499999999999,
+        "2": -0.03955,
+        "3": -0.027475,
+        "4": -0.010324999999999999,
+        "5": -0.019025,
+        "6": 0.0036750000000000003,
+        "7": 0.051025,
+        "8": 0.0236,
+        "9": 0.06420000000000001,
+        "10": 0.028450000000000003
+      },
+      "decile_share_of_scored": [
+        0.1,
+        0.1,
+        0.1001,
+        0.1003,
+        0.1009,
+        0.0996,
+        0.1007,
+        0.1002,
+        0.1001,
+        0.1003
+      ],
+      "density": {
+        "density_of_universe": 0.9393,
+        "nonzero_names": 2818,
+        "nonzero_share_of_scored": 0.9933,
+        "readable": true,
+        "reason": "density >= 0.50",
+        "yearly_counts": {
+          "2019": {
+            "nonzero": 2100,
+            "zero": 13
+          },
+          "2020": {
+            "nonzero": 2762,
+            "zero": 21
+          },
+          "2021": {
+            "nonzero": 2885,
+            "zero": 19
+          },
+          "2022": {
+            "nonzero": 2810,
+            "zero": 19
+          },
+          "2023": {
+            "nonzero": 2821,
+            "zero": 20
+          }
+        },
+        "zero_names": 19
+      },
+      "distinct_values": 10,
+      "expression": "group_rank(-abs(days_from_last_change(ts_backfill(anl4_fs_actuals_basic_qf_nd_sales_value, 126)) - 63), sector)",
+      "extremes_share_of_spread": -0.00850546780072925,
+      "hypothesis": "H2_earnings_announcement_premium",
+      "inner_spread_d9_minus_d2": 0.10375000000000001,
+      "missing": [],
+      "monotonicity": 0.9272727272727272,
+      "monotonicity_middle_8": 0.9523809523809523,
+      "passes_train": true,
+      "permutation_p": 3.4999825000875e-05,
+      "scored_names_mean": 3116.8,
+      "status": "scored",
+      "tie_check_passed": true,
+      "top_minus_bottom": 0.102875,
+      "train_turnover_production_2019_2022": 0.126725,
+      "train_years_positive": "4/4",
+      "variant": "H2c_salesdist63",
+      "verdict": "ORDERS ITS DECILES -- clears the declared bar",
+      "yearly": {
+        "2019": {
+          "monotonicity": 0.04242424242424243,
+          "top_minus_bottom": -0.028699999999999996
+        },
+        "2020": {
+          "monotonicity": 0.8510677611520904,
+          "top_minus_bottom": 0.332
+        },
+        "2021": {
+          "monotonicity": 0.3939393939393939,
+          "top_minus_bottom": 0.051399999999999994
+        },
+        "2022": {
+          "monotonicity": 0.7212121212121212,
+          "top_minus_bottom": 0.056799999999999996
+        }
+      }
+    },
+    "H3a_numest_af_yoy": {
+      "bars": {
+        "T1_orders": false,
+        "T2_beats_control": true,
+        "T3_tie_check": true,
+        "T4_3_of_4_years": true,
+        "T5_bonferroni_train": false
+      },
+      "control": "C3",
+      "control_scored_names_mean": 3086.4,
+      "control_train_full": -0.01818181818181818,
+      "control_train_middle_8": -0.14285714285714285,
+      "decile_dispersion": 0.036856458813212103,
+      "decile_returns": {
+        "1": -0.070525,
+        "2": -0.03755,
+        "3": 0.020825,
+        "4": 0.02,
+        "5": 0.040025000000000005,
+        "6": 0.017075000000000003,
+        "7": 0.0351,
+        "8": 0.060450000000000004,
+        "9": 0.033375,
+        "10": 0.006500000000000002
+      },
+      "decile_share_of_scored": [
+        0.1489,
+        0.0733,
+        0.0985,
+        0.0999,
+        0.0998,
+        0.0998,
+        0.0999,
+        0.0999,
+        0.0999,
+        0.1
+      ],
+      "density": {
+        "density_of_universe": 0.8437,
+        "nonzero_names": 2531,
+        "nonzero_share_of_scored": 0.8061,
+        "readable": true,
+        "reason": "density >= 0.50",
+        "yearly_counts": {
+          "2019": {
+            "nonzero": 2594,
+            "zero": 516
+          },
+          "2020": {
+            "nonzero": 2546,
+            "zero": 558
+          },
+          "2021": {
+            "nonzero": 2402,
+            "zero": 752
+          },
+          "2022": {
+            "nonzero": 2506,
+            "zero": 651
+          },
+          "2023": {
+            "nonzero": 2607,
+            "zero": 564
+          }
+        },
+        "zero_names": 609
+      },
+      "distinct_values": 10,
+      "expression": "group_rank(log(1 + ts_backfill(vec_avg(anl4_basicconafv110_numest), 126)) - log(1 + ts_delay(ts_backfill(vec_avg(anl4_basicconafv110_numest), 126), 252)), sector)",
+      "extremes_share_of_spread": 0.07919506653683883,
+      "hypothesis": "H3_analyst_coverage_change",
+      "inner_spread_d9_minus_d2": 0.070925,
+      "missing": [],
+      "monotonicity": 0.4666666666666667,
+      "monotonicity_middle_8": 0.6190476190476191,
+      "passes_train": false,
+      "permutation_p": 0.02887485562572187,
+      "scored_names_mean": 3086.4,
+      "status": "scored",
+      "tie_check_passed": true,
+      "top_minus_bottom": 0.07702500000000001,
+      "train_turnover_production_2019_2022": 0.36807500000000004,
+      "train_years_positive": "4/4",
+      "variant": "H3a_numest_af_yoy",
+      "verdict": "flat -- replicates the null",
+      "yearly": {
+        "2019": {
+          "monotonicity": 0.6200636545536659,
+          "top_minus_bottom": 0.1273
+        },
+        "2020": {
+          "monotonicity": 0.15151515151515152,
+          "top_minus_bottom": -0.0092
+        },
+        "2021": {
+          "monotonicity": 0.3333333333333333,
+          "top_minus_bottom": 0.1034
+        },
+        "2022": {
+          "monotonicity": 0.05454545454545454,
+          "top_minus_bottom": 0.0866
+        }
+      }
+    },
+    "H3b_numest_qf_yoy": {
+      "bars": {
+        "T1_orders": false,
+        "T2_beats_control": true,
+        "T3_tie_check": true,
+        "T4_3_of_4_years": true,
+        "T5_bonferroni_train": false
+      },
+      "control": "C3",
+      "control_scored_names_mean": 3086.4,
+      "control_train_full": -0.01818181818181818,
+      "control_train_middle_8": -0.14285714285714285,
+      "decile_dispersion": 0.034802347352585285,
+      "decile_returns": {
+        "1": -0.054425,
+        "2": -0.051,
+        "3": 0.0419,
+        "4": 0.028874999999999998,
+        "5": 0.029900000000000003,
+        "6": 0.04425,
+        "7": 0.029549999999999996,
+        "8": 0.026975000000000002,
+        "9": 0.0389,
+        "10": 0.01075
+      },
+      "decile_share_of_scored": [
+        0.1489,
+        0.0806,
+        0.098,
+        0.0999,
+        0.0998,
+        0.0999,
+        0.0999,
+        0.0999,
+        0.0998,
+        0.1
+      ],
+      "density": {
+        "density_of_universe": 0.843,
+        "nonzero_names": 2529,
+        "nonzero_share_of_scored": 0.8054,
+        "readable": true,
+        "reason": "density >= 0.50",
+        "yearly_counts": {
+          "2019": {
+            "nonzero": 2588,
+            "zero": 523
+          },
+          "2020": {
+            "nonzero": 2543,
+            "zero": 561
+          },
+          "2021": {
+            "nonzero": 2405,
+            "zero": 749
+          },
+          "2022": {
+            "nonzero": 2498,
+            "zero": 659
+          },
+          "2023": {
+            "nonzero": 2610,
+            "zero": 560
+          }
+        },
+        "zero_names": 611
+      },
+      "distinct_values": 10,
+      "expression": "group_rank(log(1 + ts_backfill(vec_avg(anl4_basicconqfv110_numest), 126)) - log(1 + ts_delay(ts_backfill(vec_avg(anl4_basicconqfv110_numest), 126), 252)), sector)",
+      "extremes_share_of_spread": -0.37936325278097427,
+      "hypothesis": "H3_analyst_coverage_change",
+      "inner_spread_d9_minus_d2": 0.0899,
+      "missing": [],
+      "monotonicity": 0.24848484848484848,
+      "monotonicity_middle_8": 0.19047619047619047,
+      "passes_train": false,
+      "permutation_p": 0.17744411277943611,
+      "scored_names_mean": 3072.0,
+      "status": "scored",
+      "tie_check_passed": true,
+      "top_minus_bottom": 0.065175,
+      "train_turnover_production_2019_2022": 0.36295,
+      "train_years_positive": "3/4",
+      "variant": "H3b_numest_qf_yoy",
+      "verdict": "flat -- replicates the null",
+      "yearly": {
+        "2019": {
+          "monotonicity": 0.47878787878787876,
+          "top_minus_bottom": 0.0974
+        },
+        "2020": {
+          "monotonicity": 0.09090909090909091,
+          "top_minus_bottom": -0.1028
+        },
+        "2021": {
+          "monotonicity": 0.2606060606060606,
+          "top_minus_bottom": 0.08589999999999999
+        },
+        "2022": {
+          "monotonicity": -0.01818181818181818,
+          "top_minus_bottom": 0.1802
+        }
+      }
+    },
+    "H3c_totalrec_yoy": {
+      "bars": {
+        "T1_orders": false,
+        "T2_beats_control": true,
+        "T3_tie_check": false,
+        "T4_3_of_4_years": false,
+        "T5_bonferroni_train": false
+      },
+      "control": "C3",
+      "control_scored_names_mean": 3086.4,
+      "control_train_full": -0.01818181818181818,
+      "control_train_middle_8": -0.14285714285714285,
+      "decile_dispersion": 0.03864078027162495,
+      "decile_returns": {
+        "1": -0.028775000000000002,
+        "2": -0.0713,
+        "3": 0.016225,
+        "4": 0.05147500000000001,
+        "5": 0.053425,
+        "6": 0.03055,
+        "7": 0.0508,
+        "8": 0.0199,
+        "9": 0.040900000000000006,
+        "10": -0.008299999999999995
+      },
+      "decile_share_of_scored": [
+        0.166,
+        0.0737,
+        0.0966,
+        0.0998,
+        0.0996,
+        0.1006,
+        0.0994,
+        0.0999,
+        0.0998,
+        0.1
+      ],
+      "density": {
+        "density_of_universe": 0.758,
+        "nonzero_names": 2274,
+        "nonzero_share_of_scored": 0.7242,
+        "readable": true,
+        "reason": "density >= 0.50",
+        "yearly_counts": {
+          "2019": {
+            "nonzero": 2296,
+            "zero": 815
+          },
+          "2020": {
+            "nonzero": 2316,
+            "zero": 788
+          },
+          "2021": {
+            "nonzero": 2208,
+            "zero": 946
+          },
+          "2022": {
+            "nonzero": 2254,
+            "zero": 903
+          },
+          "2023": {
+            "nonzero": 2298,
+            "zero": 873
+          }
+        },
+        "zero_names": 866
+      },
+      "distinct_values": 10,
+      "expression": "group_rank(log(1 + ts_backfill(vec_avg(anl4_total_rec), 252)) - log(1 + ts_delay(ts_backfill(vec_avg(anl4_total_rec), 252), 252)), sector)",
+      "extremes_share_of_spread": -4.479853479853478,
+      "hypothesis": "H3_analyst_coverage_change",
+      "inner_spread_d9_minus_d2": 0.11220000000000001,
+      "missing": [],
+      "monotonicity": 0.296969696969697,
+      "monotonicity_middle_8": 0.30952380952380953,
+      "passes_train": false,
+      "permutation_p": 0.12407937960310199,
+      "scored_names_mean": 3061.7,
+      "status": "UNREADABLE (ties)",
+      "tie_check_passed": false,
+      "top_minus_bottom": 0.020475000000000007,
+      "train_turnover_production_2019_2022": 0.053775,
+      "train_years_positive": "2/4",
+      "variant": "H3c_totalrec_yoy",
+      "verdict": "flat -- replicates the null",
+      "yearly": {
+        "2019": {
+          "monotonicity": 0.7333333333333333,
+          "top_minus_bottom": 0.1408
+        },
+        "2020": {
+          "monotonicity": 0.44242424242424244,
+          "top_minus_bottom": 0.04120000000000001
+        },
+        "2021": {
+          "monotonicity": -0.3333333333333333,
+          "top_minus_bottom": -0.09
+        },
+        "2022": {
+          "monotonicity": -0.28484848484848485,
+          "top_minus_bottom": -0.010099999999999998
+        }
+      }
+    },
+    "H4a_ltg_sector": {
+      "bars": {
+        "T1_orders": false,
+        "T2_beats_control": false,
+        "T3_tie_check": true,
+        "T4_3_of_4_years": false,
+        "T5_bonferroni_train": false
+      },
+      "control": "C4",
+      "control_scored_names_mean": 3131.6,
+      "control_train_full": 0.030303030303030304,
+      "control_train_middle_8": -0.30952380952380953,
+      "decile_dispersion": 0.023991628227362973,
+      "decile_returns": {
+        "1": -0.05482499999999999,
+        "2": 0.0075250000000000004,
+        "3": 0.017675,
+        "4": 0.010650000000000003,
+        "5": 0.0018250000000000002,
+        "6": 0.0404,
+        "7": 0.0037,
+        "8": 0.005300000000000001,
+        "9": -0.009824999999999999,
+        "10": -0.022224999999999995
+      },
+      "decile_share_of_scored": [
+        0.1,
+        0.0999,
+        0.0999,
+        0.0999,
+        0.0999,
+        0.0998,
+        0.0999,
+        0.0999,
+        0.0999,
+        0.1
+      ],
+      "density": {
+        "density_of_universe": 1.014,
+        "nonzero_names": 3042,
+        "nonzero_share_of_scored": 0.9691,
+        "readable": true,
+        "reason": "density >= 0.50",
+        "yearly_counts": {
+          "2019": {
+            "nonzero": 3040,
+            "zero": 70
+          },
+          "2020": {
+            "nonzero": 2994,
+            "zero": 111
+          },
+          "2021": {
+            "nonzero": 3025,
+            "zero": 129
+          },
+          "2022": {
+            "nonzero": 3078,
+            "zero": 79
+          },
+          "2023": {
+            "nonzero": 3071,
+            "zero": 99
+          }
+        },
+        "zero_names": 97
+      },
+      "distinct_values": 10,
+      "expression": "group_rank(-ts_backfill(vec_avg(anl4_basicconltv110_mean), 252), sector)",
+      "extremes_share_of_spread": 1.5322085889570551,
+      "hypothesis": "H4_long_term_growth_forecast",
+      "inner_spread_d9_minus_d2": -0.017349999999999997,
+      "missing": [],
+      "monotonicity": -0.22424242424242424,
+      "monotonicity_middle_8": -0.5476190476190477,
+      "passes_train": false,
+      "permutation_p": 0.7259063704681477,
+      "scored_names_mean": 3131.6,
+      "status": "scored",
+      "tie_check_passed": true,
+      "top_minus_bottom": 0.0326,
+      "train_turnover_production_2019_2022": 0.09015,
+      "train_years_positive": "2/4",
+      "variant": "H4a_ltg_sector",
+      "verdict": "flat -- replicates the null",
+      "yearly": {
+        "2019": {
+          "monotonicity": -0.7212121212121212,
+          "top_minus_bottom": -0.019999999999999997
+        },
+        "2020": {
+          "monotonicity": 0.9636363636363636,
+          "top_minus_bottom": 0.2833
+        },
+        "2021": {
+          "monotonicity": 0.1393939393939394,
+          "top_minus_bottom": 0.1093
+        },
+        "2022": {
+          "monotonicity": -0.6363636363636364,
+          "top_minus_bottom": -0.2422
+        }
+      }
+    },
+    "H4b_ltg_industry": {
+      "bars": {
+        "T1_orders": false,
+        "T2_beats_control": false,
+        "T3_tie_check": true,
+        "T4_3_of_4_years": false,
+        "T5_bonferroni_train": false
+      },
+      "control": "C4",
+      "control_scored_names_mean": 3131.6,
+      "control_train_full": 0.030303030303030304,
+      "control_train_middle_8": -0.30952380952380953,
+      "decile_dispersion": 0.021144872901013145,
+      "decile_returns": {
+        "1": -0.052175,
+        "2": 0.014550000000000002,
+        "3": -0.005500000000000001,
+        "4": 0.0030999999999999986,
+        "5": 0.0252,
+        "6": 0.02145,
+        "7": 0.006774999999999999,
+        "8": 0.008425,
+        "9": -0.005899999999999999,
+        "10": -0.015825
+      },
+      "decile_share_of_scored": [
+        0.1,
+        0.0999,
+        0.0998,
+        0.0998,
+        0.0999,
+        0.0998,
+        0.0998,
+        0.1,
+        0.0997,
+        0.1
+      ],
+      "density": {
+        "density_of_universe": 1.014,
+        "nonzero_names": 3042,
+        "nonzero_share_of_scored": 0.9691,
+        "readable": true,
+        "reason": "density >= 0.50",
+        "yearly_counts": {
+          "2019": {
+            "nonzero": 3040,
+            "zero": 70
+          },
+          "2020": {
+            "nonzero": 2994,
+            "zero": 111
+          },
+          "2021": {
+            "nonzero": 3025,
+            "zero": 129
+          },
+          "2022": {
+            "nonzero": 3078,
+            "zero": 79
+          },
+          "2023": {
+            "nonzero": 3071,
+            "zero": 99
+          }
+        },
+        "zero_names": 97
+      },
+      "distinct_values": 10,
+      "expression": "group_rank(-ts_backfill(vec_avg(anl4_basicconltv110_mean), 252), industry)",
+      "extremes_share_of_spread": 1.562585969738652,
+      "hypothesis": "H4_long_term_growth_forecast",
+      "inner_spread_d9_minus_d2": -0.020450000000000003,
+      "missing": [],
+      "monotonicity": -0.05454545454545454,
+      "monotonicity_middle_8": -0.21428571428571427,
+      "passes_train": false,
+      "permutation_p": 0.5061674691626542,
+      "scored_names_mean": 3131.4,
+      "status": "scored",
+      "tie_check_passed": true,
+      "top_minus_bottom": 0.03635,
+      "train_turnover_production_2019_2022": 0.092975,
+      "train_years_positive": "2/4",
+      "variant": "H4b_ltg_industry",
+      "verdict": "flat -- replicates the null",
+      "yearly": {
+        "2019": {
+          "monotonicity": -0.8303030303030303,
+          "top_minus_bottom": -0.0645
+        },
+        "2020": {
+          "monotonicity": 0.9515151515151515,
+          "top_minus_bottom": 0.31689999999999996
+        },
+        "2021": {
+          "monotonicity": 0.34545454545454546,
+          "top_minus_bottom": 0.1069
+        },
+        "2022": {
+          "monotonicity": -0.6484848484848484,
+          "top_minus_bottom": -0.2139
+        }
+      }
+    },
+    "H4c_ltg_subindustry": {
+      "bars": {
+        "T1_orders": false,
+        "T2_beats_control": true,
+        "T3_tie_check": true,
+        "T4_3_of_4_years": false,
+        "T5_bonferroni_train": false
+      },
+      "control": "C4",
+      "control_scored_names_mean": 3131.6,
+      "control_train_full": 0.030303030303030304,
+      "control_train_middle_8": -0.30952380952380953,
+      "decile_dispersion": 0.019399132712572487,
+      "decile_returns": {
+        "1": -0.023724999999999996,
+        "2": 0.0011000000000000003,
+        "3": -0.0020499999999999997,
+        "4": 0.009999999999999998,
+        "5": 0.01485,
+        "6": 0.024425,
+        "7": 0.0223,
+        "8": -0.0029749999999999998,
+        "9": -0.042025,
+        "10": 0.002799999999999997
+      },
+      "decile_share_of_scored": [
+        0.1202,
+        0.0799,
+        0.1007,
+        0.0987,
+        0.0832,
+        0.1165,
+        0.0998,
+        0.0999,
+        0.0997,
+        0.1
+      ],
+      "density": {
+        "density_of_universe": 1.014,
+        "nonzero_names": 3042,
+        "nonzero_share_of_scored": 0.9691,
+        "readable": true,
+        "reason": "density >= 0.50",
+        "yearly_counts": {
+          "2019": {
+            "nonzero": 3040,
+            "zero": 70
+          },
+          "2020": {
+            "nonzero": 2994,
+            "zero": 111
+          },
+          "2021": {
+            "nonzero": 3025,
+            "zero": 129
+          },
+          "2022": {
+            "nonzero": 3078,
+            "zero": 79
+          },
+          "2023": {
+            "nonzero": 3071,
+            "zero": 99
+          }
+        },
+        "zero_names": 97
+      },
+      "distinct_values": 10,
+      "expression": "group_rank(-ts_backfill(vec_avg(anl4_basicconltv110_mean), 252), subindustry)",
+      "extremes_share_of_spread": 2.625824693685203,
+      "hypothesis": "H4_long_term_growth_forecast",
+      "inner_spread_d9_minus_d2": -0.043125,
+      "missing": [],
+      "monotonicity": 0.06666666666666667,
+      "monotonicity_middle_8": -0.21428571428571427,
+      "passes_train": false,
+      "permutation_p": 0.4030829845850771,
+      "scored_names_mean": 3131.4,
+      "status": "scored",
+      "tie_check_passed": true,
+      "top_minus_bottom": 0.026524999999999993,
+      "train_turnover_production_2019_2022": 0.08035,
+      "train_years_positive": "2/4",
+      "variant": "H4c_ltg_subindustry",
+      "verdict": "flat -- replicates the null",
+      "yearly": {
+        "2019": {
+          "monotonicity": -0.8303030303030303,
+          "top_minus_bottom": -0.0392
+        },
+        "2020": {
+          "monotonicity": 0.8909090909090909,
+          "top_minus_bottom": 0.2444
+        },
+        "2021": {
+          "monotonicity": 0.2606060606060606,
+          "top_minus_bottom": 0.0986
+        },
+        "2022": {
+          "monotonicity": -0.696969696969697,
+          "top_minus_bottom": -0.19770000000000001
+        }
+      }
+    },
+    "H5a_ivrv30": {
+      "bars": {
+        "T1_orders": false,
+        "T2_beats_control": true,
+        "T3_tie_check": true,
+        "T4_3_of_4_years": true,
+        "T5_bonferroni_train": false
+      },
+      "control": "C5",
+      "control_scored_names_mean": 3122.9,
+      "control_train_full": -0.3696969696969697,
+      "control_train_middle_8": -0.8333333333333334,
+      "decile_dispersion": 0.05494726244318274,
+      "decile_returns": {
+        "1": -0.15,
+        "2": 0.033925,
+        "3": 0.043075,
+        "4": 0.0323,
+        "5": 0.0212,
+        "6": 0.041124999999999995,
+        "7": 0.031875,
+        "8": 0.011574999999999998,
+        "9": -0.019500000000000003,
+        "10": -0.009925
+      },
+      "decile_share_of_scored": [
+        0.1207,
+        0.0821,
+        0.0994,
+        0.0997,
+        0.1008,
+        0.0998,
+        0.0998,
+        0.0999,
+        0.0998,
+        0.0999
+      ],
+      "density": {
+        "density_of_universe": 0.9373,
+        "nonzero_names": 2812,
+        "nonzero_share_of_scored": 0.8958,
+        "readable": true,
+        "reason": "density >= 0.50",
+        "yearly_counts": {
+          "2019": {
+            "nonzero": 2666,
+            "zero": 445
+          },
+          "2020": {
+            "nonzero": 2671,
+            "zero": 433
+          },
+          "2021": {
+            "nonzero": 2920,
+            "zero": 233
+          },
+          "2022": {
+            "nonzero": 2906,
+            "zero": 251
+          },
+          "2023": {
+            "nonzero": 2888,
+            "zero": 283
+          }
+        },
+        "zero_names": 327
+      },
+      "distinct_values": 10,
+      "expression": "group_rank(-(implied_volatility_mean_30 - historical_volatility_30), sector)",
+      "extremes_share_of_spread": 1.3814028199179011,
+      "hypothesis": "H5_implied_minus_realized_vol",
+      "inner_spread_d9_minus_d2": -0.053425,
+      "missing": [],
+      "monotonicity": -0.3212121212121212,
+      "monotonicity_middle_8": -0.7619047619047619,
+      "passes_train": false,
+      "permutation_p": 0.8224458877705612,
+      "scored_names_mean": 3122.8,
+      "status": "scored",
+      "tie_check_passed": true,
+      "top_minus_bottom": 0.140075,
+      "train_turnover_production_2019_2022": 0.3648,
+      "train_years_positive": "3/4",
+      "variant": "H5a_ivrv30",
+      "verdict": "flat -- replicates the null",
+      "yearly": {
+        "2019": {
+          "monotonicity": 0.47878787878787876,
+          "top_minus_bottom": 0.0877
+        },
+        "2020": {
+          "monotonicity": -0.5272727272727272,
+          "top_minus_bottom": 0.0366
+        },
+        "2021": {
+          "monotonicity": 0.18787878787878787,
+          "top_minus_bottom": 0.2853
+        },
+        "2022": {
+          "monotonicity": 0.006060606060606061,
+          "top_minus_bottom": 0.1507
+        }
+      }
+    },
+    "H5b_ivrv90": {
+      "bars": {
+        "T1_orders": false,
+        "T2_beats_control": true,
+        "T3_tie_check": true,
+        "T4_3_of_4_years": false,
+        "T5_bonferroni_train": false
+      },
+      "control": "C5",
+      "control_scored_names_mean": 3122.9,
+      "control_train_full": -0.3696969696969697,
+      "control_train_middle_8": -0.8333333333333334,
+      "decile_dispersion": 0.05205612259859545,
+      "decile_returns": {
+        "1": -0.145025,
+        "2": 0.03307500000000001,
+        "3": 0.031125,
+        "4": 0.03704999999999999,
+        "5": 0.038575,
+        "6": 0.019225,
+        "7": 0.015899999999999997,
+        "8": 0.0213,
+        "9": -0.011600000000000001,
+        "10": -0.006475
+      },
+      "decile_share_of_scored": [
+        0.1207,
+        0.0821,
+        0.0994,
+        0.0997,
+        0.1008,
+        0.0998,
+        0.0999,
+        0.0999,
+        0.0999,
+        0.0999
+      ],
+      "density": {
+        "density_of_universe": 0.9373,
+        "nonzero_names": 2812,
+        "nonzero_share_of_scored": 0.8955,
+        "readable": true,
+        "reason": "density >= 0.50",
+        "yearly_counts": {
+          "2019": {
+            "nonzero": 2665,
+            "zero": 446
+          },
+          "2020": {
+            "nonzero": 2671,
+            "zero": 433
+          },
+          "2021": {
+            "nonzero": 2920,
+            "zero": 234
+          },
+          "2022": {
+            "nonzero": 2905,
+            "zero": 252
+          },
+          "2023": {
+            "nonzero": 2887,
+            "zero": 283
+          }
+        },
+        "zero_names": 328
+      },
+      "distinct_values": 10,
+      "expression": "group_rank(-(implied_volatility_mean_90 - historical_volatility_90), sector)",
+      "extremes_share_of_spread": 1.3224467701190907,
+      "hypothesis": "H5_implied_minus_realized_vol",
+      "inner_spread_d9_minus_d2": -0.044675000000000006,
+      "missing": [],
+      "monotonicity": -0.296969696969697,
+      "monotonicity_middle_8": -0.7142857142857143,
+      "passes_train": false,
+      "permutation_p": 0.8023309883450582,
+      "scored_names_mean": 3122.9,
+      "status": "scored",
+      "tie_check_passed": true,
+      "top_minus_bottom": 0.13854999999999998,
+      "train_turnover_production_2019_2022": 0.297925,
+      "train_years_positive": "2/4",
+      "variant": "H5b_ivrv90",
+      "verdict": "flat -- replicates the null",
+      "yearly": {
+        "2019": {
+          "monotonicity": 0.3696969696969697,
+          "top_minus_bottom": 0.0922
+        },
+        "2020": {
+          "monotonicity": 0.06666666666666667,
+          "top_minus_bottom": 0.2024
+        },
+        "2021": {
+          "monotonicity": -0.01818181818181818,
+          "top_minus_bottom": 0.08909999999999998
+        },
+        "2022": {
+          "monotonicity": -0.3212121212121212,
+          "top_minus_bottom": 0.17049999999999998
+        }
+      }
+    },
+    "H5c_ivrv30_mean21": {
+      "bars": {
+        "T1_orders": false,
+        "T2_beats_control": true,
+        "T3_tie_check": true,
+        "T4_3_of_4_years": true,
+        "T5_bonferroni_train": false
+      },
+      "control": "C5",
+      "control_scored_names_mean": 3122.9,
+      "control_train_full": -0.3696969696969697,
+      "control_train_middle_8": -0.8333333333333334,
+      "decile_dispersion": 0.04849471388718569,
+      "decile_returns": {
+        "1": -0.13842500000000002,
+        "2": 0.017900000000000003,
+        "3": 0.004525,
+        "4": 0.014450000000000001,
+        "5": 0.0204,
+        "6": 0.012825,
+        "7": 0.032775,
+        "8": 0.02805,
+        "9": 0.031675,
+        "10": -0.019075
+      },
+      "decile_share_of_scored": [
+        0.103,
+        0.0969,
+        0.0999,
+        0.0999,
+        0.0999,
+        0.0998,
+        0.0999,
+        0.0999,
+        0.0998,
+        0.1
+      ],
+      "density": {
+        "density_of_universe": 0.9743,
+        "nonzero_names": 2923,
+        "nonzero_share_of_scored": 0.9312,
+        "readable": true,
+        "reason": "density >= 0.50",
+        "yearly_counts": {
+          "2019": {
+            "nonzero": 2784,
+            "zero": 327
+          },
+          "2020": {
+            "nonzero": 2805,
+            "zero": 300
+          },
+          "2021": {
+            "nonzero": 2968,
+            "zero": 186
+          },
+          "2022": {
+            "nonzero": 3031,
+            "zero": 126
+          },
+          "2023": {
+            "nonzero": 3020,
+            "zero": 150
+          }
+        },
+        "zero_names": 216
+      },
+      "distinct_values": 10,
+      "expression": "group_rank(-ts_mean(implied_volatility_mean_30 - historical_volatility_30, 21), sector)",
+      "extremes_share_of_spread": 0.8845831587767072,
+      "hypothesis": "H5_implied_minus_realized_vol",
+      "inner_spread_d9_minus_d2": 0.013774999999999999,
+      "missing": [],
+      "monotonicity": 0.40606060606060607,
+      "monotonicity_middle_8": 0.6904761904761905,
+      "passes_train": false,
+      "permutation_p": 0.021719891400542996,
+      "scored_names_mean": 3131.6,
+      "status": "scored",
+      "tie_check_passed": true,
+      "top_minus_bottom": 0.11935000000000001,
+      "train_turnover_production_2019_2022": 0.078125,
+      "train_years_positive": "3/4",
+      "variant": "H5c_ivrv30_mean21",
+      "verdict": "flat -- replicates the null",
+      "yearly": {
+        "2019": {
+          "monotonicity": 0.5636363636363636,
+          "top_minus_bottom": 0.1018
+        },
+        "2020": {
+          "monotonicity": -0.17575757575757575,
+          "top_minus_bottom": 0.0542
+        },
+        "2021": {
+          "monotonicity": 0.6484848484848484,
+          "top_minus_bottom": 0.2863
+        },
+        "2022": {
+          "monotonicity": 0.15151515151515152,
+          "top_minus_bottom": 0.03509999999999999
+        }
+      }
+    }
+  }
+}

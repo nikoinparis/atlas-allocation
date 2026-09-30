@@ -1,0 +1,231 @@
+{
+  "alpha_id": "zqbK7MXK",
+  "expression": "if_else(rank(group_rank(-abs(days_from_last_change(ts_backfill(anl4_fs_actuals_basic_qf_nd_sales_value, 126)) - 63), bucket(rank(cap), range=\"0,1,0.2\"))) > 0.2, 1, 0) - if_else(rank(group_rank(-abs(days_from_last_change(ts_backfill(anl4_fs_actuals_basic_qf_nd_sales_value, 126)) - 63), bucket(rank(cap), range=\"0,1,0.2\"))) > 0.3, 1, 0)",
+  "is": {
+    "bookSize": 20000000,
+    "checks": [
+      {
+        "limit": 1.25,
+        "name": "LOW_SHARPE",
+        "result": "FAIL",
+        "value": -0.59
+      },
+      {
+        "limit": 1.0,
+        "name": "LOW_FITNESS",
+        "result": "FAIL",
+        "value": -0.22
+      },
+      {
+        "limit": 0.01,
+        "name": "LOW_TURNOVER",
+        "result": "PASS",
+        "value": 0.2258
+      },
+      {
+        "limit": 0.7,
+        "name": "HIGH_TURNOVER",
+        "result": "PASS",
+        "value": 0.2258
+      },
+      {
+        "name": "CONCENTRATED_WEIGHT",
+        "result": "FAIL"
+      },
+      {
+        "limit": -0.26,
+        "name": "LOW_SUB_UNIVERSE_SHARPE",
+        "result": "PASS",
+        "value": -0.08
+      },
+      {
+        "name": "SELF_CORRELATION",
+        "result": "PENDING"
+      },
+      {
+        "competitions": [
+          {
+            "id": "challenge",
+            "name": "Challenge"
+          }
+        ],
+        "name": "MATCHES_COMPETITION",
+        "result": "PASS"
+      }
+    ],
+    "drawdown": 0.2336,
+    "fitness": -0.22,
+    "longCount": 313,
+    "margin": -0.000268,
+    "pnl": -1493266,
+    "returns": -0.0302,
+    "sharpe": -0.59,
+    "shortCount": 2795,
+    "startDate": "2019-01-01",
+    "turnover": 0.2258
+  },
+  "label": "H2c_salesdist63_K1_desized_d03",
+  "message": null,
+  "neutralization": "MARKET",
+  "seconds": 493.4,
+  "settings": {
+    "decay": 0,
+    "delay": 1,
+    "endDate": "2023-12-31",
+    "instrumentType": "EQUITY",
+    "language": "FASTEXPR",
+    "maxPosition": "OFF",
+    "maxTrade": "OFF",
+    "nanHandling": "ON",
+    "neutralization": "MARKET",
+    "pasteurization": "ON",
+    "region": "USA",
+    "simulationMode": "FULL",
+    "startDate": "2019-01-01",
+    "truncation": 0.08,
+    "unitHandling": "VERIFY",
+    "universe": "TOP3000",
+    "visualization": false
+  },
+  "status": "COMPLETE",
+  "yearly": {
+    "records": [
+      [
+        "2019",
+        -53568.0,
+        20000000,
+        305,
+        2633,
+        0.2321,
+        -0.16,
+        -0.0053,
+        0.0354,
+        -4.6e-05,
+        -0.02,
+        "IS"
+      ],
+      [
+        "2020",
+        -739796.0,
+        20000000,
+        309,
+        2795,
+        0.2255,
+        -1.45,
+        -0.0801,
+        0.1112,
+        -0.00071,
+        -0.86,
+        "IS"
+      ],
+      [
+        "2021",
+        -62154.0,
+        20000000,
+        315,
+        2838,
+        0.2255,
+        -0.1,
+        -0.0062,
+        0.1456,
+        -5.5e-05,
+        -0.02,
+        "IS"
+      ],
+      [
+        "2022",
+        -533130.0,
+        20000000,
+        315,
+        2842,
+        0.2251,
+        -0.92,
+        -0.0531,
+        0.0828,
+        -0.000472,
+        -0.45,
+        "IS"
+      ],
+      [
+        "2023",
+        -84343.0,
+        20000000,
+        316,
+        2854,
+        0.2205,
+        -0.2,
+        -0.0084,
+        0.0708,
+        -7.6e-05,
+        -0.04,
+        "IS"
+      ]
+    ],
+    "schema": {
+      "name": "yearly-stats",
+      "properties": [
+        {
+          "name": "year",
+          "title": "Year",
+          "type": "year"
+        },
+        {
+          "name": "pnl",
+          "title": "PnL",
+          "type": "amount"
+        },
+        {
+          "name": "bookSize",
+          "title": "Book Size",
+          "type": "amount"
+        },
+        {
+          "name": "longCount",
+          "title": "Long Count",
+          "type": "integer"
+        },
+        {
+          "name": "shortCount",
+          "title": "Short Count",
+          "type": "integer"
+        },
+        {
+          "name": "turnover",
+          "title": "Turnover",
+          "type": "percent"
+        },
+        {
+          "name": "sharpe",
+          "title": "Sharpe",
+          "type": "decimal"
+        },
+        {
+          "name": "returns",
+          "title": "Returns",
+          "type": "percent"
+        },
+        {
+          "name": "drawdown",
+          "title": "Drawdown",
+          "type": "percent"
+        },
+        {
+          "name": "margin",
+          "title": "Margin",
+          "type": "permyriad"
+        },
+        {
+          "name": "fitness",
+          "title": "Fitness",
+          "type": "decimal"
+        },
+        {
+          "name": "stage",
+          "title": "Stage",
+          "type": "string"
+        }
+      ],
+      "title": "Yearly Stats"
+    }
+  }
+}

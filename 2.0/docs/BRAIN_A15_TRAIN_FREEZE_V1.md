@@ -83,4 +83,21 @@ momentum-neutral, within 63-day-return quintiles. That is 20 simulations.
 
 ## Kill-test train results
 
-*(appended below after `--phase kill` and `--phase trainkill`, still before any 2023 read)*
+*Appended after `--phase kill` and `--phase trainkill`, still before any 2023 read. 20
+simulations, no errors. On the platform side some simulations took about 24 minutes.*
+
+Train (2019-2022) decile returns, per cent a year, deciles 1 to 10:
+
+| kill ladder | d1 … d10 | full | mid-8 | d10−d1 | grouping live | verdict |
+|---|---|---|---|---|---|---|
+| K1 de-sized (cap quintiles) | −8.9 −5.3 −3.6 +0.5 +4.6 +1.7 +3.2 +1.5 +1.5 +2.9 | +0.685 | +0.571 | +11.8pp | yes | ORDERS: **passes** |
+| K2 momentum-neutral (63-day return quintiles) | −11.1 −1.9 +1.2 −3.3 −0.3 +4.6 +2.9 +2.8 −0.2 +4.1 | +0.697 | **+0.500** | +15.2pp | yes | CONCENTRATION: **fails** |
+
+**K2 fails, by the narrowest possible margin.** The declared bar is middle-8 **strictly above**
+0.5, and the ladder reads exactly 0.500. That is recorded as a fail, as registered. It is not
+rounded up, and the bar is not moved after seeing the number. Weakening from +0.952 raw to +0.500
+once the ranking is done within momentum quintiles says a good part of H2c's train ordering
+travels with past returns.
+
+**Consequence, fixed before any 2023 number: no A15 hypothesis can pass.** H2c's holdout, and every
+other variant's, will be read once as a declared read-out only.

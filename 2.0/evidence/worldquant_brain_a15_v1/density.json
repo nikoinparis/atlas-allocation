@@ -1,0 +1,452 @@
+{
+  "H1a_delta63": {
+    "density_of_universe": 0.6927,
+    "nonzero_names": 2078,
+    "nonzero_share_of_scored": 0.662,
+    "readable": true,
+    "reason": "density >= 0.50",
+    "yearly_counts": {
+      "2019": {
+        "nonzero": 2093,
+        "zero": 1017
+      },
+      "2020": {
+        "nonzero": 2095,
+        "zero": 1009
+      },
+      "2021": {
+        "nonzero": 2093,
+        "zero": 1061
+      },
+      "2022": {
+        "nonzero": 2052,
+        "zero": 1105
+      },
+      "2023": {
+        "nonzero": 2059,
+        "zero": 1111
+      }
+    },
+    "zero_names": 1061
+  },
+  "H1b_delta126": {
+    "density_of_universe": 0.7783,
+    "nonzero_names": 2335,
+    "nonzero_share_of_scored": 0.7436,
+    "readable": true,
+    "reason": "density >= 0.50",
+    "yearly_counts": {
+      "2019": {
+        "nonzero": 2356,
+        "zero": 755
+      },
+      "2020": {
+        "nonzero": 2345,
+        "zero": 760
+      },
+      "2021": {
+        "nonzero": 2313,
+        "zero": 840
+      },
+      "2022": {
+        "nonzero": 2328,
+        "zero": 829
+      },
+      "2023": {
+        "nonzero": 2333,
+        "zero": 837
+      }
+    },
+    "zero_names": 805
+  },
+  "H1c_lastchange126": {
+    "density_of_universe": 0.936,
+    "nonzero_names": 2808,
+    "nonzero_share_of_scored": 0.8946,
+    "readable": true,
+    "reason": "density >= 0.50",
+    "yearly_counts": {
+      "2019": {
+        "nonzero": 2691,
+        "zero": 419
+      },
+      "2020": {
+        "nonzero": 2769,
+        "zero": 336
+      },
+      "2021": {
+        "nonzero": 2788,
+        "zero": 365
+      },
+      "2022": {
+        "nonzero": 2889,
+        "zero": 268
+      },
+      "2023": {
+        "nonzero": 2902,
+        "zero": 268
+      }
+    },
+    "zero_names": 331
+  },
+  "H2a_eadist63": {
+    "density_of_universe": 0.8767,
+    "nonzero_names": 2630,
+    "nonzero_share_of_scored": 0.9947,
+    "readable": true,
+    "reason": "density >= 0.50",
+    "yearly_counts": {
+      "2019": {
+        "nonzero": 1993,
+        "zero": 9
+      },
+      "2020": {
+        "nonzero": 2595,
+        "zero": 15
+      },
+      "2021": {
+        "nonzero": 2702,
+        "zero": 14
+      },
+      "2022": {
+        "nonzero": 2664,
+        "zero": 14
+      },
+      "2023": {
+        "nonzero": 2534,
+        "zero": 14
+      }
+    },
+    "zero_names": 14
+  },
+  "H2b_eadist58": {
+    "density_of_universe": 0.9767,
+    "nonzero_names": 2930,
+    "nonzero_share_of_scored": 0.9905,
+    "readable": true,
+    "reason": "density >= 0.50",
+    "yearly_counts": {
+      "2019": {
+        "nonzero": 2253,
+        "zero": 20
+      },
+      "2020": {
+        "nonzero": 2916,
+        "zero": 29
+      },
+      "2021": {
+        "nonzero": 2964,
+        "zero": 27
+      },
+      "2022": {
+        "nonzero": 2890,
+        "zero": 28
+      },
+      "2023": {
+        "nonzero": 2952,
+        "zero": 28
+      }
+    },
+    "zero_names": 28
+  },
+  "H2c_salesdist63": {
+    "density_of_universe": 0.9393,
+    "nonzero_names": 2818,
+    "nonzero_share_of_scored": 0.9933,
+    "readable": true,
+    "reason": "density >= 0.50",
+    "yearly_counts": {
+      "2019": {
+        "nonzero": 2100,
+        "zero": 13
+      },
+      "2020": {
+        "nonzero": 2762,
+        "zero": 21
+      },
+      "2021": {
+        "nonzero": 2885,
+        "zero": 19
+      },
+      "2022": {
+        "nonzero": 2810,
+        "zero": 19
+      },
+      "2023": {
+        "nonzero": 2821,
+        "zero": 20
+      }
+    },
+    "zero_names": 19
+  },
+  "H3a_numest_af_yoy": {
+    "density_of_universe": 0.8437,
+    "nonzero_names": 2531,
+    "nonzero_share_of_scored": 0.8061,
+    "readable": true,
+    "reason": "density >= 0.50",
+    "yearly_counts": {
+      "2019": {
+        "nonzero": 2594,
+        "zero": 516
+      },
+      "2020": {
+        "nonzero": 2546,
+        "zero": 558
+      },
+      "2021": {
+        "nonzero": 2402,
+        "zero": 752
+      },
+      "2022": {
+        "nonzero": 2506,
+        "zero": 651
+      },
+      "2023": {
+        "nonzero": 2607,
+        "zero": 564
+      }
+    },
+    "zero_names": 609
+  },
+  "H3b_numest_qf_yoy": {
+    "density_of_universe": 0.843,
+    "nonzero_names": 2529,
+    "nonzero_share_of_scored": 0.8054,
+    "readable": true,
+    "reason": "density >= 0.50",
+    "yearly_counts": {
+      "2019": {
+        "nonzero": 2588,
+        "zero": 523
+      },
+      "2020": {
+        "nonzero": 2543,
+        "zero": 561
+      },
+      "2021": {
+        "nonzero": 2405,
+        "zero": 749
+      },
+      "2022": {
+        "nonzero": 2498,
+        "zero": 659
+      },
+      "2023": {
+        "nonzero": 2610,
+        "zero": 560
+      }
+    },
+    "zero_names": 611
+  },
+  "H3c_totalrec_yoy": {
+    "density_of_universe": 0.758,
+    "nonzero_names": 2274,
+    "nonzero_share_of_scored": 0.7242,
+    "readable": true,
+    "reason": "density >= 0.50",
+    "yearly_counts": {
+      "2019": {
+        "nonzero": 2296,
+        "zero": 815
+      },
+      "2020": {
+        "nonzero": 2316,
+        "zero": 788
+      },
+      "2021": {
+        "nonzero": 2208,
+        "zero": 946
+      },
+      "2022": {
+        "nonzero": 2254,
+        "zero": 903
+      },
+      "2023": {
+        "nonzero": 2298,
+        "zero": 873
+      }
+    },
+    "zero_names": 866
+  },
+  "H4a_ltg_sector": {
+    "density_of_universe": 1.014,
+    "nonzero_names": 3042,
+    "nonzero_share_of_scored": 0.9691,
+    "readable": true,
+    "reason": "density >= 0.50",
+    "yearly_counts": {
+      "2019": {
+        "nonzero": 3040,
+        "zero": 70
+      },
+      "2020": {
+        "nonzero": 2994,
+        "zero": 111
+      },
+      "2021": {
+        "nonzero": 3025,
+        "zero": 129
+      },
+      "2022": {
+        "nonzero": 3078,
+        "zero": 79
+      },
+      "2023": {
+        "nonzero": 3071,
+        "zero": 99
+      }
+    },
+    "zero_names": 97
+  },
+  "H4b_ltg_industry": {
+    "density_of_universe": 1.014,
+    "nonzero_names": 3042,
+    "nonzero_share_of_scored": 0.9691,
+    "readable": true,
+    "reason": "density >= 0.50",
+    "yearly_counts": {
+      "2019": {
+        "nonzero": 3040,
+        "zero": 70
+      },
+      "2020": {
+        "nonzero": 2994,
+        "zero": 111
+      },
+      "2021": {
+        "nonzero": 3025,
+        "zero": 129
+      },
+      "2022": {
+        "nonzero": 3078,
+        "zero": 79
+      },
+      "2023": {
+        "nonzero": 3071,
+        "zero": 99
+      }
+    },
+    "zero_names": 97
+  },
+  "H4c_ltg_subindustry": {
+    "density_of_universe": 1.014,
+    "nonzero_names": 3042,
+    "nonzero_share_of_scored": 0.9691,
+    "readable": true,
+    "reason": "density >= 0.50",
+    "yearly_counts": {
+      "2019": {
+        "nonzero": 3040,
+        "zero": 70
+      },
+      "2020": {
+        "nonzero": 2994,
+        "zero": 111
+      },
+      "2021": {
+        "nonzero": 3025,
+        "zero": 129
+      },
+      "2022": {
+        "nonzero": 3078,
+        "zero": 79
+      },
+      "2023": {
+        "nonzero": 3071,
+        "zero": 99
+      }
+    },
+    "zero_names": 97
+  },
+  "H5a_ivrv30": {
+    "density_of_universe": 0.9373,
+    "nonzero_names": 2812,
+    "nonzero_share_of_scored": 0.8958,
+    "readable": true,
+    "reason": "density >= 0.50",
+    "yearly_counts": {
+      "2019": {
+        "nonzero": 2666,
+        "zero": 445
+      },
+      "2020": {
+        "nonzero": 2671,
+        "zero": 433
+      },
+      "2021": {
+        "nonzero": 2920,
+        "zero": 233
+      },
+      "2022": {
+        "nonzero": 2906,
+        "zero": 251
+      },
+      "2023": {
+        "nonzero": 2888,
+        "zero": 283
+      }
+    },
+    "zero_names": 327
+  },
+  "H5b_ivrv90": {
+    "density_of_universe": 0.9373,
+    "nonzero_names": 2812,
+    "nonzero_share_of_scored": 0.8955,
+    "readable": true,
+    "reason": "density >= 0.50",
+    "yearly_counts": {
+      "2019": {
+        "nonzero": 2665,
+        "zero": 446
+      },
+      "2020": {
+        "nonzero": 2671,
+        "zero": 433
+      },
+      "2021": {
+        "nonzero": 2920,
+        "zero": 234
+      },
+      "2022": {
+        "nonzero": 2905,
+        "zero": 252
+      },
+      "2023": {
+        "nonzero": 2887,
+        "zero": 283
+      }
+    },
+    "zero_names": 328
+  },
+  "H5c_ivrv30_mean21": {
+    "density_of_universe": 0.9743,
+    "nonzero_names": 2923,
+    "nonzero_share_of_scored": 0.9312,
+    "readable": true,
+    "reason": "density >= 0.50",
+    "yearly_counts": {
+      "2019": {
+        "nonzero": 2784,
+        "zero": 327
+      },
+      "2020": {
+        "nonzero": 2805,
+        "zero": 300
+      },
+      "2021": {
+        "nonzero": 2968,
+        "zero": 186
+      },
+      "2022": {
+        "nonzero": 3031,
+        "zero": 126
+      },
+      "2023": {
+        "nonzero": 3020,
+        "zero": 150
+      }
+    },
+    "zero_names": 216
+  }
+}

@@ -1,0 +1,2688 @@
+{
+  "a15_simulations": 250,
+  "bh_fdr_full_window": {
+    "H1a_delta63": false,
+    "H1b_delta126": true,
+    "H1c_lastchange126": true,
+    "H2a_eadist63": true,
+    "H2b_eadist58": true,
+    "H2c_salesdist63": true,
+    "H3a_numest_af_yoy": true,
+    "H3b_numest_qf_yoy": true,
+    "H4a_ltg_sector": false,
+    "H4b_ltg_industry": false,
+    "H4c_ltg_subindustry": false,
+    "H5a_ivrv30": false,
+    "H5b_ivrv90": false,
+    "H5c_ivrv30_mean21": true
+  },
+  "bonferroni_denominator_final": 778,
+  "controls": {
+    "C1": {
+      "full": {
+        "decile_dispersion": 0.033223780639776684,
+        "decile_returns": {
+          "1": -0.0922,
+          "2": 0.0012,
+          "3": 0.0283,
+          "4": 0.0036,
+          "5": 0.0333,
+          "6": 0.0059,
+          "7": 0.0218,
+          "8": 0.0108,
+          "9": -0.0004,
+          "10": -0.0005
+        },
+        "distinct_values": 10,
+        "extremes_share_of_spread": 1.0174482006543075,
+        "inner_spread_d9_minus_d2": -0.0015999999999999999,
+        "missing": [],
+        "monotonicity": -0.01818181818181818,
+        "monotonicity_middle_8": -0.14285714285714285,
+        "permutation_p": 0.45275273623631884,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.0917,
+        "verdict": "flat -- replicates the null"
+      },
+      "hold_2023": {
+        "decile_dispersion": 0.036207238226630876,
+        "decile_returns": {
+          "1": -0.0484,
+          "2": -0.062,
+          "3": 0.0196,
+          "4": -0.0181,
+          "5": 0.0597,
+          "6": 0.0093,
+          "7": 0.0461,
+          "8": 0.011,
+          "9": -0.0175,
+          "10": 0.003
+        },
+        "decile_share_of_scored": [
+          0.1006,
+          0.0991,
+          0.1,
+          0.1,
+          0.1,
+          0.0997,
+          0.0997,
+          0.1,
+          0.0997,
+          0.1
+        ],
+        "distinct_values": 10,
+        "extremes_share_of_spread": 0.13424124513618685,
+        "inner_spread_d9_minus_d2": 0.0445,
+        "missing": [],
+        "monotonicity": 0.34545454545454546,
+        "monotonicity_middle_8": 0.23809523809523808,
+        "permutation_p": 0.5,
+        "scored_names_mean": 3170.3,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.0514,
+        "verdict": "flat -- replicates the null",
+        "yearly": {
+          "2023": {
+            "monotonicity": 0.34545454545454546,
+            "top_minus_bottom": 0.0514
+          }
+        }
+      }
+    },
+    "C2": {
+      "full": {
+        "decile_dispersion": 0.017053178589342223,
+        "decile_returns": {
+          "1": -0.0238,
+          "2": 0.0034,
+          "3": -0.031,
+          "4": 0.0335,
+          "5": 0.0106,
+          "6": 0.0056,
+          "7": 0.0089,
+          "8": -0.004,
+          "9": -0.0028,
+          "10": -0.0003
+        },
+        "distinct_values": 10,
+        "extremes_share_of_spread": 1.2638297872340425,
+        "inner_spread_d9_minus_d2": -0.0062,
+        "missing": [],
+        "monotonicity": 0.09090909090909091,
+        "monotonicity_middle_8": -0.11904761904761904,
+        "permutation_p": 0.3622231888840556,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.0235,
+        "verdict": "flat -- replicates the null"
+      },
+      "hold_2023": {
+        "decile_dispersion": 0.03570350262929395,
+        "decile_returns": {
+          "1": -0.0187,
+          "2": -0.0924,
+          "3": -0.0074,
+          "4": 0.031,
+          "5": 0.0329,
+          "6": 0.031,
+          "7": 0.0222,
+          "8": 0.0109,
+          "9": -0.0133,
+          "10": 0.0035
+        },
+        "decile_share_of_scored": [
+          0.1,
+          0.1,
+          0.0997,
+          0.0997,
+          0.1009,
+          0.0991,
+          0.0997,
+          0.1,
+          0.0997,
+          0.1
+        ],
+        "distinct_values": 9,
+        "extremes_share_of_spread": -2.563063063063063,
+        "inner_spread_d9_minus_d2": 0.0791,
+        "missing": [],
+        "monotonicity": 0.2735574946560291,
+        "monotonicity_middle_8": 0.07185757571479554,
+        "permutation_p": 1.0,
+        "scored_names_mean": 3170.3,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.0222,
+        "verdict": "flat -- replicates the null",
+        "yearly": {
+          "2023": {
+            "monotonicity": 0.2735574946560291,
+            "top_minus_bottom": 0.0222
+          }
+        }
+      }
+    },
+    "C3": {
+      "full": {
+        "decile_dispersion": 0.03228634386238244,
+        "decile_returns": {
+          "1": -0.064,
+          "2": -0.0235,
+          "3": 0.027,
+          "4": 0.0223,
+          "5": 0.0601,
+          "6": 0.0309,
+          "7": 0.0258,
+          "8": 0.0204,
+          "9": 0.0034,
+          "10": 0.0036
+        },
+        "distinct_values": 10,
+        "extremes_share_of_spread": 0.6020710059171598,
+        "inner_spread_d9_minus_d2": 0.0269,
+        "missing": [],
+        "monotonicity": 0.12727272727272726,
+        "monotonicity_middle_8": -0.07142857142857142,
+        "permutation_p": 0.3223733881330593,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.06760000000000001,
+        "verdict": "flat -- replicates the null"
+      },
+      "hold_2023": {
+        "decile_dispersion": 0.03841492418318693,
+        "decile_returns": {
+          "1": -0.0261,
+          "2": -0.0847,
+          "3": -0.0391,
+          "4": 0.0156,
+          "5": 0.0563,
+          "6": 0.0193,
+          "7": 0.0334,
+          "8": 0.0157,
+          "9": -0.0149,
+          "10": 0.0061
+        },
+        "decile_share_of_scored": [
+          0.1312,
+          0.0685,
+          0.1,
+          0.1,
+          0.1,
+          0.0997,
+          0.0997,
+          0.1,
+          0.0997,
+          0.1
+        ],
+        "distinct_values": 10,
+        "extremes_share_of_spread": -1.1677018633540373,
+        "inner_spread_d9_minus_d2": 0.0698,
+        "missing": [],
+        "monotonicity": 0.4303030303030303,
+        "monotonicity_middle_8": 0.42857142857142855,
+        "permutation_p": 0.5,
+        "scored_names_mean": 3170.3,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.0322,
+        "verdict": "flat -- replicates the null",
+        "yearly": {
+          "2023": {
+            "monotonicity": 0.4303030303030303,
+            "top_minus_bottom": 0.0322
+          }
+        }
+      }
+    },
+    "C4": {
+      "full": {
+        "decile_dispersion": 0.02452638579163265,
+        "decile_returns": {
+          "1": -0.0633,
+          "2": 0.0129,
+          "3": -0.0144,
+          "4": 0.0161,
+          "5": 0.0325,
+          "6": -0.0027,
+          "7": 0.0176,
+          "8": 0.0009,
+          "9": -0.0005,
+          "10": 0.0011
+        },
+        "distinct_values": 10,
+        "extremes_share_of_spread": 1.2080745341614907,
+        "inner_spread_d9_minus_d2": -0.0134,
+        "missing": [],
+        "monotonicity": 0.21212121212121213,
+        "monotonicity_middle_8": -0.023809523809523808,
+        "permutation_p": 0.2501037494812526,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.0644,
+        "verdict": "flat -- replicates the null"
+      },
+      "hold_2023": {
+        "decile_dispersion": 0.03771666607747827,
+        "decile_returns": {
+          "1": -0.0088,
+          "2": -0.0956,
+          "3": 0.0002,
+          "4": -0.0052,
+          "5": 0.058,
+          "6": 0.0214,
+          "7": 0.0313,
+          "8": 0.0067,
+          "9": -0.0112,
+          "10": 0.0031
+        },
+        "decile_share_of_scored": [
+          0.1,
+          0.1,
+          0.0997,
+          0.1,
+          0.1,
+          0.0997,
+          0.0997,
+          0.1,
+          0.1,
+          0.1
+        ],
+        "distinct_values": 10,
+        "extremes_share_of_spread": -6.092436974789916,
+        "inner_spread_d9_minus_d2": 0.0844,
+        "missing": [],
+        "monotonicity": 0.34545454545454546,
+        "monotonicity_middle_8": 0.2619047619047619,
+        "permutation_p": 0.5,
+        "scored_names_mean": 3170.4,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.0119,
+        "verdict": "flat -- replicates the null",
+        "yearly": {
+          "2023": {
+            "monotonicity": 0.34545454545454546,
+            "top_minus_bottom": 0.0119
+          }
+        }
+      }
+    },
+    "C5": {
+      "full": {
+        "decile_dispersion": 0.04487650276035333,
+        "decile_returns": {
+          "1": -0.1237,
+          "2": 0.0296,
+          "3": 0.022,
+          "4": 0.022,
+          "5": 0.0495,
+          "6": 0.0134,
+          "7": 0.0134,
+          "8": 0.0124,
+          "9": -0.0044,
+          "10": -0.0087
+        },
+        "distinct_values": 8,
+        "extremes_share_of_spread": 1.2956521739130435,
+        "inner_spread_d9_minus_d2": -0.034,
+        "missing": [],
+        "monotonicity": -0.3719581343246536,
+        "monotonicity_middle_8": -0.8434347122457898,
+        "permutation_p": 0.8586457067714661,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.115,
+        "verdict": "flat -- replicates the null"
+      },
+      "hold_2023": {
+        "decile_dispersion": 0.04377481125030695,
+        "decile_returns": {
+          "1": -0.0197,
+          "2": -0.0682,
+          "3": -0.017,
+          "4": -0.0169,
+          "5": 0.1014,
+          "6": 0.028,
+          "7": 0.0299,
+          "8": 0.0124,
+          "9": -0.0212,
+          "10": -0.0314
+        },
+        "decile_share_of_scored": [
+          0.1004,
+          0.0995,
+          0.0998,
+          0.0998,
+          0.1035,
+          0.0998,
+          0.0998,
+          0.0998,
+          0.0998,
+          0.0997
+        ],
+        "distinct_values": 10,
+        "extremes_share_of_spread": 5.017094017094018,
+        "inner_spread_d9_minus_d2": 0.047,
+        "missing": [],
+        "monotonicity": 0.07878787878787878,
+        "monotonicity_middle_8": 0.2857142857142857,
+        "permutation_p": 0.5,
+        "scored_names_mean": 3159.7,
+        "tie_check_passed": true,
+        "top_minus_bottom": -0.011699999999999999,
+        "verdict": "flat -- replicates the null",
+        "yearly": {
+          "2023": {
+            "monotonicity": 0.07878787878787878,
+            "top_minus_bottom": -0.011699999999999999
+          }
+        }
+      }
+    }
+  },
+  "kill_ladders": {
+    "H2c_salesdist63_K1_desized": {
+      "full": {
+        "decile_dispersion": 0.03506737087379092,
+        "decile_returns": {
+          "1": -0.0751,
+          "2": -0.0504,
+          "3": -0.0302,
+          "4": 0.0073,
+          "5": 0.0304,
+          "6": 0.0205,
+          "7": 0.0291,
+          "8": 0.0235,
+          "9": 0.0149,
+          "10": 0.0145
+        },
+        "distinct_values": 10,
+        "extremes_share_of_spread": 0.2712053571428572,
+        "inner_spread_d9_minus_d2": 0.0653,
+        "missing": [],
+        "monotonicity": 0.6121212121212121,
+        "monotonicity_middle_8": 0.5952380952380952,
+        "permutation_p": 0.019559902200488997,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.0896,
+        "verdict": "ORDERS ITS DECILES -- clears the declared bar"
+      },
+      "hold_2023": {
+        "decile_dispersion": 0.03197131370463216,
+        "decile_returns": {
+          "1": -0.0217,
+          "2": -0.0392,
+          "3": -0.0084,
+          "4": 0.0135,
+          "5": -0.0368,
+          "6": 0.0412,
+          "7": 0.0163,
+          "8": 0.0586,
+          "9": 0.0107,
+          "10": -0.0331
+        },
+        "decile_share_of_scored": [
+          0.1,
+          0.0997,
+          0.0997,
+          0.0997,
+          0.1006,
+          0.0994,
+          0.1003,
+          0.0994,
+          0.1,
+          0.0997
+        ],
+        "distinct_values": 10,
+        "extremes_share_of_spread": 5.377192982456141,
+        "inner_spread_d9_minus_d2": 0.0499,
+        "missing": [],
+        "monotonicity": 0.3696969696969697,
+        "monotonicity_middle_8": 0.6428571428571429,
+        "permutation_p": 0.5,
+        "scored_names_mean": 3170.0,
+        "tie_check_passed": true,
+        "top_minus_bottom": -0.011399999999999997,
+        "verdict": "flat -- replicates the null",
+        "yearly": {
+          "2023": {
+            "monotonicity": 0.3696969696969697,
+            "top_minus_bottom": -0.011399999999999997
+          }
+        }
+      }
+    },
+    "H2c_salesdist63_K2_momentum_neutral": {
+      "full": {
+        "decile_dispersion": 0.03918505454889657,
+        "decile_returns": {
+          "1": -0.0952,
+          "2": -0.0324,
+          "3": 0.0126,
+          "4": -0.0243,
+          "5": 0.0052,
+          "6": 0.0486,
+          "7": 0.0353,
+          "8": 0.0222,
+          "9": -0.0018,
+          "10": 0.0193
+        },
+        "distinct_values": 10,
+        "extremes_share_of_spread": 0.7327510917030569,
+        "inner_spread_d9_minus_d2": 0.0306,
+        "missing": [],
+        "monotonicity": 0.6121212121212121,
+        "monotonicity_middle_8": 0.4523809523809524,
+        "permutation_p": 0.027429862850685747,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.1145,
+        "verdict": "CONCENTRATION in the extremes, not an ordering -- middle eight do not order"
+      },
+      "hold_2023": {
+        "decile_dispersion": 0.045019605729059865,
+        "decile_returns": {
+          "1": -0.0289,
+          "2": -0.0831,
+          "3": 0.0232,
+          "4": 0.0073,
+          "5": 0.0345,
+          "6": 0.0596,
+          "7": 0.0618,
+          "8": -0.0067,
+          "9": -0.0076,
+          "10": -0.0572
+        },
+        "decile_share_of_scored": [
+          0.1,
+          0.1003,
+          0.1,
+          0.0991,
+          0.1006,
+          0.0997,
+          0.0997,
+          0.0994,
+          0.1003,
+          0.0997
+        ],
+        "distinct_values": 10,
+        "extremes_share_of_spread": 3.6678445229681977,
+        "inner_spread_d9_minus_d2": 0.0755,
+        "missing": [],
+        "monotonicity": 0.09090909090909091,
+        "monotonicity_middle_8": 0.11904761904761904,
+        "permutation_p": 1.0,
+        "scored_names_mean": 3170.0,
+        "tie_check_passed": true,
+        "top_minus_bottom": -0.028300000000000002,
+        "verdict": "flat -- replicates the null",
+        "yearly": {
+          "2023": {
+            "monotonicity": 0.09090909090909091,
+            "top_minus_bottom": -0.028300000000000002
+          }
+        }
+      }
+    }
+  },
+  "variants": {
+    "H1a_delta63": {
+      "control_full_beaten": true,
+      "full": {
+        "decile_dispersion": 0.04280635466843679,
+        "decile_returns": {
+          "1": -0.0893,
+          "2": -0.0072,
+          "3": -0.0072,
+          "4": 0.0181,
+          "5": 0.0668,
+          "6": -0.0431,
+          "7": -0.0032,
+          "8": 0.0522,
+          "9": 0.0132,
+          "10": 0.0277
+        },
+        "distinct_values": 9,
+        "extremes_share_of_spread": 0.8256410256410256,
+        "inner_spread_d9_minus_d2": 0.0204,
+        "missing": [],
+        "monotonicity": 0.5714312110592606,
+        "monotonicity_middle_8": 0.3233590907165799,
+        "permutation_p": 0.04160979195104025,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.117,
+        "verdict": "CONCENTRATION in the extremes, not an ordering -- middle eight do not order"
+      },
+      "hold_2023": {
+        "decile_dispersion": 0.04307723760874181,
+        "decile_returns": {
+          "1": -0.0497,
+          "2": 0.0833,
+          "3": -0.0098,
+          "4": 0.0343,
+          "5": 0.0449,
+          "6": -0.0289,
+          "7": -0.0594,
+          "8": 0.0235,
+          "9": -0.0286,
+          "10": -0.0112
+        },
+        "decile_share_of_scored": [
+          0.1006,
+          0.0991,
+          0.1,
+          0.0997,
+          0.0984,
+          0.0962,
+          0.105,
+          0.0997,
+          0.1,
+          0.1
+        ],
+        "distinct_values": 10,
+        "extremes_share_of_spread": 3.9064935064935065,
+        "inner_spread_d9_minus_d2": -0.1119,
+        "missing": [],
+        "monotonicity": -0.22424242424242424,
+        "monotonicity_middle_8": -0.5952380952380952,
+        "permutation_p": 0.5,
+        "scored_names_mean": 3170.2,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.0385,
+        "verdict": "flat -- replicates the null",
+        "yearly": {
+          "2023": {
+            "monotonicity": -0.22424242424242424,
+            "top_minus_bottom": 0.0385
+          }
+        }
+      },
+      "hypothesis": "H1_recommendation_change",
+      "production_2023_not_evidence": [
+        "2023",
+        -295271.0,
+        20000000,
+        1606,
+        1466,
+        0.0741,
+        -1.14,
+        -0.0295,
+        0.0453,
+        -0.000797,
+        -0.55,
+        "IS"
+      ],
+      "production_alpha_id": "d515oEmX",
+      "production_not_evidence": {
+        "bookSize": 20000000,
+        "checks": [
+          {
+            "limit": 1.25,
+            "name": "LOW_SHARPE",
+            "result": "FAIL",
+            "value": 0.93
+          },
+          {
+            "limit": 1.0,
+            "name": "LOW_FITNESS",
+            "result": "FAIL",
+            "value": 0.48
+          },
+          {
+            "limit": 0.01,
+            "name": "LOW_TURNOVER",
+            "result": "PASS",
+            "value": 0.0781
+          },
+          {
+            "limit": 0.7,
+            "name": "HIGH_TURNOVER",
+            "result": "PASS",
+            "value": 0.0781
+          },
+          {
+            "name": "CONCENTRATED_WEIGHT",
+            "result": "PASS"
+          },
+          {
+            "limit": 0.4,
+            "name": "LOW_SUB_UNIVERSE_SHARPE",
+            "result": "PASS",
+            "value": 0.66
+          },
+          {
+            "name": "SELF_CORRELATION",
+            "result": "PENDING"
+          },
+          {
+            "competitions": [
+              {
+                "id": "challenge",
+                "name": "Challenge"
+              }
+            ],
+            "name": "MATCHES_COMPETITION",
+            "result": "PASS"
+          }
+        ],
+        "drawdown": 0.06,
+        "fitness": 0.48,
+        "longCount": 1566,
+        "margin": 0.000857,
+        "pnl": 1657193,
+        "returns": 0.0335,
+        "sharpe": 0.93,
+        "shortCount": 1475,
+        "startDate": "2019-01-01",
+        "turnover": 0.0781
+      }
+    },
+    "H1b_delta126": {
+      "control_full_beaten": true,
+      "full": {
+        "decile_dispersion": 0.04091973118191272,
+        "decile_returns": {
+          "1": -0.099,
+          "2": -0.0224,
+          "3": -0.0193,
+          "4": 0.02,
+          "5": 0.0252,
+          "6": 0.0287,
+          "7": -0.0062,
+          "8": 0.0356,
+          "9": 0.0213,
+          "10": 0.0507
+        },
+        "distinct_values": 10,
+        "extremes_share_of_spread": 0.7080828323313293,
+        "inner_spread_d9_minus_d2": 0.0437,
+        "missing": [],
+        "monotonicity": 0.8303030303030303,
+        "monotonicity_middle_8": 0.6666666666666666,
+        "permutation_p": 0.0022249888750556245,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.1497,
+        "verdict": "ORDERS ITS DECILES -- clears the declared bar"
+      },
+      "hold_2023": {
+        "decile_dispersion": 0.040896258997614926,
+        "decile_returns": {
+          "1": -0.067,
+          "2": 0.0588,
+          "3": 0.0445,
+          "4": -0.0039,
+          "5": -0.0077,
+          "6": 0.065,
+          "7": -0.0482,
+          "8": -0.0071,
+          "9": -0.0116,
+          "10": -0.0048
+        },
+        "decile_share_of_scored": [
+          0.1183,
+          0.0817,
+          0.1,
+          0.1,
+          0.0997,
+          0.1006,
+          0.0994,
+          0.0997,
+          0.0997,
+          0.1
+        ],
+        "distinct_values": 10,
+        "extremes_share_of_spread": 2.1318327974276525,
+        "inner_spread_d9_minus_d2": -0.07039999999999999,
+        "missing": [],
+        "monotonicity": -0.12727272727272726,
+        "monotonicity_middle_8": -0.6190476190476191,
+        "permutation_p": 0.5,
+        "scored_names_mean": 3170.2,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.062200000000000005,
+        "verdict": "flat -- replicates the null",
+        "yearly": {
+          "2023": {
+            "monotonicity": -0.12727272727272726,
+            "top_minus_bottom": 0.062200000000000005
+          }
+        }
+      },
+      "hypothesis": "H1_recommendation_change",
+      "production_2023_not_evidence": [
+        "2023",
+        -60761.0,
+        20000000,
+        1546,
+        1538,
+        0.0551,
+        -0.21,
+        -0.0061,
+        0.0331,
+        -0.000221,
+        -0.05,
+        "IS"
+      ],
+      "production_alpha_id": "akxkGJgv",
+      "production_not_evidence": {
+        "bookSize": 20000000,
+        "checks": [
+          {
+            "limit": 1.25,
+            "name": "LOW_SHARPE",
+            "result": "FAIL",
+            "value": 1.22
+          },
+          {
+            "limit": 1.0,
+            "name": "LOW_FITNESS",
+            "result": "FAIL",
+            "value": 0.77
+          },
+          {
+            "limit": 0.01,
+            "name": "LOW_TURNOVER",
+            "result": "PASS",
+            "value": 0.0585
+          },
+          {
+            "limit": 0.7,
+            "name": "HIGH_TURNOVER",
+            "result": "PASS",
+            "value": 0.0585
+          },
+          {
+            "name": "CONCENTRATED_WEIGHT",
+            "result": "PASS"
+          },
+          {
+            "limit": 0.53,
+            "name": "LOW_SUB_UNIVERSE_SHARPE",
+            "result": "PASS",
+            "value": 0.84
+          },
+          {
+            "name": "SELF_CORRELATION",
+            "result": "PENDING"
+          },
+          {
+            "competitions": [
+              {
+                "id": "challenge",
+                "name": "Challenge"
+              }
+            ],
+            "name": "MATCHES_COMPETITION",
+            "result": "PASS"
+          }
+        ],
+        "drawdown": 0.0559,
+        "fitness": 0.77,
+        "longCount": 1509,
+        "margin": 0.001694,
+        "pnl": 2450786,
+        "returns": 0.0495,
+        "sharpe": 1.22,
+        "shortCount": 1530,
+        "startDate": "2019-01-01",
+        "turnover": 0.0585
+      }
+    },
+    "H1c_lastchange126": {
+      "control_full_beaten": true,
+      "full": {
+        "decile_dispersion": 0.0478493772164278,
+        "decile_returns": {
+          "1": -0.1177,
+          "2": -0.0471,
+          "3": -0.0107,
+          "4": 0.0221,
+          "5": 0.0281,
+          "6": 0.0311,
+          "7": 0.0401,
+          "8": 0.0266,
+          "9": 0.0462,
+          "10": -0.0056
+        },
+        "distinct_values": 10,
+        "extremes_share_of_spread": 0.16770740410347917,
+        "inner_spread_d9_minus_d2": 0.0933,
+        "missing": [],
+        "monotonicity": 0.6727272727272727,
+        "monotonicity_middle_8": 0.8571428571428571,
+        "permutation_p": 0.0022299888500557498,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.1121,
+        "verdict": "ORDERS ITS DECILES -- clears the declared bar"
+      },
+      "hold_2023": {
+        "decile_dispersion": 0.03542880184256871,
+        "decile_returns": {
+          "1": -0.051,
+          "2": -0.0438,
+          "3": -0.0042,
+          "4": 0.0522,
+          "5": 0.0179,
+          "6": 0.0533,
+          "7": -0.0155,
+          "8": -0.0272,
+          "9": 0.0313,
+          "10": -0.013
+        },
+        "decile_share_of_scored": [
+          0.1,
+          0.0997,
+          0.1,
+          0.1,
+          0.1,
+          0.0997,
+          0.0997,
+          0.1,
+          0.0997,
+          0.1
+        ],
+        "distinct_values": 10,
+        "extremes_share_of_spread": -0.9763157894736842,
+        "inner_spread_d9_minus_d2": 0.0751,
+        "missing": [],
+        "monotonicity": 0.3090909090909091,
+        "monotonicity_middle_8": 0.19047619047619047,
+        "permutation_p": 1.0,
+        "scored_names_mean": 3170.3,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.038,
+        "verdict": "flat -- replicates the null",
+        "yearly": {
+          "2023": {
+            "monotonicity": 0.3090909090909091,
+            "top_minus_bottom": 0.038
+          }
+        }
+      },
+      "hypothesis": "H1_recommendation_change",
+      "production_2023_not_evidence": [
+        "2023",
+        112948.0,
+        20000000,
+        1524,
+        1561,
+        0.0656,
+        0.46,
+        0.0113,
+        0.0174,
+        0.000344,
+        0.14,
+        "IS"
+      ],
+      "production_alpha_id": "vR2RoJjQ",
+      "production_not_evidence": {
+        "bookSize": 20000000,
+        "checks": [
+          {
+            "limit": 1.25,
+            "name": "LOW_SHARPE",
+            "result": "PASS",
+            "value": 1.6
+          },
+          {
+            "limit": 1.0,
+            "name": "LOW_FITNESS",
+            "result": "PASS",
+            "value": 1.01
+          },
+          {
+            "limit": 0.01,
+            "name": "LOW_TURNOVER",
+            "result": "PASS",
+            "value": 0.07
+          },
+          {
+            "limit": 0.7,
+            "name": "HIGH_TURNOVER",
+            "result": "PASS",
+            "value": 0.07
+          },
+          {
+            "name": "CONCENTRATED_WEIGHT",
+            "result": "PASS"
+          },
+          {
+            "limit": 0.69,
+            "name": "LOW_SUB_UNIVERSE_SHARPE",
+            "result": "FAIL",
+            "value": 0.49
+          },
+          {
+            "name": "SELF_CORRELATION",
+            "result": "PENDING"
+          },
+          {
+            "competitions": [
+              {
+                "id": "challenge",
+                "name": "Challenge"
+              }
+            ],
+            "name": "MATCHES_COMPETITION",
+            "result": "PASS"
+          }
+        ],
+        "drawdown": 0.0354,
+        "fitness": 1.01,
+        "longCount": 1496,
+        "margin": 0.001428,
+        "pnl": 2472941,
+        "returns": 0.05,
+        "sharpe": 1.6,
+        "shortCount": 1548,
+        "startDate": "2019-01-01",
+        "turnover": 0.07
+      }
+    },
+    "H2a_eadist63": {
+      "control_full_beaten": true,
+      "full": {
+        "decile_dispersion": 0.03879472129040238,
+        "decile_returns": {
+          "1": -0.0739,
+          "2": -0.0021,
+          "3": -0.0287,
+          "4": -0.0098,
+          "5": -0.0436,
+          "6": 0.0421,
+          "7": 0.0526,
+          "8": 0.0203,
+          "9": 0.0403,
+          "10": 0.0142
+        },
+        "distinct_values": 10,
+        "extremes_share_of_spread": 0.5187287173666288,
+        "inner_spread_d9_minus_d2": 0.0424,
+        "missing": [],
+        "monotonicity": 0.6727272727272727,
+        "monotonicity_middle_8": 0.5952380952380952,
+        "permutation_p": 0.014029929850350748,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.0881,
+        "verdict": "ORDERS ITS DECILES -- clears the declared bar"
+      },
+      "hold_2023": {
+        "decile_dispersion": 0.04394363321347018,
+        "decile_returns": {
+          "1": -0.0648,
+          "2": -0.0109,
+          "3": -0.0085,
+          "4": -0.0223,
+          "5": 0.0425,
+          "6": 0.0515,
+          "7": 0.0688,
+          "8": 0.0321,
+          "9": -0.0301,
+          "10": -0.0574
+        },
+        "decile_share_of_scored": [
+          0.1,
+          0.0997,
+          0.1,
+          0.0997,
+          0.0997,
+          0.1006,
+          0.0997,
+          0.1,
+          0.0997,
+          0.1
+        ],
+        "distinct_values": 10,
+        "extremes_share_of_spread": 3.5945945945945956,
+        "inner_spread_d9_minus_d2": -0.0192,
+        "missing": [],
+        "monotonicity": 0.11515151515151516,
+        "monotonicity_middle_8": 0.11904761904761904,
+        "permutation_p": 1.0,
+        "scored_names_mean": 3170.2,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.007399999999999997,
+        "verdict": "flat -- replicates the null",
+        "yearly": {
+          "2023": {
+            "monotonicity": 0.11515151515151516,
+            "top_minus_bottom": 0.007399999999999997
+          }
+        }
+      },
+      "hypothesis": "H2_earnings_announcement_premium",
+      "production_2023_not_evidence": [
+        "2023",
+        550568.0,
+        20000000,
+        1566,
+        1516,
+        0.1328,
+        1.29,
+        0.0551,
+        0.0263,
+        0.000829,
+        0.83,
+        "IS"
+      ],
+      "production_alpha_id": "Vk0kLlGJ",
+      "production_not_evidence": {
+        "bookSize": 20000000,
+        "checks": [
+          {
+            "limit": 1.25,
+            "name": "LOW_SHARPE",
+            "result": "PASS",
+            "value": 1.39
+          },
+          {
+            "limit": 1.0,
+            "name": "LOW_FITNESS",
+            "result": "FAIL",
+            "value": 0.99
+          },
+          {
+            "limit": 0.01,
+            "name": "LOW_TURNOVER",
+            "result": "PASS",
+            "value": 0.1376
+          },
+          {
+            "limit": 0.7,
+            "name": "HIGH_TURNOVER",
+            "result": "PASS",
+            "value": 0.1376
+          },
+          {
+            "name": "CONCENTRATED_WEIGHT",
+            "result": "PASS"
+          },
+          {
+            "limit": 0.6,
+            "name": "LOW_SUB_UNIVERSE_SHARPE",
+            "result": "PASS",
+            "value": 0.78
+          },
+          {
+            "name": "SELF_CORRELATION",
+            "result": "PENDING"
+          },
+          {
+            "competitions": [
+              {
+                "id": "challenge",
+                "name": "Challenge"
+              }
+            ],
+            "name": "MATCHES_COMPETITION",
+            "result": "PASS"
+          }
+        ],
+        "drawdown": 0.0876,
+        "fitness": 0.99,
+        "longCount": 1541,
+        "margin": 0.001017,
+        "pnl": 3458137,
+        "returns": 0.0699,
+        "sharpe": 1.39,
+        "shortCount": 1498,
+        "startDate": "2019-01-01",
+        "turnover": 0.1376
+      }
+    },
+    "H2b_eadist58": {
+      "control_full_beaten": true,
+      "full": {
+        "decile_dispersion": 0.038567013107058214,
+        "decile_returns": {
+          "1": -0.073,
+          "2": -0.0031,
+          "3": -0.0311,
+          "4": -0.0102,
+          "5": -0.0397,
+          "6": 0.0355,
+          "7": 0.0537,
+          "8": 0.0272,
+          "9": 0.0442,
+          "10": 0.008
+        },
+        "distinct_values": 10,
+        "extremes_share_of_spread": 0.4160493827160493,
+        "inner_spread_d9_minus_d2": 0.0473,
+        "missing": [],
+        "monotonicity": 0.7090909090909091,
+        "monotonicity_middle_8": 0.6666666666666666,
+        "permutation_p": 0.008494957525212374,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.08099999999999999,
+        "verdict": "ORDERS ITS DECILES -- clears the declared bar"
+      },
+      "hold_2023": {
+        "decile_dispersion": 0.0483007494765868,
+        "decile_returns": {
+          "1": -0.0709,
+          "2": 0.0034,
+          "3": -0.0199,
+          "4": -0.0111,
+          "5": 0.0472,
+          "6": 0.0576,
+          "7": 0.0701,
+          "8": 0.0313,
+          "9": -0.031,
+          "10": -0.0733
+        },
+        "decile_share_of_scored": [
+          0.1,
+          0.0997,
+          0.1003,
+          0.0994,
+          0.0994,
+          0.1006,
+          0.0997,
+          0.0997,
+          0.1,
+          0.0997
+        ],
+        "distinct_values": 10,
+        "extremes_share_of_spread": -13.333333333333337,
+        "inner_spread_d9_minus_d2": -0.0344,
+        "missing": [],
+        "monotonicity": 0.006060606060606061,
+        "monotonicity_middle_8": 0.11904761904761904,
+        "permutation_p": 1.0,
+        "scored_names_mean": 3170.1,
+        "tie_check_passed": true,
+        "top_minus_bottom": -0.0023999999999999994,
+        "verdict": "flat -- replicates the null",
+        "yearly": {
+          "2023": {
+            "monotonicity": 0.006060606060606061,
+            "top_minus_bottom": -0.0023999999999999994
+          }
+        }
+      },
+      "hypothesis": "H2_earnings_announcement_premium",
+      "production_2023_not_evidence": [
+        "2023",
+        501923.0,
+        20000000,
+        1567,
+        1515,
+        0.1364,
+        1.17,
+        0.0502,
+        0.0254,
+        0.000736,
+        0.71,
+        "IS"
+      ],
+      "production_alpha_id": "6XKXL1ZP",
+      "production_not_evidence": {
+        "bookSize": 20000000,
+        "checks": [
+          {
+            "limit": 1.25,
+            "name": "LOW_SHARPE",
+            "result": "PASS",
+            "value": 1.38
+          },
+          {
+            "limit": 1.0,
+            "name": "LOW_FITNESS",
+            "result": "FAIL",
+            "value": 0.97
+          },
+          {
+            "limit": 0.01,
+            "name": "LOW_TURNOVER",
+            "result": "PASS",
+            "value": 0.1411
+          },
+          {
+            "limit": 0.7,
+            "name": "HIGH_TURNOVER",
+            "result": "PASS",
+            "value": 0.1411
+          },
+          {
+            "name": "CONCENTRATED_WEIGHT",
+            "result": "PASS"
+          },
+          {
+            "limit": 0.6,
+            "name": "LOW_SUB_UNIVERSE_SHARPE",
+            "result": "PASS",
+            "value": 0.86
+          },
+          {
+            "name": "SELF_CORRELATION",
+            "result": "PENDING"
+          },
+          {
+            "competitions": [
+              {
+                "id": "challenge",
+                "name": "Challenge"
+              }
+            ],
+            "name": "MATCHES_COMPETITION",
+            "result": "PASS"
+          }
+        ],
+        "drawdown": 0.078,
+        "fitness": 0.97,
+        "longCount": 1541,
+        "margin": 0.000992,
+        "pnl": 3459717,
+        "returns": 0.07,
+        "sharpe": 1.38,
+        "shortCount": 1497,
+        "startDate": "2019-01-01",
+        "turnover": 0.1411
+      }
+    },
+    "H2c_salesdist63": {
+      "control_full_beaten": true,
+      "full": {
+        "decile_dispersion": 0.035487456939036925,
+        "decile_returns": {
+          "1": -0.0648,
+          "2": -0.0444,
+          "3": -0.0321,
+          "4": -0.0033,
+          "5": -0.0015,
+          "6": 0.0157,
+          "7": 0.0465,
+          "8": 0.0249,
+          "9": 0.0469,
+          "10": 0.0123
+        },
+        "distinct_values": 10,
+        "extremes_share_of_spread": -0.1841763942931256,
+        "inner_spread_d9_minus_d2": 0.09129999999999999,
+        "missing": [],
+        "monotonicity": 0.8666666666666667,
+        "monotonicity_middle_8": 0.9761904761904762,
+        "permutation_p": 2.4999875000624998e-05,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.0771,
+        "verdict": "ORDERS ITS DECILES -- clears the declared bar"
+      },
+      "hold_2023": {
+        "decile_dispersion": 0.04459116055901663,
+        "decile_returns": {
+          "1": -0.0251,
+          "2": -0.0654,
+          "3": -0.0461,
+          "4": 0.0149,
+          "5": 0.0738,
+          "6": 0.061,
+          "7": 0.022,
+          "8": 0.0278,
+          "9": -0.0212,
+          "10": -0.0419
+        },
+        "decile_share_of_scored": [
+          0.1003,
+          0.0994,
+          0.1,
+          0.0997,
+          0.0997,
+          0.0994,
+          0.1009,
+          0.0997,
+          0.1,
+          0.0997
+        ],
+        "distinct_values": 10,
+        "extremes_share_of_spread": 3.6309523809523814,
+        "inner_spread_d9_minus_d2": 0.0442,
+        "missing": [],
+        "monotonicity": 0.3090909090909091,
+        "monotonicity_middle_8": 0.42857142857142855,
+        "permutation_p": 0.5,
+        "scored_names_mean": 3170.1,
+        "tie_check_passed": true,
+        "top_minus_bottom": -0.0168,
+        "verdict": "flat -- replicates the null",
+        "yearly": {
+          "2023": {
+            "monotonicity": 0.3090909090909091,
+            "top_minus_bottom": -0.0168
+          }
+        }
+      },
+      "hypothesis": "H2_earnings_announcement_premium",
+      "production_2023_not_evidence": [
+        "2023",
+        499387.0,
+        20000000,
+        1550,
+        1533,
+        0.1188,
+        1.06,
+        0.0499,
+        0.0294,
+        0.000841,
+        0.67,
+        "IS"
+      ],
+      "production_alpha_id": "Wjejramo",
+      "production_not_evidence": {
+        "bookSize": 20000000,
+        "checks": [
+          {
+            "limit": 1.25,
+            "name": "LOW_SHARPE",
+            "result": "PASS",
+            "value": 1.42
+          },
+          {
+            "limit": 1.0,
+            "name": "LOW_FITNESS",
+            "result": "PASS",
+            "value": 1.13
+          },
+          {
+            "limit": 0.01,
+            "name": "LOW_TURNOVER",
+            "result": "PASS",
+            "value": 0.1252
+          },
+          {
+            "limit": 0.7,
+            "name": "HIGH_TURNOVER",
+            "result": "PASS",
+            "value": 0.1252
+          },
+          {
+            "name": "CONCENTRATED_WEIGHT",
+            "result": "PASS"
+          },
+          {
+            "limit": 0.61,
+            "name": "LOW_SUB_UNIVERSE_SHARPE",
+            "result": "FAIL",
+            "value": 0.46
+          },
+          {
+            "name": "SELF_CORRELATION",
+            "result": "PENDING"
+          },
+          {
+            "competitions": [
+              {
+                "id": "challenge",
+                "name": "Challenge"
+              }
+            ],
+            "name": "MATCHES_COMPETITION",
+            "result": "PASS"
+          }
+        ],
+        "drawdown": 0.0903,
+        "fitness": 1.13,
+        "longCount": 1529,
+        "margin": 0.001262,
+        "pnl": 3906503,
+        "returns": 0.079,
+        "sharpe": 1.42,
+        "shortCount": 1499,
+        "startDate": "2019-01-01",
+        "turnover": 0.1252
+      }
+    },
+    "H3a_numest_af_yoy": {
+      "control_full_beaten": true,
+      "full": {
+        "decile_dispersion": 0.03298699743838472,
+        "decile_returns": {
+          "1": -0.0695,
+          "2": -0.0249,
+          "3": 0.0182,
+          "4": 0.0093,
+          "5": 0.0263,
+          "6": 0.0186,
+          "7": 0.0397,
+          "8": 0.0478,
+          "9": 0.035,
+          "10": 0.0075
+        },
+        "distinct_values": 10,
+        "extremes_share_of_spread": 0.2220779220779222,
+        "inner_spread_d9_minus_d2": 0.0599,
+        "missing": [],
+        "monotonicity": 0.6,
+        "monotonicity_middle_8": 0.8809523809523809,
+        "permutation_p": 0.0018399908000459998,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.07700000000000001,
+        "verdict": "ORDERS ITS DECILES -- clears the declared bar"
+      },
+      "hold_2023": {
+        "decile_dispersion": 0.0318881733562774,
+        "decile_returns": {
+          "1": -0.0459,
+          "2": 0.026,
+          "3": 0.0033,
+          "4": -0.0385,
+          "5": -0.0359,
+          "6": 0.012,
+          "7": 0.0514,
+          "8": -0.003,
+          "9": 0.0395,
+          "10": 0.0179
+        },
+        "decile_share_of_scored": [
+          0.1312,
+          0.0687,
+          0.0997,
+          0.1,
+          0.0997,
+          0.0997,
+          0.1,
+          0.0997,
+          0.1,
+          0.1
+        ],
+        "distinct_values": 10,
+        "extremes_share_of_spread": 0.7884012539184952,
+        "inner_spread_d9_minus_d2": 0.013500000000000002,
+        "missing": [],
+        "monotonicity": 0.503030303030303,
+        "monotonicity_middle_8": 0.30952380952380953,
+        "permutation_p": 0.5,
+        "scored_names_mean": 3170.3,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.0638,
+        "verdict": "CONCENTRATION in the extremes, not an ordering -- middle eight do not order",
+        "yearly": {
+          "2023": {
+            "monotonicity": 0.503030303030303,
+            "top_minus_bottom": 0.0638
+          }
+        }
+      },
+      "hypothesis": "H3_analyst_coverage_change",
+      "production_2023_not_evidence": [
+        "2023",
+        370361.0,
+        20000000,
+        1521,
+        1566,
+        0.3804,
+        1.17,
+        0.037,
+        0.0195,
+        0.000195,
+        0.36,
+        "IS"
+      ],
+      "production_alpha_id": "0mrmVdJv",
+      "production_not_evidence": {
+        "bookSize": 20000000,
+        "checks": [
+          {
+            "limit": 1.25,
+            "name": "LOW_SHARPE",
+            "result": "PASS",
+            "value": 1.28
+          },
+          {
+            "limit": 1.0,
+            "name": "LOW_FITNESS",
+            "result": "FAIL",
+            "value": 0.49
+          },
+          {
+            "limit": 0.01,
+            "name": "LOW_TURNOVER",
+            "result": "PASS",
+            "value": 0.3703
+          },
+          {
+            "limit": 0.7,
+            "name": "HIGH_TURNOVER",
+            "result": "PASS",
+            "value": 0.3703
+          },
+          {
+            "name": "CONCENTRATED_WEIGHT",
+            "result": "PASS"
+          },
+          {
+            "limit": 0.55,
+            "name": "LOW_SUB_UNIVERSE_SHARPE",
+            "result": "FAIL",
+            "value": 0.45
+          },
+          {
+            "name": "SELF_CORRELATION",
+            "result": "PENDING"
+          },
+          {
+            "competitions": [
+              {
+                "id": "challenge",
+                "name": "Challenge"
+              }
+            ],
+            "name": "MATCHES_COMPETITION",
+            "result": "PASS"
+          }
+        ],
+        "drawdown": 0.0824,
+        "fitness": 0.49,
+        "longCount": 1485,
+        "margin": 0.000299,
+        "pnl": 2736370,
+        "returns": 0.0553,
+        "sharpe": 1.28,
+        "shortCount": 1555,
+        "startDate": "2019-01-01",
+        "turnover": 0.3703
+      }
+    },
+    "H3b_numest_qf_yoy": {
+      "control_full_beaten": true,
+      "full": {
+        "decile_dispersion": 0.031209307906456367,
+        "decile_returns": {
+          "1": -0.0571,
+          "2": -0.0398,
+          "3": 0.0309,
+          "4": 0.0187,
+          "5": 0.0248,
+          "6": 0.03,
+          "7": 0.0341,
+          "8": 0.0303,
+          "9": 0.0354,
+          "10": 0.0168
+        },
+        "distinct_values": 10,
+        "extremes_share_of_spread": -0.017591339648173276,
+        "inner_spread_d9_minus_d2": 0.0752,
+        "missing": [],
+        "monotonicity": 0.5151515151515151,
+        "monotonicity_middle_8": 0.7142857142857143,
+        "permutation_p": 0.013969930150349249,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.0739,
+        "verdict": "ORDERS ITS DECILES -- clears the declared bar"
+      },
+      "hold_2023": {
+        "decile_dispersion": 0.031141554232247303,
+        "decile_returns": {
+          "1": -0.0496,
+          "2": 0.0033,
+          "3": -0.0182,
+          "4": -0.0229,
+          "5": -0.0023,
+          "6": -0.0311,
+          "7": 0.047,
+          "8": 0.0388,
+          "9": 0.0221,
+          "10": 0.0353
+        },
+        "decile_share_of_scored": [
+          0.1322,
+          0.0675,
+          0.1,
+          0.0997,
+          0.1,
+          0.0997,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        "distinct_values": 10,
+        "extremes_share_of_spread": 0.7785630153121319,
+        "inner_spread_d9_minus_d2": 0.0188,
+        "missing": [],
+        "monotonicity": 0.6848484848484848,
+        "monotonicity_middle_8": 0.5,
+        "permutation_p": 0.5,
+        "scored_names_mean": 3170.4,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.0849,
+        "verdict": "CONCENTRATION in the extremes, not an ordering -- middle eight do not order",
+        "yearly": {
+          "2023": {
+            "monotonicity": 0.6848484848484848,
+            "top_minus_bottom": 0.0849
+          }
+        }
+      },
+      "hypothesis": "H3_analyst_coverage_change",
+      "production_2023_not_evidence": [
+        "2023",
+        489667.0,
+        20000000,
+        1525,
+        1562,
+        0.3748,
+        1.71,
+        0.049,
+        0.0222,
+        0.000261,
+        0.62,
+        "IS"
+      ],
+      "production_alpha_id": "leKem0Ex",
+      "production_not_evidence": {
+        "bookSize": 20000000,
+        "checks": [
+          {
+            "limit": 1.25,
+            "name": "LOW_SHARPE",
+            "result": "PASS",
+            "value": 1.27
+          },
+          {
+            "limit": 1.0,
+            "name": "LOW_FITNESS",
+            "result": "FAIL",
+            "value": 0.49
+          },
+          {
+            "limit": 0.01,
+            "name": "LOW_TURNOVER",
+            "result": "PASS",
+            "value": 0.3651
+          },
+          {
+            "limit": 0.7,
+            "name": "HIGH_TURNOVER",
+            "result": "PASS",
+            "value": 0.3651
+          },
+          {
+            "name": "CONCENTRATED_WEIGHT",
+            "result": "PASS"
+          },
+          {
+            "limit": 0.55,
+            "name": "LOW_SUB_UNIVERSE_SHARPE",
+            "result": "FAIL",
+            "value": 0.53
+          },
+          {
+            "name": "SELF_CORRELATION",
+            "result": "PENDING"
+          },
+          {
+            "competitions": [
+              {
+                "id": "challenge",
+                "name": "Challenge"
+              }
+            ],
+            "name": "MATCHES_COMPETITION",
+            "result": "PASS"
+          }
+        ],
+        "drawdown": 0.0828,
+        "fitness": 0.49,
+        "longCount": 1483,
+        "margin": 0.000295,
+        "pnl": 2666019,
+        "returns": 0.0539,
+        "sharpe": 1.27,
+        "shortCount": 1557,
+        "startDate": "2019-01-01",
+        "turnover": 0.3651
+      }
+    },
+    "H4a_ltg_sector": {
+      "control_full_beaten": false,
+      "full": {
+        "decile_dispersion": 0.020788160091744532,
+        "decile_returns": {
+          "1": -0.0492,
+          "2": 0.0108,
+          "3": 0.0141,
+          "4": 0.0185,
+          "5": -0.0011,
+          "6": 0.0234,
+          "7": 0.0106,
+          "8": -0.0005,
+          "9": -0.0024,
+          "10": -0.024
+        },
+        "distinct_values": 10,
+        "extremes_share_of_spread": 1.5238095238095237,
+        "inner_spread_d9_minus_d2": -0.0132,
+        "missing": [],
+        "monotonicity": -0.22424242424242424,
+        "monotonicity_middle_8": -0.5476190476190477,
+        "permutation_p": 0.7252913735431323,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.0252,
+        "verdict": "flat -- replicates the null"
+      },
+      "hold_2023": {
+        "decile_dispersion": 0.029054619254087637,
+        "decile_returns": {
+          "1": -0.0329,
+          "2": 0.0144,
+          "3": -0.0068,
+          "4": 0.0418,
+          "5": -0.0178,
+          "6": -0.0456,
+          "7": 0.0378,
+          "8": -0.0142,
+          "9": 0.0347,
+          "10": -0.0113
+        },
+        "decile_share_of_scored": [
+          0.1,
+          0.1,
+          0.0997,
+          0.1,
+          0.1,
+          0.0997,
+          0.0997,
+          0.1,
+          0.0997,
+          0.1
+        ],
+        "distinct_values": 10,
+        "extremes_share_of_spread": 0.06018518518518512,
+        "inner_spread_d9_minus_d2": 0.020300000000000002,
+        "missing": [],
+        "monotonicity": 0.11515151515151516,
+        "monotonicity_middle_8": -0.023809523809523808,
+        "permutation_p": 1.0,
+        "scored_names_mean": 3170.3,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.0216,
+        "verdict": "flat -- replicates the null",
+        "yearly": {
+          "2023": {
+            "monotonicity": 0.11515151515151516,
+            "top_minus_bottom": 0.0216
+          }
+        }
+      },
+      "hypothesis": "H4_long_term_growth_forecast",
+      "production_2023_not_evidence": [
+        "2023",
+        270120.0,
+        20000000,
+        1546,
+        1544,
+        0.079,
+        0.27,
+        0.027,
+        0.1182,
+        0.000684,
+        0.13,
+        "IS"
+      ],
+      "production_alpha_id": "d51k2ZMx",
+      "production_not_evidence": {
+        "bookSize": 20000000,
+        "checks": [
+          {
+            "limit": 1.25,
+            "name": "LOW_SHARPE",
+            "result": "FAIL",
+            "value": 0.01
+          },
+          {
+            "limit": 1.0,
+            "name": "LOW_FITNESS",
+            "result": "FAIL",
+            "value": 0.0
+          },
+          {
+            "limit": 0.01,
+            "name": "LOW_TURNOVER",
+            "result": "PASS",
+            "value": 0.0878
+          },
+          {
+            "limit": 0.7,
+            "name": "HIGH_TURNOVER",
+            "result": "PASS",
+            "value": 0.0878
+          },
+          {
+            "name": "CONCENTRATED_WEIGHT",
+            "result": "PASS"
+          },
+          {
+            "limit": 0.0,
+            "name": "LOW_SUB_UNIVERSE_SHARPE",
+            "result": "PASS",
+            "value": 0.28
+          },
+          {
+            "name": "SELF_CORRELATION",
+            "result": "PENDING"
+          },
+          {
+            "competitions": [
+              {
+                "id": "challenge",
+                "name": "Challenge"
+              }
+            ],
+            "name": "MATCHES_COMPETITION",
+            "result": "PASS"
+          }
+        ],
+        "drawdown": 0.3677,
+        "fitness": 0.0,
+        "longCount": 1517,
+        "margin": 2.9e-05,
+        "pnl": 62255,
+        "returns": 0.0013,
+        "sharpe": 0.01,
+        "shortCount": 1547,
+        "startDate": "2019-01-01",
+        "turnover": 0.0878
+      }
+    },
+    "H4b_ltg_industry": {
+      "control_full_beaten": false,
+      "full": {
+        "decile_dispersion": 0.018527355450792215,
+        "decile_returns": {
+          "1": -0.0484,
+          "2": 0.0141,
+          "3": -0.0017,
+          "4": 0.0083,
+          "5": 0.0216,
+          "6": 0.0065,
+          "7": 0.0051,
+          "8": 0.0101,
+          "9": -0.0024,
+          "10": -0.0133
+        },
+        "distinct_values": 10,
+        "extremes_share_of_spread": 1.4700854700854702,
+        "inner_spread_d9_minus_d2": -0.0165,
+        "missing": [],
+        "monotonicity": -0.1393939393939394,
+        "monotonicity_middle_8": -0.38095238095238093,
+        "permutation_p": 0.623841880790596,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.0351,
+        "verdict": "flat -- replicates the null"
+      },
+      "hold_2023": {
+        "decile_dispersion": 0.024567124373845627,
+        "decile_returns": {
+          "1": -0.0405,
+          "2": 0.0016,
+          "3": 0.005,
+          "4": 0.019,
+          "5": 0.0049,
+          "6": -0.0525,
+          "7": 0.0015,
+          "8": 0.0224,
+          "9": 0.0209,
+          "10": 0.0169
+        },
+        "decile_share_of_scored": [
+          0.1,
+          0.1003,
+          0.0994,
+          0.1,
+          0.0997,
+          0.0997,
+          0.1,
+          0.0994,
+          0.1003,
+          0.1
+        ],
+        "distinct_values": 10,
+        "extremes_share_of_spread": 0.6637630662020906,
+        "inner_spread_d9_minus_d2": 0.019299999999999998,
+        "missing": [],
+        "monotonicity": 0.4909090909090909,
+        "monotonicity_middle_8": 0.3333333333333333,
+        "permutation_p": 0.5,
+        "scored_names_mean": 3170.1,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.0574,
+        "verdict": "flat -- replicates the null",
+        "yearly": {
+          "2023": {
+            "monotonicity": 0.4909090909090909,
+            "top_minus_bottom": 0.0574
+          }
+        }
+      },
+      "hypothesis": "H4_long_term_growth_forecast",
+      "production_2023_not_evidence": [
+        "2023",
+        203424.0,
+        20000000,
+        1542,
+        1542,
+        0.0814,
+        0.22,
+        0.0203,
+        0.1184,
+        0.0005,
+        0.09,
+        "IS"
+      ],
+      "production_alpha_id": "d51kkg6j",
+      "production_not_evidence": {
+        "bookSize": 20000000,
+        "checks": [
+          {
+            "limit": 1.25,
+            "name": "LOW_SHARPE",
+            "result": "FAIL",
+            "value": 0.01
+          },
+          {
+            "limit": 1.0,
+            "name": "LOW_FITNESS",
+            "result": "FAIL",
+            "value": 0.0
+          },
+          {
+            "limit": 0.01,
+            "name": "LOW_TURNOVER",
+            "result": "PASS",
+            "value": 0.0906
+          },
+          {
+            "limit": 0.7,
+            "name": "HIGH_TURNOVER",
+            "result": "PASS",
+            "value": 0.0906
+          },
+          {
+            "name": "CONCENTRATED_WEIGHT",
+            "result": "PASS"
+          },
+          {
+            "limit": 0.0,
+            "name": "LOW_SUB_UNIVERSE_SHARPE",
+            "result": "PASS",
+            "value": 0.26
+          },
+          {
+            "name": "SELF_CORRELATION",
+            "result": "PENDING"
+          },
+          {
+            "competitions": [
+              {
+                "id": "challenge",
+                "name": "Challenge"
+              }
+            ],
+            "name": "MATCHES_COMPETITION",
+            "result": "PASS"
+          }
+        ],
+        "drawdown": 0.3581,
+        "fitness": 0.0,
+        "longCount": 1516,
+        "margin": 2.8e-05,
+        "pnl": 62158,
+        "returns": 0.0013,
+        "sharpe": 0.01,
+        "shortCount": 1543,
+        "startDate": "2019-01-01",
+        "turnover": 0.0906
+      }
+    },
+    "H4c_ltg_subindustry": {
+      "control_full_beaten": false,
+      "full": {
+        "decile_dispersion": 0.015172738711254472,
+        "decile_returns": {
+          "1": -0.0203,
+          "2": 0.0011,
+          "3": 0.0007,
+          "4": 0.0087,
+          "5": 0.0123,
+          "6": 0.0185,
+          "7": 0.0134,
+          "8": 0.0016,
+          "9": -0.0337,
+          "10": 0.0017
+        },
+        "distinct_values": 10,
+        "extremes_share_of_spread": 2.581818181818182,
+        "inner_spread_d9_minus_d2": -0.0348,
+        "missing": [],
+        "monotonicity": 0.2,
+        "monotonicity_middle_8": 0.047619047619047616,
+        "permutation_p": 0.24217878910605448,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.022,
+        "verdict": "flat -- replicates the null"
+      },
+      "hold_2023": {
+        "decile_dispersion": 0.01198455672939137,
+        "decile_returns": {
+          "1": -0.0102,
+          "2": -0.0129,
+          "3": 0.0017,
+          "4": -0.0009,
+          "5": 0.0021,
+          "6": -0.0047,
+          "7": -0.0204,
+          "8": 0.0197,
+          "9": 0.0106,
+          "10": 0.0148
+        },
+        "decile_share_of_scored": [
+          0.1192,
+          0.0801,
+          0.1019,
+          0.0981,
+          0.0864,
+          0.1132,
+          0.0997,
+          0.1,
+          0.0997,
+          0.1
+        ],
+        "distinct_values": 10,
+        "extremes_share_of_spread": 0.06000000000000005,
+        "inner_spread_d9_minus_d2": 0.0235,
+        "missing": [],
+        "monotonicity": 0.6121212121212121,
+        "monotonicity_middle_8": 0.4523809523809524,
+        "permutation_p": 0.5,
+        "scored_names_mean": 3170.0,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.025,
+        "verdict": "CONCENTRATION in the extremes, not an ordering -- middle eight do not order",
+        "yearly": {
+          "2023": {
+            "monotonicity": 0.6121212121212121,
+            "top_minus_bottom": 0.025
+          }
+        }
+      },
+      "hypothesis": "H4_long_term_growth_forecast",
+      "production_2023_not_evidence": [
+        "2023",
+        120069.0,
+        20000000,
+        1493,
+        1533,
+        0.0687,
+        0.14,
+        0.012,
+        0.1166,
+        0.00035,
+        0.04,
+        "IS"
+      ],
+      "production_alpha_id": "JjQMqekE",
+      "production_not_evidence": {
+        "bookSize": 20000000,
+        "checks": [
+          {
+            "limit": 1.25,
+            "name": "LOW_SHARPE",
+            "result": "FAIL",
+            "value": -0.07
+          },
+          {
+            "limit": 1.0,
+            "name": "LOW_FITNESS",
+            "result": "FAIL",
+            "value": -0.02
+          },
+          {
+            "limit": 0.01,
+            "name": "LOW_TURNOVER",
+            "result": "PASS",
+            "value": 0.0779
+          },
+          {
+            "limit": 0.7,
+            "name": "HIGH_TURNOVER",
+            "result": "PASS",
+            "value": 0.0779
+          },
+          {
+            "name": "CONCENTRATED_WEIGHT",
+            "result": "PASS"
+          },
+          {
+            "limit": -0.03,
+            "name": "LOW_SUB_UNIVERSE_SHARPE",
+            "result": "PASS",
+            "value": 0.07
+          },
+          {
+            "name": "SELF_CORRELATION",
+            "result": "PENDING"
+          },
+          {
+            "competitions": [
+              {
+                "id": "challenge",
+                "name": "Challenge"
+              }
+            ],
+            "name": "MATCHES_COMPETITION",
+            "result": "PASS"
+          }
+        ],
+        "drawdown": 0.3504,
+        "fitness": -0.02,
+        "longCount": 1469,
+        "margin": -0.000152,
+        "pnl": -292344,
+        "returns": -0.0059,
+        "sharpe": -0.07,
+        "shortCount": 1523,
+        "startDate": "2019-01-01",
+        "turnover": 0.0779
+      }
+    },
+    "H5a_ivrv30": {
+      "control_full_beaten": true,
+      "full": {
+        "decile_dispersion": 0.041658017235581435,
+        "decile_returns": {
+          "1": -0.1119,
+          "2": 0.0179,
+          "3": 0.0321,
+          "4": 0.0066,
+          "5": 0.0334,
+          "6": 0.0342,
+          "7": 0.0284,
+          "8": 0.0079,
+          "9": -0.0035,
+          "10": -0.0185
+        },
+        "distinct_values": 10,
+        "extremes_share_of_spread": 1.2291220556745182,
+        "inner_spread_d9_minus_d2": -0.0214,
+        "missing": [],
+        "monotonicity": -0.10303030303030303,
+        "monotonicity_middle_8": -0.30952380952380953,
+        "permutation_p": 0.5749521252393738,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.0934,
+        "verdict": "flat -- replicates the null"
+      },
+      "hold_2023": {
+        "decile_dispersion": 0.04917283904758805,
+        "decile_returns": {
+          "1": 0.0527,
+          "2": -0.0326,
+          "3": -0.005,
+          "4": -0.0886,
+          "5": 0.0797,
+          "6": -0.001,
+          "7": 0.0073,
+          "8": -0.0147,
+          "9": 0.0538,
+          "10": -0.0543
+        },
+        "decile_share_of_scored": [
+          0.1004,
+          0.0995,
+          0.0998,
+          0.0998,
+          0.1035,
+          0.0998,
+          0.0998,
+          0.0998,
+          0.0998,
+          0.0997
+        ],
+        "distinct_values": 10,
+        "extremes_share_of_spread": 1.8074766355140186,
+        "inner_spread_d9_minus_d2": 0.0864,
+        "missing": [],
+        "monotonicity": -0.01818181818181818,
+        "monotonicity_middle_8": 0.5,
+        "permutation_p": 0.5,
+        "scored_names_mean": 3159.7,
+        "tie_check_passed": true,
+        "top_minus_bottom": -0.107,
+        "verdict": "flat -- replicates the null",
+        "yearly": {
+          "2023": {
+            "monotonicity": -0.01818181818181818,
+            "top_minus_bottom": -0.107
+          }
+        }
+      },
+      "hypothesis": "H5_implied_minus_realized_vol",
+      "production_2023_not_evidence": [
+        "2023",
+        -326018.0,
+        20000000,
+        1524,
+        1568,
+        0.4023,
+        -0.65,
+        -0.0326,
+        0.0698,
+        -0.000162,
+        -0.19,
+        "IS"
+      ],
+      "production_alpha_id": "QPKZkekp",
+      "production_not_evidence": {
+        "bookSize": 20000000,
+        "checks": [
+          {
+            "limit": 1.25,
+            "name": "LOW_SHARPE",
+            "result": "FAIL",
+            "value": 0.23
+          },
+          {
+            "limit": 1.0,
+            "name": "LOW_FITNESS",
+            "result": "FAIL",
+            "value": 0.04
+          },
+          {
+            "limit": 0.01,
+            "name": "LOW_TURNOVER",
+            "result": "PASS",
+            "value": 0.372
+          },
+          {
+            "limit": 0.7,
+            "name": "HIGH_TURNOVER",
+            "result": "PASS",
+            "value": 0.372
+          },
+          {
+            "date": "2023-12-04",
+            "limit": 0.1,
+            "name": "CONCENTRATED_WEIGHT",
+            "result": "FAIL",
+            "value": 0.5
+          },
+          {
+            "limit": 0.1,
+            "name": "LOW_SUB_UNIVERSE_SHARPE",
+            "result": "FAIL",
+            "value": -0.26
+          },
+          {
+            "name": "SELF_CORRELATION",
+            "result": "PENDING"
+          },
+          {
+            "competitions": [
+              {
+                "id": "challenge",
+                "name": "Challenge"
+              }
+            ],
+            "name": "MATCHES_COMPETITION",
+            "result": "PASS"
+          }
+        ],
+        "drawdown": 0.1623,
+        "fitness": 0.04,
+        "longCount": 1503,
+        "margin": 6.9e-05,
+        "pnl": 639535,
+        "returns": 0.0129,
+        "sharpe": 0.23,
+        "shortCount": 1560,
+        "startDate": "2019-01-01",
+        "turnover": 0.372
+      }
+    },
+    "H5b_ivrv90": {
+      "control_full_beaten": true,
+      "full": {
+        "decile_dispersion": 0.041987880394228044,
+        "decile_returns": {
+          "1": -0.1105,
+          "2": 0.0238,
+          "3": 0.0241,
+          "4": 0.0269,
+          "5": 0.0365,
+          "6": 0.0167,
+          "7": 0.0172,
+          "8": 0.0257,
+          "9": -0.0029,
+          "10": -0.0322
+        },
+        "distinct_values": 10,
+        "extremes_share_of_spread": 1.3409961685823755,
+        "inner_spread_d9_minus_d2": -0.0267,
+        "missing": [],
+        "monotonicity": -0.15151515151515152,
+        "monotonicity_middle_8": -0.40476190476190477,
+        "permutation_p": 0.638161809190954,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.07830000000000001,
+        "verdict": "flat -- replicates the null"
+      },
+      "hold_2023": {
+        "decile_dispersion": 0.043926699170322374,
+        "decile_returns": {
+          "1": 0.0379,
+          "2": -0.0011,
+          "3": -0.0019,
+          "4": -0.0163,
+          "5": 0.0204,
+          "6": -0.0031,
+          "7": 0.0148,
+          "8": 0.0377,
+          "9": 0.0305,
+          "10": -0.1208
+        },
+        "decile_share_of_scored": [
+          0.1004,
+          0.0995,
+          0.0998,
+          0.0998,
+          0.1035,
+          0.0998,
+          0.0998,
+          0.0998,
+          0.0998,
+          0.0997
+        ],
+        "distinct_values": 10,
+        "extremes_share_of_spread": 1.1991178323881537,
+        "inner_spread_d9_minus_d2": 0.031599999999999996,
+        "missing": [],
+        "monotonicity": -0.16363636363636364,
+        "monotonicity_middle_8": 0.6428571428571429,
+        "permutation_p": 0.5,
+        "scored_names_mean": 3159.7,
+        "tie_check_passed": true,
+        "top_minus_bottom": -0.1587,
+        "verdict": "flat -- replicates the null",
+        "yearly": {
+          "2023": {
+            "monotonicity": -0.16363636363636364,
+            "top_minus_bottom": -0.1587
+          }
+        }
+      },
+      "hypothesis": "H5_implied_minus_realized_vol",
+      "production_2023_not_evidence": [
+        "2023",
+        -391365.0,
+        20000000,
+        1512,
+        1580,
+        0.3464,
+        -0.84,
+        -0.0391,
+        0.0733,
+        -0.000226,
+        -0.28,
+        "IS"
+      ],
+      "production_alpha_id": "j28zbmO5",
+      "production_not_evidence": {
+        "bookSize": 20000000,
+        "checks": [
+          {
+            "limit": 1.25,
+            "name": "LOW_SHARPE",
+            "result": "FAIL",
+            "value": 0.25
+          },
+          {
+            "limit": 1.0,
+            "name": "LOW_FITNESS",
+            "result": "FAIL",
+            "value": 0.05
+          },
+          {
+            "limit": 0.01,
+            "name": "LOW_TURNOVER",
+            "result": "PASS",
+            "value": 0.3074
+          },
+          {
+            "limit": 0.7,
+            "name": "HIGH_TURNOVER",
+            "result": "PASS",
+            "value": 0.3074
+          },
+          {
+            "date": "2023-12-04",
+            "limit": 0.1,
+            "name": "CONCENTRATED_WEIGHT",
+            "result": "FAIL",
+            "value": 0.5
+          },
+          {
+            "limit": 0.11,
+            "name": "LOW_SUB_UNIVERSE_SHARPE",
+            "result": "FAIL",
+            "value": -0.42
+          },
+          {
+            "name": "SELF_CORRELATION",
+            "result": "PENDING"
+          },
+          {
+            "competitions": [
+              {
+                "id": "challenge",
+                "name": "Challenge"
+              }
+            ],
+            "name": "MATCHES_COMPETITION",
+            "result": "PASS"
+          }
+        ],
+        "drawdown": 0.1271,
+        "fitness": 0.05,
+        "longCount": 1495,
+        "margin": 9e-05,
+        "pnl": 681903,
+        "returns": 0.0138,
+        "sharpe": 0.25,
+        "shortCount": 1567,
+        "startDate": "2019-01-01",
+        "turnover": 0.3074
+      }
+    },
+    "H5c_ivrv30_mean21": {
+      "control_full_beaten": true,
+      "full": {
+        "decile_dispersion": 0.04036826600189808,
+        "decile_returns": {
+          "1": -0.1126,
+          "2": 0.0028,
+          "3": 0.0047,
+          "4": 0.0055,
+          "5": 0.0154,
+          "6": 0.0187,
+          "7": 0.0239,
+          "8": 0.0323,
+          "9": 0.0318,
+          "10": -0.0186
+        },
+        "distinct_values": 10,
+        "extremes_share_of_spread": 0.6914893617021276,
+        "inner_spread_d9_minus_d2": 0.029,
+        "missing": [],
+        "monotonicity": 0.5515151515151515,
+        "monotonicity_middle_8": 0.9761904761904762,
+        "permutation_p": 0.00011999940000299999,
+        "tie_check_passed": true,
+        "top_minus_bottom": 0.094,
+        "verdict": "ORDERS ITS DECILES -- clears the declared bar"
+      },
+      "hold_2023": {
+        "decile_dispersion": 0.02789386312435049,
+        "decile_returns": {
+          "1": 0.0078,
+          "2": -0.046,
+          "3": 0.0035,
+          "4": -0.0332,
+          "5": -0.0107,
+          "6": 0.0338,
+          "7": -0.018,
+          "8": 0.0437,
+          "9": 0.0297,
+          "10": -0.0108
+        },
+        "decile_share_of_scored": [
+          0.1,
+          0.1,
+          0.0997,
+          0.1,
+          0.1,
+          0.0997,
+          0.0997,
+          0.1,
+          0.0997,
+          0.1
+        ],
+        "distinct_values": 10,
+        "extremes_share_of_spread": 5.06989247311828,
+        "inner_spread_d9_minus_d2": 0.0757,
+        "missing": [],
+        "monotonicity": 0.296969696969697,
+        "monotonicity_middle_8": 0.6666666666666666,
+        "permutation_p": 0.5,
+        "scored_names_mean": 3170.3,
+        "tie_check_passed": true,
+        "top_minus_bottom": -0.0186,
+        "verdict": "flat -- replicates the null",
+        "yearly": {
+          "2023": {
+            "monotonicity": 0.296969696969697,
+            "top_minus_bottom": -0.0186
+          }
+        }
+      },
+      "hypothesis": "H5_implied_minus_realized_vol",
+      "production_2023_not_evidence": [
+        "2023",
+        119272.0,
+        20000000,
+        1531,
+        1573,
+        0.0798,
+        0.26,
+        0.0119,
+        0.0436,
+        0.000299,
+        0.08,
+        "IS"
+      ],
+      "production_alpha_id": "mL6w93G2",
+      "production_not_evidence": {
+        "bookSize": 20000000,
+        "checks": [
+          {
+            "limit": 1.25,
+            "name": "LOW_SHARPE",
+            "result": "FAIL",
+            "value": 0.6
+          },
+          {
+            "limit": 1.0,
+            "name": "LOW_FITNESS",
+            "result": "FAIL",
+            "value": 0.31
+          },
+          {
+            "limit": 0.01,
+            "name": "LOW_TURNOVER",
+            "result": "PASS",
+            "value": 0.0785
+          },
+          {
+            "limit": 0.7,
+            "name": "HIGH_TURNOVER",
+            "result": "PASS",
+            "value": 0.0785
+          },
+          {
+            "name": "CONCENTRATED_WEIGHT",
+            "result": "PASS"
+          },
+          {
+            "limit": 0.26,
+            "name": "LOW_SUB_UNIVERSE_SHARPE",
+            "result": "FAIL",
+            "value": -0.14
+          },
+          {
+            "name": "SELF_CORRELATION",
+            "result": "PENDING"
+          },
+          {
+            "competitions": [
+              {
+                "id": "challenge",
+                "name": "Challenge"
+              }
+            ],
+            "name": "MATCHES_COMPETITION",
+            "result": "PASS"
+          }
+        ],
+        "drawdown": 0.1315,
+        "fitness": 0.31,
+        "longCount": 1512,
+        "margin": 0.000846,
+        "pnl": 1643272,
+        "returns": 0.0332,
+        "sharpe": 0.6,
+        "shortCount": 1556,
+        "startDate": "2019-01-01",
+        "turnover": 0.0785
+      }
+    }
+  },
+  "verdicts": {
+    "H1_recommendation_change": {
+      "P1_full_window": false,
+      "P2_2023": true,
+      "PASS": false,
+      "kill_tests": {},
+      "passes_train": false,
+      "variant": "H1c_lastchange126"
+    },
+    "H2_earnings_announcement_premium": {
+      "P1_full_window": true,
+      "P2_2023": false,
+      "PASS": false,
+      "kill_tests": {
+        "H2c_salesdist63_K1_desized": true,
+        "H2c_salesdist63_K2_momentum_neutral": false
+      },
+      "passes_train": true,
+      "variant": "H2c_salesdist63"
+    },
+    "H3_analyst_coverage_change": {
+      "P1_full_window": false,
+      "P2_2023": true,
+      "PASS": false,
+      "kill_tests": {},
+      "passes_train": false,
+      "variant": "H3a_numest_af_yoy"
+    },
+    "H4_long_term_growth_forecast": {
+      "P1_full_window": false,
+      "P2_2023": true,
+      "PASS": false,
+      "kill_tests": {},
+      "passes_train": false,
+      "variant": "H4c_ltg_subindustry"
+    },
+    "H5_implied_minus_realized_vol": {
+      "P1_full_window": false,
+      "P2_2023": false,
+      "PASS": false,
+      "kill_tests": {},
+      "passes_train": false,
+      "variant": "H5c_ivrv30_mean21"
+    }
+  }
+}

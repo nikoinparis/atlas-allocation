@@ -1,6 +1,6 @@
 {
-  "alpha_id": "3qVQEdA0",
-  "expression": "if_else(rank(group_rank(-ts_backfill(vec_avg(anl4_basicconltv110_mean), 252), sector)) > -1.0, 1, 0) - if_else(rank(group_rank(-ts_backfill(vec_avg(anl4_basicconltv110_mean), 252), sector)) > 0.1, 1, 0)",
+  "alpha_id": "npPx2RNd",
+  "expression": "if_else(rank(group_rank(cap + 0 * (implied_volatility_mean_30 - historical_volatility_30), sector)) > 0.1, 1, 0) - if_else(rank(group_rank(cap + 0 * (implied_volatility_mean_30 - historical_volatility_30), sector)) > 0.2, 1, 0)",
   "is": {
     "bookSize": 20000000,
     "checks": [
@@ -8,35 +8,48 @@
         "limit": 1.25,
         "name": "LOW_SHARPE",
         "result": "FAIL",
-        "value": -0.54
+        "value": 0.26
       },
       {
         "limit": 1.0,
         "name": "LOW_FITNESS",
         "result": "FAIL",
-        "value": -0.34
+        "value": 0.11
       },
       {
         "limit": 0.01,
         "name": "LOW_TURNOVER",
         "result": "PASS",
-        "value": 0.0464
+        "value": 0.1529
       },
       {
         "limit": 0.7,
         "name": "HIGH_TURNOVER",
         "result": "PASS",
-        "value": 0.0464
+        "value": 0.1529
       },
       {
+        "date": "2020-03-19",
+        "limit": 0.1,
         "name": "CONCENTRATED_WEIGHT",
-        "result": "PASS"
+        "result": "FAIL",
+        "value": 0.249995
       },
       {
-        "limit": -0.23,
+        "limit": 0.11,
         "name": "LOW_SUB_UNIVERSE_SHARPE",
         "result": "FAIL",
-        "value": -0.54
+        "value": -0.24
+      },
+      {
+        "message": "Incompatible unit for input of \"add\" at index 1, expected \"Unit[CSPrice:1,CSShare:1]\", found \"Unit[CSPrice:1]\"",
+        "name": "UNITS",
+        "result": "WARNING"
+      },
+      {
+        "message": "Incompatible unit for input of \"add\" at index 1, expected \"Unit[CSPrice:1,CSShare:1]\", found \"Unit[CSPrice:1]\"",
+        "name": "UNITS",
+        "result": "WARNING"
       },
       {
         "name": "SELF_CORRELATION",
@@ -53,21 +66,21 @@
         "result": "PASS"
       }
     ],
-    "drawdown": 0.3452,
-    "fitness": -0.34,
-    "longCount": 314,
-    "margin": -0.00212,
-    "pnl": -2433153,
-    "returns": -0.0492,
-    "sharpe": -0.54,
-    "shortCount": 2826,
+    "drawdown": 0.3163,
+    "fitness": 0.11,
+    "longCount": 269,
+    "margin": 0.000387,
+    "pnl": 1462796,
+    "returns": 0.0296,
+    "sharpe": 0.26,
+    "shortCount": 2866,
     "startDate": "2019-01-01",
-    "turnover": 0.0464
+    "turnover": 0.1529
   },
-  "label": "H4a_ltg_sector_d01",
-  "message": null,
+  "label": "control_C5_d02",
+  "message": "Incompatible unit for input of \"add\" at index 1, expected \"Unit[CSPrice:1,CSShare:1]\", found \"Unit[CSPrice:1]\"; Incompatible unit for input of \"add\" at index 1, expected \"Unit[CSPrice:1,CSShare:1]\", found \"Unit[CSPrice:1]\". <linkToCommonErrorMessages>Learn more</linkToCommonErrorMessages>",
   "neutralization": "MARKET",
-  "seconds": 111.9,
+  "seconds": 125.6,
   "settings": {
     "decay": 0,
     "delay": 1,
@@ -87,77 +100,77 @@
     "universe": "TOP3000",
     "visualization": false
   },
-  "status": "COMPLETE",
+  "status": "WARNING",
   "yearly": {
     "records": [
       [
         "2019",
-        30938.0,
+        -149914.0,
         20000000,
-        311,
-        2800,
-        0.0543,
-        0.05,
-        0.0031,
-        0.0609,
-        0.000113,
-        0.01,
+        169,
+        2942,
+        0.17,
+        -0.17,
+        -0.0149,
+        0.1413,
+        -0.000175,
+        -0.05,
         "IS"
       ],
       [
         "2020",
-        -1174601.0,
+        1783194.0,
         20000000,
-        310,
-        2794,
-        0.0464,
-        -0.97,
-        -0.1271,
-        0.2198,
-        -0.005478,
-        -0.98,
+        224,
+        2880,
+        0.2825,
+        1.46,
+        0.193,
+        0.0934,
+        0.001366,
+        1.21,
         "IS"
       ],
       [
         "2021",
-        -804919.0,
+        797680.0,
         20000000,
-        315,
-        2838,
-        0.0439,
-        -0.92,
-        -0.0799,
-        0.1524,
-        -0.003637,
-        -0.74,
+        314,
+        2840,
+        0.0727,
+        0.64,
+        0.0791,
+        0.1419,
+        0.002178,
+        0.51,
         "IS"
       ],
       [
         "2022",
-        -154684.0,
+        -273114.0,
         20000000,
-        316,
-        2841,
-        0.0449,
-        -0.18,
-        -0.0154,
-        0.0753,
-        -0.000687,
-        -0.06,
+        320,
+        2825,
+        0.1417,
+        -0.23,
+        -0.0272,
+        0.1217,
+        -0.000384,
+        -0.1,
         "IS"
       ],
       [
         "2023",
-        -328842.0,
+        -682306.0,
         20000000,
-        317,
-        2853,
-        0.0424,
-        -0.4,
-        -0.0329,
-        0.09,
-        -0.001549,
-        -0.21,
+        314,
+        2843,
+        0.1082,
+        -0.66,
+        -0.0682,
+        0.2075,
+        -0.001261,
+        -0.49,
         "IS"
       ]
     ],

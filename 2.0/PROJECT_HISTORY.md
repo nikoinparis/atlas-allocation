@@ -16132,3 +16132,126 @@ IV rather than BRAIN's vendor surface. A forward read needs roughly twelve month
 so nothing can be said before late 2027, and the proxy constructions must be pre-registered
 before the first read. At about 0.8MB a session the record grows ~200MB a year in git; if that
 becomes a problem, move it to Git LFS rather than stop collecting.
+
+## Step 328 — 2026-09-30 — A15: five more BRAIN channels with 2023 held out; nothing passes
+
+**What this was for.** The owner wanted to keep searching BRAIN for a winning signal. BRAIN's window
+is fixed at 2019-2023 and 528 simulations had already been run on it, so A15 chose everything on
+2019-2022 and read 2023 once, at the end. **What it accomplished:**
+- five channels measured, including B5 (recommendation changes, unmeasured in Step 326), which is
+  now readable and measured;
+- one candidate reached the holdout gate and was killed twice — once by its own momentum test,
+  once by 2023;
+- the holdout method is now built and reusable.
+
+It promoted nothing and submitted nothing. **Nothing passed.**
+
+**Registered before any simulation** (`docs/BRAIN_A15_PREREGISTRATION_V1.md`,
+`config/worldquant_brain_a15_v1.json`, commit d2a8b94):
+- five hypotheses, three variants each, max 300 simulations;
+- coverage-matched cap controls and train bars T1-T5 on 2019-2022 only;
+- a best-variant rule, and de-sized plus momentum-neutral kill tests for survivors;
+- a pass needing the full-window ladder to order and beat its control (P1) **and** the 2023 ladder
+  to order with a positive d10−d1 (P2).
+
+The runner (`scripts/run_worldquant_brain_a15_v1.py`, reusing the A12 runner) prints nothing but
+"done" until the holdout phase. That phase refuses to run until the freeze file is committed. The
+freeze (`docs/BRAIN_A15_TRAIN_FREEZE_V1.md`) was committed at b67b5df, with its kill-test addendum at
+fd88ca2, both **before** any 2023 number was read (496e549). Hypotheses were picked partly because
+their fields were created on BRAIN by 2022, so 2023 would be live data. The exception is H2c, whose
+field was created 2026-03, and that is recorded.
+
+**Density.** All 15 variants were readable, 0.69-1.0 of the universe. The B5 rebuild worked:
+recommendation changes carried forward with `ts_backfill` went from 0.3% (Step 326) to 69-94%. The
+probe now reads the raw inner signal, not the `group_rank`-wrapped one, which could have hidden
+tied zeros in A12.
+
+**Results.** "Train" is the mean yearly decile return over 2019-2022. The 2023 column is monotonicity
+and d10−d1. Train p is the permutation p.
+
+| hyp | channel | frozen variant | train full / mid-8 | train p | train bars | full 2019-23 | 2023 | verdict |
+|---|---|---|---|---|---|---|---|---|
+| H1 (B5) | recommendation changes | H1c last change 126d | +0.697 / +0.905 | 9.3e-4 | fails T5 | +0.673 / +0.857 | +0.31, +3.8pp | orders but not significant; fails train |
+| H2 | earnings-announcement timing | H2c sales, −\|d−63\| | **+0.927 / +0.952** | **3.5e-5** | **passes** | +0.867 / +0.976 | +0.31, **−1.7pp** | **killed: K2 and 2023** |
+| H3 | analyst coverage change | H3a annual numest yoy | +0.467 / +0.619 | 0.029 | fails T1 | +0.600 / +0.881 | +0.50, +6.4pp | flat in train |
+| H4 | long-term growth forecast | H4c subindustry | +0.067 / −0.214 | 0.40 | fails | +0.200 / +0.048 | +0.61, +2.5pp | flat |
+| H5 | implied − realized vol | H5c 21d mean | +0.406 / +0.690 | 0.022 | fails T1 | +0.552 / +0.976 | +0.30, −1.9pp | flat; H5a/b all in decile 1 |
+
+Controls (train full / mid-8): C1 −0.32/−0.74, C2 −0.04/−0.36, C3 −0.02/−0.14, C4 +0.03/−0.31,
+C5 −0.37/−0.83, all tie-clean. Every T2 comparison except H4a/H4b was beaten, but T2 was never the
+binding bar.
+
+**The one that got furthest: H2c.** Days since the last quarterly sales actual, peaking 63 trading
+days on, i.e. hold stocks about to report.
+- **Train.** Deciles −7.4% … +2.8%/yr; the only variant to clear T5 (0.05/828).
+- **K1, de-sized: passed** (+0.685 / +0.571).
+- **K2, momentum-neutral: middle-8 exactly 0.500 against a bar of strictly above 0.5.** That is a
+  fail, recorded before the holdout and not rounded up. A good part of the ordering travels with
+  past returns.
+- **2023.** Deciles −2.5 −6.5 −4.6 +1.5 +7.4 +6.1 +2.2 +2.8 −2.1 −4.2. The top two deciles, the
+  names closest to their expected announcement, *lost* money. The effect lives in the middle of the
+  ladder, not at the declared end.
+- **The live-field H2a and H2b.** Same shape in 2023 (d10 −5.7% and −7.3%), d10−d1 +0.7pp and
+  −0.2pp.
+- **Overall.** P1 passes (full-window p 2.5e-5 < 0.05/778), P2 fails, K2 fails. **Not a lead.**
+
+**Read-outs that cannot pass, and why they are not leads either.**
+- **H3's coverage change orders better in 2023 than in train** (H3b 2023 +0.685). But every control
+  also ordered in 2023: C3 +0.43, C1 +0.35, C2 +0.27, C4 +0.35. That was the year market cap itself
+  sorted returns, so a positive 2023 read beside a flat train read is weak.
+- **H1b and H1c** — recommendation changes, the B5 question — order in train (+0.83/+0.67 and
+  +0.70/+0.91) but fail Bonferroni. In 2023 H1b inverts (−0.13/−0.62) and H1c is weak (+0.31/+0.19).
+  Recommendation changes are **measured and not established**, not refuted.
+- **H4, LTG,** flips sign year by year (2019 −0.7, 2020 +0.9, 2022 −0.6). Nothing there — possibly
+  because the `lt` family mixes items, the interpretation risk declared in advance.
+- **H5a/b** carry a −15%/yr decile 1 and nothing else: the concentration shape again.
+
+**Multiple testing.**
+- **This batch.** 251 simulation requests: 15 probes, 15 production forms, 150 ladders, 50 control
+  and 20 kill simulations, plus one re-run after a platform timeout. That is inside the registered
+  300.
+- **The account.** It went from **528 to 776 alphas** (BRAIN deduplicates identical expressions;
+  the three H4 probes were one expression), with 0 active.
+- **Corrections.** Bonferroni at 0.05/778 = 6.4e-5. BH-FDR over A15's full-window p-values passes
+  nine variants (H1b, H1c, H2a-c, H3a, H3b, H5c). This is shape-only exchangeability over ten decile
+  returns: it said "significant" for H1b, which then inverted in 2023. **It is not evidence of
+  skill.**
+- **The search behind this window.** The window is searched by thousands of other BRAIN users
+  (field user counts up to 2,257). Across A12 and A15, every signal that ordered in 2019-2022 (A12's
+  H1c and H4b; A15's H2a-c, H1b and H1c) has failed to hold in 2023.
+
+**BRAIN production numbers (SUBINDUSTRY; not evidence).** Turnover is per day.
+
+| variant | Sharpe | fitness | turnover |
+|---|---|---|---|
+| H2c | 1.42 | 1.13 | 12.5% |
+| H1c | 1.60 | 1.01 | 7.0% |
+| H3a | 1.28 | 0.49 | 37% |
+| H5c | 0.60 | 0.31 | 7.9% |
+| H4c | −0.07 | — | 7.8% |
+
+H1c and H2c would clear BRAIN's fitness bar. That is exactly the kind of number Step 317 showed
+means nothing on its own.
+
+**Could we use any of it?**
+- **Nothing passed.**
+- **Data.** H2's data is free (SEC 8-K Item 2.02 dates, earnings calendars). H1 and H3 data are free
+  via Finnhub's monthly recommendation history. LTG is a Yahoo snapshot only. IV history is paid.
+- **Trading.** H2's 12.5% daily turnover costs roughly 3% a year at 10bps and 16% at 50bps against
+  a ~7.9% BRAIN return. A long-only version would hold names in their announcement week, which puts
+  back the market beta Step 295 showed dominates.
+
+**Deviations and failures, all recorded.**
+- **Timeout.** One simulation timed out (H4a decile 1, no alpha created) and was re-run once.
+- **Slow platform.** Some simulations took ~24 minutes on the platform side.
+- **A15 closes the H1 branch.** A15's H1 construction differs from A12's H5 (63/126-day and
+  last-change horizons instead of 21/63/126), as declared.
+- **Considered and dropped before any simulation:**
+  - guidance, below the density floor;
+  - Street-minus-GAAP exclusions, whose fields were created in 2026, so there was no live holdout;
+  - the dividend-month premium, whose field semantics were unknown.
+
+**What would settle the remaining questions:** out-of-window data. Any of these channels is now a
+forward-collection question (A14's method), not a BRAIN question. **A15 is the last search this
+window can honestly support.** Every in-sample ordering across two batches has died in the one
+holdout year, and the next search would be selecting on 2023 too.

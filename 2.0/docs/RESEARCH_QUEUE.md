@@ -324,7 +324,14 @@ many small wins and an occasional catastrophic loss -- which is the wrong risk s
 account that has never traded. It also needs options data that is not free at usable quality,
 which puts the implementation in the paid queue.
 **What is free now:** reading Hull properly and writing the design down. Do that before
-spending anything.
+spending anything. **Also free, found 2026-09-30:** Cboe publishes daily history of its option-
+writing benchmark indices (PUT, BXM and relatives) back to the late 1980s, and VIX against SPY
+realised volatility measures the premium itself. That is a zero-cost first read of whether the
+premium survives 2008, 2020 and costs, before any chain data is bought.
+**Paid options history (priced 2026-09-30):** ThetaData $40 / $80 / $160 per month for 6 / 10 / 14
+years (1-minute to tick); ORATS near-EOD chains with IVs and greeks since 2007, **$599 one-time + $99
+per month**, ~500GB, free sample files; OptionMetrics is institutional (reachable through WRDS
+with a university login). ORATS is the one that covers 2008.
 
 ### B2. Audit the remaining Tiingo inventory
 **Status:** Step 166 noted **446 candidates of which 315 are not yet audited**, plus seven
@@ -374,7 +381,13 @@ applies, a real IC of 0.03 needs years of weekly decisions to show. Needs owner 
 # PAID QUEUE -- nothing here starts without the owner confirming the spend
 
 ## P1. Properly roll-adjusted futures data
-**Cost:** Norgate roughly $300-500/year; Databento usage-priced; CME DataMine official.
+**Cost (priced 2026-09-30):** Norgate Futures package **$148.50 / 6 months or $270 / year**, ~100
+markets on 11 exchanges back to ~1980, individual contracts plus back-adjusted continuous, free
+trial -- but its updater is **Windows-only** (needs a Windows VM on this Mac). Databento: **$125 free
+credit for new accounts**, then pay-as-you-go $/GB or $199/month Standard (16+ years of daily-bar
+history); CME Globex only (no ICE Brent/softs), and daily bars for ~40 roots may fit inside the free
+credit -- unverified until an account exists and its cost calculator is run. CSI Data ~$37/month
+(2017 figure, unverified). **Cheapest path: Databento free credit first; Norgate if ICE markets matter.**
 **What it unblocks:** Step 247 measured a futures universe at **13.2 effective independent
 assets and a projected 155 bets a year**, the only universe examined that clears the 91 an IR
 of 0.25 requires. Step 248 then could not tell whether futures trend's negative IC was mean

@@ -338,22 +338,6 @@ edge must clear the spread on every trade; published 2018, so post-publication d
 Cheap first look on 730 days of hourly bars is not the right bar (10:30 and 15:30 are not the
 first and last half-hours); needs 1-minute SPY history (e.g. Polygon, ~$30-80/month).
 
-### B1. Volatility risk premium, reading first
-**Status:** `UPGRADE_CANDIDATES_V1` item 3, Tier 3, "needs Hull read properly before".
-**Why it is not higher:** selling option premium is selling insurance. Negatively skewed --
-many small wins and an occasional catastrophic loss -- which is the wrong risk shape for an
-account that has never traded. It also needs options data that is not free at usable quality,
-which puts the implementation in the paid queue.
-**What is free now:** reading Hull properly and writing the design down. Do that before
-spending anything. **Also free, found 2026-09-30:** Cboe publishes daily history of its option-
-writing benchmark indices (PUT, BXM and relatives) back to the late 1980s, and VIX against SPY
-realised volatility measures the premium itself. That is a zero-cost first read of whether the
-premium survives 2008, 2020 and costs, before any chain data is bought.
-**Paid options history (priced 2026-09-30):** ThetaData $40 / $80 / $160 per month for 6 / 10 / 14
-years (1-minute to tick); ORATS near-EOD chains with IVs and greeks since 2007, **$599 one-time + $99
-per month**, ~500GB, free sample files; OptionMetrics is institutional (reachable through WRDS
-with a university login). ORATS is the one that covers 2008.
-
 ### B2. Audit the remaining Tiingo inventory
 **Status:** Step 166 noted **446 candidates of which 315 are not yet audited**, plus seven
 rejected legacy cases scheduled for one controlled recheck.
@@ -440,6 +424,7 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 
 | item | verdict | where |
 |---|---|---|
+| **Volatility risk premium via Cboe option-writing indices (was B1)** | **Closed, free first read.** VIX² > next-21-day realised variance on 85% of days, but PUT, WPUT, BXM, BXMD and CNDR show no alpha over a beta-matched S&P/T-bill blend even at 0 bps (best CNDR +1.70%/yr, t 1.46); all significantly negative from 50 bps a roll; 2020 erases the 2008 cushion. Paid options data declined for this purpose. Timed or hedged premium selling is untested and would be a new searched design. | Step 330 |
 | **Write the SUE recorder (was S8)** | **Done, and the panel half was my own error.** `record_sue_quarterly_forward_v1.py` written; clock running at one decision, 2026-09-11, fifty names, block 2026-07-01. The panel is quarterly and was never stale. The attempt found that repository slimming had deleted two thirds of the Company Facts cache — the rebuild produced 20,279 rows against 131,169 and exited zero; git recovered it, and the builder now fails closed below 90% of the prior issuer count. | Step 312 |
 | Opening Range Breakout, index/ETF | Rejected on the cost hurdle; five-minute bars made it worse | Step 209 |
 | Short-term reversal | Bid-ask bounce; 0 of 9 survive skip-1; total loss at 100bps | Step 250 |

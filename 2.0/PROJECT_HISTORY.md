@@ -16316,3 +16316,52 @@ It trails the announcement by days to weeks, so it would move the event window.
 **Nothing was pre-registered, measured or traded. Trials added to the project count: zero.**
 Artifacts: `scripts/run_b6_announcement_timing_v1.py` (coverage gate; exits 2),
 `evidence/b6_announcement_timing_v1/coverage_2012_2018.csv`, `result.json`.
+
+## Step 330 — 2026-09-30 — B1's free first read: the premium is real, and selling it earns nothing after beta
+
+**What this was for.** B1 (the volatility risk premium) was queued behind paid options data. Cboe
+publishes free daily histories of five indices that sell S&P 500 options mechanically, back to
+1986-2007, covering 2008 and 2020. This asked whether selling that insurance pays once its S&P 500
+exposure is removed, before spending $600+ on ORATS. **It closed an idea: nought of five pass,
+and the options purchase is declined for B1.**
+
+Pre-registered and committed before any return was computed (`00b0965`,
+`docs/B1_CBOE_OPTION_WRITING_PREREGISTRATION_V1.md`). Five series, five tests, Bonferroni at p < 0.01.
+Test: Newey-West alpha of monthly excess returns on the S&P 500 total return's, against a
+beta-matched blend of S&P 500 and T-bills. Script `scripts/run_b1_cboe_option_writing_v1.py`,
+result `evidence/b1_cboe_option_writing_v1/result.json`.
+
+**The premium itself is real.** VIX² exceeded the next 21 days' realised variance on 85% of days
+since 1990, and on 90% of days in 2023-2026. It went negative on average in 2008-2009 (−23) and in
+2020 (−207), which is the insurance paying out.
+
+**Selling it does not beat simply holding less of the market.**
+
+| series | first month | α/yr at 0 bps | α/yr at 10 bps (t) | β | CAGR vs blend, 10 bps | max DD vs blend | 2020 CAGR vs blend | skew |
+|---|---|---|---|---|---|---|---|---|
+| PUT (monthly puts) | 2007-02 | −0.16% | −1.36% (−0.94) | 0.60 | 5.85% vs 7.46% | −33.3% vs −33.6% | +0.9% vs +11.8% | −1.68 |
+| WPUT (weekly puts) | 2006-02 | −1.94% | −7.14% (−5.59) | 0.53 | −0.58% vs 6.93% | −36.0% vs −30.0% | −12.0% vs +10.5% | −1.40 |
+| BXM (covered call) | 2002-04 | −0.85% | −2.05% (−1.73) | 0.63 | 4.92% vs 7.23% | −36.8% vs −34.9% | −3.9% vs +12.2% | −1.26 |
+| BXMD (30-delta call) | 1988-02 | +0.98% | −0.22% (−0.35) | 0.80 | 9.61% vs 9.94% | −43.7% vs −42.8% | +4.9% vs +15.2% | −0.84 |
+| CNDR (iron condor) | 1988-02 | +1.70% | +0.50% (+0.43) | 0.11 | 4.33% vs 4.03% | −29.6% vs −5.8% | −7.2% vs +2.6% | −1.76 |
+
+No alpha is significant even before costs: the best is CNDR's +1.70% at t = 1.46. From 50 bps a
+roll every series is significantly negative. Most pass the 2008-2009 criterion — they cushioned
+that crash slightly relative to the blend, with α of +1.6% to +4.8% — and then gave it back and more
+in 2020, when the market recovered fast and the short options were exercised at the bottom. Every
+series is negatively skewed. Leave-one-year-out fails for four of five (removing 2009 flips PUT,
+BXM and BXMD negative); CNDR survives it but has a 29.6% drawdown against the blend's 5.8% for the
+same beta. Placebo check: 5,000 synthetic zero-alpha series produced p < 0.01 in 1.4% of cases, near
+the 1% expected, so the test is not inventing or hiding alpha.
+
+**One correction before the result, recorded.** The first run showed PUT at a 17% CAGR. That was my
+bug: PUT's file has seven gaps of up to 1,159 days before 2007, and converting to monthly returns
+turned each gap into one "month". Returns are now computed only between consecutive month-ends, which
+starts PUT in 2007. No other series had a gap over 7 days. The registered tests and thresholds are
+unchanged.
+
+**Honest limits.** These are Cboe's mechanical rules on mid-quotes: at-the-money, one-month, no
+sizing, no tail hedge, no timing. Something like "sell premium only when VIX² − RV is wide" is not
+refuted here, and it is also not free to try — it would be a new, searched design. The result is the
+common one in the literature for the plain version: the premium exists, and the plain harvest
+roughly earns the beta it carries.

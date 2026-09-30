@@ -16255,3 +16255,64 @@ means nothing on its own.
 forward-collection question (A14's method), not a BRAIN question. **A15 is the last search this
 window can honestly support.** Every in-sample ordering across two batches has died in the one
 holdout year, and the next search would be selecting on 2023 too.
+
+## Step 329 — 2026-09-30 — B6: blocked at the coverage gate; no 8-K announcement dates before 2022 for most of the universe
+
+**What this was for / accomplished.** B6 was meant to re-test "hold stocks just before their
+expected earnings announcement" on our own 2011-2018 data, a period no BRAIN batch touched. **It
+was stopped at the first check, before any return was read or any signal built:** the SEC 8-K
+Item 2.02 dates on disk do not cover 2011-2018 well enough to build an expected-announcement date.
+It is a closed-for-now data blocker, not a result. The analyst-coverage half is also blocked.
+
+**What is on disk.**
+- **The normalized 8-K vintage** (`data/sec_earnings_event_vintages/20260821T035516Z-sec-earnings-8k-v1`)
+  starts at **2022-01-01** by configuration: zero events before 2019.
+- **The raw SEC submissions cache** (`data/sec_historical_identity_cache`) holds 487 issuers.
+  These are the present-day 598-name universe, not the historical roster. For large filers each
+  payload's "recent" block stops at the last ~1,000 filings, and **227 older history pages that
+  overlap 2011 onward were never fetched**, because the acquisition only needed 2022 onward.
+
+**Coverage of the point-in-time tech-and-energy roster** (`sec-historical-filers-v1`, 951 CIKs
+over 2012-2018, of which only 284 have any cached submissions):
+
+| year | members | with a dated Item 2.02 event | share |
+|---|---|---|---|
+| 2012 | 653 | 57 | 8.7% |
+| 2013 | 706 | 80 | 11.3% |
+| 2014 | 717 | 111 | 15.5% |
+| 2015 | 732 | 129 | 17.6% |
+| 2016 | 748 | 162 | 21.7% |
+| 2017 | 720 | 201 | 27.9% |
+| 2018 | 674 | 243 | 36.1% |
+
+The script's 80% gate was written after these counts were known, so it is a stated bar, not a
+pre-registered one. It does not matter: no plausible bar is met. The coverage is also **biased,
+not merely thin**:
+- names that died before 2022 are absent, so the sample is survivors only;
+- large filers are the ones whose early history is truncated.
+
+A signal built on it would be a survivorship-and-size screen. The broad universe would be worse,
+since the cache was built for the 598 tech-and-energy names.
+
+**Analyst coverage change (second half of B6).** No point-in-time analyst-count history before 2019
+was found on disk. Finnhub's recommendation-trends endpoint needs an API key, and there is none on
+this machine. Its documentation page did not load its content through a fetch. **Whether the free
+tier returns pre-2019 monthly history is therefore unverified.** Recorded as blocked on data; no
+proxy substituted.
+
+**What would unblock it (not done, and not authorized by this step's instructions, which said to
+stop if coverage was poor):**
+- Fetch SEC submissions for all 951 historical CIKs, **including the older `files` pages**, with
+  `scripts/acquire_sec_earnings_8k_v1.py` pointed at the historical roster with
+  `event_start_date` 2010-01-01. It is free; it needs `SEC_USER_AGENT` set, which it is not in this
+  shell. At roughly 1,200-1,500 requests at the SEC's 10/s limit, that is minutes.
+- Then re-audit coverage, including CIKs with no 8-K filings at all (small filers that announced
+  by press release only).
+- Then pre-register as B6 describes.
+
+The 10-Q filing date (in FSDS) is **not** an acceptable substitute without its own pre-registration.
+It trails the announcement by days to weeks, so it would move the event window.
+
+**Nothing was pre-registered, measured or traded. Trials added to the project count: zero.**
+Artifacts: `scripts/run_b6_announcement_timing_v1.py` (coverage gate; exits 2),
+`evidence/b6_announcement_timing_v1/coverage_2012_2018.csv`, `result.json`.

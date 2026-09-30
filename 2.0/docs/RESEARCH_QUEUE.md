@@ -213,8 +213,18 @@ Two A15 channels that did something on BRAIN but cannot be settled there. **Neit
 So they are the rare BRAIN channels we could rebuild on our own 2011-2026 panel, *outside* BRAIN's
 2019-2023 window.
 
-**Blocker:** a fresh pre-registration on a period neither BRAIN batch touched (2011-2018 plus the
-forward years). The standing 2026-09-07 decision (clocks before new search) still applies.
+**Blocker, updated 2026-09-30 (Step 329): DATA, not pre-registration.** The attempt stopped at the
+coverage gate before any return was read.
+- **8-K dates.** The 8-K vintage starts 2022. The cached SEC submissions give a dated Item 2.02
+  event for only **8.7% (2012) to 36.1% (2018)** of the point-in-time tech-and-energy roster, and
+  only for 2022 survivors. 227 older history pages were never fetched.
+- **Unblock (free, minutes):** re-run `acquire_sec_earnings_8k_v1.py` on all 951 historical CIKs,
+  including the `files` pages, from 2010, with `SEC_USER_AGENT` set. Then re-audit coverage and
+  pre-register.
+- **Coverage half:** blocked. No pre-2019 point-in-time analyst counts were found on disk. Finnhub
+  free-tier history depth is unverified because there is no key. No proxy.
+
+The standing 2026-09-07 decision (clocks before new search) still applies.
 **Do not re-run either on BRAIN.**
 
 ### A8. EU short-selling registers *(new 2026-09-10, owner-proposed)*

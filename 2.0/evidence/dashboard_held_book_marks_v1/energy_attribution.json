@@ -38,24 +38,6 @@
       "weeks_total": 0.07756304880406989
     },
     {
-      "energy_contrib": 0.014638503970504082,
-      "energy_share_of_gain": 0.19569229603118765,
-      "energy_weight": 0.2383533329631514,
-      "ex_energy": 0.06016517643687961,
-      "ex_energy_sleeve_return": 0.06335532838188239,
-      "strategy": "sec-sector-ensemble-fragile-1.35x-v1",
-      "weeks_total": 0.0748036804073837
-    },
-    {
-      "energy_contrib": 0.01731465102832701,
-      "energy_share_of_gain": 0.25660852800539924,
-      "energy_weight": 0.2663950610428733,
-      "ex_energy": 0.05016031234452979,
-      "ex_energy_sleeve_return": 0.053727556754959806,
-      "strategy": "sec-residual-controlled-1.25x-5pct-v1",
-      "weeks_total": 0.0674749633728568
-    },
-    {
       "energy_contrib": 0.01084333627444747,
       "energy_share_of_gain": 0.19569229603118782,
       "energy_weight": 0.1765580244171491,
@@ -63,6 +45,15 @@
       "ex_energy_sleeve_return": 0.06335532838188232,
       "strategy": "sec-sector-aware-signal-ensemble-v1",
       "weeks_total": 0.055410133635098995
+    },
+    {
+      "energy_contrib": 0.01733359997589986,
+      "energy_share_of_gain": 0.3750579429009313,
+      "energy_weight": 0.18111604883429858,
+      "ex_energy": 0.02888219228763953,
+      "ex_energy_sleeve_return": 0.03708150905460764,
+      "strategy": "sec-residual-controlled-1x-v1",
+      "weeks_total": 0.04621579226353939
     }
   ],
   "weeks": [

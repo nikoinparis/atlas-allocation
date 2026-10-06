@@ -18,8 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "dashboard/public/forward-tracker.json"
 
 STRATEGY_LABELS = {
-    "sec-residual-controlled-1.25x-5pct-v1": "Residual-Controlled 1.25x",
-    "sec-sector-ensemble-fragile-1.35x-v1": "Fragile Sector Ensemble 1.35x",
+    "sec-residual-controlled-1x-v1": "Residual-Controlled",
     "candidate-return-first-60-40-forward-v1": "ETF Incumbent 60/40",
     "sec-growth-survivorship-aware-v1": "Growth / Micron",
     "sec-cash-conversion-breadth20-dynamic-v1": "Cash-Conversion Breadth-20",

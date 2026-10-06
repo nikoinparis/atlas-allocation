@@ -1,7 +1,7 @@
 {
-  "cost_treatment": "no turnover occurs in a held book, so no trading cost is charged; the two levered books are charged their own stated 5% annual financing on the borrowed portion",
+  "cost_treatment": "no turnover occurs in a held book, so no trading cost is charged; no book is levered, so no financing is charged",
   "experiment": "dashboard_held_book_marks_v1",
-  "generated_at_utc": "2026-10-03T12:16:51.855512+00:00",
+  "generated_at_utc": "2026-10-06T17:00:34.543784+00:00",
   "live_trading_enabled": false,
   "promotion_authorized": false,
   "strategies": [
@@ -40,13 +40,13 @@
     },
     {
       "book_as_of": "2026-08-07",
-      "cumulative_return": 0.06589497485223816,
-      "financing_annual": 0.05,
-      "gross_exposure_priced": 1.1999999999999997,
+      "cumulative_return": 0.046045807314373466,
+      "financing_annual": 0.0,
+      "gross_exposure_priced": 0.9599999999999999,
       "names_in_book": 44,
       "names_priced": 44,
       "names_unpriced": [],
-      "strategy_id": "sec-residual-controlled-1.25x-5pct-v1",
+      "strategy_id": "sec-residual-controlled-1x-v1",
       "weeks_marked": 8
     },
     {
@@ -58,17 +58,6 @@
       "names_priced": 29,
       "names_unpriced": [],
       "strategy_id": "sec-sector-aware-signal-ensemble-v1",
-      "weeks_marked": 8
-    },
-    {
-      "book_as_of": "2026-08-07",
-      "cumulative_return": 0.07381501691814862,
-      "financing_annual": 0.05,
-      "gross_exposure_priced": 1.187999999999999,
-      "names_in_book": 29,
-      "names_priced": 29,
-      "names_unpriced": [],
-      "strategy_id": "sec-sector-ensemble-fragile-1.35x-v1",
       "weeks_marked": 8
     }
   ],

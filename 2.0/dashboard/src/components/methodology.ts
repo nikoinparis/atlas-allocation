@@ -265,9 +265,9 @@ export const deepMethodology: Record<string, DeepMethodology> = {
     ],
   },
 
-  "sec-residual-controlled-1.25x-5pct-v1": {
+  "sec-residual-controlled-1x-v1": {
     summary:
-      "Take the cash-conversion book as the core, add a sleeve that ranks stocks on the return left over after removing market and sector moves, hold them 80/20, then apply a 1.25x exposure assumption. The 20% weight and the leverage were both chosen after seeing the result.",
+      "Take the cash-conversion book as the core, add a sleeve that ranks stocks on the return left over after removing market and sector moves, hold them 80/20 with no leverage and no borrowed money. The 20% weight was chosen after seeing the result.",
     cadence: "Quarterly sleeve selection · weekly targets · frozen forward clock",
     universe: "The cash-conversion core plus an independent residual-momentum sleeve",
     dataSources: SEC_SOURCES,
@@ -332,22 +332,12 @@ export const deepMethodology: Record<string, DeepMethodology> = {
         },
       },
       {
-        number: "06", label: "EXPOSURE", title: "Apply 1.25x and pay for it",
+        number: "06", label: "TEST", title: "Compare against the same market risk",
         description:
-          "The blended book is scaled to 125% gross. The extra 25% is borrowed, and financing is charged on it. The pure-cash version of this same strategy is the default view in this dashboard; the financed version is offered as an explicit option.",
-        inputs: ["Blended weekly return", "L = 1.25", "financing rate f"],
-        formulaKey: "leverage",
-        note: "Financing multiplies losses by the same 1.25 that it multiplies gains. Pure cash returns 112.60% trailing; at 1.25x and 5% financing it returns 150.86%.",
-        example: {
-          caption: "One week, both ways",
-          rows: [
-            { label: "Pure-cash week", value: "−2.00%" },
-            { label: "Scaled 1.25x", value: "−2.50%" },
-            { label: "Financing on 0.25 at 5%", value: "−0.024%" },
-            { label: "Financed week", value: "−2.524%" },
-          ],
-          outcome: "The uplift and the damage are the same multiple. A 26% cash drawdown becomes roughly 33% financed.",
-        },
+          "This book moves about 1.05 times the market. Step 332 compared it with SPY held at that same exposure, using only betas estimated from earlier weeks. Before April 2025 it trailed that passive portfolio; afterwards it beat it by a wide margin.",
+        inputs: ["Book weekly return", "SPY weekly return", "Past-only beta"],
+        formulaKey: "blend",
+        note: "Alpha over beta-matched SPY: −6.0% a year before 2025-04-04, +47.2% after, +17.8% overall at p = 0.040 — short of the p < 0.005 bar the test required. No leverage is shown anywhere on this dashboard since 2026-10-06.",
       },
       executeStep("07"),
       costStep("08"),
@@ -437,53 +427,6 @@ export const deepMethodology: Record<string, DeepMethodology> = {
       validateStep(
         "09",
         "Passes drawdown, cost, decay and Monte Carlo, with the best realised drawdown of the six at −8.71%. Fails worst-rolling-year at −14.06% and concentration at 90%. Forward record 0 of 52.",
-      ),
-    ],
-  },
-
-  "sec-sector-ensemble-fragile-1.35x-v1": {
-    summary:
-      "The sector ensemble run at 1.35x exposure. It posts the highest headline return of the six and also failed its own robustness gates — it is kept visible as a return ceiling, not as a candidate.",
-    cadence: "Quarterly ensemble · weekly risk scaling · 1.35x exposure",
-    universe: "The sector-aware ensemble universe",
-    dataSources: SEC_SOURCES,
-    steps: [
-      {
-        number: "01", label: "BASE", title: "Start from the sector ensemble",
-        description: "Every selection and sizing rule is inherited unchanged from the sector-aware ensemble. The only difference is how much exposure is applied on top.",
-        inputs: ["The complete ensemble weight vector"],
-        formulaKey: "blend",
-        note: "Because the base is shared, this strategy is not an independent bet from the ensemble.",
-      },
-      {
-        number: "02", label: "EXPOSURE", title: "Scale to 135%",
-        description:
-          "The book is levered to 1.35x with financing charged on the borrowed 35%. This is the single change that produces the headline number, and it is also what makes the strategy fragile.",
-        inputs: ["Ensemble weekly return", "L = 1.35", "financing rate"],
-        formulaKey: "leverage",
-        note: "Pure cash it returns 114.12% trailing. At 1.35x it returns 168.68%. The 54.56 point difference is borrowed money, not skill.",
-        example: {
-          caption: "The concentration this creates",
-          rows: [
-            { label: "Largest fund weight at 1.00x", value: "90.0%" },
-            { label: "Same position at 1.35x", value: "121.5%" },
-          ],
-          outcome: "A single fund position larger than the entire account. This is why the concentration gate fails hardest here.",
-        },
-      },
-      {
-        number: "03", label: "FALSIFY", title: "The gates it actually failed",
-        description:
-          "Leave-one-issuer-out and bootstrap testing were run on this strategy and it did not survive them. It is displayed to mark the upper bound of what this signal family produced, so that the ceiling is visible rather than imagined.",
-        inputs: ["Weekly returns", "Per-issuer contribution"],
-        formulaKey: "informationCoefficient",
-        note: "Five-issuer and bootstrap gates failed. The badge on this strategy says FAILED ROBUSTNESS for that reason.",
-      },
-      executeStep("04"),
-      costStep("05"),
-      validateStep(
-        "06",
-        "Worst 5th-percentile simulated year of the four top scorers at −3.54%, and the highest chance of a greater-than-30% drawdown at 5.86%. Fails worst-rolling-year at −20.88% and concentration at 121.5%. Forward record 0 of 52.",
       ),
     ],
   },

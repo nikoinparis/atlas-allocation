@@ -1,0 +1,37 @@
+{
+  "bundle": "ggg_causal_v2_027530550388432a",
+  "scale_ends": "2026-04-10",
+  "end": "2026-08-07",
+  "spy_worst_5pct_weeks_mean": {
+    "1.0_phase5_fragility_guard@10bps": -0.013967430120795246,
+    "1.0_phase5_fragility_guard@50bps": -0.014231412130985062,
+    "1.0_ggg_base_causal@10bps": -0.014206120575327127,
+    "1.0_ggg_base_causal@50bps": -0.014457151957318242,
+    "2.0_residual_book@50bps": -0.0661279256863892,
+    "SPY": -0.057623588622413645,
+    "SPY_GLD_SHY_static": -0.020024237941807056
+  },
+  "spy_worst_5pct_weeks_n": {
+    "1.0_phase5_fragility_guard@10bps": 57,
+    "1.0_phase5_fragility_guard@50bps": 57,
+    "1.0_ggg_base_causal@10bps": 57,
+    "1.0_ggg_base_causal@50bps": 57,
+    "2.0_residual_book@50bps": 25,
+    "SPY": 57,
+    "SPY_GLD_SHY_static": 57
+  },
+  "beta_matched_alpha_vs_spy": {
+    "1.0_phase5_fragility_guard@50bps": {
+      "full": 0.020596410656083673,
+      "2013-2022": 0.005290269570809158,
+      "2023..2025-04-03": 0.020235847421156947,
+      "2025-04-04..": 0.02706276247781594
+    },
+    "2.0_residual_book@50bps": {
+      "full": 0.036616471914858395,
+      "2013-2022": 0.005457972234342936,
+      "2023..2025-04-03": -0.06311903409515254,
+      "2025-04-04..": 0.41153019082824216
+    }
+  }
+}

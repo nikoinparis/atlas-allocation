@@ -49,6 +49,7 @@ type DashboardPayload = {
     fullHistory: { cagr: number; maxDrawdown: number; start: string };
     featuredMetric: { label: string; value: number; note: string };
     cashOnlyMetric?: { label: string; value: number; sharpe: number; maxDrawdown: number; note: string };
+    betaMatched?: { alphaFull: number; pValue: number; alphaBeforeBreak: number; alphaAfterBreak: number; passed: boolean; breakDate: string; step: number; note: string };
     forward: { status: string; observedWeeks: number; requiredWeeks: number; firstDecision: string; firstRealization: string; note: string };
     disclosures: { researchOnly: boolean; liveTradingEnabled: boolean; costBps: number; returnConvention: string };
   };
@@ -112,16 +113,28 @@ const viewDetails: Record<DashboardViewName, { label: string; title: string; des
   guardrails: { label: "Guardrails", title: "Research guardrails", description: "Understand exactly what the simulation can do, what it cannot do, and how its evidence is controlled.", path: "/guardrails" },
 };
 
+// Removed from every view on 2026-10-06 at the owner's request: no levered or financed figures.
+const REMOVED_LEVERED_IDS = new Set(["sec-residual-controlled-1.25x-5pct-v1", "sec-sector-ensemble-fragile-1.35x-v1"]);
+
+function withoutLevered(payload: SurvivalBundle): SurvivalBundle {
+  const keep = (item: { id?: string; strategy_id?: string }) => !REMOVED_LEVERED_IDS.has(String(item.id ?? item.strategy_id ?? ""));
+  return {
+    ...payload,
+    strategies: payload.strategies.filter(keep),
+    comparison: payload.comparison.filter(keep),
+  };
+}
+
 const methodologyByStrategy: Record<string, StrategyMethodology> = {
-  "sec-residual-controlled-1.25x-5pct-v1": {
-    summary: "The current recent-return leader combines the established dynamic portfolio with an independent residual-momentum sleeve, then applies a fixed 1.25x exposure assumption. The 20% sleeve weight and leverage choice were selected after observing the historical sample, so this remains frozen forward research rather than a promoted strategy.",
+  "sec-residual-controlled-1x-v1": {
+    summary: "The current recent-return leader combines the established dynamic portfolio with an independent residual-momentum sleeve, with no leverage and no borrowed money. The 20% sleeve weight was selected after observing the historical sample, so this remains frozen forward research rather than a promoted strategy.",
     cadence: "Quarterly residual selection · weekly targets · frozen 52-week forward clock",
     universe: "ETF core plus point-in-time SEC-screened U.S. companies",
     steps: [
       { number: "01", label: "CONTROL", title: "Keep the established dynamic leader", description: "Eighty percent begins with the existing ETF, growth, and cash-conversion leader. Its saved rules and costs are retained rather than retuned inside this experiment.", formula: "baseLeader", note: "The control remains the same portfolio used by the sealed residual-sleeve test." },
       { number: "02", label: "RESIDUAL", title: "Rank issuer-specific momentum", description: "The independent sleeve scores price strength left after separating broad market and sector effects, then selects twenty names under issuer and sector limits.", formula: "residualScore", note: "Signals are point-in-time and the execution schedule is carried forward from the sealed tournament inputs." },
       { number: "03", label: "BLEND", title: "Hold the fixed 80 / 20 mix", description: "The complete control portfolio receives 80% and the diversified residual sleeve receives 20%. No ticker-specific cap or Micron override is used.", formula: "controlledBlend", note: "The 20% choice is selection-contaminated; historical success cannot authorize promotion." },
-      { number: "04", label: "EXPOSURE", title: "Apply 1.25x with explicit financing", description: "The combined portfolio is scaled to 125% gross exposure. The headline result assumes 5% annual financing on the borrowed 25%; an 8% financing stress is shown beside it.", formula: "leverageFinancing", note: "The corrected common-endpoint results are 150.86% at 5% financing and 149.01% at 8%." },
+      { number: "04", label: "TEST", title: "Compare against the same market risk", description: "Step 332 compared the book with SPY held at the same past-only beta. It trailed that passive portfolio before 2025-04-04 and beat it by a wide margin afterwards.", formula: "netCost", note: "Alpha −6.0% a year before the break, +47.2% after, +17.8% overall at p = 0.040, short of the p < 0.005 bar." },
       { number: "05", label: "FALSIFY", title: "Keep the failed gate visible", description: "Costs, delays, missing-price stress, concentration, bootstrap evidence, and common-endpoint alignment are recorded. The multiplicity-adjusted statistical gate failed, so the strategy stays research-only.", formula: "netCost", note: "The frozen forward clock starts at zero and requires 52 untouched observations plus a separate review." },
     ],
   },
@@ -171,18 +184,6 @@ const methodologyByStrategy: Record<string, StrategyMethodology> = {
       { number: "03", label: "DIVERSIFY", title: "Apply generic sector limits", description: "Each ranked cohort is filled from highest score downward subject to its saved sector limit. The rule is sector-based and never names Micron or any other company.", formula: "sectorCap", note: "The selected diagnostic used an 80% cash-ranking cap and a 90% balance-ranking cap." },
       { number: "04", label: "ALLOCATE", title: "Use the lagged weekly gate", description: "The independent sleeve is introduced only after the saved breadth and relative-strength conditions permit it; otherwise the established leader remains at 100%.", formula: "outerGate", note: "Inputs are lagged. No leverage or short positions are used." },
       { number: "05", label: "FALSIFY", title: "Keep the failure visible", description: "The simulation deducts turnover costs and records execution-delay, endpoint, bootstrap, and missing-issuer tests. The attractive return remains visible, but it is not a replacement strategy.", formula: "netCost", note: "Bootstrap confidence and the five-issuer stress missed the required thresholds." },
-    ],
-  },
-  "sec-sector-ensemble-fragile-1.35x-v1": {
-    summary: "This view preserves the highest exact-daily return ceiling discovered so far. It applies fixed 1.35x exposure to the sector-aware filing ensemble, but the source strategy failed its five-issuer and bootstrap falsification gates. It is intentionally shown as fragile research, not as the current strategy.",
-    cadence: "Quarterly stock ranks · weekly allocation gate · exact daily accounting",
-    universe: "ETF core plus point-in-time SEC-screened U.S. companies",
-    steps: [
-      { number: "01", label: "SOURCE", title: "Start with the sector-aware ensemble", description: "The underlying portfolio combines cash conversion and balance-sheet quality rankings beside the established dynamic leader.", formula: "signalBlend", note: "The source produced strong recent returns but did not pass complete issuer-dependence falsification." },
-      { number: "02", label: "DIVERSIFY", title: "Retain generic sector limits", description: "The saved construction applies the same sector-based limits to every company and never names Micron or any other issuer.", formula: "sectorCap", note: "Generic limits reduced simple concentration but did not eliminate joint dependence on the best issuers." },
-      { number: "03", label: "ALLOCATE", title: "Use the lagged outer gate", description: "The independent filing sleeve enters only when its saved causal gate permits it; otherwise capital remains with the established leader.", formula: "outerGate", note: "No future return is used to form the weekly allocation." },
-      { number: "04", label: "AMPLIFY", title: "Apply fixed 1.35x exposure", description: "The complete portfolio is scaled to 135% and charged 6% annual financing on the borrowed 35%, plus an exposure-change cost.", formula: "fragileLeverage", note: "This layer lifts the trailing result to 174.97%, while also increasing exact-daily drawdown to 24.43%." },
-      { number: "05", label: "REJECT", title: "Do not promote the ceiling", description: "The leverage layer passed its narrow daily checks, but leverage cannot repair a weak underlying issuer test. The candidate therefore remains ineligible for forward promotion.", formula: "netCost", note: "Failed robustness is part of the strategy label and remains visible throughout the dashboard." },
     ],
   },
 };
@@ -334,7 +335,7 @@ function ForwardStandalone({ view = "forward" }: { view?: "forward" | "replay" }
 export function ReturnFirstDashboard({ initialView = "overview" }: { initialView?: DashboardViewName }) {
   const [bundle, setBundle] = useState<DashboardBundle | null>(null);
   const [survivalBundle, setSurvivalBundle] = useState<SurvivalBundle | null>(null);
-  const [activeStrategy, setActiveStrategy] = useState("sec-residual-controlled-1.25x-5pct-v1");
+  const [activeStrategy, setActiveStrategy] = useState("sec-residual-controlled-1x-v1");
   const [assetPrices, setAssetPrices] = useState<Record<string, AssetPrice[]>>({});
   const [error, setError] = useState(false);
 
@@ -361,10 +362,11 @@ export function ReturnFirstDashboard({ initialView = "overview" }: { initialView
       .catch(() => setError(true));
     fetch("/strategy-survival.json")
       .then((response) => response.ok ? response.json() as Promise<SurvivalBundle> : null)
-      .then((payload) => payload && setSurvivalBundle(payload))
+      .then((payload) => payload && setSurvivalBundle(withoutLevered(payload)))
       .catch(() => undefined);
     const savedStrategy = window.localStorage.getItem("portfolio-optimizer-strategy-v2");
-    if (savedStrategy) setActiveStrategy(savedStrategy);
+    // Levered views were removed on 2026-10-06; a saved choice of one falls back to the default.
+    if (savedStrategy && !REMOVED_LEVERED_IDS.has(savedStrategy)) setActiveStrategy(savedStrategy);
   }, []);
 
   function changeStrategy(id: string) {
@@ -718,10 +720,10 @@ function DashboardView({ data, strategies, survivalBundle, activeView, onStrateg
           <strong>{pct(data.strategy.featuredMetric.value, 2)}</strong>
           <small>{data.strategy.featuredMetric.note}</small>
         </button>
-        {data.strategy.cashOnlyMetric && <article className="metric-card cash-only-card spotlight-surface" onMouseMove={positionSpotlight} aria-label="Cash-only performance without financing">
-          <div className="metric-label"><span>{data.strategy.cashOnlyMetric.label}</span></div>
-          <strong>{pct(data.strategy.cashOnlyMetric.value, 2)}</strong>
-          <small>Sharpe {data.strategy.cashOnlyMetric.sharpe.toFixed(2)} · drawdown {pct(data.strategy.cashOnlyMetric.maxDrawdown, 1)} · {data.strategy.cashOnlyMetric.note}</small>
+        {data.strategy.betaMatched && <article className="metric-card cash-only-card spotlight-surface" onMouseMove={positionSpotlight} aria-label="Alpha over SPY at the same market risk">
+          <div className="metric-label"><span>ALPHA VS SPY AT SAME RISK</span></div>
+          <strong>{pct(data.strategy.betaMatched.alphaBeforeBreak, 1)} → {pct(data.strategy.betaMatched.alphaAfterBreak, 1)}</strong>
+          <small>Per year, before → after {data.strategy.betaMatched.breakDate} · overall {pct(data.strategy.betaMatched.alphaFull, 1)}, p {data.strategy.betaMatched.pValue.toFixed(3)} · {data.strategy.betaMatched.passed ? "passed" : "failed"} the p &lt; 0.005 bar (Step {data.strategy.betaMatched.step})</small>
         </article>}
       </section>
 

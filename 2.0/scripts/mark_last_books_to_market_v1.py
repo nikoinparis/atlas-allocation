@@ -29,10 +29,8 @@ BOOKS = ROOT / "evidence/dashboard_last_books_v1/last_books.csv"
 OUTPUT = ROOT / "evidence/dashboard_held_book_marks_v1"
 
 ANCHOR = pd.Timestamp("2026-08-07")
-FINANCING_ANNUAL = {
-    "sec-residual-controlled-1.25x-5pct-v1": 0.05,
-    "sec-sector-ensemble-fragile-1.35x-v1": 0.05,
-}
+# Every dashboard book is unlevered since 2026-10-06 (owner's instruction), so nothing is borrowed.
+FINANCING_ANNUAL: dict[str, float] = {}
 
 
 def last_closed_friday(now: pd.Timestamp) -> pd.Timestamp:
@@ -100,7 +98,7 @@ def main() -> int:
         "what_this_is": "the last decided book of each dashboard strategy, held unchanged and marked to market",
         "what_this_is_not": "This is not a forward observation of any strategy. No strategy decided these weeks: each book last decided on 2026-08-07 and nothing rebalanced it since.",
         "weeks": [str(d.date()) for d in returns.index],
-        "cost_treatment": "no turnover occurs in a held book, so no trading cost is charged; the two levered books are charged their own stated 5% annual financing on the borrowed portion",
+        "cost_treatment": "no turnover occurs in a held book, so no trading cost is charged; no book is levered, so no financing is charged",
         "strategies": summary,
         "live_trading_enabled": False,
         "promotion_authorized": False,

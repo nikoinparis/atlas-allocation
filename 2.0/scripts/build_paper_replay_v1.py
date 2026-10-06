@@ -35,8 +35,7 @@ ETF_CLOCKS = {"breadth_confirmed_trend_return_ceiling_v3", "past_only_consensus_
               "return_first_60_40_blend_v1", "covariance_minimum_variance_v1"}
 
 DASHBOARD_LABELS = {
-    "sec-residual-controlled-1.25x-5pct-v1": "Residual-Controlled 1.25x",
-    "sec-sector-ensemble-fragile-1.35x-v1": "Sector Ensemble 1.35x",
+    "sec-residual-controlled-1x-v1": "Residual-Controlled",
     "sec-sector-aware-signal-ensemble-v1": "Sector-Aware Ensemble",
     "sec-cash-conversion-breadth20-dynamic-v1": "Cash Conversion B20",
     "sec-growth-survivorship-aware-v1": "Growth Top-Five",

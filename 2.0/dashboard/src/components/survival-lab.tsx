@@ -16,7 +16,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { AlertTriangle, Activity, BarChart3, Info, Landmark, ShieldAlert, SlidersHorizontal, TrendingDown } from "lucide-react";
+import { AlertTriangle, Activity, BarChart3, Info, ShieldAlert, SlidersHorizontal, TrendingDown } from "lucide-react";
 
 /* ------------------------------------------------------------------ types */
 
@@ -215,7 +215,6 @@ export function SurvivalLab({
   const [showPaths, setShowPaths] = useState(true);
   const [capital, setCapital] = useState(10000);
   const [caps, setCaps] = useState<CapsPayload | null>(null);
-  const [financed, setFinanced] = useState(false);
 
   useEffect(() => {
     let live = true;
@@ -233,8 +232,8 @@ export function SurvivalLab({
 
   const capEntry = caps?.strategies.find((item) => item.id === survival.id) ?? null;
   const exposure = capEntry?.exposure ?? null;
-  const leveredKey = exposure ? Object.keys(exposure.paths).find((k) => k !== "unlevered_1.00x") : undefined;
-  const shownPath = exposure ? (financed && leveredKey ? exposure.paths[leveredKey] : exposure.paths["unlevered_1.00x"]) : null;
+  // Only the unlevered path is shown: levered and financed figures were removed on 2026-10-06.
+  const shownPath = exposure ? exposure.paths["unlevered_1.00x"] : null;
 
   const summary = survival.monte_carlo.block_summaries[blockKey] ?? survival.monte_carlo.block_summaries[String(survival.monte_carlo.primary_block_weeks)];
   const primary = survival.monte_carlo.block_summaries[String(survival.monte_carlo.primary_block_weeks)];
@@ -334,22 +333,9 @@ export function SurvivalLab({
           {survival.binding_failures.length > 0 && (
             <p className="lab-binding"><AlertTriangle size={15} /> Binding failures: <b>{survival.binding_failures.join(" · ")}</b></p>
           )}
-          {exposure?.benefits_heavily_from_financing && (
-            <div className="lab-financing">
-              <Landmark size={16} />
-              <div>
-                <strong>This strategy benefits heavily from financing.</strong>
-                <p>{exposure.note}</p>
-              </div>
-              <div className="lab-controls">
-                <button className={`lab-toggle ${!financed ? "on" : ""}`} onClick={() => setFinanced(false)}>Pure cash</button>
-                <button className={`lab-toggle ${financed ? "on" : ""}`} onClick={() => setFinanced(true)}>Financed {exposure.native_gross.toFixed(2)}x</button>
-              </div>
-            </div>
-          )}
           {shownPath && (
             <div className="lab-exposure-readout">
-              <span>{financed && exposure?.uses_financing ? `FINANCED ${exposure.native_gross.toFixed(2)}x` : "PURE CASH 1.00x"} · TRAILING 52W</span>
+              <span>PURE CASH 1.00x · TRAILING 52W</span>
               <b className={shownPath.cagr >= 0 ? "gain" : "loss"}>{pct(shownPath.cagr)}</b>
               <i>Sharpe {shownPath.sharpe.toFixed(2)} · drawdown {pct(shownPath.max_drawdown)}</i>
             </div>

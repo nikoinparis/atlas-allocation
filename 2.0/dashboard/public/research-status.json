@@ -37,12 +37,12 @@
   },
   "clocks": [
     {
-      "cumulativeReturn": 0.05475340276591889,
-      "observedWeeks": 4,
+      "cumulativeReturn": 0.06682022249458575,
+      "observedWeeks": 5,
       "promotionAuthorized": false,
       "protocol": "breadth_confirmed_trend_return_ceiling_v3",
       "requiredWeeks": 52,
-      "savedDecisions": 6,
+      "savedDecisions": 7,
       "weekly": [
         {
           "netReturn": 0.007870624530397694,
@@ -59,16 +59,20 @@
         {
           "netReturn": 0.02401225593199448,
           "week": "2026-09-11"
+        },
+        {
+          "netReturn": 0.011440417918561468,
+          "week": "2026-10-02"
         }
       ]
     },
     {
-      "cumulativeReturn": -0.011074345168236688,
-      "observedWeeks": 4,
+      "cumulativeReturn": -0.016082171490935382,
+      "observedWeeks": 5,
       "promotionAuthorized": false,
       "protocol": "covariance_minimum_variance_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 6,
+      "savedDecisions": 7,
       "weekly": [
         {
           "netReturn": -0.004051813672142307,
@@ -85,25 +89,29 @@
         {
           "netReturn": -0.008926843271075492,
           "week": "2026-09-11"
+        },
+        {
+          "netReturn": -0.005063905763017723,
+          "week": "2026-10-02"
         }
       ]
     },
     {
       "cumulativeReturn": null,
-      "observedWeeks": 0,
+      "observedWeeks": 1,
       "promotionAuthorized": false,
       "protocol": "equal_weight_benchmark_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 2,
+      "savedDecisions": 3,
       "weekly": []
     },
     {
-      "cumulativeReturn": 0.05217250121462125,
-      "observedWeeks": 4,
+      "cumulativeReturn": 0.0654009547034371,
+      "observedWeeks": 5,
       "promotionAuthorized": false,
       "protocol": "past_only_consensus_selector_return_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 6,
+      "savedDecisions": 7,
       "weekly": [
         {
           "netReturn": 0.02794378204652248,
@@ -120,25 +128,29 @@
         {
           "netReturn": 0.016859223731109818,
           "week": "2026-09-11"
+        },
+        {
+          "netReturn": 0.012572513987530565,
+          "week": "2026-10-02"
         }
       ]
     },
     {
       "cumulativeReturn": null,
-      "observedWeeks": 0,
+      "observedWeeks": 1,
       "promotionAuthorized": false,
       "protocol": "residual_tie_agnostic_companion_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 2,
+      "savedDecisions": 3,
       "weekly": []
     },
     {
-      "cumulativeReturn": 0.025634411926729772,
-      "observedWeeks": 4,
+      "cumulativeReturn": 0.040673848526589396,
+      "observedWeeks": 5,
       "promotionAuthorized": false,
       "protocol": "return_first_60_40_blend_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 6,
+      "savedDecisions": 7,
       "weekly": [
         {
           "netReturn": -0.002215515303859796,
@@ -155,6 +167,10 @@
         {
           "netReturn": 0.011940520425217845,
           "week": "2026-09-11"
+        },
+        {
+          "netReturn": 0.014663545240849361,
+          "week": "2026-10-02"
         }
       ]
     },
@@ -171,19 +187,38 @@
       "cumulativeReturn": null,
       "observedWeeks": 0,
       "promotionAuthorized": false,
-      "protocol": "sue_quarterly_v1",
+      "protocol": "static_spy_gld_shy_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 2,
+      "savedDecisions": 1,
       "weekly": []
     },
     {
-      "cumulativeReturn": null,
-      "observedWeeks": 0,
+      "cumulativeReturn": 0.006697931108720967,
+      "observedWeeks": 1,
+      "promotionAuthorized": false,
+      "protocol": "sue_quarterly_v1",
+      "requiredWeeks": 52,
+      "savedDecisions": 3,
+      "weekly": [
+        {
+          "netReturn": 0.006697931108720882,
+          "week": "2026-10-02"
+        }
+      ]
+    },
+    {
+      "cumulativeReturn": -0.00496363886383655,
+      "observedWeeks": 1,
       "promotionAuthorized": false,
       "protocol": "valuation_earnings_yield_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 2,
-      "weekly": []
+      "savedDecisions": 3,
+      "weekly": [
+        {
+          "netReturn": -0.0049636388638365555,
+          "week": "2026-10-02"
+        }
+      ]
     },
     {
       "cumulativeReturn": null,
@@ -329,18 +364,18 @@
     "window": "13-week horizon, both windows, Bonferroni bar p < 0.0038"
   },
   "distinctStrategyCount": {
-    "displayed": 6,
+    "displayed": 5,
     "distinct": 4,
-    "finding": "The dashboard displays six strategies. Step 281 established that two of them are one object: the Sector-Aware Signal Ensemble's published path is identical to its own predecessor in 165 of 188 weeks and totals 261.99% against that path's 259.99%, so the sector-aware overlay is worth about 0.08 points a year on a 42.74% CAGR. Its 1.35x form is the same book again at higher leverage.",
+    "finding": "The dashboard displays five strategies. Step 281 established that two of them are one object: the Sector-Aware Signal Ensemble's published path is identical to its own predecessor in 165 of 188 weeks and totals 261.99% against that path's 259.99%, so the sector-aware overlay is worth about 0.08 points a year on a 42.74% CAGR. A 1.35x form of the same book, which added only borrowed money, was removed from the dashboard on 2026-10-06.",
     "measuredIn": "Step 281",
     "whyItMatters": "Counting them separately overstates how many independent bets this project holds, which is the illusion Step 245 measured as an effective 1.15 strategies and Step 277 restated as breadth without skill. Nothing has been removed: a negative result is a record, not a mistake to delete."
   },
-  "generatedAtUtc": "2026-09-29T12:59:44.640829+00:00",
+  "generatedAtUtc": "2026-10-06T17:03:10.381313+00:00",
   "headline": {
     "clocksPending": 4,
-    "clocksRunning": 4,
+    "clocksRunning": 8,
     "closedFamilies": 17,
-    "totalUntouchedWeeks": 16,
+    "totalUntouchedWeeks": 24,
     "weeksRequiredEach": 52
   },
   "liveTradingEnabled": false,

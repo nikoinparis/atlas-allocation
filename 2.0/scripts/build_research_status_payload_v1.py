@@ -212,14 +212,15 @@ def main() -> int:
             "measuredIn": "Steps 287, 289, 290",
         },
         "distinctStrategyCount": {
-            "displayed": 6,
+            "displayed": 5,
             "distinct": 4,
             "finding": (
-                "The dashboard displays six strategies. Step 281 established that two of them "
+                "The dashboard displays five strategies. Step 281 established that two of them "
                 "are one object: the Sector-Aware Signal Ensemble's published path is identical "
                 "to its own predecessor in 165 of 188 weeks and totals 261.99% against that "
                 "path's 259.99%, so the sector-aware overlay is worth about 0.08 points a year "
-                "on a 42.74% CAGR. Its 1.35x form is the same book again at higher leverage."),
+                "on a 42.74% CAGR. A 1.35x form of the same book, which added only borrowed money, "
+                "was removed from the dashboard on 2026-10-06."),
             "whyItMatters": (
                 "Counting them separately overstates how many independent bets this project "
                 "holds, which is the illusion Step 245 measured as an effective 1.15 strategies "

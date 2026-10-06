@@ -254,7 +254,7 @@ def incumbent_payload() -> dict[str, object]:
             "retrospectiveHoldout": {"cagr": result["holdout_50bps_cagr"], "sharpe": result["holdout_50bps_sharpe"], "maxDrawdown": result["holdout_50bps_drawdown"], "start": "2023-08-04"},
             "fullHistory": {"cagr": result["full_50bps_cagr"], "maxDrawdown": result["full_50bps_drawdown"], "start": records[0]["date"]},
             "featuredMetric": {"label": "OFFICIAL RESEARCH CAGR", "value": result["holdout_50bps_cagr"], "note": "Holdout window · selected after observing this period"},
-            "forward": {"status": status["status"], "observedWeeks": status["observed_weeks"], "requiredWeeks": status["required_weeks"], "firstDecision": config["first_eligible_decision_date"], "firstRealization": config["first_eligible_realization_date"], "note": "The 41.66% holdout result is evidence—not an expectation."},
+            "forward": {"status": status.get("status", "FROZEN FORWARD · NOT PROMOTED"), "observedWeeks": status["observed_weeks"], "requiredWeeks": status["required_weeks"], "firstDecision": config["first_eligible_decision_date"], "firstRealization": config["first_eligible_realization_date"], "note": "The 41.66% holdout result is evidence—not an expectation."},
             "disclosures": {"researchOnly": result["retrospective_research_only"], "liveTradingEnabled": result["live_trading_enabled"], "costBps": 50, "returnConvention": "Weekly decision returns, expanded to daily calendar observations."},
         },
         "records": records,
@@ -350,7 +350,7 @@ def growth_payload() -> dict[str, object]:
             "retrospectiveHoldout": {"cagr": recent["cagr"], "sharpe": recent["sharpe_zero_rf"], "maxDrawdown": recent["max_drawdown"], "start": str(recent["start"])},
             "fullHistory": {"cagr": full["cagr"], "maxDrawdown": full["max_drawdown"], "start": str(full["start"])},
             "featuredMetric": {"label": "OFFICIAL RESEARCH CAGR", "value": recent["cagr"], "note": "Trailing 1Y · Micron supplied 67.63% of positive return"},
-            "forward": {"status": status["status"], "observedWeeks": status["observed_weeks"], "requiredWeeks": status["required_weeks"], "firstDecision": "2026-08-14", "firstRealization": status["next_realization"], "note": "The 142.22% result is a historical simulation, not an expected annual return."},
+            "forward": {"status": status.get("status", "FROZEN FORWARD · NOT PROMOTED"), "observedWeeks": status["observed_weeks"], "requiredWeeks": status["required_weeks"], "firstDecision": "2026-08-14", "firstRealization": status["next_realization"], "note": "The 142.22% result is a historical simulation, not an expected annual return."},
             "disclosures": {"researchOnly": True, "liveTradingEnabled": False, "costBps": 50, "returnConvention": "Quarterly SEC selections with weekly mark-to-market; missing MMAT weight held in cash in the displayed base case."},
         },
         "records": records,
@@ -744,7 +744,10 @@ def broad_price_sources(ciks: set[str]) -> tuple[dict[str, str], pd.DataFrame]:
 
 
 def residual_controlled_payload(control_payload: dict[str, object]) -> dict[str, object]:
-    """Render the corrected common-endpoint 1.25x path without implying promotion."""
+    """Render the corrected common-endpoint path at 1.00x: no borrowing, no financing.
+
+    The owner asked on 2026-10-06 for every levered number to be removed from the dashboard.
+    """
     audit = json.loads(RESIDUAL_COMMON_ENDPOINT.read_text())
     result = json.loads((RESIDUAL_CONTROLLED / "result.json").read_text())
     forward = json.loads(RESIDUAL_FORWARD.read_text())
@@ -755,9 +758,8 @@ def residual_controlled_payload(control_payload: dict[str, object]) -> dict[str,
     if candidate.index.tz is not None:
         candidate.index = candidate.index.tz_localize(None)
     candidate = candidate.loc[:common_endpoint]
-    leverage = 1.25
-    financing_rate = 0.05
-    levered_returns = leverage * candidate - (leverage - 1.0) * financing_rate / 52.0
+    leverage = 1.0
+    levered_returns = candidate.copy()
 
     control_rows = control_payload["records"]
     control_symbols = sorted({
@@ -801,8 +803,7 @@ def residual_controlled_payload(control_payload: dict[str, object]) -> dict[str,
     all_symbols = sorted(set(control_weights.columns) | set(residual_weights.columns) | {"cash::USD"})
     control_weights = control_weights.reindex(columns=all_symbols, fill_value=0.0)
     residual_weights = residual_weights.reindex(columns=all_symbols, fill_value=0.0)
-    weights = leverage * (0.8 * control_weights + 0.2 * residual_weights)
-    weights["cash::USD"] -= leverage - 1.0
+    weights = 0.8 * control_weights + 0.2 * residual_weights
 
     turnover = 0.5 * weights.diff().abs().sum(axis=1).fillna(0.0)
     cost = turnover * 50.0 / 10000.0
@@ -822,17 +823,15 @@ def residual_controlled_payload(control_payload: dict[str, object]) -> dict[str,
         records,
     )
 
-    recent = audit["trailing_52_week_paths"]["levered_1.25x_5pct_financing"]
-    conservative = audit["trailing_52_week_paths"]["levered_1.25x_8pct_financing"]
-    cash_only = weekly_statistics(candidate.tail(52))
+    recent = weekly_statistics(candidate.tail(52))
     full = weekly_statistics(levered_returns)
     return {
         "strategy": {
-            "id": "sec-residual-controlled-1.25x-5pct-v1",
-            "name": "Residual-Controlled 1.25x — Recent Return Leader",
-            "shortName": "150.86% Residual 1.25x",
-            "subtitle": "80% dynamic leader + 20% residual momentum · 1.25x exposure · assumed 5% financing",
-            "badge": "150.86% trailing 52W CAGR",
+            "id": "sec-residual-controlled-1x-v1",
+            "name": "Residual-Controlled — Recent Return Leader",
+            "shortName": f"{recent['cagr'] * 100:.2f}% Residual-Controlled",
+            "subtitle": "80% dynamic leader + 20% residual momentum · no leverage, no financing",
+            "badge": f"{recent['cagr'] * 100:.2f}% trailing 52W CAGR",
             "asOf": audit["common_endpoint"],
             "retrospectiveHoldout": {
                 "cagr": recent["cagr"],
@@ -850,14 +849,7 @@ def residual_controlled_payload(control_payload: dict[str, object]) -> dict[str,
             "featuredMetric": {
                 "label": "COMMON-ENDPOINT TRAILING 52W",
                 "value": recent["cagr"],
-                "note": f"5% financing assumption · 8% stress: {conservative['cagr'] * 100:.2f}% · selected on this sample",
-            },
-            "cashOnlyMetric": {
-                "label": "CASH-ONLY TRAILING 52W",
-                "value": cash_only["cagr"],
-                "sharpe": cash_only["sharpe"],
-                "maxDrawdown": cash_only["max_drawdown"],
-                "note": "1.00x exposure · $0 borrowed · $0 financing",
+                "note": "1.00x exposure · $0 borrowed · selected on this sample",
             },
             "forward": {
                 "status": "FROZEN FORWARD · NOT PROMOTED",
@@ -871,7 +863,7 @@ def residual_controlled_payload(control_payload: dict[str, object]) -> dict[str,
                 "researchOnly": True,
                 "liveTradingEnabled": False,
                 "costBps": 50,
-                "returnConvention": "Weekly net research path through the 2026-08-07 common endpoint; 1.25x exposure with a 5% annual financing assumption. Selection-contaminated and not promotion-authorized.",
+                "returnConvention": "Weekly net research path through the 2026-08-07 common endpoint; 1.00x exposure, no borrowing. Selection-contaminated and not promotion-authorized.",
             },
         },
         "records": records,
@@ -886,17 +878,50 @@ def residual_controlled_payload(control_payload: dict[str, object]) -> dict[str,
     }
 
 
+BETA_MATCHED = V2 / "evidence/beta_matched_benchmark_v1/result.json"
+BETA_MATCHED_BOOKS = {
+    "sec-residual-controlled-1x-v1": "residual_controlled_1x",
+    "sec-sector-aware-signal-ensemble-v1": "sector_aware_ensemble",
+    "sec-cash-conversion-breadth20-dynamic-v1": "cash_conversion_b20_dynamic",
+    "sec-growth-survivorship-aware-v1": "growth_survivorship",
+    "candidate-return-first-60-40-forward-v1": "etf_60_40_return_first",
+}
+
+
+def attach_beta_matched(strategies: list[dict[str, object]]) -> None:
+    """Step 332: alpha over SPY held at the book's own past-only beta, before and after 2025-04-04."""
+    verdicts = json.loads(BETA_MATCHED.read_text())["verdicts"]
+    for entry in strategies:
+        book = BETA_MATCHED_BOOKS.get(entry["strategy"]["id"])
+        if book is None:
+            continue
+        v = verdicts[f"{book}|N1_SPY"]
+        entry["strategy"]["betaMatched"] = {
+            "alphaFull": v["alpha_full"], "pValue": v["p"],
+            "alphaBeforeBreak": v["alpha_pre"], "alphaAfterBreak": v["alpha_post"],
+            "passed": v["PASS"], "breakDate": "2025-04-04", "step": 332,
+            "note": "Alpha over SPY held at the same past-only beta. Bonferroni bar p < 0.005 across 10 trials.",
+        }
+
+
 def main() -> int:
     breadth = breadth20_payload()
     residual = residual_controlled_payload(breadth)
+    # The 1.35x sector ensemble was removed on 2026-10-06 at the owner's request: it is the
+    # sector-aware ensemble below with borrowed money, and no levered figure is shown any more.
     payload = {"strategies": [
         residual,
-        sector_fragile_135_payload(),
         incumbent_payload(),
         growth_payload(),
         breadth,
         sector_ensemble_payload(),
     ]}
+    attach_beta_matched(payload["strategies"])
+    # Per-strategy prices are served from public/prices/<id>.json (split out on 2026-09-11).
+    for entry in payload["strategies"]:
+        if "assetPrices" in entry:
+            prices_path = OUTPUT.parent / "prices" / f"{entry['strategy']['id']}.json"
+            prices_path.write_text(json.dumps(entry.pop("assetPrices"), separators=(",", ":")))
     temporary = OUTPUT.with_suffix(".json.tmp")
     temporary.write_text(json.dumps(payload, separators=(",", ":")) + "\n")
     temporary.replace(OUTPUT)

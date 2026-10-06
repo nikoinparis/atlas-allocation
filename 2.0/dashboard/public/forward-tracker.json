@@ -1,16 +1,16 @@
 {
   "backtestsEndAt": "2026-08-07",
-  "dataThrough": "2026-09-25",
-  "generatedAtUtc": "2026-09-29T12:59:44.509077+00:00",
+  "dataThrough": "2026-10-02",
+  "generatedAtUtc": "2026-10-06T17:00:48.660197+00:00",
   "heldBooks": {
     "attributionNote": "arithmetic weekly weight-times-return contributions summed over the closed weeks; energy classification was fixed on 2026-09-02 after seeing the first three weeks and is held constant since, so it is a hypothesis about later weeks rather than a finding about the ones that produced it",
     "benchmarks": {
-      "QQQ": 0.030767396387616275,
-      "SPY": 6.963286861561002e-06,
-      "XLK": 0.04537450415268762,
-      "equal_weight_issuer_universe": -0.05135931080512235
+      "QQQ": 0.03780072881112573,
+      "SPY": -0.0022098940393470157,
+      "XLK": 0.06422923817031045,
+      "equal_weight_issuer_universe": -0.05570056204932827
     },
-    "costTreatment": "no turnover occurs in a held book, so no trading cost is charged; the two levered books are charged their own stated 5% annual financing on the borrowed portion",
+    "costTreatment": "no turnover occurs in a held book, so no trading cost is charged; no book is levered, so no financing is charged",
     "energySymbols": [
       "BKV",
       "EQT",
@@ -23,10 +23,10 @@
     "strategies": [
       {
         "bookAsOf": "2026-08-07",
-        "cumulativeReturn": 0.0892622301810928,
-        "energyContribution": -0.019560921443227457,
+        "cumulativeReturn": 0.10225682025362803,
+        "energyContribution": -0.021761744707739113,
         "energyWeight": 0.2,
-        "exEnergyContribution": 0.11337481351256662,
+        "exEnergyContribution": 0.12750535371069008,
         "grossExposure": 1.0,
         "id": "sec-growth-survivorship-aware-v1",
         "label": "Growth / Micron",
@@ -67,15 +67,20 @@
             "cumulative": 0.0892622301810928,
             "netReturn": 0.0683910535708531,
             "weekEnding": "2026-09-25"
+          },
+          {
+            "cumulative": 0.102256820253628,
+            "netReturn": 0.0119297169336118,
+            "weekEnding": "2026-10-02"
           }
         ]
       },
       {
         "bookAsOf": "2026-08-07",
-        "cumulativeReturn": 0.0726028317036449,
-        "energyContribution": 0.04852945430628869,
+        "cumulativeReturn": 0.0883309918517945,
+        "energyContribution": 0.05425870028688478,
         "energyWeight": 0.5046502034762445,
-        "exEnergyContribution": 0.022732317995829573,
+        "exEnergyContribution": 0.03166661725608284,
         "grossExposure": 0.9999999999999998,
         "id": "candidate-return-first-60-40-forward-v1",
         "label": "ETF Incumbent 60/40",
@@ -116,15 +121,20 @@
             "cumulative": 0.0726028317036449,
             "netReturn": 0.0029072198537128,
             "weekEnding": "2026-09-25"
+          },
+          {
+            "cumulative": 0.0883309918517945,
+            "netReturn": 0.0146635452408493,
+            "weekEnding": "2026-10-02"
           }
         ]
       },
       {
         "bookAsOf": "2026-08-07",
-        "cumulativeReturn": 0.05906260761529181,
-        "energyContribution": 0.014306551854034451,
+        "cumulativeReturn": 0.07920423017013456,
+        "energyContribution": 0.01731465102832701,
         "energyWeight": 0.2663950610428733,
-        "exEnergyContribution": 0.04423814763717589,
+        "exEnergyContribution": 0.06024839777574288,
         "grossExposure": 0.95,
         "id": "sec-cash-conversion-breadth20-dynamic-v1",
         "label": "Cash-Conversion Breadth-20",
@@ -132,146 +142,53 @@
         "namesPriced": 26,
         "weeks": [
           {
-            "cumulative": 0.0394771070670714,
-            "netReturn": 0.0394771070670713,
+            "cumulative": 0.0394771081928013,
+            "netReturn": 0.0394771081928013,
             "weekEnding": "2026-08-14"
           },
           {
-            "cumulative": 0.024346049868084,
-            "netReturn": -0.0145564121577244,
+            "cumulative": 0.024346048932798,
+            "netReturn": -0.0145564141247032,
             "weekEnding": "2026-08-21"
           },
           {
-            "cumulative": 0.0313845687241847,
-            "netReturn": 0.0068712315110768,
+            "cumulative": 0.0313845707571072,
+            "netReturn": 0.0068712344150125,
             "weekEnding": "2026-08-28"
           },
           {
-            "cumulative": 0.0449992711667792,
-            "netReturn": 0.0132004131683256,
+            "cumulative": 0.044999269782298,
+            "netReturn": 0.0132004098288932,
             "weekEnding": "2026-09-04"
           },
           {
-            "cumulative": 0.0349957085756691,
-            "netReturn": -0.0095727938450527,
+            "cumulative": 0.0349957078678508,
+            "netReturn": -0.0095727932102106,
             "weekEnding": "2026-09-11"
           },
           {
-            "cumulative": 0.044490181441549,
-            "netReturn": 0.0091734417710252,
+            "cumulative": 0.0444901811403806,
+            "netReturn": 0.0091734421701987,
             "weekEnding": "2026-09-18"
           },
           {
-            "cumulative": 0.0590626076152918,
-            "netReturn": 0.0139517119764884,
+            "cumulative": 0.0590626059557737,
+            "netReturn": 0.0139517106800208,
             "weekEnding": "2026-09-25"
+          },
+          {
+            "cumulative": 0.0792042301701345,
+            "netReturn": 0.0190183508520571,
+            "weekEnding": "2026-10-02"
           }
         ]
       },
       {
         "bookAsOf": "2026-08-07",
-        "cumulativeReturn": 0.04349387988948572,
-        "energyContribution": 0.011398959104466854,
-        "energyWeight": 0.2383533329631514,
-        "exEnergyContribution": 0.03416663044948022,
-        "grossExposure": 1.187999999999999,
-        "id": "sec-sector-ensemble-fragile-1.35x-v1",
-        "label": "Fragile Sector Ensemble 1.35x",
-        "namesInBook": 29,
-        "namesPriced": 29,
-        "weeks": [
-          {
-            "cumulative": 0.0470573209852265,
-            "netReturn": 0.0470573209852265,
-            "weekEnding": "2026-08-14"
-          },
-          {
-            "cumulative": 0.0225307040834057,
-            "netReturn": -0.0234243306553097,
-            "weekEnding": "2026-08-21"
-          },
-          {
-            "cumulative": 0.0346908443338278,
-            "netReturn": 0.0118922005978513,
-            "weekEnding": "2026-08-28"
-          },
-          {
-            "cumulative": 0.0339290024536864,
-            "netReturn": -0.000736299044602,
-            "weekEnding": "2026-09-04"
-          },
-          {
-            "cumulative": 0.0169564566967093,
-            "netReturn": -0.0164155814535605,
-            "weekEnding": "2026-09-11"
-          },
-          {
-            "cumulative": 0.0301299498399829,
-            "netReturn": 0.0129538418843064,
-            "weekEnding": "2026-09-18"
-          },
-          {
-            "cumulative": 0.0434938798894857,
-            "netReturn": 0.0129730526246504,
-            "weekEnding": "2026-09-25"
-          }
-        ]
-      },
-      {
-        "bookAsOf": "2026-08-07",
-        "cumulativeReturn": 0.04019143718988283,
-        "energyContribution": 0.014306551854034451,
-        "energyWeight": 0.2663950610428733,
-        "exEnergyContribution": 0.028265712255040643,
-        "grossExposure": 1.1999999999999997,
-        "id": "sec-residual-controlled-1.25x-5pct-v1",
-        "label": "Residual-Controlled 1.25x",
-        "namesInBook": 44,
-        "namesPriced": 44,
-        "weeks": [
-          {
-            "cumulative": 0.0480331630580541,
-            "netReturn": 0.0480331630580541,
-            "weekEnding": "2026-08-14"
-          },
-          {
-            "cumulative": 0.0198224043962285,
-            "netReturn": -0.0269178110542891,
-            "weekEnding": "2026-08-21"
-          },
-          {
-            "cumulative": 0.0172863757339865,
-            "netReturn": -0.002486735583872,
-            "weekEnding": "2026-08-28"
-          },
-          {
-            "cumulative": 0.0327902911698521,
-            "netReturn": 0.0152404630649647,
-            "weekEnding": "2026-09-04"
-          },
-          {
-            "cumulative": 0.0216261409353033,
-            "netReturn": -0.0108096971185728,
-            "weekEnding": "2026-09-11"
-          },
-          {
-            "cumulative": 0.0219449448851898,
-            "netReturn": 0.0003120553959148,
-            "weekEnding": "2026-09-18"
-          },
-          {
-            "cumulative": 0.0401914371898828,
-            "netReturn": 0.0178546725007216,
-            "weekEnding": "2026-09-25"
-          }
-        ]
-      },
-      {
-        "bookAsOf": "2026-08-07",
-        "cumulativeReturn": 0.03334090594733108,
-        "energyContribution": 0.008443673410716192,
+        "cumulativeReturn": 0.05572084306395575,
+        "energyContribution": 0.01084333627444747,
         "energyWeight": 0.1765580244171491,
-        "exEnergyContribution": 0.025308615147763096,
+        "exEnergyContribution": 0.04456679736065153,
         "grossExposure": 0.8799999999999993,
         "id": "sec-sector-aware-signal-ensemble-v1",
         "label": "Sector-Aware Signal Ensemble",
@@ -279,39 +196,98 @@
         "namesPriced": 29,
         "weeks": [
           {
-            "cumulative": 0.0349911779377747,
-            "netReturn": 0.0349911779377746,
+            "cumulative": 0.0349911788463732,
+            "netReturn": 0.0349911788463731,
             "weekEnding": "2026-08-14"
           },
           {
-            "cumulative": 0.0171712660724012,
-            "netReturn": -0.017217452907067,
+            "cumulative": 0.017171264458111,
+            "netReturn": -0.0172174553295465,
             "weekEnding": "2026-08-21"
           },
           {
-            "cumulative": 0.0262677682989433,
-            "netReturn": 0.008942940613793,
+            "cumulative": 0.026267770890066,
+            "netReturn": 0.0089429447624053,
             "weekEnding": "2026-08-28"
           },
           {
-            "cumulative": 0.0258454554528206,
-            "netReturn": -0.000411503565802,
+            "cumulative": 0.0258454535646628,
+            "netReturn": -0.0004115079293943,
             "weekEnding": "2026-09-04"
           },
           {
-            "cumulative": 0.0135088566832797,
-            "netReturn": -0.0120257868316973,
+            "cumulative": 0.0135088560083667,
+            "netReturn": -0.0120257856711536,
             "weekEnding": "2026-09-11"
           },
           {
-            "cumulative": 0.0233696305308499,
-            "netReturn": 0.0097293415667227,
+            "cumulative": 0.023369629716883,
+            "netReturn": 0.0097293414360011,
             "weekEnding": "2026-09-18"
           },
           {
-            "cumulative": 0.033340905947331,
-            "netReturn": 0.0097435717447552,
+            "cumulative": 0.0333409035841378,
+            "netReturn": 0.0097435702386571,
             "weekEnding": "2026-09-25"
+          },
+          {
+            "cumulative": 0.0557208430639557,
+            "netReturn": 0.0216578472817567,
+            "weekEnding": "2026-10-02"
+          }
+        ]
+      },
+      {
+        "bookAsOf": "2026-08-07",
+        "cumulativeReturn": 0.046045807314373466,
+        "energyContribution": 0.01733359997589986,
+        "energyWeight": 0.18111604883429858,
+        "exEnergyContribution": 0.02888219228763953,
+        "grossExposure": 0.9599999999999999,
+        "id": "sec-residual-controlled-1x-v1",
+        "label": "Residual-Controlled",
+        "namesInBook": 44,
+        "namesPriced": 44,
+        "weeks": [
+          {
+            "cumulative": 0.0414129407416927,
+            "netReturn": 0.0414129407416927,
+            "weekEnding": "2026-08-14"
+          },
+          {
+            "cumulative": 0.0240426881082505,
+            "netReturn": -0.0166795052700911,
+            "weekEnding": "2026-08-21"
+          },
+          {
+            "cumulative": 0.0236946335305168,
+            "netReturn": -0.0003398828796645,
+            "weekEnding": "2026-08-28"
+          },
+          {
+            "cumulative": 0.0347076807094757,
+            "netReturn": 0.0107581370637619,
+            "weekEnding": "2026-09-04"
+          },
+          {
+            "cumulative": 0.0260807186737199,
+            "netReturn": -0.0083375838380173,
+            "weekEnding": "2026-09-11"
+          },
+          {
+            "cumulative": 0.0237432541576241,
+            "netReturn": -0.0022780513009904,
+            "weekEnding": "2026-09-18"
+          },
+          {
+            "cumulative": 0.0313028387680351,
+            "netReturn": 0.0073842582890877,
+            "weekEnding": "2026-09-25"
+          },
+          {
+            "cumulative": 0.0460458073143734,
+            "netReturn": 0.0142954794577604,
+            "weekEnding": "2026-10-02"
           }
         ]
       }
@@ -323,24 +299,26 @@
       "2026-09-04",
       "2026-09-11",
       "2026-09-18",
-      "2026-09-25"
+      "2026-09-25",
+      "2026-10-02"
     ],
     "whatThisIs": "the last decided book of each dashboard strategy, held unchanged and marked to market",
     "whatThisIsNot": "This is not a forward observation of any strategy. No strategy decided these weeks: each book last decided on 2026-08-07 and nothing rebalanced it since."
   },
   "issuersPricedNewWeek": {
-    "2026-08-28": 2804,
-    "2026-09-04": 2805,
-    "2026-09-11": 2802,
-    "2026-09-18": 2799,
-    "2026-09-25": 2801
+    "2026-08-28": 2802,
+    "2026-09-04": 2803,
+    "2026-09-11": 2801,
+    "2026-09-18": 2798,
+    "2026-09-25": 2800,
+    "2026-10-02": 2800
   },
   "liveTradingEnabled": false,
   "panelReconciliation": {
     "basis": "weekly simple returns over the overlapping weeks",
     "cells_over_100bps": 369,
     "cells_over_10bps": 525,
-    "compared_cells": 30347,
+    "compared_cells": 30336,
     "max_absolute_return_gap": 17.00000145519156,
     "median_absolute_return_gap": 1.1102230246251565e-16,
     "overlap_weeks": [
@@ -362,7 +340,7 @@
   "protocols": [
     {
       "executionEnabled": false,
-      "latestRealization": "2026-09-11",
+      "latestRealization": "2026-10-02",
       "observations": [
         {
           "decisionDate": "2026-08-14",
@@ -387,15 +365,21 @@
           "netReturn": 0.02401225593199448,
           "realizationDate": "2026-09-11",
           "turnover": null
+        },
+        {
+          "decisionDate": "2026-09-25",
+          "netReturn": 0.011440417918561468,
+          "realizationDate": "2026-10-02",
+          "turnover": null
         }
       ],
-      "observedWeeks": 4,
+      "observedWeeks": 5,
       "protocol": "breadth_confirmed_trend_return_ceiling_v3",
       "requiredWeeks": 52
     },
     {
       "executionEnabled": false,
-      "latestRealization": "2026-09-11",
+      "latestRealization": "2026-10-02",
       "observations": [
         {
           "decisionDate": "2026-08-14",
@@ -420,15 +404,21 @@
           "netReturn": -0.008926843271075492,
           "realizationDate": "2026-09-11",
           "turnover": 0.0
+        },
+        {
+          "decisionDate": "2026-09-25",
+          "netReturn": -0.005063905763017723,
+          "realizationDate": "2026-10-02",
+          "turnover": 0.31666666666666665
         }
       ],
-      "observedWeeks": 4,
+      "observedWeeks": 5,
       "protocol": "covariance_minimum_variance_v1",
       "requiredWeeks": 52
     },
     {
       "executionEnabled": false,
-      "latestRealization": "2026-09-11",
+      "latestRealization": "2026-10-02",
       "observations": [
         {
           "decisionDate": "2026-08-14",
@@ -453,15 +443,21 @@
           "netReturn": 0.016859223731109818,
           "realizationDate": "2026-09-11",
           "turnover": null
+        },
+        {
+          "decisionDate": "2026-09-25",
+          "netReturn": 0.012572513987530565,
+          "realizationDate": "2026-10-02",
+          "turnover": null
         }
       ],
-      "observedWeeks": 4,
+      "observedWeeks": 5,
       "protocol": "past_only_consensus_selector_return_v1",
       "requiredWeeks": 52
     },
     {
       "executionEnabled": false,
-      "latestRealization": "2026-09-11",
+      "latestRealization": "2026-10-02",
       "observations": [
         {
           "decisionDate": "2026-08-14",
@@ -486,26 +482,76 @@
           "netReturn": 0.011940520425217845,
           "realizationDate": "2026-09-11",
           "turnover": null
+        },
+        {
+          "decisionDate": "2026-09-25",
+          "netReturn": 0.014663545240849361,
+          "realizationDate": "2026-10-02",
+          "turnover": null
         }
       ],
-      "observedWeeks": 4,
+      "observedWeeks": 5,
       "protocol": "return_first_60_40_blend_v1",
       "requiredWeeks": 52
     },
     {
       "executionEnabled": false,
-      "latestRealization": null,
-      "observations": [],
-      "observedWeeks": 0,
+      "latestRealization": "2026-10-02",
+      "observations": [
+        {
+          "decisionDate": "2026-09-25",
+          "netReturn": null,
+          "realizationDate": "2026-10-02",
+          "turnover": null
+        }
+      ],
+      "observedWeeks": 1,
       "protocol": "equal_weight_benchmark_v1",
       "requiredWeeks": 52
     },
     {
       "executionEnabled": false,
       "latestRealization": null,
-      "observations": [],
-      "observedWeeks": 0,
+      "observations": [
+        {
+          "decisionDate": "2026-09-25",
+          "netReturn": null,
+          "realizationDate": "2026-10-02",
+          "turnover": null
+        }
+      ],
+      "observedWeeks": 1,
       "protocol": "residual_tie_agnostic_companion_v1",
+      "requiredWeeks": 52
+    },
+    {
+      "executionEnabled": false,
+      "latestRealization": "2026-10-02",
+      "observations": [
+        {
+          "decisionDate": "2026-09-25",
+          "netReturn": 0.006697931108720882,
+          "realizationDate": "2026-10-02",
+          "turnover": 0.0
+        }
+      ],
+      "observedWeeks": 1,
+      "protocol": "sue_quarterly_v1",
+      "requiredWeeks": 52
+    },
+    {
+      "executionEnabled": false,
+      "latestRealization": "2026-10-02",
+      "observations": [
+        {
+          "decisionDate": "2026-09-25",
+          "netReturn": -0.0049636388638365555,
+          "realizationDate": "2026-10-02",
+          "turnover": 0.0
+        }
+      ],
+      "observedWeeks": 1,
+      "protocol": "valuation_earnings_yield_v1",
       "requiredWeeks": 52
     },
     {
@@ -521,15 +567,7 @@
       "latestRealization": null,
       "observations": [],
       "observedWeeks": 0,
-      "protocol": "sue_quarterly_v1",
-      "requiredWeeks": 52
-    },
-    {
-      "executionEnabled": false,
-      "latestRealization": null,
-      "observations": [],
-      "observedWeeks": 0,
-      "protocol": "valuation_earnings_yield_v1",
+      "protocol": "static_spy_gld_shy_v1",
       "requiredWeeks": 52
     },
     {

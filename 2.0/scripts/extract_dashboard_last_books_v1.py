@@ -17,60 +17,15 @@ ROOT = Path(__file__).resolve().parents[1]
 SNAPSHOT = ROOT / "dashboard/public/return-first-dashboard.json"
 OUTPUT = ROOT / "evidence/dashboard_last_books_v1"
 
-RECORD_OPEN = "        {"
-RECORD_DATE = '          "date": "'
-STRATEGY_ID = '        "id": "'
-RECORDS_OPEN = '      "records": ['
-SECTION_CLOSE = '      ],'
-
-
 def main() -> int:
+    """Read the payload whole. It used to be a 193MB pretty-printed file sliced by line;
+    since 2026-10-06 the builder writes compact JSON of ~18MB, which line slicing cannot parse."""
     OUTPUT.mkdir(parents=True, exist_ok=True)
     rows: list[dict] = []
     meta: list[dict] = []
-
-    current_id: str | None = None
-    in_records = False
-    record_start: int | None = None
-    last_start: int | None = None
-    last_date: str | None = None
-    boundaries: list[tuple[str, int, str]] = []
-
-    with SNAPSHOT.open() as handle:
-        for number, line in enumerate(handle, 1):
-            text = line.rstrip("\n")
-            if text.startswith(STRATEGY_ID):
-                if current_id and last_start:
-                    boundaries.append((current_id, last_start, last_date))
-                current_id = text.split('"')[3]
-                last_start = last_date = record_start = None
-                in_records = False
-            elif text == RECORDS_OPEN:
-                in_records = True
-            elif text == SECTION_CLOSE:
-                in_records = False
-            elif in_records and text == RECORD_OPEN:
-                record_start = number
-            elif in_records and text.startswith(RECORD_DATE) and record_start:
-                last_start, last_date = record_start, text.split('"')[3]
-    if current_id and last_start:
-        boundaries.append((current_id, last_start, last_date))
-
-    lines = None
-    for strategy_id, start, date in boundaries:
-        # Re-read only the slice this record occupies.
-        collected: list[str] = []
-        depth = 0
-        with SNAPSHOT.open() as handle:
-            for number, line in enumerate(handle, 1):
-                if number < start:
-                    continue
-                collected.append(line)
-                depth += line.count("{") - line.count("}")
-                if depth == 0:
-                    break
-        blob = "".join(collected).rstrip().rstrip(",")
-        record = json.loads(blob)
+    for entry in json.loads(SNAPSHOT.read_text())["strategies"]:
+        strategy_id = entry["strategy"]["id"]
+        record = entry["records"][-1]
         meta.append({
             "strategy_id": strategy_id,
             "last_record_date": record["date"],
@@ -80,12 +35,8 @@ def main() -> int:
                                   if not str(h["symbol"]).startswith("cash")),
         })
         for holding in record["holdings"]:
-            rows.append({
-                "strategy_id": strategy_id,
-                "as_of": record["date"],
-                "symbol": holding["symbol"],
-                "weight": holding["weight"],
-            })
+            rows.append({"strategy_id": strategy_id, "as_of": record["date"],
+                         "symbol": holding["symbol"], "weight": holding["weight"]})
         print(f"{strategy_id}: last record {record['date']}, {len(record['holdings'])} lines", flush=True)
 
     pd.DataFrame(rows).to_csv(OUTPUT / "last_books.csv", index=False)

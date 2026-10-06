@@ -16508,3 +16508,83 @@ the highest return.
 **Trials:** 9 + 1 here, on top of 13 in Step 321 for the static blend.
 
 Files: `scripts/run_crash_buying_and_blend_v1.py`, `evidence/crash_buying_and_blend_v1/`.
+
+## Step 335 — 2026-10-07 — 1.0's phase5_fragility_guard against the best 2.0 book
+
+**What this was for.** The owner asked whether 1.0's defensive momentum strategy, the one on the
+CV ("Phase 5 fragility guard, Sharpe 0.884 → 0.948, holdout 2.179"), is better than the best 2.0
+book. It is `improved_frontier_phase5_fragility_guard`: GGG1 ("confirmed-only robust offense",
+an HRP allocator over five trend and momentum sleeves with regime and target-volatility overlays)
+with an offense-scaling and crowding-cap wrapper. Its saved return file lived in the uncommitted
+`1.0/data/` and is not on disk, so it was rebuilt from the causal GGG bundle
+(`ggg_causal_v2_027530550388432a`, Step 68's lookahead fix), with the wrapper rule Step 65
+reproduced to 1e-16 and the saved weekly `offense_scale` (which ends 2026-04-10; scale 1.0
+afterwards). No strategy was searched or changed.
+
+**What the CV numbers are.** Steps 64–68 had already established them: the 0.948 and 2.179 are
+CAGR-over-volatility Sharpes from 1.0's convention, Phase 5 was selected using the holdout
+Sharpe itself (Step 65), and GGG carried a one-week covariance lookahead (Step 68).
+
+| 2005-01 to 2026-08 | CAGR | Sharpe | max drawdown | beta to SPY |
+|---|---|---|---|---|
+| phase5, causal, 10 bps | 6.9% | 0.93 | −11.5% | 0.24 |
+| phase5, causal, 50 bps | 5.4% | 0.74 | −11.6% | 0.24 |
+| GGG base, causal, 50 bps | 5.5% | 0.74 | −11.9% | 0.24 |
+| static SPY/GLD/SHY | 8.5% | 1.00 | −18.9% | |
+| SPY | 10.9% | 0.68 | −54.6% | 1.00 |
+
+**It does win when SPY loses big.** Total return through each episode:
+
+| episode | phase5 (10 bps) | SPY | SPY/GLD/SHY | 2.0 book |
+|---|---|---|---|---|
+| GFC 2007-10 to 2009-03 | **+0.9%** | −44.5% | −5.9% | n/a |
+| 2011 Aug–Sep | −2.5% | −11.7% | −2.8% | n/a |
+| 2018 Q4 | −4.8% | −14.3% | −2.1% | −17.0% |
+| COVID Feb–Mar 2020 | −4.0% | −23.3% | −6.3% | −29.0% |
+| 2022 | −3.4% | −18.2% | −7.3% | −28.6% |
+
+In SPY's worst 5% of weeks it averaged −1.42% against SPY's −5.76% and the three-asset blend's
+−2.00%. Against SPY at matched beta its alpha is +2.1%/yr, positive in every window (+0.5%
+2013–2022, +2.0% 2023–2025-04, +2.7% after). That alpha is measured against SPY alone, while the
+book holds bonds, gold and cash, so it is not stock-selection skill.
+
+**Against the best 2.0 book, 2013-04 to 2026-08:** phase5 7.0% CAGR / Sharpe 0.92 / −11.5%
+(10 bps), against 18.7% / 0.90 / −36.8%. Sharpe 2013–2022: 0.66 vs 0.62. 2023 to 2025-04: 1.53
+vs 0.92. After the break: 1.68 vs 2.87. **Similar risk-adjusted return, a third of the drawdown,
+better in two of three windows, and a third of the return.**
+
+**The wrapper adds nothing on the causal base.** phase5 and plain GGG are within 0.02 Sharpe in
+every window, which repeats Step 30's finding. **And the static SPY/GLD/SHY blend beats phase5 on
+both return (8.5% vs 6.9%) and Sharpe (1.00 vs 0.93) over 2005–2026, with no machinery**; phase5
+only wins on drawdown (−11.5% vs −18.9%) and in the GFC.
+
+Files: `scripts/compare_v1_phase5_vs_2_0_v1.py`, `evidence/v1_phase5_vs_2_0_v1/`. No trial count:
+nothing was chosen here.
+
+## Step 336 — 2026-10-07 — Dashboard: no levered numbers; forward week 2026-10-02 committed
+
+**What this was for.** The owner asked for every levered figure to be removed and for the
+unlevered numbers and the Step 332 beta-matched alpha to be shown.
+
+- **Headline book:** `sec-residual-controlled-1.25x-5pct-v1` becomes `sec-residual-controlled-1x-v1`.
+  It is rebuilt at 1.00x with no financing: 112.60% trailing 52 weeks, 39.8% CAGR since 2022-12,
+  −18.7% maximum drawdown.
+- **Removed:** the 1.35x sector ensemble, which was the sector-aware ensemble with borrowed money.
+  Removed from the payload, the price files, the paper replay, the forward tracker, the
+  mark-to-market financing table, and the methodology text.
+- **Survival lab:** levered entries filtered out and the "Financed" toggle removed.
+- **New card on the performance page:** "Alpha vs SPY at same risk", before and after
+  2025-04-04, with p and pass/fail.
+- **Two latent breakages found and fixed:**
+  - The full builder cannot run, because `sec_sector_aware_signal_ensemble_v1/selected_strategy_target_weights.csv`
+    was deleted in the repository slimming. Only the headline entry was rebuilt and spliced in;
+    the other four strategies' records are byte-identical to before.
+  - `extract_dashboard_last_books_v1.py` sliced a pretty-printed payload that the builder no
+    longer writes. That left stale books behind and was the likely cause of the 2026-10-03
+    cycle's what-if replay failure. It now reads the JSON whole, and the replay passes.
+- **Forward week:** the 2026-10-02 forward week, recorded by that cycle but never committed, is
+  committed with every hash chain verified.
+- **Not changed:** the frozen forward prediction registry still lists the levered IDs among its
+  tracked strategies. It is a frozen record, and those are labels, not figures.
+- **Open:** the survival lab has no entry for the unlevered headline book, because the lab was
+  only ever run on the levered form.

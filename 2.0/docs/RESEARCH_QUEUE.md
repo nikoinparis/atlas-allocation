@@ -176,6 +176,14 @@ failed in both directions in two consecutive weeks.
    every run for this reason, which trains the reader to ignore the failure line.
 Both are small. A gate nobody trusts is worse than no gate.
 
+### S20. Beta-matched benchmark for every dashboard book *(new 2026-10-06, Step 331)*
+**Free, data on disk, an afternoon.** Step 289 compared each book to its own universe at 1.0x;
+the books run at beta 1.30-1.75 (Step 310). The fair null is the equal-weighted scored universe
+levered to the same beta, at the same financing and cost. If the book does not beat that in both
+the 2023-2025-04 and post-break windows, its return is leverage on a tech-and-energy basket and
+should be described that way on the dashboard. Pre-register the beta estimate (trailing 52w,
+past-only) before running.
+
 ## A tier
 
 

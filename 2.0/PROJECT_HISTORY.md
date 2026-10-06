@@ -16365,3 +16365,26 @@ sizing, no tail hedge, no timing. Something like "sell premium only when VIX² �
 refuted here, and it is also not free to try — it would be a new, searched design. The result is the
 common one in the literature for the plain version: the premium exists, and the plain harvest
 roughly earns the beta it carries.
+
+## Step 331 — 2026-10-06 — The dashboard with the melt-up removed
+
+**What this was for.** The owner asked which strategy is best on its whole record, ignoring the
+forward clock. Step 261 recorded that no test had ever asked what the strategies look like with
+the post-2025-04-04 weeks removed. This answers that from the dashboard's own published weekly
+records (`dashboard/public/return-first-dashboard.json`, through 2026-08-07, 50 bps, net). No
+strategy was changed and no parameter was chosen; the split date is Step 261's, not a new search.
+
+| strategy | 2023-01 to 2025-04-03 | 2025-04-04 to 2026-08-07 |
+|---|---|---|
+| residual-controlled 1.25x | 8.2% CAGR, Sharpe 0.49 | 161.3%, Sharpe 3.61 |
+| sector ensemble 1.35x | 17.9%, 0.81 | 136.1%, 2.51 |
+| ETF 60/40 return-first | 20.3%, 1.13 | 85.8%, 2.66 |
+| growth top-five | −12.3%, −0.23 | 157.2%, 2.64 |
+| cash conversion b20 dynamic | 17.5%, 0.99 | 84.9%, 2.26 |
+| sector-aware ensemble | 8.9%, 0.54 | 122.9%, 3.35 |
+
+**For 117 of the 188 weeks, the dashboard's headline strategy earned 8.2% a year at Sharpe 0.49,
+and the plain ETF 60/40 candidate beat every SEC book.** Every headline CAGR is the last 71 weeks.
+Weekly Sharpe here is annualised from 52 weeks of net returns and does not subtract a risk-free
+rate, so it is slightly above the figures in Step 310. In-sample, selection-contaminated, nothing
+promoted.

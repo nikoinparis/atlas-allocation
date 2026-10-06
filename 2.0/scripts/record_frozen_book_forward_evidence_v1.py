@@ -79,6 +79,19 @@ PROTOCOLS = {
         "artifact_kind": "history",
         "artifact_resolved_by": "named directly by the protocol",
     },
+    # Step 333: the benchmark to beat. Static weights, no model and no source bundle, so the
+    # inherited "pinned bundle ends 2026-08-07" limitation does not apply to it.
+    "static_spy_gld_shy_v1": {
+        "artifact": "evidence/forward_static_spy_gld_shy_v1/frozen_weights.csv",
+        "artifact_kind": "history",
+        "artifact_resolved_by": "named directly by the protocol",
+        "data_through": "not applicable: static weights",
+        "limitation": (
+            "Static equal thirds in SPY, GLD and SHY, fixed by Step 321. There is no rule to "
+            "decay: holding the book unchanged IS the strategy. It is a benchmark to beat, not "
+            "a promoted strategy."
+        ),
+    },
 }
 
 
@@ -182,9 +195,9 @@ def run(protocol_id: str, *, now: datetime) -> dict[str, object]:
         "frozen_book": book,
         "first_decision_prior_weights": {CASH: 1.0},
         "source_bundle": config["source_bundle"],
-        "source_bundle_data_through": "2026-08-07",
+        "source_bundle_data_through": spec.get("data_through", "2026-08-07"),
         "decision_basis": "held_frozen_book",
-        "limitation": (
+        "limitation": spec.get("limitation") or (
             "The pinned source bundle ends 2026-08-07, so no fresh strategy decision can be "
             "produced without changing its hash and voiding the pin. Every forward decision "
             "under this protocol holds the last decided book unchanged, which tests the book "
@@ -317,7 +330,7 @@ def run(protocol_id: str, *, now: datetime) -> dict[str, object]:
             1 for r in list(decisions) + list(observations) if r.get("recorded_late")
         ),
         "performance_metrics": performance_metrics(values).to_dict() if values else {"observations": 0},
-        "source_bundle_data_through": "2026-08-07",
+        "source_bundle_data_through": spec.get("data_through", "2026-08-07"),
         "limitation": anchor["limitation"],
         "generated_at_utc": now.isoformat(),
         "clock_complete": len(observations) >= required,

@@ -1,0 +1,21 @@
+{
+  "decision_basis": "held_frozen_book",
+  "execution_enabled": false,
+  "first_decision_prior_weights": {
+    "cash::USD": 1.0
+  },
+  "forward_protocol_sha256": "d650bfe23f9e68d678461c32316613d7ecb9e16a0bce179eb1ca777fd3e0065d",
+  "frozen_book": {
+    "GLD": 0.3333333333333333,
+    "SHY": 0.3333333333333333,
+    "SPY": 0.3333333333333334
+  },
+  "limitation": "Static equal thirds in SPY, GLD and SHY, fixed by Step 321. There is no rule to decay: holding the book unchanged IS the strategy. It is a benchmark to beat, not a promoted strategy.",
+  "protocol_id": "static_spy_gld_shy_v1_forward",
+  "schema_version": 1,
+  "source_bundle": "none: static weights fixed by Step 321, no model and no source bundle",
+  "source_bundle_data_through": "not applicable: static weights",
+  "weights_artifact": "evidence/forward_static_spy_gld_shy_v1/frozen_weights.csv",
+  "weights_artifact_resolved_by": "named directly by the protocol",
+  "weights_artifact_sha256": "70021f3d842fbbd3a1d114862404cd8a6269bfc03f02c2ad7e92a842abeacd3b"
+}

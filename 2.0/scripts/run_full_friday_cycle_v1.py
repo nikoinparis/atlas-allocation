@@ -42,7 +42,8 @@ PANELS = {
 # Every running clock. The residual sleeve is omitted on purpose: it is blocked on the
 # Step 309 hardcoded-vintage decision, which is the owner's, not this script's.
 ETF_CLOCKS = ["covariance_minimum_variance_v1", "breadth_confirmed_trend_return_ceiling_v3",
-              "past_only_consensus_selector_return_v1", "return_first_60_40_blend_v1"]
+              "past_only_consensus_selector_return_v1", "return_first_60_40_blend_v1",
+              "static_spy_gld_shy_v1"]
 FROZEN_BOOK_PROTOCOLS = ETF_CLOCKS[1:]
 STOCK_RECORDERS = {                     # evidence directory -> recorder script
     "equal_weight_benchmark_v1": "record_equal_weight_benchmark_forward_v1.py",

@@ -16425,3 +16425,86 @@ matched benchmark borrows at the T-bill rate where beta exceeds 1. Everything is
 the SEC books.
 
 Files: `scripts/run_beta_matched_benchmark_v1.py`, `evidence/beta_matched_benchmark_v1/`.
+
+## Step 333 — 2026-10-06 — A weekly clock for the benchmark to beat: static SPY/GLD/SHY
+
+**What this was for.** The owner approved giving Step 321's static equal-thirds SPY/GLD/SHY
+blend its own forward clock, as the floor any dashboard strategy must clear. It is registered as
+a held frozen book in `record_frozen_book_forward_evidence_v1.py` and added to `ETF_CLOCKS` in
+the Friday cycle, so it runs with the others. Protocol `config/forward/static_spy_gld_shy_v1.json`,
+52 weeks. The first decision is 2026-10-02, recorded inside its window from snapshot
+`20261003T120024Z`; the first realization is due 2026-10-09.
+
+The recorder's "pinned bundle ends 2026-08-07" limitation is wrong for a book with no model, so
+the protocol entry now carries its own limitation and data-through text. The three existing
+frozen-book clocks were re-run afterwards and their anchors are unchanged; the recorder fails
+closed if an anchor changes.
+
+**Reading fixed in advance:** after 52 untouched weeks, a dashboard strategy whose forward Sharpe
+does not exceed this clock's over the same weeks has not beaten the benchmark. One year cannot
+establish a Sharpe difference statistically; this is a floor, not a significance test.
+
+## Step 334 — 2026-10-06 — Buying after a crash, and blending 1.0 with 2.0: both fail
+
+**What this was for.** Two owner ideas from the same day. (1) After a disaster the market falls;
+can that be exploited? (2) The 2.0 books lost before April 2025 and 1.0 is defensive; can the
+best of each make one better strategy? Both were pre-registered in
+`docs/CRASH_BUYING_AND_BLEND_PREREGISTRATION_V1.md` and committed before any return was
+computed. No leverage or financing anywhere.
+
+**Named disasters (descriptive only, chosen with hindsight).** SPY's return from the close of the
+event week:
+
+| event | 13 weeks later | 52 weeks later |
+|---|---|---|
+| 9/11 | +18.6% | −12.0% |
+| Lehman | −28.4% | −11.8% |
+| Fukushima | −2.1% | +7.3% |
+| US downgrade | +5.0% | +18.5% |
+| Brexit | +6.8% | +22.1% |
+| COVID first crash week | +3.3% | +30.8% |
+| Ukraine invasion | −4.8% | −8.0% |
+| SVB | +11.8% | +34.6% |
+| Tariff announcement | +24.1% | +31.3% |
+| *any week, on average* | *+2.9%* | *+12.1%* |
+
+Five of nine beat the average year and four lost money over it. The ones that worked are the
+ones remembered. Lehman and Ukraine were the *start* of a longer fall, and nothing at the time
+said which kind of week it was.
+
+**The causal rule: 0 of 9.** Hold 70% SPY / 30% SHY; when SPY falls a set amount below its
+52-week high (10/20/30%), go 100% SPY for 13/26/52 weeks. 2003–2026 at 10 bps:
+
+- Rule CAGR runs 8.5–9.9% against an exposure-matched constant mix of 8.9–9.7%.
+- Sharpe 0.66–0.76 against 0.74–0.76.
+- **Placebo p 0.37–0.99**: the same number of entries at random weeks does as well.
+- The best edge is about +1pp a year (10%/26w) and comes from holding slightly more equity on
+  average.
+- In 2008 the rule did worse than the mix in seven of nine configurations, because the first 10%
+  and 20% drops were not the bottom.
+- Buy-and-hold SPY over the same window: 11.4% CAGR, Sharpe 0.72, max drawdown −54.6%.
+
+Waiting in bonds for a crash costs more in ordinary years than the crash entries earn back.
+
+**The 1.0 + 2.0 blend: fails.** 50% static SPY/GLD/SHY + 50% the headline residual book (Step
+290's rebuilt 2013–2022 path, which is out of sample, then the 2023– in-sample path). Null: the
+same blend with SPY in place of the 2.0 book.
+
+| window | blend Sharpe | null Sharpe | blend CAGR | null CAGR |
+|---|---|---|---|---|
+| 2013–2022 (out of sample) | 0.676 | **0.754** | 8.8% | 8.4% |
+| 2023-01 to 2025-04-03 | 1.463 | **1.811** | 14.9% | 17.6% |
+| 2025-04-04 to end | **2.902** | 1.874 | 56.2% | 24.2% |
+
+In two of three windows, SPY in that seat beats the 2.0 book. The 2.0 book only pays in the
+regime Step 261 identified.
+
+**Kept, because it is the most useful number here.** Over 2013-04 to 2026-08, the static 1.0
+blend alone returned 8.2% CAGR at Sharpe 1.03 with a −13.5% maximum drawdown. SPY returned 14.4%
+at 0.93 and −31.8%; the 2.0 book 19.4% at 0.93 and −36.8%. Static SPY/GLD/SHY has the best
+return per unit of risk of anything measured here, and the smallest drawdown. It does not have
+the highest return.
+
+**Trials:** 9 + 1 here, on top of 13 in Step 321 for the static blend.
+
+Files: `scripts/run_crash_buying_and_blend_v1.py`, `evidence/crash_buying_and_blend_v1/`.

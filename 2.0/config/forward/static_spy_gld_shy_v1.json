@@ -1,0 +1,20 @@
+{
+  "candidate": "static-spy-gld-shy-equal-weight-v1",
+  "protocol_id": "static_spy_gld_shy_v1_forward",
+  "frozen_on": "2026-10-06",
+  "owner_authorized": "2026-10-06, in chat: 'should the SPY/GLD/SHY mix get its own weekly tracking clock as the benchmark to beat? (yes)'",
+  "first_eligible_decision_date": "2026-10-02",
+  "first_eligible_realization_date": "2026-10-09",
+  "required_weeks": 52,
+  "live_trading_enabled": false,
+  "role": "BENCHMARK TO BEAT, not a promoted strategy. Step 321 found this static blend beat all 32 1.0 allocator phases and every regime-timed variant on Sharpe over 2005-2026 (+0.7804, maxDD -20.87%). Its Sharpe edge over 60/40 is concentrated in 2016-2026 and thirteen configurations were searched to find it.",
+  "rule": {
+    "weights": {"SPY": 0.3333333333333334, "GLD": 0.3333333333333333, "SHY": 0.3333333333333333},
+    "rebalance_rule": "held at equal thirds every week; no timing, no selection, no leverage",
+    "selection_changes_forbidden": true
+  },
+  "source_bundle": "none: static weights fixed by Step 321, no model and no source bundle",
+  "weights_artifact": "evidence/forward_static_spy_gld_shy_v1/frozen_weights.csv",
+  "weights_artifact_sha256": "70021f3d842fbbd3a1d114862404cd8a6269bfc03f02c2ad7e92a842abeacd3b",
+  "reading_fixed_in_advance": "After 52 untouched weeks, any dashboard strategy whose forward Sharpe does not exceed this clock's over the same weeks has not beaten the benchmark. One year cannot establish a Sharpe difference statistically; this is a floor, not a significance test."
+}

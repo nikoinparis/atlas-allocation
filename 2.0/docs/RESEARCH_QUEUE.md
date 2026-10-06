@@ -176,14 +176,6 @@ failed in both directions in two consecutive weeks.
    every run for this reason, which trains the reader to ignore the failure line.
 Both are small. A gate nobody trusts is worse than no gate.
 
-### S20. Beta-matched benchmark for every dashboard book *(new 2026-10-06, Step 331)*
-**Free, data on disk, an afternoon.** Step 289 compared each book to its own universe at 1.0x;
-the books run at beta 1.30-1.75 (Step 310). The fair null is the equal-weighted scored universe
-levered to the same beta, at the same financing and cost. If the book does not beat that in both
-the 2023-2025-04 and post-break windows, its return is leverage on a tech-and-energy basket and
-should be described that way on the dashboard. Pre-register the beta estimate (trailing 52w,
-past-only) before running.
-
 ## A tier
 
 
@@ -432,6 +424,9 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 
 | item | verdict | where |
 |---|---|---|
+| **Beta-matched benchmark (was S20)** | **0 of 10.** Unlevered books against SPY and XLK+XLE at past-only beta. Full-window alpha +8 to +18%/yr, none below p=0.005; **every SEC book negative before 2025-04-04** (−3% to −17%/yr). The ETF 60/40 is the only positive pre-break (+1.4%/yr vs SPY). | Step 332 |
+| **Buy after a crash (new 2026-10-06, owner)** | **0 of 9.** 70/30 SPY/SHY going 100% SPY after a 10/20/30% fall from the 52-week high, held 13/26/52 weeks, 2003–2026. Edge ≤ ~1pp/yr against an exposure-matched mix; placebo p 0.37–0.99. Named disasters: 5 of 9 beat an average year; Lehman and Ukraine were the start of a longer fall. | Step 334 |
+| **1.0 + 2.0 blend (new 2026-10-06, owner)** | **Fails.** 50% static SPY/GLD/SHY + 50% residual book loses on Sharpe to the same blend holding SPY in 2013–2022 (0.676 vs 0.754, out of sample) and 2023–2025-04 (1.46 vs 1.81); wins only after the break. The static blend alone: Sharpe 1.03, maxDD −13.5% over 2013–2026. | Step 334 |
 | **Volatility risk premium via Cboe option-writing indices (was B1)** | **Closed, free first read.** VIX² > next-21-day realised variance on 85% of days, but PUT, WPUT, BXM, BXMD and CNDR show no alpha over a beta-matched S&P/T-bill blend even at 0 bps (best CNDR +1.70%/yr, t 1.46); all significantly negative from 50 bps a roll; 2020 erases the 2008 cushion. Paid options data declined for this purpose. Timed or hedged premium selling is untested and would be a new searched design. | Step 330 |
 | **Write the SUE recorder (was S8)** | **Done, and the panel half was my own error.** `record_sue_quarterly_forward_v1.py` written; clock running at one decision, 2026-09-11, fifty names, block 2026-07-01. The panel is quarterly and was never stale. The attempt found that repository slimming had deleted two thirds of the Company Facts cache — the rebuild produced 20,279 rows against 131,169 and exited zero; git recovered it, and the builder now fails closed below 90% of the prior issuer count. | Step 312 |
 | Opening Range Breakout, index/ETF | Rejected on the cost hurdle; five-minute bars made it worse | Step 209 |

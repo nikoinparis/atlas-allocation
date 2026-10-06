@@ -137,7 +137,13 @@ def compute(records: list[dict], market: pd.Series) -> dict:
         "bestWeek": float(r.max()),
         "worstWeek": float(r.min()),
         "pnlOnNotional": NOTIONAL * (growth - 1.0),
-        "costDragAnnual": float(cost.sum() / years) if years else float("nan"),
+        # Some books deduct costs inside the simulator and leave the record's cost column
+        # empty (Step 339). Reporting 0.0 there reads as "no costs"; report unknown instead.
+        "costDragAnnual": (None if cost.abs().sum() == 0 and turn.sum() > 0
+                           else float(cost.sum() / years) if years else float("nan")),
+        "costNote": ("costs are deducted inside the return but not itemised in the records"
+                     if cost.abs().sum() == 0 and turn.sum() > 0 else "itemised per week"),
+        "sharpeConvention": "CAGR / annualised volatility; no risk-free rate subtracted",
         "turnoverAnnual": float(turn.sum() / years) if years else float("nan"),
         "marketBeta": beta, "marketR2": r2, "alphaAnnual": alpha,
         "dateConvention": convention,

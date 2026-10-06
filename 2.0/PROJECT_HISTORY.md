@@ -16706,3 +16706,45 @@ lacks.
 **Conclusion for deployment.** Nothing on the dashboard has evidence of skill; the only candidate
 with a defensible claim is a passive diversified allocation, and its claim is lower drawdown per unit
 of return, not alpha. Trials this step: 4 (passive set) plus reproductions.
+
+## Step 339 — 2026-10-07 — S21 retracted as stated, S22 done: the monotonicity bar now has a null
+
+**What this was for.** The owner asked for S21 and S22 to be fixed. **S21 was my error in Step 338,
+and it is corrected here rather than in place.**
+
+**S21, corrected.** Step 338 said the cash-conversion book was published at zero cost. It is not.
+`simulate_cash` (`run_sec_cash_conversion_capped_dynamic_v1.py`) deducts the cost from deployable
+capital *before* recording the week, so its column named `gross_return` is already net, and the
+original research table (`evidence/sec_cash_conversion_breadth_dynamic_v1/performance.csv`) gives
+breadth-20 at **39.1% / 34.7% / 26.2% CAGR at 50 / 100 / 200 bps**. The dashboard's 38.6% is the
+50 bps figure. Step 338 charged the costs a second time. Therefore:
+- Step 338's re-costed figures for this book (34.1% at 50 bps, Sharpe 1.19, pre-break alpha −11.0%)
+  are **wrong**; Step 332's −6.7% pre-break alpha stands, and so does Step 337's survival-lab entry.
+- The verdict is unchanged: every SEC book is negative against same-risk SPY before 2025-04-04.
+- The real defect was display only: the records leave the `cost` column empty, so
+  `strategy-metrics.json` printed `costDragAnnual: 0.0`. `build_dashboard_metrics_v1.py` now emits
+  `null` with a `costNote` when turnover is recorded without itemised cost, and every Sharpe carries
+  `sharpeConvention` ("CAGR / annualised volatility; no risk-free rate subtracted").
+- Lesson, recorded because it is the project's own rule 1 turned on the reviewer: a column name is
+  not evidence. I read `cost = 0` and did not open the simulator until asked to fix it.
+
+**S22, done.** `scripts/decile_shape.py` gains `placebo_test()` and `clears_calibrated()`. The null
+is a per-decision **sign flip** (reverse each decision's ladder with probability one half), which
+keeps each decision's own IC including its time variation and removes only consistency of
+direction. A within-decision shuffle was rejected as the null because it deletes the per-decision
+IC and so understates how far a skill-free average wanders. Pass now requires the old 0.5 bar AND
+p < alpha, where alpha is already Bonferroni-divided by the caller. Measured, 300 runs each,
+300 names:
+
+| scenario | fixed 0.5 bar passes | calibrated passes |
+|---|---|---|
+| IC 0, varies sd 0.10, 14 decisions | 0.30 | **0.04** |
+| IC 0, varies sd 0.10, 39 decisions | 0.30 | **0.05** |
+| IC 0.03, varies sd 0.10, 39 decisions | 0.61 | 0.20 |
+| IC 0.05, varies sd 0.05, 39 decisions | 0.89 | 0.71 |
+
+(The fixed bar's 0.30 counts both directions, since `clears` uses absolute values.) The
+calibrated test holds its size; the price is that a variable 0.03 IC is detected one time in five
+over 39 decisions. That is the honest power — the old bar's apparent power was mostly false
+alarms. Existing callers are untouched; no past verdict changes, since none of them passed the old
+bar on our own data. `tests/test_decile_shape_placebo.py`, 3 pass.

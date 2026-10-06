@@ -176,17 +176,6 @@ failed in both directions in two consecutive weeks.
    every run for this reason, which trains the reader to ignore the failure line.
 Both are small. A gate nobody trusts is worse than no gate.
 
-### S21. Re-cost the cash-conversion book on the dashboard *(new 2026-10-07, Step 338)*
-Its records carry `cost = 0` across 23.0 units of turnover; every other book is at 50 bps. At 50 bps
-it is 34.1% CAGR / excess Sharpe 1.19, not 38.6% / 1.34. Fix at the builder, then re-run Step 332's
-script and the survival lab entry. Free, an hour.
-
-### S22. Calibrate the 0.5 monotonicity bar with a placebo *(new 2026-10-07, Step 338)*
-When IC varies by decision (sd ~0.10, as measured), a zero-skill signal passes the 0.5 bar 13–29% of
-the time. Before the bar is used as a pass rule again, `decile_shape.py` needs a null: shuffle
-signal-to-name within each decision 1,000 times and pass only above the 95th percentile of the
-shuffled ladders. Also report the Sharpe convention (excess of T-bill or raw) beside every Sharpe.
-
 ## A tier
 
 ### A16. Long/short trend as the third source, read from free post-publication data *(new 2026-10-07, Step 338)*
@@ -461,6 +450,8 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 
 | item | verdict | where |
 |---|---|---|
+| **Re-cost cash conversion (was S21)** | **Retracted.** Step 338 double-charged costs: the simulator deducts them before recording, and the book is 39.1% / 34.7% / 26.2% at 50 / 100 / 200 bps as originally published. Display fixed: cost drag now shows unknown, not 0.0, and Sharpe convention is labelled. | Step 339 |
+| **Calibrate the monotonicity bar (was S22)** | **Done.** Sign-flip placebo in `decile_shape.py`. Zero-skill false-pass rate 30% under the fixed bar, 4-5% calibrated; real variable IC 0.03 at 39 decisions detected 20% of the time. | Step 339 |
 | **Survival lab for the unlevered books (was B7)** | **Done.** v4 sealed and run: residual-controlled 1.00x scores 75 (max DD −18.7%, P(−30% DD) 0.2%), tied with cash conversion and sector-aware. Resamples a 2023–2026 history that is 38% melt-up. | Step 337 |
 | **1.0 phase5_fragility_guard vs best 2.0 (new 2026-10-07, owner)** | **Defensive, not better on return.** Rebuilt causally 2005–2026: 5.4–6.9% CAGR, Sharpe 0.74–0.93, −11.6% max drawdown, beta 0.24; +0.9% through the GFC vs SPY −44.5%. Same Sharpe as the 2.0 book since 2013 (0.92 vs 0.90) with a third of the drawdown. Static SPY/GLD/SHY beats it on return and Sharpe over 2005–2026; the wrapper adds nothing over plain causal GGG. | Step 335 |
 | **Beta-matched benchmark (was S20)** | **0 of 10.** Unlevered books against SPY and XLK+XLE at past-only beta. Full-window alpha +8 to +18%/yr, none below p=0.005; **every SEC book negative before 2025-04-04** (−3% to −17%/yr). The ETF 60/40 is the only positive pre-break (+1.4%/yr vs SPY). | Step 332 |

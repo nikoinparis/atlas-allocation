@@ -16388,3 +16388,40 @@ and the plain ETF 60/40 candidate beat every SEC book.** Every headline CAGR is 
 Weekly Sharpe here is annualised from 52 weeks of net returns and does not subtract a risk-free
 rate, so it is slightly above the figures in Step 310. In-sample, selection-contaminated, nothing
 promoted.
+
+## Step 332 — 2026-10-06 — S20: no book beats a passive portfolio with the same market exposure
+
+**What this was for.** Every dashboard book runs at a beta above 1. This asked whether any of
+them earned more than SPY, or an XLK+XLE mix, held at the same exposure, using betas estimated
+only from past weeks. Pre-registered in `docs/S20_BETA_MATCHED_BENCHMARK_PREREGISTRATION_V1.md`
+and committed before any number was computed. The books are unlevered, as the owner asked (no
+borrowed money). The 1.35x ensemble is therefore excluded, being the sector-aware ensemble with
+leverage. 10 trials, Bonferroni bar p < 0.005.
+
+| book | alpha vs SPY at matched beta | p | before 2025-04-04 | after | alpha vs XLK+XLE | before | after |
+|---|---|---|---|---|---|---|---|
+| residual-controlled 1.00x | +17.8%/yr | 0.040 | **−6.0%** | +47.2% | +16.1% | **−3.3%** | +39.9% |
+| sector-aware ensemble | +12.6% | 0.102 | **−8.4%** | +39.3% | +10.8% | **−4.4%** | +30.2% |
+| cash conversion b20 dynamic | +12.3% | 0.120 | **−6.7%** | +37.9% | +8.9% | **−3.4%** | +25.5% |
+| growth survivorship | +10.5% | 0.262 | **−16.8%** | +45.2% | +7.6% | **−14.0%** | +35.0% |
+| ETF 60/40 return-first (2005-) | +3.9% | 0.044 | +1.4% | +35.7% | −0.6% | −2.2% | +19.5% |
+
+**Nought of ten pass.** None clears p < 0.005. **Every SEC book has negative alpha before the
+break against both nulls**: for 90 weeks each one lost to a passive portfolio carrying the same
+risk, then beat it by 25–47 points a year for 71 weeks. That is the shape of one regime, not of
+a selection skill that switched on. Unlevered, the headline book returned 7.7% a year before the
+break, against 14.9% for its beta-matched SPY.
+
+The ETF 60/40 is the only series with a positive pre-break alpha against SPY (+1.4%/yr over 904
+weeks), and it earned +10.7% over SPY at matched beta through 2008–2009. Against XLK+XLE it is
+negative, which matters less because it is not a tech-and-energy book.
+
+**Secondary check, not in the pass rule:** from 2023-10 every SEC book beats its equal-weighted
+universe (book 40.8–46.0% against universe 18.2–25.8%). That window is 80% post-break, so it
+repeats the post-break reading rather than adding a new one.
+
+**Honest limits.** Path-level only, so no leave-one-holding-out (Steps 222–225 have that). The
+matched benchmark borrows at the T-bill rate where beta exceeds 1. Everything is in-sample for
+the SEC books.
+
+Files: `scripts/run_beta_matched_benchmark_v1.py`, `evidence/beta_matched_benchmark_v1/`.

@@ -1,0 +1,144 @@
+{
+  "preregistration": "docs/S20_BETA_MATCHED_BENCHMARK_PREREGISTRATION_V1.md",
+  "trials": 10,
+  "bonferroni": 0.005,
+  "verdicts": {
+    "cash_conversion_b20_dynamic|N1_SPY": {
+      "alpha_full": 0.12274270096916008,
+      "p": 0.11958804119588042,
+      "alpha_pre": -0.06699448850340277,
+      "alpha_post": 0.37860042616700995,
+      "PASS": false
+    },
+    "cash_conversion_b20_dynamic|N2_XLK_XLE": {
+      "alpha_full": 0.08936013041105935,
+      "p": 0.13688631136886312,
+      "alpha_pre": -0.03356950469607987,
+      "alpha_post": 0.2551288807828077,
+      "PASS": false
+    },
+    "etf_60_40_return_first|N1_SPY": {
+      "alpha_full": 0.03915161335857988,
+      "p": 0.043695630436956304,
+      "alpha_pre": 0.014226583196820023,
+      "alpha_post": 0.35650692696746594,
+      "PASS": false
+    },
+    "etf_60_40_return_first|N2_XLK_XLE": {
+      "alpha_full": -0.006280578660703683,
+      "p": 0.6223377662233777,
+      "alpha_pre": -0.022106834361500193,
+      "alpha_post": 0.19522555026211386,
+      "PASS": false
+    },
+    "growth_survivorship|N1_SPY": {
+      "alpha_full": 0.10519120551904446,
+      "p": 0.2623737626237376,
+      "alpha_pre": -0.16805662464586038,
+      "alpha_post": 0.45156169446047306,
+      "PASS": false
+    },
+    "growth_survivorship|N2_XLK_XLE": {
+      "alpha_full": 0.07614522746707136,
+      "p": 0.30296970302969706,
+      "alpha_pre": -0.14004678193959094,
+      "alpha_post": 0.35019143657410823,
+      "PASS": false
+    },
+    "residual_controlled_1x|N1_SPY": {
+      "alpha_full": 0.17837603197232393,
+      "p": 0.0395960403959604,
+      "alpha_pre": -0.05998660550848388,
+      "alpha_post": 0.4722477768116762,
+      "PASS": false
+    },
+    "residual_controlled_1x|N2_XLK_XLE": {
+      "alpha_full": 0.16057589305000175,
+      "p": 0.028497150284971504,
+      "alpha_pre": -0.032554814960966544,
+      "alpha_post": 0.3986822453922913,
+      "PASS": false
+    },
+    "sector_aware_ensemble|N1_SPY": {
+      "alpha_full": 0.12636486251061937,
+      "p": 0.10188981101889812,
+      "alpha_pre": -0.0837027965857303,
+      "alpha_post": 0.3926478106609218,
+      "PASS": false
+    },
+    "sector_aware_ensemble|N2_XLK_XLE": {
+      "alpha_full": 0.10844300335695216,
+      "p": 0.09069093090690931,
+      "alpha_pre": -0.04419705311170715,
+      "alpha_post": 0.3019303988806047,
+      "PASS": false
+    }
+  },
+  "secondary_equal_weight": {
+    "sector_aware_ensemble|ew_narrow": {
+      "weeks": 148,
+      "start": "2023-10-13",
+      "book_cagr": 0.46043575649290913,
+      "ew_cagr": 0.2576427819310907,
+      "book_sharpe": 1.7232795514250052,
+      "ew_sharpe": 1.1872381696801217
+    },
+    "cash_conversion_b20_dynamic|ew_narrow": {
+      "weeks": 142,
+      "start": "2023-10-13",
+      "book_cagr": 0.40848853871359325,
+      "ew_cagr": 0.23125472876096187,
+      "book_sharpe": 1.5164269273802102,
+      "ew_sharpe": 1.0738965635375008
+    },
+    "growth_survivorship|ew_narrow": {
+      "weeks": 148,
+      "start": "2023-10-13",
+      "book_cagr": 0.4261629068335302,
+      "ew_cagr": 0.2576427819310907,
+      "book_sharpe": 1.1190245400276921,
+      "ew_sharpe": 1.1872381696801217
+    },
+    "residual_controlled_1x|ew_narrow": {
+      "weeks": 148,
+      "start": "2023-10-13",
+      "book_cagr": 0.4555108175491205,
+      "ew_cagr": 0.2576427819310907,
+      "book_sharpe": 1.91361280506403,
+      "ew_sharpe": 1.1872381696801217
+    },
+    "sector_aware_ensemble|ew_broad": {
+      "weeks": 148,
+      "start": "2023-10-13",
+      "book_cagr": 0.46043575649290913,
+      "ew_cagr": 0.21570804346424,
+      "book_sharpe": 1.7232795514250052,
+      "ew_sharpe": 1.2561548822237338
+    },
+    "cash_conversion_b20_dynamic|ew_broad": {
+      "weeks": 142,
+      "start": "2023-10-13",
+      "book_cagr": 0.40848853871359325,
+      "ew_cagr": 0.18239672500836024,
+      "book_sharpe": 1.5164269273802102,
+      "ew_sharpe": 1.0823245495128864
+    },
+    "growth_survivorship|ew_broad": {
+      "weeks": 148,
+      "start": "2023-10-13",
+      "book_cagr": 0.4261629068335302,
+      "ew_cagr": 0.21570804346424,
+      "book_sharpe": 1.1190245400276921,
+      "ew_sharpe": 1.2561548822237338
+    },
+    "residual_controlled_1x|ew_broad": {
+      "weeks": 148,
+      "start": "2023-10-13",
+      "book_cagr": 0.4555108175491205,
+      "ew_cagr": 0.21570804346424,
+      "book_sharpe": 1.91361280506403,
+      "ew_sharpe": 1.2561548822237338
+    }
+  },
+  "passes": 0
+}

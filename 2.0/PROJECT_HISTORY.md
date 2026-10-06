@@ -16588,3 +16588,27 @@ unlevered numbers and the Step 332 beta-matched alpha to be shown.
   tracked strategies. It is a frozen record, and those are labels, not figures.
 - **Open:** the survival lab has no entry for the unlevered headline book, because the lab was
   only ever run on the levered form.
+
+## Step 337 — 2026-10-07 — Survival lab v4 on the five unlevered books
+
+**What this was for.** Step 336 removed the levered views and left the unlevered headline book
+without a stress entry. v3 is a sealed one-shot and refuses to re-run, so v4 is the same code and
+the same config (verified identical apart from the version string), sealed and committed before
+it ran on the current payload. The owner asked for it on 2026-10-07; the change was pushed to
+`main` first.
+
+| book (1.00x) | score | full CAGR | max drawdown | worst rolling year | doubled costs | 25% signal decay | P(profit, 52w MC) | P(−30% DD) |
+|---|---|---|---|---|---|---|---|---|
+| residual-controlled | 75 | 39.8% | −18.7% | −11.8% | 36.0% | 17.2% | 95.3% | 0.2% |
+| cash conversion b20 | 75 | 38.6% | −21.5% | −14.1% | 34.1% | 13.6% | 95.9% | 0.6% |
+| sector-aware ensemble | 75 | 42.7% | −21.8% | −14.1% | 40.1% | 17.1% | 94.8% | 0.7% |
+| growth survivorship | 55 | 31.7% | −36.5% | −18.5% | 30.1% | 0.2% | 81.2% | 21.7% |
+| ETF 60/40 | 40 | 12.6% | −44.1% | −39.8% | 10.6% | −2.0% | 78.0% | 5.1% |
+
+**Read this with Step 332 beside it.** The Monte Carlo resamples each book's own 2023–2026 weeks,
+38% of which are the post-break melt-up in which every SEC book beat beta-matched SPY by 25–47
+points. A "historically resilient" score says the book survives stresses applied to that history;
+it says nothing about whether that history repeats. All five are not proven live.
+
+Files: `config/dashboard_strategy_survival_lab_v4.json`, `scripts/{run,seal}_dashboard_strategy_survival_lab_v4.py`,
+`tests/test_dashboard_strategy_survival_lab_v4.py` (9 pass), `evidence/dashboard_strategy_survival_lab_v4/`.

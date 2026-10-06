@@ -338,11 +338,6 @@ edge must clear the spread on every trade; published 2018, so post-publication d
 Cheap first look on 730 days of hourly bars is not the right bar (10:30 and 15:30 are not the
 first and last half-hours); needs 1-minute SPY history (e.g. Polygon, ~$30-80/month).
 
-### B7. Survival lab for the unlevered headline book *(new 2026-10-07, Step 336)*
-The survival lab (`run_dashboard_strategy_survival_lab_v3.py`) was only run on the 1.25x form,
-so the 1.00x residual-controlled book has no Monte Carlo or stress entry on the dashboard. Free,
-data on disk. Housekeeping, not research.
-
 ### B2. Audit the remaining Tiingo inventory
 **Status:** Step 166 noted **446 candidates of which 315 are not yet audited**, plus seven
 rejected legacy cases scheduled for one controlled recheck.
@@ -429,6 +424,7 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 
 | item | verdict | where |
 |---|---|---|
+| **Survival lab for the unlevered books (was B7)** | **Done.** v4 sealed and run: residual-controlled 1.00x scores 75 (max DD −18.7%, P(−30% DD) 0.2%), tied with cash conversion and sector-aware. Resamples a 2023–2026 history that is 38% melt-up. | Step 337 |
 | **1.0 phase5_fragility_guard vs best 2.0 (new 2026-10-07, owner)** | **Defensive, not better on return.** Rebuilt causally 2005–2026: 5.4–6.9% CAGR, Sharpe 0.74–0.93, −11.6% max drawdown, beta 0.24; +0.9% through the GFC vs SPY −44.5%. Same Sharpe as the 2.0 book since 2013 (0.92 vs 0.90) with a third of the drawdown. Static SPY/GLD/SHY beats it on return and Sharpe over 2005–2026; the wrapper adds nothing over plain causal GGG. | Step 335 |
 | **Beta-matched benchmark (was S20)** | **0 of 10.** Unlevered books against SPY and XLK+XLE at past-only beta. Full-window alpha +8 to +18%/yr, none below p=0.005; **every SEC book negative before 2025-04-04** (−3% to −17%/yr). The ETF 60/40 is the only positive pre-break (+1.4%/yr vs SPY). | Step 332 |
 | **Buy after a crash (new 2026-10-06, owner)** | **0 of 9.** 70/30 SPY/SHY going 100% SPY after a 10/20/30% fall from the 52-week high, held 13/26/52 weeks, 2003–2026. Edge ≤ ~1pp/yr against an exposure-matched mix; placebo p 0.37–0.99. Named disasters: 5 of 9 beat an average year; Lehman and Ukraine were the start of a longer fall. | Step 334 |

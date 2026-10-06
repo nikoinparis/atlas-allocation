@@ -176,7 +176,44 @@ failed in both directions in two consecutive weeks.
    every run for this reason, which trains the reader to ignore the failure line.
 Both are small. A gate nobody trusts is worse than no gate.
 
+### S21. Re-cost the cash-conversion book on the dashboard *(new 2026-10-07, Step 338)*
+Its records carry `cost = 0` across 23.0 units of turnover; every other book is at 50 bps. At 50 bps
+it is 34.1% CAGR / excess Sharpe 1.19, not 38.6% / 1.34. Fix at the builder, then re-run Step 332's
+script and the survival lab entry. Free, an hour.
+
+### S22. Calibrate the 0.5 monotonicity bar with a placebo *(new 2026-10-07, Step 338)*
+When IC varies by decision (sd ~0.10, as measured), a zero-skill signal passes the 0.5 bar 13–29% of
+the time. Before the bar is used as a pass rule again, `decile_shape.py` needs a null: shuffle
+signal-to-name within each decision 1,000 times and pass only above the 95th percentile of the
+shuffled ladders. Also report the Sharpe convention (excess of T-bill or raw) beside every Sharpe.
+
 ## A tier
+
+### A16. Long/short trend as the third source, read from free post-publication data *(new 2026-10-07, Step 338)*
+**Not in the Closed table.** Step 205 rejected *long-only* ETF trend; Steps 248–249 could not read
+our own futures trend because of roll contamination. Neither tested the long/short futures trend the
+literature documents (Moskowitz-Ooi-Pedersen 2012; Hurst-Ooi-Pedersen century study).
+**Data, free:** AQR "Time Series Momentum: Factors, Monthly", 1985 onward, gross of fees, clean rolls.
+**2013–2026 is post-publication** and so is genuinely out of sample for the paper.
+**First experiment (pre-register first):** monthly, 2013-01 to latest. (1) TSMOM alpha against SPY
+and against the SPY/GLD/SHY blend at matched beta, after 1.0%/yr fee drag (what a retail fund charges).
+(2) Blend 80% SPY/GLD/SHY + 20% TSMOM against the blend alone at matched volatility, with the
+2022 and 2020 windows reported. One construction, no parameter choice. **Kill if** the 20% sleeve does
+not raise excess Sharpe by ≥0.05 after fees post-2013.
+**Vehicle if it passes:** a managed-futures ETF (DBMF since 2019, KMLM since 2020). These use futures
+with internal leverage and shorts, so **the owner must decide whether that breaks the no-leverage rule.**
+**Skill screen does not apply** (time-series, ~4 asset classes); breadth is the claim, and this is
+where Step 247 measured 13.2 effective assets.
+
+## B tier additions
+
+### B8. Turn-of-the-month on SPY *(new 2026-10-07, Step 338)*
+Never tested here. McConnell & Xu (FAJ 2008): 1926–2005 equity premium earned almost entirely in the
+last day plus first three days of the month, in 31 of 35 countries. **First experiment:** SPY daily
+1999–2026, declare one window (day −1 to +3), hold SHY otherwise, compare against an exposure-matched
+constant SPY/SHY mix (Step 334's null) at 0/10/50/100 bps, placebo of random 4-day windows. Expect
+failure after costs: ~24 round trips a year, and it reduces time in the market. B because it is
+single-asset timing (breadth ~12 bets/yr) and Step 334's crash-buying rule failed the same null.
 
 
 ### A14. Out-of-window test of revision breadth and the call-put IV spread *(new 2026-09-30, Step 326)*

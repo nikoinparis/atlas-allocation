@@ -16612,3 +16612,97 @@ it says nothing about whether that history repeats. All five are not proven live
 
 Files: `config/dashboard_strategy_survival_lab_v4.json`, `scripts/{run,seal}_dashboard_strategy_survival_lab_v4.py`,
 `tests/test_dashboard_strategy_survival_lab_v4.py` (9 pass), `evidence/dashboard_strategy_survival_lab_v4/`.
+
+## Step 338 — 2026-10-07 — Independent review: the verdicts hold, three measurement errors found, and the deployable answer is passive
+
+**What this was for.** The owner asked for a skeptical outside review: re-check the existing
+verdicts rather than quote them, look for testing errors in either direction, search the
+literature for anything untried, and name something that can be run with real money. Pre-registered
+in `docs/INDEPENDENT_REVIEW_2026_10_07_PREREGISTRATION.md`, committed (`d5bfde7`) before any return
+was computed. Scripts are in `scripts/independent_review_2026_10_07/` (they read Yahoo prices
+downloaded to a scratch file, `etf_prices.csv`, and the dashboard payload).
+
+**R1. Step 332 reproduces in independent code.** Own regression, past-only 52-week beta, T-bill
+excess, moving-block bootstrap, uniform 50 bps for every book:
+
+| book | alpha vs same-risk SPY | p | before 2025-04-04 | after |
+|---|---|---|---|---|
+| residual-controlled 1x | +15.9%/yr | 0.054 | **−6.1%** | +45.6% |
+| sector-aware ensemble | +13.2% | 0.074 | **−9.0%** | +41.7% |
+| growth survivorship | +11.1% | 0.313 | **−18.3%** | +48.7% |
+| cash conversion b20 | +8.2% | 0.252 | **−11.0%** | +34.6% |
+| ETF 60/40 return-first | +2.6% | 0.131 | +0.6% | +27.1% |
+
+Same verdict as Step 332: every stock book lost to same-risk SPY for the ~90 weeks before the break.
+
+**R2. Dates are aligned as labelled.** Forward-convention books correlate with SPY at lag +1
+(0.62–0.87), the week-ending cash-conversion book at lag 0 (0.83). No Step 291-type offset.
+
+**R3. Finding: the cash-conversion book is published at zero cost.** Its records carry `cost = 0`
+and `netReturn = grossReturn` across 23.0 units of cumulative turnover; every other book is at
+50 bps. Re-costed: 38.6% → **34.1% CAGR**, Sharpe (excess) 1.34 → **1.19**, max drawdown −21.5% →
+−22.5%. Its Step 332 pre-break alpha was understated in magnitude (−6.7% recorded, −11.0% at 50 bps).
+Its dashboard metrics and survival-lab entry (Step 337) inherit the error. Verdicts unchanged.
+
+Cost grid, CAGR / excess Sharpe / max DD at 0 → 100 bps: residual 43.8%/1.75/−17.9% → 36.0%/1.46/−19.4%;
+sector-aware 45.4%/1.60/−21.3% → 40.1%/1.42/−22.3%; growth 33.3%/0.86/−36.3% → 30.1%/0.79/−36.7%;
+cash conversion 38.6%/1.34/−21.5% → 29.7%/1.05/−24.7%; ETF 60/40 14.6%/0.75/−43.5% → 10.6%/0.56/−44.7%.
+
+**R4. Concentration in time.** Removing the best 5 / 10 weeks: residual 39.8% → 28.2% / 20.2%;
+growth 31.7% → 11.7% / **−2.3%**; cash conversion 23.98% / 13.8%; sector-aware 28.0% / 18.2%.
+Pre-break CAGRs (2023-01 to 2025-04-03, 50 bps): residual 7.6%, sector-aware 8.9%, growth −12.3%,
+cash conversion 17.5% (at zero cost), against SPY 17.9% in the same window.
+
+**R5. Finding: the static blend's Sharpe has been quoted on two conventions.** Equal-thirds
+SPY/GLD/SHY, monthly rebalance, daily data, 2005-01 to 2026-09:
+
+| portfolio, 10 bps | CAGR | Sharpe ex-T-bill | Sharpe raw | max DD (daily) | vol | GFC | Feb–Mar 2020 | 2022 |
+|---|---|---|---|---|---|---|---|---|
+| SPY | 10.9% | 0.56 | 0.64 | −55.2% | 18.9% | −54.8% | −33.4% | −18.2% |
+| SPY/IEF 60/40 | 8.0% | 0.63 | 0.77 | −32.6% | 10.6% | −32.3% | −18.7% | −16.7% |
+| **SPY/GLD/SHY thirds** | **8.2%** | **0.76** | 0.93 | **−22.4%** | 9.0% | −13.3% | −12.2% | −7.4% |
+| global eq 60 / IEF 20 / GLD 20 | 8.2% | 0.57 | 0.70 | −35.9% | 12.4% | −34.0% | −20.4% | −13.9% |
+
+Costs barely matter (turnover 0.2–0.3/yr; thirds is 8.27% at 0 bps, 7.97% at 100). Step 321's
+0.78 subtracts the T-bill rate; Steps 334/335's 1.00–1.03 do not, and those weekly drawdowns
+(−13.5%, −18.9%) are shallower than the daily −22.4%. **Use 0.76 and −22.4% for anything that
+compares against SPY's 0.56.** The blend's excess Sharpe is 0.59 in 2005–2015 and 0.95 in
+2016–2026: the same uneven split Step 321 recorded. Gold's 2005–2026 run is a large part of it.
+Four declared trials; nothing was selected on return.
+
+**R6. Finding: Step 296's monotonicity claim is overstated, and the 0.5 bar is not a significance test.**
+Simulated decile ladders as `decile_shape.py` computes them, Student-t(4) returns, 2,000 runs:
+
+| true IC | names | decisions | IC varies by decision (sd 0.10)? | P(\|mono\| ≤ 0.17) | P(passes 0.5 bar) |
+|---|---|---|---|---|---|
+| 0.03 | 300 | 14 | yes | 0.14 | 0.39 |
+| 0.03 | 300 | 39 | yes | 0.06 | 0.59 |
+| 0.03 | 2,000 | 39 | yes | 0.02 | 0.89 |
+| 0.00 | 300 | 14 | yes | 0.20 | **0.13** |
+| 0.00 | 2,000 | 39 | yes | 0.10 | **0.29** |
+
+So monotonicity does *not* "show at any sample size": one signal with a real 0.03 IC reads flat
+14% of the time in Step 296's in-sample setting. **The null still stands** — thirteen signals all
+flat is very unlikely if several had IC 0.03, and Step 300's wide universe (2% flat-rate) is
+decisive. The new fact is the other direction: when IC varies over time, a zero-skill signal passes
+the 0.5 bar **13–29%** of the time, because the ladder becomes a sign test on the realised mean IC.
+That is the expected rate behind the BRAIN signals that "ordered their deciles" in-sample and then
+failed 2023 (Steps 326, 328). The bar needs a placebo-calibrated threshold before it is used as a
+pass rule again.
+
+**Literature and tools (leads, not evidence).** McLean & Pontiff (JF 2016): anomaly returns 26% lower
+out of sample, 58% lower after publication. Huang, Song & Xiang (JFQA 2024): smart-beta indexes go
+from ~3%/yr market-adjusted on paper to −0.5% to −1% after their ETF launches. Chaudhuri, Burnham & Lo
+(FAJ 2020): tax-loss harvesting is worth ~0.8%/yr after the wash-sale rule, which is a real after-tax
+edge if the owner is a US taxpayer. One real gap: Step 205 tested **long-only** ETF trend, while the
+century-long trend evidence (Hurst, Ooi & Pedersen) is **long/short futures**, and AQR publishes its
+TSMOM factor free from 1985 — queued as A16. Turn-of-the-month (McConnell & Xu, FAJ 2008) has never
+been tested here — queued as B8. WorldQuant BRAIN's window is the same 2019–2023 in every region, so
+its only honest use is one pre-registered confirmatory run of A14 in a non-US region, and that is low
+value because its signals are not tradeable by a long-only individual. No plugin or connector found
+(EODHD, FactSet, Zacks, Financial Datasets, Bigdata.com) adds free point-in-time data the project
+lacks.
+
+**Conclusion for deployment.** Nothing on the dashboard has evidence of skill; the only candidate
+with a defensible claim is a passive diversified allocation, and its claim is lower drawdown per unit
+of return, not alpha. Trials this step: 4 (passive set) plus reproductions.

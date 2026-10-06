@@ -16480,7 +16480,7 @@ said which kind of week it was.
 - **Placebo p 0.37–0.99**: the same number of entries at random weeks does as well.
 - The best edge is about +1pp a year (10%/26w) and comes from holding slightly more equity on
   average.
-- In 2008 the rule did worse than the mix in seven of nine configurations, because the first 10%
+- In 2008 the rule did worse than the mix in six of nine configurations, because the first 10%
   and 20% drops were not the bottom.
 - Buy-and-hold SPY over the same window: 11.4% CAGR, Sharpe 0.72, max drawdown −54.6%.
 

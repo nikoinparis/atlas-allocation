@@ -1,254 +1,254 @@
 {
   "acquisition": {
-    "action_rows": 3836,
+    "action_rows": 3843,
     "errors": [],
-    "observed_at_utc": "2026-09-29T12:43:33.424514+00:00",
+    "observed_at_utc": "2026-10-03T12:00:24.684736+00:00",
     "period": "max",
-    "price_rows": 210793,
+    "price_rows": 210933,
     "provider": "Yahoo Finance via yfinance",
     "pulls": [
       {
-        "completed_at_utc": "2026-09-29T12:43:19.134060+00:00",
-        "rows": 4864,
-        "started_at_utc": "2026-09-29T12:43:18.433634+00:00",
+        "completed_at_utc": "2026-10-03T12:00:10.883764+00:00",
+        "rows": 4868,
+        "started_at_utc": "2026-10-03T12:00:10.223611+00:00",
         "status": "ok",
         "ticker": "BIL"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:19.446043+00:00",
-        "rows": 4963,
-        "started_at_utc": "2026-09-29T12:43:19.223084+00:00",
+        "completed_at_utc": "2026-10-03T12:00:11.215800+00:00",
+        "rows": 4967,
+        "started_at_utc": "2026-10-03T12:00:10.972549+00:00",
         "status": "ok",
         "ticker": "DBA"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:19.805885+00:00",
-        "rows": 5902,
-        "started_at_utc": "2026-09-29T12:43:19.555023+00:00",
+        "completed_at_utc": "2026-10-03T12:00:11.557255+00:00",
+        "rows": 5906,
+        "started_at_utc": "2026-10-03T12:00:11.321120+00:00",
         "status": "ok",
         "ticker": "EEM"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:20.293114+00:00",
-        "rows": 6308,
-        "started_at_utc": "2026-09-29T12:43:19.933614+00:00",
+        "completed_at_utc": "2026-10-03T12:00:11.927243+00:00",
+        "rows": 6312,
+        "started_at_utc": "2026-10-03T12:00:11.666696+00:00",
         "status": "ok",
         "ticker": "EFA"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:20.725823+00:00",
-        "rows": 7682,
-        "started_at_utc": "2026-09-29T12:43:20.413776+00:00",
+        "completed_at_utc": "2026-10-03T12:00:12.418532+00:00",
+        "rows": 7686,
+        "started_at_utc": "2026-10-03T12:00:12.046564+00:00",
         "status": "ok",
         "ticker": "EWJ"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:21.029537+00:00",
-        "rows": 5498,
-        "started_at_utc": "2026-09-29T12:43:20.878177+00:00",
+        "completed_at_utc": "2026-10-03T12:00:12.710996+00:00",
+        "rows": 5502,
+        "started_at_utc": "2026-10-03T12:00:12.560661+00:00",
         "status": "ok",
         "ticker": "GLD"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:21.361834+00:00",
-        "rows": 4898,
-        "started_at_utc": "2026-09-29T12:43:21.149440+00:00",
+        "completed_at_utc": "2026-10-03T12:00:13.124187+00:00",
+        "rows": 4902,
+        "started_at_utc": "2026-10-03T12:00:12.828828+00:00",
         "status": "ok",
         "ticker": "HYG"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:21.620453+00:00",
-        "rows": 5450,
-        "started_at_utc": "2026-09-29T12:43:21.464349+00:00",
+        "completed_at_utc": "2026-10-03T12:00:13.434068+00:00",
+        "rows": 5454,
+        "started_at_utc": "2026-10-03T12:00:13.220646+00:00",
         "status": "ok",
         "ticker": "IAU"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:22.050722+00:00",
-        "rows": 6080,
-        "started_at_utc": "2026-09-29T12:43:21.722977+00:00",
+        "completed_at_utc": "2026-10-03T12:00:13.817592+00:00",
+        "rows": 6084,
+        "started_at_utc": "2026-10-03T12:00:13.539863+00:00",
         "status": "ok",
         "ticker": "IEF"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:22.459767+00:00",
-        "rows": 6623,
-        "started_at_utc": "2026-09-29T12:43:22.184955+00:00",
+        "completed_at_utc": "2026-10-03T12:00:14.208206+00:00",
+        "rows": 6627,
+        "started_at_utc": "2026-10-03T12:00:13.939053+00:00",
         "status": "ok",
         "ticker": "IWM"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:22.937111+00:00",
-        "rows": 6080,
-        "started_at_utc": "2026-09-29T12:43:22.604488+00:00",
+        "completed_at_utc": "2026-10-03T12:00:14.715620+00:00",
+        "rows": 6084,
+        "started_at_utc": "2026-10-03T12:00:14.329365+00:00",
         "status": "ok",
         "ticker": "LQD"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:23.444691+00:00",
-        "rows": 4915,
-        "started_at_utc": "2026-09-29T12:43:23.065458+00:00",
+        "completed_at_utc": "2026-10-03T12:00:15.164619+00:00",
+        "rows": 4919,
+        "started_at_utc": "2026-10-03T12:00:14.874639+00:00",
         "status": "ok",
         "ticker": "MBB"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:23.678938+00:00",
-        "rows": 2988,
-        "started_at_utc": "2026-09-29T12:43:23.538030+00:00",
+        "completed_at_utc": "2026-10-03T12:00:15.418224+00:00",
+        "rows": 2992,
+        "started_at_utc": "2026-10-03T12:00:15.262052+00:00",
         "status": "ok",
         "ticker": "PDBC"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:24.000341+00:00",
-        "rows": 6931,
-        "started_at_utc": "2026-09-29T12:43:23.735617+00:00",
+        "completed_at_utc": "2026-10-03T12:00:15.801664+00:00",
+        "rows": 6935,
+        "started_at_utc": "2026-10-03T12:00:15.477160+00:00",
         "status": "ok",
         "ticker": "QQQ"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:24.498901+00:00",
-        "rows": 6080,
-        "started_at_utc": "2026-09-29T12:43:24.166566+00:00",
+        "completed_at_utc": "2026-10-03T12:00:16.254471+00:00",
+        "rows": 6084,
+        "started_at_utc": "2026-10-03T12:00:15.933856+00:00",
         "status": "ok",
         "ticker": "SHY"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:24.765492+00:00",
-        "rows": 5136,
-        "started_at_utc": "2026-09-29T12:43:24.614021+00:00",
+        "completed_at_utc": "2026-10-03T12:00:16.589866+00:00",
+        "rows": 5140,
+        "started_at_utc": "2026-10-03T12:00:16.376680+00:00",
         "status": "ok",
         "ticker": "SLV"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:25.260078+00:00",
-        "rows": 8473,
-        "started_at_utc": "2026-09-29T12:43:24.860757+00:00",
+        "completed_at_utc": "2026-10-03T12:00:17.016676+00:00",
+        "rows": 8477,
+        "started_at_utc": "2026-10-03T12:00:16.687794+00:00",
         "status": "ok",
         "ticker": "SPY"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:25.736151+00:00",
-        "rows": 5738,
-        "started_at_utc": "2026-09-29T12:43:25.419555+00:00",
+        "completed_at_utc": "2026-10-03T12:00:17.455539+00:00",
+        "rows": 5742,
+        "started_at_utc": "2026-10-03T12:00:17.170944+00:00",
         "status": "ok",
         "ticker": "TIP"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:26.139049+00:00",
-        "rows": 6080,
-        "started_at_utc": "2026-09-29T12:43:25.846641+00:00",
+        "completed_at_utc": "2026-10-03T12:00:17.876421+00:00",
+        "rows": 6084,
+        "started_at_utc": "2026-10-03T12:00:17.562748+00:00",
         "status": "ok",
         "ticker": "TLT"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:26.404010+00:00",
-        "rows": 5149,
-        "started_at_utc": "2026-09-29T12:43:26.253789+00:00",
+        "completed_at_utc": "2026-10-03T12:00:18.156676+00:00",
+        "rows": 5153,
+        "started_at_utc": "2026-10-03T12:00:17.992714+00:00",
         "status": "ok",
         "ticker": "USO"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:26.740156+00:00",
-        "rows": 4926,
-        "started_at_utc": "2026-09-29T12:43:26.499603+00:00",
+        "completed_at_utc": "2026-10-03T12:00:18.464295+00:00",
+        "rows": 4930,
+        "started_at_utc": "2026-10-03T12:00:18.253706+00:00",
         "status": "ok",
         "ticker": "UUP"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:27.244085+00:00",
-        "rows": 4824,
-        "started_at_utc": "2026-09-29T12:43:26.874657+00:00",
+        "completed_at_utc": "2026-10-03T12:00:18.825804+00:00",
+        "rows": 4828,
+        "started_at_utc": "2026-10-03T12:00:18.558590+00:00",
         "status": "ok",
         "ticker": "VEA"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:27.647687+00:00",
-        "rows": 5534,
-        "started_at_utc": "2026-09-29T12:43:27.339878+00:00",
+        "completed_at_utc": "2026-10-03T12:00:19.225685+00:00",
+        "rows": 5538,
+        "started_at_utc": "2026-10-03T12:00:18.916205+00:00",
         "status": "ok",
         "ticker": "VNQ"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:28.029315+00:00",
-        "rows": 5701,
-        "started_at_utc": "2026-09-29T12:43:27.764814+00:00",
+        "completed_at_utc": "2026-10-03T12:00:19.587377+00:00",
+        "rows": 5705,
+        "started_at_utc": "2026-10-03T12:00:19.331765+00:00",
         "status": "ok",
         "ticker": "VTV"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:28.379740+00:00",
-        "rows": 5701,
-        "started_at_utc": "2026-09-29T12:43:28.139213+00:00",
+        "completed_at_utc": "2026-10-03T12:00:19.947755+00:00",
+        "rows": 5705,
+        "started_at_utc": "2026-10-03T12:00:19.698244+00:00",
         "status": "ok",
         "ticker": "VUG"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:28.834331+00:00",
-        "rows": 5422,
-        "started_at_utc": "2026-09-29T12:43:28.484920+00:00",
+        "completed_at_utc": "2026-10-03T12:00:20.290166+00:00",
+        "rows": 5426,
+        "started_at_utc": "2026-10-03T12:00:20.049824+00:00",
         "status": "ok",
         "ticker": "VWO"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:29.258340+00:00",
-        "rows": 6983,
-        "started_at_utc": "2026-09-29T12:43:28.939029+00:00",
+        "completed_at_utc": "2026-10-03T12:00:20.722355+00:00",
+        "rows": 6987,
+        "started_at_utc": "2026-10-03T12:00:20.392251+00:00",
         "status": "ok",
         "ticker": "XLB"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:29.740650+00:00",
-        "rows": 6983,
-        "started_at_utc": "2026-09-29T12:43:29.457819+00:00",
+        "completed_at_utc": "2026-10-03T12:00:21.208208+00:00",
+        "rows": 6987,
+        "started_at_utc": "2026-10-03T12:00:20.851081+00:00",
         "status": "ok",
         "ticker": "XLE"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:30.279980+00:00",
-        "rows": 6983,
-        "started_at_utc": "2026-09-29T12:43:29.880694+00:00",
+        "completed_at_utc": "2026-10-03T12:00:21.610419+00:00",
+        "rows": 6987,
+        "started_at_utc": "2026-10-03T12:00:21.349090+00:00",
         "status": "ok",
         "ticker": "XLF"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:30.779551+00:00",
-        "rows": 6983,
-        "started_at_utc": "2026-09-29T12:43:30.409980+00:00",
+        "completed_at_utc": "2026-10-03T12:00:22.048443+00:00",
+        "rows": 6987,
+        "started_at_utc": "2026-10-03T12:00:21.758340+00:00",
         "status": "ok",
         "ticker": "XLI"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:31.347343+00:00",
-        "rows": 6983,
-        "started_at_utc": "2026-09-29T12:43:30.982907+00:00",
+        "completed_at_utc": "2026-10-03T12:00:22.529917+00:00",
+        "rows": 6987,
+        "started_at_utc": "2026-10-03T12:00:22.207434+00:00",
         "status": "ok",
         "ticker": "XLK"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:31.869355+00:00",
-        "rows": 6983,
-        "started_at_utc": "2026-09-29T12:43:31.489797+00:00",
+        "completed_at_utc": "2026-10-03T12:00:23.010247+00:00",
+        "rows": 6987,
+        "started_at_utc": "2026-10-03T12:00:22.660485+00:00",
         "status": "ok",
         "ticker": "XLP"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:32.391131+00:00",
-        "rows": 6983,
-        "started_at_utc": "2026-09-29T12:43:32.010914+00:00",
+        "completed_at_utc": "2026-10-03T12:00:23.682587+00:00",
+        "rows": 6987,
+        "started_at_utc": "2026-10-03T12:00:23.285574+00:00",
         "status": "ok",
         "ticker": "XLU"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:32.894472+00:00",
-        "rows": 6983,
-        "started_at_utc": "2026-09-29T12:43:32.530114+00:00",
+        "completed_at_utc": "2026-10-03T12:00:24.223022+00:00",
+        "rows": 6987,
+        "started_at_utc": "2026-10-03T12:00:23.871789+00:00",
         "status": "ok",
         "ticker": "XLV"
       },
       {
-        "completed_at_utc": "2026-09-29T12:43:33.424514+00:00",
-        "rows": 6983,
-        "started_at_utc": "2026-09-29T12:43:33.054040+00:00",
+        "completed_at_utc": "2026-10-03T12:00:24.684736+00:00",
+        "rows": 6987,
+        "started_at_utc": "2026-10-03T12:00:24.380526+00:00",
         "status": "ok",
         "ticker": "XLY"
       }
@@ -303,52 +303,52 @@
     "point_in_time_universe": false,
     "vintage_revisions": false
   },
-  "container_log": "{\"status\": \"complete\", \"observed_at_utc\": \"2026-09-29T12:43:33.424514+00:00\", \"symbols\": 35, \"price_rows\": 210793}\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(",
+  "container_log": "{\"status\": \"complete\", \"observed_at_utc\": \"2026-10-03T12:00:24.684736+00:00\", \"symbols\": 35, \"price_rows\": 210933}\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(",
   "excluded_scope": "survivorship-safe historical universe or delisted-security claims",
   "freshness": {
     "expected_symbols": 35,
     "freshness_pass": true,
-    "latest_observation_date": "2026-09-28",
+    "latest_observation_date": "2026-10-02",
     "maximum_calendar_staleness_days": 1,
     "missing_symbols": [],
     "observed_symbols": 35,
     "symbols_staler_than_7_days": []
   },
-  "generated_at_utc": "2026-09-29T12:43:39.678366+00:00",
+  "generated_at_utc": "2026-10-03T12:00:31.573886+00:00",
   "historical_simulation_grade": "research_only",
   "image": {
     "image": "localhost/po2-yfinance:1.5.2-v1",
     "image_id": "be5eb482b9a6710e5f539c39b69c89101b4d006a9bb195450acfe7d82e90ed8a",
     "repo_digest": "sha256:d14f2449528c4aa258038741f6b6b1c1e107d4f368da752c4d2247c9efd99c74"
   },
-  "observed_at_utc": "2026-09-29T12:43:33.424514+00:00",
+  "observed_at_utc": "2026-10-03T12:00:24.684736+00:00",
   "paid_data_required": false,
   "revision_comparison": {
-    "common_rows": 210548,
+    "common_rows": 210793,
     "disappeared_keys": 0,
-    "economically_material_adjusted_close_rows": 105321,
+    "economically_material_adjusted_close_rows": 38997,
     "economically_material_relative_threshold": 0.0001,
     "magnitude_by_field": {
       "adjusted_close": {
-        "exact_change_count": 170648,
-        "exact_change_share": 0.8104945190645364,
-        "maximum_absolute_difference": 1.92681884765625,
-        "maximum_relative_difference": 0.008599671215372688,
+        "exact_change_count": 155972,
+        "exact_change_share": 0.7399296940600494,
+        "maximum_absolute_difference": 0.567901611328125,
+        "maximum_relative_difference": 0.004431013666467298,
         "relative_change_counts": {
-          "over_0.0001": 105321,
-          "over_0.001": 105256,
-          "over_1e-05": 105321,
-          "over_1e-06": 106467,
-          "over_1e-07": 154964,
-          "over_1e-08": 170648
+          "over_0.0001": 38997,
+          "over_0.001": 38997,
+          "over_1e-05": 38997,
+          "over_1e-06": 39223,
+          "over_1e-07": 125607,
+          "over_1e-08": 155972
         },
         "relative_change_shares": {
-          "over_0.0001": 0.5002232270076182,
-          "over_0.001": 0.499914508805593,
-          "over_1e-05": 0.5002232270076182,
-          "over_1e-06": 0.5056661663848624,
-          "over_1e-07": 0.7360031916712578,
-          "over_1e-08": 0.8104945190645364
+          "over_0.0001": 0.18500139947721225,
+          "over_0.001": 0.18500139947721225,
+          "over_1e-05": 0.18500139947721225,
+          "over_1e-06": 0.18607354134150564,
+          "over_1e-07": 0.5958784210101854,
+          "over_1e-08": 0.7399296940600494
         }
       },
       "close": {
@@ -374,20 +374,20 @@
         }
       }
     },
-    "new_keys": 245,
-    "new_rows": 210793,
-    "new_snapshot_id": "20260929T124333Z-81a9ffa4edc55edb",
-    "old_rows": 210548,
-    "old_snapshot_id": "20260918T022602Z-57bf5160a902caf3",
-    "revised_row_share": 0.8104945190645364,
-    "revised_rows": 170648,
+    "new_keys": 140,
+    "new_rows": 210933,
+    "new_snapshot_id": "20261003T120024Z-a7ff75431d4f7435",
+    "old_rows": 210793,
+    "old_snapshot_id": "20260929T124333Z-81a9ffa4edc55edb",
+    "revised_row_share": 0.7399296940600494,
+    "revised_rows": 155972,
     "sample_revisions": [
       {
         "changes": {
           "adjusted_close": {
-            "difference": -0.059726715087890625,
-            "new": 24.053539276123047,
-            "old": 24.113265991210938
+            "difference": -1.9073486328125e-06,
+            "new": 24.053537368774414,
+            "old": 24.053539276123047
           }
         },
         "observation_date": "1993-01-29",
@@ -396,9 +396,9 @@
       {
         "changes": {
           "adjusted_close": {
-            "difference": -0.060146331787109375,
-            "new": 24.22461700439453,
-            "old": 24.28476333618164
+            "difference": -7.62939453125e-06,
+            "new": 24.224609375,
+            "old": 24.22461700439453
           }
         },
         "observation_date": "1993-02-01",
@@ -407,9 +407,9 @@
       {
         "changes": {
           "adjusted_close": {
-            "difference": -0.06027984619140625,
-            "new": 24.275936126708984,
-            "old": 24.33621597290039
+            "difference": -9.5367431640625e-06,
+            "new": 24.27592658996582,
+            "old": 24.275936126708984
           }
         },
         "observation_date": "1993-02-02",
@@ -418,9 +418,9 @@
       {
         "changes": {
           "adjusted_close": {
-            "difference": -0.06091117858886719,
-            "new": 24.532548904418945,
-            "old": 24.593460083007812
+            "difference": -5.7220458984375e-06,
+            "new": 24.532543182373047,
+            "old": 24.532548904418945
           }
         },
         "observation_date": "1993-02-03",
@@ -429,9 +429,9 @@
       {
         "changes": {
           "adjusted_close": {
-            "difference": -0.06116676330566406,
-            "new": 24.635202407836914,
-            "old": 24.696369171142578
+            "difference": -9.5367431640625e-06,
+            "new": 24.63519287109375,
+            "old": 24.635202407836914
           }
         },
         "observation_date": "1993-02-04",
@@ -440,9 +440,9 @@
       {
         "changes": {
           "adjusted_close": {
-            "difference": -0.06113243103027344,
-            "new": 24.61808204650879,
-            "old": 24.679214477539062
+            "difference": -3.814697265625e-06,
+            "new": 24.618078231811523,
+            "old": 24.61808204650879
           }
         },
         "observation_date": "1993-02-05",
@@ -451,9 +451,9 @@
       {
         "changes": {
           "adjusted_close": {
-            "difference": -0.06113243103027344,
-            "new": 24.61808204650879,
-            "old": 24.679214477539062
+            "difference": -3.814697265625e-06,
+            "new": 24.618078231811523,
+            "old": 24.61808204650879
           }
         },
         "observation_date": "1993-02-08",
@@ -462,9 +462,9 @@
       {
         "changes": {
           "adjusted_close": {
-            "difference": -0.06070137023925781,
-            "new": 24.44701385498047,
-            "old": 24.507715225219727
+            "difference": -5.7220458984375e-06,
+            "new": 24.44700813293457,
+            "old": 24.44701385498047
           }
         },
         "observation_date": "1993-02-09",
@@ -473,9 +473,9 @@
       {
         "changes": {
           "adjusted_close": {
-            "difference": -0.0607757568359375,
-            "new": 24.481233596801758,
-            "old": 24.542009353637695
+            "difference": 1.1444091796875e-05,
+            "new": 24.481245040893555,
+            "old": 24.481233596801758
           }
         },
         "observation_date": "1993-02-10",
@@ -484,9 +484,9 @@
       {
         "changes": {
           "adjusted_close": {
-            "difference": -0.06109428405761719,
-            "new": 24.600980758666992,
-            "old": 24.66207504272461
+            "difference": -9.5367431640625e-06,
+            "new": 24.600971221923828,
+            "old": 24.600980758666992
           }
         },
         "observation_date": "1993-02-11",
@@ -495,9 +495,9 @@
       {
         "changes": {
           "adjusted_close": {
-            "difference": -0.06062507629394531,
-            "new": 24.412803649902344,
-            "old": 24.47342872619629
+            "difference": -7.62939453125e-06,
+            "new": 24.412796020507812,
+            "old": 24.412803649902344
           }
         },
         "observation_date": "1993-02-12",
@@ -506,9 +506,9 @@
       {
         "changes": {
           "adjusted_close": {
-            "difference": -0.05909538269042969,
-            "new": 23.796913146972656,
-            "old": 23.856008529663086
+            "difference": -5.7220458984375e-06,
+            "new": 23.796907424926758,
+            "old": 23.796913146972656
           }
         },
         "observation_date": "1993-02-16",
@@ -517,9 +517,9 @@
       {
         "changes": {
           "adjusted_close": {
-            "difference": -0.05903434753417969,
-            "new": 23.779823303222656,
-            "old": 23.838857650756836
+            "difference": -2.09808349609375e-05,
+            "new": 23.779802322387695,
+            "old": 23.779823303222656
           }
         },
         "observation_date": "1993-02-17",
@@ -528,9 +528,9 @@
       {
         "changes": {
           "adjusted_close": {
-            "difference": -0.05901527404785156,
-            "new": 23.762693405151367,
-            "old": 23.82170867919922
+            "difference": 9.5367431640625e-06,
+            "new": 23.76270294189453,
+            "old": 23.762693405151367
           }
         },
         "observation_date": "1993-02-18",
@@ -539,9 +539,9 @@
       {
         "changes": {
           "adjusted_close": {
-            "difference": -0.05921745300292969,
-            "new": 23.84823989868164,
-            "old": 23.90745735168457
+            "difference": -1.9073486328125e-06,
+            "new": 23.848237991333008,
+            "old": 23.84823989868164
           }
         },
         "observation_date": "1993-02-19",
@@ -550,9 +550,9 @@
       {
         "changes": {
           "adjusted_close": {
-            "difference": -0.05942726135253906,
-            "new": 23.933774948120117,
-            "old": 23.993202209472656
+            "difference": 1.9073486328125e-06,
+            "new": 23.93377685546875,
+            "old": 23.933774948120117
           }
         },
         "observation_date": "1993-02-22",
@@ -561,9 +561,9 @@
       {
         "changes": {
           "adjusted_close": {
-            "difference": -0.05938911437988281,
-            "new": 23.91666030883789,
-            "old": 23.976049423217773
+            "difference": 5.7220458984375e-06,
+            "new": 23.91666603088379,
+            "old": 23.91666030883789
           }
         },
         "observation_date": "1993-02-23",
@@ -572,9 +572,9 @@
       {
         "changes": {
           "adjusted_close": {
-            "difference": -0.060146331787109375,
-            "new": 24.22461700439453,
-            "old": 24.28476333618164
+            "difference": -7.62939453125e-06,
+            "new": 24.224609375,
+            "old": 24.22461700439453
           }
         },
         "observation_date": "1993-02-24",
@@ -583,9 +583,9 @@
       {
         "changes": {
           "adjusted_close": {
-            "difference": -0.06027984619140625,
-            "new": 24.275936126708984,
-            "old": 24.33621597290039
+            "difference": -9.5367431640625e-06,
+            "new": 24.27592658996582,
+            "old": 24.275936126708984
           }
         },
         "observation_date": "1993-02-25",
@@ -594,9 +594,9 @@
       {
         "changes": {
           "adjusted_close": {
-            "difference": -0.06037330627441406,
-            "new": 24.31014060974121,
-            "old": 24.370513916015625
+            "difference": 1.1444091796875e-05,
+            "new": 24.310152053833008,
+            "old": 24.31014060974121
           }
         },
         "observation_date": "1993-02-26",
@@ -605,5 +605,5 @@
     ]
   },
   "scope": "current ETF research, forward paper-data collection, and revision monitoring",
-  "snapshot_id": "20260929T124333Z-81a9ffa4edc55edb"
+  "snapshot_id": "20261003T120024Z-a7ff75431d4f7435"
 }

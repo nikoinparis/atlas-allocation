@@ -4,10 +4,11 @@
     "2026-09-04",
     "2026-09-11",
     "2026-09-18",
-    "2026-09-25"
+    "2026-09-25",
+    "2026-10-02"
   ],
   "artifact_sha256": {
-    "weekly_adjusted_prices_clean.csv.gz": "2c272fdfe8301eb05dd23f096fb19f84d041ad56a4039fffca473e76348796b6"
+    "weekly_adjusted_prices_clean.csv.gz": "d548c6c25cc426c4db5aa95c71d59194877f6eded59afe0a1d7f1c7091740814"
   },
   "cleaning_rules": {
     "applied_to": "appended weeks only; existing cells are never rewritten",
@@ -17,28 +18,29 @@
     "zero_and_negative_prices": "set to missing"
   },
   "coverage_new_week": {
-    "2026-08-28": 2804,
-    "2026-09-04": 2805,
-    "2026-09-11": 2802,
-    "2026-09-18": 2799,
-    "2026-09-25": 2801
+    "2026-08-28": 2802,
+    "2026-09-04": 2803,
+    "2026-09-11": 2801,
+    "2026-09-18": 2798,
+    "2026-09-25": 2800,
+    "2026-10-02": 2800
   },
-  "created_at_utc": "2026-09-29T12:50:10.308797+00:00",
+  "created_at_utc": "2026-10-03T12:07:05.723286+00:00",
   "derived_from": "data/clean_weekly_prices_v1/weekly_adjusted_prices_clean.csv.gz",
   "derived_from_sha256": "3ad97d8174266ca6301281e10acc12ab9082cdd26615483ea4ca2ecb67f24123",
   "experiment": "clean_weekly_prices_v2",
   "issuers": 3253,
-  "issuers_extended": 2805,
-  "issuers_not_extended": 448,
-  "last_closed_friday_at_build": "2026-09-25",
+  "issuers_extended": 2803,
+  "issuers_not_extended": 450,
+  "last_closed_friday_at_build": "2026-10-02",
   "live_trading_enabled": false,
-  "new_last_week": "2026-09-25",
+  "new_last_week": "2026-10-02",
   "not_extended_reason": "no fresh Yahoo observation in the new week; these are overwhelmingly Tiingo-sourced delisted issuers whose series legitimately stops",
   "overlap_reconciliation": {
     "basis": "weekly simple returns over the overlapping weeks",
     "cells_over_100bps": 369,
     "cells_over_10bps": 525,
-    "compared_cells": 30347,
+    "compared_cells": 30336,
     "max_absolute_return_gap": 17.00000145519156,
     "median_absolute_return_gap": 1.1102230246251565e-16,
     "overlap_weeks": [
@@ -58,7 +60,7 @@
   },
   "panel_convention": "each issuer is rebased to 1.0 at its first observation; new weeks are chained onto the stored level at the last shared week",
   "prior_last_week": "2026-08-21",
-  "raw_tail_vintage": "data/sec_broad_recent_tail_vintages/20260929T125003Z-broad-recent-tail-v1",
+  "raw_tail_vintage": "data/sec_broad_recent_tail_vintages/20261003T120659Z-broad-recent-tail-v1",
   "symbols_failed": 0,
   "symbols_requested": 3235
 }

@@ -1,31 +1,31 @@
 {
   "artifact_sha256": {
-    "weekly_adjusted_prices_clean.csv.gz": "27f9f8324c01b32c1b440b393da4c074def7ab7286a6ff66ce9c38a51dfd5a97",
-    "weekly_returns_clean.csv.gz": "621ba350d944193a3ee36221a5388ff25adc50880c669249ffe834d24c858793"
+    "weekly_adjusted_prices_clean.csv.gz": "62f21a1e7a6a7b99aea6e3b1c68fbf889f4d694f5232bbd5e32b4b8863c115d1",
+    "weekly_returns_clean.csv.gz": "cae84d5354cbd0a4a4d0f1d9924379fb472cedaf75d991f52b9dfe7f9eaf3295"
   },
-  "created_at_utc": "2026-09-29T12:59:24.060739+00:00",
+  "created_at_utc": "2026-10-03T12:16:35.644134+00:00",
   "experiment": "corporate_action_clean_prices_v1",
   "live_trading_enabled": false,
   "modifies_existing_panels": false,
   "repairs": {
-    "after__equal_weight_cagr": 0.1565939290728502,
-    "after__equal_weight_recent_52w": 0.15400560177069833,
+    "after__equal_weight_cagr": 0.1560834732775216,
+    "after__equal_weight_recent_52w": 0.1365106428818379,
     "after__infinite_returns": 0,
-    "after__returns_above_100pct": 260,
+    "after__returns_above_100pct": 261,
     "after__worst_weekly_return": 18.728261278572525,
-    "before__equal_weight_cagr": 0.18769147958324428,
-    "before__equal_weight_recent_52w": 0.24152978269116043,
+    "before__equal_weight_cagr": 0.1870989312324649,
+    "before__equal_weight_recent_52w": 0.21986822404403306,
     "before__infinite_returns": 0,
-    "before__returns_above_100pct": 422,
-    "before__worst_weekly_return": 257.33332451526246,
-    "cells_removed_total": 19840,
-    "input_cells": 1856881,
+    "before__returns_above_100pct": 424,
+    "before__worst_weekly_return": 257.3332981291461,
+    "cells_removed_total": 19868,
+    "input_cells": 1859450,
     "input_issuers": 2811,
     "jump_ratio": 5.0,
     "max_legitimate_jumps": 1,
     "non_positive_cells_removed": 0,
     "non_positive_issuers": [],
-    "output_cells": 1837041,
+    "output_cells": 1839582,
     "output_issuers": 2798,
     "price_floor": 1.0,
     "quarantined_count": 13,
@@ -75,7 +75,9 @@
       "0001662774",
       "0001725210",
       "0001728117",
+      "0001738177",
       "0001749723",
+      "0001755672",
       "0001819142",
       "0001821586",
       "0001825024",
@@ -84,10 +86,10 @@
       "0001885522",
       "0001922446"
     ],
-    "sub_floor_cells_removed": 11849,
-    "sub_floor_issuers_touched": 211
+    "sub_floor_cells_removed": 11864,
+    "sub_floor_issuers_touched": 213
   },
   "source_prices": "data/broad_full_history_panel_v1/weekly_adjusted_prices.csv.gz",
-  "source_sha256": "adb05a327faeefa4ab320d225955e0c7fb894a440a70d0f012ca650d94979543",
+  "source_sha256": "68a00339b30f706f796910789c8919d75681179e2d63654b19c7cf9bd2387d1a",
   "strategy_promotion_authorized": false
 }

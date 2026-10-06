@@ -1,0 +1,54 @@
+{
+  "decision_friday": "2026-10-02",
+  "started_at_utc": "2026-10-03T00:00:06.003589+00:00",
+  "pending": {
+    "etf": [
+      "covariance_minimum_variance_v1",
+      "breadth_confirmed_trend_return_ceiling_v3",
+      "past_only_consensus_selector_return_v1",
+      "return_first_60_40_blend_v1"
+    ],
+    "stock": [
+      "equal_weight_benchmark_v1",
+      "valuation_earnings_yield_v1",
+      "sue_quarterly_v1",
+      "residual_tie_agnostic_companion_v1"
+    ]
+  },
+  "live_trading_enabled": false,
+  "status": "failed",
+  "error": "guarded weekly cycle (minimum variance) failed (exit 2):\n{\n  \"status\": \"rejected\",\n  \"reason\": \"subprocess failed closed: ['python', 'acquire_free_etf_snapshot.py', '--period', 'max']; stderr tail=ire_free_etf_snapshot.py\\\", line 173, in main\\n    result = build(args.period)\\n             ^^^^^^^^^^^^^^^^^^\\n  File \\\"/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/scripts/acquire_free_etf_snapshot.py\\\", line 116, in build\\n    manifest = store.ingest(files, descriptor)\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/src/systematic_trader/data_vintage.py\\\", line 176, in ingest\\n    claims = validate_bundle(normalized, descriptor)\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/src/systematic_trader/data_vintage.py\\\", line 157, in validate_bundle\\n    _validate_prices(files[\\\"prices.csv\\\"])\\n  File \\\"/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/src/systematic_trader/data_vintage.py\\\", line 103, in _validate_prices\\n    value = float(row[\\\"adjusted_close\\\"])\\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\nValueError: could not convert string to float: ''\\n\"\n}",
+  "steps": [
+    {
+      "step": "start the Podman sandbox",
+      "command": [
+        "/opt/homebrew/bin/podman",
+        "machine",
+        "start",
+        "portfolio-optimizer-sandbox"
+      ],
+      "returncode": 125,
+      "status": "ok",
+      "tail": [
+        "Starting machine \"portfolio-optimizer-sandbox\"",
+        "Error: unable to start \"portfolio-optimizer-sandbox\": already running"
+      ]
+    },
+    {
+      "step": "guarded weekly cycle (minimum variance)",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/run_guarded_weekly_forward_cycle.py"
+      ],
+      "returncode": 2,
+      "status": "failed",
+      "tail": [
+        "{",
+        "  \"status\": \"rejected\",",
+        "  \"reason\": \"subprocess failed closed: ['python', 'acquire_free_etf_snapshot.py', '--period', 'max']; stderr tail=ire_free_etf_snapshot.py\\\", line 173, in main\\n    result = build(args.period)\\n             ^^^^^^^^^^^^^^^^^^\\n  File \\\"/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/scripts/acquire_free_etf_snapshot.py\\\", line 116, in build\\n    manifest = store.ingest(files, descriptor)\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/src/systematic_trader/data_vintage.py\\\", line 176, in ingest\\n    claims = validate_bundle(normalized, descriptor)\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/src/systematic_trader/data_vintage.py\\\", line 157, in validate_bundle\\n    _validate_prices(files[\\\"prices.csv\\\"])\\n  File \\\"/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/src/systematic_trader/data_vintage.py\\\", line 103, in _validate_prices\\n    value = float(row[\\\"adjusted_close\\\"])\\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\nValueError: could not convert string to float: ''\\n\"",
+        "}"
+      ]
+    }
+  ],
+  "finished_at_utc": "2026-10-03T00:06:17.559798+00:00"
+}

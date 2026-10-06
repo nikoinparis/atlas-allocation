@@ -178,33 +178,6 @@ Both are small. A gate nobody trusts is worse than no gate.
 
 ## A tier
 
-### A16. Long/short trend as the third source, read from free post-publication data *(new 2026-10-07, Step 338)*
-**Not in the Closed table.** Step 205 rejected *long-only* ETF trend; Steps 248–249 could not read
-our own futures trend because of roll contamination. Neither tested the long/short futures trend the
-literature documents (Moskowitz-Ooi-Pedersen 2012; Hurst-Ooi-Pedersen century study).
-**Data, free:** AQR "Time Series Momentum: Factors, Monthly", 1985 onward, gross of fees, clean rolls.
-**2013–2026 is post-publication** and so is genuinely out of sample for the paper.
-**First experiment (pre-register first):** monthly, 2013-01 to latest. (1) TSMOM alpha against SPY
-and against the SPY/GLD/SHY blend at matched beta, after 1.0%/yr fee drag (what a retail fund charges).
-(2) Blend 80% SPY/GLD/SHY + 20% TSMOM against the blend alone at matched volatility, with the
-2022 and 2020 windows reported. One construction, no parameter choice. **Kill if** the 20% sleeve does
-not raise excess Sharpe by ≥0.05 after fees post-2013.
-**Vehicle if it passes:** a managed-futures ETF (DBMF since 2019, KMLM since 2020). These use futures
-with internal leverage and shorts, so **the owner must decide whether that breaks the no-leverage rule.**
-**Skill screen does not apply** (time-series, ~4 asset classes); breadth is the claim, and this is
-where Step 247 measured 13.2 effective assets.
-
-## B tier additions
-
-### B8. Turn-of-the-month on SPY *(new 2026-10-07, Step 338)*
-Never tested here. McConnell & Xu (FAJ 2008): 1926–2005 equity premium earned almost entirely in the
-last day plus first three days of the month, in 31 of 35 countries. **First experiment:** SPY daily
-1999–2026, declare one window (day −1 to +3), hold SHY otherwise, compare against an exposure-matched
-constant SPY/SHY mix (Step 334's null) at 0/10/50/100 bps, placebo of random 4-day windows. Expect
-failure after costs: ~24 round trips a year, and it reduces time in the market. B because it is
-single-asset timing (breadth ~12 bets/yr) and Step 334's crash-buying rule failed the same null.
-
-
 ### A14. Out-of-window test of revision breadth and the call-put IV spread *(new 2026-09-30, Step 326)*
 **The first two signals in this project to order their deciles, in-sample only.** On BRAIN,
 H1c (63-day analyst revision breadth) read +0.964 / middle-8 +0.929, and it survives
@@ -450,6 +423,9 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 
 | item | verdict | where |
 |---|---|---|
+| **Long/short trend sleeve (was A16)** | **Fails its bar, right direction.** 80% SPY/GLD/SHY + 20% AQR TSMOM after a 1% fee, 2013-2026-05: Sharpe 1.00 vs 0.91, max DD −7.8% vs −12.7%, CAGR 7.88% vs 8.30%; bootstrap p 0.241. Live DBMF/KMLM point the same way. Rests on bond trend. Do not re-run at another weight. | Step 340 |
+| **Turn-of-the-month on SPY (was B8)** | **Dead.** 2006-2026 Sharpe 0.31 vs same-exposure mix 0.57 at zero cost; −1.08% CAGR at 10 bps; placebo p 0.40. | Step 341 |
+| **Volatility-managed market, long-only (new 2026-10-07)** | **Fails replication.** 1999-2026 Sharpe 0.57 vs 0.46 (placebo p 0.007), max DD −25% vs −41%; 2016-26 +0.06; **1933-1992 −0.07**. Lags buy-and-hold by 1.6pp/yr; missed the 2020 rebound. | Step 342 |
 | **Re-cost cash conversion (was S21)** | **Retracted.** Step 338 double-charged costs: the simulator deducts them before recording, and the book is 39.1% / 34.7% / 26.2% at 50 / 100 / 200 bps as originally published. Display fixed: cost drag now shows unknown, not 0.0, and Sharpe convention is labelled. | Step 339 |
 | **Calibrate the monotonicity bar (was S22)** | **Done.** Sign-flip placebo in `decile_shape.py`. Zero-skill false-pass rate 30% under the fixed bar, 4-5% calibrated; real variable IC 0.03 at 39 decisions detected 20% of the time. | Step 339 |
 | **Survival lab for the unlevered books (was B7)** | **Done.** v4 sealed and run: residual-controlled 1.00x scores 75 (max DD −18.7%, P(−30% DD) 0.2%), tied with cash conversion and sector-aware. Resamples a 2023–2026 history that is 38% melt-up. | Step 337 |

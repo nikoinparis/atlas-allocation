@@ -16748,3 +16748,86 @@ calibrated test holds its size; the price is that a variable 0.03 IC is detected
 over 39 decisions. That is the honest power — the old bar's apparent power was mostly false
 alarms. Existing callers are untouched; no past verdict changes, since none of them passed the old
 bar on our own data. `tests/test_decile_shape_placebo.py`, 3 pass.
+
+## Step 340 — 2026-10-07 — A16: a trend sleeve helps in the right direction and does not clear its bar
+
+**What this was for.** Step 338 found one genuinely untested gap: Step 205 rejected *long-only* ETF
+trend, while the literature's evidence is for long/short futures trend. AQR publishes that factor
+free. Pre-registered (`docs/A16_TREND_SLEEVE_PREREGISTRATION_V1.md`, `d1deadf`) before any return.
+**It closed the idea under its own rule.**
+
+Trend fund = T-bill + AQR `TSMOM` excess − 1.00%/yr fee. P = 80% SPY/GLD/SHY + 20% trend fund,
+monthly. Decision window 2013-01 to 2026-05 (post-publication), monthly data:
+
+| | CAGR | Sharpe ex-T-bill | max DD | vol |
+|---|---|---|---|---|
+| blend, 10 bps | 8.30% | 0.91 | −12.7% | 7.5% |
+| **80/20 with trend, 10 bps** | 7.88% | **1.00** | **−7.8%** | 6.3% |
+| trend fund alone | 5.24% | 0.33 | −28.6% | 13.1% |
+
+**Sharpe difference +0.088, block-bootstrap p = 0.241 → FAIL** (needed ≥ +0.05 and p < 0.05).
+Costs barely move it: at 0/50/100 bps the 80/20 is 1.00/0.97/0.95 against the blend's 0.91/0.89/0.87.
+Trend alpha vs SPY +6.96%/yr (Newey-West t 1.92, beta −0.19); vs the blend +5.40% (t 1.50).
+
+Windows (total return, blend / 80/20 / trend): 2008–09 +6.2% / +8.2% / +12.1% (context only);
+2020 +16.0% / +11.3% / −7.3%; **2022 −7.4% / −1.1% / +25.3%**; 2023–2026-05 +82.4% / +70.0% / +25.8%.
+Leave-one-asset-class-out: 80/20 Sharpe 0.92 (no commodities), 1.02 (no equities), **0.89 (no bonds)**,
+0.96 (no FX) against 0.91 — the improvement rests on the bond-trend leg.
+
+Live ETFs, descriptive: DBMF since 2019-06, 80/20 Sharpe 1.21 vs blend 1.05, max DD −6.5% vs −12.7%;
+KMLM since 2021-01, 1.05 vs 0.86, −6.1% vs −12.7%. AQR's factor and DBMF correlate only 0.60 over
+the same months, so the factor is a loose proxy for any fund you could buy.
+
+**Reading.** Every view points the same way — higher Sharpe, roughly half the drawdown, about 0.4pp
+a year less return — and none of it is significant over 161 months. Under the kill rule A16 closes;
+re-running it at another weight, fee or sub-factor mix would be a new searched design. Kept as a
+fact: it is the only diversifier tested here whose crisis behaviour (2022) the static blend lacks.
+Owner decision still outstanding on whether futures funds' internal leverage is acceptable.
+
+## Step 341 — 2026-10-07 — B8: turn-of-the-month has decayed and cannot pay its trading costs
+
+Pre-registered (`docs/B8_TURN_OF_MONTH_PREREGISTRATION_V1.md`, `c1bfe4b`). Hold SPY on the last
+trading day and first three of each month, T-bills otherwise; 19.1% exposure, 24.1 switches a year.
+Decision window 2006-01 to 2026-09 (post-publication).
+
+| cost per leg | rule CAGR / Sharpe / max DD | same-exposure mix |
+|---|---|---|
+| 0 bps | 3.80% / 0.31 / −15.8% | 3.62% / 0.57 / −11.0% |
+| 10 bps | **−1.08% / −0.29 / −32.0%** | |
+| 50 bps | −18.5% / −2.32 / −98.6% | |
+| 100 bps | −36.2% / −3.69 / −100% | |
+
+**FAIL on all three conditions**; placebo p 0.401. It loses to the same-exposure mix *before* costs.
+Post-2005 the window earned 23.1% of SPY's log return on 19.1% of days — almost nothing left of
+McConnell & Xu's "all of the premium". Dropping the 5 best windows takes the zero-cost Sharpe to 0.15.
+
+## Step 342 — 2026-10-07 — A17: volatility-managed market exposure works 1999–2026 and reverses 1933–1992
+
+**What this was for.** The owner asked for a best effort at a real strategy. Of the ideas with a
+mechanism not already closed, this has the strongest one: variance is forecastable and expected
+return does not rise with it (Moreira & Muir, JF 2017), with a published out-of-sample challenge
+(Cederburg et al., JFE 2020). Never tested here on the market itself. Pre-registered
+(`docs/A17_VOLATILITY_MANAGED_MARKET_PREREGISTRATION_V1.md`, `52d807c`). Exposure = min(1, target /
+last-21-day variance), target = expanding median of all prior month-end index variances since 1928.
+No leverage. One construction.
+
+**Correction to the registration's data window:** the SPY file used starts 1999-01, so the
+"1993-02" primary window is in fact 1999-01 to 2026-09. Noted, not changed after the fact.
+
+| window, 10 bps | rule | same-exposure mix | buy & hold | Sharpe diff |
+|---|---|---|---|---|
+| **1999–2026 (primary)** | 7.07% / 0.57 / −25.1% | 6.82% / 0.46 / −40.9% | 8.68% / 0.46 / −55.2% | **+0.116, placebo p 0.007** |
+| 2016–2026 (post-publication) | 10.79% / 0.82 / −17.7% | 11.97% / 0.75 / −26.2% | 14.94% / 0.75 / −33.7% | +0.061 |
+| 1933–1992 (^GSPC, no dividends) | 5.71% / 0.22 / −58.1% | 6.88% / 0.29 / −54.3% | 7.18% / 0.29 / −60.0% | **−0.067** |
+
+Primary at 0/50/100 bps: Sharpe 0.59/0.49/0.39 against the mix's 0.46 — it dies above ~50 bps.
+Episodes (rule / mix / SPY): 2000-02 −16.7% / −22.9% / −33.4%; 2008-09 −1.8% / −11.7% / −20.1%;
+**2020 −1.5% / +13.9% / +18.3%** (cut exposure at the bottom and missed the rebound); 2022 −7.2% /
+−12.1% / −18.2%; 1987 Sep–Dec −9.1% vs −25.1%.
+
+**FAIL** — conditions 1, 2 and 4 pass; condition 3, the 60-year replication, reverses. The effect is
+real in the two modern crashes and absent across 1933–1992, which makes it a property of the recent
+crash pattern, not a law. It also earns 1.6pp a year less than buy-and-hold, so even where it works
+it is a drawdown reducer. Not promoted; not re-run with another target, lookback or cap.
+
+**Cumulative trials on market-level allocation and timing in this project now: 13 + 10 + 4 + 1 + 1 + 1 = 30.**

@@ -1,64 +1,64 @@
 {
   "cost_treatment": "no turnover occurs in a held book, so no trading cost is charged; no book is levered, so no financing is charged",
   "experiment": "dashboard_held_book_marks_v1",
-  "generated_at_utc": "2026-10-06T17:00:34.543784+00:00",
+  "generated_at_utc": "2026-10-10T16:13:16.736498+00:00",
   "live_trading_enabled": false,
   "promotion_authorized": false,
   "strategies": [
     {
       "book_as_of": "2026-08-07",
-      "cumulative_return": 0.0883309918517945,
+      "cumulative_return": 0.10424359198677724,
       "financing_annual": 0.0,
       "gross_exposure_priced": 0.9999999999999998,
       "names_in_book": 3,
       "names_priced": 3,
       "names_unpriced": [],
       "strategy_id": "candidate-return-first-60-40-forward-v1",
-      "weeks_marked": 8
+      "weeks_marked": 9
     },
     {
       "book_as_of": "2026-08-07",
-      "cumulative_return": 0.07920423017013456,
+      "cumulative_return": 0.11376592336164126,
       "financing_annual": 0.0,
       "gross_exposure_priced": 0.95,
       "names_in_book": 26,
       "names_priced": 26,
       "names_unpriced": [],
       "strategy_id": "sec-cash-conversion-breadth20-dynamic-v1",
-      "weeks_marked": 8
+      "weeks_marked": 9
     },
     {
       "book_as_of": "2026-08-07",
-      "cumulative_return": 0.10225682025362803,
+      "cumulative_return": 0.13124237262066107,
       "financing_annual": 0.0,
       "gross_exposure_priced": 1.0,
       "names_in_book": 5,
       "names_priced": 5,
       "names_unpriced": [],
       "strategy_id": "sec-growth-survivorship-aware-v1",
-      "weeks_marked": 8
+      "weeks_marked": 9
     },
     {
       "book_as_of": "2026-08-07",
-      "cumulative_return": 0.046045807314373466,
+      "cumulative_return": 0.06468708470576989,
       "financing_annual": 0.0,
       "gross_exposure_priced": 0.9599999999999999,
       "names_in_book": 44,
       "names_priced": 44,
       "names_unpriced": [],
       "strategy_id": "sec-residual-controlled-1x-v1",
-      "weeks_marked": 8
+      "weeks_marked": 9
     },
     {
       "book_as_of": "2026-08-07",
-      "cumulative_return": 0.05572084306395575,
+      "cumulative_return": 0.08776681610890802,
       "financing_annual": 0.0,
       "gross_exposure_priced": 0.8799999999999993,
       "names_in_book": 29,
       "names_priced": 29,
       "names_unpriced": [],
       "strategy_id": "sec-sector-aware-signal-ensemble-v1",
-      "weeks_marked": 8
+      "weeks_marked": 9
     }
   ],
   "weeks": [
@@ -69,7 +69,8 @@
     "2026-09-11",
     "2026-09-18",
     "2026-09-25",
-    "2026-10-02"
+    "2026-10-02",
+    "2026-10-09"
   ],
   "what_this_is": "the last decided book of each dashboard strategy, held unchanged and marked to market",
   "what_this_is_not": "This is not a forward observation of any strategy. No strategy decided these weeks: each book last decided on 2026-08-07 and nothing rebalanced it since."

@@ -37,12 +37,12 @@
   },
   "clocks": [
     {
-      "cumulativeReturn": 0.06682022249458575,
-      "observedWeeks": 5,
+      "cumulativeReturn": 0.08101973356942538,
+      "observedWeeks": 6,
       "promotionAuthorized": false,
       "protocol": "breadth_confirmed_trend_return_ceiling_v3",
       "requiredWeeks": 52,
-      "savedDecisions": 7,
+      "savedDecisions": 8,
       "weekly": [
         {
           "netReturn": 0.007870624530397694,
@@ -63,16 +63,20 @@
         {
           "netReturn": 0.011440417918561468,
           "week": "2026-10-02"
+        },
+        {
+          "netReturn": 0.013310125525776295,
+          "week": "2026-10-09"
         }
       ]
     },
     {
-      "cumulativeReturn": -0.016082171490935382,
-      "observedWeeks": 5,
+      "cumulativeReturn": -0.015776601926196565,
+      "observedWeeks": 6,
       "promotionAuthorized": false,
       "protocol": "covariance_minimum_variance_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 7,
+      "savedDecisions": 8,
       "weekly": [
         {
           "netReturn": -0.004051813672142307,
@@ -93,25 +97,29 @@
         {
           "netReturn": -0.005063905763017723,
           "week": "2026-10-02"
+        },
+        {
+          "netReturn": 0.0003105641100150623,
+          "week": "2026-10-09"
         }
       ]
     },
     {
       "cumulativeReturn": null,
-      "observedWeeks": 1,
+      "observedWeeks": 2,
       "promotionAuthorized": false,
       "protocol": "equal_weight_benchmark_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 3,
+      "savedDecisions": 4,
       "weekly": []
     },
     {
-      "cumulativeReturn": 0.0654009547034371,
-      "observedWeeks": 5,
+      "cumulativeReturn": 0.10372964692356978,
+      "observedWeeks": 6,
       "promotionAuthorized": false,
       "protocol": "past_only_consensus_selector_return_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 7,
+      "savedDecisions": 8,
       "weekly": [
         {
           "netReturn": 0.02794378204652248,
@@ -132,25 +140,29 @@
         {
           "netReturn": 0.012572513987530565,
           "week": "2026-10-02"
+        },
+        {
+          "netReturn": 0.03597583806446081,
+          "week": "2026-10-09"
         }
       ]
     },
     {
       "cumulativeReturn": null,
-      "observedWeeks": 1,
+      "observedWeeks": 2,
       "promotionAuthorized": false,
       "protocol": "residual_tie_agnostic_companion_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 3,
+      "savedDecisions": 4,
       "weekly": []
     },
     {
-      "cumulativeReturn": 0.040673848526589396,
-      "observedWeeks": 5,
+      "cumulativeReturn": 0.05588964863383494,
+      "observedWeeks": 6,
       "promotionAuthorized": false,
       "protocol": "return_first_60_40_blend_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 7,
+      "savedDecisions": 8,
       "weekly": [
         {
           "netReturn": -0.002215515303859796,
@@ -171,6 +183,10 @@
         {
           "netReturn": 0.014663545240849361,
           "week": "2026-10-02"
+        },
+        {
+          "netReturn": 0.014621103555920474,
+          "week": "2026-10-09"
         }
       ]
     },
@@ -184,39 +200,52 @@
       "weekly": []
     },
     {
-      "cumulativeReturn": null,
-      "observedWeeks": 0,
+      "cumulativeReturn": 0.008377761572336162,
+      "observedWeeks": 1,
       "promotionAuthorized": false,
       "protocol": "static_spy_gld_shy_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 1,
-      "weekly": []
-    },
-    {
-      "cumulativeReturn": 0.006697931108720967,
-      "observedWeeks": 1,
-      "promotionAuthorized": false,
-      "protocol": "sue_quarterly_v1",
-      "requiredWeeks": 52,
-      "savedDecisions": 3,
+      "savedDecisions": 2,
       "weekly": [
         {
-          "netReturn": 0.006697931108720882,
-          "week": "2026-10-02"
+          "netReturn": 0.00837776157233609,
+          "week": "2026-10-09"
         }
       ]
     },
     {
-      "cumulativeReturn": -0.00496363886383655,
-      "observedWeeks": 1,
+      "cumulativeReturn": 0.02282941685262907,
+      "observedWeeks": 2,
+      "promotionAuthorized": false,
+      "protocol": "sue_quarterly_v1",
+      "requiredWeeks": 52,
+      "savedDecisions": 4,
+      "weekly": [
+        {
+          "netReturn": 0.006697931108720882,
+          "week": "2026-10-02"
+        },
+        {
+          "netReturn": 0.016024157043952304,
+          "week": "2026-10-09"
+        }
+      ]
+    },
+    {
+      "cumulativeReturn": 0.05123459790174545,
+      "observedWeeks": 2,
       "promotionAuthorized": false,
       "protocol": "valuation_earnings_yield_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 3,
+      "savedDecisions": 4,
       "weekly": [
         {
           "netReturn": -0.0049636388638365555,
           "week": "2026-10-02"
+        },
+        {
+          "netReturn": 0.05647857602049158,
+          "week": "2026-10-09"
         }
       ]
     },
@@ -370,12 +399,12 @@
     "measuredIn": "Step 281",
     "whyItMatters": "Counting them separately overstates how many independent bets this project holds, which is the illusion Step 245 measured as an effective 1.15 strategies and Step 277 restated as breadth without skill. Nothing has been removed: a negative result is a record, not a mistake to delete."
   },
-  "generatedAtUtc": "2026-10-06T17:03:10.381313+00:00",
+  "generatedAtUtc": "2026-10-10T16:13:24.882249+00:00",
   "headline": {
     "clocksPending": 4,
-    "clocksRunning": 8,
+    "clocksRunning": 9,
     "closedFamilies": 17,
-    "totalUntouchedWeeks": 24,
+    "totalUntouchedWeeks": 33,
     "weeksRequiredEach": 52
   },
   "liveTradingEnabled": false,

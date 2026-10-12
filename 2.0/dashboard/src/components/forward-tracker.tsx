@@ -141,7 +141,8 @@ export function ForwardTracker({ positionSpotlight }: { positionSpotlight: (even
           common exposure were frozen before any forward data existed and cannot be revised. Until the first
           eligible week closes, this scorer has produced rehearsals only.
         </p>
-        <ul>{payload.registry.trackedStrategies.map((id) => <li key={id}><code>{id}</code></li>)}</ul>
+        <ul>{payload.registry.trackedStrategies.filter((id) => !/-1\.\d+x-/.test(id)).map((id) => <li key={id}><code>{id}</code></li>)}</ul>
+        <p className="muted">Levered entries in this frozen registry are hidden; the dashboard carries no levered strategy since 2026-10-06.</p>
       </article>
 
       <article className="panel forward-held spotlight-surface" onMouseMove={positionSpotlight}>

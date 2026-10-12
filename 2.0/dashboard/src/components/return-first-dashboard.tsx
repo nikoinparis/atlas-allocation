@@ -15,7 +15,7 @@ import { PaperReplay } from "@/components/paper-replay";
 import { SurvivalLab, type SurvivalBundlePayload } from "@/components/survival-lab";
 import { deepMethodology, deepFormulas } from "@/components/methodology";
 import { StrategyMetrics } from "@/components/strategy-metrics";
-import { ArrowUpRight, CalendarDays, ChevronLeft, ChevronRight, FlaskConical, Gauge, History, Info, Menu, PanelLeftClose, PieChart, Ruler, Settings2, ShieldCheck, Siren, Timer, TrendingUp, LineChart as LineChartIcon, Workflow, X } from "lucide-react";
+import { ArrowUpRight, CalendarDays, ChevronLeft, ChevronRight, Columns3, FlaskConical, Gauge, History, Info, Menu, PanelLeftClose, PieChart, Ruler, Settings2, ShieldCheck, Siren, Timer, TrendingUp, LineChart as LineChartIcon, Workflow, X } from "lucide-react";
 import { type MouseEvent, useEffect, useMemo, useState } from "react";
 
 type Holding = { symbol: string; weight: number | null; change: number | null };
@@ -577,6 +577,7 @@ function DashboardView({ data, strategies, survivalBundle, activeView, onStrateg
           <Link className={activeView === "overview" ? "active" : ""} href="/" onClick={() => setMobileMenuOpen(false)}><Gauge size={18} /><span>Overview</span></Link>
           <Link className={activeView === "performance" ? "active" : ""} href="/performance" onClick={() => setMobileMenuOpen(false)}><PieChart size={18} /><span>Performance</span></Link>
           <Link className={activeView === "metrics" ? "active" : ""} href="/metrics" onClick={() => setMobileMenuOpen(false)}><Ruler size={18} /><span>Strategy metrics</span></Link>
+          <Link href="/compare" onClick={() => setMobileMenuOpen(false)}><Columns3 size={18} /><span>Compare strategies</span></Link>
           <Link className={activeView === "activity" ? "active" : ""} href="/activity" onClick={() => setMobileMenuOpen(false)}><CalendarDays size={18} /><span>Daily activity</span></Link>
           <Link className={activeView === "rebalances" ? "active" : ""} href="/rebalances" onClick={() => setMobileMenuOpen(false)}><History size={18} /><span>Rebalances</span></Link>
           <Link className={activeView === "forward" ? "active" : ""} href="/forward" onClick={() => setMobileMenuOpen(false)}><Timer size={18} /><span>Forward record</span></Link>

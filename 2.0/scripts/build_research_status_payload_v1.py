@@ -46,6 +46,38 @@ CLOSED = [
 ]
 
 
+def closed_rows() -> list[tuple[str, str, int]]:
+    """CLOSED above, plus every later closure read from the queue's Closed table.
+
+    The hand-written list stopped at Step 260 and the page went stale for eighty steps.
+    Reading the table means a closure recorded in the queue reaches the dashboard on the
+    next Friday build with nobody remembering to copy it.
+    """
+    import re
+    rows = list(CLOSED)
+    seen = {name.lower() for name, _, _ in rows}
+    queue = ROOT / "docs/RESEARCH_QUEUE.md"
+    text = queue.read_text(encoding="utf-8") if queue.is_file() else ""
+    if "# CLOSED" not in text:
+        return rows
+    for line in text.split("# CLOSED", 1)[1].splitlines():
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) < 3 or cells[0] in ("item", "---"):
+            continue
+        steps = [int(x) for x in re.findall(r"\b(\d{3})\b", cells[-1])]
+        if not steps or max(steps) <= 260:
+            continue
+        name = re.sub(r"\*|\s*\((?:was|new)[^)]*\)", "", cells[0]).strip(" -")
+        name = re.split(r"\s+--\s+|\s+—\s+", name)[0].strip()
+        if not name or name.lower() in seen:
+            continue
+        verdict = re.sub(r"\*\*|`", "", " | ".join(cells[1:-1]))
+        verdict = re.split(r"(?<=[.;])\s", verdict, maxsplit=1)[0].strip()
+        rows.append((name, verdict[:180], max(steps)))
+        seen.add(name.lower())
+    return sorted(rows, key=lambda r: r[2])
+
+
 def before_after() -> list[dict]:
     """The split that matters more than any headline CAGR on this site.
 
@@ -131,7 +163,7 @@ def main() -> int:
         "liveTradingEnabled": False,
         "anyStrategyPromoted": False,
         "headline": {
-            "closedFamilies": len(CLOSED),
+            "closedFamilies": len(closed_rows()),
             "clocksRunning": len(running),
             "clocksPending": len(pending_rows()),
             "totalUntouchedWeeks": sum(c["observedWeeks"] for c in clocks),
@@ -263,7 +295,7 @@ def main() -> int:
         },
         "clocks": clocks,
         "pending": pending_rows(),
-        "closedFamilies": [{"name": n, "verdict": v, "step": s} for n, v, s in CLOSED],
+        "closedFamilies": [{"name": n, "verdict": v, "step": s} for n, v, s in closed_rows()],
         "readMe": "Forward returns are realised weekly numbers read from hash-chained logs. A clock completing does not authorise promotion; it triggers a separately predeclared statistical review. No strategy here has ever traded.",
     }
     target = ROOT / args.output

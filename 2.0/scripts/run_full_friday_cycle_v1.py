@@ -204,6 +204,7 @@ def main() -> int:
         runner.run("mark the dashboard books", [PYTHON, "scripts/mark_last_books_to_market_v1.py"])
         runner.run("benchmark and energy attribution", [PYTHON, "scripts/build_held_book_attribution_v1.py"])
         runner.run("what-if replay", [PYTHON, "scripts/build_paper_replay_v1.py"])
+        runner.run("strategy comparison", [PYTHON, "scripts/build_strategy_comparison_payload_v1.py"])
         runner.run("forward tracker payload", [PYTHON, "scripts/build_forward_tracker_payload_v1.py"])
         runner.run("research status payload", [PYTHON, "scripts/build_research_status_payload_v1.py"])
 

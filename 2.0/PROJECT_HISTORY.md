@@ -17004,3 +17004,42 @@ raise the median above the density bar. That is the only legitimate next step, a
 be taken only if a reason other than this IC appears.
 
 **Cumulative search:** one new trial. Nothing in this step created, improved or promoted a strategy.
+
+## Step 346 — 2026-10-12 — A compare page, a closed list that cannot go stale, and the Friday job hardened
+
+**What this was for.** The owner asked for four things: automate the Friday clocks, remove any
+strategy that needs financing, bring the dashboard up to date, and add a page comparing every
+strategy.
+
+- **Friday automation already existed and had been working.** `com.portfolio-optimizer.friday-cycle`
+  (Step 325) recorded every week through 2026-10-09. It began failing on 2026-10-12 only because
+  the checkout had been switched to a stale `main` that lacks `run_full_friday_cycle_v1.py`. Python
+  failed before `--notify` could fire, so nothing announced it. The job now runs through
+  `scripts/friday_cycle_launchd_wrapper.sh`: it fast-forwards a checkout that is strictly behind
+  `origin/main`, and refuses to run with a macOS notification when the checkout has diverged.
+  Both automated commits are now limited by pathspec. The signal-collection commit had swept
+  Steps 343-345's staged files into `afff97c` under an "automated" message.
+- **Financing:** nothing left to remove. Step 336 had already taken out the 1.35x book and rebuilt the
+  residual book at 1.00x, and all five books have zero borrowed cash and no short position in every
+  recorded week. The one leftover was the forward page listing levered IDs from a frozen registry;
+  they are now hidden in the display, and the registry is untouched.
+- **Up to date:** the held-book marks and every payload already ran through the 2026-10-09 close
+  on 2026-10-10. The research-status page's closed list was hand-typed and stopped at Step 260.
+  `build_research_status_payload_v1.py` now also reads the queue's Closed table, and the page
+  shows 72 closed items through Step 345.
+- **New page, `/compare`:** `scripts/build_strategy_comparison_payload_v1.py` produces
+  `dashboard/public/strategy-comparison.json` and has been added to the Friday cycle. It shows the
+  2023-01-06 to 2026-08-07 common-window backtest, the split before and after 2025-04-04, Step
+  332's same-risk alpha, full-history running costs, and each last decided book held and marked
+  **daily** from 2026-08-07.
+
+| book | common CAGR | Sharpe | max DD | CAGR before / after 2025-04-04 | same-risk alpha (p) | held 08-07 to 10-09 | SPY | without top name |
+|---|---|---|---|---|---|---|---|---|
+| residual-controlled 1x | 41.1% | 2.10 | −18.7% | 7.9% / 119.4% | +17.8% (0.040) | +6.29% | +0.94% | +4.72% |
+| ETF 60/40 | 41.8% | 2.00 | −15.8% | 20.3% / 85.8% | +3.9% (0.044) | +10.28% | +0.94% | +3.74% (XLE) |
+| growth top five | 31.7% | 0.88 | −36.5% | −12.3% / 157.2% | +10.5% (0.262) | +11.41% | +0.94% | +7.11% (PLTR) |
+| cash conversion b20 | 38.6% | 1.68 | −21.5% | 17.5% / 84.9% | +12.3% (0.120) | +10.74% | +0.94% | +8.77% |
+| sector-aware ensemble | 42.7% | 1.91 | −21.8% | 8.9% / 122.9% | +12.6% (0.102) | +8.48% | +0.94% | +6.82% |
+
+Sharpe here follows the dashboard convention (CAGR / volatility, no risk-free rate). The held
+period is about two months, and every book would have rebalanced at least once in it.

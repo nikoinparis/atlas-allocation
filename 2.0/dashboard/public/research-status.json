@@ -344,6 +344,281 @@
       "name": "13D/13G activist events",
       "step": 260,
       "verdict": "38,849 events; nothing clears, and the 13G control is flat"
+    },
+    {
+      "name": "Structural break tests",
+      "step": 261,
+      "verdict": "Done, and it changed the reading of everything else."
+    },
+    {
+      "name": "Short interest",
+      "step": 263,
+      "verdict": "First signal to survive both windows, and still not worth holding."
+    },
+    {
+      "name": "Feature importance MDA/MDI",
+      "step": 264,
+      "verdict": "Done."
+    },
+    {
+      "name": "Triple-barrier labelling",
+      "step": 265,
+      "verdict": "Closed."
+    },
+    {
+      "name": "Market-state classifier",
+      "step": 266,
+      "verdict": "Closed as not actionable."
+    },
+    {
+      "name": "Pre-break strategy search",
+      "step": 267,
+      "verdict": "Closed, and it weakens the regime thread."
+    },
+    {
+      "name": "Fractional differencing of features",
+      "step": 268,
+      "verdict": "Closed."
+    },
+    {
+      "name": "Selection-paying classifier (A13)",
+      "step": 269,
+      "verdict": "Closed as not tradeable, but the relationship is real."
+    },
+    {
+      "name": "Short-interest filter, pre-registered",
+      "step": 270,
+      "verdict": "Closed as noise."
+    },
+    {
+      "name": "Selection-paying sizing (option 2)",
+      "step": 270,
+      "verdict": "Rejected, with a finding kept."
+    },
+    {
+      "name": "Valuation family revival",
+      "step": 275,
+      "verdict": "REVIVED."
+    },
+    {
+      "name": "Valuation panel quarterly refresh",
+      "step": 278,
+      "verdict": "Done and defect fixed."
+    },
+    {
+      "name": "Breadth repair by construction",
+      "step": 279,
+      "verdict": "Closed as noise."
+    },
+    {
+      "name": "FINRA short interest + short-sale volume",
+      "step": 282,
+      "verdict": "Already done: Steps 263, 270, 282."
+    },
+    {
+      "name": "FINRA daily short-sale volume",
+      "step": 282,
+      "verdict": "Closed on all three gates."
+    },
+    {
+      "name": "Crypto as a third asset class",
+      "step": 285,
+      "verdict": "Closed on both gates, both configurations."
+    },
+    {
+      "name": "Form 4 opportunistic insiders",
+      "step": 286,
+      "verdict": "Refuted on sign;"
+    },
+    {
+      "name": "Pairs trading, GGR rule verbatim",
+      "step": 293,
+      "verdict": "Closed on gates 2 and 3, but gates 1 and 4 PASSED."
+    },
+    {
+      "name": "Long-short cash conversion",
+      "step": 295,
+      "verdict": "Closed on gate 3, the hypothesis."
+    },
+    {
+      "name": "Cross-sectional skill screen",
+      "step": 296,
+      "verdict": "Nought of thirteen."
+    },
+    {
+      "name": "Closed-family monotonicity audit",
+      "step": 298,
+      "verdict": "All fifteen closures stand."
+    },
+    {
+      "name": "Remaining closed families audited",
+      "step": 299,
+      "verdict": "Audit complete: nought of fourteen order their deciles."
+    },
+    {
+      "name": "Wide-universe skill screen",
+      "step": 300,
+      "verdict": "Closed, and it closes the depth argument."
+    },
+    {
+      "name": "Indonesian cross-sectional, price signals",
+      "step": 302,
+      "verdict": "Same answer as the US."
+    },
+    {
+      "name": "Long-horizon skill screen",
+      "step": 303,
+      "verdict": "Closed."
+    },
+    {
+      "name": "Broad IDX price acquisition",
+      "step": 305,
+      "verdict": "Closed as permanently blocked."
+    },
+    {
+      "name": "Non-machine-read information / disclosure latency (Step 301 asymmetry 3)",
+      "step": 306,
+      "verdict": "Closed on its premise."
+    },
+    {
+      "name": "VWAP and standard-deviation bands",
+      "step": 307,
+      "verdict": "Closed."
+    },
+    {
+      "name": "VWAP, wide US universe",
+      "step": 308,
+      "verdict": "Closed after a fair trial."
+    },
+    {
+      "name": "Write the SUE recorder",
+      "step": 312,
+      "verdict": "Done, and the panel half was my own error."
+    },
+    {
+      "name": "Replicate the skill null on WorldQuant BRAIN data",
+      "step": 317,
+      "verdict": "Closed \u2014 the null replicated on data we do not own."
+    },
+    {
+      "name": "Decile ladder at NONE cannot separate an ordering from a beta ordering",
+      "step": 317,
+      "verdict": "Closed, and the hypothesis was wrong."
+    },
+    {
+      "name": "Stress-test the 1.0 ETF allocator",
+      "step": 318,
+      "verdict": "Closed \u2014 it does not survive its own criteria."
+    },
+    {
+      "name": "1.0 regime classifier",
+      "step": 319,
+      "verdict": "Closed \u2014 refuted as an allocation edge, one real finding preserved."
+    },
+    {
+      "name": "HARLF",
+      "step": 320,
+      "verdict": "Closed unstarted."
+    },
+    {
+      "name": "LLM formulaic-alpha mining (arXiv 2409.06289, new 2026-09-24)",
+      "step": 320,
+      "verdict": "Closed unstarted."
+    },
+    {
+      "name": "The 0.5 monotonicity bar does not exclude concentration",
+      "step": 320,
+      "verdict": "Closed \u2014 ported to all seven screens, not the five named."
+    },
+    {
+      "name": "What to hold in detected stress when bonds do not hedge",
+      "step": 321,
+      "verdict": "Closed \u2014 the defence choice matters enormously, the timing does not."
+    },
+    {
+      "name": "WorldQuant BRAIN as an external judge",
+      "step": 326,
+      "verdict": "Two in-sample candidates, zero confirmed;"
+    },
+    {
+      "name": "Recommendation changes, rebuilt for event fields",
+      "step": 328,
+      "verdict": "Measured, not established."
+    },
+    {
+      "name": "A15",
+      "step": 328,
+      "verdict": "Nothing passes."
+    },
+    {
+      "name": "Volatility risk premium via Cboe option-writing indices",
+      "step": 330,
+      "verdict": "Closed, free first read."
+    },
+    {
+      "name": "Beta-matched benchmark",
+      "step": 332,
+      "verdict": "0 of 10."
+    },
+    {
+      "name": "Buy after a crash",
+      "step": 334,
+      "verdict": "0 of 9."
+    },
+    {
+      "name": "1.0 + 2.0 blend",
+      "step": 334,
+      "verdict": "Fails."
+    },
+    {
+      "name": "1.0 phase5_fragility_guard vs best 2.0",
+      "step": 335,
+      "verdict": "Defensive, not better on return."
+    },
+    {
+      "name": "Survival lab for the unlevered books",
+      "step": 337,
+      "verdict": "Done."
+    },
+    {
+      "name": "Re-cost cash conversion",
+      "step": 339,
+      "verdict": "Retracted."
+    },
+    {
+      "name": "Calibrate the monotonicity bar",
+      "step": 339,
+      "verdict": "Done."
+    },
+    {
+      "name": "Long/short trend sleeve",
+      "step": 340,
+      "verdict": "Fails its bar, right direction."
+    },
+    {
+      "name": "Turn-of-the-month on SPY",
+      "step": 341,
+      "verdict": "Dead."
+    },
+    {
+      "name": "Volatility-managed market, long-only",
+      "step": 342,
+      "verdict": "Fails replication."
+    },
+    {
+      "name": "Pairs/stat arb on daily bars",
+      "step": 343,
+      "verdict": "Closed."
+    },
+    {
+      "name": "Factor attribution, FF5 + momentum",
+      "step": 344,
+      "verdict": "No book has FF6 alpha."
+    },
+    {
+      "name": "Federal contracts, USASpending (Quiver substitute)",
+      "step": 345,
+      "verdict": "Inconclusive on density;"
     }
   ],
   "crossSectionalSkill": {
@@ -399,11 +674,11 @@
     "measuredIn": "Step 281",
     "whyItMatters": "Counting them separately overstates how many independent bets this project holds, which is the illusion Step 245 measured as an effective 1.15 strategies and Step 277 restated as breadth without skill. Nothing has been removed: a negative result is a record, not a mistake to delete."
   },
-  "generatedAtUtc": "2026-10-10T16:13:24.882249+00:00",
+  "generatedAtUtc": "2026-10-12T16:36:21.282477+00:00",
   "headline": {
     "clocksPending": 4,
     "clocksRunning": 9,
-    "closedFamilies": 17,
+    "closedFamilies": 72,
     "totalUntouchedWeeks": 33,
     "weeksRequiredEach": 52
   },

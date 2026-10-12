@@ -138,9 +138,16 @@ def collect_forward_signals(args: argparse.Namespace) -> None:
         git = ["/usr/bin/git", "-C", str(REPO)]
         subprocess.run([*git, "add", "2.0/data/forward_signal_collection_v1"], check=False)
         subprocess.run([*git, "commit", "-q", "-m", f"Forward signal collection: session {new[-1]} (automated)\n\n"
-                        "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"], check=False)
+                        "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>",
+                        # Pathspec: commit only what this step added, never whatever else is staged.
+                        "--", "2.0/data/forward_signal_collection_v1"], check=False)
         if args.push:
             subprocess.run([*git, "push", "-q", "origin", "HEAD:main"], check=False)
+
+
+# What the weekly commit may contain. Committing by pathspec keeps anything else a
+# session has staged out of an "automated" commit (2026-10-12: research files were swept in).
+WEEKLY_PATHS = ["2.0/evidence", "2.0/data", "2.0/dashboard/public", "2.0/research_registry"]
 
 
 def main() -> int:
@@ -214,11 +221,11 @@ def main() -> int:
             runner.run("verify every hash chain", [PYTHON, "-c", verify])
 
             if args.commit:
-                runner.run("git add", ["/usr/bin/git", "-C", str(REPO), "add", "2.0/evidence", "2.0/data", "2.0/dashboard/public",
-                                       "2.0/research_registry"])
+                runner.run("git add", ["/usr/bin/git", "-C", str(REPO), "add", *WEEKLY_PATHS])
                 runner.run("git commit", ["/usr/bin/git", "-C", str(REPO), "commit", "-q", "-m",
                                           f"Forward week {friday}: all clocks recorded (automated)\n\n"
-                                          "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"],
+                                          "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>",
+                                          "--", *WEEKLY_PATHS],
                            ok_codes=(0, 1))
                 if args.push:
                     runner.run("git push", ["/usr/bin/git", "-C", str(REPO), "push", "-q", "origin", "HEAD:main"])

@@ -16831,3 +16831,176 @@ crash pattern, not a law. It also earns 1.6pp a year less than buy-and-hold, so 
 it is a drawdown reducer. Not promoted; not re-run with another target, lookback or cap.
 
 **Cumulative trials on market-level allocation and timing in this project now: 13 + 10 + 4 + 1 + 1 + 1 = 30.**
+
+
+**Provenance note, written 2026-10-12.** Steps 343-345 were first run on 2026-10-11 in a checkout that had been switched to a `main` 75 commits behind `origin/main`, so they were first written as Steps 315-317 without sight of Steps 315-342. They are renumbered here unchanged in substance. Two things read differently with the full record: Step 344's factor attribution complements Step 332 (no book beats a passive portfolio with the same market exposure), which reached the same verdict by another route; and the "four missed Fridays" claimed in that checkout was **false** -- the clocks were recorded through 2026-10-09 on the live branch; only 2026-09-18 is lost, as Step 322 already records. The stale-checkout commits are preserved on branch `session/2026-10-11-on-stale-main`.
+
+## Step 343 — 2026-10-11 — Stat arb on daily bars: a real but tiny reversal, gone after 2021
+
+**What this was for.** The owner asked whether pairs trading had been tested properly or only
+shallowly, pointing at the Coke/Pepsi idea. Steps 45 and 293 had tested ETF pairs and
+any-name-to-any-name stock pairs on **weekly** bars. Four versions had never been run: pairs
+restricted to the same industry, the Avellaneda-Lee residual s-score, an adaptive hedge
+ratio, and daily bars. The daily panel turned out to be on disk already: the weekly panel is
+resampled from `broad_full_history_price_vintages`, 2,775 issuers, daily, 2011-2026. So
+the "weekly bars cannot see it" objection was removable at no data cost.
+
+Pre-registered in `config/stat_arb_residual_registry_v1.json` before running, two trials,
+nothing swept. Following CLAUDE.md section 2, the skill screen came first and a book was to be
+built only for a trial that passed every criterion. Script
+`scripts/run_stat_arb_residual_screen_v1.py`, evidence `evidence/stat_arb_residual_screen_v1/`.
+
+- **T1, Avellaneda-Lee:** each stock's 60-day residual against a leave-self-out SIC2 industry
+  mean, modelled as Ornstein-Uhlenbeck, kappa filter as in the paper, traded on -s.
+- **T2, same-industry pairs:** each stock paired with its minimum-SSD partner *inside its
+  SIC4 code* over 252 days, traded on -z.
+- Common settings: as-filed SIC point in time, a $5 floor, and decisions every 5 trading days,
+  737 in all. The signal is taken at close t and the 5-day forward window starts at close t+1,
+  so Step 250's bid-ask bounce is excluded. Target is the industry-relative forward return.
+
+| trial | mean IC | p | decile spread/5d | monotonicity | placebo p95 | min leave-one-SIC2-out | screen |
+|---|---|---|---|---|---|---|---|
+| T1 Avellaneda-Lee | **+0.0075** | **0.003** | +0.119% | **+0.034** | +0.0015 | +0.0063 | **FAIL** (monotonicity, second half) |
+| T2 same-SIC4 pairs | +0.0018 | 0.544 | +0.106% | -0.004 | +0.0015 | -0.0007 | **FAIL** (4 of 5) |
+
+| T1 by regime | IC | p | spread/5d | monotonicity |
+|---|---|---|---|---|
+| 2012-2019 | +0.0105 | 0.002 | +0.140% | +0.078 |
+| 2020 | +0.0228 | 0.156 | +0.485% | +0.020 |
+| 2021-2022 | +0.0007 | 0.925 | +0.063% | -0.010 |
+| 2023-2026 | +0.0005 | 0.903 | +0.005% | -0.031 |
+
+**T1 is the first signal in this project that clears its significance bar, beats a placebo
+and survives leave-one-industry-out and leave-top-ten-names-out. It still fails, and the
+reasons are the useful part.** Its deciles do not order themselves (monotonicity +0.034):
+the effect lives in the extremes, not across the ranking. And it is **a 2012-2019 effect that
+has gone**. The IC is +0.0105 before 2020 and +0.0005 since 2021, which is the
+well-documented decay of short-horizon reversal and stat arb as it was arbitraged away.
+The same-industry restriction did not rescue pairs. T2 has no skill at all, and since 2023
+its sign is negative.
+
+**Costs would have killed T1 even if it had passed.** No book was built, as registered. Decile
+membership turns over 60.9% per leg per 5-day rebalance. Against a +0.119% gross 5-day spread
+that gives, as arithmetic and not a backtest:
+
+| cost per side | net per 5 days | annualised |
+|---|---|---|
+| 0 bps | +0.12% | +6.2% |
+| 10 bps | -0.12% | -6.1% |
+| 50 bps | -1.10% | -42.7% |
+| 100 bps | -2.32% | -69.3% |
+
+**Independent corroboration found the same day.** Epstein, Wang, Choi and Pelger, "Attention
+Factors for Statistical Arbitrage" (arXiv 2510.11616), run an Avellaneda-Lee-style PCA + OU
+baseline on the 500 largest US stocks, 1998-2021, at only 5 bps. They report gross Sharpe
+1.26 and **net Sharpe -2.72**, negative at every factor count. Their own model's net 2.28
+comes from 79 daily characteristics and a deep sequence model, and falls to 0.59 without past-return
+features. Read from the arXiv HTML this session.
+
+**Declared limitations.** Yahoo returned nothing for 460 of 3,235 requested symbols, mostly
+delisted issuers, and that likely flatters a reversal signal. The test uses close-to-close
+prices with no spread, and the daily panel starts in 2011, so 2008-2009 cannot be tested. The
+adaptive (Kalman) hedge ratio was **not** run: it refines a hedge ratio, and with no skill to
+hedge it could not change the verdict. Cumulative search: these two trials sit on top of Steps
+45, 250, 293 and 296 on the same names.
+
+**What this accomplished: it answers the owner's question directly.** Pairs and stat arb have
+now been tested in the forms practitioners actually use, on daily bars. A real reversal effect
+existed here before 2020: small, concentrated in the extremes, and roughly a third of the
+size needed to pay 10 bps per side. It has not been present since 2021. Family closed;
+closed in the queue.
+
+## Step 344 — 2026-10-11 — Factor attribution: no book has alpha beyond known factors
+
+**What this was for.** Every alpha this project has reported was a CAPM intercept or an excess
+over a benchmark. Queue B6 asked the plainer question: once the standard factors are removed,
+does any book have anything left? The factors are Ken French's free daily five factors
+(Mkt-RF, SMB, HML, RMW, CMA) plus momentum, vintage `data/fama_french_factor_vintages/
+20261010T173855Z-ff5-mom-daily`, through 2026-08-31, compounded to week-ending Fridays.
+Every path was loaded through `load_aligned`, and Newey-West standard errors use 4 lags.
+Script `scripts/run_factor_attribution_v1.py`, evidence `evidence/factor_attribution_v1/`.
+
+| window | book | CAPM alpha | t | FF6 alpha | t | R2 | SMB | RMW | Mom |
+|---|---|---|---|---|---|---|---|---|---|
+| in sample 2023-26 | growth top five | +4.88% | +0.35 | +2.35% | +0.17 | 0.47 | +0.58 | -0.72 | +0.54 |
+| in sample 2023-26 | cash conversion | -2.83% | -0.42 | +0.62% | +0.10 | 0.64 | +0.27 | -0.43 | -0.21 |
+| in sample 2023-26 | sector ensemble | +11.36% | +1.57 | +12.13% | +1.68 | 0.75 | +0.06 | -0.43 | +0.14 |
+| in sample 2023-26 | valuation breadth 20 | +6.30% | +0.91 | +9.59% | +1.58 | 0.67 | +0.50 | -0.06 | -0.06 |
+| OOS 2013-22 | growth top five | -9.89% | -1.18 | -5.00% | -0.62 | 0.51 | +0.64 | -0.24 | -0.42 |
+| OOS 2013-22 | cash conversion | +4.07% | +0.84 | +7.56% | +1.79 | 0.75 | +0.34 | -0.39 | -0.18 |
+| OOS 2013-22 | balance sheet quality | -4.65% | -1.16 | -0.43% | -0.15 | 0.81 | +0.71 | -0.41 | -0.10 |
+| OOS 2013-22 | sector ensemble stock leg | +3.00% | +0.71 | +6.01% | +1.64 | 0.79 | +0.32 | -0.34 | -0.14 |
+| OOS 2013-22 | residual composite | -0.06% | -0.02 | +1.74% | +0.49 | 0.78 | +0.24 | -0.13 | -0.11 |
+| OOS 2013-22 | valuation book | +1.57% | +0.39 | +3.93% | +1.31 | 0.79 | +0.66 | -0.00 | -0.19 |
+| OOS 2013-22 | **control: valuation universe** | +0.45% | +0.21 | **+1.59%** | **+2.07** | 0.98 | +0.58 | +0.19 | -0.02 |
+
+**None of the eleven has a factor-adjusted alpha that is significant.** With eleven
+regressions the Bonferroni bar is roughly |t| > 2.8, and the largest book t is 1.79. The
+only t above 2 belongs to the **control**, the equal-weight universe the valuation book
+selects from. So whatever small alpha exists in that window belongs to the universe (the SEC
+filer roster's composition), not to the selection.
+
+**Two exposures are shared by every book, and both are worth knowing:**
+
+- **Negative profitability (RMW −0.06 to −0.72).** Every book tilts toward *less* profitable
+  firms than the market. For a project whose signals are mostly built on fundamentals,
+  that is the opposite of what the names suggest: "cash conversion" and "balance sheet
+  quality" still hold a junk tilt relative to the market.
+- **Positive size (SMB +0.06 to +0.71).** The books are smaller-cap than the market, which is
+  the equal-weighting of the universe.
+
+**Adding factors raised most alphas rather than lowering them.** The RMW premium is positive,
+so a negative RMW loading means the factor model *expects* these books to underperform, and
+the alpha rises to compensate. The books did no worse than their factor mix predicted, which
+is weaker than the excess over SPY made them look in sample and better than the junk tilt
+predicts. Neither direction is significant.
+
+**What this accomplished.** It confirms Step 296 from a different angle. There is no
+selection skill beyond known factors in any book, in either window. The sector ensemble's
+in-sample +12.13% is the largest number, at t=1.68 on 187 weeks, in the window it was chosen
+on. Kept as a standing diagnostic: any future candidate should report FF6 alpha next to CAPM
+alpha, and the equal-weight universe should ride along as a control.
+
+## Step 345 — 2026-10-11 — Federal contracts: inconclusive on density, and nothing in the IC either
+
+**What this was for.** The owner asked whether Quiver Quantitative's data was worth paying for.
+Its untested datasets come free from the government, and federal contracts were ranked first
+. Pre-registered in `config/federal_contracts_registry_v1.json` before any data was
+acquired: one signal, the log growth of trailing-four-quarter contract obligations, and one
+13-week horizon.
+
+**Data, new to the project.** USASpending.gov, free, no key. The top 1,000 contract
+recipients per calendar quarter, 2012Q1-2026Q3: 59 quarters, 59,000 rows, 7,051 recipients,
+parents resolved for 7,043. `scripts/acquire_usaspending_contracts_v1.py`, data in
+`data/usaspending_contracts_v1/`. Every quarter was treated as usable only 91 days after it
+ended, because DoD publishes with a 90-day delay.
+
+**Matching was the weak link, as predicted.** Exact matching of normalised names to FSDS filer
+names (no fuzzy matching, so every match is right or absent) linked **40.1% of dollars** and
+368 issuers. Some of the largest contractors were lost to name changes and subsidiary
+naming: RTX is filed as Raytheon Technologies before 2023, and shipyards report under
+subsidiary parents. The miss is concentrated in the biggest names, not at random.
+
+| measure | result | bar |
+|---|---|---|
+| decisions | 49 | |
+| median issuers per decision | **99** | ≥ 100: **FAIL, so declared inconclusive by the registry's own rule** |
+| mean rank IC | +0.0091 | p = 0.646 |
+| top-minus-bottom decile, 13 weeks | +0.58% (+2.3% annualised) | |
+| monotonicity | +0.068 | > 0.5 |
+| first half 2014-2020 | IC −0.0097, monotonicity −0.024 | |
+| second half 2020-2026 | IC +0.0271, monotonicity +0.157 | |
+| placebo 95th percentile | +0.0248 | real IC below it |
+| worst leave-one-SIC2-out | +0.0040 | passes |
+
+**Verdict: inconclusive on density, and the IC gives no reason to expect a better panel to
+change it.** By the registry's own rule the decile screen is unreadable at a median of 99.
+But the IC sits well inside the placebo band (p = 0.65), and the two halves have opposite signs.
+The stronger second half is a post-hoc subset and is recorded as such, not acted on.
+
+**What would reopen it, and why it is not worth doing yet.** Matching through EDGAR's former-name
+history and SEC company tickers would recover RTX and the other renamed contractors, and
+raise the median above the density bar. That is the only legitimate next step, and it should
+be taken only if a reason other than this IC appears.
+
+**Cumulative search:** one new trial. Nothing in this step created, improved or promoted a strategy.

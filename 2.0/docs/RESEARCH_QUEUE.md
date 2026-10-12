@@ -296,15 +296,6 @@ starting.
 estimated rather than chosen, which removes a large unrecorded search.
 **Ceiling:** it is a construction change, not a new signal. Step 245's cap applies.
 
-### A4. FINRA short interest and daily short-sale volume *(new 2026-09-06)*
-**Status:** new. Closes A1's open question -- "check whether the free sources cover it" for
-`IO_ShortInterest`. They do. FINRA publishes consolidated short interest twice monthly and
-daily short-sale volume files, both free and both authoritative rather than a mirror.
-**Why it matters:** short positioning is a *positioning* channel, not a transform of price or
-of reported numbers, which is the same orthogonality argument that puts S1 and S2 at the top.
-**Design caveat:** short interest and short-sale volume are different signals with different
-mechanisms. Declare which one, and one horizon, before testing -- do not test both and pick.
-
 ### A5. Analyst estimate-revision breadth, aggregate only *(new 2026-09-06)*
 **Status:** new, coverage unverified.
 **Distinct from P2**, which is blocked because it needs analyst *identity* to build a graph.
@@ -352,6 +343,18 @@ would say which existing features are doing work and whether a series changed re
 bounded, and they do not touch the breadth ceiling.
 *Recorded from general knowledge of AFML, not from a read of the text this session.*
 
+### B13. Patent grants, USPTO PatentsView bulk tables *(new 2026-10-11, owner asked for more free data)*
+Every US patent grant with disambiguated assignee and grant date, CC-BY 4.0, free bulk download from the
+USPTO Open Data Portal (PatentsView API paused 2026-03-20; bulk tables current to 2025-12-31). Grant
+dates are public on the day, so point-in-time is clean. Only ~1,000 US-listed firms patent in a year:
+screen within patenters or the deciles become a presence test (Step 298). **Blocker:** assignee-to-CIK
+mapping -- the same problem that sank Step 345's coverage.
+
+### B14. News coverage and tone, GDELT *(new 2026-10-11, owner asked for more free data)*
+Global Knowledge Graph, free raw files every 15 minutes since 2015, organisation mentions and tone.
+Dense for large caps. Read the Wikipedia-attention step first -- a close cousin already screened.
+**Blocker:** organisation-name matching and storage volume, not cost.
+
 ## C tier -- parked, recorded so it is not re-proposed
 
 ### C1. Opening Range Breakout, single-stock version
@@ -383,6 +386,14 @@ applies, a real IC of 0.03 needs years of weekly decisions to show. Needs owner 
 ---
 
 # PAID QUEUE -- nothing here starts without the owner confirming the spend
+
+### C5. Self-improving LLM strategy loops *(new 2026-10-11, owner-proposed)*
+AutoResearch-style loops, AQuA (arXiv 2608.12841), EVOQUANT (2607.12455), Conway's Automaton. An agent
+edits strategy code and keeps an edit when validation Sharpe improves -- every accepted edit is a trial
+on the same validation set, so after a hundred iterations it is in-sample. One hackathon loop "improved"
+Sharpe 1.09 -> 3.63 over 105 iterations with no correction. Usable only as a proposer of pre-registered
+trials judged on untouched data, every iteration counted in the Bonferroni N. Automaton itself is a
+crypto self-funding agent runtime with wallet access -- not something to point at an account.
 
 ## P1. Properly roll-adjusted futures data
 **Cost (priced 2026-09-30):** Norgate Futures package **$148.50 / 6 months or $270 / year**, ~100
@@ -423,6 +434,10 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 
 | item | verdict | where |
 |---|---|---|
+| **Pairs/stat arb on daily bars** | **Closed.** Avellaneda-Lee s-score vs SIC2 industry and same-SIC4 GGR pairs, 737 skip-1 5-day decisions 2012-2026. A-L has real IC (+0.0075, p=0.003, beats placebo, survives leave-one-out) but no decile ordering (+0.034) and **it is gone after 2021**. Same-industry pairs: no skill. 60.9% turnover per leg turns +6.2%/yr gross into -6.1% at 10 bps. Pelger et al. 2025 report an A-L baseline at net Sharpe -2.72 independently. | Step 343 |
+| **Factor attribution, FF5 + momentum** | **No book has FF6 alpha.** 11 regressions, Newey-West; largest book t=1.79; only t>2 is the equal-weight *control*. Every book tilts small and **unprofitable** (RMW to -0.72). Complements Step 332. | Step 344 |
+| **Federal contracts, USASpending (Quiver substitute)** | **Inconclusive on density; IC gives no reason to push.** Exact name match linked 40.1% of dollars, median 99 issuers (bar 100); IC +0.0091 p=0.65, halves opposite signs. Congressional trades and lobbying not run -- sparser still. | Step 345 |
+| **FINRA short interest + short-sale volume (was A4) -- stale open entry** | Already done: Steps 263, 270, 282. Removed 2026-10-11. | Steps 263, 270, 282 |
 | **Long/short trend sleeve (was A16)** | **Fails its bar, right direction.** 80% SPY/GLD/SHY + 20% AQR TSMOM after a 1% fee, 2013-2026-05: Sharpe 1.00 vs 0.91, max DD −7.8% vs −12.7%, CAGR 7.88% vs 8.30%; bootstrap p 0.241. Live DBMF/KMLM point the same way. Rests on bond trend. Do not re-run at another weight. | Step 340 |
 | **Turn-of-the-month on SPY (was B8)** | **Dead.** 2006-2026 Sharpe 0.31 vs same-exposure mix 0.57 at zero cost; −1.08% CAGR at 10 bps; placebo p 0.40. | Step 341 |
 | **Volatility-managed market, long-only (new 2026-10-07)** | **Fails replication.** 1999-2026 Sharpe 0.57 vs 0.46 (placebo p 0.007), max DD −25% vs −41%; 2016-26 +0.06; **1933-1992 −0.07**. Lags buy-and-hold by 1.6pp/yr; missed the 2020 rebound. | Step 342 |

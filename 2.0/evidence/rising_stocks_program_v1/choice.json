@@ -1,0 +1,23 @@
+{
+ "config": "C_residual_momentum|52w|none",
+ "design": {
+  "config": "C_residual_momentum|52w|none",
+  "design_cagr": 0.10952685127294415,
+  "design_vol": 0.1551372123723134,
+  "design_sharpe": 0.7059998668152612,
+  "design_max_dd": -0.32016574969604206,
+  "design_total": 1.2966908238765131,
+  "design_weeks": 416,
+  "traded_per_year": 1.9186824244837712
+ },
+ "spy_design": {
+  "cagr": 0.14557233045684415,
+  "vol": 0.12125621420452481,
+  "sharpe": 1.2005350110247128,
+  "max_dd": -0.17084298118455465,
+  "total": 1.9660613039324728,
+  "weeks": 416
+ },
+ "chosen_by": "highest design Sharpe at 50 bps, tie -> lower drawdown",
+ "chosen_before_holdout_was_computed": true
+}

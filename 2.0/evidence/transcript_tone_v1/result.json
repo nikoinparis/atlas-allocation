@@ -1,0 +1,62 @@
+{
+ "calls": 29407,
+ "match_rate": 0.8848202196479615,
+ "results": {
+  "T1_tone@4w": {
+   "decisions": 183,
+   "independent": 91,
+   "median_names": 418.0,
+   "mean_ic": 0.0018520069466781508,
+   "p": 0.77875,
+   "decile_spread": -0.0003979986272618185,
+   "monotonicity": -0.018976651763537005,
+   "first_half_ic": 0.010623913659062798,
+   "second_half_ic": -0.006824552953615356,
+   "first": "2011-08-05",
+   "last": "2025-07-18",
+   "clears_bar": false
+  },
+  "T1_tone@13w": {
+   "decisions": 183,
+   "independent": 61,
+   "median_names": 418.0,
+   "mean_ic": -0.008096895301174441,
+   "p": 0.3665,
+   "decile_spread": -0.0044858932268458124,
+   "monotonicity": -0.06414969365789037,
+   "first_half_ic": 0.00907626785665342,
+   "second_half_ic": -0.02508339364206941,
+   "first": "2011-08-05",
+   "last": "2025-07-18",
+   "clears_bar": false
+  },
+  "T2_tone_change@4w": {
+   "decisions": 183,
+   "independent": 91,
+   "median_names": 415.0,
+   "mean_ic": 0.00141393113591804,
+   "p": 0.7705,
+   "decile_spread": 0.0003482260608668682,
+   "monotonicity": 0.000894187779433688,
+   "first_half_ic": 0.010400194322238205,
+   "second_half_ic": -0.007474655276637776,
+   "first": "2011-08-05",
+   "last": "2025-07-18",
+   "clears_bar": false
+  },
+  "T2_tone_change@13w": {
+   "decisions": 183,
+   "independent": 61,
+   "median_names": 415.0,
+   "mean_ic": -0.00203429059108921,
+   "p": 0.729,
+   "decile_spread": 0.0036341749458977638,
+   "monotonicity": 0.011491968869018052,
+   "first_half_ic": 0.007372695467575507,
+   "second_half_ic": -0.011339026801290182,
+   "first": "2011-08-05",
+   "last": "2025-07-18",
+   "clears_bar": false
+  }
+ }
+}

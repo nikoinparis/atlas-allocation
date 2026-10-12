@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "experiment": "transcript_tone_v1",
+  "registered_at_utc": "2026-10-13T00:00:00Z",
+  "registered_before_any_result_existed": true,
+  "why": "Step 254 audited earnings-call transcripts and closed the family unstarted because per-ticker retrieval would take ~87 hours and coverage tracked company size. No return was ever measured. A bulk free source now exists: HuggingFace kurry/sp500_earnings_transcripts (MIT), 33,362 calls of S&P 500 constituents and large caps, 2005-2025, each with a call date. Restricting to large caps is the coverage problem Step 254 named; here it is declared as the universe rather than hidden in it.",
+  "dictionary": "Loughran-McDonald positive and negative word lists as shipped in pysentiment2 0.1.1 (static/LM.csv, MIT package). The LM lists are free for academic research use; this is research use.",
+  "signals": {
+    "T1_tone": "(positive - negative) / (positive + negative) over the full transcript text",
+    "T2_tone_change": "T1 minus the same company's T1 on its previous call (a tone surprise; each company is compared with itself, which removes industry and style differences in how managers talk)",
+    "trials_declared_here": 2,
+    "declared_sign": "POSITIVE for both"
+  },
+  "point_in_time": "a call is usable from the weekly close strictly after date + 1 day; the forward window starts at the next weekly close",
+  "measurement": {
+    "decisions": "every 4 weeks; the cross-section is each company's most recent call in the prior 13 weeks",
+    "horizons_weeks": [4, 13],
+    "measures": "rank IC, decile spread, monotonicity, block bootstrap, both halves",
+    "bonferroni_bar": 0.0125,
+    "identity": "transcript symbol matched to the price panel through the Yahoo history catalogue's current symbols; match rate reported"
+  },
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

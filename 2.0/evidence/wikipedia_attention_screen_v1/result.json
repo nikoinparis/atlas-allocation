@@ -1,0 +1,34 @@
+{
+ "source": "wikipedia",
+ "bonferroni_bar": 0.025,
+ "results": {
+  "attention_surge@4w": {
+   "decisions": 142,
+   "independent": 71,
+   "median_names": 174.0,
+   "mean_ic": -0.002936799476876542,
+   "p": 0.65,
+   "decile_spread": -0.005859361418145516,
+   "monotonicity": -0.025522833973538196,
+   "first_half_ic": 0.012630258716136735,
+   "second_half_ic": -0.018503857669889816,
+   "first": "2015-10-23",
+   "last": "2026-08-14",
+   "clears_bar": false
+  },
+  "attention_surge@13w": {
+   "decisions": 140,
+   "independent": 46,
+   "median_names": 171.5,
+   "mean_ic": 0.00613433478661612,
+   "p": 0.45925,
+   "decile_spread": -0.010475669962165594,
+   "monotonicity": 0.005108225108225106,
+   "first_half_ic": 0.0201445509094418,
+   "second_half_ic": -0.007875881336209561,
+   "first": "2015-10-23",
+   "last": "2026-06-19",
+   "clears_bar": false
+  }
+ }
+}

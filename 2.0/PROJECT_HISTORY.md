@@ -17097,3 +17097,90 @@ last year's high-flyers is exactly where the crashes-to-delisting would sit.
 not rejected outright, because it is the largest raw-return, low-turnover price book this
 project has produced. Anyone holding it should expect drawdowns of 45-50% and multi-year stretches
 behind the index.
+
+## Step 348 — 2026-10-13 — News-type signals audited: two were never tested, and Wikipedia attention now has been
+
+**What this was for.** The owner asked whether the news-type signals had really been tested.
+Two had not:
+
+- **Earnings-call transcripts (Step 254):** closed unstarted on retrieval time and coverage.
+  No return was ever measured.
+- **Wikipedia attention (Step 288):** closed at its 60% name-mapping gate at 59.2%. No return
+  was ever measured.
+- **Properly tested before:** 10-K language (255, 299), Form 4 (125-128, 286), 13F (258), 13D
+  (260), and analyst revisions (BRAIN, 326-328).
+
+**Wikipedia attention, now return-tested** (`config/wikipedia_attention_returns_registry_v1.json`,
+`scripts/attention_screen_v1.py`, `evidence/wikipedia_attention_screen_v1/`). This is a new
+experiment on the 357 issuers that did map, not a reversal of Step 288's gate. Signal:
+log views over the last 4 weeks minus the prior 26. 2015-2026, 142 decisions, median 174 names.
+
+| horizon | IC | p | decile spread | monotonicity | halves |
+|---|---|---|---|---|---|
+| 4 weeks | −0.0029 | 0.650 | −0.59% | −0.03 | +0.013 / −0.019 |
+| 13 weeks | +0.0061 | 0.459 | −1.05% | +0.01 | +0.020 / −0.008 |
+
+**Nothing.** Attention surges on Wikipedia do not predict returns in either direction on this
+sample. The transcript test (Step 350) and GDELT (Step 351) follow.
+
+## Step 349 — 2026-10-13 — The rising-stocks program: 45 configurations, a cost bug found, and nothing beats SPY
+
+**What this was for.** The owner asked for every effort toward a viable strategy built on
+"find the stocks that are rising and hold them". That meant safety nets (market trend filter,
+a per-stock "the rise is over" exit, volatility targeting) and theme rotation ("corn is booming,
+so buy corn companies", here the top 20% of SIC-3 industries by 26-week return). Pre-registered
+in `config/rising_stocks_program_registry_v1.json`: 3 signals × 3 rebalance cadences × 5 safety
+nets = **45 configurations**. Selection was confined to 2012-2019, one choice was written to disk,
+and only then was 2020-2026 computed. Script `scripts/run_rising_stocks_program_v1.py`.
+
+**A simulator bug, found and fixed.** The first run charged trading costs between weeks, outside
+the recorded returns, so higher costs *raised* returns: 100 bps beat 0 bps, which is how it was
+caught. The fix measures every week from the prior week's closing value. After the fix, 0 / 50 /
+500 bps fall monotonically, and annual rebalancing trades 1.9× a year, consistent with Step 347.
+The buggy run is kept in `evidence/rising_stocks_program_v1/superseded_cost_bug_run/` with a
+README. Its chosen configuration's holdout **was** seen before the fix: residual momentum, 13
+weeks, vol target, 9.95% vs SPY 15.40%. That is a failure even with the bug's tailwind.
+
+**Design window 2012-2019, corrected.** SPY returned 14.6% CAGR, Sharpe 1.20, max drawdown −17.1%.
+**No configuration beat it.** The best was residual momentum held a year at Sharpe 0.71. Two
+patterns were consistent across all three signals:
+
+- **The per-stock "rise is over" exit (sell below the 20-week average) destroyed returns.**
+  Every signal at every cadence fell to roughly −11% to +4% a year: it sells the dip and misses
+  the recovery.
+- **Monthly rebalancing of residual momentum lost money after costs:** 26× turnover a year.
+
+**Holdout 2020-2026, chosen configuration `C_residual_momentum|52w|none`.** 10.1% CAGR, Sharpe
+0.38, max drawdown −41.5%, against SPY at 15.4%, 0.82 and −31.8%. FF5+momentum alpha −2.9%
+(t −0.55). Below the random-book 95th percentile (15.6%). **0 of 5 criteria; fails.** Deflated
+Sharpe of the design choice over 45 trials is 0.446: the design winner is indistinguishable
+from the best of 45 lucky draws.
+
+**The finding that matters most, from the transparency table.** In the holdout,
+`A_steady_riser|52w|none` returned **47.3% a year, Sharpe 1.07** (SPY 0.82), with a −50%
+drawdown. In the design window the same rule returned 10.2%, Sharpe 0.42, and ranked in the
+bottom half. **The same rule was among the worst in one period and the best in the next.** That
+is a regime bet that paid in the 2020-2026 speculative-growth market, not a skill that could
+have been chosen in advance. Picking it now, after seeing 2020-2026, is exactly the selection
+this program was built to prevent, and it is recorded here so it is not done later.
+
+## Step 350 — 2026-10-13 — Earnings-call tone, finally tested against returns: nothing
+
+**What this was for.** This is the second news-type gap from Step 348. Step 254 had closed
+transcripts unstarted because per-ticker retrieval would take about 87 hours. A free bulk source
+now exists: HuggingFace `kurry/sp500_earnings_transcripts` (MIT), 33,235 usable calls, 685
+companies, 2005-10 to 2025-05, 88.5% matched to the price panel. Tone is scored with the
+Loughran-McDonald word lists. Pre-registered in `config/transcript_tone_registry_v1.json`,
+script `scripts/run_transcript_tone_v1.py`; per-call tones are kept in
+`evidence/transcript_tone_v1/call_tones.csv.gz`, and the 3.5 GB raw download was deleted.
+
+| signal | horizon | IC | p | decile spread | monotonicity |
+|---|---|---|---|---|---|
+| tone | 4 w | +0.0019 | 0.779 | −0.04% | −0.02 |
+| tone | 13 w | −0.0081 | 0.366 | −0.45% | −0.06 |
+| tone change vs own last call | 4 w | +0.0014 | 0.770 | +0.03% | +0.00 |
+| tone change vs own last call | 13 w | −0.0020 | 0.729 | +0.36% | +0.01 |
+
+183 decisions, median about 418 large-cap names each. **Nothing.** The large-cap restriction
+is where the word-count literature reports its weakest effects, so this does not refute
+transcript text for small caps. It does close it for the universe a free source covers.

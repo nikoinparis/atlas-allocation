@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "experiment": "gdelt_news_v1",
+  "queue_item": "B14",
+  "registered_at_utc": "2026-10-13T00:00:00Z",
+  "registered_before_any_result_existed": true,
+  "owner_question": "Can news happening in the world -- big or niche -- identify stocks that are about to rise?",
+
+  "data": {
+    "source": "GDELT 1.0 Global Knowledge Graph daily files, https://data.gdeltproject.org/gkg/YYYYMMDD.gkg.csv.zip, free",
+    "sampling": "one file per week, the Wednesday, 2013-04-03 onward. Every file is downloaded, reduced to (organisation, articles, article-weighted tone) and deleted; raw files are not kept. A Wednesday sample is 1/7 of daily coverage, which is ample for any company mentioned more than a handful of times a week and thin for small ones -- a density check is therefore the first gate.",
+    "fields_used": "NUMARTS (articles), ORGANIZATIONS, TONE (first value: average tone)"
+  },
+
+  "identity_join": {
+    "rule": "GDELT organisation strings are lower-case names. An issuer is matched when its SEC filer name, normalised (case, punctuation, legal suffixes inc/corp/co/ltd/plc/holdings/group removed), equals a GDELT organisation string exactly. No fuzzy matching.",
+    "gate": "at least 300 liquid issuers (price >= $5, $5M median daily dollar volume) matched AND matched issuers with >= 1 mention per sampled week in at least half the weeks number >= 150. Below that the test is declared unreadable, not negative.",
+    "known_weakness": "common-word names (e.g. 'target', 'apple') collide with non-company mentions; the tone and growth signals are partly robust to this because they are changes, not levels."
+  },
+
+  "point_in_time": "a Wednesday file is usable from the following Friday close; the forward window starts at the first weekly close after that",
+
+  "signals": {
+    "N1_attention_surge": "log(mean articles over the last 4 sampled weeks + 1) - log(mean over the prior 26 sampled weeks + 1)",
+    "N2_tone_shift": "article-weighted tone over the last 4 sampled weeks minus over the prior 26",
+    "trials_declared_here": 2,
+    "declared_sign": "POSITIVE for both: rising coverage and improving tone predict higher returns"
+  },
+  "measurement": {
+    "decisions": "every 4 weeks",
+    "horizons_weeks": [4, 13],
+    "measures": "rank IC, decile spread, monotonicity (the Step 339-calibrated bar), block bootstrap",
+    "bonferroni_bar": "0.05 / (2 signals x 2 horizons) = 0.0125"
+  },
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

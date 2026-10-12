@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "experiment": "rising_stocks_program_v1",
+  "registered_at_utc": "2026-10-13T00:00:00Z",
+  "registered_before_any_result_existed": true,
+  "owner_question": "Build the best honest strategy around 'find the stocks that are rising and hold them', with safety nets (drawdown cut-offs, signals that the rise is over) and theme rotation ('corn is booming -> corn companies').",
+
+  "why_a_search_and_how_it_is_controlled": "The owner explicitly asked for a search. A search over many configurations always finds a winner on the data it searched, so the search is confined to a DESIGN window, exactly one configuration is chosen there by a rule fixed here, the choice is written to disk, and only then is the HOLDOUT window computed. Every configuration's holdout is also reported, so nothing is hidden, but only the pre-chosen one is judged.",
+  "design_window": ["2012-01-01", "2019-12-31"],
+  "holdout_window": ["2020-01-01", "2026-10-09"],
+  "contamination_declared": "Step 347 already showed the steady-riser book on the full sample, including 2020-2026. The holdout is therefore not pristine for signal A; it is pristine for the choice of cadence and safety net, which Step 347 never varied.",
+
+  "universe": "as Step 347: close >= $5, 53 complete weekly closes, median 63-day dollar volume >= $5M",
+  "book": "top 20 by the signal, equal weight at each rebalance, buy-and-hold drift between",
+
+  "grid": {
+    "signal": {
+      "A_steady_riser": "52-week log-price slope x R-squared (Step 347 S2)",
+      "B_theme_rotation": "A, restricted to stocks whose SIC 3-digit industry is in the top 20% of industries by 26-week equal-weight industry return (industries with >= 5 liquid names) -- the 'corn is booming' idea; as-filed SIC, latest filing before the decision",
+      "C_residual_momentum": "cumulative residual of weekly returns on the equal-weight universe return over weeks t-52..t-5, scaled by residual volatility (Blitz, Huij and Martens 2011, from general knowledge)"
+    },
+    "rebalance_weeks": [4, 13, 52],
+    "safety_net": {
+      "none": "hold to the next rebalance",
+      "market_trend": "if SPY closes below its 40-week moving average, the whole book is in T-bills the next week; re-enter the same picks when it closes back above",
+      "stock_exit": "a holding that closes below its own 20-week moving average is sold to T-bills until the next rebalance -- 'the rise is over'",
+      "vol_target": "book exposure = min(1, 20% / the book's trailing 13-week realised volatility), remainder in T-bills; never above 1 -- no leverage",
+      "trend_plus_exit": "market_trend and stock_exit together"
+    },
+    "configurations": 45,
+    "cash_return": "Ken French daily RF compounded weekly; 0 after the factor file ends"
+  },
+  "costs": "50 bps per side on all traded notional, including safety-net exits and re-entries; 0/10/100 reported for the chosen configuration",
+
+  "selection_rule": "highest Sharpe (annualised return / annualised volatility, the dashboard convention) at 50 bps over the design window. Ties broken by lower maximum drawdown.",
+
+  "holdout_pass_requires_all": [
+    "Sharpe at 50 bps >= SPY's Sharpe over the holdout",
+    "annualised return at 50 bps >= SPY's over the holdout",
+    "Fama-French five factor + momentum alpha with t >= 2.0 over the holdout",
+    "annualised return above the 95th percentile of 200 random 20-name books run through the same cadence and safety net",
+    "maximum drawdown no worse than -35%"
+  ],
+  "also_reported": "deflated Sharpe ratio for 45 trials; regimes 2020, 2021-2022, 2023-2026; largest single-name contribution; holdings at the latest rebalance",
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

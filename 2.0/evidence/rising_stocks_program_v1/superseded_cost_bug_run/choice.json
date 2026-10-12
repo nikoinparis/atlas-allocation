@@ -1,0 +1,23 @@
+{
+ "config": "C_residual_momentum|13w|vol_target",
+ "design": {
+  "config": "C_residual_momentum|13w|vol_target",
+  "design_cagr": 0.1386802749947611,
+  "design_vol": 0.172260541145425,
+  "design_sharpe": 0.8050611827446025,
+  "design_max_dd": -0.26854415938760756,
+  "design_total": 1.8262747629955092,
+  "design_weeks": 416,
+  "traded_per_year": 16.23185197425645
+ },
+ "spy_design": {
+  "cagr": 0.14557233764726552,
+  "vol": 0.12125608849162593,
+  "sharpe": 1.2005363149852792,
+  "max_dd": -0.17084298118455477,
+  "total": 1.9660614528692473,
+  "weeks": 416
+ },
+ "chosen_by": "highest design Sharpe at 50 bps, tie -> lower drawdown",
+ "chosen_before_holdout_was_computed": true
+}

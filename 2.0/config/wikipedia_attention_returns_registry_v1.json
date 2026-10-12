@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "experiment": "wikipedia_attention_returns_v1",
+  "registered_at_utc": "2026-10-13T00:00:00Z",
+  "registered_before_any_result_existed": true,
+  "why": "Step 288 closed Wikipedia attention at its mapping gate (59.2% vs 60%) before any return was measured. The owner asked whether the news-type signals were tested properly; this one was not. This is a NEW experiment on the 357 issuers that were mapped, not a reversal of Step 288's gate: the sample is the mapped subset of the narrow 603-issuer universe and is declared as such -- it over-represents larger, better-known names.",
+  "data": "data/wikipedia_attention_v1/views (daily user pageviews, 2015-07 to 2026-09), summed to weeks ending Friday; a week's views are usable at that Friday's close",
+  "signals": {
+    "W1_attention_surge": "log(mean weekly views over the last 4 weeks + 1) - log(mean over the prior 26 weeks + 1)",
+    "trials_declared_here": 1,
+    "declared_sign": "POSITIVE"
+  },
+  "measurement": {
+    "decisions": "every 4 weeks, forward window from the next weekly close",
+    "horizons_weeks": [4, 13],
+    "measures": "rank IC, decile spread, monotonicity, block bootstrap, both halves",
+    "bonferroni_bar": 0.025,
+    "density_gate": "median issuers per decision >= 100"
+  },
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

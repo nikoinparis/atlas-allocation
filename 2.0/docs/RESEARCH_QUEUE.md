@@ -350,11 +350,6 @@ dates are public on the day, so point-in-time is clean. Only ~1,000 US-listed fi
 screen within patenters or the deciles become a presence test (Step 298). **Blocker:** assignee-to-CIK
 mapping -- the same problem that sank Step 345's coverage.
 
-### B14. News coverage and tone, GDELT *(new 2026-10-11, owner asked for more free data)*
-Global Knowledge Graph, free raw files every 15 minutes since 2015, organisation mentions and tone.
-Dense for large caps. Read the Wikipedia-attention step first -- a close cousin already screened.
-**Blocker:** organisation-name matching and storage volume, not cost.
-
 ## C tier -- parked, recorded so it is not re-proposed
 
 ### C1. Opening Range Breakout, single-stock version
@@ -434,6 +429,10 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 
 | item | verdict | where |
 |---|---|---|
+| **GDELT news coverage and tone (was B14)** | **Gate fails; exploratory nothing.** 706 Wednesday GKG samples 2013-2026; 129 liquid issuers mentioned in half the weeks vs 150 declared. Exploratory: attention IC +0.008 (p 0.32), tone shift -0.013 (p 0.055, wrong sign). Daily sampling (7x) not justified. | Step 351 |
+| **Earnings-call tone (Step 254 never return-tested)** | **Nothing.** 33,235 S&P 500 calls 2005-2025, LM tone and tone change vs own last call, 4w/13w: all |IC| < 0.009, all p > 0.36. | Step 350 |
+| **Wikipedia attention returns (Step 288 never return-tested)** | **Nothing.** 357 mapped issuers 2015-2026: IC -0.003 / +0.006, spreads negative. | Step 348 |
+| **Rising-stocks program: 3 signals x 3 cadences x 5 safety nets** | **0 of 45 beat SPY in 2012-2019 (Sharpe 1.20); chosen residual momentum held a year fails 0/5 in 2020-2026** (10.1% vs 15.4%). Per-stock "rise is over" exits destroy returns at every cadence. The steady riser held a year earned 47% a year in the holdout after ranking in the bottom half of the design: a regime bet. Found and fixed a cost-accounting bug (old run kept). Do not re-run with new nets or windows. | Step 349 |
 | **Steady risers, held a year (new 2026-10-13, owner)** | **Fails its bar; a volatility bet, not skill.** Top 20 by 52w slope x R2, annual rebalance, 2012-2026: 25.9% CAGR at 50 bps vs SPY 14.9%, beats 200 random books (p95 14.6%), survives dropping top 5 names (21.4%). But IC p 0.52, monotonicity +0.08, beta 1.54, vol 35%, max DD -50%, Sharpe 0.74 < SPY 0.96, FF6 alpha t 1.82; trailed SPY 2012-2019 and lost 7.8% in 2021-22. Do not re-run at other lookbacks. | Step 347 |
 | **Pairs/stat arb on daily bars** | **Closed.** Avellaneda-Lee s-score vs SIC2 industry and same-SIC4 GGR pairs, 737 skip-1 5-day decisions 2012-2026. A-L has real IC (+0.0075, p=0.003, beats placebo, survives leave-one-out) but no decile ordering (+0.034) and **it is gone after 2021**. Same-industry pairs: no skill. 60.9% turnover per leg turns +6.2%/yr gross into -6.1% at 10 bps. Pelger et al. 2025 report an A-L baseline at net Sharpe -2.72 independently. | Step 343 |
 | **Factor attribution, FF5 + momentum** | **No book has FF6 alpha.** 11 regressions, Newey-West; largest book t=1.79; only t>2 is the equal-weight *control*. Every book tilts small and **unprofitable** (RMW to -0.72). Complements Step 332. | Step 344 |

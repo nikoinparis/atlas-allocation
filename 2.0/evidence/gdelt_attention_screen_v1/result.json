@@ -1,0 +1,63 @@
+{
+ "source": "gdelt",
+ "bonferroni_bar": 0.0125,
+ "matched_issuers": 2761,
+ "results": {
+  "attention_surge@4w": {
+   "decisions": 168,
+   "independent": 84,
+   "median_names": 150.0,
+   "mean_ic": 0.008064069667698964,
+   "p": 0.319,
+   "decile_spread": 0.0038032000440200568,
+   "monotonicity": 0.02005772005772006,
+   "first_half_ic": -0.010675830190153283,
+   "second_half_ic": 0.026803969525551207,
+   "first": "2013-10-25",
+   "last": "2026-08-14",
+   "clears_bar": false
+  },
+  "attention_surge@13w": {
+   "decisions": 166,
+   "independent": 55,
+   "median_names": 150.0,
+   "mean_ic": 0.0049277809471968475,
+   "p": 0.55575,
+   "decile_spread": -0.000685909698116943,
+   "monotonicity": 0.02635998539612997,
+   "first_half_ic": -0.004902724656785325,
+   "second_half_ic": 0.014758286551179018,
+   "first": "2013-10-25",
+   "last": "2026-06-19",
+   "clears_bar": false
+  },
+  "tone_shift@4w": {
+   "decisions": 168,
+   "independent": 84,
+   "median_names": 149.5,
+   "mean_ic": -0.013237745719545132,
+   "p": 0.05475,
+   "decile_spread": -0.0030807441021275263,
+   "monotonicity": -0.04494949494949494,
+   "first_half_ic": -0.012357162329625021,
+   "second_half_ic": -0.01411832910946524,
+   "first": "2013-10-25",
+   "last": "2026-08-14",
+   "clears_bar": false
+  },
+  "tone_shift@13w": {
+   "decisions": 166,
+   "independent": 55,
+   "median_names": 150.0,
+   "mean_ic": -0.007898241094456486,
+   "p": 0.225,
+   "decile_spread": -0.00044758339145244884,
+   "monotonicity": -0.022709017889740786,
+   "first_half_ic": -0.006527084583329206,
+   "second_half_ic": -0.009269397605583768,
+   "first": "2013-10-25",
+   "last": "2026-06-19",
+   "clears_bar": false
+  }
+ }
+}

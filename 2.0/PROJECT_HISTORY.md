@@ -17184,3 +17184,46 @@ script `scripts/run_transcript_tone_v1.py`; per-call tones are kept in
 183 decisions, median about 418 large-cap names each. **Nothing.** The large-cap restriction
 is where the word-count literature reports its weakest effects, so this does not refute
 transcript text for small caps. It does close it for the universe a free source covers.
+
+## Step 351 — 2026-10-13 — GDELT news: fails its identity gate, and the exploratory read shows nothing worth more data
+
+**What this was for.** Queue B14, and the owner's question of whether world news, big or niche,
+predicts which stocks rise. Pre-registered in `config/gdelt_news_registry_v1.json`. GDELT 1.0
+GKG daily files, one Wednesday a week, 2013-04 to 2026-08: 706 files, 3 failed, each reduced
+to organisation article counts and article-weighted tone, and the raw files deleted.
+`scripts/acquire_gdelt_weekly_orgs_v1.py`; the reductions are 429 MB in
+`data/gdelt_weekly_orgs_v1/days/`, kept out of git. Issuers were matched by exact normalised
+SEC filer name.
+
+**Gate: fails.** 574 liquid issuers matched, but only **129** are mentioned in at least half the
+sampled weeks, against a declared 150. By the registry's rule the screen is unreadable, not
+negative. A one-day-in-seven sample is too thin below the largest names.
+
+**Exploratory read, labelled as such and not a verdict.** It was run only to decide whether
+daily sampling (7× the download) is worth doing. Median 150 names, 168 decisions:
+
+| signal | horizon | IC | p | decile spread | monotonicity | halves |
+|---|---|---|---|---|---|---|
+| attention surge | 4 w | +0.0081 | 0.319 | +0.38% | +0.02 | −0.011 / +0.027 |
+| attention surge | 13 w | +0.0049 | 0.556 | −0.07% | +0.03 | −0.005 / +0.015 |
+| tone shift | 4 w | −0.0132 | 0.055 | −0.31% | −0.04 | −0.012 / −0.014 |
+| tone shift | 13 w | −0.0079 | 0.225 | −0.04% | −0.02 | −0.007 / −0.009 |
+
+Nothing points the declared way. Improving tone leans slightly *negative* in both halves, which
+is consistent with good news already being in the price by the time it is widely written about,
+but it is not significant. **Daily sampling is not justified by this.**
+
+**What Steps 347-351 add up to.** The owner's idea has now been tested in every form this
+project can measure:
+
+| form | verdict |
+|---|---|
+| steady risers or momentum, held a year | raw return yes; risk-adjusted no; a regime bet (Step 347) |
+| the same with 4 safety nets, 3 cadences, theme rotation | 0 of 45 beat SPY 2012-2019; the chosen one fails 0/5 in 2020-2026 (349) |
+| Wikipedia attention | nothing (348) |
+| earnings-call tone | nothing (350) |
+| GDELT news coverage and tone | gate fails; exploratory nothing (351) |
+
+What does exist is real: steady-riser books earn more than the market in speculative growth
+regimes (2020, 2023-2026) and less in calm ones (2012-2019). That is an exposure, and it was
+not identifiable in advance from 2012-2019 data.

@@ -1,0 +1,17 @@
+{
+  "source": "https://api.usaspending.gov/api/v2",
+  "award_type_codes": [
+    "A",
+    "B",
+    "C",
+    "D"
+  ],
+  "spending_level": "transactions",
+  "recipients_per_quarter": 1000,
+  "quarters": 59,
+  "rows": 59000,
+  "unique_recipients": 7051,
+  "parents_resolved": 7043,
+  "acquired_on": "2026-10-11",
+  "parent_mapping_is_current_not_point_in_time": true
+}

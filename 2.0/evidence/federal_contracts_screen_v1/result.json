@@ -1,0 +1,47 @@
+{
+  "dollar_match_rate": 0.40058510555895,
+  "issuers_matched": 368,
+  "full": {
+    "decisions": 49,
+    "median_issuers": 99.0,
+    "mean_ic": 0.00910337230761987,
+    "bootstrap_p": 0.64575,
+    "decile_spread_13w": 0.005757777779885151,
+    "decile_spread_annual": 0.0232307877758815,
+    "monotonicity": 0.0683982683982684
+  },
+  "halves_ic": [
+    -0.00966087895784863,
+    0.027117053522469643
+  ],
+  "placebo_mean": -0.0009484046344922697,
+  "placebo_p95": 0.024781827781401096,
+  "leave_one_sic2_out": {
+    "37": 0.01719559364587559,
+    "73": 0.01228419871455926,
+    "35": 0.00606612920214478,
+    "87": 0.005391144270580657,
+    "38": 0.008154559368631414,
+    "50": 0.004306619883404068,
+    "28": 0.004014569978551405,
+    "36": 0.010358216815761392,
+    "16": 0.006278035610847491,
+    "63": 0.007695574532484191,
+    "80": 0.008367310940912297,
+    "29": 0.0040632650939746665,
+    "20": 0.014520691990575109,
+    "49": 0.01189845700862912,
+    "34": 0.0065497259406289265
+  },
+  "criteria": {
+    "density_median_issuers_at_least_100": false,
+    "ic_positive_p_below_bar": false,
+    "monotonicity_above_0.5": false,
+    "both_halves_ic_positive": false,
+    "beats_placebo_95th": false,
+    "min_leave_one_sic2_out_positive": true
+  },
+  "screen_passes": false,
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

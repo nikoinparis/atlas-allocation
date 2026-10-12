@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "experiment": "stat_arb_residual_screen_v1",
+  "queue_item": "B4",
+  "registered_at_utc": "2026-10-11T00:00:00Z",
+  "registered_before_any_result_existed": true,
+
+  "why_this_exists": "Steps 45 and 293 tested pairs trading and both lost money at zero cost, worse than random pairs. The owner asked whether that was a shallow test. Four things were never tried: pairs restricted to an economically linked industry (the KO/PEP idea), the Avellaneda-Lee residual s-score, an adaptive hedge ratio, and daily bars. Step 293 itself declared that its weekly panel cannot see convergence trades that open and close inside a week. The daily panel exists on disk -- broad_full_history_price_vintages is the source the weekly panel is resampled from -- so the weekly-bar objection can be removed at no data cost.",
+
+  "the_order_of_work_is_fixed_by_CLAUDE_md_section_2": "Skill screen first: rank IC, top-minus-bottom decile spread and decile monotonicity. A book is built ONLY for a trial that passes every screen criterion. If neither trial passes, no book is built and the family closes.",
+
+  "data": {
+    "prices": "data/broad_full_history_price_vintages/20261010T135148Z-broad-full-history-v1 -- Yahoo daily adjusted closes, 2011-01-03 to 2026-10-09, 2,775 of 3,235 requested symbols",
+    "industry": "as-filed SIC from SEC FSDS sub.txt, 2012Q1-2022Q4; for each decision the latest filing accepted BEFORE the decision is used, carried forward after 2022Q4. Firms with no FSDS filing before a decision are excluded at that decision.",
+    "not_used": "the Tiingo delisted probe cache: it covers 273 names of only one sub-universe, and splicing a second provider into one leg of a residual regression is a source of artificial divergences"
+  },
+
+  "universe_rule_per_decision": "cik has a positive close on the decision day, a complete 60-day return history ending on it, a close of at least $5 (penny-stock bid-ask bounce would dominate a 5-day reversal signal), and a known SIC2 group with at least 5 other eligible members that day.",
+
+  "trials": {
+    "T1_avellaneda_lee_s_score": {
+      "source": "Avellaneda and Lee (2010), 'Statistical arbitrage in the US equities market'. Recorded from general knowledge of the paper, not a read of the text this session.",
+      "factor": "leave-self-out equal-weight mean daily return of the stock's SIC2 group. The paper used sector ETFs; no daily sector ETF history is on disk, and an in-universe industry mean is a closer industry hedge than an 11-sector ETF.",
+      "estimation": "60 trading days ending on the decision day. OLS of stock return on factor return with intercept; X = cumulative residual; AR(1) X[k+1] = a + b X[k] + e.",
+      "filters": "0 < b < exp(-1/30), i.e. mean-reversion speed kappa = -252 ln b above 252/30, as in the paper",
+      "score": "s = (X_last - m_centered) / sigma_eq with m = a/(1-b), m_centered = m minus its cross-sectional mean, sigma_eq = sqrt(var(e)/(1-b^2)). The traded direction is -s: a stretched-high residual is expected to fall."
+    },
+    "T2_same_industry_pairs": {
+      "source": "GGR minimum-distance selection restricted to an economic link -- the owner's KO/PEP idea.",
+      "selection": "within each SIC4 code, each eligible stock is paired with the single other SIC4 member of minimum sum of squared deviations of price normalised to 1 at the start of the prior 252 trading days. Needs 252 days of history for both.",
+      "score": "z = (normalised spread on decision day) / (formation std of the spread); score = -z",
+      "target_for_T2": "the stock's forward return minus its partner's forward return over the same window"
+    },
+    "trials_declared_here": 2,
+    "nothing_will_be_swept": "Window 60, kappa filter, $5 floor, 252-day formation and the 5-day horizon are fixed above. No variant is run if a trial fails."
+  },
+
+  "measurement": {
+    "decisions": "every 5th trading day, first decision 2012-01-03 (2013 for T2's 252-day formation), so forward windows do not overlap",
+    "skip_one_day": "signal computed at close t; the forward window runs close t+1 to close t+6. Step 250 found same-close short-term reversal is bid-ask bounce; this primary measurement excludes it. The no-skip version is reported as a diagnostic only.",
+    "primary_target_T1": "industry-relative forward return: stock minus leave-self-out SIC2 mean over the same window",
+    "per_decision": "Spearman rank IC; top-minus-bottom decile spread; monotonicity = Spearman of decile number against decile mean",
+    "significance": "block bootstrap on the IC series, block 8 decisions, 4000 draws",
+    "bonferroni_bar": 0.025,
+    "cumulative_search_note": "the bar covers the two trials here only. They sit on top of 314 steps and the project's earlier pairs, reversal and residual-reversal trials on the same names, so any pass is the survivor of a far larger search and must be described that way.",
+    "placebo": "200 within-decision shuffles of the score; the real mean IC must exceed the placebo 95th percentile",
+    "leave_one_out": "mean IC recomputed excluding each SIC2 group in turn, and excluding the 10 names with the largest contribution to IC; minimum reported",
+    "regimes": "2012-2019, 2020, 2021-2022, 2023-2026 and full. 2008-2009 is NOT testable: the daily panel starts 2011."
+  },
+
+  "screen_pass_requires_all": [
+    "mean IC > 0 on the full window, bootstrap p < 0.025",
+    "mean monotonicity > 0.5 on the full window",
+    "mean IC > 0 AND monotonicity > 0 in BOTH halves, 2012-2018 and 2019-2026",
+    "real mean IC above the placebo 95th percentile",
+    "minimum leave-one-SIC2-out mean IC > 0"
+  ],
+
+  "book_only_if_screen_passes": {
+    "rule_T1": "Avellaneda-Lee bands verbatim: open long at s < -1.25, open short at s > +1.25, close long at s > -0.50, close short at s < +0.75. Evaluated daily on signals from close t, executed at close t+1. Equal weight within each side, dollar neutral.",
+    "rule_T2": "open at |z| > 2 (GGR), close at z crossing 0, pair held long/short equal dollars, re-paired every 252 days",
+    "costs": "0, 10, 50, 100 bps per side on traded notional, plus 100 bps annual borrow on the short side",
+    "metrics": "CAGR, Sharpe, volatility, max drawdown, beta to the equal-weight universe, per regime",
+    "gates": "the four Step 293 gates: orthogonality < 0.30 to the valuation and growth books, standalone Sharpe >= 1.0 at 50 bps, beats placebo, |beta| < 0.30"
+  },
+
+  "known_weaknesses_declared_up_front": [
+    "Survivorship: 460 of 3,235 requested symbols returned nothing from Yahoo, overwhelmingly delisted issuers. This is the same limitation Step 293's weekly panel carried, since that panel is resampled from this source. A reversal signal is likely flattered by it: names that fell and kept falling to delisting are the ones missing.",
+    "Close-to-close only; no bid-ask, no opening auction. A 5-day reversal signal is exactly where spread costs dominate, which is why the book's cost ladder starts at 10 bps per side, not 0.",
+    "SIC carried forward after 2022Q4 and missing for firms that began filing after it.",
+    "No short-sale feasibility or name-specific borrow."
+  ],
+
+  "declared_sign": "POSITIVE for -s and -z. A negative result is reported as a refutation, never inverted into a momentum strategy.",
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

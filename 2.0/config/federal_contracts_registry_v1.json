@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "experiment": "federal_contracts_screen_v1",
+  "queue_item": "B5",
+  "registered_at_utc": "2026-10-11T00:00:00Z",
+  "registered_before_any_result_existed": true,
+
+  "why_this_exists": "Quiver Quantitative resells US federal contract awards; the source is USASpending.gov, free and keyless. Contract obligations are a demand signal that reaches the public before it reaches a 10-Q, and nothing in this project has used government spending data. It is a non-price, non-filing channel, which is the orthogonality argument the queue ranks highest.",
+
+  "data": {
+    "source": "api.usaspending.gov /api/v2/search/spending_by_category/recipient/, award types A-D (contracts), spending_level transactions, aggregated per calendar quarter by action date, top 1,000 recipients per quarter, 2012Q1 onward",
+    "parent_mapping": "/api/v2/recipient/{id}/ parent_name for each recipient; amounts summed to parent",
+    "issuer_mapping": "parent_name normalised (case, punctuation, legal suffixes) and matched EXACTLY to SEC FSDS filer names; no fuzzy matching, so a match is either right or absent. Match rate on dollars is reported."
+  },
+
+  "point_in_time": {
+    "publication_lag": "DoD contract actions are published to FPDS with a 90-day delay. Every quarter's obligations are therefore treated as usable only from 91 days after the quarter ends, for all agencies, conservatively.",
+    "known_violation_declared": "parent relationships are as of today, not as of the award. A subsidiary bought in 2020 is credited to its 2026 parent in 2015. This is lookahead in the mapping and biases toward finding something; a pass would need a robustness check excluding acquired subsidiaries."
+  },
+
+  "signal": {
+    "name": "trailing-four-quarter obligation growth",
+    "definition": "log(TTM obligations ending at the latest usable quarter / TTM obligations ending four quarters earlier). Both TTM values must be at least $1M. Negative obligations (de-obligations) are included in the sums.",
+    "declared_sign": "POSITIVE: rising federal demand predicts higher subsequent returns. A negative result is a refutation, not a short signal.",
+    "trials_declared_here": 1
+  },
+
+  "measurement": {
+    "decisions": "quarterly, first trading week after 2013-04-01 through the last decision with a complete 13-week forward window",
+    "universe": "issuers with a matched parent, a usable signal, and a price on the weekly panel at execution",
+    "density_check_first": "report issuers per decision; if the median is below 100 the decile screen is declared unreadable and the result is inconclusive, not negative",
+    "target": "13-week forward return on clean_full_history_prices_v1, from the first weekly bar after the decision -- the same horizon and panel as Step 296",
+    "measures": "rank IC, top-minus-bottom decile spread, decile monotonicity, block bootstrap p (block 4), placebo of 200 within-decision shuffles, leave-one-SIC2-out and leave-top-10-names-out",
+    "bonferroni_bar": 0.05,
+    "cumulative_search_note": "one trial here, on top of every signal this project has screened on the same price panel"
+  },
+
+  "screen_pass_requires_all": [
+    "median issuers per decision >= 100",
+    "mean IC > 0 with bootstrap p < 0.05",
+    "mean monotonicity > 0.5",
+    "mean IC > 0 in both halves of the decision sample",
+    "real mean IC above the placebo 95th percentile",
+    "minimum leave-one-SIC2-out mean IC > 0"
+  ],
+  "if_it_passes": "no book is built in this step. A pass earns a pre-registered book with the four Step 293 gates and the CLAUDE.md cost ladder, and the acquired-subsidiary robustness check, in a later step.",
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

@@ -1,0 +1,233 @@
+{
+  "registry": "config/stat_arb_residual_registry_v1.json",
+  "results": [
+    {
+      "trial": "T1 Avellaneda-Lee s-score",
+      "target": "fwd_rel",
+      "full": {
+        "decisions": 737,
+        "mean_ic": 0.007474737012607504,
+        "t_stat": 2.8606447647766102,
+        "bootstrap_p": 0.003,
+        "decile_spread_per_5d": 0.0011856527871654178,
+        "decile_spread_annualised_gross": 0.061540869408053034,
+        "monotonicity": 0.03443115003494922,
+        "median_names": 1925.0
+      },
+      "regimes": {
+        "2012-2019": {
+          "decisions": 398,
+          "mean_ic": 0.010546257780772552,
+          "t_stat": 3.70145994394073,
+          "bootstrap_p": 0.0015,
+          "decile_spread_per_5d": 0.0014006400696888754,
+          "decile_spread_annualised_gross": 0.07309057017706277,
+          "monotonicity": 0.07842241510583219,
+          "median_names": 1656.0
+        },
+        "2020": {
+          "decisions": 50,
+          "mean_ic": 0.0228436028805645,
+          "t_stat": 1.3988826350042782,
+          "bootstrap_p": 0.156,
+          "decile_spread_per_5d": 0.004845327068806052,
+          "decile_spread_annualised_gross": 0.2758527302912732,
+          "monotonicity": 0.0198787878787879,
+          "median_names": 1988.0
+        },
+        "2021-2022": {
+          "decisions": 101,
+          "mean_ic": 0.0006532068230819383,
+          "t_stat": 0.07379533279175007,
+          "bootstrap_p": 0.92475,
+          "decile_spread_per_5d": 0.0006332477048908406,
+          "decile_spread_annualised_gross": 0.03242002303603653,
+          "monotonicity": -0.010381038103810393,
+          "median_names": 2323.0
+        },
+        "2023-2026": {
+          "decisions": 188,
+          "mean_ic": 0.0005495561084295401,
+          "t_stat": 0.10589553491778544,
+          "bootstrap_p": 0.90325,
+          "decile_spread_per_5d": 5.3973323247143895e-05,
+          "decile_spread_annualised_gross": 0.002723885135867077,
+          "monotonicity": -0.030754352030947778,
+          "median_names": 2308.0
+        },
+        "half 2012-2018": {
+          "decisions": 347,
+          "mean_ic": 0.010516140489866165,
+          "t_stat": 3.5331651745102794,
+          "bootstrap_p": 0.00125,
+          "decile_spread_per_5d": 0.0014602380469684582,
+          "decile_spread_annualised_gross": 0.0763140809950753,
+          "monotonicity": 0.09010566762728146,
+          "median_names": 1637.0
+        },
+        "half 2019-2026": {
+          "decisions": 390,
+          "mean_ic": 0.004768667764892746,
+          "t_stat": 1.144496722145185,
+          "bootstrap_p": 0.19325,
+          "decile_spread_per_5d": 0.0009413423124175847,
+          "decile_spread_annualised_gross": 0.04856371386106395,
+          "monotonicity": -0.015104895104895105,
+          "median_names": 2293.0
+        }
+      },
+      "placebo_mean": 5.6301470828752554e-05,
+      "placebo_p95": 0.0014949104414587345,
+      "leave_out": {
+        "min_leave_one_sic2_out_ic": 0.006337865693878975,
+        "worst_sic2_removed": "60",
+        "ic_without_top10_names": 0.00683372452613572,
+        "top10_names": [
+          "0000895447",
+          "0000923120",
+          "0000106532",
+          "0000723125",
+          "0000920427",
+          "0000023795",
+          "0001462418",
+          "0000097216",
+          "0001081745",
+          "0000275053"
+        ]
+      },
+      "diagnostic_no_skip": {
+        "decisions": 737,
+        "mean_ic": 0.012029997950121213,
+        "t_stat": 4.3678411359731975,
+        "bootstrap_p": 0.0,
+        "decile_spread_per_5d": 0.0019153987415452946,
+        "decile_spread_annualised_gross": 0.10124764732838187,
+        "monotonicity": 0.04475967271082603,
+        "median_names": 1925.0
+      },
+      "criteria": {
+        "full_ic_positive_and_p_below_bar": true,
+        "full_monotonicity_above_0.5": false,
+        "both_halves_ic_and_monotonicity_positive": false,
+        "beats_placebo_95th": true,
+        "min_leave_one_sic2_out_ic_positive": true
+      },
+      "screen_passes": false
+    },
+    {
+      "trial": "T2 same-SIC4 pairs",
+      "target": "fwd_rel",
+      "full": {
+        "decisions": 737,
+        "mean_ic": 0.0018147708945946172,
+        "t_stat": 0.5840032159153723,
+        "bootstrap_p": 0.54425,
+        "decile_spread_per_5d": 0.0010607314056472123,
+        "decile_spread_annualised_gross": 0.05488581524060998,
+        "monotonicity": -0.0040541096172032305,
+        "median_names": 1857.0
+      },
+      "regimes": {
+        "2012-2019": {
+          "decisions": 398,
+          "mean_ic": 0.003609042222358996,
+          "t_stat": 0.935238154775036,
+          "bootstrap_p": 0.35825,
+          "decile_spread_per_5d": 0.0012320022157484515,
+          "decile_spread_annualised_gross": 0.06402053841824706,
+          "monotonicity": 0.014161717679305616,
+          "median_names": 1573.5
+        },
+        "2020": {
+          "decisions": 50,
+          "mean_ic": 0.016150003724382803,
+          "t_stat": 0.7897869106269637,
+          "bootstrap_p": 0.38125,
+          "decile_spread_per_5d": 0.005290526389770134,
+          "decile_spread_annualised_gross": 0.3046563441634904,
+          "monotonicity": 0.033696969696969704,
+          "median_names": 1917.0
+        },
+        "2021-2022": {
+          "decisions": 101,
+          "mean_ic": 0.002121546902095188,
+          "t_stat": 0.24781318524846846,
+          "bootstrap_p": 0.734,
+          "decile_spread_per_5d": 0.0016766181098748973,
+          "decile_spread_annualised_gross": 0.08809753809593968,
+          "monotonicity": 0.011341134113411342,
+          "median_names": 2201.0
+        },
+        "2023-2026": {
+          "decisions": 188,
+          "mean_ic": -0.005961112119752136,
+          "t_stat": -1.0669856267276965,
+          "bootstrap_p": 0.20375,
+          "decile_spread_per_5d": -0.0007576733217646791,
+          "decile_spread_annualised_gross": -0.03748074638430332,
+          "monotonicity": -0.06092843326885879,
+          "median_names": 2273.0
+        },
+        "half 2012-2018": {
+          "decisions": 347,
+          "mean_ic": 0.002626937073075902,
+          "t_stat": 0.659781409890198,
+          "bootstrap_p": 0.5025,
+          "decile_spread_per_5d": 0.0008034820874641543,
+          "decile_spread_annualised_gross": 0.04130968898786769,
+          "monotonicity": 0.013675661514278238,
+          "median_names": 1559.0
+        },
+        "half 2019-2026": {
+          "decisions": 390,
+          "mean_ic": 0.0010921512434843468,
+          "t_stat": 0.2329670533903933,
+          "bootstrap_p": 0.79525,
+          "decile_spread_per_5d": 0.0012896173374664969,
+          "decile_spread_annualised_gross": 0.0671108318892546,
+          "monotonicity": -0.01982905982905983,
+          "median_names": 2232.5
+        }
+      },
+      "placebo_mean": -5.807474842675289e-05,
+      "placebo_p95": 0.0015260842934578113,
+      "leave_out": {
+        "min_leave_one_sic2_out_ic": -0.0006778525196108157,
+        "worst_sic2_removed": "60",
+        "ic_without_top10_names": 0.0011902606868718156,
+        "top10_names": [
+          "0000875045",
+          "0000002098",
+          "0000895456",
+          "0000037472",
+          "0001206264",
+          "0000920427",
+          "0000862831",
+          "0000895447",
+          "0001099800",
+          "0001074902"
+        ]
+      },
+      "diagnostic_no_skip": {
+        "decisions": 737,
+        "mean_ic": 0.006954153432209397,
+        "t_stat": 2.2088603233324884,
+        "bootstrap_p": 0.02525,
+        "decile_spread_per_5d": 0.0019447185475591838,
+        "decile_spread_annualised_gross": 0.10287304457745527,
+        "monotonicity": 0.008560503268780061,
+        "median_names": 1857.0
+      },
+      "criteria": {
+        "full_ic_positive_and_p_below_bar": false,
+        "full_monotonicity_above_0.5": false,
+        "both_halves_ic_and_monotonicity_positive": false,
+        "beats_placebo_95th": true,
+        "min_leave_one_sic2_out_ic_positive": false
+      },
+      "screen_passes": false
+    }
+  ],
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

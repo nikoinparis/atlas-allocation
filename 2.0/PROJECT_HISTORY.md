@@ -17043,3 +17043,57 @@ strategy.
 
 Sharpe here follows the dashboard convention (CAGR / volatility, no risk-free rate). The held
 period is about two months, and every book would have rebalanced at least once in it.
+
+## Step 347 — 2026-10-13 — "Stocks that are constantly on the rise," bought and held a year
+
+**What this was for.** The owner had seen posts saying that NVIDIA "silently" returned a lot to
+anyone who bought it a few years ago, and asked whether math could find stocks that keep rising,
+to buy them and hold with little turnover. Momentum had been tested here before, but only
+judged at 13 weeks with frequent trading (Steps 189, 257). The owner's actual design had never
+been tested: buy the steady risers, hold 52 weeks, rebalance once a year. Pre-registered in
+`config/steady_riser_registry_v1.json`, two signals, script `scripts/run_steady_riser_v1.py`,
+evidence `evidence/steady_riser_v1/`.
+
+- **S1, 12-1 momentum:** the standard momentum signal.
+- **S2, steady riser:** 52-week log-price slope × R², which is high only for a stock that rose
+  *and* rose smoothly.
+- **Universe:** price ≥ $5 and median daily dollar volume ≥ $5M, about 1,390 names per decision,
+  2012-2026.
+
+**Screen (does the ranking predict the next year?): fails for both.** S1 IC +0.019 (p 0.46), S2
++0.018 (p 0.52), on 56 decisions, which are only 14 independent years. Monotonicity is +0.12 and
++0.08: the top decile beat the bottom (S2: +15.6% vs +12.7% a year), but the eight in between are
+unordered.
+
+**Book (top 20, hold a year, 50 bps):**
+
+| book | CAGR | Sharpe | vol | max DD | 2012-19 | 2020 | 2021-22 | 2023-26 |
+|---|---|---|---|---|---|---|---|---|
+| SPY | 14.9% | 0.96 | 15.6% | −31.8% | 14.6% | 16.4% | 3.3% | 22.2% |
+| liquid universe, equal weight | 12.4% | 0.66 | 18.8% | −39.9% | 14.0% | 19.8% | 0.5% | 13.7% |
+| S1 momentum top 20 | 20.6% | 0.58 | 35.4% | −58.5% | 10.7% | 132.8% | −21.3% | 52.4% |
+| **S2 steady riser top 20** | **25.9%** | 0.74 | 35.0% | −50.1% | **10.1%** | 141.8% | −7.8% | 65.9% |
+
+200 random 20-name books from the same universe: mean 11.1%, 95th percentile 14.6%.
+
+**What is real.** S2 beats the random books well outside chance. It is not a single-name story:
+removing its five largest contributors (APP, APPS, CVNA, ARWR, ENPH), with the next-ranked names
+taking their place, still leaves 21.4% a year. Costs barely matter at one rebalance a year:
+27.1% at 0 bps, 24.6% at 100 bps.
+
+**Why it fails anyway.** It is a **volatility and beta bet**, not stock picking. Market beta is
+1.54 and volatility 35%, more than double SPY's. The risk-adjusted return is *worse* than SPY
+(Sharpe 0.74 vs 0.96). Alpha is CAPM +7.6% (t 1.12) and FF5+momentum +9.9% (t 1.82); neither
+reaches the bar. All of the edge came in two bursts, 2020 and 2023-2026. For the eight years
+2012-2019 it **trailed SPY and the universe** (10.1% vs 14.6% and 14.0%), and in 2021-22 it fell
+7.8%. It beat the universe in 2 of 4 regimes against a bar of 3. This is Step 189's finding in
+a new form: this sample paid for volatility. The 2023-12 picks did include NVDA, SMCI, PLTR and
+APP, alongside OLMA, MLTX and ACHR; the posts remember the first group.
+
+**Survivorship flatters it.** Delisted issuers are largely missing from the panel, and a book of
+last year's high-flyers is exactly where the crashes-to-delisting would sit.
+
+**Verdict: closed under the registry's own rule** (screen fails, regimes 2 of 4). It is recorded,
+not rejected outright, because it is the largest raw-return, low-turnover price book this
+project has produced. Anyone holding it should expect drawdowns of 45-50% and multi-year stretches
+behind the index.

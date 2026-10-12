@@ -1,0 +1,1151 @@
+{
+ "screen": {
+  "S1_momentum_12_1": {
+   "decisions": 56,
+   "independent_windows": 14,
+   "median_names": 1390.0,
+   "mean_ic": 0.01939093404715886,
+   "p": 0.46375,
+   "decile_spread_52w": 0.04677691001198325,
+   "top_decile_52w": 0.17639777134297938,
+   "bottom_decile_52w": 0.1296208613309961,
+   "monotonicity": 0.12402597402597403,
+   "first_half_ic": 0.004411991506985784,
+   "second_half_ic": 0.03436987658733193
+  },
+  "S2_steady_riser": {
+   "decisions": 56,
+   "independent_windows": 14,
+   "median_names": 1390.0,
+   "mean_ic": 0.01788898132700058,
+   "p": 0.51725,
+   "decile_spread_52w": 0.029034501936486202,
+   "top_decile_52w": 0.15600082926075717,
+   "bottom_decile_52w": 0.126966327324271,
+   "monotonicity": 0.08398268398268398,
+   "first_half_ic": 0.0003619156250946475,
+   "second_half_ic": 0.0354160470289065
+  }
+ },
+ "books": {
+  "SPY": {
+   "0bps": {
+    "cagr": 0.14946006004753398,
+    "vol": 0.15565221305877294,
+    "sharpe": 0.9602180213852735,
+    "max_dd": -0.3182896309586455,
+    "total": 6.866378586348281,
+    "weeks": 770
+   },
+   "10bps": {
+    "cagr": 0.14946006004753398,
+    "vol": 0.15565221305877294,
+    "sharpe": 0.9602180213852735,
+    "max_dd": -0.3182896309586455,
+    "total": 6.866378586348281,
+    "weeks": 770
+   },
+   "50bps": {
+    "cagr": 0.14946006004753398,
+    "vol": 0.15565221305877294,
+    "sharpe": 0.9602180213852735,
+    "max_dd": -0.3182896309586455,
+    "total": 6.866378586348281,
+    "weeks": 770
+   },
+   "100bps": {
+    "cagr": 0.14946006004753398,
+    "vol": 0.15565221305877294,
+    "sharpe": 0.9602180213852735,
+    "max_dd": -0.3182896309586455,
+    "total": 6.866378586348281,
+    "weeks": 770
+   },
+   "regimes_50bps": {
+    "2012-2019": {
+     "cagr": 0.1455723525333199,
+     "vol": 0.12125632414698902,
+     "sharpe": 1.2005341045705342,
+     "max_dd": -0.17084288350456112,
+     "total": 1.9660617612073779,
+     "weeks": 416
+    },
+    "2020": {
+     "cagr": 0.16425400046364036,
+     "vol": 0.31696848610956735,
+     "sharpe": 0.5182029370795627,
+     "max_dd": -0.3182896309586454,
+     "total": 0.16425400046364036,
+     "weeks": 52
+    },
+    "2021-2022": {
+     "cagr": 0.03275706862114536,
+     "vol": 0.1849413665867761,
+     "sharpe": 0.1771213721716253,
+     "max_dd": -0.239271622899362,
+     "total": 0.06724848750660106,
+     "weeks": 105
+    },
+    "2023-2026": {
+     "cagr": 0.22156592305081313,
+     "vol": 0.13943827558488883,
+     "sharpe": 1.5889892651169921,
+     "max_dd": -0.1687716606370142,
+     "total": 1.1344273003954068,
+     "weeks": 197
+    }
+   },
+   "avg_turnover": 0.0
+  },
+  "S1_momentum_12_1": {
+   "0bps": {
+    "cagr": 0.21802325429216585,
+    "vol": 0.35354044246833416,
+    "sharpe": 0.6166854710312066,
+    "max_dd": -0.5768841157411142,
+    "total": 17.550749923779126,
+    "weeks": 770
+   },
+   "10bps": {
+    "cagr": 0.21561113044414126,
+    "vol": 0.353607402871872,
+    "sharpe": 0.6097472187884793,
+    "max_dd": -0.5785718352118676,
+    "total": 17.01413247251839,
+    "weeks": 770
+   },
+   "50bps": {
+    "cagr": 0.20596319855564382,
+    "vol": 0.3539809827107676,
+    "sharpe": 0.5818482026305158,
+    "max_dd": -0.5852890113247435,
+    "total": 15.009201107274102,
+    "weeks": 770
+   },
+   "100bps": {
+    "cagr": 0.19390455830619113,
+    "vol": 0.35468517112776654,
+    "sharpe": 0.5466948552984241,
+    "max_dd": -0.5936096524830301,
+    "total": 12.795654420421261,
+    "weeks": 770
+   },
+   "regimes_50bps": {
+    "2012-2019": {
+     "cagr": 0.10709109716894072,
+     "vol": 0.2591707761650823,
+     "sharpe": 0.4132066846175883,
+     "max_dd": -0.42925252572123307,
+     "total": 1.2566638231040126,
+     "weeks": 416
+    },
+    "2020": {
+     "cagr": 1.3284805113293232,
+     "vol": 0.527337040245811,
+     "sharpe": 2.519224727149965,
+     "max_dd": -0.402920050119319,
+     "total": 1.3284805113293232,
+     "weeks": 52
+    },
+    "2021-2022": {
+     "cagr": -0.21255321981399133,
+     "vol": 0.45727180777115223,
+     "sharpe": -0.4648290495974911,
+     "max_dd": -0.576896373988196,
+     "total": -0.38277049645817807,
+     "weeks": 105
+    },
+    "2023-2026": {
+     "cagr": 0.5241407990504412,
+     "vol": 0.40005185711561847,
+     "sharpe": 1.310182141959061,
+     "max_dd": -0.35458132000414766,
+     "total": 3.9360949941610404,
+     "weeks": 197
+    }
+   },
+   "avg_turnover": 0.9678571428571426,
+   "top_contributors": [
+    [
+     "APP",
+     0.419
+    ],
+    [
+     "APPS",
+     0.349
+    ],
+    [
+     "ENPH",
+     0.291
+    ],
+    [
+     "ARWR",
+     0.237
+    ],
+    [
+     "AXTI",
+     0.184
+    ]
+   ],
+   "largest_contributor_sum": 0.41949822633559114,
+   "alpha": {
+    "capm": {
+     "alpha_annual": 0.029974279886866517,
+     "t": 0.4456937380807417,
+     "market_beta": 1.5443116279333395
+    },
+    "ff6": {
+     "alpha_annual": 0.06267316007613322,
+     "t": 1.1248737719762085,
+     "market_beta": 1.359782214773658
+    }
+   }
+  },
+  "S2_steady_riser": {
+   "0bps": {
+    "cagr": 0.27128277309524673,
+    "vol": 0.35003208354410176,
+    "sharpe": 0.7750225932105645,
+    "max_dd": -0.4956766107576842,
+    "total": 33.96116211658074,
+    "weeks": 770
+   },
+   "10bps": {
+    "cagr": 0.2687584713111606,
+    "vol": 0.3501008690211334,
+    "sharpe": 0.7676601091068338,
+    "max_dd": -0.4966972681110712,
+    "total": 32.94718417075646,
+    "weeks": 770
+   },
+   "50bps": {
+    "cagr": 0.2586617970769949,
+    "vol": 0.3504835742047228,
+    "sharpe": 0.7380140357901811,
+    "max_dd": -0.5007798975246189,
+    "total": 29.159384998561958,
+    "weeks": 770
+   },
+   "100bps": {
+    "cagr": 0.24604215772850013,
+    "vol": 0.3512032396178079,
+    "sharpe": 0.7005691576087172,
+    "max_dd": -0.5058831842915537,
+    "total": 24.978816530421728,
+    "weeks": 770
+   },
+   "regimes_50bps": {
+    "2012-2019": {
+     "cagr": 0.101146953526845,
+     "vol": 0.2450749670153209,
+     "sharpe": 0.41271842146375476,
+     "max_dd": -0.433893363986113,
+     "total": 1.1615349036577265,
+     "weeks": 416
+    },
+    "2020": {
+     "cagr": 1.417766410492916,
+     "vol": 0.5656930242788734,
+     "sharpe": 2.5062469389652406,
+     "max_dd": -0.43422973623815786,
+     "total": 1.417766410492916,
+     "weeks": 52
+    },
+    "2021-2022": {
+     "cagr": -0.07811407818677385,
+     "vol": 0.4610331136430241,
+     "sharpe": -0.16943268471439393,
+     "max_dd": -0.5007798975246188,
+     "total": -0.15145460517811193,
+     "weeks": 105
+    },
+    "2023-2026": {
+     "cagr": 0.6586886898205937,
+     "vol": 0.39029659690322305,
+     "sharpe": 1.6876618834161152,
+     "max_dd": -0.3551705300351671,
+     "total": 5.800969199143362,
+     "weeks": 197
+    }
+   },
+   "avg_turnover": 0.9714285714285713,
+   "top_contributors": [
+    [
+     "APP",
+     0.419
+    ],
+    [
+     "APPS",
+     0.349
+    ],
+    [
+     "CVNA",
+     0.245
+    ],
+    [
+     "ARWR",
+     0.237
+    ],
+    [
+     "ENPH",
+     0.224
+    ]
+   ],
+   "largest_contributor_sum": 0.41949822633559114,
+   "alpha": {
+    "capm": {
+     "alpha_annual": 0.07577744541029019,
+     "t": 1.1239231074256057,
+     "market_beta": 1.541066659792865
+    },
+    "ff6": {
+     "alpha_annual": 0.09875446995207326,
+     "t": 1.8185372667391873,
+     "market_beta": 1.388080307795749
+    }
+   }
+  },
+  "universe": {
+   "0bps": {
+    "cagr": 0.12540568503751737,
+    "vol": 0.188358744134086,
+    "sharpe": 0.6657810637569629,
+    "max_dd": -0.39870573096278794,
+    "total": 4.751345195398511,
+    "weeks": 770
+   },
+   "10bps": {
+    "cagr": 0.1250418699154754,
+    "vol": 0.18834773639658034,
+    "sharpe": 0.6638883604748523,
+    "max_dd": -0.39870573096278794,
+    "total": 4.7238751460702115,
+    "weeks": 770
+   },
+   "50bps": {
+    "cagr": 0.12358439405586652,
+    "vol": 0.1883201212008773,
+    "sharpe": 0.6562463600161,
+    "max_dd": -0.39870573096278805,
+    "total": 4.615049794474267,
+    "weeks": 770
+   },
+   "100bps": {
+    "cagr": 0.1217574975516642,
+    "vol": 0.18832254797419565,
+    "sharpe": 0.6465370124895914,
+    "max_dd": -0.39870573096278805,
+    "total": 4.481365425786339,
+    "weeks": 770
+   },
+   "regimes_50bps": {
+    "2012-2019": {
+     "cagr": 0.14026415071625364,
+     "vol": 0.13929185677738976,
+     "sharpe": 1.0069802640395393,
+     "max_dd": -0.2107318587439887,
+     "total": 1.8578785211578888,
+     "weeks": 416
+    },
+    "2020": {
+     "cagr": 0.1975520763752494,
+     "vol": 0.41544983936256036,
+     "sharpe": 0.4755136665315858,
+     "max_dd": -0.39870573096278794,
+     "total": 0.1975520763752494,
+     "weeks": 52
+    },
+    "2021-2022": {
+     "cagr": 0.004507806934243019,
+     "vol": 0.20923598499921614,
+     "sharpe": 0.02154412843593757,
+     "max_dd": -0.28096079417718167,
+     "total": 0.009123213310921585,
+     "weeks": 105
+    },
+    "2023-2026": {
+     "cagr": 0.1368789797399037,
+     "vol": 0.17235944261330102,
+     "sharpe": 0.7941484241568365,
+     "max_dd": -0.21879908060495523,
+     "total": 0.6258154371123401,
+     "weeks": 197
+    }
+   },
+   "avg_turnover": 0.10103054919292673,
+   "alpha": {
+    "capm": {
+     "alpha_annual": -0.027819846628547973,
+     "t": -1.6261331412623499,
+     "market_beta": 1.0976149035285676
+    },
+    "ff6": {
+     "alpha_annual": -0.01095892029354295,
+     "t": -1.4019975116325487,
+     "market_beta": 1.026124064282702
+    }
+   }
+  }
+ },
+ "placebo_cagr_50bps": {
+  "mean": 0.11139032093297666,
+  "p95": 0.145619797307563
+ },
+ "holdings": {
+  "S1_momentum_12_1": [
+   {
+    "date": "2012-01-06",
+    "names": [
+     "LQDT",
+     "RGR",
+     "DPZ",
+     "FTK",
+     "SNBRQ",
+     "ULTA",
+     "JAZZ",
+     "PSMT",
+     "BGS",
+     "LAD",
+     "ENOV",
+     "VFC",
+     "NUS",
+     "PII",
+     "FICO",
+     "GCO",
+     "BIIB",
+     "ISRG",
+     "NEU",
+     "MA"
+    ]
+   },
+   {
+    "date": "2013-01-04",
+    "names": [
+     "SRPT",
+     "HOV",
+     "DDD",
+     "REGN",
+     "SVXY",
+     "AROC",
+     "ONIT",
+     "AVD",
+     "DK",
+     "PHM",
+     "CAL",
+     "VAC",
+     "CVI",
+     "MHO",
+     "LPX",
+     "SWBI",
+     "EXPE",
+     "KBH",
+     "ASPS",
+     "WHR"
+    ]
+   },
+   {
+    "date": "2014-01-03",
+    "names": [
+     "GTN-A",
+     "ACAD",
+     "PBYI",
+     "NXST",
+     "TSLA",
+     "INO",
+     "NFLX",
+     "CLDX",
+     "IONS",
+     "MEI",
+     "BBY",
+     "ARCB",
+     "ALNY",
+     "MU",
+     "NUS",
+     "ANIK",
+     "IEP",
+     "YELP",
+     "PCRX",
+     "SSTK"
+    ]
+   },
+   {
+    "date": "2015-01-02",
+    "names": [
+     "AGIO",
+     "OSPN",
+     "TGTX",
+     "PTCT",
+     "ANIP",
+     "SWKS",
+     "CENX",
+     "ALTO",
+     "PPC",
+     "STRA",
+     "LUV",
+     "PANW",
+     "NBIX",
+     "AVGO",
+     "LAKE",
+     "OMER",
+     "PBYI",
+     "KPTI",
+     "ADEA",
+     "EW"
+    ]
+   },
+   {
+    "date": "2016-01-01",
+    "names": [
+     "EXEL",
+     "PRTA",
+     "HRTX",
+     "NFLX",
+     "SRPT",
+     "DY",
+     "NBIX",
+     "MXL",
+     "TCRT",
+     "AMZN",
+     "COKE",
+     "RARE",
+     "TREE",
+     "LXRX",
+     "LGIH",
+     "W",
+     "SWBI",
+     "LGND",
+     "FIX",
+     "BLDR"
+    ]
+   },
+   {
+    "date": "2016-12-30",
+    "names": [
+     "CLF",
+     "CC",
+     "CDE",
+     "SXC",
+     "HL",
+     "EXEL",
+     "TROX",
+     "AMD",
+     "MUX",
+     "QUAD",
+     "CNX",
+     "SPXC",
+     "OVV",
+     "OKE",
+     "FCX",
+     "DLTH",
+     "TRGP",
+     "MTZ",
+     "CENX",
+     "STLD"
+    ]
+   },
+   {
+    "date": "2017-12-29",
+    "names": [
+     "SGMOQ",
+     "RIOT",
+     "NKTR",
+     "ALNY",
+     "PBYI",
+     "RH",
+     "OLED",
+     "TREE",
+     "AXGN",
+     "SEDG",
+     "XYZ",
+     "QURE",
+     "ONC",
+     "ALGN",
+     "GDOT",
+     "EXTR",
+     "LNTH",
+     "CORT",
+     "NVCR",
+     "ICHR"
+    ]
+   },
+   {
+    "date": "2018-12-28",
+    "names": [
+     "TNDM",
+     "TBCH",
+     "AMRN",
+     "TWLO",
+     "CDNA",
+     "ARWR",
+     "VCEL",
+     "TTD",
+     "PACB",
+     "MDB",
+     "VKTX",
+     "BXC",
+     "ETSY",
+     "CDXS",
+     "GKOS",
+     "FATE",
+     "FOSL",
+     "OKTA",
+     "RUN",
+     "STAA"
+    ]
+   },
+   {
+    "date": "2019-12-27",
+    "names": [
+     "AXSM",
+     "EVER",
+     "ARWR",
+     "ROKU",
+     "CDLX",
+     "APPS",
+     "ENPH",
+     "KOD",
+     "ZYME",
+     "TCRT",
+     "CVNA",
+     "ARVN",
+     "ACAD",
+     "NVCR",
+     "NTRA",
+     "LSCC",
+     "KRYS",
+     "UCTT",
+     "CRSP",
+     "SNAP"
+    ]
+   },
+   {
+    "date": "2020-12-25",
+    "names": [
+     "NVAX",
+     "BLNK",
+     "CLDX",
+     "PLUG",
+     "WKHS",
+     "GRWG",
+     "VERI",
+     "FCEL",
+     "MCRB",
+     "ZM",
+     "PRTS",
+     "CELH",
+     "TSLA",
+     "ARCT",
+     "MRNA",
+     "APPS",
+     "ENPH",
+     "TWST",
+     "APPN",
+     "DKNG"
+    ]
+   },
+   {
+    "date": "2021-12-24",
+    "names": [
+     "AMC",
+     "GME",
+     "CAR",
+     "FLNA",
+     "DDS",
+     "AMTX",
+     "BTU",
+     "BNGO",
+     "ASTH",
+     "LCID",
+     "HUT",
+     "SM",
+     "UPST",
+     "IDT",
+     "MARA",
+     "TGLS",
+     "METC",
+     "HAPN",
+     "SIG",
+     "PR"
+    ]
+   },
+   {
+    "date": "2022-12-23",
+    "names": [
+     "TH",
+     "PBF",
+     "INSW",
+     "AMR",
+     "CNR",
+     "CVI",
+     "BTU",
+     "TMDX",
+     "TDW",
+     "HDSN",
+     "OXY",
+     "DK",
+     "CRK",
+     "SMCI",
+     "LPG",
+     "TPL",
+     "MOD",
+     "WTI",
+     "HP",
+     "TALO"
+    ]
+   },
+   {
+    "date": "2023-12-22",
+    "names": [
+     "AAOI",
+     "OLMA",
+     "SYM",
+     "MLTX",
+     "APP",
+     "OSCR",
+     "BBIO",
+     "IONQ",
+     "SMCI",
+     "ACHR",
+     "ETHE",
+     "DKNG",
+     "VRT",
+     "ANF",
+     "RIOT",
+     "COIN",
+     "MARA",
+     "NVDA",
+     "DUOL",
+     "PLTR"
+    ]
+   },
+   {
+    "date": "2024-12-20",
+    "names": [
+     "WGS",
+     "SEZL",
+     "DAVE",
+     "ROOT",
+     "SMR",
+     "APP",
+     "ADMA",
+     "JANX",
+     "CVNA",
+     "LUMN",
+     "RDW",
+     "WLFC",
+     "VST",
+     "RKLB",
+     "HROW",
+     "SOUN",
+     "ASTS",
+     "EBS",
+     "SG",
+     "FTAI"
+    ]
+   },
+   {
+    "date": "2025-12-19",
+    "names": [
+     "TDUP",
+     "COGT",
+     "NUTX",
+     "BETR",
+     "AXTI",
+     "NKTR",
+     "OLMA",
+     "BE",
+     "GOSS",
+     "AMLX",
+     "LEU",
+     "IREN",
+     "MP",
+     "VSAT",
+     "FNMA",
+     "FMCC",
+     "TNGX",
+     "WDC",
+     "ECHO",
+     "LASR"
+    ]
+   }
+  ],
+  "S2_steady_riser": [
+   {
+    "date": "2012-01-06",
+    "names": [
+     "LQDT",
+     "DPZ",
+     "PSMT",
+     "RGR",
+     "DLTR",
+     "NUS",
+     "ULTA",
+     "SNBRQ",
+     "VFC",
+     "GCO",
+     "MA",
+     "JAZZ",
+     "RGLD",
+     "BIIB",
+     "SBH",
+     "OXM",
+     "PPLI",
+     "PII",
+     "MTCH",
+     "HLF"
+    ]
+   },
+   {
+    "date": "2013-01-04",
+    "names": [
+     "SRPT",
+     "ONIT",
+     "PHM",
+     "DDD",
+     "DK",
+     "LPX",
+     "MHO",
+     "SVXY",
+     "EXPE",
+     "CAL",
+     "ASPS",
+     "AROC",
+     "AVD",
+     "GEO",
+     "HOV",
+     "EXP",
+     "VAC",
+     "STZ",
+     "LEN",
+     "FAF"
+    ]
+   },
+   {
+    "date": "2014-01-03",
+    "names": [
+     "TSLA",
+     "INO",
+     "ACAD",
+     "UI",
+     "NXST",
+     "YELP",
+     "NUS",
+     "ARCB",
+     "ANIK",
+     "CLDX",
+     "ALNY",
+     "MEI",
+     "GTN-A",
+     "MTDR",
+     "LGND",
+     "MU",
+     "IONS",
+     "VNDA",
+     "BBY",
+     "INSM"
+    ]
+   },
+   {
+    "date": "2015-01-02",
+    "names": [
+     "OSPN",
+     "AGIO",
+     "CENX",
+     "TGTX",
+     "SWKS",
+     "LUV",
+     "EW",
+     "PPC",
+     "ADEA",
+     "STRA",
+     "PANW",
+     "ENPH",
+     "PBYI",
+     "BURL",
+     "AVGO",
+     "IDCC",
+     "CALM",
+     "IRM",
+     "UEIC",
+     "PTCT"
+    ]
+   },
+   {
+    "date": "2016-01-01",
+    "names": [
+     "EXEL",
+     "SRPT",
+     "PRTA",
+     "HRTX",
+     "TREE",
+     "DY",
+     "LGIH",
+     "COKE",
+     "LXRX",
+     "AMZN",
+     "NFLX",
+     "FIX",
+     "MXL",
+     "RARE",
+     "WD",
+     "W",
+     "BLDR",
+     "SWBI",
+     "TYL",
+     "HLF"
+    ]
+   },
+   {
+    "date": "2016-12-30",
+    "names": [
+     "CC",
+     "AMD",
+     "EXEL",
+     "CLF",
+     "QUAD",
+     "CDE",
+     "OVV",
+     "AROC",
+     "HL",
+     "SXC",
+     "TTMI",
+     "TROX",
+     "AMRN",
+     "SM",
+     "ET",
+     "TRGP",
+     "AGX",
+     "ARLP",
+     "XNCR",
+     "OKE"
+    ]
+   },
+   {
+    "date": "2017-12-29",
+    "names": [
+     "SGMOQ",
+     "PBYI",
+     "ALNY",
+     "RIOT",
+     "TREE",
+     "RH",
+     "ONC",
+     "SEDG",
+     "NVCR",
+     "XYZ",
+     "QURE",
+     "AXGN",
+     "ALGN",
+     "NKTR",
+     "OLED",
+     "GDOT",
+     "LGIH",
+     "CORT",
+     "NOVT",
+     "TTWO"
+    ]
+   },
+   {
+    "date": "2018-12-28",
+    "names": [
+     "TNDM",
+     "TBCH",
+     "CDNA",
+     "TWLO",
+     "AMRN",
+     "MDB",
+     "TTD",
+     "PACB",
+     "STAA",
+     "DXCM",
+     "EHTH",
+     "ETSY",
+     "ARWR",
+     "TKO",
+     "FNKO",
+     "GKOS",
+     "MED",
+     "FRPT",
+     "VKTX",
+     "CVNA"
+    ]
+   },
+   {
+    "date": "2019-12-27",
+    "names": [
+     "EVER",
+     "KOD",
+     "AXSM",
+     "CDLX",
+     "ENPH",
+     "ARWR",
+     "APPS",
+     "ROKU",
+     "NTRA",
+     "ZYME",
+     "IOVA",
+     "SEDG",
+     "LPG",
+     "SAH",
+     "PODD",
+     "LSCC",
+     "KRYS",
+     "SHOP",
+     "CVNA",
+     "BLDR"
+    ]
+   },
+   {
+    "date": "2020-12-25",
+    "names": [
+     "NVAX",
+     "WKHS",
+     "MCRB",
+     "BLNK",
+     "CLDX",
+     "APPS",
+     "CELH",
+     "AGNT",
+     "GRWG",
+     "PLUG",
+     "PRTS",
+     "VERI",
+     "MVIS",
+     "ZM",
+     "ARCT",
+     "TSLA",
+     "PTON",
+     "ACH",
+     "TWST",
+     "FSLY"
+    ]
+   },
+   {
+    "date": "2021-12-24",
+    "names": [
+     "AMC",
+     "METC",
+     "ASTH",
+     "CAR",
+     "DDS",
+     "BTU",
+     "TGLS",
+     "PRTA",
+     "IDT",
+     "UPST",
+     "CNR",
+     "SD",
+     "ASPN",
+     "GDYN",
+     "HAPN",
+     "CHRD",
+     "SKIN",
+     "AR",
+     "SM",
+     "HRI"
+    ]
+   },
+   {
+    "date": "2022-12-23",
+    "names": [
+     "TH",
+     "TMDX",
+     "INSW",
+     "RYTM",
+     "CNR",
+     "IMCR",
+     "TPL",
+     "PBF",
+     "ENPH",
+     "HDSN",
+     "CELH",
+     "MOD",
+     "FSLR",
+     "HRB",
+     "DGII",
+     "CVI",
+     "PLRX",
+     "SMCI",
+     "AXSM",
+     "ARLP"
+    ]
+   },
+   {
+    "date": "2023-12-22",
+    "names": [
+     "AAOI",
+     "OLMA",
+     "MLTX",
+     "APP",
+     "VRT",
+     "SMCI",
+     "BBIO",
+     "IONQ",
+     "ANF",
+     "SYM",
+     "SKYW",
+     "IRON",
+     "PLTR",
+     "XPO",
+     "ACHR",
+     "MOD",
+     "NVDA",
+     "AMRX",
+     "POWL",
+     "CLS"
+    ]
+   },
+   {
+    "date": "2024-12-20",
+    "names": [
+     "WGS",
+     "ASTS",
+     "SEZL",
+     "SMR",
+     "HROW",
+     "LUMN",
+     "EBS",
+     "WLFC",
+     "APP",
+     "ADMA",
+     "CVNA",
+     "RDW",
+     "WULF",
+     "GPGI",
+     "FTAI",
+     "AGX",
+     "TLN",
+     "RKLB",
+     "CRS",
+     "CAVA"
+    ]
+   },
+   {
+    "date": "2025-12-19",
+    "names": [
+     "IREN",
+     "NKTR",
+     "BETR",
+     "BE",
+     "AMLX",
+     "VSAT",
+     "TDUP",
+     "LEU",
+     "LASR",
+     "TNGX",
+     "AXTI",
+     "UUUU",
+     "APLD",
+     "WDC",
+     "MP",
+     "CIFR",
+     "WLDN",
+     "NG",
+     "HOOD",
+     "STX"
+    ]
+   }
+  ],
+  "universe": []
+ }
+}

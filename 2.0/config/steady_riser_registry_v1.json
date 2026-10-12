@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "experiment": "steady_riser_v1",
+  "registered_at_utc": "2026-10-12T00:00:00Z",
+  "registered_before_any_result_existed": true,
+  "owner_question": "Stocks like NVIDIA rose steadily for years. Can we find stocks that are 'constantly on the rise' with math, buy them, and hold with little turnover?",
+
+  "what_is_already_known": "Step 189: 12-1 momentum, 6-month momentum and 52-week-high proximity all had negative 13-week decile spreads on this panel. Step 257: trend consistency closed, 2020-2026 evaluation. Step 303: long horizons tested only on fundamental signals. What has never been tested is the owner's actual design: price persistence judged over a ONE-YEAR hold with ANNUAL rebalancing, which is low turnover by construction.",
+
+  "data": {
+    "prices": "data/clean_full_history_prices_v1/weekly_adjusted_prices_clean.csv.gz (weekly, 2011-01-07 onward, ~2,760 issuers, Yahoo-based; delisted issuers largely missing)",
+    "liquidity": "data/us_daily_volume_v1 daily close x volume"
+  },
+  "universe_per_decision": "close >= $5; 53 complete weekly closes ending at the decision; median daily dollar volume over the prior 63 trading days >= $5M",
+
+  "signals": {
+    "S1_momentum_12_1": "price 4 weeks ago / price 52 weeks ago - 1 (the standard skip-a-month momentum)",
+    "S2_steady_riser": "OLS of ln(price) on time over the last 52 weekly closes; score = annualised slope x R-squared. High only when a stock rose AND rose smoothly -- the literal 'constantly on the rise'.",
+    "trials_declared_here": 2,
+    "declared_sign": "POSITIVE for both. A negative result is reported, never inverted."
+  },
+
+  "screen": {
+    "decisions": "every 13 weeks from the first week with a full year of history",
+    "target": "52-week forward return from the first weekly close after the decision",
+    "measures": "rank IC, top-minus-bottom decile spread, decile monotonicity; block bootstrap with block 4 (52-week horizon / 13-week spacing); independent windows = decisions / 4",
+    "bonferroni_bar": 0.025
+  },
+
+  "book": {
+    "rule": "top 20 by the signal, equal weight, bought at the first close after the decision and held 52 weeks untouched; one rebalance a year. Names that stop trading go to cash.",
+    "controls": ["SPY", "equal weight of the same liquid universe, same annual rebalance", "200 random 20-name books from the same universe, same dates"],
+    "costs_bps_per_side": [0, 10, 50, 100],
+    "regimes": ["2012-2019", "2020", "2021-2022", "2023-2026", "full"],
+    "robustness": "largest single-name contributor removed; same-risk alpha vs SPY (CAPM) and FF5+momentum alpha",
+    "not_testable": "2008-2009: the panel starts 2011"
+  },
+
+  "pass_requires_all": [
+    "screen: mean IC > 0, p < 0.025, monotonicity > 0.5",
+    "book beats the equal-weight universe AND the random-book 95th percentile at 50 bps",
+    "book beats the universe in at least 3 of 4 regimes",
+    "result survives removing its largest contributor"
+  ],
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

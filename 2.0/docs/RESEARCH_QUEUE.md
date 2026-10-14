@@ -226,6 +226,33 @@ coverage gate before any return was read.
 The standing 2026-09-07 decision (clocks before new search) still applies.
 **Do not re-run either on BRAIN.**
 
+### A18. Theme diffusion: from a booming theme to the firms that benefit second *(new 2026-10-14, owner)*
+**The idea:** every boom has a cause (AI -> GPUs -> data centres -> power). Detect a rising theme
+from text, map it to the firms exposed to it, and hold the *second-order* beneficiaries the market
+has not repriced yet. Steps 347-352 showed price momentum alone is a regime bet; this adds an
+information channel that is not price.
+**Literature (two verified 2026-10-14, the rest from general knowledge):**
+- Lee, Sun, Wang & Zhang (2019, JFE), "Technological links and predictable returns" -- returns of
+  patent-linked peers predict a firm's returns, ~117 bps/month alpha 1963-2012, stronger for
+  low-attention firms. **Verified.** The cleanest published form of "theme -> linked firms", and it
+  runs on B13's free patent data.
+- He, Lv, Manela & Wu (2025), "Chronologically consistent LLMs" (ChronoBERT/ChronoGPT): models
+  trained only on text available at each date, built to remove look-ahead. **Verified.** Any LLM
+  "what does AI need?" reasoning must use these or be tested forward only -- a modern LLM knows
+  NVIDIA won.
+- Hassan, Hollander, van Lent & Tahoun (2019, QJE): firm exposure to a topic = share of its earnings
+  call about that topic. **Verified as a measure;** the method transfers to any theme, and the
+  33k-call transcript source of Step 350 is free.
+- From memory, unverified: Bybee, Kelly, Manela & Xiu (WSJ news topics and the cycle); Li, Mai,
+  Shen & Yan (word2vec dictionary expansion); Hoberg & Phillips text-based industries;
+  Eisfeldt, Schubert & Zhang (generative-AI exposure and firm value).
+**Biggest risks:** (1) choosing which themes to test is hindsight -- themes must be detected
+automatically from point-in-time text; (2) LLM look-ahead; (3) Steps 348-351: news-level signals
+here showed nothing, so the bet is on *diffusion to linked firms*, not on the news itself.
+**First step:** replicate Lee et al. tech-links on B13 patents (assignee-to-CIK mapping is the blocker).
+**Data:** free (PatentsView bulk, transcripts, GDELT themes, EDGAR 10-K text).
+**Brief for a new session:** `docs/THEME_DIFFUSION_RESEARCH_PROMPT.md`.
+
 ### A8. EU short-selling registers *(new 2026-09-10, owner-proposed)*
 **Status:** never attempted. Free, daily, from ESMA and national regulators.
 **Why it is genuinely better than what closed in Step 263:** FINRA short interest is an

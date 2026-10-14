@@ -429,6 +429,7 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 
 | item | verdict | where |
 |---|---|---|
+| **Ride the boom, step aside when it breaks (new 2026-10-14, owner)** | **Switching makes it worse.** Riser book vs SPY switched by trailing-year relative strength or the book's own 40-week trend, plus a 50% SPY core version: all lose to a fixed 50/50 mix of the same two, with -57% drawdowns deeper than either part. The break is only visible after the fall (cf. Steps 203, 266). | Step 352 |
 | **GDELT news coverage and tone (was B14)** | **Gate fails; exploratory nothing.** 706 Wednesday GKG samples 2013-2026; 129 liquid issuers mentioned in half the weeks vs 150 declared. Exploratory: attention IC +0.008 (p 0.32), tone shift -0.013 (p 0.055, wrong sign). Daily sampling (7x) not justified. | Step 351 |
 | **Earnings-call tone (Step 254 never return-tested)** | **Nothing.** 33,235 S&P 500 calls 2005-2025, LM tone and tone change vs own last call, 4w/13w: all |IC| < 0.009, all p > 0.36. | Step 350 |
 | **Wikipedia attention returns (Step 288 never return-tested)** | **Nothing.** 357 mapped issuers 2015-2026: IC -0.003 / +0.006, spreads negative. | Step 348 |

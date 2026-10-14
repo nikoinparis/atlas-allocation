@@ -17227,3 +17227,38 @@ project can measure:
 What does exist is real: steady-riser books earn more than the market in speculative growth
 regimes (2020, 2023-2026) and less in calm ones (2012-2019). That is an exposure, and it was
 not identifiable in advance from 2012-2019 data.
+
+## Step 352 — 2026-10-14 — Riding the boom and stepping aside when it breaks: the switching makes it worse
+
+**What this was for.** After Step 349 showed the steady-riser book wins in booms and lags in calm
+markets, the owner asked whether we could hold it while the boom is on, step aside to the index
+when the boom breaks, and keep part of the money spread out. Pre-registered in
+`config/ride_the_boom_registry_v1.json`, three rules, script `scripts/run_ride_the_boom_v1.py`.
+
+- **T1 relative strength:** every 4 weeks, hold the book if its trailing-year return beats SPY's,
+  otherwise SPY.
+- **T2 own trend:** hold the book while it is above its own 40-week average.
+- **T3:** 50% SPY plus 50% T2.
+- Switches cost 50 bps per side.
+
+| 2013-2026, weekly, net | 2013-19 | 2020-26 | full CAGR | full Sharpe | full max DD |
+|---|---|---|---|---|---|
+| SPY | 14.2%, S 1.17 | 15.4%, S 0.82 | 14.8% | 0.94 | −31.8% |
+| riser book, always held | 9.1%, S 0.36 | 47.3%, S 1.07 | 26.5% | 0.74 | −50.1% |
+| 50/50 SPY + riser, always (control) | 12.1%, S 0.69 | 32.3%, S 1.11 | 21.7% | 0.90 | −37.3% |
+| T1 relative strength switch | 4.7%, S 0.26 | 36.2%, S 0.88 | 19.2% | 0.60 | **−57.1%** |
+| T2 own-trend switch | 1.8%, S 0.09 | 31.8%, S 0.80 | 15.7% | 0.49 | **−57.5%** |
+| T3 50% SPY + 50% T2 | 8.1%, S 0.53 | 24.8%, S 0.91 | 16.1% | 0.73 | −37.3% |
+
+**All three fail, and the switching is the reason.** Every switching rule did worse than simply
+holding the same two things in a fixed 50/50 mix, on return, Sharpe and drawdown alike. The
+switchers' worst drawdowns (−57%) are deeper than *either* component's alone. A trend or
+relative-strength signal only confirms a boom after it is well under way and only confirms the
+break after the fall, so the rule buys late and sells late, 2.0-2.6 times a year. This is
+Step 266's finding in trading form: the transition cannot be called in time.
+
+**What survives, recorded rather than adopted.** The un-switched 50/50 mix nearly matches SPY's
+Sharpe (0.90 vs 0.94) at a higher return (21.7% vs 14.8%) and a deeper drawdown (−37% vs −32%).
+That is a statement about adding a high-beta growth sleeve to the index, chosen after seeing
+Step 349's holdout, so it is not evidence. It is the honest shape of the owner's idea: more
+return for more risk, not more return for the same risk.

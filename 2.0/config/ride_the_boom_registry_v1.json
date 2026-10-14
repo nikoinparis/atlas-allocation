@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "experiment": "ride_the_boom_v1",
+  "registered_at_utc": "2026-10-14T00:00:00Z",
+  "registered_before_any_result_existed": true,
+  "owner_question": "Step 349 showed the steady-riser book wins in booms (2020, 2023-2026) and lags in calm markets. Can we hold it while its boom is on, step aside to the index when the boom breaks, and keep part of the money spread out so drawdowns stay limited?",
+  "related_prior_work": "Step 203 rejected switching among saved strategies by recent performance; Step 266 found a market-state classifier cannot call regime transitions. Neither tested switching between ONE boom-sensitive book and the market by that book's own trend.",
+  "inputs": {
+    "riser_book": "evidence/rising_stocks_program_v1/all_paths.csv.gz column 'A_steady_riser|52w|none' -- top 20 steady risers, annual rebalance, 50 bps, rules fixed in Step 349",
+    "index": "SPY weekly total return (Yahoo adjusted close)"
+  },
+  "rules": {
+    "T1_relative_strength": "every 4 weeks: hold the riser book if its trailing 52-week return beats SPY's, otherwise SPY",
+    "T2_own_trend": "every 4 weeks: hold the riser book while its own value is above its 40-week moving average ('the boom is still on'), otherwise SPY",
+    "T3_core_satellite": "50% SPY always + 50% run by T2 -- the spread-the-risk version",
+    "switch_cost": "50 bps per side on the notional switched",
+    "trials_declared_here": 3
+  },
+  "evaluation": {
+    "window": "2013-01 to 2026-10 (the first year is spent warming up the 52-week lookbacks)",
+    "halves": ["2013-2019", "2020-2026"],
+    "pass_requires_all": [
+      "Sharpe >= SPY's in BOTH halves",
+      "annualised return >= SPY's over the full window",
+      "maximum drawdown no worse than -35%",
+      "beats the always-50/50 SPY + riser mix on Sharpe (otherwise the switching adds nothing over simply spreading)"
+    ]
+  },
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

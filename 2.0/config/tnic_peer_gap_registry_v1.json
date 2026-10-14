@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "experiment": "tnic_peer_gap_screen_v1",
+  "queue_item": "A19",
+  "design_doc": "docs/THEME_DIFFUSION_DESIGN_V1.md, section 3d",
+  "registered_at_utc": "2026-10-14T00:00:00Z",
+  "registered_before_any_result_existed": true,
+  "registered_before_tnic_or_link_data_was_downloaded": true,
+  "owner_approval": "2026-10-14, in chat: approved, long-only, run A19 on a new branch",
+
+  "why_this_exists": "A18 (theme diffusion) rests on one mechanism: news reaches the obvious firms first and their less obvious, economically linked peers later. Theme-level timing cannot be tested on history (10-30 correlated themes, winners known). The firm-level form can: does the recent return of a firm's product-market peers, as measured from 10-K text, predict its own next return once its own momentum and its industry's return are removed? Hoberg & Phillips (JFQA 2018) report this; OSAP on disk shows every related linked-firm spillover it carries below t 1.5 since 2013. Step 353 put the prior at roughly one in ten. This is the cheapest test that can kill the idea.",
+
+  "the_order_of_work_is_fixed_by_CLAUDE_md_section_2": "Skill screen first. A book is built ONLY if the screen passes every criterion below. If no trial passes, no book is built, A19 closes, and A18's diffusion arm closes with it.",
+
+  "data": {
+    "network": "Hoberg-Phillips Data Library TNIC-3 (tnic3_data.zip), columns year, gvkey1, gvkey2, score; year = first four digits of the fiscal-year datadate; the file is NOT lagged (its readme).",
+    "link_table": "farr R package (Ian Gow, MIT), dataset gvkey_ciks: gvkey, iid, cik, first_date, last_date. A gvkey maps to the CIK whose link interval contains the date the TNIC year becomes usable; if none contains it, the CIK with the nearest interval; ties and gvkeys mapping to several CIKs at once are dropped.",
+    "prices": "data/broad_full_history_price_vintages/20261010T135148Z-broad-full-history-v1, Yahoo daily adjusted closes, one series per CIK (longest history), 2011-01-03 to 2026-10-09",
+    "liquidity": "data/us_daily_volume_v1: 63-day rolling median of close x volume",
+    "industry": "as-filed SIC from SEC FSDS sub.txt 2012Q1-2022Q4, latest filing accepted before the decision, carried forward after 2022Q4 (as Step 343). Before the first FSDS filing a firm has no SIC and is excluded."
+  },
+
+  "point_in_time_rule": "TNIC year Y is used ONLY for decisions from July 1 of Y+1 to June 30 of Y+2 (the Fama-French / Cohen-Frazzini six-month convention). A fiscal year ending as late as December 31 of Y has its 10-K filed by the end of March Y+1 for all but delinquent filers, so July Y+1 is conservative. No filing-date data is needed and none is used.",
+
+  "decisions_and_windows": {
+    "cadence": "last trading day of each month",
+    "design_window": "2012-01 to 2018-12",
+    "holdout_window": "2019-01 to 2025-06. Extended from the design doc's '2019-2023' before any data was seen: with the six-month lag, TNIC year 2023 is usable through June 2025, and no decision after that is scored.",
+    "regimes_reported": "2012-2019, 2020, 2021-2022, 2023-2025H1. 2008-2009 is not testable: the daily panel starts in 2011.",
+    "skip_one_day": "signals use closes up to t; the forward window starts at close t+1 (Step 250's bid-ask bounce excluded)"
+  },
+
+  "universe_rule_per_decision": "CIK has a close >= $5 on the decision day, 63-day median dollar volume >= $5M (Step 347's rule), 253 days of price history ending on the decision, a known as-of SIC, and at least one TNIC peer that is itself in the price panel with a complete 1-month return. Peers are NOT required to pass the price or liquidity filters: a peer's return is information whatever its size.",
+
+  "signals": {
+    "peer_return_definition": "similarity-weighted mean of peers' returns, weights = TNIC score, over peers with a complete return over the window",
+    "T1_all_peers_1m": "all TNIC-3 peers, peer return over the 21 trading days ending at t; horizon 1 month (21 trading days)",
+    "T2_non_sic3_peers_1m": "only peers whose as-of SIC3 differs from the focal firm's (Hoberg & Phillips' 'less visible' peers); 21-day peer return; horizon 1 month. Firms with no non-SIC3 peer are excluded from T2.",
+    "T3_gap_6m": "all-peer return over the 126 trading days ending at t MINUS the firm's own return over the same 126 days; horizon 1 month",
+    "T4_non_sic3_peers_3m": "T2's signal, horizon 3 months (63 trading days)",
+    "residualisation_declared": "each decision, the raw signal is replaced by the residual of a cross-sectional OLS of the signal on (own 21-day return, own 12-1 momentum = return from t-252 to t-21, leave-self-out equal-weight SIC2 21-day return). Only the residual is ranked. The raw signal is reported as a diagnostic, never as the verdict.",
+    "declared_sign": "POSITIVE for all four. A negative result is a refutation and is never inverted."
+  },
+
+  "target": "raw forward return from close t+1 over the horizon; ranks are cross-sectional so the market is removed. SIC2-relative forward return reported as a diagnostic only.",
+
+  "measurement": {
+    "per_decision": "Spearman rank IC; decile mean forward returns (ten deciles on the residual score)",
+    "ladder": "the decision-average decile ladder, read with scripts/decile_shape.py: shape(), clears() on the full ladder AND the middle eight, and placebo_test() (Step 339 sign-flip null)",
+    "density_guard": "the residual score is continuous; report the share of exact-zero raw signals and stop as unreadable if above 50%",
+    "significance": "block bootstrap on the IC series, 4000 draws, block 6 decisions for 1-month horizons and 9 for the 3-month horizon (overlap)",
+    "bonferroni_bar": 0.0125,
+    "trials_declared_here": 4,
+    "cumulative_search_note": "These four sit on top of 352 steps of search on the same price panel, including Step 320's BRAIN product-overlap spillover. Any pass is the survivor of a far larger search and will be described that way.",
+    "placebo_network": "200 draws. Each draw keeps every firm's peer count and weights and replaces peer identities by a random permutation of the price-panel issuers (graph structure kept, who-is-linked-to-whom destroyed); the placebo signal is residualised identically. The real design-window mean IC must exceed the placebo 95th percentile.",
+    "comparator_not_a_trial": "equal-weight leave-self-out SIC3 peer 21-day return, residualised the same way, horizon 1 month: shows whether text peers add anything over industry codes. Reported, never used for the verdict.",
+    "leave_out": "design-window mean IC excluding each SIC2 group in turn (minimum reported) and excluding the 10 names contributing most to IC"
+  },
+
+  "screen_pass_requires_all_for_one_trial": [
+    "design window 2012-2018: mean IC > 0 with bootstrap p < 0.0125",
+    "design window: decile_shape.clears(full, middle_8) at bar 0.5, positive direction",
+    "design window: decile_shape.clears_calibrated(placebo_test(ladders), alpha=0.0125)",
+    "design window: real mean IC above the shuffled-network placebo 95th percentile",
+    "design window: minimum leave-one-SIC2-out IC > 0 and IC without top-10 names > 0",
+    "holdout 2019-2025H1: mean IC > 0 AND decile_shape.clears(full, middle_8) positive"
+  ],
+  "declared_fail_shapes": "Step 320's pv13 pattern -- strong extremes, flat or negative middle eight -- is a FAIL, declared before any data was seen. So is a design-window pass that does not repeat in the holdout.",
+
+  "book_only_if_screen_passes": {
+    "direction": "long-only (owner, 2026-10-14). No short leg, no borrowed cash.",
+    "rule": "top 10% of the liquid universe by the passing trial's residual score; enter in the top 10%, exit below the top 30%; inverse 63-day volatility weights capped at 2% per name; 20% cap per SIC2; monthly",
+    "costs": "0, 10, 50, 100 bps per side on traded notional",
+    "compare_against": "SPY; beta-matched SPY/T-bill blend; equal-weight liquid universe; Step 347 steady-riser book (correlation); FF5+momentum alpha with Newey-West t",
+    "report": "CAGR, Sharpe, volatility, max drawdown, beta, turnover, per regime, leave-top-5-names-out"
+  },
+
+  "known_weaknesses_declared_up_front": [
+    "Survivorship: 460 of 3,235 requested symbols returned nothing from Yahoo, mostly delisted issuers (Step 343). Missing focal firms bias the cross-section; missing peers thin the peer average.",
+    "The Hoberg-Phillips library is re-released periodically; historical years may have been recomputed with later methods. This cannot be verified from outside and is a possible mild look-ahead in the network itself.",
+    "farr's gvkey_ciks provenance is not documented on its page; link coverage is measured and reported, and the run stops as inconclusive if under 70% of universe issuers receive a peer set in any design-window year.",
+    "SIC carried forward after 2022Q4; firms that began filing after 2022Q4 have no SIC and are excluded.",
+    "Monthly cadence gives ~84 design and ~78 holdout decisions; Step 300 showed ~38 decisions suffice to detect IC 0.03 at t=3 on a wide universe, so this is powered for an IC of that size, not for smaller."
+  ],
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

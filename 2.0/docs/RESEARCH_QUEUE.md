@@ -252,6 +252,29 @@ here showed nothing, so the bet is on *diffusion to linked firms*, not on the ne
 **First step:** replicate Lee et al. tech-links on B13 patents (assignee-to-CIK mapping is the blocker).
 **Data:** free (PatentsView bulk, transcripts, GDELT themes, EDGAR 10-K text).
 **Brief for a new session:** `docs/THEME_DIFFUSION_RESEARCH_PROMPT.md`.
+**Refined 2026-10-14 (Step 353), design awaiting owner approval:** `docs/THEME_DIFFUSION_DESIGN_V1.md`.
+First step changed to A19 (TNIC peer gap): cheaper than patents, covers every filer, and gvkey->CIK is
+solvable through `farr`. Prior lowered: OSAP on disk shows every published linked-firm spillover it
+carries (customer, supplier/customer industry, conglomerate, big-to-small) at t < 1.5 since 2013, and
+thematic ETFs lose ~30% risk-adjusted over five years (Ben-David et al. 2023), so buying what text is
+excited about is the default failure. Theme detection is phase 2, only if A19 or A20 passes; the LLM map
+is forward-only (merge with C4).
+
+### A19. Text-peer gap: firms whose product-similar peers moved and they did not *(new 2026-10-14, Step 353)*
+Hoberg-Phillips TNIC-3 (10-K product similarity, free, 1989-2023, gvkey-keyed, **not lagged**: must be
+dated by the 10-K filing). Score = similarity-weighted past return of TNIC peers, also non-SIC peers only
+(Hoberg & Phillips JFQA 2018 say the less visible peers carry it) and peer-minus-own gap. Four trials,
+design 2012-2018 / holdout 2019-2023, degree-preserving shuffled-network placebo, residualised on own
+momentum and SIC2 return. Full pre-registration in the design doc section 3d. **Prior low (~1 in 10)**:
+OSAP decay, and Step 320's pv13 was extremes-only. **Blocker:** gvkey->CIK via `farr::gvkey_ciks`;
+coverage gate >= 70% of liquid issuers per year. **Data:** free. 1-2 sessions. Awaiting owner sign-off.
+
+### A20. Peers' fundamental news, not their prices *(new 2026-10-14, Step 353)*
+Lee et al. report the same lead-lag in earnings surprises and revisions. Score a firm on its TNIC peers'
+recent SUE / revenue acceleration (SUE panel and Company Facts on disk, S10 re-acquisition needed).
+Information arriving through demand, not price, may be less arbitraged than peer returns. Caution, from
+memory: Thomas & Zhang (JAR 2008) find late announcers *overreact* to early announcers, so declare the
+sign carefully. **Blocked on:** A19's network and mapping. Free. 1-2 sessions after A19.
 
 ### A8. EU short-selling registers *(new 2026-09-10, owner-proposed)*
 **Status:** never attempted. Free, daily, from ESMA and national regulators.
@@ -375,7 +398,22 @@ Every US patent grant with disambiguated assignee and grant date, CC-BY 4.0, fre
 USPTO Open Data Portal (PatentsView API paused 2026-03-20; bulk tables current to 2025-12-31). Grant
 dates are public on the day, so point-in-time is clean. Only ~1,000 US-listed firms patent in a year:
 screen within patenters or the deciles become a presence test (Step 298). **Blocker:** assignee-to-CIK
-mapping -- the same problem that sank Step 345's coverage.
+mapping -- the same problem that sank Step 345's coverage. **Route found 2026-10-14 (Step 353):**
+DISCERN 2.0 (Zenodo, patents->Compustat gvkey, 1980-2021) plus `farr::gvkey_ciks` avoids fuzzy name
+matching; its matching uses later ownership history, a mild look-ahead to declare.
+
+### B15. Thematic ETF launches as a "theme already priced" marker *(new 2026-10-14, Step 353)*
+Ben-David, Franzoni, Kim & Moussawi (RFS 2023): specialised ETFs launch into hyped themes and lose ~30%
+risk-adjusted over five years because their holdings were overvalued at launch. So a theme ETF launch,
+or a surge in its inflows, marks a theme as priced: a candidate *exit* or *avoid* rule that is not a
+price-based safety net (those failed in Steps 349, 352). Holdings from SEC N-PORT, free, 2019+; never
+used here. Few launches per year, so it is a filter on A18, not a standalone signal. **Blocked on:** A19
+passing; a cusip/ticker->CIK map for N-PORT holdings. 2 sessions.
+
+### B16. `farr` gvkey->CIK link table *(new 2026-10-14, Step 353, infrastructure)*
+Ian Gow's `farr` R package (MIT) ships `gvkey_ciks`: 48,517 dated gvkey/CIK links. This is the missing
+key that makes gvkey-only academic datasets usable here: TNIC, DISCERN, and others published by gvkey.
+Readable from Python via the CRAN tarball's `.rda` with `pyreadr`. Worth acquiring whatever A19 finds.
 
 ## C tier -- parked, recorded so it is not re-proposed
 
@@ -404,6 +442,8 @@ decile ladder as weeks accumulate. Free data (filings, prices); **paid in API sp
 makes ~31 calls per name per decision, so 100 names weekly is ~3,100 calls a week). **Blocked on:**
 the 2026-09-07 standing decision (clocks before new search), and on sample size — Step 296's limit
 applies, a real IC of 0.03 needs years of weekly decisions to show. Needs owner sign-off on spend.
+**2026-10-14 (Step 353):** A18's "what does this theme need?" LLM map is the same forward-only clock;
+run it here as one frozen pipeline rather than a second LLM clock.
 
 ---
 

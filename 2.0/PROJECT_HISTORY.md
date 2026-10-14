@@ -17262,3 +17262,47 @@ Sharpe (0.90 vs 0.94) at a higher return (21.7% vs 14.8%) and a deeper drawdown 
 That is a statement about adding a high-beta growth sleeve to the index, chosen after seeing
 Step 349's holdout, so it is not evidence. It is the honest shape of the owner's idea: more
 return for more risk, not more return for the same risk.
+
+## Step 353 — 2026-10-14 — Theme diffusion (A18) refined into a design; nothing built or run
+
+**What this was for.** The owner asked for the A18 idea to be checked and designed, not tested:
+spot a rising theme from the world, find the second-order firms the market has not repriced, and
+hold a diversified basket. The output is `docs/THEME_DIFFUSION_DESIGN_V1.md`, awaiting approval.
+No data was acquired, no strategy was backtested, and no trial was added to the cumulative count.
+
+**Three findings change the plan.**
+
+- **The linked-firm family has faded since it was published, on data already on disk.** A read of
+  the OSAP long-short series (`data/osap_vintages/20260905T082446Z-osap-oct2025/`, annualised mean
+  of monthly returns) is a check of the literature, not a test of anything built here:
+
+  | signal | 1990-2004 | 2005-2012 | 2013-2019 | 2020-2024 |
+  |---|---|---|---|---|
+  | CustomerMomentum | +14.8%, t 2.4 | +4.6%, t 1.1 | +0.6%, t 0.2 | +5.9%, t 0.8 |
+  | iomom_cust | +7.7%, t 2.0 | +4.1%, t 1.4 | +1.9%, t 0.5 | −1.9%, t −0.3 |
+  | iomom_supp | +10.0%, t 3.2 | +2.1%, t 0.8 | +0.8%, t 0.2 | −0.9%, t −0.1 |
+  | retConglomerate | +15.1%, t 3.8 | +10.2%, t 2.3 | +5.3%, t 1.3 | +1.3%, t 0.2 |
+  | IndRetBig | +32.2%, t 5.8 | +12.7%, t 2.9 | +5.6%, t 1.4 | +2.7%, t 0.5 |
+
+  Not one exceeds t 1.5 after 2012. Lee et al.'s technology-link signal is not in OSAP, and no
+  out-of-sample replication of it was found. With Step 320's pv13 reading (extremes only) and
+  Step 205's spanning result, the prior that a free linked-firm signal passes here is low.
+- **Buying what the text is excited about is the default failure.** Ben-David, Franzoni, Kim &
+  Moussawi (RFS 2023): thematic ETFs launch into hyped themes and lose about 30% risk-adjusted
+  over five years. Greenwood, Shleifer & You (JFE 2019): industries that run up sharply have a
+  far higher crash probability. Both match Step 347.
+- **Theme-level timing cannot be tested on history.** There are perhaps 10-30 themes in twenty
+  years, they are correlated, and the winners are known. The design therefore turns the idea into
+  a firm-level, monthly signal: a firm whose product-similar peers moved and it did not. Theme
+  detection becomes a phase-2 filter, and the LLM step is forward-only (merged into C4).
+
+**Two free resources found that were never used here.** The Hoberg-Phillips TNIC product-similarity
+network (1989-2023, keyed on gvkey and not lagged, so it must be dated by the 10-K filing). And the
+`farr` package's `gvkey_ciks` table, which maps gvkey to CIK for the first time here.
+
+**Queue:** A18 updated; A19 (TNIC peer gap, recommended first step, four trials pre-specified in
+the design), A20 (peers' fundamental news), B15 (theme ETF launches as a "theme already priced"
+marker), and B16 (`farr` link table) added; B13 given a DISCERN route; C4 now absorbs A18's LLM
+map. The 2026-09-07 standing decision still applies, so A19 starts only on the owner's word.
+
+**Sources read this session versus recalled** are listed at the end of the design document.

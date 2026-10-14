@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "experiment": "commodity_lead_lag_v1",
+  "queue_item": "A22",
+  "registered_at_utc": "2026-10-14T00:00:00Z",
+  "registered_before_any_result_existed": true,
+  "owner_approval": "2026-10-14, in chat: 'yes run A22, then A21, then A20'",
+
+  "why_this_exists": "The owner's simplest form of the theme idea: 'if AI is booming, GPU production rises, then metal rises' -- a move in a raw material should reach the stocks exposed to it. If investors absorb commodity news slowly, last month's commodity move predicts next month's return of exposed stocks. Driesprong, Jacobsen & Maat (JFE 2008, abstract read 2026-10-14) report oil price changes predict lower stock market returns worldwide, which they attribute to investor underreaction. Steps 306 and 354 found linked information is priced within the month for stocks; this tests whether commodities are different.",
+
+  "data": {
+    "futures": "data/futures_roll_repaired_v1/weekly_returns_repaired.csv.gz, Friday-to-Friday returns 2005-01-07 to 2026-09-04, flagged roll weeks set to missing (Step 249). Proxy correlations in its manifest: CL 0.93, GC 0.98, SI 0.98, ZC 0.63 (corn is the weakest series).",
+    "stocks": "daily panel as A19, resampled to Friday closes; liquidity and SIC as A19",
+    "market": "ES=F weekly return (an excess-of-cash return by construction)"
+  },
+
+  "cadence": "decisions every 4 weeks on the futures' Friday grid; signal = compounded return over the 4 weeks ending at the decision Friday; target = compounded return over the next 4 weeks. Non-overlapping.",
+
+  "trials": {
+    "T1_producer_groups": {
+      "map_declared_before_looking": {
+        "energy (mean of CL, NG)": "SIC 1311, 1381, 1382, 1389",
+        "precious metals (mean of GC, SI)": "SIC 1040-1049",
+        "copper and base metals (HG)": "SIC 1000-1039, 1090-1099, 3330-3339",
+        "grains (mean of ZC, ZS, ZW)": "SIC 0100-0199, 2870-2879, 3523"
+      },
+      "measure": "for each group, equal-weight 4-week return of its liquid members minus the equal-weight liquid universe; pooled regression of next-period group excess return on the group's commodity return over the last period, one slope across all four groups",
+      "significance": "block bootstrap over decision dates (block 6, groups kept together), 4000 draws",
+      "window": "design 2012-2018, holdout 2019-2026",
+      "declared_sign": "POSITIVE: a commodity rise is followed by its producers outperforming",
+      "pass": "design slope > 0 with p < 0.0167 AND at least 3 of 4 groups' own slopes positive in design AND holdout pooled slope > 0"
+    },
+    "T2_estimated_exposure_cross_section": {
+      "exposure": "for each liquid stock, the commodity beta from a 104-week regression of its weekly return on ES=F and ONE commodity (separately for each of CL, NG, HG, GC, SI, ZC, ZS, ZW), using only weeks up to the decision. Data-driven: no hand map.",
+      "score": "sum over the 8 commodities of beta x the commodity's last-4-week return, residualised each decision on own 4-week return, own 12-1 momentum and the SIC2 4-week return (A19's controls)",
+      "universe": "A19's: close >= $5, 63-day median dollar volume >= $5M, known SIC, 104 complete weekly returns",
+      "window": "design 2013-2018 (first 104 weeks of 2011-2012 are estimation only), holdout 2019-2026",
+      "measurement": "A19's screen: rank IC, ten-decile ladder via decile_shape (clears AND clears_calibrated at alpha 0.0167), block bootstrap block 6, leave-one-SIC2-out and leave-top-10-names-out",
+      "placebo": "200 draws in which the 8 commodities' last-4-week returns are replaced by their returns from a randomly chosen earlier 4-week period (exposures kept, timing destroyed); real design IC must exceed the placebo 95th percentile",
+      "declared_sign": "POSITIVE",
+      "pass": "every criterion of the A19 screen, with bar 0.0167"
+    },
+    "T3_oil_predicts_market_replication": {
+      "measure": "regression of next-4-week ES=F return on last-4-week CL=F return",
+      "significance": "Newey-West t with 3 lags and block bootstrap (block 6), both reported; verdict on the bootstrap",
+      "window": "design 2005-2015, holdout 2016-2026",
+      "declared_sign": "NEGATIVE (Driesprong et al.)",
+      "pass": "design slope < 0 with p < 0.0167 AND holdout slope < 0. A market-timing signal on one series is a single bet; even a pass would be reported as a replication, not a strategy."
+    }
+  },
+  "bonferroni_bar": 0.0167,
+  "trials_declared_here": 3,
+  "cumulative_search_note": "These three sit on top of 354 steps; the futures panel was also used in Steps 248-249 (futures trend IC, closed).",
+  "book_only_if_a_cross_sectional_trial_passes": "long-only, as A19's registry; T3 cannot produce a long-only stock book",
+  "known_weaknesses_declared_up_front": [
+    "Front-month futures with rolls repaired by outlier removal, not true roll adjustment (P1 in the paid queue). Corn is weakest.",
+    "The SIC map is from general knowledge, written before any stock return was computed; group sizes are small for copper and grains.",
+    "Survivorship in the stock panel as A19.",
+    "Weekly Friday grid: Driesprong et al. found a lag of a few days strengthens the effect; a 4-week block with no skip is the plain version."
+  ],
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

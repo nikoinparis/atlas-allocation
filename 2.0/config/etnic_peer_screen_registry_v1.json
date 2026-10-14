@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "experiment": "etnic_peer_screen_v1",
+  "queue_item": "A19b (new 2026-10-14, Step 356)",
+  "registered_at_utc": "2026-10-14T00:00:00Z",
+  "registered_before_any_result_existed": true,
+  "registered_before_etnic_was_downloaded": true,
+  "owner_request": "2026-10-14, in chat: 'are we sure everything is correct and not shallowly implementing ideas. can we not use AI/ML stuff to make the connections'",
+
+  "why_this_exists": "A19's TNIC links are word-count cosine similarities. The owner asked whether machine learning would make better connections. Hoberg & Phillips (JF 2025) publish ETNIC: the same network built from a 300-dimension doc2vec embedding of each 10-K Item 1, which they report explains peer fundamentals 20-25% better than TNIC. Its readme (read before registering) states a separate doc2vec model is trained each year on that year's filings only, so it has no look-ahead. If A19 failed because word-count links were too shallow, ETNIC should show it.",
+
+  "data": "ETNIC-3 (Etnic3_data.zip, Hoberg-Phillips Data Library, preliminary release; 1989-2023). Same mapping, timing, prices, liquidity and SIC as A19.",
+  "trials": {
+    "T1_all_embedding_peers_1m": "A19's T1 on ETNIC-3: all peers, score-weighted, 21-day return, 1-month horizon",
+    "T2_non_sic3_embedding_peers_1m": "A19's T2 on ETNIC-3: peers outside the firm's SIC3 only",
+    "residualisation": "A19's",
+    "declared_sign": "POSITIVE"
+  },
+  "windows": "A19's: design 2012-2018, holdout 2019-2025H1",
+  "measurement_and_pass_rule": "A19's word for word, via scripts/run_network_peer_screen_v1.py; positive control (same-month co-movement vs random partners) reported first",
+  "bonferroni_bar": 0.025,
+  "trials_declared_here": 2,
+  "cumulative_search_note": "These two re-test A19's T1 and T2 on a different network; they are counted as new trials, on top of A19's four.",
+  "known_weaknesses_declared_up_front": [
+    "Preliminary release; Hoberg-Phillips may adjust boilerplate purging. The download timestamp is recorded.",
+    "ETNIC also covers firms without a CRSP link; only firms in our price panel enter, as with A19."
+  ],
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

@@ -17399,3 +17399,38 @@ in the regime it describes cannot be chosen in advance; Steps 349 and 352 showed
 into it comes late.
 
 **Cumulative search:** three new trials. Nothing created, improved or promoted a strategy.
+
+## Step 356 — 2026-10-14 — Machine-learned links describe co-movement better and predict no better (A19b)
+
+**What this was for.** After Step 354 the owner asked whether A19 had been implemented shallowly,
+and whether AI/ML could make better connections between companies. Hoberg & Phillips (JF 2025)
+publish exactly that: ETNIC, the TNIC network rebuilt from a 300-dimension doc2vec embedding of
+each 10-K Item 1. Its readme, read before registering, says a separate model is trained each year
+on that year's filings only, so it has no look-ahead. Pre-registered in
+`config/etnic_peer_screen_registry_v1.json` (`f17c0a9`) before download. A19's T1 and T2 were
+re-run on it unchanged through the new general script `scripts/run_network_peer_screen_v1.py`.
+Evidence in `evidence/etnic_peer_screen_v1/`.
+
+**The links are better.** Same-month co-movement with ETNIC peers averages **+0.390**, against
+TNIC's +0.337, SIC3's +0.266 and random partners' +0.005. Coverage of the liquid universe is
+92-98% a year, against TNIC's 86-93%. That matches the authors' claim of a 20-25% gain.
+
+**They predict nothing more.**
+
+| trial | design IC | p | design mono / mid-8 | holdout IC | holdout mono / mid-8 | 2012-19 IC | 2020 IC |
+|---|---|---|---|---|---|---|---|
+| T1 all embedding peers, 1m | −0.0045 | 0.47 | +0.06 / −0.31 | +0.0029 | +0.70 / +0.43 | −0.0106 | **+0.0579** |
+| T2 non-SIC3 embedding peers, 1m | −0.0032 | 0.52 | −0.13 / −0.62 | +0.0064 | +0.59 / +0.55 | −0.0079 | **+0.0703** |
+
+Both fail every design-window criterion. The pattern now holds across three networks (TNIC, ETNIC,
+SIC3). Peers' returns **mildly reverse** in 2012-2019, with the ladder at −0.56 and −0.75, and
+**strongly continue** in 2020, with IC +0.06 to +0.07 (p 0.000) and decile spreads of +59% and
++67% a year. 2020 was the COVID year, when whole industries trended for months: travel down,
+stay-at-home up, and then the November reversal. That is industry momentum in one extraordinary
+regime, not a linkage skill.
+
+**What this settles for the owner's question.** Better, machine-learned links make the description
+of which firms move together sharper, and leave the prediction exactly where it was. Product links
+are already in prices within the month. The limit was never how cleverly the links were drawn.
+
+**Cumulative search:** two new trials (counted separately from A19's four).

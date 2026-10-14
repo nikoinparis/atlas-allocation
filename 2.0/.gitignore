@@ -115,3 +115,11 @@ data/tnic_v1/tnic3_2009_2023_pairs.csv.gz
 # farr CRAN tarball and its extracted .rda; the derived gvkey_ciks.csv.gz is kept.
 data/farr_gvkey_ciks_v1/download/
 data/farr_gvkey_ciks_v1/extract/
+
+# ETNIC-3 raw zip (221MB) and pair cache, Step 356; see data/etnic_v1/MANIFEST.md
+data/etnic_v1/download/Etnic3_data.zip
+data/etnic_v1/etnic3_2009_2023_pairs.csv.gz
+# VTNIC raw zip (854MB), parts and pair cache, Step 357
+data/vtnic_v1/download/VertNetwork_10gran.zip
+data/vtnic_v1/download/parts/
+data/vtnic_v1/vtnic10_2009_2021_pairs.csv.gz

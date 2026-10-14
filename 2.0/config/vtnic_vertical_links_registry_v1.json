@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "experiment": "vtnic_vertical_links_v1",
+  "queue_item": "A21",
+  "registered_at_utc": "2026-10-14T00:00:00Z",
+  "registered_before_any_result_existed": true,
+  "registered_before_vtnic_was_downloaded": true,
+  "owner_approval": "2026-10-14, in chat: 'yes run A22, then A21, then A20'",
+
+  "why_this_exists": "A19's TNIC is purged of vertical relationships, so it tested product rivals, not 'AI needs power'. Fresard, Hoberg & Phillips (RFS 2020) publish a directed firm-pair-year network of vertical relatedness from 10-K product text matched to BEA input-output vocabulary. Customer momentum (Cohen & Frazzini 2008) and customer/supplier industry momentum (Menzly & Ozbas 2010) are this mechanism; OSAP shows both at t < 1 since 2013 (Step 353). This is their firm-level, full-coverage, free form.",
+
+  "data": {
+    "network": "VTNIC 10% granularity (VertNetwork_10gran.zip, Fresard-Hoberg-Phillips data site). Readme read before registering: rows (year, gvkey1, gvkey2, vertscore) are DIRECTED -- gvkey1's upstream potential relative to gvkey2, i.e. gvkey1 supplies gvkey2. Includes self rows (dropped). Year = fiscal-year datadate year, NOT lagged. Coverage 1989-2021.",
+    "mapping_and_timing": "exactly A19's: farr gvkey->CIK as of July 1 Y+1; year Y used July Y+1 to June Y+2",
+    "prices_liquidity_sic": "exactly A19's"
+  },
+  "windows": "design 2012-01 to 2018-12; holdout 2019-01 to 2023-06 (VTNIC 2021 is the last year, usable through June 2023)",
+
+  "trials": {
+    "T1_customers_lead_suppliers_1m": "for each firm, its CUSTOMERS are the firms it is upstream of (rows gvkey1 = firm). Keep its 10 highest-vertscore customers in the price panel; signal = vertscore-weighted 21-day return of those customers. Horizon 1 month. This is 'AI booms (customers rise) -> the firms that supply them'.",
+    "T2_suppliers_lead_customers_1m": "for each firm, its SUPPLIERS are the firms upstream of it (rows gvkey2 = firm). Top 10 by vertscore; signal = their weighted 21-day return. Horizon 1 month.",
+    "top_10_rule": "declared before download: the 10% granularity file keeps 10% of ALL pairs, so a firm can have hundreds of partners; the nearest 10 is the economically meaningful set. Not varied.",
+    "residualisation": "A19's: own 21-day return, own 12-1 momentum, leave-self-out SIC2 21-day return",
+    "declared_sign": "POSITIVE for both"
+  },
+  "measurement": "A19's screen and A19's pass rule word for word (design IC p < bar, decile_shape clears and clears_calibrated, above the 200-draw shuffled-network placebo p95 with partner counts and weights kept, leave-one-SIC2-out and leave-top-10 positive, holdout IC > 0 with the ladder clearing). Positive control as Step 355: same-month co-movement with vertical partners vs random partners, reported before the verdict.",
+  "bonferroni_bar": 0.025,
+  "trials_declared_here": 2,
+  "cumulative_search_note": "On top of 355 steps; A19 used the same price panel, mapping and harness.",
+  "book_only_if_screen_passes": "long-only as A19's registry",
+  "known_weaknesses_declared_up_front": [
+    "Vertical relatedness is 'potential' from vocabulary overlap with input-output commodities, not observed trade.",
+    "Survivorship and SIC carry-forward as A19.",
+    "Holdout is shorter than A19's (to 2023-06)."
+  ],
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

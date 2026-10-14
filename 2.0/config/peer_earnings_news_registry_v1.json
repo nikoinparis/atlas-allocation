@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "experiment": "peer_earnings_news_v1",
+  "queue_item": "A20",
+  "registered_at_utc": "2026-10-14T00:00:00Z",
+  "registered_before_any_result_existed": true,
+  "owner_approval": "2026-10-14, in chat: 'yes run A22, then A21, then A20'",
+
+  "why_this_exists": "Lee, Sun, Wang & Zhang (2019) report the technology-link lead-lag also appears in earnings surprises. A firm whose linked peers just reported strong earnings may be next: the information arrives through demand, not price. A19 and A21 test peers' PRICES; this tests peers' REPORTED EARNINGS, which the market may read more slowly. Caution recorded in the design doc, from memory: Thomas & Zhang (JAR 2008) find late announcers overreact to early announcers' news.",
+
+  "data": {
+    "sue": "evidence/extended_sue_panel_v1/sue_panel.csv.gz: SUE (seasonal random walk on quarterly EPS, scaled by the std of the previous eight surprises) using only facts filed strictly before each decision; 58 quarterly decisions 2012-04-01 to 2026-07-01, 131,169 rows",
+    "networks": "TNIC-3 (A19) and VTNIC 10% (A21), mapping and July-lag timing as A19",
+    "prices_liquidity_sic": "A19's"
+  },
+  "decisions": "the SUE panel's quarterly dates (1 Jan/Apr/Jul/Oct); signals use prices up to the last trading day BEFORE the decision date; forward return over the next 63 trading days, non-overlapping",
+  "windows": "design 2012-04 to 2018-10 (27 decisions); holdout 2019-01 to 2025-04 for T1 (TNIC to June 2025), 2019-01 to 2023-04 for T2 (VTNIC to June 2023)",
+
+  "trials": {
+    "T1_product_peers_sue_3m": "score-weighted mean SUE of the firm's TNIC-3 peers that have a SUE at the decision",
+    "T2_customers_sue_3m": "vertscore-weighted mean SUE of the firm's 10 nearest VTNIC customers (A21's T1 partner set) that have a SUE",
+    "residualisation": "each decision, OLS on own SUE, own 63-day return, own 12-1 momentum and the leave-self-out SIC2 63-day return; only the residual is ranked. Firms without their own SUE are excluded (own SUE must be controlled).",
+    "declared_sign": "POSITIVE for both"
+  },
+  "measurement": "A19's screen and pass rule, with a block bootstrap of block 2 (quarterly, non-overlapping), 200-draw shuffled-network placebo, decile_shape clears and clears_calibrated, leave-outs, holdout.",
+  "bonferroni_bar": 0.025,
+  "trials_declared_here": 2,
+  "power_declared_in_advance": "UNDERPOWERED BY DESIGN. 27 design decisions against Step 300's ~38 needed to see an IC of 0.03 at t=3. A fail here is weak evidence; a pass would be the survivor of a small sample and of the whole search. Monthly SUE would need the Company Facts cache rebuilt (queue S10).",
+  "known_weaknesses_declared_up_front": [
+    "Survivorship: Company Facts is a current pull; SUE coverage is 54% before 2016 and 91% from 2020 (Step 256).",
+    "Quarterly snapshot: a peer's SUE may be up to three months old at the decision, so this tests slow diffusion over weeks, not the days after an announcement.",
+    "T2 depends on A21's VTNIC network; if A21's positive control fails, T2 is uninterpretable and is reported as such."
+  ],
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

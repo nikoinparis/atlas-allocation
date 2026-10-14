@@ -17360,3 +17360,42 @@ priors for the same reason. A20 (peers' earnings) is unblocked, with a lower pri
 
 **Cumulative search:** four new trials, on top of 353 steps on the same price panel. Nothing created,
 improved or promoted a strategy.
+
+## Step 355 — 2026-10-14 — The A19 links are real; and commodity moves do not lead stocks (A22 fails)
+
+**What this was for.** The owner asked two things after Step 354. First, whether A19 had been
+implemented correctly or only shallowly. Second, A22: their own chain ("AI booms, then metal
+rises") in its most testable form.
+
+**A19 audit: the links are real, so A19's null is real** (`scripts/audit_tnic_links_v1.py`,
+`evidence/tnic_link_audit_v1/`). A firm's same-month return correlates with its TNIC peers' return
+at **+0.337** on average (minimum +0.185 across 162 months). It correlates with randomly assigned
+"peers" at **−0.001**, and with SIC3 peers at **+0.266**. So the mapping and dating are right, and
+text peers capture co-movement better than industry codes. Spot checks against TNIC year 2022 hold
+up too. NVDA's nearest peers are AMD, SYNA, MBLY, QCOM, AVGO; DAL's are ULCC, ALK, ALGT, UAL, JBLU,
+LUV; COST's are WMT, PSMT, BJ. The coverage limits are visible as well: AAPL and XOM have one TNIC-3
+peer each, and VRT has none mapped. **What this means: product links are priced in the same month.
+The co-movement is there; nothing is left over for the next month.**
+
+**A22, pre-registered** in `config/commodity_lead_lag_registry_v1.json` (`b4c6327`) before anything
+was computed. Script `scripts/run_commodity_lead_lag_v1.py`, evidence `evidence/commodity_lead_lag_v1/`.
+Three trials, Bonferroni 0.0167, non-overlapping 4-week periods.
+
+| trial | design | holdout | verdict |
+|---|---|---|---|
+| T3 oil → next 4 weeks of S&P 500 future, declared negative (Driesprong et al. 2008) | 2005-15: slope +0.0000, NW t +0.00, p 1.00 | 2016-26: −0.0010, t −0.04 | **fails** |
+| T1 producer groups (energy, precious, base metals, grains) vs own commodity, declared positive | 2012-18: pooled slope **−0.083**, p 0.25; 1 of 4 groups positive | 2019-26: +0.093, p 0.12 | **fails** |
+| T2 each stock's 104-week commodity betas × last 4 weeks' moves, ~1,100-1,600 names | 2013-18: IC −0.0065, p 0.58, mono −0.59 / mid-8 −0.69 | IC +0.0097, mono +0.46 / mid-8 +0.79 | **fails** (0 of 6 criteria) |
+
+T3 was checked independently. Its five missing periods are the roll-flagged weeks in late 2008,
+early 2020 and early 2026, excluded as registered. Counting them as zero instead gives +0.013,
+still the wrong sign. The paper's effect may live at a shorter lag: a one-week oil return against
+the next week's S&P future correlates at −0.076. That is post-hoc, it was not declared, and it is
+not acted on.
+
+**The shape repeats Steps 347-354.** T1 and T2 point the wrong way in 2012-2019 and the right way
+in 2021-2022, the commodity boom (T2 IC +0.032, decile spread +20% a year). A rule that works only
+in the regime it describes cannot be chosen in advance; Steps 349 and 352 showed that the switch
+into it comes late.
+
+**Cumulative search:** three new trials. Nothing created, improved or promoted a strategy.

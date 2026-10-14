@@ -1,0 +1,338 @@
+{
+  "registry": "config/commodity_lead_lag_registry_v1.json",
+  "T1": {
+    "results": {
+      "design 2012-2018": {
+        "n": 308,
+        "pooled_slope": -0.08312473968998163,
+        "bootstrap_p": 0.251,
+        "by_group": {
+          "base_metals": {
+            "slope": -0.1121015338025747,
+            "periods": 86,
+            "median_members": 4.0
+          },
+          "energy": {
+            "slope": -0.17726784419151534,
+            "periods": 90,
+            "median_members": 21.0
+          },
+          "grains": {
+            "slope": 0.04997273429842643,
+            "periods": 90,
+            "median_members": 7.0
+          },
+          "precious": {
+            "slope": -0.005149933034370506,
+            "periods": 42,
+            "median_members": 3.0
+          }
+        }
+      },
+      "holdout 2019-2026": {
+        "n": 349,
+        "pooled_slope": 0.09296524717917792,
+        "bootstrap_p": 0.11725,
+        "by_group": {
+          "base_metals": {
+            "slope": 0.05419859956691253,
+            "periods": 98,
+            "median_members": 6.0
+          },
+          "energy": {
+            "slope": 0.12379565695579443,
+            "periods": 99,
+            "median_members": 38.0
+          },
+          "grains": {
+            "slope": 0.008099219030772828,
+            "periods": 99,
+            "median_members": 9.0
+          },
+          "precious": {
+            "slope": 0.10280600160592371,
+            "periods": 53,
+            "median_members": 3.0
+          }
+        }
+      }
+    },
+    "positive_groups_design": 1,
+    "passes": false
+  },
+  "T2": {
+    "design": {
+      "decisions": 79,
+      "median_names": 1075.0,
+      "mean_ic": -0.006458418548072248,
+      "t_stat": -0.5823245096607549,
+      "bootstrap_p": 0.58025,
+      "decile_spread_per_period": -0.0016677317249059152,
+      "decile_spread_annualised": -0.02081135316014182,
+      "ladder": [
+        0.009484921976767266,
+        0.009965787747666684,
+        0.01155647800957211,
+        0.010901611110209182,
+        0.010421933749165205,
+        0.011408838676680029,
+        0.009759494867591968,
+        0.008407031234186117,
+        0.008331969902092881,
+        0.007817190251861351
+      ],
+      "monotonicity": -0.5878787878787878,
+      "monotonicity_middle_8": -0.6904761904761906,
+      "extremes_share_of_spread": 0.020335332611140178,
+      "clears": true,
+      "verdict": "ORDERS ITS DECILES -- full ladder and middle eight both clear",
+      "calibrated": {
+        "decisions": 79,
+        "monotonicity": -0.5878787878787878,
+        "monotonicity_middle_8": -0.6904761904761906,
+        "score": -0.5878787878787878,
+        "bar95": 0.7622943722943721,
+        "p": 0.1934032983508246
+      },
+      "clears_calibrated": false,
+      "zero_share": 0.0
+    },
+    "holdout": {
+      "decisions": 99,
+      "median_names": 1612.0,
+      "mean_ic": 0.00968008313802262,
+      "t_stat": 0.7608730349238242,
+      "bootstrap_p": 0.45,
+      "decile_spread_per_period": 0.005805392021600506,
+      "decile_spread_annualised": 0.07566215644335239,
+      "ladder": [
+        0.013529672030735806,
+        0.00981473613038699,
+        0.010576583062162812,
+        0.011718440695702858,
+        0.010364177233766713,
+        0.011006338438679014,
+        0.013419540358448272,
+        0.013313262521960783,
+        0.012820626817007815,
+        0.01933506405233631
+      ],
+      "monotonicity": 0.4545454545454545,
+      "monotonicity_middle_8": 0.7857142857142858,
+      "extremes_share_of_spread": 0.48222433981432966,
+      "clears": false,
+      "verdict": "flat -- no cross-sectional ordering",
+      "calibrated": {
+        "decisions": 99,
+        "monotonicity": 0.4545454545454545,
+        "monotonicity_middle_8": 0.7857142857142858,
+        "score": 0.4545454545454545,
+        "bar95": 0.7696969696969697,
+        "p": 0.3103448275862069
+      },
+      "clears_calibrated": false,
+      "zero_share": 0.0
+    },
+    "regimes": {
+      "2013-2019": {
+        "decisions": 92,
+        "median_names": 1092.5,
+        "mean_ic": -0.010051298732640818,
+        "t_stat": -1.0058009847246578,
+        "bootstrap_p": 0.37,
+        "decile_spread_per_period": -0.0028754350767650908,
+        "decile_spread_annualised": -0.035632344044916775,
+        "ladder": [
+          0.010334630569555525,
+          0.0111026620218176,
+          0.01210590174184709,
+          0.011615385778166254,
+          0.011204142288242793,
+          0.011811765140029283,
+          0.01056592184378545,
+          0.009109475676636964,
+          0.008862492451389316,
+          0.007459195492790434
+        ],
+        "monotonicity": -0.5878787878787878,
+        "monotonicity_middle_8": -0.6904761904761906,
+        "extremes_share_of_spread": 0.22092848190872383,
+        "clears": true,
+        "verdict": "ORDERS ITS DECILES -- full ladder and middle eight both clear",
+        "calibrated": {
+          "decisions": 92,
+          "monotonicity": -0.5878787878787878,
+          "monotonicity_middle_8": -0.6904761904761906,
+          "score": -0.5878787878787878,
+          "bar95": 0.7212121212121211,
+          "p": 0.17691154422788605
+        },
+        "clears_calibrated": false,
+        "zero_share": 0.0
+      },
+      "2020": {
+        "decisions": 13,
+        "median_names": 1372.0,
+        "mean_ic": 0.004819688285908892,
+        "t_stat": 0.12354801034735952,
+        "bootstrap_p": 0.90775,
+        "decile_spread_per_period": 0.0072517251242058475,
+        "decile_spread_annualised": 0.09531503842829947,
+        "ladder": [
+          0.04857587734369968,
+          0.029213712556049373,
+          0.023248504629376658,
+          0.024684431946931477,
+          0.027407659440113086,
+          0.02289791408714612,
+          0.02856696659954257,
+          0.03180914860553117,
+          0.0379962333541382,
+          0.05582760246790553
+        ],
+        "monotonicity": 0.309090909090909,
+        "monotonicity_middle_8": 0.5000000000000001,
+        "extremes_share_of_spread": -0.21109400144984436,
+        "clears": false,
+        "verdict": "flat -- no cross-sectional ordering",
+        "calibrated": {
+          "decisions": 13,
+          "monotonicity": 0.309090909090909,
+          "monotonicity_middle_8": 0.5000000000000001,
+          "score": 0.309090909090909,
+          "bar95": 0.6363636363636362,
+          "p": 0.49225387306346824
+        },
+        "clears_calibrated": false,
+        "zero_share": 0.0
+      },
+      "2021-2022": {
+        "decisions": 26,
+        "median_names": 1569.0,
+        "mean_ic": 0.0319595584555368,
+        "t_stat": 0.9431563516890552,
+        "bootstrap_p": 0.379,
+        "decile_spread_per_period": 0.014701162909927725,
+        "decile_spread_annualised": 0.20187912488858872,
+        "ladder": [
+          -0.0065455006815439976,
+          -0.0036582970671459047,
+          0.0015365919164983756,
+          0.005733116632739981,
+          0.003435520585513538,
+          0.0043361697645787145,
+          0.007968822623854748,
+          0.00801046927117902,
+          0.0024933508980190117,
+          0.008155662228383728
+        ],
+        "monotonicity": 0.7818181818181817,
+        "monotonicity_middle_8": 0.5714285714285715,
+        "extremes_share_of_spread": 0.5815536496768772,
+        "clears": true,
+        "verdict": "ORDERS ITS DECILES -- full ladder and middle eight both clear",
+        "calibrated": {
+          "decisions": 26,
+          "monotonicity": 0.7818181818181817,
+          "monotonicity_middle_8": 0.5714285714285715,
+          "score": 0.5714285714285715,
+          "bar95": 0.8571428571428572,
+          "p": 0.28735632183908044
+        },
+        "clears_calibrated": false,
+        "zero_share": 0.0
+      },
+      "2023-2026": {
+        "decisions": 47,
+        "median_names": 1751.0,
+        "mean_ic": 0.010196344281036497,
+        "t_stat": 0.6843183834122023,
+        "bootstrap_p": 0.48975,
+        "decile_spread_per_period": 0.0049153269927760465,
+        "decile_spread_annualised": 0.0637297946655293,
+        "ladder": [
+          0.01439695674596592,
+          0.009635077946466222,
+          0.010725927141479326,
+          0.010271888664435415,
+          0.007935789656676526,
+          0.010507022787070322,
+          0.01167893247624693,
+          0.011112884297907653,
+          0.011773196056787314,
+          0.019312283738741966
+        ],
+        "monotonicity": 0.43030303030303024,
+        "monotonicity_middle_8": 0.7380952380952381,
+        "extremes_share_of_spread": 0.5650099955784347,
+        "clears": false,
+        "verdict": "flat -- no cross-sectional ordering",
+        "calibrated": {
+          "decisions": 47,
+          "monotonicity": 0.43030303030303024,
+          "monotonicity_middle_8": 0.7380952380952381,
+          "score": 0.43030303030303024,
+          "bar95": 0.7696969696969697,
+          "p": 0.3243378310844578
+        },
+        "clears_calibrated": false,
+        "zero_share": 0.0
+      }
+    },
+    "placebo_time_shuffle": {
+      "mean": -0.002017257689305178,
+      "p95": 0.016585971473590835
+    },
+    "leave_out": {
+      "min_leave_one_sic2_out_ic": -0.007974211737356946,
+      "worst_sic2_removed": "45",
+      "ic_without_top10_names": -0.010110664791847024,
+      "top10_names": [
+        "0000014272",
+        "0000215466",
+        "0000766421",
+        "0000772406",
+        "0000882095",
+        "0000885639",
+        "0001069183",
+        "0001092796",
+        "0001462418",
+        "0001486159"
+      ]
+    },
+    "criteria": {
+      "design_ic_positive_p_below_bar": false,
+      "design_ladder_clears_positive": false,
+      "design_ladder_clears_calibrated": false,
+      "design_ic_above_placebo_p95": false,
+      "design_leave_outs_positive": false,
+      "holdout_ic_positive_and_ladder_clears": false
+    },
+    "passes": false
+  },
+  "T3": {
+    "results": {
+      "design 2005-2015": {
+        "n": 138,
+        "slope": 1.0071002311017555e-05,
+        "nw_t": 0.00027635393260027296,
+        "bootstrap_p": 1.0
+      },
+      "holdout 2016-2026": {
+        "n": 133,
+        "slope": -0.0010487480457615076,
+        "nw_t": -0.03837790989830991,
+        "bootstrap_p": 0.973
+      },
+      "full": {
+        "n": 271,
+        "slope": 0.00040376510728560064,
+        "nw_t": 0.018871417586402248,
+        "bootstrap_p": 0.984
+      }
+    },
+    "passes": false
+  },
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

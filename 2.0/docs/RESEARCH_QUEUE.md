@@ -272,15 +272,6 @@ so `farr` maps it. This is the supply-chain chain in data form, with full covera
 80%-precision extractor. **Prior low:** OSAP's industry-level version (Menzly-Ozbas iomom_cust/supp) is
 at t < 0.6 since 2013. Same harness as A19, one or two trials. Free. 1-2 sessions.
 
-### A22. Commodity moves leading the industries that use or sell them *(new 2026-10-14, Step 354, owner's "metal is rising")*
-The owner's simple chain in its most testable form: does last month's move in copper, oil, gas, grains
-predict next month's return of the industries that produce or consume them? Recalled, not read this
-session: Driesprong, Jacobsen & Maat (JFE 2008, "Striking oil") report oil price changes predict stock
-returns with a lag, attributed to slow information diffusion. Weekly roll-repaired futures 2005-2026 for
-40 contracts are on disk (`data/futures_roll_repaired_v1/`). **Structural limit:** a handful of
-commodities x industries is few independent bets (Step 246's breadth wall), so it can be at most a small
-tilt; pre-register the commodity-to-SIC map before looking. Free. 1 session.
-
 ### A20. Peers' fundamental news, not their prices *(new 2026-10-14, Step 353; prior lowered Step 354)*
 **Step 354:** the TNIC network and gvkey->CIK map now exist and cover 86-93% of the liquid universe, so the
 blocker is gone; but peer *returns* carry nothing (A19), which lowers the prior that peer *earnings* do.
@@ -505,6 +496,7 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 
 | item | verdict | where |
 |---|---|---|
+| **Commodity moves leading exposed stocks (was A22, owner's 'metal is rising')** | **All three trials fail.** Oil -> next 4 weeks of S&P 500 (Driesprong et al. replication): slope +0.0000 2005-15, -0.0010 2016-26. Producer groups vs own commodity: pooled slope -0.083 in 2012-18 (1 of 4 groups positive), +0.093 after. Estimated commodity betas x last move across ~1,100-1,600 stocks: design IC -0.0065, ladder -0.59/-0.69. Works only in the 2021-22 commodity boom; not choosable in advance. | Step 355 |
 | **Text-peer gap, Hoberg-Phillips TNIC-3 (was A19)** | **Fails every criterion, all four trials.** Product-peer returns (all peers, non-SIC3 peers, 6m peer-minus-own gap, 3m horizon) residualised on own momentum and SIC2 return, ~1,000-1,500 names, 83 design + 78 holdout monthly decisions. Design-window ICs -0.0036 to +0.0054, best p 0.37 vs bar 0.0125; no ladder clears; 2020 alone is positive and the SIC3 comparator shows the same 2020 burst, so it is an industry shock, not text links. Mapping worked: TNIC->CIK via `farr` covers 86-93% of the liquid universe. Closes A18's product-peer diffusion arm. | Step 354 |
 | **`farr` gvkey->CIK link table (was B16)** | **Done.** Acquired, kept as `data/farr_gvkey_ciks_v1/gvkey_ciks.csv.gz`; first use mapped TNIC at 86-93% coverage. Available for VTNIC, DISCERN and other gvkey datasets. | Step 354 |
 | **Ride the boom, step aside when it breaks (new 2026-10-14, owner)** | **Switching makes it worse.** Riser book vs SPY switched by trailing-year relative strength or the book's own 40-week trend, plus a 50% SPY core version: all lose to a fixed 50/50 mix of the same two, with -57% drawdowns deeper than either part. The break is only visible after the fall (cf. Steps 203, 266). | Step 352 |

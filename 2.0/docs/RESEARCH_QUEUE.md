@@ -259,22 +259,36 @@ carries (customer, supplier/customer industry, conglomerate, big-to-small) at t 
 thematic ETFs lose ~30% risk-adjusted over five years (Ben-David et al. 2023), so buying what text is
 excited about is the default failure. Theme detection is phase 2, only if A19 or A20 passes; the LLM map
 is forward-only (merge with C4).
+**2026-10-14, Step 354: A19 FAILED on every criterion, so A18's diffusion arm through product peers is
+closed.** What remains open: vertical links (A21), the owner's commodity chain (A22), peers' fundamental
+news (A20, prior lowered), and the forward-only LLM map (C4). Theme detection (phase 2) is not built:
+there is no peer spillover for it to feed.
 
-### A19. Text-peer gap: firms whose product-similar peers moved and they did not *(new 2026-10-14, Step 353)*
-Hoberg-Phillips TNIC-3 (10-K product similarity, free, 1989-2023, gvkey-keyed, **not lagged**: must be
-dated by the 10-K filing). Score = similarity-weighted past return of TNIC peers, also non-SIC peers only
-(Hoberg & Phillips JFQA 2018 say the less visible peers carry it) and peer-minus-own gap. Four trials,
-design 2012-2018 / holdout 2019-2023, degree-preserving shuffled-network placebo, residualised on own
-momentum and SIC2 return. Full pre-registration in the design doc section 3d. **Prior low (~1 in 10)**:
-OSAP decay, and Step 320's pv13 was extremes-only. **Blocker:** gvkey->CIK via `farr::gvkey_ciks`;
-coverage gate >= 70% of liquid issuers per year. **Data:** free. 1-2 sessions. Awaiting owner sign-off.
+### A21. Vertical links: suppliers and customers from 10-K text (VTNIC) *(new 2026-10-14, Step 354)*
+A19's TNIC is **purged of vertical relationships** (its readme), so it tests product rivals, not
+"AI needs power". Fresard, Hoberg & Phillips (RFS 2020) publish a free firm-pair-year "potential
+vertical relatedness" network (link from the Hoberg-Phillips library, Marshall-hosted data site), gvkey-keyed
+so `farr` maps it. This is the supply-chain chain in data form, with full coverage rather than Step 203's
+80%-precision extractor. **Prior low:** OSAP's industry-level version (Menzly-Ozbas iomom_cust/supp) is
+at t < 0.6 since 2013. Same harness as A19, one or two trials. Free. 1-2 sessions.
 
-### A20. Peers' fundamental news, not their prices *(new 2026-10-14, Step 353)*
+### A22. Commodity moves leading the industries that use or sell them *(new 2026-10-14, Step 354, owner's "metal is rising")*
+The owner's simple chain in its most testable form: does last month's move in copper, oil, gas, grains
+predict next month's return of the industries that produce or consume them? Recalled, not read this
+session: Driesprong, Jacobsen & Maat (JFE 2008, "Striking oil") report oil price changes predict stock
+returns with a lag, attributed to slow information diffusion. Weekly roll-repaired futures 2005-2026 for
+40 contracts are on disk (`data/futures_roll_repaired_v1/`). **Structural limit:** a handful of
+commodities x industries is few independent bets (Step 246's breadth wall), so it can be at most a small
+tilt; pre-register the commodity-to-SIC map before looking. Free. 1 session.
+
+### A20. Peers' fundamental news, not their prices *(new 2026-10-14, Step 353; prior lowered Step 354)*
+**Step 354:** the TNIC network and gvkey->CIK map now exist and cover 86-93% of the liquid universe, so the
+blocker is gone; but peer *returns* carry nothing (A19), which lowers the prior that peer *earnings* do.
 Lee et al. report the same lead-lag in earnings surprises and revisions. Score a firm on its TNIC peers'
 recent SUE / revenue acceleration (SUE panel and Company Facts on disk, S10 re-acquisition needed).
 Information arriving through demand, not price, may be less arbitraged than peer returns. Caution, from
 memory: Thomas & Zhang (JAR 2008) find late announcers *overreact* to early announcers, so declare the
-sign carefully. **Blocked on:** A19's network and mapping. Free. 1-2 sessions after A19.
+sign carefully. **Not blocked** (Step 354 built the network). Free. 1 session.
 
 ### A8. EU short-selling registers *(new 2026-09-10, owner-proposed)*
 **Status:** never attempted. Free, daily, from ESMA and national regulators.
@@ -407,13 +421,8 @@ Ben-David, Franzoni, Kim & Moussawi (RFS 2023): specialised ETFs launch into hyp
 risk-adjusted over five years because their holdings were overvalued at launch. So a theme ETF launch,
 or a surge in its inflows, marks a theme as priced: a candidate *exit* or *avoid* rule that is not a
 price-based safety net (those failed in Steps 349, 352). Holdings from SEC N-PORT, free, 2019+; never
-used here. Few launches per year, so it is a filter on A18, not a standalone signal. **Blocked on:** A19
-passing; a cusip/ticker->CIK map for N-PORT holdings. 2 sessions.
-
-### B16. `farr` gvkey->CIK link table *(new 2026-10-14, Step 353, infrastructure)*
-Ian Gow's `farr` R package (MIT) ships `gvkey_ciks`: 48,517 dated gvkey/CIK links. This is the missing
-key that makes gvkey-only academic datasets usable here: TNIC, DISCERN, and others published by gvkey.
-Readable from Python via the CRAN tarball's `.rda` with `pyreadr`. Worth acquiring whatever A19 finds.
+used here. Few launches per year, so it is a filter on A18, not a standalone signal. **Prior lowered by Step 354 (A19 failed).** **Blocked on:** a theme signal worth filtering, as A19 was meant to be;
+and a cusip/ticker->CIK map for N-PORT holdings. 2 sessions.
 
 ## C tier -- parked, recorded so it is not re-proposed
 
@@ -496,6 +505,8 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 
 | item | verdict | where |
 |---|---|---|
+| **Text-peer gap, Hoberg-Phillips TNIC-3 (was A19)** | **Fails every criterion, all four trials.** Product-peer returns (all peers, non-SIC3 peers, 6m peer-minus-own gap, 3m horizon) residualised on own momentum and SIC2 return, ~1,000-1,500 names, 83 design + 78 holdout monthly decisions. Design-window ICs -0.0036 to +0.0054, best p 0.37 vs bar 0.0125; no ladder clears; 2020 alone is positive and the SIC3 comparator shows the same 2020 burst, so it is an industry shock, not text links. Mapping worked: TNIC->CIK via `farr` covers 86-93% of the liquid universe. Closes A18's product-peer diffusion arm. | Step 354 |
+| **`farr` gvkey->CIK link table (was B16)** | **Done.** Acquired, kept as `data/farr_gvkey_ciks_v1/gvkey_ciks.csv.gz`; first use mapped TNIC at 86-93% coverage. Available for VTNIC, DISCERN and other gvkey datasets. | Step 354 |
 | **Ride the boom, step aside when it breaks (new 2026-10-14, owner)** | **Switching makes it worse.** Riser book vs SPY switched by trailing-year relative strength or the book's own 40-week trend, plus a 50% SPY core version: all lose to a fixed 50/50 mix of the same two, with -57% drawdowns deeper than either part. The break is only visible after the fall (cf. Steps 203, 266). | Step 352 |
 | **GDELT news coverage and tone (was B14)** | **Gate fails; exploratory nothing.** 706 Wednesday GKG samples 2013-2026; 129 liquid issuers mentioned in half the weeks vs 150 declared. Exploratory: attention IC +0.008 (p 0.32), tone shift -0.013 (p 0.055, wrong sign). Daily sampling (7x) not justified. | Step 351 |
 | **Earnings-call tone (Step 254 never return-tested)** | **Nothing.** 33,235 S&P 500 calls 2005-2025, LM tone and tone change vs own last call, 4w/13w: all |IC| < 0.009, all p > 0.36. | Step 350 |

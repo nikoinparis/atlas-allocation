@@ -17306,3 +17306,57 @@ marker), and B16 (`farr` link table) added; B13 given a DISCERN route; C4 now ab
 map. The 2026-09-07 standing decision still applies, so A19 starts only on the owner's word.
 
 **Sources read this session versus recalled** are listed at the end of the design document.
+
+## Step 354 — 2026-10-14 — Product peers do not lead returns: A19 fails every criterion
+
+**What this was for.** The owner approved Step 353's design and asked for A19 on a new branch,
+long-only. A19 is the cheapest direct test of the mechanism under the owner's theme idea: news
+reaches the obvious firms first and their less obvious, linked peers later. If a firm's 10-K product
+peers have just risen and it has not, does it catch up? Pre-registered in
+`config/tnic_peer_gap_registry_v1.json` and committed (`6f92004`) **before** either dataset was
+downloaded. Script `scripts/run_tnic_peer_gap_screen_v1.py`, evidence
+`evidence/tnic_peer_gap_screen_v1/`, branch `claude/a19-tnic-peer-gap`.
+
+**New data, both free.** Hoberg-Phillips TNIC-3 (9.19M pairs, 2009-2023; `data/tnic_v1/MANIFEST.md`)
+and the `farr` package's gvkey-to-CIK table (`data/farr_gvkey_ciks_v1/`). TNIC year Y was used only
+from July Y+1 to June Y+2. **The mapping worked:** 86-93% of the liquid universe (price >= $5, $5M
+median dollar volume) received a TNIC peer set in every year 2012-2025, against a 70% gate. That
+makes other gvkey-keyed academic datasets usable here for the first time. One thing the TNIC readme
+says that the design doc missed: **TNIC is purged of vertical relationships**, so this tested
+product rivals, not supplier chains (now A21).
+
+**Causality checked, not assumed.** `tests/test_tnic_peer_gap_screen_v1.py` perturbs every price after
+a cut date on synthetic data. Every earlier signal stays identical while forward returns change.
+
+**Result: all four trials fail, and no book was built, as registered.** 83 design and 78 holdout
+monthly decisions, ~1,000-1,500 names each. Signals were residualised on own 1-month return, own
+12-1 momentum and the SIC2 industry return; under 0.03% of signals are exact zeros, so the deciles
+are readable.
+
+| trial | design IC | p | design mono / mid-8 | holdout IC | holdout mono / mid-8 | placebo-network p95 |
+|---|---|---|---|---|---|---|
+| T1 all peers, 1m | −0.0030 | 0.64 | +0.08 / −0.05 | +0.0005 | +0.32 / +0.36 | +0.0100 |
+| T2 non-SIC3 peers, 1m | −0.0036 | 0.54 | −0.22 / −0.02 | +0.0057 | +0.71 / +0.52 | +0.0088 |
+| T3 6m peer-minus-own gap | +0.0054 | 0.37 | +0.35 / +0.43 | −0.0009 | −0.42 / −0.52 | +0.0032 |
+| T4 non-SIC3 peers, 3m | −0.0005 | 0.93 | +0.06 / −0.26 | −0.0028 | −0.14 / −0.81 | +0.0105 |
+| SIC3 peers (comparator, not a trial) | −0.0029 | 0.46 | −0.14 / −0.38 | −0.0015 | +0.33 / +0.12 | — |
+
+Bonferroni bar 0.0125. Nothing comes near it in the design window. T2's holdout ladder clears, but
+its design ladder is negative, and in 2012-2019 the signal points the wrong way (IC −0.0072,
+monotonicity −0.53). The one regime where every column is positive is **2020** (T1 decile spread
++38% a year, T2 +51%, 12 decisions). The plain SIC3 comparator shows the same burst at IC +0.046,
+p 0.000. That is the COVID industry shock moving whole industries together, not information
+spreading along text links, and it is a post-hoc subset that is not acted on.
+
+**Verdict.** The free form of "linked firms catch up" carries no skill in this sample: not across
+all product peers, not across the "less visible" peers outside the SIC code (Hoberg & Phillips 2018),
+and not as a catch-up gap. This matches the OSAP decay read in Step 353 and Step 320's pv13
+reading. **A18's product-peer diffusion arm is closed**, and theme detection (phase 2) is not built
+because there is no spillover for it to feed.
+
+**What stays open, and was queued this step.** A21 tests vertical links (Fresard-Hoberg-Phillips
+VTNIC, free, mappable now) and A22 the owner's commodity chain (futures on disk). Both have low
+priors for the same reason. A20 (peers' earnings) is unblocked, with a lower prior.
+
+**Cumulative search:** four new trials, on top of 353 steps on the same price panel. Nothing created,
+improved or promoted a strategy.

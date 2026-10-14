@@ -4,59 +4,63 @@ Paste everything below the line into a new Claude Code session opened in this re
 
 ---
 
-I want to research one strategy idea in the Portfolio Optimizer project (`2.0/`). Read `CLAUDE.md`,
-`2.0/docs/RESEARCH_QUEUE.md` (item **A18** and the Closed table first), and Steps 343-352 of
-`2.0/PROJECT_HISTORY.md` before proposing anything. Follow the project's rules: pre-register every
-test in `2.0/config/` before computing a return, count every configuration tried, keep the
-design and holdout windows separate, report negative results in the history and queue, and say
-plainly what each result means.
+I want to develop one strategy idea in the Portfolio Optimizer project (`2.0/`). **This session is
+for refining the idea, not for running backtests yet.** Read `CLAUDE.md`, then
+`2.0/docs/RESEARCH_QUEUE.md` (item **A18**, and the Closed table first), then Steps 343-352 of
+`2.0/PROJECT_HISTORY.md`, so you know what has already been tried.
 
-## The idea
+## The idea, in my words
 
-Every year some group of stocks rises for a reason that exists in the world before it shows in
-prices. AI took off, AI needs GPUs, GPUs live in data centres, and data centres need power, cooling
-and networking. I want to detect a rising theme early from text, map it to the companies exposed
-to it, especially the **second-order beneficiaries** the market has not yet repriced, and hold a
-diversified, risk-controlled basket of them.
+Every year some group of stocks rises for a reason that exists in the world before it shows up in
+prices. AI took off, AI needs GPUs, GPUs sit in data centres, and data centres need power,
+cooling and networking. I want to spot a rising theme early from what is happening in the world
+(news, earnings calls, filings, patents or anything else useful), work out which companies
+benefit, especially the *second-order* ones the market has not caught up with yet, and hold a
+diversified basket of them without taking on too much risk or drawdown.
 
-## What is already known here (do not redo)
+## What has already been learned here
 
-- Price momentum and "steady risers" held a year: high return, but a regime bet with −50%
-  drawdowns and below-SPY risk-adjusted returns. Every safety net and boom-switching rule made it
-  worse (Steps 347, 349, 352).
-- Theme rotation by industry *price* momentum: 0 of 15 configurations beat SPY in 2012-2019
-  (Step 349).
-- News-level signals show nothing on their own: Wikipedia attention, earnings-call tone, GDELT
-  coverage and tone (Steps 348, 350, 351). **So the hypothesis is diffusion to linked firms, not
-  the news itself.**
-- Supply-chain customer links failed on coverage (Steps 202-204).
+- Buying stocks that are already rising (momentum, "steady risers") earned high returns, but it
+  was a bet on booming markets: −50% drawdowns, below-SPY risk-adjusted returns. Every safety net
+  and every "switch out when the boom ends" rule made it worse (Steps 347, 349, 352).
+- Rotating into industries whose prices are rising did not beat SPY (Step 349).
+- News about a company on its own predicted nothing: Wikipedia attention, earnings-call tone,
+  GDELT news coverage and tone (Steps 348, 350, 351). If this idea works, it is more likely
+  through *slow spread to linked companies* than through the news itself.
+- A published result points that way: Lee, Sun, Wang & Zhang (2019, JFE), "Technological links and
+  predictable returns". Companies linked by patents tend to follow their linked peers' returns.
+- Any AI or LLM reasoning ("what does AI need?") cannot be honestly backtested with a modern model,
+  because it already knows how things turned out. Chronologically consistent models exist
+  (He, Lv, Manela & Wu 2025, ChronoBERT/ChronoGPT); otherwise that part can only be tested going
+  forward.
 
-## What I want you to do, in order
+## What I want from this session
 
-1. **Replicate a published version first.** Lee, Sun, Wang & Zhang (2019, JFE), "Technological
-   links and predictable returns": firms linked by patent technology overlap, where linked firms'
-   past returns predict the focal firm's return. Use the free USPTO PatentsView bulk tables
-   (queue B13). The hard part is mapping patent assignees to SEC CIKs, so measure the match rate
-   before anything else. Run the project's skill screen (rank IC, decile spread, monotonicity) on a
-   window the signal was not chosen on.
-2. **Firm-level theme exposure from text.** Use the Hassan, Hollander, van Lent & Tahoun (2019)
-   method: the share of each company's earnings call devoted to a theme. Source: the free
-   `kurry/sp500_earnings_transcripts` dataset used in Step 350. Expand each theme's seed words
-   with embeddings trained **only on text before each decision date**.
-3. **Detect themes automatically, never by hand.** Choosing "AI" because we know AI boomed is
-   hindsight. Themes must come from a point-in-time process, such as topics whose share of news
-   or call text is rising fastest (GDELT's THEMES field, or a topic model refit on past text only).
-4. **Second-order reasoning with an LLM only if it cannot see the future.** A modern LLM knows
-   NVIDIA won, so a backtest of its "what does AI need?" answers is contaminated. Either use a
-   chronologically consistent model (He, Lv, Manela & Wu 2025, ChronoBERT/ChronoGPT) or test the
-   LLM layer forward only, from today, untouched.
-5. **Portfolio.** Exposure-weighted basket, spread across several themes, single-name and
-   industry caps, no leverage, no shorts. Judge it against SPY at the same market risk, with
-   costs of 0/10/50/100 bps, leave-one-name-out, and regimes 2012-2019, 2020, 2021-22 and
-   2023-26.
+1. **Double-check the idea.** Is the reasoning sound? Where is it most likely to fail? Is there
+   research that supports or contradicts it? Look things up, and say which sources you actually read
+   and which you are recalling.
+2. **Suggest how it could work better.** You are not tied to my framing or to the outline above. If
+   you find a different or better angle, or something unrelated that could clearly benefit the
+   project, raise it and explain why. Add any new idea to the research queue as you go.
+3. **Design the pieces and give me options with trade-offs for each:**
+   - **Spotting a theme:** what data, how to tell a real rising theme from noise, and how to make
+     sure themes are found automatically from information available at the time, not hand-picked
+     with hindsight.
+   - **Mapping a theme to companies:** first-order and second-order beneficiaries, and which
+     methods (earnings-call text, 10-K text, patents, supply chains, industry codes, embeddings,
+     LLMs) are free, testable without look-ahead, and realistic here.
+   - **Building the portfolio:** how many names, how to weight them (by exposure, equal, risk-based),
+     how to spread across themes and industries, when to enter and exit a theme, how often to
+     rebalance, and how to keep drawdowns and turnover reasonable without the safety nets that
+     already failed here.
+   - **Testing it honestly:** which windows, what to compare against, which costs, how many variants
+     we can afford to try, and what result would count as a pass or a fail, written down before
+     anything runs.
+4. **Data and effort:** what is free, what is already on disk, what the hardest blocker is (for
+   example matching patent holders or news names to company IDs), and roughly how many sessions
+   each piece would take.
+5. **End with a refined design and a recommended first step.** Include the questions you need me to
+   answer. Don't build or backtest anything until I have agreed to the design.
 
-## What I want back
-
-A plain-language summary of what each step found, full metrics for anything that reaches a
-backtest (CAGR, Sharpe, max drawdown, alpha vs same-risk SPY), and an honest verdict. If the
-first step fails, say so and stop before building the later ones.
+Keep the explanations in plain language. Put the conclusion first, then the detail, and end with a
+short list of what you need from me.

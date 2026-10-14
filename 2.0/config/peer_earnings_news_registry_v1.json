@@ -5,9 +5,7 @@
   "registered_at_utc": "2026-10-14T00:00:00Z",
   "registered_before_any_result_existed": true,
   "owner_approval": "2026-10-14, in chat: 'yes run A22, then A21, then A20'",
-
   "why_this_exists": "Lee, Sun, Wang & Zhang (2019) report the technology-link lead-lag also appears in earnings surprises. A firm whose linked peers just reported strong earnings may be next: the information arrives through demand, not price. A19 and A21 test peers' PRICES; this tests peers' REPORTED EARNINGS, which the market may read more slowly. Caution recorded in the design doc, from memory: Thomas & Zhang (JAR 2008) find late announcers overreact to early announcers' news.",
-
   "data": {
     "sue": "evidence/extended_sue_panel_v1/sue_panel.csv.gz: SUE (seasonal random walk on quarterly EPS, scaled by the std of the previous eight surprises) using only facts filed strictly before each decision; 58 quarterly decisions 2012-04-01 to 2026-07-01, 131,169 rows",
     "networks": "TNIC-3 (A19) and VTNIC 10% (A21), mapping and July-lag timing as A19",
@@ -15,7 +13,6 @@
   },
   "decisions": "the SUE panel's quarterly dates (1 Jan/Apr/Jul/Oct); signals use prices up to the last trading day BEFORE the decision date; forward return over the next 63 trading days, non-overlapping",
   "windows": "design 2012-04 to 2018-10 (27 decisions); holdout 2019-01 to 2025-04 for T1 (TNIC to June 2025), 2019-01 to 2023-04 for T2 (VTNIC to June 2023)",
-
   "trials": {
     "T1_product_peers_sue_3m": "score-weighted mean SUE of the firm's TNIC-3 peers that have a SUE at the decision",
     "T2_customers_sue_3m": "vertscore-weighted mean SUE of the firm's 10 nearest VTNIC customers (A21's T1 partner set) that have a SUE",
@@ -32,5 +29,6 @@
     "T2 depends on A21's VTNIC network; if A21's positive control fails, T2 is uninterpretable and is reported as such."
   ],
   "live_trading_enabled": false,
-  "strategy_promotion_authorized": false
+  "strategy_promotion_authorized": false,
+  "amendment_2026_10_14_before_any_A20_result": "T2's partner set is A21's v2 construction (config/vtnic_vertical_links_registry_v2.json), because A21 v1's raw top-10 partners were hub firms (Step 357). Made before A20 was run; nothing else changes."
 }

@@ -12,6 +12,7 @@ partners are chosen from it, both fixed in each experiment's registry before dat
 from __future__ import annotations
 
 import json
+import subprocess
 import sys
 import zipfile
 from pathlib import Path
@@ -63,11 +64,15 @@ def load_pairs(cfg: dict) -> pd.DataFrame:
     parts = []
     with zipfile.ZipFile(ROOT / cfg["zip"]) as archive:
         name = max(archive.namelist(), key=lambda n: archive.getinfo(n).file_size)
-        with archive.open(name) as handle:
-            for chunk in pd.read_csv(handle, sep=r"\s+", chunksize=5_000_000):
-                chunk.columns = ["year", "gvkey1", "gvkey2", "score"]
-                chunk = chunk[(chunk.year >= a) & (chunk.year <= b) & (chunk.gvkey1 != chunk.gvkey2)]
-                parts.append(chunk)
+    # The 3.1GB VTNIC member uses a method Python's zipfile cannot read (Deflate64); stream it
+    # through the system unzip, which verified the archive (`unzip -t`) before this ran.
+    proc = subprocess.Popen(["unzip", "-p", str(ROOT / cfg["zip"]), name], stdout=subprocess.PIPE)
+    for chunk in pd.read_csv(proc.stdout, sep="\t", chunksize=5_000_000):
+        chunk.columns = ["year", "gvkey1", "gvkey2", "score"]
+        chunk = chunk[(chunk.year >= a) & (chunk.year <= b) & (chunk.gvkey1 != chunk.gvkey2)]
+        parts.append(chunk.dropna(subset=["score"]))
+    if proc.wait() != 0:
+        raise RuntimeError("unzip failed")
     pairs = pd.concat(parts, ignore_index=True)
     pairs.to_csv(cache, index=False)
     return pairs

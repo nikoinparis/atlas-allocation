@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "experiment": "vtnic_vertical_links_v2",
+  "queue_item": "A21 (second construction)",
+  "supersedes_for_interpretation": "config/vtnic_vertical_links_registry_v1.json -- v1 was run and is kept; its result stands as recorded",
+  "registered_at_utc": "2026-10-14T00:00:00Z",
+  "registered_before_any_v2_result_existed": true,
+  "registered_before_any_result_existed": true,
+
+  "why_v2_exists": "v1 (Step 357) selected each firm's 10 highest raw-vertscore partners. Its positive control nearly failed: same-month co-movement +0.043 (customers) and +0.032 (suppliers) against +0.337 for TNIC product peers. A spot check showed why: raw vertscore is dominated by hub firms whose 10-Ks name many products, so the 'top customers' of NVDA, ETN, MSFT and DE are the same set -- BRK-A, GGG, GTES, KALU, PH, ITT, EMR. v1 therefore did not test supply chains. This was found by inspecting the links, not by looking at any forward return beyond v1's own registered output.",
+
+  "construction_choice_rule": {
+    "candidates_declared_now": {
+      "C1_lift": "partner score = vertscore_ij / (mean outgoing vertscore of i x mean incoming vertscore of j), within the year; top 10 by lift",
+      "C2_hub_exclusion": "drop partners in the top 1% of firms by number of VTNIC links that year; top 10 by raw vertscore",
+      "C3_lift_cross_sic2": "C1, keeping only partners in a different SIC2 from the firm (vertical partners are usually in another industry)"
+    },
+    "selection_statistic": "mean over T1 and T2 of the DESIGN-WINDOW (2012-2018) same-month rank correlation between a firm's 21-day return and its partners' 21-day return. This measures link quality, not predictability; no forward return enters it.",
+    "selection_then": "the predictive screen is run ONCE, on the selected construction only. The other two are reported on the positive control only.",
+    "minimum_link_quality": "if no construction reaches same-month co-movement of +0.10, A21 is closed as 'no usable free vertical network' without a predictive run"
+  },
+  "trials": "v1's T1 (customers lead suppliers) and T2 (suppliers lead customers), 1-month horizon, A19's controls, declared POSITIVE",
+  "measurement_and_pass_rule": "A19's, word for word; design 2012-2018, holdout 2019-2023H1",
+  "bonferroni_bar": 0.025,
+  "trials_declared_here": 2,
+  "cumulative_search_note": "Counted as two new trials on top of v1's two. The construction selection uses no return-prediction information.",
+  "consequence_for_A20": "A20's T2 ('A21's T1 partner set') uses the v2 selected construction. A20 had not been run when this was written.",
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

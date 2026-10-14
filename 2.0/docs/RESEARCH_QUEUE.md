@@ -259,27 +259,12 @@ carries (customer, supplier/customer industry, conglomerate, big-to-small) at t 
 thematic ETFs lose ~30% risk-adjusted over five years (Ben-David et al. 2023), so buying what text is
 excited about is the default failure. Theme detection is phase 2, only if A19 or A20 passes; the LLM map
 is forward-only (merge with C4).
-**2026-10-14, Step 354: A19 FAILED on every criterion, so A18's diffusion arm through product peers is
-closed.** What remains open: vertical links (A21), the owner's commodity chain (A22), peers' fundamental
+**2026-10-14, Steps 354-358: CLOSED in every free form.** A19 (product peers), A19b (machine-learned peers), A21
+(supply chain: free links too weak), A22 (commodities) and A20 (peers' earnings) all fail. Only the forward-only LLM
+map (C4) remains. Earlier note: A19 FAILED on every criterion, so A18's diffusion arm through product peers is
+closed. What remains open: vertical links (A21), the owner's commodity chain (A22), peers' fundamental
 news (A20, prior lowered), and the forward-only LLM map (C4). Theme detection (phase 2) is not built:
 there is no peer spillover for it to feed.
-
-### A21. Vertical links: suppliers and customers from 10-K text (VTNIC) *(new 2026-10-14, Step 354)*
-A19's TNIC is **purged of vertical relationships** (its readme), so it tests product rivals, not
-"AI needs power". Fresard, Hoberg & Phillips (RFS 2020) publish a free firm-pair-year "potential
-vertical relatedness" network (link from the Hoberg-Phillips library, Marshall-hosted data site), gvkey-keyed
-so `farr` maps it. This is the supply-chain chain in data form, with full coverage rather than Step 203's
-80%-precision extractor. **Prior low:** OSAP's industry-level version (Menzly-Ozbas iomom_cust/supp) is
-at t < 0.6 since 2013. Same harness as A19, one or two trials. Free. 1-2 sessions.
-
-### A20. Peers' fundamental news, not their prices *(new 2026-10-14, Step 353; prior lowered Step 354)*
-**Step 354:** the TNIC network and gvkey->CIK map now exist and cover 86-93% of the liquid universe, so the
-blocker is gone; but peer *returns* carry nothing (A19), which lowers the prior that peer *earnings* do.
-Lee et al. report the same lead-lag in earnings surprises and revisions. Score a firm on its TNIC peers'
-recent SUE / revenue acceleration (SUE panel and Company Facts on disk, S10 re-acquisition needed).
-Information arriving through demand, not price, may be less arbitraged than peer returns. Caution, from
-memory: Thomas & Zhang (JAR 2008) find late announcers *overreact* to early announcers, so declare the
-sign carefully. **Not blocked** (Step 354 built the network). Free. 1 session.
 
 ### A8. EU short-selling registers *(new 2026-09-10, owner-proposed)*
 **Status:** never attempted. Free, daily, from ESMA and national regulators.
@@ -496,6 +481,8 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 
 | item | verdict | where |
 |---|---|---|
+| **Supply-chain links, Fresard-Hoberg-Phillips VTNIC (was A21)** | **Closed on link quality.** v1 raw top-10 partners were hub conglomerates (BRK-A, GGG, GTES... for every firm), same-month co-movement +0.04; v2 hub-removed constructions chosen on co-movement only, best +0.062 vs a declared +0.10 floor, so no predictive run. Text-inferred 'potential' vertical links do not know who buys from whom (NVDA's real buyers absent). Needs observed links (paid, or Step 203's extractor). | Step 357 |
+| **Peers' earnings surprises (was A20)** | **Fails, declared underpowered (27 quarterly decisions).** Peers' SUE co-moves +0.18 with own SUE, but predicts nothing: design IC +0.0010 (TNIC peers), +0.0027 (VTNIC customers). | Step 358 |
 | **ML-built product links, Hoberg-Phillips ETNIC doc2vec (A19b, owner asked whether AI/ML links would do better)** | **Fails, both trials.** Links are better (same-month co-movement +0.390 vs TNIC +0.337, random +0.005) and predict no better: design IC -0.0045 / -0.0032, ladders negative. Mild reversal 2012-19, strong continuation only in 2020 (IC +0.06-0.07) -- COVID industry trends, which SIC3 peers show too. How cleverly links are drawn is not the constraint. | Step 356 |
 | **Commodity moves leading exposed stocks (was A22, owner's 'metal is rising')** | **All three trials fail.** Oil -> next 4 weeks of S&P 500 (Driesprong et al. replication): slope +0.0000 2005-15, -0.0010 2016-26. Producer groups vs own commodity: pooled slope -0.083 in 2012-18 (1 of 4 groups positive), +0.093 after. Estimated commodity betas x last move across ~1,100-1,600 stocks: design IC -0.0065, ladder -0.59/-0.69. Works only in the 2021-22 commodity boom; not choosable in advance. | Step 355 |
 | **Text-peer gap, Hoberg-Phillips TNIC-3 (was A19)** | **Fails every criterion, all four trials.** Product-peer returns (all peers, non-SIC3 peers, 6m peer-minus-own gap, 3m horizon) residualised on own momentum and SIC2 return, ~1,000-1,500 names, 83 design + 78 holdout monthly decisions. Design-window ICs -0.0036 to +0.0054, best p 0.37 vs bar 0.0125; no ladder clears; 2020 alone is positive and the SIC3 comparator shows the same 2020 burst, so it is an industry shock, not text links. Mapping worked: TNIC->CIK via `farr` covers 86-93% of the liquid universe. Closes A18's product-peer diffusion arm. | Step 354 |

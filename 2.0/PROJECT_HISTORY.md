@@ -17434,3 +17434,92 @@ of which firms move together sharper, and leave the prediction exactly where it 
 are already in prices within the month. The limit was never how cleverly the links were drawn.
 
 **Cumulative search:** two new trials (counted separately from A19's four).
+
+## Step 357 — 2026-10-14 — Free supply-chain links are too weak to test: A21 closes on link quality
+
+**What this was for.** A19 tested product rivals, because TNIC is purged of vertical links. A21
+tests the owner's actual chain: customers booming should lift the firms that supply them. It uses
+the free Fresard-Hoberg-Phillips VTNIC network (directed, 2009-2021, `data/vtnic_v1/`; the 854MB
+zip was fetched in 24 ranged parts and verified with `unzip -t`). Pre-registered in
+`config/vtnic_vertical_links_registry_v1.json` (`a0191b6`) before download.
+
+**v1 ran as registered and its links were degenerate.** Each firm's 10 highest-vertscore partners
+were taken. Same-month co-movement with those partners was **+0.043** (customers) and **+0.032**
+(suppliers), against TNIC's +0.337. A spot check showed why: raw vertscore is dominated by hub firms
+whose 10-Ks name many products. The "top customers" of NVDA, ETN, MSFT and DE are the same set:
+BRK-A, GGG, GTES, KALU, PH, ITT, EMR. The median firm has **276** partners in the 10% file. v1's
+predictive results are recorded as run in `evidence/vtnic_vertical_links_v1/` and are not
+interpretable: design IC +0.0052 (p 0.43) and −0.0015 (p 0.86). T2's holdout IC −0.0156 (p 0.021)
+has the wrong sign, against a declared positive, and is not inverted.
+
+**v2, pre-registered after the diagnosis and before any v2 result** (`c828331`). Three hub-removing
+constructions were declared: C1 lift (pair score over both firms' average linkiness), C2 hub
+exclusion (top 1% by degree), and C3 lift restricted to other SIC2s. The choice used **only
+same-month co-movement in the design window**, with no forward return, and a declared floor of
++0.10.
+
+| construction | link quality (same-month co-movement) |
+|---|---|
+| C1 lift | **+0.062** (selected) |
+| C2 hub exclusion | +0.043 |
+| C3 lift, cross-SIC2 | +0.039 |
+| (TNIC product peers, for comparison) | +0.337 |
+
+**No construction reaches +0.10, so by the registered rule A21 closes without a predictive run.**
+Lift partners are more plausible: XOM's customers are PG, LYB and CVX; its suppliers TPL, NOG and
+CVX. But NVDA's lift "customers" are APH, T, VSEC and WGO, and its real 2021-23 buyers (MSFT, META,
+GOOGL, AMZN) are absent. VTNIC measures potential relatedness from shared input-output vocabulary,
+not who buys from whom. **A real customer-supplier test needs observed links**: paid (FactSet
+Revere, Bloomberg SPLC), or the project's own 10-K customer extractor (Steps 203-204, 80%
+precision against an 85% gate, never finished). Cohen-Frazzini customer momentum on Compustat
+segment data is at t 0.2 in OSAP for 2013-2019 (Step 353), so the prior on that route is low too.
+
+**Cumulative search:** two trials run (v1). v2's selection used no forward returns and no v2
+predictive trial ran.
+
+## Step 358 — 2026-10-14 — Peers' earnings surprises do not predict a firm's next quarter (A20)
+
+**What this was for.** The last of the owner's three: whether linked firms' *reported earnings*,
+not their prices, reach a firm slowly. Pre-registered in `config/peer_earnings_news_registry_v1.json`
+(`93567cd`), **declared underpowered in advance**: 27 quarterly design decisions against Step 300's
+~38. T2's partner set was amended to A21's v2 lift construction before A20 ran. Script
+`scripts/run_peer_earnings_news_v1.py`, evidence `evidence/peer_earnings_news_v1/`.
+
+**Positive control.** Product peers' SUE correlates **+0.184** with the firm's own SUE in the same
+quarter (random partners +0.008), so earnings news genuinely co-moves across TNIC peers. Vertical
+partners manage only +0.042, consistent with Step 357, so T2 is weak by construction.
+
+| trial | design IC | p | design mono / mid-8 | holdout IC | verdict |
+|---|---|---|---|---|---|
+| T1 TNIC peers' SUE, own SUE controlled, 3m | +0.0010 | 0.94 | +0.14 / −0.24 | −0.0057 | fails all six |
+| T2 VTNIC customers' SUE (lift), 3m | +0.0027 | 0.81 | −0.12 / −0.12 | −0.0017 | fails all six; links weak |
+
+**Verdict.** Nothing, in the window where the sample is weakest. A fail on 27 decisions is weak
+evidence, as declared, but nothing here points the way that would justify rebuilding the Company
+Facts cache for monthly SUE (S10) for this purpose.
+
+## What Steps 353-358 add up to
+
+The owner asked whether these ideas were implemented shallowly. The answer comes in two parts.
+
+- **Where it was shallow, it was caught and fixed.** A21 v1's partners were hub firms; it was found
+  by inspecting the links, re-registered, and closed on link quality rather than reported as a
+  result.
+- **Where the links were good, the answer is the same.** Every network built here describes real
+  co-movement: product peers +0.34, embedding peers +0.39, peers' earnings +0.18. Every one predicts
+  nothing a month or a quarter ahead.
+
+| test | link quality (same period) | prediction (design IC) |
+|---|---|---|
+| A19 TNIC product peers | +0.337 | −0.004 to +0.005 |
+| A19b ETNIC (machine-learned) | +0.390 | −0.005, −0.003 |
+| A21 VTNIC supply chain | +0.04 to +0.06 (too weak) | not run |
+| A20 peers' earnings | +0.184 | +0.001 |
+| A22 commodity exposure | n/a | −0.0065 |
+
+What the market does, measured: **information that links companies is priced across them within
+the same month.** The only exception was 2020, when whole industries trended for months, and the
+plain SIC3 comparator shows it too. That is a property of one regime, not of the links. **Free,
+point-in-time linkage data, however cleverly drawn, does not beat the market here.** Twelve trials
+in this sequence (four in A19, two in A19b, two in A21 v1, three in A22, two in A20), plus the
+pre-registered construction choice that used no forward returns.

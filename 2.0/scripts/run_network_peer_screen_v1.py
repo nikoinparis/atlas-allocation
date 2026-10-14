@@ -78,19 +78,65 @@ def load_pairs(cfg: dict) -> pd.DataFrame:
     return pairs
 
 
-def weights_for(edges: pd.DataFrame, trial: dict, sic3: np.ndarray, n: int) -> sparse.csr_matrix:
+def add_lift_and_hubs(edges: pd.DataFrame) -> pd.DataFrame:
+    """A21 v2: lift = w / (mean outgoing w of i x mean incoming w of j), and a hub flag on j.
+
+    Raw VTNIC scores are dominated by firms whose 10-Ks name many products (Step 357), so the
+    same handful of conglomerates top every firm's partner list. Lift asks how much MORE i is
+    linked to j than i's and j's general linkiness predicts. A hub is a firm in the top 1% by
+    number of links (in + out) that year.
+    """
+    e = edges.copy()
+    e["lift"] = e.w / (e.groupby("i").w.transform("mean") * e.groupby("j").w.transform("mean"))
+    degree = pd.concat([e.i, e.j]).value_counts()
+    hubs = set(degree[degree >= degree.quantile(0.99)].index)
+    e["i_hub"], e["j_hub"] = e.i.isin(hubs), e.j.isin(hubs)
+    return e
+
+
+def weights_for(edges: pd.DataFrame, trial: dict, sic3: np.ndarray, n: int,
+                sic2: np.ndarray | None = None) -> sparse.csr_matrix:
     """edges: i -> j with weight w in panel positions. Row = focal firm, column = partner."""
-    e = edges if trial["direction"] == "out" else edges.rename(columns={"i": "j", "j": "i"})
-    if trial["non_sic3"]:
+    e = edges if trial["direction"] == "out" else edges.rename(
+        columns={"i": "j", "j": "i", "i_hub": "j_hub", "j_hub": "i_hub"})
+    score = trial.get("score", "w")
+    if trial.get("non_sic3"):
         s_i, s_j = pd.Series(sic3[e.i.to_numpy()]), pd.Series(sic3[e.j.to_numpy()])
         e = e[(s_i.notna() & s_j.notna() & (s_i != s_j)).to_numpy()]
-    if trial["top_n"]:
-        e = e.sort_values("w", ascending=False).groupby("i").head(trial["top_n"])
-    return sparse.csr_matrix((e.w, (e.i, e.j)), shape=(n, n))
+    if trial.get("cross_sic2"):
+        s_i, s_j = pd.Series(sic2[e.i.to_numpy()]), pd.Series(sic2[e.j.to_numpy()])
+        e = e[(s_i.notna() & s_j.notna() & (s_i != s_j)).to_numpy()]
+    if trial.get("exclude_hubs"):
+        e = e[~e.j_hub.to_numpy()]
+    if trial.get("top_n"):
+        e = e.sort_values(score, ascending=False).groupby("i").head(trial["top_n"])
+    return sparse.csr_matrix((e[score], (e.i, e.j)), shape=(n, n))
+
+
+V2_CONSTRUCTIONS = {
+    "C1_lift": {"score": "lift"},
+    "C2_hub_exclusion": {"exclude_hubs": True},
+    "C3_lift_cross_sic2": {"score": "lift", "cross_sic2": True},
+}
+V2_TRIALS = {"T1_customers_lead_suppliers_1m": "out", "T2_suppliers_lead_customers_1m": "in"}
+EXPERIMENTS["vtnic2-select"] = {**EXPERIMENTS["vtnic"], "registry": "config/vtnic_vertical_links_registry_v2.json",
+                                "output": "evidence/vtnic_vertical_links_v2/construction_selection",
+                                "control_only": True,
+                                "trials": {f"{c}|{t}": {"direction": d, "top_n": 10, **spec}
+                                           for c, spec in V2_CONSTRUCTIONS.items() for t, d in V2_TRIALS.items()}}
+SELECTION = ROOT / "evidence/vtnic_vertical_links_v2/construction_selection/selection.json"
+
+
+def v2_config() -> dict:
+    chosen = json.loads(SELECTION.read_text())["selected"]
+    return {**EXPERIMENTS["vtnic"], "registry": "config/vtnic_vertical_links_registry_v2.json",
+            "output": "evidence/vtnic_vertical_links_v2",
+            "trials": {t: {"direction": d, "top_n": 10, **V2_CONSTRUCTIONS[chosen]} for t, d in V2_TRIALS.items()}}
 
 
 def main(which: str) -> int:
-    cfg = EXPERIMENTS[which]
+    cfg = v2_config() if which == "vtnic2" else EXPERIMENTS[which]
+    control_only = cfg.get("control_only", False)
     registry = json.loads((ROOT / cfg["registry"]).read_text())
     assert registry["registered_before_any_result_existed"]
     rng = np.random.default_rng(20261014 + len(which))
@@ -113,7 +159,8 @@ def main(which: str) -> int:
     col_pos = {c: i for i, c in enumerate(cols)}
     n, px = len(cols), prices.to_numpy()
     month_end = pd.Series(dates, index=dates).groupby([dates.year, dates.month]).last()
-    decisions = [d for d in month_end if pd.Timestamp(design[0]) <= d <= pd.Timestamp(holdout[1])]
+    last = design[1] if control_only else holdout[1]
+    decisions = [d for d in month_end if pd.Timestamp(design[0]) <= d <= pd.Timestamp(last)]
     cache, rows, coverage, comove = {}, [], [], []
     placebo = {t: [] for t in cfg["trials"]}
     for when in decisions:
@@ -128,7 +175,7 @@ def main(which: str) -> int:
             keep = c1.isin(col_pos) & c2.isin(col_pos) & (c1 != c2)
             ed = pd.DataFrame({"i": c1[keep].map(col_pos).to_numpy(), "j": c2[keep].map(col_pos).to_numpy(),
                                "w": e.score[keep].to_numpy()})
-            cache[year] = ed.groupby(["i", "j"], as_index=False).w.max()
+            cache[year] = add_lift_and_hubs(ed.groupby(["i", "j"], as_index=False).w.max())
         edges = cache[year]
         groups = a19.sic_as_of(sic, when).reindex(cols)
         sic3 = groups.str[:3].to_numpy(dtype=object)
@@ -150,7 +197,7 @@ def main(which: str) -> int:
         cov = {"date": when, "universe": int(universe.sum())}
         cm = {"date": when}
         for name, trial in cfg["trials"].items():
-            w = weights_for(edges, trial, sic3, n)
+            w = weights_for(edges, trial, sic3, n, sic2)
             has = np.asarray((w > 0).sum(axis=1)).ravel() > 0
             cov[name] = int((universe & has).sum())
             raw = np.where(universe, a19.peer_mean(w, r21), np.nan)
@@ -159,7 +206,7 @@ def main(which: str) -> int:
             cm[name + "_same_month_random"] = a19.rank_ic(
                 np.where(universe, a19.peer_mean(w, r21[rng.permutation(n)]), np.nan), np.where(universe, r21, np.nan))
             record[name] = {"raw": raw, "resid": a19.residualise(raw, controls), "fwd": fwd}
-            if in_design:
+            if in_design and not control_only:
                 draws = []
                 for _ in range(PLACEBO_RUNS):
                     pr = np.where(universe, a19.peer_mean(w, r21[rng.permutation(n)]), np.nan)
@@ -180,6 +227,18 @@ def main(which: str) -> int:
     print(pd.DataFrame(share).round(3).to_string())
     gate = all(((s[(s.index >= 2012) & (s.index <= 2018)]) >= a19.COVERAGE_GATE).all() for s in share.values())
     print(f"coverage gate: {'PASS' if gate else 'FAIL'}")
+    if control_only:
+        means = comove.drop(columns="date").mean()
+        quality = {c: float(np.mean([means[f"{c}|{t}_same_month"] for t in V2_TRIALS])) for c in V2_CONSTRUCTIONS}
+        selected = max(quality, key=quality.get)
+        verdict = {"link_quality_design_window": quality, "selected": selected,
+                   "minimum_link_quality": 0.10, "passes_minimum": quality[selected] >= 0.10,
+                   "coverage_by_year": {k: v.to_dict() for k, v in share.items()},
+                   "uses_no_forward_return": True}
+        SELECTION.write_text(json.dumps(verdict, indent=2, default=str) + "\n")
+        print(json.dumps(verdict["link_quality_design_window"], indent=2), "\nselected:", selected,
+              "| passes minimum 0.10:", verdict["passes_minimum"])
+        return 0
 
     a19.BAR = bar
     design_rows = [r for r in rows if pd.Timestamp(design[0]) <= r["date"] <= pd.Timestamp(design[1])]

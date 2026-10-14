@@ -1,0 +1,228 @@
+{
+  "registry": "config/peer_earnings_news_registry_v1.json",
+  "positive_control": {
+    "universe": 1257.5283018867924,
+    "T1_product_peers_sue_3m_same_quarter": 0.18362032012918109,
+    "T1_product_peers_sue_3m_same_quarter_random": 0.007929048118168143,
+    "T1_product_peers_sue_3m_names": 1155.4150943396226,
+    "T2_customers_sue_3m_same_quarter": 0.04213166863309117,
+    "T2_customers_sue_3m_same_quarter_random": -0.004451064565985627,
+    "T2_customers_sue_3m_names": 932.5434782608696
+  },
+  "results": [
+    {
+      "trial": "T1_product_peers_sue_3m",
+      "design": {
+        "decisions": 27,
+        "median_names": 965.0,
+        "mean_ic": 0.0009677505828381396,
+        "t_stat": 0.07258563068194714,
+        "bootstrap_p": 0.93775,
+        "decile_spread_per_period": 0.004535431982254486,
+        "decile_spread_annualised": 0.018265522389685707,
+        "ladder": [
+          0.03851132166898347,
+          0.03395146652589325,
+          0.03889875060750997,
+          0.04229457528824595,
+          0.035855641416578654,
+          0.039546978448066795,
+          0.0336041350569305,
+          0.0405275025413579,
+          0.03293902184151936,
+          0.04304675365123795
+        ],
+        "monotonicity": 0.13939393939393938,
+        "monotonicity_middle_8": -0.2380952380952381,
+        "extremes_share_of_spread": 1.2232300447532283,
+        "clears": false,
+        "verdict": "flat -- no cross-sectional ordering",
+        "calibrated": {
+          "decisions": 27,
+          "monotonicity": 0.13939393939393938,
+          "monotonicity_middle_8": -0.2380952380952381,
+          "score": 0.0,
+          "bar95": 0.5952380952380953,
+          "p": 1.0
+        },
+        "clears_calibrated": false,
+        "zero_share": 0.00144870251987122
+      },
+      "holdout": {
+        "decisions": 25,
+        "median_names": 1436.0,
+        "mean_ic": -0.005680824951073689,
+        "t_stat": -0.41379328357733614,
+        "bootstrap_p": 0.6795,
+        "decile_spread_per_period": 0.0020211770748670907,
+        "decile_spread_annualised": 0.008109252284065338,
+        "ladder": [
+          0.03577098761936472,
+          0.03193684843953484,
+          0.03111580932040411,
+          0.02904259678696718,
+          0.027187738447459385,
+          0.029631275191988476,
+          0.018837845788033963,
+          0.030292569204211906,
+          0.026886382691646893,
+          0.037792164694231814
+        ],
+        "monotonicity": -0.2727272727272727,
+        "monotonicity_middle_8": -0.6428571428571429,
+        "extremes_share_of_spread": 3.498774506543451,
+        "clears": false,
+        "verdict": "flat -- no cross-sectional ordering",
+        "calibrated": {
+          "decisions": 25,
+          "monotonicity": -0.2727272727272727,
+          "monotonicity_middle_8": -0.6428571428571429,
+          "score": -0.2727272727272727,
+          "bar95": 0.709090909090909,
+          "p": 0.5407296351824088
+        },
+        "clears_calibrated": false,
+        "zero_share": 0.0006651742246900333
+      },
+      "placebo_network": {
+        "mean": -1.0209696430434116e-05,
+        "p95": 0.015320799710501109
+      },
+      "leave_out": {
+        "min_leave_one_sic2_out_ic": -0.0023785947365522783,
+        "worst_sic2_removed": "67",
+        "ic_without_top10_names": -0.00491597825807469,
+        "top10_names": [
+          "0000027996",
+          "0000108385",
+          "0000215466",
+          "0000764065",
+          "0001021561",
+          "0001062231",
+          "0001065088",
+          "0001206264",
+          "0001274494",
+          "0001405495"
+        ]
+      },
+      "criteria": {
+        "design_ic_positive_p_below_bar": false,
+        "design_ladder_clears_positive": false,
+        "design_ladder_clears_calibrated": false,
+        "design_ic_above_placebo_network_p95": false,
+        "design_leave_outs_positive": false,
+        "holdout_ic_positive_and_ladder_clears": false
+      },
+      "screen_passes": false
+    },
+    {
+      "trial": "T2_customers_sue_3m",
+      "design": {
+        "decisions": 27,
+        "median_names": 794.0,
+        "mean_ic": 0.002697593524804837,
+        "t_stat": 0.2292199726102558,
+        "bootstrap_p": 0.81,
+        "decile_spread_per_period": -0.0014527232585221511,
+        "decile_spread_annualised": -0.005798242863776837,
+        "ladder": [
+          0.03428097887138008,
+          0.03986024671860963,
+          0.040978721787913695,
+          0.038333490415312116,
+          0.0372124660182068,
+          0.03510931052606942,
+          0.039639633348176107,
+          0.03632103199378517,
+          0.042150056424594476,
+          0.03282825561285793
+        ],
+        "monotonicity": -0.11515151515151514,
+        "monotonicity_middle_8": -0.11904761904761905,
+        "extremes_share_of_spread": 2.5762187963551,
+        "clears": false,
+        "verdict": "flat -- no cross-sectional ordering",
+        "calibrated": {
+          "decisions": 27,
+          "monotonicity": -0.11515151515151514,
+          "monotonicity_middle_8": -0.11904761904761905,
+          "score": -0.11515151515151514,
+          "bar95": 0.5757575757575757,
+          "p": 0.6376811594202898
+        },
+        "clears_calibrated": false,
+        "zero_share": 0.0002489306207616067
+      },
+      "holdout": {
+        "decisions": 17,
+        "median_names": 1200.0,
+        "mean_ic": -0.0017494895488523662,
+        "t_stat": -0.13393742849573922,
+        "bootstrap_p": 0.89725,
+        "decile_spread_per_period": 0.016415336037253807,
+        "decile_spread_annualised": 0.06729588962242583,
+        "ladder": [
+          0.03539658873766798,
+          0.041974396157005864,
+          0.031082494816400442,
+          0.040148145877199906,
+          0.03465802049677095,
+          0.04068993674801538,
+          0.03134694072365002,
+          0.029506836268332223,
+          0.0379818522817736,
+          0.05181192477492179
+        ],
+        "monotonicity": 0.06666666666666665,
+        "monotonicity_middle_8": -0.38095238095238104,
+        "extremes_share_of_spread": 1.2432203560238657,
+        "clears": false,
+        "verdict": "flat -- no cross-sectional ordering",
+        "calibrated": {
+          "decisions": 17,
+          "monotonicity": 0.06666666666666665,
+          "monotonicity_middle_8": -0.38095238095238104,
+          "score": 0.0,
+          "bar95": 0.4666666666666666,
+          "p": 1.0
+        },
+        "clears_calibrated": false,
+        "zero_share": 0.0008043353101654983
+      },
+      "placebo_network": {
+        "mean": -0.00019321888648407708,
+        "p95": 0.01858759358797527
+      },
+      "leave_out": {
+        "min_leave_one_sic2_out_ic": -0.0010059891819000064,
+        "worst_sic2_removed": "23",
+        "ic_without_top10_names": -0.005200891550331571,
+        "top10_names": [
+          "0000057131",
+          "0000707549",
+          "0000764478",
+          "0000789460",
+          "0000815556",
+          "0000822818",
+          "0000883569",
+          "0001175454",
+          "0001262976",
+          "0001324404"
+        ]
+      },
+      "criteria": {
+        "design_ic_positive_p_below_bar": false,
+        "design_ladder_clears_positive": false,
+        "design_ladder_clears_calibrated": false,
+        "design_ic_above_placebo_network_p95": false,
+        "design_leave_outs_positive": false,
+        "holdout_ic_positive_and_ladder_clears": false
+      },
+      "screen_passes": false
+    }
+  ],
+  "any_trial_passes": false,
+  "underpowered_by_design": true,
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

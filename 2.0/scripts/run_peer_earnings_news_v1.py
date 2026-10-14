@@ -92,8 +92,9 @@ def main() -> int:
         te = network_edges(tnic, links, year, col_pos)
         weights["T1_product_peers_sue_3m"] = sparse.csr_matrix((te.w, (te.i, te.j)), shape=(n, n))
         if year <= 2021:
-            ve = network_edges(vtnic, links, year, col_pos)
-            weights["T2_customers_sue_3m"] = net.weights_for(ve, {"direction": "out", "top_n": 10, "non_sic3": False},
+            # A21 v2's selected construction (lift), per the A20 amendment made before this ran.
+            ve = net.add_lift_and_hubs(network_edges(vtnic, links, year, col_pos))
+            weights["T2_customers_sue_3m"] = net.weights_for(ve, {"direction": "out", "top_n": 10, "score": "lift"},
                                                              None, n)
         record = {"date": when, "cik": cols, "sic2": sic2}
         cm = {"date": when, "universe": int(universe.sum())}

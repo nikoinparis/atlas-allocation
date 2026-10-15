@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "experiment": "leader_mentions_v1",
+  "queue_item": "A25",
+  "registered_at_utc": "2026-10-15T00:00:00Z",
+  "registered_before_any_result_existed": true,
+  "registered_before_any_mention_data_was_downloaded": true,
+  "owner_approval": "2026-10-15, in chat: 'yes run A25 and A26'",
+
+  "why_this_exists": "The owner saw posts about little-known data-centre companies doing business with AI leaders and asked whether we could catch them. Free text-inferred vertical links failed (Step 357: they do not know who buys from whom). Firms' own filings do: EDGAR full-text search (free, 2001+) shows APLD, HUT, WULF, SLNH, MIG, KULR and OSS naming NVIDIA in 2023-24. The test: when a firm FIRST names one of the market's current leaders in a filing, does it outperform afterwards?",
+
+  "leaders": {
+    "rule": "at the start of each calendar quarter Q, among the 200 most liquid stocks (63-day median dollar volume, close >= $5), the 20 with the highest trailing 252-trading-day return. Point in time; no theme is chosen by hand.",
+    "search_name": "the leader's latest as-filed SEC name before Q (FSDS sub.txt; carried forward after 2022Q4), with legal suffixes removed (INC, CORP, CORPORATION, CO, COMPANY, LTD, PLC, HOLDINGS, HOLDING, GROUP, LLC, LP, NV, SA, AG, THE, /DE/ and similar) and punctuation stripped",
+    "ambiguous_names_excluded": "a single-word cleaned name that is an ordinary word in /usr/share/dict/words (e.g. Apple, Target, Visa) or is shorter than 4 characters is excluded for that quarter; the exclusions are listed in the output"
+  },
+  "mentions": {
+    "source": "EDGAR full-text search API (efts.sec.gov/LATEST/search-index), exact phrase, forms 10-K, 10-Q, 8-K (all their exhibits), filed within Q; raw responses cached under data/edgar_fts_leader_mentions_v1/",
+    "new_mention": "a filer that names the leader in a filing filed in Q and named it in none filed in the four quarters before Q",
+    "excluded_mentioners": "the leader itself; firms in the leader's SIC3 (competitors naming a rival); the leader's ETNIC-3 peers; firms not in the price panel or not liquid at the decision (close >= $5, $5M median dollar volume)",
+    "event_unit": "(firm, quarter): a firm newly naming at least one leader in Q, counted once"
+  },
+  "precision_check_before_any_return_is_computed": "50 random design-window new mentions are drawn (seed fixed); the filing document is fetched and every sentence naming the leader is extracted and read. Each is classified relationship (customer, supplier, partner, licensee, uses or resells the leader's products, investment from the leader) vs other (competitor, list of companies, risk factor, market commentary, index or fund holdings). The relationship share is reported BEFORE returns. It does not gate the test -- the declared signal is the new mention -- but if it is below 25% the result is labelled as testing 'mentions', not 'business relationships'.",
+
+  "decision_and_outcome": "decision at the last trading day of Q; enter at the next close; return over h trading days minus the mean of 50 random liquid same-SIC2 firms that did not newly name any leader in Q and are not ETNIC peers of the named leader(s)",
+  "trials": {"T1_new_mentioners_126d": "h = 126", "T2_new_mentioners_252d": "h = 252"},
+  "declared_sign": "POSITIVE. Declared risk: microcap 'partnership with NVIDIA' announcements are a known hype pattern (cf. Ben-David et al. 2023), so the sign may come out negative; a negative result is a refutation, not an inverted strategy.",
+  "significance": "quarter-level mean of firm outcomes, block bootstrap over quarters (block 2), 4000 draws, two-sided",
+  "windows": "design: quarters 2012Q1-2018Q4; holdout: 2019Q1-2025Q3 (the last with 252 trading days of forward prices)",
+  "bonferroni_bar": 0.025,
+  "trials_declared_here": 2,
+  "pass_rule_per_trial": "design mean > 0 with p < 0.025 AND holdout mean > 0 AND the design mean survives dropping the 10 firm-events contributing most AND design mean > 50 bps",
+  "book_only_if_a_trial_passes": "long-only, equal weight across the quarter's new mentioners, held h days, costs 0/10/50/100 bps, vs SPY and the equal-weight universe",
+  "cumulative_search_note": "Two new trials on top of 362 steps. Leaders are chosen by price momentum, so this partly overlaps with momentum; the matched same-SIC2 control does not remove the mentioner's own momentum, which is reported as a diagnostic.",
+  "known_weaknesses_declared_up_front": [
+    "Full-text search is phrase matching: 'Micron' in a mentioner's filing may be a unit of length; 'Tesla' may be a unit. The precision check measures how bad this is.",
+    "As-filed names change (Facebook -> Meta Platforms in 2021); FSDS names are carried forward after 2022Q4.",
+    "EDGAR full-text search returns at most 10,000 hits per query; queries at the cap are flagged.",
+    "Survivorship in the price panel as A19."
+  ],
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

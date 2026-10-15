@@ -6,9 +6,7 @@
   "registered_before_any_result_existed": true,
   "registered_before_any_mention_data_was_downloaded": true,
   "owner_approval": "2026-10-15, in chat: 'yes run A25 and A26'",
-
   "why_this_exists": "The owner saw posts about little-known data-centre companies doing business with AI leaders and asked whether we could catch them. Free text-inferred vertical links failed (Step 357: they do not know who buys from whom). Firms' own filings do: EDGAR full-text search (free, 2001+) shows APLD, HUT, WULF, SLNH, MIG, KULR and OSS naming NVIDIA in 2023-24. The test: when a firm FIRST names one of the market's current leaders in a filing, does it outperform afterwards?",
-
   "leaders": {
     "rule": "at the start of each calendar quarter Q, among the 200 most liquid stocks (63-day median dollar volume, close >= $5), the 20 with the highest trailing 252-trading-day return. Point in time; no theme is chosen by hand.",
     "search_name": "the leader's latest as-filed SEC name before Q (FSDS sub.txt; carried forward after 2022Q4), with legal suffixes removed (INC, CORP, CORPORATION, CO, COMPANY, LTD, PLC, HOLDINGS, HOLDING, GROUP, LLC, LP, NV, SA, AG, THE, /DE/ and similar) and punctuation stripped",
@@ -21,9 +19,11 @@
     "event_unit": "(firm, quarter): a firm newly naming at least one leader in Q, counted once"
   },
   "precision_check_before_any_return_is_computed": "50 random design-window new mentions are drawn (seed fixed); the filing document is fetched and every sentence naming the leader is extracted and read. Each is classified relationship (customer, supplier, partner, licensee, uses or resells the leader's products, investment from the leader) vs other (competitor, list of companies, risk factor, market commentary, index or fund holdings). The relationship share is reported BEFORE returns. It does not gate the test -- the declared signal is the new mention -- but if it is below 25% the result is labelled as testing 'mentions', not 'business relationships'.",
-
   "decision_and_outcome": "decision at the last trading day of Q; enter at the next close; return over h trading days minus the mean of 50 random liquid same-SIC2 firms that did not newly name any leader in Q and are not ETNIC peers of the named leader(s)",
-  "trials": {"T1_new_mentioners_126d": "h = 126", "T2_new_mentioners_252d": "h = 252"},
+  "trials": {
+    "T1_new_mentioners_126d": "h = 126",
+    "T2_new_mentioners_252d": "h = 252"
+  },
   "declared_sign": "POSITIVE. Declared risk: microcap 'partnership with NVIDIA' announcements are a known hype pattern (cf. Ben-David et al. 2023), so the sign may come out negative; a negative result is a refutation, not an inverted strategy.",
   "significance": "quarter-level mean of firm outcomes, block bootstrap over quarters (block 2), 4000 draws, two-sided",
   "windows": "design: quarters 2012Q1-2018Q4; holdout: 2019Q1-2025Q3 (the last with 252 trading days of forward prices)",
@@ -39,5 +39,6 @@
     "Survivorship in the price panel as A19."
   ],
   "live_trading_enabled": false,
-  "strategy_promotion_authorized": false
+  "strategy_promotion_authorized": false,
+  "amendment_2026_10_15_before_any_mention_data": "Two name-cleaning corrections found by reading the leader list, which contains no return or mention data: (1) as-filed state tags (/TX, /MA, /DE/ and similar) are stripped; (2) descriptive words TECHNOLOGY, TECHNOLOGIES, INTERNATIONAL, ENTERPRISES are stripped only if the remaining name is not a single ordinary word -- so 'MICRON TECHNOLOGY' is searched as 'MICRON TECHNOLOGY' instead of being excluded, while 'APPLE INC' (-> APPLE) is still excluded. 'Ordinary word' means a lowercase entry in /usr/share/dict/words."
 }

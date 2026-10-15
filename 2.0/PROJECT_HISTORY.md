@@ -17596,3 +17596,49 @@ seems to pick the right followers on the day, and those continue. Their 2019-202
 holdout for a fresh pre-registration (queue A26).
 
 **Cumulative search:** two new trials. Nothing created, improved or promoted a strategy.
+
+## Step 361 — 2026-10-15 — News-day co-movers: the untouched holdout says regime, not skill (A26)
+
+**What this was for.** Step 360 noticed, post hoc, that peers moving *with* a jumping leader on
+news day kept going (+3.01% over 126 days, 2012-2018). A24 had saved the 2019-2025H1 values without
+anyone printing them, so they could serve as a clean holdout. Pre-registered in
+`config/news_day_comovers_registry_v1.json` (`ad8757a`): one trial, 126 days, read once. Script
+`scripts/run_news_day_comovers_v1.py`.
+
+**Fails.** 940 holdout events: mean **+2.06%**, but median **−3.01%**, 45% positive, p 0.45, and
+**−0.16%** without the 10 largest events. By regime: 2020 +6.86% (p 0.000), 2021-22 **−7.27%**
+(p 0.003), 2023-25 +7.46% (p 0.35). The 21-day diagnostic is −1.63%. What looked like the market
+choosing the right followers is the same thing every test here has found: it pays in 2020 and
+2023-25, and loses in 2021-22.
+
+## Step 362 — 2026-10-15 — Earnings confirmation does not catch the main wave earlier or cleaner (A27)
+
+**What this was for.** The owner wanted the main wave rather than peer trades: caught earlier, with
+fewer false starts. A price alarm cannot tell a real demand shift from hype (Step 359), so this
+added a different kind of information, reported earnings across the industry. Pre-registered in
+`config/boom_earnings_confirmation_registry_v1.json` (`1f05f73`), two questions. Script
+`scripts/run_boom_earnings_confirmation_v1.py`, evidence `evidence/boom_earnings_confirmation_v1/`.
+
+**Q1: do price alarms confirmed by earnings (industry mean SUE in the top third) beat unconfirmed
+ones? No, the reverse.** 233 scored firings, 87 confirmed. Confirmed minus unconfirmed, next-12m
+excess: **−5.51%** (p 0.088, against the declared positive sign).
+
+| half | confirmed: n, mean, share positive, became a boom | unconfirmed: n, mean, share positive, became a boom |
+|---|---|---|
+| 2012-2018 | 26, −1.57%, 42%, 65% | 29, +2.08%, 55%, 66% |
+| 2019-2026 | 61, +4.02%, 56%, 84% | 117, +9.30%, 63%, 80% |
+
+A rise backed by visible earnings strength appears to be priced already. The rises the market
+cannot yet justify ran further, which is the speculative regime again. The refutation is recorded
+and not inverted.
+
+**Q2: do industries beating on earnings two quarters running, before price has moved, outperform?
+No.** 473 of 3,673 industry-quarters. Difference against all industry-quarters: **+0.52%** (p 0.64),
+with 2012-2018 **−1.98%** and 2019-2026 +1.89%. Only **21%** went on to trigger a price alarm within
+12 months, so earnings do not systematically lead price at the industry level.
+
+**What this says.** Price alarms are late, and earnings at the industry level do not make them
+earlier or cleaner. If anything, a boom the earnings already explain has less left in it. The main
+wave cannot be separated from false starts with free price or earnings data in this sample.
+
+**Cumulative search:** three new trials across Steps 361-362.

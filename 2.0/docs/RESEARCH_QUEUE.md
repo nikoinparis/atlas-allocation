@@ -278,12 +278,6 @@ customer/partner vs competitor/risk-factor precision before any return. **Sign r
 hype may predict NEGATIVE returns (cf. Ben-David et al.), so declare the sign carefully. Free; ~2-4k SEC
 queries at 10/sec. 1-2 sessions. Awaiting owner sign-off.
 
-### A26. Followers that move WITH the leader on news day keep going *(new 2026-10-15, Step 360, post-hoc)*
-In A24's design window, peers that moved at least half as much as a jumping leader on day 0 continued +1.15%
-(21d) and +3.01% (126d) against same-SIC2 controls. Post-hoc. A clean holdout exists: A24's 2019-2025H1 events,
-columns `*_moved` in `evidence/news_jump_followers_v1/events.csv`, **never printed or inspected**.
-Pre-register one horizon and the pass rule, then read the holdout once. Free, data on disk. Under 1 session.
-
 ### A8. EU short-selling registers *(new 2026-09-10, owner-proposed)*
 **Status:** never attempted. Free, daily, from ESMA and national regulators.
 **Why it is genuinely better than what closed in Step 263:** FINRA short interest is an
@@ -499,6 +493,8 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 
 | item | verdict | where |
 |---|---|---|
+| **News-day co-movers continue (was A26, post-hoc from A24)** | **Fails on its untouched holdout.** 940 events 2019-25: mean +2.06% at 126d but median -3.01%, 45% positive, p 0.45, -0.16% without top-10; 2020 +6.9%, 2021-22 -7.3%, 2023-25 +7.5%. | Step 361 |
+| **Boom alarm confirmed by industry earnings; earnings before price (A27, owner's 'catch the main wave earlier')** | **Both fail.** Earnings-confirmed alarms do WORSE than unconfirmed (-5.5% next-12m, p 0.09; both halves). Industries beating two quarters before price moves: +0.5% (p 0.64), -2.0% in 2012-18; only 21% later trigger a price alarm. | Step 362 |
 | **News-jump followers: unmoved peers of a leader that jumped >= 10% (was A24, owner's 'move fast on news')** | **Fails.** 3,449 events, enter the day after, ETNIC peers vs same-SIC2 controls: design +0.02% (21d) / +0.14% (126d), p > 0.85, negative without the top-10 events. 2021-22 -3.5% at 126d. Peers that moved WITH the leader continued (post-hoc, see A26). | Step 360 |
 | **Boom alarm (industry 20% ahead over 6m), exploratory anatomy** | **Not a trial; regime-only.** 105 SIC3 booms 2012-26, 48 starting 2012-18; alarm fires a median 9 months in with 52% left. Next-12m excess +0.1% in 2012-18 vs +6.9% in 2019-26. Triplers are U-shaped in momentum (volatility, not direction). Consistent with Step 349. | Step 359 |
 | **Supply-chain links, Fresard-Hoberg-Phillips VTNIC (was A21)** | **Closed on link quality.** v1 raw top-10 partners were hub conglomerates (BRK-A, GGG, GTES... for every firm), same-month co-movement +0.04; v2 hub-removed constructions chosen on co-movement only, best +0.062 vs a declared +0.10 floor, so no predictive run. Text-inferred 'potential' vertical links do not know who buys from whom (NVDA's real buyers absent). Needs observed links (paid, or Step 203's extractor). | Step 357 |

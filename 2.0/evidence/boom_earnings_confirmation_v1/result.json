@@ -1,0 +1,57 @@
+{
+  "registry": "config/boom_earnings_confirmation_registry_v1.json",
+  "Q1": {
+    "firings": 233,
+    "difference": -0.05513565162762832,
+    "p": 0.0875,
+    "halves": {
+      "2012-2018": {
+        "confirmed_n": 26,
+        "unconfirmed_n": 29,
+        "confirmed_mean": -0.015705529806025458,
+        "unconfirmed_mean": 0.020833767732268048,
+        "confirmed_became_wave": 0.6538461538461539,
+        "unconfirmed_became_wave": 0.6551724137931034,
+        "confirmed_share_positive": 0.4230769230769231,
+        "unconfirmed_share_positive": 0.5517241379310345
+      },
+      "2019-2026": {
+        "confirmed_n": 61,
+        "unconfirmed_n": 117,
+        "confirmed_mean": 0.040243333503916824,
+        "unconfirmed_mean": 0.09299129462892555,
+        "confirmed_became_wave": 0.8360655737704918,
+        "unconfirmed_became_wave": 0.8034188034188035,
+        "confirmed_share_positive": 0.5573770491803278,
+        "unconfirmed_share_positive": 0.6324786324786325
+      }
+    },
+    "passes": false
+  },
+  "Q2": {
+    "events": 473,
+    "base": 3673,
+    "difference": 0.005244026775931538,
+    "p": 0.6395,
+    "halves": {
+      "2012-2018": {
+        "events": 171,
+        "events_mean": -0.018779440199447075,
+        "all_mean": 0.001006961734009088,
+        "difference": -0.01978640193345616,
+        "events_share_positive": 0.42105263157894735
+      },
+      "2019-2026": {
+        "events": 302,
+        "events_mean": 0.034504062837825075,
+        "all_mean": 0.01563048769931559,
+        "difference": 0.018873575138509485,
+        "events_share_positive": 0.5264900662251656
+      }
+    },
+    "alarm_within_12m": 0.21141649048625794,
+    "passes": false
+  },
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

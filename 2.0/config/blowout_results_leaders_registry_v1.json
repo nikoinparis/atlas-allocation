@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "experiment": "blowout_results_leaders_v1",
+  "queue_item": "A28 (new 2026-10-15, Step 363)",
+  "registered_at_utc": "2026-10-15T00:00:00Z",
+  "registered_before_any_result_existed": true,
+  "owner_request": "2026-10-15, in chat: 'i dont want it to just be a strategy that trading on the peers, i want the main wave'",
+
+  "why_this_exists": "The main wave's first visible step is usually a leader's own results: NVDA's 2023-05-24 report (+24% the next day) started the repricing that took it from +95% to +760% (Step 359). This buys the leader itself, not its peers, the day after a blowout results day, and holds for months. Literature, recalled and not read this session: Brandt, Kishore, Santa-Clara & Venkatachalam (2008) find drift after large earnings-announcement returns; Martineau (2022) finds post-earnings drift has largely disappeared in large caps. Step 360's diagnostic found leaders jumping for ANY reason did not drift (126d: -0.36% design), so the question is whether RESULTS-driven jumps differ.",
+
+  "data": {
+    "results_dates": "SEC 8-K Item 2.02 acceptance datetimes from EDGAR submissions (the method of scripts/acquire_sec_earnings_8k_v1.py, extended back to 2012 for the names that are ever in the top 500 by liquidity); raw cached in data/sec_historical_identity_cache",
+    "prices_liquidity_sic": "A19's"
+  },
+  "events": {
+    "universe": "each day, the 500 most liquid stocks (63-day median dollar volume, close >= $5), as A24",
+    "reaction_day": "the first trading day whose close comes after the 8-K acceptance time (acceptance after 16:00 New York time -> next trading day)",
+    "blowout": "reaction-day return minus the equal-weight liquid-universe return >= +10%",
+    "period": "2012-01-01 to 2025-06-30"
+  },
+  "entry_and_outcome": "buy at the close of reaction day + 1; return over h trading days minus the mean of 50 random liquid same-SIC2 firms (A24's control)",
+  "trials": {"T1_blowout_leader_63d": "h = 63", "T2_blowout_leader_126d": "h = 126"},
+  "declared_sign": "POSITIVE",
+  "significance": "event-level outcomes, block bootstrap over event months (block 3), 4000 draws, two-sided",
+  "windows": "design: events 2012-2018; holdout: 2019-2025H1",
+  "bonferroni_bar": 0.025,
+  "trials_declared_here": 2,
+  "pass_rule_per_trial": "design mean > 0 with p < 0.025 AND holdout mean > 0 AND design mean survives dropping its 10 largest events AND design mean > 50 bps",
+  "diagnostics_not_verdicts": ["non-results jumps of the same size (A24's leaders minus results days)", "results days with reaction <= -10% (blowdowns)", "regimes 2012-2019, 2020, 2021-2022, 2023-2025H1", "the 20 largest events listed by name"],
+  "book_only_if_a_trial_passes": "long-only, equal weight across live events, each held h days, costs 0/10/50/100 bps, vs SPY and the equal-weight universe; CAGR, Sharpe, max drawdown, beta, per regime, leave-top-5-names-out",
+  "cumulative_search_note": "Two new trials on top of 363 steps.",
+  "known_weaknesses_declared_up_front": [
+    "8-K Item 2.02 also covers preliminary results and some non-earnings disclosures; a few reaction days will be mislabelled.",
+    "Survivorship in the price panel as A19.",
+    "Large-cap leaders only: the drift literature finds effects concentrated in smaller, less-followed firms."
+  ],
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

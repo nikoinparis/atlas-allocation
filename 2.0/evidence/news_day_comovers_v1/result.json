@@ -1,0 +1,105 @@
+{
+  "registry": "config/news_day_comovers_registry_v1.json",
+  "holdout": {
+    "T2_followers_126d_moved": {
+      "events": 940,
+      "leaders": 318,
+      "mean": 0.020609351090572985,
+      "median": -0.0300915737749151,
+      "share_positive": 0.45,
+      "t_naive": 1.492386531235691,
+      "bootstrap_p": 0.4495,
+      "mean_without_top10_events": -0.0016460185330033795,
+      "regimes": {
+        "2019": {
+          "events": 15,
+          "inconclusive": true
+        },
+        "2020": {
+          "events": 332,
+          "leaders": 181,
+          "mean": 0.06855789827556076,
+          "median": 0.02176555984439605,
+          "share_positive": 0.5451807228915663,
+          "t_naive": 2.9091019229223405,
+          "bootstrap_p": 0.0,
+          "mean_without_top10_events": 0.02635450177678324
+        },
+        "2021-2022": {
+          "events": 331,
+          "leaders": 115,
+          "mean": -0.07268233345716218,
+          "median": -0.1106615751472897,
+          "share_positive": 0.32628398791540786,
+          "t_naive": -4.004393001252537,
+          "bootstrap_p": 0.00275,
+          "mean_without_top10_events": -0.10869550093250531
+        },
+        "2023-2025H1": {
+          "events": 262,
+          "leaders": 124,
+          "mean": 0.07457340648871408,
+          "median": -0.0058660639217338,
+          "share_positive": 0.4847328244274809,
+          "t_naive": 2.4061787946399775,
+          "bootstrap_p": 0.3455,
+          "mean_without_top10_events": 0.004493782814861366
+        }
+      }
+    },
+    "T1_followers_21d_moved": {
+      "events": 940,
+      "leaders": 318,
+      "mean": -0.016293133674124292,
+      "median": -0.0301955299395959,
+      "share_positive": 0.4127659574468085,
+      "t_naive": -2.9347022855486578,
+      "bootstrap_p": 0.0995,
+      "mean_without_top10_events": -0.024350428369599723,
+      "regimes": {
+        "2019": {
+          "events": 15,
+          "inconclusive": true
+        },
+        "2020": {
+          "events": 332,
+          "leaders": 181,
+          "mean": 0.002204514500966457,
+          "median": -0.015409073617631101,
+          "share_positive": 0.4578313253012048,
+          "t_naive": 0.22145161347322553,
+          "bootstrap_p": 0.82325,
+          "mean_without_top10_events": -0.017154111838371598
+        },
+        "2021-2022": {
+          "events": 331,
+          "leaders": 115,
+          "mean": -0.03374166192735674,
+          "median": -0.0468295363719922,
+          "share_positive": 0.3685800604229607,
+          "t_naive": -4.375255583800047,
+          "bootstrap_p": 0.00125,
+          "mean_without_top10_events": -0.04645210710245114
+        },
+        "2023-2025H1": {
+          "events": 262,
+          "leaders": 124,
+          "mean": -0.01863285353220038,
+          "median": -0.028232771728937248,
+          "share_positive": 0.4122137404580153,
+          "t_naive": -1.5855073076393678,
+          "bootstrap_p": 0.43025,
+          "mean_without_top10_events": -0.0398997681908098
+        }
+      }
+    }
+  },
+  "criteria": {
+    "holdout_mean_positive_p_below_0.05": false,
+    "survives_dropping_top10_events": false,
+    "mean_above_50bps": true
+  },
+  "passes": false,
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

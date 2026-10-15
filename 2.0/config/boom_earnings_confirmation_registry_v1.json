@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "experiment": "boom_earnings_confirmation_v1",
+  "queue_item": "A27 (new 2026-10-15, Step 362)",
+  "registered_at_utc": "2026-10-15T00:00:00Z",
+  "registered_before_any_result_existed": true,
+  "owner_request": "2026-10-15, in chat: 'is there anyway you think we can catch the main wave instead ... catch it way before, so that the percentage of false starts are not that high ... i want the main wave'",
+
+  "why_this_exists": "Step 359: a price alarm (SIC3 industry 20% ahead of the market over 6 months) fires inside 98 of 105 booms but a median 9 months in, and only about half its firings are followed by outperformance. Price alone cannot tell a demand shift from hype. Earnings can: the memory boom of 2016-18 and the AI boom of 2023 were each confirmed by reported results across the industry. Two questions: (Q1) does earnings confirmation separate real booms from false starts, and (Q2) can earnings flag an industry BEFORE its price alarm fires?",
+
+  "data": {
+    "industries": "SIC3 as of each date, liquid members only (close >= $5, 63-day median dollar volume >= $5M), at least 5 members with a SUE; excess return = equal-weight industry return over the equal-weight liquid universe (Step 359's construction)",
+    "earnings": "evidence/extended_sue_panel_v1/sue_panel.csv.gz (quarterly, facts filed strictly before each decision date, 2012-04 to 2026-07)",
+    "industry_earnings_score": "mean SUE of the industry's liquid members, ranked across industries at each SUE date; 'confirmed' = top third"
+  },
+
+  "trials": {
+    "Q1_confirmation_reduces_false_starts": {
+      "events": "Step 359's alarm firings (trailing 6m excess crosses +20% from below), 2012-2026",
+      "split": "confirmed if, at the latest SUE date on or before the firing month-end, the industry's mean SUE is in the top third of industries; unconfirmed otherwise; firings with no qualifying SUE are dropped",
+      "measure": "mean next-12-month industry excess, confirmed minus unconfirmed",
+      "declared_sign": "POSITIVE",
+      "pass": "difference > 0 with p < 0.025 (block bootstrap over firing months, block 3), AND confirmed firings' mean > 0 in BOTH 2012-2018 and 2019-2026"
+    },
+    "Q2_earnings_before_price": {
+      "events": "industry-quarters where the industry's mean SUE is top third at two consecutive SUE dates AND its trailing 6m excess is below +10% (price has not moved yet)",
+      "measure": "next-12-month industry excess from the month-end before the second SUE date",
+      "declared_sign": "POSITIVE",
+      "comparison": "all industry-quarters' next-12-month excess",
+      "pass": "events' mean minus all industry-quarters' mean > 0 with p < 0.025 (block bootstrap over quarters, block 2), AND positive in BOTH 2012-2018 and 2019-2026, AND the share of events later followed by a Step-359 alarm within 12 months is reported (does earnings lead price?)"
+    }
+  },
+  "bonferroni_bar": 0.025,
+  "trials_declared_here": 2,
+  "contamination_declared": "Step 359 printed the alarm firings' aggregate outcomes and their split by half (2012-18 +0.1%, 2019-26 +6.9%). It did NOT condition on earnings. Q1's conditional result has not been seen; its unconditional base has. Q2 is new.",
+  "book_only_if_both_pass_or_q2_passes": "long-only: hold the top-ranked confirmed industries' liquid members equal-weight, 12 months, rebalanced quarterly; costs 0/10/50/100 bps; vs SPY and the equal-weight universe; leave-one-industry-out",
+  "known_weaknesses_declared_up_front": [
+    "SUE coverage is 54% before 2016 and 91% from 2020 (Step 256): early confirmation is measured on fewer firms.",
+    "Overlapping 12-month windows; the bootstrap blocks reduce but do not remove this.",
+    "SIC3 is coarse for cross-industry themes (AI spans semis, equipment, utilities).",
+    "Survivorship in the price panel as Step 359."
+  ],
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

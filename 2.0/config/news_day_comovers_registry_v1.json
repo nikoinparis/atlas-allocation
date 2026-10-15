@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "experiment": "news_day_comovers_v1",
+  "queue_item": "A26",
+  "registered_at_utc": "2026-10-15T00:00:00Z",
+  "registered_before_the_holdout_was_read": true,
+  "registered_before_any_result_existed": true,
+  "owner_approval": "2026-10-15, in chat: 'yes run A25 and A26'",
+
+  "why_this_exists": "Post-hoc from A24 (Step 360): ETNIC peers that moved at least half as much as a jumping leader on day 0 continued +1.15% (21d) and +3.01% (126d) against same-SIC2 controls in 2012-2018. If the market picks the right followers on news day and underreacts to them, those followers drift. The 2019-2025H1 values were computed by A24 and saved in evidence/news_jump_followers_v1/events.csv, columns T1_followers_21d_moved and T2_followers_126d_moved, but never printed, summarised or inspected. That makes them an untouched holdout, read exactly once here.",
+
+  "trial": "T2_followers_126d_moved: event-level mean of co-moving followers' 126-day return (close day+1 to day+127) minus 50 random same-SIC2 unlinked controls, for A24's events dated 2019-01-01 to 2025-06-30",
+  "only_one_trial": "126 days is chosen because the owner wants the wave, not a short trade; 21 days is reported as a diagnostic, not a verdict",
+  "declared_sign": "POSITIVE",
+  "significance": "A24's block bootstrap over event months (block 3), 4000 draws, two-sided",
+  "pass_rule": "holdout mean > 0 with p < 0.05 AND mean without the 10 largest events > 0 AND mean > 50 bps",
+  "cumulative_search_note": "One trial, but the hypothesis was found by looking at A24's design window after A24 failed. It is a post-hoc idea tested on untouched data, which is valid, but it sits on top of 360 steps of search.",
+  "known_weaknesses_declared_up_front": [
+    "A 'leader jump' can be a macro day (e.g. 2025-04-09 tariff pause); co-movers on those days are simply high-beta. The same-SIC2 controls absorb market moves, not beta differences.",
+    "Co-movers are, by construction, stocks that jumped several percent; a continuation can be ordinary short-horizon momentum in disguise."
+  ],
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

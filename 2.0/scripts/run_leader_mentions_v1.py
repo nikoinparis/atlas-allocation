@@ -40,6 +40,8 @@ HORIZONS = {"T1_new_mentioners_126d": 126, "T2_new_mentioners_252d": 252}
 BAR = 0.025
 SUFFIXES = {"INC", "INCORPORATED", "CORP", "CORPORATION", "CO", "COMPANY", "LTD", "LIMITED", "PLC", "HOLDINGS",
             "HOLDING", "GROUP", "LLC", "LP", "NV", "SA", "AG", "THE", "NEW", "CL", "SE", "LLP", "TRUST", "INTL"}
+SURNAME_FIRST = {"SCHWAB CHARLES": "CHARLES SCHWAB", "LILLY ELI": "ELI LILLY"}   # SEC conformed order
+LEGAL_INITIALS = {"L.P.", "N.V.", "S.A.", "P.L.C.", "L.L.C.", "S.E.", "A.G.", "L.L.P.", "S.P.A.", "B.V."}
 DESCRIPTIVE = {"INTERNATIONAL", "ENTERPRISES", "TECHNOLOGIES", "TECHNOLOGY"}
 
 
@@ -63,9 +65,32 @@ def clean_name(name: str, words: set[str] | None = None) -> str:
     """As-filed SEC name -> search phrase (registry + its 2026-10-15 amendment)."""
     s = re.sub(r"\s*/\s*[A-Z]{2,3}\b/?", " ", str(name).upper())          # state tags: /TX, /MA, /DE/
     tokens = re.sub(r"[^A-Z0-9 &\-]", " ", s).split()
-    tokens = [t for t in tokens if len(t) > 1 or t == "&"] or tokens
-    core = [t for t in tokens if t not in SUFFIXES]
-    short = [t for t in core if t not in DESCRIPTIVE] or core
+    # Rebuild punctuation SEC conformed names drop (Step 363 amendment 2): "D R HORTON" -> "D.R. HORTON",
+    # "AMAZON COM" -> "AMAZON.COM". Full-text search matches the punctuated form (151 hits vs 1 for Amazon).
+    merged, i = [], 0
+    while i < len(tokens):
+        if len(tokens[i]) == 1 and tokens[i].isalpha():
+            run = []
+            while i < len(tokens) and len(tokens[i]) == 1 and tokens[i].isalpha():
+                run.append(tokens[i]); i += 1
+            merged.append(".".join(run) + "." if len(run) > 1 else run[0])
+        else:
+            merged.append(tokens[i]); i += 1
+    tokens = [t for k, t in enumerate(merged) if k == 0 or not (len(t) == 1 and t.isalpha())] or merged
+    if "COM" in tokens:
+        k = tokens.index("COM")
+        if k > 0:
+            tokens = tokens[:k - 1] + [tokens[k - 1] + ".COM"] + tokens[k + 1:]
+    core = [t for k, t in enumerate(tokens)
+            if (k == 0 and t not in {"THE"}) or (t not in SUFFIXES and t not in LEGAL_INITIALS)]
+    if len(core) > 1 and core[-1].endswith(".") and "." in core[-1][:-1]:
+        core = [core[-1]] + core[:-1]                             # "HORTON D.R." -> "D.R. HORTON"
+    while core and core[-1] == "&":
+        core = core[:-1]
+    short = [t for k, t in enumerate(core) if k == 0 or t not in DESCRIPTIVE] or core
+    flipped = SURNAME_FIRST.get(" ".join(short))
+    if flipped:
+        return flipped
     if words is not None and len(short) == 1 and short[0].lower() in words and len(core) > 1:
         return " ".join(core)
     return " ".join(short) if short else " ".join(tokens[:1])

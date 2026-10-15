@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "experiment": "news_jump_followers_v1",
+  "queue_item": "A24 (new 2026-10-15, Step 359)",
+  "registered_at_utc": "2026-10-15T00:00:00Z",
+  "registered_before_any_result_existed": true,
+  "owner_request": "2026-10-15, in chat: 'why cant we catch the wave as fast as we possibly can. if a groundbreaking news popup, couldnt we just refactor our investments and divert some of it to the companies that are possible to grow'",
+
+  "why_this_exists": "A19/A19b averaged peer returns over every month, so quiet months dilute any effect. The owner's idea is event-driven: act the day after big news, on the firms linked to it that have not moved yet, and hold for months. Step 359's price check found the AI wave diffused down the chain over 1-2 years (NVDA +95% by 2023-05-24, VRT +23%, CEG -11%; by end-2024 +760%, +762%, +141%). This tests whether that is systematic across every big jump, not just the one we remember.",
+
+  "events": {
+    "leader_universe": "each day, the 500 most liquid stocks by 63-day median dollar volume, close >= $5",
+    "jump": "a one-day return minus the equal-weight liquid-universe return of >= +10%",
+    "period": "2012-01-01 to 2025-06-30 (ETNIC usable through June 2025)",
+    "no_selection_of_events": "every qualifying day is an event; none is chosen by hand"
+  },
+  "followers": {
+    "network": "ETNIC-3 (machine-learned product peers, Step 356: the best-quality links here, same-month co-movement +0.39), July-lag timing and farr mapping as A19",
+    "who": "the leader's 10 highest-score ETNIC peers that are liquid (close >= $5, $5M median dollar volume), are not themselves jumping >= +10% that day, and whose own day-0 return is less than half the leader's ('have not moved yet')"
+  },
+  "entry_and_outcome": "enter at the close of day +1 (the day after the jump: news known, one day to act). Outcome: follower's return from close day+1 to close day+1+h MINUS the return of a matched control -- a random liquid firm from the follower's own SIC2 that is not an ETNIC peer of the leader -- over the same window. Matched controls are redrawn 50 times per follower and averaged.",
+  "trials": {
+    "T1_followers_21d": "h = 21 trading days",
+    "T2_followers_126d": "h = 126 trading days (about six months, Lee et al.'s best horizon and the AI chain's timescale)"
+  },
+  "declared_sign": "POSITIVE: unmoved followers catch up",
+  "significance": "mean of event-level averages (followers averaged within each event), block bootstrap over event months (block 3), 4000 draws, two-sided",
+  "windows": "design: events 2012-2018; holdout: events 2019-2025H1",
+  "bonferroni_bar": 0.025,
+  "trials_declared_here": 2,
+  "pass_rule_per_trial": "design mean > 0 with p < 0.025 AND holdout mean > 0 AND the design mean survives dropping the 10 events contributing most (concentration check, CLAUDE.md rule 5) AND the design mean exceeds 50 bps (a round trip at 25 bps per side)",
+  "positive_control_reported_first": "followers' own day-0 return minus matched controls' day-0 return: if linked firms do not move at all on the leader's news day, the links are not carrying the news and the test is uninterpretable",
+  "diagnostics_not_verdicts": ["the leader's own drift after day +1 (post-news continuation or reversal)", "followers that DID move on day 0", "regimes 2012-2019, 2020, 2021-2022, 2023-2025H1"],
+  "book_only_if_a_trial_passes": "long-only: hold each event's followers equally for h days, overlapping events stacked, costs 0/10/50/100 bps, vs SPY and the equal-weight universe",
+  "cumulative_search_note": "Two new trials on top of 358 steps, using the ETNIC network chosen in Step 356 for link quality, not for predictive result.",
+  "known_weaknesses_declared_up_front": [
+    "No news text: a jump is a price event, which could be news, earnings, an index addition or a takeover rumour. Takeover targets jumping +30% are leaders too; their peers sometimes rise on takeover speculation, which is a real effect but not 'theme diffusion'.",
+    "Survivorship in the price panel as A19; ETNIC ends 2023 (usable to June 2025)."
+  ],
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

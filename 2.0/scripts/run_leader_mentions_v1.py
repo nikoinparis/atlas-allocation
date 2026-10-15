@@ -146,16 +146,24 @@ def fts(name: str, start: str, end: str) -> dict:
         params = urllib.parse.urlencode({"q": f'"{name}"', "forms": "10-K,10-Q,8-K", "dateRange": "custom",
                                          "startdt": start, "enddt": end, "from": offset})
         url = f"https://efts.sec.gov/LATEST/search-index?{params}"
-        for attempt in range(6):
+        data, last_error = None, None
+        for attempt in range(7):
             try:
                 req = urllib.request.Request(url, headers={"User-Agent": UA})
                 with urllib.request.urlopen(req, timeout=60) as resp:
-                    data = json.loads(resp.read())
+                    payload = json.loads(resp.read())
+                if "hits" not in payload:                      # EDGAR sometimes returns an error body
+                    raise ValueError(str(payload)[:200])
+                data = payload
                 break
-            except Exception:                                # noqa: BLE001
-                time.sleep(2 ** attempt)
-        else:
-            raise RuntimeError(f"EDGAR FTS failed: {url}")
+            except Exception as exc:                           # noqa: BLE001
+                last_error = str(exc)[:200]
+                time.sleep(min(60, 2 ** attempt))
+        if data is None:
+            out = {"name": name, "start": start, "end": end, "total": None, "capped": False, "hits": hits,
+                   "failed": True, "error": last_error, "failed_at_offset": offset}
+            path.write_text(json.dumps(out))
+            return out
         total = data["hits"]["total"]["value"]
         page = data["hits"]["hits"]
         hits += [{"id": h["_id"], "ciks": h["_source"].get("ciks", []), "file_date": h["_source"].get("file_date"),
@@ -164,7 +172,8 @@ def fts(name: str, start: str, end: str) -> dict:
             break
         offset += len(page)
         time.sleep(0.15)
-    out = {"name": name, "start": start, "end": end, "total": total, "capped": bool(total and total >= 10000), "hits": hits}
+    out = {"name": name, "start": start, "end": end, "total": total, "capped": bool(total and total >= 10000), "hits": hits,
+           "failed": False}
     path.write_text(json.dumps(out))
     time.sleep(0.15)
     return out
@@ -173,17 +182,20 @@ def fts(name: str, start: str, end: str) -> dict:
 def stage_acquire() -> int:
     leaders = pd.read_csv(OUTPUT / "leaders.csv", dtype={"cik10": str})
     leaders = leaders[~leaders.excluded]
-    capped, n = 0, 0
+    capped, n, failures = 0, 0, 0
     for row in leaders.itertuples():
         q = pd.Period(row.quarter, freq="Q")
         cur = fts(row.search_name, q.start_time.strftime("%Y-%m-%d"), q.end_time.strftime("%Y-%m-%d"))
         prev = fts(row.search_name, (q.start_time - pd.DateOffset(years=1)).strftime("%Y-%m-%d"),
                    (q.start_time - pd.Timedelta(days=1)).strftime("%Y-%m-%d"))
         capped += cur["capped"] + prev["capped"]
+        failed = cur.get("failed", False) or prev.get("failed", False)
+        failures += int(failed)
         n += 1
         if n % 50 == 0:
             print(f"  {n}/{len(leaders)} leader-quarters, capped queries so far {capped}", flush=True)
-    print(f"done: {n} leader-quarters, {capped} queries hit the 10,000 cap")
+    print(f"done: {n} leader-quarters, {capped} queries hit the 10,000 cap, "
+          f"{failures} leader-quarters with a failed query (skipped in the screen)")
     return 0
 
 
@@ -196,6 +208,8 @@ def new_mentions() -> pd.DataFrame:
         cur = fts(row.search_name, q.start_time.strftime("%Y-%m-%d"), q.end_time.strftime("%Y-%m-%d"))
         prev = fts(row.search_name, (q.start_time - pd.DateOffset(years=1)).strftime("%Y-%m-%d"),
                    (q.start_time - pd.Timedelta(days=1)).strftime("%Y-%m-%d"))
+        if cur.get("failed") or prev.get("failed"):
+            continue                                             # cannot establish 'new' without both queries
         before = {c for h in prev["hits"] for c in h["ciks"]}
         seen = {}
         for h in cur["hits"]:

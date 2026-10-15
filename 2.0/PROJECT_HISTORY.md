@@ -17642,3 +17642,69 @@ earlier or cleaner. If anything, a boom the earnings already explain has less le
 wave cannot be separated from false starts with free price or earnings data in this sample.
 
 **Cumulative search:** three new trials across Steps 361-362.
+
+## Step 363 — 2026-10-16 — Firms first naming the market leaders: data built, precision check blocked (A25)
+
+**What this was for.** The owner's "low-key data-centre companies doing business with AI firms".
+When a firm first names one of the market's current leaders in a filing, does it outperform?
+Pre-registered in `config/leader_mentions_registry_v1.json` (`8353851`) before any mention data.
+Script `scripts/run_leader_mentions_v1.py`.
+
+**Built.** Leaders are the 20 highest trailing-12m returns among the 200 most liquid stocks each
+quarter, 2012Q1-2025Q3: 1,100 leader-quarters, 311 distinct names, 172 excluded as ambiguous single
+words (Apple, Oracle, Target, Visa...). EDGAR full-text search, 10-K/10-Q/8-K and all exhibits:
+928 leader-quarters, none at the 10,000-hit cap, 2 skipped after failed queries. **9,340 new
+mentions by 5,553 distinct filers.**
+
+**Two name amendments, made before any mention was used, both recorded in the registry.** SEC
+conformed names drop the punctuation that full-text search needs: "Amazon.com" returns 151 hits in
+2015Q1 against 1 for "AMAZON COM", and "D.R. Horton" 26 against 3. Fixes: rebuilt initials and
+".com", surname-first names flipped, first words protected from suffix stripping ("LIMITED BRANDS",
+"INTERNATIONAL BUSINESS MACHINES", "MICRON TECHNOLOGY").
+
+**The precision check is blocked, so no returns were computed, as registered.** `www.sec.gov/Archives`
+returns HTTP 403 without a contact email in the User-Agent (SEC fair-access policy). `efts` and
+`data.sec.gov` accept the project's anonymous agent. The owner's email is not used without explicit
+permission.
+
+**What the metadata already shows, with no returns used.** The most "newly mentioned" leaders are
+BANK OF AMERICA (674), FACEBOOK (653), MORGAN STANLEY (516), DOCUSIGN (402), BLACKSTONE (334),
+MARRIOTT (292) and NVIDIA (288). That means lenders, underwriters, signature software ("signed via
+DocuSign") and disclosure channels ("we announce on Facebook"). Only 10.4% of mentions sit in
+material contracts (EX-10) and 22.7% in press releases (EX-99). **As built, A25 mostly measures
+boilerplate, not business relationships.** A v2 that excludes financial leaders and boilerplate
+tool names, or counts only EX-10/EX-99 mentions, should be chosen on the precision reading, never
+on returns.
+
+## Step 364 — 2026-10-16 — Buying the leader after a blowout results day: no main-wave edge (A28)
+
+**What this was for.** The owner wanted the main wave itself, not peer trades. Its first visible
+step is a leader's own results (NVDA 2023-05-24). Buy the day after a top-500 stock jumps ≥ 10%
+over the market on an 8-K Item 2.02 day, and hold. Pre-registered in
+`config/blowout_results_leaders_registry_v1.json` (`6b1e52d`). Results dates:
+`scripts/acquire_results_dates_v1.py`, **58,503 Item 2.02 events for 1,057 issuers, 2011-10 to
+2026, zero failures** (`data/results_dates_v1/`). Script `scripts/run_blowout_results_leaders_v1.py`.
+
+**Positive control passes.** Mean absolute return is 5.15% on reaction days against 1.82% the day
+before and 1.76% three days after. NVDA's reports map correctly: 2023-05-25 +24.4%, 2024-02-22
++16.4%.
+
+| trial | design 2012-18 (397 events) | p | median | without top-10 | holdout 2019-25 (760) | verdict |
+|---|---|---|---|---|---|---|
+| T1 63 days | +1.10% | 0.27 | +0.96% | −0.26% | +1.10% (median −1.24%) | fails |
+| T2 126 days | +0.47% | 0.75 | −1.72% | −1.26% | +2.69% (median −1.89%) | fails |
+
+T2 by regime: 2012-19 +1.56%, 2020 **+13.0%**, 2021-22 **−8.24%** (p 0.018), 2023-25 **+5.60%**
+(p 0.001). The largest blowouts are the reason it fails. SNAP +58% on results day, then −55% over
+126 days; and ZM, RBLX, UPST and CVNA in 2021-22. For every NVDA (or APP, SMCI, PINS) there is a
+SNAP. **Diagnostics:** results-day *blow-downs* (≤ −10%) are followed by +1.1% to +3.0%, a mild
+reversal. Non-results jumps of the same size reverse in 2012-18 (−4.5%).
+
+**What Steps 359-364 add up to, for the owner's question about the main wave.** Five more ways of
+catching it were tried: earlier via earnings, cleaner via earnings confirmation, faster via news
+jumps, via co-moving peers, and via the leader's own blowout. All five show the same shape: strong
+in 2020 and 2023-25, negative in 2021-22, nothing in 2012-19. The main wave is visible in hindsight
+and was ridden here (Step 347). What no free information in this sample does is tell, at the time,
+a NVDA from a SNAP.
+
+**Cumulative search:** two new trials (A28). A25 has run no trial yet.

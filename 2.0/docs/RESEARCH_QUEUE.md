@@ -277,6 +277,10 @@ point in time, so no hand-picked theme. Pull 10-K/10-Q/8-K filings naming each l
 customer/partner vs competitor/risk-factor precision before any return. **Sign risk:** microcap partnership
 hype may predict NEGATIVE returns (cf. Ben-David et al.), so declare the sign carefully. Free; ~2-4k SEC
 queries at 10/sec. 1-2 sessions. Awaiting owner sign-off.
+**Status 2026-10-16 (Step 363):** data built (9,340 new mentions, 2012-2025); NO returns computed. Blocked on the
+precision check: SEC Archives require a contact email in the User-Agent and the owner's email is not used without
+permission. Metadata shows mostly boilerplate (banks as lenders, DocuSign signatures, Facebook as a disclosure channel;
+10% in EX-10 contracts). Choose a v2 filter on the precision reading only.
 
 ### A8. EU short-selling registers *(new 2026-09-10, owner-proposed)*
 **Status:** never attempted. Free, daily, from ESMA and national regulators.
@@ -454,6 +458,14 @@ Sharpe 1.09 -> 3.63 over 105 iterations with no correction. Usable only as a pro
 trials judged on untouched data, every iteration counted in the Bonferroni N. Automaton itself is a
 crypto self-funding agent runtime with wallet access -- not something to point at an account.
 
+### P4. Convex wave bets: call options on leaders after a boom alarm *(new 2026-10-15, Step 363)*
+Steps 359-362: about half of boom alarms are false starts, and no free information here separated them. If that
+cannot be fixed, change the payoff instead: a call option loses only its premium on a false start and keeps the
+upside of a real wave. Unlike stop-losses (Step 349: they sell the dip and miss the recovery), calls do not
+whipsaw. Needs historical option prices with real bid-ask spreads (see P3); free Cboe index data cannot price
+single-stock calls. Pre-register: buy 6-12-month ~10% out-of-the-money calls on a Step-359 alarm's top names,
+size premium at a fixed budget, compare to holding the shares and to SPY. **Blocked on:** paid options data.
+
 ## P1. Properly roll-adjusted futures data
 **Cost (priced 2026-09-30):** Norgate Futures package **$148.50 / 6 months or $270 / year**, ~100
 markets on 11 exchanges back to ~1980, individual contracts plus back-adjusted continuous, free
@@ -493,6 +505,7 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 
 | item | verdict | where |
 |---|---|---|
+| **Blowout results days: buy the leader itself (was A28, owner's 'I want the main wave')** | **Fails.** 1,157 top-500 results-day jumps >= 10% (58,503 Item 2.02 dates): design +1.10% (63d) / +0.47% (126d), p > 0.27, medians negative, negative without top-10; 2021-22 -8.2%, 2023-25 +5.6%. SNAP +58% then -55%. Telling NVDA from SNAP at the time is the unsolved part. | Step 364 |
 | **News-day co-movers continue (was A26, post-hoc from A24)** | **Fails on its untouched holdout.** 940 events 2019-25: mean +2.06% at 126d but median -3.01%, 45% positive, p 0.45, -0.16% without top-10; 2020 +6.9%, 2021-22 -7.3%, 2023-25 +7.5%. | Step 361 |
 | **Boom alarm confirmed by industry earnings; earnings before price (A27, owner's 'catch the main wave earlier')** | **Both fail.** Earnings-confirmed alarms do WORSE than unconfirmed (-5.5% next-12m, p 0.09; both halves). Industries beating two quarters before price moves: +0.5% (p 0.64), -2.0% in 2012-18; only 21% later trigger a price alarm. | Step 362 |
 | **News-jump followers: unmoved peers of a leader that jumped >= 10% (was A24, owner's 'move fast on news')** | **Fails.** 3,449 events, enter the day after, ETNIC peers vs same-SIC2 controls: design +0.02% (21d) / +0.14% (126d), p > 0.85, negative without the top-10 events. 2021-22 -3.5% at 126d. Peers that moved WITH the leader continued (post-hoc, see A26). | Step 360 |

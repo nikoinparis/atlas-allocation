@@ -1,0 +1,178 @@
+{
+  "registry": "config/news_jump_followers_registry_v1.json",
+  "events": 3449,
+  "positive_control_day0": {
+    "design": 0.0026154331995720628,
+    "holdout": -0.0009902943847991958
+  },
+  "results": {
+    "T1_followers_21d": {
+      "design": {
+        "events": 871,
+        "leaders": 292,
+        "mean": 0.00016088116761968284,
+        "median": 0.00044106949116764046,
+        "share_positive": 0.505166475315729,
+        "t_naive": 0.0807219889642018,
+        "bootstrap_p": 0.93725,
+        "mean_without_top10_events": -0.002606168216681895
+      },
+      "holdout": {
+        "events": 2558,
+        "leaders": 500,
+        "mean": 0.0012063343374483662,
+        "median": -0.003042321710847786,
+        "share_positive": 0.48201720093823297,
+        "t_naive": 0.7657598002071522,
+        "bootstrap_p": 0.7055,
+        "mean_without_top10_events": -0.0005005768593589663
+      },
+      "regimes": {
+        "2012-2019": {
+          "events": 1009,
+          "leaders": 317,
+          "mean": -0.00020845183514917138,
+          "median": -0.00015494274783093195,
+          "share_positive": 0.4985133795837463,
+          "t_naive": -0.11565223347705803,
+          "bootstrap_p": 0.9115,
+          "mean_without_top10_events": -0.0025969631964217897
+        },
+        "2020": {
+          "events": 725,
+          "leaders": 293,
+          "mean": 0.00940667224498359,
+          "median": -0.00034892093857182005,
+          "share_positive": 0.4979310344827586,
+          "t_naive": 2.6671449145061614,
+          "bootstrap_p": 0.03825,
+          "mean_without_top10_events": 0.004627673455330673
+        },
+        "2021-2022": {
+          "events": 857,
+          "leaders": 203,
+          "mean": -0.0044352698325326465,
+          "median": -0.006705783404584343,
+          "share_positive": 0.45857642940490084,
+          "t_naive": -1.7089292474654534,
+          "bootstrap_p": 0.2055,
+          "mean_without_top10_events": -0.008206803907058698
+        },
+        "2023-2025H1": {
+          "events": 838,
+          "leaders": 260,
+          "mean": 0.0004981473779505408,
+          "median": -0.0005293867476307695,
+          "share_positive": 0.4964200477326969,
+          "t_naive": 0.19911303054106738,
+          "bootstrap_p": 0.909,
+          "mean_without_top10_events": -0.00267530580842856
+        }
+      },
+      "diagnostic_moved_followers_design": {
+        "events": 148,
+        "leaders": 77,
+        "mean": 0.011462586249342793,
+        "median": -0.0033135030492501653,
+        "share_positive": 0.49324324324324326,
+        "t_naive": 0.8928436755578557,
+        "bootstrap_p": 0.56075,
+        "mean_without_top10_events": -0.013557843252612355
+      },
+      "diagnostic_leader_drift_design": -0.003104151219235313,
+      "diagnostic_leader_drift_holdout": -0.0009366854054572856,
+      "criteria": {
+        "design_mean_positive_p_below_bar": false,
+        "holdout_mean_positive": true,
+        "design_survives_dropping_top10_events": false,
+        "design_mean_above_50bps": false
+      },
+      "passes": false
+    },
+    "T2_followers_126d": {
+      "design": {
+        "events": 871,
+        "leaders": 292,
+        "mean": 0.001407715008941277,
+        "median": -0.0033921950678283746,
+        "share_positive": 0.4902411021814007,
+        "t_naive": 0.3022504900142086,
+        "bootstrap_p": 0.8545,
+        "mean_without_top10_events": -0.004806991299169861
+      },
+      "holdout": {
+        "events": 2558,
+        "leaders": 500,
+        "mean": 0.0031868311300586095,
+        "median": -0.009065846346986362,
+        "share_positive": 0.47458952306489444,
+        "t_naive": 0.7771101595679355,
+        "bootstrap_p": 0.72275,
+        "mean_without_top10_events": -0.0019001425292566254
+      },
+      "regimes": {
+        "2012-2019": {
+          "events": 1009,
+          "leaders": 317,
+          "mean": 0.0012134459165224771,
+          "median": -0.0021446321246063466,
+          "share_positive": 0.49256689791873143,
+          "t_naive": 0.2811310298827017,
+          "bootstrap_p": 0.864,
+          "mean_without_top10_events": -0.004176809690979805
+        },
+        "2020": {
+          "events": 725,
+          "leaders": 293,
+          "mean": 0.0252559359782333,
+          "median": -0.002877580685589953,
+          "share_positive": 0.49517241379310345,
+          "t_naive": 2.471468977200632,
+          "bootstrap_p": 0.14025,
+          "mean_without_top10_events": 0.010773601306788975
+        },
+        "2021-2022": {
+          "events": 857,
+          "leaders": 203,
+          "mean": -0.03516940617088132,
+          "median": -0.031694734091030435,
+          "share_positive": 0.39323220536756126,
+          "t_naive": -6.519349498103252,
+          "bootstrap_p": 0.012,
+          "mean_without_top10_events": -0.04248249715684035
+        },
+        "2023-2025H1": {
+          "events": 838,
+          "leaders": 260,
+          "mean": 0.0238464133388219,
+          "median": 0.01038529714588486,
+          "share_positive": 0.5346062052505967,
+          "t_naive": 3.6863596985628635,
+          "bootstrap_p": 0.08975,
+          "mean_without_top10_events": 0.012967062234135743
+        }
+      },
+      "diagnostic_moved_followers_design": {
+        "events": 148,
+        "leaders": 77,
+        "mean": 0.03009623781165403,
+        "median": 0.0010661666588054897,
+        "share_positive": 0.5,
+        "t_naive": 1.033699549474763,
+        "bootstrap_p": 0.625,
+        "mean_without_top10_events": -0.02888965148548209
+      },
+      "diagnostic_leader_drift_design": -0.0035674059866277717,
+      "diagnostic_leader_drift_holdout": 0.028709080765630574,
+      "criteria": {
+        "design_mean_positive_p_below_bar": false,
+        "holdout_mean_positive": true,
+        "design_survives_dropping_top10_events": false,
+        "design_mean_above_50bps": false
+      },
+      "passes": false
+    }
+  },
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

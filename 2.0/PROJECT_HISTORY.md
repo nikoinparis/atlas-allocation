@@ -17523,3 +17523,76 @@ plain SIC3 comparator shows it too. That is a property of one regime, not of the
 point-in-time linkage data, however cleverly drawn, does not beat the market here.** Twelve trials
 in this sequence (four in A19, two in A19b, two in A21 v1, three in A22, two in A20), plus the
 pre-registered construction choice that used no forward returns.
+
+## Step 359 — 2026-10-15 — The anatomy of past booms (exploratory, owner-requested)
+
+**What this was for.** The owner pushed back on Step 358's "every free, testable version is closed".
+They asked whether booms like Micron's existed before 2020, why rules here catch waves late, and
+asked to look back at which sectors rose fast even at the cost of some overfitting. The pushback
+was fair: "closed" overstated it. Steps 354-358 had tested 1-month and 1-quarter averages, which
+cannot see slow, results-driven spread over quarters. This step is **descriptive and hindsight by
+design**: nothing in it is a trial, and any rule it suggests needs data it was not derived from.
+Script `scripts/explore_wave_anatomy_v1.py`, evidence `evidence/wave_anatomy_v1/`.
+
+**The AI chain, priced from 2022-11-29** (the day before ChatGPT). NVDA −7% a month later, +95% by
+2023-05-24, +217% by end-2023, +760% by end-2024. VRT (power and cooling) +3%, +23%, +264%, +762%.
+CEG (power) −9%, −11%, +25%, +141%. APLD +352% by May 2023. **The spread down the chain took one to
+two years, and each step followed a company's results**, starting with NVDA's May 2023 guidance.
+That is one wave, remembered because it worked.
+
+**Industry booms (SIC3, ≥ 5 liquid members, ≥ +50% over the equal-weight universe trough to peak):
+105 in 2012-2026.** Pre-2020 examples are plentiful: semis (367: NVDA, AMD, AVGO, MU, from 2013),
+networking and storage (357: ANET, STX, FTNT, from 2016), software (737: NOW, EPAM, 2012-2021),
+medical devices (384: DXCM, PODD, 2013-2020), airlines (2012-2016) and auto dealers. 48 began in
+2012-2018.
+
+**Detection.** A simple alarm, the industry 20% ahead of the market over 6 months, fired inside
+98 of the 105 booms. It fired a median **9 months** after the trough, with a median **52%** of the
+boom still ahead. Across all 279 firings:
+
+| firings | next-12m excess, mean | median | share positive | crashed 40% in 24m |
+|---|---|---|---|---|
+| all 2012-2026 (279) | +5.3% (any industry-month: +1.0%) | +4.1% | 51% | 9% |
+| 2012-2018 (56) | **+0.1%** | −1.2% | 48% | 12% |
+| 2019-2026 (223) | +6.9% | +5.3% | 51% | 8% |
+
+**Stocks that tripled within 36 months.** 768 distinct cases. The tripling rate by 12-1 momentum
+decile is U-shaped: 6.6% for the bottom decile, 2.4-3.1% for the middle, 6.9% for the top.
+**Tripling is mostly a volatility property, not a direction signal.** 82% of triplers entered the
+top momentum decile at some point, a median 13 months in, with 62% of the move left. But 93% of
+top-decile stocks never tripled.
+
+**What this says, in plain words.** Booms are common, including in calm years. They are caught
+late because a boom is indistinguishable from noise until it has run about half its course. Buying
+them then paid only in the 2019-2026 regime, which is Step 349's theme-rotation result seen from
+the other side. Survivorship flatters all of this: delisted names, the crash cases, are missing.
+
+## Step 360 — 2026-10-15 — Big news jumps: unmoved peers do not catch up (A24)
+
+**What this was for.** The owner's "if groundbreaking news pops up, move money to the companies
+that could grow". Event-driven and fast: enter at the close of the day after a top-500-liquidity
+stock jumps ≥ 10% over the market; hold its 10 nearest ETNIC peers that had **not** moved (day-0
+return under half the leader's), against random unlinked same-SIC2 firms. Pre-registered in
+`config/news_jump_followers_registry_v1.json` (`515d28e`). Script
+`scripts/run_news_jump_followers_v1.py`, evidence `evidence/news_jump_followers_v1/`.
+
+3,449 events, 619 distinct leaders, a median of 9 unmoved followers each.
+
+| trial | design 2012-18 (871 events) | p | without top-10 events | holdout 2019-25 (2,558) | verdict |
+|---|---|---|---|---|---|
+| T1 21 days | +0.02% | 0.94 | −0.26% | +0.12% | fails |
+| T2 126 days | +0.14% | 0.85 | −0.48% | +0.32% | fails |
+
+By regime, T2 is 2012-19 +0.12%, 2020 +2.53%, 2021-22 **−3.52%** (p 0.012), 2023-25 +2.38%. The
+largest catch-ups are 2020-2021 and 2025 rallies, and AMD on 2025-04-09 is the tariff-pause day, a
+macro jump rather than company news. **The positive control is weak by construction:** selecting
+"unmoved" followers removes the day-0 co-movement, leaving +0.26% (design) and −0.10% (holdout).
+ETNIC link quality itself was established in Step 356.
+
+**One post-hoc observation, recorded and not acted on.** Peers that **did** move with the leader on
+day 0 kept going in the design window: +1.15% over 21 days and +3.01% over 126 days. The market
+seems to pick the right followers on the day, and those continue. Their 2019-2025 values are in
+`events.csv`, columns `*_moved`, and **have not been printed or inspected**. That makes them a usable
+holdout for a fresh pre-registration (queue A26).
+
+**Cumulative search:** two new trials. Nothing created, improved or promoted a strategy.

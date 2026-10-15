@@ -1,0 +1,34 @@
+{
+  "exploratory_not_a_trial": true,
+  "owner_request": "2026-10-15",
+  "waves": 105,
+  "detected": 98,
+  "median_detect_lag_months": 9.0,
+  "median_share_left_after_detection": 0.5214589070531488,
+  "detector_firings": 279,
+  "firings_became_wave": 0.7562724014336918,
+  "firings_crashed_40pct_24m": 0.08960573476702509,
+  "fwd_excess_after_firing": {
+    "6": 0.016144527093023237,
+    "12": 0.053443050301419895,
+    "24": 0.05425688668510242
+  },
+  "all_industry_months_fwd_12m": 0.009617705187248679,
+  "triple_rate_by_momentum_decile": {
+    "0.0": 0.06558334660931443,
+    "1.0": 0.03902335003731741,
+    "2.0": 0.02784445511281805,
+    "3.0": 0.026653872807718963,
+    "4.0": 0.024392841925862805,
+    "5.0": 0.028508889007527627,
+    "6.0": 0.02806231327358088,
+    "7.0": 0.03128664321500906,
+    "8.0": 0.0401749986661687,
+    "9.0": 0.06928799149840595
+  },
+  "triplers": 768,
+  "triplers_flagged": 629,
+  "median_months_to_flag": 13.0,
+  "median_share_left_after_flag": 0.6221030699554336,
+  "survivorship_note": "delisted names largely missing; false-start and crash rates are optimistic"
+}

@@ -1,0 +1,63 @@
+{
+  "registry": "config/leader_mentions_registry_v2.json",
+  "precision_relationship_share": 0.6,
+  "labelled_as": "business relationships",
+  "results": {
+    "T1_new_mentioners_126d": {
+      "design": {
+        "firm_events": 74,
+        "quarters": 22,
+        "mean_of_quarter_means": -0.017004707586862202,
+        "firm_median": -0.015977477717037586,
+        "share_positive": 0.43243243243243246,
+        "bootstrap_p": 0.546,
+        "without_top10": -0.06886931047606992
+      },
+      "holdout": {
+        "firm_events": 122,
+        "quarters": 26,
+        "mean_of_quarter_means": -0.026957738264965066,
+        "firm_median": -0.016179904103819795,
+        "share_positive": 0.47540983606557374,
+        "bootstrap_p": 0.4375,
+        "without_top10": -0.08284752870754748
+      },
+      "criteria": {
+        "design_mean_positive_p_below_bar": false,
+        "holdout_mean_positive": false,
+        "design_survives_dropping_top10": false,
+        "design_mean_above_50bps": false
+      },
+      "passes": false
+    },
+    "T2_new_mentioners_252d": {
+      "design": {
+        "firm_events": 74,
+        "quarters": 22,
+        "mean_of_quarter_means": -0.016749741525005798,
+        "firm_median": -0.0594411240301555,
+        "share_positive": 0.4189189189189189,
+        "bootstrap_p": 0.77025,
+        "without_top10": -0.099671406720093
+      },
+      "holdout": {
+        "firm_events": 122,
+        "quarters": 26,
+        "mean_of_quarter_means": -0.08634610192805912,
+        "firm_median": -0.0478235555215573,
+        "share_positive": 0.4262295081967213,
+        "bootstrap_p": 0.158,
+        "without_top10": -0.16626122132782767
+      },
+      "criteria": {
+        "design_mean_positive_p_below_bar": false,
+        "holdout_mean_positive": false,
+        "design_survives_dropping_top10": false,
+        "design_mean_above_50bps": false
+      },
+      "passes": false
+    }
+  },
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

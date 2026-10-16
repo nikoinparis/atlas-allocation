@@ -17780,3 +17780,38 @@ from a gain into roughly zero. The mechanism: matching the shares' exposure take
 and in a false start losing that premium is nearly as bad as the stock falling. Under fair
 pricing, options re-shape a bet; they do not improve it, and real prices for these names are
 dearer than this model.
+
+## Step 367 — 2026-10-16 — Real business relationships with hot leaders: still underperform (A25 v2)
+
+**What this was for.** A25 v1 tested raw mentions, 12% of which were relationships (Step 365).
+v2 asks the owner's actual question: do liquid firms that newly disclose a real relationship with a
+current market leader (customer, supplier, partner, distributor, tenant, licensee) outperform?
+Pre-registered in `config/leader_mentions_registry_v2.json` (`95cb477`) before any v2 sentence was
+fetched. The filter rules came from reading v1's precision sample, not from returns, although they
+were written after v1's returns had been printed (recorded in the registry). Script
+`scripts/run_leader_mentions_v2.py`.
+
+**Data.** Leaders in SIC2 60/61/62/67 (banks, brokers, asset managers) dropped: 7,374 candidate
+mentions remain. All 7,374 documents were fetched from SEC Archives with the owner's contact email
+read from the environment and never written to the repository, with zero failures. The
+relationship-sentence rule kept **1,348** (697 design, 651 holdout), led by NVIDIA 94, AMAZON.COM
+63, NETFLIX 58, TESLA 44, BEST BUY 40, MICROSOFT 39.
+
+**Precision gate passes: a fresh 50, hand-read, 30 relationships (60%) against a 50% bar.** The
+rest: 4 financing, 5 generic tools, 11 other. Examples kept: selling through Amazon.com, a 16-year
+lease to an Amazon affiliate, Intel and Boeing named as customers, a co-marketing agreement with
+AT&T, a Microsoft Silver Certified Partner, solar agreements with Microsoft.
+
+| v2 trial | design 2012-18 | holdout 2019-25 | verdict |
+|---|---|---|---|
+| T1 126 days | −1.70% (74 firm-events, p 0.55, median −1.60%) | −2.70% (122) | fails |
+| T2 252 days | −1.67% (p 0.77, median −5.94%) | **−8.63%** (p 0.16, median −4.78%) | fails, wrong sign |
+
+**Verdict.** Liquid firms that newly disclose a real relationship with a hot leader do *worse* than
+their same-SIC2 controls in both windows. Most disclosers are micro-caps, which the $5M liquidity
+rule removes, so only 196 events are tradeable and the test is thin. Nothing points the declared
+way. Consistent with v1 and with Ben-David et al.: by the time a small firm writes the leader's name
+into its filing, the association is already priced, and sometimes over-priced. **A25 closed.**
+
+**Cumulative search, Steps 359-367:** A24 2, A26 1, A27 2, A28 2, A25 v1 2, A25 v2 2, and the
+options screen's one decision rule. None passed.

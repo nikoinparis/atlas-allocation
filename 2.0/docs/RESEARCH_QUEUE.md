@@ -266,22 +266,6 @@ closed. What remains open: vertical links (A21), the owner's commodity chain (A2
 news (A20, prior lowered), and the forward-only LLM map (C4). Theme detection (phase 2) is not built:
 there is no peer spillover for it to feed.
 
-### A25. Low-key firms that start naming the current market leaders in their filings *(new 2026-10-15, Step 360, owner)*
-The owner saw posts about unknown data-centre firms doing business with AI companies. EDGAR full-text search
-(free, 2001+, checked 2026-10-15) finds them: filings naming "NVIDIA" in 2023-24 include APLD, HUT, WULF, SLNH, MIG,
-KULR and OSS, and SMCI already in 2019. It also returns noise: mortgage trusts, SPACs and microcap biotechs
-name-dropping. Design: each quarter, leaders = the 20 largest liquid stocks by trailing-12m return, chosen
-point in time, so no hand-picked theme. Pull 10-K/10-Q/8-K filings naming each leader; flag firms that
-**newly** name a leader (not in the prior 4 quarters) and are not the leader's ETNIC competitors; judge next
-3/6/12-month returns against same-SIC2 controls. **Positive control:** hand-read 50 random mentions for
-customer/partner vs competitor/risk-factor precision before any return. **Sign risk:** microcap partnership
-hype may predict NEGATIVE returns (cf. Ben-David et al.), so declare the sign carefully. Free; ~2-4k SEC
-queries at 10/sec. 1-2 sessions. Awaiting owner sign-off.
-**Status 2026-10-16 (Step 363):** data built (9,340 new mentions, 2012-2025); NO returns computed. Blocked on the
-precision check: SEC Archives require a contact email in the User-Agent and the owner's email is not used without
-permission. Metadata shows mostly boilerplate (banks as lenders, DocuSign signatures, Facebook as a disclosure channel;
-10% in EX-10 contracts). Choose a v2 filter on the precision reading only.
-
 ### A8. EU short-selling registers *(new 2026-09-10, owner-proposed)*
 **Status:** never attempted. Free, daily, from ESMA and national regulators.
 **Why it is genuinely better than what closed in Step 263:** FINRA short interest is an
@@ -497,6 +481,7 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 
 | item | verdict | where |
 |---|---|---|
+| **Firms first disclosing a REAL relationship with a current leader (A25 v2, owner's 'low-key companies doing business with AI firms')** | **Fails, wrong sign.** 7,374 filings read, 1,348 relationship sentences kept, precision 60% (hand-read 50). Liquid disclosers underperform same-SIC2 controls: 252d -1.67% (2012-18), -8.63% (2019-25); only 196 tradeable events. | Step 367 |
 | **Call options on boom leaders (was P4, owner's 'change the shape of the bet')** | **Do not buy options data.** Model-priced (Black-Scholes at realised vol, generous), stock-replacement sizing, 279 alarm firings: 12m mean/std calls 0.24 vs shares 0.30 (2012-18) and 0.33 vs 0.52 (2019-26); false-start losses cut by a quarter, not half; medians fall to ~0. Real prices are dearer. | Step 366 |
 | **Firms first naming a current leader in filings, raw mentions (A25 v1)** | **Fails, wrong sign.** 12% of mentions are real relationships (banks, Facebook, Excel dominate). New mentioners underperform: 252d holdout -4.57% (p 0.047). v2 = real relationships only. | Step 365 |
 | **Blowout results days: buy the leader itself (was A28, owner's 'I want the main wave')** | **Fails.** 1,157 top-500 results-day jumps >= 10% (58,503 Item 2.02 dates): design +1.10% (63d) / +0.47% (126d), p > 0.27, medians negative, negative without top-10; 2021-22 -8.2%, 2023-25 +5.6%. SNAP +58% then -55%. Telling NVDA from SNAP at the time is the unsolved part. | Step 364 |

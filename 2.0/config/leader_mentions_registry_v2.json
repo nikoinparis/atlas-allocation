@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "experiment": "leader_mentions_v2",
+  "queue_item": "A25 (second construction)",
+  "supersedes_for_interpretation": "config/leader_mentions_registry_v1.json -- v1 ran as registered and is kept (Step 365)",
+  "registered_at_utc": "2026-10-16T06:00:00Z",
+  "registered_before_any_result_existed": true,
+  "registered_before_any_v2_sentence_was_fetched": true,
+  "owner_approval": "2026-10-16, in chat: 'yes use my email and finish A25 ... keep trying your best to make this happen'",
+
+  "why_v2_exists": "v1's precision check (50 hand-read mentions, before any return) found 12% genuine business relationships: 14 of 50 were banks as lenders/underwriters, 10 were generic tools (Facebook pages, Microsoft Excel), 20 were bios, peer lists, competitor lists or false matches. v1 therefore tested 'mentions', and failed (holdout 12m -4.57%, p 0.047). The owner's question is about real relationships -- low-key firms doing business with the leaders. v2 keeps only mentions whose own sentence describes one. Every rule below comes from reading v1's precision sample; none comes from any return.",
+
+  "construction": {
+    "start_from": "v1's 9,340 new mentions (same leaders, same quarters, same 'first time in four quarters' rule)",
+    "drop_financial_leaders": "leaders whose as-filed SIC2 is 60, 61, 62 or 67 (banks, credit, brokers, asset managers, holding/investment offices). Insurance (63-64) and real estate (65, REITs such as Equinix) are kept.",
+    "sentence_rule": "fetch the mentioning document (SEC Archives, contact email from the environment) and extract every sentence naming the leader. KEEP the mention if at least one such sentence contains a relationship term AND no exclusion term.",
+    "relationship_terms": ["customer", "client", "supplier", "vendor", "partner", "agreement with", "agreements with", "collaborat", "distribut", "resell", "reseller", "licens", "tenant", "lease", "supply", "purchase order", "contract with", "contracted", "alliance", "joint development", "co-develop", "certified", "integrat", "provider to", "provides to", "sells to", "sold to", "orders from"],
+    "exclusion_terms": ["facebook page", "on facebook", "follow us", "twitter", "linkedin", "instagram", "youtube", "social media", "microsoft word", "microsoft excel", "microsoft office", "docusign", "board of directors", "director of", "served as", "was employed", "vice president of", "vice president at", "competitor", "compete", "peer group", "industry group", "underwrit", "lender", "administrative agent", "syndication agent"],
+    "matching": "case-insensitive substring, within the same sentence",
+    "unfetchable_documents": "dropped and counted"
+  },
+  "precision_gate_before_any_return": "a FRESH random 50 of v2's kept design-window mentions (seed 20261016) is hand-read and classified exactly as v1's sample (relationship / financing / generic tool / other). If the relationship share is below 50%, A25 closes as 'real relationships cannot be isolated from free filings text at scale' and NO return is computed.",
+  "trials": "v1's T1 (126 trading days) and T2 (252 trading days), same decision timing, same matched same-SIC2 controls, same exclusions (leader's SIC3, ETNIC peers, liquidity)",
+  "declared_sign": "POSITIVE",
+  "bonferroni_bar": 0.025,
+  "trials_declared_here": 2,
+  "pass_rule_per_trial": "v1's: design mean > 0 with p < 0.025 AND holdout mean > 0 AND survives dropping the top 10 firm-events AND design mean > 50 bps",
+  "cumulative_search_note": "Two new trials on top of v1's two and 364 steps. The filter was designed after v1's returns were printed; it uses only the precision reading, but a researcher who had seen v1's negative sign designed it, which is recorded.",
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

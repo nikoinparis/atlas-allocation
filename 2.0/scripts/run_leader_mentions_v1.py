@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import html
 import io
+import os
 import json
 import re
 import sys
@@ -35,6 +36,9 @@ REGISTRY = ROOT / "config/leader_mentions_registry_v1.json"
 CACHE = ROOT / "data/edgar_fts_leader_mentions_v1"
 OUTPUT = ROOT / "evidence/leader_mentions_v1"
 UA = "PortfolioOptimizerResearch/2.0 contact=local-research"
+# SEC Archives require a contact email (fair-access policy); it is read from the environment and
+# never written into the repository. efts and data.sec.gov accept the anonymous agent above.
+ARCHIVE_UA = os.environ.get("SEC_USER_AGENT", UA)
 TOP_LIQUID, N_LEADERS, N_CONTROLS = 200, 20, 50
 HORIZONS = {"T1_new_mentioners_126d": 126, "T2_new_mentioners_252d": 252}
 BAR = 0.025
@@ -225,7 +229,7 @@ def new_mentions() -> pd.DataFrame:
 def fetch_sentences(doc_id: str, cik: str, name: str) -> list[str]:
     adsh, filename = doc_id.split(":", 1)
     url = f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/{adsh.replace('-', '')}/{filename}"
-    req = urllib.request.Request(url, headers={"User-Agent": UA})
+    req = urllib.request.Request(url, headers={"User-Agent": ARCHIVE_UA})
     with urllib.request.urlopen(req, timeout=60) as resp:
         raw = resp.read().decode("utf-8", errors="replace")
     text = html.unescape(re.sub(r"<[^>]+>", " ", raw))

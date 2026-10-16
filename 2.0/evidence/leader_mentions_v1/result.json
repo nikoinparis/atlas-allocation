@@ -1,0 +1,63 @@
+{
+  "registry": "config/leader_mentions_registry_v1.json",
+  "precision_relationship_share": 0.12,
+  "labelled_as": "mentions (precision below 25%)",
+  "results": {
+    "T1_new_mentioners_126d": {
+      "design": {
+        "firm_events": 694,
+        "quarters": 27,
+        "mean_of_quarter_means": -0.003242314045096487,
+        "firm_median": -0.014366174835342149,
+        "share_positive": 0.46397694524495675,
+        "bootstrap_p": 0.71425,
+        "without_top10": -0.010748734733649326
+      },
+      "holdout": {
+        "firm_events": 731,
+        "quarters": 27,
+        "mean_of_quarter_means": -0.011255946982608723,
+        "firm_median": -0.0203255148719394,
+        "share_positive": 0.46238030095759236,
+        "bootstrap_p": 0.4995,
+        "without_top10": -0.02879197211079507
+      },
+      "criteria": {
+        "design_mean_positive_p_below_bar": false,
+        "holdout_mean_positive": false,
+        "design_survives_dropping_top10": false,
+        "design_mean_above_50bps": false
+      },
+      "passes": false
+    },
+    "T2_new_mentioners_252d": {
+      "design": {
+        "firm_events": 694,
+        "quarters": 27,
+        "mean_of_quarter_means": -0.0113422883863034,
+        "firm_median": -0.012590249504693944,
+        "share_positive": 0.47982708933717577,
+        "bootstrap_p": 0.33225,
+        "without_top10": -0.020529206062317458
+      },
+      "holdout": {
+        "firm_events": 731,
+        "quarters": 27,
+        "mean_of_quarter_means": -0.04571450514552649,
+        "firm_median": -0.03881786863463921,
+        "share_positive": 0.44596443228454175,
+        "bootstrap_p": 0.0465,
+        "without_top10": -0.07756664544423027
+      },
+      "criteria": {
+        "design_mean_positive_p_below_bar": false,
+        "holdout_mean_positive": false,
+        "design_survives_dropping_top10": false,
+        "design_mean_above_50bps": false
+      },
+      "passes": false
+    }
+  },
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

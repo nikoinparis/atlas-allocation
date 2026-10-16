@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "experiment": "synthetic_boom_calls_v1",
+  "queue_item": "P4 feasibility screen (new 2026-10-16, Step 366)",
+  "registered_at_utc": "2026-10-16T06:30:00Z",
+  "registered_before_any_result_existed": true,
+  "owner_approval": "2026-10-16, in chat: 'then do this: Change the shape of the bet, not the timing ... buy call options on the leaders when a boom alarm fires'",
+
+  "why_this_exists": "About half of boom-alarm firings are false starts and no free information here separated them (Steps 359-364). Calls change the payoff instead: a false start costs the premium, a real wave keeps the upside. Real historical option prices are paid data (P3/P4) and Claude cannot purchase. This screen prices calls with Black-Scholes at a stock's own trailing volatility times a markup and asks whether calls beat shares even under cheap assumptions. If they do not beat shares when options are priced at realised volatility (markup 1.0, generous), buying real data cannot rescue the idea and is not recommended. If they do, the result is NOT evidence -- it is a reason to buy real data and test properly.",
+
+  "events": "Step 359's boom-alarm firings (evidence/wave_anatomy_v1/detector_events.csv): a SIC3 industry's trailing 6-month excess over the equal-weight universe crosses +20%; 279 firings 2012-2026",
+  "leaders_per_firing": "the 3 liquid members (close >= $5, $5M median dollar volume) of the firing industry with the highest trailing 126-trading-day return at the firing month-end",
+  "entry": "the last trading day of the firing month",
+  "horizons": {"H6": "126 trading days (6-month calls)", "H12": "252 trading days (12-month calls)"},
+
+  "share_leg": "equal weight in the 3 leaders, held to the horizon; return = price relative minus 1 (adjusted closes)",
+  "call_leg": {
+    "contract": "European call, strike = 1.10 x entry price, expiry = the horizon",
+    "pricing": "Black-Scholes; volatility = markup x the stock's trailing 63-day realised volatility (annualised); rate = trailing 21-day Fama-French daily RF annualised; no dividends",
+    "buy_at": "model value x (1 + spread), spread 5% of premium",
+    "sizing": "stock replacement: per $1 of capital, buy n calls with n x delta x S0 = $1 (same starting market exposure as $1 of shares); the unspent capital earns the realised Fama-French RF over the horizon",
+    "payoff": "max(S_T - K, 0) at the horizon from the adjusted close"
+  },
+  "markup_grid": [1.0, 1.25, 1.5],
+  "spread_grid_reported": [0.05, 0.10],
+
+  "measures_per_event_and_halves": ["mean, median and share positive of event returns", "10th percentile and worst event", "event-level mean/std ratio", "false starts = events where the share leg lost more than 20%: mean loss for shares vs calls", "real waves = events where the share leg gained more than 50%: mean gain for shares vs calls"],
+  "windows": "2012-2018 and 2019-2026 reported separately; no pooled verdict without both",
+
+  "decision_rule_declared": {
+    "recommend_buying_real_options_data_if": "at markup 1.25 and spread 5%, H12 calls beat H12 shares on the event-level mean/std ratio in BOTH halves AND cut the mean false-start loss by at least half",
+    "do_not_recommend_if": "calls fail that even at markup 1.0",
+    "otherwise": "inconclusive; report the break-even markup"
+  },
+  "honesty_notes": [
+    "Black-Scholes at realised volatility is NOT what hot stocks' options cost: implied volatility of momentum names usually exceeds realised. Markup 1.0 is deliberately generous to the idea.",
+    "Adjusted closes include dividends, which flatters calls slightly; most boom leaders pay little.",
+    "European pricing for American calls on low-dividend stocks is a close approximation.",
+    "Survivorship in the price panel as Step 359: crashed-to-delisting leaders are missing, which flatters SHARES more than calls (a call's loss is capped at the premium).",
+    "The firings' aggregate share-leg outcomes were seen in Step 359; the option conversion was not."
+  ],
+  "trials_declared_here": "one decision rule; the markup and spread grid is a sensitivity table, not a search",
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

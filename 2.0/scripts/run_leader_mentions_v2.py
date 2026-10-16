@@ -71,7 +71,7 @@ def stage_fetch() -> int:
         return err is None
 
     ok = 0
-    with ThreadPoolExecutor(max_workers=4) as pool:
+    with ThreadPoolExecutor(max_workers=10) as pool:
         for n, fut in enumerate(as_completed([pool.submit(work, r) for r in todo]), 1):
             ok += fut.result()
             if n % 250 == 0:

@@ -17708,3 +17708,75 @@ and was ridden here (Step 347). What no free information in this sample does is 
 a NVDA from a SNAP.
 
 **Cumulative search:** two new trials (A28). A25 has run no trial yet.
+
+## Step 365 — 2026-10-16 — A 50/50 SPY + growth-book forward clock, and A25's registered test (fails, negative)
+
+**What this was for.** The owner chose to treat the growth slice as a chosen risk, not an edge.
+Freeze the 50% SPY + 50% steady-riser mix and let the forward clock say what it delivers. The
+owner also gave permission to use their email as the SEC contact so A25 could finish.
+
+**The clock: `spy_riser_5050_v1`.** Protocol `config/forward/spy_riser_5050_v1.json`, recorder
+`scripts/record_spy_riser_5050_forward_v1.py` (`3cab6a6`), first decision **2026-10-16**, 52
+untouched weeks required. The riser leg is Step 347's S2 rule, using its own functions: top 20 by
+52-week slope × R² among liquid names, equal weight, held 52 weeks while positions drift, 50 bps
+on traded notional. SPY comes from the Friday ETF snapshot. The blend resets to 50/50 every week,
+as in Step 352. The reading is fixed in advance. It **confirms** the risk choice if forward CAGR is
+≥ SPY's with Sharpe within 0.10 of SPY's. It **refutes** it if Sharpe is more than 0.30 below
+SPY's or the max drawdown is worse than 1.5 × SPY's. Anything else is inconclusive.
+
+- **Dry run** in a scratch folder, dated 2026-10-02 and 2026-10-09 with real data: it formed a
+  book and realized a week. SPY's week (+1.160%) matches `static_spy_gld_shy_v1` exactly; the
+  riser leg was −5.7% including its 50 bps entry cost. That trial book was mostly the AI-hardware
+  chain: MU, DELL, STX, WDC, LITE, AAOI, AXTI, MXL. The real book is formed from the 2026-10-16
+  close by tonight's automated cycle.
+- **Friday-cycle fix found by the dry run.** A newly frozen clock would have been "pending" for the
+  week *before* its first eligible date, failing the whole run and skipping the dashboard steps.
+  `run_full_friday_cycle_v1.py` now skips a clock before its protocol's
+  `first_eligible_decision_date`.
+- **Operational note recorded for the owner.** The Friday job pushes HEAD to `origin/main`, so
+  research commits on the checked-out branch reach `main` whenever the job runs. The branch must
+  keep containing `origin/main`, or the wrapper refuses to run (Step 346).
+
+**A25 v1, precision check done by hand** (50 random design-window mentions, seed fixed, read
+before any return): 6 genuine relationships (12%), 14 financing (lenders, underwriters, CMBS), 10
+generic tools (Facebook pages, Microsoft Excel), 20 other (bios, peer and competitor lists,
+holdings; "Illumina" was a P&G salon brand). Below 25%, so it is labelled a test of **mentions**.
+
+| v1 trial | design 2012-18 | holdout 2019-25 | verdict |
+|---|---|---|---|
+| T1 126 days | −0.32% (p 0.71, median −1.44%) | −1.13% | fails |
+| T2 252 days | −1.13% (p 0.33) | **−4.57%** (p 0.047, median −3.88%) | fails, wrong sign |
+
+Firms that newly name a hot leader do **worse** than their same-SIC2 controls: the hype pattern
+the registry warned of. Not inverted. A v2 restricted to genuine relationships was pre-registered
+from the precision reading (`config/leader_mentions_registry_v2.json`) and is Step 367.
+
+## Step 366 — 2026-10-16 — Call options on boom leaders: the shape changes, the false starts do not go away
+
+**What this was for.** The owner's choice to attack false starts with convex payoffs: buy calls on
+a boom's leaders when the alarm fires, so a false start costs only the premium. Real option prices
+are paid data and Claude cannot purchase, so this is a **feasibility screen with model prices**.
+It decides whether buying data is worth it; it is not evidence. Pre-registered in
+`config/synthetic_boom_calls_registry_v1.json` (`c104139`). Script
+`scripts/run_synthetic_boom_calls_v1.py`, evidence `evidence/synthetic_boom_calls_v1/`.
+
+Each of Step 359's 279 alarm firings buys its industry's three strongest liquid stocks. The share
+leg is compared with 10%-out-of-the-money European calls with the **same starting market
+exposure** (stock replacement), priced by Black-Scholes at markup × trailing 63-day realised
+volatility, with a 5% spread. Markup 1.0 is deliberately generous: hot stocks' implied volatility
+usually exceeds realised.
+
+| 12-month | 2012-18 shares | calls (markup 1.0) | 2019-26 shares | calls (markup 1.0) |
+|---|---|---|---|---|
+| mean / median | +9.4% / +4.2% | +9.7% / −1.1% | +27.2% / +19.7% | +21.8% / +0.6% |
+| mean ÷ std | 0.30 | 0.24 | 0.52 | 0.33 |
+| false starts (shares < −20%) | −32.4% (n 9) | −23.7% | −35.9% (n 17) | −27.1% |
+| waves (shares > +50%) | +66.6% (n 7) | +96.4% | +99.0% (n 39) | +117.5% |
+
+At markup 1.25 calls are worse everywhere: mean ÷ std 0.05 and 0.19. **Verdict by the registered
+rule: do not buy options data.** Calls make the waves bigger but cut false-start losses by only a
+quarter, not half. On every row they lower return per unit of risk, and turn the typical outcome
+from a gain into roughly zero. The mechanism: matching the shares' exposure takes a large premium,
+and in a false start losing that premium is nearly as bad as the stock falling. Under fair
+pricing, options re-shape a bet; they do not improve it, and real prices for these names are
+dearer than this model.

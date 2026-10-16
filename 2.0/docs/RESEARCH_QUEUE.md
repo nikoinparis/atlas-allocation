@@ -458,14 +458,6 @@ Sharpe 1.09 -> 3.63 over 105 iterations with no correction. Usable only as a pro
 trials judged on untouched data, every iteration counted in the Bonferroni N. Automaton itself is a
 crypto self-funding agent runtime with wallet access -- not something to point at an account.
 
-### P4. Convex wave bets: call options on leaders after a boom alarm *(new 2026-10-15, Step 363)*
-Steps 359-362: about half of boom alarms are false starts, and no free information here separated them. If that
-cannot be fixed, change the payoff instead: a call option loses only its premium on a false start and keeps the
-upside of a real wave. Unlike stop-losses (Step 349: they sell the dip and miss the recovery), calls do not
-whipsaw. Needs historical option prices with real bid-ask spreads (see P3); free Cboe index data cannot price
-single-stock calls. Pre-register: buy 6-12-month ~10% out-of-the-money calls on a Step-359 alarm's top names,
-size premium at a fixed budget, compare to holding the shares and to SPY. **Blocked on:** paid options data.
-
 ## P1. Properly roll-adjusted futures data
 **Cost (priced 2026-09-30):** Norgate Futures package **$148.50 / 6 months or $270 / year**, ~100
 markets on 11 exchanges back to ~1980, individual contracts plus back-adjusted continuous, free
@@ -505,6 +497,8 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 
 | item | verdict | where |
 |---|---|---|
+| **Call options on boom leaders (was P4, owner's 'change the shape of the bet')** | **Do not buy options data.** Model-priced (Black-Scholes at realised vol, generous), stock-replacement sizing, 279 alarm firings: 12m mean/std calls 0.24 vs shares 0.30 (2012-18) and 0.33 vs 0.52 (2019-26); false-start losses cut by a quarter, not half; medians fall to ~0. Real prices are dearer. | Step 366 |
+| **Firms first naming a current leader in filings, raw mentions (A25 v1)** | **Fails, wrong sign.** 12% of mentions are real relationships (banks, Facebook, Excel dominate). New mentioners underperform: 252d holdout -4.57% (p 0.047). v2 = real relationships only. | Step 365 |
 | **Blowout results days: buy the leader itself (was A28, owner's 'I want the main wave')** | **Fails.** 1,157 top-500 results-day jumps >= 10% (58,503 Item 2.02 dates): design +1.10% (63d) / +0.47% (126d), p > 0.27, medians negative, negative without top-10; 2021-22 -8.2%, 2023-25 +5.6%. SNAP +58% then -55%. Telling NVDA from SNAP at the time is the unsolved part. | Step 364 |
 | **News-day co-movers continue (was A26, post-hoc from A24)** | **Fails on its untouched holdout.** 940 events 2019-25: mean +2.06% at 126d but median -3.01%, 45% positive, p 0.45, -0.16% without top-10; 2020 +6.9%, 2021-22 -7.3%, 2023-25 +7.5%. | Step 361 |
 | **Boom alarm confirmed by industry earnings; earnings before price (A27, owner's 'catch the main wave earlier')** | **Both fail.** Earnings-confirmed alarms do WORSE than unconfirmed (-5.5% next-12m, p 0.09; both halves). Industries beating two quarters before price moves: +0.5% (p 0.64), -2.0% in 2012-18; only 21% later trigger a price alarm. | Step 362 |

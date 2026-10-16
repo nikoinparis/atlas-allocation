@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "protocol_version": "spy_riser_5050_v1",
+  "frozen_at_utc": "2026-10-16T05:00:00Z",
+  "owner_authorized": "2026-10-16, in chat: 'Treat the growth slice as a chosen risk, not an edge. Fix the 50% index + 50% growth-book mix and run it on the forward clock.'",
+  "role": "A CHOSEN RISK LEVEL, NOT AN EDGE. Steps 347, 349 and 352 established that the steady-riser book is a bet on speculative-growth regimes (beta 1.54, max drawdown -50%, Sharpe below SPY's, trailed SPY for 2012-2019). Holding half of it beside SPY is a statement about how much growth risk to carry, chosen after seeing Step 349's holdout, so its history is NOT evidence. This clock records what that choice actually delivers from today, untouched.",
+
+  "rule": {
+    "leg_a": "SPY, weekly return from the ETF vintage snapshot taken in each Friday window (the snapshot the frozen-book recorders use)",
+    "leg_b_riser_book": {
+      "universe": "every issuer in data/clean_full_history_prices_v1/weekly_adjusted_prices_clean.csv.gz with 53 complete weekly closes ending at the decision Friday, close >= $5, and 63-day median daily dollar volume >= $5M from data/us_daily_volume_v1 (latest value on or before the decision; that file ends 2026-09-11 and the most recent available value is used, declared)",
+      "signal": "Step 347's S2 steady riser: (exp(52 x slope) - 1) x R-squared of a straight line fitted to the last 52 weekly log closes",
+      "selection": "the 20 highest S2 scores",
+      "weighting": "equal weight at formation; positions then drift with price for 52 weeks (no intra-year rebalancing)",
+      "rebalance": "a new book is formed at the first decision Friday 364 or more days after the previous formation; the first formation is the first recorded decision",
+      "costs": "50 bps on traded notional at each formation (100% of the leg at the first formation)",
+      "missing_prices": "a name without a price in a week earns 0 that week at its last value (treated as cash), never dropped or replaced mid-year"
+    },
+    "blend": "0.5 x SPY + 0.5 x riser book, reset to 0.5/0.5 every week, matching Step 352's '50/50 SPY + riser, always' line; no cost is charged for the weekly leg reset, as in Step 352",
+    "no_timing": "no trend filter, no stop, no switching: Steps 349 and 352 measured every such rule making it worse"
+  },
+
+  "cadence": {
+    "decision_day": "Friday",
+    "window": "recorded at or after 21:00 UTC on the decision Friday and before 21:00 UTC the following Friday",
+    "first_eligible_decision_date": "2026-10-16",
+    "missed_snapshot_policy": "a missed window is left missed; it is never backfilled from a later vintage"
+  },
+  "required_untouched_weeks": 52,
+
+  "historical_record_stated_honestly": {
+    "source": "Step 352, evidence/ride_the_boom_v1/result.json, weekly, net of the book's 50 bps costs",
+    "full_2013_2026": "CAGR 21.7%, Sharpe 0.90, max drawdown -37.3%",
+    "2013_2019": "CAGR 12.1%, Sharpe 0.69 (SPY 14.2%, Sharpe 1.17)",
+    "2020_2026": "CAGR 32.3%, Sharpe 1.11 (SPY 15.4%, Sharpe 0.82)",
+    "spy_full": "CAGR 14.8%, Sharpe 0.94, max drawdown -31.8%",
+    "why_this_is_not_evidence": "the 50/50 line was the control in Step 352 and was noticed after Step 349's holdout had been seen; the riser book's whole edge sits in 2020 and 2023-2026"
+  },
+  "reading_fixed_in_advance": {
+    "what_it_is_expected_to_do": "beat SPY in speculative-growth years and lag it, with deeper drawdowns, in calm or falling ones",
+    "confirms_the_risk_choice_if": "after 52 untouched weeks, forward CAGR >= SPY's over the same weeks AND forward Sharpe within 0.10 of SPY's",
+    "refutes_it_if": "forward Sharpe more than 0.30 below SPY's, or forward max drawdown worse than 1.5 x SPY's over the same weeks",
+    "neither": "anything in between is recorded as inconclusive. One year cannot establish a Sharpe difference statistically; this reading is a floor, not a test."
+  },
+  "compared_against_on_the_dashboard": ["SPY (leg a)", "static_spy_gld_shy_v1 (the benchmark to beat)", "equal_weight_benchmark_v1"],
+  "mutation_policy": "any change to the universe, signal, size, cadence, costs or blend weight creates spy_riser_5050_v2 and restarts the clock at zero",
+  "log_policy": "decision and observation JSON Lines logs are independently hash-chained (src/systematic_trader/forward_evidence.py); each formation's book is written to a frozen CSV whose sha256 is pinned in the decision record",
+  "research_only": true,
+  "strategy_promotion_authorized": false,
+  "approved_for_live_trading": false,
+  "execution_enabled": false,
+  "live_trading_enabled": false
+}

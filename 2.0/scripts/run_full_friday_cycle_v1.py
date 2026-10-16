@@ -50,6 +50,7 @@ STOCK_RECORDERS = {                     # evidence directory -> recorder script
     "valuation_earnings_yield_v1": "record_valuation_earnings_yield_forward_v1.py",
     "sue_quarterly_v1": "record_sue_quarterly_forward_v1.py",
     "residual_tie_agnostic_companion_v1": "record_residual_tie_agnostic_companion_forward_v1.py",
+    "spy_riser_5050_v1": "record_spy_riser_5050_forward_v1.py",     # Step 365: a chosen risk level, not an edge
 }
 # This recorder appends its decision unconditionally, so it may only be called once per Friday.
 NOT_IDEMPOTENT = {"residual_tie_agnostic_companion_v1"}
@@ -103,10 +104,22 @@ def notify(title: str, message: str) -> None:
     subprocess.run(["/usr/bin/osascript", "-e", script], check=False, capture_output=True)
 
 
+def started(clock: str, friday: str) -> bool:
+    """A clock is not due before its protocol's first eligible decision date (Step 365)."""
+    path = ROOT / f"config/forward/{clock}.json"
+    if not path.exists():
+        return True
+    cadence = json.loads(path.read_text()).get("cadence")
+    first = cadence.get("first_eligible_decision_date") if isinstance(cadence, dict) else None
+    return first is None or str(first) <= friday
+
+
 def pending(friday: str) -> dict[str, list[str]]:
     prior = str((datetime.fromisoformat(friday) - timedelta(days=7)).date())
     todo = {"etf": [c for c in ETF_CLOCKS if friday not in log_dates(c, "decisions.jsonl", "decision_date")], "stock": []}
     for clock in STOCK_RECORDERS:
+        if not started(clock, friday):
+            continue
         decided = friday in log_dates(clock, "decisions.jsonl", "decision_date")
         realization_due = prior in log_dates(clock, "decisions.jsonl", "decision_date")
         realized = friday in log_dates(clock, "observations.jsonl", "realization_date")
@@ -209,7 +222,8 @@ def main() -> int:
         runner.run("research status payload", [PYTHON, "scripts/build_research_status_payload_v1.py"])
 
         if not args.dry_run:
-            behind = [c for c in [*ETF_CLOCKS, *STOCK_RECORDERS] if friday not in log_dates(c, "decisions.jsonl", "decision_date")]
+            behind = [c for c in [*ETF_CLOCKS, *STOCK_RECORDERS]
+                      if started(c, friday) and friday not in log_dates(c, "decisions.jsonl", "decision_date")]
             if behind:
                 raise CycleError(f"clocks still missing {friday} after the run: {behind}")
             verify = ("import sys; sys.path.insert(0, '.'); from pathlib import Path; "

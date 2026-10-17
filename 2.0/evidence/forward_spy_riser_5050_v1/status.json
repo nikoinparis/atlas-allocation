@@ -1,0 +1,43 @@
+{
+  "blend_performance_metrics": {
+    "observations": 0
+  },
+  "current_book": [
+    "AGL",
+    "MXL",
+    "AXTI",
+    "ATEX",
+    "TWST",
+    "DELL",
+    "MU",
+    "BAND",
+    "TXG",
+    "MRNA",
+    "SYRE",
+    "IOVA",
+    "EVC",
+    "STX",
+    "PENG",
+    "AAOI",
+    "MRVL",
+    "IRDM",
+    "LITE",
+    "ICHR"
+  ],
+  "decision_log_sha256": "abc856f3a8b611a7b0e8fed03039cea860d215e3cd9ae27c35123aa9aee57ea3",
+  "execution_enabled": false,
+  "generated_at_utc": "2026-10-17T12:25:59.360296+00:00",
+  "latest_decision_date": "2026-10-16",
+  "latest_realization_date": null,
+  "live_trading_enabled": false,
+  "observation_log_sha256": null,
+  "observed_weeks": 0,
+  "promotion_authorized": false,
+  "protocol_version": "spy_riser_5050_v1",
+  "required_untouched_weeks": 52,
+  "role": "chosen risk level, not an edge",
+  "saved_decisions": 1,
+  "spy_performance_metrics": {
+    "observations": 0
+  }
+}

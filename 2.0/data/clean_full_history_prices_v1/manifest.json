@@ -1,32 +1,32 @@
 {
   "artifact_sha256": {
-    "weekly_adjusted_prices_clean.csv.gz": "cb5405ac848393201f9d0305d5d1545f0889c9556c072f29d0da43940ad93b0c",
-    "weekly_returns_clean.csv.gz": "b7ded6b41472543cb21aa839f57da9d0c0d55ea15e39b646f653e44e65cfeb4b"
+    "weekly_adjusted_prices_clean.csv.gz": "5f2c69d3bd827077a439ec6dfa346bf48eb58e90ddfee1a5bf9cf7b23ba13bd2",
+    "weekly_returns_clean.csv.gz": "2adfd998d6dd184f5a0a488001c2d03d8ecb40d7b6ebf3c7202f1cd5efde996e"
   },
-  "created_at_utc": "2026-10-10T16:13:00.312668+00:00",
+  "created_at_utc": "2026-10-17T12:25:48.018192+00:00",
   "experiment": "corporate_action_clean_prices_v1",
   "live_trading_enabled": false,
   "modifies_existing_panels": false,
   "repairs": {
-    "after__equal_weight_cagr": 0.1557750507888107,
-    "after__equal_weight_recent_52w": 0.18527478817964815,
+    "after__equal_weight_cagr": 0.15461180403522845,
+    "after__equal_weight_recent_52w": 0.14365562386373765,
     "after__infinite_returns": 0,
-    "after__returns_above_100pct": 259,
+    "after__returns_above_100pct": 262,
     "after__worst_weekly_return": 18.728261278572525,
-    "before__equal_weight_cagr": 0.188109123745287,
-    "before__equal_weight_recent_52w": 0.2934096397346344,
+    "before__equal_weight_cagr": 0.18693937559202123,
+    "before__equal_weight_recent_52w": 0.24196012740888917,
     "before__infinite_returns": 0,
-    "before__returns_above_100pct": 423,
-    "before__worst_weekly_return": 257.33332451526246,
-    "cells_removed_total": 20261,
-    "input_cells": 1833089,
-    "input_issuers": 2775,
+    "before__returns_above_100pct": 428,
+    "before__worst_weekly_return": 257.3333511397123,
+    "cells_removed_total": 20407,
+    "input_cells": 1858380,
+    "input_issuers": 2812,
     "jump_ratio": 5.0,
     "max_legitimate_jumps": 1,
     "non_positive_cells_removed": 0,
     "non_positive_issuers": [],
-    "output_cells": 1812828,
-    "output_issuers": 2760,
+    "output_cells": 1837973,
+    "output_issuers": 2797,
     "price_floor": 1.0,
     "quarantined_count": 15,
     "quarantined_issuers": [
@@ -46,7 +46,7 @@
       "0001770561",
       "0001828852"
     ],
-    "share_of_cells_removed": 0.011053,
+    "share_of_cells_removed": 0.010981,
     "single_jump_issuers_kept": [
       "0000031235",
       "0000827187",
@@ -68,6 +68,7 @@
       "0001500881",
       "0001533924",
       "0001556739",
+      "0001603756",
       "0001604464",
       "0001609809",
       "0001610682",
@@ -77,18 +78,20 @@
       "0001662774",
       "0001725210",
       "0001728117",
+      "0001818093",
       "0001819142",
       "0001821586",
       "0001821806",
       "0001825024",
       "0001835856",
+      "0001849635",
       "0001885522",
       "0001922446"
     ],
-    "sub_floor_cells_removed": 11665,
-    "sub_floor_issuers_touched": 207
+    "sub_floor_cells_removed": 11796,
+    "sub_floor_issuers_touched": 210
   },
   "source_prices": "data/broad_full_history_panel_v1/weekly_adjusted_prices.csv.gz",
-  "source_sha256": "464d3af4f9ff7b84a1a2409401fbd0c119848a510f08ba496e1cdac46d0befcf",
+  "source_sha256": "2529671dd801c7db556da41fa7d08cd6bf91ce94b3852ec1467eb99ff3ae63c5",
   "strategy_promotion_authorized": false
 }

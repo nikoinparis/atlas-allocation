@@ -3,10 +3,10 @@
 Protocol: `past_only_consensus_selector_return_v1_forward`
 
 - Decision basis: **held frozen book** (the pinned source bundle ends 2026-08-07).
-- Saved forward decisions: **8**.
-- Realized weeks: **6/52**.
-- Latest decision: **2026-10-09**.
-- Latest realization: **2026-10-09**.
+- Saved forward decisions: **9**.
+- Realized weeks: **7/52**.
+- Latest decision: **2026-10-16**.
+- Latest realization: **2026-10-16**.
 - Records written after their window: **5**.
 - Execution enabled: **no**.
 

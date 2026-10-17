@@ -266,6 +266,18 @@ closed. What remains open: vertical links (A21), the owner's commodity chain (A2
 news (A20, prior lowered), and the forward-only LLM map (C4). Theme detection (phase 2) is not built:
 there is no peer spillover for it to feed.
 
+### B17. Social-media attention as a CONTRARIAN / avoid signal *(new 2026-10-18, Step 368)*
+Published evidence (Barber et al. JF 2022, Robinhood herding -> negative returns; Bradley et al. RFS 2024, WSB posts
+stopped predicting after GME) and this project's A25 (firms newly naming hot leaders underperform) all point the same
+way: retail and social attention spikes precede UNDERperformance. Long-only use = an avoid list, not a buy signal.
+Data: Reddit archives (large, third-party dumps -- owner must approve the source), StockTwits (limited free API),
+Google Trends (not point-in-time). Prior on a BUY signal: very low. Prior on an avoid filter: moderate, small effect.
+
+### B18. Avoid firms that just announced ties to a hot leader, forward only *(new 2026-10-18, Steps 365-367)*
+A25 v1 and v2 both came out negative (-4.6% and -8.6% over 12 months, 2019-25). The past has been seen, so the only
+clean test is forward: each quarter, log firms newly disclosing a relationship with a current leader and score them
+after 12 months against same-SIC2 controls. Free (EDGAR FTS + Archives with the contact agent). Under 1 session to set up.
+
 ### A8. EU short-selling registers *(new 2026-09-10, owner-proposed)*
 **Status:** never attempted. Free, daily, from ESMA and national regulators.
 **Why it is genuinely better than what closed in Step 263:** FINRA short interest is an
@@ -430,6 +442,11 @@ applies, a real IC of 0.03 needs years of weekly decisions to show. Needs owner 
 **2026-10-14 (Step 353):** A18's "what does this theme need?" LLM map is the same forward-only clock;
 run it here as one frozen pipeline rather than a second LLM clock.
 
+**2026-10-18 (Step 368):** after eighteen historical tests of "catch the rising company" failed the same way, this is
+the idea's last honest home: a forward "event desk" -- each week a frozen-prompt model reads the week's major news and
+8-K filings, names the companies it expects to benefit and why, and the picks are scored after 3/6/12 months against
+same-industry controls. History cannot test it (any modern model knows the outcomes). Needs an API key and budget.
+
 ---
 
 # PAID QUEUE -- nothing here starts without the owner confirming the spend
@@ -481,6 +498,7 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 
 | item | verdict | where |
 |---|---|---|
+| **Big up-moves with company news (8-K) vs without (A29, Chan 2003; owner's 'big news, buy the company')** | **Fails.** 187,511 8-Ks: news-up 126d -5.56% (2012-18), +11.44% mean / -2.30% median (2019-25); 2021-22 -19.7%. No-news-up -4.37% (p 0.0265, misses 0.025), holdout wrong sign. Policy-shock cases: 8 of 17 beneficiaries beat the market over 12m. | Step 368 |
 | **Firms first disclosing a REAL relationship with a current leader (A25 v2, owner's 'low-key companies doing business with AI firms')** | **Fails, wrong sign.** 7,374 filings read, 1,348 relationship sentences kept, precision 60% (hand-read 50). Liquid disclosers underperform same-SIC2 controls: 252d -1.67% (2012-18), -8.63% (2019-25); only 196 tradeable events. | Step 367 |
 | **Call options on boom leaders (was P4, owner's 'change the shape of the bet')** | **Do not buy options data.** Model-priced (Black-Scholes at realised vol, generous), stock-replacement sizing, 279 alarm firings: 12m mean/std calls 0.24 vs shares 0.30 (2012-18) and 0.33 vs 0.52 (2019-26); false-start losses cut by a quarter, not half; medians fall to ~0. Real prices are dearer. | Step 366 |
 | **Firms first naming a current leader in filings, raw mentions (A25 v1)** | **Fails, wrong sign.** 12% of mentions are real relationships (banks, Facebook, Excel dominate). New mentioners underperform: 252d holdout -4.57% (p 0.047). v2 = real relationships only. | Step 365 |

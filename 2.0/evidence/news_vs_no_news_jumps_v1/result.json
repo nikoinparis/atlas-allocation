@@ -1,0 +1,321 @@
+{
+  "registry": "config/news_vs_no_news_jumps_registry_v1.json",
+  "results": {
+    "T1_news_up_126d": {
+      "design": {
+        "events": 55,
+        "leaders": 49,
+        "mean": -0.05555520529348294,
+        "median": -0.055684245759232365,
+        "share_positive": 0.43636363636363634,
+        "t_naive": -1.500667017021253,
+        "bootstrap_p": 0.252,
+        "mean_without_top10_events": -0.14529172032252835
+      },
+      "holdout": {
+        "events": 122,
+        "leaders": 82,
+        "mean": 0.11436747627525098,
+        "median": -0.023040420853870622,
+        "share_positive": 0.45901639344262296,
+        "t_naive": 1.8750295101935852,
+        "bootstrap_p": 0.1605,
+        "mean_without_top10_events": -0.035119867445693474
+      },
+      "criteria": {
+        "design_sign_and_p": false,
+        "holdout_sign": true,
+        "design_survives_top10": false,
+        "design_magnitude_above_50bps": false
+      },
+      "passes": false,
+      "regimes": {
+        "2012-2019": {
+          "events": 65,
+          "leaders": 54,
+          "mean": -0.06467922816091734,
+          "median": -0.049821521963765256,
+          "share_positive": 0.4307692307692308,
+          "t_naive": -1.8550261030179478,
+          "bootstrap_p": 0.1155,
+          "mean_without_top10_events": -0.14068927937273432
+        },
+        "2020": {
+          "events": 47,
+          "leaders": 37,
+          "mean": 0.2909823961715584,
+          "median": 0.038743272125870254,
+          "share_positive": 0.5106382978723404,
+          "t_naive": 2.212275480432955,
+          "bootstrap_p": 0.013,
+          "mean_without_top10_events": -0.08019360067456838
+        },
+        "2021-2022": {
+          "events": 33,
+          "leaders": 30,
+          "mean": -0.19660263735791184,
+          "median": -0.2523730821662304,
+          "share_positive": 0.24242424242424243,
+          "t_naive": -3.6844666786907196,
+          "bootstrap_p": 0.0,
+          "mean_without_top10_events": -0.36199317225688477
+        },
+        "2023-2025H1": {
+          "events": 32,
+          "leaders": 21,
+          "mean": 0.24728625180145408,
+          "median": 0.09038044811926693,
+          "share_positive": 0.625,
+          "t_naive": 2.7878296315753426,
+          "bootstrap_p": 0.0015,
+          "mean_without_top10_events": -0.02426074122659401
+        }
+      }
+    },
+    "T2_no_news_up_126d": {
+      "design": {
+        "events": 355,
+        "leaders": 147,
+        "mean": -0.04369780290505145,
+        "median": -0.042793169965033684,
+        "share_positive": 0.4309859154929577,
+        "t_naive": -2.408079051922106,
+        "bootstrap_p": 0.0265,
+        "mean_without_top10_events": -0.07085779626278269
+      },
+      "holdout": {
+        "events": 1648,
+        "leaders": 395,
+        "mean": 0.0183937937270597,
+        "median": -0.12330836942038974,
+        "share_positive": 0.3695388349514563,
+        "t_naive": 1.0840640966808521,
+        "bootstrap_p": 0.7345,
+        "mean_without_top10_events": -0.011083992803006622
+      },
+      "criteria": {
+        "design_sign_and_p": false,
+        "holdout_sign": false,
+        "design_survives_top10": true,
+        "design_magnitude_above_50bps": true
+      },
+      "passes": false,
+      "regimes": {
+        "2012-2019": {
+          "events": 399,
+          "leaders": 152,
+          "mean": -0.036564955510443004,
+          "median": -0.04078022145336302,
+          "share_positive": 0.43358395989974935,
+          "t_naive": -2.0305973431112747,
+          "bootstrap_p": 0.07175,
+          "mean_without_top10_events": -0.0640669728236157
+        },
+        "2020": {
+          "events": 570,
+          "leaders": 259,
+          "mean": 0.15556442105854112,
+          "median": -0.06107385807746296,
+          "share_positive": 0.4368421052631579,
+          "t_naive": 4.091617105454505,
+          "bootstrap_p": 0.0145,
+          "mean_without_top10_events": 0.07264411556073588
+        },
+        "2021-2022": {
+          "events": 617,
+          "leaders": 141,
+          "mean": -0.1661252593993379,
+          "median": -0.24084003992190567,
+          "share_positive": 0.24473257698541329,
+          "t_naive": -9.486531531623578,
+          "bootstrap_p": 0.0,
+          "mean_without_top10_events": -0.1987925329136172
+        },
+        "2023-2025H1": {
+          "events": 417,
+          "leaders": 130,
+          "mean": 0.10363845162012211,
+          "median": -0.048592805625477464,
+          "share_positive": 0.45323741007194246,
+          "t_naive": 3.508985747060811,
+          "bootstrap_p": 0.12275,
+          "mean_without_top10_events": 0.05354717968206087
+        }
+      }
+    }
+  },
+  "diagnostics": {
+    "news_up": {
+      "design": {
+        "events": 55,
+        "leaders": 49,
+        "mean": -0.05555520529348294,
+        "median": -0.055684245759232365,
+        "share_positive": 0.43636363636363634,
+        "t_naive": -1.500667017021253,
+        "bootstrap_p": 0.2485,
+        "mean_without_top10_events": -0.14529172032252835
+      },
+      "holdout": {
+        "events": 122,
+        "leaders": 82,
+        "mean": 0.11436747627525098,
+        "median": -0.023040420853870622,
+        "share_positive": 0.45901639344262296,
+        "t_naive": 1.8750295101935852,
+        "bootstrap_p": 0.163,
+        "mean_without_top10_events": -0.035119867445693474
+      }
+    },
+    "news_down": {
+      "design": {
+        "events": 59,
+        "leaders": 50,
+        "mean": -0.028204925689546544,
+        "median": -0.04903279056545898,
+        "share_positive": 0.423728813559322,
+        "t_naive": -0.6880950011554058,
+        "bootstrap_p": 0.4955,
+        "mean_without_top10_events": -0.13109927437677846
+      },
+      "holdout": {
+        "events": 124,
+        "leaders": 91,
+        "mean": 0.03028680350497205,
+        "median": -0.06286609996180474,
+        "share_positive": 0.41935483870967744,
+        "t_naive": 0.46495971394828467,
+        "bootstrap_p": 0.72425,
+        "mean_without_top10_events": -0.11915484242772227
+      }
+    },
+    "no_news_up": {
+      "design": {
+        "events": 355,
+        "leaders": 147,
+        "mean": -0.04369780290505145,
+        "median": -0.042793169965033684,
+        "share_positive": 0.4309859154929577,
+        "t_naive": -2.408079051922106,
+        "bootstrap_p": 0.0245,
+        "mean_without_top10_events": -0.07085779626278269
+      },
+      "holdout": {
+        "events": 1648,
+        "leaders": 395,
+        "mean": 0.0183937937270597,
+        "median": -0.12330836942038974,
+        "share_positive": 0.3695388349514563,
+        "t_naive": 1.0840640966808521,
+        "bootstrap_p": 0.73675,
+        "mean_without_top10_events": -0.011083992803006622
+      }
+    },
+    "no_news_down": {
+      "design": {
+        "events": 287,
+        "leaders": 138,
+        "mean": 0.012034880322666829,
+        "median": -0.05123595070700865,
+        "share_positive": 0.4564459930313589,
+        "t_naive": 0.4526303380294293,
+        "bootstrap_p": 0.81775,
+        "mean_without_top10_events": -0.03639721109908596
+      },
+      "holdout": {
+        "events": 1071,
+        "leaders": 408,
+        "mean": 0.08121434140137575,
+        "median": -0.05141372511253872,
+        "share_positive": 0.4565826330532213,
+        "t_naive": 3.597094522017159,
+        "bootstrap_p": 0.26875,
+        "mean_without_top10_events": 0.03689514843264825
+      }
+    },
+    "results_up": {
+      "design": {
+        "events": 397,
+        "leaders": 192,
+        "mean": 0.006347809724028943,
+        "median": -0.019693343690077303,
+        "share_positive": 0.4534005037783375,
+        "t_naive": 0.5186984773782785,
+        "bootstrap_p": 0.65775,
+        "mean_without_top10_events": -0.010703622072380582
+      },
+      "holdout": {
+        "events": 760,
+        "leaders": 316,
+        "mean": 0.025724316959844697,
+        "median": -0.024169337307831665,
+        "share_positive": 0.4644736842105263,
+        "t_naive": 1.7271899655528122,
+        "bootstrap_p": 0.25,
+        "mean_without_top10_events": -0.0016129567982925508
+      }
+    },
+    "results_down": {
+      "design": {
+        "events": 407,
+        "leaders": 220,
+        "mean": 0.00889000056610738,
+        "median": -0.0013720906979538053,
+        "share_positive": 0.4963144963144963,
+        "t_naive": 0.6595604413632582,
+        "bootstrap_p": 0.5665,
+        "mean_without_top10_events": -0.013400662710174139
+      },
+      "holdout": {
+        "events": 745,
+        "leaders": 328,
+        "mean": 0.031502152443550625,
+        "median": -0.020568849513045273,
+        "share_positive": 0.47516778523489933,
+        "t_naive": 1.8428163062043796,
+        "bootstrap_p": 0.08425,
+        "mean_without_top10_events": 0.001570552422734992
+      }
+    },
+    "other_filing_up": {
+      "design": {
+        "events": 39,
+        "leaders": 31,
+        "mean": -0.0250588601624875,
+        "median": -0.04290481815482694,
+        "share_positive": 0.4358974358974359,
+        "t_naive": -0.45295884015726884,
+        "bootstrap_p": 0.6045,
+        "mean_without_top10_events": -0.1748984874777678
+      },
+      "holdout": {
+        "events": 199,
+        "leaders": 117,
+        "mean": 0.03868768843280146,
+        "median": -0.04731158339280478,
+        "share_positive": 0.44221105527638194,
+        "t_naive": 0.878674062304069,
+        "bootstrap_p": 0.54925,
+        "mean_without_top10_events": -0.057475553927162526
+      }
+    },
+    "other_filing_down": {
+      "design": {
+        "events": 25,
+        "inconclusive": true
+      },
+      "holdout": {
+        "events": 112,
+        "leaders": 81,
+        "mean": 0.11990310200650996,
+        "median": -0.01616215371698601,
+        "share_positive": 0.48214285714285715,
+        "t_naive": 1.8566395362389436,
+        "bootstrap_p": 0.1985,
+        "mean_without_top10_events": -0.036342509740934045
+      }
+    }
+  },
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

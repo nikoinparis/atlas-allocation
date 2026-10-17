@@ -17815,3 +17815,63 @@ into its filing, the association is already priced, and sometimes over-priced. *
 
 **Cumulative search, Steps 359-367:** A24 2, A26 1, A27 2, A28 2, A25 v1 2, A25 v2 2, and the
 options screen's one decision rule. None passed.
+
+## Step 368 — 2026-10-18 — "Big news, buy the company": company news does not make a jump continue (A29)
+
+**What this was for.** The owner asked whether everything had been tried, including social media
+and news, and gave an example: if the US banned oil imports and let only one US company sell,
+shouldn't we buy it and ride the wave? They asked for an honest view and left the design to Claude.
+
+**First, the clock.** `spy_riser_5050_v1` recorded its first decision in the automated 2026-10-16
+cycle ("All clocks recorded", every hash chain verified). Book: AGL, MXL, AXTI, ATEX, TWST, DELL,
+MU, BAND, TXG, MRNA, SYRE, IOVA, EVC, STX, PENG, AAOI, MRVL, IRDM, LITE, ICHR.
+
+**Literature, abstracts read this session.**
+- Barber, Huang, Odean & Schwarz (JF 2022): intense herding by Robinhood users predicts negative
+  returns (about −4.7% over 20 days for the most-bought names).
+- Bradley, Hanousek, Jame & Xiao (RFS 2024): WallStreetBets due-diligence posts predicted returns
+  before the GameStop squeeze and stopped doing so after it.
+- Chan (JFE 2003): drift after news headlines, strongest after bad news; reversal after big moves
+  without news; mainly in small, illiquid stocks.
+
+Social-media attention is, in the published record, a contrarian signal, which matches A25's
+negative sign.
+
+**Policy-shock case studies, chosen from memory (hindsight, illustrations only).** 12-month excess
+over the equal-weight market after the first trading day:
+
+| event | names | 12m excess |
+|---|---|---|
+| 2018 steel tariffs | NUE, STLD, CLF | −17.5%, −28.2%, +24.8% |
+| 2022 Russian oil ban | XOM, OXY, DVN, COP (day 0 ≈ flat: already priced) | +32.4%, +15.3%, −1.1%, +15.6% |
+| 2022 IRA | FSLR, ENPH, RUN, SEDG | +107.4%, −51.0%, −45.7%, −37.4% |
+| 2022 CHIPS Act | INTC, MU, AMAT, LRCX | −15.8%, +2.5%, +31.0%, +38.2% |
+| 2025 US stake in Intel | INTC | +193.2% |
+| 2025 US stake in MP Materials | MP (day 0 +49.8%) | −10.4% |
+
+That is 8 of 17 positive. The headline's direct beneficiary is priced on the day. What follows
+depends on details the headline does not carry: the IRA's domestic-content credits helped a US
+manufacturer, and rising rates hurt residential solar.
+
+**A29, pre-registered** in `config/news_vs_no_news_jumps_registry_v1.json` (`9426fd3`). Chan's
+split, built from every 8-K in the cached EDGAR submissions files: 187,511 filings, 1,057 issuers.
+A ≥ 10% one-day move among the top 500 by liquidity is classed as news (8-K items 1.01, 1.02, 2.01,
+2.03, 3.02, 7.01 or 8.01, no 2.02), no news (no 8-K that day or the day before), results, or other.
+Script `scripts/run_news_vs_no_news_jumps_v1.py`, evidence `evidence/news_vs_no_news_jumps_v1/`.
+
+| trial (126 days vs same-SIC2 controls) | design 2012-18 | holdout 2019-25 | 2020 | 2021-22 | 2023-25 | verdict |
+|---|---|---|---|---|---|---|
+| T1 up move WITH company news, declared + | **−5.56%** (55, p 0.25) | +11.44%, median −2.30% (122) | +29.1% | **−19.7%** | +24.7% | fails |
+| T2 up move with NO news, declared − | −4.37% (355, **p 0.0265**) | +1.84%, median −12.33% (1,648) | +15.6% | −16.6% | +10.4% | fails |
+
+T2 misses its bar by 0.0015 in design and its holdout mean has the wrong sign, so it is not an
+avoid rule. Down moves, with or without news, show no drift in this large-cap universe.
+
+**What Steps 347-368 add up to, in plain words.** Eighteen tests of catching rising companies:
+momentum, themes, linked firms, machine-learned links, supply chains, commodities, earnings, news
+jumps, results days, low-key partners, options, and company news. Every one has the same shape:
+it pays in 2020 and 2023-25, loses in 2021-22, and does nothing in 2012-19. The market prices the
+obvious beneficiary of public news on the day. Whether the move continues depends on the market's
+mood, which none of these signals foresee.
+
+**Cumulative search:** two new trials.

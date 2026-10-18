@@ -6,9 +6,7 @@
   "registered_before_any_result_existed": true,
   "registered_before_any_reddit_data_was_downloaded": true,
   "owner_approval": "2026-10-18, in chat: 'yes set up the avoid list and test the reddit one'",
-
   "why_this_exists": "The owner asked whether social media could catch booms. Published evidence says retail attention spikes precede UNDERperformance: Barber, Huang, Odean & Schwarz (JF 2022) find Robinhood herding predicts about -4.7% over 20 days; Bradley et al. (RFS 2024) find WallStreetBets research predicted returns only before the GameStop squeeze. This project's A25 found the same sign for firms newly naming hot leaders. This tests, on our own universe and data, whether a WallStreetBets attention surge marks a stock to AVOID. A buy signal is not tested: every source points the other way.",
-
   "data": {
     "source": "Arctic Shift public Reddit archive API (arctic-shift.photon-reddit.com), endpoint /api/posts/search/aggregate, aggregate=created_utc, frequency=week, subreddit=wallstreetbets, title=<ticker>; JSON only, no files executed",
     "window": "2017-01-01 to 2025-12-31 (WallStreetBets was small before 2017)",
@@ -22,7 +20,10 @@
     "entry": "the close of the first trading day at least one day after the week's end"
   },
   "outcome": "the stock's return over h trading days minus the mean of 50 random liquid same-SIC2 firms with no event in the same week (A24's control)",
-  "trials": {"T1_hype_21d": "h = 21", "T2_hype_63d": "h = 63"},
+  "trials": {
+    "T1_hype_21d": "h = 21",
+    "T2_hype_63d": "h = 63"
+  },
   "declared_sign": "NEGATIVE (attention-induced overpricing reverses). Long-only use: an avoid rule. A positive result is reported as a refutation, not inverted into a buy rule.",
   "significance": "event-level, block bootstrap over event months (block 3), 4000 draws, two-sided",
   "windows": "design 2017-2020 (before the GameStop squeeze); holdout 2021-2025",
@@ -37,5 +38,6 @@
     "Survivorship in the price panel as A19."
   ],
   "live_trading_enabled": false,
-  "strategy_promotion_authorized": false
+  "strategy_promotion_authorized": false,
+  "amendment_2026_10_18_before_any_reddit_data": "Per-ticker server-side aggregation timed out at every window above one quarter and was throttled (HTTP 422 'Timeout. Maybe slow down a bit'), so no count was ever received for the test. Replaced by a polite crawl of every r/wallstreetbets post 2017-01-01 to 2025-12-31 via /api/posts/search (fields created_utc,title; 100 per request; >= 1.5 s apart; backing off on 422/429), stored as monthly gzip JSON lines under data/wsb_attention_v1/posts/. A post counts for a ticker if its title contains the ticker as a whole word in UPPER case, optionally prefixed by '$' (e.g. 'NVDA', '$NVDA'); 'Nvidia' does not count. Weekly buckets are Monday-Sunday UTC. Everything else -- universe, event rule, controls, trials, windows, pass rule -- is unchanged."
 }

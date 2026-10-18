@@ -17913,3 +17913,36 @@ illiquid stocks with realistic costs, A33 spin-offs. Checked against the literat
 and recorded as gone in the US, so not to be re-proposed: the earnings-announcement premium (Heitz
 et al. 2020), pre-FOMC drift (Kurov, Wolfe & Gilbert 2021) and the S&P inclusion effect (Greenwood &
 Sammon, JF 2025).
+
+## Step 370 — 2026-10-19 — Merger arbitrage on live funds' records: crisis-proof, but it does not improve the portfolio (A30 stage 1)
+
+**What this was for.** The first recommendation of Step 369's review. A deal-level backtest is
+**blocked**: the price panel keeps only 2 of 2,775 series that stopped trading, so acquired targets,
+the stocks merger arbitrage buys, are missing. A test on it would be silently survivor-biased; the
+fix is delisted prices (Tiingo needs the owner's token). Stage 1 asks the portfolio question of
+real funds instead. Pre-registered in `config/merger_arb_sleeve_registry_v1.json` (`5b71f0d`) as a
+diversifier test with a declared reading and no p-value requirement. Script
+`scripts/run_diversifier_sleeve_v1.py`; prices frozen with a sha256 in
+`evidence/merger_arb_sleeve_v1/`. **Checked first:** Yahoo's adjusted closes include fund
+distributions (MERFX 2018 total +7.7% against price-only +3.0%; AQMIX 2022 +35.5% against +20.0%).
+
+| fund (from) | CAGR | vol | Sharpe | max DD | corr SPY | beta | SPY same months |
+|---|---|---|---|---|---|---|---|
+| MERFX (1990) | +5.04% | 4.5% | 0.50 | −14.0% | +0.45 | +0.11 | +10.85%, Sharpe 0.60, DD −50.8% |
+| ARBFX (2000) | +3.53% | 7.7% | 0.24 | −18.5% | +0.32 | +0.16 | +8.59%, 0.50 |
+| MNA (2009) | +2.71% | 4.8% | 0.27 | −9.5% | +0.42 | +0.14 | +14.31%, 0.90 |
+
+**Crises, MERFX against SPY:** 2000-02 −3.2% / −44.7%; 2007-09 −5.1% / −50.1%; 2011 −4.1% /
+−16.2%; 2015-16 −3.3% / −6.9%; 2018Q4 +1.9% / −13.5%; 2020 −2.8% / −19.4%; 2022 −0.3% / −23.9%.
+That is **7 of 7**.
+
+**Portfolio, 80% SPY/GLD/SHY + 20% fund:** MERFX Sharpe 0.82 → 0.85, max DD −16.9% → −13.8%, CAGR
+8.39% → 7.45%, with the same direction in both halves. ARBFX 0.82 → 0.84. **MNA 0.87 → 0.86.**
+
+**Verdict: fails** on its robustness clause. The ETF you could actually buy lowers the base's
+Sharpe, and the bootstrap p values (0.19 / 0.54 / 0.79) are reported but not required. After fees,
+merger arbitrage since 2009 has paid roughly cash (MNA 2.71% a year) with superb crisis behaviour.
+The SPY/GLD/SHY base already carries short Treasuries and gold, which do that crisis job, so there
+is little left for merger arbitrage to add. **Kept:** a deal-level do-it-yourself version could
+earn more than fund returns net of 0.8-1.5% fees. It stays blocked on delisted prices and is worth
+building only if the owner supplies a Tiingo token.

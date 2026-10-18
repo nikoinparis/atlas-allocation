@@ -127,3 +127,5 @@ data/vtnic_v1/vtnic10_2009_2021_pairs.csv.gz
 data/edgar_fts_leader_mentions_v1/
 # Local-only settings (SEC contact agent with the owner email); never committed. Step 369.
 config/local/
+# Arctic Shift WallStreetBets weekly counts, raw JSON (Step 369)
+data/wsb_attention_v1/

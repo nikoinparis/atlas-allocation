@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "experiment": "wsb_attention_v1",
+  "queue_item": "B17",
+  "registered_at_utc": "2026-10-18T16:00:00Z",
+  "registered_before_any_result_existed": true,
+  "registered_before_any_reddit_data_was_downloaded": true,
+  "owner_approval": "2026-10-18, in chat: 'yes set up the avoid list and test the reddit one'",
+
+  "why_this_exists": "The owner asked whether social media could catch booms. Published evidence says retail attention spikes precede UNDERperformance: Barber, Huang, Odean & Schwarz (JF 2022) find Robinhood herding predicts about -4.7% over 20 days; Bradley et al. (RFS 2024) find WallStreetBets research predicted returns only before the GameStop squeeze. This project's A25 found the same sign for firms newly naming hot leaders. This tests, on our own universe and data, whether a WallStreetBets attention surge marks a stock to AVOID. A buy signal is not tested: every source points the other way.",
+
+  "data": {
+    "source": "Arctic Shift public Reddit archive API (arctic-shift.photon-reddit.com), endpoint /api/posts/search/aggregate, aggregate=created_utc, frequency=week, subreddit=wallstreetbets, title=<ticker>; JSON only, no files executed",
+    "window": "2017-01-01 to 2025-12-31 (WallStreetBets was small before 2017)",
+    "chunking": "one request per ticker per calendar year; a year that times out is split into quarters; a ticker with any chunk still failing is excluded and counted",
+    "cache": "data/wsb_attention_v1/ (raw JSON per ticker, gitignored)"
+  },
+  "universe": "issuers ever in the top 1,000 by 63-day median dollar volume (close >= $5) on any day 2017-2025, one symbol per CIK from the price catalogue, alphabetic, at least 3 letters, and not a lowercase entry in /usr/share/dict/words (so CAT, LOW, NOW, ALL are excluded as ambiguous)",
+  "event": {
+    "hype_week": "a week with at least 10 WallStreetBets posts with the ticker in the title AND at least 5 x the ticker's mean weekly count over the prior 26 weeks (prior mean floored at 1)",
+    "deduplication": "at most one event per ticker per 13 weeks (the first)",
+    "entry": "the close of the first trading day at least one day after the week's end"
+  },
+  "outcome": "the stock's return over h trading days minus the mean of 50 random liquid same-SIC2 firms with no event in the same week (A24's control)",
+  "trials": {"T1_hype_21d": "h = 21", "T2_hype_63d": "h = 63"},
+  "declared_sign": "NEGATIVE (attention-induced overpricing reverses). Long-only use: an avoid rule. A positive result is reported as a refutation, not inverted into a buy rule.",
+  "significance": "event-level, block bootstrap over event months (block 3), 4000 draws, two-sided",
+  "windows": "design 2017-2020 (before the GameStop squeeze); holdout 2021-2025",
+  "bonferroni_bar": 0.025,
+  "trials_declared_here": 2,
+  "pass_rule_per_trial": "design mean < 0 with p < 0.025 AND holdout mean < 0 AND the design mean stays negative after dropping the 10 most negative events AND |design mean| > 50 bps",
+  "positive_control_reported_first": "mean absolute return of event stocks in the hype week vs the same stocks' typical week: attention surges should coincide with big moves; if they do not, the ticker matching is broken",
+  "known_weaknesses_declared_up_front": [
+    "Title keyword match: a ticker can appear in a title for unrelated reasons; 3+ letters and the dictionary filter reduce, not remove, this.",
+    "Posts only, not comments: the daily discussion threads carry much of the volume; titles capture what was salient enough to post about.",
+    "Liquid stocks only ($5, top 1,000): the most extreme meme names are often below these bars at the start of their run.",
+    "Survivorship in the price panel as A19."
+  ],
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

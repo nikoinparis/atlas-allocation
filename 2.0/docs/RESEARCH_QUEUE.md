@@ -272,11 +272,10 @@ stopped predicting after GME) and this project's A25 (firms newly naming hot lea
 way: retail and social attention spikes precede UNDERperformance. Long-only use = an avoid list, not a buy signal.
 Data: Reddit archives (large, third-party dumps -- owner must approve the source), StockTwits (limited free API),
 Google Trends (not point-in-time). Prior on a BUY signal: very low. Prior on an avoid filter: moderate, small effect.
-
-### B18. Avoid firms that just announced ties to a hot leader, forward only *(new 2026-10-18, Steps 365-367)*
-A25 v1 and v2 both came out negative (-4.6% and -8.6% over 12 months, 2019-25). The past has been seen, so the only
-clean test is forward: each quarter, log firms newly disclosing a relationship with a current leader and score them
-after 12 months against same-SIC2 controls. Free (EDGAR FTS + Archives with the contact agent). Under 1 session to set up.
+**Status 2026-10-18 (Step 369):** pre-registered (`config/wsb_attention_registry_v1.json`, amended to a full title crawl after
+server-side aggregation was throttled). Crawl running in the background (`data/wsb_attention_v1/posts/`, resumable:
+`scripts/run_wsb_attention_v1.py crawl`, then `counts`, then `screen`). Arctic Shift is a free, heavily throttled service;
+completion may take days.
 
 ### A8. EU short-selling registers *(new 2026-09-10, owner-proposed)*
 **Status:** never attempted. Free, daily, from ESMA and national regulators.
@@ -498,6 +497,8 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 
 | item | verdict | where |
 |---|---|---|
+| **Earnings-announcement premium, pre-FOMC drift, S&P index inclusion (closed by the published record, Step 369)** | **Gone in the US per the literature:** announcement premium vanished since the 2000s (Heitz et al. 2020), pre-FOMC drift gone after 2015 (Kurov, Wolfe & Gilbert 2021), index effect +7.4% -> +0.3% (Greenwood & Sammon JF 2025). Do not re-propose without a reason to think the record is wrong. | Step 369 |
+| **Forward avoid list: firms newly tied to hot leaders (was B18)** | **Running, quarterly.** First record 2026Q3: 20 AI-chain leaders, 63 new mentions, 8 listed (incl. AXTI-Lumentum supply deal); scored 52 weeks later. | Step 369 |
 | **Big up-moves with company news (8-K) vs without (A29, Chan 2003; owner's 'big news, buy the company')** | **Fails.** 187,511 8-Ks: news-up 126d -5.56% (2012-18), +11.44% mean / -2.30% median (2019-25); 2021-22 -19.7%. No-news-up -4.37% (p 0.0265, misses 0.025), holdout wrong sign. Policy-shock cases: 8 of 17 beneficiaries beat the market over 12m. | Step 368 |
 | **Firms first disclosing a REAL relationship with a current leader (A25 v2, owner's 'low-key companies doing business with AI firms')** | **Fails, wrong sign.** 7,374 filings read, 1,348 relationship sentences kept, precision 60% (hand-read 50). Liquid disclosers underperform same-SIC2 controls: 252d -1.67% (2012-18), -8.63% (2019-25); only 196 tradeable events. | Step 367 |
 | **Call options on boom leaders (was P4, owner's 'change the shape of the bet')** | **Do not buy options data.** Model-priced (Black-Scholes at realised vol, generous), stock-replacement sizing, 279 alarm firings: 12m mean/std calls 0.24 vs shares 0.30 (2012-18) and 0.33 vs 0.52 (2019-26); false-start losses cut by a quarter, not half; medians fall to ~0. Real prices are dearer. | Step 366 |

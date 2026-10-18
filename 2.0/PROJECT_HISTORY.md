@@ -17875,3 +17875,41 @@ obvious beneficiary of public news on the day. Whether the move continues depend
 mood, which none of these signals foresee.
 
 **Cumulative search:** two new trials.
+
+## Step 369 — 2026-10-18 — Avoid list running, Reddit test under way, and a fresh-eyes review
+
+**What this was for.** The owner asked for three things: start the avoid list, test Reddit, and
+look at the project the way a senior quant at an established firm would, recommending what quant
+firms have found that has not been tried here.
+
+**Forward avoid list (`avoid_hot_leader_ties_v1`), running.** Protocol
+`config/forward/avoid_hot_leader_ties_v1.json`, recorder
+`scripts/record_avoid_hot_leader_ties_forward_v1.py` (`3065c35`). It is quarterly and idempotent,
+called from the Friday job as a non-blocking step like the signal collection, so it can never stop
+the weekly clocks. It uses A25 v2's rule verbatim. The SEC contact agent with the owner's email
+lives in the gitignored `config/local/sec_user_agent.txt`.
+
+The first record is 2026Q3. Its 20 leaders are the AI chain: BLOOM ENERGY, WESTERN DIGITAL, MICRON,
+LUMENTUM, SEAGATE, TERAWULF, CIENA, INTEL, AAOI, TERADYNE, ASTERA LABS, LAM, AMD, MARVELL, AMAT,
+DELL and others. 63 new mentions; 8 firms listed. Real ties among them: AXT's long-term supply
+agreement with Lumentum, Cognex taking over Intel's RealSense, Ramaco on Bloom demand. Two
+executive bios also passed ("served in" is not excluded), consistent with the frozen rule's 60%
+precision. AXT is also in the 50/50 clock's growth book, so the two rules meet head on in 2027.
+The reading is fixed in advance: confirmed if the mean avoid-minus-control 52-week return is below
+−2% with 3 of 4 quarters negative; refuted if above 0.
+
+**Reddit (B17), pre-registered** (`cbbf1e9`) before any data. Arctic Shift's per-ticker
+aggregation timed out at every window above one quarter and then throttled the client. The
+registry was amended before any count was received, to a polite crawl of every r/wallstreetbets
+post title for 2017-2025 with local ticker matching (`d1bf0e6`). The crawl runs in the background
+and is resumable. No result yet.
+
+**Fresh-eyes review**, `docs/SENIOR_QUANT_REVIEW_V1.md`. In short: the project has been searching
+the most competitive space in finance without the three things winners there have (breadth, speed,
+proprietary data), so the null is expected. What remains is risk premia combined well, risk-transfer
+event trades, capacity niches and costs. Recommended, in order: A30 merger arbitrage (cash deals,
+long target), A31 the 20% trend sleeve frozen forward as an allocation, A32 drift in small
+illiquid stocks with realistic costs, A33 spin-offs. Checked against the literature this session
+and recorded as gone in the US, so not to be re-proposed: the earnings-announcement premium (Heitz
+et al. 2020), pre-FOMC drift (Kurov, Wolfe & Gilbert 2021) and the S&P inclusion effect (Greenwood &
+Sammon, JF 2025).

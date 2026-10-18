@@ -51,6 +51,7 @@ STOCK_RECORDERS = {                     # evidence directory -> recorder script
     "sue_quarterly_v1": "record_sue_quarterly_forward_v1.py",
     "residual_tie_agnostic_companion_v1": "record_residual_tie_agnostic_companion_forward_v1.py",
     "spy_riser_5050_v1": "record_spy_riser_5050_forward_v1.py",     # Step 365: a chosen risk level, not an edge
+    "trend_sleeve_8020_v1": "record_trend_sleeve_8020_forward_v1.py",  # Step 371: diversifier allocation
 }
 # This recorder appends its decision unconditionally, so it may only be called once per Friday.
 NOT_IDEMPOTENT = {"residual_tie_agnostic_companion_v1"}

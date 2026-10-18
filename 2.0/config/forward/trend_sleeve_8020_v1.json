@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "protocol_version": "trend_sleeve_8020_v1",
+  "frozen_at_utc": "2026-10-19T03:00:00Z",
+  "owner_authorized": "2026-10-19, in chat: 'run merger arbitrage first, then the trend sleeve'",
+  "role": "A DIVERSIFIER ALLOCATION judged forward, not an edge. Step 340: 80% SPY/GLD/SHY + 20% trend (AQR TSMOM factor less 1%) raised Sharpe 0.91 -> 1.00 and cut max drawdown -12.7% -> -7.8% over 2013-2026, bootstrap p 0.24, so it was closed as unproven alpha. A diversifier is better judged by its long external record and its crisis behaviour (2022: blend -7.4%, 80/20 -1.1%, trend +25.3%). This clock records what the allocation actually does from now on.",
+  "rule": {
+    "weights": {"SPY": 0.2666666666666667, "GLD": 0.2666666666666667, "SHY": 0.2666666666666667, "DBMF": 0.2},
+    "why_these": "Step 340's 80/20 split, not re-tuned. DBMF (iMGP DBi Managed Futures Strategy ETF) is the investable fund Step 340 already reported (since 2019-06: 80/20 Sharpe 1.21 vs 1.05, max DD -6.5% vs -12.7%); chosen because it has the longest record of the liquid managed-futures ETFs, not because it scored best.",
+    "rebalance": "reset to these weights every week, as static_spy_gld_shy_v1 is",
+    "comparison_recorded_alongside": "equal-thirds SPY/GLD/SHY computed from the SAME downloaded prices each week, so the comparison is like for like"
+  },
+  "leverage_disclosure": "DBMF holds futures, long and short, with internal leverage. The investor borrows nothing and holds no short position; Step 340 left this to the owner and the owner asked for this sleeve. Recorded so the choice is visible.",
+  "prices": "Yahoo adjusted closes (distributions included) downloaded at recording time for SPY, GLD, SHY, DBMF; the two closes used for each weekly return are stored in the observation record",
+  "cadence": {
+    "decision_day": "Friday",
+    "window": "at or after 21:00 UTC on the decision Friday and before 21:00 UTC the following Friday",
+    "first_eligible_decision_date": "2026-10-16",
+    "missed_snapshot_policy": "a missed window is left missed"
+  },
+  "required_untouched_weeks": 52,
+  "reading_fixed_in_advance": {
+    "confirms_if": "after 52 weeks the 80/20's Sharpe is at least the base's AND its max drawdown is no deeper",
+    "refutes_if": "the 80/20's Sharpe is more than 0.20 below the base's",
+    "longer_horizon": "trend's value is concentrated in crises; one calm year can look bad without refuting it, so the clock continues past 52 weeks and every crisis window (an equity drawdown of more than 10%) is reported separately"
+  },
+  "mutation_policy": "any change of weights, fund or rebalance creates v2 and restarts the clock",
+  "research_only": true,
+  "strategy_promotion_authorized": false,
+  "execution_enabled": false,
+  "live_trading_enabled": false
+}

@@ -17946,3 +17946,26 @@ The SPY/GLD/SHY base already carries short Treasuries and gold, which do that cr
 is little left for merger arbitrage to add. **Kept:** a deal-level do-it-yourself version could
 earn more than fund returns net of 0.8-1.5% fees. It stays blocked on delisted prices and is worth
 building only if the owner supplies a Tiingo token.
+
+## Step 371 — 2026-10-19 — The trend sleeve frozen forward as an allocation (A31)
+
+**What this was for.** Step 369's second recommendation. Step 340's 20% trend sleeve went the right
+way (Sharpe 0.91 → 1.00, max drawdown −12.7% → −7.8%) and was closed as unproven alpha. A diversifier
+should be judged on its long record and crisis behaviour, then frozen forward.
+
+**Clock `trend_sleeve_8020_v1`.** Protocol `config/forward/trend_sleeve_8020_v1.json`, recorder
+`scripts/record_trend_sleeve_8020_forward_v1.py`, registered in the Friday cycle. Weights: 26.67%
+each in SPY, GLD and SHY plus 20% DBMF, reset weekly. These are Step 340's 80/20, not re-tuned, and
+DBMF is the investable fund Step 340 already reported, chosen for record length. Plain SPY/GLD/SHY
+is recorded from the same downloaded prices each week. The internal leverage of a futures fund is
+disclosed in the protocol; the investor borrows nothing. **First decision 2026-10-16**, recorded
+inside its open window. The reading is fixed in advance: it confirms if after 52 weeks the 80/20's
+Sharpe ≥ the base's with a drawdown no deeper, and refutes if its Sharpe is more than 0.20 below.
+Crisis windows are reported separately, because trend's value sits in crises.
+
+**Correctness check:** a scratch dry run dated 2026-10-09 → 2026-10-16 produced SPY −1.968%, GLD
+−0.668% and SHY +0.197%, and a base of **−0.813%, identical to `static_spy_gld_shy_v1`'s recorded
+week**. DBMF −1.327%, 80/20 −0.916%.
+
+**A30 queue note:** a slicing edit in Step 369 deleted the never-committed A30-A33 entries together
+with B18. They were restored in `ce35b45`; no committed content was lost.

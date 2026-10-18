@@ -17969,3 +17969,43 @@ week**. DBMF −1.327%, 80/20 −0.916%.
 
 **A30 queue note:** a slicing edit in Step 369 deleted the never-committed A30-A33 entries together
 with B18. They were restored in `ce35b45`; no committed content was lost.
+
+## Step 372 — 2026-10-19 — A32 and A33 blocked before running: the price panel is survivors only
+
+**What this was for.** The owner asked for A32 (drift in small, illiquid stocks with realistic
+costs) and A33 (spin-offs), with every test run correctly. Both were checked for data validity
+before any design touched returns, and both fail that check.
+
+**The measurement.** Of the SEC filer roster
+(`evidence/sec_broad_universe_readiness_full_v1/recent_membership_readiness.csv`, 6,098 issuers),
+the share that has a price series in the panel is:
+
+| roster year | 2012 | 2014 | 2016 | 2018 | 2020 | 2022 | 2024 | 2026 |
+|---|---|---|---|---|---|---|---|---|
+| issuers with prices | 44.6% | 44.2% | 46.2% | 52.0% | 58.1% | 68.3% | 84.0% | 93.6% |
+
+Only **2 of 2,775** price series end before 2026-06. Companies that stopped trading, whether
+acquired or failed, are almost entirely absent. Spin-offs: **317** distinct Form 10-12B filers
+2012-2025, of which only **131 (41%)** have a price series (`evidence/survivorship_coverage_v1/`).
+Some filers never completed or listed; many spin-offs were later acquired.
+
+**Why this blocks A32 and A33 and not the earlier large-cap tests as badly.** Survivorship is
+worst where firms fail or are bought most often: small stocks (A32), spin-offs (A33) and
+acquisition targets (A30 stage 2). A matched control drawn from the same survivors cancels part of
+the bias. It cannot cancel a difference in delisting rates between event firms and controls, which
+is exactly what these designs would condition on. Running them would produce a number that looks
+like evidence and is not (CLAUDE.md rule 4). **Neither was run.**
+
+**Carried for the record.** Every historical result in this project inherits this bias. It was
+declared in many registries ("460 of 3,235 symbols returned nothing") but it is larger than that
+phrasing suggests for the early roster years. Long-only books of small or volatile stocks are the
+most flattered, among them the Step 347 riser book behind the 50/50 clock. **The forward clocks are
+immune:** they record live prices of what they hold.
+
+**The fix already exists.** Steps 96-98 built a Tiingo delisted-price rescue pipeline
+(`src/systematic_trader/tiingo_delisted.py`, `scripts/acquire_tiingo_delisted_probe_batch_v1.py`).
+Its probe found date-overlapping Tiingo candidates for 86.9% of the identities Yahoo lost. It needs
+the owner's Tiingo token, passed transiently. The free tier allows 500 symbols a month and 50
+requests an hour, so roughly 3,300 missing issuers would take months; a paid plan (third-party
+listings: about $30/month) removes the symbol cap. Norgate Data's delisted-inclusive tiers are an
+alternative (estimates $270-$788/yr; to be confirmed on the vendor's page).

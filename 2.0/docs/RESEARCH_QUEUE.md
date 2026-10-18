@@ -292,10 +292,22 @@ SAME 20% weight (not re-tuned) on top of static_spy_gld_shy as its own clock, wi
 ### A32. Post-news / post-earnings drift in small, illiquid stocks with realistic costs *(new 2026-10-18, Step 369, rank 3)*
 Every drift test here used the top 500 or the $5M-volume universe; Chan (2003) and PEAD say the effects live in small illiquid
 names a small investor can trade. Needs high/low for Corwin-Schultz spread estimates and a cost model at the owner's size. 2 sessions.
+**Blocked (Step 372):** the price panel has prices for only 44.6% of 2012 roster issuers; failed and acquired small caps are missing. Needs survivorship-free prices (P5).
 
 ### A33. Spin-offs *(new 2026-10-18, Step 369, rank 4)*
 EDGAR Form 10-12B identifies spin-offs; hold the spun-off firm 12-24 months vs same-SIC2 controls. Older evidence positive
 (Cusatis, Miles & Woolridge 1993, recalled), recent mixed. 1-2 sessions.
+**Blocked (Step 372):** only 131 of 317 spin-off filers (41%) have prices. Needs survivorship-free prices (P5).
+
+### A34. Declare NOW how the forward clocks will be compared and which becomes the core portfolio *(new 2026-10-19, Step 372)*
+Seven clocks now run (min-variance, three frozen ETF books, SPY/GLD/SHY, 50/50 SPY+riser, 80/20 trend, plus stock clocks). After 52
+weeks someone will be tempted to pick whichever did best -- the selection this project exists to prevent. Write the rule today:
+e.g. the core is SPY/GLD/SHY unless a clock beats it on forward Sharpe by > 0.2 AND on max drawdown, with the 52-week windows fixed.
+Free, under 1 session, no data.
+
+### B19. Rebalancing bands instead of weekly resets *(new 2026-10-19, Step 372, practical)*
+The allocation clocks reset weekly. In real money, a band rule (rebalance only when a weight drifts > 5pp) cuts trades and taxes with
+little tracking cost. Record a banded twin alongside each allocation clock forward; compare turnover and return. Free.
 
 ### A8. EU short-selling registers *(new 2026-09-10, owner-proposed)*
 **Status:** never attempted. Free, daily, from ESMA and national regulators.
@@ -477,6 +489,12 @@ on the same validation set, so after a hundred iterations it is in-sample. One h
 Sharpe 1.09 -> 3.63 over 105 iterations with no correction. Usable only as a proposer of pre-registered
 trials judged on untouched data, every iteration counted in the Bonferroni N. Automaton itself is a
 crypto self-funding agent runtime with wallet access -- not something to point at an account.
+
+### P5. Survivorship-free US stock prices (delisted names) *(new 2026-10-19, Step 372 -- the most valuable data fix in the queue)*
+Only 44.6% of the 2012 SEC roster has prices; acquired and failed firms are missing. Unlocks A30 stage 2 (merger arbitrage, deal level),
+A32 (small-cap drift), A33 (spin-offs), and re-validation of every small/volatile long-only backtest (e.g. Step 347's riser book).
+Options: Tiingo token (free tier: 500 symbols/month, 50 requests/hour -- months for ~3,300 names; paid "Power" ~$30/month per
+third-party listings), or Norgate Data delisted tiers (~$270-$788/yr, to confirm). Pipeline already built (Steps 96-98).
 
 ## P1. Properly roll-adjusted futures data
 **Cost (priced 2026-09-30):** Norgate Futures package **$148.50 / 6 months or $270 / year**, ~100

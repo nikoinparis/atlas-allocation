@@ -149,6 +149,36 @@ def stage_crawl() -> int:
     return 0
 
 
+def stage_counts() -> int:
+    """Weekly title counts per ticker from the crawl (amendment): whole-word UPPER-case ticker, optional '$'."""
+    import gzip
+    import re
+    folder = CACHE / "posts"
+    state = json.loads((folder / "state.json").read_text())
+    if pd.Timestamp(state["after"], unit="s") < pd.Timestamp("2025-12-31"):
+        raise SystemExit(f"crawl incomplete: reached {pd.Timestamp(state['after'], unit='s')}")
+    uni = universe()
+    tickers = set(uni.ticker)
+    token = re.compile(r"(?<![A-Za-z0-9])\$?([A-Z]{3,5})(?![A-Za-z0-9])")
+    counts: dict[tuple[str, pd.Timestamp], int] = {}
+    for path in sorted(folder.glob("*.jsonl.gz")):
+        with gzip.open(path, "rt") as handle:
+            for line in handle:
+                post = json.loads(line)
+                week = (pd.Timestamp(post["t"], unit="s").normalize()
+                        - pd.Timedelta(days=pd.Timestamp(post["t"], unit="s").weekday()))
+                for t in set(token.findall(post.get("title") or "")) & tickers:
+                    counts[(t, week)] = counts.get((t, week), 0) + 1
+    weeks = pd.date_range("2016-12-26", "2025-12-29", freq="W-MON")
+    out = CACHE / "counts"
+    out.mkdir(parents=True, exist_ok=True)
+    for r in uni.itertuples():
+        series = [{"created_utc": w.isoformat() + "Z", "count": str(counts.get((r.ticker, w), 0))} for w in weeks]
+        (out / f"{r.ticker}.json").write_text(json.dumps({"ticker": r.ticker, "cik10": r.cik10, "complete": True, "weeks": series}))
+    print(f"counts written for {len(uni)} tickers; ticker-weeks with posts {len(counts):,}")
+    return 0
+
+
 def stage_screen() -> int:
     registry = json.loads(REGISTRY.read_text())
     assert registry["registered_before_any_result_existed"]
@@ -163,14 +193,14 @@ def stage_screen() -> int:
     R = np.vstack([np.full(len(cols), np.nan), px[1:] / px[:-1] - 1.0])
 
     events, incomplete = [], 0
-    for path in sorted(CACHE.glob("*.json")):
-        if path.name == "universe.json":
-            continue
+    for path in sorted((CACHE / "counts").glob("*.json")):
         d = json.loads(path.read_text())
         if not d["complete"]:
             incomplete += 1
             continue
-        s = pd.Series({pd.Timestamp(w["created_utc"]).tz_convert(None).normalize(): int(w["count"]) for w in d["weeks"]})
+        s = pd.Series({pd.Timestamp(w["created_utc"]).tz_localize(None).normalize()
+                       if pd.Timestamp(w["created_utc"]).tzinfo is None
+                       else pd.Timestamp(w["created_utc"]).tz_convert(None).normalize(): int(w["count"]) for w in d["weeks"]})
         s = s.groupby(level=0).sum().sort_index()
         prior = s.shift(1).rolling(26, min_periods=26).mean().clip(lower=1.0)
         hype = s[(s >= 10) & (s >= 5 * prior)]
@@ -252,4 +282,4 @@ def stage_screen() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit({"acquire": stage_acquire, "crawl": stage_crawl, "screen": stage_screen}[sys.argv[1]]())
+    raise SystemExit({"acquire": stage_acquire, "crawl": stage_crawl, "counts": stage_counts, "screen": stage_screen}[sys.argv[1]]())

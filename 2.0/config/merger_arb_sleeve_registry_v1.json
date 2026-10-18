@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "experiment": "merger_arb_sleeve_v1",
+  "queue_item": "A30 (stage 1: live funds' records)",
+  "registered_at_utc": "2026-10-19T00:00:00Z",
+  "registered_before_any_result_existed": true,
+  "owner_approval": "2026-10-19, in chat: 'run merger arbitrage first, then the trend sleeve then A32 then A33'",
+
+  "why_this_stage": "A stock-level merger-arbitrage backtest needs prices of acquired targets, and the project's price panel holds only 2 of 2,775 series that stopped trading -- acquired companies are missing (survivors only). That would silently bias any deal-level test, so it is blocked until a delisted-price source is available (Tiingo needs the owner's token). Real merger-arbitrage funds have long public records net of fees and costs, which answer the portfolio question directly: is this a different return stream, and does it improve the whole?",
+  "nature_of_test": "A DIVERSIFIER test, not a signal test. A risk-transfer premium is judged on its economic rationale, its correlation and crisis behaviour over a long record, and what it does inside a portfolio -- not on a cross-sectional IC. No p-value is required, deliberately; the reading below is declared instead.",
+
+  "data": {
+    "funds": {"MERFX": "The Merger Fund, 1990-", "ARBFX": "The Arbitrage Fund, 2000-", "MNA": "IQ Merger Arbitrage ETF, 2009-"},
+    "bases": {"SPY": "1993-", "static SPY/GLD/SHY equal thirds": "2004-12- (GLD starts 2004-11)"},
+    "prices": "Yahoo adjusted closes via yfinance, distributions included (checked: MERFX 2018 total +7.7% vs price-only +3.0%), month-end, through 2026-08 (the Fama-French RF series ends 2026-08)",
+    "risk_free": "Fama-French daily RF compounded to months"
+  },
+  "measures": {
+    "standalone": "CAGR, volatility, Sharpe (excess of RF), max drawdown, beta and correlation to SPY, correlation in SPY's down months",
+    "crises": {"2000-02": "2000-09 to 2002-09", "2007-09": "2007-10 to 2009-02", "2011": "2011-05 to 2011-09", "2015-16": "2015-06 to 2016-02", "2018Q4": "2018-10 to 2018-12", "2020": "2020-02 to 2020-03", "2022": "2022-01 to 2022-09"},
+    "portfolio": "replace 20% of the base with the fund, rebalanced monthly; Sharpe, max drawdown and CAGR against the base over the fund's full overlap and in each half of it; paired block bootstrap of the Sharpe change (block 12 months, 4000 draws) reported, not required"
+  },
+  "reading_declared_in_advance": {
+    "family_representative": "MERFX (longest record). ARBFX and MNA must agree in direction on the portfolio test or the family fails.",
+    "passes_if_all": [
+      "MERFX monthly correlation with SPY below 0.50 over 1993-2026",
+      "in at least 5 of the 7 crisis windows MERFX either gains or loses less than half of SPY's loss",
+      "80% SPY/GLD/SHY + 20% MERFX has a higher Sharpe AND a max drawdown no deeper than SPY/GLD/SHY alone, over 2005-2026 AND in both 2005-2015 and 2016-2026",
+      "ARBFX and MNA, over their own overlaps, also raise the base's Sharpe"
+    ],
+    "if_it_passes": "freeze a forward clock: 80% static SPY/GLD/SHY + 20% MNA (the cheaper, liquid ETF; MERFX is a mutual fund), weights fixed now, 52 untouched weeks, compared with SPY/GLD/SHY recorded from the same prices",
+    "if_it_fails": "close A30 stage 1; the deal-level stage stays blocked on delisted prices and should only be built if the owner supplies them"
+  },
+  "weight_note": "20% is Step 340's weight for the trend sleeve, reused so no weight is fitted here",
+  "trials_declared_here": "one family reading (three funds as robustness)",
+  "known_weaknesses_declared_up_front": [
+    "Fund returns are net of fees (MERFX ~1.2-1.5%/yr, MNA ~0.77%), so a do-it-yourself version could earn more -- or less, with worse execution.",
+    "The funds also hold stock-for-stock deals hedged with shorts; their return is not purely the long-only cash-deal design.",
+    "Survivorship: these are surviving funds; failed merger-arb funds are not in the sample."
+  ],
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

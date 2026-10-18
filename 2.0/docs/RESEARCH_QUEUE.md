@@ -277,6 +277,26 @@ server-side aggregation was throttled). Crawl running in the background (`data/w
 `scripts/run_wsb_attention_v1.py crawl`, then `counts`, then `screen`). Arctic Shift is a free, heavily throttled service;
 completion may take days.
 
+### A30. Merger arbitrage on announced cash deals, long the target only *(new 2026-10-18, Step 369, senior-quant review rank 1)*
+A risk-transfer trade, not a signal (Mitchell & Pulvino JF 2001: ~4%/yr excess after costs 1963-1998, put-like crash exposure).
+**Stage 1 done (Step 370): FAILS on live funds** -- crisis-proof (MERFX 7 of 7 crises, beta 0.11) but the investable ETF (MNA,
+2.71%/yr since 2009) lowers SPY/GLD/SHY's Sharpe (0.87 -> 0.86). **Stage 2 (deal-level DIY, long cash targets) blocked:** the
+price panel holds 2 of 2,775 dead series, so acquired targets are missing; needs delisted prices (owner's Tiingo token). Data
+otherwise free (EDGAR SC TO-T, DEFM14A, 8-K 1.01). 2-3 sessions once prices exist.
+
+### A31. Diversifier sleeve as a frozen allocation, judged forward *(new 2026-10-18, Step 369, rank 2)*
+Step 340's 20% trend sleeve: Sharpe 1.00 vs 0.91, max DD -7.8% vs -12.7%, bootstrap p 0.24 -- rejected as alpha. A diversifier
+should be judged on its long external record (Hurst, Ooi & Pedersen 2017) and crisis behaviour, then frozen forward. Freeze the
+SAME 20% weight (not re-tuned) on top of static_spy_gld_shy as its own clock, with an investable fund. 1 session.
+
+### A32. Post-news / post-earnings drift in small, illiquid stocks with realistic costs *(new 2026-10-18, Step 369, rank 3)*
+Every drift test here used the top 500 or the $5M-volume universe; Chan (2003) and PEAD say the effects live in small illiquid
+names a small investor can trade. Needs high/low for Corwin-Schultz spread estimates and a cost model at the owner's size. 2 sessions.
+
+### A33. Spin-offs *(new 2026-10-18, Step 369, rank 4)*
+EDGAR Form 10-12B identifies spin-offs; hold the spun-off firm 12-24 months vs same-SIC2 controls. Older evidence positive
+(Cusatis, Miles & Woolridge 1993, recalled), recent mixed. 1-2 sessions.
+
 ### A8. EU short-selling registers *(new 2026-09-10, owner-proposed)*
 **Status:** never attempted. Free, daily, from ESMA and national regulators.
 **Why it is genuinely better than what closed in Step 263:** FINRA short interest is an

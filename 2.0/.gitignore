@@ -125,3 +125,5 @@ data/vtnic_v1/download/parts/
 data/vtnic_v1/vtnic10_2009_2021_pairs.csv.gz
 # EDGAR full-text search raw responses for A25 (Step 363), re-fetchable by scripts/run_leader_mentions_v1.py acquire
 data/edgar_fts_leader_mentions_v1/
+# Local-only settings (SEC contact agent with the owner email); never committed. Step 369.
+config/local/

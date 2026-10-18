@@ -158,6 +158,30 @@ def collect_forward_signals(args: argparse.Namespace) -> None:
             subprocess.run([*git, "push", "-q", "origin", "HEAD:main"], check=False)
 
 
+def record_quarterly_avoid_list(args: argparse.Namespace) -> None:
+    """Quarterly forward avoid list (Step 369). Idempotent: acts only in its window after a quarter ends.
+
+    Like the signal collection, it never blocks the weekly clocks; a failure is reported and left.
+    """
+    folder = "2.0/evidence/forward_avoid_hot_leader_ties_v1"
+    done = subprocess.run([PYTHON, "scripts/record_avoid_hot_leader_ties_forward_v1.py"], cwd=ROOT,
+                          capture_output=True, text=True, check=False)
+    tail = (done.stdout.strip().splitlines() or ["no output"])[-1]
+    print(f"quarterly avoid list: {'ok' if done.returncode == 0 else 'FAILED'} {tail[:120]}")
+    if done.returncode != 0:
+        if args.notify:
+            notify("Portfolio Optimizer avoid list", f"FAILED: {(done.stderr or tail)[-200:]}")
+        return
+    if '"decisions": 1' in done.stdout or '"observations": 1' in done.stdout:
+        if args.commit:
+            git = ["/usr/bin/git", "-C", str(REPO)]
+            subprocess.run([*git, "add", folder], check=False)
+            subprocess.run([*git, "commit", "-q", "-m", "Forward avoid list: quarterly record (automated)\n\n"
+                            "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>", "--", folder], check=False)
+            if args.push:
+                subprocess.run([*git, "push", "-q", "origin", "HEAD:main"], check=False)
+
+
 # What the weekly commit may contain. Committing by pathspec keeps anything else a
 # session has staged out of an "automated" commit (2026-10-12: research files were swept in).
 WEEKLY_PATHS = ["2.0/evidence", "2.0/data", "2.0/dashboard/public", "2.0/research_registry"]
@@ -174,6 +198,7 @@ def main() -> int:
     now = datetime.now(timezone.utc)
     if not args.dry_run:
         collect_forward_signals(args)
+        record_quarterly_avoid_list(args)
     friday = str(latest_decision_friday(now))
     todo = pending(friday)
     print(f"decision Friday {friday}; window closes {friday} + 7d 21:00 UTC; "

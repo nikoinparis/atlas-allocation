@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "protocol_version": "avoid_hot_leader_ties_v1",
+  "frozen_at_utc": "2026-10-18T00:00:00Z",
+  "owner_authorized": "2026-10-18, in chat: 'yes set up the avoid list'",
+  "role": "A forward AVOID list, not a strategy. A25 v1 and v2 (Steps 365, 367) found that liquid firms newly disclosing a relationship with a current market leader underperformed same-SIC2 controls (12m: -1.67% 2012-18, -8.63% 2019-25 for genuine relationships). Both windows have been seen, so the only clean evidence is forward.",
+
+  "rule": {
+    "quarter": "each completed calendar quarter Q, starting with 2026Q3",
+    "leaders": "at the start of Q: among the 200 most liquid stocks in the clean weekly panel (close >= $5, latest available 63-day median dollar volume >= $5M), the 20 with the highest trailing 52-week return; leaders in SIC2 60/61/62/67 dropped (A25 v2)",
+    "names": "A25's cleaned as-filed names (FSDS through 2022Q4; for later filers the EDGAR submissions name), with A25's ambiguous-word exclusion",
+    "mentions": "EDGAR full-text search, 10-K/10-Q/8-K and exhibits filed in Q; a NEW mention = a filer naming the leader in Q and in none of the four prior quarters",
+    "relationship_filter": "A25 v2's sentence rule, verbatim from config/leader_mentions_registry_v2.json (relationship terms present, exclusion terms absent, same sentence)",
+    "exclusions": "the leader itself, the leader's SIC3, the leader's ETNIC-3 peers (latest ETNIC year available, 2023, declared), firms not liquid at the decision",
+    "controls": "for each avoid firm, 50 random liquid same-SIC2 firms that are not on the list and not ETNIC peers of the named leader(s), seed fixed per quarter and stored"
+  },
+  "cadence": {
+    "decision": "recorded by the first run on or after Q's end + 14 days (late filings); entry prices are the latest weekly close in the clean weekly panel at recording",
+    "missed_policy": "a quarter not recorded within 60 days of its end is left missed and never reconstructed",
+    "first_eligible_quarter": "2026Q3"
+  },
+  "scoring": "52 weeks after each decision: the avoid firms' equal-weight 52-week return minus the mean of their controls' (each firm against its own 50 controls, then averaged); recorded once, hash-chained",
+  "reading_fixed_in_advance": {
+    "confirms_the_avoid_rule_if": "after four scored quarters, the mean avoid-minus-control 52-week return is below -2% AND at least three of four quarters are negative",
+    "refutes_it_if": "the mean is above 0 after four scored quarters",
+    "otherwise": "inconclusive; keep recording"
+  },
+  "sec_access": "EDGAR full-text search and data.sec.gov with the project's anonymous agent; SEC Archives with a contact agent read from the environment variable SEC_USER_AGENT or the gitignored file config/local/sec_user_agent.txt, never stored in the repository",
+  "log_policy": "decisions and observations are independently hash-chained (src/systematic_trader/forward_evidence.py); each quarter's list and controls are written to a CSV whose sha256 is pinned in the decision",
+  "mutation_policy": "any change to the leaders, filter, exclusions, controls or scoring creates v2 and restarts",
+  "research_only": true,
+  "strategy_promotion_authorized": false,
+  "execution_enabled": false,
+  "live_trading_enabled": false
+}

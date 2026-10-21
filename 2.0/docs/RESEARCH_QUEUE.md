@@ -293,11 +293,7 @@ SAME 20% weight (not re-tuned) on top of static_spy_gld_shy as its own clock, wi
 Every drift test here used the top 500 or the $5M-volume universe; Chan (2003) and PEAD say the effects live in small illiquid
 names a small investor can trade. Needs high/low for Corwin-Schultz spread estimates and a cost model at the owner's size. 2 sessions.
 **Blocked (Step 372):** the price panel has prices for only 44.6% of 2012 roster issuers; failed and acquired small caps are missing. Needs survivorship-free prices (P5).
-
-### A33. Spin-offs *(new 2026-10-18, Step 369, rank 4)*
-EDGAR Form 10-12B identifies spin-offs; hold the spun-off firm 12-24 months vs same-SIC2 controls. Older evidence positive
-(Cusatis, Miles & Woolridge 1993, recalled), recent mixed. 1-2 sessions.
-**Blocked (Step 372):** only 131 of 317 spin-off filers (41%) have prices. Needs survivorship-free prices (P5).
+**Revised (Step 373):** OSAP (CRSP, survivorship-free) shows AnnouncementReturn at t 3.5 in 2013-19. Re-registered as a calibrated two-stage test, `config/announcement_return_drift_registry_v1.json`; data fetch under way.
 
 ### A34. Declare NOW how the forward clocks will be compared and which becomes the core portfolio *(new 2026-10-19, Step 372)*
 Seven clocks now run (min-variance, three frozen ETF books, SPY/GLD/SHY, 50/50 SPY+riser, 80/20 trend, plus stock clocks). After 52
@@ -535,6 +531,7 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 
 | item | verdict | where |
 |---|---|---|
+| **Spin-offs (was A33)** | **Closed on survivorship-free published data.** OSAP Spinoff long-short: +7.0% (2005-12) then -2.3% (2013-19) and -11.4% (2020-24). Our own panel could not test it (41% of spin-offs priced). | Step 373 |
 | **Earnings-announcement premium, pre-FOMC drift, S&P index inclusion (closed by the published record, Step 369)** | **Gone in the US per the literature:** announcement premium vanished since the 2000s (Heitz et al. 2020), pre-FOMC drift gone after 2015 (Kurov, Wolfe & Gilbert 2021), index effect +7.4% -> +0.3% (Greenwood & Sammon JF 2025). Do not re-propose without a reason to think the record is wrong. | Step 369 |
 | **Forward avoid list: firms newly tied to hot leaders (was B18)** | **Running, quarterly.** First record 2026Q3: 20 AI-chain leaders, 63 new mentions, 8 listed (incl. AXTI-Lumentum supply deal); scored 52 weeks later. | Step 369 |
 | **Big up-moves with company news (8-K) vs without (A29, Chan 2003; owner's 'big news, buy the company')** | **Fails.** 187,511 8-Ks: news-up 126d -5.56% (2012-18), +11.44% mean / -2.30% median (2019-25); 2021-22 -19.7%. No-news-up -4.37% (p 0.0265, misses 0.025), holdout wrong sign. Policy-shock cases: 8 of 17 beneficiaries beat the market over 12m. | Step 368 |

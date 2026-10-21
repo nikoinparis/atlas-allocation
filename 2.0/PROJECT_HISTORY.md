@@ -18009,3 +18009,35 @@ the owner's Tiingo token, passed transiently. The free tier allows 500 symbols a
 requests an hour, so roughly 3,300 missing issuers would take months; a paid plan (third-party
 listings: about $30/month) removes the symbol cap. Norgate Data's delisted-inclusive tiers are an
 alternative (estimates $270-$788/yr; to be confirmed on the vendor's page).
+
+## Step 373 — 2026-10-22 — Free and survivorship-free: spin-offs close, results-day drift is the strongest surviving signal yet
+
+**What this was for.** The owner asked what can be done for free, given that Step 372 blocked A32
+and A33 on survivorship. The OSAP long-short series already on disk (`data/osap_vintages/`) are
+built from CRSP, which **includes delisted stocks**, so they have no survivorship problem. This is a
+read of the published record, not a test of anything built here: gross of costs, long-short.
+
+| signal (annualised, t) | 1990-2004 | 2005-12 | 2013-19 | 2020-24 |
+|---|---|---|---|---|
+| Spinoff (A33) | +1.7%, 0.5 | +7.0%, 2.4 | **−2.3%, −0.9** | **−11.4%, −1.8** |
+| AnnouncementReturn (A32) | **+16.4%, 9.7** | **+9.7%, 4.6** | **+7.1%, 3.5** | +3.1%, 0.8 |
+| EarningsSurprise | +6.9%, 4.9 | +2.3%, 0.8 | −1.4%, −0.9 | +4.7%, 1.3 |
+| RevenueSurprise | +8.2%, 4.9 | +4.8%, 2.4 | +5.1%, 2.8 | +4.0%, 0.9 |
+| ShareRepurchase | +0.9%, 0.5 | +1.4%, 0.6 | +4.9%, 2.4 | +7.2%, 1.4 |
+| Illiquidity | −0.2%, −0.1 | +2.1%, 0.7 | −2.2%, −1.2 | −1.0%, −0.3 |
+
+**A33 closes** on survivorship-free data: spin-offs have not paid since 2013. **A32 has its lead.**
+The three-day return around a firm's latest earnings announcement (Chan, Jegadeesh & Lakonishok
+1996) still earned t 3.5 in 2013-19, decades after publication. That is the most persistent effect
+in this project's record. A28's null (top-500 blowouts only) is consistent with it living across
+the whole cross-section, in decile sorts and smaller stocks.
+
+**A32 re-registered** in `config/announcement_return_drift_registry_v1.json`, in two stages:
+1. **Stage 1, calibration (not a trial).** Rebuild the long-short on our survivor-only panel and
+   compare it month by month with OSAP's. Gate: correlation ≥ 0.50 and mean within 50%. This
+   *measures* how far survivorship distorts this signal instead of assuming.
+2. **Stage 2, two trials.** Long-only top decile in a SMALL band ($0.5M-$5M daily volume) and a
+   LIQUID band, net of Abdi-Ranaldo spread costs, design 2013-19, holdout 2020-25.
+
+The data, all free, is 8-K Item 2.02 dates for the remaining panel issuers and Yahoo daily
+high/low/close.

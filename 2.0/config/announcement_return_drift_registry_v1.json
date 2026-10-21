@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "experiment": "announcement_return_drift_v1",
+  "queue_item": "A32 (revised 2026-10-22, Step 373)",
+  "registered_at_utc": "2026-10-22T00:00:00Z",
+  "registered_before_any_result_existed": true,
+  "owner_request": "2026-10-22, in chat: 'so is there anything free that we can do'; A32 approved 2026-10-19",
+
+  "why_this_exists": "A32 was blocked because the price panel is survivors only (Step 372). The OSAP long-short series on disk are built from CRSP, which keeps delisted stocks. Among them, AnnouncementReturn (Chan, Jegadeesh & Lakonishok 1996: the 3-day return around the latest earnings announcement) is the strongest surviving signal this project has seen: +16.4%/yr (t 9.7) 1990-2004, +9.7% (t 4.6) 2005-12, +7.1% (t 3.5) 2013-19, +3.1% (t 0.8) 2020-24. The open questions for this owner are whether it survives long-only and after small-stock trading costs, and whether our survivor-only panel can be trusted for it.",
+
+  "stage_1_calibration_not_a_trial": {
+    "build": "on our panel, each month-end: for every issuer with an 8-K Item 2.02 reaction day in the prior 3 months, EAR = its return over reaction day -1 to +1 minus the equal-weight universe's; decile sort among issuers with close >= $5; long-short = decile 10 minus decile 1, equal weight, held one month",
+    "compare_with": "OSAP AnnouncementReturn long-short, the same months 2013-01 to 2024-12",
+    "gate": "monthly correlation >= 0.50 AND our mean long-short return within 50% of OSAP's over the overlap. If the gate fails, our panel cannot measure this signal and stage 2 does not run.",
+    "why": "a direct measurement of how much survivorship distorts THIS signal, instead of assuming"
+  },
+  "stage_2_trial": {
+    "portfolio": "long-only top EAR decile, equal weight, rebalanced monthly, held 1 month; two bands run separately: SMALL (63-day median dollar volume $0.5M to $5M, close >= $3) and LIQUID (>= $5M, close >= $5)",
+    "benchmark": "the equal-weight universe of the same band",
+    "costs": "each trade pays half the stock's Abdi-Ranaldo (2017) spread estimate (from daily close, high and low over the prior 21 days) plus 5 bps; turnover from actual weight changes",
+    "windows": "design 2013-2019; holdout 2020-2025",
+    "trials": {"T1_small_band_net": "SMALL band, net of costs", "T2_liquid_band_net": "LIQUID band, net of costs"},
+    "declared_sign": "POSITIVE",
+    "bonferroni_bar": 0.025,
+    "pass_rule_per_trial": "design: net excess over the band benchmark > 0 with block-bootstrap p < 0.025 (block 6 months) AND holdout net excess > 0 AND the design excess survives dropping the 10 largest monthly contributors (by stock) AND FF5+momentum alpha t >= 2 in design",
+    "also_reported": "gross excess, cost drag per year, turnover, CAGR, Sharpe, max drawdown, beta, by year; leave-top-5-names-out"
+  },
+  "data": {
+    "results_dates": "8-K Item 2.02 from EDGAR submissions: the 1,057 issuers already cached (Step 364) plus every other panel issuer, fetched the same way",
+    "prices": "daily panel as A19; daily high/low/close for spreads re-downloaded from Yahoo (yfinance), stored with a sha256"
+  },
+  "cumulative_search_note": "Two trials. The signal was chosen by reading OSAP's published returns (Step 373), which is a literature choice, not a search over our data; it is recorded as such.",
+  "known_weaknesses_declared_up_front": [
+    "Survivorship: stage 1 measures it for this signal; it is not assumed away.",
+    "8-K Item 2.02 dates exist from about 2004; small filers sometimes report results without an 8-K and are then missed.",
+    "Abdi-Ranaldo estimates the effective spread, not price impact at size; positions are assumed small enough not to move prices."
+  ],
+  "live_trading_enabled": false,
+  "strategy_promotion_authorized": false
+}

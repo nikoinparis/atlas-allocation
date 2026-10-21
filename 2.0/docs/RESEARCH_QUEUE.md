@@ -289,11 +289,11 @@ Step 340's 20% trend sleeve: Sharpe 1.00 vs 0.91, max DD -7.8% vs -12.7%, bootst
 should be judged on its long external record (Hurst, Ooi & Pedersen 2017) and crisis behaviour, then frozen forward. Freeze the
 SAME 20% weight (not re-tuned) on top of static_spy_gld_shy as its own clock, with an investable fund. 1 session.
 
-### A32. Post-news / post-earnings drift in small, illiquid stocks with realistic costs *(new 2026-10-18, Step 369, rank 3)*
-Every drift test here used the top 500 or the $5M-volume universe; Chan (2003) and PEAD say the effects live in small illiquid
-names a small investor can trade. Needs high/low for Corwin-Schultz spread estimates and a cost model at the owner's size. 2 sessions.
-**Blocked (Step 372):** the price panel has prices for only 44.6% of 2012 roster issuers; failed and acquired small caps are missing. Needs survivorship-free prices (P5).
-**Revised (Step 373):** OSAP (CRSP, survivorship-free) shows AnnouncementReturn at t 3.5 in 2013-19. Re-registered as a calibrated two-stage test, `config/announcement_return_drift_registry_v1.json`; data fetch under way.
+### B20. Drop names that just fell hard on their results from the long books *(new 2026-10-22, Step 374)*
+A32: results-day drift is real (calibrated against survivorship-free OSAP, corr +0.68) but its profit sits in the BOTTOM decile.
+Long-only use: exclude a stock from the 50/50 growth book (and any long book) for 3 months after a results-day abnormal return in
+the bottom decile. Removing names adds no trading cost. History is partly seen (A32), so test it on the growth book's past AND run it
+as a forward twin of spy_riser_5050_v1. Free, data on disk. 1 session.
 
 ### A34. Declare NOW how the forward clocks will be compared and which becomes the core portfolio *(new 2026-10-19, Step 372)*
 Seven clocks now run (min-variance, three frozen ETF books, SPY/GLD/SHY, 50/50 SPY+riser, 80/20 trend, plus stock clocks). After 52
@@ -531,6 +531,7 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 
 | item | verdict | where |
 |---|---|---|
+| **Results-day drift, long-only, net of small-stock spreads (was A32)** | **Fails both trials.** Calibrated vs survivorship-free OSAP (corr +0.68, our panel 0.60x as strong). Top decile gross excess ~0 in 2013-19 (-0.11% small, +0.37% liquid); costs 3-6%/yr at ~10x turnover. The spread lives in the bottom decile -> an avoid filter (B20), not a buy. | Step 374 |
 | **Spin-offs (was A33)** | **Closed on survivorship-free published data.** OSAP Spinoff long-short: +7.0% (2005-12) then -2.3% (2013-19) and -11.4% (2020-24). Our own panel could not test it (41% of spin-offs priced). | Step 373 |
 | **Earnings-announcement premium, pre-FOMC drift, S&P index inclusion (closed by the published record, Step 369)** | **Gone in the US per the literature:** announcement premium vanished since the 2000s (Heitz et al. 2020), pre-FOMC drift gone after 2015 (Kurov, Wolfe & Gilbert 2021), index effect +7.4% -> +0.3% (Greenwood & Sammon JF 2025). Do not re-propose without a reason to think the record is wrong. | Step 369 |
 | **Forward avoid list: firms newly tied to hot leaders (was B18)** | **Running, quarterly.** First record 2026Q3: 20 AI-chain leaders, 63 new mentions, 8 listed (incl. AXTI-Lumentum supply deal); scored 52 weeks later. | Step 369 |

@@ -129,3 +129,6 @@ data/edgar_fts_leader_mentions_v1/
 config/local/
 # Arctic Shift WallStreetBets weekly counts, raw JSON (Step 369)
 data/wsb_attention_v1/
+# A32 inputs (Step 373): Yahoo OHLC, re-fetchable by scripts/acquire_daily_ohlc_v1.py
+data/daily_ohlc_v1/
+data/results_dates_v2/

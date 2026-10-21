@@ -18041,3 +18041,37 @@ the whole cross-section, in decile sorts and smaller stocks.
 
 The data, all free, is 8-K Item 2.02 dates for the remaining panel issuers and Yahoo daily
 high/low/close.
+
+## Step 374 — 2026-10-22 — Results-day drift: real, but its profit is in the stocks to avoid (A32)
+
+**What this was for.** The owner asked what can be done for free. Step 373 found results-day
+drift (OSAP AnnouncementReturn) to be the strongest surviving published signal. This tests the
+version this owner can hold: long-only, after real small-stock spreads. Pre-registered in
+`config/announcement_return_drift_registry_v1.json` (`f9336c7`). Script
+`scripts/run_announcement_return_drift_v1.py`, evidence `evidence/announcement_return_drift_v1/`.
+
+**New free data.** 8-K Item 2.02 dates for **all 2,775** panel issuers, 137,852 events with zero
+failures (`data/results_dates_v2/`). Yahoo daily high/low/close for every panel symbol
+(`data/daily_ohlc_v1/`, sha256 manifest, gitignored).
+
+**Stage 1, survivorship calibration: PASS.** Rebuilding the decile long-short on our survivor-only
+panel, 2013-2024, about 1,850 names a month, gives **+3.26%/yr against OSAP's +5.43%** (ratio 0.60),
+with a monthly correlation of **+0.68**. The panel can measure this signal; if anything it
+understates it.
+
+**Stage 2, long-only top decile net of Abdi-Ranaldo spreads: both trials fail.**
+
+| | design 2013-19 net excess (gross) | cost drag | turnover | FF6 alpha (t) | holdout 2020-25 net excess (gross) |
+|---|---|---|---|---|---|
+| T1 small band ($0.5-5M daily volume, ~40 names) | **−4.69%** (−0.11%), p 0.19 | 4.59% | 10.4× | +0.69% (0.19) | +8.59% (+15.02%), p 0.10 |
+| T2 liquid band (≥ $5M, ~110 names) | **−2.63%** (+0.37%), p 0.17 | 3.00% | 9.2× | −3.38% (−2.77) | −2.22% (+1.88%) |
+
+T1 by year: 2015 −20.5%, 2016 −12.6%, 2018 −15.4%, 2020 +13.7%, 2021 **+27.8%**, 2024 +18.3%. Its
+holdout gain is the 2020-21 small-cap boom again.
+
+**What it means.** The top decile earns about zero *before* costs in 2013-19, so the published
+long-short spread lives in the **bottom** decile: stocks that fall on results keep falling, as
+Chan (2003) found for bad news. A long-only investor cannot collect that by buying. It can be used
+by **not holding** those names, which costs nothing to trade (queued as B20).
+
+**Cumulative search:** two new trials.

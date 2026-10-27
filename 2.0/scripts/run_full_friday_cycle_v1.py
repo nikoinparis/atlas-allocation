@@ -105,6 +105,26 @@ def notify(title: str, message: str) -> None:
     subprocess.run(["/usr/bin/osascript", "-e", script], check=False, capture_output=True)
 
 
+def check_price_vintage_complete(minimum_share: float = 0.95) -> None:
+    """Step 375: refuse a full-history price vintage much smaller than the previous one.
+
+    On 2026-10-27 Yahoo returned empty histories for most symbols (AMGN, AMP...). The cycle checked
+    only that the panel reached the Friday, built a 459-issuer panel against 2,812 the week before,
+    and five stock clocks recorded a week on a sixth of their universe. Fail closed instead.
+    """
+    root = ROOT / "data/broad_full_history_price_vintages"
+    vintages = sorted([p for p in root.iterdir() if (p / "history_catalogue.csv").exists()], key=lambda p: p.name)
+    if len(vintages) < 2:
+        return
+    def histories(v):
+        return max(0, sum(1 for _ in (v / "history_catalogue.csv").open()) - 1)
+    new = histories(vintages[-1])
+    old = max(histories(v) for v in vintages[-5:-1])          # the largest recent vintage, so two bad pulls cannot pass
+    if old and new < minimum_share * old:
+        raise CycleError(f"price vintage {vintages[-1].name} has {new} histories against {old} in recent vintages "
+                         f"(< {minimum_share:.0%}); the source was probably throttled -- move it aside and retry later")
+
+
 def started(clock: str, friday: str) -> bool:
     """A clock is not due before its protocol's first eligible decision date (Step 365)."""
     path = ROOT / f"config/forward/{clock}.json"
@@ -223,6 +243,8 @@ def main() -> int:
         if todo["stock"]:
             runner.run("extend the narrow weekly panel", [PYTHON, "scripts/extend_weekly_price_panel_v2.py"])
             runner.run("re-acquire full-history prices", [PYTHON, "scripts/acquire_broad_full_history_prices_v1.py"])
+            if not args.dry_run:
+                check_price_vintage_complete()
             runner.run("rebuild the broad full-history panel", [PYTHON, "scripts/build_broad_full_history_panel_v1.py"])
             runner.run("corporate-action clean the full-history panel",
                        [PYTHON, "scripts/build_corporate_action_clean_prices_v1.py",

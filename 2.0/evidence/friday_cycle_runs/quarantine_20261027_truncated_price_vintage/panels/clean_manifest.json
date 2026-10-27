@@ -1,0 +1,50 @@
+{
+  "artifact_sha256": {
+    "weekly_adjusted_prices_clean.csv.gz": "e158fdacae971ada599fbd3807430f676c269f36d7110194e75aaa544ff10156",
+    "weekly_returns_clean.csv.gz": "d11a5ab576ebc984d7bd4d515e1ba54c3e3fb16d51a2fc36ff3ab13969dc9812"
+  },
+  "created_at_utc": "2026-10-27T16:51:10.951359+00:00",
+  "experiment": "corporate_action_clean_prices_v1",
+  "live_trading_enabled": false,
+  "modifies_existing_panels": false,
+  "repairs": {
+    "after__equal_weight_cagr": 0.15888492573522361,
+    "after__equal_weight_recent_52w": 0.1971982602844986,
+    "after__infinite_returns": 0,
+    "after__returns_above_100pct": 49,
+    "after__worst_weekly_return": 18.178081690694682,
+    "before__equal_weight_cagr": 0.16307979651368787,
+    "before__equal_weight_recent_52w": 0.2199353816024927,
+    "before__infinite_returns": 0,
+    "before__returns_above_100pct": 58,
+    "before__worst_weekly_return": 18.178081690694682,
+    "cells_removed_total": 2713,
+    "input_cells": 308080,
+    "input_issuers": 459,
+    "jump_ratio": 5.0,
+    "max_legitimate_jumps": 1,
+    "non_positive_cells_removed": 0,
+    "non_positive_issuers": [],
+    "output_cells": 305367,
+    "output_issuers": 458,
+    "price_floor": 1.0,
+    "quarantined_count": 1,
+    "quarantined_issuers": [
+      "0001621227"
+    ],
+    "share_of_cells_removed": 0.008806,
+    "single_jump_issuers_kept": [
+      "0001001316",
+      "0001556739",
+      "0001622229",
+      "0001658551",
+      "0001818093",
+      "0001849635"
+    ],
+    "sub_floor_cells_removed": 2114,
+    "sub_floor_issuers_touched": 36
+  },
+  "source_prices": "data/broad_full_history_panel_v1/weekly_adjusted_prices.csv.gz",
+  "source_sha256": "d2edeb7e57c3b701ca424b29d5d8829d43800c8d4c2f262e6e3f205abdea79bc",
+  "strategy_promotion_authorized": false
+}

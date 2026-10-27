@@ -1,0 +1,57 @@
+{
+  "decision_friday": "2026-10-23",
+  "started_at_utc": "2026-10-27T12:11:11.092342+00:00",
+  "pending": {
+    "etf": [
+      "covariance_minimum_variance_v1",
+      "breadth_confirmed_trend_return_ceiling_v3",
+      "past_only_consensus_selector_return_v1",
+      "return_first_60_40_blend_v1",
+      "static_spy_gld_shy_v1"
+    ],
+    "stock": [
+      "equal_weight_benchmark_v1",
+      "valuation_earnings_yield_v1",
+      "sue_quarterly_v1",
+      "residual_tie_agnostic_companion_v1",
+      "spy_riser_5050_v1",
+      "trend_sleeve_8020_v1"
+    ]
+  },
+  "live_trading_enabled": false,
+  "status": "failed",
+  "error": "guarded weekly cycle (minimum variance) failed (exit 2):\n{\n  \"status\": \"rejected\",\n  \"reason\": \"subprocess failed closed: ['python', 'acquire_free_etf_snapshot.py', '--period', 'max']; stderr tail=iod)\\n             ^^^^^^^^^^^^^^^^^^\\n  File \\\"/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/scripts/acquire_free_etf_snapshot.py\\\", line 81, in build\\n    metadata, container_log = acquire_to(bundle, symbols, period)\\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/scripts/acquire_free_etf_snapshot.py\\\", line 53, in acquire_to\\n    run_command([\\n  File \\\"/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/scripts/acquire_free_etf_snapshot.py\\\", line 35, in run_command\\n    raise RuntimeError(\\nRuntimeError: command failed (125): podman create --name po2-free-data-48170d5f5ff2; stderr=Cannot connect to Podman. Please verify your connection to the Linux system using `podman system connection list`, or try `podman machine init` and `podman machine start` to manage a new Linux VM\\nError: unable to connect to Podman socket: failed to connect: dial tcp 127.0.0.1:50681: connect: connection refused stdout=\\n\"\n}",
+  "steps": [
+    {
+      "step": "start the Podman sandbox",
+      "command": [
+        "/opt/homebrew/bin/podman",
+        "machine",
+        "start",
+        "portfolio-optimizer-sandbox"
+      ],
+      "returncode": 125,
+      "status": "ok",
+      "tail": [
+        "Starting machine \"portfolio-optimizer-sandbox\"",
+        "Error: unable to start \"portfolio-optimizer-sandbox\": already running"
+      ]
+    },
+    {
+      "step": "guarded weekly cycle (minimum variance)",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/run_guarded_weekly_forward_cycle.py"
+      ],
+      "returncode": 2,
+      "status": "failed",
+      "tail": [
+        "{",
+        "  \"status\": \"rejected\",",
+        "  \"reason\": \"subprocess failed closed: ['python', 'acquire_free_etf_snapshot.py', '--period', 'max']; stderr tail=iod)\\n             ^^^^^^^^^^^^^^^^^^\\n  File \\\"/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/scripts/acquire_free_etf_snapshot.py\\\", line 81, in build\\n    metadata, container_log = acquire_to(bundle, symbols, period)\\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/scripts/acquire_free_etf_snapshot.py\\\", line 53, in acquire_to\\n    run_command([\\n  File \\\"/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/scripts/acquire_free_etf_snapshot.py\\\", line 35, in run_command\\n    raise RuntimeError(\\nRuntimeError: command failed (125): podman create --name po2-free-data-48170d5f5ff2; stderr=Cannot connect to Podman. Please verify your connection to the Linux system using `podman system connection list`, or try `podman machine init` and `podman machine start` to manage a new Linux VM\\nError: unable to connect to Podman socket: failed to connect: dial tcp 127.0.0.1:50681: connect: connection refused stdout=\\n\"",
+        "}"
+      ]
+    }
+  ],
+  "finished_at_utc": "2026-10-27T12:11:17.080908+00:00"
+}

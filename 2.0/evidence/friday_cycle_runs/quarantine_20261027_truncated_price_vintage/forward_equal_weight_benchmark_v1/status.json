@@ -1,0 +1,30 @@
+{
+  "blended_performance_metrics": {
+    "annual_return": 0.14185096745915993,
+    "annual_volatility": 0.18814149304131533,
+    "best_week": 0.02594826229140196,
+    "calmar": 4.094404276047256,
+    "cvar_5_weekly": -0.034645080919098487,
+    "max_drawdown": -0.03464508091909846,
+    "max_drawdown_duration_weeks": 2,
+    "observations": 4,
+    "positive_week_share": 0.75,
+    "sharpe_zero_rf": 0.7772460134056299,
+    "sortino_zero_target": 1.1706574495489532,
+    "total_return": 0.010256129646337708,
+    "worst_week": -0.034645080919098487,
+    "years": 0.07692307692307693
+  },
+  "decision_log_sha256": "a06e302aff3a25e834873f25d2709e2476d3e778cd9fff5b2b22987c1830c257",
+  "execution_enabled": false,
+  "generated_at_utc": "2026-10-27T16:51:11.271493+00:00",
+  "is_a_benchmark_not_a_strategy": true,
+  "latest_decision_date": "2026-10-23",
+  "latest_realization_date": "2026-10-23",
+  "live_trading_enabled": false,
+  "observation_log_sha256": "cc9b35e7f37a6cdb0e7b4b52cbc3911df4bb3317ea454108998610fb47dfd122",
+  "observed_weeks": 4,
+  "promotion_authorized": false,
+  "protocol_version": "equal_weight_benchmark_v1",
+  "saved_decisions": 6
+}

@@ -1,0 +1,312 @@
+{
+  "decision_friday": "2026-10-23",
+  "started_at_utc": "2026-10-27T16:30:26.772022+00:00",
+  "pending": {
+    "etf": [
+      "covariance_minimum_variance_v1",
+      "breadth_confirmed_trend_return_ceiling_v3",
+      "past_only_consensus_selector_return_v1",
+      "return_first_60_40_blend_v1",
+      "static_spy_gld_shy_v1"
+    ],
+    "stock": [
+      "equal_weight_benchmark_v1",
+      "valuation_earnings_yield_v1",
+      "sue_quarterly_v1",
+      "residual_tie_agnostic_companion_v1",
+      "spy_riser_5050_v1",
+      "trend_sleeve_8020_v1"
+    ]
+  },
+  "live_trading_enabled": false,
+  "status": "failed",
+  "error": "record spy_riser_5050_v1 failed (exit 1):\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/lib/python3.11/site-packages/pandas/core/indexing.py\", line 1378, in _getitem_iterable\n    keyarr, indexer = self._get_listlike_indexer(key, axis)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/lib/python3.11/site-packages/pandas/core/indexing.py\", line 1576, in _get_listlike_indexer\n    keyarr, indexer = ax._get_indexer_strict(key, axis_name)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/lib/python3.11/site-packages/pandas/core/indexes/base.py\", line 6302, in _get_indexer_strict\n    self._raise_if_missing(keyarr, indexer, axis_name)\n  File \"/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/lib/python3.11/site-packages/pandas/core/indexes/base.py\", line 6355, in _raise_if_missing\n    raise KeyError(f\"{not_found} not in index\")\nKeyError: \"['0001288469', '0001051627', '0001304492', '0001581280', '0000723125', '0001514416', '0001770787', '0001682852', '0001425205', '0001109116', '0001137789', '0001616533', '0001835632', '0001418819', '0001633978', '0001652535'] not in index\"",
+  "steps": [
+    {
+      "step": "start the Podman sandbox",
+      "command": [
+        "/opt/homebrew/bin/podman",
+        "machine",
+        "start",
+        "portfolio-optimizer-sandbox"
+      ],
+      "returncode": 125,
+      "status": "ok",
+      "tail": [
+        "Starting machine \"portfolio-optimizer-sandbox\"",
+        "Error: unable to start \"portfolio-optimizer-sandbox\": already running"
+      ]
+    },
+    {
+      "step": "guarded weekly cycle (minimum variance)",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/run_guarded_weekly_forward_cycle.py"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "            \"new\": 24.600971221923828,",
+        "            \"old\": 24.60097312927246",
+        "          }",
+        "        },",
+        "        \"observation_date\": \"1993-03-02\",",
+        "        \"security_id\": \"yahoo-ticker:SPY\"",
+        "      }",
+        "    ]",
+        "  },",
+        "  \"snapshot_id\": \"20261027T163652Z-c69f63655e983f53\",",
+        "  \"status\": \"complete\"",
+        "}"
+      ]
+    },
+    {
+      "step": "frozen-book recorders",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/record_frozen_book_forward_evidence_v1.py",
+        "--protocol",
+        "breadth_confirmed_trend_return_ceiling_v3",
+        "--protocol",
+        "past_only_consensus_selector_return_v1",
+        "--protocol",
+        "return_first_60_40_blend_v1",
+        "--protocol",
+        "static_spy_gld_shy_v1"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "breadth_confirmed_trend_return_ceiling_v3      +1d +1o -> 8/52 weeks, total +10.0745%, late records 5",
+        "past_only_consensus_selector_return_v1         +1d +1o -> 8/52 weeks, total +17.5808%, late records 5",
+        "return_first_60_40_blend_v1                    +1d +1o -> 8/52 weeks, total +5.1756%, late records 5",
+        "static_spy_gld_shy_v1                          +1d +1o -> 3/52 weeks, total -1.4119%, late records 0"
+      ]
+    },
+    {
+      "step": "extend the narrow weekly panel",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/extend_weekly_price_panel_v2.py"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "",
+        "55 Failed downloads:",
+        "['VOXX', 'VEL', 'VHC', 'VICR', 'VFC', 'VAL', 'VGR', 'VLGEA', 'VRE', 'VCSA', 'VMEO', 'VERX', 'VLTO', 'VFF', 'UVE', 'V', 'VIEW', 'VMRK', 'VICI', 'VRA', 'VLY', 'VMC', 'VNT', 'VERV', 'VIR', 'UWMC', 'VAPO', 'VBTX', 'UUUU', 'VIRT', 'VIVO', 'VIAV', 'VNO', 'VMI', 'VOYA', 'VITL', 'VKTX', 'VATE', 'VIRC', 'VHI', 'UUP', 'VAC', 'VPG', 'VERI', 'VRDN', 'VMW', 'VERA', 'VISN', 'VNOM', 'VLO', 'VC', 'VMD', 'VEEV', 'UVSP', 'VCYT']: YFRateLimitError('Too Many Requests. Rate limited. Try after a while.')",
+        "",
+        "59 Failed downloads:",
+        "['VVNT', 'VVV', 'WERN', 'VRNO', 'WCN', 'WASH', 'VRTV', 'VRM', 'VUZI', 'WEBR', 'WBTN', 'WEAV', 'VTYX', 'WDAY', 'WD', 'VTR', 'VREX', 'VST', 'VRNA', 'VSTS', 'VRNS', 'WDFC', 'VSAT', 'VRRM', 'VXRT', 'VRT', 'VZIO', 'VSXY', 'VTS', 'VVX', 'WAFD', 'WEC', 'WBS', 'VYGR', 'VSTO', 'VRSN', 'VRTS', 'VTLE', 'WDC', 'WELL', 'WBHC', 'VSH', 'WAB', 'WCC', 'WEN', 'VZ', 'W', 'WBD', 'VRSK', 'VRNT', 'WAY', 'WBA', 'VRTX', 'VYX', 'VTOL', 'VTRS', 'WAT', 'WABC', 'VSEC']: YFRateLimitError('Too Many Requests. Rate limited. Try after a while.')",
+        "",
+        "58 Failed downloads:",
+        "['WOW', 'WRBY', 'WS', 'WTRG', 'WULF', 'WSBF', 'WMT', 'WHR', 'WKHS', 'WOLF', 'WSC', 'WMG', 'WPC', 'WNEB', 'WOR', 'WGO', 'WVE', 'WGS', 'WK', 'WMB', 'WKC', 'WSFS', 'WMC', 'WTS', 'WLDN', 'WSM', 'WEX', 'WNC', 'WTI', 'WFRD', 'WTTR', 'WSO', 'WLKP', 'WRLD', 'WES', 'WH', 'WLK', 'WSBC', 'WTM', 'WINA', 'WM', 'WFC', 'WLY', 'WEYS', 'WIRE', 'WST', 'WSR', 'WMS', 'WT', 'WTBA', 'WLFC', 'WMK', 'WOOF', 'WTW', 'WTFC', 'WEST', 'WING', 'WU']: YFRateLimitError('Too Many Requests. Rate limited. Try after a while.')",
+        "",
+        "55 Failed downloads:",
+        "['WWE', 'XPO', 'ZVIA', 'YMAB', 'ZG', 'XNCR', 'YUMC', 'WWW', 'ZFOX', 'XYZ', 'ZETA', 'WWD', 'WYNN', 'ZBH', 'XHR', 'XEL', 'ZM', 'ZS', 'XYL', 'ZIP', 'ZD', 'XRN', 'X', 'YOU', 'XPRO', 'XXII', 'ZUO', 'ZOMDF', 'XIFR', 'XPOF', 'XRAY', 'XMTR', 'YETI', 'YEXT', 'ZBRA', 'ZION', 'ZNTL', 'ZIMV', 'ZYME', 'ZWS', 'XPEL', 'ZLAB', 'ZEUS', 'XPER', 'WY', 'ZTS', 'ZUMZ', 'XM', 'XRX', 'XOM', 'XENE', 'YUM', 'XERS', 'XELA', 'YELP']: YFRateLimitError('Too Many Requests. Rate limited. Try after a while.')"
+      ]
+    },
+    {
+      "step": "re-acquire full-history prices",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/acquire_broad_full_history_prices_v1.py"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "['VGR', 'USB', 'VIVO', 'USCB', 'UVV', 'URI', 'UPST', 'USPH', 'UP', 'URBN', 'USDP', 'VCYT', 'VERX', 'ULTA', 'UMH', 'USL', 'VIRC', 'UONE', 'VAPO', 'UNIT', 'USAP', 'VERV', 'UNM', 'VITL', 'VEL', 'VICR', 'VICI', 'UTHR', 'USAC', 'VIRT', 'UWMC', 'VIR', 'VECO', 'VATE', 'UTL', 'V', 'VCSA', 'VBTX', 'UNFI', 'VHI', 'VAL', 'VISN', 'VIEW', 'VEEV', 'UTI', 'UTZ', 'UUUU', 'UNF', 'VFF', 'VERA', 'UMPQ', 'USCI', 'VIAV', 'UPWK', 'UMBF', 'VFC', 'VAC', 'VKTX', 'UNH', 'UPS', 'ULS', 'VCEL', 'UNP', 'USO', 'USFD', 'VHC', 'UPLD', 'UUP', 'VERI', 'UNG', 'VC', 'UVSP', 'UNVR', 'UPBD']: YFRateLimitError('Too Many Requests. Rate limited. Try after a while.')",
+        "",
+        "80 Failed downloads:",
+        "['VTYX', 'VSEC', 'VTRS', 'VRSK', 'VYGR', 'WEAV', 'VRNA', 'WBTN', 'VRTS', 'WELL', 'VRNS', 'VYX', 'VXRT', 'VNO', 'WBD', 'WDC', 'VRTV', 'VZIO', 'WEN', 'VOXX', 'VST', 'VNOM', 'VTLE', 'WERN', 'VMW', 'VSTS', 'WEBR', 'VRM', 'VMEO', 'VLGEA', 'VRE', 'VPG', 'VSTO', 'VTR', 'WAT', 'WAL', 'VRRM', 'VZ', 'VMD', 'VNT', 'VSXY', 'VVV', 'VRNT', 'VRT', 'WAY', 'VRA', 'VTS', 'VLO', 'VUZI', 'WBS', 'WDFC', 'VRSN', 'VMI', 'WAB', 'VRNO', 'VMC', 'WCN', 'VSAT', 'WD', 'VLTO', 'VNDA', 'VVNT', 'WABC', 'VRTX', 'VTOL', 'WBA', 'VLY', 'WEC', 'WDAY', 'VREX', 'W', 'VSH', 'VVX', 'WCC', 'WAFD', 'WBHC', 'VMRK', 'VOYA', 'VRDN', 'WASH']: YFRateLimitError('Too Many Requests. Rate limited. Try after a while.')",
+        "$WSR: possibly delisted; no price data found  (1d 2011-01-01 -> 2026-10-28)",
+        "",
+        "63 Failed downloads:",
+        "['WSR']: possibly delisted; no price data found  (1d 2011-01-01 -> 2026-10-28)",
+        "['X', 'WING', 'WST', 'XPEL', 'WGS', 'WLY', 'WK', 'XM', 'WVE', 'WFRD', 'WSO', 'WWE', 'WSC', 'WES', 'WGO', 'XHR', 'WTFC', 'WTBA', 'WEX', 'WTM', 'XOM', 'WY', 'WLK', 'WMT', 'WEST', 'XIFR', 'WH', 'WIRE', 'WMK', 'WOW', 'XPOF', 'WEYS', 'WKC', 'WMB', 'WMG', 'WTS', 'WPC', 'WU', 'WWW', 'WOOF', 'WOR', 'WSBF', 'WKHS', 'WHD', 'WTW', 'XPER', 'WMC', 'XELA', 'WT', 'WLFC', 'WHR', 'XPO', 'WLKP', 'WINA', 'WRB', 'WSBC', 'WFC', 'WSFS', 'XEL', 'WYNN', 'XMTR', 'WNEB']: YFRateLimitError('Too Many Requests. Rate limited. Try after a while.')",
+        "",
+        "35 Failed downloads:",
+        "['ZEUS', 'ZIP', 'YETI', 'YUMC', 'XYL', 'YEXT', 'XYZ', 'ZNTL', 'YELP', 'ZION', 'XRX', 'XRAY', 'ZLAB', 'ZBRA', 'ZOMDF', 'ZM', 'ZUMZ', 'ZG', 'ZFOX', 'ZYME', 'XRN', 'YOU', 'ZTS', 'ZS', 'ZVIA', 'ZIMV', 'ZD', 'ZUO', 'ZBH', 'XXII', 'XPRO', 'YUM', 'ZETA', 'YMAB', 'ZWS']: YFRateLimitError('Too Many Requests. Rate limited. Try after a while.')"
+      ]
+    },
+    {
+      "step": "rebuild the broad full-history panel",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/build_broad_full_history_panel_v1.py"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "    \"compared_cells\": 90296,",
+        "    \"median_absolute_gap\": 2.220446049250313e-16,",
+        "    \"overlap_weeks\": 204,",
+        "    \"share_over_100bps\": 0.00062,",
+        "    \"shared_issuers\": 459",
+        "  },",
+        "  \"source_vintage\": \"20261027T164453Z-broad-full-history-v1\",",
+        "  \"weeks\": 825,",
+        "  \"weeks_dropped_as_unclosed\": [",
+        "    \"2026-10-30\"",
+        "  ]",
+        "}"
+      ]
+    },
+    {
+      "step": "corporate-action clean the full-history panel",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/build_corporate_action_clean_prices_v1.py",
+        "--prices",
+        "data/broad_full_history_panel_v1/weekly_adjusted_prices.csv.gz",
+        "--output",
+        "data/clean_full_history_prices_v1"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "  \"share_of_cells_removed\": 0.008806,",
+        "  \"single_jump_issuers_kept\": [",
+        "    \"0001001316\",",
+        "    \"0001556739\",",
+        "    \"0001622229\",",
+        "    \"0001658551\",",
+        "    \"0001818093\",",
+        "    \"0001849635\"",
+        "  ],",
+        "  \"sub_floor_cells_removed\": 2114,",
+        "  \"sub_floor_issuers_touched\": 36",
+        "}"
+      ]
+    },
+    {
+      "step": "record equal_weight_benchmark_v1",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/record_equal_weight_benchmark_forward_v1.py",
+        "--decision-date",
+        "2026-10-23",
+        "--realize"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "{",
+        "  \"added\": {",
+        "    \"decisions\": 1,",
+        "    \"observations\": 1",
+        "  },",
+        "  \"latest_decision_date\": \"2026-10-23\",",
+        "  \"latest_realization_date\": \"2026-10-23\",",
+        "  \"observed_weeks\": 4,",
+        "  \"saved_decisions\": 6",
+        "}"
+      ]
+    },
+    {
+      "step": "record valuation_earnings_yield_v1",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/record_valuation_earnings_yield_forward_v1.py",
+        "--decision-date",
+        "2026-10-23",
+        "--realize"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "{",
+        "  \"added\": {",
+        "    \"decisions\": 1,",
+        "    \"observations\": 1",
+        "  },",
+        "  \"latest_decision_date\": \"2026-10-23\",",
+        "  \"latest_realization_date\": \"2026-10-23\",",
+        "  \"latest_score_block_at\": \"2026-07-01\",",
+        "  \"observed_weeks\": 4,",
+        "  \"remaining_weeks\": 48,",
+        "  \"saved_decisions\": 6",
+        "}"
+      ]
+    },
+    {
+      "step": "record sue_quarterly_v1",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/record_sue_quarterly_forward_v1.py",
+        "--decision-date",
+        "2026-10-23",
+        "--realize"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "{",
+        "  \"added\": {",
+        "    \"decisions\": 1,",
+        "    \"observations\": 1",
+        "  },",
+        "  \"latest_decision_date\": \"2026-10-23\",",
+        "  \"latest_realization_date\": \"2026-10-23\",",
+        "  \"latest_score_block_at\": \"2026-07-01\",",
+        "  \"observed_weeks\": 4,",
+        "  \"remaining_weeks\": 48,",
+        "  \"saved_decisions\": 6",
+        "}"
+      ]
+    },
+    {
+      "step": "record residual_tie_agnostic_companion_v1",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/record_residual_tie_agnostic_companion_forward_v1.py",
+        "--decision-date",
+        "2026-10-23",
+        "--realize"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "  \"execution_enabled\": false,",
+        "  \"modifies\": \"nothing\",",
+        "  \"observed_at_utc\": \"2026-10-27T16:51:13Z\",",
+        "  \"previous_record_hash\": \"e9515d1967bc51a278d3798d7ed3ba2c8a136c040fceee29bbeca5a593832ef7\",",
+        "  \"protocol_version\": \"residual_tie_agnostic_companion_v1\",",
+        "  \"realization_date\": \"2026-10-23\",",
+        "  \"record_hash\": \"f0a811c9d2ed78577bc69a4efa84d1fba8be88f9e191b4510c8a4bc9c84fe404\",",
+        "  \"record_type\": \"residual_tie_agnostic_companion_observation_v1\",",
+        "  \"seed_count\": 20,",
+        "  \"seed_median_net_return\": -0.05785506394863163,",
+        "  \"sequence\": 4",
+        "}"
+      ]
+    },
+    {
+      "step": "record spy_riser_5050_v1",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/record_spy_riser_5050_forward_v1.py",
+        "--decision-date",
+        "2026-10-23",
+        "--realize"
+      ],
+      "returncode": 1,
+      "status": "failed",
+      "tail": [
+        "           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+        "  File \"/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/lib/python3.11/site-packages/pandas/core/indexing.py\", line 1378, in _getitem_iterable",
+        "    keyarr, indexer = self._get_listlike_indexer(key, axis)",
+        "                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+        "  File \"/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/lib/python3.11/site-packages/pandas/core/indexing.py\", line 1576, in _get_listlike_indexer",
+        "    keyarr, indexer = ax._get_indexer_strict(key, axis_name)",
+        "                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+        "  File \"/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/lib/python3.11/site-packages/pandas/core/indexes/base.py\", line 6302, in _get_indexer_strict",
+        "    self._raise_if_missing(keyarr, indexer, axis_name)",
+        "  File \"/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/lib/python3.11/site-packages/pandas/core/indexes/base.py\", line 6355, in _raise_if_missing",
+        "    raise KeyError(f\"{not_found} not in index\")",
+        "KeyError: \"['0001288469', '0001051627', '0001304492', '0001581280', '0000723125', '0001514416', '0001770787', '0001682852', '0001425205', '0001109116', '0001137789', '0001616533', '0001835632', '0001418819', '0001633978', '0001652535'] not in index\""
+      ]
+    }
+  ],
+  "finished_at_utc": "2026-10-27T16:51:22.012028+00:00"
+}

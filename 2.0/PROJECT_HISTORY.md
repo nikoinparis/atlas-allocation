@@ -18075,3 +18075,42 @@ Chan (2003) found for bad news. A long-only investor cannot collect that by buyi
 by **not holding** those names, which costs nothing to trade (queued as B20).
 
 **Cumulative search:** two new trials.
+
+## Step 375 — 2026-10-27 — The Friday clocks had stopped for four days; recovered, and two silent failures closed
+
+**What this was for.** The owner asked whether Podman or Docker is still needed, to free disk
+space. Checking found that the Friday job had failed at every run since 2026-10-23.
+
+**Failure 1: a stuck Podman VM.** `portfolio-optimizer-sandbox` reported "running" while its SSH
+port refused connections, so "start" was a no-op and the guarded ETF cycle failed closed. That
+happened twice a day from 2026-10-24 to 2026-10-27, and every clock sat at 2026-10-16. A
+stop/start fixed it. **Now automatic:** the cycle checks `podman info` after starting and restarts
+the VM once if it does not answer.
+
+**Failure 2, found on the re-run: a silently truncated price download.** The full-history Yahoo
+pull returned **459 of 2,812** histories (HTTP 429 throttling; AMGN and AMP came back empty). The
+cycle checked only that the panel reached the Friday, so five stock clocks (equal-weight benchmark,
+valuation, SUE, residual companion, 50/50 riser) recorded 2026-10-23 on about a sixth of their
+universe. The 50/50 clock failed loudly when 16 of its 20 holdings vanished; the other four would
+have passed. **Nothing was committed.** The truncated records and the vintage were moved to
+`evidence/friday_cycle_runs/quarantine_20261027_truncated_price_vintage/`, the five clocks restored
+to their last committed state, and the week left to be recorded within its open window (closes
+2026-10-30 21:00 UTC). **Now guarded:** the cycle refuses a vintage with under 95% of the largest
+of the four previous vintages' histories.
+
+**What was kept.** The five ETF clocks (minimum variance, three frozen books, SPY/GLD/SHY) recorded
+2026-10-23 from the Podman snapshot, which the throttling did not touch; committed in `4c887f6`. The
+narrow weekly panel was complete (1,796 prices on 2026-10-23 against 1,799 the week before).
+
+**Still to do inside the window:** the six stock clocks (five above plus `trend_sleeve_8020_v1`,
+which also needs Yahoo) for 2026-10-23. The scheduled runs retry at 00:00 and 12:00 UTC; the guard
+stops any further throttled pull from writing records.
+
+**Not touched:** an uncommitted rewrite of `docs/RESEARCH_QUEUE.md` in the working copy (64 lines
+in, 540 out) that this session did not make. It is left for the owner.
+
+**Containers, for the owner's disk question.** Podman is required: the ETF clocks fetch prices
+inside it. Of its 90 images (16.3 GB), only `po2-yfinance:1.5.2-v1` (374 MB) and `po2-regime:1.0`
+(371 MB) are used by live pipelines; the rest are research-batch images from two months ago. Docker
+Desktop (about 11 GB) runs kebun-pasirmukti's local Supabase and PowerSync stack: 14 containers,
+all active.

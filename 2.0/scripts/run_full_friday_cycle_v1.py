@@ -234,6 +234,12 @@ def main() -> int:
     try:
         if todo["etf"]:
             runner.run("start the Podman sandbox", [PODMAN, "machine", "start", PODMAN_MACHINE], ok_text="already running")
+            if not args.dry_run and subprocess.run([PODMAN, "info"], capture_output=True, check=False).returncode != 0:
+                # Step 375: from 2026-10-23 the VM reported "running" while its port refused connections, so
+                # "start" was a no-op and every run failed. Restart it once before giving up.
+                runner.run("restart a stuck Podman sandbox (stop)", [PODMAN, "machine", "stop", PODMAN_MACHINE])
+                runner.run("restart a stuck Podman sandbox (start)", [PODMAN, "machine", "start", PODMAN_MACHINE])
+                runner.run("Podman answers", [PODMAN, "info"])
             if "covariance_minimum_variance_v1" in todo["etf"]:
                 runner.run("guarded weekly cycle (minimum variance)", [PYTHON, "scripts/run_guarded_weekly_forward_cycle.py"])
             runner.run("frozen-book recorders",

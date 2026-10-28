@@ -11,44 +11,44 @@
     "2026-10-23"
   ],
   "artifact_sha256": {
-    "weekly_adjusted_prices_clean.csv.gz": "4561433aaaa76fcd0ce5c11a81a15d00370f0fccaa6e57732e26a0383e72b6f8"
+    "weekly_adjusted_prices_clean.csv.gz": "8642473b8401b9abd43b1450cfe31bdbcb24c3861e84aaaef130c614503a8701"
   },
   "cleaning_rules": {
     "applied_to": "appended weeks only; existing cells are never rewritten",
-    "return_observations_adjusted": 3,
+    "return_observations_adjusted": 5,
     "weekly_return_cap": 2.0,
     "weekly_return_floor": -0.95,
     "zero_and_negative_prices": "set to missing"
   },
   "coverage_new_week": {
-    "2026-08-28": 1799,
-    "2026-09-04": 1799,
-    "2026-09-11": 1799,
-    "2026-09-18": 1799,
-    "2026-09-25": 1799,
-    "2026-10-02": 1800,
-    "2026-10-09": 1798,
-    "2026-10-16": 1799,
-    "2026-10-23": 1796
+    "2026-08-28": 2790,
+    "2026-09-04": 2791,
+    "2026-09-11": 2791,
+    "2026-09-18": 2792,
+    "2026-09-25": 2791,
+    "2026-10-02": 2792,
+    "2026-10-09": 2791,
+    "2026-10-16": 2791,
+    "2026-10-23": 2788
   },
-  "created_at_utc": "2026-10-27T16:44:52.806151+00:00",
+  "created_at_utc": "2026-10-28T00:05:58.118751+00:00",
   "derived_from": "data/clean_weekly_prices_v1/weekly_adjusted_prices_clean.csv.gz",
   "derived_from_sha256": "3ad97d8174266ca6301281e10acc12ab9082cdd26615483ea4ca2ecb67f24123",
   "experiment": "clean_weekly_prices_v2",
   "issuers": 3253,
-  "issuers_extended": 1800,
-  "issuers_not_extended": 1453,
+  "issuers_extended": 2793,
+  "issuers_not_extended": 460,
   "last_closed_friday_at_build": "2026-10-23",
   "live_trading_enabled": false,
   "new_last_week": "2026-10-23",
   "not_extended_reason": "no fresh Yahoo observation in the new week; these are overwhelmingly Tiingo-sourced delisted issuers whose series legitimately stops",
   "overlap_reconciliation": {
     "basis": "weekly simple returns over the overlapping weeks",
-    "cells_over_100bps": 216,
-    "cells_over_10bps": 323,
-    "compared_cells": 19506,
+    "cells_over_100bps": 378,
+    "cells_over_10bps": 536,
+    "compared_cells": 30215,
     "max_absolute_return_gap": 17.00000145519156,
-    "median_absolute_return_gap": 1.1102230246251565e-16,
+    "median_absolute_return_gap": 2.220446049250313e-16,
     "overlap_weeks": [
       "2026-06-05",
       "2026-06-12",
@@ -66,7 +66,7 @@
   },
   "panel_convention": "each issuer is rebased to 1.0 at its first observation; new weeks are chained onto the stored level at the last shared week",
   "prior_last_week": "2026-08-21",
-  "raw_tail_vintage": "data/sec_broad_recent_tail_vintages/20261027T164447Z-broad-recent-tail-v1",
-  "symbols_failed": 115,
+  "raw_tail_vintage": "data/sec_broad_recent_tail_vintages/20261028T000552Z-broad-recent-tail-v1",
+  "symbols_failed": 0,
   "symbols_requested": 3235
 }

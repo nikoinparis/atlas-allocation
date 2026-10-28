@@ -1,18 +1,44 @@
 {
   "base_metrics": {
-    "observations": 0
+    "annual_return": -0.5270613358291301,
+    "annual_volatility": 0.0,
+    "best_week": -0.014296618224258281,
+    "calmar": 0.0,
+    "cvar_5_weekly": -0.014296618224258281,
+    "max_drawdown": 0.0,
+    "max_drawdown_duration_weeks": 0,
+    "observations": 1,
+    "positive_week_share": 0.0,
+    "sharpe_zero_rf": 0.0,
+    "sortino_zero_target": -7.211102550927978,
+    "total_return": -0.014296618224258317,
+    "worst_week": -0.014296618224258281,
+    "years": 0.019230769230769232
   },
   "execution_enabled": false,
-  "generated_at_utc": "2026-10-18T17:57:26.097140+00:00",
-  "latest_decision_date": "2026-10-16",
-  "latest_realization_date": null,
+  "generated_at_utc": "2026-10-28T00:14:23.938916+00:00",
+  "latest_decision_date": "2026-10-23",
+  "latest_realization_date": "2026-10-23",
   "live_trading_enabled": false,
-  "observed_weeks": 0,
+  "observed_weeks": 1,
   "promotion_authorized": false,
   "protocol_version": "trend_sleeve_8020_v1",
   "role": "diversifier allocation, not an edge",
-  "saved_decisions": 1,
+  "saved_decisions": 2,
   "sleeve_8020_metrics": {
-    "observations": 0
+    "annual_return": -0.4466332787852726,
+    "annual_volatility": 0.0,
+    "best_week": -0.011315005014604003,
+    "calmar": 0.0,
+    "cvar_5_weekly": -0.011315005014604003,
+    "max_drawdown": 0.0,
+    "max_drawdown_duration_weeks": 0,
+    "observations": 1,
+    "positive_week_share": 0.0,
+    "sharpe_zero_rf": 0.0,
+    "sortino_zero_target": -7.211102550927978,
+    "total_return": -0.01131500501460403,
+    "worst_week": -0.011315005014604003,
+    "years": 0.019230769230769232
   }
 }

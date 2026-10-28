@@ -1,6 +1,19 @@
 {
   "blend_performance_metrics": {
-    "observations": 0
+    "annual_return": -0.4592762801572776,
+    "annual_volatility": 0.0,
+    "best_week": -0.011754348687838534,
+    "calmar": 0.0,
+    "cvar_5_weekly": -0.011754348687838534,
+    "max_drawdown": 0.0,
+    "max_drawdown_duration_weeks": 0,
+    "observations": 1,
+    "positive_week_share": 0.0,
+    "sharpe_zero_rf": 0.0,
+    "sortino_zero_target": -7.211102550927978,
+    "total_return": -0.011754348687838534,
+    "worst_week": -0.011754348687838534,
+    "years": 0.019230769230769232
   },
   "current_book": [
     "AGL",
@@ -24,20 +37,33 @@
     "LITE",
     "ICHR"
   ],
-  "decision_log_sha256": "abc856f3a8b611a7b0e8fed03039cea860d215e3cd9ae27c35123aa9aee57ea3",
+  "decision_log_sha256": "db43107f0e0333ce3f01546ac8c6b164d09958fa7f659e9dfddd4665ccbd956b",
   "execution_enabled": false,
-  "generated_at_utc": "2026-10-17T12:25:59.360296+00:00",
-  "latest_decision_date": "2026-10-16",
-  "latest_realization_date": null,
+  "generated_at_utc": "2026-10-28T00:14:19.166343+00:00",
+  "latest_decision_date": "2026-10-23",
+  "latest_realization_date": "2026-10-23",
   "live_trading_enabled": false,
-  "observation_log_sha256": null,
-  "observed_weeks": 0,
+  "observation_log_sha256": "3a7dc84e3de0947003adc0c456e3c250c1c6f77bb955e65d8c5a9ffc8828fd83",
+  "observed_weeks": 1,
   "promotion_authorized": false,
   "protocol_version": "spy_riser_5050_v1",
   "required_untouched_weeks": 52,
   "role": "chosen risk level, not an edge",
-  "saved_decisions": 1,
+  "saved_decisions": 2,
   "spy_performance_metrics": {
-    "observations": 0
+    "annual_return": -0.20064409160116925,
+    "annual_volatility": 0.0,
+    "best_week": -0.004297450765640365,
+    "calmar": 0.0,
+    "cvar_5_weekly": -0.004297450765640365,
+    "max_drawdown": 0.0,
+    "max_drawdown_duration_weeks": 0,
+    "observations": 1,
+    "positive_week_share": 0.0,
+    "sharpe_zero_rf": 0.0,
+    "sortino_zero_target": -7.211102550927978,
+    "total_return": -0.004297450765640365,
+    "worst_week": -0.004297450765640365,
+    "years": 0.019230769230769232
   }
 }

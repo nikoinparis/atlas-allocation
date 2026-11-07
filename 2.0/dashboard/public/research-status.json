@@ -46,12 +46,12 @@
       "weekly": []
     },
     {
-      "cumulativeReturn": 0.10074546810914109,
-      "observedWeeks": 8,
+      "cumulativeReturn": -0.019302302724769516,
+      "observedWeeks": 10,
       "promotionAuthorized": false,
       "protocol": "breadth_confirmed_trend_return_ceiling_v3",
       "requiredWeeks": 52,
-      "savedDecisions": 10,
+      "savedDecisions": 12,
       "weekly": [
         {
           "netReturn": 0.007870624530397694,
@@ -84,16 +84,24 @@
         {
           "netReturn": 0.014495304214427098,
           "week": "2026-10-23"
+        },
+        {
+          "netReturn": -0.005240785695978077,
+          "week": "2026-10-30"
+        },
+        {
+          "netReturn": -0.10436660436912805,
+          "week": "2026-11-06"
         }
       ]
     },
     {
-      "cumulativeReturn": -0.026016319353375117,
-      "observedWeeks": 8,
+      "cumulativeReturn": -0.061320707844536915,
+      "observedWeeks": 10,
       "promotionAuthorized": false,
       "protocol": "covariance_minimum_variance_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 10,
+      "savedDecisions": 12,
       "weekly": [
         {
           "netReturn": -0.004051813672142307,
@@ -126,25 +134,33 @@
         {
           "netReturn": -0.001533158074432702,
           "week": "2026-10-23"
+        },
+        {
+          "netReturn": -0.008294634594874433,
+          "week": "2026-10-30"
+        },
+        {
+          "netReturn": -0.02818657550662018,
+          "week": "2026-11-06"
         }
       ]
     },
     {
       "cumulativeReturn": null,
-      "observedWeeks": 4,
+      "observedWeeks": 6,
       "promotionAuthorized": false,
       "protocol": "equal_weight_benchmark_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 6,
+      "savedDecisions": 8,
       "weekly": []
     },
     {
-      "cumulativeReturn": 0.17580787168457168,
-      "observedWeeks": 8,
+      "cumulativeReturn": 0.045049443008255086,
+      "observedWeeks": 10,
       "promotionAuthorized": false,
       "protocol": "past_only_consensus_selector_return_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 10,
+      "savedDecisions": 12,
       "weekly": [
         {
           "netReturn": 0.02794378204652248,
@@ -177,25 +193,33 @@
         {
           "netReturn": 0.015973094979592206,
           "week": "2026-10-23"
+        },
+        {
+          "netReturn": 0.009952326464567562,
+          "week": "2026-10-30"
+        },
+        {
+          "netReturn": -0.11996569714222395,
+          "week": "2026-11-06"
         }
       ]
     },
     {
       "cumulativeReturn": null,
-      "observedWeeks": 4,
+      "observedWeeks": 6,
       "promotionAuthorized": false,
       "protocol": "residual_tie_agnostic_companion_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 6,
+      "savedDecisions": 8,
       "weekly": []
     },
     {
-      "cumulativeReturn": 0.05175584637769348,
-      "observedWeeks": 8,
+      "cumulativeReturn": -0.060006687277182946,
+      "observedWeeks": 10,
       "promotionAuthorized": false,
       "protocol": "return_first_60_40_blend_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 10,
+      "savedDecisions": 12,
       "weekly": [
         {
           "netReturn": -0.002215515303859796,
@@ -228,6 +252,14 @@
         {
           "netReturn": 0.008448971556460738,
           "week": "2026-10-23"
+        },
+        {
+          "netReturn": -0.005489401775030241,
+          "week": "2026-10-30"
+        },
+        {
+          "netReturn": -0.10132964926871035,
+          "week": "2026-11-06"
         }
       ]
     },
@@ -242,20 +274,20 @@
     },
     {
       "cumulativeReturn": null,
-      "observedWeeks": 1,
+      "observedWeeks": 3,
       "promotionAuthorized": false,
       "protocol": "spy_riser_5050_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 2,
+      "savedDecisions": 4,
       "weekly": []
     },
     {
-      "cumulativeReturn": -0.014119263155065287,
-      "observedWeeks": 3,
+      "cumulativeReturn": -0.01863034863284252,
+      "observedWeeks": 5,
       "promotionAuthorized": false,
       "protocol": "static_spy_gld_shy_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 4,
+      "savedDecisions": 6,
       "weekly": [
         {
           "netReturn": 0.00837776157233609,
@@ -268,16 +300,24 @@
         {
           "netReturn": -0.014296618224258281,
           "week": "2026-10-23"
+        },
+        {
+          "netReturn": -0.010893089849846717,
+          "week": "2026-10-30"
+        },
+        {
+          "netReturn": 0.006386972857894134,
+          "week": "2026-11-06"
         }
       ]
     },
     {
-      "cumulativeReturn": -0.022800691198242906,
-      "observedWeeks": 4,
+      "cumulativeReturn": -0.07677103776227956,
+      "observedWeeks": 6,
       "promotionAuthorized": false,
       "protocol": "sue_quarterly_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 6,
+      "savedDecisions": 8,
       "weekly": [
         {
           "netReturn": 0.006697931108720882,
@@ -294,25 +334,33 @@
         {
           "netReturn": -0.007190853711804014,
           "week": "2026-10-23"
+        },
+        {
+          "netReturn": -0.0027561123961818397,
+          "week": "2026-10-30"
+        },
+        {
+          "netReturn": -0.052618530263741754,
+          "week": "2026-11-06"
         }
       ]
     },
     {
       "cumulativeReturn": null,
-      "observedWeeks": 1,
+      "observedWeeks": 3,
       "promotionAuthorized": false,
       "protocol": "trend_sleeve_8020_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 2,
+      "savedDecisions": 4,
       "weekly": []
     },
     {
-      "cumulativeReturn": 0.13241999609519328,
-      "observedWeeks": 4,
+      "cumulativeReturn": 0.03921583696531172,
+      "observedWeeks": 6,
       "promotionAuthorized": false,
       "protocol": "valuation_earnings_yield_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 6,
+      "savedDecisions": 8,
       "weekly": [
         {
           "netReturn": -0.0049636388638365555,
@@ -329,6 +377,14 @@
         {
           "netReturn": 0.05513475631393819,
           "week": "2026-10-23"
+        },
+        {
+          "netReturn": -0.013706499678645042,
+          "week": "2026-10-30"
+        },
+        {
+          "netReturn": -0.06955210888399313,
+          "week": "2026-11-06"
         }
       ]
     },
@@ -537,12 +593,12 @@
     "measuredIn": "Step 281",
     "whyItMatters": "Counting them separately overstates how many independent bets this project holds, which is the illusion Step 245 measured as an effective 1.15 strategies and Step 277 restated as breadth without skill. Nothing has been removed: a negative result is a record, not a mistake to delete."
   },
-  "generatedAtUtc": "2026-10-28T00:14:36.935819+00:00",
+  "generatedAtUtc": "2026-11-07T00:21:15.015216+00:00",
   "headline": {
     "clocksPending": 4,
     "clocksRunning": 11,
     "closedFamilies": 28,
-    "totalUntouchedWeeks": 53,
+    "totalUntouchedWeeks": 75,
     "weeksRequiredEach": 52
   },
   "liveTradingEnabled": false,

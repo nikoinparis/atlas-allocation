@@ -1,0 +1,396 @@
+{
+  "decision_friday": "2026-10-30",
+  "started_at_utc": "2026-11-01T12:00:06.976335+00:00",
+  "pending": {
+    "etf": [
+      "covariance_minimum_variance_v1",
+      "breadth_confirmed_trend_return_ceiling_v3",
+      "past_only_consensus_selector_return_v1",
+      "return_first_60_40_blend_v1",
+      "static_spy_gld_shy_v1"
+    ],
+    "stock": [
+      "equal_weight_benchmark_v1",
+      "valuation_earnings_yield_v1",
+      "sue_quarterly_v1",
+      "residual_tie_agnostic_companion_v1",
+      "spy_riser_5050_v1",
+      "trend_sleeve_8020_v1"
+    ]
+  },
+  "live_trading_enabled": false,
+  "status": "failed",
+  "error": "what-if replay failed (exit 1):\n    \"start\": start, \"end\": str(window.index[-1].date()),\n                               ~~~~~~~~~~~~^^^^\n  File \"/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/lib/python3.11/site-packages/pandas/core/indexes/base.py\", line 5401, in __getitem__\n    return getitem(key)\n           ^^^^^^^^^^^^\n  File \"/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/lib/python3.11/site-packages/pandas/core/arrays/datetimelike.py\", line 393, in __getitem__\n    result = cast(Union[Self, DTScalarOrNaT], super().__getitem__(key))\n                                              ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/lib/python3.11/site-packages/pandas/core/arrays/_mixins.py\", line 293, in __getitem__\n    result = self._ndarray[key]\n             ~~~~~~~~~~~~~^^^^^\nIndexError: index -1 is out of bounds for axis 0 with size 0",
+  "steps": [
+    {
+      "step": "start the Podman sandbox",
+      "command": [
+        "/opt/homebrew/bin/podman",
+        "machine",
+        "start",
+        "portfolio-optimizer-sandbox"
+      ],
+      "returncode": 125,
+      "status": "ok",
+      "tail": [
+        "Starting machine \"portfolio-optimizer-sandbox\"",
+        "Error: unable to start \"portfolio-optimizer-sandbox\": already running"
+      ]
+    },
+    {
+      "step": "guarded weekly cycle (minimum variance)",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/run_guarded_weekly_forward_cycle.py"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "            \"new\": 24.60097885131836,",
+        "            \"old\": 24.600971221923828",
+        "          }",
+        "        },",
+        "        \"observation_date\": \"1993-03-02\",",
+        "        \"security_id\": \"yahoo-ticker:SPY\"",
+        "      }",
+        "    ]",
+        "  },",
+        "  \"snapshot_id\": \"20261101T120030Z-ac1f1ed8958b7cb7\",",
+        "  \"status\": \"complete\"",
+        "}"
+      ]
+    },
+    {
+      "step": "frozen-book recorders",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/record_frozen_book_forward_evidence_v1.py",
+        "--protocol",
+        "breadth_confirmed_trend_return_ceiling_v3",
+        "--protocol",
+        "past_only_consensus_selector_return_v1",
+        "--protocol",
+        "return_first_60_40_blend_v1",
+        "--protocol",
+        "static_spy_gld_shy_v1"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "breadth_confirmed_trend_return_ceiling_v3      +1d +1o -> 9/52 weeks, total +9.4977%, late records 5",
+        "past_only_consensus_selector_return_v1         +1d +1o -> 9/52 weeks, total +18.7510%, late records 5",
+        "return_first_60_40_blend_v1                    +1d +1o -> 9/52 weeks, total +4.5982%, late records 5",
+        "static_spy_gld_shy_v1                          +1d +1o -> 4/52 weeks, total -2.4859%, late records 0"
+      ]
+    },
+    {
+      "step": "extend the narrow weekly panel",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/extend_weekly_price_panel_v2.py"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "['WSR']: possibly delisted; no price data found  (1d 2026-06-01 -> 2026-11-02)",
+        "$XM: possibly delisted; no timezone found",
+        "$ZUO: possibly delisted; no timezone found",
+        "$WWE: possibly delisted; no timezone found",
+        "$YMAB: possibly delisted; no timezone found",
+        "$ZIMV: possibly delisted; no timezone found",
+        "$X: possibly delisted; no timezone found",
+        "$ZFOX: possibly delisted; no timezone found",
+        "$ZEUS: possibly delisted; no timezone found",
+        "",
+        "8 Failed downloads:",
+        "['XM', 'ZUO', 'WWE', 'YMAB', 'ZIMV', 'X', 'ZFOX', 'ZEUS']: possibly delisted; no timezone found"
+      ]
+    },
+    {
+      "step": "re-acquire full-history prices",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/acquire_broad_full_history_prices_v1.py"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "",
+        "7 Failed downloads:",
+        "['WMC', 'WOW', 'WIRE', 'X', 'XM', 'WWE']: possibly delisted; no timezone found",
+        "['WSR']: possibly delisted; no price data found  (1d 2011-01-01 -> 2026-11-02)",
+        "$ZFOX: possibly delisted; no timezone found",
+        "$YMAB: possibly delisted; no timezone found",
+        "$ZUO: possibly delisted; no timezone found",
+        "$ZEUS: possibly delisted; no timezone found",
+        "$ZIMV: possibly delisted; no timezone found",
+        "",
+        "5 Failed downloads:",
+        "['ZFOX', 'YMAB', 'ZUO', 'ZEUS', 'ZIMV']: possibly delisted; no timezone found"
+      ]
+    },
+    {
+      "step": "rebuild the broad full-history panel",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/build_broad_full_history_panel_v1.py"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "    \"cells_over_100bps\": 475,",
+        "    \"cells_over_10bps\": 647,",
+        "    \"compared_cells\": 558409,",
+        "    \"median_absolute_gap\": 2.220446049250313e-16,",
+        "    \"overlap_weeks\": 205,",
+        "    \"share_over_100bps\": 0.000851,",
+        "    \"shared_issuers\": 2812",
+        "  },",
+        "  \"source_vintage\": \"20261101T120704Z-broad-full-history-v1\",",
+        "  \"weeks\": 826,",
+        "  \"weeks_dropped_as_unclosed\": []",
+        "}"
+      ]
+    },
+    {
+      "step": "corporate-action clean the full-history panel",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/build_corporate_action_clean_prices_v1.py",
+        "--prices",
+        "data/broad_full_history_panel_v1/weekly_adjusted_prices.csv.gz",
+        "--output",
+        "data/clean_full_history_prices_v1"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "  \"jump_ratio\": 5.0,",
+        "  \"max_legitimate_jumps\": 1,",
+        "  \"non_positive_cells_removed\": 0,",
+        "  \"non_positive_issuers\": [],",
+        "  \"output_cells\": 1839108,",
+        "  \"output_issuers\": 2797,",
+        "  \"price_floor\": 1.0,",
+        "  \"quarantined_count\": 15,",
+        "  \"share_of_cells_removed\": 0.011018,",
+        "  \"sub_floor_cells_removed\": 12032,",
+        "  \"sub_floor_issuers_touched\": 214",
+        "}"
+      ]
+    },
+    {
+      "step": "record equal_weight_benchmark_v1",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/record_equal_weight_benchmark_forward_v1.py",
+        "--decision-date",
+        "2026-10-30",
+        "--realize"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "{",
+        "  \"added\": {",
+        "    \"decisions\": 1,",
+        "    \"observations\": 1",
+        "  },",
+        "  \"latest_decision_date\": \"2026-10-30\",",
+        "  \"latest_realization_date\": \"2026-10-30\",",
+        "  \"observed_weeks\": 5,",
+        "  \"saved_decisions\": 7",
+        "}"
+      ]
+    },
+    {
+      "step": "record valuation_earnings_yield_v1",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/record_valuation_earnings_yield_forward_v1.py",
+        "--decision-date",
+        "2026-10-30",
+        "--realize"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "{",
+        "  \"added\": {",
+        "    \"decisions\": 1,",
+        "    \"observations\": 1",
+        "  },",
+        "  \"latest_decision_date\": \"2026-10-30\",",
+        "  \"latest_realization_date\": \"2026-10-30\",",
+        "  \"latest_score_block_at\": \"2026-07-01\",",
+        "  \"observed_weeks\": 5,",
+        "  \"remaining_weeks\": 47,",
+        "  \"saved_decisions\": 7",
+        "}"
+      ]
+    },
+    {
+      "step": "record sue_quarterly_v1",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/record_sue_quarterly_forward_v1.py",
+        "--decision-date",
+        "2026-10-30",
+        "--realize"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "{",
+        "  \"added\": {",
+        "    \"decisions\": 1,",
+        "    \"observations\": 1",
+        "  },",
+        "  \"latest_decision_date\": \"2026-10-30\",",
+        "  \"latest_realization_date\": \"2026-10-30\",",
+        "  \"latest_score_block_at\": \"2026-07-01\",",
+        "  \"observed_weeks\": 5,",
+        "  \"remaining_weeks\": 47,",
+        "  \"saved_decisions\": 7",
+        "}"
+      ]
+    },
+    {
+      "step": "record residual_tie_agnostic_companion_v1",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/record_residual_tie_agnostic_companion_forward_v1.py",
+        "--decision-date",
+        "2026-10-30",
+        "--realize"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "  \"execution_enabled\": false,",
+        "  \"modifies\": \"nothing\",",
+        "  \"observed_at_utc\": \"2026-11-01T12:15:54Z\",",
+        "  \"previous_record_hash\": \"ec1f5675084d2b2b2da2d3967f43da2d36e64b7c2ebb69f9aa8c0861a5904292\",",
+        "  \"protocol_version\": \"residual_tie_agnostic_companion_v1\",",
+        "  \"realization_date\": \"2026-10-30\",",
+        "  \"record_hash\": \"d049de076d73bf329cd06c4f19131a8e1bb9f6e7d376632393a6ec6f069f0897\",",
+        "  \"record_type\": \"residual_tie_agnostic_companion_observation_v1\",",
+        "  \"seed_count\": 20,",
+        "  \"seed_median_net_return\": 0.01378289688167556,",
+        "  \"sequence\": 5",
+        "}"
+      ]
+    },
+    {
+      "step": "record spy_riser_5050_v1",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/record_spy_riser_5050_forward_v1.py",
+        "--decision-date",
+        "2026-10-30",
+        "--realize"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "    \"SYRE\",",
+        "    \"IOVA\",",
+        "    \"EVC\",",
+        "    \"STX\",",
+        "    \"PENG\",",
+        "    \"AAOI\",",
+        "    \"MRVL\",",
+        "    \"IRDM\",",
+        "    \"LITE\",",
+        "    \"ICHR\"",
+        "  ]",
+        "}"
+      ]
+    },
+    {
+      "step": "record trend_sleeve_8020_v1",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/record_trend_sleeve_8020_forward_v1.py",
+        "--decision-date",
+        "2026-10-30",
+        "--realize"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "{",
+        "  \"added\": {",
+        "    \"decisions\": 1,",
+        "    \"observations\": 1",
+        "  },",
+        "  \"saved_decisions\": 3,",
+        "  \"observed_weeks\": 2,",
+        "  \"latest_decision_date\": \"2026-10-30\",",
+        "  \"latest_realization_date\": \"2026-10-30\"",
+        "}"
+      ]
+    },
+    {
+      "step": "mark the dashboard books",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/mark_last_books_to_market_v1.py"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "pricing 49 symbols",
+        "weeks priced: ['2026-08-14', '2026-08-21', '2026-08-28', '2026-09-04', '2026-09-11', '2026-09-18', '2026-09-25', '2026-10-02', '2026-10-09', '2026-10-16', '2026-10-23', '2026-10-30']",
+        "candidate-return-first-60-40-forward-v1: +9.3883% over 12 held weeks (3/3 names priced)",
+        "sec-cash-conversion-breadth20-dynamic-v1: +8.8391% over 12 held weeks (26/26 names priced)",
+        "sec-growth-survivorship-aware-v1: -10.8136% over 12 held weeks (5/5 names priced)",
+        "sec-residual-controlled-1x-v1: +2.5459% over 12 held weeks (44/44 names priced)",
+        "sec-sector-aware-signal-ensemble-v1: +8.8243% over 12 held weeks (29/29 names priced)"
+      ]
+    },
+    {
+      "step": "benchmark and energy attribution",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/build_held_book_attribution_v1.py"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "weeks: ['2026-08-14', '2026-08-21', '2026-08-28', '2026-09-04', '2026-09-11', '2026-09-18', '2026-09-25', '2026-10-02', '2026-10-09', '2026-10-16', '2026-10-23', '2026-10-30']",
+        "  book                                            total   energy     ex-E  ex-E sleeve",
+        "  candidate-return-first-60-40-forward-v1        9.12%   11.10%   -1.97%       -3.99%",
+        "  sec-sector-aware-signal-ensemble-v1            8.81%    3.37%    5.45%        7.74%",
+        "  sec-cash-conversion-breadth20-dynamic-v1       8.79%    4.82%    3.97%        5.80%",
+        "  sec-residual-controlled-1x-v1                  2.81%    4.25%   -1.45%       -1.86%",
+        "  sec-growth-survivorship-aware-v1              -9.46%   -2.46%   -7.00%       -8.75%",
+        "  benchmarks: QQQ -4.40%  SPY -2.03%  XLK -4.39%  equal_weight_issuer_universe -5.46%"
+      ]
+    },
+    {
+      "step": "what-if replay",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/build_paper_replay_v1.py"
+      ],
+      "returncode": 1,
+      "status": "failed",
+      "tail": [
+        "    \"start\": start, \"end\": str(window.index[-1].date()),",
+        "                               ~~~~~~~~~~~~^^^^",
+        "  File \"/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/lib/python3.11/site-packages/pandas/core/indexes/base.py\", line 5401, in __getitem__",
+        "    return getitem(key)",
+        "           ^^^^^^^^^^^^",
+        "  File \"/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/lib/python3.11/site-packages/pandas/core/arrays/datetimelike.py\", line 393, in __getitem__",
+        "    result = cast(Union[Self, DTScalarOrNaT], super().__getitem__(key))",
+        "                                              ^^^^^^^^^^^^^^^^^^^^^^^^",
+        "  File \"/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/lib/python3.11/site-packages/pandas/core/arrays/_mixins.py\", line 293, in __getitem__",
+        "    result = self._ndarray[key]",
+        "             ~~~~~~~~~~~~~^^^^^",
+        "IndexError: index -1 is out of bounds for axis 0 with size 0"
+      ]
+    }
+  ],
+  "finished_at_utc": "2026-11-01T12:16:18.598981+00:00"
+}

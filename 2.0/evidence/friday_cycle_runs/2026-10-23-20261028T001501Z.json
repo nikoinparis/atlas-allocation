@@ -1,0 +1,454 @@
+{
+  "decision_friday": "2026-10-23",
+  "started_at_utc": "2026-10-28T00:00:05.631198+00:00",
+  "pending": {
+    "etf": [],
+    "stock": [
+      "equal_weight_benchmark_v1",
+      "valuation_earnings_yield_v1",
+      "sue_quarterly_v1",
+      "residual_tie_agnostic_companion_v1",
+      "spy_riser_5050_v1",
+      "trend_sleeve_8020_v1"
+    ]
+  },
+  "live_trading_enabled": false,
+  "status": "complete",
+  "steps": [
+    {
+      "step": "extend the narrow weekly panel",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/extend_weekly_price_panel_v2.py"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "['WSR']: possibly delisted; no price data found  (1d 2026-06-01 -> 2026-10-29)",
+        "$ZIMV: possibly delisted; no timezone found",
+        "$YMAB: possibly delisted; no timezone found",
+        "$ZFOX: possibly delisted; no timezone found",
+        "$XM: possibly delisted; no timezone found",
+        "$X: possibly delisted; no timezone found",
+        "$WWE: possibly delisted; no timezone found",
+        "$ZUO: possibly delisted; no timezone found",
+        "$ZEUS: possibly delisted; no timezone found",
+        "",
+        "8 Failed downloads:",
+        "['ZIMV', 'YMAB', 'ZFOX', 'XM', 'X', 'WWE', 'ZUO', 'ZEUS']: possibly delisted; no timezone found"
+      ]
+    },
+    {
+      "step": "re-acquire full-history prices",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/acquire_broad_full_history_prices_v1.py"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "",
+        "7 Failed downloads:",
+        "['X', 'WMC', 'WWE', 'WOW', 'XM', 'WIRE']: possibly delisted; no timezone found",
+        "['WSR']: possibly delisted; no price data found  (1d 2011-01-01 -> 2026-10-29)",
+        "$ZEUS: possibly delisted; no timezone found",
+        "$ZIMV: possibly delisted; no timezone found",
+        "$ZFOX: possibly delisted; no timezone found",
+        "$ZUO: possibly delisted; no timezone found",
+        "$YMAB: possibly delisted; no timezone found",
+        "",
+        "5 Failed downloads:",
+        "['ZEUS', 'ZIMV', 'ZFOX', 'ZUO', 'YMAB']: possibly delisted; no timezone found"
+      ]
+    },
+    {
+      "step": "rebuild the broad full-history panel",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/build_broad_full_history_panel_v1.py"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "    \"compared_cells\": 556008,",
+        "    \"median_absolute_gap\": 2.220446049250313e-16,",
+        "    \"overlap_weeks\": 204,",
+        "    \"share_over_100bps\": 0.000853,",
+        "    \"shared_issuers\": 2812",
+        "  },",
+        "  \"source_vintage\": \"20261028T000558Z-broad-full-history-v1\",",
+        "  \"weeks\": 825,",
+        "  \"weeks_dropped_as_unclosed\": [",
+        "    \"2026-10-30\"",
+        "  ]",
+        "}"
+      ]
+    },
+    {
+      "step": "corporate-action clean the full-history panel",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/build_corporate_action_clean_prices_v1.py",
+        "--prices",
+        "data/broad_full_history_panel_v1/weekly_adjusted_prices.csv.gz",
+        "--output",
+        "data/clean_full_history_prices_v1"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "  \"jump_ratio\": 5.0,",
+        "  \"max_legitimate_jumps\": 1,",
+        "  \"non_positive_cells_removed\": 0,",
+        "  \"non_positive_issuers\": [],",
+        "  \"output_cells\": 1836471,",
+        "  \"output_issuers\": 2798,",
+        "  \"price_floor\": 1.0,",
+        "  \"quarantined_count\": 14,",
+        "  \"share_of_cells_removed\": 0.011332,",
+        "  \"sub_floor_cells_removed\": 12622,",
+        "  \"sub_floor_issuers_touched\": 213",
+        "}"
+      ]
+    },
+    {
+      "step": "record equal_weight_benchmark_v1",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/record_equal_weight_benchmark_forward_v1.py",
+        "--decision-date",
+        "2026-10-23",
+        "--realize"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "{",
+        "  \"added\": {",
+        "    \"decisions\": 1,",
+        "    \"observations\": 1",
+        "  },",
+        "  \"latest_decision_date\": \"2026-10-23\",",
+        "  \"latest_realization_date\": \"2026-10-23\",",
+        "  \"observed_weeks\": 4,",
+        "  \"saved_decisions\": 6",
+        "}"
+      ]
+    },
+    {
+      "step": "record valuation_earnings_yield_v1",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/record_valuation_earnings_yield_forward_v1.py",
+        "--decision-date",
+        "2026-10-23",
+        "--realize"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "{",
+        "  \"added\": {",
+        "    \"decisions\": 1,",
+        "    \"observations\": 1",
+        "  },",
+        "  \"latest_decision_date\": \"2026-10-23\",",
+        "  \"latest_realization_date\": \"2026-10-23\",",
+        "  \"latest_score_block_at\": \"2026-07-01\",",
+        "  \"observed_weeks\": 4,",
+        "  \"remaining_weeks\": 48,",
+        "  \"saved_decisions\": 6",
+        "}"
+      ]
+    },
+    {
+      "step": "record sue_quarterly_v1",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/record_sue_quarterly_forward_v1.py",
+        "--decision-date",
+        "2026-10-23",
+        "--realize"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "{",
+        "  \"added\": {",
+        "    \"decisions\": 1,",
+        "    \"observations\": 1",
+        "  },",
+        "  \"latest_decision_date\": \"2026-10-23\",",
+        "  \"latest_realization_date\": \"2026-10-23\",",
+        "  \"latest_score_block_at\": \"2026-07-01\",",
+        "  \"observed_weeks\": 4,",
+        "  \"remaining_weeks\": 48,",
+        "  \"saved_decisions\": 6",
+        "}"
+      ]
+    },
+    {
+      "step": "record residual_tie_agnostic_companion_v1",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/record_residual_tie_agnostic_companion_forward_v1.py",
+        "--decision-date",
+        "2026-10-23",
+        "--realize"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "  \"execution_enabled\": false,",
+        "  \"modifies\": \"nothing\",",
+        "  \"observed_at_utc\": \"2026-10-28T00:14:10Z\",",
+        "  \"previous_record_hash\": \"e9515d1967bc51a278d3798d7ed3ba2c8a136c040fceee29bbeca5a593832ef7\",",
+        "  \"protocol_version\": \"residual_tie_agnostic_companion_v1\",",
+        "  \"realization_date\": \"2026-10-23\",",
+        "  \"record_hash\": \"ec1f5675084d2b2b2da2d3967f43da2d36e64b7c2ebb69f9aa8c0861a5904292\",",
+        "  \"record_type\": \"residual_tie_agnostic_companion_observation_v1\",",
+        "  \"seed_count\": 20,",
+        "  \"seed_median_net_return\": -0.04944051728801176,",
+        "  \"sequence\": 4",
+        "}"
+      ]
+    },
+    {
+      "step": "record spy_riser_5050_v1",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/record_spy_riser_5050_forward_v1.py",
+        "--decision-date",
+        "2026-10-23",
+        "--realize"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "    \"SYRE\",",
+        "    \"IOVA\",",
+        "    \"EVC\",",
+        "    \"STX\",",
+        "    \"PENG\",",
+        "    \"AAOI\",",
+        "    \"MRVL\",",
+        "    \"IRDM\",",
+        "    \"LITE\",",
+        "    \"ICHR\"",
+        "  ]",
+        "}"
+      ]
+    },
+    {
+      "step": "record trend_sleeve_8020_v1",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/record_trend_sleeve_8020_forward_v1.py",
+        "--decision-date",
+        "2026-10-23",
+        "--realize"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "{",
+        "  \"added\": {",
+        "    \"decisions\": 1,",
+        "    \"observations\": 1",
+        "  },",
+        "  \"saved_decisions\": 2,",
+        "  \"observed_weeks\": 1,",
+        "  \"latest_decision_date\": \"2026-10-23\",",
+        "  \"latest_realization_date\": \"2026-10-23\"",
+        "}"
+      ]
+    },
+    {
+      "step": "mark the dashboard books",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/mark_last_books_to_market_v1.py"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "pricing 49 symbols",
+        "weeks priced: ['2026-08-14', '2026-08-21', '2026-08-28', '2026-09-04', '2026-09-11', '2026-09-18', '2026-09-25', '2026-10-02', '2026-10-09', '2026-10-16', '2026-10-23']",
+        "candidate-return-first-60-40-forward-v1: +9.9920% over 11 held weeks (3/3 names priced)",
+        "sec-cash-conversion-breadth20-dynamic-v1: +10.5008% over 11 held weeks (26/26 names priced)",
+        "sec-growth-survivorship-aware-v1: -4.9864% over 11 held weeks (5/5 names priced)",
+        "sec-residual-controlled-1x-v1: +3.6575% over 11 held weeks (44/44 names priced)",
+        "sec-sector-aware-signal-ensemble-v1: +9.6678% over 11 held weeks (29/29 names priced)"
+      ]
+    },
+    {
+      "step": "benchmark and energy attribution",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/build_held_book_attribution_v1.py"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "weeks: ['2026-08-14', '2026-08-21', '2026-08-28', '2026-09-04', '2026-09-11', '2026-09-18', '2026-09-25', '2026-10-02', '2026-10-09', '2026-10-16', '2026-10-23']",
+        "  book                                            total   energy     ex-E  ex-E sleeve",
+        "  sec-cash-conversion-breadth20-dynamic-v1      10.30%    4.88%    5.42%        7.93%",
+        "  candidate-return-first-60-40-forward-v1        9.67%   10.64%   -0.97%       -1.96%",
+        "  sec-sector-aware-signal-ensemble-v1            9.58%    3.49%    6.10%        8.67%",
+        "  sec-residual-controlled-1x-v1                  3.88%    4.38%   -0.50%       -0.65%",
+        "  sec-growth-survivorship-aware-v1              -3.33%   -3.02%   -0.30%       -0.38%",
+        "  benchmarks: QQQ -2.48%  SPY -1.47%  XLK -2.41%  equal_weight_issuer_universe -6.45%"
+      ]
+    },
+    {
+      "step": "what-if replay",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/build_paper_replay_v1.py"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "Breadth-Confirmed Trend (clock)      2026-08-14 -> 2026-10-27  $   11,014  +10.14%  worst day -1.78%  unpriced []",
+        "Past-Only Consensus (clock)          2026-08-14 -> 2026-10-27  $   11,315  +13.15%  worst day -2.88%  unpriced []",
+        "60/40 Blend (clock)                  2026-08-14 -> 2026-10-27  $   10,644  +6.44%  worst day -2.00%  unpriced []",
+        "Minimum Variance (clock)             2026-08-14 -> 2026-10-27  $    9,666  -3.34%  worst day -1.05%  unpriced []",
+        "Valuation Earnings Yield (clock)     2026-09-11 -> 2026-10-27  $   11,669  +16.69%  worst day -2.72%  unpriced []",
+        "SUE Quarterly (clock)                2026-09-11 -> 2026-10-27  $    9,926  -0.74%  worst day -2.15%  unpriced []",
+        "SPY from 2026-08-07                  2026-08-07 -> 2026-10-27  $    9,923  -0.77%",
+        "SPY from 2026-08-14                  2026-08-14 -> 2026-10-27  $    9,883  -1.17%",
+        "SPY from 2026-09-11                  2026-09-11 -> 2026-10-27  $   10,039  +0.39%",
+        "QQQ from 2026-08-07                  2026-08-07 -> 2026-10-27  $    9,860  -1.40%",
+        "QQQ from 2026-08-14                  2026-08-14 -> 2026-10-27  $    9,752  -2.48%",
+        "QQQ from 2026-09-11                  2026-09-11 -> 2026-10-27  $    9,973  -0.27%"
+      ]
+    },
+    {
+      "step": "strategy comparison",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/build_strategy_comparison_payload_v1.py"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "sec-residual-controlled-1x-v1            common CAGR +41.1% Sharpe 2.10 DD -18.7% | since 2026-08-07: +5.15% vs SPY +nan%, DD -4.65%, top XLE +2.47%",
+        "candidate-return-first-60-40-forward-v1  common CAGR +41.8% Sharpe 2.00 DD -15.8% | since 2026-08-07: +11.26% vs SPY +nan%, DD -2.79%, top XLE +10.31%",
+        "sec-growth-survivorship-aware-v1         common CAGR +31.7% Sharpe 0.88 DD -36.5% | since 2026-08-07: -4.52% vs SPY +nan%, DD -16.27%, top PLTR +3.12%",
+        "sec-cash-conversion-breadth20-dynamic-v1 common CAGR +38.6% Sharpe 1.68 DD -21.5% | since 2026-08-07: +11.00% vs SPY +nan%, DD -3.86%, top XLE +3.09%",
+        "sec-sector-aware-signal-ensemble-v1      common CAGR +42.7% Sharpe 1.91 DD -21.8% | since 2026-08-07: +10.05% vs SPY +nan%, DD -3.84%, top ZS +2.18%"
+      ]
+    },
+    {
+      "step": "forward tracker payload",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/build_forward_tracker_payload_v1.py"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "  past_only_consensus_selector_return_v1: 8/52",
+        "  return_first_60_40_blend_v1: 8/52",
+        "  equal_weight_benchmark_v1: 4/52",
+        "  residual_tie_agnostic_companion_v1: 4/52",
+        "  sue_quarterly_v1: 4/52",
+        "  valuation_earnings_yield_v1: 4/52",
+        "  static_spy_gld_shy_v1: 3/52",
+        "  spy_riser_5050_v1: 1/52",
+        "  trend_sleeve_8020_v1: 1/52",
+        "  avoid_hot_leader_ties_v1: 0/52",
+        "  sec_residual_controlled_sleeve_v1: 0/52",
+        "  valuation_growth_5050_blend_v1: 0/52"
+      ]
+    },
+    {
+      "step": "research status payload",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "scripts/build_research_status_payload_v1.py"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "  return_first_60_40_blend_v1                   8/52  cumulative +5.18%",
+        "  sec_residual_controlled_sleeve_v1             0/52",
+        "  spy_riser_5050_v1                             1/52",
+        "  static_spy_gld_shy_v1                         3/52  cumulative -1.41%",
+        "  sue_quarterly_v1                              4/52  cumulative -2.28%",
+        "  trend_sleeve_8020_v1                          1/52",
+        "  valuation_earnings_yield_v1                   4/52  cumulative +13.24%",
+        "  valuation_growth_5050_blend_v1                0/52",
+        "  pending: sec_residual_controlled_sleeve_forward_v1 from 2026-08-28",
+        "  pending: sue_quarterly_forward_v1 from 2026-09-11",
+        "  pending: valuation_earnings_yield_forward_v1 from 2026-09-11",
+        "  pending: valuation_growth_5050_blend_forward_v1 from 2026-09-11"
+      ]
+    },
+    {
+      "step": "verify every hash chain",
+      "command": [
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/.venv/bin/python",
+        "-c",
+        "import sys; sys.path.insert(0, '.'); from pathlib import Path; from src.systematic_trader.forward_evidence import read_and_verify_log as v\nfor d in Path('evidence').glob('forward_*/decisions.jsonl'):\n    v(d, date_field='decision_date', first_eligible_date='2000-01-07')\n    o = d.with_name('observations.jsonl')\n    o.exists() and o.stat().st_size and v(o, date_field='realization_date', first_eligible_date='2000-01-07')\nprint('hash chains verify')"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": [
+        "hash chains verify"
+      ]
+    },
+    {
+      "step": "git add",
+      "command": [
+        "/usr/bin/git",
+        "-C",
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer",
+        "add",
+        "2.0/evidence",
+        "2.0/data",
+        "2.0/dashboard/public",
+        "2.0/research_registry"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": []
+    },
+    {
+      "step": "git commit",
+      "command": [
+        "/usr/bin/git",
+        "-C",
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer",
+        "commit",
+        "-q",
+        "-m",
+        "Forward week 2026-10-23: all clocks recorded (automated)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>",
+        "--",
+        "2.0/evidence",
+        "2.0/data",
+        "2.0/dashboard/public",
+        "2.0/research_registry"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": []
+    },
+    {
+      "step": "git push",
+      "command": [
+        "/usr/bin/git",
+        "-C",
+        "/Users/nicholasturangan/Projects/Portfolio Optimizer",
+        "push",
+        "-q",
+        "origin",
+        "HEAD:main"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "tail": []
+    }
+  ],
+  "finished_at_utc": "2026-10-28T00:15:01.040337+00:00"
+}

@@ -1,0 +1,609 @@
+{
+  "acquisition": {
+    "action_rows": 3843,
+    "errors": [],
+    "observed_at_utc": "2026-11-01T12:00:30.673110+00:00",
+    "period": "max",
+    "price_rows": 211633,
+    "provider": "Yahoo Finance via yfinance",
+    "pulls": [
+      {
+        "completed_at_utc": "2026-11-01T12:00:17.411336+00:00",
+        "rows": 4888,
+        "started_at_utc": "2026-11-01T12:00:16.555004+00:00",
+        "status": "ok",
+        "ticker": "BIL"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:17.733661+00:00",
+        "rows": 4987,
+        "started_at_utc": "2026-11-01T12:00:17.501215+00:00",
+        "status": "ok",
+        "ticker": "DBA"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:18.078531+00:00",
+        "rows": 5926,
+        "started_at_utc": "2026-11-01T12:00:17.842894+00:00",
+        "status": "ok",
+        "ticker": "EEM"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:18.449054+00:00",
+        "rows": 6332,
+        "started_at_utc": "2026-11-01T12:00:18.186134+00:00",
+        "status": "ok",
+        "ticker": "EFA"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:18.939285+00:00",
+        "rows": 7706,
+        "started_at_utc": "2026-11-01T12:00:18.566627+00:00",
+        "status": "ok",
+        "ticker": "EWJ"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:19.251951+00:00",
+        "rows": 5522,
+        "started_at_utc": "2026-11-01T12:00:19.081756+00:00",
+        "status": "ok",
+        "ticker": "GLD"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:19.647551+00:00",
+        "rows": 4922,
+        "started_at_utc": "2026-11-01T12:00:19.367253+00:00",
+        "status": "ok",
+        "ticker": "HYG"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:19.964393+00:00",
+        "rows": 5474,
+        "started_at_utc": "2026-11-01T12:00:19.745368+00:00",
+        "status": "ok",
+        "ticker": "IAU"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:20.361866+00:00",
+        "rows": 6104,
+        "started_at_utc": "2026-11-01T12:00:20.067806+00:00",
+        "status": "ok",
+        "ticker": "IEF"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:20.735509+00:00",
+        "rows": 6647,
+        "started_at_utc": "2026-11-01T12:00:20.475354+00:00",
+        "status": "ok",
+        "ticker": "IWM"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:21.224171+00:00",
+        "rows": 6104,
+        "started_at_utc": "2026-11-01T12:00:20.859199+00:00",
+        "status": "ok",
+        "ticker": "LQD"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:21.597625+00:00",
+        "rows": 4939,
+        "started_at_utc": "2026-11-01T12:00:21.350136+00:00",
+        "status": "ok",
+        "ticker": "MBB"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:21.841340+00:00",
+        "rows": 3012,
+        "started_at_utc": "2026-11-01T12:00:21.692334+00:00",
+        "status": "ok",
+        "ticker": "PDBC"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:22.271862+00:00",
+        "rows": 6955,
+        "started_at_utc": "2026-11-01T12:00:21.903129+00:00",
+        "status": "ok",
+        "ticker": "QQQ"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:22.733528+00:00",
+        "rows": 6104,
+        "started_at_utc": "2026-11-01T12:00:22.396145+00:00",
+        "status": "ok",
+        "ticker": "SHY"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:22.998111+00:00",
+        "rows": 5160,
+        "started_at_utc": "2026-11-01T12:00:22.846984+00:00",
+        "status": "ok",
+        "ticker": "SLV"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:23.463452+00:00",
+        "rows": 8497,
+        "started_at_utc": "2026-11-01T12:00:23.104695+00:00",
+        "status": "ok",
+        "ticker": "SPY"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:23.870717+00:00",
+        "rows": 5762,
+        "started_at_utc": "2026-11-01T12:00:23.618550+00:00",
+        "status": "ok",
+        "ticker": "TIP"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:24.359004+00:00",
+        "rows": 6104,
+        "started_at_utc": "2026-11-01T12:00:23.978146+00:00",
+        "status": "ok",
+        "ticker": "TLT"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:24.677943+00:00",
+        "rows": 5173,
+        "started_at_utc": "2026-11-01T12:00:24.472583+00:00",
+        "status": "ok",
+        "ticker": "USO"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:25.042609+00:00",
+        "rows": 4950,
+        "started_at_utc": "2026-11-01T12:00:24.777427+00:00",
+        "status": "ok",
+        "ticker": "UUP"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:25.376381+00:00",
+        "rows": 4848,
+        "started_at_utc": "2026-11-01T12:00:25.140970+00:00",
+        "status": "ok",
+        "ticker": "VEA"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:25.735706+00:00",
+        "rows": 5558,
+        "started_at_utc": "2026-11-01T12:00:25.465358+00:00",
+        "status": "ok",
+        "ticker": "VNQ"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:26.096425+00:00",
+        "rows": 5725,
+        "started_at_utc": "2026-11-01T12:00:25.841970+00:00",
+        "status": "ok",
+        "ticker": "VTV"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:26.431616+00:00",
+        "rows": 5725,
+        "started_at_utc": "2026-11-01T12:00:26.208548+00:00",
+        "status": "ok",
+        "ticker": "VUG"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:26.789872+00:00",
+        "rows": 5446,
+        "started_at_utc": "2026-11-01T12:00:26.536760+00:00",
+        "status": "ok",
+        "ticker": "VWO"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:27.171913+00:00",
+        "rows": 7007,
+        "started_at_utc": "2026-11-01T12:00:26.892544+00:00",
+        "status": "ok",
+        "ticker": "XLB"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:27.603615+00:00",
+        "rows": 7007,
+        "started_at_utc": "2026-11-01T12:00:27.301274+00:00",
+        "status": "ok",
+        "ticker": "XLE"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:28.073593+00:00",
+        "rows": 7007,
+        "started_at_utc": "2026-11-01T12:00:27.734536+00:00",
+        "status": "ok",
+        "ticker": "XLF"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:28.518748+00:00",
+        "rows": 7007,
+        "started_at_utc": "2026-11-01T12:00:28.203702+00:00",
+        "status": "ok",
+        "ticker": "XLI"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:28.926042+00:00",
+        "rows": 7007,
+        "started_at_utc": "2026-11-01T12:00:28.661557+00:00",
+        "status": "ok",
+        "ticker": "XLK"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:29.418692+00:00",
+        "rows": 7007,
+        "started_at_utc": "2026-11-01T12:00:29.058895+00:00",
+        "status": "ok",
+        "ticker": "XLP"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:29.805997+00:00",
+        "rows": 7007,
+        "started_at_utc": "2026-11-01T12:00:29.556773+00:00",
+        "status": "ok",
+        "ticker": "XLU"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:30.240495+00:00",
+        "rows": 7007,
+        "started_at_utc": "2026-11-01T12:00:29.941672+00:00",
+        "status": "ok",
+        "ticker": "XLV"
+      },
+      {
+        "completed_at_utc": "2026-11-01T12:00:30.673110+00:00",
+        "rows": 7007,
+        "started_at_utc": "2026-11-01T12:00:30.366638+00:00",
+        "status": "ok",
+        "ticker": "XLY"
+      }
+    ],
+    "python_version": "3.11.15",
+    "status": "complete",
+    "symbol_count": 35,
+    "symbols": [
+      "BIL",
+      "DBA",
+      "EEM",
+      "EFA",
+      "EWJ",
+      "GLD",
+      "HYG",
+      "IAU",
+      "IEF",
+      "IWM",
+      "LQD",
+      "MBB",
+      "PDBC",
+      "QQQ",
+      "SHY",
+      "SLV",
+      "SPY",
+      "TIP",
+      "TLT",
+      "USO",
+      "UUP",
+      "VEA",
+      "VNQ",
+      "VTV",
+      "VUG",
+      "VWO",
+      "XLB",
+      "XLE",
+      "XLF",
+      "XLI",
+      "XLK",
+      "XLP",
+      "XLU",
+      "XLV",
+      "XLY"
+    ],
+    "yfinance_version": "1.5.2"
+  },
+  "claims": {
+    "corporate_actions": false,
+    "delistings": false,
+    "permanent_security_ids": false,
+    "point_in_time_prices": false,
+    "point_in_time_universe": false,
+    "vintage_revisions": false
+  },
+  "container_log": "{\"status\": \"complete\", \"observed_at_utc\": \"2026-11-01T12:00:30.673110+00:00\", \"symbols\": 35, \"price_rows\": 211633}\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(\n/opt/free_etf_download.py:52: DeprecationWarning: 'raise_errors' deprecated, do: yf.config.debug.hide_exceptions = False\n  frame = yf.Ticker(ticker).history(",
+  "excluded_scope": "survivorship-safe historical universe or delisted-security claims",
+  "freshness": {
+    "expected_symbols": 35,
+    "freshness_pass": true,
+    "latest_observation_date": "2026-10-30",
+    "maximum_calendar_staleness_days": 2,
+    "missing_symbols": [],
+    "observed_symbols": 35,
+    "symbols_staler_than_7_days": []
+  },
+  "generated_at_utc": "2026-11-01T12:00:36.361455+00:00",
+  "historical_simulation_grade": "research_only",
+  "image": {
+    "image": "localhost/po2-yfinance:1.5.2-v1",
+    "image_id": "be5eb482b9a6710e5f539c39b69c89101b4d006a9bb195450acfe7d82e90ed8a",
+    "repo_digest": "sha256:d14f2449528c4aa258038741f6b6b1c1e107d4f368da752c4d2247c9efd99c74"
+  },
+  "observed_at_utc": "2026-11-01T12:00:30.673110+00:00",
+  "paid_data_required": false,
+  "revision_comparison": {
+    "common_rows": 211528,
+    "disappeared_keys": 0,
+    "economically_material_adjusted_close_rows": 34,
+    "economically_material_relative_threshold": 0.0001,
+    "magnitude_by_field": {
+      "adjusted_close": {
+        "exact_change_count": 151757,
+        "exact_change_share": 0.7174322075564464,
+        "maximum_absolute_difference": 0.3899993896484375,
+        "maximum_relative_difference": 0.0057175948800262085,
+        "relative_change_counts": {
+          "over_0.0001": 34,
+          "over_0.001": 13,
+          "over_1e-05": 35,
+          "over_1e-06": 1364,
+          "over_1e-07": 115521,
+          "over_1e-08": 151757
+        },
+        "relative_change_shares": {
+          "over_0.0001": 0.0001607352218146061,
+          "over_0.001": 6.145758481146704e-05,
+          "over_1e-05": 0.00016546272833856511,
+          "over_1e-06": 0.00644831889868008,
+          "over_1e-07": 0.546126281154268,
+          "over_1e-08": 0.7174322075564464
+        }
+      },
+      "close": {
+        "exact_change_count": 35,
+        "exact_change_share": 0.00016546272833856511,
+        "maximum_absolute_difference": 0.3899993896484375,
+        "maximum_relative_difference": 0.0057175948800262085,
+        "relative_change_counts": {
+          "over_0.0001": 34,
+          "over_0.001": 13,
+          "over_1e-05": 35,
+          "over_1e-06": 35,
+          "over_1e-07": 35,
+          "over_1e-08": 35
+        },
+        "relative_change_shares": {
+          "over_0.0001": 0.0001607352218146061,
+          "over_0.001": 6.145758481146704e-05,
+          "over_1e-05": 0.00016546272833856511,
+          "over_1e-06": 0.00016546272833856511,
+          "over_1e-07": 0.00016546272833856511,
+          "over_1e-08": 0.00016546272833856511
+        }
+      }
+    },
+    "new_keys": 105,
+    "new_rows": 211633,
+    "new_snapshot_id": "20261101T120030Z-ac1f1ed8958b7cb7",
+    "old_rows": 211528,
+    "old_snapshot_id": "20261027T163652Z-c69f63655e983f53",
+    "revised_row_share": 0.7174322075564464,
+    "revised_rows": 151757,
+    "sample_revisions": [
+      {
+        "changes": {
+          "adjusted_close": {
+            "difference": -1.9073486328125e-06,
+            "new": 24.05353546142578,
+            "old": 24.053537368774414
+          }
+        },
+        "observation_date": "1993-01-29",
+        "security_id": "yahoo-ticker:SPY"
+      },
+      {
+        "changes": {
+          "adjusted_close": {
+            "difference": -2.09808349609375e-05,
+            "new": 24.224592208862305,
+            "old": 24.224613189697266
+          }
+        },
+        "observation_date": "1993-02-01",
+        "security_id": "yahoo-ticker:SPY"
+      },
+      {
+        "changes": {
+          "adjusted_close": {
+            "difference": 1.1444091796875e-05,
+            "new": 24.275938034057617,
+            "old": 24.27592658996582
+          }
+        },
+        "observation_date": "1993-02-02",
+        "security_id": "yahoo-ticker:SPY"
+      },
+      {
+        "changes": {
+          "adjusted_close": {
+            "difference": 3.814697265625e-06,
+            "new": 24.532554626464844,
+            "old": 24.532550811767578
+          }
+        },
+        "observation_date": "1993-02-03",
+        "security_id": "yahoo-ticker:SPY"
+      },
+      {
+        "changes": {
+          "adjusted_close": {
+            "difference": 5.7220458984375e-06,
+            "new": 24.63520050048828,
+            "old": 24.635194778442383
+          }
+        },
+        "observation_date": "1993-02-04",
+        "security_id": "yahoo-ticker:SPY"
+      },
+      {
+        "changes": {
+          "adjusted_close": {
+            "difference": 1.1444091796875e-05,
+            "new": 24.447017669677734,
+            "old": 24.447006225585938
+          }
+        },
+        "observation_date": "1993-02-09",
+        "security_id": "yahoo-ticker:SPY"
+      },
+      {
+        "changes": {
+          "adjusted_close": {
+            "difference": 1.9073486328125e-06,
+            "new": 24.481233596801758,
+            "old": 24.481231689453125
+          }
+        },
+        "observation_date": "1993-02-10",
+        "security_id": "yahoo-ticker:SPY"
+      },
+      {
+        "changes": {
+          "adjusted_close": {
+            "difference": 7.62939453125e-06,
+            "new": 24.60097885131836,
+            "old": 24.600971221923828
+          }
+        },
+        "observation_date": "1993-02-11",
+        "security_id": "yahoo-ticker:SPY"
+      },
+      {
+        "changes": {
+          "adjusted_close": {
+            "difference": -1.9073486328125e-06,
+            "new": 24.412799835205078,
+            "old": 24.41280174255371
+          }
+        },
+        "observation_date": "1993-02-12",
+        "security_id": "yahoo-ticker:SPY"
+      },
+      {
+        "changes": {
+          "adjusted_close": {
+            "difference": -1.33514404296875e-05,
+            "new": 23.796911239624023,
+            "old": 23.796924591064453
+          }
+        },
+        "observation_date": "1993-02-16",
+        "security_id": "yahoo-ticker:SPY"
+      },
+      {
+        "changes": {
+          "adjusted_close": {
+            "difference": 3.814697265625e-06,
+            "new": 23.77980613708496,
+            "old": 23.779802322387695
+          }
+        },
+        "observation_date": "1993-02-17",
+        "security_id": "yahoo-ticker:SPY"
+      },
+      {
+        "changes": {
+          "adjusted_close": {
+            "difference": -2.09808349609375e-05,
+            "new": 23.762683868408203,
+            "old": 23.762704849243164
+          }
+        },
+        "observation_date": "1993-02-18",
+        "security_id": "yahoo-ticker:SPY"
+      },
+      {
+        "changes": {
+          "adjusted_close": {
+            "difference": -5.7220458984375e-06,
+            "new": 23.84823989868164,
+            "old": 23.84824562072754
+          }
+        },
+        "observation_date": "1993-02-19",
+        "security_id": "yahoo-ticker:SPY"
+      },
+      {
+        "changes": {
+          "adjusted_close": {
+            "difference": -1.9073486328125e-06,
+            "new": 23.933773040771484,
+            "old": 23.933774948120117
+          }
+        },
+        "observation_date": "1993-02-22",
+        "security_id": "yahoo-ticker:SPY"
+      },
+      {
+        "changes": {
+          "adjusted_close": {
+            "difference": -3.814697265625e-06,
+            "new": 23.916656494140625,
+            "old": 23.91666030883789
+          }
+        },
+        "observation_date": "1993-02-23",
+        "security_id": "yahoo-ticker:SPY"
+      },
+      {
+        "changes": {
+          "adjusted_close": {
+            "difference": -2.09808349609375e-05,
+            "new": 24.224592208862305,
+            "old": 24.224613189697266
+          }
+        },
+        "observation_date": "1993-02-24",
+        "security_id": "yahoo-ticker:SPY"
+      },
+      {
+        "changes": {
+          "adjusted_close": {
+            "difference": 1.1444091796875e-05,
+            "new": 24.275938034057617,
+            "old": 24.27592658996582
+          }
+        },
+        "observation_date": "1993-02-25",
+        "security_id": "yahoo-ticker:SPY"
+      },
+      {
+        "changes": {
+          "adjusted_close": {
+            "difference": 9.5367431640625e-06,
+            "new": 24.31015396118164,
+            "old": 24.310144424438477
+          }
+        },
+        "observation_date": "1993-02-26",
+        "security_id": "yahoo-ticker:SPY"
+      },
+      {
+        "changes": {
+          "adjusted_close": {
+            "difference": 7.62939453125e-06,
+            "new": 24.241710662841797,
+            "old": 24.241703033447266
+          }
+        },
+        "observation_date": "1993-03-01",
+        "security_id": "yahoo-ticker:SPY"
+      },
+      {
+        "changes": {
+          "adjusted_close": {
+            "difference": 7.62939453125e-06,
+            "new": 24.60097885131836,
+            "old": 24.600971221923828
+          }
+        },
+        "observation_date": "1993-03-02",
+        "security_id": "yahoo-ticker:SPY"
+      }
+    ]
+  },
+  "scope": "current ETF research, forward paper-data collection, and revision monitoring",
+  "snapshot_id": "20261101T120030Z-ac1f1ed8958b7cb7"
+}

@@ -1,0 +1,296 @@
+{
+  "action_rows": 3843,
+  "errors": [],
+  "observed_at_utc": "2026-11-01T12:00:30.673110+00:00",
+  "period": "max",
+  "price_rows": 211633,
+  "provider": "Yahoo Finance via yfinance",
+  "pulls": [
+    {
+      "completed_at_utc": "2026-11-01T12:00:17.411336+00:00",
+      "rows": 4888,
+      "started_at_utc": "2026-11-01T12:00:16.555004+00:00",
+      "status": "ok",
+      "ticker": "BIL"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:17.733661+00:00",
+      "rows": 4987,
+      "started_at_utc": "2026-11-01T12:00:17.501215+00:00",
+      "status": "ok",
+      "ticker": "DBA"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:18.078531+00:00",
+      "rows": 5926,
+      "started_at_utc": "2026-11-01T12:00:17.842894+00:00",
+      "status": "ok",
+      "ticker": "EEM"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:18.449054+00:00",
+      "rows": 6332,
+      "started_at_utc": "2026-11-01T12:00:18.186134+00:00",
+      "status": "ok",
+      "ticker": "EFA"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:18.939285+00:00",
+      "rows": 7706,
+      "started_at_utc": "2026-11-01T12:00:18.566627+00:00",
+      "status": "ok",
+      "ticker": "EWJ"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:19.251951+00:00",
+      "rows": 5522,
+      "started_at_utc": "2026-11-01T12:00:19.081756+00:00",
+      "status": "ok",
+      "ticker": "GLD"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:19.647551+00:00",
+      "rows": 4922,
+      "started_at_utc": "2026-11-01T12:00:19.367253+00:00",
+      "status": "ok",
+      "ticker": "HYG"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:19.964393+00:00",
+      "rows": 5474,
+      "started_at_utc": "2026-11-01T12:00:19.745368+00:00",
+      "status": "ok",
+      "ticker": "IAU"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:20.361866+00:00",
+      "rows": 6104,
+      "started_at_utc": "2026-11-01T12:00:20.067806+00:00",
+      "status": "ok",
+      "ticker": "IEF"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:20.735509+00:00",
+      "rows": 6647,
+      "started_at_utc": "2026-11-01T12:00:20.475354+00:00",
+      "status": "ok",
+      "ticker": "IWM"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:21.224171+00:00",
+      "rows": 6104,
+      "started_at_utc": "2026-11-01T12:00:20.859199+00:00",
+      "status": "ok",
+      "ticker": "LQD"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:21.597625+00:00",
+      "rows": 4939,
+      "started_at_utc": "2026-11-01T12:00:21.350136+00:00",
+      "status": "ok",
+      "ticker": "MBB"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:21.841340+00:00",
+      "rows": 3012,
+      "started_at_utc": "2026-11-01T12:00:21.692334+00:00",
+      "status": "ok",
+      "ticker": "PDBC"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:22.271862+00:00",
+      "rows": 6955,
+      "started_at_utc": "2026-11-01T12:00:21.903129+00:00",
+      "status": "ok",
+      "ticker": "QQQ"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:22.733528+00:00",
+      "rows": 6104,
+      "started_at_utc": "2026-11-01T12:00:22.396145+00:00",
+      "status": "ok",
+      "ticker": "SHY"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:22.998111+00:00",
+      "rows": 5160,
+      "started_at_utc": "2026-11-01T12:00:22.846984+00:00",
+      "status": "ok",
+      "ticker": "SLV"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:23.463452+00:00",
+      "rows": 8497,
+      "started_at_utc": "2026-11-01T12:00:23.104695+00:00",
+      "status": "ok",
+      "ticker": "SPY"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:23.870717+00:00",
+      "rows": 5762,
+      "started_at_utc": "2026-11-01T12:00:23.618550+00:00",
+      "status": "ok",
+      "ticker": "TIP"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:24.359004+00:00",
+      "rows": 6104,
+      "started_at_utc": "2026-11-01T12:00:23.978146+00:00",
+      "status": "ok",
+      "ticker": "TLT"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:24.677943+00:00",
+      "rows": 5173,
+      "started_at_utc": "2026-11-01T12:00:24.472583+00:00",
+      "status": "ok",
+      "ticker": "USO"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:25.042609+00:00",
+      "rows": 4950,
+      "started_at_utc": "2026-11-01T12:00:24.777427+00:00",
+      "status": "ok",
+      "ticker": "UUP"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:25.376381+00:00",
+      "rows": 4848,
+      "started_at_utc": "2026-11-01T12:00:25.140970+00:00",
+      "status": "ok",
+      "ticker": "VEA"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:25.735706+00:00",
+      "rows": 5558,
+      "started_at_utc": "2026-11-01T12:00:25.465358+00:00",
+      "status": "ok",
+      "ticker": "VNQ"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:26.096425+00:00",
+      "rows": 5725,
+      "started_at_utc": "2026-11-01T12:00:25.841970+00:00",
+      "status": "ok",
+      "ticker": "VTV"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:26.431616+00:00",
+      "rows": 5725,
+      "started_at_utc": "2026-11-01T12:00:26.208548+00:00",
+      "status": "ok",
+      "ticker": "VUG"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:26.789872+00:00",
+      "rows": 5446,
+      "started_at_utc": "2026-11-01T12:00:26.536760+00:00",
+      "status": "ok",
+      "ticker": "VWO"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:27.171913+00:00",
+      "rows": 7007,
+      "started_at_utc": "2026-11-01T12:00:26.892544+00:00",
+      "status": "ok",
+      "ticker": "XLB"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:27.603615+00:00",
+      "rows": 7007,
+      "started_at_utc": "2026-11-01T12:00:27.301274+00:00",
+      "status": "ok",
+      "ticker": "XLE"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:28.073593+00:00",
+      "rows": 7007,
+      "started_at_utc": "2026-11-01T12:00:27.734536+00:00",
+      "status": "ok",
+      "ticker": "XLF"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:28.518748+00:00",
+      "rows": 7007,
+      "started_at_utc": "2026-11-01T12:00:28.203702+00:00",
+      "status": "ok",
+      "ticker": "XLI"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:28.926042+00:00",
+      "rows": 7007,
+      "started_at_utc": "2026-11-01T12:00:28.661557+00:00",
+      "status": "ok",
+      "ticker": "XLK"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:29.418692+00:00",
+      "rows": 7007,
+      "started_at_utc": "2026-11-01T12:00:29.058895+00:00",
+      "status": "ok",
+      "ticker": "XLP"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:29.805997+00:00",
+      "rows": 7007,
+      "started_at_utc": "2026-11-01T12:00:29.556773+00:00",
+      "status": "ok",
+      "ticker": "XLU"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:30.240495+00:00",
+      "rows": 7007,
+      "started_at_utc": "2026-11-01T12:00:29.941672+00:00",
+      "status": "ok",
+      "ticker": "XLV"
+    },
+    {
+      "completed_at_utc": "2026-11-01T12:00:30.673110+00:00",
+      "rows": 7007,
+      "started_at_utc": "2026-11-01T12:00:30.366638+00:00",
+      "status": "ok",
+      "ticker": "XLY"
+    }
+  ],
+  "python_version": "3.11.15",
+  "status": "complete",
+  "symbol_count": 35,
+  "symbols": [
+    "BIL",
+    "DBA",
+    "EEM",
+    "EFA",
+    "EWJ",
+    "GLD",
+    "HYG",
+    "IAU",
+    "IEF",
+    "IWM",
+    "LQD",
+    "MBB",
+    "PDBC",
+    "QQQ",
+    "SHY",
+    "SLV",
+    "SPY",
+    "TIP",
+    "TLT",
+    "USO",
+    "UUP",
+    "VEA",
+    "VNQ",
+    "VTV",
+    "VUG",
+    "VWO",
+    "XLB",
+    "XLE",
+    "XLF",
+    "XLI",
+    "XLK",
+    "XLP",
+    "XLU",
+    "XLV",
+    "XLY"
+  ],
+  "yfinance_version": "1.5.2"
+}

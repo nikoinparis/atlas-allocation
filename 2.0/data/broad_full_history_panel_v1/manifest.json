@@ -1,52 +1,50 @@
 {
   "artifact_sha256": {
-    "weekly_adjusted_prices.csv.gz": "3f670ee9cc7bb19640a5f7f7b8b7eeba45949f33ffea873fadd53f9c0706a3af",
-    "weekly_returns.csv.gz": "e8a9c4fa2fe5b786fcab85a54995c64c7f45827f7bd418f2db770ae9ab44d8cf"
+    "weekly_adjusted_prices.csv.gz": "d5ac550e95b6912127e282c13ace1bad3ea7ec482ae90346db818b3b22965af8",
+    "weekly_returns.csv.gz": "7057c9cc523e5b4edcf917ea4d48a1429384c6c391265532fc7f3ea64348882e"
   },
   "cleaning_rules": {
     "non_positive_prices": "set to missing",
-    "return_observations_masked": 147,
+    "return_observations_masked": 148,
     "weekly_return_cap": 2.0,
     "weekly_return_floor": -0.95
   },
   "coverage_by_year": {
-    "2011": 1670,
-    "2012": 1731,
-    "2013": 1811,
-    "2014": 1910,
-    "2015": 1998,
-    "2016": 2050,
-    "2017": 2135,
-    "2018": 2232,
-    "2019": 2318,
-    "2020": 2470,
-    "2021": 2653,
-    "2022": 2685,
-    "2023": 2721,
-    "2024": 2763,
-    "2025": 2771,
-    "2026": 2810
+    "2011": 1665,
+    "2012": 1725,
+    "2013": 1805,
+    "2014": 1904,
+    "2015": 1991,
+    "2016": 2043,
+    "2017": 2128,
+    "2018": 2224,
+    "2019": 2310,
+    "2020": 2461,
+    "2021": 2643,
+    "2022": 2675,
+    "2023": 2710,
+    "2024": 2752,
+    "2025": 2760,
+    "2026": 2811
   },
-  "created_at_utc": "2026-10-28T00:13:59.991579+00:00",
+  "created_at_utc": "2026-11-07T00:20:38.181684+00:00",
   "experiment": "broad_full_history_panel_v1",
   "first_week": "2011-01-07",
-  "issuers": 2812,
-  "last_closed_friday_at_build": "2026-10-23",
-  "last_week": "2026-10-23",
+  "issuers": 2813,
+  "last_closed_friday_at_build": "2026-11-06",
+  "last_week": "2026-11-06",
   "live_trading_enabled": false,
   "reconciliation_against_sealed_panel": {
     "basis": "weekly simple returns, invariant to the sealed panel's rebasing",
-    "cells_over_100bps": 474,
-    "cells_over_10bps": 648,
-    "compared_cells": 556008,
+    "cells_over_100bps": 642,
+    "cells_over_10bps": 837,
+    "compared_cells": 559389,
     "median_absolute_gap": 2.220446049250313e-16,
-    "overlap_weeks": 204,
-    "share_over_100bps": 0.000853,
-    "shared_issuers": 2812
+    "overlap_weeks": 206,
+    "share_over_100bps": 0.001148,
+    "shared_issuers": 2813
   },
-  "source_vintage": "20261028T000558Z-broad-full-history-v1",
-  "weeks": 825,
-  "weeks_dropped_as_unclosed": [
-    "2026-10-30"
-  ]
+  "source_vintage": "20261107T001253Z-broad-full-history-v1",
+  "weeks": 827,
+  "weeks_dropped_as_unclosed": []
 }

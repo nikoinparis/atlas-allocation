@@ -18230,3 +18230,39 @@ earlier trials on overlapping data. Nothing created or promoted a strategy.
 **Addendum, 2026-11-11.** The owner approved restoring the committed `RESEARCH_QUEUE.md` and adding this
 session's entries. Done: seven Closed rows, B19 replaced by A36, and A35, B21, B22, B23, C6, C7 added.
 The discarded working copy was the 2026-09-06 version; nothing in it was newer than the committed file.
+
+## Step 378 — 2026-11-11 — The banded twin of the benchmark frozen forward (A36)
+
+**What this was for.** Step 377 found on history that resetting SPY/GLD/SHY only when a weight drifts
+more than 5 points trades a fifth as much as the weekly reset for the same result. The owner asked for
+it to be recorded forward ("Yes, build it"). **It adds a clock; it tests no new idea and promotes nothing.**
+
+**Frozen:** `config/forward/banded_spy_gld_shy_v1.json`. Start at thirds; each Friday let the weights
+drift; reset all three only if any is more than 0.05 from one third. The 5pp band is the one registered
+before T4's result, not re-tuned. The weekly-reset mix is recorded alongside from the same prices, with
+both turnovers. First eligible decision **2026-11-13**, 52 weeks, reading fixed in advance: confirms if
+turnover is at most half the weekly book's with Sharpe no more than 0.20 lower and drawdown no more than
+2pp deeper. A missed week is never realised, but the weights still drift truthfully from the last saved
+decision.
+
+**Recorder:** `scripts/record_banded_spy_gld_shy_forward_v1.py`, modelled on the trend-sleeve recorder,
+hash-chained, closes stored in every record. Four unit tests in
+`tests/test_banded_spy_gld_shy_forward.py`.
+
+**Dry run before going live, in a scratch folder (`--rehearse-dir`, which cannot write to evidence):**
+- Rehearsed decisions 2026-10-30 and 2026-11-06 with realization. Its weekly-reset return for the week
+  is **0.006386972857894136** against the trend clock's recorded base **0.006386972857894135**.
+- The banded return equals the weekly-reset return in the first week, as it must from fresh thirds; the
+  second decision holds drifted weights (GLD 34.7%, SHY 33.1%, SPY 32.2%), no rebalance.
+- The recorder's own `band_step` run over the 2004-2026 weekly panel gives **23 rebalances**, T4's count.
+- The real recorder refuses 2026-11-06 ("decision predates the frozen boundary") and created no
+  evidence folder.
+
+**Friday cycle:** one line added to `STOCK_RECORDERS`. `--dry-run` passes and reports nothing to do for
+2026-11-06; the clock is not due for that week and becomes pending for 2026-11-13 with the other six.
+The existing cycle tests pass (7 of 7 with the new ones).
+
+**Not done.** The dashboard was not given a card for this clock. The stacked-trend twin (A35) still
+waits on the owner's decision about internal leverage.
+
+**Cumulative search:** no new trial.

@@ -307,11 +307,6 @@ bootstrap p 0.165. Supported as a construction choice, NOT as alpha, and it is 1
 20% stacked S&P-plus-trend fund + 13.3% SPY + 33.3% GLD + 33.3% SHY. Record forward next to trend_sleeve_8020_v1. Free.
 **Blocker:** owner's decision on internal leverage; then a recorder and a cycle dry run.
 
-### A36. Banded twin of the benchmark clock *(new 2026-11-11, Step 377; replaces B19)*
-T4 measured it on history: a 5pp band (23 rebalances in 22 years) or an annual reset beats weekly reset at every cost level
-(Sharpe 0.83 vs 0.81, turnover 0.12x vs 0.64x). What remains is the forward twin B19 asked for. Free.
-**Blocker:** owner's go-ahead; a recorder and a cycle dry run.
-
 ### B21. Month-end Treasury timing of trades already being made *(new 2026-11-11, Step 377)*
 T3: IEF earns +6.35 bp/day in the last 3 trading days of the month vs -1.79 bp on other days, 2019-2026 (t 2.79, rank 1 of 16
 slots), but fails as a standalone trade at 10 bps. Only use: time bond purchases or rebalances that would happen anyway. Free.
@@ -557,6 +552,7 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 
 | item | verdict | where |
 |---|---|---|
+| **Banded twin of the benchmark clock (was A36)** | **Running, weekly, from 2026-11-13.** `banded_spy_gld_shy_v1`: reset only when a weight drifts > 5pp, recorded next to the weekly-reset mix. Dry run reproduced the trend clock's base return and T4's 23 rebalances. Reading fixed in advance; 52 weeks. | Step 378 |
 | **Halloween / Sell in May (T1)** | **Fails.** SPY Nov-Apr, cash May-Oct, 2003-2026: Sharpe 0.54 vs 0.72 for a same-exposure 50/50 mix, 0 of 4 regimes, placebo rank p 0.15. Worked only in the published 1993-2002 sample. | Step 377 |
 | **BTAL anti-beta sleeve (T2)** | **Fails.** 80/20 with the benchmark, 2011-2026: Sharpe 0.73 vs 0.82; BTAL pays in crises (+20.5% in 2022) and costs -3.35%/yr; plain cash matches the benchmark's Sharpe. | Step 377 |
 | **Treasury month-end as a standalone trade (T3)** | **Fails on cost; the effect is real.** IEF last 3 trading days, 2019-2026: t 2.79, rank 1 of 16 slots, +2.29%/yr over cash at 0 bps, -0.12% at 10 bps. Kept only as B21. | Step 377 |

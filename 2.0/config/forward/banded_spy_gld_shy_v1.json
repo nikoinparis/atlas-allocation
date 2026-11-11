@@ -1,0 +1,32 @@
+{
+ "schema_version": 1,
+ "protocol_version": "banded_spy_gld_shy_v1",
+ "frozen_at_utc": "2026-11-11T06:00:00Z",
+ "owner_authorized": "2026-11-11, in chat: 'Build the banded twin of the benchmark clock now? -- Yes, build it'",
+ "role": "A REBALANCING-RULE TWIN of static_spy_gld_shy_v1, not a strategy and not an edge. Step 377 (T4) measured on 2004-2026 history that resetting SPY/GLD/SHY only when a weight drifts more than 5 percentage points from one third gives Sharpe 0.83 vs 0.81 for weekly reset, CAGR 8.62% vs 8.41%, max drawdown -18.7% vs -19.0%, turnover 0.12x vs 0.64x a year (23 rebalances in 22 years), at 10 bps. This clock records what the band rule actually does from now on, next to the weekly-reset mix computed from the same prices.",
+ "rule": {
+  "target_weights": {"SPY": 0.3333333333333333, "GLD": 0.3333333333333333, "SHY": 0.3333333333333333},
+  "band": 0.05,
+  "rebalance": "Start at equal thirds. Each decision Friday, let the held weights drift with the week's returns. If any weight is more than 0.05 (absolute) from one third, reset all three to one third; otherwise hold the drifted weights. Not re-tuned: the 5pp band is the one Step 377 registered before seeing its result.",
+  "comparison_recorded_alongside": "equal-thirds SPY/GLD/SHY reset every week, computed from the SAME downloaded prices, with its own weekly turnover",
+  "turnover_definition": "sum of absolute weight changes at a rebalance, both sides counted, as in Step 377",
+  "selection_changes_forbidden": true
+ },
+ "prices": "Yahoo adjusted closes (distributions included) downloaded at recording time for SPY, GLD, SHY; the closes used for each weekly return and each drift calculation are stored in the record",
+ "cadence": {
+  "decision_day": "Friday",
+  "window": "at or after 21:00 UTC on the decision Friday and before 21:00 UTC the following Friday",
+  "first_eligible_decision_date": "2026-11-13",
+  "missed_snapshot_policy": "a missed window is left missed and its week is never realised. The held weights still drift truthfully: the next decision computes drift from the last SAVED decision to its own Friday, using closes from one download."
+ },
+ "required_untouched_weeks": 52,
+ "reading_fixed_in_advance": {
+  "what_is_expected": "far fewer trades than weekly reset and a nearly identical return path",
+  "confirms_if": "after 52 weeks the banded book's turnover is at most half the weekly-reset book's AND its Sharpe is no more than 0.20 lower AND its max drawdown is no more than 2 percentage points deeper",
+  "refutes_if": "the banded book's Sharpe is more than 0.20 lower OR its max drawdown is more than 2 percentage points deeper",
+  "limit": "One year cannot separate two return paths this close; the turnover count is the part a year can establish. In a quiet year the band may never trigger, which confirms the turnover claim and says nothing about behaviour at a rebalance."
+ },
+ "live_trading_enabled": false,
+ "execution_enabled": false,
+ "promotion_authorized": false
+}

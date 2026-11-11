@@ -18226,3 +18226,7 @@ leg as well; T1 loses at 0 bps regardless.
 
 **Cumulative search:** six new trials, alpha 0.0083 within the registry, on top of several hundred
 earlier trials on overlapping data. Nothing created or promoted a strategy.
+
+**Addendum, 2026-11-11.** The owner approved restoring the committed `RESEARCH_QUEUE.md` and adding this
+session's entries. Done: seven Closed rows, B19 replaced by A36, and A35, B21, B22, B23, C6, C7 added.
+The discarded working copy was the 2026-09-06 version; nothing in it was newer than the committed file.

@@ -301,9 +301,29 @@ weeks someone will be tempted to pick whichever did best -- the selection this p
 e.g. the core is SPY/GLD/SHY unless a clock beats it on forward Sharpe by > 0.2 AND on max drawdown, with the 52-week windows fixed.
 Free, under 1 session, no data.
 
-### B19. Rebalancing bands instead of weekly resets *(new 2026-10-19, Step 372, practical)*
-The allocation clocks reset weekly. In real money, a band rule (rebalance only when a weight drifts > 5pp) cuts trades and taxes with
-little tracking cost. Record a banded twin alongside each allocation clock forward; compare turnover and return. Free.
+### A35. Stacked-trend twin clock *(new 2026-11-11, Step 377)*
+T5: 100% SPY/GLD/SHY + 20% trend overlay, 2013-2026 at 10 bps: CAGR 8.42% vs 7.68%, Sharpe 0.88 vs 0.80, max DD -9.0% vs -12.7%,
+bootstrap p 0.165. Supported as a construction choice, NOT as alpha, and it is 1.2x exposure held inside a fund. Investable form:
+20% stacked S&P-plus-trend fund + 13.3% SPY + 33.3% GLD + 33.3% SHY. Record forward next to trend_sleeve_8020_v1. Free.
+**Blocker:** owner's decision on internal leverage; then a recorder and a cycle dry run.
+
+### A36. Banded twin of the benchmark clock *(new 2026-11-11, Step 377; replaces B19)*
+T4 measured it on history: a 5pp band (23 rebalances in 22 years) or an annual reset beats weekly reset at every cost level
+(Sharpe 0.83 vs 0.81, turnover 0.12x vs 0.64x). What remains is the forward twin B19 asked for. Free.
+**Blocker:** owner's go-ahead; a recorder and a cycle dry run.
+
+### B21. Month-end Treasury timing of trades already being made *(new 2026-11-11, Step 377)*
+T3: IEF earns +6.35 bp/day in the last 3 trading days of the month vs -1.79 bp on other days, 2019-2026 (t 2.79, rank 1 of 16
+slots), but fails as a standalone trade at 10 bps. Only use: time bond purchases or rebalances that would happen anyway. Free.
+**Blocker:** the book holds SHY, where the effect is untested and likely smaller. Never revive as a standalone trade.
+
+### B22. Second and third trend manager in the sleeve *(new 2026-11-11, Step 377)*
+Since 2019-06 managed-futures fund Sharpe ranged 0.29 (ASFYX) to 0.63 (AQMIX, DBMF), drawdowns -10% to -34%. One fund is a manager
+bet. Free (Yahoo). **Blocker:** KMLM and CTA have under six years of record, so this is a forward-only comparison.
+
+### B23. Closed-end fund discount mean reversion *(new 2026-11-11, Step 376)*
+Structural retail mispricing; untried here. **Blocker:** no free point-in-time NAV history.
+
 
 ### A8. EU short-selling registers *(new 2026-09-10, owner-proposed)*
 **Status:** never attempted. Free, daily, from ESMA and national regulators.
@@ -474,6 +494,12 @@ the idea's last honest home: a forward "event desk" -- each week a frozen-prompt
 8-K filings, names the companies it expects to benefit and why, and the picks are scored after 3/6/12 months against
 same-industry controls. History cannot test it (any modern model knows the outcomes). Needs an API key and budget.
 
+### C6. Catastrophe-bond / insurance-linked funds *(new 2026-11-11, Step 376)*
+A premium unrelated to markets. Investable funds have under three years of record or are adviser-only. Parked until a record exists.
+
+### C7. Bond carry / roll-down *(new 2026-11-11, Step 376)*
+Hold the steepest point of the curve. Parked: the book holds no duration to tilt, and Step 321 found duration fails the 2022 test.
+
 ---
 
 # PAID QUEUE -- nothing here starts without the owner confirming the spend
@@ -531,6 +557,13 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 
 | item | verdict | where |
 |---|---|---|
+| **Halloween / Sell in May (T1)** | **Fails.** SPY Nov-Apr, cash May-Oct, 2003-2026: Sharpe 0.54 vs 0.72 for a same-exposure 50/50 mix, 0 of 4 regimes, placebo rank p 0.15. Worked only in the published 1993-2002 sample. | Step 377 |
+| **BTAL anti-beta sleeve (T2)** | **Fails.** 80/20 with the benchmark, 2011-2026: Sharpe 0.73 vs 0.82; BTAL pays in crises (+20.5% in 2022) and costs -3.35%/yr; plain cash matches the benchmark's Sharpe. | Step 377 |
+| **Treasury month-end as a standalone trade (T3)** | **Fails on cost; the effect is real.** IEF last 3 trading days, 2019-2026: t 2.79, rank 1 of 16 slots, +2.29%/yr over cash at 0 bps, -0.12% at 10 bps. Kept only as B21. | Step 377 |
+| **Six-sleeve inverse-vol combination (T6)** | **Fails.** SPY, GLD, IEF, trend, merger arb, anti-beta: 5.18 effective bets of 6, yet Sharpe 0.85 vs 0.80 (p 0.41) and CAGR 4.36% vs 7.68%. Breadth without return in the sleeves buys nothing. | Step 377 |
+| **Rebalancing bands, historical measurement (was B19)** | **Done.** 5pp band or annual reset recommended over weekly reset; forward twin queued as A36. | Step 377 |
+| **gs-quant (Goldman open-source library)** | **Nothing usable.** Run, not read: offline time-series maths duplicates pandas; Sharpe, pricing, risk and data need Marquee. Backtest engine and optimiser not run. | Step 376 |
+| **Overnight SPY drift; leveraged ETF with 200-day filter; one-coin Bitcoin sleeve** | **Closed unstarted.** 500 trades a year; leverage on a correlated exposure; a narrower draw from the closed crypto family. | Step 376 |
 | **Results-day drift, long-only, net of small-stock spreads (was A32)** | **Fails both trials.** Calibrated vs survivorship-free OSAP (corr +0.68, our panel 0.60x as strong). Top decile gross excess ~0 in 2013-19 (-0.11% small, +0.37% liquid); costs 3-6%/yr at ~10x turnover. The spread lives in the bottom decile -> an avoid filter (B20), not a buy. | Step 374 |
 | **Spin-offs (was A33)** | **Closed on survivorship-free published data.** OSAP Spinoff long-short: +7.0% (2005-12) then -2.3% (2013-19) and -11.4% (2020-24). Our own panel could not test it (41% of spin-offs priced). | Step 373 |
 | **Earnings-announcement premium, pre-FOMC drift, S&P index inclusion (closed by the published record, Step 369)** | **Gone in the US per the literature:** announcement premium vanished since the 2000s (Heitz et al. 2020), pre-FOMC drift gone after 2015 (Kurov, Wolfe & Gilbert 2021), index effect +7.4% -> +0.3% (Greenwood & Sammon JF 2025). Do not re-propose without a reason to think the record is wrong. | Step 369 |
@@ -610,7 +643,7 @@ Needed to implement B1. Not worth pricing until B1's reading is done.
 
 ---
 
-*Last updated 2026-09-22. Update this file in the same commit as the work it describes.*
+*Last updated 2026-11-11. Update this file in the same commit as the work it describes.*
 | Valuation family revival | REVIVED. Widening to breadth 20 fixes the concentration failure; near-zero correlation to all four incumbents; 9 of 9 blends beat both components on Sharpe. On a clock from 2026-09-11. | 274, 275 |
 | **Breadth repair by construction (was A2)** | **Closed as noise.** Five constructions on two books attacking 61-71% persistence and 5-7 effective names. One of eight raised breadth and Sharpe together (de-persistence on cash conversion, bets 8.6->15.6, Sharpe 0.878->1.007) and the same intervention *lowered* Sharpe on valuation. Paired block bootstrap p=0.632 and p=0.426 against a Bonferroni bar of 0.0063; the two books move opposite directions by -2.07% and +2.05%. **Kept:** sector caps *reduce* effective independent names on both books (7.39->4.30, 6.39->3.99), so these books are not concentrated because they are sector-concentrated -- the premise of the intervention is backwards. | Step 279 |
 | **Valuation panel quarterly refresh (was S3)** | **Done and defect fixed.** The builder loaded a stale checkpoint, passed ten validation checks, and re-emitted the same fourteen quarters. Guarded on membership vintage; panel now runs to 2026-07-01. | Step 278 |

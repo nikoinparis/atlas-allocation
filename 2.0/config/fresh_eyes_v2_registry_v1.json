@@ -1,0 +1,82 @@
+{
+ "schema_version": 1,
+ "experiment": "fresh_eyes_v2",
+ "registered_at_utc": "2026-11-11T04:00:00Z",
+ "registered_before_any_result_existed": true,
+ "what_was_seen_before_registration": "Only one number computed this session: SPY/GLD/SHY thirds, SPY and 60/40 summary stats from data/etf_weekly_panel_v1 (2004-2026). No return of BTAL, any managed-futures fund, MERFX, daily IEF/TLT or any seasonal split was looked at this session. T5 and T6 reuse 2013-2026, a window Step 340 already read for the AQR trend factor and DBMF; that is declared, not hidden.",
+ "owner_approval": "2026-11-11, brief docs/FRESH_EYES_STRATEGY_SEARCH_PROMPT.md pasted in chat: 'Go through the ranked list one idea at a time... Pre-register it in 2.0/config/ before touching any return data'",
+ "why_this_exists": "Phase 3 of the fresh-eyes brief left six ideas that are not in PROJECT_HISTORY.md or the queue's Closed table and need no paid data. Everything else on the 42-item Phase 1 list is already closed, already on a clock, or blocked on data (see docs/FRESH_EYES_REVIEW_V2.md).",
+ "common": {
+  "benchmark": "static_spy_gld_shy_v1: equal thirds SPY/GLD/SHY, reset at the test's own cadence",
+  "cash": "BIL total return from 2007-06, Fama-French daily RF compounded before that",
+  "sharpe": "excess of cash, annualised",
+  "costs_bps_one_way": [0, 10, 50, 100],
+  "headline_cost_bps": 10,
+  "regimes": ["2012-2019", "2020", "2021-2022", "2023-2026"],
+  "significance": "paired circular block bootstrap of the Sharpe difference, 5000 draws, block 12 months (26 weeks for weekly data), null centred at zero, one-sided",
+  "alpha": "0.05 / 6 = 0.0083 (Bonferroni over this registry's six trials). The project's cumulative search is in the hundreds of trials on overlapping data, so even a pass here is a research candidate for a forward clock, never 'ready'.",
+  "prices": "Yahoo adjusted closes downloaded once this session for tickers not on disk (BTAL, DBMF, KMLM, AQMIX, ASFYX, PQTIX, MERFX, daily IEF, TLT, SPY, BIL, SHY, GLD). Fund survivorship: these are funds that still exist today; a composite of survivors flatters the sleeve and this is stated with every result that uses them."
+ },
+ "trials": {
+  "T1_halloween": {
+   "idea": "Sell in May: hold SPY November-April, cash May-October (Bouman & Jacobsen, AER 2002; recalled, not read this session).",
+   "sign": "switch beats a constant mix with the same average equity exposure",
+   "rule": "monthly; 100% SPY in months Nov-Apr, 100% cash in May-Oct; 2 switches a year",
+   "comparator": "50% SPY / 50% cash rebalanced monthly (same average exposure)",
+   "window": "decision window 2003-01 to 2026-08 (after publication); 1993-2002 reported as context only",
+   "placebo": "all 924 ways to pick 6 of 12 calendar months to hold SPY; exact rank of the Nov-Apr set by Sharpe",
+   "pass": "Sharpe difference vs comparator >= +0.10 AND placebo rank p < 0.0083 AND Sharpe difference > 0 in at least 3 of 4 regimes",
+   "variants_allowed": 0
+  },
+  "T2_btal_sleeve": {
+   "idea": "An anti-beta fund (BTAL: long low-beta, short high-beta US stocks) as a crisis sleeve next to the benchmark.",
+   "sign": "80% benchmark + 20% BTAL has a higher Sharpe and no deeper drawdown than the benchmark",
+   "rule": "monthly rebalance to 80/20",
+   "comparators": ["benchmark", "80% benchmark + 20% cash (the de-risking BTAL must beat, since a negative-beta fund is partly just less equity)"],
+   "window": "BTAL inception (2011-09) to 2026-10",
+   "pass": "Sharpe difference vs BOTH comparators >= +0.05, bootstrap p < 0.0083 vs the benchmark, max drawdown no deeper than the benchmark's",
+   "variants_allowed": 0
+  },
+  "T3_treasury_month_end": {
+   "idea": "Treasury returns concentrate in the last trading days of the month, from index-extension and rebalancing flows (Hartley & Schwarz, 'Predictable End-of-Month Treasury Returns', 2019; recalled, not read this session).",
+   "sign": "IEF earns more per day in the last 3 trading days of a month than on other days",
+   "rule": "buy IEF at the close of the 4th-to-last trading day, sell at the last close of the month; cash otherwise; 12 round trips a year",
+   "window": "design 2002-08 to 2018-12 (context); decision window 2019-01 to 2026-10 (after the paper)",
+   "placebo": "the same rule on every other 3-consecutive-trading-day slot counted from the month end (slots ending 3..18 days before month end); rank of the month-end slot",
+   "pass": "decision window: month-end slot mean excess return > 0 with t > 2.64 (p < 0.0083 two-sided normal) AND it ranks first among slots AND the strategy's excess return over cash is positive at 10 bps one-way",
+   "also_reported": "TLT, same rule, descriptive only, not a second trial",
+   "variants_allowed": 0
+  },
+  "T4_rebalancing_bands": {
+   "idea": "Queue item B19. The allocation clocks reset weekly; a band or annual rule should cut trading with little change in risk.",
+   "rule": "benchmark under four rules: weekly reset; monthly reset; annual reset (first week of January); 5-percentage-point absolute band (reset all three when any weight is more than 5pp from one third)",
+   "window": "2004-11 to 2026-09 weekly (full ETF panel history for GLD)",
+   "reading_fixed_in_advance": "This is a cost and tax measurement, not an alpha test, so no significance test applies. A rule is RECOMMENDED over weekly reset if its annual turnover is at least 50% lower AND its Sharpe at 10 bps is within 0.03 AND its max drawdown is within 2 percentage points. Otherwise weekly reset stands.",
+   "variants_allowed": 0
+  },
+  "T5_stacked_trend": {
+   "idea": "Capital-efficient ('return stacked') construction: keep 100% of the benchmark and add trend on top, instead of diluting the benchmark to 80% to make room. An individual gets this without borrowing through funds that hold futures internally.",
+   "rule": "monthly; return = benchmark + 0.20 x (trend composite - cash) - 0.20 x 0.50%/yr financing and wrapper drag. Trend composite = equal weight of the managed-futures funds alive in each month among AQMIX, ASFYX, PQTIX, DBMF, KMLM (net of their own fees).",
+   "comparators": ["benchmark", "80/20 unstacked (the trend_sleeve_8020_v1 design, with the same composite)"],
+   "window": "2013-01 to 2026-10, the same post-publication start Step 340 used; already seen there for a different trend series",
+   "reading_fixed_in_advance": "This is a risk-level and construction choice, not alpha: Step 340 already showed a 20% trend sleeve's Sharpe gain is not significant (p 0.24), and this trial cannot change that. SUPPORTED AS A CONSTRUCTION if, at 10 bps, CAGR is higher than the benchmark's AND Sharpe is not lower AND max drawdown is no deeper AND CAGR is higher than the unstacked 80/20's. The bootstrap p of the Sharpe difference vs the benchmark is reported and expected to fail 0.0083.",
+   "also_reported": "single-fund (DBMF only) vs composite from 2019-06, descriptive, to show manager dispersion",
+   "variants_allowed": 0
+  },
+  "T6_combination": {
+   "idea": "The brief's central question: does mixing several unrelated return streams beat the benchmark?",
+   "sleeves": ["SPY", "GLD", "IEF", "trend composite (as T5)", "MERFX (merger arbitrage)", "BTAL (anti-beta)"],
+   "rule": "monthly; weights proportional to 1 / trailing 36-month volatility, past data only (equal weight until 12 months exist), then blended with cash so that the trailing-36-month portfolio volatility matches the benchmark's trailing-36-month volatility, capped at 100% invested (no borrowing)",
+   "window": "2013-01 to 2026-10 (BTAL starts 2011-09; 12 months needed for the first weights)",
+   "pass": "Sharpe difference vs the benchmark >= +0.10, bootstrap p < 0.0083, max drawdown no deeper, AND Sharpe difference > 0 in at least 3 of 4 regimes",
+   "also_reported": "correlation matrix of the six sleeves, effective number of bets (eigenvalue entropy), leave-one-sleeve-out Sharpe, crisis windows 2020-02..03 and 2022",
+   "variants_allowed": 0
+  }
+ },
+ "trial_count": 6,
+ "closed_unstarted_by_reasoning_not_counted_as_trials": {
+  "overnight_spy_drift": "needs two trades a day; 500 one-way trades a year at even 1 bp is 5%/yr, above the published effect",
+  "leveraged_etf_200_day": "leverage on an existing correlated exposure; CLAUDE.md section 2 and 40 prior mentions of 200-day filters in PROJECT_HISTORY.md",
+  "bitcoin_trend_sleeve": "crypto closed on both gates (queue Closed table, 'Crypto as a third asset class'); a one-coin version is a narrower draw from the same closed family"
+ }
+}

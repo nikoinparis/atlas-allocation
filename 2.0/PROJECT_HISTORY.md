@@ -18114,3 +18114,115 @@ inside it. Of its 90 images (16.3 GB), only `po2-yfinance:1.5.2-v1` (374 MB) and
 (371 MB) are used by live pipelines; the rest are research-batch images from two months ago. Docker
 Desktop (about 11 GB) runs kebun-pasirmukti's local Supabase and PowerSync stack: 14 containers,
 all active.
+
+## Step 376 — 2026-11-11 — Fresh-eyes V2: 42 ideas listed blind, 36 already answered, gs-quant checked
+
+**What this was for.** The owner's brief (`docs/FRESH_EYES_STRATEGY_SEARCH_PROMPT.md`) asked for an
+independent view written *before* reading this history, then research, then a check against what was
+already tried. It showed how much of an outsider's list this project has already closed.
+
+**Phase 1.** `docs/FRESH_EYES_REVIEW_V2.md`: 42 candidates, written with only the forward protocols and
+the ETF panel open. First impression: twelve clocks, about three exposures (US equity beta, gold, cash).
+
+**Phase 2.** gs-quant 2.2.5 installed in a scratch environment and **run**, not read. Works with no
+Goldman session: `timeseries` maths on your own series (returns, volatility, max drawdown, rolling
+correlation and beta, z-scores, RSI, MACD, Bollinger bands, `basket_series` with monthly rebalance).
+Fails with `GsSession is not initialised`: Sharpe ratio and excess returns (they fetch a cash curve),
+all instrument pricing and risk, datasets. The backtest and optimiser classes import but were not run;
+`GenericEngine` prices through Marquee. **Nothing in it improves this project's testing**: the offline
+part duplicates pandas, and the valuable part is institutional. Papers found by search (snippets only,
+not read in full): Gonçalves, Loudis & Ogden (2025), post-publication alphas near zero once weights use
+only pre-publication data; Cederburg et al. (JFE) on volatility management, consistent with Step 342;
+Hartley & Schwarz (2019) on month-end Treasury returns, tested in Step 377.
+
+**Phase 3.** Of 42 ideas: **36 already answered** here (closed, on a clock, or blocked on data),
+**6 new and testable free**, registered as `config/fresh_eyes_v2_registry_v1.json` (`19f0029`) before
+any of their returns were downloaded. Three more closed unstarted by reasoning (overnight drift,
+leveraged ETF with a 200-day filter, a one-coin Bitcoin sleeve). The line-by-line table is in the
+review document.
+
+**A housekeeping fact for the owner.** The uncommitted working copy of `docs/RESEARCH_QUEUE.md` is not a
+forward rewrite: it is dated 2026-09-06 and is 540 lines shorter than the committed file (dated
+2026-09-22 with October entries). It lacks A30, A31, A34, B19, B20, P5 and about fifty Closed rows.
+Not committed, not reverted, per the owner's instruction.
+
+## Step 377 — 2026-11-11 — Six new trials: no new edge; two construction findings; one real effect too small to trade
+
+**What this was for.** To test the six ideas Step 376 left standing, each under a rule fixed in advance.
+**It found no strategy that beats SPY/GLD/SHY as an edge.** It did find two cheap construction
+improvements and one calendar effect that is real but does not cover its trading cost.
+Script `scripts/run_fresh_eyes_v2.py`, evidence `evidence/fresh_eyes_v2/results.json`, prices
+`data/fresh_eyes_v2_prices_v1/` (Yahoo, 13 tickers, one request, sha256 manifest).
+
+**Controls, run before reading results.** Downloaded weekly returns match the on-disk panel at
+correlation 1.0000 (SPY, GLD, SHY, IEF). BTAL's beta to SPY is −0.66 and the trend composite made
++25.6% in 2022, as both should. A planted Nov-Apr effect ranks first of 924 month sets; a planted
+month-end effect is found at the right slot. The combination's weights are unchanged when later data is
+perturbed. Sharpe is excess of cash throughout; all headline numbers are at 10 bps one-way.
+
+| trial | rule's verdict | headline (10 bps) |
+|---|---|---|
+| T1 Halloween (SPY Nov-Apr, cash May-Oct) | **FAIL** | 2003-2026: Sharpe 0.54 vs 0.72 for a 50/50 mix; CAGR 6.94% vs 6.73%; max DD −30.3% vs −28.3%; placebo rank p 0.15; wins 0 of 4 regimes |
+| T2 BTAL sleeve (80/20) | **FAIL** | 2011-2026: Sharpe 0.73 vs benchmark 0.82 and vs 80/20 cash 0.82; CAGR 5.73% vs 7.74%; max DD −8.6% vs −12.7%; p 0.72 |
+| T3 Treasury month-end (IEF, last 3 days) | **FAIL on cost** | 2019-2026: +0.190% a month in the slot, t 2.79, ranks 1 of 16 slots; excess over cash +2.29%/yr at 0 bps, **−0.12% at 10 bps**, −9.74% at 50 |
+| T4 Rebalancing bands (B19) | **RECOMMENDED** | 2004-2026: 5pp band Sharpe 0.83 vs 0.81 weekly; CAGR 8.62% vs 8.41%; max DD −18.7% vs −19.0%; turnover 0.12× vs 0.64×; 23 rebalances in 22 years |
+| T5 Stacked trend (100% benchmark + 20% trend) | **SUPPORTED as construction, not significant** | 2013-2026: CAGR 8.42% vs 7.68%; Sharpe 0.88 vs 0.80; max DD −9.0% vs −12.7%; bootstrap p 0.165 |
+| T6 Six-sleeve combination | **FAIL** | 2013-2026: Sharpe 0.85 vs 0.80 (p 0.41); CAGR **4.36% vs 7.68%**; vol 3.2% vs 7.6%; max DD −4.1% vs −12.7% |
+
+**T1.** Winter months did earn more than summer (mean monthly excess +1.01% vs +0.73%), but summer was
+still clearly positive, so sitting in cash cost more than it saved. Context 1993-2002: the switch won
+(Sharpe 0.49 vs 0.36), which is the published sample; it has not held since. At 0/50/100 bps the switch
+Sharpe is 0.58/0.39/0.20 against 0.72/0.71/0.69.
+
+**T2.** BTAL alone returned −3.35% a year (Sharpe −0.25, max DD −50.6%). It did its job in crises
+(2020-02..03 +9.7%, 2022 +20.5%) and the 80/20 lost less in both (−3.1% vs −6.3%; −1.9% vs −7.4%), but
+plain cash got the same Sharpe as the benchmark at no long-run cost. Regimes (Sharpe, 80/20 BTAL vs
+benchmark): 2012-19 0.76 vs 0.76, 2020 1.06 vs 1.32, 2021-22 0.13 vs −0.06, 2023-26 0.92 vs 1.28.
+An insurance policy whose premium exceeds its payout over 15 years.
+
+**T3.** The effect is real and survived publication: IEF earned +6.35 bp a day in the last three
+trading days against −1.79 bp on other days in 2019-2026 (design window 2002-2018: +7.02 vs +0.55,
+t 4.43). TLT, descriptive: +0.217% a month, t 1.57, rank 2 of 16. But 24 trades a year at 10 bps costs
+2.4%, the whole effect. It fails the registered rule. IEF's quoted spread is about 1 bp, so a patient
+investor's true cost is below the registered 10 bps; that is a new, narrower question (queued as B21:
+use it only to *time trades already being made*), not a rescue of this trial.
+
+**T4.** Weekly resetting is the worst of the four rules at every cost level. Annual reset: Sharpe 0.82,
+turnover 0.13×. Monthly reset halves turnover but misses the 50% bar by a hair (0.33× vs 0.64×). In a
+taxable account the gap is larger than shown, because every reset realises gains. No significance test
+applies: this is arithmetic about trading less.
+
+**T5.** Keeping the whole benchmark and adding trend on top recovers the return the 80/20 gives up
+(unstacked 80/20: CAGR 7.34%, Sharpe 0.91, max DD −6.4%). Regimes (CAGR, stacked vs benchmark):
+2013-19 +5.2% vs +4.8%, 2020 +17.2% vs +16.0%, 2021-22 **+2.8% vs −0.3%**, 2023-26 +15.4% vs +15.6%.
+2022: −2.9% vs −7.4%. Costs 0/50/100 bps: Sharpe 0.88/0.85/0.82 vs 0.81/0.79/0.76. **Three limits.**
+The Sharpe gain is not significant, as Step 340 already found. The composite is five funds that still
+exist, which flatters it. And it is leverage held inside a fund: 1.2× gross exposure. Manager dispersion
+since 2019-06 is wide: AQMIX and DBMF about +9.4% a year at Sharpe 0.63, ASFYX and PQTIX about +5.6% at
+0.30 with drawdowns of −34% and −24%. One fund is a manager bet; two or three is the sleeve.
+
+**T6, the answer to "does mixing unrelated strategies beat one?"** The six sleeves are genuinely
+different: 5.18 effective bets of 6, against 2.85 of 3 for the benchmark, the highest breadth measured
+in this project. And it barely helps: Sharpe +0.05, p 0.41. The reason is the one CLAUDE.md gives.
+Breadth multiplies skill, and the added sleeves have little: merger arbitrage and anti-beta earn close
+to cash. Inverse-volatility weighting puts 43% in MERFX and 9% in SPY, giving a 3.2%-vol portfolio that
+returns 4.4%. The registered rule scales up to the benchmark's risk but forbids borrowing, so the cap
+binds every month. Leave-one-out Sharpe: no SPY 0.52, no trend 0.72, no MERFX 0.69, no GLD 0.82,
+**no IEF 1.04, no BTAL 0.95**. Bonds and anti-beta hurt; equity, trend and merger arb carry it.
+Regimes (Sharpe vs benchmark): 2013-19 1.00 vs 0.72, 2020 1.50 vs 1.32, 2021-22 0.10 vs −0.06,
+2023-26 **0.66 vs 1.28**. Crises: 2020-02..03 0.0% vs −6.3%; 2022 +0.8% vs −7.4%.
+
+**What it means.** The benchmark stands. The honest improvements are construction: trade it less
+(bands), and if more return is wanted, add trend on top rather than diluting. Diversifying further
+without leverage buys a smoother, poorer portfolio.
+
+**Not done.** No new forward clock was added. T4 and T5 are construction choices that passed their
+readings, but adding recorders changes the Friday cycle, and T5 carries internal leverage that Step 340
+left to the owner. Both are put to the owner. Queue entries are drafted in the review document and not
+written to `RESEARCH_QUEUE.md`, whose working copy is unresolved (Step 376).
+
+**Costs note.** Turnover counts both sides of every trade, so the cost on the T1 switch charges the cash
+leg as well; T1 loses at 0 bps regardless.
+
+**Cumulative search:** six new trials, alpha 0.0083 within the registry, on top of several hundred
+earlier trials on overlapping data. Nothing created or promoted a strategy.

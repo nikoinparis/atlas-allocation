@@ -108,3 +108,143 @@ tagged C, P and X (construction, premia packaged in funds, and combination), wit
 option-overlay and event sleeves as candidates for genuinely different return streams. I expect the
 stock-selection rows (D, M) to add tracking error rather than Sharpe for a long-only investor, and I
 would require a monotone decile relationship on large caps before building anything on them.
+
+---
+
+# Phases 2-5 (added after the independent view above was committed in `19f0029`)
+
+## Phase 2: research and tools
+
+**gs-quant 2.2.5, installed and run in a scratch environment.**
+
+| Part | Without Goldman Marquee credentials | Use to us |
+|---|---|---|
+| `timeseries` maths: returns, volatility, max drawdown, rolling correlation and beta, z-scores, RSI, MACD, Bollinger bands, `basket_series` | **Ran, works** on our own series | None; duplicates pandas |
+| `sharpe_ratio`, `excess_returns_` | **Ran, fails**: fetches a cash curve from Marquee | None |
+| Instrument pricing and risk (`IRSwap.price()` etc.) | **Ran, fails**: `GsSession is not initialised` | None |
+| Backtest engines, optimiser, portfolio manager | Classes import; **not run**. `GenericEngine` prices through Marquee | Unverified; no claim made |
+| Datasets, risk models, reports | Need an institutional API key | None |
+
+Verdict: nothing in it improves this project's testing or construction for an individual.
+
+**Papers.** All found by web search this session and known from **snippets and summaries only, not
+read in full**, unless marked.
+- Gonçalves, Loudis & Ogden (2025): post-publication anomaly alphas are close to zero when weights use
+  only pre-publication data. Consistent with this project's nulls.
+- "What Useful Alphas?" (arXiv 2607.06502): anomaly returns vanish when both large-cap and post-2005
+  restrictions apply. Consistent with the Phase 1 prior on stock selection.
+- Cederburg, O'Doherty, Wang & Yan (JFE): volatility-managed portfolios fail in real time. Matches
+  Step 342.
+- Hartley & Schwarz (2019), month-end Treasury returns: abstract summary read; tested as T3.
+- Bouman & Jacobsen (AER 2002), Halloween effect: **recalled**, tested as T1.
+- Managed-futures ETFs and return stacking: practitioner commentary only; no academic test found.
+
+**New technology.** Nothing found that changes the testing. The project's existing tools (purged CV,
+deflated Sharpe, CSCV, block bootstrap, calibrated decile shape) are ahead of the free libraries.
+
+## Phase 3: each Phase 1 idea against the record
+
+| # | Idea | Status |
+|---|---|---|
+| 1 | SHY to IEF/TIP barbell | Already tried (Step 321: 50/25/25 SPY/GLD/IEF Sharpe 0.75 vs 0.78; TLT fails 2022) |
+| 2, 42 | Risk-parity / HRP weights | Already tried (Step 318 HRP; Step 244 risk budgeting; min-variance is on a clock) |
+| 3 | Rebalancing bands | In queue as B19, untested. **Tested: T4** |
+| 4 | Capital-efficient stacked funds | **New. Tested: T5** |
+| 5 | Multi-manager trend sleeve | New; reported inside T5 |
+| 6 | Long/flat ETF trend | Already tried (Step 205, 1.0 allocator, Batch 03) |
+| 7 | Volatility-managed equity | Already tried (Step 342, reverses 1933-1992) |
+| 8 | International equity | Already tried (Step 246: 1.27 effective assets) |
+| 9, 10 | Defensive / quality factor | Already tried (Step 296: 0 of 13 signals; Step 344: no FF6 alpha) |
+| 11 | BTAL anti-beta sleeve | **New. Tested: T2** |
+| 12 | Broad commodities | Already tried (Step 321: DBC fails both crises; Step 277) |
+| 13 | Bond carry / roll-down | New, not tested: the book holds no duration to tilt. Queued C |
+| 14, 15 | Put-write, buy-write, collar | Already tried (Step 330: no alpha after beta) |
+| 16 | VIX switch | Already tried (Steps 319, 321: random labels do as well) |
+| 17 | Turn of month | Already tried (Step 341, dead) |
+| 18 | Pre-FOMC; overnight drift | Pre-FOMC closed by the literature (Step 369). Overnight closed unstarted: 500 trades a year |
+| 19 | Treasury month-end | **New. Tested: T3** |
+| 20 | Halloween | **New. Tested: T1** |
+| 21 | Merger arbitrage | Already tried (Step 370: funds fail); deal-level blocked on delisted prices (P5) |
+| 22 | Spin-offs | Already tried (Step 373) |
+| 23 | Net issuance / buybacks | Already tried (Step 201 built it; Step 296 screen) |
+| 24 | Index additions/deletions | Closed by the literature (Step 369) |
+| 25 | Closed-end fund discounts | New; **blocked**: no free point-in-time NAV history. Queued B |
+| 26 | Earnings-announcement return | Already tried (Step 374); avoid-list use open as B20 |
+| 27 | Insider clusters | Already tried (Steps 125, 298) |
+| 28 | 13F best ideas | Already tried (Step 258) |
+| 29 | Product-network lead-lag | Already tried (A19, A19b, A20, A21) |
+| 30 | Federal contracts | Already tried (Step 345, inconclusive on density) |
+| 31 | 10-K text change | Already tried (Step 255, inconclusive by construction) |
+| 32 | Attention avoid list | Wikipedia and GDELT tried (Steps 348, 353); WSB open as B17 |
+| 33 | Gradient-boosted ranking | Already tried (Step 264: only residual momentum matters) |
+| 34 | LLM reading of filings | Parked as C4 |
+| 35 | Regime / volatility model | Already tried (market-state classifier; Step 319); A3 open |
+| 36 | Bitcoin sleeve | Closed unstarted: crypto closed on both gates |
+| 37 | Leveraged ETF + 200-day | Closed unstarted: leverage on a correlated exposure |
+| 38 | Catastrophe-bond fund | New; **blocked**: investable funds have under 3 years of record or need an adviser. Queued C |
+| 39, 40 | Cash yield, tax-loss harvesting, asset location | New; not backtests. Recommendations below |
+| 41 | Risk-budgeted blend of unrelated sleeves | **New. Tested: T6** |
+
+36 of 42 already answered. Six tested. My Phase 1 prior held: nothing in the stock-selection rows
+was new, and what was new sat in construction.
+
+## Phase 4: the combination, designed before testing
+
+Sleeves that survived as *candidates* for a blend: equity, gold, cash, trend. Sleeves the record had
+already marked as weak but which are genuinely different streams: merger arbitrage, anti-beta,
+intermediate Treasuries. The design registered as T6 used all six with inverse-volatility weights and
+no borrowing. Measured (monthly, 2013-2026):
+
+| | SPY | GLD | IEF | Trend | MERFX | BTAL |
+|---|---|---|---|---|---|---|
+| SPY | 1.00 | 0.08 | 0.10 | −0.15 | 0.41 | −0.59 |
+| GLD | | 1.00 | 0.38 | 0.09 | 0.05 | 0.10 |
+| IEF | | | 1.00 | −0.15 | −0.05 | 0.14 |
+| Trend | | | | 1.00 | −0.09 | 0.18 |
+| MERFX | | | | | 1.00 | −0.30 |
+
+Effective number of bets: **5.18 of 6**, against 2.85 of 3 for SPY/GLD/SHY.
+
+**The honest answer the brief asked for:** yes, the best realistic improvement is construction, costs
+and diversification, not a new signal, and even diversification has a ceiling. Six nearly independent
+sleeves raised Sharpe by 0.05 (p 0.41) and cut return from 7.7% to 4.4%, because most of the added
+sleeves earn about the cash rate. More independent bets do not help when the bets have no return.
+
+## Phase 5: results
+
+Full record in `PROJECT_HISTORY.md` Step 377; numbers in `evidence/fresh_eyes_v2/results.json`.
+
+| Trial | Verdict | Strategy (10 bps) | Comparator |
+|---|---|---|---|
+| T1 Halloween | Fail | Sharpe 0.54, CAGR 6.9%, DD −30% | 50/50 mix: 0.72, 6.7%, −28% |
+| T2 BTAL sleeve | Fail | Sharpe 0.73, CAGR 5.7%, DD −8.6% | benchmark: 0.82, 7.7%, −12.7% |
+| T3 Treasury month-end | Fail on cost; effect real (t 2.79) | +2.29%/yr at 0 bps, −0.12% at 10 bps | cash |
+| T4 Rebalancing bands | Recommended | Sharpe 0.83, CAGR 8.62%, turnover 0.12× | weekly: 0.81, 8.41%, 0.64× |
+| T5 Stacked trend | Supported as construction; p 0.165 | Sharpe 0.88, CAGR 8.42%, DD −9.0% | benchmark: 0.80, 7.68%, −12.7% |
+| T6 Six-sleeve blend | Fail | Sharpe 0.85, CAGR 4.36%, DD −4.1% | benchmark: 0.80, 7.68%, −12.7% |
+
+## Queue entries drafted, NOT written to `RESEARCH_QUEUE.md`
+
+The queue's working copy holds an unconfirmed change (see Step 376), so these wait for the owner.
+
+**For the Closed table:**
+- Halloween / Sell in May (T1): fails; Sharpe 0.54 vs 0.72 for a same-exposure mix, 0 of 4 regimes. Step 377.
+- BTAL anti-beta sleeve (T2): fails; pays in crises, costs −3.35% a year, loses to plain cash. Step 377.
+- Treasury month-end as a standalone trade (T3): effect real (t 2.79 after publication), fails at 10 bps. Step 377.
+- Six-sleeve inverse-vol combination (T6): fails; 5.18 effective bets, Sharpe +0.05, CAGR 4.4% vs 7.7%. Step 377.
+- Rebalancing bands (was B19): done; 5pp band or annual reset recommended over weekly. Step 377.
+- gs-quant: nothing usable without Marquee beyond pandas-equivalent maths. Step 376.
+- Overnight drift, leveraged ETF with 200-day filter, one-coin Bitcoin sleeve: closed unstarted. Step 376.
+
+**New open items:**
+- **A35. Stacked-trend twin clock** (free; blocker: owner's decision on internal leverage). 20% in a
+  stacked S&P-plus-trend fund, 13.3% SPY, 33.3% GLD, 33.3% SHY equals the benchmark plus 20% trend.
+  Record forward next to `trend_sleeve_8020_v1`. T5 supports it as construction, not as alpha.
+- **A36. Banded twin of the benchmark clock** (free; blocker: a recorder and a cycle dry run). T4.
+- **B21. Month-end Treasury timing of trades already being made** (free; blocker: the book holds SHY,
+  where the effect is untested and likely smaller). Never as a standalone trade.
+- **B22. Second and third trend manager in the sleeve** (free; blocker: KMLM and CTA have under six
+  years of record). T5 shows fund Sharpe ranging 0.29 to 0.63 since 2019.
+- **B23. Closed-end fund discounts** (blocked: no free point-in-time NAV history).
+- **C6. Catastrophe-bond funds** (blocked: record under three years or adviser-only access).
+- **C7. Bond carry / roll-down** (parked: the book holds no duration to tilt).

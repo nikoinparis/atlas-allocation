@@ -15,7 +15,8 @@ import { PaperReplay } from "@/components/paper-replay";
 import { SurvivalLab, type SurvivalBundlePayload } from "@/components/survival-lab";
 import { deepMethodology, deepFormulas } from "@/components/methodology";
 import { StrategyMetrics } from "@/components/strategy-metrics";
-import { ArrowUpRight, CalendarDays, ChevronLeft, ChevronRight, Columns3, FlaskConical, Gauge, History, Info, Menu, PanelLeftClose, PieChart, Ruler, Settings2, ShieldCheck, Siren, Timer, TrendingUp, LineChart as LineChartIcon, Workflow, X } from "lucide-react";
+import { SiteShell, viewDetails } from "@/components/site-shell";
+import { ArrowUpRight, CalendarDays, ChevronLeft, ChevronRight, FlaskConical, History, Info, Settings2, TrendingUp, Workflow, X } from "lucide-react";
 import { type MouseEvent, useEffect, useMemo, useState } from "react";
 
 type Holding = { symbol: string; weight: number | null; change: number | null };
@@ -99,19 +100,6 @@ type MethodStep = { number: string; label: string; title: string; description: s
 type StrategyMethodology = { summary: string; cadence: string; universe: string; steps: MethodStep[] };
 export type DashboardViewName = "overview" | "performance" | "metrics" | "activity" | "rebalances" | "forward" | "replay" | "research" | "survival" | "methodology" | "guardrails";
 
-const viewDetails: Record<DashboardViewName, { label: string; title: string; description: string; path: string }> = {
-  overview: { label: "Overview", title: "Portfolio overview", description: "A clear read on performance, risk, and the portfolio’s latest systematic decision.", path: "/" },
-  performance: { label: "Performance", title: "Performance", description: "Study the simulated equity curve, risk-adjusted results, and the complete current allocation.", path: "/performance" },
-  activity: { label: "Daily activity", title: "Daily activity", description: "Inspect daily P&L, historical holdings, and every recorded change in the strategy book.", path: "/activity" },
-  rebalances: { label: "Rebalances", title: "Rebalances", description: "Review recent portfolio changes, turnover, and the strategy’s forward-validation clock.", path: "/rebalances" },
-  forward: { label: "Forward record", title: "Forward record", description: "See how much untouched forward evidence actually exists, and what the last decided books did on the weeks that have closed since.", path: "/forward" },
-  replay: { label: "What-if replay", title: "What-if replay", description: "What $10,000 in each strategy would be worth today, marked every trading day from its start, using only books decided before the days they are marked on.", path: "/replay" },
-  research: { label: "Research status", title: "Research status", description: "What the research programme is doing now: clocks running, clocks starting, and every candidate family that has been tested and closed.", path: "/research" },
-  metrics: { label: "Strategy metrics", title: "Strategy metrics", description: "Return, risk, drawdown and market-exposure figures for every strategy on this dashboard, each with a plain-language explanation of what it measures and what it cannot tell you.", path: "/metrics" },
-  survival: { label: "Survival lab", title: "Real-world survival lab", description: "See which strategies survive modeled stress, what still fails, and why none is proven live yet.", path: "/survival" },
-  methodology: { label: "How it works", title: "How the portfolio works", description: "Follow the selected strategy from raw evidence to target weights, costs, and the final recorded decision.", path: "/methodology" },
-  guardrails: { label: "Guardrails", title: "Research guardrails", description: "Understand exactly what the simulation can do, what it cannot do, and how its evidence is controlled.", path: "/guardrails" },
-};
 
 // Removed from every view on 2026-10-06 at the owner's request: no levered or financed figures.
 const REMOVED_LEVERED_IDS = new Set(["sec-residual-controlled-1.25x-5pct-v1", "sec-sector-ensemble-fragile-1.35x-v1"]);
@@ -222,7 +210,8 @@ const mathMarkup: Record<FormulaKey, { label: string; markup: string }> = {
 const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 2 });
 const compactMoney = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", notation: "compact", maximumFractionDigits: 1 });
 const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-const holdingColors = ["#8d7dff", "#7187ff", "#5fa8ff", "#50c8b1", "#c084fc", "#f4b860", "#fb7185", "#7f8797"];
+// Categorical only: green and red are reserved for profit and loss.
+const holdingColors = ["#0297de", "#fc734d", "#f5f7f9", "#f2b441", "#a78bfa", "#2ec4b6", "#7c8b94", "#4a5a66"];
 
 function pct(value: number, digits = 2) {
   return `${value >= 0 ? "+" : ""}${(value * 100).toFixed(digits)}%`;
@@ -311,24 +300,11 @@ function MathEquation({ formula }: { formula: FormulaKey }) {
 
 function ForwardStandalone({ view = "forward" }: { view?: "forward" | "replay" }) {
   return (
-    <main className="dashboard-page forward-standalone">
-      <div className="content-frame">
-        <nav className="forward-topbar">
-          <Link href="/"><ChevronLeft size={15} />Portfolio Optimizer</Link>
-          <span>
-            <Link href={view === "forward" ? "/replay" : "/forward"}>{view === "forward" ? "What-if replay" : "Forward record"}</Link>
-            <Link href="/performance">Performance</Link>
-            <Link href="/survival">Survival lab</Link>
-            <Link href="/guardrails">Guardrails</Link>
-          </span>
-        </nav>
-        <div className="dashboard-content">
-          <section className="section-block page-section forward-view">
-            {view === "forward" ? <ForwardTracker positionSpotlight={positionSpotlight} /> : <PaperReplay />}
-          </section>
-        </div>
-      </div>
-    </main>
+    <SiteShell active={view}>
+      <section className="section-block page-section forward-view">
+        {view === "forward" ? <ForwardTracker positionSpotlight={positionSpotlight} /> : <PaperReplay />}
+      </section>
+    </SiteShell>
   );
 }
 
@@ -398,8 +374,6 @@ function DashboardView({ data, strategies, survivalBundle, activeView, onStrateg
   const [calendarDate, setCalendarDate] = useState(parseDate(latestDay.date));
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [metricDetail, setMetricDetail] = useState<MetricKey | null>(null);
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [stockChart, setStockChart] = useState<{ symbol: string; endDate: string; source: "calendar" | "current" } | null>(null);
 
   const recordMap = useMemo(() => new Map(data.dailyRecords.map((row) => [row.date, row])), [data.dailyRecords]);
@@ -467,7 +441,6 @@ function DashboardView({ data, strategies, survivalBundle, activeView, onStrateg
       .reverse(),
     [data.records],
   );
-  const activeViewDetails = viewDetails[activeView];
   const methodology = methodologyByStrategy[data.strategy.id] ?? methodologyByStrategy["candidate-return-first-60-40-forward-v1"];
   const deep = deepMethodology[data.strategy.id] ?? null;
   const latestChange = recentRebalances[0];
@@ -531,6 +504,12 @@ function DashboardView({ data, strategies, survivalBundle, activeView, onStrateg
     return { day, key, record: recordMap.get(key) };
   });
 
+  const monthRecords = calendarCells.flatMap((cell) => (cell?.record ? [{ key: cell.key, record: cell.record }] : []));
+  const monthUpDays = monthRecords.filter((row) => (row.record.netReturn ?? 0) > 0).length;
+  const monthDownDays = monthRecords.filter((row) => (row.record.netReturn ?? 0) < 0).length;
+  const monthTradeDays = monthRecords.filter((row) => holdingsChangeDates.has(row.key)).length;
+  const monthReturn = monthRecords.reduce((wealth, row) => wealth * (1 + (row.record.netReturn ?? 0)), 1) - 1;
+
   function setQuickRange(years: number | "max") {
     if (years === "max") {
       setStartDate(data.dailyRecords[0].date);
@@ -558,69 +537,28 @@ function DashboardView({ data, strategies, survivalBundle, activeView, onStrateg
       setSettingsOpen(false);
       setMetricDetail(null);
       setStockChart(null);
-      setMobileMenuOpen(false);
     }
     window.addEventListener("keydown", handleEscape);
     return () => window.removeEventListener("keydown", handleEscape);
   }, []);
 
-  return (
-    <main className={`dashboard-page ${sidebarCollapsed ? "nav-collapsed" : ""}`}>
-      <button className="mobile-menu-button" onClick={() => setMobileMenuOpen(true)} aria-label="Open navigation"><Menu size={20} /></button>
-      {mobileMenuOpen && <button className="mobile-menu-scrim" aria-label="Close navigation" onClick={() => setMobileMenuOpen(false)} />}
-      <aside className={`side-menu ${mobileMenuOpen ? "mobile-open" : ""}`} aria-label="Portfolio navigation">
-        <div className="brand-mark" aria-hidden="true"><span /><span /><span /></div>
-        <div className="brand-copy"><strong>Portfolio</strong><span>Optimizer</span></div>
-        <button className="collapse-button" onClick={() => setSidebarCollapsed((value) => !value)} aria-label={sidebarCollapsed ? "Expand navigation" : "Collapse navigation"}><PanelLeftClose size={17} /></button>
-        <button className="mobile-close-button" onClick={() => setMobileMenuOpen(false)} aria-label="Close navigation"><X size={18} /></button>
-        <nav>
-          <Link className={activeView === "overview" ? "active" : ""} href="/" onClick={() => setMobileMenuOpen(false)}><Gauge size={18} /><span>Overview</span></Link>
-          <Link className={activeView === "performance" ? "active" : ""} href="/performance" onClick={() => setMobileMenuOpen(false)}><PieChart size={18} /><span>Performance</span></Link>
-          <Link className={activeView === "metrics" ? "active" : ""} href="/metrics" onClick={() => setMobileMenuOpen(false)}><Ruler size={18} /><span>Strategy metrics</span></Link>
-          <Link href="/compare" onClick={() => setMobileMenuOpen(false)}><Columns3 size={18} /><span>Compare strategies</span></Link>
-          <Link className={activeView === "activity" ? "active" : ""} href="/activity" onClick={() => setMobileMenuOpen(false)}><CalendarDays size={18} /><span>Daily activity</span></Link>
-          <Link className={activeView === "rebalances" ? "active" : ""} href="/rebalances" onClick={() => setMobileMenuOpen(false)}><History size={18} /><span>Rebalances</span></Link>
-          <Link className={activeView === "forward" ? "active" : ""} href="/forward" onClick={() => setMobileMenuOpen(false)}><Timer size={18} /><span>Forward record</span></Link>
-          <Link className={activeView === "replay" ? "active" : ""} href="/replay" onClick={() => setMobileMenuOpen(false)}><LineChartIcon size={18} /><span>What-if replay</span></Link>
-          <Link className={activeView === "research" ? "active" : ""} href="/research" onClick={() => setMobileMenuOpen(false)}><FlaskConical size={18} /><span>Research status</span></Link>
-          <Link className={activeView === "survival" ? "active" : ""} href="/survival" onClick={() => setMobileMenuOpen(false)}><Siren size={18} /><span>Survival lab</span></Link>
-          <Link className={activeView === "methodology" ? "active" : ""} href="/methodology" onClick={() => setMobileMenuOpen(false)}><Workflow size={18} /><span>How it works</span></Link>
-          <Link className={activeView === "guardrails" ? "active" : ""} href="/guardrails" onClick={() => setMobileMenuOpen(false)}><ShieldCheck size={18} /><span>Guardrails</span></Link>
-        </nav>
-        <div className="side-note">
-          <span><i /> Research environment</span>
-          <p>Simulated results only. No brokerage or live order connection.</p>
-        </div>
-      </aside>
+  const heroStats = {
+    left: [
+      { value: money.format(metrics.endValue), label: "Simulated portfolio value" },
+      { value: pct(metrics.totalReturn), label: `Total return · ${money.format(Math.abs(metrics.profit))} ${metrics.profit >= 0 ? "profit" : "loss"}`, tone: metrics.profit >= 0 ? "gain" as const : "loss" as const },
+    ],
+    right: [
+      { value: metrics.sharpe.toFixed(2), label: "Sharpe ratio" },
+      { value: pct(metrics.maxDrawdown, 1), label: "Max drawdown" },
+    ],
+  };
+  const heroCta = (
+    <button className="hero-cta" onClick={() => setSettingsOpen(true)} aria-label="Open simulation settings">
+      <Settings2 size={16} /><span>What if</span>
+    </button>
+  );
 
-      <div className="dashboard-content">
-      <div className="utility-bar">
-        <div className="breadcrumbs"><span>Portfolio Optimizer</span><ChevronRight size={14} /><strong>{activeViewDetails.label}</strong></div>
-        <div className="utility-actions">
-          <span className="freshness"><i /> Data through {latestDay.date}</span>
-          <span className="avatar" aria-label="Portfolio owner">NT</span>
-        </div>
-      </div>
-
-      <div className="content-frame">
-      <header className="topbar">
-        <div className="title-block">
-          <div className="eyebrow"><span className="status-dot" /> SYSTEMATIC RESEARCH BOOK</div>
-          <h1>{activeViewDetails.title}</h1>
-          <p>{activeViewDetails.description}</p>
-        </div>
-        <div className="headline-card spotlight-surface" onMouseMove={positionSpotlight}>
-          <div className="portfolio-headline">
-            <span className="micro-label">SIMULATED PORTFOLIO VALUE</span>
-            <strong>{money.format(metrics.endValue)}</strong>
-            <span className={metrics.profit >= 0 ? "gain" : "loss"}>{metrics.profit >= 0 ? "↑" : "↓"} {money.format(Math.abs(metrics.profit))} · {pct(metrics.totalReturn)}</span>
-          </div>
-          <button className="settings-button" onClick={() => setSettingsOpen(true)} aria-label="Open simulation settings">
-            <Settings2 size={16} /> What if
-          </button>
-        </div>
-      </header>
-
+  const toolbar = (
       <section className="strategy-toolbar spotlight-surface" onMouseMove={positionSpotlight} aria-label="Strategy selection and status">
         <label className="strategy-picker">
           <span>STRATEGY</span>
@@ -635,12 +573,84 @@ function DashboardView({ data, strategies, survivalBundle, activeView, onStrateg
           <span className="pill strategy-badge">{data.strategy.badge}</span>
         </div>
       </section>
+  );
+
+  const overlays = (
+    <>
+      {metricDetail && <div className="modal-backdrop metric-modal-backdrop" onMouseDown={(event) => event.target === event.currentTarget && setMetricDetail(null)}>
+        <aside className="metric-dialog spotlight-surface" onMouseMove={positionSpotlight} role="dialog" aria-modal="true" aria-labelledby="metric-dialog-title">
+          <button className="close-button" onClick={() => setMetricDetail(null)} aria-label="Close metric explanation"><X size={18} /></button>
+          <span className="section-kicker">METRIC EXPLAINER</span>
+          <h2 id="metric-dialog-title">{metricDetails[metricDetail].label}</h2>
+          <strong className="metric-dialog-value">{metricDetails[metricDetail].value}</strong>
+          <p>{metricDetails[metricDetail].explanation}</p>
+          <div className="metric-formula"><span>FORMULA</span><MathEquation formula={metricDetails[metricDetail].formula} /></div>
+          <div className="metric-note"><Info size={16} /><p>{metricDetails[metricDetail].note}</p></div>
+          <Link href="/methodology" onClick={() => setMetricDetail(null)} className="metric-method-link">See the full portfolio method <ChevronRight size={15} /></Link>
+        </aside>
+      </div>}
+
+      {settingsOpen && <div className="modal-backdrop" onMouseDown={(event) => event.target === event.currentTarget && setSettingsOpen(false)}>
+        <aside className="settings-drawer" role="dialog" aria-modal="true" aria-label="Simulation settings">
+          <button className="close-button" onClick={() => setSettingsOpen(false)} aria-label="Close simulation settings"><X size={18} /></button>
+          <span className="section-kicker">WHAT-IF LAB</span>
+          <h2>Replay the strategy</h2>
+          <p>Change only the hypothetical starting amount and time window. The strategy rules, weekly returns, and 50-bps cost model remain frozen.</p>
+          <label>Starting capital<input type="number" min="100" step="100" value={capital} onChange={(event) => setCapital(Math.max(100, Number(event.target.value) || 100))} /></label>
+          <label>Start date<input type="date" min={data.dailyRecords[0].date} max={latestDay.date} value={startDate} onChange={(event) => setStartDate(event.target.value)} /></label>
+          <div className="quick-ranges"><span>QUICK RANGE</span>{[1, 2, 3, 5].map((item) => <button key={item} onClick={() => setQuickRange(item)}>{item}Y</button>)}<button onClick={() => setQuickRange("max")}>MAX</button></div>
+          <div className="scenario-result"><span>SIMULATED END VALUE</span><strong>{money.format(metrics.endValue)}</strong><small>{compactMoney.format(capital)} became {compactMoney.format(metrics.endValue)} · {pct(metrics.totalReturn)}</small></div>
+          <button className="apply-button" onClick={() => setSettingsOpen(false)}>Apply scenario</button>
+        </aside>
+      </div>}
+
+      {stockChart && <div className="modal-backdrop stock-modal-backdrop" onMouseDown={(event) => event.target === event.currentTarget && setStockChart(null)}>
+        <aside className="settings-drawer stock-drawer" role="dialog" aria-modal="true" aria-label={`${stockChart.symbol} historical price chart`}>
+          <button className="close-button" onClick={() => setStockChart(null)} aria-label="Close historical price chart"><X size={18} /></button>
+          <span className="section-kicker">HISTORICAL ADJUSTED PRICE</span>
+          <h2>{stockChart.symbol}</h2>
+          <p>{stockChart.source === "calendar" ? `Calendar cutoff: ${stockChart.endDate}` : `Latest strategy data: ${stockChart.endDate}`}. Prices after this cutoff are intentionally hidden.</p>
+          {stockEnd ? <>
+            <div className="stock-price-headline">
+              <div><span>LAST PRICE THROUGH CUTOFF</span><strong>{money.format(stockEnd.price)}</strong><small>{stockEnd.date}</small></div>
+              <div><span>AVAILABLE-HISTORY CHANGE</span><strong className={stockChange >= 0 ? "gain" : "loss"}>{pct(stockChange)}</strong><small>from {stockStart?.date}</small></div>
+            </div>
+            <div className="stock-chart-wrap">
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={stockChartSeries} margin={{ top: 12, right: 8, left: 4, bottom: 0 }}>
+                  <defs><linearGradient id="stockPriceFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#0297de" stopOpacity={0.24} /><stop offset="100%" stopColor="#0297de" stopOpacity={0} /></linearGradient></defs>
+                  <CartesianGrid vertical={false} stroke="#2f2c30" />
+                  <XAxis dataKey="date" hide />
+                  <YAxis domain={["dataMin", "dataMax"]} hide />
+                  <Tooltip contentStyle={{ background: "rgba(22,21,23,.97)", border: "1px solid #403c41", borderRadius: 10 }} formatter={(value) => [money.format(Number(value)), "Adjusted price"]} labelStyle={{ color: "#b0aeb0" }} />
+                  <Area type="monotone" dataKey="price" stroke="#0297de" strokeWidth={2.2} fill="url(#stockPriceFill)" isAnimationActive={false} />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
+            <div className="stock-chart-footer"><span><small>FIRST AVAILABLE</small>{stockStart?.date}</span><span><small>CUTOFF</small>{stockChart.endDate}</span><span><small>OBSERVATIONS</small>{stockChartSeries.length}</span></div>
+          </> : <div className="stock-unavailable"><strong>No validated price history</strong><p>This holding is shown in the strategy record, but no trusted price series is available for this cutoff.</p></div>}
+        </aside>
+      </div>}
+    </>
+  );
+
+  return (
+    <SiteShell
+      active={activeView}
+      freshness={`Data through ${latestDay.date}`}
+      footerNote={`Data through ${latestDay.date} · daily P&L from weekly strategy decisions`}
+      stats={heroStats}
+      cta={heroCta}
+      heroNote={`Simulated, ${startDate} to ${latestDay.date} · ${compactMoney.format(capital)} start · research only`}
+      toolbar={toolbar}
+      overlays={overlays}
+    >
 
       {activeView === "overview" && <section className="overview-dashboard page-section">
         <div className="overview-lead-grid">
           <article className="panel overview-performance-hero aurora-panel spotlight-surface" onMouseMove={positionSpotlight}>
             <div className="overview-performance-copy">
-              <span className="section-kicker gradient-copy">PORTFOLIO SIGNAL</span>
+              <span className="section-kicker">PORTFOLIO SIGNAL</span>
               <h2>{metrics.totalReturn >= 0 ? "Compounding ahead." : "Drawdown in progress."}</h2>
               <strong className={`shiny-number ${metrics.totalReturn >= 0 ? "gain" : "loss"}`}>{pct(metrics.totalReturn, 1)}</strong>
               <p>Total simulated return from {startDate} through {latestDay.date}, after the frozen cost model.</p>
@@ -654,8 +664,8 @@ function DashboardView({ data, strategies, survivalBundle, activeView, onStrateg
             <div className="overview-chart" aria-label="Recent simulated portfolio trajectory">
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={metrics.path.slice(-252)} margin={{ top: 12, right: 0, left: 0, bottom: 0 }}>
-                  <defs><linearGradient id="overviewFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#9b72ff" stopOpacity={0.42} /><stop offset="100%" stopColor="#7187ff" stopOpacity={0} /></linearGradient></defs>
-                  <Area type="monotone" dataKey="value" stroke="#9c8aff" strokeWidth={2.4} fill="url(#overviewFill)" isAnimationActive={false} />
+                  <defs><linearGradient id="overviewFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#0297de" stopOpacity={0.42} /><stop offset="100%" stopColor="#0297de" stopOpacity={0} /></linearGradient></defs>
+                  <Area type="monotone" dataKey="value" stroke="#0297de" strokeWidth={2.4} fill="url(#overviewFill)" isAnimationActive={false} />
                 </AreaChart>
               </ResponsiveContainer>
             </div>
@@ -671,7 +681,7 @@ function DashboardView({ data, strategies, survivalBundle, activeView, onStrateg
               {latestChange && <Link href={`/activity?date=${latestChange.date}`}>Inspect the decision <ChevronRight size={14} /></Link>}
             </article>
             <article className="panel overview-validation-card spotlight-surface" onMouseMove={positionSpotlight}>
-              <div className="validation-ring" style={{ background: `conic-gradient(#8f7dff ${forwardProgress * 360}deg, #292b37 0deg)` }}><span><b>{data.strategy.forward.observedWeeks}</b><small>OF {data.strategy.forward.requiredWeeks}</small></span></div>
+              <div className="validation-ring" style={{ background: `conic-gradient(#0297de ${forwardProgress * 360}deg, #2f2c30 0deg)` }}><span><b>{data.strategy.forward.observedWeeks}</b><small>OF {data.strategy.forward.requiredWeeks}</small></span></div>
               <div><span className="section-kicker">FORWARD EVIDENCE</span><h3>{data.strategy.forward.observedWeeks ? "Validation underway" : "Clock not started"}</h3><p>{data.strategy.forward.note}</p><Link href="/guardrails">Review guardrails <ChevronRight size={14} /></Link></div>
             </article>
           </div>
@@ -739,12 +749,12 @@ function DashboardView({ data, strategies, survivalBundle, activeView, onStrateg
             <div className="chart-wrap">
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={metrics.path} margin={{ top: 12, right: 8, left: 4, bottom: 0 }}>
-                  <defs><linearGradient id="valueFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#8d7dff" stopOpacity={0.34} /><stop offset="100%" stopColor="#7187ff" stopOpacity={0} /></linearGradient></defs>
-                  <CartesianGrid vertical={false} stroke="#292b37" />
-                  <XAxis dataKey="date" minTickGap={55} tick={{ fill: "#7c7d8a", fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={(value) => parseDate(String(value)).toLocaleDateString("en-US", { month: "short", year: "2-digit" })} />
-                  <YAxis domain={["auto", "auto"]} width={58} tick={{ fill: "#7c7d8a", fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={(value) => compactMoney.format(Number(value))} />
-                  <Tooltip contentStyle={{ background: "rgba(19,20,27,.97)", border: "1px solid #393c4b", borderRadius: 10, boxShadow: "0 16px 40px rgba(0,0,0,.35)" }} formatter={(value) => [money.format(Number(value)), "Value"]} labelStyle={{ color: "#aaaab4" }} />
-                  <Area type="monotone" dataKey="value" stroke="#8d7dff" strokeWidth={2.2} fill="url(#valueFill)" isAnimationActive={false} />
+                  <defs><linearGradient id="valueFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#0297de" stopOpacity={0.34} /><stop offset="100%" stopColor="#0297de" stopOpacity={0} /></linearGradient></defs>
+                  <CartesianGrid vertical={false} stroke="#2f2c30" />
+                  <XAxis dataKey="date" minTickGap={55} tick={{ fill: "#848185", fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={(value) => parseDate(String(value)).toLocaleDateString("en-US", { month: "short", year: "2-digit" })} />
+                  <YAxis domain={["auto", "auto"]} width={58} tick={{ fill: "#848185", fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={(value) => compactMoney.format(Number(value))} />
+                  <Tooltip contentStyle={{ background: "rgba(22,21,23,.97)", border: "1px solid #403c41", borderRadius: 10, boxShadow: "0 16px 40px rgba(0,0,0,.35)" }} formatter={(value) => [money.format(Number(value)), "Value"]} labelStyle={{ color: "#b0aeb0" }} />
+                  <Area type="monotone" dataKey="value" stroke="#0297de" strokeWidth={2.2} fill="url(#valueFill)" isAnimationActive={false} />
                 </AreaChart>
               </ResponsiveContainer>
             </div>
@@ -787,7 +797,18 @@ function DashboardView({ data, strategies, survivalBundle, activeView, onStrateg
               <button onClick={() => moveMonth(1)} aria-label="Next month"><ChevronRight size={18} /></button>
             </div>
           </div>
-          <div className="calendar-legend"><span><i className="legend-dot green" /> daily gain</span><span><i className="legend-dot red" /> daily loss</span><span><i className="legend-dot holdings-change" /> holdings changed</span></div>
+          <dl className="calendar-summary" aria-label={`${monthNames[month]} ${year} summary`}>
+            <div><dt>Month return</dt><dd className={monthRecords.length ? (monthReturn >= 0 ? "gain" : "loss") : ""}>{monthRecords.length ? pct(monthReturn) : "—"}</dd></div>
+            <div><dt>Profit days</dt><dd>{monthUpDays}</dd></div>
+            <div><dt>Loss days</dt><dd>{monthDownDays}</dd></div>
+            <div><dt>Trade days</dt><dd>{monthTradeDays}</dd></div>
+          </dl>
+          <div className="calendar-legend" aria-label="Calendar legend">
+            <span><i className="legend-dot green" /> Profit day</span>
+            <span><i className="legend-dot red" /> Loss day</span>
+            <span><i className="legend-dot holdings-change" /> Trade day (holdings changed)</span>
+            <span><i className="legend-dot none" /> No record</span>
+          </div>
           <div className="calendar-grid weekdays">{["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"].map((day) => <span key={day}>{day}</span>)}</div>
           <div className="calendar-grid days">
             {calendarCells.map((cell, index) => {
@@ -799,10 +820,12 @@ function DashboardView({ data, strategies, survivalBundle, activeView, onStrateg
                   disabled={!cell.record}
                   onClick={() => cell.record && setSelectedDate(cell.key)}
                   className={`day-cell ${cell.record ? (cell.record.netReturn ?? 0) >= 0 ? "positive" : "negative" : "empty"} ${holdingsChanged ? "holdings-changed" : ""} ${selectedDate === cell.key ? "selected" : ""}`}
+                  aria-pressed={selectedDate === cell.key}
+                  aria-label={cell.record ? `${cell.key}: ${(cell.record.netReturn ?? 0) >= 0 ? "profit" : "loss"} ${pct(cell.record.netReturn ?? 0, 2)}${holdingsChanged ? ", trade day" : ""}` : `${cell.key}: no record`}
                 >
                   <span>{cell.day}</span>
                   {cell.record && <strong className={(cell.record.netReturn ?? 0) >= 0 ? "positive-return" : "negative-return"}>{pct(cell.record.netReturn ?? 0, 2)}</strong>}
-                  {holdingsChanged && <i className="rebalance-mark" title="Holdings changed" aria-label="Holdings changed" />}
+                  {holdingsChanged && <i className="rebalance-mark" title="Trade day: holdings changed" />}
                 </button>
               );
             })}
@@ -879,7 +902,7 @@ function DashboardView({ data, strategies, survivalBundle, activeView, onStrateg
       {activeView === "methodology" && <section className="section-block page-section methodology-page">
         <article className="panel methodology-hero spotlight-surface" onMouseMove={positionSpotlight}>
           <div className="methodology-hero-copy">
-            <span className="section-kicker gradient-copy">FROM EVIDENCE TO WEIGHTS</span>
+            <span className="section-kicker">FROM EVIDENCE TO WEIGHTS</span>
             <h2>One decision, fully traceable.</h2>
             <p>{deep?.summary ?? methodology.summary}</p>
             <div className="methodology-meta">
@@ -940,13 +963,13 @@ function DashboardView({ data, strategies, survivalBundle, activeView, onStrateg
             <span className="section-kicker">WHAT COUNTS AS A HOLDINGS CHANGE?</span>
             <h3>The weight vector must actually move.</h3>
             <p>A scheduled review or a generated trade-ledger row is not enough. The calendar now marks a change only when at least one saved target weight differs from the prior target.</p>
-            <div className="formula-block compact"><span>CALENDAR TEST</span><MathEquation formula="calendarDelta" /><small>Show the white ring when any |Δwᵢ,t| &gt; 10⁻⁸.</small></div>
+            <div className="formula-block compact"><span>CALENDAR TEST</span><MathEquation formula="calendarDelta" /><small>Show the violet trade marker when any |Δwᵢ,t| &gt; 10⁻⁸.</small></div>
           </article>
           <article className="panel audit-explainer spotlight-surface" onMouseMove={positionSpotlight}>
             <span className="section-kicker">TWO INDEPENDENT SIGNALS</span>
-            <h3>Color shows P&amp;L. The ring shows action.</h3>
-            <p>Green or red answers whether the strategy gained or lost that day. A white outline and top-right ring separately answer whether the holdings changed.</p>
-            <div className="signal-key"><span className="gain-swatch">GAIN</span><span className="loss-swatch">LOSS</span><span className="change-swatch"><i /> HOLDINGS CHANGED</span></div>
+            <h3>Color shows P&amp;L. The marker shows action.</h3>
+            <p>Green or red answers whether the strategy gained or lost that day. A violet diamond and violet underline separately answer whether the holdings changed.</p>
+            <div className="signal-key"><span className="gain-swatch">GAIN</span><span className="loss-swatch">LOSS</span><span className="change-swatch"><i /> TRADE DAY</span></div>
           </article>
         </div>
       </section>}
@@ -984,68 +1007,6 @@ function DashboardView({ data, strategies, survivalBundle, activeView, onStrateg
           />
         )}
       </section>}
-
-      <footer>
-          <span>Data through {latestDay.date} · daily P&amp;L from weekly strategy decisions</span>
-        <span>Past simulated performance does not guarantee future returns.</span>
-      </footer>
-      </div>
-      </div>
-
-      {metricDetail && <div className="modal-backdrop metric-modal-backdrop" onMouseDown={(event) => event.target === event.currentTarget && setMetricDetail(null)}>
-        <aside className="metric-dialog spotlight-surface" onMouseMove={positionSpotlight} role="dialog" aria-modal="true" aria-labelledby="metric-dialog-title">
-          <button className="close-button" onClick={() => setMetricDetail(null)} aria-label="Close metric explanation"><X size={18} /></button>
-          <span className="section-kicker">METRIC EXPLAINER</span>
-          <h2 id="metric-dialog-title">{metricDetails[metricDetail].label}</h2>
-          <strong className="metric-dialog-value">{metricDetails[metricDetail].value}</strong>
-          <p>{metricDetails[metricDetail].explanation}</p>
-          <div className="metric-formula"><span>FORMULA</span><MathEquation formula={metricDetails[metricDetail].formula} /></div>
-          <div className="metric-note"><Info size={16} /><p>{metricDetails[metricDetail].note}</p></div>
-          <Link href="/methodology" onClick={() => setMetricDetail(null)} className="metric-method-link">See the full portfolio method <ChevronRight size={15} /></Link>
-        </aside>
-      </div>}
-
-      {settingsOpen && <div className="modal-backdrop" onMouseDown={(event) => event.target === event.currentTarget && setSettingsOpen(false)}>
-        <aside className="settings-drawer" role="dialog" aria-modal="true" aria-label="Simulation settings">
-          <button className="close-button" onClick={() => setSettingsOpen(false)} aria-label="Close simulation settings"><X size={18} /></button>
-          <span className="section-kicker">WHAT-IF LAB</span>
-          <h2>Replay the strategy</h2>
-          <p>Change only the hypothetical starting amount and time window. The strategy rules, weekly returns, and 50-bps cost model remain frozen.</p>
-          <label>Starting capital<input type="number" min="100" step="100" value={capital} onChange={(event) => setCapital(Math.max(100, Number(event.target.value) || 100))} /></label>
-          <label>Start date<input type="date" min={data.dailyRecords[0].date} max={latestDay.date} value={startDate} onChange={(event) => setStartDate(event.target.value)} /></label>
-          <div className="quick-ranges"><span>QUICK RANGE</span>{[1, 2, 3, 5].map((item) => <button key={item} onClick={() => setQuickRange(item)}>{item}Y</button>)}<button onClick={() => setQuickRange("max")}>MAX</button></div>
-          <div className="scenario-result"><span>SIMULATED END VALUE</span><strong>{money.format(metrics.endValue)}</strong><small>{compactMoney.format(capital)} became {compactMoney.format(metrics.endValue)} · {pct(metrics.totalReturn)}</small></div>
-          <button className="apply-button" onClick={() => setSettingsOpen(false)}>Apply scenario</button>
-        </aside>
-      </div>}
-
-      {stockChart && <div className="modal-backdrop stock-modal-backdrop" onMouseDown={(event) => event.target === event.currentTarget && setStockChart(null)}>
-        <aside className="settings-drawer stock-drawer" role="dialog" aria-modal="true" aria-label={`${stockChart.symbol} historical price chart`}>
-          <button className="close-button" onClick={() => setStockChart(null)} aria-label="Close historical price chart"><X size={18} /></button>
-          <span className="section-kicker">HISTORICAL ADJUSTED PRICE</span>
-          <h2>{stockChart.symbol}</h2>
-          <p>{stockChart.source === "calendar" ? `Calendar cutoff: ${stockChart.endDate}` : `Latest strategy data: ${stockChart.endDate}`}. Prices after this cutoff are intentionally hidden.</p>
-          {stockEnd ? <>
-            <div className="stock-price-headline">
-              <div><span>LAST PRICE THROUGH CUTOFF</span><strong>{money.format(stockEnd.price)}</strong><small>{stockEnd.date}</small></div>
-              <div><span>AVAILABLE-HISTORY CHANGE</span><strong className={stockChange >= 0 ? "gain" : "loss"}>{pct(stockChange)}</strong><small>from {stockStart?.date}</small></div>
-            </div>
-            <div className="stock-chart-wrap">
-              <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={stockChartSeries} margin={{ top: 12, right: 8, left: 4, bottom: 0 }}>
-                  <defs><linearGradient id="stockPriceFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#0a6cff" stopOpacity={0.24} /><stop offset="100%" stopColor="#0a6cff" stopOpacity={0} /></linearGradient></defs>
-                  <CartesianGrid vertical={false} stroke="#292b37" />
-                  <XAxis dataKey="date" hide />
-                  <YAxis domain={["dataMin", "dataMax"]} hide />
-                  <Tooltip contentStyle={{ background: "rgba(19,20,27,.97)", border: "1px solid #393c4b", borderRadius: 10 }} formatter={(value) => [money.format(Number(value)), "Adjusted price"]} labelStyle={{ color: "#aaaab4" }} />
-                  <Area type="monotone" dataKey="price" stroke="#0a6cff" strokeWidth={2.2} fill="url(#stockPriceFill)" isAnimationActive={false} />
-                </AreaChart>
-              </ResponsiveContainer>
-            </div>
-            <div className="stock-chart-footer"><span><small>FIRST AVAILABLE</small>{stockStart?.date}</span><span><small>CUTOFF</small>{stockChart.endDate}</span><span><small>OBSERVATIONS</small>{stockChartSeries.length}</span></div>
-          </> : <div className="stock-unavailable"><strong>No validated price history</strong><p>This holding is shown in the strategy record, but no trusted price series is available for this cutoff.</p></div>}
-        </aside>
-      </div>}
-    </main>
+    </SiteShell>
   );
 }

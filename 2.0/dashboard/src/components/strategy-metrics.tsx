@@ -1,8 +1,7 @@
 "use client";
 
 import { Fragment, useEffect, useState } from "react";
-import Link from "next/link";
-import { ChevronLeft } from "lucide-react";
+import { SiteShell } from "@/components/site-shell";
 
 type Metrics = Record<string, number | string | null>;
 type Bundle = {
@@ -95,20 +94,8 @@ export function StrategyMetrics() {
   const names = Object.keys(bundle.metrics);
 
   return (
-    <main className="dashboard-page forward-standalone">
-      <div className="content-frame">
-        <nav className="forward-topbar">
-          <Link href="/"><ChevronLeft size={15} />Portfolio Optimizer</Link>
-          <span>
-            <Link href="/performance">Performance</Link>
-            <Link href="/research">Research status</Link>
-            <Link href="/guardrails">Guardrails</Link>
-          </span>
-        </nav>
-
-        <div className="dashboard-content">
+    <SiteShell active="metrics">
           <section className="section-block page-section metrics-view">
-            <h2>Strategy metrics</h2>
             <p className="muted">Records through {bundle.asOf}. Click any metric name to see what it means.</p>
 
             <div className="callout callout-warning">
@@ -185,8 +172,6 @@ export function StrategyMetrics() {
               </p>
             </div>
           </section>
-        </div>
-      </div>
-    </main>
+    </SiteShell>
   );
 }

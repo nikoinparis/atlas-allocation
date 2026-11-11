@@ -73,10 +73,12 @@ export function ForwardTracker({ positionSpotlight }: { positionSpotlight: (even
       .catch(() => setFailed(true));
   }, []);
 
-  if (failed) return <article className="panel"><span className="section-kicker">FORWARD EVIDENCE</span><h2>Forward tracker unavailable</h2><p>Rebuild <code>forward-tracker.json</code> and refresh.</p></article>;
-  if (!payload) return <article className="panel"><span className="section-kicker">FORWARD EVIDENCE</span><h2>Loading the forward record&hellip;</h2></article>;
+  if (failed) return <article className="panel state-panel"><span className="section-kicker">FORWARD EVIDENCE</span><h2>Forward tracker unavailable</h2><p>Rebuild <code>forward-tracker.json</code> and refresh.</p></article>;
+  if (!payload) return <article className="panel state-panel"><span className="section-kicker">FORWARD EVIDENCE</span><h2>Loading the forward record&hellip;</h2></article>;
 
   const totalObserved = payload.protocols.reduce((sum, row) => sum + row.observedWeeks, 0);
+  const clocksRunning = payload.protocols.filter((row) => row.observedWeeks > 0).length;
+  const clocksAtZero = payload.protocols.length - clocksRunning;
   const heldRows = payload.heldBooks.strategies;
   const energyDominated = heldRows.filter((row) => row.cumulativeReturn > 0 && row.energyContribution >= row.cumulativeReturn / 2).length;
   const negativeExEnergy = heldRows.filter((row) => row.exEnergyContribution < 0).length;
@@ -104,17 +106,50 @@ export function ForwardTracker({ positionSpotlight }: { positionSpotlight: (even
         <span className="guardrail-status"><i />RESEARCH ONLY</span>
       </article>
 
+      <div className="stat-row" aria-label="Forward record summary">
+        <div className="stat-card stat-powder on-powder">
+          <span className="stat-label"><Timer size={16} /> Forward weeks recorded</span>
+          <span className="stat-value">{totalObserved}</span>
+          <span className="stat-note">summed across {payload.protocols.length} frozen protocols</span>
+        </div>
+        <div className="stat-card">
+          <span className="stat-label"><CalendarClock size={16} /> Clocks running</span>
+          <span className="stat-value">{clocksRunning}</span>
+          <span className="stat-note">with at least one eligible realization</span>
+        </div>
+        <div className="stat-card">
+          <span className="stat-label"><CalendarClock size={16} /> Clocks at zero</span>
+          <span className="stat-value">{clocksAtZero}</span>
+          <span className="stat-note">frozen, no eligible realization yet</span>
+        </div>
+        <div className="stat-card">
+          <span className="stat-label"><Database size={16} /> Prices through</span>
+          <span className="stat-value stat-value-date">{payload.dataThrough}</span>
+          <span className="stat-note">backtests stop at {payload.backtestsEndAt}</span>
+        </div>
+      </div>
+
+      <div className="section-heading"><div><span>FORWARD CLOCKS</span><h2>One clock per frozen protocol</h2></div><p>Each bar is one closed week. Green is a gain, red is a loss. {payload.protocols[0]?.requiredWeeks ?? 52} untouched weeks are required before any review.</p></div>
       <section className="forward-clock-grid">
         {payload.protocols.map((row) => {
           const share = row.requiredWeeks > 0 ? row.observedWeeks / row.requiredWeeks : 0;
+          const largestMove = Math.max(...row.observations.map((observation) => Math.abs(observation.netReturn ?? 0)), 1e-9);
           return (
             <article key={row.protocol} className="panel forward-clock spotlight-surface" onMouseMove={positionSpotlight}>
               <header>
                 <Timer size={15} />
                 <h3>{protocolLabel(row.protocol)}</h3>
+                <span className={`clock-chip ${row.observedWeeks > 0 ? "running" : "idle"}`}>{row.observedWeeks > 0 ? "Running" : "Not started"}</span>
               </header>
               <strong>{row.observedWeeks}<small> / {row.requiredWeeks} weeks</small></strong>
               <div className="forward-clock-bar"><i style={{ width: `${Math.max(share * 100, row.observedWeeks > 0 ? 1.5 : 0)}%` }} /></div>
+              {row.observations.length > 0 && (
+                <div className="clock-spark" role="img" aria-label={`Weekly net returns for ${protocolLabel(row.protocol)}`}>
+                  {row.observations.map((observation) => (
+                    <i key={observation.realizationDate} className={(observation.netReturn ?? 0) >= 0 ? "up" : "down"} title={`${observation.realizationDate}: ${pct(observation.netReturn ?? 0, 3)}`} style={{ height: `${Math.max(10, (Math.abs(observation.netReturn ?? 0) / largestMove) * 100)}%` }} />
+                  ))}
+                </div>
+              )}
               {row.observations.length > 0 ? (
                 <ul className="forward-observations">
                   {row.observations.map((observation) => (
@@ -155,21 +190,21 @@ export function ForwardTracker({ positionSpotlight }: { positionSpotlight: (even
         <div className="forward-held-chart">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={heldChart} margin={{ top: 8, right: 12, left: 4, bottom: 4 }}>
-              <CartesianGrid vertical={false} stroke="#292b37" />
-              <XAxis dataKey="name" tick={{ fontSize: 10, fill: "#8b8d9b" }} interval={0} angle={-18} textAnchor="end" height={64} />
-              <YAxis tickFormatter={(value) => `${(Number(value) * 100).toFixed(0)}%`} tick={{ fontSize: 10, fill: "#8b8d9b" }} width={44} />
+              <CartesianGrid vertical={false} stroke="#2f2c30" />
+              <XAxis dataKey="name" tick={{ fontSize: 10, fill: "#949195" }} interval={0} angle={-18} textAnchor="end" height={64} />
+              <YAxis tickFormatter={(value) => `${(Number(value) * 100).toFixed(0)}%`} tick={{ fontSize: 10, fill: "#949195" }} width={44} />
               <Tooltip
-                contentStyle={{ background: "rgba(19,20,27,.97)", border: "1px solid #393c4b", borderRadius: 10 }}
+                contentStyle={{ background: "rgba(22,21,23,.97)", border: "1px solid #403c41", borderRadius: 10 }}
                 formatter={(value, name) => [pct(Number(value)), name === "total" ? "Held return" : name]}
-                labelStyle={{ color: "#aaaab4" }}
+                labelStyle={{ color: "#b0aeb0" }}
               />
               <Bar dataKey="total" radius={[5, 5, 0, 0]} isAnimationActive={false}>
-                {heldChart.map((row) => <Cell key={row.name} fill={row.total >= 0 ? "#56d98b" : "#ff7d8d"} />)}
+                {heldChart.map((row) => <Cell key={row.name} fill={row.total >= 0 ? "#3ddc84" : "#ff6f61"} />)}
               </Bar>
             </BarChart>
           </ResponsiveContainer>
         </div>
-        <table className="holdings-table forward-table">
+        <div className="table-scroll"><table className="forward-table">
           <thead>
             <tr><th>Book</th><th>Held return</th><th>Energy weight</th><th>From energy</th><th>Everything else</th></tr>
           </thead>
@@ -185,7 +220,7 @@ export function ForwardTracker({ positionSpotlight }: { positionSpotlight: (even
             ))}
             <tr className="forward-benchmark-row"><td colSpan={5}>Same {payload.heldBooks.weeks.length} weeks — {Object.entries(payload.heldBooks.benchmarks).map(([key, value]) => `${key.replace(/_/g, " ")} ${pct(value)}`).join(" · ")}</td></tr>
           </tbody>
-        </table>
+        </table></div>
         <p className="forward-attribution">
           <Flame size={14} />
           <span>

@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import Link from "next/link";
-import { ChevronLeft } from "lucide-react";
+import { SiteShell } from "@/components/site-shell";
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 type Window = Partial<Record<"periods" | "totalReturn" | "cagr" | "volatility" | "sharpe" | "maxDrawdown" | "winRate", number>>;
@@ -23,7 +22,8 @@ type Bundle = {
   strategies: Row[]; daily: { dates: string[]; series: Record<string, (number | null)[]> };
 };
 
-const SERIES = ["#3987e5", "#d95926", "#199e70", "#c98500", "#d55181", "#9085e9"];
+// Categorical only: green and red are reserved for profit and loss.
+const SERIES = ["#35b1ee", "#fc734d", "#f5f7f9", "#f2b441", "#a78bfa", "#2ec4b6"];
 const pct = (v: number | null | undefined, d = 1) => (v == null || !Number.isFinite(v) ? "—" : `${v > 0 ? "+" : ""}${(v * 100).toFixed(d)}%`);
 const abs = (v: number | null | undefined, d = 1) => (v == null || !Number.isFinite(v) ? "—" : `${(v * 100).toFixed(d)}%`);
 const plain = (v: number | null | undefined, d = 2) => (v == null || !Number.isFinite(v) ? "—" : v.toFixed(d));
@@ -121,20 +121,8 @@ export function StrategyCompare() {
   ];
 
   return (
-    <main className="dashboard-page forward-standalone">
-      <div className="content-frame">
-        <nav className="forward-topbar">
-          <Link href="/"><ChevronLeft size={15} />Portfolio Optimizer</Link>
-          <span>
-            <Link href="/metrics">Strategy metrics</Link>
-            <Link href="/performance">Performance</Link>
-            <Link href="/research">Research status</Link>
-          </span>
-        </nav>
-
-        <div className="dashboard-content">
+    <SiteShell active="compare">
           <section className="section-block page-section metrics-view">
-            <h2>Compare strategies</h2>
             <p className="muted">Five strategies, no leverage and no short positions. Prices through the {bundle.through} close.</p>
 
             <div className="callout callout-warning">
@@ -152,15 +140,15 @@ export function StrategyCompare() {
               <div className="replay-chart" role="img" aria-label={`Cumulative daily return of each strategy's last book from ${bundle.daily.dates[0]} to ${bundle.through}, against ${bundle.benchmark}`}>
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={chartRows} margin={{ top: 8, right: 16, left: 4, bottom: 4 }}>
-                    <CartesianGrid vertical={false} stroke="#292b37" />
-                    <XAxis dataKey="date" tickFormatter={(value) => String(value).slice(5)} tick={{ fontSize: 10, fill: "#8b8d9b" }} minTickGap={24} />
-                    <YAxis tickFormatter={(value) => pct(Number(value), 0)} tick={{ fontSize: 10, fill: "#8b8d9b" }} width={52} />
+                    <CartesianGrid vertical={false} stroke="#2f2c30" />
+                    <XAxis dataKey="date" tickFormatter={(value) => String(value).slice(5)} tick={{ fontSize: 10, fill: "#949195" }} minTickGap={24} />
+                    <YAxis tickFormatter={(value) => pct(Number(value), 0)} tick={{ fontSize: 10, fill: "#949195" }} width={52} />
                     <Tooltip
-                      contentStyle={{ background: "rgba(19,20,27,.97)", border: "1px solid #393c4b", borderRadius: 10 }}
-                      labelStyle={{ color: "#aaaab4" }}
+                      contentStyle={{ background: "rgba(22,21,23,.97)", border: "1px solid #403c41", borderRadius: 10 }}
+                      labelStyle={{ color: "#b0aeb0" }}
                       formatter={(value, key) => [pct(Number(value), 2), key === bundle.benchmark ? bundle.benchmark : short(rows.find((r) => r.id === key)?.name ?? String(key))]}
                     />
-                    <Line dataKey={bundle.benchmark} stroke="#8b8d9b" strokeWidth={1.5} strokeDasharray="2 3" dot={false} isAnimationActive={false} />
+                    <Line dataKey={bundle.benchmark} stroke="#949195" strokeWidth={1.5} strokeDasharray="2 3" dot={false} isAnimationActive={false} />
                     {rows.map((row, index) => (
                       <Line key={row.id} dataKey={row.id} stroke={SERIES[index % SERIES.length]} strokeWidth={1.8} dot={false} isAnimationActive={false} connectNulls />
                     ))}
@@ -194,8 +182,6 @@ export function StrategyCompare() {
               </div>
             ))}
           </section>
-        </div>
-      </div>
-    </main>
+    </SiteShell>
   );
 }

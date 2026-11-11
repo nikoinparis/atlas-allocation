@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AlertTriangle, CheckCircle2, Clock, Layers, XCircle } from "lucide-react";
+import { SiteShell } from "@/components/site-shell";
 
 type WeeklyReturn = { week: string | null; netReturn: number };
 
@@ -90,13 +91,13 @@ export function ResearchStatus() {
       .catch(() => setFailed(true));
   }, []);
 
-  if (failed) return <section className="section-block page-section"><p>Research status is unavailable.</p></section>;
-  if (!data) return <section className="section-block page-section"><p>Loading research status…</p></section>;
+  if (failed) return <SiteShell active="research"><section className="section-block page-section"><article className="panel state-panel"><h2>Research status is unavailable</h2><p>Rebuild <code>research-status.json</code> and refresh this page.</p></article></section></SiteShell>;
+  if (!data) return <SiteShell active="research"><section className="section-block page-section"><article className="panel state-panel"><h2>Loading research status…</h2></article></section></SiteShell>;
 
   return (
+    <SiteShell active="research" freshness={`Generated ${data.generatedAtUtc.slice(0, 10)}`}>
     <section className="section-block page-section research-status">
-      <header className="section-heading">
-        <h2>Research status</h2>
+      <header className="research-lead">
         <p>
           What the research programme is actually doing, read from the evidence files rather than
           summarised by hand. The strategy pages show what backtests produced. This page shows how
@@ -105,7 +106,7 @@ export function ResearchStatus() {
       </header>
 
       <div className="stat-row">
-        <div className="stat-card">
+        <div className="stat-card stat-powder on-powder">
           <span className="stat-label"><Clock size={16} /> Untouched weeks recorded</span>
           <span className="stat-value">{data.headline.totalUntouchedWeeks}</span>
           <span className="stat-note">across {data.headline.clocksRunning} running clocks, {data.headline.weeksRequiredEach} required each</span>
@@ -120,7 +121,7 @@ export function ResearchStatus() {
           <span className="stat-value">{data.headline.closedFamilies}</span>
           <span className="stat-note">tested and rejected, with the reason recorded</span>
         </div>
-        <div className="stat-card">
+        <div className="stat-card stat-brand">
           <span className="stat-label"><CheckCircle2 size={16} /> Strategies promoted</span>
           <span className="stat-value">0</span>
           <span className="stat-note">nothing here has ever traded</span>
@@ -145,7 +146,7 @@ export function ResearchStatus() {
         <div>
           <strong>{data.crossSectionalSkill.window}</strong>
           <p>{data.crossSectionalSkill.finding}</p>
-          <table className="data-table">
+          <div className="table-scroll"><table className="data-table wrap">
             <thead>
               <tr><th>signal</th><th>rank IC</th><th>decile spread</th><th>monotonicity</th></tr>
             </thead>
@@ -159,7 +160,7 @@ export function ResearchStatus() {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table></div>
           <p><em>{data.crossSectionalSkill.whatItMeans}</em></p>
           <p><strong>Honest limit:</strong> {data.crossSectionalSkill.honestLimit}</p>
         </div>
@@ -170,7 +171,7 @@ export function ResearchStatus() {
         <div>
           <strong>{data.outOfSample.window}</strong>
           <p>{data.outOfSample.finding}</p>
-          <table className="data-table">
+          <div className="table-scroll"><table className="data-table wrap">
             <thead>
               <tr><th>strategy</th><th>excess out of sample</th><th>in sample</th><th>retained</th></tr>
             </thead>
@@ -186,7 +187,7 @@ export function ResearchStatus() {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table></div>
           <p><em>{data.outOfSample.whatItMeans}</em></p>
         </div>
       </div>
@@ -204,7 +205,7 @@ export function ResearchStatus() {
       </div>
 
       <h3>Can they be rebuilt?</h3>
-      <table className="data-table">
+      <div className="table-scroll"><table className="data-table wrap">
         <tbody>
           <tr><td>saved book</td><td className="mono">{data.reproducibility.savedBook}</td></tr>
           <tr><td>reproduces from saved book</td>
@@ -213,7 +214,7 @@ export function ResearchStatus() {
               <td className="mono">{data.reproducibility.reproducesFromPublishedHoldings}</td></tr>
           <tr><td>frozen manifest</td><td className="mono">{data.reproducibility.frozenManifest}</td></tr>
         </tbody>
-      </table>
+      </table></div>
       <p>{data.reproducibility.note} See <code>{data.reproducibility.documentation}</code>.</p>
 
       <h3>Research candidate</h3>
@@ -222,7 +223,7 @@ export function ResearchStatus() {
           <strong>{data.candidate.name}</strong> — {data.candidate.status}
           <p>{data.candidate.why_it_is_here}</p>
           <p><em>{data.candidate.what_it_is_not}</em></p>
-          <table className="data-table">
+          <div className="table-scroll"><table className="data-table wrap">
             <thead><tr><th>Window</th><th>Return / yr</th><th>Sharpe</th><th>Max drawdown</th></tr></thead>
             <tbody>
               <tr><td>full</td><td className="mono">{percent(data.candidate.historical.fullCagr)}</td>
@@ -235,7 +236,7 @@ export function ResearchStatus() {
                   <td className="mono">{percent(data.candidate.historical.postBreakCagr)}</td>
                   <td className="mono">{data.candidate.historical.postBreakSharpe.toFixed(3)}</td><td>—</td></tr>
             </tbody>
-          </table>
+          </table></div>
           <p>
             <strong>Blended with growth:</strong> {String(data.candidate.blendedWithGrowth.note)} Best is{" "}
             {String(data.candidate.blendedWithGrowth.best)}: Sharpe{" "}
@@ -256,7 +257,7 @@ export function ResearchStatus() {
         them beat simply holding the universe equally weighted. {data.structuralBreak.note} Measured
         in {data.structuralBreak.measuredIn}.
       </p>
-      <table className="data-table">
+      <div className="table-scroll"><table className="data-table wrap">
         <thead>
           <tr><th>Strategy</th><th>Period</th><th>Weeks</th><th>Return / yr</th><th>Sharpe</th><th>Max drawdown</th></tr>
         </thead>
@@ -274,10 +275,10 @@ export function ResearchStatus() {
               </tr>
             )))}
         </tbody>
-      </table>
+      </table></div>
 
       <h3>Clocks running</h3>
-      <table className="data-table">
+      <div className="table-scroll"><table className="data-table wrap">
         <thead>
           <tr><th>Protocol</th><th>Progress</th><th>Weekly returns</th><th>Cumulative</th></tr>
         </thead>
@@ -285,16 +286,16 @@ export function ResearchStatus() {
           {data.clocks.filter((c) => c.observedWeeks > 0).map((clock) => (
             <tr key={clock.protocol}>
               <td>{readable(clock.protocol)}</td>
-              <td>{clock.observedWeeks} / {clock.requiredWeeks}</td>
-              <td className="mono">{clock.weekly.map((w) => percent(w.netReturn)).join("  ")}</td>
+              <td><span className="progress-cell"><b>{clock.observedWeeks} / {clock.requiredWeeks}</b><i><em style={{ width: `${Math.min(100, (clock.observedWeeks / Math.max(clock.requiredWeeks, 1)) * 100)}%` }} /></i></span></td>
+              <td className="mono weekly-cell">{clock.weekly.map((w, index) => <span key={`${w.week}-${index}`} className={w.netReturn >= 0 ? "gain" : "loss"}>{percent(w.netReturn)}</span>)}</td>
               <td className="mono">{percent(clock.cumulativeReturn)}</td>
             </tr>
           ))}
         </tbody>
-      </table>
+      </table></div>
 
       <h3>Clocks starting</h3>
-      <table className="data-table">
+      <div className="table-scroll"><table className="data-table wrap">
         <thead><tr><th>Protocol</th><th>First decision</th><th>What it is for</th></tr></thead>
         <tbody>
           {data.pending.map((row) => (
@@ -305,7 +306,7 @@ export function ResearchStatus() {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table></div>
 
       <h3>Closed without promotion</h3>
       <p className="section-note">
@@ -313,7 +314,7 @@ export function ResearchStatus() {
         candidate is exactly as much of a result as a passing one, and it stops the same idea being
         proposed again in six months.
       </p>
-      <table className="data-table">
+      <div className="table-scroll"><table className="data-table wrap">
         <thead><tr><th>Family</th><th>Why it closed</th><th>Step</th></tr></thead>
         <tbody>
           {data.closedFamilies.map((row) => (
@@ -322,10 +323,11 @@ export function ResearchStatus() {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table></div>
 
       <p className="section-note">{data.readMe}</p>
       <p className="section-note">Generated {new Date(data.generatedAtUtc).toISOString().slice(0, 19)}Z.</p>
     </section>
+    </SiteShell>
   );
 }

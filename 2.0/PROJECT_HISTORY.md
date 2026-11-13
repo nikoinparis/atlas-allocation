@@ -18301,3 +18301,70 @@ govern: these paths were chosen on the window they report, out-of-sample retenti
 11%, and ninety per cent of the return was market beta.
 
 **Cumulative search:** no new trial.
+
+## Step 380 — 2026-11-13 — Forward clocks on the dashboard, each from its rule's history start to the latest close
+
+**What it was for.** The owner asked for the same full daily view as Step 379 for the forward
+clocks: what each would have done day by day from as far back as its rule can be run, until now.
+
+**What was done.** `scripts/build_clock_histories_v1.py` builds one daily path per clock and writes
+`evidence/clock_histories_v1/` and `dashboard/public/clock-histories.json`. The dashboard appends
+these ten paths to its strategy picker, labelled "Forward clock", and the Friday cycle refreshes
+them as a step that cannot block the cycle. Each path has two parts:
+- **Before the clock's first recorded decision:** its frozen rule applied to past data, computed
+  with the clock's own code where it exists. That code is the recorders' `book_for` and
+  `form_book`, the min-variance recorder's `compute_snapshot_state`, and Batch 65's
+  `dynamic_weights`, rebuilt in memory and checked against its frozen holdings exactly. Where a
+  clock has a frozen weights artifact, that artifact is used instead.
+- **From the clock's first recorded decision:** the target weights in its own hash-chained log,
+  which the script reads and never writes.
+
+Every book is marked at daily adjusted closes and trades at the decision day's close. Costs are
+charged on one-way turnover: 10 bps for ETF clocks, 50 bps for stock books, and none for the
+equal-weight benchmark, as its recorder charges none.
+
+Not done:
+- `banded_spy_gld_shy_v1` has its first decision tonight.
+- `residual_tie_agnostic_companion_v1` is a 22-book measurement companion, not a portfolio.
+- The avoid list is not a portfolio.
+
+**Check against the clocks' own logs.** The rebuilt daily path, compounded weekly, matches every
+logged forward week:
+- **To within 0.3 bp:** static, 60/40, past-only, breadth, riser 50/50, and the trend sleeve's
+  first week (−1.1315% logged vs −1.1319%).
+- **Within tens of bp:** min variance (18 bp max), SUE (55 bp max) and equal weight (15 bp max).
+  The cause is the cost model and the priced-name filter.
+- **One real gap:** the earnings-yield week to 2026-10-16 is 2.09% logged vs 7.46% rebuilt.
+  BMBL went from $2.54 to $5.94 (+134%), and the recorder drops any weekly move over 100% as
+  bad data. The daily path keeps the real price. This is recorded here and has not been fixed
+  in either direction.
+
+**Results, $10,000 from each rule's start to 2026-11-12 (equal weight to 2026-11-06), vs SPY:**
+
+| Clock | Start | End value | CAGR | Sharpe | Max drawdown | SPY CAGR / Sharpe / max drawdown | Since clock start |
+|---|---|---|---|---|---|---|---|
+| Benchmark thirds | 2005-01 | $56,831 | 8.3% | 0.92 | −22.1% | 10.7% / 0.63 / −55.2% | −2.64% |
+| Trend sleeve 80/20 | 2019-05 | $21,979 | 11.1% | 1.27 | −12.4% | 15.2% / 0.82 / −33.7% | −2.34% |
+| 60/40 blend | 2005-01 | $182,194 | 14.2% | 0.74 | −46.4% | 10.7% / 0.63 / −55.2% | −1.35% |
+| Past-only consensus | 2005-01 | $133,504 | 12.6% | 0.62 | −53.0% | 10.7% / 0.63 / −55.2% | +4.53% |
+| Breadth trend | 2006-01 | $99,386 | 11.7% | 0.72 | −29.9% | 10.8% / 0.63 / −55.2% | +1.27% |
+| Minimum variance | 2005-07 | $48,233 | 7.7% | 0.89 | −23.4% | 10.7% / 0.63 / −55.2% | −5.85% |
+| Earnings yield | 2023-01 | $32,199 | 35.6% | 1.33 | −23.8% | 19.7% / 1.27 / −18.8% | +8.72% |
+| SUE quarterly | 2012-04 | $52,717 | 12.1% | 0.65 | −48.7% | 14.0% / 0.87 / −33.7% | −3.00% |
+| SPY + risers 50/50 | 2012-11 | $124,561 | 19.7% | 0.84 | −39.4% | 14.4% / 0.89 / −33.7% | −3.68% |
+| Equal-weight stocks | 2012-04 | $187,495 | 22.3% | 0.83 | −45.6% | 14.0% / 0.87 / −33.7% | −3.75% |
+
+**What the table says.**
+1. **Survivorship.** The equal-weight benchmark selects nothing, yet it earns 22.3% a year against
+   SPY's 14.0%. That 8-point gap is roughly the size of the survivorship flattering in the stock
+   price history, and every stock clock's backtest part carries it. Against that benchmark:
+   - SUE (12.1%) trails holding everything.
+   - The riser 50/50 (19.7%) is half SPY.
+   - Earnings yield's 35.6% compares with 18.7% for equal weight over its own 2023–2026 window.
+2. **The ETF rules.** Their backtest parts were chosen on this same history.
+3. **Since each clock started** (5–13 weeks), the clocks are mostly flat to down. Earnings yield
+   (+8.7%) and past-only (+4.5%) lead.
+
+None of this is evidence of skill, and nothing is promoted.
+
+**Cumulative search:** no new trial. Every rule shown was frozen before this step.

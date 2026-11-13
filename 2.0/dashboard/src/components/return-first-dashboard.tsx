@@ -37,6 +37,7 @@ type DailyRecord = {
   rebalance: boolean;
   tradingDay: boolean;
   heldBook?: boolean;
+  forward?: boolean;
 };
 type AssetPrice = { date: string; price: number };
 type DashboardPayload = {
@@ -56,6 +57,7 @@ type DashboardPayload = {
     disclosures: { researchOnly: boolean; liveTradingEnabled: boolean; costBps: number; returnConvention: string };
     dailyThrough?: string;
     heldBookExtension?: { backtestEnd: string; from: string; through: string; days: number } | null;
+    clockHistory?: { backtestStart: string; forwardFrom: string; through: string; survivorship: boolean };
   };
   records: StrategyRecord[];
   dailyRecords: DailyRecord[];
@@ -332,12 +334,18 @@ export function ReturnFirstDashboard({ initialView = "overview" }: { initialView
   }, [activeStrategy]);
 
   useEffect(() => {
-    fetch("/return-first-dashboard.json")
-      .then((response) => {
+    // Forward clocks (backtest of each frozen rule, then its recorded decisions) are a separate,
+    // optional payload appended after the research strategies; if it is missing the page still works.
+    Promise.all([
+      fetch("/return-first-dashboard.json").then((response) => {
         if (!response.ok) throw new Error("Dashboard snapshot is unavailable");
         return response.json() as Promise<DashboardBundle>;
-      })
-      .then(setBundle)
+      }),
+      fetch("/clock-histories.json")
+        .then((response) => (response.ok ? response.json() as Promise<DashboardBundle> : { strategies: [] }))
+        .catch(() => ({ strategies: [] } as DashboardBundle)),
+    ])
+      .then(([main, clocks]) => setBundle({ strategies: [...main.strategies, ...clocks.strategies] }))
       .catch(() => setError(true));
     fetch("/strategy-survival.json")
       .then((response) => response.ok ? response.json() as Promise<SurvivalBundle> : null)
@@ -370,7 +378,10 @@ export function ReturnFirstDashboard({ initialView = "overview" }: { initialView
 function DashboardView({ data, strategies, survivalBundle, activeView, onStrategyChange }: { data: DashboardPayload; strategies: BundledPayload[]; survivalBundle: SurvivalBundle | null; activeView: DashboardViewName; onStrategyChange: (id: string) => void }) {
   const latest = data.records.at(-1)!;
   const latestDay = data.dailyRecords.at(-1)!;
-  const firstHoldoutRecord = data.dailyRecords.find((row) => row.date > data.strategy.retrospectiveHoldout.start)?.date ?? data.strategy.retrospectiveHoldout.start;
+  // Forward clocks open on their full history (the owner asked to see each from its start).
+  const firstHoldoutRecord = data.strategy.clockHistory
+    ? data.dailyRecords[0].date
+    : data.dailyRecords.find((row) => row.date > data.strategy.retrospectiveHoldout.start)?.date ?? data.strategy.retrospectiveHoldout.start;
   const [capital, setCapital] = useState(10_000);
   const [startDate, setStartDate] = useState(firstHoldoutRecord);
   const [selectedDate, setSelectedDate] = useState(latestDay.date);
@@ -572,7 +583,7 @@ function DashboardView({ data, strategies, survivalBundle, activeView, onStrateg
         <div className="strategy-summary"><strong>{data.strategy.name}</strong><span>{data.strategy.subtitle}</span></div>
         <div className="strategy-tags">
           <span className="pill research"><FlaskConical size={13} /> Research only</span>
-          <span className="pill">50 bps costs</span>
+          <span className="pill">{data.strategy.disclosures.costBps} bps costs</span>
           <span className="pill strategy-badge">{data.strategy.badge}</span>
         </div>
       </section>
@@ -599,6 +610,7 @@ function DashboardView({ data, strategies, survivalBundle, activeView, onStrateg
           <span className="section-kicker">WHAT-IF LAB</span>
           <h2>Replay the strategy</h2>
           <p>Change only the hypothetical starting amount and time window. The strategy rules, weekly returns, and 50-bps cost model remain frozen.</p>
+          {data.strategy.clockHistory && <p>This is a forward clock. Days before {data.strategy.clockHistory.forwardFrom} apply its frozen rule to past data, a backtest chosen with hindsight; days from {data.strategy.clockHistory.forwardFrom} follow the decisions the clock actually recorded.{data.strategy.clockHistory.survivorship ? " The stock history holds mostly survivors, so the backtest part is flattered." : ""}</p>}
           {data.strategy.heldBookExtension && <p>Days after {data.strategy.heldBookExtension.backtestEnd} are a what-if replay: the last decided book is held unchanged at daily closes through {data.strategy.heldBookExtension.through}, with no rebalancing or costs. It is computed after the fact, not forward evidence.</p>}
           <label>Starting capital<input type="number" min="100" step="100" value={capital} onChange={(event) => setCapital(Math.max(100, Number(event.target.value) || 100))} /></label>
           <label>Start date<input type="date" min={data.dailyRecords[0].date} max={latestDay.date} value={startDate} onChange={(event) => setStartDate(event.target.value)} /></label>
@@ -645,7 +657,7 @@ function DashboardView({ data, strategies, survivalBundle, activeView, onStrateg
       footerNote={`Data through ${latestDay.date} · daily P&L from weekly strategy decisions`}
       stats={heroStats}
       cta={heroCta}
-      heroNote={`Simulated, ${startDate} to ${latestDay.date} · ${compactMoney.format(capital)} start · research only${data.strategy.heldBookExtension ? ` · backtest to ${data.strategy.heldBookExtension.backtestEnd}, then last book held to ${data.strategy.heldBookExtension.through}` : ""}`}
+      heroNote={`Simulated, ${startDate} to ${latestDay.date} · ${compactMoney.format(capital)} start · research only${data.strategy.heldBookExtension ? ` · backtest to ${data.strategy.heldBookExtension.backtestEnd}, then last book held to ${data.strategy.heldBookExtension.through}` : ""}${data.strategy.clockHistory ? ` · rule backtest before ${data.strategy.clockHistory.forwardFrom}, recorded clock after${data.strategy.clockHistory.survivorship ? " · survivor-biased stock history" : ""}` : ""}`}
       toolbar={toolbar}
       overlays={overlays}
     >

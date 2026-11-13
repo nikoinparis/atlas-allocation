@@ -18266,3 +18266,38 @@ The existing cycle tests pass (7 of 7 with the new ones).
 waits on the owner's decision about internal leverage.
 
 **Cumulative search:** no new trial.
+
+## Step 379 — 2026-11-13 — Dashboard daily paths carried from each backtest's start to the latest close
+
+**What it was for.** The owner asked to see, day by day, what each dashboard strategy would have
+done from its first backtest day to now. The five backtests stop at their 2026-08-07 to 2026-08-13
+endpoints, so the calendar, daily tape and start-date simulator stopped there too.
+
+**What was done.** `scripts/build_paper_replay_v1.py` was rerun through the 2026-11-12 close. A new
+script, `dashboard/scripts/extend-dashboard-daily.py`, appends each replay day after a strategy's
+backtest end to its `dailyRecords` in `return-first-dashboard.json`. Those days are flagged
+`heldBook: true`, and each strategy gets a `heldBookExtension` field. The script can be rerun
+safely. The dashboard says on the hero line, in the What-If Lab and on the daily tape that those
+days hold the last decided book. The Friday cycle runs the script right after the what-if replay,
+as a step that cannot block the cycle (exit 1 is tolerated).
+
+**What it is not.** The appended days do not re-run any strategy's rules: there is no rebalancing,
+no sleeve or leverage overlay, and no costs. They are a retrospective replay, never forward
+evidence, and nothing was promoted. Holding attribution on those days shows no per-stock moves,
+because the per-strategy price files still end in August.
+
+**Results, start to 2026-11-12, $10,000 each, against SPY over the same dates:**
+
+| Strategy | Start | End value | CAGR | Sharpe | Max drawdown | Since backtest end | SPY CAGR / Sharpe / max drawdown |
+|---|---|---|---|---|---|---|---|
+| Sector-Aware Ensemble | 2023-01-09 | $34,893 | 38.5% | 1.56 | −23.1% | −2.3% | 20.5% / 1.32 / −18.8% |
+| Breadth-20 | 2023-01-09 | $33,787 | 37.3% | 1.44 | −23.2% | +0.6% | 20.5% / 1.32 / −18.8% |
+| Residual-Controlled | 2022-12-05 | $33,605 | 36.1% | 1.16 | −25.7% | −3.2% | 18.6% / 1.21 / −18.8% |
+| Growth Top-Five | 2023-01-09 | $21,038 | 21.4% | 0.66 | −41.7% | −21.8% | 20.5% / 1.32 / −18.8% |
+| ETF 60/40 | 2005-01-10 | $134,785 | 12.6% | 0.67 | −46.8% | −0.8% | 10.9% / 0.64 / −55.2% |
+
+All five held books were flat to negative after their backtests ended. Steps 281–296 still
+govern: these paths were chosen on the window they report, out-of-sample retention was at most
+11%, and ninety per cent of the return was market beta.
+
+**Cumulative search:** no new trial.

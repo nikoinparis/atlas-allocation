@@ -36,6 +36,7 @@ type DailyRecord = {
   netReturn: number | null;
   rebalance: boolean;
   tradingDay: boolean;
+  heldBook?: boolean;
 };
 type AssetPrice = { date: string; price: number };
 type DashboardPayload = {
@@ -53,6 +54,8 @@ type DashboardPayload = {
     betaMatched?: { alphaFull: number; pValue: number; alphaBeforeBreak: number; alphaAfterBreak: number; passed: boolean; breakDate: string; step: number; note: string };
     forward: { status: string; observedWeeks: number; requiredWeeks: number; firstDecision: string; firstRealization: string; note: string };
     disclosures: { researchOnly: boolean; liveTradingEnabled: boolean; costBps: number; returnConvention: string };
+    dailyThrough?: string;
+    heldBookExtension?: { backtestEnd: string; from: string; through: string; days: number } | null;
   };
   records: StrategyRecord[];
   dailyRecords: DailyRecord[];
@@ -596,6 +599,7 @@ function DashboardView({ data, strategies, survivalBundle, activeView, onStrateg
           <span className="section-kicker">WHAT-IF LAB</span>
           <h2>Replay the strategy</h2>
           <p>Change only the hypothetical starting amount and time window. The strategy rules, weekly returns, and 50-bps cost model remain frozen.</p>
+          {data.strategy.heldBookExtension && <p>Days after {data.strategy.heldBookExtension.backtestEnd} are a what-if replay: the last decided book is held unchanged at daily closes through {data.strategy.heldBookExtension.through}, with no rebalancing or costs. It is computed after the fact, not forward evidence.</p>}
           <label>Starting capital<input type="number" min="100" step="100" value={capital} onChange={(event) => setCapital(Math.max(100, Number(event.target.value) || 100))} /></label>
           <label>Start date<input type="date" min={data.dailyRecords[0].date} max={latestDay.date} value={startDate} onChange={(event) => setStartDate(event.target.value)} /></label>
           <div className="quick-ranges"><span>QUICK RANGE</span>{[1, 2, 3, 5].map((item) => <button key={item} onClick={() => setQuickRange(item)}>{item}Y</button>)}<button onClick={() => setQuickRange("max")}>MAX</button></div>
@@ -641,7 +645,7 @@ function DashboardView({ data, strategies, survivalBundle, activeView, onStrateg
       footerNote={`Data through ${latestDay.date} · daily P&L from weekly strategy decisions`}
       stats={heroStats}
       cta={heroCta}
-      heroNote={`Simulated, ${startDate} to ${latestDay.date} · ${compactMoney.format(capital)} start · research only`}
+      heroNote={`Simulated, ${startDate} to ${latestDay.date} · ${compactMoney.format(capital)} start · research only${data.strategy.heldBookExtension ? ` · backtest to ${data.strategy.heldBookExtension.backtestEnd}, then last book held to ${data.strategy.heldBookExtension.through}` : ""}`}
       toolbar={toolbar}
       overlays={overlays}
     >
@@ -688,7 +692,7 @@ function DashboardView({ data, strategies, survivalBundle, activeView, onStrateg
         </div>
 
         <article className="panel market-tape spotlight-surface" onMouseMove={positionSpotlight}>
-          <div><span className="section-kicker">RECENT DAILY TAPE</span><h3>Twenty-session pulse</h3><p>Color shows direction; bar height shows the size of the move.</p></div>
+          <div><span className="section-kicker">RECENT DAILY TAPE</span><h3>Twenty-session pulse</h3><p>Color shows direction; bar height shows the size of the move.{data.strategy.heldBookExtension ? ` Sessions after ${data.strategy.heldBookExtension.backtestEnd} hold the last book unchanged.` : ""}</p></div>
           <div className="tape-bars" aria-label="Twenty most recent daily returns">
             {recentTape.map((row) => {
               const value = row.netReturn ?? 0;

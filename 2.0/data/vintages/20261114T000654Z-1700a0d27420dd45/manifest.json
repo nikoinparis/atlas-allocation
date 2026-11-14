@@ -1,0 +1,61 @@
+{
+  "claims": {
+    "corporate_actions": false,
+    "delistings": false,
+    "permanent_security_ids": false,
+    "point_in_time_prices": false,
+    "point_in_time_universe": false,
+    "vintage_revisions": false
+  },
+  "content_digest": "1700a0d27420dd45bbee696129925bcde63394692c24ca5c56b45a159be3ea61",
+  "coverage": {
+    "latest_observation_date": "2026-11-13",
+    "period": "max",
+    "symbols": 35
+  },
+  "dataset_kind": "free_current_etf_research_bundle",
+  "files": {
+    "acquisition_metadata.json": {
+      "bytes": 7682,
+      "sha256": "ebda89b227cf7ea9109e0be06478074f77063a4d249c9083c1f52ba978f7952d"
+    },
+    "corporate_actions.csv": {
+      "bytes": 531703,
+      "sha256": "7c200be160bcb4c3bd4262a0247e698fbe639c7efddc2fa75122e820eff7daa7"
+    },
+    "delistings.csv": {
+      "bytes": 92,
+      "sha256": "8d610a1c9521fe3e3ac1a0ae4fcf8736fff21fc10e78ca5ab861dedb48283873"
+    },
+    "prices.csv": {
+      "bytes": 44964305,
+      "sha256": "8998030b3d812df51683f8dd8e90c58a18c23d655cc3e0b0e49f87fbd81f884d"
+    },
+    "security_master.csv": {
+      "bytes": 4033,
+      "sha256": "b7d52b4bf48000b15c82cab44955787639b2d4e9c08a4dba88ef3d933df79cd5"
+    },
+    "universe_membership.csv": {
+      "bytes": 5332,
+      "sha256": "f614c2c9da8428c892177f9ec78091538bd333ec2fb96f9c70d4ad90b80f59ec"
+    }
+  },
+  "historical_simulation_grade": "research_only",
+  "notes": [
+    "Free current-ETF universe; unsuitable for survivorship-safe stock or index-membership research.",
+    "Ticker-derived IDs are not permanent identifiers.",
+    "Successive local snapshots can reveal future revisions but cannot recover revisions before the first pull.",
+    "No paid source is required or used."
+  ],
+  "observed_at_basis": "maximum per-ticker retrieval completion timestamp from isolated collector",
+  "observed_at_utc": "2026-11-14T00:06:54.911516+00:00",
+  "provider": "free_yahoo_via_yfinance",
+  "publication_lag_policy": "new observations usable only after per-ticker knowledge_at_utc; historical rows remain research-only",
+  "registered_at_utc": "2026-11-14T00:06:58.231152+00:00",
+  "revision_policy": "every pull retained as a new snapshot; upstream revision history is unavailable",
+  "schema_version": 1,
+  "snapshot_id": "20261114T000654Z-1700a0d27420dd45",
+  "source_license": "free research access; Yahoo terms and yfinance personal-use warning apply",
+  "source_uri": "https://finance.yahoo.com via yfinance",
+  "supersedes_snapshot_id": null
+}

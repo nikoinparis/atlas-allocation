@@ -46,12 +46,21 @@
       "weekly": []
     },
     {
-      "cumulativeReturn": -0.019302302724769516,
-      "observedWeeks": 10,
+      "cumulativeReturn": null,
+      "observedWeeks": 0,
+      "promotionAuthorized": false,
+      "protocol": "banded_spy_gld_shy_v1",
+      "requiredWeeks": 52,
+      "savedDecisions": 1,
+      "weekly": []
+    },
+    {
+      "cumulativeReturn": 0.012506721674177879,
+      "observedWeeks": 11,
       "promotionAuthorized": false,
       "protocol": "breadth_confirmed_trend_return_ceiling_v3",
       "requiredWeeks": 52,
-      "savedDecisions": 12,
+      "savedDecisions": 13,
       "weekly": [
         {
           "netReturn": 0.007870624530397694,
@@ -92,16 +101,20 @@
         {
           "netReturn": -0.10436660436912805,
           "week": "2026-11-06"
+        },
+        {
+          "netReturn": 0.03243509644952321,
+          "week": "2026-11-13"
         }
       ]
     },
     {
-      "cumulativeReturn": -0.061320707844536915,
-      "observedWeeks": 10,
+      "cumulativeReturn": -0.05502737381177947,
+      "observedWeeks": 11,
       "promotionAuthorized": false,
       "protocol": "covariance_minimum_variance_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 12,
+      "savedDecisions": 13,
       "weekly": [
         {
           "netReturn": -0.004051813672142307,
@@ -142,25 +155,29 @@
         {
           "netReturn": -0.02818657550662018,
           "week": "2026-11-06"
+        },
+        {
+          "netReturn": 0.0067044560217219135,
+          "week": "2026-11-13"
         }
       ]
     },
     {
       "cumulativeReturn": null,
-      "observedWeeks": 6,
+      "observedWeeks": 7,
       "promotionAuthorized": false,
       "protocol": "equal_weight_benchmark_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 8,
+      "savedDecisions": 9,
       "weekly": []
     },
     {
-      "cumulativeReturn": 0.045049443008255086,
-      "observedWeeks": 10,
+      "cumulativeReturn": 0.10169445046708092,
+      "observedWeeks": 11,
       "promotionAuthorized": false,
       "protocol": "past_only_consensus_selector_return_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 12,
+      "savedDecisions": 13,
       "weekly": [
         {
           "netReturn": 0.02794378204652248,
@@ -201,25 +218,29 @@
         {
           "netReturn": -0.11996569714222395,
           "week": "2026-11-06"
+        },
+        {
+          "netReturn": 0.05420318420128423,
+          "week": "2026-11-13"
         }
       ]
     },
     {
       "cumulativeReturn": null,
-      "observedWeeks": 6,
+      "observedWeeks": 7,
       "promotionAuthorized": false,
       "protocol": "residual_tie_agnostic_companion_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 8,
+      "savedDecisions": 9,
       "weekly": []
     },
     {
-      "cumulativeReturn": -0.060006687277182946,
-      "observedWeeks": 10,
+      "cumulativeReturn": -0.020861936872402675,
+      "observedWeeks": 11,
       "promotionAuthorized": false,
       "protocol": "return_first_60_40_blend_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 12,
+      "savedDecisions": 13,
       "weekly": [
         {
           "netReturn": -0.002215515303859796,
@@ -260,6 +281,10 @@
         {
           "netReturn": -0.10132964926871035,
           "week": "2026-11-06"
+        },
+        {
+          "netReturn": 0.041643647752548585,
+          "week": "2026-11-13"
         }
       ]
     },
@@ -274,20 +299,20 @@
     },
     {
       "cumulativeReturn": null,
-      "observedWeeks": 3,
+      "observedWeeks": 4,
       "promotionAuthorized": false,
       "protocol": "spy_riser_5050_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 4,
+      "savedDecisions": 5,
       "weekly": []
     },
     {
-      "cumulativeReturn": -0.01863034863284252,
-      "observedWeeks": 5,
+      "cumulativeReturn": -0.026974995274762437,
+      "observedWeeks": 6,
       "promotionAuthorized": false,
       "protocol": "static_spy_gld_shy_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 6,
+      "savedDecisions": 7,
       "weekly": [
         {
           "netReturn": 0.00837776157233609,
@@ -308,16 +333,20 @@
         {
           "netReturn": 0.006386972857894134,
           "week": "2026-11-06"
+        },
+        {
+          "netReturn": -0.008503061644809328,
+          "week": "2026-11-13"
         }
       ]
     },
     {
-      "cumulativeReturn": -0.07677103776227956,
-      "observedWeeks": 6,
+      "cumulativeReturn": -0.04481384920664577,
+      "observedWeeks": 7,
       "promotionAuthorized": false,
       "protocol": "sue_quarterly_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 8,
+      "savedDecisions": 9,
       "weekly": [
         {
           "netReturn": 0.006697931108720882,
@@ -342,25 +371,29 @@
         {
           "netReturn": -0.052618530263741754,
           "week": "2026-11-06"
+        },
+        {
+          "netReturn": 0.03461458626490239,
+          "week": "2026-11-13"
         }
       ]
     },
     {
       "cumulativeReturn": null,
-      "observedWeeks": 3,
+      "observedWeeks": 4,
       "promotionAuthorized": false,
       "protocol": "trend_sleeve_8020_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 4,
+      "savedDecisions": 5,
       "weekly": []
     },
     {
-      "cumulativeReturn": 0.03921583696531172,
-      "observedWeeks": 6,
+      "cumulativeReturn": 0.0729734225661185,
+      "observedWeeks": 7,
       "promotionAuthorized": false,
       "protocol": "valuation_earnings_yield_v1",
       "requiredWeeks": 52,
-      "savedDecisions": 8,
+      "savedDecisions": 9,
       "weekly": [
         {
           "netReturn": -0.0049636388638365555,
@@ -385,6 +418,10 @@
         {
           "netReturn": -0.06955210888399313,
           "week": "2026-11-06"
+        },
+        {
+          "netReturn": 0.03248370973578002,
+          "week": "2026-11-13"
         }
       ]
     },
@@ -535,9 +572,394 @@
       "verdict": "Rejected, with a finding kept."
     },
     {
-      "name": "Last updated 2026-09-06. Update this file in the same commit as the work it describes. \\",
+      "name": "Valuation family revival",
+      "step": 275,
+      "verdict": "REVIVED."
+    },
+    {
+      "name": "Valuation panel quarterly refresh",
+      "step": 278,
+      "verdict": "Done and defect fixed."
+    },
+    {
+      "name": "Breadth repair by construction",
+      "step": 279,
+      "verdict": "Closed as noise."
+    },
+    {
+      "name": "FINRA short interest + short-sale volume",
+      "step": 282,
+      "verdict": "Already done: Steps 263, 270, 282."
+    },
+    {
+      "name": "FINRA daily short-sale volume",
+      "step": 282,
+      "verdict": "Closed on all three gates."
+    },
+    {
+      "name": "Crypto as a third asset class",
+      "step": 285,
+      "verdict": "Closed on both gates, both configurations."
+    },
+    {
+      "name": "Form 4 opportunistic insiders",
       "step": 286,
-      "verdict": "Valuation family revival \\ | REVIVED."
+      "verdict": "Refuted on sign;"
+    },
+    {
+      "name": "Pairs trading, GGR rule verbatim",
+      "step": 293,
+      "verdict": "Closed on gates 2 and 3, but gates 1 and 4 PASSED."
+    },
+    {
+      "name": "Long-short cash conversion",
+      "step": 295,
+      "verdict": "Closed on gate 3, the hypothesis."
+    },
+    {
+      "name": "Cross-sectional skill screen",
+      "step": 296,
+      "verdict": "Nought of thirteen."
+    },
+    {
+      "name": "Closed-family monotonicity audit",
+      "step": 298,
+      "verdict": "All fifteen closures stand."
+    },
+    {
+      "name": "Remaining closed families audited",
+      "step": 299,
+      "verdict": "Audit complete: nought of fourteen order their deciles."
+    },
+    {
+      "name": "Wide-universe skill screen",
+      "step": 300,
+      "verdict": "Closed, and it closes the depth argument."
+    },
+    {
+      "name": "Indonesian cross-sectional, price signals",
+      "step": 302,
+      "verdict": "Same answer as the US."
+    },
+    {
+      "name": "Long-horizon skill screen",
+      "step": 303,
+      "verdict": "Closed."
+    },
+    {
+      "name": "Broad IDX price acquisition",
+      "step": 305,
+      "verdict": "Closed as permanently blocked."
+    },
+    {
+      "name": "Non-machine-read information / disclosure latency (Step 301 asymmetry 3)",
+      "step": 306,
+      "verdict": "Closed on its premise."
+    },
+    {
+      "name": "VWAP and standard-deviation bands",
+      "step": 307,
+      "verdict": "Closed."
+    },
+    {
+      "name": "VWAP, wide US universe",
+      "step": 308,
+      "verdict": "Closed after a fair trial."
+    },
+    {
+      "name": "Write the SUE recorder",
+      "step": 312,
+      "verdict": "Done, and the panel half was my own error."
+    },
+    {
+      "name": "Replicate the skill null on WorldQuant BRAIN data",
+      "step": 317,
+      "verdict": "Closed \u2014 the null replicated on data we do not own."
+    },
+    {
+      "name": "Decile ladder at NONE cannot separate an ordering from a beta ordering",
+      "step": 317,
+      "verdict": "Closed, and the hypothesis was wrong."
+    },
+    {
+      "name": "Stress-test the 1.0 ETF allocator",
+      "step": 318,
+      "verdict": "Closed \u2014 it does not survive its own criteria."
+    },
+    {
+      "name": "1.0 regime classifier",
+      "step": 319,
+      "verdict": "Closed \u2014 refuted as an allocation edge, one real finding preserved."
+    },
+    {
+      "name": "HARLF",
+      "step": 320,
+      "verdict": "Closed unstarted."
+    },
+    {
+      "name": "LLM formulaic-alpha mining (arXiv 2409.06289, new 2026-09-24)",
+      "step": 320,
+      "verdict": "Closed unstarted."
+    },
+    {
+      "name": "The 0.5 monotonicity bar does not exclude concentration",
+      "step": 320,
+      "verdict": "Closed \u2014 ported to all seven screens, not the five named."
+    },
+    {
+      "name": "What to hold in detected stress when bonds do not hedge",
+      "step": 321,
+      "verdict": "Closed \u2014 the defence choice matters enormously, the timing does not."
+    },
+    {
+      "name": "WorldQuant BRAIN as an external judge",
+      "step": 326,
+      "verdict": "Two in-sample candidates, zero confirmed;"
+    },
+    {
+      "name": "Recommendation changes, rebuilt for event fields",
+      "step": 328,
+      "verdict": "Measured, not established."
+    },
+    {
+      "name": "A15",
+      "step": 328,
+      "verdict": "Nothing passes."
+    },
+    {
+      "name": "Volatility risk premium via Cboe option-writing indices",
+      "step": 330,
+      "verdict": "Closed, free first read."
+    },
+    {
+      "name": "Beta-matched benchmark",
+      "step": 332,
+      "verdict": "0 of 10."
+    },
+    {
+      "name": "Buy after a crash",
+      "step": 334,
+      "verdict": "0 of 9."
+    },
+    {
+      "name": "1.0 + 2.0 blend",
+      "step": 334,
+      "verdict": "Fails."
+    },
+    {
+      "name": "1.0 phase5_fragility_guard vs best 2.0",
+      "step": 335,
+      "verdict": "Defensive, not better on return."
+    },
+    {
+      "name": "Survival lab for the unlevered books",
+      "step": 337,
+      "verdict": "Done."
+    },
+    {
+      "name": "Re-cost cash conversion",
+      "step": 339,
+      "verdict": "Retracted."
+    },
+    {
+      "name": "Calibrate the monotonicity bar",
+      "step": 339,
+      "verdict": "Done."
+    },
+    {
+      "name": "Long/short trend sleeve",
+      "step": 340,
+      "verdict": "Fails its bar, right direction."
+    },
+    {
+      "name": "Turn-of-the-month on SPY",
+      "step": 341,
+      "verdict": "Dead."
+    },
+    {
+      "name": "Volatility-managed market, long-only",
+      "step": 342,
+      "verdict": "Fails replication."
+    },
+    {
+      "name": "Pairs/stat arb on daily bars",
+      "step": 343,
+      "verdict": "Closed."
+    },
+    {
+      "name": "Factor attribution, FF5 + momentum",
+      "step": 344,
+      "verdict": "No book has FF6 alpha."
+    },
+    {
+      "name": "Federal contracts, USASpending (Quiver substitute)",
+      "step": 345,
+      "verdict": "Inconclusive on density;"
+    },
+    {
+      "name": "Steady risers, held a year",
+      "step": 347,
+      "verdict": "Fails its bar;"
+    },
+    {
+      "name": "Wikipedia attention returns (Step 288 never return-tested)",
+      "step": 348,
+      "verdict": "Nothing."
+    },
+    {
+      "name": "Rising-stocks program: 3 signals x 3 cadences x 5 safety nets",
+      "step": 349,
+      "verdict": "0 of 45 beat SPY in 2012-2019 (Sharpe 1.20);"
+    },
+    {
+      "name": "Earnings-call tone (Step 254 never return-tested)",
+      "step": 350,
+      "verdict": "Nothing."
+    },
+    {
+      "name": "GDELT news coverage and tone",
+      "step": 351,
+      "verdict": "Gate fails;"
+    },
+    {
+      "name": "Ride the boom, step aside when it breaks",
+      "step": 352,
+      "verdict": "Switching makes it worse."
+    },
+    {
+      "name": "Text-peer gap, Hoberg-Phillips TNIC-3",
+      "step": 354,
+      "verdict": "Fails every criterion, all four trials."
+    },
+    {
+      "name": "`farr` gvkey->CIK link table",
+      "step": 354,
+      "verdict": "Done."
+    },
+    {
+      "name": "Commodity moves leading exposed stocks",
+      "step": 355,
+      "verdict": "All three trials fail."
+    },
+    {
+      "name": "ML-built product links, Hoberg-Phillips ETNIC doc2vec (A19b, owner asked whether AI/ML links would do better)",
+      "step": 356,
+      "verdict": "Fails, both trials."
+    },
+    {
+      "name": "Supply-chain links, Fresard-Hoberg-Phillips VTNIC",
+      "step": 357,
+      "verdict": "Closed on link quality."
+    },
+    {
+      "name": "Peers' earnings surprises",
+      "step": 358,
+      "verdict": "Fails, declared underpowered (27 quarterly decisions)."
+    },
+    {
+      "name": "Boom alarm (industry 20% ahead over 6m), exploratory anatomy",
+      "step": 359,
+      "verdict": "Not a trial;"
+    },
+    {
+      "name": "News-jump followers: unmoved peers of a leader that jumped >= 10%",
+      "step": 360,
+      "verdict": "Fails."
+    },
+    {
+      "name": "News-day co-movers continue",
+      "step": 361,
+      "verdict": "Fails on its untouched holdout."
+    },
+    {
+      "name": "Boom alarm confirmed by industry earnings; earnings before price (A27, owner's 'catch the main wave earlier')",
+      "step": 362,
+      "verdict": "Both fail."
+    },
+    {
+      "name": "Blowout results days: buy the leader itself",
+      "step": 364,
+      "verdict": "Fails."
+    },
+    {
+      "name": "Firms first naming a current leader in filings, raw mentions (A25 v1)",
+      "step": 365,
+      "verdict": "Fails, wrong sign."
+    },
+    {
+      "name": "Call options on boom leaders",
+      "step": 366,
+      "verdict": "Do not buy options data."
+    },
+    {
+      "name": "Firms first disclosing a REAL relationship with a current leader (A25 v2, owner's 'low-key companies doing business with AI firms')",
+      "step": 367,
+      "verdict": "Fails, wrong sign."
+    },
+    {
+      "name": "Big up-moves with company news (8-K) vs without (A29, Chan 2003; owner's 'big news, buy the company')",
+      "step": 368,
+      "verdict": "Fails."
+    },
+    {
+      "name": "Earnings-announcement premium, pre-FOMC drift, S&P index inclusion (closed by the published record, Step 369)",
+      "step": 369,
+      "verdict": "Gone in the US per the literature: announcement premium vanished since the 2000s (Heitz et al."
+    },
+    {
+      "name": "Forward avoid list: firms newly tied to hot leaders",
+      "step": 369,
+      "verdict": "Running, quarterly."
+    },
+    {
+      "name": "Spin-offs",
+      "step": 373,
+      "verdict": "Closed on survivorship-free published data."
+    },
+    {
+      "name": "Results-day drift, long-only, net of small-stock spreads",
+      "step": 374,
+      "verdict": "Fails both trials."
+    },
+    {
+      "name": "gs-quant (Goldman open-source library)",
+      "step": 376,
+      "verdict": "Nothing usable."
+    },
+    {
+      "name": "Overnight SPY drift; leveraged ETF with 200-day filter; one-coin Bitcoin sleeve",
+      "step": 376,
+      "verdict": "Closed unstarted."
+    },
+    {
+      "name": "Halloween / Sell in May (T1)",
+      "step": 377,
+      "verdict": "Fails."
+    },
+    {
+      "name": "BTAL anti-beta sleeve (T2)",
+      "step": 377,
+      "verdict": "Fails."
+    },
+    {
+      "name": "Treasury month-end as a standalone trade (T3)",
+      "step": 377,
+      "verdict": "Fails on cost;"
+    },
+    {
+      "name": "Six-sleeve inverse-vol combination (T6)",
+      "step": 377,
+      "verdict": "Fails."
+    },
+    {
+      "name": "Rebalancing bands, historical measurement",
+      "step": 377,
+      "verdict": "Done."
+    },
+    {
+      "name": "Banded twin of the benchmark clock",
+      "step": 378,
+      "verdict": "Running, weekly, from 2026-11-13."
     }
   ],
   "crossSectionalSkill": {
@@ -593,12 +1015,12 @@
     "measuredIn": "Step 281",
     "whyItMatters": "Counting them separately overstates how many independent bets this project holds, which is the illusion Step 245 measured as an effective 1.15 strategies and Step 277 restated as breadth without skill. Nothing has been removed: a negative result is a record, not a mistake to delete."
   },
-  "generatedAtUtc": "2026-11-07T00:21:15.015216+00:00",
+  "generatedAtUtc": "2026-11-14T00:40:13.441188+00:00",
   "headline": {
     "clocksPending": 4,
     "clocksRunning": 11,
-    "closedFamilies": 28,
-    "totalUntouchedWeeks": 75,
+    "closedFamilies": 105,
+    "totalUntouchedWeeks": 86,
     "weeksRequiredEach": 52
   },
   "liveTradingEnabled": false,

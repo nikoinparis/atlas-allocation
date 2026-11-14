@@ -11,49 +11,49 @@
   "note": "arithmetic weekly weight-times-return contributions summed over the closed weeks; energy classification was fixed on 2026-09-02 after seeing the first three weeks and is held constant since, so it is a hypothesis about later weeks rather than a finding about the ones that produced it",
   "rows": [
     {
-      "energy_contrib": 0.0062898039695319305,
-      "energy_share_of_gain": -3.003368385461604,
-      "energy_weight": 0.1765580244171491,
-      "ex_energy": -0.008384053879059834,
-      "ex_energy_sleeve_return": -0.011918614711772163,
-      "strategy": "sec-sector-aware-signal-ensemble-v1",
-      "weeks_total": -0.002094249909527904
-    },
-    {
-      "energy_contrib": 0.05041644982540415,
-      "energy_share_of_gain": -4.999629625248092,
-      "energy_weight": 0.5046502034762445,
-      "ex_energy": -0.06050048676502093,
-      "ex_energy_sleeve_return": -0.12213689637019873,
-      "strategy": "candidate-return-first-60-40-forward-v1",
-      "weeks_total": -0.010084036939616778
-    },
-    {
-      "energy_contrib": 0.008636622883630471,
-      "energy_share_of_gain": -0.6902830322588993,
+      "energy_contrib": 0.027998870062589293,
+      "energy_share_of_gain": 0.8140610832855665,
       "energy_weight": 0.2663950610428733,
-      "ex_energy": -0.021148335442126617,
-      "ex_energy_sleeve_return": -0.03093648719740009,
+      "ex_energy": 0.006395195244629798,
+      "ex_energy_sleeve_return": 0.009355103920673815,
       "strategy": "sec-cash-conversion-breadth20-dynamic-v1",
-      "weeks_total": -0.012511712558496146
+      "weeks_total": 0.03439406530721909
     },
     {
-      "energy_contrib": 0.016017889521630652,
-      "energy_share_of_gain": -0.22142940107205733,
+      "energy_contrib": 0.020013664395847272,
+      "energy_share_of_gain": 0.5829540648362145,
+      "energy_weight": 0.1765580244171491,
+      "ex_energy": 0.014317796010849211,
+      "ex_energy_sleeve_return": 0.020353911918585647,
+      "strategy": "sec-sector-aware-signal-ensemble-v1",
+      "weeks_total": 0.03433146040669648
+    },
+    {
+      "energy_contrib": 0.07540212467808695,
+      "energy_share_of_gain": 2.389196911363378,
+      "energy_weight": 0.5046502034762445,
+      "ex_energy": -0.04384251386515514,
+      "ex_energy_sleeve_return": -0.08850818991514939,
+      "strategy": "candidate-return-first-60-40-forward-v1",
+      "weeks_total": 0.03155961081293181
+    },
+    {
+      "energy_contrib": 0.028407970639216025,
+      "energy_share_of_gain": -1.2074554320380797,
       "energy_weight": 0.18111604883429858,
-      "ex_energy": -0.08835647438922069,
-      "ex_energy_sleeve_return": -0.11343984460969277,
+      "ex_energy": -0.05193510868957524,
+      "ex_energy_sleeve_return": -0.06667887894191116,
       "strategy": "sec-residual-controlled-1x-v1",
-      "weeks_total": -0.07233858486759004
+      "weeks_total": -0.023527138050359213
     },
     {
-      "energy_contrib": -0.056928695092039294,
-      "energy_share_of_gain": 0.2416001230829143,
+      "energy_contrib": -0.03755546618215376,
+      "energy_share_of_gain": 0.2383640988535071,
       "energy_weight": 0.2,
-      "ex_energy": -0.17870320097492606,
-      "ex_energy_sleeve_return": -0.22337900121865756,
+      "ex_energy": -0.1199995782343062,
+      "ex_energy_sleeve_return": -0.14999947279288273,
       "strategy": "sec-growth-survivorship-aware-v1",
-      "weeks_total": -0.23563189606696536
+      "weeks_total": -0.15755504441645996
     }
   ],
   "weeks": [
@@ -69,6 +69,7 @@
     "2026-10-16",
     "2026-10-23",
     "2026-10-30",
-    "2026-11-06"
+    "2026-11-06",
+    "2026-11-13"
   ]
 }

@@ -3,10 +3,10 @@
 Protocol: `return_first_60_40_blend_v1_forward`
 
 - Decision basis: **held frozen book** (the pinned source bundle ends 2026-08-07).
-- Saved forward decisions: **12**.
-- Realized weeks: **10/52**.
-- Latest decision: **2026-11-06**.
-- Latest realization: **2026-11-06**.
+- Saved forward decisions: **13**.
+- Realized weeks: **11/52**.
+- Latest decision: **2026-11-13**.
+- Latest realization: **2026-11-13**.
 - Records written after their window: **5**.
 - Execution enabled: **no**.
 

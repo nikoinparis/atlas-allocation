@@ -1,0 +1,28 @@
+{
+  "band_rebalances": 0,
+  "banded_metrics": {
+    "observations": 0
+  },
+  "banded_turnover_total": 0.0,
+  "current_weights": {
+    "GLD": 0.3333333333333333,
+    "SHY": 0.3333333333333333,
+    "SPY": 0.3333333333333333
+  },
+  "execution_enabled": false,
+  "generated_at_utc": "2026-11-14T00:37:49.003880+00:00",
+  "latest_decision_date": "2026-11-13",
+  "latest_realization_date": null,
+  "live_trading_enabled": false,
+  "observed_weeks": 0,
+  "promotion_authorized": false,
+  "protocol_version": "banded_spy_gld_shy_v1",
+  "rehearsal": false,
+  "required_untouched_weeks": 52,
+  "role": "rebalancing-rule twin of the benchmark, not an edge",
+  "saved_decisions": 1,
+  "weekly_reset_metrics": {
+    "observations": 0
+  },
+  "weekly_reset_turnover_total": 0
+}

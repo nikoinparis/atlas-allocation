@@ -10,47 +10,49 @@
     "2026-10-16",
     "2026-10-23",
     "2026-10-30",
-    "2026-11-06"
+    "2026-11-06",
+    "2026-11-13"
   ],
   "artifact_sha256": {
-    "weekly_adjusted_prices_clean.csv.gz": "498d55038d6fefd3b75ef0ee15ac49c3d4577b27822a02a138984f35a6b15f02"
+    "weekly_adjusted_prices_clean.csv.gz": "969e1713d7c91adb2a48db7f0a0bd3f9081025cf57ef19ac235192925ddc8f0b"
   },
   "cleaning_rules": {
     "applied_to": "appended weeks only; existing cells are never rewritten",
-    "return_observations_adjusted": 6,
+    "return_observations_adjusted": 8,
     "weekly_return_cap": 2.0,
     "weekly_return_floor": -0.95,
     "zero_and_negative_prices": "set to missing"
   },
   "coverage_new_week": {
-    "2026-08-28": 2784,
-    "2026-09-04": 2785,
-    "2026-09-11": 2785,
-    "2026-09-18": 2785,
-    "2026-09-25": 2785,
-    "2026-10-02": 2785,
-    "2026-10-09": 2785,
-    "2026-10-16": 2785,
-    "2026-10-23": 2782,
-    "2026-10-30": 2779,
-    "2026-11-06": 2780
+    "2026-08-28": 2781,
+    "2026-09-04": 2782,
+    "2026-09-11": 2782,
+    "2026-09-18": 2782,
+    "2026-09-25": 2782,
+    "2026-10-02": 2782,
+    "2026-10-09": 2782,
+    "2026-10-16": 2782,
+    "2026-10-23": 2779,
+    "2026-10-30": 2776,
+    "2026-11-06": 2776,
+    "2026-11-13": 2775
   },
-  "created_at_utc": "2026-11-07T00:12:52.914512+00:00",
+  "created_at_utc": "2026-11-14T00:13:02.151022+00:00",
   "derived_from": "data/clean_weekly_prices_v1/weekly_adjusted_prices_clean.csv.gz",
   "derived_from_sha256": "3ad97d8174266ca6301281e10acc12ab9082cdd26615483ea4ca2ecb67f24123",
   "experiment": "clean_weekly_prices_v2",
   "issuers": 3253,
-  "issuers_extended": 2786,
-  "issuers_not_extended": 467,
-  "last_closed_friday_at_build": "2026-11-06",
+  "issuers_extended": 2783,
+  "issuers_not_extended": 470,
+  "last_closed_friday_at_build": "2026-11-13",
   "live_trading_enabled": false,
-  "new_last_week": "2026-11-06",
+  "new_last_week": "2026-11-13",
   "not_extended_reason": "no fresh Yahoo observation in the new week; these are overwhelmingly Tiingo-sourced delisted issuers whose series legitimately stops",
   "overlap_reconciliation": {
     "basis": "weekly simple returns over the overlapping weeks",
     "cells_over_100bps": 384,
     "cells_over_10bps": 544,
-    "compared_cells": 30118,
+    "compared_cells": 30084,
     "max_absolute_return_gap": 17.00000145519156,
     "median_absolute_return_gap": 2.220446049250313e-16,
     "overlap_weeks": [
@@ -70,7 +72,7 @@
   },
   "panel_convention": "each issuer is rebased to 1.0 at its first observation; new weeks are chained onto the stored level at the last shared week",
   "prior_last_week": "2026-08-21",
-  "raw_tail_vintage": "data/sec_broad_recent_tail_vintages/20261107T001247Z-broad-recent-tail-v1",
+  "raw_tail_vintage": "data/sec_broad_recent_tail_vintages/20261114T001256Z-broad-recent-tail-v1",
   "symbols_failed": 0,
   "symbols_requested": 3235
 }

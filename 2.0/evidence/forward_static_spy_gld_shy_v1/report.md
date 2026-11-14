@@ -3,10 +3,10 @@
 Protocol: `static_spy_gld_shy_v1_forward`
 
 - Decision basis: **held frozen book** (the pinned source bundle ends 2026-08-07).
-- Saved forward decisions: **6**.
-- Realized weeks: **5/52**.
-- Latest decision: **2026-11-06**.
-- Latest realization: **2026-11-06**.
+- Saved forward decisions: **7**.
+- Realized weeks: **6/52**.
+- Latest decision: **2026-11-13**.
+- Latest realization: **2026-11-13**.
 - Records written after their window: **0**.
 - Execution enabled: **no**.
 

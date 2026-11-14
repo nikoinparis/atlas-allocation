@@ -1,22 +1,22 @@
 # Free ETF Data Acquisition
 
-Snapshot: `20261107T000654Z-8406d91deb5cd231`
+Snapshot: `20261114T000654Z-1700a0d27420dd45`
 
 A rootless Podman container downloaded the configured ETF universe through a fully pinned yfinance environment. No host Python packages or paid services were used. The normalized output was validated and stored immutably.
 
 ## Acquisition
 
 - Symbols: **35**.
-- Daily price rows: **211,808**.
-- Corporate-action rows observed: **3,836**.
-- Latest market date: **2026-11-06**.
+- Daily price rows: **211,983**.
+- Corporate-action rows observed: **3,851**.
+- Latest market date: **2026-11-13**.
 - Maximum calendar staleness: **1 days**.
 - Freshness and completeness gate: **pass**.
 
 ## Revision monitoring
 
-- Common price rows: 211,633.
-- Revised historical rows: 156,203 (73.8084%).
+- Common price rows: 211,808.
+- Revised historical rows: 157,811 (74.5066%).
 - Newly observed rows: 175.
 - Disappeared rows: 0.
 

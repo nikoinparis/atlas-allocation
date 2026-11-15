@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-11-14T00:40:11.422717+00:00",
+  "generated_at_utc": "2026-11-15T16:32:45.120329+00:00",
   "through": "2026-11-13",
   "etf_vintage": "20261114T000654Z-1700a0d27420dd45",
   "stock_vintage": "20261114T001302Z-broad-full-history-v1",
@@ -9,7 +9,7 @@
   "clocks": [
     {
       "clock": "static_spy_gld_shy_v1",
-      "start": "2005-01-09",
+      "start": "2005-01-07",
       "through": "2026-11-13",
       "forward_from": "2026-10-02",
       "cagr": 0.08287649016803833,
@@ -22,20 +22,20 @@
     },
     {
       "clock": "trend_sleeve_8020_v1",
-      "start": "2019-05-19",
+      "start": "2019-05-17",
       "through": "2026-11-13",
       "forward_from": "2026-10-16",
-      "cagr": 0.1112044427950083,
-      "sharpe": 1.2766914345559193,
-      "maxDrawdown": -0.12384406942549331,
-      "totalReturn": 1.2018152062441683,
+      "cagr": 0.11120443653993006,
+      "sharpe": 1.276691355757319,
+      "maxDrawdown": -0.12384406801934322,
+      "totalReturn": 1.2018151134698178,
       "up_day_share": 0.582271762208068,
       "forward_return": -0.02250114245791135,
       "rebalances": 392
     },
     {
       "clock": "return_first_60_40_blend_v1",
-      "start": "2005-01-09",
+      "start": "2005-01-07",
       "through": "2026-11-13",
       "forward_from": "2026-08-14",
       "cagr": 0.14184527076971776,
@@ -48,7 +48,7 @@
     },
     {
       "clock": "past_only_consensus_selector_return_v1",
-      "start": "2005-01-09",
+      "start": "2005-01-07",
       "through": "2026-11-13",
       "forward_from": "2026-08-14",
       "cagr": 0.12649103033581688,
@@ -61,7 +61,7 @@
     },
     {
       "clock": "breadth_confirmed_trend_return_ceiling_v3",
-      "start": "2006-01-29",
+      "start": "2005-01-07",
       "through": "2026-11-13",
       "forward_from": "2026-08-14",
       "cagr": 0.11653724256616926,
@@ -74,20 +74,20 @@
     },
     {
       "clock": "covariance_minimum_variance_v1",
-      "start": "2005-07-31",
+      "start": "2005-01-07",
       "through": "2026-11-13",
       "forward_from": "2026-08-14",
-      "cagr": 0.07680646687473147,
-      "sharpe": 0.8916901897618144,
-      "maxDrawdown": -0.23393154316260856,
-      "totalReturn": 3.83080517302018,
+      "cagr": 0.07680646687473258,
+      "sharpe": 0.8916901897618261,
+      "maxDrawdown": -0.23393154316260878,
+      "totalReturn": 3.8308051730202735,
       "up_day_share": 0.5551614709725593,
       "forward_return": -0.057053377323203924,
       "rebalances": 1140
     },
     {
       "clock": "valuation_earnings_yield_v1",
-      "start": "2023-01-08",
+      "start": "2023-01-06",
       "through": "2026-11-13",
       "forward_from": "2026-09-11",
       "cagr": 0.35784422354385015,
@@ -100,7 +100,7 @@
     },
     {
       "clock": "sue_quarterly_v1",
-      "start": "2012-04-08",
+      "start": "2012-04-05",
       "through": "2026-11-13",
       "forward_from": "2026-09-11",
       "cagr": 0.12112676881435758,
@@ -113,7 +113,7 @@
     },
     {
       "clock": "spy_riser_5050_v1",
-      "start": "2012-11-04",
+      "start": "2012-11-02",
       "through": "2026-11-13",
       "forward_from": "2026-10-16",
       "cagr": 0.1958697179036215,
@@ -126,7 +126,7 @@
     },
     {
       "clock": "equal_weight_benchmark_v1",
-      "start": "2012-04-08",
+      "start": "2012-04-05",
       "through": "2026-11-13",
       "forward_from": "2026-09-11",
       "cagr": 0.22500890655994832,

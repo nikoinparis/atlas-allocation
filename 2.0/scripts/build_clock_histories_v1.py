@@ -81,6 +81,7 @@ class Prices:
         self.calendar = self.etf["SPY"].dropna().index
         self.returns = pd.DataFrame(index=self.calendar)
         self.topped_up: set[str] = set()
+        self.levels: dict[str, pd.Series] = {}
 
     def symbol(self, key: str) -> str:
         return self.cik_symbol.get(key, key) if key[:1].isdigit() else key
@@ -99,6 +100,7 @@ class Prices:
                 series = frame
             else:
                 continue                                    # e.g. DBMF: Yahoo only, added by top_up
+            self.levels[s] = series
             cols[s] = series.pct_change(fill_method=None)
         if cols:
             frame = pd.DataFrame(cols).reindex(self.returns.index.union(pd.DatetimeIndex([])))
@@ -123,6 +125,8 @@ class Prices:
         for s in wanted:
             if s not in yret.columns:
                 continue
+            previous = self.levels.get(s, pd.Series(dtype=float))
+            self.levels[s] = raw[s] if s in full_history else pd.concat([previous[previous.index <= self.vintage_end], raw.loc[new_days, s]])
             if s in full_history:
                 self.returns[s] = yret[s].reindex(calendar)
             else:
@@ -325,7 +329,7 @@ def stats(r: pd.Series) -> dict[str, float]:
 def entry(clock: dict, daily: pd.Series, ledger: list[dict]) -> dict:
     forward_from = clock["forward_from"]
     daily = daily.dropna()
-    start = daily.index[0] - pd.Timedelta(days=1)
+    start = ledger[0]["date"]  # actual opening close, not the Sunday before a Monday return
     full = stats(daily)
     fwd = daily[daily.index > forward_from]
     fwd_stats = stats(fwd) if len(fwd) > 1 else {"cagr": 0.0, "sharpe": 0.0, "maxDrawdown": 0.0, "totalReturn": 0.0}
@@ -386,6 +390,32 @@ BASE = ("Before {fwd}: the clock's frozen rule applied to past data (a backtest 
         "not evidence). From {fwd}: the clock's own recorded decisions. Marked at daily adjusted closes, "
         "trading at each decision day's close; {cost}.")
 SURVIVOR = " The stock price history holds mostly survivors, so the backtest part is flattered."
+
+
+def held_price_payload(payload: dict, levels: dict[str, pd.Series], end: pd.Timestamp) -> dict:
+    """Publish prices only around intervals a symbol is held, plus a 90-day chart lead-in.
+
+    Full histories of the union of every SUE holding made a single lazy fetch
+    exceed 200 MB. Interval filtering retains every daily attribution quote.
+    """
+    windows: dict[str, list] = {}
+    records = payload["records"]
+    for i, record in enumerate(records):
+        start = pd.Timestamp(record["date"]) - pd.Timedelta(days=90)
+        stop = pd.Timestamp(records[i + 1]["date"]) if i + 1 < len(records) else end
+        for h in record["holdings"]:
+            if h["symbol"] != CASH and h["weight"] > 1e-10:
+                windows.setdefault(h["symbol"], []).append((start, stop))
+    result = {}
+    for symbol, spans in windows.items():
+        if symbol not in levels:
+            continue
+        values = levels[symbol].loc[:end].dropna()
+        keep = np.zeros(len(values), dtype=bool)
+        for start, stop in spans:
+            keep |= (values.index >= start) & (values.index <= stop)
+        result[symbol] = [{"date": str(d.date()), "price": float(v)} for d, v in values[keep].items()]
+    return result
 
 
 def main() -> int:
@@ -517,10 +547,10 @@ def main() -> int:
     (OUT / "summary.json").write_text(json.dumps(meta, indent=2) + "\n")
     DASH.write_text(json.dumps({"generatedAtUtc": generated, "through": str(end.date()), "strategies": rows},
                                separators=(",", ":")) + "\n")
-    for payload in rows:                                   # the page fetches /prices/<id>.json per strategy;
-        stub = DASH.parent / "prices" / f"{payload['strategy']['id']}.json"   # clocks carry no per-asset prices yet
-        if not stub.exists():
-            stub.write_text("{}\n")
+    for payload in rows:
+        prices = held_price_payload(payload, px.levels, end)
+        target = DASH.parent / "prices" / f"{payload['strategy']['id']}.json"
+        target.write_text(json.dumps(prices, separators=(",", ":")) + "\n")
     print(f"wrote {DASH.relative_to(ROOT)} ({DASH.stat().st_size / 1e6:.1f} MB)")
     return 0
 

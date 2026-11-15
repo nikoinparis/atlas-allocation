@@ -1,0 +1,76 @@
+{
+  "generated_at_utc": "2026-11-15T16:49:11.247859+00:00",
+  "through": "2026-11-13",
+  "stock_vintage": "20261114T001302Z-broad-full-history-v1",
+  "etf_vintage": "20261114T000654Z-1700a0d27420dd45",
+  "limitations": [
+    "Retrospective simulation using adjusted closes and 50 bps on traded portfolio turnover; no live executions.",
+    "Historical data retains the saved backtest's selection and survivorship limitations.",
+    "The continuation trades the reconstructed security-level composite, so its costs can differ from the original nested-sleeve weekly research accounting."
+  ],
+  "strategies": [
+    {
+      "strategy": "sec-residual-controlled-1x-v1",
+      "through": "2026-11-13",
+      "continuation_days": 69,
+      "trade_days": 14,
+      "growth_of_one": 3.289525333997168,
+      "unpriced_allocations_held_as_cash": [
+        {
+          "date": "2026-10-09",
+          "symbol": "CRNX",
+          "weightHeldAsCash": 0.010000000000000002
+        },
+        {
+          "date": "2026-10-09",
+          "symbol": "TALK",
+          "weightHeldAsCash": 0.010000000000000002
+        },
+        {
+          "date": "2026-10-09",
+          "symbol": "APGE",
+          "weightHeldAsCash": 0.010000000000000002
+        }
+      ],
+      "accounting": "security-level turnover"
+    },
+    {
+      "strategy": "candidate-return-first-60-40-forward-v1",
+      "through": "2026-11-13",
+      "continuation_days": 69,
+      "trade_days": 14,
+      "growth_of_one": 12.250580525145438,
+      "unpriced_allocations_held_as_cash": [],
+      "accounting": "security-level turnover"
+    },
+    {
+      "strategy": "sec-growth-survivorship-aware-v1",
+      "through": "2026-11-13",
+      "continuation_days": 69,
+      "trade_days": 1,
+      "growth_of_one": 2.076105091791248,
+      "unpriced_allocations_held_as_cash": [],
+      "accounting": "security-level turnover"
+    },
+    {
+      "strategy": "sec-cash-conversion-breadth20-dynamic-v1",
+      "through": "2026-11-13",
+      "continuation_days": 69,
+      "trade_days": 14,
+      "growth_of_one": 3.105180241721767,
+      "unpriced_allocations_held_as_cash": [],
+      "accounting": "security-level turnover"
+    },
+    {
+      "strategy": "sec-sector-aware-signal-ensemble-v1",
+      "through": "2026-11-13",
+      "continuation_days": 69,
+      "trade_days": 14,
+      "growth_of_one": 3.304849195352543,
+      "unpriced_allocations_held_as_cash": [],
+      "accounting": "security-level turnover"
+    }
+  ],
+  "forward_logs_modified": false,
+  "script_sha256": "8d1a37b336cf3833e79c8b1774030602d71339e7f066d984eba12bc42ad06b55"
+}

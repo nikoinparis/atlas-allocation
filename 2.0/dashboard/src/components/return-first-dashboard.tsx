@@ -57,6 +57,7 @@ type DashboardPayload = {
     disclosures: { researchOnly: boolean; liveTradingEnabled: boolean; costBps: number; returnConvention: string };
     dailyThrough?: string;
     heldBookExtension?: { backtestEnd: string; from: string; through: string; days: number } | null;
+    ruleContinuation?: { backtestEnd: string; through: string; fundamentalsThrough: string; limitations: string[]; unpricedAllocationsHeldAsCash: { date: string; symbol: string; weightHeldAsCash: number }[] };
     clockHistory?: { backtestStart: string; forwardFrom: string; through: string; survivorship: boolean };
   };
   records: StrategyRecord[];
@@ -378,10 +379,8 @@ export function ReturnFirstDashboard({ initialView = "overview" }: { initialView
 function DashboardView({ data, strategies, survivalBundle, activeView, onStrategyChange }: { data: DashboardPayload; strategies: BundledPayload[]; survivalBundle: SurvivalBundle | null; activeView: DashboardViewName; onStrategyChange: (id: string) => void }) {
   const latest = data.records.at(-1)!;
   const latestDay = data.dailyRecords.at(-1)!;
-  // Forward clocks open on their full history (the owner asked to see each from its start).
-  const firstHoldoutRecord = data.strategy.clockHistory
-    ? data.dailyRecords[0].date
-    : data.dailyRecords.find((row) => row.date > data.strategy.retrospectiveHoldout.start)?.date ?? data.strategy.retrospectiveHoldout.start;
+  // The starting question is "what if I invested from the beginning?"
+  const firstHoldoutRecord = data.dailyRecords[0].date;
   const [capital, setCapital] = useState(10_000);
   const [startDate, setStartDate] = useState(firstHoldoutRecord);
   const [selectedDate, setSelectedDate] = useState(latestDay.date);
@@ -609,9 +608,11 @@ function DashboardView({ data, strategies, survivalBundle, activeView, onStrateg
           <button className="close-button" onClick={() => setSettingsOpen(false)} aria-label="Close simulation settings"><X size={18} /></button>
           <span className="section-kicker">WHAT-IF LAB</span>
           <h2>Replay the strategy</h2>
-          <p>Change only the hypothetical starting amount and time window. The strategy rules, weekly returns, and 50-bps cost model remain frozen.</p>
+          <p>Change the hypothetical starting amount and time window to see the strategy’s daily investment path, including its modeled trading costs.</p>
           {data.strategy.clockHistory && <p>This is a forward clock. Days before {data.strategy.clockHistory.forwardFrom} apply its frozen rule to past data, a backtest chosen with hindsight; days from {data.strategy.clockHistory.forwardFrom} follow the decisions the clock actually recorded.{data.strategy.clockHistory.survivorship ? " The stock history holds mostly survivors, so the backtest part is flattered." : ""}</p>}
           {data.strategy.heldBookExtension && <p>Days after {data.strategy.heldBookExtension.backtestEnd} are a what-if replay: the last decided book is held unchanged at daily closes through {data.strategy.heldBookExtension.through}, with no rebalancing or costs. It is computed after the fact, not forward evidence.</p>}
+          {data.strategy.ruleContinuation && <><p>Strategy rules continue after {data.strategy.ruleContinuation.backtestEnd} through {data.strategy.ruleContinuation.through}, including quarterly selections, allocation changes, daily holdings drift, and trading costs. Fundamental selections are updated through {data.strategy.ruleContinuation.fundamentalsThrough}.</p><p>{data.strategy.ruleContinuation.limitations.join(" ")}</p></>}
+          {!!data.strategy.ruleContinuation?.unpricedAllocationsHeldAsCash.length && <p>Selections without execution quotes were held as cash: {data.strategy.ruleContinuation.unpricedAllocationsHeldAsCash.map((row) => `${row.symbol} on ${row.date} (${(row.weightHeldAsCash * 100).toFixed(1)}%)`).join("; ")}.</p>}
           <label>Starting capital<input type="number" min="100" step="100" value={capital} onChange={(event) => setCapital(Math.max(100, Number(event.target.value) || 100))} /></label>
           <label>Start date<input type="date" min={data.dailyRecords[0].date} max={latestDay.date} value={startDate} onChange={(event) => setStartDate(event.target.value)} /></label>
           <div className="quick-ranges"><span>QUICK RANGE</span>{[1, 2, 3, 5].map((item) => <button key={item} onClick={() => setQuickRange(item)}>{item}Y</button>)}<button onClick={() => setQuickRange("max")}>MAX</button></div>
@@ -657,7 +658,7 @@ function DashboardView({ data, strategies, survivalBundle, activeView, onStrateg
       footerNote={`Data through ${latestDay.date} · daily P&L from weekly strategy decisions`}
       stats={heroStats}
       cta={heroCta}
-      heroNote={`Simulated, ${startDate} to ${latestDay.date} · ${compactMoney.format(capital)} start · research only${data.strategy.heldBookExtension ? ` · backtest to ${data.strategy.heldBookExtension.backtestEnd}, then last book held to ${data.strategy.heldBookExtension.through}` : ""}${data.strategy.clockHistory ? ` · rule backtest before ${data.strategy.clockHistory.forwardFrom}, recorded clock after${data.strategy.clockHistory.survivorship ? " · survivor-biased stock history" : ""}` : ""}`}
+      heroNote={`Simulated, ${startDate} to ${latestDay.date} · ${compactMoney.format(capital)} start · research only${data.strategy.ruleContinuation ? ` · rules continued through ${data.strategy.ruleContinuation.through}` : ""}${data.strategy.heldBookExtension ? ` · backtest to ${data.strategy.heldBookExtension.backtestEnd}, then last book held to ${data.strategy.heldBookExtension.through}` : ""}${data.strategy.clockHistory ? ` · rule backtest before ${data.strategy.clockHistory.forwardFrom}, recorded clock after${data.strategy.clockHistory.survivorship ? " · survivor-biased stock history" : ""}` : ""}`}
       toolbar={toolbar}
       overlays={overlays}
     >

@@ -1,0 +1,30 @@
+{
+  "archive_end": "2026Q3",
+  "archive_start": "2023Q1",
+  "archives": 15,
+  "config": "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/config/sec_historical_filer_universe_v1.json",
+  "created_at_utc": "2026-11-15T16:22:34.990669+00:00",
+  "decisions": 15,
+  "delisting_returns_complete": false,
+  "historical_cik_current_ticker_coverage": 0.805993690851735,
+  "historical_ciks_without_current_ticker": 114,
+  "historical_ticker_mapping_complete": false,
+  "latest_members": 531,
+  "limitations": [
+    "SEC SIC ranges are a transparent sector approximation, not historical GICS classifications.",
+    "Filer status is an investability proxy, not a point-in-time market-cap or liquidity screen.",
+    "A current SEC ticker match does not establish the ticker that traded historically.",
+    "A delisting-aware return series is required before this universe can authorize strategy claims."
+  ],
+  "membership_rows": 8397,
+  "qualifying_submission_rows": 7931,
+  "sector_taxonomy": [
+    "technology",
+    "energy"
+  ],
+  "source_zip_bytes": 1564846104,
+  "strategy_testing_authorized": false,
+  "strict_point_in_time_membership": true,
+  "unique_historical_ciks": 634,
+  "vintage_id": "20261115T162233Z-sec-historical-filers-v1"
+}

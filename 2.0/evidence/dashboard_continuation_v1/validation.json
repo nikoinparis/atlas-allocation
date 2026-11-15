@@ -1,0 +1,103 @@
+{
+  "checks": [
+    "15 strategies current",
+    "finite unique ordered daily returns",
+    "saved historical prefix preserved",
+    "continuation holdings budget to 100%",
+    "daily attribution and costs reconcile",
+    "repeat build unchanged within 1e-12"
+  ],
+  "strategies": [
+    {
+      "strategy": "sec-residual-controlled-1x-v1",
+      "first": "2022-12-02",
+      "through": "2026-11-13",
+      "daily_records": 991
+    },
+    {
+      "strategy": "candidate-return-first-60-40-forward-v1",
+      "first": "2005-01-07",
+      "through": "2026-11-13",
+      "daily_records": 5506
+    },
+    {
+      "strategy": "sec-growth-survivorship-aware-v1",
+      "first": "2023-01-06",
+      "through": "2026-11-13",
+      "daily_records": 970
+    },
+    {
+      "strategy": "sec-cash-conversion-breadth20-dynamic-v1",
+      "first": "2023-01-06",
+      "through": "2026-11-13",
+      "daily_records": 968
+    },
+    {
+      "strategy": "sec-sector-aware-signal-ensemble-v1",
+      "first": "2023-01-06",
+      "through": "2026-11-13",
+      "daily_records": 974
+    },
+    {
+      "strategy": "clock-static_spy_gld_shy_v1",
+      "first": "2005-01-07",
+      "through": "2026-11-13",
+      "daily_records": 5498
+    },
+    {
+      "strategy": "clock-trend_sleeve_8020_v1",
+      "first": "2019-05-17",
+      "through": "2026-11-13",
+      "daily_records": 1885
+    },
+    {
+      "strategy": "clock-return_first_60_40_blend_v1",
+      "first": "2005-01-07",
+      "through": "2026-11-13",
+      "daily_records": 5498
+    },
+    {
+      "strategy": "clock-past_only_consensus_selector_return_v1",
+      "first": "2005-01-07",
+      "through": "2026-11-13",
+      "daily_records": 5498
+    },
+    {
+      "strategy": "clock-breadth_confirmed_trend_return_ceiling_v3",
+      "first": "2005-01-07",
+      "through": "2026-11-13",
+      "daily_records": 5233
+    },
+    {
+      "strategy": "clock-covariance_minimum_variance_v1",
+      "first": "2005-01-07",
+      "through": "2026-11-13",
+      "daily_records": 5358
+    },
+    {
+      "strategy": "clock-valuation_earnings_yield_v1",
+      "first": "2023-01-06",
+      "through": "2026-11-13",
+      "daily_records": 968
+    },
+    {
+      "strategy": "clock-sue_quarterly_v1",
+      "first": "2012-04-05",
+      "through": "2026-11-13",
+      "daily_records": 3674
+    },
+    {
+      "strategy": "clock-spy_riser_5050_v1",
+      "first": "2012-11-02",
+      "through": "2026-11-13",
+      "daily_records": 3529
+    },
+    {
+      "strategy": "clock-equal_weight_benchmark_v1",
+      "first": "2012-04-05",
+      "through": "2026-11-13",
+      "daily_records": 3674
+    }
+  ],
+  "largest_repeat_float_difference": 2.220446049250313e-16
+}

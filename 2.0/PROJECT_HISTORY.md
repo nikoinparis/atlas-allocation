@@ -18368,3 +18368,49 @@ logged forward week:
 None of this is evidence of skill, and nothing is promoted.
 
 **Cumulative search:** no new trial. Every rule shown was frozen before this step.
+
+## Step 381 — 2026-11-15 — Continue dashboard rules and daily activity through the latest close
+
+**Request.** Show what an investment in every dashboard strategy would have done
+on each trading day from its recorded start through today, then push to main.
+November 15 is a Sunday; the latest completed market session is November 13.
+
+**Correction.** The prior extension held the August book unchanged. It did not
+rerun the selection/allocation rules. The compatibility refresh now invokes a
+separate retrospective continuation builder. Saved daily history is retained
+through each final allocation date (August 7); 69 subsequent sessions are marked
+with daily holdings drift, close trades, and 50 bps on security-level one-way
+turnover. The accounting is explicit: it differs from the sealed experiments'
+nested-sleeve weekly costs and is not a claim of exact reproduction of those
+experiments' accounting. Original research metrics are retained separately.
+
+**Inputs and rules.** Acquired SEC FSDS through 2026Q3, isolated fresh Company
+Facts for 489 execution-priced narrow-universe issuers, and scored the October 1
+quarter without rewriting historical score blocks. Rebuilt the existing ETF
+60/40 model with its original parameters; historical weights reconcile within
+1e-8 and training-label embargo checks pass. Continued growth confidence/caps,
+breadth-20 cash conversion, sector-aware/tranched allocation, and residual
+rankings using updated inputs. Residual ranks use only the filer/sector roster
+known by each decision and the existing execution delay. No new parameter search.
+
+**Missing quotes.** Three residual selections on October 9 (CRNX, TALK, APGE),
+each 1% of the composite, lacked execution quotes and route explicitly to cash
+under the base-case policy. Missing held prices fail instead of producing a
+fabricated flat return. These allocations are included in the payload audit and
+shown in the simulation settings.
+
+**Dashboard.** All five research portfolios and ten clock histories run through
+November 13. The default simulation starts at each strategy's first record.
+Current badges now use updated trailing-252-session returns. Per-clock prices
+support attribution/drill-down and are filtered to held intervals plus a 90-day
+lead-in; a first unfiltered SUE export exceeded 200 MB and was corrected before
+release. Clock decisions/observations and frozen source bundles were not changed.
+
+**Validation.** Eight targeted tests pass: close-trade timing, costs
+against drifted holdings, missing-held-price rejection, future-price prefix
+invariance, quarterly drift, capital-budget validation, explicit cash routing, and retained attribution quotes after price-payload filtering.
+All fifteen payload histories have unique, ordered, finite daily returns through
+November 13. Research-history prefixes are unchanged; continued holdings sum to
+one and daily attribution plus costs reconciles to net returns. Production build
+and browser checks pass. This is retrospective accounting, not new forward
+observations, evidence of an edge, or authorization to trade.

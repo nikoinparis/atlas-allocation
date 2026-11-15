@@ -1,0 +1,41 @@
+{
+  "archive_end": "2026Q3",
+  "archive_start": "2023Q1",
+  "archives": 15,
+  "config": "/Users/nicholasturangan/Projects/Portfolio Optimizer/2.0/config/sec_historical_filer_universe_broad_v2.json",
+  "created_at_utc": "2026-11-15T16:24:38.344559+00:00",
+  "decisions": 15,
+  "delisting_returns_complete": false,
+  "historical_cik_current_ticker_coverage": 0.8267148014440433,
+  "historical_ciks_without_current_ticker": 541,
+  "historical_ticker_mapping_complete": false,
+  "latest_members": 2847,
+  "limitations": [
+    "SEC SIC ranges are a transparent point-in-time industry approximation, not historical GICS classifications.",
+    "Technology and energy are explicit first-match carve-outs; the remaining labels are broad SEC SIC divisions.",
+    "Filer status is an investability proxy, not a point-in-time market-cap or liquidity screen.",
+    "A current SEC ticker match does not establish the ticker that traded historically.",
+    "A delisting-aware return series and explicit missing-company adverse tests are required before strategy claims or promotion."
+  ],
+  "membership_rows": 44179,
+  "qualifying_submission_rows": 41969,
+  "sector_taxonomy": [
+    "technology",
+    "energy",
+    "agriculture_forestry_fishing",
+    "materials_and_mining",
+    "construction",
+    "manufacturing",
+    "transport_communications_utilities",
+    "wholesale_trade",
+    "retail_trade",
+    "finance_insurance_real_estate",
+    "services",
+    "public_administration"
+  ],
+  "source_zip_bytes": 1564846104,
+  "strategy_testing_authorized": false,
+  "strict_point_in_time_membership": true,
+  "unique_historical_ciks": 3324,
+  "vintage_id": "20261115T162437Z-sec-historical-filers-broad-v2"
+}
